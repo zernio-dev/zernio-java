@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.434.1
+  version: 1.435.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -4813,6 +4813,7 @@ paths:
             The post cannot be submitted: 400 `invalid_field_value`.
 
             - `param: url`: the link is not a post of an accepted platform, or the post was published before the campaign started or longer ago than the campaign accepts.
+            - TikTok and X post ids carry their creation time, so a post from before the campaign is refused as such even when no connected account has it.
             - The post is from an account past the campaign's `caps.maxAccountsPerParticipant` ("This campaign allows 2 connected accounts."). Only the first accounts the creator connected, up to that count, can submit.
         "403":
           content:
@@ -4827,8 +4828,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: "The link is invalid or expired, or the post is not from an\
-            \ account the creator connected (`resource_not_found`)."
+          description: |
+            The link is invalid or expired, or no connected account has the post (`resource_not_found`, `param: url`).
+
+            - When the link names its author (TikTok, Instagram, Threads, X) and that is not one of the creator's accounts, the message names both handles.
+            - Otherwise it says the post was not found yet, for example because it was published moments ago.
         "409":
           content:
             application/json:
@@ -4849,6 +4853,67 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /public/creator-campaigns/{token}/accounts/{accountId}:
+    delete:
+      description: |
+        Disconnects one of the creator's accounts. The account belongs to the creator, not to one campaign, so it stops
+        counting in every campaign of this brand they joined.
+
+        What its posts already earned stays: accrued, approved and paid amounts are not touched.
+
+        Refused while a post from the account is still counting views, because those views are read through the
+        account. It can be removed once their tracking ends.
+      operationId: removeCreatorAccount
+      parameters:
+      - $ref: "#/components/parameters/CreatorPortalToken"
+      - description: The `id` of one of the participant's `accounts`.
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeCreatorAccount_200_response"
+          description: Removed.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The link is invalid or expired, or the account is not one\
+            \ of the participant's accounts on the campaign's platforms (`resource_not_found`)."
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: A post from the account is still counting views (`invalid_resource_state`;
+            the message says how many).
+      security: []
+      summary: Remove a connected account
+      tags:
+      - Creator Portal
+      x-resource-group: public
+      x-accepts:
+      - application/json
+    parameters:
+    - $ref: "#/components/parameters/CreatorPortalToken"
+    - description: The `id` of one of the participant's `accounts`.
+      explode: false
+      in: path
+      name: accountId
+      required: true
+      schema:
+        type: string
+      style: simple
   /public/creator-campaigns/{token}/payouts:
     get:
       description: |
@@ -77043,11 +77108,13 @@ components:
         contentRules: contentRules
         trackingDays: 2
         brandName: brandName
+        startedAt: 2000-01-23T04:56:07.000+00:00
         holdDays: 5
         logoUrl: logoUrl
         platforms:
         - platforms
         - platforms
+        maxAccountsPerParticipant: 7
         economics:
           maxPayoutPerClipCents: 1
           metric: views
@@ -77103,6 +77170,11 @@ components:
           format: date-time
           nullable: true
           type: string
+        startedAt:
+          description: "Posts published before this moment do not count: `startsAt`,\
+            \ else when the campaign went live."
+          format: date-time
+          type: string
         currency:
           type: string
         economics:
@@ -77119,6 +77191,11 @@ components:
         trackingDays:
           description: Days each submitted post is tracked for views.
           type: integer
+        maxAccountsPerParticipant:
+          description: How many connected accounts can submit posts. Null means no
+            limit.
+          nullable: true
+          type: integer
       required:
       - brandName
       - contentRules
@@ -77128,9 +77205,11 @@ components:
       - holdDays
       - id
       - logoUrl
+      - maxAccountsPerParticipant
       - maxPostAgeMinutes
       - name
       - platforms
+      - startedAt
       - startsAt
       - status
       - theme
@@ -77238,6 +77317,7 @@ components:
       example:
         mode: none
         country: country
+        suggestedCountry: suggestedCountry
         transfers:
         - createdAt: 2000-01-23T04:56:07.000+00:00
           amountCents: 1
@@ -77249,7 +77329,8 @@ components:
       properties:
         mode:
           description: "How the campaign pays: treasury means through Zernio, so the\
-            \ creator onboards for payouts."
+            \ creator onboards for payouts, which they can do from the moment they\
+            \ join. Earnings wait until it is done."
           enum:
           - none
           - external
@@ -77265,6 +77346,12 @@ components:
         country:
           nullable: true
           type: string
+        suggestedCountry:
+          description: "The country the request came from, to preselect before payout\
+            \ setup starts. Null once the payout account has a country, and outside\
+            \ treasury mode."
+          nullable: true
+          type: string
         transfers:
           description: Treasury payouts sent to the creator.
           items:
@@ -77274,6 +77361,7 @@ components:
       - country
       - mode
       - status
+      - suggestedCountry
       - transfers
     CreatorPortalPayoutEntry:
       example:
@@ -77334,11 +77422,13 @@ components:
           contentRules: contentRules
           trackingDays: 2
           brandName: brandName
+          startedAt: 2000-01-23T04:56:07.000+00:00
           holdDays: 5
           logoUrl: logoUrl
           platforms:
           - platforms
           - platforms
+          maxAccountsPerParticipant: 7
           economics:
             maxPayoutPerClipCents: 1
             metric: views
@@ -115987,11 +116077,21 @@ components:
           $ref: "#/components/schemas/CreatorPortalSubmission"
       required:
       - submission
+    removeCreatorAccount_200_response:
+      example:
+        removed: true
+      properties:
+        removed:
+          description: Always true.
+          type: boolean
+      required:
+      - removed
     getCreatorPayouts_200_response:
       example:
         payouts:
           mode: none
           country: country
+          suggestedCountry: suggestedCountry
           transfers:
           - createdAt: 2000-01-23T04:56:07.000+00:00
             amountCents: 1
@@ -184556,6 +184656,10 @@ components:
       - status
     CreatorPortalParticipant_accounts_inner:
       properties:
+        id:
+          description: "Pass to `DELETE /public/creator-campaigns/{token}/accounts/{accountId}`\
+            \ to remove the account."
+          type: string
         platform:
           type: string
         username:
@@ -184566,9 +184670,15 @@ components:
         avatarUrl:
           nullable: true
           type: string
+        counts:
+          description: "False for an account connected past `maxAccountsPerParticipant`:\
+            \ posts from it are refused until another account is removed."
+          type: boolean
       required:
       - avatarUrl
+      - counts
       - displayName
+      - id
       - platform
       - username
     CreatorPortalParticipant_earnings:

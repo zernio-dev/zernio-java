@@ -16,6 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**joinCreatorCampaignWithHttpInfo**](CreatorPortalApi.md#joinCreatorCampaignWithHttpInfo) | **POST** /public/creator-campaigns/{token} | Join a campaign |
 | [**recoverCreatorPortalLinks**](CreatorPortalApi.md#recoverCreatorPortalLinks) | **POST** /public/creator-campaigns/recover-link | Email a creator their campaign links |
 | [**recoverCreatorPortalLinksWithHttpInfo**](CreatorPortalApi.md#recoverCreatorPortalLinksWithHttpInfo) | **POST** /public/creator-campaigns/recover-link | Email a creator their campaign links |
+| [**removeCreatorAccount**](CreatorPortalApi.md#removeCreatorAccount) | **DELETE** /public/creator-campaigns/{token}/accounts/{accountId} | Remove a connected account |
+| [**removeCreatorAccountWithHttpInfo**](CreatorPortalApi.md#removeCreatorAccountWithHttpInfo) | **DELETE** /public/creator-campaigns/{token}/accounts/{accountId} | Remove a connected account |
 | [**startCreatorConnect**](CreatorPortalApi.md#startCreatorConnect) | **POST** /public/creator-campaigns/{token}/connect | Start connecting a creator account |
 | [**startCreatorConnectWithHttpInfo**](CreatorPortalApi.md#startCreatorConnectWithHttpInfo) | **POST** /public/creator-campaigns/{token}/connect | Start connecting a creator account |
 | [**startCreatorPayouts**](CreatorPortalApi.md#startCreatorPayouts) | **POST** /public/creator-campaigns/{token}/payouts | Start payout onboarding |
@@ -873,6 +875,150 @@ No authorization required
 | **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
 
 
+## removeCreatorAccount
+
+> RemoveCreatorAccount200Response removeCreatorAccount(token, accountId)
+
+Remove a connected account
+
+Disconnects one of the creator&#39;s accounts. The account belongs to the creator, not to one campaign, so it stops counting in every campaign of this brand they joined.  What its posts already earned stays: accrued, approved and paid amounts are not touched.  Refused while a post from the account is still counting views, because those views are read through the account. It can be removed once their tracking ends. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorPortalApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+
+        CreatorPortalApi apiInstance = new CreatorPortalApi(defaultClient);
+        String token = "token_example"; // String | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
+        String accountId = "accountId_example"; // String | The `id` of one of the participant's `accounts`.
+        try {
+            RemoveCreatorAccount200Response result = apiInstance.removeCreatorAccount(token, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorPortalApi#removeCreatorAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| A participant token or an open invite token. A malformed token answers 404 like an unknown one. | |
+| **accountId** | **String**| The &#x60;id&#x60; of one of the participant&#39;s &#x60;accounts&#x60;. | |
+
+### Return type
+
+[**RemoveCreatorAccount200Response**](RemoveCreatorAccount200Response.md)
+
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Removed. |  -  |
+| **400** | Invalid request |  -  |
+| **404** | The link is invalid or expired, or the account is not one of the participant&#39;s accounts on the campaign&#39;s platforms (&#x60;resource_not_found&#x60;). |  -  |
+| **409** | A post from the account is still counting views (&#x60;invalid_resource_state&#x60;; the message says how many). |  -  |
+
+## removeCreatorAccountWithHttpInfo
+
+> ApiResponse<RemoveCreatorAccount200Response> removeCreatorAccount removeCreatorAccountWithHttpInfo(token, accountId)
+
+Remove a connected account
+
+Disconnects one of the creator&#39;s accounts. The account belongs to the creator, not to one campaign, so it stops counting in every campaign of this brand they joined.  What its posts already earned stays: accrued, approved and paid amounts are not touched.  Refused while a post from the account is still counting views, because those views are read through the account. It can be removed once their tracking ends. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorPortalApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+
+        CreatorPortalApi apiInstance = new CreatorPortalApi(defaultClient);
+        String token = "token_example"; // String | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
+        String accountId = "accountId_example"; // String | The `id` of one of the participant's `accounts`.
+        try {
+            ApiResponse<RemoveCreatorAccount200Response> response = apiInstance.removeCreatorAccountWithHttpInfo(token, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorPortalApi#removeCreatorAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| A participant token or an open invite token. A malformed token answers 404 like an unknown one. | |
+| **accountId** | **String**| The &#x60;id&#x60; of one of the participant&#39;s &#x60;accounts&#x60;. | |
+
+### Return type
+
+ApiResponse<[**RemoveCreatorAccount200Response**](RemoveCreatorAccount200Response.md)>
+
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Removed. |  -  |
+| **400** | Invalid request |  -  |
+| **404** | The link is invalid or expired, or the account is not one of the participant&#39;s accounts on the campaign&#39;s platforms (&#x60;resource_not_found&#x60;). |  -  |
+| **409** | A post from the account is still counting views (&#x60;invalid_resource_state&#x60;; the message says how many). |  -  |
+
+
 ## startCreatorConnect
 
 > StartCreatorConnect200Response startCreatorConnect(token, startCreatorConnectRequest)
@@ -1229,9 +1375,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Submitted. |  -  |
-| **400** | The post cannot be submitted: 400 &#x60;invalid_field_value&#x60;.  - &#x60;param: url&#x60;: the link is not a post of an accepted platform, or the post was published before the campaign started or longer ago than the campaign accepts. - The post is from an account past the campaign&#39;s &#x60;caps.maxAccountsPerParticipant&#x60; (\&quot;This campaign allows 2 connected accounts.\&quot;). Only the first accounts the creator connected, up to that count, can submit.  |  -  |
+| **400** | The post cannot be submitted: 400 &#x60;invalid_field_value&#x60;.  - &#x60;param: url&#x60;: the link is not a post of an accepted platform, or the post was published before the campaign started or longer ago than the campaign accepts. - TikTok and X post ids carry their creation time, so a post from before the campaign is refused as such even when no connected account has it. - The post is from an account past the campaign&#39;s &#x60;caps.maxAccountsPerParticipant&#x60; (\&quot;This campaign allows 2 connected accounts.\&quot;). Only the first accounts the creator connected, up to that count, can submit.  |  -  |
 | **403** | The creator has not connected an account on that platform yet (&#x60;insufficient_permissions&#x60;, \&quot;Connect your TikTok account first, then submit the post again\&quot;). |  -  |
-| **404** | The link is invalid or expired, or the post is not from an account the creator connected (&#x60;resource_not_found&#x60;). |  -  |
+| **404** | The link is invalid or expired, or no connected account has the post (&#x60;resource_not_found&#x60;, &#x60;param: url&#x60;).  - When the link names its author (TikTok, Instagram, Threads, X) and that is not one of the creator&#39;s accounts, the message names both handles. - Otherwise it says the post was not found yet, for example because it was published moments ago.  |  -  |
 | **409** | The invite is not accepted yet, the campaign is not accepting posts (not started, paused or ended), the post was already submitted, today&#39;s per-participant post limit is reached, or the participation was suspended or removed (&#x60;invalid_resource_state&#x60;; the message says which). |  -  |
 | **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
 
@@ -1304,9 +1450,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Submitted. |  -  |
-| **400** | The post cannot be submitted: 400 &#x60;invalid_field_value&#x60;.  - &#x60;param: url&#x60;: the link is not a post of an accepted platform, or the post was published before the campaign started or longer ago than the campaign accepts. - The post is from an account past the campaign&#39;s &#x60;caps.maxAccountsPerParticipant&#x60; (\&quot;This campaign allows 2 connected accounts.\&quot;). Only the first accounts the creator connected, up to that count, can submit.  |  -  |
+| **400** | The post cannot be submitted: 400 &#x60;invalid_field_value&#x60;.  - &#x60;param: url&#x60;: the link is not a post of an accepted platform, or the post was published before the campaign started or longer ago than the campaign accepts. - TikTok and X post ids carry their creation time, so a post from before the campaign is refused as such even when no connected account has it. - The post is from an account past the campaign&#39;s &#x60;caps.maxAccountsPerParticipant&#x60; (\&quot;This campaign allows 2 connected accounts.\&quot;). Only the first accounts the creator connected, up to that count, can submit.  |  -  |
 | **403** | The creator has not connected an account on that platform yet (&#x60;insufficient_permissions&#x60;, \&quot;Connect your TikTok account first, then submit the post again\&quot;). |  -  |
-| **404** | The link is invalid or expired, or the post is not from an account the creator connected (&#x60;resource_not_found&#x60;). |  -  |
+| **404** | The link is invalid or expired, or no connected account has the post (&#x60;resource_not_found&#x60;, &#x60;param: url&#x60;).  - When the link names its author (TikTok, Instagram, Threads, X) and that is not one of the creator&#39;s accounts, the message names both handles. - Otherwise it says the post was not found yet, for example because it was published moments ago.  |  -  |
 | **409** | The invite is not accepted yet, the campaign is not accepting posts (not started, paused or ended), the post was already submitted, today&#39;s per-participant post limit is reached, or the participation was suspended or removed (&#x60;invalid_resource_state&#x60;; the message says which). |  -  |
 | **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
 

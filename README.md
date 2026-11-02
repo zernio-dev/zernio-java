@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.434.1
+- API version: 1.435.0
 
-- Build date: 2026-11-02T11:16:58.998253654Z[Etc/UTC]
+- Build date: 2026-11-02T12:11:50.650252635Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.434.1</version>
+  <version>1.435.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.434.1"
+compile "dev.zernio:zernio-sdk:1.435.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.434.1.jar`
+- `target/zernio-sdk-1.435.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1397,6 +1397,8 @@ Class | Method | HTTP request | Description
 *CreatorPortalApi* | [**joinCreatorCampaignWithHttpInfo**](docs/CreatorPortalApi.md#joinCreatorCampaignWithHttpInfo) | **POST** /public/creator-campaigns/{token} | Join a campaign
 *CreatorPortalApi* | [**recoverCreatorPortalLinks**](docs/CreatorPortalApi.md#recoverCreatorPortalLinks) | **POST** /public/creator-campaigns/recover-link | Email a creator their campaign links
 *CreatorPortalApi* | [**recoverCreatorPortalLinksWithHttpInfo**](docs/CreatorPortalApi.md#recoverCreatorPortalLinksWithHttpInfo) | **POST** /public/creator-campaigns/recover-link | Email a creator their campaign links
+*CreatorPortalApi* | [**removeCreatorAccount**](docs/CreatorPortalApi.md#removeCreatorAccount) | **DELETE** /public/creator-campaigns/{token}/accounts/{accountId} | Remove a connected account
+*CreatorPortalApi* | [**removeCreatorAccountWithHttpInfo**](docs/CreatorPortalApi.md#removeCreatorAccountWithHttpInfo) | **DELETE** /public/creator-campaigns/{token}/accounts/{accountId} | Remove a connected account
 *CreatorPortalApi* | [**startCreatorConnect**](docs/CreatorPortalApi.md#startCreatorConnect) | **POST** /public/creator-campaigns/{token}/connect | Start connecting a creator account
 *CreatorPortalApi* | [**startCreatorConnectWithHttpInfo**](docs/CreatorPortalApi.md#startCreatorConnectWithHttpInfo) | **POST** /public/creator-campaigns/{token}/connect | Start connecting a creator account
 *CreatorPortalApi* | [**startCreatorPayouts**](docs/CreatorPortalApi.md#startCreatorPayouts) | **POST** /public/creator-campaigns/{token}/payouts | Start payout onboarding
@@ -4615,6 +4617,7 @@ Class | Method | HTTP request | Description
  - [RemoveBookmark200Response](docs/RemoveBookmark200Response.md)
  - [RemoveCampaignAssets200Response](docs/RemoveCampaignAssets200Response.md)
  - [RemoveConversionAssociations200Response](docs/RemoveConversionAssociations200Response.md)
+ - [RemoveCreatorAccount200Response](docs/RemoveCreatorAccount200Response.md)
  - [RemoveCustomConversionGoal200Response](docs/RemoveCustomConversionGoal200Response.md)
  - [RemoveDiscordMemberRole200Response](docs/RemoveDiscordMemberRole200Response.md)
  - [RemoveGoogleAssetGroup200Response](docs/RemoveGoogleAssetGroup200Response.md)

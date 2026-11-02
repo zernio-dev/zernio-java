@@ -18,11 +18,13 @@ The campaign as a creator sees it: terms, never the budget.
 |**contentRules** | **String** |  |  |
 |**startsAt** | **OffsetDateTime** |  |  |
 |**endsAt** | **OffsetDateTime** |  |  |
+|**startedAt** | **OffsetDateTime** | Posts published before this moment do not count: &#x60;startsAt&#x60;, else when the campaign went live. |  |
 |**currency** | **String** |  |  |
 |**economics** | [**CreatorPortalEconomics**](CreatorPortalEconomics.md) |  |  |
 |**maxPostAgeMinutes** | **Integer** | A post must be submitted within this many minutes of publishing. Null means any age. Either way, only posts published after the campaign started are accepted. |  |
 |**holdDays** | **Integer** | Days approved earnings stay owed before they become payable. |  |
 |**trackingDays** | **Integer** | Days each submitted post is tracked for views. |  |
+|**maxAccountsPerParticipant** | **Integer** | How many connected accounts can submit posts. Null means no limit. |  |
 
 
 
