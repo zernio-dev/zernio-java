@@ -22,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getBalanceWithHttpInfo**](TreasuryApi.md#getBalanceWithHttpInfo) | **GET** /v1/balance | Get balance |
 | [**getPayoutBatch**](TreasuryApi.md#getPayoutBatch) | **GET** /v1/payout-batches/{batchId} | Get a payout batch |
 | [**getPayoutBatchWithHttpInfo**](TreasuryApi.md#getPayoutBatchWithHttpInfo) | **GET** /v1/payout-batches/{batchId} | Get a payout batch |
+| [**getTopupCardFee**](TreasuryApi.md#getTopupCardFee) | **GET** /v1/balance/top-ups/card-fee | Get the card fee for a top-up |
+| [**getTopupCardFeeWithHttpInfo**](TreasuryApi.md#getTopupCardFeeWithHttpInfo) | **GET** /v1/balance/top-ups/card-fee | Get the card fee for a top-up |
 | [**getTopupReceipt**](TreasuryApi.md#getTopupReceipt) | **GET** /v1/balance/top-ups/{topupId}/receipt | Get a top-up receipt |
 | [**getTopupReceiptWithHttpInfo**](TreasuryApi.md#getTopupReceiptWithHttpInfo) | **GET** /v1/balance/top-ups/{topupId}/receipt | Get a top-up receipt |
 | [**getTransfer**](TreasuryApi.md#getTransfer) | **GET** /v1/transfers/{transferId} | Get a transfer |
@@ -803,7 +805,7 @@ ApiResponse<[**CreatePayeeOnboardingLink200Response**](CreatePayeeOnboardingLink
 
 Create a top-up
 
-Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) for &#x60;amountCents&#x60; while the payer is present.  - &#x60;status: succeeded&#x60;: the card was charged. The top-up is credited to &#x60;availableCents&#x60; within seconds, net of Stripe&#39;s processing fee. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus the card fee, while the payer is present, and credits your balance what Stripe delivers.  The card fee is Stripe&#39;s own rate for the card, learned from its past charges (&#x60;GET /v1/balance/top-ups/card-fee&#x60; answers it).  - When &#x60;feeIsExact&#x60; is true you receive exactly &#x60;amountCents&#x60;. - When it is false (the first top-up on a card issued in the EEA, or Link, where Stripe prices by card product) the fee is the highest rate for the card&#39;s region. - You then receive at least &#x60;amountCents&#x60;: if Stripe charges less, the difference is added to your balance.  - &#x60;status: succeeded&#x60;: the card was charged. What Stripe delivered is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
 
 ### Example
 
@@ -881,7 +883,7 @@ public class Example {
 
 Create a top-up
 
-Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) for &#x60;amountCents&#x60; while the payer is present.  - &#x60;status: succeeded&#x60;: the card was charged. The top-up is credited to &#x60;availableCents&#x60; within seconds, net of Stripe&#39;s processing fee. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus the card fee, while the payer is present, and credits your balance what Stripe delivers.  The card fee is Stripe&#39;s own rate for the card, learned from its past charges (&#x60;GET /v1/balance/top-ups/card-fee&#x60; answers it).  - When &#x60;feeIsExact&#x60; is true you receive exactly &#x60;amountCents&#x60;. - When it is false (the first top-up on a card issued in the EEA, or Link, where Stripe prices by card product) the fee is the highest rate for the card&#39;s region. - You then receive at least &#x60;amountCents&#x60;: if Stripe charges less, the difference is added to your balance.  - &#x60;status: succeeded&#x60;: the card was charged. What Stripe delivered is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
 
 ### Example
 
@@ -1405,6 +1407,158 @@ ApiResponse<[**GetPayoutBatch200Response**](GetPayoutBatch200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No payout batch with this id in a campaign you can see. |  -  |
+
+
+## getTopupCardFee
+
+> GetTopupCardFee200Response getTopupCardFee(paymentMethodId)
+
+Get the card fee for a top-up
+
+The card fee a top-up on the billing owner&#39;s saved card pays: &#x60;feeBps&#x60; of the charge plus &#x60;fixedCents&#x60;. The card is charged the smallest amount that leaves &#x60;amountCents&#x60; once Stripe takes &#x60;round_half_up(charge * feeBps / 10000) + fixedCents&#x60;.  The rate is Stripe&#39;s own for the card, learned from its past charges.  &#x60;feeIsExact&#x60; is false for a card Zernio has not charged yet whose region Stripe prices by card product (EEA) or whose country is unknown (Link). The rate is then that region&#39;s highest, and the top-up credits at least the amount.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TreasuryApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TreasuryApi apiInstance = new TreasuryApi(defaultClient);
+        String paymentMethodId = "paymentMethodId_example"; // String | A saved card of the billing owner's (`pm_...`). Defaults to the default payment method.
+        try {
+            GetTopupCardFee200Response result = apiInstance.getTopupCardFee(paymentMethodId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TreasuryApi#getTopupCardFee");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **paymentMethodId** | **String**| A saved card of the billing owner&#39;s (&#x60;pm_...&#x60;). Defaults to the default payment method. | [optional] |
+
+### Return type
+
+[**GetTopupCardFee200Response**](GetTopupCardFee200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The card fee |  -  |
+| **400** | Invalid request |  -  |
+| **402** | No saved card (code &#x60;payment_required&#x60;), or a billing gate. |  -  |
+| **403** | Refused (&#x60;insufficient_permissions&#x60;). One of:  - A restricted API key without the &#x60;money&#x60; resource group. - A profile-scoped API key. Money leaves the whole team&#39;s balance, so moving it needs a full-access key or a signed-in session (\&quot;Moving money needs a full-access key or a signed-in session.\&quot;). - A member or viewer, signed in or through a key they created. Only an owner, admin or billing admin moves money.  |  -  |
+| **404** | Resource not found |  -  |
+
+## getTopupCardFeeWithHttpInfo
+
+> ApiResponse<GetTopupCardFee200Response> getTopupCardFee getTopupCardFeeWithHttpInfo(paymentMethodId)
+
+Get the card fee for a top-up
+
+The card fee a top-up on the billing owner&#39;s saved card pays: &#x60;feeBps&#x60; of the charge plus &#x60;fixedCents&#x60;. The card is charged the smallest amount that leaves &#x60;amountCents&#x60; once Stripe takes &#x60;round_half_up(charge * feeBps / 10000) + fixedCents&#x60;.  The rate is Stripe&#39;s own for the card, learned from its past charges.  &#x60;feeIsExact&#x60; is false for a card Zernio has not charged yet whose region Stripe prices by card product (EEA) or whose country is unknown (Link). The rate is then that region&#39;s highest, and the top-up credits at least the amount.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TreasuryApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TreasuryApi apiInstance = new TreasuryApi(defaultClient);
+        String paymentMethodId = "paymentMethodId_example"; // String | A saved card of the billing owner's (`pm_...`). Defaults to the default payment method.
+        try {
+            ApiResponse<GetTopupCardFee200Response> response = apiInstance.getTopupCardFeeWithHttpInfo(paymentMethodId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TreasuryApi#getTopupCardFee");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **paymentMethodId** | **String**| A saved card of the billing owner&#39;s (&#x60;pm_...&#x60;). Defaults to the default payment method. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetTopupCardFee200Response**](GetTopupCardFee200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The card fee |  -  |
+| **400** | Invalid request |  -  |
+| **402** | No saved card (code &#x60;payment_required&#x60;), or a billing gate. |  -  |
+| **403** | Refused (&#x60;insufficient_permissions&#x60;). One of:  - A restricted API key without the &#x60;money&#x60; resource group. - A profile-scoped API key. Money leaves the whole team&#39;s balance, so moving it needs a full-access key or a signed-in session (\&quot;Moving money needs a full-access key or a signed-in session.\&quot;). - A member or viewer, signed in or through a key they created. Only an owner, admin or billing admin moves money.  |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## getTopupReceipt

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.435.0
+  version: 1.436.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -4238,9 +4238,15 @@ paths:
       - application/json
     post:
       description: |
-        Charges the billing owner's saved card (the default one, or `paymentMethodId`) for `amountCents` while the payer is present.
+        Charges the billing owner's saved card (the default one, or `paymentMethodId`) `amountCents` plus the card fee, while the payer is present, and credits your balance what Stripe delivers.
 
-        - `status: succeeded`: the card was charged. The top-up is credited to `availableCents` within seconds, net of Stripe's processing fee. Transfers to payees can use it from 7 days after the charge.
+        The card fee is Stripe's own rate for the card, learned from its past charges (`GET /v1/balance/top-ups/card-fee` answers it).
+
+        - When `feeIsExact` is true you receive exactly `amountCents`.
+        - When it is false (the first top-up on a card issued in the EEA, or Link, where Stripe prices by card product) the fee is the highest rate for the card's region.
+        - You then receive at least `amountCents`: if Stripe charges less, the difference is added to your balance.
+
+        - `status: succeeded`: the card was charged. What Stripe delivered is credited to `availableCents` within seconds. Transfers to payees can use it from 7 days after the charge.
         - `status: requires_action`: the bank asked for 3D Secure. Complete it with Stripe.js `handleNextAction({ clientSecret })`, then call `POST /v1/balance/top-ups/{topupId}/confirm`. One left unconfirmed is cancelled after 30 minutes.
 
         ### Errors
@@ -4289,6 +4295,52 @@ paths:
       - Treasury
       x-resource-group: money
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/balance/top-ups/card-fee:
+    get:
+      description: |
+        The card fee a top-up on the billing owner's saved card pays: `feeBps` of the charge plus `fixedCents`. The card is charged the smallest amount that leaves `amountCents` once Stripe takes `round_half_up(charge * feeBps / 10000) + fixedCents`.
+
+        The rate is Stripe's own for the card, learned from its past charges.
+
+        `feeIsExact` is false for a card Zernio has not charged yet whose region Stripe prices by card product (EEA) or whose country is unknown (Link). The rate is then that region's highest, and the top-up credits at least the amount.
+
+        Needs an owner, admin or billing admin, signed in or through a full-access key they created.
+      operationId: getTopupCardFee
+      parameters:
+      - description: A saved card of the billing owner's (`pm_...`). Defaults to the
+          default payment method.
+        explode: true
+        in: query
+        name: paymentMethodId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getTopupCardFee_200_response"
+          description: The card fee
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "No saved card (code `payment_required`), or a billing gate."
+        "403":
+          $ref: "#/components/responses/MoneyForbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Get the card fee for a top-up
+      tags:
+      - Treasury
+      x-resource-group: money
       x-accepts:
       - application/json
   /v1/balance/top-ups/{topupId}/receipt:
@@ -77491,17 +77543,19 @@ components:
       - submissions
     TreasuryTopup:
       example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        amountCents: 7
+        chargedCents: 3
+        feeCents: 9
         succeededAt: 2000-01-23T04:56:07.000+00:00
         method: card
         purpose: balance
-        netCents: 3
-        stripeFeeCents: 9
-        id: id
+        netCents: 4
         payoutBatch:
           campaignId: campaignId
           id: id
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        amountCents: 7
+        stripeFeeCents: 2
+        id: id
         feeCoveredByZernio: true
         status: pending
       properties:
@@ -77527,17 +77581,30 @@ components:
             \ charge."
           type: boolean
         amountCents:
-          description: Gross amount charged
+          description: "The amount you asked for. A top-up charges the card fee on\
+            \ top of it and credits what Stripe delivers, at least this amount. Older\
+            \ top-ups charged this amount and credited it minus the fee."
+          type: integer
+        feeCents:
+          description: "Card fee. Once paid, the fee Stripe took (chargedCents minus\
+            \ netCents). Before, the fee charged on top, or null on an older top-up.\
+            \ 0 when Zernio covers it (`payout_batch`)."
+          nullable: true
+          type: integer
+        chargedCents:
+          description: "What your card was charged: amountCents plus the card fee\
+            \ charged on top, or amountCents on an older top-up and on a `payout_batch`\
+            \ payment."
           type: integer
         stripeFeeCents:
-          description: "Stripe processing fee you paid; null until Stripe reports\
-            \ it, 0 when Zernio covers it"
+          description: "feeCents once the top-up is paid; null before. Kept for older\
+            \ clients: read feeCents."
           nullable: true
           type: integer
         netCents:
-          description: "Amount credited to your balance: gross minus the Stripe fee,\
-            \ or the whole charge when Zernio covers the fee; null until Stripe reports\
-            \ it"
+          description: "Amount credited to your balance, what Stripe delivered; null\
+            \ until paid. At least amountCents on a top-up that charged the fee on\
+            \ top, and amountCents on `payout_batch` payments."
           nullable: true
           type: integer
         status:
@@ -115706,30 +115773,34 @@ components:
           topupId: topupId
           availableAt: 2000-01-23T04:56:07.000+00:00
         recentTopups:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 7
+        - chargedCents: 3
+          feeCents: 9
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 3
-          stripeFeeCents: 9
-          id: id
+          netCents: 4
           payoutBatch:
             campaignId: campaignId
             id: id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          amountCents: 7
+          stripeFeeCents: 2
+          id: id
           feeCoveredByZernio: true
           status: pending
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 7
+        - chargedCents: 3
+          feeCents: 9
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 3
-          stripeFeeCents: 9
-          id: id
+          netCents: 4
           payoutBatch:
             campaignId: campaignId
             id: id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          amountCents: 7
+          stripeFeeCents: 2
+          id: id
           feeCoveredByZernio: true
           status: pending
         payoutLockedCents: 6
@@ -115785,30 +115856,34 @@ components:
     listTopups_200_response:
       example:
         topups:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 7
+        - chargedCents: 3
+          feeCents: 9
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 3
-          stripeFeeCents: 9
-          id: id
+          netCents: 4
           payoutBatch:
             campaignId: campaignId
             id: id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          amountCents: 7
+          stripeFeeCents: 2
+          id: id
           feeCoveredByZernio: true
           status: pending
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 7
+        - chargedCents: 3
+          feeCents: 9
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 3
-          stripeFeeCents: 9
-          id: id
+          netCents: 4
           payoutBatch:
             campaignId: campaignId
             id: id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          amountCents: 7
+          stripeFeeCents: 2
+          id: id
           feeCoveredByZernio: true
           status: pending
       properties:
@@ -115819,7 +115894,8 @@ components:
     createTopup_request:
       properties:
         amountCents:
-          description: "Amount in cents, minimum $10"
+          description: "Amount to credit to your balance, in cents: $10 to $100,000.\
+            \ The card fee is charged on top."
           maximum: 10000000
           minimum: 1000
           type: integer
@@ -115839,12 +115915,31 @@ components:
       - method
     createTopup_201_response:
       example:
+        chargedCents: 1
+        amountCents: 0
+        feeCents: 6
         topupId: topupId
         clientSecret: clientSecret
+        feeIsExact: true
         status: succeeded
       properties:
         topupId:
           type: string
+        amountCents:
+          description: "Credited to your balance once paid: exactly this when feeIsExact,\
+            \ else at least this."
+          type: integer
+        feeCents:
+          description: "Card fee, charged on top of amountCents."
+          type: integer
+        chargedCents:
+          description: "What the card is charged: amountCents plus feeCents."
+          type: integer
+        feeIsExact:
+          description: "True when feeCents is exactly Stripe's fee for this card.\
+            \ False when it is the region's highest rate, so Stripe may take less\
+            \ and the difference is added to your balance."
+          type: boolean
         status:
           enum:
           - succeeded
@@ -115857,11 +115952,37 @@ components:
           nullable: true
           type: string
       required:
+      - amountCents
+      - chargedCents
       - clientSecret
+      - feeCents
+      - feeIsExact
       - status
       - topupId
+    getTopupCardFee_200_response:
+      example:
+        feeBps: 0
+        fixedCents: 6
+        feeIsExact: true
+      properties:
+        feeBps:
+          description: "Percentage of the charge, in basis points (315 is 3.15%)."
+          type: integer
+        fixedCents:
+          description: "Fixed part of the fee, in cents."
+          type: integer
+        feeIsExact:
+          description: True when this is exactly Stripe's rate for the card.
+          type: boolean
+      required:
+      - feeBps
+      - feeIsExact
+      - fixedCents
     getTopupReceipt_200_response:
       example:
+        chargedCents: 1
+        amountCents: 0
+        feeCents: 6
         format: pdf
         url: https://openapi-generator.tech
       properties:
@@ -115873,7 +115994,20 @@ components:
           - pdf
           - page
           type: string
+        amountCents:
+          description: As in the top-up list.
+          type: integer
+        feeCents:
+          description: "Card fee paid, as in the top-up list."
+          nullable: true
+          type: integer
+        chargedCents:
+          description: "What the card was charged, the total on the receipt."
+          type: integer
       required:
+      - amountCents
+      - chargedCents
+      - feeCents
       - format
       - url
     listPayees_200_response:

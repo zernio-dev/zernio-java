@@ -9,6 +9,9 @@
 |------------ | ------------- | ------------- | -------------|
 |**url** | **URI** |  |  |
 |**format** | [**FormatEnum**](#FormatEnum) |  |  |
+|**amountCents** | **Integer** | As in the top-up list. |  |
+|**feeCents** | **Integer** | Card fee paid, as in the top-up list. |  |
+|**chargedCents** | **Integer** | What the card was charged, the total on the receipt. |  |
 
 
 
