@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**dailyData** | [**List&lt;GetDailyMetrics200ResponseDailyDataInner&gt;**](GetDailyMetrics200ResponseDailyDataInner.md) |  |  [optional] |
 |**platformBreakdown** | [**List&lt;GetDailyMetrics200ResponsePlatformBreakdownInner&gt;**](GetDailyMetrics200ResponsePlatformBreakdownInner.md) |  |  [optional] |
+|**totals** | [**GetDailyMetrics200ResponseTotals**](GetDailyMetrics200ResponseTotals.md) |  |  [optional] |
 
 
 

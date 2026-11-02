@@ -1121,7 +1121,7 @@ ApiResponse<[**GetContentDecay200Response**](GetContentDecay200Response.md)>
 
 Get daily aggregated metrics
 
-Returns daily aggregated analytics metrics and a per-platform breakdown. Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views). Defaults to the last 180 days. 
+Returns daily aggregated analytics metrics and a per-platform breakdown. Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views). Defaults to the last 180 days.  &#x60;totals&#x60; sums the whole range for the applied filters (pass &#x60;accountId&#x60; for one account). With attribution \&quot;publish\&quot; they are the lifetime metrics of posts published in the range, with \&quot;received\&quot; the engagement that arrived in the range. 
 
 ### Example
 
@@ -1205,7 +1205,7 @@ public class Example {
 
 Get daily aggregated metrics
 
-Returns daily aggregated analytics metrics and a per-platform breakdown. Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views). Defaults to the last 180 days. 
+Returns daily aggregated analytics metrics and a per-platform breakdown. Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views). Defaults to the last 180 days.  &#x60;totals&#x60; sums the whole range for the applied filters (pass &#x60;accountId&#x60; for one account). With attribution \&quot;publish\&quot; they are the lifetime metrics of posts published in the range, with \&quot;received\&quot; the engagement that arrived in the range. 
 
 ### Example
 

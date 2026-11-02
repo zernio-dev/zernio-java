@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.438.0
+- API version: 1.439.0
 
-- Build date: 2026-11-02T15:31:10.936946550Z[Etc/UTC]
+- Build date: 2026-11-02T15:56:45.668010393Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.438.0</version>
+  <version>1.439.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.438.0"
+compile "dev.zernio:zernio-sdk:1.439.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.438.0.jar`
+- `target/zernio-sdk-1.439.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3531,6 +3531,7 @@ Class | Method | HTTP request | Description
  - [GetDailyMetrics200ResponseDailyDataInner](docs/GetDailyMetrics200ResponseDailyDataInner.md)
  - [GetDailyMetrics200ResponseDailyDataInnerMetrics](docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md)
  - [GetDailyMetrics200ResponsePlatformBreakdownInner](docs/GetDailyMetrics200ResponsePlatformBreakdownInner.md)
+ - [GetDailyMetrics200ResponseTotals](docs/GetDailyMetrics200ResponseTotals.md)
  - [GetDiscordChannels200Response](docs/GetDiscordChannels200Response.md)
  - [GetDiscordChannels200ResponseChannelsInner](docs/GetDiscordChannels200ResponseChannelsInner.md)
  - [GetDiscordGuildMember200Response](docs/GetDiscordGuildMember200Response.md)

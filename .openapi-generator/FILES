@@ -1166,6 +1166,7 @@ docs/GetDailyMetrics200Response.md
 docs/GetDailyMetrics200ResponseDailyDataInner.md
 docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md
 docs/GetDailyMetrics200ResponsePlatformBreakdownInner.md
+docs/GetDailyMetrics200ResponseTotals.md
 docs/GetDiscordChannels200Response.md
 docs/GetDiscordChannels200ResponseChannelsInner.md
 docs/GetDiscordGuildMember200Response.md
@@ -4528,6 +4529,7 @@ src/main/java/dev/zernio/model/GetDailyMetrics200Response.java
 src/main/java/dev/zernio/model/GetDailyMetrics200ResponseDailyDataInner.java
 src/main/java/dev/zernio/model/GetDailyMetrics200ResponseDailyDataInnerMetrics.java
 src/main/java/dev/zernio/model/GetDailyMetrics200ResponsePlatformBreakdownInner.java
+src/main/java/dev/zernio/model/GetDailyMetrics200ResponseTotals.java
 src/main/java/dev/zernio/model/GetDiscordChannels200Response.java
 src/main/java/dev/zernio/model/GetDiscordChannels200ResponseChannelsInner.java
 src/main/java/dev/zernio/model/GetDiscordGuildMember200Response.java
@@ -6607,4 +6609,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CommentAttachmentTest.java
+src/test/java/dev/zernio/model/GetDailyMetrics200ResponseTotalsTest.java

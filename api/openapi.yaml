@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.438.0
+  version: 1.439.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -3439,6 +3439,8 @@ paths:
         Returns daily aggregated analytics metrics and a per-platform breakdown.
         Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views).
         Defaults to the last 180 days.
+
+        `totals` sums the whole range for the applied filters (pass `accountId` for one account). With attribution "publish" they are the lifetime metrics of posts published in the range, with "received" the engagement that arrived in the range.
       operationId: getDailyMetrics
       parameters:
       - description: "Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for\
@@ -3547,6 +3549,17 @@ paths:
                       saves: 2103
                       clicks: 3402
                       views: 45200
+                    totals:
+                      postCount: 142
+                      impressions: 89400
+                      reach: 62100
+                      likes: 8930
+                      comments: 1204
+                      shares: 567
+                      saves: 2103
+                      clicks: 3402
+                      views: 45200
+                      engagement: 12804
               schema:
                 $ref: "#/components/schemas/getDailyMetrics_200_response"
           description: Daily metrics and platform breakdown
@@ -115275,6 +115288,42 @@ components:
           type: integer
         views:
           type: integer
+    getDailyMetrics_200_response_totals:
+      description: Sums of the whole range for the applied filters.
+      example:
+        shares: 9
+        comments: 9
+        engagement: 6
+        saves: 6
+        reach: 4
+        postCount: 7
+        clicks: 8
+        impressions: 1
+        views: 9
+        likes: 5
+      properties:
+        postCount:
+          type: integer
+        impressions:
+          type: integer
+        reach:
+          description: "Sum of per-post reach, not unique accounts."
+          type: integer
+        likes:
+          type: integer
+        comments:
+          type: integer
+        shares:
+          type: integer
+        saves:
+          type: integer
+        clicks:
+          type: integer
+        views:
+          type: integer
+        engagement:
+          description: "Likes, comments, shares and saves (interactions)."
+          type: integer
     getDailyMetrics_200_response:
       example:
         platformBreakdown:
@@ -115327,6 +115376,17 @@ components:
           platforms:
             instagram: 2
             twitter: 1
+        totals:
+          shares: 9
+          comments: 9
+          engagement: 6
+          saves: 6
+          reach: 4
+          postCount: 7
+          clicks: 8
+          impressions: 1
+          views: 9
+          likes: 5
       properties:
         dailyData:
           items:
@@ -115336,6 +115396,8 @@ components:
           items:
             $ref: "#/components/schemas/getDailyMetrics_200_response_platformBreakdown_inner"
           type: array
+        totals:
+          $ref: "#/components/schemas/getDailyMetrics_200_response_totals"
     getAnalyticsDashboard_200_response_dateRange:
       example:
         fromDate: 2000-01-23
