@@ -1867,11 +1867,11 @@ ApiResponse<[**GetVoiceCall200Response**](GetVoiceCall200Response.md)>
 
 ## getVoiceCallEstimate
 
-> GetVoiceCallEstimate200Response getVoiceCallEstimate(to, from, minutes, recording, transcription)
+> GetVoiceCallEstimate200Response getVoiceCallEstimate(to, from, forwardTo, minutes, recording, transcription)
 
 Estimate call cost
 
-Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.  It uses the same billing formula as the post-call invoice, so the quote and the final charge can&#39;t disagree. The per-minute figure is deliberately conservative (the real cost comes from the settled carrier record after the call), so estimates trend slightly over the actual invoice.  Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line. PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
+Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.  It uses the same billing formula as the post-call invoice, so the quote and the final charge can&#39;t disagree. The carrier figure follows the carrier&#39;s per-destination rate card: a call dialed from a number in the destination country uses the local mobile rate, and a &#x60;tel:&#x60; forward destination is quoted as a second carrier leg billed from the same number. The real cost comes from the settled carrier record after the call.  Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line. PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
 
 ### Example
 
@@ -1896,11 +1896,12 @@ public class Example {
         VoiceApi apiInstance = new VoiceApi(defaultClient);
         String to = "to_example"; // String | Destination number, E.164 (leading + optional).
         String from = "from_example"; // String | The number the call would dial from, E.164. When it is verified on a Branded Calling identity and `to` is a US number, the estimate includes the per-call Branded Calling surcharge.
+        String forwardTo = "forwardTo_example"; // String | Destination the call bridges to: `tel:+E164`, `sip:...` or `wss://...`. Defaults to the dialing number's configured forward. A `tel:` destination adds a second carrier leg to the quote. Encode the `+` as `%2B`.
         Integer minutes = 1; // Integer | 
         Boolean recording = true; // Boolean | 
         Boolean transcription = true; // Boolean | 
         try {
-            GetVoiceCallEstimate200Response result = apiInstance.getVoiceCallEstimate(to, from, minutes, recording, transcription);
+            GetVoiceCallEstimate200Response result = apiInstance.getVoiceCallEstimate(to, from, forwardTo, minutes, recording, transcription);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling VoiceApi#getVoiceCallEstimate");
@@ -1920,6 +1921,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **to** | **String**| Destination number, E.164 (leading + optional). | |
 | **from** | **String**| The number the call would dial from, E.164. When it is verified on a Branded Calling identity and &#x60;to&#x60; is a US number, the estimate includes the per-call Branded Calling surcharge. | [optional] |
+| **forwardTo** | **String**| Destination the call bridges to: &#x60;tel:+E164&#x60;, &#x60;sip:...&#x60; or &#x60;wss://...&#x60;. Defaults to the dialing number&#39;s configured forward. A &#x60;tel:&#x60; destination adds a second carrier leg to the quote. Encode the &#x60;+&#x60; as &#x60;%2B&#x60;. | [optional] |
 | **minutes** | **Integer**|  | [optional] [default to 1] |
 | **recording** | **Boolean**|  | [optional] |
 | **transcription** | **Boolean**|  | [optional] |
@@ -1946,11 +1948,11 @@ public class Example {
 
 ## getVoiceCallEstimateWithHttpInfo
 
-> ApiResponse<GetVoiceCallEstimate200Response> getVoiceCallEstimate getVoiceCallEstimateWithHttpInfo(to, from, minutes, recording, transcription)
+> ApiResponse<GetVoiceCallEstimate200Response> getVoiceCallEstimate getVoiceCallEstimateWithHttpInfo(to, from, forwardTo, minutes, recording, transcription)
 
 Estimate call cost
 
-Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.  It uses the same billing formula as the post-call invoice, so the quote and the final charge can&#39;t disagree. The per-minute figure is deliberately conservative (the real cost comes from the settled carrier record after the call), so estimates trend slightly over the actual invoice.  Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line. PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
+Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.  It uses the same billing formula as the post-call invoice, so the quote and the final charge can&#39;t disagree. The carrier figure follows the carrier&#39;s per-destination rate card: a call dialed from a number in the destination country uses the local mobile rate, and a &#x60;tel:&#x60; forward destination is quoted as a second carrier leg billed from the same number. The real cost comes from the settled carrier record after the call.  Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line. PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
 
 ### Example
 
@@ -1976,11 +1978,12 @@ public class Example {
         VoiceApi apiInstance = new VoiceApi(defaultClient);
         String to = "to_example"; // String | Destination number, E.164 (leading + optional).
         String from = "from_example"; // String | The number the call would dial from, E.164. When it is verified on a Branded Calling identity and `to` is a US number, the estimate includes the per-call Branded Calling surcharge.
+        String forwardTo = "forwardTo_example"; // String | Destination the call bridges to: `tel:+E164`, `sip:...` or `wss://...`. Defaults to the dialing number's configured forward. A `tel:` destination adds a second carrier leg to the quote. Encode the `+` as `%2B`.
         Integer minutes = 1; // Integer | 
         Boolean recording = true; // Boolean | 
         Boolean transcription = true; // Boolean | 
         try {
-            ApiResponse<GetVoiceCallEstimate200Response> response = apiInstance.getVoiceCallEstimateWithHttpInfo(to, from, minutes, recording, transcription);
+            ApiResponse<GetVoiceCallEstimate200Response> response = apiInstance.getVoiceCallEstimateWithHttpInfo(to, from, forwardTo, minutes, recording, transcription);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2002,6 +2005,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **to** | **String**| Destination number, E.164 (leading + optional). | |
 | **from** | **String**| The number the call would dial from, E.164. When it is verified on a Branded Calling identity and &#x60;to&#x60; is a US number, the estimate includes the per-call Branded Calling surcharge. | [optional] |
+| **forwardTo** | **String**| Destination the call bridges to: &#x60;tel:+E164&#x60;, &#x60;sip:...&#x60; or &#x60;wss://...&#x60;. Defaults to the dialing number&#39;s configured forward. A &#x60;tel:&#x60; destination adds a second carrier leg to the quote. Encode the &#x60;+&#x60; as &#x60;%2B&#x60;. | [optional] |
 | **minutes** | **Integer**|  | [optional] [default to 1] |
 | **recording** | **Boolean**|  | [optional] |
 | **transcription** | **Boolean**|  | [optional] |
