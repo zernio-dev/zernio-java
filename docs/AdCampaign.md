@@ -36,6 +36,7 @@
 |**bidAmount** | **BigDecimal** | Representative bid from the top-spending ad set (whole currency units). Meta: populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. LinkedIn: the campaign unitCost, ungated, where 0 is a real delivery-stopping value. |  [optional] |
 |**roasAverageFloor** | **BigDecimal** | Representative ROAS floor from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x). |  [optional] |
 |**promotedObject** | [**AdTreeCampaignPromotedObject**](AdTreeCampaignPromotedObject.md) |  |  [optional] |
+|**specialAdCategories** | **List&lt;String&gt;** | Special ad categories declared when Zernio created the campaign, read from the ad that created it (its earliest ad), e.g. [\&quot;HOUSING\&quot;]. Absent when none was declared or the campaign was created outside Zernio. |  [optional] |
 |**earliestAd** | **OffsetDateTime** |  |  [optional] |
 |**latestAd** | **OffsetDateTime** |  |  [optional] |
 

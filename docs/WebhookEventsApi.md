@@ -817,7 +817,7 @@ ApiResponse<Void>
 
 Account disconnected event
 
-Fired when a connected account becomes disconnected.
+Fired when a connected account becomes disconnected: deactivated after an auth error, or flagged as needing reconnection (&#x60;needsReconnection: true&#x60; on GET /v1/accounts).  A flagged account that is later deactivated sends it again with the new reason. A deactivated account does not send it again until it is reconnected.  Requests that need the account answer 409 &#x60;account_disconnected&#x60; until then. A webhook only receives the events it lists, so subscribe to this one explicitly.
 
 ### Example
 
@@ -886,7 +886,7 @@ null (empty response body)
 
 Account disconnected event
 
-Fired when a connected account becomes disconnected.
+Fired when a connected account becomes disconnected: deactivated after an auth error, or flagged as needing reconnection (&#x60;needsReconnection: true&#x60; on GET /v1/accounts).  A flagged account that is later deactivated sends it again with the new reason. A deactivated account does not send it again until it is reconnected.  Requests that need the account answer 409 &#x60;account_disconnected&#x60; until then. A webhook only receives the events it lists, so subscribe to this one explicitly.
 
 ### Example
 

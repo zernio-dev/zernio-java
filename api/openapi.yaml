@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.451.1
+  version: 1.452.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -59642,6 +59642,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "409":
+          $ref: "#/components/responses/AccountDisconnected"
         "403":
           description: Ads add-on required.
       summary: List lead forms
@@ -59696,6 +59698,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "409":
+          $ref: "#/components/responses/AccountDisconnected"
         "403":
           description: |-
             Forbidden. One of:
@@ -59757,6 +59761,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "409":
+          $ref: "#/components/responses/AccountDisconnected"
         "403":
           $ref: "#/components/responses/AdAccountNotSelected"
         "404":
@@ -59824,6 +59830,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "409":
+          $ref: "#/components/responses/AccountDisconnected"
         "404":
           description: No lead form with that id on the Page this account manages.
       summary: Get a lead form
@@ -59899,7 +59907,7 @@ paths:
         style: form
       responses:
         "409":
-          $ref: "#/components/responses/AccountConnectionRequired"
+          $ref: "#/components/responses/AccountDisconnected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "200":
@@ -59966,6 +59974,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "409":
+          $ref: "#/components/responses/AccountDisconnected"
         "404":
           description: The form has no test lead.
       summary: Delete a test lead
@@ -60007,6 +60017,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "409":
+          $ref: "#/components/responses/AccountDisconnected"
       summary: Create a test lead
       tags:
       - Lead Gen
@@ -77079,6 +77091,33 @@ components:
       description: The account or requested resource was not found or is not accessible.
         An account ID may have been disconnected and removed. Read GET /v1/accounts
         for current account IDs.
+    AccountDisconnected:
+      content:
+        application/json:
+          example:
+            error: "The facebook account \"Acme Fitness\" (6abf72d1fca017c1078db5ab)\
+              \ is disconnected: Facebook tokens expired. Please reconnect your Facebook\
+              \ account. Reconnect this account, then retry with the same accountId."
+            type: invalid_request_error
+            code: account_disconnected
+            param: accountId
+            details:
+              accountId: 6abf72d1fca017c1078db5ab
+              platform: facebook
+              username: Acme Fitness
+              disconnectReason: Facebook tokens expired. Please reconnect your Facebook
+                account.
+              disconnectionType: unintentional
+              unhealthySince: 2026-10-18T08:59:31.000Z
+              action: reconnect
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: |-
+        The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code `account_disconnected`.
+
+        `details` names the account (`accountId`, `platform`, `username`) with its `disconnectReason`, `disconnectionType`, `unhealthySince` and `action: reconnect`.
+
+        Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the `account.disconnected` webhook.
     AccountConnectionRequired:
       content:
         application/json:
@@ -100646,6 +100685,9 @@ components:
           targeting: "{}"
           costType: CPC
           platformAdSetId: platformAdSetId
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           budget:
             amount: 0.8008281904610115
             pacing: pacing
@@ -100799,6 +100841,9 @@ components:
           targeting: "{}"
           costType: CPC
           platformAdSetId: platformAdSetId
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           budget:
             amount: 0.8008281904610115
             pacing: pacing
@@ -101059,6 +101104,9 @@ components:
           advertisingChannelType: advertisingChannelType
           createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           results:
             revenue: 7800
             sales: 4
@@ -101280,6 +101328,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -101433,6 +101484,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -101840,6 +101894,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -101993,6 +102050,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -102433,6 +102493,9 @@ components:
           advertisingChannelType: advertisingChannelType
           createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           results:
             revenue: 7800
             sales: 4
@@ -102654,6 +102717,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -102807,6 +102873,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -103214,6 +103283,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -103367,6 +103439,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -107195,6 +107270,9 @@ components:
         targeting: "{}"
         costType: CPC
         platformAdSetId: platformAdSetId
+        specialAdCategories:
+        - specialAdCategories
+        - specialAdCategories
         budget:
           amount: 0.8008281904610115
           pacing: pacing
@@ -107558,6 +107636,14 @@ components:
           example: 2.0
           nullable: true
           type: number
+        specialAdCategories:
+          description: "Special ad categories declared when Zernio created this ad\
+            \ (`specialAdCategories` on POST /v1/ads/create or /v1/ads/boost), e.g.\
+            \ [\"HOUSING\"]. Empty or absent when none was declared or the ad was\
+            \ created outside Zernio."
+          items:
+            type: string
+          type: array
         promotedObject:
           $ref: "#/components/schemas/Ad_promotedObject"
         creative:
@@ -107641,6 +107727,9 @@ components:
           targeting: "{}"
           costType: CPC
           platformAdSetId: platformAdSetId
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           budget:
             amount: 0.8008281904610115
             pacing: pacing
@@ -107794,6 +107883,9 @@ components:
           targeting: "{}"
           costType: CPC
           platformAdSetId: platformAdSetId
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           budget:
             amount: 0.8008281904610115
             pacing: pacing
@@ -108321,6 +108413,9 @@ components:
         advertisingChannelType: advertisingChannelType
         createdTime: 2000-01-23T04:56:07.000+00:00
         currency: currency
+        specialAdCategories:
+        - specialAdCategories
+        - specialAdCategories
         results:
           revenue: 7800
           sales: 4
@@ -108542,6 +108637,9 @@ components:
             targeting: "{}"
             costType: CPC
             platformAdSetId: platformAdSetId
+            specialAdCategories:
+            - specialAdCategories
+            - specialAdCategories
             budget:
               amount: 0.8008281904610115
               pacing: pacing
@@ -108695,6 +108793,9 @@ components:
             targeting: "{}"
             costType: CPC
             platformAdSetId: platformAdSetId
+            specialAdCategories:
+            - specialAdCategories
+            - specialAdCategories
             budget:
               amount: 0.8008281904610115
               pacing: pacing
@@ -109102,6 +109203,9 @@ components:
             targeting: "{}"
             costType: CPC
             platformAdSetId: platformAdSetId
+            specialAdCategories:
+            - specialAdCategories
+            - specialAdCategories
             budget:
               amount: 0.8008281904610115
               pacing: pacing
@@ -109255,6 +109359,9 @@ components:
             targeting: "{}"
             costType: CPC
             platformAdSetId: platformAdSetId
+            specialAdCategories:
+            - specialAdCategories
+            - specialAdCategories
             budget:
               amount: 0.8008281904610115
               pacing: pacing
@@ -109839,6 +109946,13 @@ components:
           type: number
         promotedObject:
           $ref: "#/components/schemas/AdTreeCampaign_promotedObject"
+        specialAdCategories:
+          description: "Special ad categories declared when Zernio created the campaign,\
+            \ read from the ad that created it (its earliest ad), e.g. [\"HOUSING\"\
+            ]. Absent when none was declared or the campaign was created outside Zernio."
+          items:
+            type: string
+          type: array
         adSets:
           items:
             $ref: "#/components/schemas/AdTreeAdSet"
@@ -109868,6 +109982,9 @@ components:
         advertisingChannelType: advertisingChannelType
         earliestAd: 2000-01-23T04:56:07.000+00:00
         currency: currency
+        specialAdCategories:
+        - specialAdCategories
+        - specialAdCategories
         configReadAt: 2000-01-23T04:56:07.000+00:00
         budget: ""
         platformAdAccountName: platformAdAccountName
@@ -110099,6 +110216,13 @@ components:
           type: number
         promotedObject:
           $ref: "#/components/schemas/AdTreeCampaign_promotedObject"
+        specialAdCategories:
+          description: "Special ad categories declared when Zernio created the campaign,\
+            \ read from the ad that created it (its earliest ad), e.g. [\"HOUSING\"\
+            ]. Absent when none was declared or the campaign was created outside Zernio."
+          items:
+            type: string
+          type: array
         earliestAd:
           format: date-time
           type: string
@@ -153368,6 +153492,9 @@ components:
           targeting: "{}"
           costType: CPC
           platformAdSetId: platformAdSetId
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           budget:
             amount: 0.8008281904610115
             pacing: pacing
@@ -153521,6 +153648,9 @@ components:
           targeting: "{}"
           costType: CPC
           platformAdSetId: platformAdSetId
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           budget:
             amount: 0.8008281904610115
             pacing: pacing
@@ -155577,6 +155707,9 @@ components:
           advertisingChannelType: advertisingChannelType
           earliestAd: 2000-01-23T04:56:07.000+00:00
           currency: currency
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           configReadAt: 2000-01-23T04:56:07.000+00:00
           budget: ""
           platformAdAccountName: platformAdAccountName
@@ -155682,6 +155815,9 @@ components:
           advertisingChannelType: advertisingChannelType
           earliestAd: 2000-01-23T04:56:07.000+00:00
           currency: currency
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           configReadAt: 2000-01-23T04:56:07.000+00:00
           budget: ""
           platformAdAccountName: platformAdAccountName
@@ -158463,6 +158599,9 @@ components:
           advertisingChannelType: advertisingChannelType
           createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           results:
             revenue: 7800
             sales: 4
@@ -158684,6 +158823,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -158837,6 +158979,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -159244,6 +159389,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -159397,6 +159545,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -159837,6 +159988,9 @@ components:
           advertisingChannelType: advertisingChannelType
           createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           results:
             revenue: 7800
             sales: 4
@@ -160058,6 +160212,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -160211,6 +160368,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -160618,6 +160778,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -160771,6 +160934,9 @@ components:
               targeting: "{}"
               costType: CPC
               platformAdSetId: platformAdSetId
+              specialAdCategories:
+              - specialAdCategories
+              - specialAdCategories
               budget:
                 amount: 0.8008281904610115
                 pacing: pacing
@@ -161411,6 +161577,9 @@ components:
           targeting: "{}"
           costType: CPC
           platformAdSetId: platformAdSetId
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           budget:
             amount: 0.8008281904610115
             pacing: pacing
@@ -161944,6 +162113,9 @@ components:
           targeting: "{}"
           costType: CPC
           platformAdSetId: platformAdSetId
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           budget:
             amount: 0.8008281904610115
             pacing: pacing
@@ -170059,8 +170231,14 @@ components:
         tracking:
           $ref: "#/components/schemas/boostPost_request_tracking"
         specialAdCategories:
-          description: "Meta only. Required for housing, employment, credit, or political\
-            \ ads."
+          description: |
+            Special ad category of the campaign the boost creates. Required for housing, employment, credit, or political ads.
+
+            - Meta: every value.
+            - TikTok: HOUSING, EMPLOYMENT and CREDIT, sent as the campaign's `special_industries` (TikTok requires one for these ads aimed at the US or Canada). Other values return 400.
+            - TikTok targeting: a 400 names the field for ZIP codes (`targeting.locations.zips`), gender, ages under 18 (`targeting.ageMin`), interest keywords (`keyword:` ids in `targeting.interests`) and hashtag behaviors.
+            - TikTok also refuses Smart Targeting (`smartTargeting`) and lookalike audiences (`targeting.audienceInclude` / `targeting.audienceExclude`). Without an age, the ad group targets 18+.
+            - TikTok sets the category when the campaign is created, so it is a 400 with `smartPlus` or `existingCampaignId`.
           items:
             enum:
             - HOUSING
@@ -170422,6 +170600,9 @@ components:
           targeting: "{}"
           costType: CPC
           platformAdSetId: platformAdSetId
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           budget:
             amount: 0.8008281904610115
             pacing: pacing
@@ -172544,9 +172725,21 @@ components:
             Include `targeting_automation` in the raw spec (or send `advantageAudience`), as Meta requires it on create. When cloning an EU campaign, also pass `dsaBeneficiary` / `dsaPayor` (separate fields, not part of targeting).
         specialAdCategories:
           description: |
-            Meta only. Declares the ad's special category, required for housing, employment, credit, or
-            political/social-issue ads (Meta enforces restricted targeting for these). Note: setting a special
-            category disables income/zip targeting on Meta.
+            Declares the ad's special category, required for housing, employment, credit, or
+            political/social-issue ads.
+
+            - Meta: every value. Setting a housing, employment or credit category disables income/zip
+              targeting on Meta.
+            - TikTok: HOUSING, EMPLOYMENT and CREDIT, sent as the new campaign's `special_industries`
+              (TikTok requires one for these ads aimed at the US or Canada). Other values return 400.
+            - TikTok targeting: the create (and `validateOnly`) returns 400 naming the field for ZIP codes
+              (`targeting.zips`), gender, ages under 18 (`targeting.ageMin`), interest keywords (`keyword:`
+              ids in `targeting.interests`) and hashtag behaviors.
+            - TikTok also refuses Smart Targeting (`smartTargeting`) and lookalike audiences
+              (`targeting.audienceInclude` / `targeting.audienceExclude`). Without an age, the ad group
+              targets 18+.
+            - TikTok sets the category when the campaign is created, so it is a 400 with `smartPlus`,
+              `existingCampaignId` or `adSetId`.
           items:
             enum:
             - HOUSING
@@ -173128,6 +173321,9 @@ components:
           targeting: "{}"
           costType: CPC
           platformAdSetId: platformAdSetId
+          specialAdCategories:
+          - specialAdCategories
+          - specialAdCategories
           budget:
             amount: 0.8008281904610115
             pacing: pacing
@@ -199603,7 +199799,7 @@ x-documentation:
     - `post.external.updated` - A tracked native post's text or media changed on the platform. Edits are detected by comparing text/media structure and (where the platform exposes it) the platform's own edit timestamp; media-URL-only refreshes do not fire this.
     - `post.external.deleted` - A tracked native post was detected as removed from the platform. `post.deletedAt` carries the detection time. Coverage is bounded to the most recent posts the platform listing returns, and detection is a diff against posts a prior sync already indexed, so an account for which no post has ever been indexed never emits it.
     - `account.connected` - Account connected
-    - `account.disconnected` - Account disconnected (token expired)
+    - `account.disconnected` - Account disconnected: deactivated after its token was revoked or rejected (or the platform refused it, e.g. a Facebook Page left out of a later authorization), or flagged as needing reconnection. Not sent again while the account stays deactivated
     - `account.permissions_changed` - An account connected through your own OAuth app lost a permission area (for example posting) while staying connected
     - `account.rate_limited` - A Google or Microsoft mailbox entered a sending cooldown; sends answer 429 until `account.resetsAt`
     - `account.ads.initial_sync_completed` - Initial ads sync (discovery + 90-day backfill) completed for an ads-enabled account
