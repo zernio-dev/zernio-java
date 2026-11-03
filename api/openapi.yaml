@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.452.3
+  version: 1.456.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -110487,11 +110487,6 @@ components:
       - ad
       type: string
     AdRuleCondition:
-      example:
-        op: '>'
-        metric: spend
-        window: today
-        value: 0.08008281904610115
       properties:
         metric:
           enum:
@@ -110506,11 +110501,11 @@ components:
           - roas
           - reach
           - frequency
+          - daily_budget
+          - budget_used
           nullable: true
           type: string
         window:
-          description: Days in the ad account's own timezone. `last_7d` is the 7 full
-            days before today; only `today` reads the day in progress.
           enum:
           - today
           - yesterday
@@ -110518,6 +110513,7 @@ components:
           - last_7d
           - last_14d
           - last_30d
+          nullable: true
           type: string
         op:
           enum:
@@ -110529,45 +110525,43 @@ components:
         value:
           minimum: 0
           type: number
+        compareTo:
+          description: |
+            Makes the condition relative: `value` becomes a ratio of the metric over `window` to the same metric over this window. `previous_period` is the same number of days just before `window`; any other value is a window, such as `30_to_2_days_ago`.
+
+            Spend, impressions, clicks, conversions and reach are compared per day, so windows of different lengths compare fairly; rates such as `cpc` compare as they are. A comparison window with no value never matches.
+          example: previous_period
+          type: string
       required:
       - metric
       - op
       - value
       - window
     AdRuleConditions:
-      description: Every condition must hold for an object to match. A rate with no
-        denominator (a CPA with no conversions) never matches.
+      description: |
+        A group: `all` (every item must hold) or `any` (one is enough). An item is a condition or another group, nested up to 3 levels, with at most 10 conditions in total. A rate with no denominator (a CPA with no conversions) never matches.
       example:
-        all:
-        - op: '>'
-          metric: spend
+        any:
+        - metric: cpc
           window: today
-          value: 0.08008281904610115
-        - op: '>'
-          metric: spend
-          window: today
-          value: 0.08008281904610115
-        - op: '>'
-          metric: spend
-          window: today
-          value: 0.08008281904610115
-        - op: '>'
-          metric: spend
-          window: today
-          value: 0.08008281904610115
-        - op: '>'
-          metric: spend
-          window: today
-          value: 0.08008281904610115
-      properties:
-        all:
-          items:
-            $ref: "#/components/schemas/AdRuleCondition"
-          maxItems: 10
-          minItems: 1
-          type: array
-      required:
-      - all
+          op: '>'
+          value: 2
+        - all:
+          - metric: spend
+            window: today
+            op: '>='
+            value: 50
+          - metric: conversions
+            window: today
+            op: <
+            value: 1
+      oneOf:
+      - $ref: "#/components/schemas/AdRuleConditions_oneOf"
+      - $ref: "#/components/schemas/AdRuleConditions_oneOf_1"
+    AdRuleConditionItem:
+      oneOf:
+      - $ref: "#/components/schemas/AdRuleCondition"
+      - $ref: "#/components/schemas/AdRuleConditions"
     AdRuleAction:
       oneOf:
       - $ref: "#/components/schemas/AdRuleAction_oneOf"
@@ -110583,7 +110577,7 @@ components:
       type: array
     AdRuleSchedule:
       example:
-        everyMinutes: 6
+        everyMinutes: 0
       properties:
         everyMinutes:
           description: "How often the rule runs, in minutes."
@@ -110599,14 +110593,14 @@ components:
     AdRule:
       example:
         lastRunAt: 2000-01-23T04:56:07.000+00:00
-        cooldownMinutes: 1
+        cooldownMinutes: 6
         level: campaign
         adAccountId: adAccountId
         platform: platform
         enabled: true
         accountId: accountId
         schedule:
-          everyMinutes: 6
+          everyMinutes: 0
         createdAt: 2000-01-23T04:56:07.000+00:00
         name: name
         id: id
@@ -110614,27 +110608,20 @@ components:
         - campaignIds
         - campaignIds
         conditions:
-          all:
-          - op: '>'
-            metric: spend
+          any:
+          - metric: cpc
             window: today
-            value: 0.08008281904610115
-          - op: '>'
-            metric: spend
-            window: today
-            value: 0.08008281904610115
-          - op: '>'
-            metric: spend
-            window: today
-            value: 0.08008281904610115
-          - op: '>'
-            metric: spend
-            window: today
-            value: 0.08008281904610115
-          - op: '>'
-            metric: spend
-            window: today
-            value: 0.08008281904610115
+            op: '>'
+            value: 2
+          - all:
+            - metric: spend
+              window: today
+              op: '>='
+              value: 50
+            - metric: conversions
+              window: today
+              op: <
+              value: 1
         actions:
         - type: notify
         - type: notify
@@ -110721,12 +110708,14 @@ components:
           actual: 1.4658129805029452
           metric: spend
           window: today
+          compareTo: previous_period
           value: 0.6027456183070403
           met: true
         - op: '>'
           actual: 1.4658129805029452
           metric: spend
           window: today
+          compareTo: previous_period
           value: 0.6027456183070403
           met: true
       properties:
@@ -110765,12 +110754,14 @@ components:
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
           - op: '>'
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
         - campaignId: campaignId
@@ -110782,12 +110773,14 @@ components:
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
           - op: '>'
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
         timezoneAssumed: true
@@ -110856,12 +110849,14 @@ components:
               actual: 1.4658129805029452
               metric: spend
               window: today
+              compareTo: previous_period
               value: 0.6027456183070403
               met: true
             - op: '>'
               actual: 1.4658129805029452
               metric: spend
               window: today
+              compareTo: previous_period
               value: 0.6027456183070403
               met: true
           - campaignId: campaignId
@@ -110873,12 +110868,14 @@ components:
               actual: 1.4658129805029452
               metric: spend
               window: today
+              compareTo: previous_period
               value: 0.6027456183070403
               met: true
             - op: '>'
               actual: 1.4658129805029452
               metric: spend
               window: today
+              compareTo: previous_period
               value: 0.6027456183070403
               met: true
           actions:
@@ -154834,14 +154831,14 @@ components:
       example:
         rules:
         - lastRunAt: 2000-01-23T04:56:07.000+00:00
-          cooldownMinutes: 1
+          cooldownMinutes: 6
           level: campaign
           adAccountId: adAccountId
           platform: platform
           enabled: true
           accountId: accountId
           schedule:
-            everyMinutes: 6
+            everyMinutes: 0
           createdAt: 2000-01-23T04:56:07.000+00:00
           name: name
           id: id
@@ -154849,41 +154846,34 @@ components:
           - campaignIds
           - campaignIds
           conditions:
-            all:
-            - op: '>'
-              metric: spend
+            any:
+            - metric: cpc
               window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
+              op: '>'
+              value: 2
+            - all:
+              - metric: spend
+                window: today
+                op: '>='
+                value: 50
+              - metric: conversions
+                window: today
+                op: <
+                value: 1
           actions:
           - type: notify
           - type: notify
           nextRunAt: 2000-01-23T04:56:07.000+00:00
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - lastRunAt: 2000-01-23T04:56:07.000+00:00
-          cooldownMinutes: 1
+          cooldownMinutes: 6
           level: campaign
           adAccountId: adAccountId
           platform: platform
           enabled: true
           accountId: accountId
           schedule:
-            everyMinutes: 6
+            everyMinutes: 0
           createdAt: 2000-01-23T04:56:07.000+00:00
           name: name
           id: id
@@ -154891,27 +154881,20 @@ components:
           - campaignIds
           - campaignIds
           conditions:
-            all:
-            - op: '>'
-              metric: spend
+            any:
+            - metric: cpc
               window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
+              op: '>'
+              value: 2
+            - all:
+              - metric: spend
+                window: today
+                op: '>='
+                value: 50
+              - metric: conversions
+                window: today
+                op: <
+                value: 1
           actions:
           - type: notify
           - type: notify
@@ -154979,14 +154962,14 @@ components:
       example:
         rule:
           lastRunAt: 2000-01-23T04:56:07.000+00:00
-          cooldownMinutes: 1
+          cooldownMinutes: 6
           level: campaign
           adAccountId: adAccountId
           platform: platform
           enabled: true
           accountId: accountId
           schedule:
-            everyMinutes: 6
+            everyMinutes: 0
           createdAt: 2000-01-23T04:56:07.000+00:00
           name: name
           id: id
@@ -154994,27 +154977,20 @@ components:
           - campaignIds
           - campaignIds
           conditions:
-            all:
-            - op: '>'
-              metric: spend
+            any:
+            - metric: cpc
               window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
+              op: '>'
+              value: 2
+            - all:
+              - metric: spend
+                window: today
+                op: '>='
+                value: 50
+              - metric: conversions
+                window: today
+                op: <
+                value: 1
           actions:
           - type: notify
           - type: notify
@@ -155028,34 +155004,27 @@ components:
     listAdRuleTemplates_200_response_templates_inner:
       example:
         schedule:
-          everyMinutes: 6
+          everyMinutes: 0
         cooldownMinutes: 0
         level: campaign
         name: name
         description: description
         id: stop_losers
         conditions:
-          all:
-          - op: '>'
-            metric: spend
+          any:
+          - metric: cpc
             window: today
-            value: 0.08008281904610115
-          - op: '>'
-            metric: spend
-            window: today
-            value: 0.08008281904610115
-          - op: '>'
-            metric: spend
-            window: today
-            value: 0.08008281904610115
-          - op: '>'
-            metric: spend
-            window: today
-            value: 0.08008281904610115
-          - op: '>'
-            metric: spend
-            window: today
-            value: 0.08008281904610115
+            op: '>'
+            value: 2
+          - all:
+            - metric: spend
+              window: today
+              op: '>='
+              value: 50
+            - metric: conversions
+              window: today
+              op: <
+              value: 1
         actions:
         - type: notify
         - type: notify
@@ -155104,34 +155073,27 @@ components:
       example:
         templates:
         - schedule:
-            everyMinutes: 6
+            everyMinutes: 0
           cooldownMinutes: 0
           level: campaign
           name: name
           description: description
           id: stop_losers
           conditions:
-            all:
-            - op: '>'
-              metric: spend
+            any:
+            - metric: cpc
               window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
+              op: '>'
+              value: 2
+            - all:
+              - metric: spend
+                window: today
+                op: '>='
+                value: 50
+              - metric: conversions
+                window: today
+                op: <
+                value: 1
           actions:
           - type: notify
           - type: notify
@@ -155139,34 +155101,27 @@ components:
           - platforms
           - platforms
         - schedule:
-            everyMinutes: 6
+            everyMinutes: 0
           cooldownMinutes: 0
           level: campaign
           name: name
           description: description
           id: stop_losers
           conditions:
-            all:
-            - op: '>'
-              metric: spend
+            any:
+            - metric: cpc
               window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
-            - op: '>'
-              metric: spend
-              window: today
-              value: 0.08008281904610115
+              op: '>'
+              value: 2
+            - all:
+              - metric: spend
+                window: today
+                op: '>='
+                value: 50
+              - metric: conversions
+                window: today
+                op: <
+                value: 1
           actions:
           - type: notify
           - type: notify
@@ -155287,12 +155242,14 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
               - op: '>'
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
             - campaignId: campaignId
@@ -155304,12 +155261,14 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
               - op: '>'
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
             actions:
@@ -155358,12 +155317,14 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
               - op: '>'
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
             - campaignId: campaignId
@@ -155375,12 +155336,14 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
               - op: '>'
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
             actions:
@@ -198321,6 +198284,26 @@ components:
           type: boolean
         resourceName:
           type: string
+    AdRuleConditions_oneOf:
+      additionalProperties: false
+      properties:
+        all:
+          items:
+            $ref: "#/components/schemas/AdRuleConditionItem"
+          minItems: 1
+          type: array
+      required:
+      - all
+    AdRuleConditions_oneOf_1:
+      additionalProperties: false
+      properties:
+        any:
+          items:
+            $ref: "#/components/schemas/AdRuleConditionItem"
+          minItems: 1
+          type: array
+      required:
+      - any
     AdRuleAction_oneOf:
       example:
         type: notify
@@ -198420,6 +198403,7 @@ components:
         actual: 1.4658129805029452
         metric: spend
         window: today
+        compareTo: previous_period
         value: 0.6027456183070403
         met: true
     AdRuleRun_evaluation_rule:
@@ -198531,12 +198515,14 @@ components:
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
           - op: '>'
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
         - campaignId: campaignId
@@ -198548,12 +198534,14 @@ components:
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
           - op: '>'
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
         actions:
