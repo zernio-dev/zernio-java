@@ -6625,8 +6625,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AdsPerformanceResponseAdsInnerCreativeTest.java
-src/test/java/dev/zernio/model/AdsPerformanceResponseAdsInnerMetricsTest.java
-src/test/java/dev/zernio/model/AdsPerformanceResponseAdsInnerTest.java
-src/test/java/dev/zernio/model/AdsPerformanceResponseTest.java
-src/test/java/dev/zernio/model/ListAdsByPerformance202ResponseTest.java
