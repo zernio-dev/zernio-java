@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   DeleteCommerceRedirect200Response.JSON_PROPERTY_DELETED,
   DeleteCommerceRedirect200Response.JSON_PROPERTY_REDIRECT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:41:30.677691097Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:45:39.525463372Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DeleteCommerceRedirect200Response {
   public static final String JSON_PROPERTY_DELETED = "deleted";
   @javax.annotation.Nullable

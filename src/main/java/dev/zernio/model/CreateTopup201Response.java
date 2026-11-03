@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CreateTopup201Response.JSON_PROPERTY_STATUS,
   CreateTopup201Response.JSON_PROPERTY_CLIENT_SECRET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:41:30.677691097Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:45:39.525463372Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateTopup201Response {
   public static final String JSON_PROPERTY_TOPUP_ID = "topupId";
   @javax.annotation.Nonnull
