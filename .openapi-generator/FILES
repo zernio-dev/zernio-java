@@ -1593,6 +1593,7 @@ docs/ImessageAudienceContactOptIn.md
 docs/ImessageSandboxContact.md
 docs/ImessageSender.md
 docs/ImessageSenderLifecycle.md
+docs/InboundActivity.md
 docs/InboxAnalyticsApi.md
 docs/InboxConversationAdMetadata.md
 docs/InboxMessageEditAttachment.md
@@ -2050,6 +2051,7 @@ docs/ListWorkflowVersions200Response.md
 docs/ListWorkflowVersions200ResponseVersionsInner.md
 docs/ListWorkflows200Response.md
 docs/ListWorkflows200ResponseWorkflowsInner.md
+docs/ListedAccount.md
 docs/LogsApi.md
 docs/LookupSmsNumber200Response.md
 docs/MarkConversationRead200Response.md
@@ -4955,6 +4957,7 @@ src/main/java/dev/zernio/model/ImessageAudienceContactOptIn.java
 src/main/java/dev/zernio/model/ImessageSandboxContact.java
 src/main/java/dev/zernio/model/ImessageSender.java
 src/main/java/dev/zernio/model/ImessageSenderLifecycle.java
+src/main/java/dev/zernio/model/InboundActivity.java
 src/main/java/dev/zernio/model/InboxConversationAdMetadata.java
 src/main/java/dev/zernio/model/InboxMessageEditAttachment.java
 src/main/java/dev/zernio/model/InboxMessageEditHistoryEntry.java
@@ -5406,6 +5409,7 @@ src/main/java/dev/zernio/model/ListWorkflowVersions200Response.java
 src/main/java/dev/zernio/model/ListWorkflowVersions200ResponseVersionsInner.java
 src/main/java/dev/zernio/model/ListWorkflows200Response.java
 src/main/java/dev/zernio/model/ListWorkflows200ResponseWorkflowsInner.java
+src/main/java/dev/zernio/model/ListedAccount.java
 src/main/java/dev/zernio/model/LookupSmsNumber200Response.java
 src/main/java/dev/zernio/model/MarkConversationRead200Response.java
 src/main/java/dev/zernio/model/MediaContentType.java
@@ -6625,3 +6629,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/InboundActivityTest.java
+src/test/java/dev/zernio/model/ListedAccountTest.java

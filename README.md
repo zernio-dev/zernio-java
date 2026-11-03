@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.450.2
+- API version: 1.451.0
 
-- Build date: 2026-11-03T14:22:20.934548388Z[Etc/UTC]
+- Build date: 2026-11-03T14:58:15.491907815Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.450.2</version>
+  <version>1.451.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.450.2"
+compile "dev.zernio:zernio-sdk:1.451.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.450.2.jar`
+- `target/zernio-sdk-1.451.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3951,6 +3951,7 @@ Class | Method | HTTP request | Description
  - [ImessageSandboxContact](docs/ImessageSandboxContact.md)
  - [ImessageSender](docs/ImessageSender.md)
  - [ImessageSenderLifecycle](docs/ImessageSenderLifecycle.md)
+ - [InboundActivity](docs/InboundActivity.md)
  - [InboxConversationAdMetadata](docs/InboxConversationAdMetadata.md)
  - [InboxMessageEditAttachment](docs/InboxMessageEditAttachment.md)
  - [InboxMessageEditHistoryEntry](docs/InboxMessageEditHistoryEntry.md)
@@ -4402,6 +4403,7 @@ Class | Method | HTTP request | Description
  - [ListWorkflowVersions200ResponseVersionsInner](docs/ListWorkflowVersions200ResponseVersionsInner.md)
  - [ListWorkflows200Response](docs/ListWorkflows200Response.md)
  - [ListWorkflows200ResponseWorkflowsInner](docs/ListWorkflows200ResponseWorkflowsInner.md)
+ - [ListedAccount](docs/ListedAccount.md)
  - [LookupSmsNumber200Response](docs/LookupSmsNumber200Response.md)
  - [MarkConversationRead200Response](docs/MarkConversationRead200Response.md)
  - [MediaContentType](docs/MediaContentType.md)

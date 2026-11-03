@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accounts** | [**List&lt;SocialAccount&gt;**](SocialAccount.md) |  |  |
+|**accounts** | [**List&lt;ListedAccount&gt;**](ListedAccount.md) |  |  |
 |**hasAnalyticsAccess** | **Boolean** | Whether user has analytics add-on access |  |
 |**pagination** | [**AccountsListResponsePagination**](AccountsListResponsePagination.md) |  |  [optional] |
 |**profileTotals** | **Map&lt;String, Integer&gt;** | Only with profileIds and perProfile. Accounts matching the filters per profile ID; a profile with none is absent. |  [optional] |
