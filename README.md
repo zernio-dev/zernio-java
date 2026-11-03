@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.447.0
+- API version: 1.448.0
 
-- Build date: 2026-11-03T10:29:18.106827558Z[Etc/UTC]
+- Build date: 2026-11-03T11:12:39.675520352Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.447.0</version>
+  <version>1.448.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.447.0"
+compile "dev.zernio:zernio-sdk:1.448.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.447.0.jar`
+- `target/zernio-sdk-1.448.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2476,10 +2476,12 @@ Class | Method | HTTP request | Description
  - [AdTreeAdSetAttributionSpecInner](docs/AdTreeAdSetAttributionSpecInner.md)
  - [AdTreeAdSetBudget](docs/AdTreeAdSetBudget.md)
  - [AdTreeAdSetPromotedObject](docs/AdTreeAdSetPromotedObject.md)
+ - [AdTreeAdSetSchedule](docs/AdTreeAdSetSchedule.md)
  - [AdTreeCampaign](docs/AdTreeCampaign.md)
  - [AdTreeCampaignBudget](docs/AdTreeCampaignBudget.md)
  - [AdTreeCampaignCampaignBudget](docs/AdTreeCampaignCampaignBudget.md)
  - [AdTreeCampaignPromotedObject](docs/AdTreeCampaignPromotedObject.md)
+ - [AdTreeCampaignSchedule](docs/AdTreeCampaignSchedule.md)
  - [AdTreeResponse](docs/AdTreeResponse.md)
  - [AdTreeResponsePreviousRange](docs/AdTreeResponsePreviousRange.md)
  - [AddAccountCallouts201Response](docs/AddAccountCallouts201Response.md)
