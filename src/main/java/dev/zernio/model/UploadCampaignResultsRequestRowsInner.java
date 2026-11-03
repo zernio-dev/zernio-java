@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UploadCampaignResultsRequestRowsInner.JSON_PROPERTY_AD_ACCOUNT_ID,
   UploadCampaignResultsRequestRowsInner.JSON_PROPERTY_VALUES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:32:30.304391279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:36:56.042290706Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadCampaignResultsRequestRowsInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nonnull

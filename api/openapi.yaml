@@ -45688,6 +45688,8 @@ paths:
         How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (`no_campaign` or `ambiguous`).
 
         `status` turns `done` once every row is processed, usually within seconds. Uploads are kept for 30 days.
+
+        A `failed` upload says why in `failureReason`. Send it again: re-sending a day replaces it, so nothing is counted twice.
       operationId: getCampaignResultsUpload
       parameters:
       - explode: false
@@ -155544,6 +155546,7 @@ components:
         rowsReceived: 0
         rowsMatched: 6
         rowsUnmatched: 1
+        failureReason: queue_unavailable
         source: api
         unmatched:
         - reason: no_campaign
@@ -155578,6 +155581,16 @@ components:
           items:
             $ref: "#/components/schemas/getCampaignResultsUpload_200_response_unmatched_inner"
           type: array
+        failureReason:
+          description: "Set when `status` is `failed`. `queue_unavailable`: the upload\
+            \ could not be queued. `processing_failed`: its rows could not be stored\
+            \ after several retries. Both are on our side."
+          enum:
+          - queue_unavailable
+          - processing_failed
+          - null
+          nullable: true
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -155588,6 +155601,7 @@ components:
       required:
       - completedAt
       - createdAt
+      - failureReason
       - rowsMatched
       - rowsReceived
       - rowsUnmatched

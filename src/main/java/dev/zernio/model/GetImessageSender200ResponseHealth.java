@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetImessageSender200ResponseHealth.JSON_PROPERTY_IMESSAGE,
   GetImessageSender200ResponseHealth.JSON_PROPERTY_WHATSAPP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:32:30.304391279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:36:56.042290706Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetImessageSender200ResponseHealth {
   /**
    * Gets or Sets imessage

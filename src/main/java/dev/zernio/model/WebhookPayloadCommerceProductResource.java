@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCommerceProductResource.JSON_PROPERTY_STATUS,
   WebhookPayloadCommerceProductResource.JSON_PROPERTY_PLATFORM_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:32:30.304391279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:36:56.042290706Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommerceProductResource {
   /**
    * Gets or Sets type

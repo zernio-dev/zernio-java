@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:32:30.304391279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:36:56.042290706Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignResultsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -322,7 +322,7 @@ public class AdCampaignResultsApi {
 
   /**
    * Check a results upload
-   * How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days. 
+   * How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days.  A &#x60;failed&#x60; upload says why in &#x60;failureReason&#x60;. Send it again: re-sending a day replaces it, so nothing is counted twice. 
    * @param uploadId  (required)
    * @return GetCampaignResultsUpload200Response
    * @throws ApiException if fails to make API call
@@ -333,7 +333,7 @@ public class AdCampaignResultsApi {
 
   /**
    * Check a results upload
-   * How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days. 
+   * How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days.  A &#x60;failed&#x60; upload says why in &#x60;failureReason&#x60;. Send it again: re-sending a day replaces it, so nothing is counted twice. 
    * @param uploadId  (required)
    * @param headers Optional headers to include in the request
    * @return GetCampaignResultsUpload200Response
@@ -346,7 +346,7 @@ public class AdCampaignResultsApi {
 
   /**
    * Check a results upload
-   * How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days. 
+   * How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days.  A &#x60;failed&#x60; upload says why in &#x60;failureReason&#x60;. Send it again: re-sending a day replaces it, so nothing is counted twice. 
    * @param uploadId  (required)
    * @return ApiResponse&lt;GetCampaignResultsUpload200Response&gt;
    * @throws ApiException if fails to make API call
@@ -357,7 +357,7 @@ public class AdCampaignResultsApi {
 
   /**
    * Check a results upload
-   * How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days. 
+   * How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days.  A &#x60;failed&#x60; upload says why in &#x60;failureReason&#x60;. Send it again: re-sending a day replaces it, so nothing is counted twice. 
    * @param uploadId  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetCampaignResultsUpload200Response&gt;

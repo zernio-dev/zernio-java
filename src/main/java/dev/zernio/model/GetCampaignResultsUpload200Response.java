@@ -44,10 +44,11 @@ import dev.zernio.ApiClient;
   GetCampaignResultsUpload200Response.JSON_PROPERTY_ROWS_MATCHED,
   GetCampaignResultsUpload200Response.JSON_PROPERTY_ROWS_UNMATCHED,
   GetCampaignResultsUpload200Response.JSON_PROPERTY_UNMATCHED,
+  GetCampaignResultsUpload200Response.JSON_PROPERTY_FAILURE_REASON,
   GetCampaignResultsUpload200Response.JSON_PROPERTY_CREATED_AT,
   GetCampaignResultsUpload200Response.JSON_PROPERTY_COMPLETED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:32:30.304391279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:36:56.042290706Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCampaignResultsUpload200Response {
   public static final String JSON_PROPERTY_UPLOAD_ID = "uploadId";
   @javax.annotation.Nonnull
@@ -150,6 +151,45 @@ public class GetCampaignResultsUpload200Response {
   public static final String JSON_PROPERTY_UNMATCHED = "unmatched";
   @javax.annotation.Nonnull
   private List<GetCampaignResultsUpload200ResponseUnmatchedInner> unmatched = new ArrayList<>();
+
+  /**
+   * Set when &#x60;status&#x60; is &#x60;failed&#x60;. &#x60;queue_unavailable&#x60;: the upload could not be queued. &#x60;processing_failed&#x60;: its rows could not be stored after several retries. Both are on our side.
+   */
+  public enum FailureReasonEnum {
+    QUEUE_UNAVAILABLE(String.valueOf("queue_unavailable")),
+    
+    PROCESSING_FAILED(String.valueOf("processing_failed"));
+
+    private String value;
+
+    FailureReasonEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static FailureReasonEnum fromValue(String value) {
+      for (FailureReasonEnum b : FailureReasonEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_FAILURE_REASON = "failureReason";
+  @javax.annotation.Nullable
+  private FailureReasonEnum failureReason;
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nonnull
@@ -338,6 +378,30 @@ public class GetCampaignResultsUpload200Response {
   }
 
 
+  public GetCampaignResultsUpload200Response failureReason(@javax.annotation.Nullable FailureReasonEnum failureReason) {
+    this.failureReason = failureReason;
+    return this;
+  }
+
+  /**
+   * Set when &#x60;status&#x60; is &#x60;failed&#x60;. &#x60;queue_unavailable&#x60;: the upload could not be queued. &#x60;processing_failed&#x60;: its rows could not be stored after several retries. Both are on our side.
+   * @return failureReason
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FAILURE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public FailureReasonEnum getFailureReason() {
+    return failureReason;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FAILURE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setFailureReason(@javax.annotation.Nullable FailureReasonEnum failureReason) {
+    this.failureReason = failureReason;
+  }
+
+
   public GetCampaignResultsUpload200Response createdAt(@javax.annotation.Nonnull OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
@@ -405,13 +469,14 @@ public class GetCampaignResultsUpload200Response {
         Objects.equals(this.rowsMatched, getCampaignResultsUpload200Response.rowsMatched) &&
         Objects.equals(this.rowsUnmatched, getCampaignResultsUpload200Response.rowsUnmatched) &&
         Objects.equals(this.unmatched, getCampaignResultsUpload200Response.unmatched) &&
+        Objects.equals(this.failureReason, getCampaignResultsUpload200Response.failureReason) &&
         Objects.equals(this.createdAt, getCampaignResultsUpload200Response.createdAt) &&
         Objects.equals(this.completedAt, getCampaignResultsUpload200Response.completedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uploadId, status, source, rowsReceived, rowsMatched, rowsUnmatched, unmatched, createdAt, completedAt);
+    return Objects.hash(uploadId, status, source, rowsReceived, rowsMatched, rowsUnmatched, unmatched, failureReason, createdAt, completedAt);
   }
 
   @Override
@@ -425,6 +490,7 @@ public class GetCampaignResultsUpload200Response {
     sb.append("    rowsMatched: ").append(toIndentedString(rowsMatched)).append("\n");
     sb.append("    rowsUnmatched: ").append(toIndentedString(rowsUnmatched)).append("\n");
     sb.append("    unmatched: ").append(toIndentedString(unmatched)).append("\n");
+    sb.append("    failureReason: ").append(toIndentedString(failureReason)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    completedAt: ").append(toIndentedString(completedAt)).append("\n");
     sb.append("}");
@@ -512,6 +578,11 @@ public class GetCampaignResultsUpload200Response {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `failureReason` to the URL query string
+    if (getFailureReason() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfailureReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFailureReason()))));
     }
 
     // add `createdAt` to the URL query string

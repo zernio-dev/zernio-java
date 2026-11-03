@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   AddCommerceMarketingEngagementRequest.JSON_PROPERTY_COMMENTS,
   AddCommerceMarketingEngagementRequest.JSON_PROPERTY_AD_SPEND
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:32:30.304391279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:36:56.042290706Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddCommerceMarketingEngagementRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

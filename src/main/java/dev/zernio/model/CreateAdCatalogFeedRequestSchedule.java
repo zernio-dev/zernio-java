@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CreateAdCatalogFeedRequestSchedule.JSON_PROPERTY_HOUR,
   CreateAdCatalogFeedRequestSchedule.JSON_PROPERTY_DAY_OF_WEEK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:32:30.304391279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T15:36:56.042290706Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCatalogFeedRequestSchedule {
   /**
    * Gets or Sets interval
