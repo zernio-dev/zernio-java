@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListOAuthApps200Response.JSON_PROPERTY_PAGINATION,
   ListOAuthApps200Response.JSON_PROPERTY_PLATFORMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:12:39.675520352Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:16:14.915627115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListOAuthApps200Response {
   public static final String JSON_PROPERTY_APPS = "apps";
   @javax.annotation.Nonnull

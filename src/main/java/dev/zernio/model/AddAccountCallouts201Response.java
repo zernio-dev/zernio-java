@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   AddAccountCallouts201Response.JSON_PROPERTY_CUSTOMER_ID,
   AddAccountCallouts201Response.JSON_PROPERTY_CALLOUTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:12:39.675520352Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:16:14.915627115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddAccountCallouts201Response {
   public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
   @javax.annotation.Nullable

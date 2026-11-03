@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   BusinessAgentApiKeyConfig.JSON_PROPERTY_QUERY_PARAMS,
   BusinessAgentApiKeyConfig.JSON_PROPERTY_BODY_PARAMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:12:39.675520352Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:16:14.915627115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentApiKeyConfig {
   public static final String JSON_PROPERTY_HEADERS = "headers";
   @javax.annotation.Nullable

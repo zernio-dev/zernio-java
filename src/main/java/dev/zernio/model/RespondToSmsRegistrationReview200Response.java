@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   RespondToSmsRegistrationReview200Response.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:12:39.675520352Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:16:14.915627115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RespondToSmsRegistrationReview200Response {
   /**
    * requested &#x3D; back in our review; rejected &#x3D; a registration the carriers rejected, where we asked for these answers to fix it (it stays rejected while we do).

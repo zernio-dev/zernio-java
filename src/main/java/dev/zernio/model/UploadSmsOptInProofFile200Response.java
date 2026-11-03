@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UploadSmsOptInProofFile200Response.JSON_PROPERTY_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:12:39.675520352Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:16:14.915627115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadSmsOptInProofFile200Response {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nullable

@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   LinkedInAdsPlatformDataConversation.JSON_PROPERTY_FIRST_MESSAGE_ID,
   LinkedInAdsPlatformDataConversation.JSON_PROPERTY_MESSAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:12:39.675520352Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:16:14.915627115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAdsPlatformDataConversation {
   public static final String JSON_PROPERTY_SUBJECT = "subject";
   @javax.annotation.Nonnull

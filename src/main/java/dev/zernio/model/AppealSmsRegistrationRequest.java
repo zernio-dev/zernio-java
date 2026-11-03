@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   AppealSmsRegistrationRequest.JSON_PROPERTY_SAMPLE1,
   AppealSmsRegistrationRequest.JSON_PROPERTY_SAMPLE2
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:12:39.675520352Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:16:14.915627115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AppealSmsRegistrationRequest {
   public static final String JSON_PROPERTY_APPEAL_REASON = "appealReason";
   @javax.annotation.Nonnull

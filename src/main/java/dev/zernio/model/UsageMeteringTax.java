@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   UsageMeteringTax.JSON_PROPERTY_JURISDICTION_LABEL,
   UsageMeteringTax.JSON_PROPERTY_REVERSE_CHARGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:12:39.675520352Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:16:14.915627115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageMeteringTax {
   public static final String JSON_PROPERTY_TAX_USD = "taxUsd";
   @javax.annotation.Nullable

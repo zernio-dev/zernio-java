@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SetBusinessAgentConnectorCredentialsRequestOneOf2.JSON_PROPERTY_CLIENT_KEY,
   SetBusinessAgentConnectorCredentialsRequestOneOf2.JSON_PROPERTY_CA_CERTIFICATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:12:39.675520352Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T11:16:14.915627115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetBusinessAgentConnectorCredentialsRequestOneOf2 {
   /**
    * Gets or Sets kind
