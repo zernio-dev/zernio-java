@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   PreflightBrandedCallingIdentity200Response.JSON_PROPERTY_OK,
   PreflightBrandedCallingIdentity200Response.JSON_PROPERTY_FINDINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T10:24:29.278335152Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T10:29:18.106827558Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PreflightBrandedCallingIdentity200Response {
   public static final String JSON_PROPERTY_OK = "ok";
   @javax.annotation.Nullable

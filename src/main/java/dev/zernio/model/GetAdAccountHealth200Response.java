@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   GetAdAccountHealth200Response.JSON_PROPERTY_CHECKED_AT,
   GetAdAccountHealth200Response.JSON_PROPERTY_CHECKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T10:24:29.278335152Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T10:29:18.106827558Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAccountHealth200Response {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nullable

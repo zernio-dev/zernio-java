@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   WhatsAppTemplateLookupError.JSON_PROPERTY_PLATFORM_ERROR,
   WhatsAppTemplateLookupError.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T10:24:29.278335152Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T10:29:18.106827558Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppTemplateLookupError {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nonnull

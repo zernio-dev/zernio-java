@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ImessageAudienceContactOptIn.JSON_PROPERTY_AT,
   ImessageAudienceContactOptIn.JSON_PROPERTY_PARAMETERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T10:24:29.278335152Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T10:29:18.106827558Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ImessageAudienceContactOptIn {
   public static final String JSON_PROPERTY_AT = "at";
   @javax.annotation.Nullable

@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   StartMicrosoftAdminConsent200ResponseData.JSON_PROPERTY_ADMIN_CONSENT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T10:24:29.278335152Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T10:29:18.106827558Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartMicrosoftAdminConsent200ResponseData {
   public static final String JSON_PROPERTY_ADMIN_CONSENT_URL = "adminConsentUrl";
   @javax.annotation.Nullable

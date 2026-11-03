@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListAdsInstagramPosts200Response.JSON_PROPERTY_POSTS,
   ListAdsInstagramPosts200Response.JSON_PROPERTY_PAGING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T10:24:29.278335152Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T10:29:18.106827558Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdsInstagramPosts200Response {
   public static final String JSON_PROPERTY_IG_USER_ID = "igUserId";
   @javax.annotation.Nonnull
