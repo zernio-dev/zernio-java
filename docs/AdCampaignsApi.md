@@ -84,6 +84,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAdsWithHttpInfo**](AdCampaignsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads |
 | [**listAdsAlerts**](AdCampaignsApi.md#listAdsAlerts) | **GET** /v1/ads/alerts | List ads that need attention |
 | [**listAdsAlertsWithHttpInfo**](AdCampaignsApi.md#listAdsAlertsWithHttpInfo) | **GET** /v1/ads/alerts | List ads that need attention |
+| [**listAdsByPerformance**](AdCampaignsApi.md#listAdsByPerformance) | **GET** /v1/ads/performance | Rank ads by performance |
+| [**listAdsByPerformanceWithHttpInfo**](AdCampaignsApi.md#listAdsByPerformanceWithHttpInfo) | **GET** /v1/ads/performance | Rank ads by performance |
 | [**listBidStrategies**](AdCampaignsApi.md#listBidStrategies) | **GET** /v1/ads/bid-strategies | List portfolio bid strategies |
 | [**listBidStrategiesWithHttpInfo**](AdCampaignsApi.md#listBidStrategiesWithHttpInfo) | **GET** /v1/ads/bid-strategies | List portfolio bid strategies |
 | [**listCampaignAssets**](AdCampaignsApi.md#listCampaignAssets) | **GET** /v1/ads/campaigns/{campaignId}/assets | List campaign assets |
@@ -6815,6 +6817,184 @@ ApiResponse<[**ListAdsAlerts200Response**](ListAdsAlerts200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+
+## listAdsByPerformance
+
+> AdsPerformanceResponse listAdsByPerformance(accountId, fromDate, toDate, adAccountId, platform, sortBy, limit)
+
+Rank ads by performance
+
+Returns an ads account&#39;s ads ranked by spend, impressions, clicks, results or ROAS over a date range, each with its creative (type, thumbnail, headline, body, link) and campaign.  Use it to see which creatives perform best. &#x60;accountId&#x60; is sibling-expanded like &#x60;/v1/ads/timeline&#x60;.  Money is ranked by its raw amount, so pass &#x60;adAccountId&#x60; when the connection&#39;s ad accounts bill in different currencies.  A Meta range older than the imported history answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part; repeat the request until it returns 200. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Account ID. Sibling-expanded to its linked posting and ads pair. An id the API key cannot reach answers 404.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive start of the range (YYYY-MM-DD).
+        LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive end of the range (YYYY-MM-DD). Max 730-day range.
+        String adAccountId = "adAccountId_example"; // String | Optional platform-native ad account ID (e.g. Meta `act_…`) to rank one ad account only.
+        String platform = "facebook"; // String | Restrict to one platform.
+        String sortBy = "spend"; // String | Metric the ads are ranked by, highest first.
+        Integer limit = 50; // Integer | How many ads to return.
+        try {
+            AdsPerformanceResponse result = apiInstance.listAdsByPerformance(accountId, fromDate, toDate, adAccountId, platform, sortBy, limit);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listAdsByPerformance");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Account ID. Sibling-expanded to its linked posting and ads pair. An id the API key cannot reach answers 404. | |
+| **fromDate** | **LocalDate**| Inclusive start of the range (YYYY-MM-DD). | |
+| **toDate** | **LocalDate**| Inclusive end of the range (YYYY-MM-DD). Max 730-day range. | |
+| **adAccountId** | **String**| Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;) to rank one ad account only. | [optional] |
+| **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit, microsoft] |
+| **sortBy** | **String**| Metric the ads are ranked by, highest first. | [optional] [default to spend] [enum: spend, impressions, clicks, conversions, roas] |
+| **limit** | **Integer**| How many ads to return. | [optional] [default to 50] |
+
+### Return type
+
+[**AdsPerformanceResponse**](AdsPerformanceResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ads ranked by &#x60;sortBy&#x60;. Ads with no delivery in the range are left out. |  -  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+## listAdsByPerformanceWithHttpInfo
+
+> ApiResponse<AdsPerformanceResponse> listAdsByPerformance listAdsByPerformanceWithHttpInfo(accountId, fromDate, toDate, adAccountId, platform, sortBy, limit)
+
+Rank ads by performance
+
+Returns an ads account&#39;s ads ranked by spend, impressions, clicks, results or ROAS over a date range, each with its creative (type, thumbnail, headline, body, link) and campaign.  Use it to see which creatives perform best. &#x60;accountId&#x60; is sibling-expanded like &#x60;/v1/ads/timeline&#x60;.  Money is ranked by its raw amount, so pass &#x60;adAccountId&#x60; when the connection&#39;s ad accounts bill in different currencies.  A Meta range older than the imported history answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part; repeat the request until it returns 200. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Account ID. Sibling-expanded to its linked posting and ads pair. An id the API key cannot reach answers 404.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive start of the range (YYYY-MM-DD).
+        LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive end of the range (YYYY-MM-DD). Max 730-day range.
+        String adAccountId = "adAccountId_example"; // String | Optional platform-native ad account ID (e.g. Meta `act_…`) to rank one ad account only.
+        String platform = "facebook"; // String | Restrict to one platform.
+        String sortBy = "spend"; // String | Metric the ads are ranked by, highest first.
+        Integer limit = 50; // Integer | How many ads to return.
+        try {
+            ApiResponse<AdsPerformanceResponse> response = apiInstance.listAdsByPerformanceWithHttpInfo(accountId, fromDate, toDate, adAccountId, platform, sortBy, limit);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listAdsByPerformance");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Account ID. Sibling-expanded to its linked posting and ads pair. An id the API key cannot reach answers 404. | |
+| **fromDate** | **LocalDate**| Inclusive start of the range (YYYY-MM-DD). | |
+| **toDate** | **LocalDate**| Inclusive end of the range (YYYY-MM-DD). Max 730-day range. | |
+| **adAccountId** | **String**| Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;) to rank one ad account only. | [optional] |
+| **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit, microsoft] |
+| **sortBy** | **String**| Metric the ads are ranked by, highest first. | [optional] [default to spend] [enum: spend, impressions, clicks, conversions, roas] |
+| **limit** | **Integer**| How many ads to return. | [optional] [default to 50] |
+
+### Return type
+
+ApiResponse<[**AdsPerformanceResponse**](AdsPerformanceResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ads ranked by &#x60;sortBy&#x60;. Ads with no delivery in the range are left out. |  -  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 
 ## listBidStrategies

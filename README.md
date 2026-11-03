@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.449.0
+- API version: 1.450.0
 
-- Build date: 2026-11-03T11:54:08.901237605Z[Etc/UTC]
+- Build date: 2026-11-03T11:59:57.241631462Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.449.0</version>
+  <version>1.450.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.449.0"
+compile "dev.zernio:zernio-sdk:1.450.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.449.0.jar`
+- `target/zernio-sdk-1.450.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -465,6 +465,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**listAdsWithHttpInfo**](docs/AdCampaignsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads
 *AdCampaignsApi* | [**listAdsAlerts**](docs/AdCampaignsApi.md#listAdsAlerts) | **GET** /v1/ads/alerts | List ads that need attention
 *AdCampaignsApi* | [**listAdsAlertsWithHttpInfo**](docs/AdCampaignsApi.md#listAdsAlertsWithHttpInfo) | **GET** /v1/ads/alerts | List ads that need attention
+*AdCampaignsApi* | [**listAdsByPerformance**](docs/AdCampaignsApi.md#listAdsByPerformance) | **GET** /v1/ads/performance | Rank ads by performance
+*AdCampaignsApi* | [**listAdsByPerformanceWithHttpInfo**](docs/AdCampaignsApi.md#listAdsByPerformanceWithHttpInfo) | **GET** /v1/ads/performance | Rank ads by performance
 *AdCampaignsApi* | [**listBidStrategies**](docs/AdCampaignsApi.md#listBidStrategies) | **GET** /v1/ads/bid-strategies | List portfolio bid strategies
 *AdCampaignsApi* | [**listBidStrategiesWithHttpInfo**](docs/AdCampaignsApi.md#listBidStrategiesWithHttpInfo) | **GET** /v1/ads/bid-strategies | List portfolio bid strategies
 *AdCampaignsApi* | [**listCampaignAssets**](docs/AdCampaignsApi.md#listCampaignAssets) | **GET** /v1/ads/campaigns/{campaignId}/assets | List campaign assets
@@ -2532,6 +2534,10 @@ Class | Method | HTTP request | Description
  - [AdsAlertEntity](docs/AdsAlertEntity.md)
  - [AdsAlertFix](docs/AdsAlertFix.md)
  - [AdsListResponse](docs/AdsListResponse.md)
+ - [AdsPerformanceResponse](docs/AdsPerformanceResponse.md)
+ - [AdsPerformanceResponseAdsInner](docs/AdsPerformanceResponseAdsInner.md)
+ - [AdsPerformanceResponseAdsInnerCreative](docs/AdsPerformanceResponseAdsInnerCreative.md)
+ - [AdsPerformanceResponseAdsInnerMetrics](docs/AdsPerformanceResponseAdsInnerMetrics.md)
  - [AdsTimelineResponse](docs/AdsTimelineResponse.md)
  - [AdsTimelineResponsePreviousRange](docs/AdsTimelineResponsePreviousRange.md)
  - [AdsTimelineResponseRowsInner](docs/AdsTimelineResponseRowsInner.md)
@@ -4095,6 +4101,7 @@ Class | Method | HTTP request | Description
  - [ListAdsAlerts200Response](docs/ListAdsAlerts200Response.md)
  - [ListAdsAlerts200ResponseCounts](docs/ListAdsAlerts200ResponseCounts.md)
  - [ListAdsBusinessCenters200Response](docs/ListAdsBusinessCenters200Response.md)
+ - [ListAdsByPerformance202Response](docs/ListAdsByPerformance202Response.md)
  - [ListAdsInstagramAccounts200Response](docs/ListAdsInstagramAccounts200Response.md)
  - [ListAdsInstagramAccounts200ResponseAccountsInner](docs/ListAdsInstagramAccounts200ResponseAccountsInner.md)
  - [ListAdsInstagramAccounts200ResponsePagesInner](docs/ListAdsInstagramAccounts200ResponsePagesInner.md)

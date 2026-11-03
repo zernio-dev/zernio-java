@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.449.0
+  version: 1.450.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -48693,6 +48693,143 @@ paths:
       security:
       - bearerAuth: []
       summary: Get campaign tree
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      - microsoft
+      x-accepts:
+      - application/json
+  /v1/ads/performance:
+    get:
+      description: |
+        Returns an ads account's ads ranked by spend, impressions, clicks, results or ROAS over a date range, each with its creative (type, thumbnail, headline, body, link) and campaign.
+
+        Use it to see which creatives perform best. `accountId` is sibling-expanded like `/v1/ads/timeline`.
+
+        Money is ranked by its raw amount, so pass `adAccountId` when the connection's ad accounts bill in different currencies.
+
+        A Meta range older than the imported history answers `202` with `backfillPending: true` and the covered part; repeat the request until it returns 200.
+      operationId: listAdsByPerformance
+      parameters:
+      - description: Account ID. Sibling-expanded to its linked posting and ads pair.
+          An id the API key cannot reach answers 404.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Optional platform-native ad account ID (e.g. Meta `act_…`) to
+          rank one ad account only.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Inclusive start of the range (YYYY-MM-DD).
+        explode: true
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: Inclusive end of the range (YYYY-MM-DD). Max 730-day range.
+        explode: true
+        in: query
+        name: toDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: Restrict to one platform.
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          enum:
+          - facebook
+          - instagram
+          - tiktok
+          - linkedin
+          - pinterest
+          - google
+          - twitter
+          - openai
+          - reddit
+          - microsoft
+          type: string
+        style: form
+      - description: "Metric the ads are ranked by, highest first."
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          default: spend
+          enum:
+          - spend
+          - impressions
+          - clicks
+          - conversions
+          - roas
+          type: string
+        style: form
+      - description: How many ads to return.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdsPerformanceResponse"
+          description: Ads ranked by `sortBy`. Ads with no delivery in the range are
+            left out.
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdsByPerformance_202_response"
+          description: Meta only. Historical data is incomplete and backfill remains
+            pending.
+          headers:
+            Retry-After:
+              $ref: "#/components/headers/BackfillRetryAfter"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+      security:
+      - bearerAuth: []
+      summary: Rank ads by performance
       tags:
       - Ad Campaigns
       x-resource-group: ads
@@ -103645,6 +103782,66 @@ components:
           description: Meta only. Present and true while historical data is being
             backfilled.
           type: boolean
+    AdsPerformanceResponse:
+      example:
+        ads:
+        - adId: adId
+          adSetName: adSetName
+          name: name
+          currency: currency
+          metrics:
+            ctr: 5.962133916683182
+            purchaseValue: 7.061401241503109
+            conversions: 5.637376656633329
+            spend: 0.8008281904610115
+            conversionsByType:
+              key: 3.616076749251911
+            clicks: 1
+            roas: 9.301444243932576
+            impressions: 6
+            costPerConversion: 2.3021358869347655
+          platformAdId: platformAdId
+          campaignName: campaignName
+          platform: platform
+          creative:
+            linkUrl: linkUrl
+            type: image
+            body: body
+            headline: headline
+            thumbnailUrl: thumbnailUrl
+          status: status
+        - adId: adId
+          adSetName: adSetName
+          name: name
+          currency: currency
+          metrics:
+            ctr: 5.962133916683182
+            purchaseValue: 7.061401241503109
+            conversions: 5.637376656633329
+            spend: 0.8008281904610115
+            conversionsByType:
+              key: 3.616076749251911
+            clicks: 1
+            roas: 9.301444243932576
+            impressions: 6
+            costPerConversion: 2.3021358869347655
+          platformAdId: platformAdId
+          campaignName: campaignName
+          platform: platform
+          creative:
+            linkUrl: linkUrl
+            type: image
+            body: body
+            headline: headline
+            thumbnailUrl: thumbnailUrl
+          status: status
+      properties:
+        ads:
+          items:
+            $ref: "#/components/schemas/AdsPerformanceResponse_ads_inner"
+          type: array
+      required:
+      - ads
     AdsTimelineResponse:
       example:
         backfillPending: true
@@ -160952,6 +161149,69 @@ components:
           fromDate: 2000-01-23
           toDate: 2000-01-23
         syncedAt: 2000-01-23T04:56:07.000+00:00
+    listAdsByPerformance_202_response:
+      allOf:
+      - $ref: "#/components/schemas/AdsPerformanceResponse"
+      - properties:
+          backfillPending:
+            description: Always true on this response. Retry until the request returns
+              200.
+            type: boolean
+        required:
+        - backfillPending
+      example:
+        ads:
+        - adId: adId
+          adSetName: adSetName
+          name: name
+          currency: currency
+          metrics:
+            ctr: 5.962133916683182
+            purchaseValue: 7.061401241503109
+            conversions: 5.637376656633329
+            spend: 0.8008281904610115
+            conversionsByType:
+              key: 3.616076749251911
+            clicks: 1
+            roas: 9.301444243932576
+            impressions: 6
+            costPerConversion: 2.3021358869347655
+          platformAdId: platformAdId
+          campaignName: campaignName
+          platform: platform
+          creative:
+            linkUrl: linkUrl
+            type: image
+            body: body
+            headline: headline
+            thumbnailUrl: thumbnailUrl
+          status: status
+        - adId: adId
+          adSetName: adSetName
+          name: name
+          currency: currency
+          metrics:
+            ctr: 5.962133916683182
+            purchaseValue: 7.061401241503109
+            conversions: 5.637376656633329
+            spend: 0.8008281904610115
+            conversionsByType:
+              key: 3.616076749251911
+            clicks: 1
+            roas: 9.301444243932576
+            impressions: 6
+            costPerConversion: 2.3021358869347655
+          platformAdId: platformAdId
+          campaignName: campaignName
+          platform: platform
+          creative:
+            linkUrl: linkUrl
+            type: image
+            body: body
+            headline: headline
+            thumbnailUrl: thumbnailUrl
+          status: status
+        backfillPending: true
     getAdsTimeline_202_response:
       allOf:
       - $ref: "#/components/schemas/AdsTimelineResponse"
@@ -195315,6 +195575,127 @@ components:
         toDate:
           format: date
           type: string
+    AdsPerformanceResponse_ads_inner_creative:
+      example:
+        linkUrl: linkUrl
+        type: image
+        body: body
+        headline: headline
+        thumbnailUrl: thumbnailUrl
+      properties:
+        type:
+          enum:
+          - image
+          - video
+          - carousel
+          - document
+          - null
+          nullable: true
+          type: string
+        thumbnailUrl:
+          nullable: true
+          type: string
+        headline:
+          nullable: true
+          type: string
+        body:
+          nullable: true
+          type: string
+        linkUrl:
+          nullable: true
+          type: string
+    AdsPerformanceResponse_ads_inner_metrics:
+      example:
+        ctr: 5.962133916683182
+        purchaseValue: 7.061401241503109
+        conversions: 5.637376656633329
+        spend: 0.8008281904610115
+        conversionsByType:
+          key: 3.616076749251911
+        clicks: 1
+        roas: 9.301444243932576
+        impressions: 6
+        costPerConversion: 2.3021358869347655
+      properties:
+        spend:
+          description: In the ad's currency.
+          type: number
+        impressions:
+          type: integer
+        clicks:
+          type: integer
+        ctr:
+          description: Percent.
+          type: number
+        conversions:
+          description: Results over the range (see AdMetrics.conversions).
+          type: number
+        costPerConversion:
+          type: number
+        purchaseValue:
+          type: number
+        roas:
+          type: number
+        conversionsByType:
+          additionalProperties:
+            type: number
+          description: '`conversions` split by what was counted (Meta action_type
+            or Google conversion action name).'
+    AdsPerformanceResponse_ads_inner:
+      example:
+        adId: adId
+        adSetName: adSetName
+        name: name
+        currency: currency
+        metrics:
+          ctr: 5.962133916683182
+          purchaseValue: 7.061401241503109
+          conversions: 5.637376656633329
+          spend: 0.8008281904610115
+          conversionsByType:
+            key: 3.616076749251911
+          clicks: 1
+          roas: 9.301444243932576
+          impressions: 6
+          costPerConversion: 2.3021358869347655
+        platformAdId: platformAdId
+        campaignName: campaignName
+        platform: platform
+        creative:
+          linkUrl: linkUrl
+          type: image
+          body: body
+          headline: headline
+          thumbnailUrl: thumbnailUrl
+        status: status
+      properties:
+        adId:
+          description: Zernio ad ID.
+          type: string
+        platformAdId:
+          nullable: true
+          type: string
+        platform:
+          type: string
+        name:
+          type: string
+        status:
+          nullable: true
+          type: string
+        campaignName:
+          nullable: true
+          type: string
+        adSetName:
+          nullable: true
+          type: string
+        currency:
+          description: ISO 4217 code of the ad's money metrics.
+          nullable: true
+          type: string
+        creative:
+          $ref: "#/components/schemas/AdsPerformanceResponse_ads_inner_creative"
+        metrics:
+          $ref: "#/components/schemas/AdsPerformanceResponse_ads_inner_metrics"
     AdsTimelineResponse_previousRange:
       description: Only with `compare=previous`. The period of the same length that
         ends the day before `fromDate`.
