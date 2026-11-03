@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.445.1
+  version: 1.446.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -103609,42 +103609,46 @@ components:
         rows:
         - date: 2000-01-23
           ctr: 2.3021358869347655
-          purchaseValue: 1.0246457001441578
+          purchaseValue: 1.4894159098541704
           cpm: 9.301444243932576
           conversions: 3.616076749251911
           engagement: 5
           reach: 1
+          conversionsByType:
+            key: 4.145608029883936
           impressions: 6
           actionValues:
-            key: 1.2315135367772556
+            key: 1.0246457001441578
           allConversions: 2.027123023002322
           spend: 0.8008281904610115
           cpc: 7.061401241503109
           clicks: 5
           currency: currency
-          roas: 1.4894159098541704
-          costPerConversion: 4.145608029883936
+          roas: 6.84685269835264
+          costPerConversion: 7.386281948385884
           actions:
-            key: 7.386281948385884
+            key: 1.2315135367772556
         - date: 2000-01-23
           ctr: 2.3021358869347655
-          purchaseValue: 1.0246457001441578
+          purchaseValue: 1.4894159098541704
           cpm: 9.301444243932576
           conversions: 3.616076749251911
           engagement: 5
           reach: 1
+          conversionsByType:
+            key: 4.145608029883936
           impressions: 6
           actionValues:
-            key: 1.2315135367772556
+            key: 1.0246457001441578
           allConversions: 2.027123023002322
           spend: 0.8008281904610115
           cpc: 7.061401241503109
           clicks: 5
           currency: currency
-          roas: 1.4894159098541704
-          costPerConversion: 4.145608029883936
+          roas: 6.84685269835264
+          costPerConversion: 7.386281948385884
           actions:
-            key: 7.386281948385884
+            key: 1.2315135367772556
       properties:
         backfillPending:
           description: Meta only. Present and true while historical data is being
@@ -160830,42 +160834,46 @@ components:
         rows:
         - date: 2000-01-23
           ctr: 2.3021358869347655
-          purchaseValue: 1.0246457001441578
+          purchaseValue: 1.4894159098541704
           cpm: 9.301444243932576
           conversions: 3.616076749251911
           engagement: 5
           reach: 1
+          conversionsByType:
+            key: 4.145608029883936
           impressions: 6
           actionValues:
-            key: 1.2315135367772556
+            key: 1.0246457001441578
           allConversions: 2.027123023002322
           spend: 0.8008281904610115
           cpc: 7.061401241503109
           clicks: 5
           currency: currency
-          roas: 1.4894159098541704
-          costPerConversion: 4.145608029883936
+          roas: 6.84685269835264
+          costPerConversion: 7.386281948385884
           actions:
-            key: 7.386281948385884
+            key: 1.2315135367772556
         - date: 2000-01-23
           ctr: 2.3021358869347655
-          purchaseValue: 1.0246457001441578
+          purchaseValue: 1.4894159098541704
           cpm: 9.301444243932576
           conversions: 3.616076749251911
           engagement: 5
           reach: 1
+          conversionsByType:
+            key: 4.145608029883936
           impressions: 6
           actionValues:
-            key: 1.2315135367772556
+            key: 1.0246457001441578
           allConversions: 2.027123023002322
           spend: 0.8008281904610115
           cpc: 7.061401241503109
           clicks: 5
           currency: currency
-          roas: 1.4894159098541704
-          costPerConversion: 4.145608029883936
+          roas: 6.84685269835264
+          costPerConversion: 7.386281948385884
           actions:
-            key: 7.386281948385884
+            key: 1.2315135367772556
     getAd_200_response_darkPost:
       description: "Only when `{adId}` is a Facebook ad dark post with no resolvable\
         \ ad (then `ad` is null)."
@@ -195128,23 +195136,25 @@ components:
       example:
         date: 2000-01-23
         ctr: 2.3021358869347655
-        purchaseValue: 1.0246457001441578
+        purchaseValue: 1.4894159098541704
         cpm: 9.301444243932576
         conversions: 3.616076749251911
         engagement: 5
         reach: 1
+        conversionsByType:
+          key: 4.145608029883936
         impressions: 6
         actionValues:
-          key: 1.2315135367772556
+          key: 1.0246457001441578
         allConversions: 2.027123023002322
         spend: 0.8008281904610115
         cpc: 7.061401241503109
         clicks: 5
         currency: currency
-        roas: 1.4894159098541704
-        costPerConversion: 4.145608029883936
+        roas: 6.84685269835264
+        costPerConversion: 7.386281948385884
         actions:
-          key: 7.386281948385884
+          key: 1.2315135367772556
       properties:
         date:
           format: date
@@ -195192,6 +195202,13 @@ components:
             \ column (Google metrics.all_conversions). 0 on platforms without the\
             \ concept."
           type: number
+        conversionsByType:
+          additionalProperties:
+            type: number
+          description: "`conversions` split by what was counted. Keys are the Meta\
+            \ action_type (e.g. `offsite_conversion.fb_pixel_purchase`) or the Google\
+            \ conversion action name, so a goal change shows as one key ending and\
+            \ another starting. Meta and Google only; empty before 2026-11."
         costPerConversion:
           type: number
         actions:
