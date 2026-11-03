@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetYoutubeCaptions200ResponseAvailableTracksInner.JSON_PROPERTY_TRACK_KIND,
   GetYoutubeCaptions200ResponseAvailableTracksInner.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T17:24:47.876956883Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T17:29:45.281867677Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetYoutubeCaptions200ResponseAvailableTracksInner {
   public static final String JSON_PROPERTY_TRACK_ID = "trackId";
   @javax.annotation.Nullable

@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CommerceMetaobjectFieldsInner.JSON_PROPERTY_TYPE,
   CommerceMetaobjectFieldsInner.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T17:24:47.876956883Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T17:29:45.281867677Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceMetaobjectFieldsInner {
   public static final String JSON_PROPERTY_KEY = "key";
   @javax.annotation.Nullable
