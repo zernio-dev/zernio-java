@@ -1871,7 +1871,7 @@ ApiResponse<[**GetVoiceCall200Response**](GetVoiceCall200Response.md)>
 
 Estimate call cost
 
-Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.  It uses the same billing formula as the post-call invoice, so the quote and the final charge can&#39;t disagree. The carrier figure follows the carrier&#39;s per-destination rate card: a call dialed from a number in the destination country uses the local mobile rate, and a &#x60;tel:&#x60; forward destination is quoted as a second carrier leg billed from the same number. The real cost comes from the settled carrier record after the call.  Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line. PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
+Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.  It uses the same billing formula as the post-call invoice, so the quote and the final charge can&#39;t disagree.  The carrier figure follows the carrier&#39;s per-destination rate card: a call dialed from a number in the destination country uses the local mobile rate, and a &#x60;tel:&#x60; forward destination is quoted as a second carrier leg billed from the same number.  The real cost comes from the settled carrier record after the call.  Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line. PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
 
 ### Example
 
@@ -1952,7 +1952,7 @@ public class Example {
 
 Estimate call cost
 
-Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.  It uses the same billing formula as the post-call invoice, so the quote and the final charge can&#39;t disagree. The carrier figure follows the carrier&#39;s per-destination rate card: a call dialed from a number in the destination country uses the local mobile rate, and a &#x60;tel:&#x60; forward destination is quoted as a second carrier leg billed from the same number. The real cost comes from the settled carrier record after the call.  Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line. PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
+Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.  It uses the same billing formula as the post-call invoice, so the quote and the final charge can&#39;t disagree.  The carrier figure follows the carrier&#39;s per-destination rate card: a call dialed from a number in the destination country uses the local mobile rate, and a &#x60;tel:&#x60; forward destination is quoted as a second carrier leg billed from the same number.  The real cost comes from the settled carrier record after the call.  Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line. PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
 
 ### Example
 

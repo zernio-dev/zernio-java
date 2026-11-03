@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.444.0
+  version: 1.445.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -32446,7 +32446,11 @@ paths:
       description: |
         Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.
 
-        It uses the same billing formula as the post-call invoice, so the quote and the final charge can't disagree. The carrier figure follows the carrier's per-destination rate card: a call dialed from a number in the destination country uses the local mobile rate, and a `tel:` forward destination is quoted as a second carrier leg billed from the same number. The real cost comes from the settled carrier record after the call.
+        It uses the same billing formula as the post-call invoice, so the quote and the final charge can't disagree.
+
+        The carrier figure follows the carrier's per-destination rate card: a call dialed from a number in the destination country uses the local mobile rate, and a `tel:` forward destination is quoted as a second carrier leg billed from the same number.
+
+        The real cost comes from the settled carrier record after the call.
 
         Parity endpoint of `GET /v1/whatsapp/calls/estimate`, minus the Meta line. PSTN calls have no separate Meta bill, so `totalCostUSD` equals `billableCostUSD`.
       operationId: getVoiceCallEstimate
@@ -48971,6 +48975,9 @@ paths:
         - the ad's own switch (`configuredStatus`)
         - its delivery status (`status`, `platformStatus`)
         - its ad set and campaign switches (`platformAdSetStatus`, `platformCampaignStatus`)
+        - on TikTok, the creative TikTok holds now: `creative.body` (ad text), `creative.callToAction`, `creative.linkUrl` (landing page), `creative.videoId`, `creative.adFormat`, `creative.identityId`, `creative.identityType`, `creative.identityAuthorizedBcId` and, on a Spark ad, `creative.tiktokItemId`.
+
+        The TikTok creative comes from the same TikTok call as the switches. It replaces the stored values in the response only and is never stored. A key TikTok leaves empty keeps its stored value.
 
         ### Meta ads that are not synced yet
 
@@ -59154,8 +59161,8 @@ paths:
             - On Reddit, with code `invalid_resource_state`: a pixel that never received the event the ad group optimizes toward.
         "501":
           description: |
-            The requested option is not supported on this platform: `validateOnly` outside Meta
-            and Google Performance Max, or a shape the adapter does not implement. Carries code
+            The requested option is not supported on this platform: `validateOnly` outside Meta,
+            TikTok, ChatGPT and Google Performance Max / Demand Gen, or a shape the adapter does not implement. Carries code
             `feature_not_available`.
         "502":
           description: |
@@ -76749,6 +76756,8 @@ components:
         - The fresh values are stored (later reads return them too), and the response carries `statusReadAt`, the time of the read.
         - At most 20 platform objects are read per request.
         - Where a read fails (credentials, platform error, no reader on that platform), stored values come back with `statusReadAt: null`.
+
+        **On GET /v1/ads/{adId} for a TikTok ad** the creative is read live too: ad text, call to action, landing page, video, format and identity, returned over the stored creative and never stored. See "Status freshness" in GET /v1/ads/{adId}.
 
         **On X** the budget is read live too:
 
@@ -100506,6 +100515,7 @@ components:
               - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
+            identityType: identityType
             pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
@@ -100529,8 +100539,10 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
             imageHash: imageHash
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -100552,6 +100564,7 @@ components:
               imageHash: imageHash
               headline: headline
               callToAction: SHOP_NOW
+            identityId: identityId
             headlines:
             - Ad_creative_headlines_inner
             - Ad_creative_headlines_inner
@@ -100655,6 +100668,7 @@ components:
               - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
+            identityType: identityType
             pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
@@ -100678,8 +100692,10 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
             imageHash: imageHash
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -100701,6 +100717,7 @@ components:
               imageHash: imageHash
               headline: headline
               callToAction: SHOP_NOW
+            identityId: identityId
             headlines:
             - Ad_creative_headlines_inner
             - Ad_creative_headlines_inner
@@ -101104,6 +101121,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -101127,8 +101145,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -101150,6 +101170,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -101253,6 +101274,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -101276,8 +101298,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -101299,6 +101323,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -101650,6 +101675,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -101673,8 +101699,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -101696,6 +101724,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -101799,6 +101828,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -101822,8 +101852,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -101845,6 +101877,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -102444,6 +102477,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -102467,8 +102501,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -102490,6 +102526,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -102593,6 +102630,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -102616,8 +102654,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -102639,6 +102679,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -102990,6 +103031,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -103013,8 +103055,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -103036,6 +103080,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -103139,6 +103184,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -103162,8 +103208,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -103185,6 +103233,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -106895,6 +106944,7 @@ components:
             - resourceName: resourceName
           videoUrl: videoUrl
           objectStoryId: objectStoryId
+          identityType: identityType
           pinterestDescription: pinterestDescription
           finalUrls:
           - https://openapi-generator.tech
@@ -106918,8 +106968,10 @@ components:
           thumbnailUrl: thumbnailUrl
           pinterestImageUrl: pinterestImageUrl
           instagramPermalinkUrl: instagramPermalinkUrl
+          identityAuthorizedBcId: identityAuthorizedBcId
           assetGroupResourceName: customers/9122445560/assetGroups/123456789
           instagramUserId: instagramUserId
+          tiktokItemId: tiktokItemId
           imageHash: imageHash
           pinterestTitle: pinterestTitle
           pageId: pageId
@@ -106941,6 +106993,7 @@ components:
             imageHash: imageHash
             headline: headline
             callToAction: SHOP_NOW
+          identityId: identityId
           headlines:
           - Ad_creative_headlines_inner
           - Ad_creative_headlines_inner
@@ -107314,6 +107367,7 @@ components:
               - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
+            identityType: identityType
             pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
@@ -107337,8 +107391,10 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
             imageHash: imageHash
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -107360,6 +107416,7 @@ components:
               imageHash: imageHash
               headline: headline
               callToAction: SHOP_NOW
+            identityId: identityId
             headlines:
             - Ad_creative_headlines_inner
             - Ad_creative_headlines_inner
@@ -107463,6 +107520,7 @@ components:
               - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
+            identityType: identityType
             pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
@@ -107486,8 +107544,10 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
             imageHash: imageHash
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -107509,6 +107569,7 @@ components:
               imageHash: imageHash
               headline: headline
               callToAction: SHOP_NOW
+            identityId: identityId
             headlines:
             - Ad_creative_headlines_inner
             - Ad_creative_headlines_inner
@@ -108192,6 +108253,7 @@ components:
                 - resourceName: resourceName
               videoUrl: videoUrl
               objectStoryId: objectStoryId
+              identityType: identityType
               pinterestDescription: pinterestDescription
               finalUrls:
               - https://openapi-generator.tech
@@ -108215,8 +108277,10 @@ components:
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
               instagramPermalinkUrl: instagramPermalinkUrl
+              identityAuthorizedBcId: identityAuthorizedBcId
               assetGroupResourceName: customers/9122445560/assetGroups/123456789
               instagramUserId: instagramUserId
+              tiktokItemId: tiktokItemId
               imageHash: imageHash
               pinterestTitle: pinterestTitle
               pageId: pageId
@@ -108238,6 +108302,7 @@ components:
                 imageHash: imageHash
                 headline: headline
                 callToAction: SHOP_NOW
+              identityId: identityId
               headlines:
               - Ad_creative_headlines_inner
               - Ad_creative_headlines_inner
@@ -108341,6 +108406,7 @@ components:
                 - resourceName: resourceName
               videoUrl: videoUrl
               objectStoryId: objectStoryId
+              identityType: identityType
               pinterestDescription: pinterestDescription
               finalUrls:
               - https://openapi-generator.tech
@@ -108364,8 +108430,10 @@ components:
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
               instagramPermalinkUrl: instagramPermalinkUrl
+              identityAuthorizedBcId: identityAuthorizedBcId
               assetGroupResourceName: customers/9122445560/assetGroups/123456789
               instagramUserId: instagramUserId
+              tiktokItemId: tiktokItemId
               imageHash: imageHash
               pinterestTitle: pinterestTitle
               pageId: pageId
@@ -108387,6 +108455,7 @@ components:
                 imageHash: imageHash
                 headline: headline
                 callToAction: SHOP_NOW
+              identityId: identityId
               headlines:
               - Ad_creative_headlines_inner
               - Ad_creative_headlines_inner
@@ -108738,6 +108807,7 @@ components:
                 - resourceName: resourceName
               videoUrl: videoUrl
               objectStoryId: objectStoryId
+              identityType: identityType
               pinterestDescription: pinterestDescription
               finalUrls:
               - https://openapi-generator.tech
@@ -108761,8 +108831,10 @@ components:
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
               instagramPermalinkUrl: instagramPermalinkUrl
+              identityAuthorizedBcId: identityAuthorizedBcId
               assetGroupResourceName: customers/9122445560/assetGroups/123456789
               instagramUserId: instagramUserId
+              tiktokItemId: tiktokItemId
               imageHash: imageHash
               pinterestTitle: pinterestTitle
               pageId: pageId
@@ -108784,6 +108856,7 @@ components:
                 imageHash: imageHash
                 headline: headline
                 callToAction: SHOP_NOW
+              identityId: identityId
               headlines:
               - Ad_creative_headlines_inner
               - Ad_creative_headlines_inner
@@ -108887,6 +108960,7 @@ components:
                 - resourceName: resourceName
               videoUrl: videoUrl
               objectStoryId: objectStoryId
+              identityType: identityType
               pinterestDescription: pinterestDescription
               finalUrls:
               - https://openapi-generator.tech
@@ -108910,8 +108984,10 @@ components:
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
               instagramPermalinkUrl: instagramPermalinkUrl
+              identityAuthorizedBcId: identityAuthorizedBcId
               assetGroupResourceName: customers/9122445560/assetGroups/123456789
               instagramUserId: instagramUserId
+              tiktokItemId: tiktokItemId
               imageHash: imageHash
               pinterestTitle: pinterestTitle
               pageId: pageId
@@ -108933,6 +109009,7 @@ components:
                 imageHash: imageHash
                 headline: headline
                 callToAction: SHOP_NOW
+              identityId: identityId
               headlines:
               - Ad_creative_headlines_inner
               - Ad_creative_headlines_inner
@@ -152995,6 +153072,7 @@ components:
               - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
+            identityType: identityType
             pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
@@ -153018,8 +153096,10 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
             imageHash: imageHash
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -153041,6 +153121,7 @@ components:
               imageHash: imageHash
               headline: headline
               callToAction: SHOP_NOW
+            identityId: identityId
             headlines:
             - Ad_creative_headlines_inner
             - Ad_creative_headlines_inner
@@ -153144,6 +153225,7 @@ components:
               - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
+            identityType: identityType
             pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
@@ -153167,8 +153249,10 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
             imageHash: imageHash
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -153190,6 +153274,7 @@ components:
               imageHash: imageHash
               headline: headline
               callToAction: SHOP_NOW
+            identityId: identityId
             headlines:
             - Ad_creative_headlines_inner
             - Ad_creative_headlines_inner
@@ -158273,6 +158358,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -158296,8 +158382,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -158319,6 +158407,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -158422,6 +158511,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -158445,8 +158535,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -158468,6 +158560,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -158819,6 +158912,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -158842,8 +158936,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -158865,6 +158961,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -158968,6 +159065,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -158991,8 +159089,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -159014,6 +159114,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -159613,6 +159714,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -159636,8 +159738,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -159659,6 +159763,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -159762,6 +159867,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -159785,8 +159891,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -159808,6 +159916,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -160159,6 +160268,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -160182,8 +160292,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -160205,6 +160317,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -160308,6 +160421,7 @@ components:
                   - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
+                identityType: identityType
                 pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
@@ -160331,8 +160445,10 @@ components:
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
+                identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
                 instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
                 imageHash: imageHash
                 pinterestTitle: pinterestTitle
                 pageId: pageId
@@ -160354,6 +160470,7 @@ components:
                   imageHash: imageHash
                   headline: headline
                   callToAction: SHOP_NOW
+                identityId: identityId
                 headlines:
                 - Ad_creative_headlines_inner
                 - Ad_creative_headlines_inner
@@ -160893,6 +161010,7 @@ components:
               - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
+            identityType: identityType
             pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
@@ -160916,8 +161034,10 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
             imageHash: imageHash
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -160939,6 +161059,7 @@ components:
               imageHash: imageHash
               headline: headline
               callToAction: SHOP_NOW
+            identityId: identityId
             headlines:
             - Ad_creative_headlines_inner
             - Ad_creative_headlines_inner
@@ -161385,6 +161506,7 @@ components:
               - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
+            identityType: identityType
             pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
@@ -161408,8 +161530,10 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
             imageHash: imageHash
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -161431,6 +161555,7 @@ components:
               imageHash: imageHash
               headline: headline
               callToAction: SHOP_NOW
+            identityId: identityId
             headlines:
             - Ad_creative_headlines_inner
             - Ad_creative_headlines_inner
@@ -169851,6 +169976,7 @@ components:
               - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
+            identityType: identityType
             pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
@@ -169874,8 +170000,10 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
             imageHash: imageHash
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -169897,6 +170025,7 @@ components:
               imageHash: imageHash
               headline: headline
               callToAction: SHOP_NOW
+            identityId: identityId
             headlines:
             - Ad_creative_headlines_inner
             - Ad_creative_headlines_inner
@@ -171259,7 +171388,7 @@ components:
           type: string
         validateOnly:
           description: |
-            Validate the request without creating anything. Any other platform, or a Google campaignType other than pmax or demand_gen, returns 501 `feature_not_available`.
+            Validate the request without creating anything. Supported on Meta, TikTok, ChatGPT (OpenAI) and Google Performance Max / Demand Gen. Any other platform, or a Google campaignType other than pmax or demand_gen, returns 501 `feature_not_available`.
 
             **Google Performance Max**: validates the complete atomic campaign and asset group, with no resource creation or local persistence. Validation still downloads image URLs and consumes quota.
 
@@ -171275,6 +171404,16 @@ components:
             - Code 100 subcode 2446880 "WhatsApp number required" on an ad that does not message on WhatsApp (intermittent). If the creative's own dry run also asks for a WhatsApp number, the creative is unverified too. Messaging ads still fail on 2446880.
 
             **ChatGPT (OpenAI)**: no platform dry-run. Zernio runs every check it knows (creative lengths, budget, bid strategy, targeting) plus live lookups of the conversion event and target countries, and uploads or creates nothing. OpenAI's own checks (image fetch, currency-specific minimums, ad review) run only on a real create.
+
+            **TikTok**: TikTok has no dry-run. Zernio runs the input checks and the read-only TikTok calls a real create makes. It uploads or creates nothing: no video, Brand Identity, campaign, ad group or ad. A failure returns the same 4xx a real create would.
+
+            - Advertiser: `message` names its currency when TikTok returns it.
+            - Identity: `identityId` is authorized on the advertiser (the `identity` node). `message` names the identity and type the ad would run as.
+            - `existingCampaignId`: exists and is not an Upgraded Smart+ campaign.
+            - Pixel and optimization event resolve on the advertiser, and the schedule and targeting build.
+            - Not checked (marked `unverified` with the reason): the video (format, size, length, cover), the ad group as TikTok would create it (the budget minimum for the advertiser currency, location and audience ids, bid), a new campaign, and TikTok's review of the ad text, call to action and landing page.
+            - A Brand Identity a real create would make from `brandIdentity` is not made: the `identity` node is `unverified`.
+            - Supported: the single standalone video ad. `smartPlus` and `adSetId` return 400.
           type: boolean
         budgetAmount:
           description: |-
@@ -172406,12 +172545,14 @@ components:
         status: validated
       properties:
         node:
+          description: "`identity` is TikTok only: the identity the ad would run as."
           enum:
           - campaign
           - adSet
           - creative
           - ad
           - performanceMaxCampaign
+          - identity
           type: string
         status:
           enum:
@@ -172424,7 +172565,7 @@ components:
             Explanation for the node's result:
 
             - On skipped: why the node could not be validated.
-            - On unverified: why Meta could not dry-run it although the other nodes passed.
+            - On unverified: why the platform could not dry-run it although the other nodes passed (Meta), or what only a real create checks (TikTok).
             - On validated: what the dry run could not check, and what the request would do as sent. For example, a Performance Max validation with no location targeting reports here that the campaign would run worldwide.
           type: string
     createStandaloneAd_200_response:
@@ -172537,6 +172678,7 @@ components:
               - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
+            identityType: identityType
             pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
@@ -172560,8 +172702,10 @@ components:
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
+            identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
             instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
             imageHash: imageHash
             pinterestTitle: pinterestTitle
             pageId: pageId
@@ -172583,6 +172727,7 @@ components:
               imageHash: imageHash
               headline: headline
               callToAction: SHOP_NOW
+            identityId: identityId
             headlines:
             - Ad_creative_headlines_inner
             - Ad_creative_headlines_inner
@@ -196779,6 +196924,7 @@ components:
           - resourceName: resourceName
         videoUrl: videoUrl
         objectStoryId: objectStoryId
+        identityType: identityType
         pinterestDescription: pinterestDescription
         finalUrls:
         - https://openapi-generator.tech
@@ -196802,8 +196948,10 @@ components:
         thumbnailUrl: thumbnailUrl
         pinterestImageUrl: pinterestImageUrl
         instagramPermalinkUrl: instagramPermalinkUrl
+        identityAuthorizedBcId: identityAuthorizedBcId
         assetGroupResourceName: customers/9122445560/assetGroups/123456789
         instagramUserId: instagramUserId
+        tiktokItemId: tiktokItemId
         imageHash: imageHash
         pinterestTitle: pinterestTitle
         pageId: pageId
@@ -196825,6 +196973,7 @@ components:
           imageHash: imageHash
           headline: headline
           callToAction: SHOP_NOW
+        identityId: identityId
         headlines:
         - Ad_creative_headlines_inner
         - Ad_creative_headlines_inner
@@ -196886,8 +197035,25 @@ components:
         callToAction:
           description: "Meta: the call to action type (`call_to_action.type`, or the\
             \ first `asset_feed_spec.call_to_action_types` entry), e.g. LEARN_MORE\
-            \ or SIGN_UP."
+            \ or SIGN_UP. TikTok: the ad's `call_to_action`."
           example: SIGN_UP
+          type: string
+        identityId:
+          description: "TikTok only, with `live=true` on GET /v1/ads/{adId}: the identity\
+            \ the ad runs as (`identity_id`), the same id GET /v1/ads/tiktok-identities\
+            \ lists."
+          type: string
+        identityType:
+          description: "TikTok only, with `live=true`: the identity type (`identity_type`),\
+            \ e.g. TT_USER, BC_AUTH_TT, CUSTOMIZED_USER or AUTH_CODE."
+          type: string
+        identityAuthorizedBcId:
+          description: "TikTok only, with `live=true`: the Business Center that authorized\
+            \ a BC_AUTH_TT identity (`identity_authorized_bc_id`)."
+          type: string
+        tiktokItemId:
+          description: "TikTok only, with `live=true`: the TikTok post a Spark ad\
+            \ runs (`tiktok_item_id`)."
           type: string
         leadGenFormId:
           description: "Meta: the instant form the call to action opens (`call_to_action.value.lead_gen_form_id`,\
@@ -196929,9 +197095,9 @@ components:
         assets:
           $ref: "#/components/schemas/Ad_creative_assets"
         videoId:
-          description: "Meta video ID for VIDEO-type ads. Null for non-video ads.\
-            \ Callers that need an embeddable MP4 can call GET /{videoId}?fields=source\
-            \ with the page access token."
+          description: "Meta video ID for VIDEO-type ads (TikTok: the ad library `video_id`).\
+            \ Null for non-video ads. Callers that need an embeddable MP4 can call\
+            \ GET /{videoId}?fields=source with the page access token."
           nullable: true
           type: string
         videoUrl:
@@ -197019,12 +197185,12 @@ components:
           type: boolean
         adFormat:
           description: |-
-            LinkedIn only. The LinkedIn ad format, in LinkedIn's own vocabulary: STANDARD_UPDATE, SINGLE_VIDEO, CAROUSEL, NATIVE_DOCUMENT, EVENT, TEXT_AD, SPOTLIGHT, FOLLOW_COMPANY, JOBS, SPONSORED_INMAILS and others. The list is open, so treat an unrecognized value as valid.
+            LinkedIn (and TikTok with `live=true`). The LinkedIn ad format, in LinkedIn's own vocabulary: STANDARD_UPDATE, SINGLE_VIDEO, CAROUSEL, NATIVE_DOCUMENT, EVENT, TEXT_AD, SPOTLIGHT, FOLLOW_COMPANY, JOBS, SPONSORED_INMAILS and others. The list is open, so treat an unrecognized value as valid.
 
             - On an ad Zernio created: the format it was created as.
             - On an ad synced from Campaign Manager: the parent campaign's raw `format`, which is what LinkedIn actually enforces on its creatives.
 
-            Absent on LinkedIn ads not yet re-synced, and on every other platform.
+            Absent on LinkedIn ads not yet re-synced. On TikTok with `live=true`: the ad's `ad_format` (e.g. SINGLE_VIDEO). Absent on every other platform.
           nullable: true
           type: string
         servingHoldReasons:
