@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.448.0
+  version: 1.449.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -175353,6 +175353,7 @@ components:
           type: string
     listAdAudiences_200_response_audiences_inner:
       example:
+        summary: summary
         accountId: accountId
         size: 0
         name: name
@@ -175407,12 +175408,17 @@ components:
           type: string
         size:
           type: integer
+        summary:
+          description: "Who the audience contains, in one line (e.g. '1% lookalike\
+            \ of Customers in US' or 'All website visitors, last 30 days'). Meta only."
+          type: string
         status:
           type: string
     listAdAudiences_200_response:
       example:
         audiences:
-        - accountId: accountId
+        - summary: summary
+          accountId: accountId
           size: 0
           name: name
           description: description
@@ -175422,7 +175428,8 @@ components:
           spec: ""
           platform: platform
           status: status
-        - accountId: accountId
+        - summary: summary
+          accountId: accountId
           size: 0
           name: name
           description: description
