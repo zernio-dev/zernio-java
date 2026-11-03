@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.456.0
+  version: 1.457.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -91374,12 +91374,12 @@ components:
           platformCampaignId: platformCampaignId
           platformId: platformId
           conditions:
-          - op: '>'
+          - op: op
             actual: 6.027456183070403
             metric: metric
             window: window
             value: 0.8008281904610115
-          - op: '>'
+          - op: op
             actual: 6.027456183070403
             metric: metric
             window: window
@@ -91399,12 +91399,12 @@ components:
           platformCampaignId: platformCampaignId
           platformId: platformId
           conditions:
-          - op: '>'
+          - op: op
             actual: 6.027456183070403
             metric: metric
             window: window
             value: 0.8008281904610115
-          - op: '>'
+          - op: op
             actual: 6.027456183070403
             metric: metric
             window: window
@@ -110516,11 +110516,17 @@ components:
           nullable: true
           type: string
         op:
+          description: "`top` and `bottom` rank the rule's objects by the metric over\
+            \ the window, highest first for `top`, and match the first `value` (a\
+            \ whole number from 1 to 100). Objects with no value are not ranked; the\
+            \ run history shows each one's position."
           enum:
           - '>'
           - '>='
           - <
           - <=
+          - top
+          - bottom
           type: string
         value:
           minimum: 0
@@ -192234,7 +192240,7 @@ components:
       - today
     WebhookPayloadAdRuleTriggered_objects_inner_conditions_inner:
       example:
-        op: '>'
+        op: op
         actual: 6.027456183070403
         metric: metric
         window: window
@@ -192250,11 +192256,8 @@ components:
             \ may be added."
           type: string
         op:
-          enum:
-          - '>'
-          - '>='
-          - <
-          - <=
+          description: "`>`, `>=`, `<`, `<=`, or `top` and `bottom` for a rank condition,\
+            \ whose `actual` is the object's position (1 first)."
           type: string
         value:
           description: The threshold set on the rule.
@@ -192326,12 +192329,12 @@ components:
         platformCampaignId: platformCampaignId
         platformId: platformId
         conditions:
-        - op: '>'
+        - op: op
           actual: 6.027456183070403
           metric: metric
           window: window
           value: 0.8008281904610115
-        - op: '>'
+        - op: op
           actual: 6.027456183070403
           metric: metric
           window: window
