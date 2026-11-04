@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.485.0
+  version: 1.486.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -92305,11 +92305,12 @@ components:
           metaCostUSD: 9.301444243932576
           metaMinutes: 5.962133916683182
           telnyxSeconds: 5.637376656633329
-          billableCostUSD: 4.145608029883936
-          totalCostUSD: 7.386281948385884
-          recordingCostUSD: 2.027123023002322
+          billableCostUSD: 7.386281948385884
+          totalCostUSD: 1.2315135367772556
+          recordingCostUSD: 4.145608029883936
           currency: currency
           transcriptionSeconds: 2.3021358869347655
+          recordingSeconds: 2.027123023002322
           telnyxCostUSD: 3.616076749251911
         createdAt: 2000-01-23T04:56:07.000+00:00
         transcript:
@@ -141339,10 +141340,11 @@ components:
     listWhatsAppCalls_200_response_calls_inner_billing:
       example:
         metaCostUSD: 6.027456183070403
-        billableCostUSD: 5.637376656633329
-        totalCostUSD: 2.3021358869347655
-        recordingCostUSD: 5.962133916683182
+        billableCostUSD: 2.3021358869347655
+        totalCostUSD: 7.061401241503109
+        recordingCostUSD: 5.637376656633329
         currency: currency
+        recordingSeconds: 5.962133916683182
         telnyxCostUSD: 1.4658129805029452
       properties:
         metaCostUSD:
@@ -141350,6 +141352,9 @@ components:
             \ Display only; not billed by Zernio."
           type: number
         telnyxCostUSD:
+          type: number
+        recordingSeconds:
+          description: Seconds of the call that were recorded and billed as recording.
           type: number
         recordingCostUSD:
           type: number
@@ -141377,10 +141382,11 @@ components:
         status: ringing
         billing:
           metaCostUSD: 6.027456183070403
-          billableCostUSD: 5.637376656633329
-          totalCostUSD: 2.3021358869347655
-          recordingCostUSD: 5.962133916683182
+          billableCostUSD: 2.3021358869347655
+          totalCostUSD: 7.061401241503109
+          recordingCostUSD: 5.637376656633329
           currency: currency
+          recordingSeconds: 5.962133916683182
           telnyxCostUSD: 1.4658129805029452
       properties:
         _id:
@@ -141436,10 +141442,11 @@ components:
           status: ringing
           billing:
             metaCostUSD: 6.027456183070403
-            billableCostUSD: 5.637376656633329
-            totalCostUSD: 2.3021358869347655
-            recordingCostUSD: 5.962133916683182
+            billableCostUSD: 2.3021358869347655
+            totalCostUSD: 7.061401241503109
+            recordingCostUSD: 5.637376656633329
             currency: currency
+            recordingSeconds: 5.962133916683182
             telnyxCostUSD: 1.4658129805029452
         - durationSeconds: 0
           endReason: hangup
@@ -141453,10 +141460,11 @@ components:
           status: ringing
           billing:
             metaCostUSD: 6.027456183070403
-            billableCostUSD: 5.637376656633329
-            totalCostUSD: 2.3021358869347655
-            recordingCostUSD: 5.962133916683182
+            billableCostUSD: 2.3021358869347655
+            totalCostUSD: 7.061401241503109
+            recordingCostUSD: 5.637376656633329
             currency: currency
+            recordingSeconds: 5.962133916683182
             telnyxCostUSD: 1.4658129805029452
       properties:
         calls:
@@ -141620,11 +141628,12 @@ components:
           metaCostUSD: 9.301444243932576
           metaMinutes: 5.962133916683182
           telnyxSeconds: 5.637376656633329
-          billableCostUSD: 4.145608029883936
-          totalCostUSD: 7.386281948385884
-          recordingCostUSD: 2.027123023002322
+          billableCostUSD: 7.386281948385884
+          totalCostUSD: 1.2315135367772556
+          recordingCostUSD: 4.145608029883936
           currency: currency
           transcriptionSeconds: 2.3021358869347655
+          recordingSeconds: 2.027123023002322
           telnyxCostUSD: 3.616076749251911
         createdAt: 2000-01-23T04:56:07.000+00:00
         transcript:
@@ -141678,11 +141687,12 @@ components:
             metaCostUSD: 9.301444243932576
             metaMinutes: 5.962133916683182
             telnyxSeconds: 5.637376656633329
-            billableCostUSD: 4.145608029883936
-            totalCostUSD: 7.386281948385884
-            recordingCostUSD: 2.027123023002322
+            billableCostUSD: 7.386281948385884
+            totalCostUSD: 1.2315135367772556
+            recordingCostUSD: 4.145608029883936
             currency: currency
             transcriptionSeconds: 2.3021358869347655
+            recordingSeconds: 2.027123023002322
             telnyxCostUSD: 3.616076749251911
           createdAt: 2000-01-23T04:56:07.000+00:00
           transcript:
@@ -141732,11 +141742,12 @@ components:
             metaCostUSD: 9.301444243932576
             metaMinutes: 5.962133916683182
             telnyxSeconds: 5.637376656633329
-            billableCostUSD: 4.145608029883936
-            totalCostUSD: 7.386281948385884
-            recordingCostUSD: 2.027123023002322
+            billableCostUSD: 7.386281948385884
+            totalCostUSD: 1.2315135367772556
+            recordingCostUSD: 4.145608029883936
             currency: currency
             transcriptionSeconds: 2.3021358869347655
+            recordingSeconds: 2.027123023002322
             telnyxCostUSD: 3.616076749251911
           createdAt: 2000-01-23T04:56:07.000+00:00
           transcript:
@@ -141799,11 +141810,12 @@ components:
             metaCostUSD: 9.301444243932576
             metaMinutes: 5.962133916683182
             telnyxSeconds: 5.637376656633329
-            billableCostUSD: 4.145608029883936
-            totalCostUSD: 7.386281948385884
-            recordingCostUSD: 2.027123023002322
+            billableCostUSD: 7.386281948385884
+            totalCostUSD: 1.2315135367772556
+            recordingCostUSD: 4.145608029883936
             currency: currency
             transcriptionSeconds: 2.3021358869347655
+            recordingSeconds: 2.027123023002322
             telnyxCostUSD: 3.616076749251911
           createdAt: 2000-01-23T04:56:07.000+00:00
           transcript:
@@ -141860,11 +141872,12 @@ components:
             metaCostUSD: 9.301444243932576
             metaMinutes: 5.962133916683182
             telnyxSeconds: 5.637376656633329
-            billableCostUSD: 4.145608029883936
-            totalCostUSD: 7.386281948385884
-            recordingCostUSD: 2.027123023002322
+            billableCostUSD: 7.386281948385884
+            totalCostUSD: 1.2315135367772556
+            recordingCostUSD: 4.145608029883936
             currency: currency
             transcriptionSeconds: 2.3021358869347655
+            recordingSeconds: 2.027123023002322
             telnyxCostUSD: 3.616076749251911
           createdAt: 2000-01-23T04:56:07.000+00:00
           transcript:
@@ -141913,11 +141926,12 @@ components:
             metaCostUSD: 9.301444243932576
             metaMinutes: 5.962133916683182
             telnyxSeconds: 5.637376656633329
-            billableCostUSD: 4.145608029883936
-            totalCostUSD: 7.386281948385884
-            recordingCostUSD: 2.027123023002322
+            billableCostUSD: 7.386281948385884
+            totalCostUSD: 1.2315135367772556
+            recordingCostUSD: 4.145608029883936
             currency: currency
             transcriptionSeconds: 2.3021358869347655
+            recordingSeconds: 2.027123023002322
             telnyxCostUSD: 3.616076749251911
           createdAt: 2000-01-23T04:56:07.000+00:00
           transcript:
@@ -142078,11 +142092,12 @@ components:
             metaCostUSD: 9.301444243932576
             metaMinutes: 5.962133916683182
             telnyxSeconds: 5.637376656633329
-            billableCostUSD: 4.145608029883936
-            totalCostUSD: 7.386281948385884
-            recordingCostUSD: 2.027123023002322
+            billableCostUSD: 7.386281948385884
+            totalCostUSD: 1.2315135367772556
+            recordingCostUSD: 4.145608029883936
             currency: currency
             transcriptionSeconds: 2.3021358869347655
+            recordingSeconds: 2.027123023002322
             telnyxCostUSD: 3.616076749251911
           createdAt: 2000-01-23T04:56:07.000+00:00
           transcript:
@@ -195036,11 +195051,12 @@ components:
         metaCostUSD: 9.301444243932576
         metaMinutes: 5.962133916683182
         telnyxSeconds: 5.637376656633329
-        billableCostUSD: 4.145608029883936
-        totalCostUSD: 7.386281948385884
-        recordingCostUSD: 2.027123023002322
+        billableCostUSD: 7.386281948385884
+        totalCostUSD: 1.2315135367772556
+        recordingCostUSD: 4.145608029883936
         currency: currency
         transcriptionSeconds: 2.3021358869347655
+        recordingSeconds: 2.027123023002322
         telnyxCostUSD: 3.616076749251911
       properties:
         metaMinutes:
@@ -195056,6 +195072,9 @@ components:
             \ directly to your WABA. Display only; not billed by Zernio."
           type: number
         telnyxCostUSD:
+          type: number
+        recordingSeconds:
+          description: Seconds of the call that were recorded and billed as recording.
           type: number
         recordingCostUSD:
           type: number
