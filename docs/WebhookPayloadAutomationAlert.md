@@ -2,7 +2,7 @@
 
 # WebhookPayloadAutomationAlert
 
-Webhook payload for `automation.alert.opened`, `automation.alert.escalated` and `automation.alert.resolved`: an alert episode of an automation with a lifecycle (an ad rule's `lifecycle`).  Sent as soon as the check records the change; a resolve that a pause or reactivation causes is sent once it applies. A streak that never opened sends nothing. Alerts closed outside a check (the rule turned off, deleted or its `lifecycle` removed between checks, or the daily cleanup) are not announced. 
+Webhook payload for `automation.alert.opened`, `automation.alert.escalated` and `automation.alert.resolved`: an alert episode of an automation with a lifecycle (an ad rule's `lifecycle`).  Sent as soon as the check records the change; a resolve that a pause or reactivation causes is sent once it applies. A streak that never opened sends nothing.  Alerts closed outside a check (the rule turned off, deleted or its `lifecycle` removed between checks, or the daily cleanup) are not announced. 
 
 ## Properties
 
