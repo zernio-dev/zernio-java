@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.461.0
+- API version: 1.462.0
 
-- Build date: 2026-11-04T08:58:56.008218501Z[Etc/UTC]
+- Build date: 2026-11-04T09:03:44.661396931Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.461.0</version>
+  <version>1.462.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.461.0"
+compile "dev.zernio:zernio-sdk:1.462.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.461.0.jar`
+- `target/zernio-sdk-1.462.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2459,6 +2459,7 @@ Class | Method | HTTP request | Description
  - [AdRuleActionOneOf2](docs/AdRuleActionOneOf2.md)
  - [AdRuleActionOneOf3](docs/AdRuleActionOneOf3.md)
  - [AdRuleActionOneOf4](docs/AdRuleActionOneOf4.md)
+ - [AdRuleActionOneOf5](docs/AdRuleActionOneOf5.md)
  - [AdRuleActionOneOfSendInner](docs/AdRuleActionOneOfSendInner.md)
  - [AdRuleActionOneOfSendInnerOneOf](docs/AdRuleActionOneOfSendInnerOneOf.md)
  - [AdRuleActionOneOfSendInnerOneOf1](docs/AdRuleActionOneOfSendInnerOneOf1.md)

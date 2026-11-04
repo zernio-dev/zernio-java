@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.461.0
+  version: 1.462.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -45281,6 +45281,7 @@ paths:
           - pause
           - activate
           - adjust_budget
+          - duplicate
           type: string
         style: form
       - description: "ISO 8601 date-time, inclusive."
@@ -110842,9 +110843,10 @@ components:
       - $ref: "#/components/schemas/AdRuleAction_oneOf_2"
       - $ref: "#/components/schemas/AdRuleAction_oneOf_3"
       - $ref: "#/components/schemas/AdRuleAction_oneOf_4"
+      - $ref: "#/components/schemas/AdRuleAction_oneOf_5"
     AdRuleActions:
-      description: "Each type at most once, and at most one of `pause`, `activate`\
-        \ and `adjust_budget`."
+      description: "Each type at most once, and at most one of `pause`, `activate`,\
+        \ `adjust_budget` and `duplicate`."
       items:
         $ref: "#/components/schemas/AdRuleAction"
       minItems: 1
@@ -110949,8 +110951,8 @@ components:
         conditions:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
-          description: "Each type at most once, and at most one of `pause`, `activate`\
-            \ and `adjust_budget`."
+          description: "Each type at most once, and at most one of `pause`, `activate`,\
+            \ `adjust_budget` and `duplicate`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -111288,6 +111290,7 @@ components:
           - pause
           - activate
           - adjust_budget
+          - duplicate
           type: string
         status:
           enum:
@@ -155358,8 +155361,8 @@ components:
         conditions:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
-          description: "Each type at most once, and at most one of `pause`, `activate`\
-            \ and `adjust_budget`."
+          description: "Each type at most once, and at most one of `pause`, `activate`,\
+            \ `adjust_budget` and `duplicate`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -155514,8 +155517,8 @@ components:
         conditions:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
-          description: "Each type at most once, and at most one of `pause`, `activate`\
-            \ and `adjust_budget`."
+          description: "Each type at most once, and at most one of `pause`, `activate`,\
+            \ `adjust_budget` and `duplicate`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -155714,8 +155717,8 @@ components:
         conditions:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
-          description: "Each type at most once, and at most one of `pause`, `activate`\
-            \ and `adjust_budget`."
+          description: "Each type at most once, and at most one of `pause`, `activate`,\
+            \ `adjust_budget` and `duplicate`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -192794,6 +192797,7 @@ components:
           - pause
           - activate
           - adjust_budget
+          - duplicate
           type: string
         status:
           description: |-
@@ -199013,6 +199017,33 @@ components:
     AdRuleAction_oneOf_3:
       properties:
         type:
+          description: "Copy the campaign or ad set with its ads, on Meta and TikTok\
+            \ campaigns and ad sets and LinkedIn campaigns. Not on ad-level rules."
+          enum:
+          - duplicate
+          type: string
+        status:
+          description: How the copy starts. Defaults to `paused`.
+          enum:
+          - paused
+          - active
+          type: string
+        renameSuffix:
+          description: Text added to the copy's name.
+          maxLength: 50
+          type: string
+        maxChangesPerDay:
+          description: "At most this many objects changed in any 24 hours, across\
+            \ runs. Matches over the limit are skipped with `daily_limit_reached`\
+            \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
+      required:
+      - type
+    AdRuleAction_oneOf_4:
+      properties:
+        type:
           description: "Set the daily budget to an exact amount, such as a reset every\
             \ midnight. Same level rules as the percent change."
           enum:
@@ -199032,7 +199063,7 @@ components:
       required:
       - amount
       - type
-    AdRuleAction_oneOf_4:
+    AdRuleAction_oneOf_5:
       properties:
         type:
           description: "Change the daily budget. Not on ad-level rules (an ad has\
@@ -199133,6 +199164,7 @@ components:
           - pause
           - activate
           - adjust_budget
+          - duplicate
           type: string
         status:
           enum:

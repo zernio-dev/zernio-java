@@ -7,8 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | [**TypeEnum**](#TypeEnum) | Set the daily budget to an exact amount, such as a reset every midnight. Same level rules as the percent change. |  |
-|**amount** | **BigDecimal** | The daily budget to set, in the ad account currency. An object already at it is skipped with &#x60;already_at_amount&#x60;. |  |
+|**type** | [**TypeEnum**](#TypeEnum) | Copy the campaign or ad set with its ads, on Meta and TikTok campaigns and ad sets and LinkedIn campaigns. Not on ad-level rules. |  |
+|**status** | [**StatusEnum**](#StatusEnum) | How the copy starts. Defaults to &#x60;paused&#x60;. |  [optional] |
+|**renameSuffix** | **String** | Text added to the copy&#39;s name. |  [optional] |
 |**maxChangesPerDay** | **Integer** | At most this many objects changed in any 24 hours, across runs. Matches over the limit are skipped with &#x60;daily_limit_reached&#x60; and tried again later. |  [optional] |
 
 
@@ -17,7 +18,16 @@
 
 | Name | Value |
 |---- | -----|
-| ADJUST_BUDGET | &quot;adjust_budget&quot; |
+| DUPLICATE | &quot;duplicate&quot; |
+
+
+
+## Enum: StatusEnum
+
+| Name | Value |
+|---- | -----|
+| PAUSED | &quot;paused&quot; |
+| ACTIVE | &quot;active&quot; |
 
 
 

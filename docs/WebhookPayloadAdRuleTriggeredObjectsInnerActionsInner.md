@@ -22,6 +22,7 @@
 | PAUSE | &quot;pause&quot; |
 | ACTIVATE | &quot;activate&quot; |
 | ADJUST_BUDGET | &quot;adjust_budget&quot; |
+| DUPLICATE | &quot;duplicate&quot; |
 
 
 

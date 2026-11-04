@@ -8,6 +8,7 @@
 * [AdRuleActionOneOf2](AdRuleActionOneOf2.md)
 * [AdRuleActionOneOf3](AdRuleActionOneOf3.md)
 * [AdRuleActionOneOf4](AdRuleActionOneOf4.md)
+* [AdRuleActionOneOf5](AdRuleActionOneOf5.md)
 
 ## Example
 ```java
@@ -18,6 +19,7 @@ import dev.zernio.model.AdRuleActionOneOf1;
 import dev.zernio.model.AdRuleActionOneOf2;
 import dev.zernio.model.AdRuleActionOneOf3;
 import dev.zernio.model.AdRuleActionOneOf4;
+import dev.zernio.model.AdRuleActionOneOf5;
 
 public class Example {
     public static void main(String[] args) {
@@ -57,6 +59,13 @@ public class Example {
         exampleAdRuleAction.setActualInstance(exampleAdRuleActionOneOf4);
         // to get back the AdRuleActionOneOf4 set earlier
         AdRuleActionOneOf4 testAdRuleActionOneOf4 = (AdRuleActionOneOf4) exampleAdRuleAction.getActualInstance();
+
+        // create a new AdRuleActionOneOf5
+        AdRuleActionOneOf5 exampleAdRuleActionOneOf5 = new AdRuleActionOneOf5();
+        // set AdRuleAction to AdRuleActionOneOf5
+        exampleAdRuleAction.setActualInstance(exampleAdRuleActionOneOf5);
+        // to get back the AdRuleActionOneOf5 set earlier
+        AdRuleActionOneOf5 testAdRuleActionOneOf5 = (AdRuleActionOneOf5) exampleAdRuleAction.getActualInstance();
     }
 }
 ```
