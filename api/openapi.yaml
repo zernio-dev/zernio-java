@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.457.0
+  version: 1.458.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -1642,13 +1642,13 @@ paths:
 
         ### Why the scope is narrow
 
-        This ACCOUNT-level endpoint intentionally exposes only the four counter metrics below. These account-level figures are not on any public TikTok API, for any account type:
+        This ACCOUNT-level endpoint intentionally exposes only the four counter metrics below. It does not return:
 
         - account-level impressions / reach
         - follower inflow / outflow breakdown
-        - account-level watch time and audience demographics
+        - account-level watch time
 
-        TikTok's Research API doesn't expose them either, and is restricted to non-commercial academic use per TikTok's eligibility policy.
+        Follower age, gender, country and city are on GET /v1/analytics/tiktok/demographics.
 
         ### Per-video metrics
 
@@ -1763,6 +1763,109 @@ paths:
         "412":
           description: Missing user.info.stats scope
       summary: Get TikTok account-level insights
+      tags:
+      - Analytics
+      x-resource-group: analytics
+      x-accepts:
+      - application/json
+  /v1/analytics/tiktok/demographics:
+    get:
+      description: |
+        Returns the share of a TikTok account's followers by age, gender, country and city. Without `breakdown` it returns all four.
+
+        - Each value is a share of followers from 0 to 1, and each list is sorted largest first. It is not a follower count.
+        - Age, gender and country lists add up to 1. The city list can add up to less, because TikTok does not place every follower in a listed city.
+        - These are followers of the account, not the viewers of its videos. Viewer countries per video are on GET /v1/analytics?postId=...
+        - TikTok updates this data every 24-48 hours.
+
+        ### Requirements
+
+        - The account needs at least 100 followers (400 `tiktok_insufficient_followers` otherwise).
+        - The account owner must turn on Analytics in the TikTok app and have published at least one video. Until then an account with enough followers gets empty lists.
+        - Requires the user.insights scope, which an account gets by connecting through the TikTok for Business app (412 `tiktok_insights_scope_missing` otherwise). Accounts on the original TikTok integration must reconnect.
+        - Requires the Analytics add-on.
+      operationId: getTikTokDemographics
+      parameters:
+      - description: The Zernio SocialAccount ID for the TikTok account.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Comma-separated list of demographic dimensions: age, gender,\
+          \ country, city. Defaults to all four."
+        explode: true
+        in: query
+        name: breakdown
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                allBreakdowns:
+                  summary: Every breakdown
+                  value:
+                    success: true
+                    accountId: 64e1a2b3c4d5e6f7a8b9c0d1
+                    platform: tiktok
+                    metric: follower_demographics
+                    demographics:
+                      age:
+                      - dimension: 25-34
+                        value: 0.5
+                      - dimension: 35-44
+                        value: 0.25
+                      - dimension: 18-24
+                        value: 0.25
+                      gender:
+                      - dimension: Female
+                        value: 0.6
+                      - dimension: Male
+                        value: 0.38
+                      - dimension: Other
+                        value: 0.02
+                      country:
+                      - dimension: US
+                        value: 0.7
+                      - dimension: other
+                        value: 0.3
+                      city:
+                      - dimension: New York
+                        value: 0.2
+                    note: "Each value is a share of followers from 0 to 1. TikTok\
+                      \ updates this data every 24-48 hours. Empty lists mean TikTok\
+                      \ has no data for the account yet: the owner must turn on Analytics\
+                      \ in the TikTok app and have published at least one video."
+              schema:
+                $ref: "#/components/schemas/getTikTokDemographics_200_response"
+          description: Follower demographics for the account
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAnalytics_402_response"
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on current plans.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "412":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getTikTokDemographics_412_response"
+          description: The connection is missing the user.insights scope. Reconnect
+            the account through the TikTok for Business app.
+      summary: Get TikTok follower demographics
       tags:
       - Analytics
       x-resource-group: analytics
@@ -115543,6 +115646,80 @@ components:
         code:
           example: analytics_addon_required
           type: string
+    getTikTokDemographics_200_response_demographics_value_inner:
+      example:
+        dimension: dimension
+        value: 0.8008281904610115
+      properties:
+        dimension:
+          description: "Age group (18-24, 25-34, 35-44, 45-54, 55+), gender (Female,\
+            \ Male, Other), ISO 3166-1 alpha-2 country code, or city name. `other`\
+            \ collects the countries TikTok does not list individually."
+          type: string
+        value:
+          description: "Share of followers, from 0 to 1"
+          type: number
+    getTikTokDemographics_200_response:
+      example:
+        accountId: accountId
+        note: note
+        metric: follower_demographics
+        success: true
+        platform: tiktok
+        demographics:
+          key:
+          - dimension: dimension
+            value: 0.8008281904610115
+          - dimension: dimension
+            value: 0.8008281904610115
+      properties:
+        success:
+          type: boolean
+        accountId:
+          type: string
+        platform:
+          enum:
+          - tiktok
+          type: string
+        metric:
+          enum:
+          - follower_demographics
+          type: string
+        demographics:
+          additionalProperties:
+            items:
+              $ref: "#/components/schemas/getTikTokDemographics_200_response_demographics_value_inner"
+          description: "Only the requested breakdowns are present. Entries are sorted\
+            \ by value, largest first."
+        note:
+          type: string
+    getTikTokDemographics_412_response_scopeStatus:
+      example:
+        requiresReauthorization: true
+        hasInsightsScope: true
+      properties:
+        requiresReauthorization:
+          type: boolean
+        hasInsightsScope:
+          type: boolean
+    getTikTokDemographics_412_response:
+      example:
+        code: tiktok_insights_scope_missing
+        success: true
+        error: error
+        scopeStatus:
+          requiresReauthorization: true
+          hasInsightsScope: true
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+        code:
+          example: tiktok_insights_scope_missing
+          type: string
+        scopeStatus:
+          $ref: "#/components/schemas/getTikTokDemographics_412_response_scopeStatus"
     getYouTubeDailyViews_400_response:
       example:
         error: error

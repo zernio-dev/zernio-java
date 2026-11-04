@@ -1406,6 +1406,10 @@ docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowComment
 docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet.md
 docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch.md
 docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md
+docs/GetTikTokDemographics200Response.md
+docs/GetTikTokDemographics200ResponseDemographicsValueInner.md
+docs/GetTikTokDemographics412Response.md
+docs/GetTikTokDemographics412ResponseScopeStatus.md
 docs/GetTikTokSmartPlusAdReview200Response.md
 docs/GetTikTokSmartPlusMaterialReport200Response.md
 docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md
@@ -4782,6 +4786,10 @@ src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInter
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet.java
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch.java
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.java
+src/main/java/dev/zernio/model/GetTikTokDemographics200Response.java
+src/main/java/dev/zernio/model/GetTikTokDemographics200ResponseDemographicsValueInner.java
+src/main/java/dev/zernio/model/GetTikTokDemographics412Response.java
+src/main/java/dev/zernio/model/GetTikTokDemographics412ResponseScopeStatus.java
 src/main/java/dev/zernio/model/GetTikTokSmartPlusAdReview200Response.java
 src/main/java/dev/zernio/model/GetTikTokSmartPlusMaterialReport200Response.java
 src/main/java/dev/zernio/model/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.java
@@ -6635,3 +6643,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetTikTokDemographics200ResponseDemographicsValueInnerTest.java
+src/test/java/dev/zernio/model/GetTikTokDemographics200ResponseTest.java
+src/test/java/dev/zernio/model/GetTikTokDemographics412ResponseScopeStatusTest.java
+src/test/java/dev/zernio/model/GetTikTokDemographics412ResponseTest.java

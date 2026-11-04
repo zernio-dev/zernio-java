@@ -62,6 +62,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getPostingFrequencyWithHttpInfo**](AnalyticsApi.md#getPostingFrequencyWithHttpInfo) | **GET** /v1/analytics/posting-frequency | Get frequency vs engagement |
 | [**getTikTokAccountInsights**](AnalyticsApi.md#getTikTokAccountInsights) | **GET** /v1/analytics/tiktok/account-insights | Get TikTok account-level insights |
 | [**getTikTokAccountInsightsWithHttpInfo**](AnalyticsApi.md#getTikTokAccountInsightsWithHttpInfo) | **GET** /v1/analytics/tiktok/account-insights | Get TikTok account-level insights |
+| [**getTikTokDemographics**](AnalyticsApi.md#getTikTokDemographics) | **GET** /v1/analytics/tiktok/demographics | Get TikTok follower demographics |
+| [**getTikTokDemographicsWithHttpInfo**](AnalyticsApi.md#getTikTokDemographicsWithHttpInfo) | **GET** /v1/analytics/tiktok/demographics | Get TikTok follower demographics |
 | [**getTrackingWindow**](AnalyticsApi.md#getTrackingWindow) | **GET** /v1/analytics/tracking/{windowId} | Get a tracking window |
 | [**getTrackingWindowWithHttpInfo**](AnalyticsApi.md#getTrackingWindowWithHttpInfo) | **GET** /v1/analytics/tracking/{windowId} | Get a tracking window |
 | [**getYouTubeChannelInsights**](AnalyticsApi.md#getYouTubeChannelInsights) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel insights |
@@ -4777,7 +4779,7 @@ ApiResponse<[**GetPostingFrequency200Response**](GetPostingFrequency200Response.
 
 Get TikTok account-level insights
 
-Returns account-level TikTok insights from /v2/user/info/ (live) plus historical time series joined from Zernio&#39;s daily snapshotter (AccountStats).  - Response shape matches /v1/analytics/instagram/account-insights. - Max 89 days, defaults to last 30 days. - Requires the user.info.stats scope on the account (412 if missing).  ### Why the scope is narrow  This ACCOUNT-level endpoint intentionally exposes only the four counter metrics below. These account-level figures are not on any public TikTok API, for any account type:  - account-level impressions / reach - follower inflow / outflow breakdown - account-level watch time and audience demographics  TikTok&#39;s Research API doesn&#39;t expose them either, and is restricted to non-commercial academic use per TikTok&#39;s eligibility policy.  ### Per-video metrics  PER-VIDEO is a different story on the Business lane. An account connected through the TikTok for Business app reports these per video on GET /v1/analytics?postId&#x3D;...:  - profile views, website clicks, follows - full-watched rate, watch time - impression sources, viewer types and viewer countries  They arrive roughly 24-48h after publishing and only for posts active in the last 7 days.  Accounts on the original TikTok integration get the basic counters there (views, likes, comments, shares) and zeros for the rest. They must reconnect through the Business app. 
+Returns account-level TikTok insights from /v2/user/info/ (live) plus historical time series joined from Zernio&#39;s daily snapshotter (AccountStats).  - Response shape matches /v1/analytics/instagram/account-insights. - Max 89 days, defaults to last 30 days. - Requires the user.info.stats scope on the account (412 if missing).  ### Why the scope is narrow  This ACCOUNT-level endpoint intentionally exposes only the four counter metrics below. It does not return:  - account-level impressions / reach - follower inflow / outflow breakdown - account-level watch time  Follower age, gender, country and city are on GET /v1/analytics/tiktok/demographics.  ### Per-video metrics  PER-VIDEO is a different story on the Business lane. An account connected through the TikTok for Business app reports these per video on GET /v1/analytics?postId&#x3D;...:  - profile views, website clicks, follows - full-watched rate, watch time - impression sources, viewer types and viewer countries  They arrive roughly 24-48h after publishing and only for posts active in the last 7 days.  Accounts on the original TikTok integration get the basic counters there (views, likes, comments, shares) and zeros for the rest. They must reconnect through the Business app. 
 
 ### Example
 
@@ -4864,7 +4866,7 @@ public class Example {
 
 Get TikTok account-level insights
 
-Returns account-level TikTok insights from /v2/user/info/ (live) plus historical time series joined from Zernio&#39;s daily snapshotter (AccountStats).  - Response shape matches /v1/analytics/instagram/account-insights. - Max 89 days, defaults to last 30 days. - Requires the user.info.stats scope on the account (412 if missing).  ### Why the scope is narrow  This ACCOUNT-level endpoint intentionally exposes only the four counter metrics below. These account-level figures are not on any public TikTok API, for any account type:  - account-level impressions / reach - follower inflow / outflow breakdown - account-level watch time and audience demographics  TikTok&#39;s Research API doesn&#39;t expose them either, and is restricted to non-commercial academic use per TikTok&#39;s eligibility policy.  ### Per-video metrics  PER-VIDEO is a different story on the Business lane. An account connected through the TikTok for Business app reports these per video on GET /v1/analytics?postId&#x3D;...:  - profile views, website clicks, follows - full-watched rate, watch time - impression sources, viewer types and viewer countries  They arrive roughly 24-48h after publishing and only for posts active in the last 7 days.  Accounts on the original TikTok integration get the basic counters there (views, likes, comments, shares) and zeros for the rest. They must reconnect through the Business app. 
+Returns account-level TikTok insights from /v2/user/info/ (live) plus historical time series joined from Zernio&#39;s daily snapshotter (AccountStats).  - Response shape matches /v1/analytics/instagram/account-insights. - Max 89 days, defaults to last 30 days. - Requires the user.info.stats scope on the account (412 if missing).  ### Why the scope is narrow  This ACCOUNT-level endpoint intentionally exposes only the four counter metrics below. It does not return:  - account-level impressions / reach - follower inflow / outflow breakdown - account-level watch time  Follower age, gender, country and city are on GET /v1/analytics/tiktok/demographics.  ### Per-video metrics  PER-VIDEO is a different story on the Business lane. An account connected through the TikTok for Business app reports these per video on GET /v1/analytics?postId&#x3D;...:  - profile views, website clicks, follows - full-watched rate, watch time - impression sources, viewer types and viewer countries  They arrive roughly 24-48h after publishing and only for posts active in the last 7 days.  Accounts on the original TikTok integration get the basic counters there (views, likes, comments, shares) and zeros for the rest. They must reconnect through the Business app. 
 
 ### Example
 
@@ -4947,6 +4949,164 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing user.info.stats scope |  -  |
+
+
+## getTikTokDemographics
+
+> GetTikTokDemographics200Response getTikTokDemographics(accountId, breakdown)
+
+Get TikTok follower demographics
+
+Returns the share of a TikTok account&#39;s followers by age, gender, country and city. Without &#x60;breakdown&#x60; it returns all four.  - Each value is a share of followers from 0 to 1, and each list is sorted largest first. It is not a follower count. - Age, gender and country lists add up to 1. The city list can add up to less, because TikTok does not place every follower in a listed city. - These are followers of the account, not the viewers of its videos. Viewer countries per video are on GET /v1/analytics?postId&#x3D;... - TikTok updates this data every 24-48 hours.  ### Requirements  - The account needs at least 100 followers (400 &#x60;tiktok_insufficient_followers&#x60; otherwise). - The account owner must turn on Analytics in the TikTok app and have published at least one video. Until then an account with enough followers gets empty lists. - Requires the user.insights scope, which an account gets by connecting through the TikTok for Business app (412 &#x60;tiktok_insights_scope_missing&#x60; otherwise). Accounts on the original TikTok integration must reconnect. - Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the TikTok account.
+        String breakdown = "breakdown_example"; // String | Comma-separated list of demographic dimensions: age, gender, country, city. Defaults to all four.
+        try {
+            GetTikTokDemographics200Response result = apiInstance.getTikTokDemographics(accountId, breakdown);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getTikTokDemographics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the TikTok account. | |
+| **breakdown** | **String**| Comma-separated list of demographic dimensions: age, gender, country, city. Defaults to all four. | [optional] |
+
+### Return type
+
+[**GetTikTokDemographics200Response**](GetTikTokDemographics200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Follower demographics for the account |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on current plans. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connection is missing the user.insights scope. Reconnect the account through the TikTok for Business app. |  -  |
+
+## getTikTokDemographicsWithHttpInfo
+
+> ApiResponse<GetTikTokDemographics200Response> getTikTokDemographics getTikTokDemographicsWithHttpInfo(accountId, breakdown)
+
+Get TikTok follower demographics
+
+Returns the share of a TikTok account&#39;s followers by age, gender, country and city. Without &#x60;breakdown&#x60; it returns all four.  - Each value is a share of followers from 0 to 1, and each list is sorted largest first. It is not a follower count. - Age, gender and country lists add up to 1. The city list can add up to less, because TikTok does not place every follower in a listed city. - These are followers of the account, not the viewers of its videos. Viewer countries per video are on GET /v1/analytics?postId&#x3D;... - TikTok updates this data every 24-48 hours.  ### Requirements  - The account needs at least 100 followers (400 &#x60;tiktok_insufficient_followers&#x60; otherwise). - The account owner must turn on Analytics in the TikTok app and have published at least one video. Until then an account with enough followers gets empty lists. - Requires the user.insights scope, which an account gets by connecting through the TikTok for Business app (412 &#x60;tiktok_insights_scope_missing&#x60; otherwise). Accounts on the original TikTok integration must reconnect. - Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the TikTok account.
+        String breakdown = "breakdown_example"; // String | Comma-separated list of demographic dimensions: age, gender, country, city. Defaults to all four.
+        try {
+            ApiResponse<GetTikTokDemographics200Response> response = apiInstance.getTikTokDemographicsWithHttpInfo(accountId, breakdown);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getTikTokDemographics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the TikTok account. | |
+| **breakdown** | **String**| Comma-separated list of demographic dimensions: age, gender, country, city. Defaults to all four. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetTikTokDemographics200Response**](GetTikTokDemographics200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Follower demographics for the account |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on current plans. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connection is missing the user.insights scope. Reconnect the account through the TikTok for Business app. |  -  |
 
 
 ## getTrackingWindow

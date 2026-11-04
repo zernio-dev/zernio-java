@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.457.0
+- API version: 1.458.0
 
-- Build date: 2026-11-03T19:00:58.071439497Z[Etc/UTC]
+- Build date: 2026-11-04T08:24:05.013059314Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.457.0</version>
+  <version>1.458.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.457.0"
+compile "dev.zernio:zernio-sdk:1.458.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.457.0.jar`
+- `target/zernio-sdk-1.458.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -673,6 +673,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getPostingFrequencyWithHttpInfo**](docs/AnalyticsApi.md#getPostingFrequencyWithHttpInfo) | **GET** /v1/analytics/posting-frequency | Get frequency vs engagement
 *AnalyticsApi* | [**getTikTokAccountInsights**](docs/AnalyticsApi.md#getTikTokAccountInsights) | **GET** /v1/analytics/tiktok/account-insights | Get TikTok account-level insights
 *AnalyticsApi* | [**getTikTokAccountInsightsWithHttpInfo**](docs/AnalyticsApi.md#getTikTokAccountInsightsWithHttpInfo) | **GET** /v1/analytics/tiktok/account-insights | Get TikTok account-level insights
+*AnalyticsApi* | [**getTikTokDemographics**](docs/AnalyticsApi.md#getTikTokDemographics) | **GET** /v1/analytics/tiktok/demographics | Get TikTok follower demographics
+*AnalyticsApi* | [**getTikTokDemographicsWithHttpInfo**](docs/AnalyticsApi.md#getTikTokDemographicsWithHttpInfo) | **GET** /v1/analytics/tiktok/demographics | Get TikTok follower demographics
 *AnalyticsApi* | [**getTrackingWindow**](docs/AnalyticsApi.md#getTrackingWindow) | **GET** /v1/analytics/tracking/{windowId} | Get a tracking window
 *AnalyticsApi* | [**getTrackingWindowWithHttpInfo**](docs/AnalyticsApi.md#getTrackingWindowWithHttpInfo) | **GET** /v1/analytics/tracking/{windowId} | Get a tracking window
 *AnalyticsApi* | [**getYouTubeChannelInsights**](docs/AnalyticsApi.md#getYouTubeChannelInsights) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel insights
@@ -3773,6 +3775,10 @@ Class | Method | HTTP request | Description
  - [GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet](docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet.md)
  - [GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch](docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch.md)
  - [GetTikTokCreatorInfo200ResponsePrivacyLevelsInner](docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md)
+ - [GetTikTokDemographics200Response](docs/GetTikTokDemographics200Response.md)
+ - [GetTikTokDemographics200ResponseDemographicsValueInner](docs/GetTikTokDemographics200ResponseDemographicsValueInner.md)
+ - [GetTikTokDemographics412Response](docs/GetTikTokDemographics412Response.md)
+ - [GetTikTokDemographics412ResponseScopeStatus](docs/GetTikTokDemographics412ResponseScopeStatus.md)
  - [GetTikTokSmartPlusAdReview200Response](docs/GetTikTokSmartPlusAdReview200Response.md)
  - [GetTikTokSmartPlusMaterialReport200Response](docs/GetTikTokSmartPlusMaterialReport200Response.md)
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInner](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md)
