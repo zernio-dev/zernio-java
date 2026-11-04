@@ -20,6 +20,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) | &#x60;pending&#x60; until the card is charged (or 3D Secure is finished) and credited. &#x60;expired&#x60; means it ended unpaid: cancelled, or 3D Secure left unfinished for 30 minutes. Only &#x60;pending&#x60; counts toward pendingTopupCents. |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 |**succeededAt** | **OffsetDateTime** |  |  [optional] |
+|**hasInvoice** | **Boolean** | A Stripe invoice exists for this payment (Checkout payments). Every paid payment has a card receipt; see getTopupReceipt. |  [optional] |
 
 
 

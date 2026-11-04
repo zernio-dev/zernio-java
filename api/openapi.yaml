@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.482.0
+  version: 1.483.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -79608,6 +79608,7 @@ components:
         method: card
         purpose: balance
         netCents: 4
+        hasInvoice: true
         payoutBatch:
           campaignId: campaignId
           id: id
@@ -79683,6 +79684,10 @@ components:
           format: date-time
           nullable: true
           type: string
+        hasInvoice:
+          description: A Stripe invoice exists for this payment (Checkout payments).
+            Every paid payment has a card receipt; see getTopupReceipt.
+          type: boolean
     PayoutBatchItem:
       example:
         participantId: participantId
@@ -119210,6 +119215,7 @@ components:
           method: card
           purpose: balance
           netCents: 4
+          hasInvoice: true
           payoutBatch:
             campaignId: campaignId
             id: id
@@ -119225,6 +119231,7 @@ components:
           method: card
           purpose: balance
           netCents: 4
+          hasInvoice: true
           payoutBatch:
             campaignId: campaignId
             id: id
@@ -119293,6 +119300,7 @@ components:
           method: card
           purpose: balance
           netCents: 4
+          hasInvoice: true
           payoutBatch:
             campaignId: campaignId
             id: id
@@ -119308,6 +119316,7 @@ components:
           method: card
           purpose: balance
           netCents: 4
+          hasInvoice: true
           payoutBatch:
             campaignId: campaignId
             id: id
@@ -119414,7 +119423,9 @@ components:
         chargedCents: 1
         amountCents: 0
         feeCents: 6
+        invoiceUrl: https://openapi-generator.tech
         format: pdf
+        receiptUrl: https://openapi-generator.tech
         url: https://openapi-generator.tech
       properties:
         url:
@@ -119424,6 +119435,16 @@ components:
           enum:
           - pdf
           - page
+          type: string
+        invoiceUrl:
+          description: The invoice PDF; null when the payment made no invoice.
+          format: uri
+          nullable: true
+          type: string
+        receiptUrl:
+          description: Stripe's card receipt page for the charge.
+          format: uri
+          nullable: true
           type: string
         amountCents:
           description: As in the top-up list.
