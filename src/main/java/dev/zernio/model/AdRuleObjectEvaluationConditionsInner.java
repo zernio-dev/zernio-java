@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   AdRuleObjectEvaluationConditionsInner.JSON_PROPERTY_ACTUAL,
   AdRuleObjectEvaluationConditionsInner.JSON_PROPERTY_MET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T08:24:05.013059314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T08:32:10.657425674Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleObjectEvaluationConditionsInner {
   /**
    * Gets or Sets metric

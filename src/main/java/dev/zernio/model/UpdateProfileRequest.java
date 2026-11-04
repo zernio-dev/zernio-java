@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UpdateProfileRequest.JSON_PROPERTY_EXTERNAL_ID,
   UpdateProfileRequest.JSON_PROPERTY_IS_DEFAULT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T08:24:05.013059314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T08:32:10.657425674Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateProfileRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

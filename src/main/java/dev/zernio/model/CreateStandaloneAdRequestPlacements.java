@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestPlacements.JSON_PROPERTY_WHATSAPP_POSITIONS,
   CreateStandaloneAdRequestPlacements.JSON_PROPERTY_DEVICE_PLATFORMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T08:24:05.013059314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T08:32:10.657425674Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPlacements {
   /**
    * Gets or Sets publisherPlatforms

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetAllAccountsHealth200ResponseSummary.JSON_PROPERTY_ERROR,
   GetAllAccountsHealth200ResponseSummary.JSON_PROPERTY_NEEDS_RECONNECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T08:24:05.013059314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T08:32:10.657425674Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAllAccountsHealth200ResponseSummary {
   public static final String JSON_PROPERTY_TOTAL = "total";
   @javax.annotation.Nullable

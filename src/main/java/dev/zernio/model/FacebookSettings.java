@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   FacebookSettings.JSON_PROPERTY_CAROUSEL_LINK,
   FacebookSettings.JSON_PROPERTY_TEXT_FORMAT_PRESET_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T08:24:05.013059314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T08:32:10.657425674Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FacebookSettings {
   public static final String JSON_PROPERTY_DRAFT = "draft";
   @javax.annotation.Nullable

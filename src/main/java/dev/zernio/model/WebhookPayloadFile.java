@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadFile.JSON_PROPERTY_FILE,
   WebhookPayloadFile.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T08:24:05.013059314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T08:32:10.657425674Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadFile {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
