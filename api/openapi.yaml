@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.464.0
+  version: 1.468.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -155796,6 +155796,7 @@ components:
           startsAt: 2000-01-23T04:56:07.000+00:00
           endsAt: 2000-01-23T04:56:07.000+00:00
         cooldownMinutes: 0
+        goal: protect
         level: campaign
         name: name
         description: description
@@ -155862,6 +155863,15 @@ components:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
           type: array
+        goal:
+          description: "What the template is for: stop waste, grow what works, act\
+            \ at set times, or only tell you."
+          enum:
+          - protect
+          - scale
+          - schedule
+          - alert
+          type: string
         schedule:
           $ref: "#/components/schemas/AdRuleSchedule"
         cooldownMinutes:
@@ -155876,6 +155886,7 @@ components:
       - conditions
       - cooldownMinutes
       - description
+      - goal
       - id
       - level
       - name
@@ -155925,6 +155936,7 @@ components:
             startsAt: 2000-01-23T04:56:07.000+00:00
             endsAt: 2000-01-23T04:56:07.000+00:00
           cooldownMinutes: 0
+          goal: protect
           level: campaign
           name: name
           description: description
@@ -156013,6 +156025,7 @@ components:
             startsAt: 2000-01-23T04:56:07.000+00:00
             endsAt: 2000-01-23T04:56:07.000+00:00
           cooldownMinutes: 0
+          goal: protect
           level: campaign
           name: name
           description: description
