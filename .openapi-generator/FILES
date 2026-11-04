@@ -2704,6 +2704,8 @@ docs/TwitterPlatformDataSensitiveMedia.md
 docs/TwitterPlatformDataThreadItemsInner.md
 docs/UnblockWhatsAppUsers200Response.md
 docs/UnblockWhatsAppUsersRequest.md
+docs/UndoAdRuleActivity200Response.md
+docs/UndoAdRuleActivity200ResponseUndo.md
 docs/UndoRetweet200Response.md
 docs/UnfollowUser200Response.md
 docs/UnlikeInboxComment200Response.md
@@ -6059,6 +6061,8 @@ src/main/java/dev/zernio/model/TwitterPlatformDataSensitiveMedia.java
 src/main/java/dev/zernio/model/TwitterPlatformDataThreadItemsInner.java
 src/main/java/dev/zernio/model/UnblockWhatsAppUsers200Response.java
 src/main/java/dev/zernio/model/UnblockWhatsAppUsersRequest.java
+src/main/java/dev/zernio/model/UndoAdRuleActivity200Response.java
+src/main/java/dev/zernio/model/UndoAdRuleActivity200ResponseUndo.java
 src/main/java/dev/zernio/model/UndoRetweet200Response.java
 src/main/java/dev/zernio/model/UnfollowUser200Response.java
 src/main/java/dev/zernio/model/UnlikeInboxComment200Response.java
@@ -6667,3 +6671,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/UndoAdRuleActivity200ResponseTest.java
+src/test/java/dev/zernio/model/UndoAdRuleActivity200ResponseUndoTest.java

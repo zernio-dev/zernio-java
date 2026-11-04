@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.468.0
+- API version: 1.469.0
 
-- Build date: 2026-11-04T10:46:21.622274004Z[Etc/UTC]
+- Build date: 2026-11-04T10:53:44.606862933Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.468.0</version>
+  <version>1.469.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.468.0"
+compile "dev.zernio:zernio-sdk:1.469.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.468.0.jar`
+- `target/zernio-sdk-1.469.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -601,6 +601,8 @@ Class | Method | HTTP request | Description
 *AdRulesApi* | [**listAdRulesWithHttpInfo**](docs/AdRulesApi.md#listAdRulesWithHttpInfo) | **GET** /v1/ads/rules | List ad rules
 *AdRulesApi* | [**previewAdRule**](docs/AdRulesApi.md#previewAdRule) | **POST** /v1/ads/rules/{ruleId}/preview | Preview an ad rule
 *AdRulesApi* | [**previewAdRuleWithHttpInfo**](docs/AdRulesApi.md#previewAdRuleWithHttpInfo) | **POST** /v1/ads/rules/{ruleId}/preview | Preview an ad rule
+*AdRulesApi* | [**undoAdRuleActivity**](docs/AdRulesApi.md#undoAdRuleActivity) | **POST** /v1/ads/rules/activity/{activityId}/undo | Undo a change an ad rule made
+*AdRulesApi* | [**undoAdRuleActivityWithHttpInfo**](docs/AdRulesApi.md#undoAdRuleActivityWithHttpInfo) | **POST** /v1/ads/rules/activity/{activityId}/undo | Undo a change an ad rule made
 *AdRulesApi* | [**updateAdRule**](docs/AdRulesApi.md#updateAdRule) | **PATCH** /v1/ads/rules/{ruleId} | Update an ad rule
 *AdRulesApi* | [**updateAdRuleWithHttpInfo**](docs/AdRulesApi.md#updateAdRuleWithHttpInfo) | **PATCH** /v1/ads/rules/{ruleId} | Update an ad rule
 *AdTargetingApi* | [**browseAdTargeting**](docs/AdTargetingApi.md#browseAdTargeting) | **GET** /v1/ads/targeting/browse | Browse targeting categories
@@ -5036,6 +5038,8 @@ Class | Method | HTTP request | Description
  - [TwitterPlatformDataThreadItemsInner](docs/TwitterPlatformDataThreadItemsInner.md)
  - [UnblockWhatsAppUsers200Response](docs/UnblockWhatsAppUsers200Response.md)
  - [UnblockWhatsAppUsersRequest](docs/UnblockWhatsAppUsersRequest.md)
+ - [UndoAdRuleActivity200Response](docs/UndoAdRuleActivity200Response.md)
+ - [UndoAdRuleActivity200ResponseUndo](docs/UndoAdRuleActivity200ResponseUndo.md)
  - [UndoRetweet200Response](docs/UndoRetweet200Response.md)
  - [UnfollowUser200Response](docs/UnfollowUser200Response.md)
  - [UnlikeInboxComment200Response](docs/UnlikeInboxComment200Response.md)

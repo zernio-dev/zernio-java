@@ -20,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAdRulesWithHttpInfo**](AdRulesApi.md#listAdRulesWithHttpInfo) | **GET** /v1/ads/rules | List ad rules |
 | [**previewAdRule**](AdRulesApi.md#previewAdRule) | **POST** /v1/ads/rules/{ruleId}/preview | Preview an ad rule |
 | [**previewAdRuleWithHttpInfo**](AdRulesApi.md#previewAdRuleWithHttpInfo) | **POST** /v1/ads/rules/{ruleId}/preview | Preview an ad rule |
+| [**undoAdRuleActivity**](AdRulesApi.md#undoAdRuleActivity) | **POST** /v1/ads/rules/activity/{activityId}/undo | Undo a change an ad rule made |
+| [**undoAdRuleActivityWithHttpInfo**](AdRulesApi.md#undoAdRuleActivityWithHttpInfo) | **POST** /v1/ads/rules/activity/{activityId}/undo | Undo a change an ad rule made |
 | [**updateAdRule**](AdRulesApi.md#updateAdRule) | **PATCH** /v1/ads/rules/{ruleId} | Update an ad rule |
 | [**updateAdRuleWithHttpInfo**](AdRulesApi.md#updateAdRuleWithHttpInfo) | **PATCH** /v1/ads/rules/{ruleId} | Update an ad rule |
 
@@ -1267,6 +1269,164 @@ ApiResponse<[**AdRuleEvaluation**](AdRuleEvaluation.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
+
+
+## undoAdRuleActivity
+
+> UndoAdRuleActivity200Response undoAdRuleActivity(activityId)
+
+Undo a change an ad rule made
+
+Puts back a pause, a reactivation or a budget change a rule applied, as a new change recorded in the activity feed. The rule&#39;s cooldown then covers the object. It is refused (409 &#x60;invalid_resource_state&#x60;) when the change was not applied, was already undone, is a copy, or when the object changed since: delivering again after a pause, paused again after a reactivation, or on another budget. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdRulesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdRulesApi apiInstance = new AdRulesApi(defaultClient);
+        String activityId = "activityId_example"; // String | The `id` of an entry from `GET /v1/ads/rules/activity`.
+        try {
+            UndoAdRuleActivity200Response result = apiInstance.undoAdRuleActivity(activityId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdRulesApi#undoAdRuleActivity");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **activityId** | **String**| The &#x60;id&#x60; of an entry from &#x60;GET /v1/ads/rules/activity&#x60;. | |
+
+### Return type
+
+[**UndoAdRuleActivity200Response**](UndoAdRuleActivity200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The undo was recorded and attempted |  -  |
+| **202** | The platform did not answer; &#x60;undo.status&#x60; is &#x60;unknown&#x60; and the rule&#39;s next run reads back whether it went through. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (code &#x60;ads_addon_required&#x60;). |  -  |
+| **502** | The platform refused the undo (code &#x60;platform_api_error&#x60;). The change can be undone again. |  -  |
+| **404** | No such activity entry in the profiles the key can reach. |  -  |
+| **409** | The change cannot be undone (code &#x60;invalid_resource_state&#x60;); &#x60;error&#x60; says why. |  -  |
+
+## undoAdRuleActivityWithHttpInfo
+
+> ApiResponse<UndoAdRuleActivity200Response> undoAdRuleActivity undoAdRuleActivityWithHttpInfo(activityId)
+
+Undo a change an ad rule made
+
+Puts back a pause, a reactivation or a budget change a rule applied, as a new change recorded in the activity feed. The rule&#39;s cooldown then covers the object. It is refused (409 &#x60;invalid_resource_state&#x60;) when the change was not applied, was already undone, is a copy, or when the object changed since: delivering again after a pause, paused again after a reactivation, or on another budget. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdRulesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdRulesApi apiInstance = new AdRulesApi(defaultClient);
+        String activityId = "activityId_example"; // String | The `id` of an entry from `GET /v1/ads/rules/activity`.
+        try {
+            ApiResponse<UndoAdRuleActivity200Response> response = apiInstance.undoAdRuleActivityWithHttpInfo(activityId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdRulesApi#undoAdRuleActivity");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **activityId** | **String**| The &#x60;id&#x60; of an entry from &#x60;GET /v1/ads/rules/activity&#x60;. | |
+
+### Return type
+
+ApiResponse<[**UndoAdRuleActivity200Response**](UndoAdRuleActivity200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The undo was recorded and attempted |  -  |
+| **202** | The platform did not answer; &#x60;undo.status&#x60; is &#x60;unknown&#x60; and the rule&#39;s next run reads back whether it went through. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (code &#x60;ads_addon_required&#x60;). |  -  |
+| **502** | The platform refused the undo (code &#x60;platform_api_error&#x60;). The change can be undone again. |  -  |
+| **404** | No such activity entry in the profiles the key can reach. |  -  |
+| **409** | The change cannot be undone (code &#x60;invalid_resource_state&#x60;); &#x60;error&#x60; says why. |  -  |
 
 
 ## updateAdRule
