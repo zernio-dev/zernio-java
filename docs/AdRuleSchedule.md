@@ -12,6 +12,7 @@ Either `everyMinutes` or `times`. Sending a schedule replaces the rule's whole t
 |**times** | [**List&lt;AdRuleScheduleTimesInner&gt;**](AdRuleScheduleTimesInner.md) | Set weekly times in the ad account timezone, instead of an interval. A rule that changes ads needs a cooldown of at least the shortest gap between two times. |  [optional] |
 |**startsAt** | **OffsetDateTime** | The rule runs from this time on. |  [optional] |
 |**endsAt** | **OffsetDateTime** | The rule stops running after this time. |  [optional] |
+|**quietHours** | [**AdRuleScheduleQuietHours**](AdRuleScheduleQuietHours.md) |  |  [optional] |
 
 
 

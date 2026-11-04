@@ -3,6 +3,7 @@
 # AdRuleFiltersInner
 
 ## oneOf schemas
+* [BudgetLevel](BudgetLevel.md)
 * [DaysLive](DaysLive.md)
 * [Ids](Ids.md)
 * [NameOrGoal](NameOrGoal.md)
@@ -11,6 +12,7 @@
 ```java
 // Import classes:
 import dev.zernio.model.AdRuleFiltersInner;
+import dev.zernio.model.BudgetLevel;
 import dev.zernio.model.DaysLive;
 import dev.zernio.model.Ids;
 import dev.zernio.model.NameOrGoal;
@@ -18,6 +20,13 @@ import dev.zernio.model.NameOrGoal;
 public class Example {
     public static void main(String[] args) {
         AdRuleFiltersInner exampleAdRuleFiltersInner = new AdRuleFiltersInner();
+
+        // create a new BudgetLevel
+        BudgetLevel exampleBudgetLevel = new BudgetLevel();
+        // set AdRuleFiltersInner to BudgetLevel
+        exampleAdRuleFiltersInner.setActualInstance(exampleBudgetLevel);
+        // to get back the BudgetLevel set earlier
+        BudgetLevel testBudgetLevel = (BudgetLevel) exampleAdRuleFiltersInner.getActualInstance();
 
         // create a new DaysLive
         DaysLive exampleDaysLive = new DaysLive();

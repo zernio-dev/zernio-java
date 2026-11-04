@@ -89,6 +89,7 @@ docs/AdRuleRunEvaluationActionsInner.md
 docs/AdRuleRunEvaluationNotification.md
 docs/AdRuleRunEvaluationRule.md
 docs/AdRuleSchedule.md
+docs/AdRuleScheduleQuietHours.md
 docs/AdRuleScheduleTimesInner.md
 docs/AdRulesApi.md
 docs/AdSchedule.md
@@ -279,6 +280,7 @@ docs/BrandedCallingReferences.md
 docs/BroadcastsApi.md
 docs/BrowseAdTargeting200Response.md
 docs/BrowseAdTargeting200ResponseNodesInner.md
+docs/BudgetLevel.md
 docs/BulkCreateContacts200Response.md
 docs/BulkCreateContactsRequest.md
 docs/BulkCreateContactsRequestContactsInner.md
@@ -3526,6 +3528,7 @@ src/main/java/dev/zernio/model/AdRuleRunEvaluationActionsInner.java
 src/main/java/dev/zernio/model/AdRuleRunEvaluationNotification.java
 src/main/java/dev/zernio/model/AdRuleRunEvaluationRule.java
 src/main/java/dev/zernio/model/AdRuleSchedule.java
+src/main/java/dev/zernio/model/AdRuleScheduleQuietHours.java
 src/main/java/dev/zernio/model/AdRuleScheduleTimesInner.java
 src/main/java/dev/zernio/model/AdSchedule.java
 src/main/java/dev/zernio/model/AdScheduleWindow.java
@@ -3709,6 +3712,7 @@ src/main/java/dev/zernio/model/BrandedCallingReference.java
 src/main/java/dev/zernio/model/BrandedCallingReferences.java
 src/main/java/dev/zernio/model/BrowseAdTargeting200Response.java
 src/main/java/dev/zernio/model/BrowseAdTargeting200ResponseNodesInner.java
+src/main/java/dev/zernio/model/BudgetLevel.java
 src/main/java/dev/zernio/model/BulkCreateContacts200Response.java
 src/main/java/dev/zernio/model/BulkCreateContactsRequest.java
 src/main/java/dev/zernio/model/BulkCreateContactsRequestContactsInner.java
@@ -6707,3 +6711,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdRuleScheduleQuietHoursTest.java
+src/test/java/dev/zernio/model/BudgetLevelTest.java
