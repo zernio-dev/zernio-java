@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   RunGoogleAnalyticsRealtimeReportRequest.JSON_PROPERTY_LIMIT,
   RunGoogleAnalyticsRealtimeReportRequest.JSON_PROPERTY_MINUTE_RANGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T18:17:31.280743946Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T18:21:43.180112372Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RunGoogleAnalyticsRealtimeReportRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   FacebookPostEarningsResponseMetricsValue.JSON_PROPERTY_UNIT,
   FacebookPostEarningsResponseMetricsValue.JSON_PROPERTY_CURRENCY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T18:17:31.280743946Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T18:21:43.180112372Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FacebookPostEarningsResponseMetricsValue {
   public static final String JSON_PROPERTY_TOTAL = "total";
   @javax.annotation.Nullable

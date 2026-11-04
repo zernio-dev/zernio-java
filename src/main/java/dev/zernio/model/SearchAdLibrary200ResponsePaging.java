@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   SearchAdLibrary200ResponsePaging.JSON_PROPERTY_AFTER,
   SearchAdLibrary200ResponsePaging.JSON_PROPERTY_TOTAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T18:17:31.280743946Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T18:21:43.180112372Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAdLibrary200ResponsePaging {
   public static final String JSON_PROPERTY_AFTER = "after";
   private JsonNullable<String> after = JsonNullable.<String>undefined();
