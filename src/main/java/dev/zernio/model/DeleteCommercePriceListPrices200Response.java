@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   DeleteCommercePriceListPrices200Response.JSON_PROPERTY_PRICE_LIST_ID,
   DeleteCommercePriceListPrices200Response.JSON_PROPERTY_DELETED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:14:10.474878474Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:18:23.516608901Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DeleteCommercePriceListPrices200Response {
   public static final String JSON_PROPERTY_PRICE_LIST_ID = "priceListId";
   @javax.annotation.Nullable

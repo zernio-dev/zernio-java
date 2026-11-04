@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CampaignParticipantPayout.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:14:10.474878474Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:18:23.516608901Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignParticipantPayout {
   /**
    * &#x60;not_started&#x60;: no payout account yet. &#x60;onboarding&#x60;: setup started or under review. &#x60;ready&#x60;: payouts enabled. &#x60;restricted&#x60;: Stripe needs more information before paying out.

@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   SendInboxMessage200ResponseData.JSON_PROPERTY_MESSAGE_IDS,
   SendInboxMessage200ResponseData.JSON_PROPERTY_PARTIAL_FAILURE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:14:10.474878474Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:18:23.516608901Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage200ResponseData {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   @javax.annotation.Nullable

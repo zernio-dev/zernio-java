@@ -66,7 +66,7 @@ import dev.zernio.ApiClient;
   AdLead.JSON_PROPERTY_CONVERSATION_ID,
   AdLead.JSON_PROPERTY_WEBHOOK_DELIVERED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:14:10.474878474Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:18:23.516608901Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdLead {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

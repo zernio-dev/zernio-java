@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   AdRuleActionOneOf3.JSON_PROPERTY_MAX_CHANGES_PER_DAY,
   AdRuleActionOneOf3.JSON_PROPERTY_MAX_CHANGES_PER_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:14:10.474878474Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:18:23.516608901Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleActionOneOf3 {
   /**
    * Copy the campaign or ad set with its ads, on Meta and TikTok campaigns and ad sets and LinkedIn campaigns. Not on ad-level rules.

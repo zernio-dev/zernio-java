@@ -59,7 +59,7 @@ import dev.zernio.ApiClient;
   AnalyticsDeltaEntryMetrics.JSON_PROPERTY_REPLAYS,
   AnalyticsDeltaEntryMetrics.JSON_PROPERTY_RETENTION_CURVE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:14:10.474878474Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:18:23.516608901Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsDeltaEntryMetrics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nonnull
