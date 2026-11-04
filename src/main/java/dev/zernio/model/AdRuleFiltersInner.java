@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AdRuleFiltersInner.JSON_PROPERTY_OP,
   AdRuleFiltersInner.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T12:10:09.134154991Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T12:15:02.795737979Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleFiltersInner {
   /**
    * The object&#39;s own name, its campaign&#39;s or ad set&#39;s name, or the campaign goal (objective) as the platform reports it.

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestCitiesInnerOneOf.JSON_PROPERTY_RADIUS,
   CreateStandaloneAdRequestCitiesInnerOneOf.JSON_PROPERTY_DISTANCE_UNIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T12:10:09.134154991Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T12:15:02.795737979Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestCitiesInnerOneOf {
   public static final String JSON_PROPERTY_KEY = "key";
   @javax.annotation.Nonnull

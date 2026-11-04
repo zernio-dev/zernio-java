@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   MetaAdScheduleInner.JSON_PROPERTY_END_HOUR,
   MetaAdScheduleInner.JSON_PROPERTY_TIMEZONE_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T12:10:09.134154991Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T12:15:02.795737979Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaAdScheduleInner {
   /**
    * Gets or Sets dayOfWeek

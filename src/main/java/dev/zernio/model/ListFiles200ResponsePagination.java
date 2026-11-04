@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ListFiles200ResponsePagination.JSON_PROPERTY_HAS_MORE,
   ListFiles200ResponsePagination.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T12:10:09.134154991Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T12:15:02.795737979Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListFiles200ResponsePagination {
   public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
   @javax.annotation.Nullable

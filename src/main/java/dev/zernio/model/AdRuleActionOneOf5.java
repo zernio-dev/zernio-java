@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   AdRuleActionOneOf5.JSON_PROPERTY_REMOVE,
   AdRuleActionOneOf5.JSON_PROPERTY_MAX_CHANGES_PER_DAY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T12:10:09.134154991Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T12:15:02.795737979Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleActionOneOf5 {
   /**
    * Tag the object by its name. Meta, Google and LinkedIn campaigns and ad sets, and TikTok campaigns, ad groups and ads. An object whose name already has the tag (or lacks it, for &#x60;remove&#x60;) is skipped with &#x60;name_unchanged&#x60;.

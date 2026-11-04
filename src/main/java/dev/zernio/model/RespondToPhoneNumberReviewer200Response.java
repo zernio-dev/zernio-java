@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   RespondToPhoneNumberReviewer200Response.JSON_PROPERTY_PHONE_NUMBER,
   RespondToPhoneNumberReviewer200Response.JSON_PROPERTY_SIBLINGS_RESUBMITTED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T12:10:09.134154991Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T12:15:02.795737979Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RespondToPhoneNumberReviewer200Response {
   /**
    * &#x60;resubmitted&#x60; when corrections were submitted, &#x60;replied&#x60; when it was message-only.
