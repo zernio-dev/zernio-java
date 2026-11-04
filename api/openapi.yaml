@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.458.0
+  version: 1.459.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -451,7 +451,7 @@ tags:
     - WhatsApp numbers: `whatsapp.number.activated`, `whatsapp.number.declined`, `whatsapp.number.action_required`, `whatsapp.number.verification_required`, `whatsapp.number.suspended`, `whatsapp.number.reactivated`, `whatsapp.number.released`, `whatsapp.number.kyc_submitted`
     - Telephony: `phone_number.stock_available`, `verification.approved`, `verification.failed`, `sms.registration.action_required`, `sms.registration.status_updated`, `branded_calling.identity.status_updated`, `branded_calling.identity.action_required`, `branded_calling.number.status_updated`, `rcs.agent.status_updated`
     - Commerce: `commerce.product.created`, `commerce.product.updated`, `commerce.product.deleted`, `commerce.order.created`, `commerce.order.updated`, `commerce.order.refunded`
-    - Contacts and automations: `contact.tag_added`, `contact.tag_removed`, `contact.field_changed`, `contact.updated`, `contact.deleted`, `sequence.enrolled`, `sequence.exited`, `workflow.run.started`, `workflow.run.completed`, `workflow.run.failed`, `support.run.completed`, `support.run.failed`
+    - Contacts and automations: `contact.tag_added`, `contact.tag_removed`, `contact.field_changed`, `contact.updated`, `contact.deleted`, `sequence.enrolled`, `sequence.exited`, `workflow.run.started`, `workflow.run.completed`, `workflow.run.failed`, `support.run.completed`, `support.run.failed`, `automation.check.completed`, `automation.action.applied`, `automation.action.failed`, `automation.action.unknown`
     - Creator campaigns: `campaign_submission.received`, `campaign_submission.flagged`, `campaign_submission.pending_review`, `campaign_submission.approved`, `campaign_submission.rejected`, `creator_campaign.budget_exhausted`, `creator_campaign.closed`, `campaign_payout.payable`, `campaign_payout.settled`, `campaign_payout.failed`, `campaign_participant.joined`, `campaign_participant.suspended`, `campaign_participant.removed`
     - Calendar and files: `calendar.event.created`, `calendar.event.updated`, `calendar.event.deleted`, `file.created`, `file.updated`, `file.deleted`, `file.picked`
     - Other: `api.changelog.published`, `webhook.test`
@@ -84769,6 +84769,10 @@ components:
             - ad_account.status_changed
             - ad.video.processed
             - ad_rule.triggered
+            - automation.check.completed
+            - automation.action.applied
+            - automation.action.failed
+            - automation.action.unknown
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
             - whatsapp.account.name_status_updated
@@ -91601,6 +91605,160 @@ components:
       - rule
       - run
       - timestamp
+    WebhookPayloadAutomationCheckCompleted:
+      description: |
+        Webhook payload for the `automation.check.completed` event: one scheduled check of an automation finished.
+
+        It fires once per check, whatever the outcome, including checks where nothing matched. Ad rules are the first automations on the engine; `automation.kind` names the product.
+      example:
+        accountId: accountId
+        automation:
+          kind: kind
+          id: id
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        check:
+          subjectsEvaluated: 0
+          actionsCount: 6
+          id: id
+          slot: 2000-01-23T04:56:07.000+00:00
+          error: error
+          outcome: triggered
+        event: automation.check.completed
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - automation.check.completed
+          type: string
+        automation:
+          $ref: "#/components/schemas/WebhookAutomationRef"
+        accountId:
+          description: The connected account the automation acts on.
+          type: string
+        check:
+          $ref: "#/components/schemas/WebhookPayloadAutomationCheckCompleted_check"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - accountId
+      - automation
+      - check
+      - event
+      - id
+      - timestamp
+    WebhookPayloadAutomationAction:
+      description: |
+        Webhook payload for `automation.action.applied`, `automation.action.failed` and `automation.action.unknown`: one change an automation made or tried.
+
+        Sent once per action as it settles. A refusal decided before any platform call (no live ads, a budget already at its limit) arrives as `automation.action.failed` with `status: skipped`. An `unknown` action is read back by the next check and sent again with its final status.
+      example:
+        accountId: accountId
+        automation:
+          kind: kind
+          id: id
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        action:
+          reason: reason
+          previous:
+            key: ""
+          actedAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          type: type
+          subjectId: subjectId
+          status: applied
+          target:
+            key: ""
+        id: id
+        event: automation.action.applied
+        checkId: checkId
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - automation.action.applied
+          - automation.action.failed
+          - automation.action.unknown
+          type: string
+        automation:
+          $ref: "#/components/schemas/WebhookAutomationRef"
+        accountId:
+          description: The connected account the automation acts on.
+          type: string
+        checkId:
+          description: The check that recorded the action.
+          type: string
+        action:
+          $ref: "#/components/schemas/WebhookPayloadAutomationAction_action"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - accountId
+      - action
+      - automation
+      - checkId
+      - event
+      - id
+      - timestamp
+    WebhookAutomationRef:
+      example:
+        kind: kind
+        id: id
+      properties:
+        id:
+          description: "The automation's id: the ad rule id for `ad_rule`."
+          type: string
+        kind:
+          description: "The product the automation belongs to: `ad_rule` today. New\
+            \ values may be added."
+          type: string
+      required:
+      - id
+      - kind
     WebhookAdsAccount:
       description: The connected ads account the event belongs to.
       example:
@@ -130708,6 +130866,10 @@ components:
             - ad_account.status_changed
             - ad.video.processed
             - ad_rule.triggered
+            - automation.check.completed
+            - automation.action.applied
+            - automation.action.failed
+            - automation.action.unknown
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
             - whatsapp.account.name_status_updated
@@ -130925,6 +131087,10 @@ components:
             - ad_account.status_changed
             - ad.video.processed
             - ad_rule.triggered
+            - automation.check.completed
+            - automation.action.applied
+            - automation.action.failed
+            - automation.action.unknown
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
             - whatsapp.account.name_status_updated
@@ -131220,6 +131386,10 @@ components:
           - ad_account.status_changed
           - ad.video.processed
           - ad_rule.triggered
+          - automation.check.completed
+          - automation.action.applied
+          - automation.action.failed
+          - automation.action.unknown
           - lead.received
           - whatsapp.template.status_updated
           - whatsapp.template.category_updated
@@ -192563,6 +192733,102 @@ components:
       - name
       - platformCampaignId
       - platformId
+    WebhookPayloadAutomationCheckCompleted_check:
+      example:
+        subjectsEvaluated: 0
+        actionsCount: 6
+        id: id
+        slot: 2000-01-23T04:56:07.000+00:00
+        error: error
+        outcome: triggered
+      properties:
+        id:
+          type: string
+        slot:
+          description: The scheduled time the check ran for.
+          format: date-time
+          type: string
+        outcome:
+          enum:
+          - triggered
+          - no_match
+          - cooldown
+          - daily_limit
+          - failed
+          type: string
+        subjectsEvaluated:
+          description: How many objects the check read.
+          type: integer
+        actionsCount:
+          description: How many actions it recorded.
+          type: integer
+        error:
+          nullable: true
+          type: string
+      required:
+      - actionsCount
+      - error
+      - id
+      - outcome
+      - slot
+      - subjectsEvaluated
+    WebhookPayloadAutomationAction_action:
+      example:
+        reason: reason
+        previous:
+          key: ""
+        actedAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        type: type
+        subjectId: subjectId
+        status: applied
+        target:
+          key: ""
+      properties:
+        id:
+          type: string
+        subjectId:
+          description: "The platform's id of the object changed: an ad, ad set or\
+            \ campaign for ad rules."
+          type: string
+        type:
+          description: "`pause`, `activate`, `adjust_budget` or `notify` for ad rules.\
+            \ New values may be added."
+          type: string
+        status:
+          enum:
+          - applied
+          - skipped
+          - failed
+          - unknown
+          type: string
+        reason:
+          nullable: true
+          type: string
+        previous:
+          additionalProperties: true
+          description: "The value before the change, such as `{ \"dailyBudget\": 40\
+            \ }`."
+          nullable: true
+          type: object
+        target:
+          additionalProperties: true
+          description: "The value the change sets, such as `{ \"dailyBudget\": 48\
+            \ }` or `{ \"status\": \"paused\" }`."
+          nullable: true
+          type: object
+        actedAt:
+          format: date-time
+          type: string
+      required:
+      - actedAt
+      - id
+      - previous
+      - reason
+      - status
+      - subjectId
+      - target
+      - type
     WebhookPayloadAdStatusChanged_account:
       description: The connected ad-platform account that owns the ad object.
       example:
@@ -200032,6 +200298,8 @@ x-documentation:
     - `ad_account.status_changed` - An ad account Zernio already tracked became `active`, `restricted`, `disabled` or `closed` (Meta, Google, TikTok, X)
     - `ad.video.processed` - Meta finished processing a video uploaded with `POST /v1/ads/videos` and `async: true`. `video.status` is `ready` (usable as `video.id`) or `error`
     - `ad_rule.triggered` - A scheduled ad rule run found campaigns, ad sets or ads meeting every condition, once per object per cooldown. `objects` lists the objects acted on
+    - `automation.check.completed` - One scheduled check of an automation finished (ad rules today): its outcome, how many objects it read and how many actions it took
+    - `automation.action.applied`, `automation.action.failed`, `automation.action.unknown` - One change an automation made or tried, with the value before and the value it sets (`previous`, `target`). Refusals arrive as `failed` with status `skipped`; `unknown` means the platform did not answer and the next check reads the result back
     - `whatsapp.template.status_updated` - WhatsApp Business template completed (re)review by Meta. `template.status` carries the new state (APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION); `template.reason` is Meta's free-form reason or "NONE".
     - `whatsapp.template.category_updated` - Meta reclassified a WhatsApp Business template's category (drives tariff and marketing opt-out applicability). `template.changeType` is `scheduled` (24h advance notice) or `applied`; `template.category` is always the category right now.
     - `whatsapp.account.name_status_updated` - Meta finished reviewing a WhatsApp display-name change. `name.status` carries the outcome (APPROVED, DECLINED, PENDING_REVIEW). Fires only on a review outcome; a name applied without review (`name_status: AVAILABLE_WITHOUT_REVIEW`) produces no event.
@@ -200108,7 +200376,7 @@ x-documentation:
     | `post.scheduled`, `post.published`, `post.failed`, `post.partial`, `post.cancelled`, `post.recycled` | `post.platforms[].accountId`, one per target; there is no top-level account |
     | `post.external.*` | `account.accountId` (also `post.accountId`) |
     | `ad.status_changed`, `ad.review.*`, `ad.video.processed`, `ad_rule.triggered`, `whatsapp.template.*`, `whatsapp.account.*`, `whatsapp.contact.identity_changed` | `account.accountId` |
-    | `whatsapp.automatic_event` | top-level `accountId` |
+    | `whatsapp.automatic_event`, `automation.*` | top-level `accountId` |
     | `whatsapp.number.*`, `sms.registration.*` | none; `number.id` / `registration.id` are the number and registration ids, `number.profileId` / `registration.profileId` the profile |
     | `campaign_submission.*` | none; `submission.platformPostId` is the post and `campaign.id`, `participant.id`, `creator.id` identify the rest |
     | `creator_campaign.*` | none; `campaign.id` is the campaign |

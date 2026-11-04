@@ -3049,6 +3049,7 @@ docs/Webhook.md
 docs/WebhookAdsAccount.md
 docs/WebhookAdsSyncAccount.md
 docs/WebhookAdsSyncAdAccount.md
+docs/WebhookAutomationRef.md
 docs/WebhookEventsApi.md
 docs/WebhookLog.md
 docs/WebhookPayloadAccountAdsInitialSyncCompleted.md
@@ -3093,6 +3094,10 @@ docs/WebhookPayloadAnalyticsSynced.md
 docs/WebhookPayloadAnalyticsSyncedAccount.md
 docs/WebhookPayloadAnalyticsSyncedSync.md
 docs/WebhookPayloadApiChangelogPublished.md
+docs/WebhookPayloadAutomationAction.md
+docs/WebhookPayloadAutomationActionAction.md
+docs/WebhookPayloadAutomationCheckCompleted.md
+docs/WebhookPayloadAutomationCheckCompletedCheck.md
 docs/WebhookPayloadCalendarEvent.md
 docs/WebhookPayloadCalendarEventAccount.md
 docs/WebhookPayloadCalendarEventCalendarEvent.md
@@ -6387,6 +6392,7 @@ src/main/java/dev/zernio/model/Webhook.java
 src/main/java/dev/zernio/model/WebhookAdsAccount.java
 src/main/java/dev/zernio/model/WebhookAdsSyncAccount.java
 src/main/java/dev/zernio/model/WebhookAdsSyncAdAccount.java
+src/main/java/dev/zernio/model/WebhookAutomationRef.java
 src/main/java/dev/zernio/model/WebhookLog.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountAdsInitialSyncCompleted.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountAdsInitialSyncCompletedAccount.java
@@ -6430,6 +6436,10 @@ src/main/java/dev/zernio/model/WebhookPayloadAnalyticsSynced.java
 src/main/java/dev/zernio/model/WebhookPayloadAnalyticsSyncedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAnalyticsSyncedSync.java
 src/main/java/dev/zernio/model/WebhookPayloadApiChangelogPublished.java
+src/main/java/dev/zernio/model/WebhookPayloadAutomationAction.java
+src/main/java/dev/zernio/model/WebhookPayloadAutomationActionAction.java
+src/main/java/dev/zernio/model/WebhookPayloadAutomationCheckCompleted.java
+src/main/java/dev/zernio/model/WebhookPayloadAutomationCheckCompletedCheck.java
 src/main/java/dev/zernio/model/WebhookPayloadCalendarEvent.java
 src/main/java/dev/zernio/model/WebhookPayloadCalendarEventAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadCalendarEventCalendarEvent.java
@@ -6643,3 +6653,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookAutomationRefTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAutomationActionActionTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAutomationActionTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAutomationCheckCompletedCheckTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAutomationCheckCompletedTest.java

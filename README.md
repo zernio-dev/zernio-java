@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.458.0
+- API version: 1.459.0
 
-- Build date: 2026-11-04T08:32:10.657425674Z[Etc/UTC]
+- Build date: 2026-11-04T08:42:02.291900856Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.458.0</version>
+  <version>1.459.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.458.0"
+compile "dev.zernio:zernio-sdk:1.459.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.458.0.jar`
+- `target/zernio-sdk-1.459.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -5376,6 +5376,7 @@ Class | Method | HTTP request | Description
  - [WebhookAdsAccount](docs/WebhookAdsAccount.md)
  - [WebhookAdsSyncAccount](docs/WebhookAdsSyncAccount.md)
  - [WebhookAdsSyncAdAccount](docs/WebhookAdsSyncAdAccount.md)
+ - [WebhookAutomationRef](docs/WebhookAutomationRef.md)
  - [WebhookLog](docs/WebhookLog.md)
  - [WebhookPayloadAccountAdsInitialSyncCompleted](docs/WebhookPayloadAccountAdsInitialSyncCompleted.md)
  - [WebhookPayloadAccountAdsInitialSyncCompletedAccount](docs/WebhookPayloadAccountAdsInitialSyncCompletedAccount.md)
@@ -5419,6 +5420,10 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAnalyticsSyncedAccount](docs/WebhookPayloadAnalyticsSyncedAccount.md)
  - [WebhookPayloadAnalyticsSyncedSync](docs/WebhookPayloadAnalyticsSyncedSync.md)
  - [WebhookPayloadApiChangelogPublished](docs/WebhookPayloadApiChangelogPublished.md)
+ - [WebhookPayloadAutomationAction](docs/WebhookPayloadAutomationAction.md)
+ - [WebhookPayloadAutomationActionAction](docs/WebhookPayloadAutomationActionAction.md)
+ - [WebhookPayloadAutomationCheckCompleted](docs/WebhookPayloadAutomationCheckCompleted.md)
+ - [WebhookPayloadAutomationCheckCompletedCheck](docs/WebhookPayloadAutomationCheckCompletedCheck.md)
  - [WebhookPayloadCalendarEvent](docs/WebhookPayloadCalendarEvent.md)
  - [WebhookPayloadCalendarEventAccount](docs/WebhookPayloadCalendarEventAccount.md)
  - [WebhookPayloadCalendarEventCalendarEvent](docs/WebhookPayloadCalendarEventCalendarEvent.md)

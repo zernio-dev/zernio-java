@@ -100,6 +100,10 @@
 | AD_ACCOUNT_STATUS_CHANGED | &quot;ad_account.status_changed&quot; |
 | AD_VIDEO_PROCESSED | &quot;ad.video.processed&quot; |
 | AD_RULE_TRIGGERED | &quot;ad_rule.triggered&quot; |
+| AUTOMATION_CHECK_COMPLETED | &quot;automation.check.completed&quot; |
+| AUTOMATION_ACTION_APPLIED | &quot;automation.action.applied&quot; |
+| AUTOMATION_ACTION_FAILED | &quot;automation.action.failed&quot; |
+| AUTOMATION_ACTION_UNKNOWN | &quot;automation.action.unknown&quot; |
 | LEAD_RECEIVED | &quot;lead.received&quot; |
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
 | WHATSAPP_TEMPLATE_CATEGORY_UPDATED | &quot;whatsapp.template.category_updated&quot; |
