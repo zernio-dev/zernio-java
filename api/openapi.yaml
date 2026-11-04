@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.476.0
+  version: 1.476.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -10824,8 +10824,9 @@ paths:
           type: string
         style: form
       - description: "Case-insensitive match on the account username, display name\
-          \ or platform user id, or an exact account id. Combine with page/limit to\
-          \ paginate the matches."
+          \ or platform user id. A 24-character hexadecimal value is read as an account\
+          \ id and matches only that exact account. Combine with page/limit to paginate\
+          \ the matches."
         explode: true
         in: query
         name: search
