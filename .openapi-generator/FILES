@@ -76,6 +76,7 @@ docs/AdRuleConditions.md
 docs/AdRuleConditionsOneOf.md
 docs/AdRuleConditionsOneOf1.md
 docs/AdRuleEvaluation.md
+docs/AdRuleFiltersInner.md
 docs/AdRuleLevel.md
 docs/AdRuleObjectEvaluation.md
 docs/AdRuleObjectEvaluationConditionsInner.md
@@ -3492,6 +3493,7 @@ src/main/java/dev/zernio/model/AdRuleConditions.java
 src/main/java/dev/zernio/model/AdRuleConditionsOneOf.java
 src/main/java/dev/zernio/model/AdRuleConditionsOneOf1.java
 src/main/java/dev/zernio/model/AdRuleEvaluation.java
+src/main/java/dev/zernio/model/AdRuleFiltersInner.java
 src/main/java/dev/zernio/model/AdRuleLevel.java
 src/main/java/dev/zernio/model/AdRuleObjectEvaluation.java
 src/main/java/dev/zernio/model/AdRuleObjectEvaluationConditionsInner.java
@@ -6665,4 +6667,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AdRuleScheduleTimesInnerTest.java
+src/test/java/dev/zernio/model/AdRuleFiltersInnerTest.java

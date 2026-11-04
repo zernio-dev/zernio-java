@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.463.0
+  version: 1.464.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -110851,6 +110851,13 @@ components:
         $ref: "#/components/schemas/AdRuleAction"
       minItems: 1
       type: array
+    AdRuleFilters:
+      description: "Narrows the objects the rule checks. Every filter must hold. Text\
+        \ compares without case, and a missing field reads as empty."
+      items:
+        $ref: "#/components/schemas/AdRuleFilters_inner"
+      maxItems: 10
+      type: array
     AdRuleSchedule:
       description: "Either `everyMinutes` or `times`. Sending a schedule replaces\
         \ the rule's whole timing. Without one, a new rule runs every 60 minutes."
@@ -110935,6 +110942,22 @@ components:
         cooldownMinutes: 6
         level: campaign
         adAccountId: adAccountId
+        filters:
+        - op: contains
+          field: name
+          value: value
+        - op: contains
+          field: name
+          value: value
+        - op: contains
+          field: name
+          value: value
+        - op: contains
+          field: name
+          value: value
+        - op: contains
+          field: name
+          value: value
         platform: platform
         enabled: true
         accountId: accountId
@@ -111049,6 +111072,13 @@ components:
             type: string
           nullable: true
           type: array
+        filters:
+          description: "Narrows the objects the rule checks. Every filter must hold.\
+            \ Text compares without case, and a missing field reads as empty."
+          items:
+            $ref: "#/components/schemas/AdRuleFilters_inner"
+          maxItems: 10
+          type: array
         conditions:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
@@ -111088,6 +111118,7 @@ components:
       - cooldownMinutes
       - createdAt
       - enabled
+      - filters
       - id
       - lastRunAt
       - level
@@ -155320,6 +155351,22 @@ components:
           cooldownMinutes: 6
           level: campaign
           adAccountId: adAccountId
+          filters:
+          - op: contains
+            field: name
+            value: value
+          - op: contains
+            field: name
+            value: value
+          - op: contains
+            field: name
+            value: value
+          - op: contains
+            field: name
+            value: value
+          - op: contains
+            field: name
+            value: value
           platform: platform
           enabled: true
           accountId: accountId
@@ -155415,6 +155462,22 @@ components:
           cooldownMinutes: 6
           level: campaign
           adAccountId: adAccountId
+          filters:
+          - op: contains
+            field: name
+            value: value
+          - op: contains
+            field: name
+            value: value
+          - op: contains
+            field: name
+            value: value
+          - op: contains
+            field: name
+            value: value
+          - op: contains
+            field: name
+            value: value
           platform: platform
           enabled: true
           accountId: accountId
@@ -155535,6 +155598,13 @@ components:
           maxItems: 100
           minItems: 1
           type: array
+        filters:
+          description: "Narrows the objects the rule checks. Every filter must hold.\
+            \ Text compares without case, and a missing field reads as empty."
+          items:
+            $ref: "#/components/schemas/AdRuleFilters_inner"
+          maxItems: 10
+          type: array
         conditions:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
@@ -155571,6 +155641,22 @@ components:
           cooldownMinutes: 6
           level: campaign
           adAccountId: adAccountId
+          filters:
+          - op: contains
+            field: name
+            value: value
+          - op: contains
+            field: name
+            value: value
+          - op: contains
+            field: name
+            value: value
+          - op: contains
+            field: name
+            value: value
+          - op: contains
+            field: name
+            value: value
           platform: platform
           enabled: true
           accountId: accountId
@@ -156042,6 +156128,13 @@ components:
           maxItems: 100
           minItems: 1
           nullable: true
+          type: array
+        filters:
+          description: "Narrows the objects the rule checks. Every filter must hold.\
+            \ Text compares without case, and a missing field reads as empty."
+          items:
+            $ref: "#/components/schemas/AdRuleFilters_inner"
+          maxItems: 10
           type: array
         conditions:
           $ref: "#/components/schemas/AdRuleConditions"
@@ -199428,6 +199521,37 @@ components:
       - limit
       - percent
       - type
+    AdRuleFilters_inner:
+      example:
+        op: contains
+        field: name
+        value: value
+      properties:
+        field:
+          description: "The object's own name, its campaign's or ad set's name, or\
+            \ the campaign goal (objective) as the platform reports it."
+          enum:
+          - name
+          - campaign_name
+          - adset_name
+          - goal
+          type: string
+        op:
+          enum:
+          - contains
+          - not_contains
+          - equals
+          - not_equals
+          - starts_with
+          type: string
+        value:
+          maxLength: 200
+          minLength: 1
+          type: string
+      required:
+      - field
+      - op
+      - value
     AdRuleSchedule_times_inner:
       example:
         at: 09:00
