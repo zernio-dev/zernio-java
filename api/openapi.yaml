@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.475.0
+  version: 1.476.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -199998,10 +199998,15 @@ components:
       properties:
         type:
           description: "Reactivate a campaign, ad set or ad a rule paused, once `cooldownMinutes`\
-            \ has passed since the pause. Objects you paused yourself are never touched."
+            \ has passed since the pause. Objects you paused yourself are left alone\
+            \ unless `includeManuallyPaused` is true."
           enum:
           - activate
           type: string
+        includeManuallyPaused:
+          description: "Also reactivate paused objects that no rule paused, as soon\
+            \ as they match."
+          type: boolean
         maxChangesPerDay:
           description: "At most this many objects changed in any 24 hours, across\
             \ runs. Matches over the limit are skipped with `daily_limit_reached`\
