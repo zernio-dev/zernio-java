@@ -2,16 +2,17 @@
 
 # AdRuleActionOneOf4
 
-Exactly one of `add` and `remove`.
+Either `amount`, or `direction`, `percent` and `limit`.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | [**TypeEnum**](#TypeEnum) | Tag the object by its name. Meta, Google and LinkedIn campaigns and ad sets, and TikTok campaigns, ad groups and ads. An object whose name already has the tag (or lacks it, for &#x60;remove&#x60;) is skipped with &#x60;name_unchanged&#x60;. |  |
-|**add** | **String** | Text to add, like &#x60;[WINNER]&#x60;. Compared without case. |  [optional] |
-|**at** | [**AtEnum**](#AtEnum) | Where &#x60;add&#x60; goes. Defaults to &#x60;start&#x60;. |  [optional] |
-|**remove** | **String** | Text to take out of the name, every copy of it. |  [optional] |
+|**type** | [**TypeEnum**](#TypeEnum) | Move the bid cap or cost cap of a Meta ad set, in the ad account currency. Ad set rules on Meta only. An ad set without a cap is skipped with &#x60;no_bid_cap&#x60;. |  |
+|**amount** | **BigDecimal** | The cap to set. |  [optional] |
+|**direction** | [**DirectionEnum**](#DirectionEnum) |  |  [optional] |
+|**percent** | **Integer** | Step size. A decrease is at most 90. |  [optional] |
+|**limit** | **BigDecimal** | The cap never goes above this on an increase, or below it on a decrease. |  [optional] |
 |**maxChangesPerDay** | **Integer** | At most this many objects changed in any 24 hours, across runs. Matches over the limit are skipped with &#x60;daily_limit_reached&#x60; and tried again later. |  [optional] |
 
 
@@ -20,16 +21,16 @@ Exactly one of `add` and `remove`.
 
 | Name | Value |
 |---- | -----|
-| EDIT_NAME | &quot;edit_name&quot; |
+| ADJUST_BID | &quot;adjust_bid&quot; |
 
 
 
-## Enum: AtEnum
+## Enum: DirectionEnum
 
 | Name | Value |
 |---- | -----|
-| START | &quot;start&quot; |
-| END | &quot;end&quot; |
+| INCREASE | &quot;increase&quot; |
+| DECREASE | &quot;decrease&quot; |
 
 
 

@@ -67,6 +67,7 @@ docs/AdRuleActionOneOf3.md
 docs/AdRuleActionOneOf4.md
 docs/AdRuleActionOneOf5.md
 docs/AdRuleActionOneOf6.md
+docs/AdRuleActionOneOf7.md
 docs/AdRuleActionOneOfSendInner.md
 docs/AdRuleActionOneOfSendInnerOneOf.md
 docs/AdRuleActionOneOfSendInnerOneOf1.md
@@ -79,6 +80,7 @@ docs/AdRuleConditionsOneOf1.md
 docs/AdRuleEvaluation.md
 docs/AdRuleFiltersInner.md
 docs/AdRuleLevel.md
+docs/AdRuleLifecycle.md
 docs/AdRuleObjectEvaluation.md
 docs/AdRuleObjectEvaluationConditionsInner.md
 docs/AdRuleRun.md
@@ -1750,6 +1752,8 @@ docs/ListAdLabels200ResponseDataInner.md
 docs/ListAdLabels200ResponsePaging.md
 docs/ListAdNegativeKeywordLists200Response.md
 docs/ListAdRuleActivity200Response.md
+docs/ListAdRuleAlerts200Response.md
+docs/ListAdRuleAlerts200ResponseAlertsInner.md
 docs/ListAdRuleRuns200Response.md
 docs/ListAdRuleTemplates200Response.md
 docs/ListAdRuleTemplates200ResponseTemplatesInner.md
@@ -3106,6 +3110,8 @@ docs/WebhookPayloadAnalyticsSyncedSync.md
 docs/WebhookPayloadApiChangelogPublished.md
 docs/WebhookPayloadAutomationAction.md
 docs/WebhookPayloadAutomationActionAction.md
+docs/WebhookPayloadAutomationAlert.md
+docs/WebhookPayloadAutomationAlertAlert.md
 docs/WebhookPayloadAutomationCheckCompleted.md
 docs/WebhookPayloadAutomationCheckCompletedCheck.md
 docs/WebhookPayloadCalendarEvent.md
@@ -3487,6 +3493,7 @@ src/main/java/dev/zernio/model/AdRuleActionOneOf3.java
 src/main/java/dev/zernio/model/AdRuleActionOneOf4.java
 src/main/java/dev/zernio/model/AdRuleActionOneOf5.java
 src/main/java/dev/zernio/model/AdRuleActionOneOf6.java
+src/main/java/dev/zernio/model/AdRuleActionOneOf7.java
 src/main/java/dev/zernio/model/AdRuleActionOneOfSendInner.java
 src/main/java/dev/zernio/model/AdRuleActionOneOfSendInnerOneOf.java
 src/main/java/dev/zernio/model/AdRuleActionOneOfSendInnerOneOf1.java
@@ -3499,6 +3506,7 @@ src/main/java/dev/zernio/model/AdRuleConditionsOneOf1.java
 src/main/java/dev/zernio/model/AdRuleEvaluation.java
 src/main/java/dev/zernio/model/AdRuleFiltersInner.java
 src/main/java/dev/zernio/model/AdRuleLevel.java
+src/main/java/dev/zernio/model/AdRuleLifecycle.java
 src/main/java/dev/zernio/model/AdRuleObjectEvaluation.java
 src/main/java/dev/zernio/model/AdRuleObjectEvaluationConditionsInner.java
 src/main/java/dev/zernio/model/AdRuleRun.java
@@ -5130,6 +5138,8 @@ src/main/java/dev/zernio/model/ListAdLabels200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListAdLabels200ResponsePaging.java
 src/main/java/dev/zernio/model/ListAdNegativeKeywordLists200Response.java
 src/main/java/dev/zernio/model/ListAdRuleActivity200Response.java
+src/main/java/dev/zernio/model/ListAdRuleAlerts200Response.java
+src/main/java/dev/zernio/model/ListAdRuleAlerts200ResponseAlertsInner.java
 src/main/java/dev/zernio/model/ListAdRuleRuns200Response.java
 src/main/java/dev/zernio/model/ListAdRuleTemplates200Response.java
 src/main/java/dev/zernio/model/ListAdRuleTemplates200ResponseTemplatesInner.java
@@ -6458,6 +6468,8 @@ src/main/java/dev/zernio/model/WebhookPayloadAnalyticsSyncedSync.java
 src/main/java/dev/zernio/model/WebhookPayloadApiChangelogPublished.java
 src/main/java/dev/zernio/model/WebhookPayloadAutomationAction.java
 src/main/java/dev/zernio/model/WebhookPayloadAutomationActionAction.java
+src/main/java/dev/zernio/model/WebhookPayloadAutomationAlert.java
+src/main/java/dev/zernio/model/WebhookPayloadAutomationAlertAlert.java
 src/main/java/dev/zernio/model/WebhookPayloadAutomationCheckCompleted.java
 src/main/java/dev/zernio/model/WebhookPayloadAutomationCheckCompletedCheck.java
 src/main/java/dev/zernio/model/WebhookPayloadCalendarEvent.java
@@ -6673,4 +6685,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AdRuleActionOneOf6Test.java
+src/test/java/dev/zernio/model/AdRuleActionOneOf7Test.java
+src/test/java/dev/zernio/model/AdRuleLifecycleTest.java
+src/test/java/dev/zernio/model/ListAdRuleAlerts200ResponseAlertsInnerTest.java
+src/test/java/dev/zernio/model/ListAdRuleAlerts200ResponseTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAutomationAlertAlertTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAutomationAlertTest.java

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.470.0
+- API version: 1.472.0
 
-- Build date: 2026-11-04T11:04:45.989984849Z[Etc/UTC]
+- Build date: 2026-11-04T11:25:54.256342482Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.470.0</version>
+  <version>1.472.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.470.0"
+compile "dev.zernio:zernio-sdk:1.472.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.470.0.jar`
+- `target/zernio-sdk-1.472.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -593,6 +593,8 @@ Class | Method | HTTP request | Description
 *AdRulesApi* | [**getAdRuleWithHttpInfo**](docs/AdRulesApi.md#getAdRuleWithHttpInfo) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule
 *AdRulesApi* | [**listAdRuleActivity**](docs/AdRulesApi.md#listAdRuleActivity) | **GET** /v1/ads/rules/activity | List every change ad rules made
 *AdRulesApi* | [**listAdRuleActivityWithHttpInfo**](docs/AdRulesApi.md#listAdRuleActivityWithHttpInfo) | **GET** /v1/ads/rules/activity | List every change ad rules made
+*AdRulesApi* | [**listAdRuleAlerts**](docs/AdRulesApi.md#listAdRuleAlerts) | **GET** /v1/ads/rules/{ruleId}/alerts | List a rule&#39;s alerts
+*AdRulesApi* | [**listAdRuleAlertsWithHttpInfo**](docs/AdRulesApi.md#listAdRuleAlertsWithHttpInfo) | **GET** /v1/ads/rules/{ruleId}/alerts | List a rule&#39;s alerts
 *AdRulesApi* | [**listAdRuleRuns**](docs/AdRulesApi.md#listAdRuleRuns) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs
 *AdRulesApi* | [**listAdRuleRunsWithHttpInfo**](docs/AdRulesApi.md#listAdRuleRunsWithHttpInfo) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs
 *AdRulesApi* | [**listAdRuleTemplates**](docs/AdRulesApi.md#listAdRuleTemplates) | **GET** /v1/ads/rules/templates | List ready-made ad rules
@@ -2463,6 +2465,7 @@ Class | Method | HTTP request | Description
  - [AdRuleActionOneOf4](docs/AdRuleActionOneOf4.md)
  - [AdRuleActionOneOf5](docs/AdRuleActionOneOf5.md)
  - [AdRuleActionOneOf6](docs/AdRuleActionOneOf6.md)
+ - [AdRuleActionOneOf7](docs/AdRuleActionOneOf7.md)
  - [AdRuleActionOneOfSendInner](docs/AdRuleActionOneOfSendInner.md)
  - [AdRuleActionOneOfSendInnerOneOf](docs/AdRuleActionOneOfSendInnerOneOf.md)
  - [AdRuleActionOneOfSendInnerOneOf1](docs/AdRuleActionOneOfSendInnerOneOf1.md)
@@ -2475,6 +2478,7 @@ Class | Method | HTTP request | Description
  - [AdRuleEvaluation](docs/AdRuleEvaluation.md)
  - [AdRuleFiltersInner](docs/AdRuleFiltersInner.md)
  - [AdRuleLevel](docs/AdRuleLevel.md)
+ - [AdRuleLifecycle](docs/AdRuleLifecycle.md)
  - [AdRuleObjectEvaluation](docs/AdRuleObjectEvaluation.md)
  - [AdRuleObjectEvaluationConditionsInner](docs/AdRuleObjectEvaluationConditionsInner.md)
  - [AdRuleRun](docs/AdRuleRun.md)
@@ -4106,6 +4110,8 @@ Class | Method | HTTP request | Description
  - [ListAdLabels200ResponsePaging](docs/ListAdLabels200ResponsePaging.md)
  - [ListAdNegativeKeywordLists200Response](docs/ListAdNegativeKeywordLists200Response.md)
  - [ListAdRuleActivity200Response](docs/ListAdRuleActivity200Response.md)
+ - [ListAdRuleAlerts200Response](docs/ListAdRuleAlerts200Response.md)
+ - [ListAdRuleAlerts200ResponseAlertsInner](docs/ListAdRuleAlerts200ResponseAlertsInner.md)
  - [ListAdRuleRuns200Response](docs/ListAdRuleRuns200Response.md)
  - [ListAdRuleTemplates200Response](docs/ListAdRuleTemplates200Response.md)
  - [ListAdRuleTemplates200ResponseTemplatesInner](docs/ListAdRuleTemplates200ResponseTemplatesInner.md)
@@ -5434,6 +5440,8 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadApiChangelogPublished](docs/WebhookPayloadApiChangelogPublished.md)
  - [WebhookPayloadAutomationAction](docs/WebhookPayloadAutomationAction.md)
  - [WebhookPayloadAutomationActionAction](docs/WebhookPayloadAutomationActionAction.md)
+ - [WebhookPayloadAutomationAlert](docs/WebhookPayloadAutomationAlert.md)
+ - [WebhookPayloadAutomationAlertAlert](docs/WebhookPayloadAutomationAlertAlert.md)
  - [WebhookPayloadAutomationCheckCompleted](docs/WebhookPayloadAutomationCheckCompleted.md)
  - [WebhookPayloadAutomationCheckCompletedCheck](docs/WebhookPayloadAutomationCheckCompletedCheck.md)
  - [WebhookPayloadCalendarEvent](docs/WebhookPayloadCalendarEvent.md)

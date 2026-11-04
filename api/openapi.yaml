@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.470.0
+  version: 1.472.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -451,7 +451,7 @@ tags:
     - WhatsApp numbers: `whatsapp.number.activated`, `whatsapp.number.declined`, `whatsapp.number.action_required`, `whatsapp.number.verification_required`, `whatsapp.number.suspended`, `whatsapp.number.reactivated`, `whatsapp.number.released`, `whatsapp.number.kyc_submitted`
     - Telephony: `phone_number.stock_available`, `verification.approved`, `verification.failed`, `sms.registration.action_required`, `sms.registration.status_updated`, `branded_calling.identity.status_updated`, `branded_calling.identity.action_required`, `branded_calling.number.status_updated`, `rcs.agent.status_updated`
     - Commerce: `commerce.product.created`, `commerce.product.updated`, `commerce.product.deleted`, `commerce.order.created`, `commerce.order.updated`, `commerce.order.refunded`
-    - Contacts and automations: `contact.tag_added`, `contact.tag_removed`, `contact.field_changed`, `contact.updated`, `contact.deleted`, `sequence.enrolled`, `sequence.exited`, `workflow.run.started`, `workflow.run.completed`, `workflow.run.failed`, `support.run.completed`, `support.run.failed`, `automation.check.completed`, `automation.action.applied`, `automation.action.failed`, `automation.action.unknown`
+    - Contacts and automations: `contact.tag_added`, `contact.tag_removed`, `contact.field_changed`, `contact.updated`, `contact.deleted`, `sequence.enrolled`, `sequence.exited`, `workflow.run.started`, `workflow.run.completed`, `workflow.run.failed`, `support.run.completed`, `support.run.failed`, `automation.check.completed`, `automation.action.applied`, `automation.action.failed`, `automation.action.unknown`, `automation.alert.opened`, `automation.alert.escalated`, `automation.alert.resolved`
     - Creator campaigns: `campaign_submission.received`, `campaign_submission.flagged`, `campaign_submission.pending_review`, `campaign_submission.approved`, `campaign_submission.rejected`, `creator_campaign.budget_exhausted`, `creator_campaign.closed`, `campaign_payout.payable`, `campaign_payout.settled`, `campaign_payout.failed`, `campaign_participant.joined`, `campaign_participant.suspended`, `campaign_participant.removed`
     - Calendar and files: `calendar.event.created`, `calendar.event.updated`, `calendar.event.deleted`, `file.created`, `file.updated`, `file.deleted`, `file.picked`
     - Other: `api.changelog.published`, `webhook.test`
@@ -45281,6 +45281,7 @@ paths:
           - pause
           - activate
           - adjust_budget
+          - adjust_bid
           - duplicate
           - edit_name
           type: string
@@ -45628,6 +45629,81 @@ paths:
       security:
       - bearerAuth: []
       summary: Preview an ad rule
+      tags:
+      - Ad Rules
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-accepts:
+      - application/json
+  /v1/ads/rules/{ruleId}/alerts:
+    get:
+      description: |
+        The alert episodes of a rule with a `lifecycle`, newest first. `pending` alerts are confirming, `open` ones were acted on, `resolved` ones ended, with `resolvedReason` saying why. Resolved alerts are kept 90 days.
+      operationId: listAdRuleAlerts
+      parameters:
+      - explode: false
+        in: path
+        name: ruleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: state
+        required: false
+        schema:
+          enum:
+          - pending
+          - open
+          - resolved
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: '`nextCursor` from the previous page.'
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdRuleAlerts_200_response"
+          description: "Alerts, newest first"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Rule not found in the profiles the key can reach.
+      security:
+      - bearerAuth: []
+      summary: List a rule's alerts
       tags:
       - Ad Rules
       x-resource-group: ads
@@ -84847,6 +84923,9 @@ components:
             - automation.action.applied
             - automation.action.failed
             - automation.action.unknown
+            - automation.alert.opened
+            - automation.alert.escalated
+            - automation.alert.resolved
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
             - whatsapp.account.name_status_updated
@@ -91574,14 +91653,18 @@ components:
           actions:
           - reason: reason
             newName: newName
+            newBidAmount: 2.3021358869347655
             previousName: previousName
+            previousBidAmount: 5.637376656633329
             previousDailyBudget: 1.4658129805029452
             newDailyBudget: 5.962133916683182
             type: pause
             status: done
           - reason: reason
             newName: newName
+            newBidAmount: 2.3021358869347655
             previousName: previousName
+            previousBidAmount: 5.637376656633329
             previousDailyBudget: 1.4658129805029452
             newDailyBudget: 5.962133916683182
             type: pause
@@ -91603,14 +91686,18 @@ components:
           actions:
           - reason: reason
             newName: newName
+            newBidAmount: 2.3021358869347655
             previousName: previousName
+            previousBidAmount: 5.637376656633329
             previousDailyBudget: 1.4658129805029452
             newDailyBudget: 5.962133916683182
             type: pause
             status: done
           - reason: reason
             newName: newName
+            newBidAmount: 2.3021358869347655
             previousName: previousName
+            previousBidAmount: 5.637376656633329
             previousDailyBudget: 1.4658129805029452
             newDailyBudget: 5.962133916683182
             type: pause
@@ -91821,6 +91908,75 @@ components:
       required:
       - accountId
       - action
+      - automation
+      - checkId
+      - event
+      - id
+      - timestamp
+    WebhookPayloadAutomationAlert:
+      description: |
+        Webhook payload for `automation.alert.opened`, `automation.alert.escalated` and `automation.alert.resolved`: an alert episode of an automation with a lifecycle (an ad rule's `lifecycle`).
+
+        Sent as soon as the check records the change; a resolve that a pause or reactivation causes is sent once it applies. A streak that never opened sends nothing. Alerts closed outside a check (the rule turned off, deleted or its `lifecycle` removed between checks, or the daily cleanup) are not announced.
+      example:
+        accountId: accountId
+        automation:
+          kind: kind
+          id: id
+        test: true
+        alert:
+          severity: warning
+          reason: condition_cleared
+          id: id
+          subjectId: subjectId
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: automation.alert.opened
+        checkId: checkId
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - automation.alert.opened
+          - automation.alert.escalated
+          - automation.alert.resolved
+          type: string
+        automation:
+          $ref: "#/components/schemas/WebhookAutomationRef"
+        accountId:
+          description: The connected account the automation acts on.
+          type: string
+        checkId:
+          description: The check that moved the alert.
+          type: string
+        alert:
+          $ref: "#/components/schemas/WebhookPayloadAutomationAlert_alert"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - accountId
+      - alert
       - automation
       - checkId
       - event
@@ -110926,13 +111082,33 @@ components:
       - $ref: "#/components/schemas/AdRuleAction_oneOf_4"
       - $ref: "#/components/schemas/AdRuleAction_oneOf_5"
       - $ref: "#/components/schemas/AdRuleAction_oneOf_6"
+      - $ref: "#/components/schemas/AdRuleAction_oneOf_7"
     AdRuleActions:
       description: "Each type at most once, and at most one of `pause`, `activate`,\
-        \ `adjust_budget`, `duplicate` and `edit_name`."
+        \ `adjust_budget`, `adjust_bid`, `duplicate` and `edit_name`."
       items:
         $ref: "#/components/schemas/AdRuleAction"
       minItems: 1
       type: array
+    AdRuleLifecycle:
+      description: "Turns matches into alerts. An object acts and notifies only after\
+        \ `confirmChecks` matching runs in a row; its alert stays open while it matches\
+        \ or `hold` holds, turns critical when `critical` holds, and resolves on its\
+        \ own. Cooldown and caps still decide repeat actions."
+      properties:
+        confirmChecks:
+          description: Matching runs in a row before acting. Defaults to 1.
+          maximum: 5
+          minimum: 1
+          type: integer
+        hold:
+          allOf:
+          - $ref: "#/components/schemas/AdRuleConditions"
+          description: Keeps an open alert open after the conditions stop matching.
+        critical:
+          allOf:
+          - $ref: "#/components/schemas/AdRuleConditions"
+          description: Marks an open alert critical.
     AdRuleFilters:
       description: "Narrows the objects the rule checks. Every filter must hold. Text\
         \ compares without case, and a missing field reads as empty."
@@ -111042,6 +111218,7 @@ components:
           value: value
         platform: platform
         enabled: true
+        lifecycle: ""
         accountId: accountId
         schedule:
           times:
@@ -111161,11 +111338,15 @@ components:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
           type: array
+        lifecycle:
+          allOf:
+          - $ref: "#/components/schemas/AdRuleLifecycle"
+          nullable: true
         conditions:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
           description: "Each type at most once, and at most one of `pause`, `activate`,\
-            \ `adjust_budget`, `duplicate` and `edit_name`."
+            \ `adjust_budget`, `adjust_bid`, `duplicate` and `edit_name`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -111204,6 +111385,7 @@ components:
       - id
       - lastRunAt
       - level
+      - lifecycle
       - name
       - nextRunAt
       - platform
@@ -111393,7 +111575,9 @@ components:
           actions:
           - reason: reason
             newName: newName
+            newBidAmount: 5.637376656633329
             previousName: previousName
+            previousBidAmount: 5.962133916683182
             previousDailyBudget: 6.027456183070403
             newDailyBudget: 1.4658129805029452
             type: pause
@@ -111401,7 +111585,9 @@ components:
             status: done
           - reason: reason
             newName: newName
+            newBidAmount: 5.637376656633329
             previousName: previousName
+            previousBidAmount: 5.962133916683182
             previousDailyBudget: 6.027456183070403
             newDailyBudget: 1.4658129805029452
             type: pause
@@ -111466,6 +111652,8 @@ components:
         platform: platform
         accountId: accountId
         newName: newName
+        newBidAmount: 5.962133916683182
+        previousBidAmount: 1.4658129805029452
         ruleName: ruleName
         objectName: objectName
         newDailyBudget: 6.027456183070403
@@ -111510,6 +111698,7 @@ components:
           - pause
           - activate
           - adjust_budget
+          - adjust_bid
           - duplicate
           - edit_name
           type: string
@@ -111537,6 +111726,14 @@ components:
           description: The name an applied `edit_name` set.
           nullable: true
           type: string
+        previousBidAmount:
+          description: The bid cap or cost cap before an `adjust_bid`.
+          nullable: true
+          type: number
+        newBidAmount:
+          description: The cap an applied `adjust_bid` set.
+          nullable: true
+          type: number
         currency:
           nullable: true
           type: string
@@ -111546,11 +111743,13 @@ components:
       - currency
       - id
       - level
+      - newBidAmount
       - newDailyBudget
       - newName
       - objectId
       - objectName
       - platform
+      - previousBidAmount
       - previousDailyBudget
       - previousName
       - ranAt
@@ -131127,6 +131326,9 @@ components:
             - automation.action.applied
             - automation.action.failed
             - automation.action.unknown
+            - automation.alert.opened
+            - automation.alert.escalated
+            - automation.alert.resolved
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
             - whatsapp.account.name_status_updated
@@ -131348,6 +131550,9 @@ components:
             - automation.action.applied
             - automation.action.failed
             - automation.action.unknown
+            - automation.alert.opened
+            - automation.alert.escalated
+            - automation.alert.resolved
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
             - whatsapp.account.name_status_updated
@@ -131647,6 +131852,9 @@ components:
           - automation.action.applied
           - automation.action.failed
           - automation.action.unknown
+          - automation.alert.opened
+          - automation.alert.escalated
+          - automation.alert.resolved
           - lead.received
           - whatsapp.template.status_updated
           - whatsapp.template.category_updated
@@ -155468,6 +155676,7 @@ components:
             value: value
           platform: platform
           enabled: true
+          lifecycle: ""
           accountId: accountId
           schedule:
             times:
@@ -155579,6 +155788,7 @@ components:
             value: value
           platform: platform
           enabled: true
+          lifecycle: ""
           accountId: accountId
           schedule:
             times:
@@ -155704,11 +155914,15 @@ components:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
           type: array
+        lifecycle:
+          allOf:
+          - $ref: "#/components/schemas/AdRuleLifecycle"
+          nullable: true
         conditions:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
           description: "Each type at most once, and at most one of `pause`, `activate`,\
-            \ `adjust_budget`, `duplicate` and `edit_name`."
+            \ `adjust_budget`, `adjust_bid`, `duplicate` and `edit_name`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -155758,6 +155972,7 @@ components:
             value: value
           platform: platform
           enabled: true
+          lifecycle: ""
           accountId: accountId
           schedule:
             times:
@@ -155957,7 +156172,7 @@ components:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
           description: "Each type at most once, and at most one of `pause`, `activate`,\
-            \ `adjust_budget`, `duplicate` and `edit_name`."
+            \ `adjust_budget`, `adjust_bid`, `duplicate` and `edit_name`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -156193,6 +156408,8 @@ components:
           platform: platform
           accountId: accountId
           newName: newName
+          newBidAmount: 5.962133916683182
+          previousBidAmount: 1.4658129805029452
           ruleName: ruleName
           objectName: objectName
           newDailyBudget: 6.027456183070403
@@ -156211,6 +156428,8 @@ components:
           platform: platform
           accountId: accountId
           newName: newName
+          newBidAmount: 5.962133916683182
+          previousBidAmount: 1.4658129805029452
           ruleName: ruleName
           objectName: objectName
           newDailyBudget: 6.027456183070403
@@ -156287,11 +156506,15 @@ components:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
           type: array
+        lifecycle:
+          allOf:
+          - $ref: "#/components/schemas/AdRuleLifecycle"
+          nullable: true
         conditions:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
           description: "Each type at most once, and at most one of `pause`, `activate`,\
-            \ `adjust_budget`, `duplicate` and `edit_name`."
+            \ `adjust_budget`, `adjust_bid`, `duplicate` and `edit_name`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -156304,6 +156527,102 @@ components:
           type: integer
         enabled:
           type: boolean
+    listAdRuleAlerts_200_response_alerts_inner:
+      example:
+        severity: warning
+        resolvedAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        state: pending
+        consecutiveMatches: 0
+        lastMatchedAt: 2000-01-23T04:56:07.000+00:00
+        objectId: objectId
+        openedAt: 2000-01-23T04:56:07.000+00:00
+        resolvedReason: condition_cleared
+      properties:
+        id:
+          type: string
+        objectId:
+          description: "Platform campaign, ad set or ad ID."
+          type: string
+        state:
+          enum:
+          - pending
+          - open
+          - resolved
+          type: string
+        severity:
+          enum:
+          - warning
+          - critical
+          - null
+          nullable: true
+          type: string
+        consecutiveMatches:
+          type: integer
+        openedAt:
+          format: date-time
+          nullable: true
+          type: string
+        lastMatchedAt:
+          format: date-time
+          type: string
+        resolvedAt:
+          format: date-time
+          nullable: true
+          type: string
+        resolvedReason:
+          enum:
+          - condition_cleared
+          - action_applied
+          - not_evaluated
+          - automation_changed
+          - automation_off
+          - null
+          nullable: true
+          type: string
+      required:
+      - consecutiveMatches
+      - id
+      - lastMatchedAt
+      - objectId
+      - openedAt
+      - resolvedAt
+      - resolvedReason
+      - severity
+      - state
+    listAdRuleAlerts_200_response:
+      example:
+        alerts:
+        - severity: warning
+          resolvedAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          state: pending
+          consecutiveMatches: 0
+          lastMatchedAt: 2000-01-23T04:56:07.000+00:00
+          objectId: objectId
+          openedAt: 2000-01-23T04:56:07.000+00:00
+          resolvedReason: condition_cleared
+        - severity: warning
+          resolvedAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          state: pending
+          consecutiveMatches: 0
+          lastMatchedAt: 2000-01-23T04:56:07.000+00:00
+          objectId: objectId
+          openedAt: 2000-01-23T04:56:07.000+00:00
+          resolvedReason: condition_cleared
+        nextCursor: nextCursor
+      properties:
+        alerts:
+          items:
+            $ref: "#/components/schemas/listAdRuleAlerts_200_response_alerts_inner"
+          type: array
+        nextCursor:
+          nullable: true
+          type: string
+      required:
+      - alerts
+      - nextCursor
     listAdRuleRuns_200_response:
       example:
         runs:
@@ -156364,7 +156683,9 @@ components:
             actions:
             - reason: reason
               newName: newName
+              newBidAmount: 5.637376656633329
               previousName: previousName
+              previousBidAmount: 5.962133916683182
               previousDailyBudget: 6.027456183070403
               newDailyBudget: 1.4658129805029452
               type: pause
@@ -156372,7 +156693,9 @@ components:
               status: done
             - reason: reason
               newName: newName
+              newBidAmount: 5.637376656633329
               previousName: previousName
+              previousBidAmount: 5.962133916683182
               previousDailyBudget: 6.027456183070403
               newDailyBudget: 1.4658129805029452
               type: pause
@@ -156443,7 +156766,9 @@ components:
             actions:
             - reason: reason
               newName: newName
+              newBidAmount: 5.637376656633329
               previousName: previousName
+              previousBidAmount: 5.962133916683182
               previousDailyBudget: 6.027456183070403
               newDailyBudget: 1.4658129805029452
               type: pause
@@ -156451,7 +156776,9 @@ components:
               status: done
             - reason: reason
               newName: newName
+              newBidAmount: 5.637376656633329
               previousName: previousName
+              previousBidAmount: 5.962133916683182
               previousDailyBudget: 6.027456183070403
               newDailyBudget: 1.4658129805029452
               type: pause
@@ -193369,7 +193696,9 @@ components:
       example:
         reason: reason
         newName: newName
+        newBidAmount: 2.3021358869347655
         previousName: previousName
+        previousBidAmount: 5.637376656633329
         previousDailyBudget: 1.4658129805029452
         newDailyBudget: 5.962133916683182
         type: pause
@@ -193380,6 +193709,7 @@ components:
           - pause
           - activate
           - adjust_budget
+          - adjust_bid
           - duplicate
           - edit_name
           type: string
@@ -193423,9 +193753,20 @@ components:
             \ changed."
           nullable: true
           type: string
+        previousBidAmount:
+          description: "On `adjust_bid`, the cap before the change. Null otherwise."
+          nullable: true
+          type: number
+        newBidAmount:
+          description: "On `adjust_bid`, the cap after the change. Null when nothing\
+            \ changed."
+          nullable: true
+          type: number
       required:
+      - newBidAmount
       - newDailyBudget
       - newName
+      - previousBidAmount
       - previousDailyBudget
       - previousName
       - reason
@@ -193450,14 +193791,18 @@ components:
         actions:
         - reason: reason
           newName: newName
+          newBidAmount: 2.3021358869347655
           previousName: previousName
+          previousBidAmount: 5.637376656633329
           previousDailyBudget: 1.4658129805029452
           newDailyBudget: 5.962133916683182
           type: pause
           status: done
         - reason: reason
           newName: newName
+          newBidAmount: 2.3021358869347655
           previousName: previousName
+          previousBidAmount: 5.637376656633329
           previousDailyBudget: 1.4658129805029452
           newDailyBudget: 5.962133916683182
           type: pause
@@ -193588,6 +193933,42 @@ components:
       - subjectId
       - target
       - type
+    WebhookPayloadAutomationAlert_alert:
+      example:
+        severity: warning
+        reason: condition_cleared
+        id: id
+        subjectId: subjectId
+      properties:
+        id:
+          type: string
+        subjectId:
+          description: "The platform's id of the object: an ad, ad set or campaign\
+            \ for ad rules."
+          type: string
+        severity:
+          enum:
+          - warning
+          - critical
+          - null
+          nullable: true
+          type: string
+        reason:
+          description: "Why it resolved, on `automation.alert.resolved` only."
+          enum:
+          - condition_cleared
+          - action_applied
+          - not_evaluated
+          - automation_changed
+          - automation_off
+          - null
+          nullable: true
+          type: string
+      required:
+      - id
+      - reason
+      - severity
+      - subjectId
     WebhookPayloadAdStatusChanged_account:
       description: The connected ad-platform account that owns the ad object.
       example:
@@ -199642,6 +200023,42 @@ components:
       required:
       - type
     AdRuleAction_oneOf_4:
+      description: "Either `amount`, or `direction`, `percent` and `limit`."
+      properties:
+        type:
+          description: "Move the bid cap or cost cap of a Meta ad set, in the ad account\
+            \ currency. Ad set rules on Meta only. An ad set without a cap is skipped\
+            \ with `no_bid_cap`."
+          enum:
+          - adjust_bid
+          type: string
+        amount:
+          description: The cap to set.
+          type: number
+        direction:
+          enum:
+          - increase
+          - decrease
+          type: string
+        percent:
+          description: Step size. A decrease is at most 90.
+          maximum: 100
+          minimum: 1
+          type: integer
+        limit:
+          description: "The cap never goes above this on an increase, or below it\
+            \ on a decrease."
+          type: number
+        maxChangesPerDay:
+          description: "At most this many objects changed in any 24 hours, across\
+            \ runs. Matches over the limit are skipped with `daily_limit_reached`\
+            \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
+      required:
+      - type
+    AdRuleAction_oneOf_5:
       description: Exactly one of `add` and `remove`.
       properties:
         type:
@@ -199677,7 +200094,7 @@ components:
           type: integer
       required:
       - type
-    AdRuleAction_oneOf_5:
+    AdRuleAction_oneOf_6:
       properties:
         type:
           description: "Set the daily budget to an exact amount, such as a reset every\
@@ -199699,7 +200116,7 @@ components:
       required:
       - amount
       - type
-    AdRuleAction_oneOf_6:
+    AdRuleAction_oneOf_7:
       properties:
         type:
           description: "Change the daily budget. Not on ad-level rules (an ad has\
@@ -199851,7 +200268,9 @@ components:
       example:
         reason: reason
         newName: newName
+        newBidAmount: 5.637376656633329
         previousName: previousName
+        previousBidAmount: 5.962133916683182
         previousDailyBudget: 6.027456183070403
         newDailyBudget: 1.4658129805029452
         type: pause
@@ -199865,6 +200284,7 @@ components:
           - pause
           - activate
           - adjust_budget
+          - adjust_bid
           - duplicate
           - edit_name
           type: string
@@ -199885,6 +200305,10 @@ components:
           type: string
         newName:
           type: string
+        previousBidAmount:
+          type: number
+        newBidAmount:
+          type: number
       required:
       - objectId
       - status
@@ -199969,7 +200393,9 @@ components:
         actions:
         - reason: reason
           newName: newName
+          newBidAmount: 5.637376656633329
           previousName: previousName
+          previousBidAmount: 5.962133916683182
           previousDailyBudget: 6.027456183070403
           newDailyBudget: 1.4658129805029452
           type: pause
@@ -199977,7 +200403,9 @@ components:
           status: done
         - reason: reason
           newName: newName
+          newBidAmount: 5.637376656633329
           previousName: previousName
+          previousBidAmount: 5.962133916683182
           previousDailyBudget: 6.027456183070403
           newDailyBudget: 1.4658129805029452
           type: pause
@@ -201274,6 +201702,7 @@ x-documentation:
     - `ad_rule.triggered` - A scheduled ad rule run found campaigns, ad sets or ads meeting every condition, once per object per cooldown. `objects` lists the objects acted on
     - `automation.check.completed` - One scheduled check of an automation finished (ad rules today): its outcome, how many objects it read and how many actions it took
     - `automation.action.applied`, `automation.action.failed`, `automation.action.unknown` - One change an automation made or tried, with the value before and the value it sets (`previous`, `target`). Refusals arrive as `failed` with status `skipped`; `unknown` means the platform did not answer and the next check reads the result back
+    - `automation.alert.opened`, `automation.alert.escalated`, `automation.alert.resolved` - An alert episode of an automation with a lifecycle: confirmed and acted on, turned critical, or ended (`reason` says why)
     - `whatsapp.template.status_updated` - WhatsApp Business template completed (re)review by Meta. `template.status` carries the new state (APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION); `template.reason` is Meta's free-form reason or "NONE".
     - `whatsapp.template.category_updated` - Meta reclassified a WhatsApp Business template's category (drives tariff and marketing opt-out applicability). `template.changeType` is `scheduled` (24h advance notice) or `applied`; `template.category` is always the category right now.
     - `whatsapp.account.name_status_updated` - Meta finished reviewing a WhatsApp display-name change. `name.status` carries the outcome (APPROVED, DECLINED, PENDING_REVIEW). Fires only on a review outcome; a name applied without review (`name_status: AVAILABLE_WITHOUT_REVIEW`) produces no event.

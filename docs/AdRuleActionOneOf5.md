@@ -2,13 +2,16 @@
 
 # AdRuleActionOneOf5
 
+Exactly one of `add` and `remove`.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | [**TypeEnum**](#TypeEnum) | Set the daily budget to an exact amount, such as a reset every midnight. Same level rules as the percent change. |  |
-|**amount** | **BigDecimal** | The daily budget to set, in the ad account currency. An object already at it is skipped with &#x60;already_at_amount&#x60;. |  |
+|**type** | [**TypeEnum**](#TypeEnum) | Tag the object by its name. Meta, Google and LinkedIn campaigns and ad sets, and TikTok campaigns, ad groups and ads. An object whose name already has the tag (or lacks it, for &#x60;remove&#x60;) is skipped with &#x60;name_unchanged&#x60;. |  |
+|**add** | **String** | Text to add, like &#x60;[WINNER]&#x60;. Compared without case. |  [optional] |
+|**at** | [**AtEnum**](#AtEnum) | Where &#x60;add&#x60; goes. Defaults to &#x60;start&#x60;. |  [optional] |
+|**remove** | **String** | Text to take out of the name, every copy of it. |  [optional] |
 |**maxChangesPerDay** | **Integer** | At most this many objects changed in any 24 hours, across runs. Matches over the limit are skipped with &#x60;daily_limit_reached&#x60; and tried again later. |  [optional] |
 
 
@@ -17,7 +20,16 @@
 
 | Name | Value |
 |---- | -----|
-| ADJUST_BUDGET | &quot;adjust_budget&quot; |
+| EDIT_NAME | &quot;edit_name&quot; |
+
+
+
+## Enum: AtEnum
+
+| Name | Value |
+|---- | -----|
+| START | &quot;start&quot; |
+| END | &quot;end&quot; |
 
 
 

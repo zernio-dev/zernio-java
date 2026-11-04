@@ -24,6 +24,8 @@
 |**newDailyBudget** | **BigDecimal** |  |  |
 |**previousName** | **String** | The name before an &#x60;edit_name&#x60;. |  |
 |**newName** | **String** | The name an applied &#x60;edit_name&#x60; set. |  |
+|**previousBidAmount** | **BigDecimal** | The bid cap or cost cap before an &#x60;adjust_bid&#x60;. |  |
+|**newBidAmount** | **BigDecimal** | The cap an applied &#x60;adjust_bid&#x60; set. |  |
 |**currency** | **String** |  |  |
 
 
@@ -44,6 +46,7 @@
 | PAUSE | &quot;pause&quot; |
 | ACTIVATE | &quot;activate&quot; |
 | ADJUST_BUDGET | &quot;adjust_budget&quot; |
+| ADJUST_BID | &quot;adjust_bid&quot; |
 | DUPLICATE | &quot;duplicate&quot; |
 | EDIT_NAME | &quot;edit_name&quot; |
 

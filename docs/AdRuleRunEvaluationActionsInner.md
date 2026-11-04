@@ -15,6 +15,8 @@
 |**newDailyBudget** | **BigDecimal** |  |  [optional] |
 |**previousName** | **String** |  |  [optional] |
 |**newName** | **String** |  |  [optional] |
+|**previousBidAmount** | **BigDecimal** |  |  [optional] |
+|**newBidAmount** | **BigDecimal** |  |  [optional] |
 
 
 
@@ -25,6 +27,7 @@
 | PAUSE | &quot;pause&quot; |
 | ACTIVATE | &quot;activate&quot; |
 | ADJUST_BUDGET | &quot;adjust_budget&quot; |
+| ADJUST_BID | &quot;adjust_bid&quot; |
 | DUPLICATE | &quot;duplicate&quot; |
 | EDIT_NAME | &quot;edit_name&quot; |
 

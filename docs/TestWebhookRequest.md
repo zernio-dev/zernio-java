@@ -104,6 +104,9 @@
 | AUTOMATION_ACTION_APPLIED | &quot;automation.action.applied&quot; |
 | AUTOMATION_ACTION_FAILED | &quot;automation.action.failed&quot; |
 | AUTOMATION_ACTION_UNKNOWN | &quot;automation.action.unknown&quot; |
+| AUTOMATION_ALERT_OPENED | &quot;automation.alert.opened&quot; |
+| AUTOMATION_ALERT_ESCALATED | &quot;automation.alert.escalated&quot; |
+| AUTOMATION_ALERT_RESOLVED | &quot;automation.alert.resolved&quot; |
 | LEAD_RECEIVED | &quot;lead.received&quot; |
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
 | WHATSAPP_TEMPLATE_CATEGORY_UPDATED | &quot;whatsapp.template.category_updated&quot; |

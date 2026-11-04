@@ -42,6 +42,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**onAutomationActionFailedWithHttpInfo**](WebhookEventsApi.md#onAutomationActionFailedWithHttpInfo) | **POST** /automation.action.failed | Automation action failed event |
 | [**onAutomationActionUnknown**](WebhookEventsApi.md#onAutomationActionUnknown) | **POST** /automation.action.unknown | Automation action unknown event |
 | [**onAutomationActionUnknownWithHttpInfo**](WebhookEventsApi.md#onAutomationActionUnknownWithHttpInfo) | **POST** /automation.action.unknown | Automation action unknown event |
+| [**onAutomationAlertEscalated**](WebhookEventsApi.md#onAutomationAlertEscalated) | **POST** /automation.alert.escalated | Automation alert escalated event |
+| [**onAutomationAlertEscalatedWithHttpInfo**](WebhookEventsApi.md#onAutomationAlertEscalatedWithHttpInfo) | **POST** /automation.alert.escalated | Automation alert escalated event |
+| [**onAutomationAlertOpened**](WebhookEventsApi.md#onAutomationAlertOpened) | **POST** /automation.alert.opened | Automation alert opened event |
+| [**onAutomationAlertOpenedWithHttpInfo**](WebhookEventsApi.md#onAutomationAlertOpenedWithHttpInfo) | **POST** /automation.alert.opened | Automation alert opened event |
+| [**onAutomationAlertResolved**](WebhookEventsApi.md#onAutomationAlertResolved) | **POST** /automation.alert.resolved | Automation alert resolved event |
+| [**onAutomationAlertResolvedWithHttpInfo**](WebhookEventsApi.md#onAutomationAlertResolvedWithHttpInfo) | **POST** /automation.alert.resolved | Automation alert resolved event |
 | [**onAutomationCheckCompleted**](WebhookEventsApi.md#onAutomationCheckCompleted) | **POST** /automation.check.completed | Automation check completed event |
 | [**onAutomationCheckCompletedWithHttpInfo**](WebhookEventsApi.md#onAutomationCheckCompletedWithHttpInfo) | **POST** /automation.check.completed | Automation check completed event |
 | [**onBrandedCallingIdentityActionRequired**](WebhookEventsApi.md#onBrandedCallingIdentityActionRequired) | **POST** /branded_calling.identity.action_required | Caller identity action required event |
@@ -2928,6 +2934,432 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadAutomationAction** | [**WebhookPayloadAutomationAction**](WebhookPayloadAutomationAction.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received |  -  |
+
+
+## onAutomationAlertEscalated
+
+> void onAutomationAlertEscalated(webhookPayloadAutomationAlert)
+
+Automation alert escalated event
+
+An alert episode of an automation with a lifecycle. See &#x60;WebhookPayloadAutomationAlert&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAutomationAlert webhookPayloadAutomationAlert = new WebhookPayloadAutomationAlert(); // WebhookPayloadAutomationAlert | 
+        try {
+            apiInstance.onAutomationAlertEscalated(webhookPayloadAutomationAlert);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAutomationAlertEscalated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAutomationAlert** | [**WebhookPayloadAutomationAlert**](WebhookPayloadAutomationAlert.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received |  -  |
+
+## onAutomationAlertEscalatedWithHttpInfo
+
+> ApiResponse<Void> onAutomationAlertEscalated onAutomationAlertEscalatedWithHttpInfo(webhookPayloadAutomationAlert)
+
+Automation alert escalated event
+
+An alert episode of an automation with a lifecycle. See &#x60;WebhookPayloadAutomationAlert&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAutomationAlert webhookPayloadAutomationAlert = new WebhookPayloadAutomationAlert(); // WebhookPayloadAutomationAlert | 
+        try {
+            ApiResponse<Void> response = apiInstance.onAutomationAlertEscalatedWithHttpInfo(webhookPayloadAutomationAlert);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAutomationAlertEscalated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAutomationAlert** | [**WebhookPayloadAutomationAlert**](WebhookPayloadAutomationAlert.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received |  -  |
+
+
+## onAutomationAlertOpened
+
+> void onAutomationAlertOpened(webhookPayloadAutomationAlert)
+
+Automation alert opened event
+
+An alert episode of an automation with a lifecycle. See &#x60;WebhookPayloadAutomationAlert&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAutomationAlert webhookPayloadAutomationAlert = new WebhookPayloadAutomationAlert(); // WebhookPayloadAutomationAlert | 
+        try {
+            apiInstance.onAutomationAlertOpened(webhookPayloadAutomationAlert);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAutomationAlertOpened");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAutomationAlert** | [**WebhookPayloadAutomationAlert**](WebhookPayloadAutomationAlert.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received |  -  |
+
+## onAutomationAlertOpenedWithHttpInfo
+
+> ApiResponse<Void> onAutomationAlertOpened onAutomationAlertOpenedWithHttpInfo(webhookPayloadAutomationAlert)
+
+Automation alert opened event
+
+An alert episode of an automation with a lifecycle. See &#x60;WebhookPayloadAutomationAlert&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAutomationAlert webhookPayloadAutomationAlert = new WebhookPayloadAutomationAlert(); // WebhookPayloadAutomationAlert | 
+        try {
+            ApiResponse<Void> response = apiInstance.onAutomationAlertOpenedWithHttpInfo(webhookPayloadAutomationAlert);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAutomationAlertOpened");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAutomationAlert** | [**WebhookPayloadAutomationAlert**](WebhookPayloadAutomationAlert.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received |  -  |
+
+
+## onAutomationAlertResolved
+
+> void onAutomationAlertResolved(webhookPayloadAutomationAlert)
+
+Automation alert resolved event
+
+An alert episode of an automation with a lifecycle. See &#x60;WebhookPayloadAutomationAlert&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAutomationAlert webhookPayloadAutomationAlert = new WebhookPayloadAutomationAlert(); // WebhookPayloadAutomationAlert | 
+        try {
+            apiInstance.onAutomationAlertResolved(webhookPayloadAutomationAlert);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAutomationAlertResolved");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAutomationAlert** | [**WebhookPayloadAutomationAlert**](WebhookPayloadAutomationAlert.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received |  -  |
+
+## onAutomationAlertResolvedWithHttpInfo
+
+> ApiResponse<Void> onAutomationAlertResolved onAutomationAlertResolvedWithHttpInfo(webhookPayloadAutomationAlert)
+
+Automation alert resolved event
+
+An alert episode of an automation with a lifecycle. See &#x60;WebhookPayloadAutomationAlert&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAutomationAlert webhookPayloadAutomationAlert = new WebhookPayloadAutomationAlert(); // WebhookPayloadAutomationAlert | 
+        try {
+            ApiResponse<Void> response = apiInstance.onAutomationAlertResolvedWithHttpInfo(webhookPayloadAutomationAlert);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAutomationAlertResolved");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAutomationAlert** | [**WebhookPayloadAutomationAlert**](WebhookPayloadAutomationAlert.md)|  | |
 
 ### Return type
 

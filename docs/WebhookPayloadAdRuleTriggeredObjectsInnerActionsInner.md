@@ -14,6 +14,8 @@
 |**newDailyBudget** | **BigDecimal** | On &#x60;adjust_budget&#x60;, the daily budget after the change. Null when nothing changed. |  |
 |**previousName** | **String** | On &#x60;edit_name&#x60;, the object&#39;s name before the change. Null otherwise. |  |
 |**newName** | **String** | On &#x60;edit_name&#x60;, the name after the change. Null when nothing changed. |  |
+|**previousBidAmount** | **BigDecimal** | On &#x60;adjust_bid&#x60;, the cap before the change. Null otherwise. |  |
+|**newBidAmount** | **BigDecimal** | On &#x60;adjust_bid&#x60;, the cap after the change. Null when nothing changed. |  |
 
 
 
@@ -24,6 +26,7 @@
 | PAUSE | &quot;pause&quot; |
 | ACTIVATE | &quot;activate&quot; |
 | ADJUST_BUDGET | &quot;adjust_budget&quot; |
+| ADJUST_BID | &quot;adjust_bid&quot; |
 | DUPLICATE | &quot;duplicate&quot; |
 | EDIT_NAME | &quot;edit_name&quot; |
 

@@ -12,6 +12,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdRuleWithHttpInfo**](AdRulesApi.md#getAdRuleWithHttpInfo) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule |
 | [**listAdRuleActivity**](AdRulesApi.md#listAdRuleActivity) | **GET** /v1/ads/rules/activity | List every change ad rules made |
 | [**listAdRuleActivityWithHttpInfo**](AdRulesApi.md#listAdRuleActivityWithHttpInfo) | **GET** /v1/ads/rules/activity | List every change ad rules made |
+| [**listAdRuleAlerts**](AdRulesApi.md#listAdRuleAlerts) | **GET** /v1/ads/rules/{ruleId}/alerts | List a rule&#39;s alerts |
+| [**listAdRuleAlertsWithHttpInfo**](AdRulesApi.md#listAdRuleAlertsWithHttpInfo) | **GET** /v1/ads/rules/{ruleId}/alerts | List a rule&#39;s alerts |
 | [**listAdRuleRuns**](AdRulesApi.md#listAdRuleRuns) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs |
 | [**listAdRuleRunsWithHttpInfo**](AdRulesApi.md#listAdRuleRunsWithHttpInfo) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs |
 | [**listAdRuleTemplates**](AdRulesApi.md#listAdRuleTemplates) | **GET** /v1/ads/rules/templates | List ready-made ad rules |
@@ -542,7 +544,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **ruleId** | **String**|  | [optional] |
 | **accountId** | **String**| Only changes of rules on this ads connection. | [optional] |
-| **type** | **String**|  | [optional] [enum: pause, activate, adjust_budget, duplicate, edit_name] |
+| **type** | **String**|  | [optional] [enum: pause, activate, adjust_budget, adjust_bid, duplicate, edit_name] |
 | **from** | **OffsetDateTime**| ISO 8601 date-time, inclusive. | [optional] |
 | **to** | **OffsetDateTime**| ISO 8601 date-time, inclusive. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
@@ -630,7 +632,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **ruleId** | **String**|  | [optional] |
 | **accountId** | **String**| Only changes of rules on this ads connection. | [optional] |
-| **type** | **String**|  | [optional] [enum: pause, activate, adjust_budget, duplicate, edit_name] |
+| **type** | **String**|  | [optional] [enum: pause, activate, adjust_budget, adjust_bid, duplicate, edit_name] |
 | **from** | **OffsetDateTime**| ISO 8601 date-time, inclusive. | [optional] |
 | **to** | **OffsetDateTime**| ISO 8601 date-time, inclusive. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
@@ -657,6 +659,168 @@ ApiResponse<[**ListAdRuleActivity200Response**](ListAdRuleActivity200Response.md
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+
+## listAdRuleAlerts
+
+> ListAdRuleAlerts200Response listAdRuleAlerts(ruleId, state, limit, cursor)
+
+List a rule&#39;s alerts
+
+The alert episodes of a rule with a &#x60;lifecycle&#x60;, newest first. &#x60;pending&#x60; alerts are confirming, &#x60;open&#x60; ones were acted on, &#x60;resolved&#x60; ones ended, with &#x60;resolvedReason&#x60; saying why. Resolved alerts are kept 90 days. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdRulesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdRulesApi apiInstance = new AdRulesApi(defaultClient);
+        String ruleId = "ruleId_example"; // String | 
+        String state = "pending"; // String | 
+        Integer limit = 50; // Integer | 
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
+        try {
+            ListAdRuleAlerts200Response result = apiInstance.listAdRuleAlerts(ruleId, state, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdRulesApi#listAdRuleAlerts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ruleId** | **String**|  | |
+| **state** | **String**|  | [optional] [enum: pending, open, resolved] |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+[**ListAdRuleAlerts200Response**](ListAdRuleAlerts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Alerts, newest first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Rule not found in the profiles the key can reach. |  -  |
+
+## listAdRuleAlertsWithHttpInfo
+
+> ApiResponse<ListAdRuleAlerts200Response> listAdRuleAlerts listAdRuleAlertsWithHttpInfo(ruleId, state, limit, cursor)
+
+List a rule&#39;s alerts
+
+The alert episodes of a rule with a &#x60;lifecycle&#x60;, newest first. &#x60;pending&#x60; alerts are confirming, &#x60;open&#x60; ones were acted on, &#x60;resolved&#x60; ones ended, with &#x60;resolvedReason&#x60; saying why. Resolved alerts are kept 90 days. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdRulesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdRulesApi apiInstance = new AdRulesApi(defaultClient);
+        String ruleId = "ruleId_example"; // String | 
+        String state = "pending"; // String | 
+        Integer limit = 50; // Integer | 
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
+        try {
+            ApiResponse<ListAdRuleAlerts200Response> response = apiInstance.listAdRuleAlertsWithHttpInfo(ruleId, state, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdRulesApi#listAdRuleAlerts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ruleId** | **String**|  | |
+| **state** | **String**|  | [optional] [enum: pending, open, resolved] |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListAdRuleAlerts200Response**](ListAdRuleAlerts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Alerts, newest first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Rule not found in the profiles the key can reach. |  -  |
 
 
 ## listAdRuleRuns
