@@ -14,6 +14,7 @@
 |**currency** | **String** |  |  |
 |**matched** | **Integer** | How many objects meet every condition. |  |
 |**objects** | [**List&lt;AdRuleObjectEvaluation&gt;**](AdRuleObjectEvaluation.md) | Every delivering campaign or ad set in scope (for an &#x60;activate&#x60; rule, the rule-paused ones it may reactivate). |  |
+|**groups** | [**List&lt;AdRuleEvaluationGroupsInner&gt;**](AdRuleEvaluationGroupsInner.md) | Each group&#39;s totals, for a rule with groups. Null otherwise. |  [optional] |
 
 
 

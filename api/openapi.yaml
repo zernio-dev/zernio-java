@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.490.0
+  version: 1.491.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -92305,12 +92305,11 @@ components:
           metaCostUSD: 9.301444243932576
           metaMinutes: 5.962133916683182
           telnyxSeconds: 5.637376656633329
-          billableCostUSD: 7.386281948385884
-          totalCostUSD: 1.2315135367772556
-          recordingCostUSD: 4.145608029883936
+          billableCostUSD: 4.145608029883936
+          totalCostUSD: 7.386281948385884
+          recordingCostUSD: 2.027123023002322
           currency: currency
           transcriptionSeconds: 2.3021358869347655
-          recordingSeconds: 2.027123023002322
           telnyxCostUSD: 3.616076749251911
         createdAt: 2000-01-23T04:56:07.000+00:00
         transcript:
@@ -112991,6 +112990,29 @@ components:
           allOf:
           - $ref: "#/components/schemas/AdRuleConditions"
           description: Marks an open alert critical.
+    AdRuleGroups:
+      description: |
+        Campaigns judged together, campaign rules only. Each group's numbers and your results are added up across its campaigns, and rates and formulas are computed on the totals: a group's `result:cac_percent` is its total spend over its total revenue.
+
+        The conditions are judged once per group, and a matching group acts on each of its campaigns, each with its own cooldown and daily cap. Paused campaigns count toward a group's totals; only the ones the rule may act on are changed.
+
+        A group with no filters holds every campaign the rule checks: the whole ad account. A campaign in several groups is acted on once per run, by the first matching group. Reach and frequency cannot be added up across campaigns, so a rule with groups cannot use them.
+
+        A campaign with no results sent for the window adds its spend and no results to its group. A result sent as a rate (kind `percent` or `ratio`, no formula) reads as unknown for a group; define it as a formula over counts.
+      example:
+      - name: MBA
+        filters:
+        - field: name
+          op: contains
+          value: MBA
+      - name: Account total
+        filters: []
+      items:
+        $ref: "#/components/schemas/AdRuleGroups_inner"
+      maxItems: 20
+      minItems: 1
+      nullable: true
+      type: array
     AdRuleFilters:
       description: "Narrows the objects the rule checks. Every filter must hold. A\
         \ campaign rule reads `name`, `campaign_id`, `goal`, `days_live` and `budget_level`;\
@@ -113089,6 +113111,14 @@ components:
         cooldownMinutes: 6
         level: campaign
         adAccountId: adAccountId
+        groups:
+        - name: MBA
+          filters:
+          - field: name
+            op: contains
+            value: MBA
+        - name: Account total
+          filters: []
         filters:
         - op: contains
           field: name
@@ -113232,6 +113262,29 @@ components:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
           type: array
+        groups:
+          description: |
+            Campaigns judged together, campaign rules only. Each group's numbers and your results are added up across its campaigns, and rates and formulas are computed on the totals: a group's `result:cac_percent` is its total spend over its total revenue.
+
+            The conditions are judged once per group, and a matching group acts on each of its campaigns, each with its own cooldown and daily cap. Paused campaigns count toward a group's totals; only the ones the rule may act on are changed.
+
+            A group with no filters holds every campaign the rule checks: the whole ad account. A campaign in several groups is acted on once per run, by the first matching group. Reach and frequency cannot be added up across campaigns, so a rule with groups cannot use them.
+
+            A campaign with no results sent for the window adds its spend and no results to its group. A result sent as a rate (kind `percent` or `ratio`, no formula) reads as unknown for a group; define it as a formula over counts.
+          example:
+          - name: MBA
+            filters:
+            - field: name
+              op: contains
+              value: MBA
+          - name: Account total
+            filters: []
+          items:
+            $ref: "#/components/schemas/AdRuleGroups_inner"
+          maxItems: 20
+          minItems: 1
+          nullable: true
+          type: array
         lifecycle:
           allOf:
           - $ref: "#/components/schemas/AdRuleLifecycle"
@@ -113276,6 +113329,7 @@ components:
       - createdAt
       - enabled
       - filters
+      - groups
       - id
       - lastRunAt
       - level
@@ -113306,6 +113360,7 @@ components:
           compareTo: previous_period
           value: 0.6027456183070403
           met: true
+        group: group
       properties:
         id:
           description: Platform ID of the campaign or ad set.
@@ -113318,6 +113373,10 @@ components:
         matched:
           description: True when every condition holds.
           type: boolean
+        group:
+          description: "For a rule with groups: the group this campaign was judged\
+            \ in. `matched` and `conditions` are the group's."
+          type: string
         conditions:
           items:
             $ref: "#/components/schemas/AdRuleObjectEvaluation_conditions_inner"
@@ -113352,6 +113411,7 @@ components:
             compareTo: previous_period
             value: 0.6027456183070403
             met: true
+          group: group
         - campaignId: campaignId
           name: name
           matched: true
@@ -113371,6 +113431,24 @@ components:
             compareTo: previous_period
             value: 0.6027456183070403
             met: true
+          group: group
+        groups:
+        - name: name
+          matched: true
+          campaignIds:
+          - campaignIds
+          - campaignIds
+          conditions:
+          - "{}"
+          - "{}"
+        - name: name
+          matched: true
+          campaignIds:
+          - campaignIds
+          - campaignIds
+          conditions:
+          - "{}"
+          - "{}"
         timezoneAssumed: true
         currency: currency
         matched: 0
@@ -113401,6 +113479,12 @@ components:
             \ rule, the rule-paused ones it may reactivate)."
           items:
             $ref: "#/components/schemas/AdRuleObjectEvaluation"
+          type: array
+        groups:
+          description: "Each group's totals, for a rule with groups. Null otherwise."
+          items:
+            $ref: "#/components/schemas/AdRuleEvaluation_groups_inner"
+          nullable: true
           type: array
       required:
       - currency
@@ -113447,6 +113531,7 @@ components:
               compareTo: previous_period
               value: 0.6027456183070403
               met: true
+            group: group
           - campaignId: campaignId
             name: name
             matched: true
@@ -113466,6 +113551,7 @@ components:
               compareTo: previous_period
               value: 0.6027456183070403
               met: true
+            group: group
           actions:
           - reason: reason
             newName: newName
@@ -141346,11 +141432,10 @@ components:
     listWhatsAppCalls_200_response_calls_inner_billing:
       example:
         metaCostUSD: 6.027456183070403
-        billableCostUSD: 2.3021358869347655
-        totalCostUSD: 7.061401241503109
-        recordingCostUSD: 5.637376656633329
+        billableCostUSD: 5.637376656633329
+        totalCostUSD: 2.3021358869347655
+        recordingCostUSD: 5.962133916683182
         currency: currency
-        recordingSeconds: 5.962133916683182
         telnyxCostUSD: 1.4658129805029452
       properties:
         metaCostUSD:
@@ -141358,9 +141443,6 @@ components:
             \ Display only; not billed by Zernio."
           type: number
         telnyxCostUSD:
-          type: number
-        recordingSeconds:
-          description: Seconds of the call that were recorded and billed as recording.
           type: number
         recordingCostUSD:
           type: number
@@ -141388,11 +141470,10 @@ components:
         status: ringing
         billing:
           metaCostUSD: 6.027456183070403
-          billableCostUSD: 2.3021358869347655
-          totalCostUSD: 7.061401241503109
-          recordingCostUSD: 5.637376656633329
+          billableCostUSD: 5.637376656633329
+          totalCostUSD: 2.3021358869347655
+          recordingCostUSD: 5.962133916683182
           currency: currency
-          recordingSeconds: 5.962133916683182
           telnyxCostUSD: 1.4658129805029452
       properties:
         _id:
@@ -141448,11 +141529,10 @@ components:
           status: ringing
           billing:
             metaCostUSD: 6.027456183070403
-            billableCostUSD: 2.3021358869347655
-            totalCostUSD: 7.061401241503109
-            recordingCostUSD: 5.637376656633329
+            billableCostUSD: 5.637376656633329
+            totalCostUSD: 2.3021358869347655
+            recordingCostUSD: 5.962133916683182
             currency: currency
-            recordingSeconds: 5.962133916683182
             telnyxCostUSD: 1.4658129805029452
         - durationSeconds: 0
           endReason: hangup
@@ -141466,11 +141546,10 @@ components:
           status: ringing
           billing:
             metaCostUSD: 6.027456183070403
-            billableCostUSD: 2.3021358869347655
-            totalCostUSD: 7.061401241503109
-            recordingCostUSD: 5.637376656633329
+            billableCostUSD: 5.637376656633329
+            totalCostUSD: 2.3021358869347655
+            recordingCostUSD: 5.962133916683182
             currency: currency
-            recordingSeconds: 5.962133916683182
             telnyxCostUSD: 1.4658129805029452
       properties:
         calls:
@@ -141634,12 +141713,11 @@ components:
           metaCostUSD: 9.301444243932576
           metaMinutes: 5.962133916683182
           telnyxSeconds: 5.637376656633329
-          billableCostUSD: 7.386281948385884
-          totalCostUSD: 1.2315135367772556
-          recordingCostUSD: 4.145608029883936
+          billableCostUSD: 4.145608029883936
+          totalCostUSD: 7.386281948385884
+          recordingCostUSD: 2.027123023002322
           currency: currency
           transcriptionSeconds: 2.3021358869347655
-          recordingSeconds: 2.027123023002322
           telnyxCostUSD: 3.616076749251911
         createdAt: 2000-01-23T04:56:07.000+00:00
         transcript:
@@ -141693,12 +141771,11 @@ components:
             metaCostUSD: 9.301444243932576
             metaMinutes: 5.962133916683182
             telnyxSeconds: 5.637376656633329
-            billableCostUSD: 7.386281948385884
-            totalCostUSD: 1.2315135367772556
-            recordingCostUSD: 4.145608029883936
+            billableCostUSD: 4.145608029883936
+            totalCostUSD: 7.386281948385884
+            recordingCostUSD: 2.027123023002322
             currency: currency
             transcriptionSeconds: 2.3021358869347655
-            recordingSeconds: 2.027123023002322
             telnyxCostUSD: 3.616076749251911
           createdAt: 2000-01-23T04:56:07.000+00:00
           transcript:
@@ -141748,12 +141825,11 @@ components:
             metaCostUSD: 9.301444243932576
             metaMinutes: 5.962133916683182
             telnyxSeconds: 5.637376656633329
-            billableCostUSD: 7.386281948385884
-            totalCostUSD: 1.2315135367772556
-            recordingCostUSD: 4.145608029883936
+            billableCostUSD: 4.145608029883936
+            totalCostUSD: 7.386281948385884
+            recordingCostUSD: 2.027123023002322
             currency: currency
             transcriptionSeconds: 2.3021358869347655
-            recordingSeconds: 2.027123023002322
             telnyxCostUSD: 3.616076749251911
           createdAt: 2000-01-23T04:56:07.000+00:00
           transcript:
@@ -141816,12 +141892,11 @@ components:
             metaCostUSD: 9.301444243932576
             metaMinutes: 5.962133916683182
             telnyxSeconds: 5.637376656633329
-            billableCostUSD: 7.386281948385884
-            totalCostUSD: 1.2315135367772556
-            recordingCostUSD: 4.145608029883936
+            billableCostUSD: 4.145608029883936
+            totalCostUSD: 7.386281948385884
+            recordingCostUSD: 2.027123023002322
             currency: currency
             transcriptionSeconds: 2.3021358869347655
-            recordingSeconds: 2.027123023002322
             telnyxCostUSD: 3.616076749251911
           createdAt: 2000-01-23T04:56:07.000+00:00
           transcript:
@@ -141878,12 +141953,11 @@ components:
             metaCostUSD: 9.301444243932576
             metaMinutes: 5.962133916683182
             telnyxSeconds: 5.637376656633329
-            billableCostUSD: 7.386281948385884
-            totalCostUSD: 1.2315135367772556
-            recordingCostUSD: 4.145608029883936
+            billableCostUSD: 4.145608029883936
+            totalCostUSD: 7.386281948385884
+            recordingCostUSD: 2.027123023002322
             currency: currency
             transcriptionSeconds: 2.3021358869347655
-            recordingSeconds: 2.027123023002322
             telnyxCostUSD: 3.616076749251911
           createdAt: 2000-01-23T04:56:07.000+00:00
           transcript:
@@ -141932,12 +142006,11 @@ components:
             metaCostUSD: 9.301444243932576
             metaMinutes: 5.962133916683182
             telnyxSeconds: 5.637376656633329
-            billableCostUSD: 7.386281948385884
-            totalCostUSD: 1.2315135367772556
-            recordingCostUSD: 4.145608029883936
+            billableCostUSD: 4.145608029883936
+            totalCostUSD: 7.386281948385884
+            recordingCostUSD: 2.027123023002322
             currency: currency
             transcriptionSeconds: 2.3021358869347655
-            recordingSeconds: 2.027123023002322
             telnyxCostUSD: 3.616076749251911
           createdAt: 2000-01-23T04:56:07.000+00:00
           transcript:
@@ -142098,12 +142171,11 @@ components:
             metaCostUSD: 9.301444243932576
             metaMinutes: 5.962133916683182
             telnyxSeconds: 5.637376656633329
-            billableCostUSD: 7.386281948385884
-            totalCostUSD: 1.2315135367772556
-            recordingCostUSD: 4.145608029883936
+            billableCostUSD: 4.145608029883936
+            totalCostUSD: 7.386281948385884
+            recordingCostUSD: 2.027123023002322
             currency: currency
             transcriptionSeconds: 2.3021358869347655
-            recordingSeconds: 2.027123023002322
             telnyxCostUSD: 3.616076749251911
           createdAt: 2000-01-23T04:56:07.000+00:00
           transcript:
@@ -157590,6 +157662,14 @@ components:
           cooldownMinutes: 6
           level: campaign
           adAccountId: adAccountId
+          groups:
+          - name: MBA
+            filters:
+            - field: name
+              op: contains
+              value: MBA
+          - name: Account total
+            filters: []
           filters:
           - op: contains
             field: name
@@ -157705,6 +157785,14 @@ components:
           cooldownMinutes: 6
           level: campaign
           adAccountId: adAccountId
+          groups:
+          - name: MBA
+            filters:
+            - field: name
+              op: contains
+              value: MBA
+          - name: Account total
+            filters: []
           filters:
           - op: contains
             field: name
@@ -157854,6 +157942,29 @@ components:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
           type: array
+        groups:
+          description: |
+            Campaigns judged together, campaign rules only. Each group's numbers and your results are added up across its campaigns, and rates and formulas are computed on the totals: a group's `result:cac_percent` is its total spend over its total revenue.
+
+            The conditions are judged once per group, and a matching group acts on each of its campaigns, each with its own cooldown and daily cap. Paused campaigns count toward a group's totals; only the ones the rule may act on are changed.
+
+            A group with no filters holds every campaign the rule checks: the whole ad account. A campaign in several groups is acted on once per run, by the first matching group. Reach and frequency cannot be added up across campaigns, so a rule with groups cannot use them.
+
+            A campaign with no results sent for the window adds its spend and no results to its group. A result sent as a rate (kind `percent` or `ratio`, no formula) reads as unknown for a group; define it as a formula over counts.
+          example:
+          - name: MBA
+            filters:
+            - field: name
+              op: contains
+              value: MBA
+          - name: Account total
+            filters: []
+          items:
+            $ref: "#/components/schemas/AdRuleGroups_inner"
+          maxItems: 20
+          minItems: 1
+          nullable: true
+          type: array
         lifecycle:
           allOf:
           - $ref: "#/components/schemas/AdRuleLifecycle"
@@ -157894,6 +158005,14 @@ components:
           cooldownMinutes: 6
           level: campaign
           adAccountId: adAccountId
+          groups:
+          - name: MBA
+            filters:
+            - field: name
+              op: contains
+              value: MBA
+          - name: Account total
+            filters: []
           filters:
           - op: contains
             field: name
@@ -158460,6 +158579,11 @@ components:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
           type: array
+        groups:
+          allOf:
+          - $ref: "#/components/schemas/AdRuleGroups"
+          description: Null removes the groups; each campaign is then judged on its
+            own.
         lifecycle:
           allOf:
           - $ref: "#/components/schemas/AdRuleLifecycle"
@@ -158615,6 +158739,7 @@ components:
                 compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
+              group: group
             - campaignId: campaignId
               name: name
               matched: true
@@ -158634,6 +158759,7 @@ components:
                 compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
+              group: group
             actions:
             - reason: reason
               newName: newName
@@ -158698,6 +158824,7 @@ components:
                 compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
+              group: group
             - campaignId: campaignId
               name: name
               matched: true
@@ -158717,6 +158844,7 @@ components:
                 compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
+              group: group
             actions:
             - reason: reason
               newName: newName
@@ -195057,12 +195185,11 @@ components:
         metaCostUSD: 9.301444243932576
         metaMinutes: 5.962133916683182
         telnyxSeconds: 5.637376656633329
-        billableCostUSD: 7.386281948385884
-        totalCostUSD: 1.2315135367772556
-        recordingCostUSD: 4.145608029883936
+        billableCostUSD: 4.145608029883936
+        totalCostUSD: 7.386281948385884
+        recordingCostUSD: 2.027123023002322
         currency: currency
         transcriptionSeconds: 2.3021358869347655
-        recordingSeconds: 2.027123023002322
         telnyxCostUSD: 3.616076749251911
       properties:
         metaMinutes:
@@ -195078,9 +195205,6 @@ components:
             \ directly to your WABA. Display only; not billed by Zernio."
           type: number
         telnyxCostUSD:
-          type: number
-        recordingSeconds:
-          description: Seconds of the call that were recorded and billed as recording.
           type: number
         recordingCostUSD:
           type: number
@@ -202269,6 +202393,25 @@ components:
       - limit
       - percent
       - type
+    AdRuleGroups_inner:
+      properties:
+        name:
+          description: "Unique in the rule, ignoring case."
+          maxLength: 60
+          minLength: 1
+          type: string
+        filters:
+          description: "Narrows the objects the rule checks. Every filter must hold.\
+            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live` and\
+            \ `budget_level`; an ad set rule also `campaign_name` and `adset_id`;\
+            \ an ad rule also `adset_name` and `ad_id`."
+          items:
+            $ref: "#/components/schemas/AdRuleFilters_inner"
+          maxItems: 10
+          type: array
+      required:
+      - filters
+      - name
     Name_or_goal:
       description: Compares without case; a missing name reads as empty.
       example:
@@ -202454,6 +202597,36 @@ components:
         compareTo: previous_period
         value: 0.6027456183070403
         met: true
+    AdRuleEvaluation_groups_inner:
+      example:
+        name: name
+        matched: true
+        campaignIds:
+        - campaignIds
+        - campaignIds
+        conditions:
+        - "{}"
+        - "{}"
+      properties:
+        name:
+          type: string
+        matched:
+          type: boolean
+        conditions:
+          description: "Like an object's conditions, read on the group's totals."
+          items:
+            type: object
+          type: array
+        campaignIds:
+          description: "Every campaign counted in the group, paused ones included."
+          items:
+            type: string
+          type: array
+      required:
+      - campaignIds
+      - conditions
+      - matched
+      - name
     AdRuleRun_evaluation_rule:
       description: "The rule as it was when this run happened, so its actions stay\
         \ readable after the rule is renamed or deleted. Absent on runs recorded before\
@@ -202588,6 +202761,7 @@ components:
             compareTo: previous_period
             value: 0.6027456183070403
             met: true
+          group: group
         - campaignId: campaignId
           name: name
           matched: true
@@ -202607,6 +202781,7 @@ components:
             compareTo: previous_period
             value: 0.6027456183070403
             met: true
+          group: group
         actions:
         - reason: reason
           newName: newName
