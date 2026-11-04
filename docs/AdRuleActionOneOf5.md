@@ -7,10 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | [**TypeEnum**](#TypeEnum) | Change the daily budget. Not on ad-level rules (an ad has no budget), and on Google it needs a campaign-level rule (ad groups have no budget of their own). |  |
-|**direction** | [**DirectionEnum**](#DirectionEnum) |  |  |
-|**percent** | **Integer** | Change in percent: up to 100 for an increase, up to 90 for a decrease. |  |
-|**limit** | **BigDecimal** | The budget never goes above this on an increase, or below it on a decrease, in the ad account currency. |  |
+|**type** | [**TypeEnum**](#TypeEnum) | Set the daily budget to an exact amount, such as a reset every midnight. Same level rules as the percent change. |  |
+|**amount** | **BigDecimal** | The daily budget to set, in the ad account currency. An object already at it is skipped with &#x60;already_at_amount&#x60;. |  |
 |**maxChangesPerDay** | **Integer** | At most this many objects changed in any 24 hours, across runs. Matches over the limit are skipped with &#x60;daily_limit_reached&#x60; and tried again later. |  [optional] |
 
 
@@ -20,15 +18,6 @@
 | Name | Value |
 |---- | -----|
 | ADJUST_BUDGET | &quot;adjust_budget&quot; |
-
-
-
-## Enum: DirectionEnum
-
-| Name | Value |
-|---- | -----|
-| INCREASE | &quot;increase&quot; |
-| DECREASE | &quot;decrease&quot; |
 
 
 

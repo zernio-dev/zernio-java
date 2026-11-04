@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.469.0
+  version: 1.470.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -45282,6 +45282,7 @@ paths:
           - activate
           - adjust_budget
           - duplicate
+          - edit_name
           type: string
         style: form
       - description: "ISO 8601 date-time, inclusive."
@@ -91572,11 +91573,15 @@ components:
             value: 0.8008281904610115
           actions:
           - reason: reason
+            newName: newName
+            previousName: previousName
             previousDailyBudget: 1.4658129805029452
             newDailyBudget: 5.962133916683182
             type: pause
             status: done
           - reason: reason
+            newName: newName
+            previousName: previousName
             previousDailyBudget: 1.4658129805029452
             newDailyBudget: 5.962133916683182
             type: pause
@@ -91597,11 +91602,15 @@ components:
             value: 0.8008281904610115
           actions:
           - reason: reason
+            newName: newName
+            previousName: previousName
             previousDailyBudget: 1.4658129805029452
             newDailyBudget: 5.962133916683182
             type: pause
             status: done
           - reason: reason
+            newName: newName
+            previousName: previousName
             previousDailyBudget: 1.4658129805029452
             newDailyBudget: 5.962133916683182
             type: pause
@@ -110916,9 +110925,10 @@ components:
       - $ref: "#/components/schemas/AdRuleAction_oneOf_3"
       - $ref: "#/components/schemas/AdRuleAction_oneOf_4"
       - $ref: "#/components/schemas/AdRuleAction_oneOf_5"
+      - $ref: "#/components/schemas/AdRuleAction_oneOf_6"
     AdRuleActions:
       description: "Each type at most once, and at most one of `pause`, `activate`,\
-        \ `adjust_budget` and `duplicate`."
+        \ `adjust_budget`, `duplicate` and `edit_name`."
       items:
         $ref: "#/components/schemas/AdRuleAction"
       minItems: 1
@@ -111155,7 +111165,7 @@ components:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
           description: "Each type at most once, and at most one of `pause`, `activate`,\
-            \ `adjust_budget` and `duplicate`."
+            \ `adjust_budget`, `duplicate` and `edit_name`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -111382,12 +111392,16 @@ components:
               met: true
           actions:
           - reason: reason
+            newName: newName
+            previousName: previousName
             previousDailyBudget: 6.027456183070403
             newDailyBudget: 1.4658129805029452
             type: pause
             objectId: objectId
             status: done
           - reason: reason
+            newName: newName
+            previousName: previousName
             previousDailyBudget: 6.027456183070403
             newDailyBudget: 1.4658129805029452
             type: pause
@@ -111446,10 +111460,12 @@ components:
         level: campaign
         ranAt: 2000-01-23T04:56:07.000+00:00
         adAccountId: adAccountId
+        previousName: previousName
         previousDailyBudget: 0.8008281904610115
         type: pause
         platform: platform
         accountId: accountId
+        newName: newName
         ruleName: ruleName
         objectName: objectName
         newDailyBudget: 6.027456183070403
@@ -111495,6 +111511,7 @@ components:
           - activate
           - adjust_budget
           - duplicate
+          - edit_name
           type: string
         status:
           enum:
@@ -111512,6 +111529,14 @@ components:
         newDailyBudget:
           nullable: true
           type: number
+        previousName:
+          description: The name before an `edit_name`.
+          nullable: true
+          type: string
+        newName:
+          description: The name an applied `edit_name` set.
+          nullable: true
+          type: string
         currency:
           nullable: true
           type: string
@@ -111522,10 +111547,12 @@ components:
       - id
       - level
       - newDailyBudget
+      - newName
       - objectId
       - objectName
       - platform
       - previousDailyBudget
+      - previousName
       - ranAt
       - reason
       - ruleId
@@ -155681,7 +155708,7 @@ components:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
           description: "Each type at most once, and at most one of `pause`, `activate`,\
-            \ `adjust_budget` and `duplicate`."
+            \ `adjust_budget`, `duplicate` and `edit_name`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -155930,7 +155957,7 @@ components:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
           description: "Each type at most once, and at most one of `pause`, `activate`,\
-            \ `adjust_budget` and `duplicate`."
+            \ `adjust_budget`, `duplicate` and `edit_name`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -156160,10 +156187,12 @@ components:
           level: campaign
           ranAt: 2000-01-23T04:56:07.000+00:00
           adAccountId: adAccountId
+          previousName: previousName
           previousDailyBudget: 0.8008281904610115
           type: pause
           platform: platform
           accountId: accountId
+          newName: newName
           ruleName: ruleName
           objectName: objectName
           newDailyBudget: 6.027456183070403
@@ -156176,10 +156205,12 @@ components:
           level: campaign
           ranAt: 2000-01-23T04:56:07.000+00:00
           adAccountId: adAccountId
+          previousName: previousName
           previousDailyBudget: 0.8008281904610115
           type: pause
           platform: platform
           accountId: accountId
+          newName: newName
           ruleName: ruleName
           objectName: objectName
           newDailyBudget: 6.027456183070403
@@ -156260,7 +156291,7 @@ components:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
           description: "Each type at most once, and at most one of `pause`, `activate`,\
-            \ `adjust_budget` and `duplicate`."
+            \ `adjust_budget`, `duplicate` and `edit_name`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -156332,12 +156363,16 @@ components:
                 met: true
             actions:
             - reason: reason
+              newName: newName
+              previousName: previousName
               previousDailyBudget: 6.027456183070403
               newDailyBudget: 1.4658129805029452
               type: pause
               objectId: objectId
               status: done
             - reason: reason
+              newName: newName
+              previousName: previousName
               previousDailyBudget: 6.027456183070403
               newDailyBudget: 1.4658129805029452
               type: pause
@@ -156407,12 +156442,16 @@ components:
                 met: true
             actions:
             - reason: reason
+              newName: newName
+              previousName: previousName
               previousDailyBudget: 6.027456183070403
               newDailyBudget: 1.4658129805029452
               type: pause
               objectId: objectId
               status: done
             - reason: reason
+              newName: newName
+              previousName: previousName
               previousDailyBudget: 6.027456183070403
               newDailyBudget: 1.4658129805029452
               type: pause
@@ -193329,6 +193368,8 @@ components:
     WebhookPayloadAdRuleTriggered_objects_inner_actions_inner:
       example:
         reason: reason
+        newName: newName
+        previousName: previousName
         previousDailyBudget: 1.4658129805029452
         newDailyBudget: 5.962133916683182
         type: pause
@@ -193340,6 +193381,7 @@ components:
           - activate
           - adjust_budget
           - duplicate
+          - edit_name
           type: string
         status:
           description: |-
@@ -193371,9 +193413,21 @@ components:
             \ when nothing changed."
           nullable: true
           type: number
+        previousName:
+          description: "On `edit_name`, the object's name before the change. Null\
+            \ otherwise."
+          nullable: true
+          type: string
+        newName:
+          description: "On `edit_name`, the name after the change. Null when nothing\
+            \ changed."
+          nullable: true
+          type: string
       required:
       - newDailyBudget
+      - newName
       - previousDailyBudget
+      - previousName
       - reason
       - status
       - type
@@ -193395,11 +193449,15 @@ components:
           value: 0.8008281904610115
         actions:
         - reason: reason
+          newName: newName
+          previousName: previousName
           previousDailyBudget: 1.4658129805029452
           newDailyBudget: 5.962133916683182
           type: pause
           status: done
         - reason: reason
+          newName: newName
+          previousName: previousName
           previousDailyBudget: 1.4658129805029452
           newDailyBudget: 5.962133916683182
           type: pause
@@ -199584,6 +199642,42 @@ components:
       required:
       - type
     AdRuleAction_oneOf_4:
+      description: Exactly one of `add` and `remove`.
+      properties:
+        type:
+          description: "Tag the object by its name. Meta, Google and LinkedIn campaigns\
+            \ and ad sets, and TikTok campaigns, ad groups and ads. An object whose\
+            \ name already has the tag (or lacks it, for `remove`) is skipped with\
+            \ `name_unchanged`."
+          enum:
+          - edit_name
+          type: string
+        add:
+          description: "Text to add, like `[WINNER]`. Compared without case."
+          maxLength: 50
+          minLength: 1
+          type: string
+        at:
+          description: Where `add` goes. Defaults to `start`.
+          enum:
+          - start
+          - end
+          type: string
+        remove:
+          description: "Text to take out of the name, every copy of it."
+          maxLength: 50
+          minLength: 1
+          type: string
+        maxChangesPerDay:
+          description: "At most this many objects changed in any 24 hours, across\
+            \ runs. Matches over the limit are skipped with `daily_limit_reached`\
+            \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
+      required:
+      - type
+    AdRuleAction_oneOf_5:
       properties:
         type:
           description: "Set the daily budget to an exact amount, such as a reset every\
@@ -199605,7 +199699,7 @@ components:
       required:
       - amount
       - type
-    AdRuleAction_oneOf_5:
+    AdRuleAction_oneOf_6:
       properties:
         type:
           description: "Change the daily budget. Not on ad-level rules (an ad has\
@@ -199756,6 +199850,8 @@ components:
     AdRuleRun_evaluation_actions_inner:
       example:
         reason: reason
+        newName: newName
+        previousName: previousName
         previousDailyBudget: 6.027456183070403
         newDailyBudget: 1.4658129805029452
         type: pause
@@ -199770,6 +199866,7 @@ components:
           - activate
           - adjust_budget
           - duplicate
+          - edit_name
           type: string
         status:
           enum:
@@ -199784,6 +199881,10 @@ components:
           type: number
         newDailyBudget:
           type: number
+        previousName:
+          type: string
+        newName:
+          type: string
       required:
       - objectId
       - status
@@ -199867,12 +199968,16 @@ components:
             met: true
         actions:
         - reason: reason
+          newName: newName
+          previousName: previousName
           previousDailyBudget: 6.027456183070403
           newDailyBudget: 1.4658129805029452
           type: pause
           objectId: objectId
           status: done
         - reason: reason
+          newName: newName
+          previousName: previousName
           previousDailyBudget: 6.027456183070403
           newDailyBudget: 1.4658129805029452
           type: pause

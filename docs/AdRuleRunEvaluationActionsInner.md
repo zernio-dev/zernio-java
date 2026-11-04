@@ -13,6 +13,8 @@
 |**reason** | **String** | Why it was skipped or failed, for example &#x60;already_paused&#x60;. |  [optional] |
 |**previousDailyBudget** | **BigDecimal** |  |  [optional] |
 |**newDailyBudget** | **BigDecimal** |  |  [optional] |
+|**previousName** | **String** |  |  [optional] |
+|**newName** | **String** |  |  [optional] |
 
 
 
@@ -24,6 +26,7 @@
 | ACTIVATE | &quot;activate&quot; |
 | ADJUST_BUDGET | &quot;adjust_budget&quot; |
 | DUPLICATE | &quot;duplicate&quot; |
+| EDIT_NAME | &quot;edit_name&quot; |
 
 
 

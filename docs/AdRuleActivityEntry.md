@@ -22,6 +22,8 @@
 |**reason** | **String** | Why it was skipped or failed, for example &#x60;already_paused&#x60;. |  |
 |**previousDailyBudget** | **BigDecimal** |  |  |
 |**newDailyBudget** | **BigDecimal** |  |  |
+|**previousName** | **String** | The name before an &#x60;edit_name&#x60;. |  |
+|**newName** | **String** | The name an applied &#x60;edit_name&#x60; set. |  |
 |**currency** | **String** |  |  |
 
 
@@ -43,6 +45,7 @@
 | ACTIVATE | &quot;activate&quot; |
 | ADJUST_BUDGET | &quot;adjust_budget&quot; |
 | DUPLICATE | &quot;duplicate&quot; |
+| EDIT_NAME | &quot;edit_name&quot; |
 
 
 

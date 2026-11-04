@@ -542,7 +542,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **ruleId** | **String**|  | [optional] |
 | **accountId** | **String**| Only changes of rules on this ads connection. | [optional] |
-| **type** | **String**|  | [optional] [enum: pause, activate, adjust_budget, duplicate] |
+| **type** | **String**|  | [optional] [enum: pause, activate, adjust_budget, duplicate, edit_name] |
 | **from** | **OffsetDateTime**| ISO 8601 date-time, inclusive. | [optional] |
 | **to** | **OffsetDateTime**| ISO 8601 date-time, inclusive. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
@@ -630,7 +630,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **ruleId** | **String**|  | [optional] |
 | **accountId** | **String**| Only changes of rules on this ads connection. | [optional] |
-| **type** | **String**|  | [optional] [enum: pause, activate, adjust_budget, duplicate] |
+| **type** | **String**|  | [optional] [enum: pause, activate, adjust_budget, duplicate, edit_name] |
 | **from** | **OffsetDateTime**| ISO 8601 date-time, inclusive. | [optional] |
 | **to** | **OffsetDateTime**| ISO 8601 date-time, inclusive. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
