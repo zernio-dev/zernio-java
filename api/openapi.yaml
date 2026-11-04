@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.480.0
+  version: 1.481.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -10907,6 +10907,15 @@ paths:
         schema:
           default: false
           type: boolean
+        style: form
+      - description: "Comma-separated platforms (up to 50) to list together, the several-platform\
+          \ form of `platform`. Applied before pagination."
+        explode: true
+        in: query
+        name: platforms
+        required: false
+        schema:
+          type: string
         style: form
       - description: |
           When true, lists every ads account row, one per ad account. By default an API key or OAuth app sees each ads login once per profile and platform, as the single ads connection it had before rows per ad account: its oldest row.

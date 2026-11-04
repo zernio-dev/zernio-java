@@ -6701,11 +6701,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/WebhookPayloadAdCreatedAdObjectAdSetTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAdCreatedAdObjectCampaignTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAdCreatedAdObjectTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAdCreatedTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAdUpdatedTest.java
-src/test/java/dev/zernio/model/WebhookPayloadCampaignCreatedAdObjectTest.java
-src/test/java/dev/zernio/model/WebhookPayloadCampaignCreatedTest.java
-src/test/java/dev/zernio/model/WebhookPayloadCampaignUpdatedTest.java
