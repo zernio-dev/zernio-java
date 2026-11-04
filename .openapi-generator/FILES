@@ -875,6 +875,7 @@ docs/CursorPagination.md
 docs/CustomConversion.md
 docs/CustomConversionResult.md
 docs/CustomFieldsApi.md
+docs/DaysLive.md
 docs/DeactivateSmsRegistration200Response.md
 docs/DeleteAccountGroup200Response.md
 docs/DeleteAdCampaign200Response.md
@@ -1605,6 +1606,7 @@ docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
 docs/HubSpotSettings.md
 docs/IMessageApi.md
+docs/Ids.md
 docs/ImessageAudienceContact.md
 docs/ImessageAudienceContactOptIn.md
 docs/ImessageSandboxContact.md
@@ -2125,6 +2127,7 @@ docs/MoveCampaignParticipant200ResponseSubmissions.md
 docs/MoveCampaignParticipantRequest.md
 docs/MoveWhatsAppNumberToProfile200Response.md
 docs/MoveWhatsAppNumberToProfileRequest.md
+docs/NameOrGoal.md
 docs/OAuthApp.md
 docs/OAuthAppSetup.md
 docs/OAuthAppSetupScopeAreasInner.md
@@ -4288,6 +4291,7 @@ src/main/java/dev/zernio/model/CtwaSingleResponse.java
 src/main/java/dev/zernio/model/CursorPagination.java
 src/main/java/dev/zernio/model/CustomConversion.java
 src/main/java/dev/zernio/model/CustomConversionResult.java
+src/main/java/dev/zernio/model/DaysLive.java
 src/main/java/dev/zernio/model/DeactivateSmsRegistration200Response.java
 src/main/java/dev/zernio/model/DeleteAccountGroup200Response.java
 src/main/java/dev/zernio/model/DeleteAdCampaign200Response.java
@@ -5005,6 +5009,7 @@ src/main/java/dev/zernio/model/HideAdCommentRequest.java
 src/main/java/dev/zernio/model/HideInboxComment200Response.java
 src/main/java/dev/zernio/model/HideInboxCommentRequest.java
 src/main/java/dev/zernio/model/HubSpotSettings.java
+src/main/java/dev/zernio/model/Ids.java
 src/main/java/dev/zernio/model/ImessageAudienceContact.java
 src/main/java/dev/zernio/model/ImessageAudienceContactOptIn.java
 src/main/java/dev/zernio/model/ImessageSandboxContact.java
@@ -5514,6 +5519,7 @@ src/main/java/dev/zernio/model/MoveCampaignParticipant200ResponseSubmissions.jav
 src/main/java/dev/zernio/model/MoveCampaignParticipantRequest.java
 src/main/java/dev/zernio/model/MoveWhatsAppNumberToProfile200Response.java
 src/main/java/dev/zernio/model/MoveWhatsAppNumberToProfileRequest.java
+src/main/java/dev/zernio/model/NameOrGoal.java
 src/main/java/dev/zernio/model/OAuthApp.java
 src/main/java/dev/zernio/model/OAuthAppSetup.java
 src/main/java/dev/zernio/model/OAuthAppSetupScopeAreasInner.java
@@ -6701,3 +6707,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/DaysLiveTest.java
+src/test/java/dev/zernio/model/IdsTest.java
+src/test/java/dev/zernio/model/NameOrGoalTest.java

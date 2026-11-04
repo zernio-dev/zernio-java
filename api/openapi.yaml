@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.481.3
+  version: 1.482.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -112980,8 +112980,10 @@ components:
           - $ref: "#/components/schemas/AdRuleConditions"
           description: Marks an open alert critical.
     AdRuleFilters:
-      description: "Narrows the objects the rule checks. Every filter must hold. Text\
-        \ compares without case, and a missing field reads as empty."
+      description: "Narrows the objects the rule checks. Every filter must hold. A\
+        \ campaign rule reads `name`, `campaign_id`, `goal` and `days_live`; an ad\
+        \ set rule also `campaign_name` and `adset_id`; an ad rule also `adset_name`\
+        \ and `ad_id`."
       items:
         $ref: "#/components/schemas/AdRuleFilters_inner"
       maxItems: 10
@@ -113203,7 +113205,9 @@ components:
           type: array
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ Text compares without case, and a missing field reads as empty."
+            \ A campaign rule reads `name`, `campaign_id`, `goal` and `days_live`;\
+            \ an ad set rule also `campaign_name` and `adset_id`; an ad rule also\
+            \ `adset_name` and `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -157787,7 +157791,9 @@ components:
           type: array
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ Text compares without case, and a missing field reads as empty."
+            \ A campaign rule reads `name`, `campaign_id`, `goal` and `days_live`;\
+            \ an ad set rule also `campaign_name` and `adset_id`; an ad rule also\
+            \ `adset_name` and `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -158379,7 +158385,9 @@ components:
           type: array
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ Text compares without case, and a missing field reads as empty."
+            \ A campaign rule reads `name`, `campaign_id`, `goal` and `days_live`;\
+            \ an ad set rule also `campaign_name` and `adset_id`; an ad rule also\
+            \ `adset_name` and `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -202140,7 +202148,8 @@ components:
       - limit
       - percent
       - type
-    AdRuleFilters_inner:
+    Name_or_goal:
+      description: Compares without case; a missing name reads as empty.
       example:
         op: contains
         field: name
@@ -202171,6 +202180,61 @@ components:
       - field
       - op
       - value
+      title: Name or goal
+    Ids:
+      description: "Picks (`in`) or leaves out (`not_in`) campaigns, ad sets or ads\
+        \ by their platform ids."
+      properties:
+        field:
+          enum:
+          - campaign_id
+          - adset_id
+          - ad_id
+          type: string
+        op:
+          enum:
+          - in
+          - not_in
+          type: string
+        values:
+          items:
+            minLength: 1
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+      required:
+      - field
+      - op
+      - values
+      title: Ids
+    Days_live:
+      description: Days since the object's first ad was created on the platform. An
+        object without that date never passes.
+      properties:
+        field:
+          enum:
+          - days_live
+          type: string
+        op:
+          enum:
+          - '>='
+          - <
+          type: string
+        value:
+          maximum: 3650
+          minimum: 0
+          type: integer
+      required:
+      - field
+      - op
+      - value
+      title: Days live
+    AdRuleFilters_inner:
+      oneOf:
+      - $ref: "#/components/schemas/Name_or_goal"
+      - $ref: "#/components/schemas/Ids"
+      - $ref: "#/components/schemas/Days_live"
     AdRuleSchedule_times_inner:
       example:
         at: 09:00

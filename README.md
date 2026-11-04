@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.481.3
+- API version: 1.482.0
 
-- Build date: 2026-11-04T15:36:38.209868499Z[Etc/UTC]
+- Build date: 2026-11-04T15:48:30.029509366Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.481.3</version>
+  <version>1.482.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.481.3"
+compile "dev.zernio:zernio-sdk:1.482.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.481.3.jar`
+- `target/zernio-sdk-1.482.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3252,6 +3252,7 @@ Class | Method | HTTP request | Description
  - [CursorPagination](docs/CursorPagination.md)
  - [CustomConversion](docs/CustomConversion.md)
  - [CustomConversionResult](docs/CustomConversionResult.md)
+ - [DaysLive](docs/DaysLive.md)
  - [DeactivateSmsRegistration200Response](docs/DeactivateSmsRegistration200Response.md)
  - [DeleteAccountGroup200Response](docs/DeleteAccountGroup200Response.md)
  - [DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
@@ -3969,6 +3970,7 @@ Class | Method | HTTP request | Description
  - [HideInboxComment200Response](docs/HideInboxComment200Response.md)
  - [HideInboxCommentRequest](docs/HideInboxCommentRequest.md)
  - [HubSpotSettings](docs/HubSpotSettings.md)
+ - [Ids](docs/Ids.md)
  - [ImessageAudienceContact](docs/ImessageAudienceContact.md)
  - [ImessageAudienceContactOptIn](docs/ImessageAudienceContactOptIn.md)
  - [ImessageSandboxContact](docs/ImessageSandboxContact.md)
@@ -4478,6 +4480,7 @@ Class | Method | HTTP request | Description
  - [MoveCampaignParticipantRequest](docs/MoveCampaignParticipantRequest.md)
  - [MoveWhatsAppNumberToProfile200Response](docs/MoveWhatsAppNumberToProfile200Response.md)
  - [MoveWhatsAppNumberToProfileRequest](docs/MoveWhatsAppNumberToProfileRequest.md)
+ - [NameOrGoal](docs/NameOrGoal.md)
  - [OAuthApp](docs/OAuthApp.md)
  - [OAuthAppSetup](docs/OAuthAppSetup.md)
  - [OAuthAppSetupScopeAreasInner](docs/OAuthAppSetupScopeAreasInner.md)
