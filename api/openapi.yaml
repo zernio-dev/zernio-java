@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.459.0
+  version: 1.461.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -110841,6 +110841,7 @@ components:
       - $ref: "#/components/schemas/AdRuleAction_oneOf_1"
       - $ref: "#/components/schemas/AdRuleAction_oneOf_2"
       - $ref: "#/components/schemas/AdRuleAction_oneOf_3"
+      - $ref: "#/components/schemas/AdRuleAction_oneOf_4"
     AdRuleActions:
       description: "Each type at most once, and at most one of `pause`, `activate`\
         \ and `adjust_budget`."
@@ -110897,7 +110898,29 @@ components:
               value: 1
         actions:
         - type: notify
+          send:
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
         - type: notify
+          send:
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
         nextRunAt: 2000-01-23T04:56:07.000+00:00
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -155221,7 +155244,29 @@ components:
                 value: 1
           actions:
           - type: notify
+            send:
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
           - type: notify
+            send:
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
           nextRunAt: 2000-01-23T04:56:07.000+00:00
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - lastRunAt: 2000-01-23T04:56:07.000+00:00
@@ -155256,7 +155301,29 @@ components:
                 value: 1
           actions:
           - type: notify
+            send:
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
           - type: notify
+            send:
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
           nextRunAt: 2000-01-23T04:56:07.000+00:00
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -155352,7 +155419,29 @@ components:
                 value: 1
           actions:
           - type: notify
+            send:
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
           - type: notify
+            send:
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
           nextRunAt: 2000-01-23T04:56:07.000+00:00
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -155386,7 +155475,29 @@ components:
               value: 1
         actions:
         - type: notify
+          send:
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
         - type: notify
+          send:
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
+          - accountId: accountId
+            channelId: channelId
         platforms:
         - platforms
         - platforms
@@ -155455,7 +155566,29 @@ components:
                 value: 1
           actions:
           - type: notify
+            send:
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
           - type: notify
+            send:
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
           platforms:
           - platforms
           - platforms
@@ -155483,7 +155616,29 @@ components:
                 value: 1
           actions:
           - type: notify
+            send:
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
           - type: notify
+            send:
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
+            - accountId: accountId
+              channelId: channelId
           platforms:
           - platforms
           - platforms
@@ -198756,15 +198911,70 @@ components:
           type: array
       required:
       - any
+    AdRuleAction_oneOf_send_inner_oneOf:
+      additionalProperties: false
+      example:
+        accountId: accountId
+        channelId: channelId
+      properties:
+        accountId:
+          description: "A connected Slack account (`GET /v1/accounts`, platform `slack`)."
+          type: string
+        channelId:
+          description: The Slack channel to post in. Defaults to the channel the account
+            was connected with; the bot joins public channels on its own.
+          type: string
+      required:
+      - accountId
+    AdRuleAction_oneOf_send_inner_oneOf_1:
+      additionalProperties: false
+      properties:
+        accountId:
+          description: A connected Gmail or Outlook mailbox with email access.
+          type: string
+        to:
+          description: "The address that receives the alert, sent as a new email from\
+            \ that mailbox."
+          format: email
+          type: string
+      required:
+      - accountId
+      - to
+    AdRuleAction_oneOf_send_inner:
+      oneOf:
+      - $ref: "#/components/schemas/AdRuleAction_oneOf_send_inner_oneOf"
+      - $ref: "#/components/schemas/AdRuleAction_oneOf_send_inner_oneOf_1"
     AdRuleAction_oneOf:
       example:
         type: notify
+        send:
+        - accountId: accountId
+          channelId: channelId
+        - accountId: accountId
+          channelId: channelId
+        - accountId: accountId
+          channelId: channelId
+        - accountId: accountId
+          channelId: channelId
+        - accountId: accountId
+          channelId: channelId
       properties:
         type:
-          description: Send the `ad_rule.triggered` webhook.
+          description: "Send the `ad_rule.triggered` webhook, and the alert to every\
+            \ `send` destination."
           enum:
           - notify
           type: string
+        send:
+          description: |
+            Also send a short alert through accounts you connected: what matched, the values and what the rule did. Up to 5 destinations, checked when the rule is saved.
+
+            A destination that fails is reported in the run's `notification`; it never undoes a change.
+          items:
+            $ref: "#/components/schemas/AdRuleAction_oneOf_send_inner"
+          maxItems: 5
+          minItems: 1
+          type: array
       required:
       - type
     AdRuleAction_oneOf_1:
@@ -198801,6 +199011,28 @@ components:
       required:
       - type
     AdRuleAction_oneOf_3:
+      properties:
+        type:
+          description: "Set the daily budget to an exact amount, such as a reset every\
+            \ midnight. Same level rules as the percent change."
+          enum:
+          - adjust_budget
+          type: string
+        amount:
+          description: "The daily budget to set, in the ad account currency. An object\
+            \ already at it is skipped with `already_at_amount`."
+          type: number
+        maxChangesPerDay:
+          description: "At most this many objects changed in any 24 hours, across\
+            \ runs. Matches over the limit are skipped with `daily_limit_reached`\
+            \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
+      required:
+      - amount
+      - type
+    AdRuleAction_oneOf_4:
       properties:
         type:
           description: "Change the daily budget. Not on ad-level rules (an ad has\

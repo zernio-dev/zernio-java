@@ -64,6 +64,10 @@ docs/AdRuleActionOneOf.md
 docs/AdRuleActionOneOf1.md
 docs/AdRuleActionOneOf2.md
 docs/AdRuleActionOneOf3.md
+docs/AdRuleActionOneOf4.md
+docs/AdRuleActionOneOfSendInner.md
+docs/AdRuleActionOneOfSendInnerOneOf.md
+docs/AdRuleActionOneOfSendInnerOneOf1.md
 docs/AdRuleActivityEntry.md
 docs/AdRuleCondition.md
 docs/AdRuleConditionItem.md
@@ -3474,6 +3478,10 @@ src/main/java/dev/zernio/model/AdRuleActionOneOf.java
 src/main/java/dev/zernio/model/AdRuleActionOneOf1.java
 src/main/java/dev/zernio/model/AdRuleActionOneOf2.java
 src/main/java/dev/zernio/model/AdRuleActionOneOf3.java
+src/main/java/dev/zernio/model/AdRuleActionOneOf4.java
+src/main/java/dev/zernio/model/AdRuleActionOneOfSendInner.java
+src/main/java/dev/zernio/model/AdRuleActionOneOfSendInnerOneOf.java
+src/main/java/dev/zernio/model/AdRuleActionOneOfSendInnerOneOf1.java
 src/main/java/dev/zernio/model/AdRuleActivityEntry.java
 src/main/java/dev/zernio/model/AdRuleCondition.java
 src/main/java/dev/zernio/model/AdRuleConditionItem.java
@@ -6653,8 +6661,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/WebhookAutomationRefTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAutomationActionActionTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAutomationActionTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAutomationCheckCompletedCheckTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAutomationCheckCompletedTest.java
+src/test/java/dev/zernio/model/AdRuleActionOneOf4Test.java
+src/test/java/dev/zernio/model/AdRuleActionOneOfSendInnerOneOf1Test.java
+src/test/java/dev/zernio/model/AdRuleActionOneOfSendInnerOneOfTest.java
+src/test/java/dev/zernio/model/AdRuleActionOneOfSendInnerTest.java
