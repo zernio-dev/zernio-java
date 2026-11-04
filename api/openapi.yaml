@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.486.0
+  version: 1.490.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -112884,6 +112884,8 @@ components:
           - frequency
           - daily_budget
           - budget_used
+          - day_of_month
+          - working_day_of_month
           nullable: true
           type: string
         window:
@@ -112894,6 +112896,8 @@ components:
           - last_7d
           - last_14d
           - last_30d
+          - this_month
+          - last_month
           nullable: true
           type: string
         op:
@@ -112914,7 +112918,9 @@ components:
           type: number
         compareTo:
           description: |
-            Makes the condition relative: `value` becomes a ratio of the metric over `window` to the same metric over this window. `previous_period` is the same number of days just before `window`; any other value is a window, such as `30_to_2_days_ago`.
+            Makes the condition relative: `value` becomes a ratio of the metric over `window` to the same metric over this window, such as `30_to_2_days_ago`.
+
+            `previous_period` is the same number of days just before `window`. For `this_month` it is the same days of last month, and for `last_month` the month before.
 
             Spend, impressions, clicks, conversions and reach are compared per day, so windows of different lengths compare fairly; rates such as `cpc` compare as they are. A comparison window with no value never matches.
           example: previous_period
@@ -195727,9 +195733,9 @@ components:
             \ `cpm`, `cpa` or `roas`. New values may be added."
           type: string
         window:
-          description: "`today`, `yesterday`, `last_3d`, `last_7d`, `last_14d` or\
-            \ `last_30d`, in the account's calendar (see `run.today`). New values\
-            \ may be added."
+          description: "`today`, `yesterday`, `last_3d`, `last_7d`, `last_14d`, `last_30d`,\
+            \ `this_month`, `last_month` or a custom range, in the account's calendar\
+            \ (see `run.today`). New values may be added."
           type: string
         op:
           description: "`>`, `>=`, `<`, `<=`, or `top` and `bottom` for a rank condition,\

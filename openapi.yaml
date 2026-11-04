@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Zernio API
-  version: "1.486.0"
+  version: "1.490.0"
   description: |
     API reference for Zernio. Authenticate with a Bearer API key.
     Base URL: https://zernio.com/api
@@ -9499,7 +9499,7 @@ components:
                   required: [metric, window, op, value, actual]
                   properties:
                     metric: { type: string, description: "`spend`, `impressions`, `clicks`, `conversions`, `ctr`, `cpc`, `cpm`, `cpa` or `roas`. New values may be added." }
-                    window: { type: string, description: "`today`, `yesterday`, `last_3d`, `last_7d`, `last_14d` or `last_30d`, in the account's calendar (see `run.today`). New values may be added." }
+                    window: { type: string, description: "`today`, `yesterday`, `last_3d`, `last_7d`, `last_14d`, `last_30d`, `this_month`, `last_month` or a custom range, in the account's calendar (see `run.today`). New values may be added." }
                     op: { type: string, description: "`>`, `>=`, `<`, `<=`, or `top` and `bottom` for a rank condition, whose `actual` is the object's position (1 first)." }
                     value: { type: number, description: The threshold set on the rule. }
                     actual: { type: [number, "null"], description: "The object's value for the metric over the window. Null when it cannot be computed, for example a cost per action with no actions." }
@@ -17438,7 +17438,7 @@ components:
         metric:
           type: string
           anyOf:
-            - enum: [spend, impressions, clicks, conversions, ctr, cpc, cpm, cpa, roas, reach, frequency, daily_budget, budget_used]
+            - enum: [spend, impressions, clicks, conversions, ctr, cpc, cpm, cpa, roas, reach, frequency, daily_budget, budget_used, day_of_month, working_day_of_month]
             - pattern: '^result:[a-z][a-z0-9_]{0,39}$'
           description: |
             `ctr` is a percentage. `spend`, `cpc`, `cpm` and `cpa` are in the ad account currency. `reach` and `frequency` use the platform's de-duplicated reach, so they are accepted on Meta and TikTok only.
@@ -17447,15 +17447,19 @@ components:
 
             Both read campaigns and ad sets with a daily budget of their own. A lifetime budget never matches.
 
+            `day_of_month` and `working_day_of_month` read today's date in the ad account's timezone, the same for every object: `working_day_of_month` `>=` 5 holds from the fifth weekday of the month (Monday to Friday, holidays not counted). They take `window: today`, no `compareTo` and no `top` or `bottom`.
+
             `result:<key>` reads one of your own results (see [Campaign results](/guides/campaign-results)), on campaign rules only: the values you sent for the window, or a formula over them and the platform's numbers. A campaign with no value for it never matches.
           example: 'result:cac_percent'
         window:
           type: string
           anyOf:
-            - enum: [today, yesterday, last_3d, last_7d, last_14d, last_30d]
+            - enum: [today, yesterday, last_3d, last_7d, last_14d, last_30d, this_month, last_month]
             - pattern: '^[0-9]{1,2}_to_[0-9]{1,2}_days_ago$'
           description: |
-            Days in the ad account's own timezone. `last_7d` is the 7 full days before today; only `today` reads the day in progress.
+            Days in the ad account's own timezone. `last_7d` is the 7 full days before today; only `today` and `this_month` read the day in progress.
+
+            `this_month` runs from the 1st through today; `last_month` is the whole previous calendar month.
 
             `<from>_to_<to>_days_ago` is any range of full days, both ends included, such as `8_to_2_days_ago` to skip the 2 most recent days while their conversions still arrive. `from` is at least `to` and at most 90.
           example: last_7d
@@ -17467,7 +17471,9 @@ components:
         compareTo:
           type: string
           description: |
-            Makes the condition relative: `value` becomes a ratio of the metric over `window` to the same metric over this window. `previous_period` is the same number of days just before `window`; any other value is a window, such as `30_to_2_days_ago`.
+            Makes the condition relative: `value` becomes a ratio of the metric over `window` to the same metric over this window, such as `30_to_2_days_ago`.
+
+            `previous_period` is the same number of days just before `window`. For `this_month` it is the same days of last month, and for `last_month` the month before.
 
             Spend, impressions, clicks, conversions and reach are compared per day, so windows of different lengths compare fairly; rates such as `cpc` compare as they are. A comparison window with no value never matches.
           example: previous_period
