@@ -20,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onAccountRateLimitedWithHttpInfo**](WebhookEventsApi.md#onAccountRateLimitedWithHttpInfo) | **POST** /account.rate_limited | Mailbox sending cooldown started |
 | [**onAdAccountStatusChanged**](WebhookEventsApi.md#onAdAccountStatusChanged) | **POST** /ad_account.status_changed | Ad account status changed event |
 | [**onAdAccountStatusChangedWithHttpInfo**](WebhookEventsApi.md#onAdAccountStatusChangedWithHttpInfo) | **POST** /ad_account.status_changed | Ad account status changed event |
+| [**onAdCreated**](WebhookEventsApi.md#onAdCreated) | **POST** /ad.created | Ad created event |
+| [**onAdCreatedWithHttpInfo**](WebhookEventsApi.md#onAdCreatedWithHttpInfo) | **POST** /ad.created | Ad created event |
 | [**onAdDeliveryIssue**](WebhookEventsApi.md#onAdDeliveryIssue) | **POST** /ad.delivery_issue | Ad delivery issue event |
 | [**onAdDeliveryIssueWithHttpInfo**](WebhookEventsApi.md#onAdDeliveryIssueWithHttpInfo) | **POST** /ad.delivery_issue | Ad delivery issue event |
 | [**onAdReviewApproved**](WebhookEventsApi.md#onAdReviewApproved) | **POST** /ad.review.approved | Ad review approved event |
@@ -30,6 +32,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onAdRuleTriggeredWithHttpInfo**](WebhookEventsApi.md#onAdRuleTriggeredWithHttpInfo) | **POST** /ad_rule.triggered | Ad rule triggered event |
 | [**onAdStatusChanged**](WebhookEventsApi.md#onAdStatusChanged) | **POST** /ad.status_changed | Ad status changed event |
 | [**onAdStatusChangedWithHttpInfo**](WebhookEventsApi.md#onAdStatusChangedWithHttpInfo) | **POST** /ad.status_changed | Ad status changed event |
+| [**onAdUpdated**](WebhookEventsApi.md#onAdUpdated) | **POST** /ad.updated | Ad updated event |
+| [**onAdUpdatedWithHttpInfo**](WebhookEventsApi.md#onAdUpdatedWithHttpInfo) | **POST** /ad.updated | Ad updated event |
 | [**onAdVideoProcessed**](WebhookEventsApi.md#onAdVideoProcessed) | **POST** /ad.video.processed | Ad video processed event |
 | [**onAdVideoProcessedWithHttpInfo**](WebhookEventsApi.md#onAdVideoProcessedWithHttpInfo) | **POST** /ad.video.processed | Ad video processed event |
 | [**onAnalyticsSynced**](WebhookEventsApi.md#onAnalyticsSynced) | **POST** /analytics.synced | Analytics synced event |
@@ -72,6 +76,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onCallReceivedWithHttpInfo**](WebhookEventsApi.md#onCallReceivedWithHttpInfo) | **POST** /call.received | Call received event |
 | [**onCampaignBudgetDepleted**](WebhookEventsApi.md#onCampaignBudgetDepleted) | **POST** /campaign.budget.depleted | Campaign budget depleted event |
 | [**onCampaignBudgetDepletedWithHttpInfo**](WebhookEventsApi.md#onCampaignBudgetDepletedWithHttpInfo) | **POST** /campaign.budget.depleted | Campaign budget depleted event |
+| [**onCampaignCreated**](WebhookEventsApi.md#onCampaignCreated) | **POST** /campaign.created | Campaign created event |
+| [**onCampaignCreatedWithHttpInfo**](WebhookEventsApi.md#onCampaignCreatedWithHttpInfo) | **POST** /campaign.created | Campaign created event |
 | [**onCampaignParticipantJoined**](WebhookEventsApi.md#onCampaignParticipantJoined) | **POST** /campaign_participant.joined | Campaign participant joined event |
 | [**onCampaignParticipantJoinedWithHttpInfo**](WebhookEventsApi.md#onCampaignParticipantJoinedWithHttpInfo) | **POST** /campaign_participant.joined | Campaign participant joined event |
 | [**onCampaignParticipantRemoved**](WebhookEventsApi.md#onCampaignParticipantRemoved) | **POST** /campaign_participant.removed | Campaign participant removed event |
@@ -94,6 +100,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onCampaignSubmissionReceivedWithHttpInfo**](WebhookEventsApi.md#onCampaignSubmissionReceivedWithHttpInfo) | **POST** /campaign_submission.received | Campaign submission received event |
 | [**onCampaignSubmissionRejected**](WebhookEventsApi.md#onCampaignSubmissionRejected) | **POST** /campaign_submission.rejected | Campaign submission rejected event |
 | [**onCampaignSubmissionRejectedWithHttpInfo**](WebhookEventsApi.md#onCampaignSubmissionRejectedWithHttpInfo) | **POST** /campaign_submission.rejected | Campaign submission rejected event |
+| [**onCampaignUpdated**](WebhookEventsApi.md#onCampaignUpdated) | **POST** /campaign.updated | Campaign updated event |
+| [**onCampaignUpdatedWithHttpInfo**](WebhookEventsApi.md#onCampaignUpdatedWithHttpInfo) | **POST** /campaign.updated | Campaign updated event |
 | [**onCommentReceived**](WebhookEventsApi.md#onCommentReceived) | **POST** /comment.received | Comment received event |
 | [**onCommentReceivedWithHttpInfo**](WebhookEventsApi.md#onCommentReceivedWithHttpInfo) | **POST** /comment.received | Comment received event |
 | [**onCommerceOrderCreated**](WebhookEventsApi.md#onCommerceOrderCreated) | **POST** /commerce.order.created | Commerce order created event |
@@ -1393,6 +1401,148 @@ ApiResponse<Void>
 | **200** | Webhook received successfully |  -  |
 
 
+## onAdCreated
+
+> void onAdCreated(webhookPayloadAdCreated)
+
+Ad created event
+
+Fired when an ad is created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;). Never for history loaded when an account connects, nor for ads older than 7 days. See &#x60;WebhookPayloadAdCreated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAdCreated webhookPayloadAdCreated = new WebhookPayloadAdCreated(); // WebhookPayloadAdCreated | 
+        try {
+            apiInstance.onAdCreated(webhookPayloadAdCreated);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAdCreated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAdCreated** | [**WebhookPayloadAdCreated**](WebhookPayloadAdCreated.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onAdCreatedWithHttpInfo
+
+> ApiResponse<Void> onAdCreated onAdCreatedWithHttpInfo(webhookPayloadAdCreated)
+
+Ad created event
+
+Fired when an ad is created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;). Never for history loaded when an account connects, nor for ads older than 7 days. See &#x60;WebhookPayloadAdCreated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAdCreated webhookPayloadAdCreated = new WebhookPayloadAdCreated(); // WebhookPayloadAdCreated | 
+        try {
+            ApiResponse<Void> response = apiInstance.onAdCreatedWithHttpInfo(webhookPayloadAdCreated);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAdCreated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAdCreated** | [**WebhookPayloadAdCreated**](WebhookPayloadAdCreated.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
 ## onAdDeliveryIssue
 
 > void onAdDeliveryIssue(webhookPayloadAdDeliveryIssue)
@@ -2082,6 +2232,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadAdStatusChanged** | [**WebhookPayloadAdStatusChanged**](WebhookPayloadAdStatusChanged.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onAdUpdated
+
+> void onAdUpdated(webhookPayloadAdUpdated)
+
+Ad updated event
+
+Fired when an ad is edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or when the sync detects an edit made outside Zernio (&#x60;source: \&quot;platform\&quot;&#x60;). &#x60;changes&#x60; lists the edited fields. See &#x60;WebhookPayloadAdUpdated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAdUpdated webhookPayloadAdUpdated = new WebhookPayloadAdUpdated(); // WebhookPayloadAdUpdated | 
+        try {
+            apiInstance.onAdUpdated(webhookPayloadAdUpdated);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAdUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAdUpdated** | [**WebhookPayloadAdUpdated**](WebhookPayloadAdUpdated.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onAdUpdatedWithHttpInfo
+
+> ApiResponse<Void> onAdUpdated onAdUpdatedWithHttpInfo(webhookPayloadAdUpdated)
+
+Ad updated event
+
+Fired when an ad is edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or when the sync detects an edit made outside Zernio (&#x60;source: \&quot;platform\&quot;&#x60;). &#x60;changes&#x60; lists the edited fields. See &#x60;WebhookPayloadAdUpdated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAdUpdated webhookPayloadAdUpdated = new WebhookPayloadAdUpdated(); // WebhookPayloadAdUpdated | 
+        try {
+            ApiResponse<Void> response = apiInstance.onAdUpdatedWithHttpInfo(webhookPayloadAdUpdated);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAdUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAdUpdated** | [**WebhookPayloadAdUpdated**](WebhookPayloadAdUpdated.md)|  | |
 
 ### Return type
 
@@ -5077,6 +5369,148 @@ ApiResponse<Void>
 | **200** | Webhook received successfully |  -  |
 
 
+## onCampaignCreated
+
+> void onCampaignCreated(webhookPayloadCampaignCreated)
+
+Campaign created event
+
+Fired when a campaign is created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;). Never for history loaded when an account connects, nor for campaigns older than 7 days. See &#x60;WebhookPayloadCampaignCreated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCampaignCreated webhookPayloadCampaignCreated = new WebhookPayloadCampaignCreated(); // WebhookPayloadCampaignCreated | 
+        try {
+            apiInstance.onCampaignCreated(webhookPayloadCampaignCreated);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCampaignCreated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCampaignCreated** | [**WebhookPayloadCampaignCreated**](WebhookPayloadCampaignCreated.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onCampaignCreatedWithHttpInfo
+
+> ApiResponse<Void> onCampaignCreated onCampaignCreatedWithHttpInfo(webhookPayloadCampaignCreated)
+
+Campaign created event
+
+Fired when a campaign is created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;). Never for history loaded when an account connects, nor for campaigns older than 7 days. See &#x60;WebhookPayloadCampaignCreated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCampaignCreated webhookPayloadCampaignCreated = new WebhookPayloadCampaignCreated(); // WebhookPayloadCampaignCreated | 
+        try {
+            ApiResponse<Void> response = apiInstance.onCampaignCreatedWithHttpInfo(webhookPayloadCampaignCreated);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCampaignCreated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCampaignCreated** | [**WebhookPayloadCampaignCreated**](WebhookPayloadCampaignCreated.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
 ## onCampaignParticipantJoined
 
 > void onCampaignParticipantJoined(webhookPayloadCampaignParticipant)
@@ -6618,6 +7052,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadCampaignSubmission** | [**WebhookPayloadCampaignSubmission**](WebhookPayloadCampaignSubmission.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onCampaignUpdated
+
+> void onCampaignUpdated(webhookPayloadCampaignUpdated)
+
+Campaign updated event
+
+Fired when a campaign is edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or when the sync detects an edit made outside Zernio (&#x60;source: \&quot;platform\&quot;&#x60;). &#x60;changes&#x60; lists the edited fields. See &#x60;WebhookPayloadCampaignUpdated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCampaignUpdated webhookPayloadCampaignUpdated = new WebhookPayloadCampaignUpdated(); // WebhookPayloadCampaignUpdated | 
+        try {
+            apiInstance.onCampaignUpdated(webhookPayloadCampaignUpdated);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCampaignUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCampaignUpdated** | [**WebhookPayloadCampaignUpdated**](WebhookPayloadCampaignUpdated.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onCampaignUpdatedWithHttpInfo
+
+> ApiResponse<Void> onCampaignUpdated onCampaignUpdatedWithHttpInfo(webhookPayloadCampaignUpdated)
+
+Campaign updated event
+
+Fired when a campaign is edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or when the sync detects an edit made outside Zernio (&#x60;source: \&quot;platform\&quot;&#x60;). &#x60;changes&#x60; lists the edited fields. See &#x60;WebhookPayloadCampaignUpdated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCampaignUpdated webhookPayloadCampaignUpdated = new WebhookPayloadCampaignUpdated(); // WebhookPayloadCampaignUpdated | 
+        try {
+            ApiResponse<Void> response = apiInstance.onCampaignUpdatedWithHttpInfo(webhookPayloadCampaignUpdated);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCampaignUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCampaignUpdated** | [**WebhookPayloadCampaignUpdated**](WebhookPayloadCampaignUpdated.md)|  | |
 
 ### Return type
 

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.476.1
+  version: 1.480.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -446,7 +446,7 @@ tags:
     - Messages: `message.received`, `message.sent`, `message.edited`, `message.deleted`, `message.delivered`, `message.read`, `message.played`, `message.failed`, `reaction.received`, `referral.received`, `conversation.started`, `conversation.control_changed`
     - Calls: `call.received`, `call.ended`, `call.failed`, `call.permission_request`
     - Engagement and leads: `comment.received`, `review.new`, `review.updated`, `review.deleted`, `review.restored`, `lead.received`
-    - Ads: `ad.status_changed`, `ad.review.approved`, `ad.review.rejected`, `ad.delivery_issue`, `campaign.budget.depleted`, `ad_account.status_changed`, `ad.video.processed`, `ad_rule.triggered`
+    - Ads: `ad.status_changed`, `ad.created`, `ad.updated`, `campaign.created`, `campaign.updated`, `ad.review.approved`, `ad.review.rejected`, `ad.delivery_issue`, `campaign.budget.depleted`, `ad_account.status_changed`, `ad.video.processed`, `ad_rule.triggered`
     - WhatsApp: `whatsapp.template.status_updated`, `whatsapp.template.category_updated`, `whatsapp.account.name_status_updated`, `whatsapp.account.quality_updated`, `whatsapp.account.status_updated`, `whatsapp.account.alert_received`, `whatsapp.contact.identity_changed`, `whatsapp.automatic_event`
     - WhatsApp numbers: `whatsapp.number.activated`, `whatsapp.number.declined`, `whatsapp.number.action_required`, `whatsapp.number.verification_required`, `whatsapp.number.suspended`, `whatsapp.number.reactivated`, `whatsapp.number.released`, `whatsapp.number.kyc_submitted`
     - Telephony: `phone_number.stock_available`, `verification.approved`, `verification.failed`, `sms.registration.action_required`, `sms.registration.status_updated`, `branded_calling.identity.status_updated`, `branded_calling.identity.action_required`, `branded_calling.number.status_updated`, `rcs.agent.status_updated`
@@ -84919,6 +84919,10 @@ components:
             - review.restored
             - lead.received
             - ad.status_changed
+            - ad.created
+            - ad.updated
+            - campaign.created
+            - campaign.updated
             - ad.review.approved
             - ad.review.rejected
             - ad.delivery_issue
@@ -91334,6 +91338,358 @@ components:
       - id
       - timestamp
       - video
+    WebhookPayloadAdCreated:
+      description: |
+        Webhook payload for the `ad.created` event. Fires when an ad is created through Zernio (API, MCP or dashboard) or detected by the sync, once per ad, after its campaign and ad set are recorded so `GET /v1/ads/{adId}` finds them.
+
+        `source` is `zernio` for ads created through Zernio and `platform` for ads our sync detected, up to one sync interval later (Meta ads entering review usually arrive within minutes). History loaded when an account connects, and ads created more than 7 days ago, are never announced.
+
+        An ad is announced at most once per 24 hours.
+      example:
+        test: true
+        adObject:
+          adId: adId
+          level: AD
+          name: name
+          campaign:
+            platformCampaignId: platformCampaignId
+            name: name
+          adSet:
+            platformAdSetId: platformAdSetId
+            name: name
+          platformId: platformId
+          platformAdAccountId: platformAdAccountId
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        source: zernio
+        event: ad.created
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: tiktokads
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - ad.created
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookAdsAccount"
+        adObject:
+          $ref: "#/components/schemas/WebhookPayloadAdCreated_adObject"
+        source:
+          description: "Where the ad was created. `zernio` for ads created through\
+            \ Zernio, `platform` for ads the sync detected."
+          enum:
+          - zernio
+          - platform
+          type: string
+        timestamp:
+          description: UTC time at which Zernio generated this event.
+          format: date-time
+          type: string
+      required:
+      - account
+      - adObject
+      - event
+      - id
+      - source
+      - timestamp
+    WebhookPayloadAdUpdated:
+      description: |
+        Webhook payload for the `ad.updated` event. Fires when an ad is edited through Zernio (API, MCP or dashboard), after the platform and Zernio both accepted the edit, or when the sync detects an edit made outside Zernio. It is sent once, to the owner of the edited ad.
+
+        `source` is `zernio` for edits through Zernio, `platform` for edits the sync detected outside Zernio, up to one sync interval late. From the sync, `changes` covers only `name` and `status`.
+
+        Budget, bid, schedule and targeting edits made outside Zernio are not announced on the ad. Never for history loaded when an account connects. Tracking tag edits are not announced, and an ad rule that changes an ad arrives as `ad_rule.triggered`.
+
+        `platformId` can change when a LinkedIn creative is replaced, while `adId` stays stable.
+
+        `changes` names the edited fields and never their values: read the ad with `GET /v1/ads/{adId}` for the current state. Ignore values you do not know, new ones can be added.
+
+        Events are not deduplicated: every edit is announced. Use the event `id` to drop repeats.
+      example:
+        test: true
+        adObject:
+          adId: adId
+          level: AD
+          name: name
+          campaign:
+            platformCampaignId: platformCampaignId
+            name: name
+          adSet:
+            platformAdSetId: platformAdSetId
+            name: name
+          platformId: platformId
+          platformAdAccountId: platformAdAccountId
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        changes:
+        - name
+        - name
+        id: id
+        source: zernio
+        event: ad.updated
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: tiktokads
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - ad.updated
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookAdsAccount"
+        adObject:
+          $ref: "#/components/schemas/WebhookPayloadAdCreated_adObject"
+        changes:
+          description: Fields edited by this request. `status` is the ad's own on/off
+            switch. Ignore values you do not know.
+          items:
+            enum:
+            - name
+            - status
+            - budget
+            - bid
+            - schedule
+            - targeting
+            - creative
+            - settings
+            type: string
+          type: array
+        source:
+          description: "Where the edit was made. `zernio` for edits through Zernio,\
+            \ `platform` for edits the sync detected outside Zernio."
+          enum:
+          - zernio
+          - platform
+          type: string
+        timestamp:
+          description: UTC time at which Zernio generated this event.
+          format: date-time
+          type: string
+      required:
+      - account
+      - adObject
+      - changes
+      - event
+      - id
+      - source
+      - timestamp
+    WebhookPayloadCampaignCreated:
+      description: |
+        Webhook payload for the `campaign.created` event. Fires when a campaign is created through Zernio (API, MCP or dashboard) or detected by the sync, once per campaign, after its row is recorded so `GET /v1/ads/campaigns/{campaignId}` finds it.
+
+        `source` is `zernio` for campaigns created through Zernio and `platform` for campaigns our sync detected, up to one sync interval later. History loaded when an account connects, and campaigns created more than 7 days ago, are never announced.
+
+        A campaign is announced at most once per 24 hours.
+      example:
+        test: true
+        adObject:
+          level: CAMPAIGN
+          name: name
+          platformId: platformId
+          platformAdAccountId: platformAdAccountId
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        source: zernio
+        event: campaign.created
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: tiktokads
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - campaign.created
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookAdsAccount"
+        adObject:
+          $ref: "#/components/schemas/WebhookPayloadCampaignCreated_adObject"
+        source:
+          description: "Where the campaign was created. `zernio` for campaigns created\
+            \ through Zernio, `platform` for campaigns the sync detected."
+          enum:
+          - zernio
+          - platform
+          type: string
+        timestamp:
+          description: UTC time at which Zernio generated this event.
+          format: date-time
+          type: string
+      required:
+      - account
+      - adObject
+      - event
+      - id
+      - source
+      - timestamp
+    WebhookPayloadCampaignUpdated:
+      description: |
+        Webhook payload for the `campaign.updated` event. Fires when a campaign is edited through Zernio (API, MCP or dashboard), after the platform and Zernio both accepted the edit, once per user who can see the campaign. It also fires when the sync detects an edit made outside Zernio.
+
+        `source` is `zernio` for edits through Zernio, `platform` for edits the sync detected outside Zernio, up to one sync interval late, sent only to the user whose sync saw it.
+
+        From the sync, `changes` covers only `name`, `status` and `schedule` (schedule only on Google, LinkedIn, Pinterest and OpenAI Ads). Budget edits made outside Zernio are not announced. Never for history loaded when an account connects. An ad rule that changes a campaign arrives as `ad_rule.triggered`.
+
+        Ad set edits and Google sub-resource edits (ad schedule, targeting, negative keywords, conversion goals, assets, asset groups, listing group filters) are not announced.
+
+        `changes` names the edited fields and never their values: read the campaign with `GET /v1/ads/campaigns/{campaignId}` for the current state. Ignore values you do not know, new ones can be added.
+
+        Events are not deduplicated: every edit is announced. Use the event `id` to drop repeats.
+      example:
+        test: true
+        adObject:
+          level: CAMPAIGN
+          name: name
+          platformId: platformId
+          platformAdAccountId: platformAdAccountId
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        changes:
+        - name
+        - name
+        id: id
+        source: zernio
+        event: campaign.updated
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: tiktokads
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - campaign.updated
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookAdsAccount"
+        adObject:
+          $ref: "#/components/schemas/WebhookPayloadCampaignCreated_adObject"
+        changes:
+          description: Fields edited by this request. `status` is the campaign's own
+            on/off switch. Ignore values you do not know.
+          items:
+            enum:
+            - name
+            - status
+            - budget
+            - bid
+            - schedule
+            - targeting
+            - creative
+            - settings
+            type: string
+          type: array
+        source:
+          description: "Where the edit was made. `zernio` for edits through Zernio,\
+            \ `platform` for edits the sync detected outside Zernio."
+          enum:
+          - zernio
+          - platform
+          type: string
+        timestamp:
+          description: UTC time at which Zernio generated this event.
+          format: date-time
+          type: string
+      required:
+      - account
+      - adObject
+      - changes
+      - event
+      - id
+      - source
+      - timestamp
     WebhookPayloadAdReview:
       description: |
         Webhook payload for the `ad.review.approved` and `ad.review.rejected` events. Emitted for every ad network Zernio syncs (Meta, Google, TikTok, LinkedIn, Pinterest, X, Reddit and the rest).
@@ -131324,6 +131680,10 @@ components:
             - review.restored
             - lead.received
             - ad.status_changed
+            - ad.created
+            - ad.updated
+            - campaign.created
+            - campaign.updated
             - ad.review.approved
             - ad.review.rejected
             - ad.delivery_issue
@@ -131548,6 +131908,10 @@ components:
             - review.restored
             - lead.received
             - ad.status_changed
+            - ad.created
+            - ad.updated
+            - campaign.created
+            - campaign.updated
             - ad.review.approved
             - ad.review.rejected
             - ad.delivery_issue
@@ -131850,6 +132214,10 @@ components:
           - review.deleted
           - review.restored
           - ad.status_changed
+          - ad.created
+          - ad.updated
+          - campaign.created
+          - campaign.updated
           - ad.review.approved
           - ad.review.rejected
           - ad.delivery_issue
@@ -193442,6 +193810,103 @@ components:
       - platformAdAccountId
       - status
       - thumbnailUrl
+    WebhookPayloadAdCreated_adObject_campaign:
+      description: "The campaign the ad belongs to, or null when the platform has\
+        \ none."
+      example:
+        platformCampaignId: platformCampaignId
+        name: name
+      properties:
+        platformCampaignId:
+          type: string
+        name:
+          nullable: true
+          type: string
+      required:
+      - name
+      - platformCampaignId
+    WebhookPayloadAdCreated_adObject_adSet:
+      description: "The ad set the ad belongs to, or null when the platform has none."
+      example:
+        platformAdSetId: platformAdSetId
+        name: name
+      properties:
+        platformAdSetId:
+          type: string
+        name:
+          nullable: true
+          type: string
+      required:
+      - name
+      - platformAdSetId
+    WebhookPayloadAdCreated_adObject:
+      example:
+        adId: adId
+        level: AD
+        name: name
+        campaign:
+          platformCampaignId: platformCampaignId
+          name: name
+        adSet:
+          platformAdSetId: platformAdSetId
+          name: name
+        platformId: platformId
+        platformAdAccountId: platformAdAccountId
+      properties:
+        level:
+          description: Always `AD`.
+          enum:
+          - AD
+          type: string
+        platformId:
+          description: Platform-native ad ID.
+          type: string
+        platformAdAccountId:
+          description: Platform-native ad account ID.
+          type: string
+        adId:
+          description: "Zernio ad ID, usable with GET /v1/ads/{adId}."
+          type: string
+        name:
+          type: string
+        campaign:
+          $ref: "#/components/schemas/WebhookPayloadAdCreated_adObject_campaign"
+        adSet:
+          $ref: "#/components/schemas/WebhookPayloadAdCreated_adObject_adSet"
+      required:
+      - adId
+      - adSet
+      - campaign
+      - level
+      - name
+      - platformAdAccountId
+      - platformId
+    WebhookPayloadCampaignCreated_adObject:
+      example:
+        level: CAMPAIGN
+        name: name
+        platformId: platformId
+        platformAdAccountId: platformAdAccountId
+      properties:
+        level:
+          description: Always `CAMPAIGN`.
+          enum:
+          - CAMPAIGN
+          type: string
+        platformId:
+          description: "Platform-native campaign ID, usable as campaignId with /v1/ads/campaigns/{campaignId}."
+          type: string
+        platformAdAccountId:
+          description: Platform-native ad account ID.
+          type: string
+        name:
+          nullable: true
+          type: string
+      required:
+      - level
+      - name
+      - platformAdAccountId
+      - platformId
     WebhookPayloadAdReview_adObject:
       example:
         adId: adId
@@ -201715,6 +202180,10 @@ x-documentation:
     - `review.restored` - A review reported by `review.deleted` is returned by Google again. Same payload as `review.new`.
     - `lead.received` - New lead submitted against a Meta Lead Gen (Instant) Form. `lead.fields` is the question-key → answer map; `lead.formId`/`lead.adId` give provenance.
     - `ad.status_changed` - Ad, ad set, or campaign changed status on the ad platform (Meta: `in_process_ad_objects` entry/exit and `with_issues_ad_objects` violations)
+    - `ad.created` - An ad was created through Zernio (`source` is `zernio`) or detected by the sync (`source` is `platform`). Never for history loaded when an account connects, nor for ads older than 7 days
+    - `ad.updated` - An ad was edited through Zernio (API, MCP or dashboard) or outside it. `changes` lists the edited fields. `source` is `zernio` for edits through Zernio, `platform` for edits the sync detected outside Zernio, up to one sync interval late. From the sync, `changes` covers only `name` and `status`. Budget, bid, schedule and targeting edits made outside Zernio are not announced on the ad. Never for history loaded when an account connects
+    - `campaign.created` - A campaign was created through Zernio (`source` is `zernio`) or detected by the sync (`source` is `platform`). Never for history loaded when an account connects, nor for campaigns older than 7 days
+    - `campaign.updated` - A campaign was edited through Zernio (API, MCP or dashboard) or outside it. `changes` lists the edited fields. `source` is `zernio` for edits through Zernio, `platform` for edits the sync detected outside Zernio, up to one sync interval late. From the sync, `changes` covers only `name`, `status` and `schedule` (schedule only on Google, LinkedIn, Pinterest and OpenAI Ads), sent only to the user whose sync saw it. Budget edits made outside Zernio are not announced. Never for history loaded when an account connects
     - `ad.review.approved` - An ad Zernio already tracked passed platform review, or a rejection was overturned (every ad network)
     - `ad.review.rejected` - An ad Zernio already tracked was rejected in platform review (every ad network). `review.reasons` carries the platform's reason when it gives one
     - `ad.delivery_issue` - An ad Zernio already tracked stopped delivering for a platform reason (Meta `WITH_ISSUES`, TikTok account or balance problems). `issue.reasons` carries Meta's messages

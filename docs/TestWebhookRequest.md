@@ -93,6 +93,10 @@
 | REVIEW_DELETED | &quot;review.deleted&quot; |
 | REVIEW_RESTORED | &quot;review.restored&quot; |
 | AD_STATUS_CHANGED | &quot;ad.status_changed&quot; |
+| AD_CREATED | &quot;ad.created&quot; |
+| AD_UPDATED | &quot;ad.updated&quot; |
+| CAMPAIGN_CREATED | &quot;campaign.created&quot; |
+| CAMPAIGN_UPDATED | &quot;campaign.updated&quot; |
 | AD_REVIEW_APPROVED | &quot;ad.review.approved&quot; |
 | AD_REVIEW_REJECTED | &quot;ad.review.rejected&quot; |
 | AD_DELIVERY_ISSUE | &quot;ad.delivery_issue&quot; |

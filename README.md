@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.476.1
+- API version: 1.480.0
 
-- Build date: 2026-11-04T12:15:02.795737979Z[Etc/UTC]
+- Build date: 2026-11-04T12:23:45.635541355Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.476.1</version>
+  <version>1.480.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.476.1"
+compile "dev.zernio:zernio-sdk:1.480.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.476.1.jar`
+- `target/zernio-sdk-1.480.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -5414,6 +5414,10 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAdAccountStatusChanged](docs/WebhookPayloadAdAccountStatusChanged.md)
  - [WebhookPayloadAdAccountStatusChangedAdAccount](docs/WebhookPayloadAdAccountStatusChangedAdAccount.md)
  - [WebhookPayloadAdAccountStatusChangedStatus](docs/WebhookPayloadAdAccountStatusChangedStatus.md)
+ - [WebhookPayloadAdCreated](docs/WebhookPayloadAdCreated.md)
+ - [WebhookPayloadAdCreatedAdObject](docs/WebhookPayloadAdCreatedAdObject.md)
+ - [WebhookPayloadAdCreatedAdObjectAdSet](docs/WebhookPayloadAdCreatedAdObjectAdSet.md)
+ - [WebhookPayloadAdCreatedAdObjectCampaign](docs/WebhookPayloadAdCreatedAdObjectCampaign.md)
  - [WebhookPayloadAdDeliveryIssue](docs/WebhookPayloadAdDeliveryIssue.md)
  - [WebhookPayloadAdDeliveryIssueIssue](docs/WebhookPayloadAdDeliveryIssueIssue.md)
  - [WebhookPayloadAdReview](docs/WebhookPayloadAdReview.md)
@@ -5431,6 +5435,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAdStatusChangedAdObject](docs/WebhookPayloadAdStatusChangedAdObject.md)
  - [WebhookPayloadAdStatusChangedError](docs/WebhookPayloadAdStatusChangedError.md)
  - [WebhookPayloadAdStatusChangedStatus](docs/WebhookPayloadAdStatusChangedStatus.md)
+ - [WebhookPayloadAdUpdated](docs/WebhookPayloadAdUpdated.md)
  - [WebhookPayloadAdVideoProcessed](docs/WebhookPayloadAdVideoProcessed.md)
  - [WebhookPayloadAdVideoProcessedAccount](docs/WebhookPayloadAdVideoProcessedAccount.md)
  - [WebhookPayloadAdVideoProcessedVideo](docs/WebhookPayloadAdVideoProcessedVideo.md)
@@ -5459,6 +5464,8 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadCampaignBudgetDepleted](docs/WebhookPayloadCampaignBudgetDepleted.md)
  - [WebhookPayloadCampaignBudgetDepletedAdObject](docs/WebhookPayloadCampaignBudgetDepletedAdObject.md)
  - [WebhookPayloadCampaignBudgetDepletedBudget](docs/WebhookPayloadCampaignBudgetDepletedBudget.md)
+ - [WebhookPayloadCampaignCreated](docs/WebhookPayloadCampaignCreated.md)
+ - [WebhookPayloadCampaignCreatedAdObject](docs/WebhookPayloadCampaignCreatedAdObject.md)
  - [WebhookPayloadCampaignParticipant](docs/WebhookPayloadCampaignParticipant.md)
  - [WebhookPayloadCampaignParticipantParticipant](docs/WebhookPayloadCampaignParticipantParticipant.md)
  - [WebhookPayloadCampaignPayout](docs/WebhookPayloadCampaignPayout.md)
@@ -5471,6 +5478,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadCampaignSubmissionParticipant](docs/WebhookPayloadCampaignSubmissionParticipant.md)
  - [WebhookPayloadCampaignSubmissionSubmission](docs/WebhookPayloadCampaignSubmissionSubmission.md)
  - [WebhookPayloadCampaignSubmissionSubmissionFlagsInner](docs/WebhookPayloadCampaignSubmissionSubmissionFlagsInner.md)
+ - [WebhookPayloadCampaignUpdated](docs/WebhookPayloadCampaignUpdated.md)
  - [WebhookPayloadComment](docs/WebhookPayloadComment.md)
  - [WebhookPayloadCommentAccount](docs/WebhookPayloadCommentAccount.md)
  - [WebhookPayloadCommentComment](docs/WebhookPayloadCommentComment.md)

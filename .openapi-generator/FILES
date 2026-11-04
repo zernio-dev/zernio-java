@@ -3084,6 +3084,10 @@ docs/WebhookPayloadAccountRateLimitedAccount.md
 docs/WebhookPayloadAdAccountStatusChanged.md
 docs/WebhookPayloadAdAccountStatusChangedAdAccount.md
 docs/WebhookPayloadAdAccountStatusChangedStatus.md
+docs/WebhookPayloadAdCreated.md
+docs/WebhookPayloadAdCreatedAdObject.md
+docs/WebhookPayloadAdCreatedAdObjectAdSet.md
+docs/WebhookPayloadAdCreatedAdObjectCampaign.md
 docs/WebhookPayloadAdDeliveryIssue.md
 docs/WebhookPayloadAdDeliveryIssueIssue.md
 docs/WebhookPayloadAdReview.md
@@ -3101,6 +3105,7 @@ docs/WebhookPayloadAdStatusChangedAccount.md
 docs/WebhookPayloadAdStatusChangedAdObject.md
 docs/WebhookPayloadAdStatusChangedError.md
 docs/WebhookPayloadAdStatusChangedStatus.md
+docs/WebhookPayloadAdUpdated.md
 docs/WebhookPayloadAdVideoProcessed.md
 docs/WebhookPayloadAdVideoProcessedAccount.md
 docs/WebhookPayloadAdVideoProcessedVideo.md
@@ -3129,6 +3134,8 @@ docs/WebhookPayloadCallReceivedCall.md
 docs/WebhookPayloadCampaignBudgetDepleted.md
 docs/WebhookPayloadCampaignBudgetDepletedAdObject.md
 docs/WebhookPayloadCampaignBudgetDepletedBudget.md
+docs/WebhookPayloadCampaignCreated.md
+docs/WebhookPayloadCampaignCreatedAdObject.md
 docs/WebhookPayloadCampaignParticipant.md
 docs/WebhookPayloadCampaignParticipantParticipant.md
 docs/WebhookPayloadCampaignPayout.md
@@ -3141,6 +3148,7 @@ docs/WebhookPayloadCampaignSubmissionCreator.md
 docs/WebhookPayloadCampaignSubmissionParticipant.md
 docs/WebhookPayloadCampaignSubmissionSubmission.md
 docs/WebhookPayloadCampaignSubmissionSubmissionFlagsInner.md
+docs/WebhookPayloadCampaignUpdated.md
 docs/WebhookPayloadComment.md
 docs/WebhookPayloadCommentAccount.md
 docs/WebhookPayloadCommentComment.md
@@ -6442,6 +6450,10 @@ src/main/java/dev/zernio/model/WebhookPayloadAccountRateLimitedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAdAccountStatusChanged.java
 src/main/java/dev/zernio/model/WebhookPayloadAdAccountStatusChangedAdAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAdAccountStatusChangedStatus.java
+src/main/java/dev/zernio/model/WebhookPayloadAdCreated.java
+src/main/java/dev/zernio/model/WebhookPayloadAdCreatedAdObject.java
+src/main/java/dev/zernio/model/WebhookPayloadAdCreatedAdObjectAdSet.java
+src/main/java/dev/zernio/model/WebhookPayloadAdCreatedAdObjectCampaign.java
 src/main/java/dev/zernio/model/WebhookPayloadAdDeliveryIssue.java
 src/main/java/dev/zernio/model/WebhookPayloadAdDeliveryIssueIssue.java
 src/main/java/dev/zernio/model/WebhookPayloadAdReview.java
@@ -6459,6 +6471,7 @@ src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedAdObject.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedError.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedStatus.java
+src/main/java/dev/zernio/model/WebhookPayloadAdUpdated.java
 src/main/java/dev/zernio/model/WebhookPayloadAdVideoProcessed.java
 src/main/java/dev/zernio/model/WebhookPayloadAdVideoProcessedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAdVideoProcessedVideo.java
@@ -6487,6 +6500,8 @@ src/main/java/dev/zernio/model/WebhookPayloadCallReceivedCall.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignBudgetDepleted.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignBudgetDepletedAdObject.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignBudgetDepletedBudget.java
+src/main/java/dev/zernio/model/WebhookPayloadCampaignCreated.java
+src/main/java/dev/zernio/model/WebhookPayloadCampaignCreatedAdObject.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignParticipant.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignParticipantParticipant.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignPayout.java
@@ -6499,6 +6514,7 @@ src/main/java/dev/zernio/model/WebhookPayloadCampaignSubmissionCreator.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignSubmissionParticipant.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignSubmissionSubmission.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignSubmissionSubmissionFlagsInner.java
+src/main/java/dev/zernio/model/WebhookPayloadCampaignUpdated.java
 src/main/java/dev/zernio/model/WebhookPayloadComment.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentComment.java
@@ -6685,3 +6701,11 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookPayloadAdCreatedAdObjectAdSetTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdCreatedAdObjectCampaignTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdCreatedAdObjectTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdCreatedTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdUpdatedTest.java
+src/test/java/dev/zernio/model/WebhookPayloadCampaignCreatedAdObjectTest.java
+src/test/java/dev/zernio/model/WebhookPayloadCampaignCreatedTest.java
+src/test/java/dev/zernio/model/WebhookPayloadCampaignUpdatedTest.java
