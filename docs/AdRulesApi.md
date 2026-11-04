@@ -1441,7 +1441,7 @@ ApiResponse<[**AdRuleEvaluation**](AdRuleEvaluation.md)>
 
 Undo a change an ad rule made
 
-Puts back a pause, a reactivation or a budget change a rule applied, as a new change recorded in the activity feed. The rule&#39;s cooldown then covers the object.  It is refused (409 &#x60;invalid_resource_state&#x60;) when the change was not applied, was already undone, is a copy, or when the object changed since: delivering again after a pause, paused again after a reactivation, or on another budget. 
+Puts back a pause, reactivation, budget or bid change, or name tag a rule applied, as a new change recorded in the activity feed. The rule&#39;s cooldown then covers the object.  It is refused (409 &#x60;invalid_resource_state&#x60;) when the change was not applied, was already undone, is a copy, or when the object changed since: delivering again after a pause, paused again after a reactivation, or on another budget, bid or name. 
 
 ### Example
 
@@ -1518,7 +1518,7 @@ public class Example {
 
 Undo a change an ad rule made
 
-Puts back a pause, a reactivation or a budget change a rule applied, as a new change recorded in the activity feed. The rule&#39;s cooldown then covers the object.  It is refused (409 &#x60;invalid_resource_state&#x60;) when the change was not applied, was already undone, is a copy, or when the object changed since: delivering again after a pause, paused again after a reactivation, or on another budget. 
+Puts back a pause, reactivation, budget or bid change, or name tag a rule applied, as a new change recorded in the activity feed. The rule&#39;s cooldown then covers the object.  It is refused (409 &#x60;invalid_resource_state&#x60;) when the change was not applied, was already undone, is a copy, or when the object changed since: delivering again after a pause, paused again after a reactivation, or on another budget, bid or name. 
 
 ### Example
 
