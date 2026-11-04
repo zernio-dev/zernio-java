@@ -55,7 +55,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Disconnect account
 
-Disconnects and removes a connected account. Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
+Disconnects and removes a connected account, and fires account.disconnected with disconnectionType intentional.  The account is kept for a 1h grace window. Reconnecting the same account within it restores it with the same accountId and its scheduled posts. After that it is deleted permanently.  Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
 
 ### Example
 
@@ -127,7 +127,7 @@ public class Example {
 
 Disconnect account
 
-Disconnects and removes a connected account. Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
+Disconnects and removes a connected account, and fires account.disconnected with disconnectionType intentional.  The account is kept for a 1h grace window. Reconnecting the same account within it restores it with the same accountId and its scheduled posts. After that it is deleted permanently.  Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
 
 ### Example
 

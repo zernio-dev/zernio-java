@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.491.0
+  version: 1.492.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -8587,8 +8587,9 @@ paths:
           example: twitter
           type: string
         style: form
-      - description: "Filter posts to a specific profile (24-char hex ObjectId). Omit\
-          \ it, or send `all` or an empty value, to list posts across every profile."
+      - description: "Filter posts to a specific profile (24-char hex ObjectId), including\
+          \ drafts filed under it without platforms. Omit it, or send `all` or an\
+          \ empty value, to list posts across every profile."
         explode: true
         in: query
         name: profileId
@@ -11470,9 +11471,12 @@ paths:
       - application/json
   /v1/accounts/{accountId}:
     delete:
-      description: "Disconnects and removes a connected account. Repeating the call\
-        \ for an account already disconnected returns 404, the account stays in its\
-        \ 1h grace window and the disconnect is not re-run."
+      description: |-
+        Disconnects and removes a connected account, and fires account.disconnected with disconnectionType intentional.
+
+        The account is kept for a 1h grace window. Reconnecting the same account within it restores it with the same accountId and its scheduled posts. After that it is deleted permanently.
+
+        Repeating the call for an account already disconnected returns 404, the account stays in its 1h grace window and the disconnect is not re-run.
       operationId: deleteAccount
       parameters:
       - explode: false
@@ -95596,6 +95600,7 @@ components:
           instagramThumbnail: https://openapi-generator.tech
           fileId: fileId
         queuedFromProfile: queuedFromProfile
+        profileId: profileId
         scheduledFor: 2000-01-23T04:56:07.000+00:00
         mentions:
         - mentions
@@ -95685,6 +95690,10 @@ components:
           type: string
         queueId:
           description: Queue ID if the post was scheduled via a specific queue
+          type: string
+        profileId:
+          description: Profile the post is filed under. Set only on drafts that have
+            no platforms.
           type: string
         createdAt:
           format: date-time
@@ -100731,6 +100740,7 @@ components:
             instagramThumbnail: https://openapi-generator.tech
             fileId: fileId
           queuedFromProfile: queuedFromProfile
+          profileId: profileId
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           mentions:
           - mentions
@@ -100955,6 +100965,7 @@ components:
             instagramThumbnail: https://openapi-generator.tech
             fileId: fileId
           queuedFromProfile: queuedFromProfile
+          profileId: profileId
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           mentions:
           - mentions
@@ -101189,6 +101200,7 @@ components:
             instagramThumbnail: https://openapi-generator.tech
             fileId: fileId
           queuedFromProfile: queuedFromProfile
+          profileId: profileId
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           mentions:
           - mentions
@@ -101692,6 +101704,7 @@ components:
             instagramThumbnail: https://openapi-generator.tech
             fileId: fileId
           queuedFromProfile: queuedFromProfile
+          profileId: profileId
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           mentions:
           - mentions
@@ -101936,6 +101949,7 @@ components:
             instagramThumbnail: https://openapi-generator.tech
             fileId: fileId
           queuedFromProfile: queuedFromProfile
+          profileId: profileId
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           mentions:
           - mentions
@@ -102179,6 +102193,7 @@ components:
             instagramThumbnail: https://openapi-generator.tech
             fileId: fileId
           queuedFromProfile: queuedFromProfile
+          profileId: profileId
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           mentions:
           - mentions
@@ -102449,6 +102464,7 @@ components:
             instagramThumbnail: https://openapi-generator.tech
             fileId: fileId
           queuedFromProfile: queuedFromProfile
+          profileId: profileId
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           mentions:
           - mentions
@@ -121799,6 +121815,12 @@ components:
             Only used when queuedFromProfile is also provided.
             If omitted, uses the profile's default queue.
           type: string
+        profileId:
+          description: "Files a draft with no platforms under this profile so it lists\
+            \ under ?profileId= and profile-scoped API keys. Ignored when platforms\
+            \ are set. When promoting the draft via PUT, send platforms, isDraft false\
+            \ and scheduledFor again."
+          type: string
     createPost_200_response:
       oneOf:
       - $ref: "#/components/schemas/TikTokDryRunVerdict"
@@ -122350,6 +122372,7 @@ components:
             instagramThumbnail: https://openapi-generator.tech
             fileId: fileId
           queuedFromProfile: queuedFromProfile
+          profileId: profileId
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           mentions:
           - mentions
@@ -192238,8 +192261,10 @@ components:
         displayName:
           type: string
         disconnectionType:
-          description: Whether the disconnection was intentional (user action) or
-            unintentional (token expired/revoked)
+          description: |-
+            intentional: removed on purpose, for example with DELETE /v1/accounts/{accountId} or by a switch to the Free plan for the accounts over its limit. The account is deleted permanently 1 hour later unless the same account is reconnected within that hour.
+
+            unintentional: the connection broke (token expired or revoked, access lost on the platform). The account stays in Zernio, inactive, until it is reconnected (keeping its accountId) or removed.
           enum:
           - intentional
           - unintentional

@@ -25,6 +25,7 @@
 |**recycledFromPostId** | **String** | ID of the original post if this post was created via recycling |  [optional] |
 |**queuedFromProfile** | **String** | Profile ID if the post was scheduled via the queue |  [optional] |
 |**queueId** | **String** | Queue ID if the post was scheduled via a specific queue |  [optional] |
+|**profileId** | **String** | Profile the post is filed under. Set only on drafts that have no platforms. |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** | Last change to the post or to any of its platforms (a publish, a failure, a resolved URL). |  [optional] |
 
