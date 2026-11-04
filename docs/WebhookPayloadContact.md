@@ -2,7 +2,7 @@
 
 # WebhookPayloadContact
 
-Webhook payload for contact.updated and contact.deleted, fired after a provider contacts sync (Google Contacts, Outlook) changed a contact. Read the contact with `GET /v1/contacts/{id}`.
+Webhook payload for contact.updated and contact.deleted, fired after a provider contacts sync (Google Contacts, Outlook) changed a contact. contact.updated also fires after a WhatsApp coexistence address-book change (WhatsApp never fires contact.deleted). Read the contact with `GET /v1/contacts/{id}`.
 
 ## Properties
 
