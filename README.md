@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.492.0
+- API version: 1.494.0
 
-- Build date: 2026-11-04T17:59:04.522261717Z[Etc/UTC]
+- Build date: 2026-11-04T18:17:31.280743946Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.492.0</version>
+  <version>1.494.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.492.0"
+compile "dev.zernio:zernio-sdk:1.494.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.492.0.jar`
+- `target/zernio-sdk-1.494.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1153,6 +1153,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**createOAuthAppWithHttpInfo**](docs/ConnectApi.md#createOAuthAppWithHttpInfo) | **POST** /v1/connect/oauth-apps | Add an OAuth app
 *ConnectApi* | [**createPinterestBoard**](docs/ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**createPinterestBoardWithHttpInfo**](docs/ConnectApi.md#createPinterestBoardWithHttpInfo) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
+*ConnectApi* | [**createPlatformInvite**](docs/ConnectApi.md#createPlatformInvite) | **POST** /v1/platform-invites | Create a connect link
+*ConnectApi* | [**createPlatformInviteWithHttpInfo**](docs/ConnectApi.md#createPlatformInviteWithHttpInfo) | **POST** /v1/platform-invites | Create a connect link
 *ConnectApi* | [**createYoutubePlaylist**](docs/ConnectApi.md#createYoutubePlaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
 *ConnectApi* | [**createYoutubePlaylistWithHttpInfo**](docs/ConnectApi.md#createYoutubePlaylistWithHttpInfo) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
 *ConnectApi* | [**deleteOAuthApp**](docs/ConnectApi.md#deleteOAuthApp) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app
@@ -3118,6 +3120,9 @@ Class | Method | HTTP request | Description
  - [CreatePinterestBoard201Response](docs/CreatePinterestBoard201Response.md)
  - [CreatePinterestBoard201ResponseBoard](docs/CreatePinterestBoard201ResponseBoard.md)
  - [CreatePinterestBoardRequest](docs/CreatePinterestBoardRequest.md)
+ - [CreatePlatformInvite200Response](docs/CreatePlatformInvite200Response.md)
+ - [CreatePlatformInvite200ResponseInvite](docs/CreatePlatformInvite200ResponseInvite.md)
+ - [CreatePlatformInviteRequest](docs/CreatePlatformInviteRequest.md)
  - [CreatePost200Response](docs/CreatePost200Response.md)
  - [CreatePost400Response](docs/CreatePost400Response.md)
  - [CreatePost400ResponseDetails](docs/CreatePost400ResponseDetails.md)
