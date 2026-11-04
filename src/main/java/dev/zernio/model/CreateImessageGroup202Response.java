@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CreateImessageGroup202Response.JSON_PROPERTY_SUCCESS,
   CreateImessageGroup202Response.JSON_PROPERTY_REQUEST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:52:43.212633463Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:59:04.522261717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateImessageGroup202Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

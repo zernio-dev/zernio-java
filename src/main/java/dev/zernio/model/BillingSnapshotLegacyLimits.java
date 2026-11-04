@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   BillingSnapshotLegacyLimits.JSON_PROPERTY_UPLOADS,
   BillingSnapshotLegacyLimits.JSON_PROPERTY_PROFILES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:52:43.212633463Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:59:04.522261717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BillingSnapshotLegacyLimits {
   public static final String JSON_PROPERTY_UPLOADS = "uploads";
   @javax.annotation.Nullable

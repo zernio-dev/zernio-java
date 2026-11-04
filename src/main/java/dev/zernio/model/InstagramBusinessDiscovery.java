@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   InstagramBusinessDiscovery.JSON_PROPERTY_PROFILE,
   InstagramBusinessDiscovery.JSON_PROPERTY_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:52:43.212633463Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:59:04.522261717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramBusinessDiscovery {
   public static final String JSON_PROPERTY_PROFILE = "profile";
   @javax.annotation.Nonnull

@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   AddAccountSitelinks201ResponseSitelinksInner.JSON_PROPERTY_DESCRIPTION1,
   AddAccountSitelinks201ResponseSitelinksInner.JSON_PROPERTY_DESCRIPTION2
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:52:43.212633463Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:59:04.522261717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddAccountSitelinks201ResponseSitelinksInner {
   public static final String JSON_PROPERTY_ASSET_ID = "assetId";
   @javax.annotation.Nullable

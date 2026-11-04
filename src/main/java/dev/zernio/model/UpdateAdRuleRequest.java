@@ -58,7 +58,7 @@ import dev.zernio.ApiClient;
   UpdateAdRuleRequest.JSON_PROPERTY_COOLDOWN_MINUTES,
   UpdateAdRuleRequest.JSON_PROPERTY_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:52:43.212633463Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-04T17:59:04.522261717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRuleRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
