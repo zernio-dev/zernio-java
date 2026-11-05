@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.501.0
+  version: 1.501.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -24943,8 +24943,8 @@ paths:
           - all
           type: string
         style: form
-      - description: "Filter by action (e.g., post.published, message.sent, account.connected,\
-          \ webhook.delivered)"
+      - description: "Filter by action (e.g., post.published, message.sent, message.media_download_failed,\
+          \ account.connected, webhook.delivered)"
         explode: true
         in: query
         name: action
