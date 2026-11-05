@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   GetAnalyticsDashboard200Response.JSON_PROPERTY_RECENT_POSTS,
   GetAnalyticsDashboard200Response.JSON_PROPERTY_DATA_AS_OF
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:13:18.324651122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:18:20.601584792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAnalyticsDashboard200Response {
   public static final String JSON_PROPERTY_DATE_RANGE = "dateRange";
   @javax.annotation.Nonnull

@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   AddAccountSitelinksRequest.JSON_PROPERTY_CUSTOMER_ID,
   AddAccountSitelinksRequest.JSON_PROPERTY_SITELINKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:13:18.324651122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:18:20.601584792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddAccountSitelinksRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

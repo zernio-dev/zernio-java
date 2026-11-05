@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetTrackingTagDiagnostics200Response.JSON_PROPERTY_PLATFORM,
   GetTrackingTagDiagnostics200Response.JSON_PROPERTY_CHECKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:13:18.324651122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:18:20.601584792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTrackingTagDiagnostics200Response {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable

@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   GetBalance200Response.JSON_PROPERTY_CURRENCY,
   GetBalance200Response.JSON_PROPERTY_RECENT_TOPUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:13:18.324651122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:18:20.601584792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetBalance200Response {
   public static final String JSON_PROPERTY_AVAILABLE_CENTS = "availableCents";
   @javax.annotation.Nullable
@@ -123,7 +123,7 @@ public class GetBalance200Response {
   }
 
   /**
-   * Your balance, including card top-ups paid in the last 7 days (see payoutLockedCents). Negative after a dispute or refund of a top-up that was already spent, or, on balance billing, when pay-per-use already in flight (a connected call, an SMS already with the carrier) lands past zero; the next top-up covers it. Transfers are refused while it is negative.
+   * Your balance, including card top-ups paid in the last 7 days (see payoutLockedCents). It goes negative after a dispute or refund of a spent top-up, or when pay-per-use already in flight lands past zero. The next top-up covers it. Transfers are refused while it is negative.
    * @return availableCents
    */
   @javax.annotation.Nullable

@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   BoostPostRequestSparkPostsInner.JSON_PROPERTY_PLATFORM_POST_ID,
   BoostPostRequestSparkPostsInner.JSON_PROPERTY_SPARK_AUTH_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:13:18.324651122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:18:20.601584792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequestSparkPostsInner {
   public static final String JSON_PROPERTY_PLATFORM_POST_ID = "platformPostId";
   @javax.annotation.Nonnull
