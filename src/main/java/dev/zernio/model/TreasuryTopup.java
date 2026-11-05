@@ -46,6 +46,7 @@ import dev.zernio.ApiClient;
   TreasuryTopup.JSON_PROPERTY_FEE_COVERED_BY_ZERNIO,
   TreasuryTopup.JSON_PROPERTY_AMOUNT_CENTS,
   TreasuryTopup.JSON_PROPERTY_FEE_CENTS,
+  TreasuryTopup.JSON_PROPERTY_TAX_CENTS,
   TreasuryTopup.JSON_PROPERTY_CHARGED_CENTS,
   TreasuryTopup.JSON_PROPERTY_STRIPE_FEE_CENTS,
   TreasuryTopup.JSON_PROPERTY_NET_CENTS,
@@ -54,7 +55,7 @@ import dev.zernio.ApiClient;
   TreasuryTopup.JSON_PROPERTY_SUCCEEDED_AT,
   TreasuryTopup.JSON_PROPERTY_HAS_INVOICE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:18:20.601584792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:44:08.969647373Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TreasuryTopup {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -152,6 +153,10 @@ public class TreasuryTopup {
 
   public static final String JSON_PROPERTY_FEE_CENTS = "feeCents";
   private JsonNullable<Integer> feeCents = JsonNullable.<Integer>undefined();
+
+  public static final String JSON_PROPERTY_TAX_CENTS = "taxCents";
+  @javax.annotation.Nullable
+  private Integer taxCents;
 
   public static final String JSON_PROPERTY_CHARGED_CENTS = "chargedCents";
   @javax.annotation.Nullable
@@ -346,7 +351,7 @@ public class TreasuryTopup {
   }
 
   /**
-   * The amount you asked for. A top-up charges exactly this and credits it whole. Top-ups from 2026-11-02 to 2026-11-05 charged a card fee on top and credited what Stripe delivered; older ones charged this amount and credited it minus the fee.
+   * The amount you asked for. A top-up credits exactly this and charges it plus tax (taxCents). Top-ups from 2026-11-02 to 2026-11-05 charged a card fee on top and credited what Stripe delivered; older ones charged this amount and credited it minus the fee.
    * @return amountCents
    */
   @javax.annotation.Nullable
@@ -396,13 +401,37 @@ public class TreasuryTopup {
   }
 
 
+  public TreasuryTopup taxCents(@javax.annotation.Nullable Integer taxCents) {
+    this.taxCents = taxCents;
+    return this;
+  }
+
+  /**
+   * Tax charged on top of amountCents once paid (VAT where it applies, since 2026-11-05); 0 before payment, when reverse charged, outside the EU, and on older top-ups.
+   * @return taxCents
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getTaxCents() {
+    return taxCents;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTaxCents(@javax.annotation.Nullable Integer taxCents) {
+    this.taxCents = taxCents;
+  }
+
+
   public TreasuryTopup chargedCents(@javax.annotation.Nullable Integer chargedCents) {
     this.chargedCents = chargedCents;
     return this;
   }
 
   /**
-   * What your card was charged: amountCents, or amountCents plus the card fee on a top-up from 2026-11-02 to 2026-11-05.
+   * What your card was charged: amountCents plus taxCents, or amountCents plus the card fee on a top-up from 2026-11-02 to 2026-11-05.
    * @return chargedCents
    */
   @javax.annotation.Nullable
@@ -570,7 +599,7 @@ public class TreasuryTopup {
   }
 
   /**
-   * A Checkout invoice exists for this payment (Checkout payments before 2026-10-29). Every paid payment has a card receipt (getTopupReceipt); a paid top-up has a statement (getTopupStatement).
+   * The paid payment has an invoice (getTopupInvoice): every balance top-up paid since 2026-11-05 (unless charged without one for a Stripe credit balance), and Checkout payments before 2026-10-29. Every paid payment has a card receipt (getTopupReceipt).
    * @return hasInvoice
    */
   @javax.annotation.Nullable
@@ -607,6 +636,7 @@ public class TreasuryTopup {
         Objects.equals(this.feeCoveredByZernio, treasuryTopup.feeCoveredByZernio) &&
         Objects.equals(this.amountCents, treasuryTopup.amountCents) &&
         equalsNullable(this.feeCents, treasuryTopup.feeCents) &&
+        Objects.equals(this.taxCents, treasuryTopup.taxCents) &&
         Objects.equals(this.chargedCents, treasuryTopup.chargedCents) &&
         equalsNullable(this.stripeFeeCents, treasuryTopup.stripeFeeCents) &&
         equalsNullable(this.netCents, treasuryTopup.netCents) &&
@@ -622,7 +652,7 @@ public class TreasuryTopup {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, method, purpose, payoutBatch, feeCoveredByZernio, amountCents, hashCodeNullable(feeCents), chargedCents, hashCodeNullable(stripeFeeCents), hashCodeNullable(netCents), status, createdAt, hashCodeNullable(succeededAt), hasInvoice);
+    return Objects.hash(id, method, purpose, payoutBatch, feeCoveredByZernio, amountCents, hashCodeNullable(feeCents), taxCents, chargedCents, hashCodeNullable(stripeFeeCents), hashCodeNullable(netCents), status, createdAt, hashCodeNullable(succeededAt), hasInvoice);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -643,6 +673,7 @@ public class TreasuryTopup {
     sb.append("    feeCoveredByZernio: ").append(toIndentedString(feeCoveredByZernio)).append("\n");
     sb.append("    amountCents: ").append(toIndentedString(amountCents)).append("\n");
     sb.append("    feeCents: ").append(toIndentedString(feeCents)).append("\n");
+    sb.append("    taxCents: ").append(toIndentedString(taxCents)).append("\n");
     sb.append("    chargedCents: ").append(toIndentedString(chargedCents)).append("\n");
     sb.append("    stripeFeeCents: ").append(toIndentedString(stripeFeeCents)).append("\n");
     sb.append("    netCents: ").append(toIndentedString(netCents)).append("\n");
@@ -730,6 +761,11 @@ public class TreasuryTopup {
     // add `feeCents` to the URL query string
     if (getFeeCents() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sfeeCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFeeCents()))));
+    }
+
+    // add `taxCents` to the URL query string
+    if (getTaxCents() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%staxCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTaxCents()))));
     }
 
     // add `chargedCents` to the URL query string

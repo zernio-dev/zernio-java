@@ -25,14 +25,16 @@ import dev.zernio.model.CreateTransferRequest;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetBalance200Response;
 import dev.zernio.model.GetPayoutBatch200Response;
+import dev.zernio.model.GetTopupInvoice200Response;
 import dev.zernio.model.GetTopupReceipt200Response;
-import dev.zernio.model.GetTopupStatement200Response;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.InlineObject2;
 import dev.zernio.model.InlineObject4;
 import dev.zernio.model.ListPayees200Response;
 import dev.zernio.model.ListTopups200Response;
 import dev.zernio.model.ListTransfers200Response;
+import dev.zernio.model.PreviewTopup200Response;
+import dev.zernio.model.PreviewTopupRequest;
 import dev.zernio.model.TreasuryTopup;
 import dev.zernio.model.TreasuryTransfer;
 
@@ -67,7 +69,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:18:20.601584792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:44:08.969647373Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TreasuryApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -776,7 +778,7 @@ public class TreasuryApi {
 
   /**
    * Create a top-up
-   * Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+   * Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
    * @param createTopupRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional)
    * @return CreateTopup201Response
@@ -788,7 +790,7 @@ public class TreasuryApi {
 
   /**
    * Create a top-up
-   * Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+   * Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
    * @param createTopupRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional)
    * @param headers Optional headers to include in the request
@@ -802,7 +804,7 @@ public class TreasuryApi {
 
   /**
    * Create a top-up
-   * Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+   * Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
    * @param createTopupRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional)
    * @return ApiResponse&lt;CreateTopup201Response&gt;
@@ -814,7 +816,7 @@ public class TreasuryApi {
 
   /**
    * Create a top-up
-   * Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+   * Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
    * @param createTopupRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional)
    * @param headers Optional headers to include in the request
@@ -1262,8 +1264,126 @@ public class TreasuryApi {
   }
 
   /**
+   * Get a top-up invoice
+   * The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+   * @param topupId  (required)
+   * @return GetTopupInvoice200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetTopupInvoice200Response getTopupInvoice(@javax.annotation.Nonnull String topupId) throws ApiException {
+    return getTopupInvoice(topupId, null);
+  }
+
+  /**
+   * Get a top-up invoice
+   * The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+   * @param topupId  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetTopupInvoice200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetTopupInvoice200Response getTopupInvoice(@javax.annotation.Nonnull String topupId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetTopupInvoice200Response> localVarResponse = getTopupInvoiceWithHttpInfo(topupId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get a top-up invoice
+   * The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+   * @param topupId  (required)
+   * @return ApiResponse&lt;GetTopupInvoice200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetTopupInvoice200Response> getTopupInvoiceWithHttpInfo(@javax.annotation.Nonnull String topupId) throws ApiException {
+    return getTopupInvoiceWithHttpInfo(topupId, null);
+  }
+
+  /**
+   * Get a top-up invoice
+   * The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+   * @param topupId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetTopupInvoice200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetTopupInvoice200Response> getTopupInvoiceWithHttpInfo(@javax.annotation.Nonnull String topupId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getTopupInvoiceRequestBuilder(topupId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getTopupInvoice", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetTopupInvoice200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetTopupInvoice200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetTopupInvoice200Response>() {});
+        
+
+        return new ApiResponse<GetTopupInvoice200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getTopupInvoiceRequestBuilder(@javax.annotation.Nonnull String topupId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'topupId' is set
+    if (topupId == null) {
+      throw new ApiException(400, "Missing the required parameter 'topupId' when calling getTopupInvoice");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/balance/top-ups/{topupId}/invoice"
+        .replace("{topupId}", ApiClient.urlEncode(topupId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get a top-up receipt
-   * The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+   * The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
    * @param topupId  (required)
    * @return GetTopupReceipt200Response
    * @throws ApiException if fails to make API call
@@ -1274,7 +1394,7 @@ public class TreasuryApi {
 
   /**
    * Get a top-up receipt
-   * The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+   * The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
    * @param topupId  (required)
    * @param headers Optional headers to include in the request
    * @return GetTopupReceipt200Response
@@ -1287,7 +1407,7 @@ public class TreasuryApi {
 
   /**
    * Get a top-up receipt
-   * The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+   * The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
    * @param topupId  (required)
    * @return ApiResponse&lt;GetTopupReceipt200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1298,7 +1418,7 @@ public class TreasuryApi {
 
   /**
    * Get a top-up receipt
-   * The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+   * The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
    * @param topupId  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetTopupReceipt200Response&gt;
@@ -1380,49 +1500,57 @@ public class TreasuryApi {
   }
 
   /**
-   * Get a top-up statement
-   * The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+   * Get a top-up invoice (alias)
+   * Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
    * @param topupId  (required)
-   * @return GetTopupStatement200Response
+   * @return GetTopupInvoice200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public GetTopupStatement200Response getTopupStatement(@javax.annotation.Nonnull String topupId) throws ApiException {
+  @Deprecated
+  public GetTopupInvoice200Response getTopupStatement(@javax.annotation.Nonnull String topupId) throws ApiException {
     return getTopupStatement(topupId, null);
   }
 
   /**
-   * Get a top-up statement
-   * The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+   * Get a top-up invoice (alias)
+   * Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
    * @param topupId  (required)
    * @param headers Optional headers to include in the request
-   * @return GetTopupStatement200Response
+   * @return GetTopupInvoice200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public GetTopupStatement200Response getTopupStatement(@javax.annotation.Nonnull String topupId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetTopupStatement200Response> localVarResponse = getTopupStatementWithHttpInfo(topupId, headers);
+  @Deprecated
+  public GetTopupInvoice200Response getTopupStatement(@javax.annotation.Nonnull String topupId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetTopupInvoice200Response> localVarResponse = getTopupStatementWithHttpInfo(topupId, headers);
     return localVarResponse.getData();
   }
 
   /**
-   * Get a top-up statement
-   * The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+   * Get a top-up invoice (alias)
+   * Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
    * @param topupId  (required)
-   * @return ApiResponse&lt;GetTopupStatement200Response&gt;
+   * @return ApiResponse&lt;GetTopupInvoice200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<GetTopupStatement200Response> getTopupStatementWithHttpInfo(@javax.annotation.Nonnull String topupId) throws ApiException {
+  @Deprecated
+  public ApiResponse<GetTopupInvoice200Response> getTopupStatementWithHttpInfo(@javax.annotation.Nonnull String topupId) throws ApiException {
     return getTopupStatementWithHttpInfo(topupId, null);
   }
 
   /**
-   * Get a top-up statement
-   * The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+   * Get a top-up invoice (alias)
+   * Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
    * @param topupId  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetTopupStatement200Response&gt;
+   * @return ApiResponse&lt;GetTopupInvoice200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<GetTopupStatement200Response> getTopupStatementWithHttpInfo(@javax.annotation.Nonnull String topupId, Map<String, String> headers) throws ApiException {
+  @Deprecated
+  public ApiResponse<GetTopupInvoice200Response> getTopupStatementWithHttpInfo(@javax.annotation.Nonnull String topupId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getTopupStatementRequestBuilder(topupId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1438,7 +1566,7 @@ public class TreasuryApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetTopupStatement200Response>(
+          return new ApiResponse<GetTopupInvoice200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1448,10 +1576,10 @@ public class TreasuryApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetTopupStatement200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetTopupStatement200Response>() {});
+        GetTopupInvoice200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetTopupInvoice200Response>() {});
         
 
-        return new ApiResponse<GetTopupStatement200Response>(
+        return new ApiResponse<GetTopupInvoice200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1981,6 +2109,129 @@ public class TreasuryApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Preview a top-up&#39;s tax
+   * The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+   * @param previewTopupRequest  (required)
+   * @return PreviewTopup200Response
+   * @throws ApiException if fails to make API call
+   */
+  public PreviewTopup200Response previewTopup(@javax.annotation.Nonnull PreviewTopupRequest previewTopupRequest) throws ApiException {
+    return previewTopup(previewTopupRequest, null);
+  }
+
+  /**
+   * Preview a top-up&#39;s tax
+   * The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+   * @param previewTopupRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return PreviewTopup200Response
+   * @throws ApiException if fails to make API call
+   */
+  public PreviewTopup200Response previewTopup(@javax.annotation.Nonnull PreviewTopupRequest previewTopupRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PreviewTopup200Response> localVarResponse = previewTopupWithHttpInfo(previewTopupRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Preview a top-up&#39;s tax
+   * The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+   * @param previewTopupRequest  (required)
+   * @return ApiResponse&lt;PreviewTopup200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PreviewTopup200Response> previewTopupWithHttpInfo(@javax.annotation.Nonnull PreviewTopupRequest previewTopupRequest) throws ApiException {
+    return previewTopupWithHttpInfo(previewTopupRequest, null);
+  }
+
+  /**
+   * Preview a top-up&#39;s tax
+   * The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+   * @param previewTopupRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PreviewTopup200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PreviewTopup200Response> previewTopupWithHttpInfo(@javax.annotation.Nonnull PreviewTopupRequest previewTopupRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = previewTopupRequestBuilder(previewTopupRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("previewTopup", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PreviewTopup200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PreviewTopup200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PreviewTopup200Response>() {});
+        
+
+        return new ApiResponse<PreviewTopup200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder previewTopupRequestBuilder(@javax.annotation.Nonnull PreviewTopupRequest previewTopupRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'previewTopupRequest' is set
+    if (previewTopupRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'previewTopupRequest' when calling previewTopup");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/balance/top-ups/preview";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(previewTopupRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

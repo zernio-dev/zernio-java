@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**amountCents** | **Integer** | Amount to charge and credit to your balance, in cents: $5 to $100,000. No card fee. |  |
+|**amountCents** | **Integer** | Amount to credit to your balance, in cents: $5 to $100,000. Tax is charged on top; no card fee. |  |
 |**method** | [**MethodEnum**](#MethodEnum) | Only card is available. bank_transfer returns 400 \&quot;Bank transfers are not available yet.\&quot; |  |
 |**paymentMethodId** | **String** | A saved card of the billing owner&#39;s (&#x60;pm_...&#x60;). Defaults to the default payment method. |  [optional] |
 

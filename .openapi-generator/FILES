@@ -1432,8 +1432,8 @@ docs/GetTikTokSmartPlusAdReview200Response.md
 docs/GetTikTokSmartPlusMaterialReport200Response.md
 docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md
 docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md
+docs/GetTopupInvoice200Response.md
 docs/GetTopupReceipt200Response.md
-docs/GetTopupStatement200Response.md
 docs/GetTrackingTag200Response.md
 docs/GetTrackingTagDiagnostics200Response.md
 docs/GetTrackingTagStats200Response.md
@@ -2230,6 +2230,8 @@ docs/PreflightSmsRegistration200ResponseComposed.md
 docs/PreflightSmsRegistrationRequest.md
 docs/PrepareMedia200Response.md
 docs/PrepareMediaRequest.md
+docs/PreviewTopup200Response.md
+docs/PreviewTopupRequest.md
 docs/Product.md
 docs/ProductCatalogsApi.md
 docs/ProductImage.md
@@ -4853,8 +4855,8 @@ src/main/java/dev/zernio/model/GetTikTokSmartPlusAdReview200Response.java
 src/main/java/dev/zernio/model/GetTikTokSmartPlusMaterialReport200Response.java
 src/main/java/dev/zernio/model/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.java
 src/main/java/dev/zernio/model/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.java
+src/main/java/dev/zernio/model/GetTopupInvoice200Response.java
 src/main/java/dev/zernio/model/GetTopupReceipt200Response.java
-src/main/java/dev/zernio/model/GetTopupStatement200Response.java
 src/main/java/dev/zernio/model/GetTrackingTag200Response.java
 src/main/java/dev/zernio/model/GetTrackingTagDiagnostics200Response.java
 src/main/java/dev/zernio/model/GetTrackingTagStats200Response.java
@@ -5629,6 +5631,8 @@ src/main/java/dev/zernio/model/PreflightSmsRegistration200ResponseComposed.java
 src/main/java/dev/zernio/model/PreflightSmsRegistrationRequest.java
 src/main/java/dev/zernio/model/PrepareMedia200Response.java
 src/main/java/dev/zernio/model/PrepareMediaRequest.java
+src/main/java/dev/zernio/model/PreviewTopup200Response.java
+src/main/java/dev/zernio/model/PreviewTopupRequest.java
 src/main/java/dev/zernio/model/Product.java
 src/main/java/dev/zernio/model/ProductImage.java
 src/main/java/dev/zernio/model/ProductOptionsInner.java
@@ -6725,3 +6729,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetTopupInvoice200ResponseTest.java
+src/test/java/dev/zernio/model/PreviewTopup200ResponseTest.java
+src/test/java/dev/zernio/model/PreviewTopupRequestTest.java

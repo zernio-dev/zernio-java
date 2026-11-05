@@ -35,13 +35,17 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CreateTopup201Response.JSON_PROPERTY_TOPUP_ID,
   CreateTopup201Response.JSON_PROPERTY_AMOUNT_CENTS,
+  CreateTopup201Response.JSON_PROPERTY_TAX_CENTS,
+  CreateTopup201Response.JSON_PROPERTY_TOTAL_CENTS,
+  CreateTopup201Response.JSON_PROPERTY_TAX_LABEL,
+  CreateTopup201Response.JSON_PROPERTY_REVERSE_CHARGE,
   CreateTopup201Response.JSON_PROPERTY_FEE_CENTS,
   CreateTopup201Response.JSON_PROPERTY_CHARGED_CENTS,
   CreateTopup201Response.JSON_PROPERTY_FEE_IS_EXACT,
   CreateTopup201Response.JSON_PROPERTY_STATUS,
   CreateTopup201Response.JSON_PROPERTY_CLIENT_SECRET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:18:20.601584792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:44:08.969647373Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateTopup201Response {
   public static final String JSON_PROPERTY_TOPUP_ID = "topupId";
   @javax.annotation.Nonnull
@@ -50,6 +54,22 @@ public class CreateTopup201Response {
   public static final String JSON_PROPERTY_AMOUNT_CENTS = "amountCents";
   @javax.annotation.Nonnull
   private Integer amountCents;
+
+  public static final String JSON_PROPERTY_TAX_CENTS = "taxCents";
+  @javax.annotation.Nonnull
+  private Integer taxCents;
+
+  public static final String JSON_PROPERTY_TOTAL_CENTS = "totalCents";
+  @javax.annotation.Nonnull
+  private Integer totalCents;
+
+  public static final String JSON_PROPERTY_TAX_LABEL = "taxLabel";
+  @javax.annotation.Nullable
+  private String taxLabel;
+
+  public static final String JSON_PROPERTY_REVERSE_CHARGE = "reverseCharge";
+  @javax.annotation.Nonnull
+  private Boolean reverseCharge;
 
   public static final String JSON_PROPERTY_FEE_CENTS = "feeCents";
   @javax.annotation.Nonnull
@@ -141,7 +161,7 @@ public class CreateTopup201Response {
   }
 
   /**
-   * Charged and credited to your balance once paid.
+   * Credited to your balance once paid.
    * @return amountCents
    */
   @javax.annotation.Nonnull
@@ -156,6 +176,102 @@ public class CreateTopup201Response {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAmountCents(@javax.annotation.Nonnull Integer amountCents) {
     this.amountCents = amountCents;
+  }
+
+
+  public CreateTopup201Response taxCents(@javax.annotation.Nonnull Integer taxCents) {
+    this.taxCents = taxCents;
+    return this;
+  }
+
+  /**
+   * Tax added on top of amountCents (VAT where it applies). 0 when reverse charged or outside the EU.
+   * @return taxCents
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public Integer getTaxCents() {
+    return taxCents;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setTaxCents(@javax.annotation.Nonnull Integer taxCents) {
+    this.taxCents = taxCents;
+  }
+
+
+  public CreateTopup201Response totalCents(@javax.annotation.Nonnull Integer totalCents) {
+    this.totalCents = totalCents;
+    return this;
+  }
+
+  /**
+   * What the card is charged: amountCents + taxCents.
+   * @return totalCents
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_TOTAL_CENTS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public Integer getTotalCents() {
+    return totalCents;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TOTAL_CENTS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setTotalCents(@javax.annotation.Nonnull Integer totalCents) {
+    this.totalCents = totalCents;
+  }
+
+
+  public CreateTopup201Response taxLabel(@javax.annotation.Nullable String taxLabel) {
+    this.taxLabel = taxLabel;
+    return this;
+  }
+
+  /**
+   * The tax and its rate, for example \&quot;VAT 21%\&quot;. Null when no tax is charged.
+   * @return taxLabel
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TAX_LABEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getTaxLabel() {
+    return taxLabel;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TAX_LABEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setTaxLabel(@javax.annotation.Nullable String taxLabel) {
+    this.taxLabel = taxLabel;
+  }
+
+
+  public CreateTopup201Response reverseCharge(@javax.annotation.Nonnull Boolean reverseCharge) {
+    this.reverseCharge = reverseCharge;
+    return this;
+  }
+
+  /**
+   * True for an EU business with a valid VAT id: no VAT is charged and the invoice says reverse charge.
+   * @return reverseCharge
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_REVERSE_CHARGE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public Boolean getReverseCharge() {
+    return reverseCharge;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REVERSE_CHARGE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setReverseCharge(@javax.annotation.Nonnull Boolean reverseCharge) {
+    this.reverseCharge = reverseCharge;
   }
 
 
@@ -189,7 +305,7 @@ public class CreateTopup201Response {
   }
 
   /**
-   * What the card is charged: amountCents. Kept for older clients.
+   * Same as totalCents. Kept for older clients.
    * @return chargedCents
    */
   @javax.annotation.Nonnull
@@ -293,6 +409,10 @@ public class CreateTopup201Response {
     CreateTopup201Response createTopup201Response = (CreateTopup201Response) o;
     return Objects.equals(this.topupId, createTopup201Response.topupId) &&
         Objects.equals(this.amountCents, createTopup201Response.amountCents) &&
+        Objects.equals(this.taxCents, createTopup201Response.taxCents) &&
+        Objects.equals(this.totalCents, createTopup201Response.totalCents) &&
+        Objects.equals(this.taxLabel, createTopup201Response.taxLabel) &&
+        Objects.equals(this.reverseCharge, createTopup201Response.reverseCharge) &&
         Objects.equals(this.feeCents, createTopup201Response.feeCents) &&
         Objects.equals(this.chargedCents, createTopup201Response.chargedCents) &&
         Objects.equals(this.feeIsExact, createTopup201Response.feeIsExact) &&
@@ -302,7 +422,7 @@ public class CreateTopup201Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(topupId, amountCents, feeCents, chargedCents, feeIsExact, status, clientSecret);
+    return Objects.hash(topupId, amountCents, taxCents, totalCents, taxLabel, reverseCharge, feeCents, chargedCents, feeIsExact, status, clientSecret);
   }
 
   @Override
@@ -311,6 +431,10 @@ public class CreateTopup201Response {
     sb.append("class CreateTopup201Response {\n");
     sb.append("    topupId: ").append(toIndentedString(topupId)).append("\n");
     sb.append("    amountCents: ").append(toIndentedString(amountCents)).append("\n");
+    sb.append("    taxCents: ").append(toIndentedString(taxCents)).append("\n");
+    sb.append("    totalCents: ").append(toIndentedString(totalCents)).append("\n");
+    sb.append("    taxLabel: ").append(toIndentedString(taxLabel)).append("\n");
+    sb.append("    reverseCharge: ").append(toIndentedString(reverseCharge)).append("\n");
     sb.append("    feeCents: ").append(toIndentedString(feeCents)).append("\n");
     sb.append("    chargedCents: ").append(toIndentedString(chargedCents)).append("\n");
     sb.append("    feeIsExact: ").append(toIndentedString(feeIsExact)).append("\n");
@@ -371,6 +495,26 @@ public class CreateTopup201Response {
     // add `amountCents` to the URL query string
     if (getAmountCents() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%samountCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAmountCents()))));
+    }
+
+    // add `taxCents` to the URL query string
+    if (getTaxCents() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%staxCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTaxCents()))));
+    }
+
+    // add `totalCents` to the URL query string
+    if (getTotalCents() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stotalCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotalCents()))));
+    }
+
+    // add `taxLabel` to the URL query string
+    if (getTaxLabel() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%staxLabel%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTaxLabel()))));
+    }
+
+    // add `reverseCharge` to the URL query string
+    if (getReverseCharge() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreverseCharge%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReverseCharge()))));
     }
 
     // add `feeCents` to the URL query string

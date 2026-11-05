@@ -22,10 +22,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**getBalanceWithHttpInfo**](TreasuryApi.md#getBalanceWithHttpInfo) | **GET** /v1/balance | Get balance |
 | [**getPayoutBatch**](TreasuryApi.md#getPayoutBatch) | **GET** /v1/payout-batches/{batchId} | Get a payout batch |
 | [**getPayoutBatchWithHttpInfo**](TreasuryApi.md#getPayoutBatchWithHttpInfo) | **GET** /v1/payout-batches/{batchId} | Get a payout batch |
+| [**getTopupInvoice**](TreasuryApi.md#getTopupInvoice) | **GET** /v1/balance/top-ups/{topupId}/invoice | Get a top-up invoice |
+| [**getTopupInvoiceWithHttpInfo**](TreasuryApi.md#getTopupInvoiceWithHttpInfo) | **GET** /v1/balance/top-ups/{topupId}/invoice | Get a top-up invoice |
 | [**getTopupReceipt**](TreasuryApi.md#getTopupReceipt) | **GET** /v1/balance/top-ups/{topupId}/receipt | Get a top-up receipt |
 | [**getTopupReceiptWithHttpInfo**](TreasuryApi.md#getTopupReceiptWithHttpInfo) | **GET** /v1/balance/top-ups/{topupId}/receipt | Get a top-up receipt |
-| [**getTopupStatement**](TreasuryApi.md#getTopupStatement) | **GET** /v1/balance/top-ups/{topupId}/statement | Get a top-up statement |
-| [**getTopupStatementWithHttpInfo**](TreasuryApi.md#getTopupStatementWithHttpInfo) | **GET** /v1/balance/top-ups/{topupId}/statement | Get a top-up statement |
+| [**getTopupStatement**](TreasuryApi.md#getTopupStatement) | **GET** /v1/balance/top-ups/{topupId}/statement | Get a top-up invoice (alias) |
+| [**getTopupStatementWithHttpInfo**](TreasuryApi.md#getTopupStatementWithHttpInfo) | **GET** /v1/balance/top-ups/{topupId}/statement | Get a top-up invoice (alias) |
 | [**getTransfer**](TreasuryApi.md#getTransfer) | **GET** /v1/transfers/{transferId} | Get a transfer |
 | [**getTransferWithHttpInfo**](TreasuryApi.md#getTransferWithHttpInfo) | **GET** /v1/transfers/{transferId} | Get a transfer |
 | [**listPayees**](TreasuryApi.md#listPayees) | **GET** /v1/payees | List payees |
@@ -34,6 +36,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listTopupsWithHttpInfo**](TreasuryApi.md#listTopupsWithHttpInfo) | **GET** /v1/balance/top-ups | List top-ups |
 | [**listTransfers**](TreasuryApi.md#listTransfers) | **GET** /v1/transfers | List transfers |
 | [**listTransfersWithHttpInfo**](TreasuryApi.md#listTransfersWithHttpInfo) | **GET** /v1/transfers | List transfers |
+| [**previewTopup**](TreasuryApi.md#previewTopup) | **POST** /v1/balance/top-ups/preview | Preview a top-up&#39;s tax |
+| [**previewTopupWithHttpInfo**](TreasuryApi.md#previewTopupWithHttpInfo) | **POST** /v1/balance/top-ups/preview | Preview a top-up&#39;s tax |
 
 
 
@@ -805,7 +809,7 @@ ApiResponse<[**CreatePayeeOnboardingLink200Response**](CreatePayeeOnboardingLink
 
 Create a top-up
 
-Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
 
 ### Example
 
@@ -883,7 +887,7 @@ public class Example {
 
 Create a top-up
 
-Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
 
 ### Example
 
@@ -1409,13 +1413,165 @@ ApiResponse<[**GetPayoutBatch200Response**](GetPayoutBatch200Response.md)>
 | **404** | No payout batch with this id in a campaign you can see. |  -  |
 
 
+## getTopupInvoice
+
+> GetTopupInvoice200Response getTopupInvoice(topupId)
+
+Get a top-up invoice
+
+The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TreasuryApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TreasuryApi apiInstance = new TreasuryApi(defaultClient);
+        String topupId = "topupId_example"; // String | 
+        try {
+            GetTopupInvoice200Response result = apiInstance.getTopupInvoice(topupId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TreasuryApi#getTopupInvoice");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **topupId** | **String**|  | |
+
+### Return type
+
+[**GetTopupInvoice200Response**](GetTopupInvoice200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Invoice link |  -  |
+| **400** | Invalid request |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+| **404** | Resource not found |  -  |
+
+## getTopupInvoiceWithHttpInfo
+
+> ApiResponse<GetTopupInvoice200Response> getTopupInvoice getTopupInvoiceWithHttpInfo(topupId)
+
+Get a top-up invoice
+
+The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TreasuryApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TreasuryApi apiInstance = new TreasuryApi(defaultClient);
+        String topupId = "topupId_example"; // String | 
+        try {
+            ApiResponse<GetTopupInvoice200Response> response = apiInstance.getTopupInvoiceWithHttpInfo(topupId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TreasuryApi#getTopupInvoice");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **topupId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetTopupInvoice200Response**](GetTopupInvoice200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Invoice link |  -  |
+| **400** | Invalid request |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+| **404** | Resource not found |  -  |
+
+
 ## getTopupReceipt
 
 > GetTopupReceipt200Response getTopupReceipt(topupId)
 
 Get a top-up receipt
 
-The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
 
 ### Example
 
@@ -1489,7 +1645,7 @@ public class Example {
 
 Get a top-up receipt
 
-The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
 
 ### Example
 
@@ -1563,11 +1719,11 @@ ApiResponse<[**GetTopupReceipt200Response**](GetTopupReceipt200Response.md)>
 
 ## getTopupStatement
 
-> GetTopupStatement200Response getTopupStatement(topupId)
+> GetTopupInvoice200Response getTopupStatement(topupId)
 
-Get a top-up statement
+Get a top-up invoice (alias)
 
-The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
 
 ### Example
 
@@ -1592,7 +1748,7 @@ public class Example {
         TreasuryApi apiInstance = new TreasuryApi(defaultClient);
         String topupId = "topupId_example"; // String | 
         try {
-            GetTopupStatement200Response result = apiInstance.getTopupStatement(topupId);
+            GetTopupInvoice200Response result = apiInstance.getTopupStatement(topupId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TreasuryApi#getTopupStatement");
@@ -1614,7 +1770,7 @@ public class Example {
 
 ### Return type
 
-[**GetTopupStatement200Response**](GetTopupStatement200Response.md)
+[**GetTopupInvoice200Response**](GetTopupInvoice200Response.md)
 
 
 ### Authorization
@@ -1629,7 +1785,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Statement link |  -  |
+| **200** | Invoice link |  -  |
 | **400** | Invalid request |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
@@ -1637,11 +1793,11 @@ public class Example {
 
 ## getTopupStatementWithHttpInfo
 
-> ApiResponse<GetTopupStatement200Response> getTopupStatement getTopupStatementWithHttpInfo(topupId)
+> ApiResponse<GetTopupInvoice200Response> getTopupStatement getTopupStatementWithHttpInfo(topupId)
 
-Get a top-up statement
+Get a top-up invoice (alias)
 
-The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
 
 ### Example
 
@@ -1667,7 +1823,7 @@ public class Example {
         TreasuryApi apiInstance = new TreasuryApi(defaultClient);
         String topupId = "topupId_example"; // String | 
         try {
-            ApiResponse<GetTopupStatement200Response> response = apiInstance.getTopupStatementWithHttpInfo(topupId);
+            ApiResponse<GetTopupInvoice200Response> response = apiInstance.getTopupStatementWithHttpInfo(topupId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1691,7 +1847,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**GetTopupStatement200Response**](GetTopupStatement200Response.md)>
+ApiResponse<[**GetTopupInvoice200Response**](GetTopupInvoice200Response.md)>
 
 
 ### Authorization
@@ -1706,7 +1862,7 @@ ApiResponse<[**GetTopupStatement200Response**](GetTopupStatement200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Statement link |  -  |
+| **200** | Invoice link |  -  |
 | **400** | Invalid request |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
@@ -2296,6 +2452,156 @@ ApiResponse<[**ListTransfers200Response**](ListTransfers200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Transfers, newest first |  -  |
+| **400** | Invalid request |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+
+
+## previewTopup
+
+> PreviewTopup200Response previewTopup(previewTopupRequest)
+
+Preview a top-up&#39;s tax
+
+The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TreasuryApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TreasuryApi apiInstance = new TreasuryApi(defaultClient);
+        PreviewTopupRequest previewTopupRequest = new PreviewTopupRequest(); // PreviewTopupRequest | 
+        try {
+            PreviewTopup200Response result = apiInstance.previewTopup(previewTopupRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TreasuryApi#previewTopup");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **previewTopupRequest** | [**PreviewTopupRequest**](PreviewTopupRequest.md)|  | |
+
+### Return type
+
+[**PreviewTopup200Response**](PreviewTopup200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tax and total for the amount |  -  |
+| **400** | Invalid request |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+
+## previewTopupWithHttpInfo
+
+> ApiResponse<PreviewTopup200Response> previewTopup previewTopupWithHttpInfo(previewTopupRequest)
+
+Preview a top-up&#39;s tax
+
+The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TreasuryApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TreasuryApi apiInstance = new TreasuryApi(defaultClient);
+        PreviewTopupRequest previewTopupRequest = new PreviewTopupRequest(); // PreviewTopupRequest | 
+        try {
+            ApiResponse<PreviewTopup200Response> response = apiInstance.previewTopupWithHttpInfo(previewTopupRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TreasuryApi#previewTopup");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **previewTopupRequest** | [**PreviewTopupRequest**](PreviewTopupRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**PreviewTopup200Response**](PreviewTopup200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tax and total for the amount |  -  |
 | **400** | Invalid request |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |

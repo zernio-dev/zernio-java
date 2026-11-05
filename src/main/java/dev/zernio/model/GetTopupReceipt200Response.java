@@ -44,9 +44,10 @@ import dev.zernio.ApiClient;
   GetTopupReceipt200Response.JSON_PROPERTY_RECEIPT_URL,
   GetTopupReceipt200Response.JSON_PROPERTY_AMOUNT_CENTS,
   GetTopupReceipt200Response.JSON_PROPERTY_FEE_CENTS,
+  GetTopupReceipt200Response.JSON_PROPERTY_TAX_CENTS,
   GetTopupReceipt200Response.JSON_PROPERTY_CHARGED_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:18:20.601584792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:44:08.969647373Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTopupReceipt200Response {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull
@@ -104,6 +105,10 @@ public class GetTopupReceipt200Response {
   public static final String JSON_PROPERTY_FEE_CENTS = "feeCents";
   @javax.annotation.Nullable
   private Integer feeCents;
+
+  public static final String JSON_PROPERTY_TAX_CENTS = "taxCents";
+  @javax.annotation.Nullable
+  private Integer taxCents;
 
   public static final String JSON_PROPERTY_CHARGED_CENTS = "chargedCents";
   @javax.annotation.Nonnull
@@ -272,13 +277,37 @@ public class GetTopupReceipt200Response {
   }
 
 
+  public GetTopupReceipt200Response taxCents(@javax.annotation.Nullable Integer taxCents) {
+    this.taxCents = taxCents;
+    return this;
+  }
+
+  /**
+   * Tax charged on top of amountCents, as in the top-up list.
+   * @return taxCents
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getTaxCents() {
+    return taxCents;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTaxCents(@javax.annotation.Nullable Integer taxCents) {
+    this.taxCents = taxCents;
+  }
+
+
   public GetTopupReceipt200Response chargedCents(@javax.annotation.Nonnull Integer chargedCents) {
     this.chargedCents = chargedCents;
     return this;
   }
 
   /**
-   * What the card was charged, the total on the receipt.
+   * What the card was charged, tax included: the total on the receipt.
    * @return chargedCents
    */
   @javax.annotation.Nonnull
@@ -314,6 +343,7 @@ public class GetTopupReceipt200Response {
         equalsNullable(this.receiptUrl, getTopupReceipt200Response.receiptUrl) &&
         Objects.equals(this.amountCents, getTopupReceipt200Response.amountCents) &&
         Objects.equals(this.feeCents, getTopupReceipt200Response.feeCents) &&
+        Objects.equals(this.taxCents, getTopupReceipt200Response.taxCents) &&
         Objects.equals(this.chargedCents, getTopupReceipt200Response.chargedCents);
   }
 
@@ -323,7 +353,7 @@ public class GetTopupReceipt200Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, format, hashCodeNullable(invoiceUrl), hashCodeNullable(receiptUrl), amountCents, feeCents, chargedCents);
+    return Objects.hash(url, format, hashCodeNullable(invoiceUrl), hashCodeNullable(receiptUrl), amountCents, feeCents, taxCents, chargedCents);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -343,6 +373,7 @@ public class GetTopupReceipt200Response {
     sb.append("    receiptUrl: ").append(toIndentedString(receiptUrl)).append("\n");
     sb.append("    amountCents: ").append(toIndentedString(amountCents)).append("\n");
     sb.append("    feeCents: ").append(toIndentedString(feeCents)).append("\n");
+    sb.append("    taxCents: ").append(toIndentedString(taxCents)).append("\n");
     sb.append("    chargedCents: ").append(toIndentedString(chargedCents)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -419,6 +450,11 @@ public class GetTopupReceipt200Response {
     // add `feeCents` to the URL query string
     if (getFeeCents() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sfeeCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFeeCents()))));
+    }
+
+    // add `taxCents` to the URL query string
+    if (getTaxCents() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%staxCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTaxCents()))));
     }
 
     // add `chargedCents` to the URL query string

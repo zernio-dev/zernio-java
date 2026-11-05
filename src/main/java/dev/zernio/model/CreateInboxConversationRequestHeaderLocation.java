@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequestHeaderLocation.JSON_PROPERTY_NAME,
   CreateInboxConversationRequestHeaderLocation.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:18:20.601584792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:44:08.969647373Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequestHeaderLocation {
   public static final String JSON_PROPERTY_LATITUDE = "latitude";
   @javax.annotation.Nonnull

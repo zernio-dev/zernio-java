@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateTopupRequest.JSON_PROPERTY_METHOD,
   CreateTopupRequest.JSON_PROPERTY_PAYMENT_METHOD_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:18:20.601584792Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T23:44:08.969647373Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateTopupRequest {
   public static final String JSON_PROPERTY_AMOUNT_CENTS = "amountCents";
   @javax.annotation.Nonnull
@@ -95,7 +95,7 @@ public class CreateTopupRequest {
   }
 
   /**
-   * Amount to charge and credit to your balance, in cents: $5 to $100,000. No card fee.
+   * Amount to credit to your balance, in cents: $5 to $100,000. Tax is charged on top; no card fee.
    * minimum: 500
    * maximum: 10000000
    * @return amountCents

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.504.0
 
-- Build date: 2026-11-05T23:18:20.601584792Z[Etc/UTC]
+- Build date: 2026-11-05T23:44:08.969647373Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2071,10 +2071,12 @@ Class | Method | HTTP request | Description
 *TreasuryApi* | [**getBalanceWithHttpInfo**](docs/TreasuryApi.md#getBalanceWithHttpInfo) | **GET** /v1/balance | Get balance
 *TreasuryApi* | [**getPayoutBatch**](docs/TreasuryApi.md#getPayoutBatch) | **GET** /v1/payout-batches/{batchId} | Get a payout batch
 *TreasuryApi* | [**getPayoutBatchWithHttpInfo**](docs/TreasuryApi.md#getPayoutBatchWithHttpInfo) | **GET** /v1/payout-batches/{batchId} | Get a payout batch
+*TreasuryApi* | [**getTopupInvoice**](docs/TreasuryApi.md#getTopupInvoice) | **GET** /v1/balance/top-ups/{topupId}/invoice | Get a top-up invoice
+*TreasuryApi* | [**getTopupInvoiceWithHttpInfo**](docs/TreasuryApi.md#getTopupInvoiceWithHttpInfo) | **GET** /v1/balance/top-ups/{topupId}/invoice | Get a top-up invoice
 *TreasuryApi* | [**getTopupReceipt**](docs/TreasuryApi.md#getTopupReceipt) | **GET** /v1/balance/top-ups/{topupId}/receipt | Get a top-up receipt
 *TreasuryApi* | [**getTopupReceiptWithHttpInfo**](docs/TreasuryApi.md#getTopupReceiptWithHttpInfo) | **GET** /v1/balance/top-ups/{topupId}/receipt | Get a top-up receipt
-*TreasuryApi* | [**getTopupStatement**](docs/TreasuryApi.md#getTopupStatement) | **GET** /v1/balance/top-ups/{topupId}/statement | Get a top-up statement
-*TreasuryApi* | [**getTopupStatementWithHttpInfo**](docs/TreasuryApi.md#getTopupStatementWithHttpInfo) | **GET** /v1/balance/top-ups/{topupId}/statement | Get a top-up statement
+*TreasuryApi* | [**getTopupStatement**](docs/TreasuryApi.md#getTopupStatement) | **GET** /v1/balance/top-ups/{topupId}/statement | Get a top-up invoice (alias)
+*TreasuryApi* | [**getTopupStatementWithHttpInfo**](docs/TreasuryApi.md#getTopupStatementWithHttpInfo) | **GET** /v1/balance/top-ups/{topupId}/statement | Get a top-up invoice (alias)
 *TreasuryApi* | [**getTransfer**](docs/TreasuryApi.md#getTransfer) | **GET** /v1/transfers/{transferId} | Get a transfer
 *TreasuryApi* | [**getTransferWithHttpInfo**](docs/TreasuryApi.md#getTransferWithHttpInfo) | **GET** /v1/transfers/{transferId} | Get a transfer
 *TreasuryApi* | [**listPayees**](docs/TreasuryApi.md#listPayees) | **GET** /v1/payees | List payees
@@ -2083,6 +2085,8 @@ Class | Method | HTTP request | Description
 *TreasuryApi* | [**listTopupsWithHttpInfo**](docs/TreasuryApi.md#listTopupsWithHttpInfo) | **GET** /v1/balance/top-ups | List top-ups
 *TreasuryApi* | [**listTransfers**](docs/TreasuryApi.md#listTransfers) | **GET** /v1/transfers | List transfers
 *TreasuryApi* | [**listTransfersWithHttpInfo**](docs/TreasuryApi.md#listTransfersWithHttpInfo) | **GET** /v1/transfers | List transfers
+*TreasuryApi* | [**previewTopup**](docs/TreasuryApi.md#previewTopup) | **POST** /v1/balance/top-ups/preview | Preview a top-up&#39;s tax
+*TreasuryApi* | [**previewTopupWithHttpInfo**](docs/TreasuryApi.md#previewTopupWithHttpInfo) | **POST** /v1/balance/top-ups/preview | Preview a top-up&#39;s tax
 *TwitterEngagementApi* | [**bookmarkPost**](docs/TwitterEngagementApi.md#bookmarkPost) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**bookmarkPostWithHttpInfo**](docs/TwitterEngagementApi.md#bookmarkPostWithHttpInfo) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**followUser**](docs/TwitterEngagementApi.md#followUser) | **POST** /v1/twitter/follow | Follow a user
@@ -3807,8 +3811,8 @@ Class | Method | HTTP request | Description
  - [GetTikTokSmartPlusMaterialReport200Response](docs/GetTikTokSmartPlusMaterialReport200Response.md)
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInner](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md)
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md)
+ - [GetTopupInvoice200Response](docs/GetTopupInvoice200Response.md)
  - [GetTopupReceipt200Response](docs/GetTopupReceipt200Response.md)
- - [GetTopupStatement200Response](docs/GetTopupStatement200Response.md)
  - [GetTrackingTag200Response](docs/GetTrackingTag200Response.md)
  - [GetTrackingTagDiagnostics200Response](docs/GetTrackingTagDiagnostics200Response.md)
  - [GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
@@ -4583,6 +4587,8 @@ Class | Method | HTTP request | Description
  - [PreflightSmsRegistrationRequest](docs/PreflightSmsRegistrationRequest.md)
  - [PrepareMedia200Response](docs/PrepareMedia200Response.md)
  - [PrepareMediaRequest](docs/PrepareMediaRequest.md)
+ - [PreviewTopup200Response](docs/PreviewTopup200Response.md)
+ - [PreviewTopupRequest](docs/PreviewTopupRequest.md)
  - [Product](docs/Product.md)
  - [ProductImage](docs/ProductImage.md)
  - [ProductOptionsInner](docs/ProductOptionsInner.md)
