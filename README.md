@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.500.1
+- API version: 1.501.0
 
-- Build date: 2026-11-05T17:42:14.345787322Z[Etc/UTC]
+- Build date: 2026-11-05T17:55:58.748976805Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.500.1</version>
+  <version>1.501.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.500.1"
+compile "dev.zernio:zernio-sdk:1.501.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.500.1.jar`
+- `target/zernio-sdk-1.501.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2071,10 +2071,10 @@ Class | Method | HTTP request | Description
 *TreasuryApi* | [**getBalanceWithHttpInfo**](docs/TreasuryApi.md#getBalanceWithHttpInfo) | **GET** /v1/balance | Get balance
 *TreasuryApi* | [**getPayoutBatch**](docs/TreasuryApi.md#getPayoutBatch) | **GET** /v1/payout-batches/{batchId} | Get a payout batch
 *TreasuryApi* | [**getPayoutBatchWithHttpInfo**](docs/TreasuryApi.md#getPayoutBatchWithHttpInfo) | **GET** /v1/payout-batches/{batchId} | Get a payout batch
-*TreasuryApi* | [**getTopupCardFee**](docs/TreasuryApi.md#getTopupCardFee) | **GET** /v1/balance/top-ups/card-fee | Get the card fee for a top-up
-*TreasuryApi* | [**getTopupCardFeeWithHttpInfo**](docs/TreasuryApi.md#getTopupCardFeeWithHttpInfo) | **GET** /v1/balance/top-ups/card-fee | Get the card fee for a top-up
 *TreasuryApi* | [**getTopupReceipt**](docs/TreasuryApi.md#getTopupReceipt) | **GET** /v1/balance/top-ups/{topupId}/receipt | Get a top-up receipt
 *TreasuryApi* | [**getTopupReceiptWithHttpInfo**](docs/TreasuryApi.md#getTopupReceiptWithHttpInfo) | **GET** /v1/balance/top-ups/{topupId}/receipt | Get a top-up receipt
+*TreasuryApi* | [**getTopupStatement**](docs/TreasuryApi.md#getTopupStatement) | **GET** /v1/balance/top-ups/{topupId}/statement | Get a top-up statement
+*TreasuryApi* | [**getTopupStatementWithHttpInfo**](docs/TreasuryApi.md#getTopupStatementWithHttpInfo) | **GET** /v1/balance/top-ups/{topupId}/statement | Get a top-up statement
 *TreasuryApi* | [**getTransfer**](docs/TreasuryApi.md#getTransfer) | **GET** /v1/transfers/{transferId} | Get a transfer
 *TreasuryApi* | [**getTransferWithHttpInfo**](docs/TreasuryApi.md#getTransferWithHttpInfo) | **GET** /v1/transfers/{transferId} | Get a transfer
 *TreasuryApi* | [**listPayees**](docs/TreasuryApi.md#listPayees) | **GET** /v1/payees | List payees
@@ -3807,8 +3807,8 @@ Class | Method | HTTP request | Description
  - [GetTikTokSmartPlusMaterialReport200Response](docs/GetTikTokSmartPlusMaterialReport200Response.md)
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInner](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md)
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md)
- - [GetTopupCardFee200Response](docs/GetTopupCardFee200Response.md)
  - [GetTopupReceipt200Response](docs/GetTopupReceipt200Response.md)
+ - [GetTopupStatement200Response](docs/GetTopupStatement200Response.md)
  - [GetTrackingTag200Response](docs/GetTrackingTag200Response.md)
  - [GetTrackingTagDiagnostics200Response](docs/GetTrackingTagDiagnostics200Response.md)
  - [GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
