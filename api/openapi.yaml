@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.498.0
+  version: 1.499.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -116103,6 +116103,11 @@ components:
           platformStatus: platformStatus
           type: order
           status: ""
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
         id: id
         store:
           accountId: accountId
@@ -116130,6 +116135,14 @@ components:
             \ the delivery attempt."
           format: date-time
           type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
         store:
           $ref: "#/components/schemas/WebhookPayloadCommerceProduct_store"
         resource:
