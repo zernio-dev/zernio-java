@@ -98,6 +98,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Conversation not found or not owned by the caller&#39;s team |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## getInboxConversationAnalyticsWithHttpInfo
 
@@ -179,6 +180,7 @@ ApiResponse<[**GetInboxConversationAnalytics200Response**](GetInboxConversationA
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Conversation not found or not owned by the caller&#39;s team |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 
 ## getInboxHeatmap
@@ -265,6 +267,7 @@ public class Example {
 | **400** | Validation error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## getInboxHeatmapWithHttpInfo
 
@@ -353,6 +356,7 @@ ApiResponse<[**GetInboxHeatmap200Response**](GetInboxHeatmap200Response.md)>
 | **400** | Validation error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 
 ## getInboxResponseTime
@@ -435,6 +439,7 @@ public class Example {
 | **400** | Validation error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## getInboxResponseTimeWithHttpInfo
 
@@ -519,6 +524,7 @@ ApiResponse<[**GetInboxResponseTime200Response**](GetInboxResponseTime200Respons
 | **400** | Validation error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 
 ## getInboxSourceBreakdown
@@ -601,6 +607,7 @@ public class Example {
 | **400** | Validation error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## getInboxSourceBreakdownWithHttpInfo
 
@@ -685,6 +692,7 @@ ApiResponse<[**GetInboxSourceBreakdown200Response**](GetInboxSourceBreakdown200R
 | **400** | Validation error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 
 ## getInboxTopAccounts
@@ -769,6 +777,7 @@ public class Example {
 | **400** | Validation error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## getInboxTopAccountsWithHttpInfo
 
@@ -855,6 +864,7 @@ ApiResponse<[**GetInboxTopAccounts200Response**](GetInboxTopAccounts200Response.
 | **400** | Validation error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 
 ## getInboxVolume
@@ -939,6 +949,7 @@ public class Example {
 | **400** | Validation error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## getInboxVolumeWithHttpInfo
 
@@ -1025,6 +1036,7 @@ ApiResponse<[**GetInboxVolume200Response**](GetInboxVolume200Response.md)>
 | **400** | Validation error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 
 ## listInboxConversationAnalytics
@@ -1117,6 +1129,7 @@ public class Example {
 | **400** | Validation error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## listInboxConversationAnalyticsWithHttpInfo
 
@@ -1211,4 +1224,5 @@ ApiResponse<[**ListInboxConversationAnalytics200Response**](ListInboxConversatio
 | **400** | Validation error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 

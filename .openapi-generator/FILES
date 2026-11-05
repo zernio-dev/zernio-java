@@ -1642,6 +1642,8 @@ docs/InlineObject1.md
 docs/InlineObject2.md
 docs/InlineObject3.md
 docs/InlineObject3Details.md
+docs/InlineObject4.md
+docs/InlineObject4Details.md
 docs/InstagramAccountInsightsResponse.md
 docs/InstagramAccountInsightsResponseDateRange.md
 docs/InstagramAccountInsightsResponseMetricsValue.md
@@ -5051,6 +5053,8 @@ src/main/java/dev/zernio/model/InlineObject1.java
 src/main/java/dev/zernio/model/InlineObject2.java
 src/main/java/dev/zernio/model/InlineObject3.java
 src/main/java/dev/zernio/model/InlineObject3Details.java
+src/main/java/dev/zernio/model/InlineObject4.java
+src/main/java/dev/zernio/model/InlineObject4Details.java
 src/main/java/dev/zernio/model/InstagramAccountInsightsResponse.java
 src/main/java/dev/zernio/model/InstagramAccountInsightsResponseDateRange.java
 src/main/java/dev/zernio/model/InstagramAccountInsightsResponseMetricsValue.java

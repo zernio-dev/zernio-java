@@ -4421,6 +4421,7 @@ public class Example {
 | **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## getAdTreeWithHttpInfo
 
@@ -4537,6 +4538,7 @@ ApiResponse<[**AdTreeResponse**](AdTreeResponse.md)>
 | **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 
 ## getAdsTimeline
@@ -4623,6 +4625,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## getAdsTimelineWithHttpInfo
 
@@ -4711,6 +4714,7 @@ ApiResponse<[**AdsTimelineResponse**](AdsTimelineResponse.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 
 ## getCampaignAdSchedule
@@ -5797,6 +5801,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## listAdCampaignsWithHttpInfo
 
@@ -5905,6 +5910,7 @@ ApiResponse<[**ListAdCampaigns200Response**](ListAdCampaigns200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 
 ## listAdGroupAssets
@@ -6552,6 +6558,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## listAdsWithHttpInfo
 
@@ -6659,6 +6666,7 @@ ApiResponse<[**AdsListResponse**](AdsListResponse.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 
 ## listAdsAlerts
@@ -6737,6 +6745,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## listAdsAlertsWithHttpInfo
 
@@ -6817,6 +6826,7 @@ ApiResponse<[**ListAdsAlerts200Response**](ListAdsAlerts200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 
 ## listAdsByPerformance
@@ -6905,6 +6915,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 ## listAdsByPerformanceWithHttpInfo
 
@@ -6995,6 +7006,7 @@ ApiResponse<[**AdsPerformanceResponse**](AdsPerformanceResponse.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 
 ## listBidStrategies

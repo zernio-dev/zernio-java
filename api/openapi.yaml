@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.499.2
+  version: 1.500.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -1139,6 +1139,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Internal server error
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       summary: Get post analytics
       tags:
       - Analytics
@@ -1347,6 +1349,8 @@ paths:
             The feed answers this rather than an empty page, because an empty page is indistinguishable from "nothing changed" and would advance you past a window you never received.
           x-summary: "The delta feed is temporarily unavailable: retry the same request\
             \ unchanged, waiting the seconds in `Retry-After`."
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       summary: Analytics changed since a cursor
       tags:
       - Analytics
@@ -3740,6 +3744,8 @@ paths:
             add-on; included by default on usage-based plans.
           x-summary: "Analytics access is required: add the Analytics add-on on a\
             \ legacy plan, or use a usage-based plan where it is included."
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       summary: Get daily aggregated metrics
       tags:
       - Analytics
@@ -3909,6 +3915,8 @@ paths:
             \ limit (PROFILE_OVER_LIMIT)."
         "404":
           description: Profile not found or not accessible with this API key.
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       summary: Get an analytics dashboard
       tags:
       - Analytics
@@ -3996,6 +4004,8 @@ paths:
             add-on; included by default on usage-based plans.
           x-summary: "Analytics access is required: add the Analytics add-on on a\
             \ legacy plan, or use a usage-based plan where it is included."
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       summary: Get best times to post
       tags:
       - Analytics
@@ -4101,6 +4111,8 @@ paths:
             add-on; included by default on usage-based plans.
           x-summary: "Analytics access is required: add the Analytics add-on on a\
             \ legacy plan, or use a usage-based plan where it is included."
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       summary: Get content performance decay
       tags:
       - Analytics
@@ -4191,6 +4203,8 @@ paths:
             add-on; included by default on usage-based plans.
           x-summary: "Analytics access is required: add the Analytics add-on on a\
             \ legacy plan, or use a usage-based plan where it is included."
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       summary: Get frequency vs engagement
       tags:
       - Analytics
@@ -5665,6 +5679,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getPostTimeline_404_response"
           description: Post not found
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       summary: Get post analytics timeline
       tags:
       - Analytics
@@ -5893,6 +5909,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: API key scope violation
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       summary: List tracking windows
       tags:
       - Analytics
@@ -6086,6 +6104,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Tracking window not found
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       summary: Get a tracking window
       tags:
       - Analytics
@@ -6180,6 +6200,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Post not found
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       summary: Get post samples
       tags:
       - Analytics
@@ -6709,6 +6731,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Internal server error
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: Get inbox messaging volume
@@ -6805,6 +6829,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Internal server error
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: Get day × hour heatmap
@@ -6881,6 +6907,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Internal server error
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: Get inbox source breakdown
@@ -6963,6 +6991,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Internal server error
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: Get inbox response-time stats
@@ -7050,6 +7080,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Internal server error
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: Get top accounts by inbox volume
@@ -7184,6 +7216,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Internal server error
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: List conversation analytics
@@ -7259,6 +7293,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Internal server error
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: Get conversation analytics
@@ -44692,6 +44728,8 @@ paths:
             by default on usage-based plans.
           x-summary: "Ads access is required: legacy plans need the Ads add-on, and\
             \ usage-based plans include it by default."
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: List ads
@@ -47140,6 +47178,8 @@ paths:
             by default on usage-based plans.
           x-summary: "Ads access is required: legacy plans need the Ads add-on, and\
             \ usage-based plans include it by default."
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: List campaigns
@@ -49762,6 +49802,8 @@ paths:
             by default on usage-based plans.
           x-summary: "Ads access is required: legacy plans need the Ads add-on, and\
             \ usage-based plans include it by default."
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: Get campaign tree
@@ -49905,6 +49947,8 @@ paths:
             \ usage-based plans include it by default."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: Rank ads by performance
@@ -50053,6 +50097,8 @@ paths:
             \ usage-based plans include it by default."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: Get daily account metrics
@@ -51470,8 +51516,9 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
-          description: Google operations budget or quota exhausted without a cached
-            impression-share result.
+          description: "The team's analytics read cap was reached (`details.scope`\
+            \ is `campaign-analytics`), or the Google operations budget or quota is\
+            \ exhausted without a cached impression-share result."
       security:
       - bearerAuth: []
       summary: Get campaign analytics
@@ -52578,6 +52625,8 @@ paths:
             \ usage-based plans include it by default."
         "404":
           $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: Get ad analytics
@@ -53396,6 +53445,8 @@ paths:
             by default on usage-based plans.
           x-summary: "Ads access is required: legacy plans need the Ads add-on, and\
             \ usage-based plans include it by default."
+        "429":
+          $ref: "#/components/responses/AnalyticsRateLimited"
       security:
       - bearerAuth: []
       summary: List ads that need attention
@@ -79197,6 +79248,51 @@ components:
           style: simple
       x-summary: "The connected account's upstream platform quota is exhausted: wait\
         \ for the limit to reset before retrying, since repeated calls do not succeed."
+    AnalyticsRateLimited:
+      content:
+        application/json:
+          example:
+            error: Limit of 120 requests per 30 s reached for campaign-analytics reads.
+              Read many campaigns in one request with GET /v1/ads/tree instead of
+              one request each. Please retry after 12 seconds.
+            details:
+              currentCount: 121
+              limit: 120
+              retryAfterSeconds: 12
+              scope: campaign-analytics
+              window: 30 s
+          schema:
+            $ref: "#/components/schemas/inline_object_3"
+      description: |
+        A limit on your request rate was reached: your plan's API limit, or the team's analytics read cap on a 30-second sliding window. `details.scope` names the capped group (`campaign-analytics`, `ad-analytics`, `ads-listings` or `post-analytics`) and is absent for the API limit.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          explode: false
+          schema:
+            type: integer
+          style: simple
+        X-RateLimit-Limit:
+          description: The ceiling of the limit that was reached.
+          explode: false
+          schema:
+            type: integer
+          style: simple
+        X-RateLimit-Remaining:
+          description: Requests remaining in the window.
+          explode: false
+          schema:
+            type: integer
+          style: simple
+        X-RateLimit-Reset:
+          description: Unix timestamp (seconds since epoch) when the next slot frees
+            up.
+          explode: false
+          schema:
+            type: integer
+          style: simple
+      x-summary: "Too many requests: wait `Retry-After` seconds, then spread the calls\
+        \ out."
     MetaAdAccountWriteLimited:
       content:
         application/json:
@@ -79287,7 +79383,7 @@ components:
                   effective_account_limit: 2000
                   current_account_count: 2000
           schema:
-            $ref: "#/components/schemas/inline_object_3"
+            $ref: "#/components/schemas/inline_object_4"
       description: |
         Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on `reason` to render the right prompt:
 
@@ -204131,6 +204227,43 @@ components:
           - files
           type: string
     inline_object_3_details:
+      example:
+        currentCount: 0
+        retryAfterSeconds: 1
+        scope: campaign-analytics
+        limit: 6
+        window: window
+      properties:
+        currentCount:
+          type: integer
+        limit:
+          type: integer
+        retryAfterSeconds:
+          type: integer
+        scope:
+          enum:
+          - campaign-analytics
+          - ad-analytics
+          - ads-listings
+          - post-analytics
+          type: string
+        window:
+          type: string
+    inline_object_3:
+      example:
+        details:
+          currentCount: 0
+          retryAfterSeconds: 1
+          scope: campaign-analytics
+          limit: 6
+          window: window
+        error: error
+      properties:
+        error:
+          type: string
+        details:
+          $ref: "#/components/schemas/inline_object_3_details"
+    inline_object_4_details:
       description: Structured context for SDK clients that want to render their own
         UX. Keys vary by `reason`.
       example:
@@ -204166,7 +204299,7 @@ components:
             set when reason=enterprise_required.
           example: 2000
           type: integer
-    inline_object_3:
+    inline_object_4:
       example:
         reason: free_tier_exceeded
         code: PAYMENT_REQUIRED
@@ -204215,7 +204348,7 @@ components:
           format: uri
           type: string
         details:
-          $ref: "#/components/schemas/inline_object_3_details"
+          $ref: "#/components/schemas/inline_object_4_details"
       required:
       - code
       - error
@@ -204321,11 +204454,13 @@ x-documentation:
 
     Reads that integrations tend to poll have an extra cap of 1,800 requests per hour per team, on a sliding window, counted separately for each group: inbox comments (`GET /v1/inbox/comments` and `GET /v1/inbox/comments/{postId}`), ad comments (`GET /v1/ads/{adId}/comments`) and Google Business reviews (`GET /v1/accounts/{accountId}/gmb-reviews` and `POST /v1/accounts/{accountId}/gmb-reviews/batch`). Past it the API answers 429 with `details.scope` naming the group. Subscribe to the `comment.received`, `review.new` and `review.updated` webhooks instead of polling these routes.
 
+    Analytics reads made with an API key have a cap per team on a 30-second sliding window, on top of the limits above and counted separately for each group: 120 requests for campaign analytics (`GET /v1/ads/campaigns/{campaignId}/analytics`), 300 for ad analytics (`GET /v1/ads/{adId}/analytics`), 150 for ads listings (`GET /v1/ads`, `/v1/ads/tree`, `/v1/ads/timeline`, `/v1/ads/campaigns`, `/v1/ads/performance` and `/v1/ads/alerts`) and 300 for post and inbox analytics (the `/v1/analytics` routes that read stored metrics; the live platform routes such as `/v1/analytics/instagram/*` are not included). Past a cap the API answers 429 with `Retry-After`, `details.scope` naming the group and `details.window`. Read many ads or campaigns in one request with `GET /v1/ads/tree` instead of one request each. Requests from the Zernio dashboard do not count.
+
     Posts themselves are unlimited on every connected account; the rate limit applies only to API request throughput. Zernio also applies per-account daily publish caps as an anti-abuse safeguard (Instagram 100/day, Facebook 100/day, Google Business 100/day, Threads 250/day, X 50/day plus 200 replies for unverified accounts and 2,400 posts a day for verified X accounts, Pinterest 25/day, 50/day for every other platform), plus a 25-posts-per-hour per-account velocity cap.
 
     TikTok caps accounts connected through the TikTok for Business app lower than any of those: 15 videos and 15 photo posts per account per day, counted separately. Zernio enforces it as a trailing 24 hour window rather than a calendar day, and a post over the cap is not rejected. It is held and published automatically once the oldest post of the same kind leaves the window, so `scheduledFor` on that platform entry moves to the time it will go out.
 
-    All responses include `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` headers. Read these instead of hard-coding limits, since your tier may be configured higher than the default.
+    All responses include `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` headers, describing whichever limit that applies to the request has the fewest requests left. Read these instead of hard-coding limits, since your tier may be configured higher than the default.
 
     ## Webhooks
 

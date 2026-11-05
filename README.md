@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.499.2
+- API version: 1.500.0
 
-- Build date: 2026-11-05T15:05:08.437702462Z[Etc/UTC]
+- Build date: 2026-11-05T15:31:01.614746420Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.499.2</version>
+  <version>1.500.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.499.2"
+compile "dev.zernio:zernio-sdk:1.500.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.499.2.jar`
+- `target/zernio-sdk-1.500.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4007,6 +4007,8 @@ Class | Method | HTTP request | Description
  - [InlineObject2](docs/InlineObject2.md)
  - [InlineObject3](docs/InlineObject3.md)
  - [InlineObject3Details](docs/InlineObject3Details.md)
+ - [InlineObject4](docs/InlineObject4.md)
+ - [InlineObject4Details](docs/InlineObject4Details.md)
  - [InstagramAccountInsightsResponse](docs/InstagramAccountInsightsResponse.md)
  - [InstagramAccountInsightsResponseDateRange](docs/InstagramAccountInsightsResponseDateRange.md)
  - [InstagramAccountInsightsResponseMetricsValue](docs/InstagramAccountInsightsResponseMetricsValue.md)
