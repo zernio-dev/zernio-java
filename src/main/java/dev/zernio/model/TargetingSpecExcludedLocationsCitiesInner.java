@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   TargetingSpecExcludedLocationsCitiesInner.JSON_PROPERTY_RADIUS,
   TargetingSpecExcludedLocationsCitiesInner.JSON_PROPERTY_DISTANCE_UNIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T09:51:13.846939397Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T10:33:17.260194253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpecExcludedLocationsCitiesInner {
   public static final String JSON_PROPERTY_KEY = "key";
   @javax.annotation.Nonnull

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListInboxConversationAnalytics200ResponsePagination.JSON_PROPERTY_TOTAL_PAGES,
   ListInboxConversationAnalytics200ResponsePagination.JSON_PROPERTY_HAS_MORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T09:51:13.846939397Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T10:33:17.260194253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversationAnalytics200ResponsePagination {
   public static final String JSON_PROPERTY_PAGE = "page";
   @javax.annotation.Nullable

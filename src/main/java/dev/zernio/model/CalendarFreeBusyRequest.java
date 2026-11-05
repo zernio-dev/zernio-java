@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CalendarFreeBusyRequest.JSON_PROPERTY_FROM,
   CalendarFreeBusyRequest.JSON_PROPERTY_TO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T09:51:13.846939397Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T10:33:17.260194253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CalendarFreeBusyRequest {
   public static final String JSON_PROPERTY_ACCOUNT_IDS = "accountIds";
   @javax.annotation.Nonnull

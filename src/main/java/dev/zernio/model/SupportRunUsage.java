@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SupportRunUsage.JSON_PROPERTY_CACHE_READ_TOKENS,
   SupportRunUsage.JSON_PROPERTY_CACHE_WRITE_TOKENS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T09:51:13.846939397Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T10:33:17.260194253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SupportRunUsage {
   public static final String JSON_PROPERTY_INPUT_TOKENS = "inputTokens";
   @javax.annotation.Nonnull

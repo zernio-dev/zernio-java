@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   TrackingWindowLatest.JSON_PROPERTY_SAVES,
   TrackingWindowLatest.JSON_PROPERTY_SYNCED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T09:51:13.846939397Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-05T10:33:17.260194253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TrackingWindowLatest {
   public static final String JSON_PROPERTY_VIEWS = "views";
   @javax.annotation.Nonnull
