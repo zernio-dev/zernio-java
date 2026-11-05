@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.501.1
+  version: 1.502.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -62031,6 +62031,8 @@ paths:
         ### TikTok geo
 
         TikTok geo searches return every matching level in one list (`type` is `country`, `region`, `city`, `district`, or `metro` for DMA areas), and `geoType` is not applied.
+
+        `path` starts with the country code, then the parent regions from the top down, so same-name places can be told apart. In the US the regions are the state, then the county: Austin, Texas reads `["US", "Texas", "Travis"]`.
 
         Results are scoped to the advertiser's targetable markets (pass `adAccountId` when the connection holds several advertisers). A two-letter `q` also matches a country by ISO code (`q=GB` returns the United Kingdom first).
 
