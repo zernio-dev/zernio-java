@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.496.2
+  version: 1.497.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -158144,6 +158144,7 @@ components:
           type: string
         adAccountId:
           description: "Platform ad account ID, from `GET /v1/ads/accounts`."
+          maxLength: 64
           type: string
         level:
           $ref: "#/components/schemas/AdRuleLevel"
