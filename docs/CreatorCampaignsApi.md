@@ -2014,7 +2014,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **participantId** | **String**| List only this participant&#39;s entries. | [optional] |
-| **kind** | **String**|  | [optional] [enum: accrual, approval, hold_release, adjustment, settling, settlement, reversal, topup, transfer, fee] |
+| **kind** | **String**|  | [optional] [enum: accrual, approval, hold_release, adjustment, settling, settlement, reversal, topup, transfer, fee, usage, grant] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **skip** | **Integer**|  | [optional] [default to 0] |
 
@@ -2099,7 +2099,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **participantId** | **String**| List only this participant&#39;s entries. | [optional] |
-| **kind** | **String**|  | [optional] [enum: accrual, approval, hold_release, adjustment, settling, settlement, reversal, topup, transfer, fee] |
+| **kind** | **String**|  | [optional] [enum: accrual, approval, hold_release, adjustment, settling, settlement, reversal, topup, transfer, fee, usage, grant] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **skip** | **Integer**|  | [optional] [default to 0] |
 

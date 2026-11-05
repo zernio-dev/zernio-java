@@ -31,6 +31,8 @@
 | TOPUP | &quot;topup&quot; |
 | TRANSFER | &quot;transfer&quot; |
 | FEE | &quot;fee&quot; |
+| USAGE | &quot;usage&quot; |
+| GRANT | &quot;grant&quot; |
 
 
 

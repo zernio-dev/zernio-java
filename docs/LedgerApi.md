@@ -224,7 +224,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **scopeType** | **String**|  | [optional] |
 | **scopeId** | **String**|  | [optional] |
-| **kind** | **String**|  | [optional] [enum: accrual, approval, hold_release, adjustment, settling, settlement, reversal, topup, transfer, fee] |
+| **kind** | **String**|  | [optional] [enum: accrual, approval, hold_release, adjustment, settling, settlement, reversal, topup, transfer, fee, usage, grant] |
 | **referenceType** | **String**|  | [optional] |
 | **referenceId** | **String**|  | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
@@ -311,7 +311,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **scopeType** | **String**|  | [optional] |
 | **scopeId** | **String**|  | [optional] |
-| **kind** | **String**|  | [optional] [enum: accrual, approval, hold_release, adjustment, settling, settlement, reversal, topup, transfer, fee] |
+| **kind** | **String**|  | [optional] [enum: accrual, approval, hold_release, adjustment, settling, settlement, reversal, topup, transfer, fee, usage, grant] |
 | **referenceType** | **String**|  | [optional] |
 | **referenceId** | **String**|  | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
