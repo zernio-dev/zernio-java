@@ -43,7 +43,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Delete comment
 
-Delete a comment on a post. Supported by Facebook, Instagram, Threads, LinkedIn, Reddit, Bluesky, X (Twitter), YouTube, and TikTok (accounts connected through the TikTok for Business app). Not supported on Google Business (reviews only). Requires accountId and commentId query parameters. 
+Delete a comment on a post. Supported by Facebook, Instagram, Threads, LinkedIn, Reddit, Bluesky, X (Twitter), YouTube, and TikTok (accounts connected through the TikTok for Business app). Not supported on Google Business (reviews only). Requires accountId and commentId query parameters.  Zernio does not check &#x60;canDelete&#x60; before calling the platform. When the platform refuses, the call fails with the platform&#39;s message, normally as &#x60;platform_api_error&#x60; with the platform&#39;s own 4xx status.  On Facebook and Instagram the account can delete anyone&#39;s comment on its own posts. On TikTok only the account&#39;s own comments can be deleted; hide the others.  On YouTube, a comment the channel did not write is rejected instead, through the same moderation status as &#x60;setCommentModeration&#x60;, and the response still reports it as deleted. Use &#x60;setCommentModeration&#x60; directly to reverse the rejection later or to ban the author. 
 
 ### Example
 
@@ -122,7 +122,7 @@ public class Example {
 
 Delete comment
 
-Delete a comment on a post. Supported by Facebook, Instagram, Threads, LinkedIn, Reddit, Bluesky, X (Twitter), YouTube, and TikTok (accounts connected through the TikTok for Business app). Not supported on Google Business (reviews only). Requires accountId and commentId query parameters. 
+Delete a comment on a post. Supported by Facebook, Instagram, Threads, LinkedIn, Reddit, Bluesky, X (Twitter), YouTube, and TikTok (accounts connected through the TikTok for Business app). Not supported on Google Business (reviews only). Requires accountId and commentId query parameters.  Zernio does not check &#x60;canDelete&#x60; before calling the platform. When the platform refuses, the call fails with the platform&#39;s message, normally as &#x60;platform_api_error&#x60; with the platform&#39;s own 4xx status.  On Facebook and Instagram the account can delete anyone&#39;s comment on its own posts. On TikTok only the account&#39;s own comments can be deleted; hide the others.  On YouTube, a comment the channel did not write is rejected instead, through the same moderation status as &#x60;setCommentModeration&#x60;, and the response still reports it as deleted. Use &#x60;setCommentModeration&#x60; directly to reverse the rejection later or to ban the author. 
 
 ### Example
 
@@ -541,7 +541,7 @@ ApiResponse<[**GetInboxPostComments200Response**](GetInboxPostComments200Respons
 
 Hide comment
 
-Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin.  For X, the reply must belong to a conversation started by the authenticated user.  On Threads only top-level replies can be hidden, and hiding one also hides its nested replies. 
 
 ### Example
 
@@ -618,7 +618,7 @@ public class Example {
 
 Hide comment
 
-Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin.  For X, the reply must belong to a conversation started by the authenticated user.  On Threads only top-level replies can be hidden, and hiding one also hides its nested replies. 
 
 ### Example
 
