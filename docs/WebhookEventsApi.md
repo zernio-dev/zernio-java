@@ -13323,7 +13323,7 @@ ApiResponse<Void>
 
 TikTok post URL resolved event
 
-Fired when an already-published TikTok platform entry gets its public URL backfilled.  TikTok exposes the numeric video id asynchronously (often minutes after PUBLISH_COMPLETE), so the terminal events can carry an empty &#x60;publishedUrl&#x60; for TikTok. This event delivers &#x60;platform.publishedUrl&#x60; and the resolved &#x60;platform.platformPostId&#x60; once available.  - Fires at most once per platform target. - Never fires for drafts or private posts (no public URL exists). - The payload shape is identical to &#x60;post.platform.published&#x60;. 
+Fired when an already-published TikTok platform entry gets its public URL backfilled.  TikTok exposes the numeric video id asynchronously (often minutes after PUBLISH_COMPLETE), so the terminal events can carry an empty &#x60;publishedUrl&#x60; for TikTok. This event delivers &#x60;platform.publishedUrl&#x60; and the resolved &#x60;platform.platformPostId&#x60; once available.  - Fires at most once per platform target. - Never fires for private posts (no public URL exists). - For a draft, fires when the creator posts the draft publicly from the TikTok app. A draft the creator never posts never fires it. - The payload shape is identical to &#x60;post.platform.published&#x60;. 
 
 ### Example
 
@@ -13392,7 +13392,7 @@ null (empty response body)
 
 TikTok post URL resolved event
 
-Fired when an already-published TikTok platform entry gets its public URL backfilled.  TikTok exposes the numeric video id asynchronously (often minutes after PUBLISH_COMPLETE), so the terminal events can carry an empty &#x60;publishedUrl&#x60; for TikTok. This event delivers &#x60;platform.publishedUrl&#x60; and the resolved &#x60;platform.platformPostId&#x60; once available.  - Fires at most once per platform target. - Never fires for drafts or private posts (no public URL exists). - The payload shape is identical to &#x60;post.platform.published&#x60;. 
+Fired when an already-published TikTok platform entry gets its public URL backfilled.  TikTok exposes the numeric video id asynchronously (often minutes after PUBLISH_COMPLETE), so the terminal events can carry an empty &#x60;publishedUrl&#x60; for TikTok. This event delivers &#x60;platform.publishedUrl&#x60; and the resolved &#x60;platform.platformPostId&#x60; once available.  - Fires at most once per platform target. - Never fires for private posts (no public URL exists). - For a draft, fires when the creator posts the draft publicly from the TikTok app. A draft the creator never posts never fires it. - The payload shape is identical to &#x60;post.platform.published&#x60;. 
 
 ### Example
 
