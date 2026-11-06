@@ -250,7 +250,7 @@ public class Example {
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
         String submissionId = "submissionId_example"; // String | Submission ID.
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApproveCampaignSubmission200Response result = apiInstance.approveCampaignSubmission(campaignId, submissionId, idempotencyKey);
             System.out.println(result);
@@ -272,7 +272,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **submissionId** | **String**| Submission ID. | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -331,7 +331,7 @@ public class Example {
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
         String submissionId = "submissionId_example"; // String | Submission ID.
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApiResponse<ApproveCampaignSubmission200Response> response = apiInstance.approveCampaignSubmissionWithHttpInfo(campaignId, submissionId, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -355,7 +355,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **submissionId** | **String**| Submission ID. | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -568,7 +568,7 @@ public class Example {
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
         CreateCampaignAdjustmentRequest createCampaignAdjustmentRequest = new CreateCampaignAdjustmentRequest(); // CreateCampaignAdjustmentRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             CreateCampaignAdjustment201Response result = apiInstance.createCampaignAdjustment(campaignId, createCampaignAdjustmentRequest, idempotencyKey);
             System.out.println(result);
@@ -590,7 +590,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **createCampaignAdjustmentRequest** | [**CreateCampaignAdjustmentRequest**](CreateCampaignAdjustmentRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -649,7 +649,7 @@ public class Example {
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
         CreateCampaignAdjustmentRequest createCampaignAdjustmentRequest = new CreateCampaignAdjustmentRequest(); // CreateCampaignAdjustmentRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApiResponse<CreateCampaignAdjustment201Response> response = apiInstance.createCampaignAdjustmentWithHttpInfo(campaignId, createCampaignAdjustmentRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -673,7 +673,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **createCampaignAdjustmentRequest** | [**CreateCampaignAdjustmentRequest**](CreateCampaignAdjustmentRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -886,7 +886,7 @@ public class Example {
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
         CreateCampaignParticipantRequest createCampaignParticipantRequest = new CreateCampaignParticipantRequest(); // CreateCampaignParticipantRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             CreateCampaignParticipant201Response result = apiInstance.createCampaignParticipant(campaignId, createCampaignParticipantRequest, idempotencyKey);
             System.out.println(result);
@@ -908,7 +908,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **createCampaignParticipantRequest** | [**CreateCampaignParticipantRequest**](CreateCampaignParticipantRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -967,7 +967,7 @@ public class Example {
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
         CreateCampaignParticipantRequest createCampaignParticipantRequest = new CreateCampaignParticipantRequest(); // CreateCampaignParticipantRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApiResponse<CreateCampaignParticipant201Response> response = apiInstance.createCampaignParticipantWithHttpInfo(campaignId, createCampaignParticipantRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -991,7 +991,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **createCampaignParticipantRequest** | [**CreateCampaignParticipantRequest**](CreateCampaignParticipantRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -1049,7 +1049,7 @@ public class Example {
 
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         CreateCampaignPayoutBatchRequest createCampaignPayoutBatchRequest = new CreateCampaignPayoutBatchRequest(); // CreateCampaignPayoutBatchRequest | 
         try {
             CreateCampaignPayoutBatch201Response result = apiInstance.createCampaignPayoutBatch(campaignId, idempotencyKey, createCampaignPayoutBatchRequest);
@@ -1071,7 +1071,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 | **createCampaignPayoutBatchRequest** | [**CreateCampaignPayoutBatchRequest**](CreateCampaignPayoutBatchRequest.md)|  | [optional] |
 
 ### Return type
@@ -1130,7 +1130,7 @@ public class Example {
 
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         CreateCampaignPayoutBatchRequest createCampaignPayoutBatchRequest = new CreateCampaignPayoutBatchRequest(); // CreateCampaignPayoutBatchRequest | 
         try {
             ApiResponse<CreateCampaignPayoutBatch201Response> response = apiInstance.createCampaignPayoutBatchWithHttpInfo(campaignId, idempotencyKey, createCampaignPayoutBatchRequest);
@@ -1154,7 +1154,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 | **createCampaignPayoutBatchRequest** | [**CreateCampaignPayoutBatchRequest**](CreateCampaignPayoutBatchRequest.md)|  | [optional] |
 
 ### Return type
@@ -1213,7 +1213,7 @@ public class Example {
 
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         CreateCreatorCampaignRequest createCreatorCampaignRequest = new CreateCreatorCampaignRequest(); // CreateCreatorCampaignRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             CreateCreatorCampaign201Response result = apiInstance.createCreatorCampaign(createCreatorCampaignRequest, idempotencyKey);
             System.out.println(result);
@@ -1234,7 +1234,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createCreatorCampaignRequest** | [**CreateCreatorCampaignRequest**](CreateCreatorCampaignRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -1292,7 +1292,7 @@ public class Example {
 
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         CreateCreatorCampaignRequest createCreatorCampaignRequest = new CreateCreatorCampaignRequest(); // CreateCreatorCampaignRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApiResponse<CreateCreatorCampaign201Response> response = apiInstance.createCreatorCampaignWithHttpInfo(createCreatorCampaignRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1315,7 +1315,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createCreatorCampaignRequest** | [**CreateCreatorCampaignRequest**](CreateCreatorCampaignRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -3312,7 +3312,7 @@ public class Example {
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
         RaiseCreatorCampaignBudgetRequest raiseCreatorCampaignBudgetRequest = new RaiseCreatorCampaignBudgetRequest(); // RaiseCreatorCampaignBudgetRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             CreateCreatorCampaign201Response result = apiInstance.raiseCreatorCampaignBudget(campaignId, raiseCreatorCampaignBudgetRequest, idempotencyKey);
             System.out.println(result);
@@ -3334,7 +3334,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **raiseCreatorCampaignBudgetRequest** | [**RaiseCreatorCampaignBudgetRequest**](RaiseCreatorCampaignBudgetRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -3393,7 +3393,7 @@ public class Example {
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
         RaiseCreatorCampaignBudgetRequest raiseCreatorCampaignBudgetRequest = new RaiseCreatorCampaignBudgetRequest(); // RaiseCreatorCampaignBudgetRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApiResponse<CreateCreatorCampaign201Response> response = apiInstance.raiseCreatorCampaignBudgetWithHttpInfo(campaignId, raiseCreatorCampaignBudgetRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -3417,7 +3417,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **raiseCreatorCampaignBudgetRequest** | [**RaiseCreatorCampaignBudgetRequest**](RaiseCreatorCampaignBudgetRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -3635,7 +3635,7 @@ public class Example {
         String campaignId = "campaignId_example"; // String | Campaign ID.
         String submissionId = "submissionId_example"; // String | Submission ID.
         RejectCampaignSubmissionRequest rejectCampaignSubmissionRequest = new RejectCampaignSubmissionRequest(); // RejectCampaignSubmissionRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApproveCampaignSubmission200Response result = apiInstance.rejectCampaignSubmission(campaignId, submissionId, rejectCampaignSubmissionRequest, idempotencyKey);
             System.out.println(result);
@@ -3658,7 +3658,7 @@ public class Example {
 | **campaignId** | **String**| Campaign ID. | |
 | **submissionId** | **String**| Submission ID. | |
 | **rejectCampaignSubmissionRequest** | [**RejectCampaignSubmissionRequest**](RejectCampaignSubmissionRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -3718,7 +3718,7 @@ public class Example {
         String campaignId = "campaignId_example"; // String | Campaign ID.
         String submissionId = "submissionId_example"; // String | Submission ID.
         RejectCampaignSubmissionRequest rejectCampaignSubmissionRequest = new RejectCampaignSubmissionRequest(); // RejectCampaignSubmissionRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApiResponse<ApproveCampaignSubmission200Response> response = apiInstance.rejectCampaignSubmissionWithHttpInfo(campaignId, submissionId, rejectCampaignSubmissionRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -3743,7 +3743,7 @@ public class Example {
 | **campaignId** | **String**| Campaign ID. | |
 | **submissionId** | **String**| Submission ID. | |
 | **rejectCampaignSubmissionRequest** | [**RejectCampaignSubmissionRequest**](RejectCampaignSubmissionRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -3958,7 +3958,7 @@ public class Example {
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
         String submissionId = "submissionId_example"; // String | Submission ID.
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApproveCampaignSubmission200Response result = apiInstance.reopenCampaignSubmission(campaignId, submissionId, idempotencyKey);
             System.out.println(result);
@@ -3980,7 +3980,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **submissionId** | **String**| Submission ID. | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -4039,7 +4039,7 @@ public class Example {
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
         String submissionId = "submissionId_example"; // String | Submission ID.
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApiResponse<ApproveCampaignSubmission200Response> response = apiInstance.reopenCampaignSubmissionWithHttpInfo(campaignId, submissionId, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -4063,7 +4063,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **submissionId** | **String**| Submission ID. | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -4122,7 +4122,7 @@ public class Example {
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
         String participantId = "participantId_example"; // String | Participant ID.
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             GetCampaignParticipant200Response result = apiInstance.resendCampaignParticipantInvite(campaignId, participantId, idempotencyKey);
             System.out.println(result);
@@ -4144,7 +4144,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **participantId** | **String**| Participant ID. | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -4202,7 +4202,7 @@ public class Example {
         CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Campaign ID.
         String participantId = "participantId_example"; // String | Participant ID.
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApiResponse<GetCampaignParticipant200Response> response = apiInstance.resendCampaignParticipantInviteWithHttpInfo(campaignId, participantId, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -4226,7 +4226,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Campaign ID. | |
 | **participantId** | **String**| Participant ID. | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -4285,7 +4285,7 @@ public class Example {
         String campaignId = "campaignId_example"; // String | Campaign ID.
         String participantId = "participantId_example"; // String | Participant ID.
         SettleCampaignParticipantRequest settleCampaignParticipantRequest = new SettleCampaignParticipantRequest(); // SettleCampaignParticipantRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             SettleCampaignParticipant201Response result = apiInstance.settleCampaignParticipant(campaignId, participantId, settleCampaignParticipantRequest, idempotencyKey);
             System.out.println(result);
@@ -4308,7 +4308,7 @@ public class Example {
 | **campaignId** | **String**| Campaign ID. | |
 | **participantId** | **String**| Participant ID. | |
 | **settleCampaignParticipantRequest** | [**SettleCampaignParticipantRequest**](SettleCampaignParticipantRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -4370,7 +4370,7 @@ public class Example {
         String campaignId = "campaignId_example"; // String | Campaign ID.
         String participantId = "participantId_example"; // String | Participant ID.
         SettleCampaignParticipantRequest settleCampaignParticipantRequest = new SettleCampaignParticipantRequest(); // SettleCampaignParticipantRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApiResponse<SettleCampaignParticipant201Response> response = apiInstance.settleCampaignParticipantWithHttpInfo(campaignId, participantId, settleCampaignParticipantRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -4395,7 +4395,7 @@ public class Example {
 | **campaignId** | **String**| Campaign ID. | |
 | **participantId** | **String**| Participant ID. | |
 | **settleCampaignParticipantRequest** | [**SettleCampaignParticipantRequest**](SettleCampaignParticipantRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 

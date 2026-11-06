@@ -219,7 +219,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
         CreateBlogArticleRequest createBlogArticleRequest = new CreateBlogArticleRequest(); // CreateBlogArticleRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             CreateBlogArticle201Response result = apiInstance.createBlogArticle(accountId, blogId, createBlogArticleRequest, idempotencyKey);
             System.out.println(result);
@@ -242,7 +242,7 @@ public class Example {
 | **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
 | **createBlogArticleRequest** | [**CreateBlogArticleRequest**](CreateBlogArticleRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -305,7 +305,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
         CreateBlogArticleRequest createBlogArticleRequest = new CreateBlogArticleRequest(); // CreateBlogArticleRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
             ApiResponse<CreateBlogArticle201Response> response = apiInstance.createBlogArticleWithHttpInfo(accountId, blogId, createBlogArticleRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -330,7 +330,7 @@ public class Example {
 | **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
 | **createBlogArticleRequest** | [**CreateBlogArticleRequest**](CreateBlogArticleRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
