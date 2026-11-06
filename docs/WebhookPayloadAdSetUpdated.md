@@ -2,7 +2,7 @@
 
 # WebhookPayloadAdSetUpdated
 
-Webhook payload for the `ad_set.updated` event. Fires when an ad set is edited through Zernio (API, MCP or dashboard), after the platform and Zernio both accepted the edit, once per user who can see the ad set.  `changes` names the edited fields and never their values: read the ad set with `GET /v1/ads/ad-sets/{adSetId}` for the current state. Ignore values you do not know, new ones can be added. Budget and targeting edits made through `PUT /v1/ads/{adId}` arrive as `ad.updated`.  Events are not deduplicated: every edit is announced. Use the event `id` to drop repeats. 
+Webhook payload for the `ad_set.updated` event. Fires when an ad set is edited through Zernio (API, MCP or dashboard), after the platform and Zernio both accepted the edit, once per user who can see the ad set. It also fires when the sync detects an edit made outside Zernio.  `source` is `zernio` for edits through Zernio, `platform` for edits the sync detected outside Zernio, up to one sync interval late, sent only to the user whose sync saw it.  From the sync, `changes` covers only `name` and `status` (status not on Reddit). Never for history loaded when an account connects.  `changes` names the edited fields and never their values: read the ad set with `GET /v1/ads/ad-sets/{adSetId}` for the current state. Ignore values you do not know, new ones can be added. Budget and targeting edits made through `PUT /v1/ads/{adId}` arrive as `ad.updated`.  Events are not deduplicated: every edit is announced. Use the event `id` to drop repeats. 
 
 ## Properties
 
@@ -15,7 +15,7 @@ Webhook payload for the `ad_set.updated` event. Fires when an ad set is edited t
 |**account** | [**WebhookAdsAccount**](WebhookAdsAccount.md) |  |  |
 |**adObject** | [**WebhookPayloadAdSetCreatedAdObject**](WebhookPayloadAdSetCreatedAdObject.md) |  |  |
 |**changes** | [**List&lt;ChangesEnum&gt;**](#List&lt;ChangesEnum&gt;) | Fields edited by this request. &#x60;status&#x60; is the ad set&#39;s own on/off switch. Ignore values you do not know. |  |
-|**source** | [**SourceEnum**](#SourceEnum) | Where the edit was made. &#x60;zernio&#x60; for edits through Zernio. |  |
+|**source** | [**SourceEnum**](#SourceEnum) | Where the edit was made. &#x60;zernio&#x60; for edits through Zernio, &#x60;platform&#x60; for edits the sync detected outside Zernio. |  |
 |**timestamp** | **OffsetDateTime** | UTC time at which Zernio generated this event. |  |
 
 

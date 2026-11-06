@@ -2,7 +2,7 @@
 
 # WebhookPayloadAdSetCreated
 
-Webhook payload for the `ad_set.created` event. Fires when an ad set is created through Zernio (API, MCP or dashboard), once per ad set, after its row is recorded so `GET /v1/ads/ad-sets/{adSetId}` finds it.  History loaded when an account connects is never announced.  An ad set is announced at most once per 24 hours. 
+Webhook payload for the `ad_set.created` event. Fires when an ad set is created through Zernio (API, MCP or dashboard) or detected by the sync, once per ad set, after its row is recorded so `GET /v1/ads/ad-sets/{adSetId}` finds it.  `source` is `zernio` for ad sets created through Zernio and `platform` for ad sets our sync detected, up to one sync interval later. History loaded when an account connects, and ad sets created more than 7 days ago, are never announced.  An ad set is announced at most once per 24 hours. 
 
 ## Properties
 
@@ -14,7 +14,7 @@ Webhook payload for the `ad_set.created` event. Fires when an ad set is created 
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**account** | [**WebhookAdsAccount**](WebhookAdsAccount.md) |  |  |
 |**adObject** | [**WebhookPayloadAdSetCreatedAdObject**](WebhookPayloadAdSetCreatedAdObject.md) |  |  |
-|**source** | [**SourceEnum**](#SourceEnum) | Where the ad set was created. &#x60;zernio&#x60; for ad sets created through Zernio. |  |
+|**source** | [**SourceEnum**](#SourceEnum) | Where the ad set was created. &#x60;zernio&#x60; for ad sets created through Zernio, &#x60;platform&#x60; for ad sets the sync detected. |  |
 |**timestamp** | **OffsetDateTime** | UTC time at which Zernio generated this event. |  |
 
 
