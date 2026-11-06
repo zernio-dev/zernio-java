@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.512.0
+  version: 1.513.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -46276,6 +46276,8 @@ paths:
           - activate
           - adjust_budget
           - adjust_bid
+          - adjust_target
+          - reallocate_budget
           - duplicate
           - edit_name
           type: string
@@ -94016,18 +94018,24 @@ components:
             newBidAmount: 2.3021358869347655
             previousName: previousName
             previousBidAmount: 5.637376656633329
+            newTarget: 9.301444243932576
             previousDailyBudget: 1.4658129805029452
             newDailyBudget: 5.962133916683182
+            targetMetric: cpa
             type: pause
+            previousTarget: 7.061401241503109
             status: done
           - reason: reason
             newName: newName
             newBidAmount: 2.3021358869347655
             previousName: previousName
             previousBidAmount: 5.637376656633329
+            newTarget: 9.301444243932576
             previousDailyBudget: 1.4658129805029452
             newDailyBudget: 5.962133916683182
+            targetMetric: cpa
             type: pause
+            previousTarget: 7.061401241503109
             status: done
         - name: name
           platformCampaignId: platformCampaignId
@@ -94049,18 +94057,24 @@ components:
             newBidAmount: 2.3021358869347655
             previousName: previousName
             previousBidAmount: 5.637376656633329
+            newTarget: 9.301444243932576
             previousDailyBudget: 1.4658129805029452
             newDailyBudget: 5.962133916683182
+            targetMetric: cpa
             type: pause
+            previousTarget: 7.061401241503109
             status: done
           - reason: reason
             newName: newName
             newBidAmount: 2.3021358869347655
             previousName: previousName
             previousBidAmount: 5.637376656633329
+            newTarget: 9.301444243932576
             previousDailyBudget: 1.4658129805029452
             newDailyBudget: 5.962133916683182
+            targetMetric: cpa
             type: pause
+            previousTarget: 7.061401241503109
             status: done
         profiles:
         - externalId: tenant_42
@@ -113496,9 +113510,12 @@ components:
       - $ref: "#/components/schemas/AdRuleAction_oneOf_5"
       - $ref: "#/components/schemas/AdRuleAction_oneOf_6"
       - $ref: "#/components/schemas/AdRuleAction_oneOf_7"
+      - $ref: "#/components/schemas/AdRuleAction_oneOf_8"
+      - $ref: "#/components/schemas/AdRuleAction_oneOf_9"
     AdRuleActions:
       description: "Each type at most once, and at most one of `pause`, `activate`,\
-        \ `adjust_budget`, `adjust_bid`, `duplicate` and `edit_name`."
+        \ `adjust_budget`, `adjust_bid`, `adjust_target`, `reallocate_budget`, `duplicate`\
+        \ and `edit_name`."
       items:
         $ref: "#/components/schemas/AdRuleAction"
       minItems: 1
@@ -113825,7 +113842,8 @@ components:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
           description: "Each type at most once, and at most one of `pause`, `activate`,\
-            \ `adjust_budget`, `adjust_bid`, `duplicate` and `edit_name`."
+            \ `adjust_budget`, `adjust_bid`, `adjust_target`, `reallocate_budget`,\
+            \ `duplicate` and `edit_name`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -114086,23 +114104,29 @@ components:
             group: group
           actions:
           - reason: reason
+            previousName: previousName
+            previousDailyBudget: 6.027456183070403
+            type: pause
+            previousTarget: 2.3021358869347655
             newName: newName
             newBidAmount: 5.637376656633329
-            previousName: previousName
             previousBidAmount: 5.962133916683182
-            previousDailyBudget: 6.027456183070403
+            newTarget: 7.061401241503109
             newDailyBudget: 1.4658129805029452
-            type: pause
+            targetMetric: cpa
             objectId: objectId
             status: done
           - reason: reason
+            previousName: previousName
+            previousDailyBudget: 6.027456183070403
+            type: pause
+            previousTarget: 2.3021358869347655
             newName: newName
             newBidAmount: 5.637376656633329
-            previousName: previousName
             previousBidAmount: 5.962133916683182
-            previousDailyBudget: 6.027456183070403
+            newTarget: 7.061401241503109
             newDailyBudget: 1.4658129805029452
-            type: pause
+            targetMetric: cpa
             objectId: objectId
             status: done
         ranAt: 2000-01-23T04:56:07.000+00:00
@@ -114162,13 +114186,16 @@ components:
         previousDailyBudget: 0.8008281904610115
         type: pause
         platform: platform
+        previousTarget: 5.637376656633329
         accountId: accountId
         newName: newName
         newBidAmount: 5.962133916683182
         previousBidAmount: 1.4658129805029452
+        newTarget: 2.3021358869347655
         ruleName: ruleName
         objectName: objectName
         newDailyBudget: 6.027456183070403
+        targetMetric: cpa
         currency: currency
         id: id
         ruleId: ruleId
@@ -114211,6 +114238,8 @@ components:
           - activate
           - adjust_budget
           - adjust_bid
+          - adjust_target
+          - reallocate_budget
           - duplicate
           - edit_name
           type: string
@@ -114246,6 +114275,22 @@ components:
           description: The cap an applied `adjust_bid` set.
           nullable: true
           type: number
+        targetMetric:
+          description: Which target an `adjust_target` moved.
+          enum:
+          - cpa
+          - roas
+          - null
+          nullable: true
+          type: string
+        previousTarget:
+          description: The target CPA or target ROAS before an `adjust_target`.
+          nullable: true
+          type: number
+        newTarget:
+          description: The target an applied `adjust_target` set.
+          nullable: true
+          type: number
         currency:
           nullable: true
           type: string
@@ -114258,17 +114303,20 @@ components:
       - newBidAmount
       - newDailyBudget
       - newName
+      - newTarget
       - objectId
       - objectName
       - platform
       - previousBidAmount
       - previousDailyBudget
       - previousName
+      - previousTarget
       - ranAt
       - reason
       - ruleId
       - ruleName
       - status
+      - targetMetric
       - type
     AdKeyword:
       example:
@@ -158816,7 +158864,8 @@ components:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
           description: "Each type at most once, and at most one of `pause`, `activate`,\
-            \ `adjust_budget`, `adjust_bid`, `duplicate` and `edit_name`."
+            \ `adjust_budget`, `adjust_bid`, `adjust_target`, `reallocate_budget`,\
+            \ `duplicate` and `edit_name`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -159080,7 +159129,8 @@ components:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
           description: "Each type at most once, and at most one of `pause`, `activate`,\
-            \ `adjust_budget`, `adjust_bid`, `duplicate` and `edit_name`."
+            \ `adjust_budget`, `adjust_bid`, `adjust_target`, `reallocate_budget`,\
+            \ `duplicate` and `edit_name`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -159320,13 +159370,16 @@ components:
           previousDailyBudget: 0.8008281904610115
           type: pause
           platform: platform
+          previousTarget: 5.637376656633329
           accountId: accountId
           newName: newName
           newBidAmount: 5.962133916683182
           previousBidAmount: 1.4658129805029452
+          newTarget: 2.3021358869347655
           ruleName: ruleName
           objectName: objectName
           newDailyBudget: 6.027456183070403
+          targetMetric: cpa
           currency: currency
           id: id
           ruleId: ruleId
@@ -159340,13 +159393,16 @@ components:
           previousDailyBudget: 0.8008281904610115
           type: pause
           platform: platform
+          previousTarget: 5.637376656633329
           accountId: accountId
           newName: newName
           newBidAmount: 5.962133916683182
           previousBidAmount: 1.4658129805029452
+          newTarget: 2.3021358869347655
           ruleName: ruleName
           objectName: objectName
           newDailyBudget: 6.027456183070403
+          targetMetric: cpa
           currency: currency
           id: id
           ruleId: ruleId
@@ -159435,7 +159491,8 @@ components:
           $ref: "#/components/schemas/AdRuleConditions"
         actions:
           description: "Each type at most once, and at most one of `pause`, `activate`,\
-            \ `adjust_budget`, `adjust_bid`, `duplicate` and `edit_name`."
+            \ `adjust_budget`, `adjust_bid`, `adjust_target`, `reallocate_budget`,\
+            \ `duplicate` and `edit_name`."
           items:
             $ref: "#/components/schemas/AdRuleAction"
           minItems: 1
@@ -159605,23 +159662,29 @@ components:
               group: group
             actions:
             - reason: reason
+              previousName: previousName
+              previousDailyBudget: 6.027456183070403
+              type: pause
+              previousTarget: 2.3021358869347655
               newName: newName
               newBidAmount: 5.637376656633329
-              previousName: previousName
               previousBidAmount: 5.962133916683182
-              previousDailyBudget: 6.027456183070403
+              newTarget: 7.061401241503109
               newDailyBudget: 1.4658129805029452
-              type: pause
+              targetMetric: cpa
               objectId: objectId
               status: done
             - reason: reason
+              previousName: previousName
+              previousDailyBudget: 6.027456183070403
+              type: pause
+              previousTarget: 2.3021358869347655
               newName: newName
               newBidAmount: 5.637376656633329
-              previousName: previousName
               previousBidAmount: 5.962133916683182
-              previousDailyBudget: 6.027456183070403
+              newTarget: 7.061401241503109
               newDailyBudget: 1.4658129805029452
-              type: pause
+              targetMetric: cpa
               objectId: objectId
               status: done
           ranAt: 2000-01-23T04:56:07.000+00:00
@@ -159690,23 +159753,29 @@ components:
               group: group
             actions:
             - reason: reason
+              previousName: previousName
+              previousDailyBudget: 6.027456183070403
+              type: pause
+              previousTarget: 2.3021358869347655
               newName: newName
               newBidAmount: 5.637376656633329
-              previousName: previousName
               previousBidAmount: 5.962133916683182
-              previousDailyBudget: 6.027456183070403
+              newTarget: 7.061401241503109
               newDailyBudget: 1.4658129805029452
-              type: pause
+              targetMetric: cpa
               objectId: objectId
               status: done
             - reason: reason
+              previousName: previousName
+              previousDailyBudget: 6.027456183070403
+              type: pause
+              previousTarget: 2.3021358869347655
               newName: newName
               newBidAmount: 5.637376656633329
-              previousName: previousName
               previousBidAmount: 5.962133916683182
-              previousDailyBudget: 6.027456183070403
+              newTarget: 7.061401241503109
               newDailyBudget: 1.4658129805029452
-              type: pause
+              targetMetric: cpa
               objectId: objectId
               status: done
           ranAt: 2000-01-23T04:56:07.000+00:00
@@ -196826,9 +196895,12 @@ components:
         newBidAmount: 2.3021358869347655
         previousName: previousName
         previousBidAmount: 5.637376656633329
+        newTarget: 9.301444243932576
         previousDailyBudget: 1.4658129805029452
         newDailyBudget: 5.962133916683182
+        targetMetric: cpa
         type: pause
+        previousTarget: 7.061401241503109
         status: done
       properties:
         type:
@@ -196837,6 +196909,8 @@ components:
           - activate
           - adjust_budget
           - adjust_bid
+          - adjust_target
+          - reallocate_budget
           - duplicate
           - edit_name
           type: string
@@ -196856,7 +196930,10 @@ components:
             \ `at_limit`, `budget_unknown`, `budget_not_daily`, `budget_level_mismatch`,\
             \ `no_live_ads`, `daily_limit_reached` (held back by the action's `maxChangesPerDay`),\
             \ `ads_allowance_exceeded` (a reactivation or budget increase for a team\
-            \ past its free live-ads allowance), or the platform's message. Null when\
+            \ past its free live-ads allowance), `budget_shared`, `reallocation_incomplete`\
+            \ (failed: a receiver left alone because a giver's cut did not apply,\
+            \ tried again next run), `portfolio_bid_strategy`, `unsupported_bid_strategy`,\
+            \ `no_target_cpa`, `no_target_roas`, or the platform's message. Null when\
             \ done."
           nullable: true
           type: string
@@ -196889,15 +196966,35 @@ components:
             \ changed."
           nullable: true
           type: number
+        targetMetric:
+          description: "On `adjust_target`, which target moved. Null otherwise."
+          enum:
+          - cpa
+          - roas
+          - null
+          nullable: true
+          type: string
+        previousTarget:
+          description: "On `adjust_target`, the target before the change. Null otherwise."
+          nullable: true
+          type: number
+        newTarget:
+          description: "On `adjust_target`, the target after the change. Null when\
+            \ nothing changed."
+          nullable: true
+          type: number
       required:
       - newBidAmount
       - newDailyBudget
       - newName
+      - newTarget
       - previousBidAmount
       - previousDailyBudget
       - previousName
+      - previousTarget
       - reason
       - status
+      - targetMetric
       - type
     WebhookPayloadAdRuleTriggered_objects_inner:
       example:
@@ -196921,18 +197018,24 @@ components:
           newBidAmount: 2.3021358869347655
           previousName: previousName
           previousBidAmount: 5.637376656633329
+          newTarget: 9.301444243932576
           previousDailyBudget: 1.4658129805029452
           newDailyBudget: 5.962133916683182
+          targetMetric: cpa
           type: pause
+          previousTarget: 7.061401241503109
           status: done
         - reason: reason
           newName: newName
           newBidAmount: 2.3021358869347655
           previousName: previousName
           previousBidAmount: 5.637376656633329
+          newTarget: 9.301444243932576
           previousDailyBudget: 1.4658129805029452
           newDailyBudget: 5.962133916683182
+          targetMetric: cpa
           type: pause
+          previousTarget: 7.061401241503109
           status: done
       properties:
         platformId:
@@ -203255,13 +203358,166 @@ components:
       required:
       - type
     AdRuleAction_oneOf_5:
+      description: "Either `amount`, or `direction`, `percent` and `limit`."
+      properties:
+        type:
+          description: "Move a Google campaign's target CPA or target ROAS inside\
+            \ the strategy it is on (Target CPA or Maximize conversions for `cpa`,\
+            \ Target ROAS or Maximize conversion value for `roas`), never switching\
+            \ strategies. Campaign rules on Google only. Skipped with `portfolio_bid_strategy`\
+            \ on a portfolio strategy, `unsupported_bid_strategy` on one with no target\
+            \ (Manual CPC, Maximize clicks), and `no_target_cpa` or `no_target_roas`\
+            \ when the strategy holds no such target. A target CPA in a zero-decimal\
+            \ currency is rounded to whole units."
+          enum:
+          - adjust_target
+          type: string
+        target:
+          description: "Which target moves: `cpa` in the ad account currency, `roas`\
+            \ as a ratio (3 is 300%)."
+          enum:
+          - cpa
+          - roas
+          type: string
+        amount:
+          description: The target to set.
+          type: number
+        direction:
+          enum:
+          - increase
+          - decrease
+          type: string
+        percent:
+          description: Step size. A decrease is at most 90.
+          maximum: 100
+          minimum: 1
+          type: integer
+        limit:
+          description: "The target never goes above this on an increase, or below\
+            \ it on a decrease."
+          type: number
+        maxChangesPerDay:
+          description: "At most this many objects changed in any 24 hours, across\
+            \ runs. Matches over the limit are skipped with `daily_limit_reached`\
+            \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
+        maxChangesPerObject:
+          description: "At most this many changes to one object by this rule, counted\
+            \ over the last 400 days. An object at the limit is left alone like one\
+            \ in cooldown."
+          maximum: 100
+          minimum: 1
+          type: integer
+      required:
+      - target
+      - type
+    AdRuleAction_oneOf_6_from:
+      description: How many of the worst-ranked objects give budget.
+      properties:
+        count:
+          maximum: 10
+          minimum: 1
+          type: integer
+      required:
+      - count
+    AdRuleAction_oneOf_6_to:
+      description: "How many of the best-ranked objects receive it. With fewer ranked\
+        \ objects than `from` plus `to`, givers take at most half and no object is\
+        \ on both sides."
+      properties:
+        count:
+          maximum: 10
+          minimum: 1
+          type: integer
+      required:
+      - count
+    AdRuleAction_oneOf_6:
+      description: Exactly one of `percent` and `amount`.
+      properties:
+        type:
+          description: "Move daily budget from the matched objects ranked worst by\
+            \ `metric` to those ranked best, keeping the total the same. Campaign\
+            \ or ad set rules where the budget sits at that level: objects whose budget\
+            \ sits at another level (Meta CBO and ad set budgets), Google shared budgets\
+            \ and lifetime budgets are left out. Changes are reserved all at once:\
+            \ when `maxChangesPerDay` would hold back any of them, none is made. A\
+            \ receiver is raised only after every giver's cut applied (else it fails\
+            \ with `reallocation_incomplete` and the move is tried again next run).\
+            \ Amounts move in the currency's smallest unit (whole units for JPY or\
+            \ KRW). Counts as raising live spend for the free ads allowance. Not with\
+            \ `lifecycle` or `groups`."
+          enum:
+          - reallocate_budget
+          type: string
+        metric:
+          description: "What objects are ranked by: any condition metric except `day_of_month`\
+            \ and `working_day_of_month`, or a result metric (`result:<key>`) on campaign\
+            \ rules. Objects without a value are not ranked, except one that spent\
+            \ with no result on a metric where lower is best (a CPA with no conversions):\
+            \ it ranks worst and only gives."
+          type: string
+        window:
+          description: "The period the metric is read over, like a condition window."
+          type: string
+        best:
+          description: "Which end of the ranking is best. Defaults to `lowest` for\
+            \ `cpa`, `cpc`, `cpm`, `frequency` and result metrics whose formula has\
+            \ spend above the line (cost per sale, %CAC), `highest` otherwise."
+          enum:
+          - highest
+          - lowest
+          type: string
+        from:
+          $ref: "#/components/schemas/AdRuleAction_oneOf_6_from"
+        to:
+          $ref: "#/components/schemas/AdRuleAction_oneOf_6_to"
+        percent:
+          description: The share of each giver's daily budget it gives.
+          maximum: 90
+          minimum: 1
+          type: integer
+        amount:
+          description: "The total to move each run, in the ad account currency, taken\
+            \ evenly from the givers."
+          type: number
+        minBudget:
+          description: A giver never goes below this daily budget. A giver also always
+            keeps a tenth of its budget.
+          type: number
+        maxBudget:
+          description: A receiver never goes above this daily budget; what receivers
+            cannot take stays with the givers.
+          type: number
+        maxChangesPerDay:
+          description: "At most this many objects changed in any 24 hours, across\
+            \ runs. Matches over the limit are skipped with `daily_limit_reached`\
+            \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
+        maxChangesPerObject:
+          description: "At most this many changes to one object by this rule, counted\
+            \ over the last 400 days. An object at the limit is left alone like one\
+            \ in cooldown."
+          maximum: 100
+          minimum: 1
+          type: integer
+      required:
+      - from
+      - metric
+      - to
+      - type
+      - window
+    AdRuleAction_oneOf_7:
       description: Exactly one of `add` and `remove`.
       properties:
         type:
-          description: "Tag the object by its name. Meta, Google and LinkedIn campaigns\
-            \ and ad sets, and TikTok campaigns, ad groups and ads. An object whose\
-            \ name already has the tag (or lacks it, for `remove`) is skipped with\
-            \ `name_unchanged`."
+          description: "Tag the object by its name. Meta, TikTok and Reddit campaigns,\
+            \ ad sets and ads, and Google, LinkedIn and Pinterest campaigns and ad\
+            \ sets. An object whose name already has the tag (or lacks it, for `remove`)\
+            \ is skipped with `name_unchanged`."
           enum:
           - edit_name
           type: string
@@ -203297,7 +203553,7 @@ components:
           type: integer
       required:
       - type
-    AdRuleAction_oneOf_6:
+    AdRuleAction_oneOf_8:
       properties:
         type:
           description: "Set the daily budget to an exact amount, such as a reset every\
@@ -203326,7 +203582,7 @@ components:
       required:
       - amount
       - type
-    AdRuleAction_oneOf_7:
+    AdRuleAction_oneOf_9:
       properties:
         type:
           description: "Change the daily budget. Not on ad-level rules (an ad has\
@@ -203633,13 +203889,16 @@ components:
     AdRuleRun_evaluation_actions_inner:
       example:
         reason: reason
+        previousName: previousName
+        previousDailyBudget: 6.027456183070403
+        type: pause
+        previousTarget: 2.3021358869347655
         newName: newName
         newBidAmount: 5.637376656633329
-        previousName: previousName
         previousBidAmount: 5.962133916683182
-        previousDailyBudget: 6.027456183070403
+        newTarget: 7.061401241503109
         newDailyBudget: 1.4658129805029452
-        type: pause
+        targetMetric: cpa
         objectId: objectId
         status: done
       properties:
@@ -203651,6 +203910,8 @@ components:
           - activate
           - adjust_budget
           - adjust_bid
+          - adjust_target
+          - reallocate_budget
           - duplicate
           - edit_name
           type: string
@@ -203674,6 +203935,15 @@ components:
         previousBidAmount:
           type: number
         newBidAmount:
+          type: number
+        targetMetric:
+          enum:
+          - cpa
+          - roas
+          type: string
+        previousTarget:
+          type: number
+        newTarget:
           type: number
       required:
       - objectId
@@ -203760,23 +204030,29 @@ components:
           group: group
         actions:
         - reason: reason
+          previousName: previousName
+          previousDailyBudget: 6.027456183070403
+          type: pause
+          previousTarget: 2.3021358869347655
           newName: newName
           newBidAmount: 5.637376656633329
-          previousName: previousName
           previousBidAmount: 5.962133916683182
-          previousDailyBudget: 6.027456183070403
+          newTarget: 7.061401241503109
           newDailyBudget: 1.4658129805029452
-          type: pause
+          targetMetric: cpa
           objectId: objectId
           status: done
         - reason: reason
+          previousName: previousName
+          previousDailyBudget: 6.027456183070403
+          type: pause
+          previousTarget: 2.3021358869347655
           newName: newName
           newBidAmount: 5.637376656633329
-          previousName: previousName
           previousBidAmount: 5.962133916683182
-          previousDailyBudget: 6.027456183070403
+          newTarget: 7.061401241503109
           newDailyBudget: 1.4658129805029452
-          type: pause
+          targetMetric: cpa
           objectId: objectId
           status: done
       properties:

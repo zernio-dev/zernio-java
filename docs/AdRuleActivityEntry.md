@@ -26,6 +26,9 @@
 |**newName** | **String** | The name an applied &#x60;edit_name&#x60; set. |  |
 |**previousBidAmount** | **BigDecimal** | The bid cap or cost cap before an &#x60;adjust_bid&#x60;. |  |
 |**newBidAmount** | **BigDecimal** | The cap an applied &#x60;adjust_bid&#x60; set. |  |
+|**targetMetric** | [**TargetMetricEnum**](#TargetMetricEnum) | Which target an &#x60;adjust_target&#x60; moved. |  |
+|**previousTarget** | **BigDecimal** | The target CPA or target ROAS before an &#x60;adjust_target&#x60;. |  |
+|**newTarget** | **BigDecimal** | The target an applied &#x60;adjust_target&#x60; set. |  |
 |**currency** | **String** |  |  |
 
 
@@ -47,6 +50,8 @@
 | ACTIVATE | &quot;activate&quot; |
 | ADJUST_BUDGET | &quot;adjust_budget&quot; |
 | ADJUST_BID | &quot;adjust_bid&quot; |
+| ADJUST_TARGET | &quot;adjust_target&quot; |
+| REALLOCATE_BUDGET | &quot;reallocate_budget&quot; |
 | DUPLICATE | &quot;duplicate&quot; |
 | EDIT_NAME | &quot;edit_name&quot; |
 
@@ -59,6 +64,15 @@
 | DONE | &quot;done&quot; |
 | SKIPPED | &quot;skipped&quot; |
 | FAILED | &quot;failed&quot; |
+
+
+
+## Enum: TargetMetricEnum
+
+| Name | Value |
+|---- | -----|
+| CPA | &quot;cpa&quot; |
+| ROAS | &quot;roas&quot; |
 
 
 

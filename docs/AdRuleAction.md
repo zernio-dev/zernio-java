@@ -11,6 +11,8 @@
 * [AdRuleActionOneOf5](AdRuleActionOneOf5.md)
 * [AdRuleActionOneOf6](AdRuleActionOneOf6.md)
 * [AdRuleActionOneOf7](AdRuleActionOneOf7.md)
+* [AdRuleActionOneOf8](AdRuleActionOneOf8.md)
+* [AdRuleActionOneOf9](AdRuleActionOneOf9.md)
 
 ## Example
 ```java
@@ -24,6 +26,8 @@ import dev.zernio.model.AdRuleActionOneOf4;
 import dev.zernio.model.AdRuleActionOneOf5;
 import dev.zernio.model.AdRuleActionOneOf6;
 import dev.zernio.model.AdRuleActionOneOf7;
+import dev.zernio.model.AdRuleActionOneOf8;
+import dev.zernio.model.AdRuleActionOneOf9;
 
 public class Example {
     public static void main(String[] args) {
@@ -84,6 +88,20 @@ public class Example {
         exampleAdRuleAction.setActualInstance(exampleAdRuleActionOneOf7);
         // to get back the AdRuleActionOneOf7 set earlier
         AdRuleActionOneOf7 testAdRuleActionOneOf7 = (AdRuleActionOneOf7) exampleAdRuleAction.getActualInstance();
+
+        // create a new AdRuleActionOneOf8
+        AdRuleActionOneOf8 exampleAdRuleActionOneOf8 = new AdRuleActionOneOf8();
+        // set AdRuleAction to AdRuleActionOneOf8
+        exampleAdRuleAction.setActualInstance(exampleAdRuleActionOneOf8);
+        // to get back the AdRuleActionOneOf8 set earlier
+        AdRuleActionOneOf8 testAdRuleActionOneOf8 = (AdRuleActionOneOf8) exampleAdRuleAction.getActualInstance();
+
+        // create a new AdRuleActionOneOf9
+        AdRuleActionOneOf9 exampleAdRuleActionOneOf9 = new AdRuleActionOneOf9();
+        // set AdRuleAction to AdRuleActionOneOf9
+        exampleAdRuleAction.setActualInstance(exampleAdRuleActionOneOf9);
+        // to get back the AdRuleActionOneOf9 set earlier
+        AdRuleActionOneOf9 testAdRuleActionOneOf9 = (AdRuleActionOneOf9) exampleAdRuleAction.getActualInstance();
     }
 }
 ```

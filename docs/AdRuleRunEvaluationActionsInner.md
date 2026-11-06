@@ -17,6 +17,9 @@
 |**newName** | **String** |  |  [optional] |
 |**previousBidAmount** | **BigDecimal** |  |  [optional] |
 |**newBidAmount** | **BigDecimal** |  |  [optional] |
+|**targetMetric** | [**TargetMetricEnum**](#TargetMetricEnum) |  |  [optional] |
+|**previousTarget** | **BigDecimal** |  |  [optional] |
+|**newTarget** | **BigDecimal** |  |  [optional] |
 
 
 
@@ -28,6 +31,8 @@
 | ACTIVATE | &quot;activate&quot; |
 | ADJUST_BUDGET | &quot;adjust_budget&quot; |
 | ADJUST_BID | &quot;adjust_bid&quot; |
+| ADJUST_TARGET | &quot;adjust_target&quot; |
+| REALLOCATE_BUDGET | &quot;reallocate_budget&quot; |
 | DUPLICATE | &quot;duplicate&quot; |
 | EDIT_NAME | &quot;edit_name&quot; |
 
@@ -40,6 +45,15 @@
 | DONE | &quot;done&quot; |
 | SKIPPED | &quot;skipped&quot; |
 | FAILED | &quot;failed&quot; |
+
+
+
+## Enum: TargetMetricEnum
+
+| Name | Value |
+|---- | -----|
+| CPA | &quot;cpa&quot; |
+| ROAS | &quot;roas&quot; |
 
 
 
