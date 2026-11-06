@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAd200ResponseResultsInner.JSON_PROPERTY_STATUS,
   CreateStandaloneAd200ResponseResultsInner.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T23:46:38.916806239Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T23:50:42.391347798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAd200ResponseResultsInner {
   /**
    * &#x60;identity&#x60; is TikTok only: the identity the ad would run as.

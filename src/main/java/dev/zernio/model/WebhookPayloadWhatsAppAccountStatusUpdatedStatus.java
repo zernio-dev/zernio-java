@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadWhatsAppAccountStatusUpdatedStatus.JSON_PROPERTY_BAN_STATE,
   WebhookPayloadWhatsAppAccountStatusUpdatedStatus.JSON_PROPERTY_BAN_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T23:46:38.916806239Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T23:50:42.391347798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadWhatsAppAccountStatusUpdatedStatus {
   /**
    * &#x60;active&#x60; only on a reinstatement (DISABLED_UPDATE with ban state REINSTATE).
