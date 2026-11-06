@@ -49,7 +49,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create a standalone creative
 
-Creates a reusable Meta creative from an image or carousel without creating an ad, ready to attach to ads later.  The creative goes in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;.  ### Source  Provide exactly one of:  - &#x60;imageUrl&#x60; (uploaded server-side) - &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list) - &#x60;carouselCards&#x60; (2-10 hand-built cards)  ### Other fields  - The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. - &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. - &#x60;promotion&#x60; is not supported and any object is rejected with 400. 
+Creates a reusable Meta creative from an image or carousel without creating an ad, ready to attach to ads later.  The creative goes in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;.  ### Source  Provide exactly one of:  - &#x60;imageUrl&#x60; (uploaded server-side) - &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list) - &#x60;carouselCards&#x60; (2-10 hand-built cards)  ### Other fields  - The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;instagramAccountId&#x60; overrides the Instagram account. - &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. - &#x60;promotion&#x60; is not supported and any object is rejected with 400. 
 
 ### Example
 
@@ -127,7 +127,7 @@ public class Example {
 
 Create a standalone creative
 
-Creates a reusable Meta creative from an image or carousel without creating an ad, ready to attach to ads later.  The creative goes in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;.  ### Source  Provide exactly one of:  - &#x60;imageUrl&#x60; (uploaded server-side) - &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list) - &#x60;carouselCards&#x60; (2-10 hand-built cards)  ### Other fields  - The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. - &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. - &#x60;promotion&#x60; is not supported and any object is rejected with 400. 
+Creates a reusable Meta creative from an image or carousel without creating an ad, ready to attach to ads later.  The creative goes in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;.  ### Source  Provide exactly one of:  - &#x60;imageUrl&#x60; (uploaded server-side) - &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list) - &#x60;carouselCards&#x60; (2-10 hand-built cards)  ### Other fields  - The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;instagramAccountId&#x60; overrides the Instagram account. - &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. - &#x60;promotion&#x60; is not supported and any object is rejected with 400. 
 
 ### Example
 

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.509.0
+  version: 1.510.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -55895,7 +55895,7 @@ paths:
 
         ### Other fields
 
-        - The Page (and linked Instagram account, when present) is resolved from `accountId` as the story actor.
+        - The Page (and linked Instagram account, when present) is resolved from `accountId` as the story actor. `instagramAccountId` overrides the Instagram account.
         - `creativeFeatures` configures Advantage+ enhancements.
         - `promotion` is not supported and any object is rejected with 400.
       operationId: createAdCreative
@@ -170902,6 +170902,14 @@ components:
           maxItems: 10
           minItems: 2
           type: array
+        instagramAccountId:
+          description: |
+            Meta only. The Instagram account the creative runs as, mapped to `instagram_user_id`: an id from `GET /v1/ads/instagram-accounts`, including a Page-backed one.
+
+            - Given, it is never swapped. One the ad account cannot use returns 400 `insufficient_permissions` on `instagramAccountId`.
+            - Omitted, it uses the account linked to the Page. When the ad account has no access to that one, it retries once with an authorized Instagram account, or returns 422 on `instagramAccountId` when there is none.
+          minLength: 1
+          type: string
         optimizeCardOrder:
           description: |
             Only with `carouselCards` (a 400 without them). Sets `link_data.multi_share_optimized`:
@@ -176284,9 +176292,9 @@ components:
           maxLength: 255
           type: string
         adName:
-          description: "Meta only. Exact ad name (the single-creative ad object's\
-            \ name). Overrides the default, which is `name`. (For per-ad names on\
-            \ the multi-creative shape, set `name` on each `creatives[]` entry instead.)"
+          description: "Meta only. Exact ad name, overriding the default `name`. On\
+            \ the multi-creative shape it names every ad, numbered `#1`, `#2`... when\
+            \ there are several, unless a `creatives[]` entry sets its own `name`."
           maxLength: 255
           type: string
         tracking:
