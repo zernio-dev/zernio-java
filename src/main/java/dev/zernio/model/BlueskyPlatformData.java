@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   BlueskyPlatformData.JSON_PROPERTY_LANGS,
   BlueskyPlatformData.JSON_PROPERTY_THREAD_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T09:59:40.583548028Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T10:19:44.762021402Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BlueskyPlatformData {
   public static final String JSON_PROPERTY_LANGS = "langs";
   @javax.annotation.Nullable
