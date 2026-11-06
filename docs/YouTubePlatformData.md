@@ -16,6 +16,8 @@ YouTube video settings.  - YouTube publishes a vertical or square video of 3 min
 |**notifySubscribers** | **Boolean** | Set false to skip notifying subscribers about this upload (YouTube&#39;s notifySubscribers). Defaults to true. |  [optional] |
 |**categoryId** | **String** | YouTube video category ID. Defaults to 22 (People &amp; Blogs). Common: 1 (Film), 2 (Autos), 10 (Music), 15 (Pets), 17 (Sports), 20 (Gaming), 23 (Comedy), 24 (Entertainment), 25 (News), 26 (Howto), 27 (Education), 28 (Science &amp; Tech). |  [optional] |
 |**playlistId** | **String** | Optional YouTube playlist ID to add the video to after upload (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Works for both immediate and scheduled uploads. Quota cost: 50 YouTube API units per call. |  [optional] |
+|**defaultLanguage** | **String** | Language of the title and description (BCP-47, e.g. ko). |  [optional] |
+|**defaultAudioLanguage** | **String** | Spoken language of the video (BCP-47, e.g. ko). When a video has no audio language, YouTube may set en-US once its metadata is updated. |  [optional] |
 
 
 

@@ -19,6 +19,8 @@
 |**madeForKids** | **Boolean** | COPPA compliance flag. Set true for child-directed content (restricts comments, notifications, ad targeting). |  [optional] |
 |**containsSyntheticMedia** | **Boolean** | AI-generated content disclosure. Set true if the video contains synthetic content that could be mistaken for real. YouTube may add a label. |  [optional] |
 |**playlistId** | **String** | YouTube playlist ID to add the video to (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Only playlists owned by the channel are supported. |  [optional] |
+|**defaultLanguage** | **String** | Language of the title and description (BCP-47, e.g. ko). |  [optional] |
+|**defaultAudioLanguage** | **String** | Spoken language of the video (BCP-47, e.g. ko). When a video has no audio language, YouTube may set en-US once its metadata is updated. |  [optional] |
 
 
 
