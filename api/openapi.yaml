@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.508.2
+  version: 1.509.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -47219,13 +47219,22 @@ paths:
           - microsoft
           type: string
         style: form
-      - description: Filter by derived campaign status (post-aggregation)
+      - description: Filter by derived campaign status (post-aggregation). `not_deleted`
+          keeps every status except `cancelled`.
         explode: true
         in: query
         name: status
         required: false
         schema:
-          $ref: "#/components/schemas/AdStatus"
+          enum:
+          - active
+          - paused
+          - pending_review
+          - rejected
+          - completed
+          - cancelled
+          - error
+          - not_deleted
         style: form
       - description: Platform ad account ID (e.g. act_123 for Meta)
         explode: true
@@ -49696,7 +49705,7 @@ paths:
 
         Deleting an ad or a campaign is a soft delete: the Ad documents move to `status: cancelled` and are kept indefinitely. Their historical spend still counts toward the metrics of any date range they fall in. There is no pruning job and no retention window.
 
-        Filter on `status` if your view should hide them, but do that after reading the totals, not before.
+        Pass `status=not_deleted` if your view should hide them, but do that after reading the totals, not before.
       operationId: getAdTree
       parameters:
       - $ref: "#/components/parameters/PageParam"
@@ -49744,13 +49753,22 @@ paths:
           - microsoft
           type: string
         style: form
-      - description: Filter by derived campaign status (post-aggregation)
+      - description: Filter by derived campaign status (post-aggregation). `not_deleted`
+          keeps every status except `cancelled`.
         explode: true
         in: query
         name: status
         required: false
         schema:
-          $ref: "#/components/schemas/AdStatus"
+          enum:
+          - active
+          - paused
+          - pending_review
+          - rejected
+          - completed
+          - cancelled
+          - error
+          - not_deleted
         style: form
       - description: |-
           One or more platform ad account IDs to scope the tree to (agency profiles connect a whole Business Manager, but a team usually cares about a subset).
