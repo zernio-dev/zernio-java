@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.513.0
+  version: 1.513.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -47478,6 +47478,8 @@ paths:
           description: "Invalid input, or Meta rejected the create"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "501":
           description: "`validateOnly: true` outside Meta, or campaign-only creation\
             \ on a platform that does not support it. Carries code `feature_not_available`."
@@ -48574,6 +48576,8 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "403":
           description: |
             One of two refusals:
@@ -49093,6 +49097,8 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "403":
           description: |
             Forbidden. Codes:
@@ -49190,6 +49196,8 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "403":
           description: |
             Forbidden. Two codes:
@@ -50733,12 +50741,14 @@ paths:
           description: "Ad not found (`ad_not_found`), or `account_not_found` when\
             \ the ad's connection is on a profile this API key can't access."
         "429":
-          description: "Meta admits one write per 30 seconds to a metered object,\
-            \ ad creatives above all. Zernio waits out two of those windows and replays\
-            \ the call before surfacing this, so it only appears when the object is\
-            \ being edited faster than that. Retry in 30 seconds."
-          x-summary: "Meta allows one write per 30 seconds to this object and Zernio\
-            \ already retried: retry in 30 seconds."
+          description: |
+            Two causes, both code `rate_limited`:
+
+            - Meta admits one write per 30 seconds to a metered object, ad creatives above all. Zernio waits out two of those windows and replays the call before surfacing this, so it only appears when the object is being edited faster than that. Retry in 30 seconds.
+            - A Meta `creative` replace creates a new creative, so it takes the Meta ad account write guard (see `MetaAdAccountWriteLimited`): `details.reason` is `ad_account_busy` (another write held the ad account past a 60-second wait) or `ad_account_write_cap` (30 creates in 5 minutes), with `details.adAccountId`. Wait `Retry-After` seconds.
+          x-summary: "Meta allows one write per 30 seconds to this object, or the\
+            \ Meta ad account write guard refused a creative rebuild: wait `Retry-After`\
+            \ (or 30 seconds) and retry."
         "422":
           description: |-
             The edit cannot be applied. One of:
@@ -52944,6 +52954,8 @@ paths:
             \ the platform supports."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "403":
           description: |
             Forbidden. Codes:
@@ -79519,6 +79531,8 @@ components:
             $ref: "#/components/schemas/ErrorResponse"
       description: |
         Meta only (code `rate_limited`). Meta puts a security hold lasting days (code 31, subcode 3858385, "Please authenticate your account") on ad accounts that receive bursts of ad writes, and it counts `validateOnly` checks as writes.
+
+        Creates here are every request that creates ad objects on the ad account: `POST /v1/ads/create`, `/boost`, `/campaigns`, `/messaging`, `/ctwa` and `/call` (each including `validateOnly`), the three duplicate routes, and a creative rebuilt by `PUT /v1/ads/{adId}` or `PATCH /v1/ads/{adId}/tracking-tags`. One request counts as one create, however many objects it writes.
 
         To keep integrations out of that hold, Zernio:
 
