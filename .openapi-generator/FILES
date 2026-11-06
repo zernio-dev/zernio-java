@@ -221,6 +221,7 @@ docs/AttachCampaignAssets201Response.md
 docs/AttachCampaignAssetsRequest.md
 docs/AttachNumberToSipTrunk200Response.md
 docs/AttachNumberToSipTrunkRequest.md
+docs/AutoRecharge.md
 docs/BatchAdCatalogProducts202Response.md
 docs/BatchAdCatalogProductsRequest.md
 docs/BatchAdCatalogProductsRequestRequestsInner.md
@@ -2799,6 +2800,7 @@ docs/UpdateAdTrackingTags200Response.md
 docs/UpdateAdTrackingTagsRequest.md
 docs/UpdateAdTrackingTagsRequestCreative.md
 docs/UpdateAdTrackingTagsRequestUrlTagsInner.md
+docs/UpdateAutoRechargeRequest.md
 docs/UpdateBidStrategy200Response.md
 docs/UpdateBidStrategy200ResponseStrategy.md
 docs/UpdateBidStrategyRequest.md
@@ -3665,6 +3667,7 @@ src/main/java/dev/zernio/model/AttachCampaignAssets201Response.java
 src/main/java/dev/zernio/model/AttachCampaignAssetsRequest.java
 src/main/java/dev/zernio/model/AttachNumberToSipTrunk200Response.java
 src/main/java/dev/zernio/model/AttachNumberToSipTrunkRequest.java
+src/main/java/dev/zernio/model/AutoRecharge.java
 src/main/java/dev/zernio/model/BatchAdCatalogProducts202Response.java
 src/main/java/dev/zernio/model/BatchAdCatalogProductsRequest.java
 src/main/java/dev/zernio/model/BatchAdCatalogProductsRequestRequestsInner.java
@@ -6185,6 +6188,7 @@ src/main/java/dev/zernio/model/UpdateAdTrackingTags200Response.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequest.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequestCreative.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequestUrlTagsInner.java
+src/main/java/dev/zernio/model/UpdateAutoRechargeRequest.java
 src/main/java/dev/zernio/model/UpdateBidStrategy200Response.java
 src/main/java/dev/zernio/model/UpdateBidStrategy200ResponseStrategy.java
 src/main/java/dev/zernio/model/UpdateBidStrategyRequest.java
@@ -6729,3 +6733,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AutoRechargeTest.java
+src/test/java/dev/zernio/model/UpdateAutoRechargeRequestTest.java

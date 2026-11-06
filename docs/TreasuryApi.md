@@ -18,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createTopupWithHttpInfo**](TreasuryApi.md#createTopupWithHttpInfo) | **POST** /v1/balance/top-ups | Create a top-up |
 | [**createTransfer**](TreasuryApi.md#createTransfer) | **POST** /v1/transfers | Create a transfer |
 | [**createTransferWithHttpInfo**](TreasuryApi.md#createTransferWithHttpInfo) | **POST** /v1/transfers | Create a transfer |
+| [**getAutoRecharge**](TreasuryApi.md#getAutoRecharge) | **GET** /v1/balance/auto-recharge | Get auto-recharge settings |
+| [**getAutoRechargeWithHttpInfo**](TreasuryApi.md#getAutoRechargeWithHttpInfo) | **GET** /v1/balance/auto-recharge | Get auto-recharge settings |
 | [**getBalance**](TreasuryApi.md#getBalance) | **GET** /v1/balance | Get balance |
 | [**getBalanceWithHttpInfo**](TreasuryApi.md#getBalanceWithHttpInfo) | **GET** /v1/balance | Get balance |
 | [**getPayoutBatch**](TreasuryApi.md#getPayoutBatch) | **GET** /v1/payout-batches/{batchId} | Get a payout batch |
@@ -38,6 +40,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listTransfersWithHttpInfo**](TreasuryApi.md#listTransfersWithHttpInfo) | **GET** /v1/transfers | List transfers |
 | [**previewTopup**](TreasuryApi.md#previewTopup) | **POST** /v1/balance/top-ups/preview | Preview a top-up&#39;s tax |
 | [**previewTopupWithHttpInfo**](TreasuryApi.md#previewTopupWithHttpInfo) | **POST** /v1/balance/top-ups/preview | Preview a top-up&#39;s tax |
+| [**updateAutoRecharge**](TreasuryApi.md#updateAutoRecharge) | **PATCH** /v1/balance/auto-recharge | Update auto-recharge settings |
+| [**updateAutoRechargeWithHttpInfo**](TreasuryApi.md#updateAutoRechargeWithHttpInfo) | **PATCH** /v1/balance/auto-recharge | Update auto-recharge settings |
 
 
 
@@ -1121,6 +1125,146 @@ ApiResponse<[**TreasuryTransfer**](TreasuryTransfer.md)>
 | **404** | Resource not found |  -  |
 | **409** | Payee has not finished payout onboarding, the Idempotency-Key is still processing, another request is waiting on Stripe for this transfer, or Stripe has not confirmed it within 24 hours |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
+
+
+## getAutoRecharge
+
+> AutoRecharge getAutoRecharge()
+
+Get auto-recharge settings
+
+Your balance&#39;s auto-recharge rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TreasuryApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TreasuryApi apiInstance = new TreasuryApi(defaultClient);
+        try {
+            AutoRecharge result = apiInstance.getAutoRecharge();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TreasuryApi#getAutoRecharge");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**AutoRecharge**](AutoRecharge.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Auto-recharge settings |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+| **409** | Code &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance. |  -  |
+
+## getAutoRechargeWithHttpInfo
+
+> ApiResponse<AutoRecharge> getAutoRecharge getAutoRechargeWithHttpInfo()
+
+Get auto-recharge settings
+
+Your balance&#39;s auto-recharge rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TreasuryApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TreasuryApi apiInstance = new TreasuryApi(defaultClient);
+        try {
+            ApiResponse<AutoRecharge> response = apiInstance.getAutoRechargeWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TreasuryApi#getAutoRecharge");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**AutoRecharge**](AutoRecharge.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Auto-recharge settings |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+| **409** | Code &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance. |  -  |
 
 
 ## getBalance
@@ -2605,4 +2749,154 @@ ApiResponse<[**PreviewTopup200Response**](PreviewTopup200Response.md)>
 | **400** | Invalid request |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+
+
+## updateAutoRecharge
+
+> AutoRecharge updateAutoRecharge(updateAutoRechargeRequest)
+
+Update auto-recharge settings
+
+Changes the auto-recharge rule. Omitted fields keep their value.  A declined recharge is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto-recharge switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  When this month&#39;s auto-recharges plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TreasuryApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TreasuryApi apiInstance = new TreasuryApi(defaultClient);
+        UpdateAutoRechargeRequest updateAutoRechargeRequest = new UpdateAutoRechargeRequest(); // UpdateAutoRechargeRequest | 
+        try {
+            AutoRecharge result = apiInstance.updateAutoRecharge(updateAutoRechargeRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TreasuryApi#updateAutoRecharge");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAutoRechargeRequest** | [**UpdateAutoRechargeRequest**](UpdateAutoRechargeRequest.md)|  | |
+
+### Return type
+
+[**AutoRecharge**](AutoRecharge.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+| **409** | Code &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance. |  -  |
+
+## updateAutoRechargeWithHttpInfo
+
+> ApiResponse<AutoRecharge> updateAutoRecharge updateAutoRechargeWithHttpInfo(updateAutoRechargeRequest)
+
+Update auto-recharge settings
+
+Changes the auto-recharge rule. Omitted fields keep their value.  A declined recharge is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto-recharge switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  When this month&#39;s auto-recharges plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TreasuryApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TreasuryApi apiInstance = new TreasuryApi(defaultClient);
+        UpdateAutoRechargeRequest updateAutoRechargeRequest = new UpdateAutoRechargeRequest(); // UpdateAutoRechargeRequest | 
+        try {
+            ApiResponse<AutoRecharge> response = apiInstance.updateAutoRechargeWithHttpInfo(updateAutoRechargeRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TreasuryApi#updateAutoRecharge");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAutoRechargeRequest** | [**UpdateAutoRechargeRequest**](UpdateAutoRechargeRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AutoRecharge**](AutoRecharge.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+| **409** | Code &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance. |  -  |
 

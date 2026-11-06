@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.505.0
+- API version: 1.506.0
 
-- Build date: 2026-11-06T00:13:12.019130819Z[Etc/UTC]
+- Build date: 2026-11-06T00:44:20.207100566Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.505.0</version>
+  <version>1.506.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.505.0"
+compile "dev.zernio:zernio-sdk:1.506.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.505.0.jar`
+- `target/zernio-sdk-1.506.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2067,6 +2067,8 @@ Class | Method | HTTP request | Description
 *TreasuryApi* | [**createTopupWithHttpInfo**](docs/TreasuryApi.md#createTopupWithHttpInfo) | **POST** /v1/balance/top-ups | Create a top-up
 *TreasuryApi* | [**createTransfer**](docs/TreasuryApi.md#createTransfer) | **POST** /v1/transfers | Create a transfer
 *TreasuryApi* | [**createTransferWithHttpInfo**](docs/TreasuryApi.md#createTransferWithHttpInfo) | **POST** /v1/transfers | Create a transfer
+*TreasuryApi* | [**getAutoRecharge**](docs/TreasuryApi.md#getAutoRecharge) | **GET** /v1/balance/auto-recharge | Get auto-recharge settings
+*TreasuryApi* | [**getAutoRechargeWithHttpInfo**](docs/TreasuryApi.md#getAutoRechargeWithHttpInfo) | **GET** /v1/balance/auto-recharge | Get auto-recharge settings
 *TreasuryApi* | [**getBalance**](docs/TreasuryApi.md#getBalance) | **GET** /v1/balance | Get balance
 *TreasuryApi* | [**getBalanceWithHttpInfo**](docs/TreasuryApi.md#getBalanceWithHttpInfo) | **GET** /v1/balance | Get balance
 *TreasuryApi* | [**getPayoutBatch**](docs/TreasuryApi.md#getPayoutBatch) | **GET** /v1/payout-batches/{batchId} | Get a payout batch
@@ -2087,6 +2089,8 @@ Class | Method | HTTP request | Description
 *TreasuryApi* | [**listTransfersWithHttpInfo**](docs/TreasuryApi.md#listTransfersWithHttpInfo) | **GET** /v1/transfers | List transfers
 *TreasuryApi* | [**previewTopup**](docs/TreasuryApi.md#previewTopup) | **POST** /v1/balance/top-ups/preview | Preview a top-up&#39;s tax
 *TreasuryApi* | [**previewTopupWithHttpInfo**](docs/TreasuryApi.md#previewTopupWithHttpInfo) | **POST** /v1/balance/top-ups/preview | Preview a top-up&#39;s tax
+*TreasuryApi* | [**updateAutoRecharge**](docs/TreasuryApi.md#updateAutoRecharge) | **PATCH** /v1/balance/auto-recharge | Update auto-recharge settings
+*TreasuryApi* | [**updateAutoRechargeWithHttpInfo**](docs/TreasuryApi.md#updateAutoRechargeWithHttpInfo) | **PATCH** /v1/balance/auto-recharge | Update auto-recharge settings
 *TwitterEngagementApi* | [**bookmarkPost**](docs/TwitterEngagementApi.md#bookmarkPost) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**bookmarkPostWithHttpInfo**](docs/TwitterEngagementApi.md#bookmarkPostWithHttpInfo) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**followUser**](docs/TwitterEngagementApi.md#followUser) | **POST** /v1/twitter/follow | Follow a user
@@ -2621,6 +2625,7 @@ Class | Method | HTTP request | Description
  - [AttachCampaignAssetsRequest](docs/AttachCampaignAssetsRequest.md)
  - [AttachNumberToSipTrunk200Response](docs/AttachNumberToSipTrunk200Response.md)
  - [AttachNumberToSipTrunkRequest](docs/AttachNumberToSipTrunkRequest.md)
+ - [AutoRecharge](docs/AutoRecharge.md)
  - [BatchAdCatalogProducts202Response](docs/BatchAdCatalogProducts202Response.md)
  - [BatchAdCatalogProductsRequest](docs/BatchAdCatalogProductsRequest.md)
  - [BatchAdCatalogProductsRequestRequestsInner](docs/BatchAdCatalogProductsRequestRequestsInner.md)
@@ -5141,6 +5146,7 @@ Class | Method | HTTP request | Description
  - [UpdateAdTrackingTagsRequest](docs/UpdateAdTrackingTagsRequest.md)
  - [UpdateAdTrackingTagsRequestCreative](docs/UpdateAdTrackingTagsRequestCreative.md)
  - [UpdateAdTrackingTagsRequestUrlTagsInner](docs/UpdateAdTrackingTagsRequestUrlTagsInner.md)
+ - [UpdateAutoRechargeRequest](docs/UpdateAutoRechargeRequest.md)
  - [UpdateBidStrategy200Response](docs/UpdateBidStrategy200Response.md)
  - [UpdateBidStrategy200ResponseStrategy](docs/UpdateBidStrategy200ResponseStrategy.md)
  - [UpdateBidStrategyRequest](docs/UpdateBidStrategyRequest.md)
