@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.514.3
+- API version: 1.515.0
 
-- Build date: 2026-11-06T14:44:53.692491630Z[Etc/UTC]
+- Build date: 2026-11-06T16:10:27.580874357Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.514.3</version>
+  <version>1.515.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.514.3"
+compile "dev.zernio:zernio-sdk:1.515.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.514.3.jar`
+- `target/zernio-sdk-1.515.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -713,6 +713,68 @@ Class | Method | HTTP request | Description
 *ApiKeysApi* | [**listApiKeysWithHttpInfo**](docs/ApiKeysApi.md#listApiKeysWithHttpInfo) | **GET** /v1/api-keys | List keys
 *ApiKeysApi* | [**verifyCredential**](docs/ApiKeysApi.md#verifyCredential) | **GET** /v1/auth/verify | Verify credential
 *ApiKeysApi* | [**verifyCredentialWithHttpInfo**](docs/ApiKeysApi.md#verifyCredentialWithHttpInfo) | **GET** /v1/auth/verify | Verify credential
+*AutomationsApi* | [**activateAutomation**](docs/AutomationsApi.md#activateAutomation) | **POST** /v1/automations/{automationId}/activate | Turn an automation on
+*AutomationsApi* | [**activateAutomationWithHttpInfo**](docs/AutomationsApi.md#activateAutomationWithHttpInfo) | **POST** /v1/automations/{automationId}/activate | Turn an automation on
+*AutomationsApi* | [**approveAutomationApproval**](docs/AutomationsApi.md#approveAutomationApproval) | **POST** /v1/automations/{automationId}/approvals/{approvalId}/approve | Approve an approval request
+*AutomationsApi* | [**approveAutomationApprovalWithHttpInfo**](docs/AutomationsApi.md#approveAutomationApprovalWithHttpInfo) | **POST** /v1/automations/{automationId}/approvals/{approvalId}/approve | Approve an approval request
+*AutomationsApi* | [**backtestAutomation**](docs/AutomationsApi.md#backtestAutomation) | **POST** /v1/automations/{automationId}/backtest | Backtest a saved automation
+*AutomationsApi* | [**backtestAutomationWithHttpInfo**](docs/AutomationsApi.md#backtestAutomationWithHttpInfo) | **POST** /v1/automations/{automationId}/backtest | Backtest a saved automation
+*AutomationsApi* | [**backtestAutomationDraft**](docs/AutomationsApi.md#backtestAutomationDraft) | **POST** /v1/automations/backtest | Backtest an unsaved automation
+*AutomationsApi* | [**backtestAutomationDraftWithHttpInfo**](docs/AutomationsApi.md#backtestAutomationDraftWithHttpInfo) | **POST** /v1/automations/backtest | Backtest an unsaved automation
+*AutomationsApi* | [**createAutomation**](docs/AutomationsApi.md#createAutomation) | **POST** /v1/automations | Create an automation
+*AutomationsApi* | [**createAutomationWithHttpInfo**](docs/AutomationsApi.md#createAutomationWithHttpInfo) | **POST** /v1/automations | Create an automation
+*AutomationsApi* | [**createAutomationTemplate**](docs/AutomationsApi.md#createAutomationTemplate) | **POST** /v1/automations/templates | Create an automation template
+*AutomationsApi* | [**createAutomationTemplateWithHttpInfo**](docs/AutomationsApi.md#createAutomationTemplateWithHttpInfo) | **POST** /v1/automations/templates | Create an automation template
+*AutomationsApi* | [**deleteAutomation**](docs/AutomationsApi.md#deleteAutomation) | **DELETE** /v1/automations/{automationId} | Delete an automation
+*AutomationsApi* | [**deleteAutomationWithHttpInfo**](docs/AutomationsApi.md#deleteAutomationWithHttpInfo) | **DELETE** /v1/automations/{automationId} | Delete an automation
+*AutomationsApi* | [**deleteAutomationTemplate**](docs/AutomationsApi.md#deleteAutomationTemplate) | **DELETE** /v1/automations/templates/{templateId} | Delete an automation template
+*AutomationsApi* | [**deleteAutomationTemplateWithHttpInfo**](docs/AutomationsApi.md#deleteAutomationTemplateWithHttpInfo) | **DELETE** /v1/automations/templates/{templateId} | Delete an automation template
+*AutomationsApi* | [**getAutomation**](docs/AutomationsApi.md#getAutomation) | **GET** /v1/automations/{automationId} | Get an automation
+*AutomationsApi* | [**getAutomationWithHttpInfo**](docs/AutomationsApi.md#getAutomationWithHttpInfo) | **GET** /v1/automations/{automationId} | Get an automation
+*AutomationsApi* | [**getAutomationApproval**](docs/AutomationsApi.md#getAutomationApproval) | **GET** /v1/automations/{automationId}/approvals/{approvalId} | Get an approval request
+*AutomationsApi* | [**getAutomationApprovalWithHttpInfo**](docs/AutomationsApi.md#getAutomationApprovalWithHttpInfo) | **GET** /v1/automations/{automationId}/approvals/{approvalId} | Get an approval request
+*AutomationsApi* | [**getAutomationCatalog**](docs/AutomationsApi.md#getAutomationCatalog) | **GET** /v1/automations/catalog | Get the automations catalog
+*AutomationsApi* | [**getAutomationCatalogWithHttpInfo**](docs/AutomationsApi.md#getAutomationCatalogWithHttpInfo) | **GET** /v1/automations/catalog | Get the automations catalog
+*AutomationsApi* | [**getAutomationControls**](docs/AutomationsApi.md#getAutomationControls) | **GET** /v1/automations/controls | Get automation controls
+*AutomationsApi* | [**getAutomationControlsWithHttpInfo**](docs/AutomationsApi.md#getAutomationControlsWithHttpInfo) | **GET** /v1/automations/controls | Get automation controls
+*AutomationsApi* | [**getAutomationTemplate**](docs/AutomationsApi.md#getAutomationTemplate) | **GET** /v1/automations/templates/{templateId} | Get an automation template
+*AutomationsApi* | [**getAutomationTemplateWithHttpInfo**](docs/AutomationsApi.md#getAutomationTemplateWithHttpInfo) | **GET** /v1/automations/templates/{templateId} | Get an automation template
+*AutomationsApi* | [**getSharedAutomationTemplate**](docs/AutomationsApi.md#getSharedAutomationTemplate) | **GET** /v1/automations/templates/shared/{shareToken} | Get a shared automation template
+*AutomationsApi* | [**getSharedAutomationTemplateWithHttpInfo**](docs/AutomationsApi.md#getSharedAutomationTemplateWithHttpInfo) | **GET** /v1/automations/templates/shared/{shareToken} | Get a shared automation template
+*AutomationsApi* | [**getZernioAutomationTemplate**](docs/AutomationsApi.md#getZernioAutomationTemplate) | **GET** /v1/automations/templates/zernio/{templateId} | Get a Zernio automation template
+*AutomationsApi* | [**getZernioAutomationTemplateWithHttpInfo**](docs/AutomationsApi.md#getZernioAutomationTemplateWithHttpInfo) | **GET** /v1/automations/templates/zernio/{templateId} | Get a Zernio automation template
+*AutomationsApi* | [**installAutomationTemplate**](docs/AutomationsApi.md#installAutomationTemplate) | **POST** /v1/automations/templates/{templateId}/install | Install an automation template
+*AutomationsApi* | [**installAutomationTemplateWithHttpInfo**](docs/AutomationsApi.md#installAutomationTemplateWithHttpInfo) | **POST** /v1/automations/templates/{templateId}/install | Install an automation template
+*AutomationsApi* | [**installSharedAutomationTemplate**](docs/AutomationsApi.md#installSharedAutomationTemplate) | **POST** /v1/automations/templates/shared/{shareToken}/install | Install a shared automation template
+*AutomationsApi* | [**installSharedAutomationTemplateWithHttpInfo**](docs/AutomationsApi.md#installSharedAutomationTemplateWithHttpInfo) | **POST** /v1/automations/templates/shared/{shareToken}/install | Install a shared automation template
+*AutomationsApi* | [**installZernioAutomationTemplate**](docs/AutomationsApi.md#installZernioAutomationTemplate) | **POST** /v1/automations/templates/zernio/{templateId}/install | Install a Zernio automation template
+*AutomationsApi* | [**installZernioAutomationTemplateWithHttpInfo**](docs/AutomationsApi.md#installZernioAutomationTemplateWithHttpInfo) | **POST** /v1/automations/templates/zernio/{templateId}/install | Install a Zernio automation template
+*AutomationsApi* | [**listAutomationActions**](docs/AutomationsApi.md#listAutomationActions) | **GET** /v1/automations/actions | List automation actions
+*AutomationsApi* | [**listAutomationActionsWithHttpInfo**](docs/AutomationsApi.md#listAutomationActionsWithHttpInfo) | **GET** /v1/automations/actions | List automation actions
+*AutomationsApi* | [**listAutomationApprovals**](docs/AutomationsApi.md#listAutomationApprovals) | **GET** /v1/automations/{automationId}/approvals | List an automation&#39;s approval requests
+*AutomationsApi* | [**listAutomationApprovalsWithHttpInfo**](docs/AutomationsApi.md#listAutomationApprovalsWithHttpInfo) | **GET** /v1/automations/{automationId}/approvals | List an automation&#39;s approval requests
+*AutomationsApi* | [**listAutomationChecks**](docs/AutomationsApi.md#listAutomationChecks) | **GET** /v1/automations/{automationId}/checks | List an automation&#39;s checks
+*AutomationsApi* | [**listAutomationChecksWithHttpInfo**](docs/AutomationsApi.md#listAutomationChecksWithHttpInfo) | **GET** /v1/automations/{automationId}/checks | List an automation&#39;s checks
+*AutomationsApi* | [**listAutomationTemplates**](docs/AutomationsApi.md#listAutomationTemplates) | **GET** /v1/automations/templates | List automation templates
+*AutomationsApi* | [**listAutomationTemplatesWithHttpInfo**](docs/AutomationsApi.md#listAutomationTemplatesWithHttpInfo) | **GET** /v1/automations/templates | List automation templates
+*AutomationsApi* | [**listAutomations**](docs/AutomationsApi.md#listAutomations) | **GET** /v1/automations | List automations
+*AutomationsApi* | [**listAutomationsWithHttpInfo**](docs/AutomationsApi.md#listAutomationsWithHttpInfo) | **GET** /v1/automations | List automations
+*AutomationsApi* | [**pauseAutomation**](docs/AutomationsApi.md#pauseAutomation) | **POST** /v1/automations/{automationId}/pause | Turn an automation off
+*AutomationsApi* | [**pauseAutomationWithHttpInfo**](docs/AutomationsApi.md#pauseAutomationWithHttpInfo) | **POST** /v1/automations/{automationId}/pause | Turn an automation off
+*AutomationsApi* | [**previewAutomation**](docs/AutomationsApi.md#previewAutomation) | **POST** /v1/automations/{automationId}/preview | Preview a saved automation
+*AutomationsApi* | [**previewAutomationWithHttpInfo**](docs/AutomationsApi.md#previewAutomationWithHttpInfo) | **POST** /v1/automations/{automationId}/preview | Preview a saved automation
+*AutomationsApi* | [**previewAutomationDraft**](docs/AutomationsApi.md#previewAutomationDraft) | **POST** /v1/automations/preview | Preview an unsaved automation
+*AutomationsApi* | [**previewAutomationDraftWithHttpInfo**](docs/AutomationsApi.md#previewAutomationDraftWithHttpInfo) | **POST** /v1/automations/preview | Preview an unsaved automation
+*AutomationsApi* | [**rejectAutomationApproval**](docs/AutomationsApi.md#rejectAutomationApproval) | **POST** /v1/automations/{automationId}/approvals/{approvalId}/reject | Reject an approval request
+*AutomationsApi* | [**rejectAutomationApprovalWithHttpInfo**](docs/AutomationsApi.md#rejectAutomationApprovalWithHttpInfo) | **POST** /v1/automations/{automationId}/approvals/{approvalId}/reject | Reject an approval request
+*AutomationsApi* | [**updateAutomation**](docs/AutomationsApi.md#updateAutomation) | **PATCH** /v1/automations/{automationId} | Edit an automation
+*AutomationsApi* | [**updateAutomationWithHttpInfo**](docs/AutomationsApi.md#updateAutomationWithHttpInfo) | **PATCH** /v1/automations/{automationId} | Edit an automation
+*AutomationsApi* | [**updateAutomationAdAccountControls**](docs/AutomationsApi.md#updateAutomationAdAccountControls) | **PATCH** /v1/automations/controls/ad-accounts | Update one ad account&#39;s controls
+*AutomationsApi* | [**updateAutomationAdAccountControlsWithHttpInfo**](docs/AutomationsApi.md#updateAutomationAdAccountControlsWithHttpInfo) | **PATCH** /v1/automations/controls/ad-accounts | Update one ad account&#39;s controls
+*AutomationsApi* | [**updateAutomationControls**](docs/AutomationsApi.md#updateAutomationControls) | **PATCH** /v1/automations/controls | Turn every ad automation off or on
+*AutomationsApi* | [**updateAutomationControlsWithHttpInfo**](docs/AutomationsApi.md#updateAutomationControlsWithHttpInfo) | **PATCH** /v1/automations/controls | Turn every ad automation off or on
+*AutomationsApi* | [**updateAutomationTemplate**](docs/AutomationsApi.md#updateAutomationTemplate) | **PATCH** /v1/automations/templates/{templateId} | Update an automation template
+*AutomationsApi* | [**updateAutomationTemplateWithHttpInfo**](docs/AutomationsApi.md#updateAutomationTemplateWithHttpInfo) | **PATCH** /v1/automations/templates/{templateId} | Update an automation template
 *BlogsApi* | [**createBlog**](docs/BlogsApi.md#createBlog) | **POST** /v1/accounts/{accountId}/blogs | Create a blog
 *BlogsApi* | [**createBlogWithHttpInfo**](docs/BlogsApi.md#createBlogWithHttpInfo) | **POST** /v1/accounts/{accountId}/blogs | Create a blog
 *BlogsApi* | [**createBlogArticle**](docs/BlogsApi.md#createBlogArticle) | **POST** /v1/accounts/{accountId}/blogs/{blogId}/articles | Create a blog article
@@ -2484,6 +2546,12 @@ Class | Method | HTTP request | Description
  - [AdRuleActionOneOfSendInnerOneOf](docs/AdRuleActionOneOfSendInnerOneOf.md)
  - [AdRuleActionOneOfSendInnerOneOf1](docs/AdRuleActionOneOfSendInnerOneOf1.md)
  - [AdRuleActivityEntry](docs/AdRuleActivityEntry.md)
+ - [AdRuleAutomationCheck](docs/AdRuleAutomationCheck.md)
+ - [AdRuleAutomationCheckActionsInner](docs/AdRuleAutomationCheckActionsInner.md)
+ - [AdRuleAutomationCheckNotification](docs/AdRuleAutomationCheckNotification.md)
+ - [AdRuleAutomationCheckSubjectsInner](docs/AdRuleAutomationCheckSubjectsInner.md)
+ - [AdRuleAutomationCheckSubjectsInnerSubject](docs/AdRuleAutomationCheckSubjectsInnerSubject.md)
+ - [AdRuleAutomationDefinition](docs/AdRuleAutomationDefinition.md)
  - [AdRuleCondition](docs/AdRuleCondition.md)
  - [AdRuleConditionItem](docs/AdRuleConditionItem.md)
  - [AdRuleConditions](docs/AdRuleConditions.md)
@@ -2630,6 +2698,100 @@ Class | Method | HTTP request | Description
  - [AttachNumberToSipTrunk200Response](docs/AttachNumberToSipTrunk200Response.md)
  - [AttachNumberToSipTrunkRequest](docs/AttachNumberToSipTrunkRequest.md)
  - [AutoRecharge](docs/AutoRecharge.md)
+ - [Automation](docs/Automation.md)
+ - [AutomationAction](docs/AutomationAction.md)
+ - [AutomationActionAllOfAdAccount](docs/AutomationActionAllOfAdAccount.md)
+ - [AutomationActionAllOfSubject](docs/AutomationActionAllOfSubject.md)
+ - [AutomationActionResult](docs/AutomationActionResult.md)
+ - [AutomationAdAccountControls](docs/AutomationAdAccountControls.md)
+ - [AutomationAdFilter](docs/AutomationAdFilter.md)
+ - [AutomationAdFilterOneOf](docs/AutomationAdFilterOneOf.md)
+ - [AutomationAdFilterOneOf1](docs/AutomationAdFilterOneOf1.md)
+ - [AutomationAdFilterOneOf2](docs/AutomationAdFilterOneOf2.md)
+ - [AutomationAdFilterOneOf3](docs/AutomationAdFilterOneOf3.md)
+ - [AutomationAlert](docs/AutomationAlert.md)
+ - [AutomationApproval](docs/AutomationApproval.md)
+ - [AutomationApprovalChange](docs/AutomationApprovalChange.md)
+ - [AutomationApprovalChangePrevious](docs/AutomationApprovalChangePrevious.md)
+ - [AutomationApprovalChangeSubject](docs/AutomationApprovalChangeSubject.md)
+ - [AutomationApprovalChangeTarget](docs/AutomationApprovalChangeTarget.md)
+ - [AutomationApprovalDecidedBy](docs/AutomationApprovalDecidedBy.md)
+ - [AutomationApprovalDecision](docs/AutomationApprovalDecision.md)
+ - [AutomationApprovalStep](docs/AutomationApprovalStep.md)
+ - [AutomationBacktest](docs/AutomationBacktest.md)
+ - [AutomationBacktestDay](docs/AutomationBacktestDay.md)
+ - [AutomationBacktestDayActionsInner](docs/AutomationBacktestDayActionsInner.md)
+ - [AutomationBacktestDayActionsInnerBudget](docs/AutomationBacktestDayActionsInnerBudget.md)
+ - [AutomationBacktestDayActionsInnerSubject](docs/AutomationBacktestDayActionsInnerSubject.md)
+ - [AutomationBacktestNotesInner](docs/AutomationBacktestNotesInner.md)
+ - [AutomationBacktestTotals](docs/AutomationBacktestTotals.md)
+ - [AutomationBoostStep](docs/AutomationBoostStep.md)
+ - [AutomationChangedValue](docs/AutomationChangedValue.md)
+ - [AutomationCheck](docs/AutomationCheck.md)
+ - [AutomationConditionResult](docs/AutomationConditionResult.md)
+ - [AutomationControls](docs/AutomationControls.md)
+ - [AutomationDefinition](docs/AutomationDefinition.md)
+ - [AutomationEventLimits](docs/AutomationEventLimits.md)
+ - [AutomationEventTrigger](docs/AutomationEventTrigger.md)
+ - [AutomationFactCondition](docs/AutomationFactCondition.md)
+ - [AutomationFactConditionOneOf](docs/AutomationFactConditionOneOf.md)
+ - [AutomationFactConditionOneOf1](docs/AutomationFactConditionOneOf1.md)
+ - [AutomationFactConditionOneOf2](docs/AutomationFactConditionOneOf2.md)
+ - [AutomationFactConditionOneOfValue](docs/AutomationFactConditionOneOfValue.md)
+ - [AutomationFactResult](docs/AutomationFactResult.md)
+ - [AutomationLimits](docs/AutomationLimits.md)
+ - [AutomationNotifyStep](docs/AutomationNotifyStep.md)
+ - [AutomationNotifyStepToInner](docs/AutomationNotifyStepToInner.md)
+ - [AutomationOneOf](docs/AutomationOneOf.md)
+ - [AutomationOneOf1](docs/AutomationOneOf1.md)
+ - [AutomationOneOf2](docs/AutomationOneOf2.md)
+ - [AutomationPostSchedule](docs/AutomationPostSchedule.md)
+ - [AutomationPostSubjects](docs/AutomationPostSubjects.md)
+ - [AutomationPreview](docs/AutomationPreview.md)
+ - [AutomationPreviewGroupsInner](docs/AutomationPreviewGroupsInner.md)
+ - [AutomationPreviewSubjectsInner](docs/AutomationPreviewSubjectsInner.md)
+ - [AutomationPreviewSubjectsInnerSubject](docs/AutomationPreviewSubjectsInnerSubject.md)
+ - [AutomationPreviewSubjectsInnerWouldRunInner](docs/AutomationPreviewSubjectsInnerWouldRunInner.md)
+ - [AutomationProblems](docs/AutomationProblems.md)
+ - [AutomationProblemsProblemsInner](docs/AutomationProblemsProblemsInner.md)
+ - [AutomationRecord](docs/AutomationRecord.md)
+ - [AutomationRecordTemplate](docs/AutomationRecordTemplate.md)
+ - [AutomationRunResult](docs/AutomationRunResult.md)
+ - [AutomationScheduleTrigger](docs/AutomationScheduleTrigger.md)
+ - [AutomationScheduleTriggerQuietHours](docs/AutomationScheduleTriggerQuietHours.md)
+ - [AutomationScheduleTriggerTimesInner](docs/AutomationScheduleTriggerTimesInner.md)
+ - [AutomationStep](docs/AutomationStep.md)
+ - [AutomationStepOneOf](docs/AutomationStepOneOf.md)
+ - [AutomationStepOneOf1](docs/AutomationStepOneOf1.md)
+ - [AutomationStepOneOf10](docs/AutomationStepOneOf10.md)
+ - [AutomationStepOneOf2](docs/AutomationStepOneOf2.md)
+ - [AutomationStepOneOf3](docs/AutomationStepOneOf3.md)
+ - [AutomationStepOneOf4](docs/AutomationStepOneOf4.md)
+ - [AutomationStepOneOf5](docs/AutomationStepOneOf5.md)
+ - [AutomationStepOneOf6](docs/AutomationStepOneOf6.md)
+ - [AutomationStepOneOf7](docs/AutomationStepOneOf7.md)
+ - [AutomationStepOneOf8](docs/AutomationStepOneOf8.md)
+ - [AutomationStepOneOf9](docs/AutomationStepOneOf9.md)
+ - [AutomationSubjects](docs/AutomationSubjects.md)
+ - [AutomationSubjectsAdAccountsInner](docs/AutomationSubjectsAdAccountsInner.md)
+ - [AutomationSubjectsGroupsInner](docs/AutomationSubjectsGroupsInner.md)
+ - [AutomationTemplate](docs/AutomationTemplate.md)
+ - [AutomationTemplateAutomation](docs/AutomationTemplateAutomation.md)
+ - [AutomationTemplateContent](docs/AutomationTemplateContent.md)
+ - [AutomationTemplateContentFrom](docs/AutomationTemplateContentFrom.md)
+ - [AutomationTemplateInput](docs/AutomationTemplateInput.md)
+ - [AutomationTemplateInputDefault](docs/AutomationTemplateInputDefault.md)
+ - [AutomationTemplateInputOptionsInner](docs/AutomationTemplateInputOptionsInner.md)
+ - [AutomationTemplateInputOptionsInnerValue](docs/AutomationTemplateInputOptionsInnerValue.md)
+ - [AutomationTemplateInstallRequest](docs/AutomationTemplateInstallRequest.md)
+ - [AutomationTemplateInstallRequestTargetsInner](docs/AutomationTemplateInstallRequestTargetsInner.md)
+ - [AutomationTemplateInstallResponse](docs/AutomationTemplateInstallResponse.md)
+ - [AutomationTemplateInstallation](docs/AutomationTemplateInstallation.md)
+ - [AutomationTemplatePublisher](docs/AutomationTemplatePublisher.md)
+ - [AutomationTemplateShare](docs/AutomationTemplateShare.md)
+ - [AutomationTemplateTargetResult](docs/AutomationTemplateTargetResult.md)
+ - [AutomationTemplateTargetResultError](docs/AutomationTemplateTargetResultError.md)
+ - [AutomationTrigger](docs/AutomationTrigger.md)
  - [BatchAdCatalogProducts202Response](docs/BatchAdCatalogProducts202Response.md)
  - [BatchAdCatalogProductsRequest](docs/BatchAdCatalogProductsRequest.md)
  - [BatchAdCatalogProductsRequestRequestsInner](docs/BatchAdCatalogProductsRequestRequestsInner.md)
@@ -2977,6 +3139,9 @@ Class | Method | HTTP request | Description
  - [CreateAdSetRequestPromotedObject](docs/CreateAdSetRequestPromotedObject.md)
  - [CreateApiKey201Response](docs/CreateApiKey201Response.md)
  - [CreateApiKeyRequest](docs/CreateApiKeyRequest.md)
+ - [CreateAutomation201Response](docs/CreateAutomation201Response.md)
+ - [CreateAutomationTemplate201Response](docs/CreateAutomationTemplate201Response.md)
+ - [CreateAutomationTemplateRequest](docs/CreateAutomationTemplateRequest.md)
  - [CreateBidStrategy201Response](docs/CreateBidStrategy201Response.md)
  - [CreateBidStrategy201ResponseStrategy](docs/CreateBidStrategy201ResponseStrategy.md)
  - [CreateBidStrategyRequest](docs/CreateBidStrategyRequest.md)
@@ -3287,6 +3452,7 @@ Class | Method | HTTP request | Description
  - [DeleteAdNegativeKeywordList200Response](docs/DeleteAdNegativeKeywordList200Response.md)
  - [DeleteAdSet200Response](docs/DeleteAdSet200Response.md)
  - [DeleteAdVideo200Response](docs/DeleteAdVideo200Response.md)
+ - [DeleteAutomationTemplate200Response](docs/DeleteAutomationTemplate200Response.md)
  - [DeleteBrandedCallingEnterprise200Response](docs/DeleteBrandedCallingEnterprise200Response.md)
  - [DeleteCalendarEvent200Response](docs/DeleteCalendarEvent200Response.md)
  - [DeleteCalendarEvent200ResponseData](docs/DeleteCalendarEvent200ResponseData.md)
@@ -3391,6 +3557,9 @@ Class | Method | HTTP request | Description
  - [ErrorResponseDetailsUnconfirmedWrite](docs/ErrorResponseDetailsUnconfirmedWrite.md)
  - [EstimateAdReach200Response](docs/EstimateAdReach200Response.md)
  - [EstimateAdReachRequest](docs/EstimateAdReachRequest.md)
+ - [EventAutomationCheck](docs/EventAutomationCheck.md)
+ - [EventAutomationCheckSubject](docs/EventAutomationCheckSubject.md)
+ - [EventAutomationDefinition](docs/EventAutomationDefinition.md)
  - [EventDestination](docs/EventDestination.md)
  - [Expired](docs/Expired.md)
  - [ExternalPostMediaItem](docs/ExternalPostMediaItem.md)
@@ -3430,6 +3599,9 @@ Class | Method | HTTP request | Description
  - [FoodMenuItemOptionsInner](docs/FoodMenuItemOptionsInner.md)
  - [FoodMenuLabel](docs/FoodMenuLabel.md)
  - [FoodMenuSection](docs/FoodMenuSection.md)
+ - [FromASharedTemplate](docs/FromASharedTemplate.md)
+ - [FromAZernioTemplate](docs/FromAZernioTemplate.md)
+ - [FromYourAutomations](docs/FromYourAutomations.md)
  - [GenerateAdPreviews200Response](docs/GenerateAdPreviews200Response.md)
  - [GenerateAdPreviews200ResponsePreviewsInner](docs/GenerateAdPreviews200ResponsePreviewsInner.md)
  - [GenerateAdPreviewsRequest](docs/GenerateAdPreviewsRequest.md)
@@ -3521,6 +3693,14 @@ Class | Method | HTTP request | Description
  - [GetAnalyticsDashboard200Response](docs/GetAnalyticsDashboard200Response.md)
  - [GetAnalyticsDashboard200ResponseDailyInner](docs/GetAnalyticsDashboard200ResponseDailyInner.md)
  - [GetAnalyticsDashboard200ResponseDateRange](docs/GetAnalyticsDashboard200ResponseDateRange.md)
+ - [GetAutomationApproval200Response](docs/GetAutomationApproval200Response.md)
+ - [GetAutomationCatalog200Response](docs/GetAutomationCatalog200Response.md)
+ - [GetAutomationCatalog200ResponseSubjectsInner](docs/GetAutomationCatalog200ResponseSubjectsInner.md)
+ - [GetAutomationCatalog200ResponseSubjectsInnerMetricsInner](docs/GetAutomationCatalog200ResponseSubjectsInnerMetricsInner.md)
+ - [GetAutomationCatalog200ResponseSubjectsInnerStepsInner](docs/GetAutomationCatalog200ResponseSubjectsInnerStepsInner.md)
+ - [GetAutomationCatalog200ResponseTriggersInner](docs/GetAutomationCatalog200ResponseTriggersInner.md)
+ - [GetAutomationCatalog200ResponseTriggersInnerFactsInner](docs/GetAutomationCatalog200ResponseTriggersInnerFactsInner.md)
+ - [GetAutomationControls200Response](docs/GetAutomationControls200Response.md)
  - [GetBalance200Response](docs/GetBalance200Response.md)
  - [GetBalance200ResponsePayoutLocksInner](docs/GetBalance200ResponsePayoutLocksInner.md)
  - [GetBalance200ResponsePendingReleasesInner](docs/GetBalance200ResponsePendingReleasesInner.md)
@@ -4049,6 +4229,8 @@ Class | Method | HTTP request | Description
  - [InstagramTaggedMedia](docs/InstagramTaggedMedia.md)
  - [InstagramVideoFallback](docs/InstagramVideoFallback.md)
  - [InstagramVideoFallbackPlatformError](docs/InstagramVideoFallbackPlatformError.md)
+ - [InstallAutomationTemplate207Response](docs/InstallAutomationTemplate207Response.md)
+ - [InstallAutomationTemplate400Response](docs/InstallAutomationTemplate400Response.md)
  - [InstallTrackingTagOnStore200Response](docs/InstallTrackingTagOnStore200Response.md)
  - [InstallTrackingTagOnStore200ResponseInstall](docs/InstallTrackingTagOnStore200ResponseInstall.md)
  - [InstallTrackingTagOnStore422Response](docs/InstallTrackingTagOnStore422Response.md)
@@ -4167,6 +4349,11 @@ Class | Method | HTTP request | Description
  - [ListAdvertisableApplications200Response](docs/ListAdvertisableApplications200Response.md)
  - [ListAdvertisableApplications200ResponseApplicationsInner](docs/ListAdvertisableApplications200ResponseApplicationsInner.md)
  - [ListApiKeys200Response](docs/ListApiKeys200Response.md)
+ - [ListAutomationActions200Response](docs/ListAutomationActions200Response.md)
+ - [ListAutomationApprovals200Response](docs/ListAutomationApprovals200Response.md)
+ - [ListAutomationChecks200Response](docs/ListAutomationChecks200Response.md)
+ - [ListAutomationTemplates200Response](docs/ListAutomationTemplates200Response.md)
+ - [ListAutomations200Response](docs/ListAutomations200Response.md)
  - [ListBidStrategies200Response](docs/ListBidStrategies200Response.md)
  - [ListBlogArticles200Response](docs/ListBlogArticles200Response.md)
  - [ListBlogs200Response](docs/ListBlogs200Response.md)
@@ -4544,6 +4731,7 @@ Class | Method | HTTP request | Description
  - [OnWhatsAppNumberSuspendedRequest](docs/OnWhatsAppNumberSuspendedRequest.md)
  - [OnWhatsAppNumberVerificationRequiredRequest](docs/OnWhatsAppNumberVerificationRequiredRequest.md)
  - [OnboardBusinessAgent201Response](docs/OnboardBusinessAgent201Response.md)
+ - [OneInstall](docs/OneInstall.md)
  - [OpenHoursInner](docs/OpenHoursInner.md)
  - [OpenTrackingWindowRequest](docs/OpenTrackingWindowRequest.md)
  - [OrderImessageSender202Response](docs/OrderImessageSender202Response.md)
@@ -4783,6 +4971,11 @@ Class | Method | HTTP request | Description
  - [ScheduleBroadcast200Response](docs/ScheduleBroadcast200Response.md)
  - [ScheduleBroadcast200ResponseBroadcast](docs/ScheduleBroadcast200ResponseBroadcast.md)
  - [ScheduleBroadcastRequest](docs/ScheduleBroadcastRequest.md)
+ - [ScheduledAutomationCheck](docs/ScheduledAutomationCheck.md)
+ - [ScheduledAutomationCheckActionsInner](docs/ScheduledAutomationCheckActionsInner.md)
+ - [ScheduledAutomationCheckMatchedInner](docs/ScheduledAutomationCheckMatchedInner.md)
+ - [ScheduledAutomationDefinition](docs/ScheduledAutomationDefinition.md)
+ - [ScheduledAutomationDefinitionStepsInner](docs/ScheduledAutomationDefinitionStepsInner.md)
  - [SearchAdInterests200Response](docs/SearchAdInterests200Response.md)
  - [SearchAdInterests200ResponseInterestsInner](docs/SearchAdInterests200ResponseInterestsInner.md)
  - [SearchAdLibrary200Response](docs/SearchAdLibrary200Response.md)
@@ -4973,6 +5166,7 @@ Class | Method | HTTP request | Description
  - [SetWhatsappBusinessUsernameRequest](docs/SetWhatsappBusinessUsernameRequest.md)
  - [SettleCampaignParticipant201Response](docs/SettleCampaignParticipant201Response.md)
  - [SettleCampaignParticipantRequest](docs/SettleCampaignParticipantRequest.md)
+ - [SeveralTargets](docs/SeveralTargets.md)
  - [ShareBrandedCallingIdentityForm200Response](docs/ShareBrandedCallingIdentityForm200Response.md)
  - [ShareBrandedCallingIdentityFormRequest](docs/ShareBrandedCallingIdentityFormRequest.md)
  - [ShareSmsRegistrationRequest](docs/ShareSmsRegistrationRequest.md)
@@ -5153,6 +5347,13 @@ Class | Method | HTTP request | Description
  - [UpdateAdTrackingTagsRequestCreative](docs/UpdateAdTrackingTagsRequestCreative.md)
  - [UpdateAdTrackingTagsRequestUrlTagsInner](docs/UpdateAdTrackingTagsRequestUrlTagsInner.md)
  - [UpdateAutoRechargeRequest](docs/UpdateAutoRechargeRequest.md)
+ - [UpdateAutomationAdAccountControlsRequest](docs/UpdateAutomationAdAccountControlsRequest.md)
+ - [UpdateAutomationControlsRequest](docs/UpdateAutomationControlsRequest.md)
+ - [UpdateAutomationRequest](docs/UpdateAutomationRequest.md)
+ - [UpdateAutomationRequestLimits](docs/UpdateAutomationRequestLimits.md)
+ - [UpdateAutomationRequestStepsInner](docs/UpdateAutomationRequestStepsInner.md)
+ - [UpdateAutomationRequestSubjects](docs/UpdateAutomationRequestSubjects.md)
+ - [UpdateAutomationTemplateRequest](docs/UpdateAutomationTemplateRequest.md)
  - [UpdateBidStrategy200Response](docs/UpdateBidStrategy200Response.md)
  - [UpdateBidStrategy200ResponseStrategy](docs/UpdateBidStrategy200ResponseStrategy.md)
  - [UpdateBidStrategyRequest](docs/UpdateBidStrategyRequest.md)
