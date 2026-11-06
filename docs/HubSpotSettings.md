@@ -15,6 +15,7 @@
 |**syncContacts** | **Boolean** | Whether Zernio creates HubSpot contacts for inbox contacts that match none. |  |
 |**logMessages** | **Boolean** | Whether Zernio logs inbox messages on HubSpot contact timelines. |  |
 |**reportDeals** | **Boolean** | Whether Zernio sends closed-won deals as Purchase events to the profile&#39;s event destinations. |  |
+|**useDealsAsResults** | **Boolean** | Whether closed-won deals count as sales on the ad campaign that brought their contact, in campaign results and ad rules. |  |
 
 
 
