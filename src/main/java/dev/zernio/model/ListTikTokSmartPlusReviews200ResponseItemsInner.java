@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   ListTikTokSmartPlusReviews200ResponseItemsInner.JSON_PROPERTY_MATERIALS,
   ListTikTokSmartPlusReviews200ResponseItemsInner.JSON_PROPERTY_READ_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T08:59:45.796600453Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T09:03:42.372791469Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListTikTokSmartPlusReviews200ResponseItemsInner {
   public static final String JSON_PROPERTY_SMART_PLUS_AD_ID = "smartPlusAdId";
   @javax.annotation.Nullable

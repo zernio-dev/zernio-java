@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   PostPublishIncompleteResponsePlatformResultsInner.JSON_PROPERTY_STATUS,
   PostPublishIncompleteResponsePlatformResultsInner.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T08:59:45.796600453Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T09:03:42.372791469Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostPublishIncompleteResponsePlatformResultsInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nonnull

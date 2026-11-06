@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CheckPhoneNumberAvailability200ResponseAreaAvailabilityPreOrderInner.JSON_PROPERTY_NDCS,
   CheckPhoneNumberAvailability200ResponseAreaAvailabilityPreOrderInner.JSON_PROPERTY_ALIASES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T08:59:45.796600453Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-06T09:03:42.372791469Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberAvailability200ResponseAreaAvailabilityPreOrderInner {
   public static final String JSON_PROPERTY_NDC = "ndc";
   @javax.annotation.Nullable
