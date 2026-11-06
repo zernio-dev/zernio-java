@@ -30,6 +30,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**onAdReviewRejectedWithHttpInfo**](WebhookEventsApi.md#onAdReviewRejectedWithHttpInfo) | **POST** /ad.review.rejected | Ad review rejected event |
 | [**onAdRuleTriggered**](WebhookEventsApi.md#onAdRuleTriggered) | **POST** /ad_rule.triggered | Ad rule triggered event |
 | [**onAdRuleTriggeredWithHttpInfo**](WebhookEventsApi.md#onAdRuleTriggeredWithHttpInfo) | **POST** /ad_rule.triggered | Ad rule triggered event |
+| [**onAdSetCreated**](WebhookEventsApi.md#onAdSetCreated) | **POST** /ad_set.created | Ad set created event |
+| [**onAdSetCreatedWithHttpInfo**](WebhookEventsApi.md#onAdSetCreatedWithHttpInfo) | **POST** /ad_set.created | Ad set created event |
+| [**onAdSetUpdated**](WebhookEventsApi.md#onAdSetUpdated) | **POST** /ad_set.updated | Ad set updated event |
+| [**onAdSetUpdatedWithHttpInfo**](WebhookEventsApi.md#onAdSetUpdatedWithHttpInfo) | **POST** /ad_set.updated | Ad set updated event |
 | [**onAdStatusChanged**](WebhookEventsApi.md#onAdStatusChanged) | **POST** /ad.status_changed | Ad status changed event |
 | [**onAdStatusChangedWithHttpInfo**](WebhookEventsApi.md#onAdStatusChangedWithHttpInfo) | **POST** /ad.status_changed | Ad status changed event |
 | [**onAdUpdated**](WebhookEventsApi.md#onAdUpdated) | **POST** /ad.updated | Ad updated event |
@@ -2090,6 +2094,290 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadAdRuleTriggered** | [**WebhookPayloadAdRuleTriggered**](WebhookPayloadAdRuleTriggered.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onAdSetCreated
+
+> void onAdSetCreated(webhookPayloadAdSetCreated)
+
+Ad set created event
+
+An ad set was created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;).  ### When it fires  Fires once the ad set row is recorded, so &#x60;GET /v1/ads/ad-sets/{adSetId}&#x60; finds it.  ### Payload notes  &#x60;adObject.campaign&#x60; is the campaign the ad set belongs to, or null when the platform has none.  ### When it does not fire  History loaded when an account connects is never announced. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAdSetCreated webhookPayloadAdSetCreated = new WebhookPayloadAdSetCreated(); // WebhookPayloadAdSetCreated | 
+        try {
+            apiInstance.onAdSetCreated(webhookPayloadAdSetCreated);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAdSetCreated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAdSetCreated** | [**WebhookPayloadAdSetCreated**](WebhookPayloadAdSetCreated.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onAdSetCreatedWithHttpInfo
+
+> ApiResponse<Void> onAdSetCreated onAdSetCreatedWithHttpInfo(webhookPayloadAdSetCreated)
+
+Ad set created event
+
+An ad set was created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;).  ### When it fires  Fires once the ad set row is recorded, so &#x60;GET /v1/ads/ad-sets/{adSetId}&#x60; finds it.  ### Payload notes  &#x60;adObject.campaign&#x60; is the campaign the ad set belongs to, or null when the platform has none.  ### When it does not fire  History loaded when an account connects is never announced. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAdSetCreated webhookPayloadAdSetCreated = new WebhookPayloadAdSetCreated(); // WebhookPayloadAdSetCreated | 
+        try {
+            ApiResponse<Void> response = apiInstance.onAdSetCreatedWithHttpInfo(webhookPayloadAdSetCreated);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAdSetCreated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAdSetCreated** | [**WebhookPayloadAdSetCreated**](WebhookPayloadAdSetCreated.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onAdSetUpdated
+
+> void onAdSetUpdated(webhookPayloadAdSetUpdated)
+
+Ad set updated event
+
+An ad set was edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;).  ### When it fires  Fires after the platform and Zernio both accepted the edit.  ### Deduplication  Events are not deduplicated, so every edit is announced. Use the event &#x60;id&#x60; to drop repeats.  ### Payload notes  &#x60;changes&#x60; lists the edited fields: &#x60;name&#x60;, &#x60;status&#x60; (the ad set&#39;s own on/off switch), &#x60;budget&#x60;, &#x60;bid&#x60;, &#x60;schedule&#x60;, &#x60;targeting&#x60; or &#x60;settings&#x60;. Ignore unknown values. It never carries old or new values, so read the ad set.  ### When it does not fire  Budget and targeting edits made through &#x60;PUT /v1/ads/{adId}&#x60; arrive as &#x60;ad.updated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAdSetUpdated webhookPayloadAdSetUpdated = new WebhookPayloadAdSetUpdated(); // WebhookPayloadAdSetUpdated | 
+        try {
+            apiInstance.onAdSetUpdated(webhookPayloadAdSetUpdated);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAdSetUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAdSetUpdated** | [**WebhookPayloadAdSetUpdated**](WebhookPayloadAdSetUpdated.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onAdSetUpdatedWithHttpInfo
+
+> ApiResponse<Void> onAdSetUpdated onAdSetUpdatedWithHttpInfo(webhookPayloadAdSetUpdated)
+
+Ad set updated event
+
+An ad set was edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;).  ### When it fires  Fires after the platform and Zernio both accepted the edit.  ### Deduplication  Events are not deduplicated, so every edit is announced. Use the event &#x60;id&#x60; to drop repeats.  ### Payload notes  &#x60;changes&#x60; lists the edited fields: &#x60;name&#x60;, &#x60;status&#x60; (the ad set&#39;s own on/off switch), &#x60;budget&#x60;, &#x60;bid&#x60;, &#x60;schedule&#x60;, &#x60;targeting&#x60; or &#x60;settings&#x60;. Ignore unknown values. It never carries old or new values, so read the ad set.  ### When it does not fire  Budget and targeting edits made through &#x60;PUT /v1/ads/{adId}&#x60; arrive as &#x60;ad.updated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAdSetUpdated webhookPayloadAdSetUpdated = new WebhookPayloadAdSetUpdated(); // WebhookPayloadAdSetUpdated | 
+        try {
+            ApiResponse<Void> response = apiInstance.onAdSetUpdatedWithHttpInfo(webhookPayloadAdSetUpdated);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAdSetUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAdSetUpdated** | [**WebhookPayloadAdSetUpdated**](WebhookPayloadAdSetUpdated.md)|  | |
 
 ### Return type
 
@@ -7087,7 +7375,7 @@ ApiResponse<Void>
 
 Campaign updated event
 
-A campaign was edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;), or outside Zernio and detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;).  ### When it fires  Fires after the platform and Zernio both accepted the edit. Outside edits arrive up to one sync interval late, and only to the user whose sync saw them.  ### Deduplication  Events are not deduplicated, so every edit is announced. Use the event &#x60;id&#x60; to drop repeats.  ### Payload notes  &#x60;changes&#x60; lists the edited fields: &#x60;name&#x60;, &#x60;status&#x60; (the campaign&#39;s own on/off switch), &#x60;budget&#x60;, &#x60;bid&#x60; or &#x60;settings&#x60;. Ignore unknown values. It never carries old or new values, so read the campaign.  ### What the sync detects  From the sync, &#x60;changes&#x60; covers only &#x60;name&#x60;, &#x60;status&#x60; and &#x60;schedule&#x60;. Schedule is detected only on Google, LinkedIn, Pinterest and OpenAI Ads.  ### When it does not fire  Budget edits made outside Zernio, ad set edits and history loaded at connect are not announced. Ad rule changes arrive as &#x60;ad_rule.triggered&#x60;.  ### Google sub-resources  Edits to ad schedule, targeting, negative keywords, conversion goals, assets, asset groups and listing group filters are not announced. 
+A campaign was edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;), or outside Zernio and detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;).  ### When it fires  Fires after the platform and Zernio both accepted the edit. Outside edits arrive up to one sync interval late, and only to the user whose sync saw them.  ### Deduplication  Events are not deduplicated, so every edit is announced. Use the event &#x60;id&#x60; to drop repeats.  ### Payload notes  &#x60;changes&#x60; lists the edited fields: &#x60;name&#x60;, &#x60;status&#x60; (the campaign&#39;s own on/off switch), &#x60;budget&#x60;, &#x60;bid&#x60; or &#x60;settings&#x60;. Ignore unknown values. It never carries old or new values, so read the campaign.  ### What the sync detects  From the sync, &#x60;changes&#x60; covers only &#x60;name&#x60;, &#x60;status&#x60; and &#x60;schedule&#x60;. Schedule is detected only on Google, LinkedIn, Pinterest and OpenAI Ads.  ### When it does not fire  Budget edits made outside Zernio and history loaded at connect are not announced. Ad set edits made through Zernio arrive as &#x60;ad_set.updated&#x60;. Ad rule changes arrive as &#x60;ad_rule.triggered&#x60;.  ### Google sub-resources  Edits to ad schedule, targeting, negative keywords, conversion goals, assets, asset groups and listing group filters are not announced. 
 
 ### Example
 
@@ -7156,7 +7444,7 @@ null (empty response body)
 
 Campaign updated event
 
-A campaign was edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;), or outside Zernio and detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;).  ### When it fires  Fires after the platform and Zernio both accepted the edit. Outside edits arrive up to one sync interval late, and only to the user whose sync saw them.  ### Deduplication  Events are not deduplicated, so every edit is announced. Use the event &#x60;id&#x60; to drop repeats.  ### Payload notes  &#x60;changes&#x60; lists the edited fields: &#x60;name&#x60;, &#x60;status&#x60; (the campaign&#39;s own on/off switch), &#x60;budget&#x60;, &#x60;bid&#x60; or &#x60;settings&#x60;. Ignore unknown values. It never carries old or new values, so read the campaign.  ### What the sync detects  From the sync, &#x60;changes&#x60; covers only &#x60;name&#x60;, &#x60;status&#x60; and &#x60;schedule&#x60;. Schedule is detected only on Google, LinkedIn, Pinterest and OpenAI Ads.  ### When it does not fire  Budget edits made outside Zernio, ad set edits and history loaded at connect are not announced. Ad rule changes arrive as &#x60;ad_rule.triggered&#x60;.  ### Google sub-resources  Edits to ad schedule, targeting, negative keywords, conversion goals, assets, asset groups and listing group filters are not announced. 
+A campaign was edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;), or outside Zernio and detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;).  ### When it fires  Fires after the platform and Zernio both accepted the edit. Outside edits arrive up to one sync interval late, and only to the user whose sync saw them.  ### Deduplication  Events are not deduplicated, so every edit is announced. Use the event &#x60;id&#x60; to drop repeats.  ### Payload notes  &#x60;changes&#x60; lists the edited fields: &#x60;name&#x60;, &#x60;status&#x60; (the campaign&#39;s own on/off switch), &#x60;budget&#x60;, &#x60;bid&#x60; or &#x60;settings&#x60;. Ignore unknown values. It never carries old or new values, so read the campaign.  ### What the sync detects  From the sync, &#x60;changes&#x60; covers only &#x60;name&#x60;, &#x60;status&#x60; and &#x60;schedule&#x60;. Schedule is detected only on Google, LinkedIn, Pinterest and OpenAI Ads.  ### When it does not fire  Budget edits made outside Zernio and history loaded at connect are not announced. Ad set edits made through Zernio arrive as &#x60;ad_set.updated&#x60;. Ad rule changes arrive as &#x60;ad_rule.triggered&#x60;.  ### Google sub-resources  Edits to ad schedule, targeting, negative keywords, conversion goals, assets, asset groups and listing group filters are not announced. 
 
 ### Example
 

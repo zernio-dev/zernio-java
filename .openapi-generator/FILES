@@ -3263,6 +3263,10 @@ docs/WebhookPayloadAdRuleTriggeredObjectsInnerActionsInner.md
 docs/WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInner.md
 docs/WebhookPayloadAdRuleTriggeredRule.md
 docs/WebhookPayloadAdRuleTriggeredRun.md
+docs/WebhookPayloadAdSetCreated.md
+docs/WebhookPayloadAdSetCreatedAdObject.md
+docs/WebhookPayloadAdSetCreatedAdObjectCampaign.md
+docs/WebhookPayloadAdSetUpdated.md
 docs/WebhookPayloadAdStatusChanged.md
 docs/WebhookPayloadAdStatusChangedAccount.md
 docs/WebhookPayloadAdStatusChangedAdObject.md
@@ -6792,6 +6796,10 @@ src/main/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredObjectsInnerActionsI
 src/main/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInner.java
 src/main/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredRule.java
 src/main/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredRun.java
+src/main/java/dev/zernio/model/WebhookPayloadAdSetCreated.java
+src/main/java/dev/zernio/model/WebhookPayloadAdSetCreatedAdObject.java
+src/main/java/dev/zernio/model/WebhookPayloadAdSetCreatedAdObjectCampaign.java
+src/main/java/dev/zernio/model/WebhookPayloadAdSetUpdated.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChanged.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedAdObject.java
@@ -7027,3 +7035,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookPayloadAdSetCreatedAdObjectCampaignTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdSetCreatedAdObjectTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdSetCreatedTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdSetUpdatedTest.java

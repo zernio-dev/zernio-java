@@ -97,6 +97,8 @@
 | AD_UPDATED | &quot;ad.updated&quot; |
 | CAMPAIGN_CREATED | &quot;campaign.created&quot; |
 | CAMPAIGN_UPDATED | &quot;campaign.updated&quot; |
+| AD_SET_CREATED | &quot;ad_set.created&quot; |
+| AD_SET_UPDATED | &quot;ad_set.updated&quot; |
 | AD_REVIEW_APPROVED | &quot;ad.review.approved&quot; |
 | AD_REVIEW_REJECTED | &quot;ad.review.rejected&quot; |
 | AD_DELIVERY_ISSUE | &quot;ad.delivery_issue&quot; |

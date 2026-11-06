@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.518.2
+- API version: 1.519.0
 
-- Build date: 2026-11-06T18:57:53.594918949Z[Etc/UTC]
+- Build date: 2026-11-06T19:07:58.633521546Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.518.2</version>
+  <version>1.519.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.518.2"
+compile "dev.zernio:zernio-sdk:1.519.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.518.2.jar`
+- `target/zernio-sdk-1.519.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -5664,6 +5664,10 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInner](docs/WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInner.md)
  - [WebhookPayloadAdRuleTriggeredRule](docs/WebhookPayloadAdRuleTriggeredRule.md)
  - [WebhookPayloadAdRuleTriggeredRun](docs/WebhookPayloadAdRuleTriggeredRun.md)
+ - [WebhookPayloadAdSetCreated](docs/WebhookPayloadAdSetCreated.md)
+ - [WebhookPayloadAdSetCreatedAdObject](docs/WebhookPayloadAdSetCreatedAdObject.md)
+ - [WebhookPayloadAdSetCreatedAdObjectCampaign](docs/WebhookPayloadAdSetCreatedAdObjectCampaign.md)
+ - [WebhookPayloadAdSetUpdated](docs/WebhookPayloadAdSetUpdated.md)
  - [WebhookPayloadAdStatusChanged](docs/WebhookPayloadAdStatusChanged.md)
  - [WebhookPayloadAdStatusChangedAccount](docs/WebhookPayloadAdStatusChangedAccount.md)
  - [WebhookPayloadAdStatusChangedAdObject](docs/WebhookPayloadAdStatusChangedAdObject.md)
