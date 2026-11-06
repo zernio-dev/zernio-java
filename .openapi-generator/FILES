@@ -2365,6 +2365,8 @@ docs/PreflightSmsRegistration200ResponseComposed.md
 docs/PreflightSmsRegistrationRequest.md
 docs/PrepareMedia200Response.md
 docs/PrepareMediaRequest.md
+docs/PreviewCampaignPayoutBatch200Response.md
+docs/PreviewCampaignPayoutBatchRequest.md
 docs/PreviewTopup200Response.md
 docs/PreviewTopupRequest.md
 docs/Product.md
@@ -5919,6 +5921,8 @@ src/main/java/dev/zernio/model/PreflightSmsRegistration200ResponseComposed.java
 src/main/java/dev/zernio/model/PreflightSmsRegistrationRequest.java
 src/main/java/dev/zernio/model/PrepareMedia200Response.java
 src/main/java/dev/zernio/model/PrepareMediaRequest.java
+src/main/java/dev/zernio/model/PreviewCampaignPayoutBatch200Response.java
+src/main/java/dev/zernio/model/PreviewCampaignPayoutBatchRequest.java
 src/main/java/dev/zernio/model/PreviewTopup200Response.java
 src/main/java/dev/zernio/model/PreviewTopupRequest.java
 src/main/java/dev/zernio/model/Product.java
@@ -7035,3 +7039,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/PreviewCampaignPayoutBatch200ResponseTest.java
+src/test/java/dev/zernio/model/PreviewCampaignPayoutBatchRequestTest.java

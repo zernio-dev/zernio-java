@@ -13,7 +13,7 @@
 |**destinationType** | [**DestinationTypeEnum**](#DestinationTypeEnum) |  |  [optional] |
 |**amountCents** | **Integer** | Amount the payee receives, in full |  [optional] |
 |**feeCents** | **Integer** | Zernio fee added on top, 4% with a 50 cent minimum |  [optional] |
-|**totalCents** | **Integer** | Amount debited from your balance: amountCents plus feeCents |  [optional] |
+|**totalCents** | **Integer** | amountCents plus feeCents, both paid by the payout batch card charge |  [optional] |
 |**currency** | **String** |  |  [optional] |
 |**reference** | [**TreasuryTransferReference**](TreasuryTransferReference.md) |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.520.0
+- API version: 1.521.1
 
-- Build date: 2026-11-06T19:13:22.685943796Z[Etc/UTC]
+- Build date: 2026-11-06T23:46:38.916806239Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.520.0</version>
+  <version>1.521.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.520.0"
+compile "dev.zernio:zernio-sdk:1.521.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.520.0.jar`
+- `target/zernio-sdk-1.521.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1441,6 +1441,8 @@ Class | Method | HTTP request | Description
 *CreatorCampaignsApi* | [**moveCampaignParticipantWithHttpInfo**](docs/CreatorCampaignsApi.md#moveCampaignParticipantWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/move | Move participant to another campaign
 *CreatorCampaignsApi* | [**pauseCreatorCampaign**](docs/CreatorCampaignsApi.md#pauseCreatorCampaign) | **POST** /v1/creator-campaigns/{campaignId}/pause | Pause creator campaign
 *CreatorCampaignsApi* | [**pauseCreatorCampaignWithHttpInfo**](docs/CreatorCampaignsApi.md#pauseCreatorCampaignWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/pause | Pause creator campaign
+*CreatorCampaignsApi* | [**previewCampaignPayoutBatch**](docs/CreatorCampaignsApi.md#previewCampaignPayoutBatch) | **POST** /v1/creator-campaigns/{campaignId}/payout-batches/preview | Preview a payout batch
+*CreatorCampaignsApi* | [**previewCampaignPayoutBatchWithHttpInfo**](docs/CreatorCampaignsApi.md#previewCampaignPayoutBatchWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/payout-batches/preview | Preview a payout batch
 *CreatorCampaignsApi* | [**raiseCreatorCampaignBudget**](docs/CreatorCampaignsApi.md#raiseCreatorCampaignBudget) | **POST** /v1/creator-campaigns/{campaignId}/budget | Raise creator campaign budget
 *CreatorCampaignsApi* | [**raiseCreatorCampaignBudgetWithHttpInfo**](docs/CreatorCampaignsApi.md#raiseCreatorCampaignBudgetWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/budget | Raise creator campaign budget
 *CreatorCampaignsApi* | [**reinstateCampaignParticipant**](docs/CreatorCampaignsApi.md#reinstateCampaignParticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/reinstate | Reinstate campaign participant
@@ -2127,8 +2129,8 @@ Class | Method | HTTP request | Description
 *TreasuryApi* | [**createPayeeOnboardingLinkWithHttpInfo**](docs/TreasuryApi.md#createPayeeOnboardingLinkWithHttpInfo) | **POST** /v1/payees/{payeeId}/onboarding-link | Create a payee onboarding link
 *TreasuryApi* | [**createTopup**](docs/TreasuryApi.md#createTopup) | **POST** /v1/balance/top-ups | Create a top-up
 *TreasuryApi* | [**createTopupWithHttpInfo**](docs/TreasuryApi.md#createTopupWithHttpInfo) | **POST** /v1/balance/top-ups | Create a top-up
-*TreasuryApi* | [**createTransfer**](docs/TreasuryApi.md#createTransfer) | **POST** /v1/transfers | Create a transfer
-*TreasuryApi* | [**createTransferWithHttpInfo**](docs/TreasuryApi.md#createTransferWithHttpInfo) | **POST** /v1/transfers | Create a transfer
+*TreasuryApi* | [**createTransfer**](docs/TreasuryApi.md#createTransfer) | **POST** /v1/transfers | Create a transfer (removed)
+*TreasuryApi* | [**createTransferWithHttpInfo**](docs/TreasuryApi.md#createTransferWithHttpInfo) | **POST** /v1/transfers | Create a transfer (removed)
 *TreasuryApi* | [**getAutoRecharge**](docs/TreasuryApi.md#getAutoRecharge) | **GET** /v1/balance/auto-recharge | Get auto-recharge settings
 *TreasuryApi* | [**getAutoRechargeWithHttpInfo**](docs/TreasuryApi.md#getAutoRechargeWithHttpInfo) | **GET** /v1/balance/auto-recharge | Get auto-recharge settings
 *TreasuryApi* | [**getBalance**](docs/TreasuryApi.md#getBalance) | **GET** /v1/balance | Get balance
@@ -4787,6 +4789,8 @@ Class | Method | HTTP request | Description
  - [PreflightSmsRegistrationRequest](docs/PreflightSmsRegistrationRequest.md)
  - [PrepareMedia200Response](docs/PrepareMedia200Response.md)
  - [PrepareMediaRequest](docs/PrepareMediaRequest.md)
+ - [PreviewCampaignPayoutBatch200Response](docs/PreviewCampaignPayoutBatch200Response.md)
+ - [PreviewCampaignPayoutBatchRequest](docs/PreviewCampaignPayoutBatchRequest.md)
  - [PreviewTopup200Response](docs/PreviewTopup200Response.md)
  - [PreviewTopupRequest](docs/PreviewTopupRequest.md)
  - [Product](docs/Product.md)

@@ -16,8 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createPayeeOnboardingLinkWithHttpInfo**](TreasuryApi.md#createPayeeOnboardingLinkWithHttpInfo) | **POST** /v1/payees/{payeeId}/onboarding-link | Create a payee onboarding link |
 | [**createTopup**](TreasuryApi.md#createTopup) | **POST** /v1/balance/top-ups | Create a top-up |
 | [**createTopupWithHttpInfo**](TreasuryApi.md#createTopupWithHttpInfo) | **POST** /v1/balance/top-ups | Create a top-up |
-| [**createTransfer**](TreasuryApi.md#createTransfer) | **POST** /v1/transfers | Create a transfer |
-| [**createTransferWithHttpInfo**](TreasuryApi.md#createTransferWithHttpInfo) | **POST** /v1/transfers | Create a transfer |
+| [**createTransfer**](TreasuryApi.md#createTransfer) | **POST** /v1/transfers | Create a transfer (removed) |
+| [**createTransferWithHttpInfo**](TreasuryApi.md#createTransferWithHttpInfo) | **POST** /v1/transfers | Create a transfer (removed) |
 | [**getAutoRecharge**](TreasuryApi.md#getAutoRecharge) | **GET** /v1/balance/auto-recharge | Get auto-recharge settings |
 | [**getAutoRechargeWithHttpInfo**](TreasuryApi.md#getAutoRechargeWithHttpInfo) | **GET** /v1/balance/auto-recharge | Get auto-recharge settings |
 | [**getBalance**](TreasuryApi.md#getBalance) | **GET** /v1/balance | Get balance |
@@ -813,7 +813,7 @@ ApiResponse<[**CreatePayeeOnboardingLink200Response**](CreatePayeeOnboardingLink
 
 Create a top-up
 
-Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business whose VAT id VIES confirms is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  The invoice also states the VAT in euros at the ECB rate of its date. Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
 
 ### Example
 
@@ -891,7 +891,7 @@ public class Example {
 
 Create a top-up
 
-Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business whose VAT id VIES confirms is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  The invoice also states the VAT in euros at the ECB rate of its date. Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
 
 ### Example
 
@@ -969,11 +969,11 @@ ApiResponse<[**CreateTopup201Response**](CreateTopup201Response.md)>
 
 ## createTransfer
 
-> TreasuryTransfer createTransfer(createTransferRequest, idempotencyKey)
+> void createTransfer(createTransferRequest, idempotencyKey)
 
-Create a transfer
+Create a transfer (removed)
 
-Moves money from your balance to a payee.  ### Fee  The payee receives the full &#x60;amountCents&#x60;. Zernio&#39;s fee (4%, 50 cent minimum) is added on top, so your balance is debited &#x60;totalCents&#x60; &#x3D; &#x60;amountCents&#x60; + &#x60;feeCents&#x60;.  ### Who can call it  Needs an owner, admin or billing admin, signed in or through a full-access key they created. A profile-scoped key answers 403.  ### Errors  - 402: the balance does not cover the amount plus the fee. - 402: the balance is negative after a dispute or refund of a card top-up (\&quot;Your balance is negative after a dispute or refund of a card top-up. Add funds to cover it before sending transfers.\&quot;). - 409: the payee has not finished onboarding, or the Idempotency-Key is still processing. - 409 &#x60;payout_funds_locked&#x60;: money from a card top-up can be transferred from 7 days after the charge. The message names the amount and the day (\&quot;$100.00 from your card top-up on Oct 29 can be paid out from Nov 5.\&quot;).  ### Retries  A same-key retry never makes the transfer twice within Stripe&#39;s 24-hour idempotency window. It answers 409 while another request is still waiting on Stripe for it.  A transfer Stripe has not confirmed after 24 hours answers 409 until the daily reconciliation marks it paid (Stripe made it) or failed (it did not). 
+Removed on 2026-11-06: the balance no longer pays creators. Every call answers 410.  Pay creators with one card payment per payout batch: &#x60;POST /v1/creator-campaigns/{campaignId}/payout-batches&#x60;. &#x60;GET /v1/transfers&#x60; still lists the transfers payout batches made. 
 
 ### Example
 
@@ -999,8 +999,7 @@ public class Example {
         CreateTransferRequest createTransferRequest = new CreateTransferRequest(); // CreateTransferRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            TreasuryTransfer result = apiInstance.createTransfer(createTransferRequest, idempotencyKey);
-            System.out.println(result);
+            apiInstance.createTransfer(createTransferRequest, idempotencyKey);
         } catch (ApiException e) {
             System.err.println("Exception when calling TreasuryApi#createTransfer");
             System.err.println("Status code: " + e.getCode());
@@ -1022,8 +1021,8 @@ public class Example {
 
 ### Return type
 
-[**TreasuryTransfer**](TreasuryTransfer.md)
 
+null (empty response body)
 
 ### Authorization
 
@@ -1037,21 +1036,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Transfer created |  -  |
-| **400** | Invalid request |  -  |
-| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
-| **403** | Refused (&#x60;insufficient_permissions&#x60;). One of:  - A restricted API key without the &#x60;money&#x60; resource group. - A profile-scoped API key. Money leaves the whole team&#39;s balance, so moving it needs a full-access key or a signed-in session (\&quot;Moving money needs a full-access key or a signed-in session.\&quot;). - A member or viewer, signed in or through a key they created. Only an owner, admin or billing admin moves money.  |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Payee has not finished payout onboarding, the Idempotency-Key is still processing, another request is waiting on Stripe for this transfer, or Stripe has not confirmed it within 24 hours |  -  |
-| **422** | Idempotency-Key reused with a different request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **410** | Transfers from the balance are no longer available (code &#x60;invalid_resource_state&#x60;). Pay creators with &#x60;POST /v1/creator-campaigns/{campaignId}/payout-batches&#x60;. |  -  |
 
 ## createTransferWithHttpInfo
 
-> ApiResponse<TreasuryTransfer> createTransfer createTransferWithHttpInfo(createTransferRequest, idempotencyKey)
+> ApiResponse<Void> createTransfer createTransferWithHttpInfo(createTransferRequest, idempotencyKey)
 
-Create a transfer
+Create a transfer (removed)
 
-Moves money from your balance to a payee.  ### Fee  The payee receives the full &#x60;amountCents&#x60;. Zernio&#39;s fee (4%, 50 cent minimum) is added on top, so your balance is debited &#x60;totalCents&#x60; &#x3D; &#x60;amountCents&#x60; + &#x60;feeCents&#x60;.  ### Who can call it  Needs an owner, admin or billing admin, signed in or through a full-access key they created. A profile-scoped key answers 403.  ### Errors  - 402: the balance does not cover the amount plus the fee. - 402: the balance is negative after a dispute or refund of a card top-up (\&quot;Your balance is negative after a dispute or refund of a card top-up. Add funds to cover it before sending transfers.\&quot;). - 409: the payee has not finished onboarding, or the Idempotency-Key is still processing. - 409 &#x60;payout_funds_locked&#x60;: money from a card top-up can be transferred from 7 days after the charge. The message names the amount and the day (\&quot;$100.00 from your card top-up on Oct 29 can be paid out from Nov 5.\&quot;).  ### Retries  A same-key retry never makes the transfer twice within Stripe&#39;s 24-hour idempotency window. It answers 409 while another request is still waiting on Stripe for it.  A transfer Stripe has not confirmed after 24 hours answers 409 until the daily reconciliation marks it paid (Stripe made it) or failed (it did not). 
+Removed on 2026-11-06: the balance no longer pays creators. Every call answers 410.  Pay creators with one card payment per payout batch: &#x60;POST /v1/creator-campaigns/{campaignId}/payout-batches&#x60;. &#x60;GET /v1/transfers&#x60; still lists the transfers payout batches made. 
 
 ### Example
 
@@ -1078,10 +1072,9 @@ public class Example {
         CreateTransferRequest createTransferRequest = new CreateTransferRequest(); // CreateTransferRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            ApiResponse<TreasuryTransfer> response = apiInstance.createTransferWithHttpInfo(createTransferRequest, idempotencyKey);
+            ApiResponse<Void> response = apiInstance.createTransferWithHttpInfo(createTransferRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling TreasuryApi#createTransfer");
             System.err.println("Status code: " + e.getCode());
@@ -1103,8 +1096,8 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**TreasuryTransfer**](TreasuryTransfer.md)>
 
+ApiResponse<Void>
 
 ### Authorization
 
@@ -1118,13 +1111,8 @@ ApiResponse<[**TreasuryTransfer**](TreasuryTransfer.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Transfer created |  -  |
-| **400** | Invalid request |  -  |
-| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
-| **403** | Refused (&#x60;insufficient_permissions&#x60;). One of:  - A restricted API key without the &#x60;money&#x60; resource group. - A profile-scoped API key. Money leaves the whole team&#39;s balance, so moving it needs a full-access key or a signed-in session (\&quot;Moving money needs a full-access key or a signed-in session.\&quot;). - A member or viewer, signed in or through a key they created. Only an owner, admin or billing admin moves money.  |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Payee has not finished payout onboarding, the Idempotency-Key is still processing, another request is waiting on Stripe for this transfer, or Stripe has not confirmed it within 24 hours |  -  |
-| **422** | Idempotency-Key reused with a different request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **410** | Transfers from the balance are no longer available (code &#x60;invalid_resource_state&#x60;). Pay creators with &#x60;POST /v1/creator-campaigns/{campaignId}/payout-batches&#x60;. |  -  |
 
 
 ## getAutoRecharge
@@ -1273,7 +1261,7 @@ ApiResponse<[**AutoRecharge**](AutoRecharge.md)>
 
 Get balance
 
-Returns your team&#39;s balance:  - the balance you can transfer - the part of it that cannot be paid out to creators yet (&#x60;payoutLockedCents&#x60;, &#x60;payoutLocks&#x60;) - top-ups still waiting for payment - your latest top-ups  A card top-up is in &#x60;availableCents&#x60; as soon as it is paid. Transfers to payees can use it from 7 days after the charge, so a stolen card cannot be turned straight into payouts.  A transfer debits its amount plus the fee added on top; the payee receives the full amount.  A card dispute or refund on a top-up is debited from the available balance and can make it negative. Transfers are refused until it is positive again.  A profile-scoped key answers 403, since the balance belongs to the whole team. 
+Returns your team&#39;s balance:  - the balance pay-per-use draws on - top-ups still waiting for payment - your latest top-ups and payout batch payments  A card top-up is in &#x60;availableCents&#x60; as soon as it is paid. The balance never pays creators: payouts are charged to your card per payout batch.  A card dispute or refund is debited from the available balance and can make it negative. New payout batches are refused until it is positive again.  A profile-scoped key answers 403, since the balance belongs to the whole team. 
 
 ### Example
 
@@ -1341,7 +1329,7 @@ This endpoint does not need any parameter.
 
 Get balance
 
-Returns your team&#39;s balance:  - the balance you can transfer - the part of it that cannot be paid out to creators yet (&#x60;payoutLockedCents&#x60;, &#x60;payoutLocks&#x60;) - top-ups still waiting for payment - your latest top-ups  A card top-up is in &#x60;availableCents&#x60; as soon as it is paid. Transfers to payees can use it from 7 days after the charge, so a stolen card cannot be turned straight into payouts.  A transfer debits its amount plus the fee added on top; the payee receives the full amount.  A card dispute or refund on a top-up is debited from the available balance and can make it negative. Transfers are refused until it is positive again.  A profile-scoped key answers 403, since the balance belongs to the whole team. 
+Returns your team&#39;s balance:  - the balance pay-per-use draws on - top-ups still waiting for payment - your latest top-ups and payout batch payments  A card top-up is in &#x60;availableCents&#x60; as soon as it is paid. The balance never pays creators: payouts are charged to your card per payout batch.  A card dispute or refund is debited from the available balance and can make it negative. New payout batches are refused until it is positive again.  A profile-scoped key answers 403, since the balance belongs to the whole team. 
 
 ### Example
 
