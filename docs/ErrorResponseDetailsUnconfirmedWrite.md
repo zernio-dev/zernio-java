@@ -2,7 +2,7 @@
 
 # ErrorResponseDetailsUnconfirmedWrite
 
-Meta ad create failures only, when Meta answered a create with a 5xx or dropped the connection and the object could not be looked up. Zernio did not retry it.
+Meta ad create failures only, when Meta answered a create with a 5xx or a non-JSON body, or dropped the connection after the request was sent, and reading the parent back by name did not settle it: several objects of the same name, a parent that could not be read, or (after a dropped connection or a non-JSON body) no such object. Zernio did not retry it.
 
 ## Properties
 
