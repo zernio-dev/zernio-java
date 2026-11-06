@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.506.0
+  version: 1.507.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -79981,20 +79981,20 @@ components:
       - submissions
     TreasuryTopup:
       example:
-        chargedCents: 2
-        feeCents: 9
+        chargedCents: 4
+        feeCents: 3
         succeededAt: 2000-01-23T04:56:07.000+00:00
         method: card
         purpose: balance
-        netCents: 7
+        netCents: 1
         hasInvoice: true
-        taxCents: 3
+        taxCents: 2
         payoutBatch:
           campaignId: campaignId
           id: id
         createdAt: 2000-01-23T04:56:07.000+00:00
-        amountCents: 7
-        stripeFeeCents: 4
+        amountCents: 9
+        stripeFeeCents: 7
         id: id
         feeCoveredByZernio: true
         status: pending
@@ -119758,7 +119758,7 @@ components:
           $ref: "#/components/schemas/listLedgerEntries_200_response_pagination"
     getBalance_200_response_payoutLocks_inner:
       example:
-        amountCents: 1
+        amountCents: 5
         chargedAt: 2000-01-23T04:56:07.000+00:00
         topupId: topupId
         unlocksAt: 2000-01-23T04:56:07.000+00:00
@@ -119781,7 +119781,7 @@ components:
       - unlocksAt
     getBalance_200_response_pendingReleases_inner:
       example:
-        amountCents: 5
+        amountCents: 2
         topupId: topupId
         availableAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -119801,66 +119801,72 @@ components:
       example:
         availableCents: 0
         pendingReleases:
-        - amountCents: 5
+        - amountCents: 2
           topupId: topupId
           availableAt: 2000-01-23T04:56:07.000+00:00
-        - amountCents: 5
+        - amountCents: 2
           topupId: topupId
           availableAt: 2000-01-23T04:56:07.000+00:00
+        promoCents: 6
         recentTopups:
-        - chargedCents: 2
-          feeCents: 9
+        - chargedCents: 4
+          feeCents: 3
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 7
+          netCents: 1
           hasInvoice: true
-          taxCents: 3
+          taxCents: 2
           payoutBatch:
             campaignId: campaignId
             id: id
           createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 7
-          stripeFeeCents: 4
+          amountCents: 9
+          stripeFeeCents: 7
           id: id
           feeCoveredByZernio: true
           status: pending
-        - chargedCents: 2
-          feeCents: 9
+        - chargedCents: 4
+          feeCents: 3
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 7
+          netCents: 1
           hasInvoice: true
-          taxCents: 3
+          taxCents: 2
           payoutBatch:
             campaignId: campaignId
             id: id
           createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 7
-          stripeFeeCents: 4
+          amountCents: 9
+          stripeFeeCents: 7
           id: id
           feeCoveredByZernio: true
           status: pending
-        payoutLockedCents: 6
+        payoutLockedCents: 1
         payoutLocks:
-        - amountCents: 1
+        - amountCents: 5
           chargedAt: 2000-01-23T04:56:07.000+00:00
           topupId: topupId
           unlocksAt: 2000-01-23T04:56:07.000+00:00
-        - amountCents: 1
+        - amountCents: 5
           chargedAt: 2000-01-23T04:56:07.000+00:00
           topupId: topupId
           unlocksAt: 2000-01-23T04:56:07.000+00:00
         currency: usd
         pendingCents: 5
-        pendingTopupCents: 2
+        pendingTopupCents: 7
       properties:
         availableCents:
           description: "Your balance, including card top-ups paid in the last 7 days\
             \ (see payoutLockedCents). It goes negative after a dispute or refund\
             \ of a spent top-up, or when pay-per-use already in flight lands past\
             \ zero. The next top-up covers it. Transfers are refused while it is negative."
+          type: integer
+        promoCents:
+          description: Balance billing only (absent otherwise). Promotional and support
+            credit Zernio added to your balance. Pay-per-use spends it before availableCents.
+            It is never paid out to payees and is not part of availableCents.
           type: integer
         payoutLockedCents:
           description: "Part of availableCents from card top-ups charged in the last\
@@ -119928,37 +119934,37 @@ components:
     listTopups_200_response:
       example:
         topups:
-        - chargedCents: 2
-          feeCents: 9
+        - chargedCents: 4
+          feeCents: 3
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 7
+          netCents: 1
           hasInvoice: true
-          taxCents: 3
+          taxCents: 2
           payoutBatch:
             campaignId: campaignId
             id: id
           createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 7
-          stripeFeeCents: 4
+          amountCents: 9
+          stripeFeeCents: 7
           id: id
           feeCoveredByZernio: true
           status: pending
-        - chargedCents: 2
-          feeCents: 9
+        - chargedCents: 4
+          feeCents: 3
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 7
+          netCents: 1
           hasInvoice: true
-          taxCents: 3
+          taxCents: 2
           payoutBatch:
             campaignId: campaignId
             id: id
           createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 7
-          stripeFeeCents: 4
+          amountCents: 9
+          stripeFeeCents: 7
           id: id
           feeCoveredByZernio: true
           status: pending
