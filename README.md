@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.516.0
+- API version: 1.517.0
 
-- Build date: 2026-11-06T16:34:26.780495551Z[Etc/UTC]
+- Build date: 2026-11-06T17:05:10.823135143Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.516.0</version>
+  <version>1.517.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.516.0"
+compile "dev.zernio:zernio-sdk:1.517.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.516.0.jar`
+- `target/zernio-sdk-1.517.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3344,6 +3344,7 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestBehaviorsInner](docs/CreateStandaloneAdRequestBehaviorsInner.md)
  - [CreateStandaloneAdRequestBrandIdentity](docs/CreateStandaloneAdRequestBrandIdentity.md)
  - [CreateStandaloneAdRequestCarouselCardsInner](docs/CreateStandaloneAdRequestCarouselCardsInner.md)
+ - [CreateStandaloneAdRequestCatalogIntroCardsInner](docs/CreateStandaloneAdRequestCatalogIntroCardsInner.md)
  - [CreateStandaloneAdRequestCitiesInner](docs/CreateStandaloneAdRequestCitiesInner.md)
  - [CreateStandaloneAdRequestCitiesInnerOneOf](docs/CreateStandaloneAdRequestCitiesInnerOneOf.md)
  - [CreateStandaloneAdRequestCreativesInner](docs/CreateStandaloneAdRequestCreativesInner.md)
