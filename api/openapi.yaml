@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.517.1
+  version: 1.517.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |

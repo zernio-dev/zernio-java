@@ -271,7 +271,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Ads initial sync completed event
 
-Fired once per ads-enabled account when the initial sync (ad-account discovery + 90-day historical ad backfill) completes. The &#x60;sync&#x60; block reports whether the backfill succeeded and how many ads were synced. 
+The initial sync, ad-account discovery plus a 90-day ad backfill, completed for an ads-enabled account.  ### When it fires  Fires once per ads-enabled account. &#x60;sync&#x60; reports whether the backfill succeeded fully or partially, and how many ads were synced versus failed.  ### Scoped connects  When scoping was applied at connect time, &#x60;account.platformAdAccountId&#x60; echoes the chosen ad account when the scope is exactly one. &#x60;account.platformAdAccountIds&#x60; lists every &#x60;act_*&#x60; synced.  ### On failure  When &#x60;sync.status&#x60; is &#x60;\&quot;failure\&quot;&#x60;, the payload adds &#x60;sync.error&#x60; (raw platform error, about 2 KB), &#x60;sync.errorCode&#x60; and &#x60;sync.errorSubcode&#x60; when parseable, and &#x60;sync.errorCategory&#x60;.  ### Error categories  &#x60;sync.errorCategory&#x60; is &#x60;token_invalid&#x60;, &#x60;permission_denied&#x60;, &#x60;no_ad_accounts&#x60;, &#x60;rate_limited&#x60;, &#x60;discovery_failed&#x60; or &#x60;unknown&#x60;. New values may be added; existing ones are stable.  ### Retrying  Reconnecting re-queues the backfill and the event fires again. It fixes &#x60;token_invalid&#x60;, &#x60;permission_denied&#x60; and &#x60;rate_limited&#x60;; &#x60;no_ad_accounts&#x60; needs an ad account on the grant first.  ### When a retry is skipped  Zernio skips the re-queue only when a backfill already completed with at least one ad, or one started less than 20 minutes ago. 
 
 ### Example
 
@@ -340,7 +340,7 @@ null (empty response body)
 
 Ads initial sync completed event
 
-Fired once per ads-enabled account when the initial sync (ad-account discovery + 90-day historical ad backfill) completes. The &#x60;sync&#x60; block reports whether the backfill succeeded and how many ads were synced. 
+The initial sync, ad-account discovery plus a 90-day ad backfill, completed for an ads-enabled account.  ### When it fires  Fires once per ads-enabled account. &#x60;sync&#x60; reports whether the backfill succeeded fully or partially, and how many ads were synced versus failed.  ### Scoped connects  When scoping was applied at connect time, &#x60;account.platformAdAccountId&#x60; echoes the chosen ad account when the scope is exactly one. &#x60;account.platformAdAccountIds&#x60; lists every &#x60;act_*&#x60; synced.  ### On failure  When &#x60;sync.status&#x60; is &#x60;\&quot;failure\&quot;&#x60;, the payload adds &#x60;sync.error&#x60; (raw platform error, about 2 KB), &#x60;sync.errorCode&#x60; and &#x60;sync.errorSubcode&#x60; when parseable, and &#x60;sync.errorCategory&#x60;.  ### Error categories  &#x60;sync.errorCategory&#x60; is &#x60;token_invalid&#x60;, &#x60;permission_denied&#x60;, &#x60;no_ad_accounts&#x60;, &#x60;rate_limited&#x60;, &#x60;discovery_failed&#x60; or &#x60;unknown&#x60;. New values may be added; existing ones are stable.  ### Retrying  Reconnecting re-queues the backfill and the event fires again. It fixes &#x60;token_invalid&#x60;, &#x60;permission_denied&#x60; and &#x60;rate_limited&#x60;; &#x60;no_ad_accounts&#x60; needs an ad account on the grant first.  ### When a retry is skipped  Zernio skips the re-queue only when a backfill already completed with at least one ad, or one started less than 20 minutes ago. 
 
 ### Example
 
@@ -413,7 +413,7 @@ ApiResponse<Void>
 
 Ads sync failed event
 
-Fired once per ad account when its ads stop syncing (no successful sync for 24 hours, or every live ad at the retry cap). Checked hourly. Metrics for the ad account are stale until &#x60;account.ads.sync_recovered&#x60; fires for it. 
+An ad account&#39;s ads stopped syncing: no success for 24 hours, or every live ad at the retry cap.  ### When it fires  An hourly check covers every ad account with live ads on a connected account, on any ads platform. Fires once per ad account until &#x60;account.ads.sync_recovered&#x60;.  ### Stale metrics  Metrics for the ad account are stale in between. Use this signal to flag the numbers in your UI rather than to poll.  ### Payload notes  &#x60;adAccount.platformAdAccountId&#x60; names the ad account (&#x60;act_*&#x60; on Meta). &#x60;account.accountId&#x60; names its connection, so one connection with several ad accounts reports each separately.  ### Sync fields  &#x60;sync.lastSuccessfulSyncAt&#x60; is the last good sync and &#x60;sync.failureCount&#x60; the consecutive failed attempts.  ### Error categories  Branch on &#x60;sync.errorCategory&#x60;: &#x60;ad_account_not_listed&#x60; (access removed or platform change; check permissions, reconnect), &#x60;sync_error&#x60; (see &#x60;sync.error&#x60;) or &#x60;stale&#x60; (no error recorded; retries usually clear it). New values may be added.  ### When it does not fire  A disconnected connection gets &#x60;account.disconnected&#x60; instead, and no recovery event follows. An ad account that never synced successfully, or whose last good sync is over 3 days old, is not announced. 
 
 ### Example
 
@@ -482,7 +482,7 @@ null (empty response body)
 
 Ads sync failed event
 
-Fired once per ad account when its ads stop syncing (no successful sync for 24 hours, or every live ad at the retry cap). Checked hourly. Metrics for the ad account are stale until &#x60;account.ads.sync_recovered&#x60; fires for it. 
+An ad account&#39;s ads stopped syncing: no success for 24 hours, or every live ad at the retry cap.  ### When it fires  An hourly check covers every ad account with live ads on a connected account, on any ads platform. Fires once per ad account until &#x60;account.ads.sync_recovered&#x60;.  ### Stale metrics  Metrics for the ad account are stale in between. Use this signal to flag the numbers in your UI rather than to poll.  ### Payload notes  &#x60;adAccount.platformAdAccountId&#x60; names the ad account (&#x60;act_*&#x60; on Meta). &#x60;account.accountId&#x60; names its connection, so one connection with several ad accounts reports each separately.  ### Sync fields  &#x60;sync.lastSuccessfulSyncAt&#x60; is the last good sync and &#x60;sync.failureCount&#x60; the consecutive failed attempts.  ### Error categories  Branch on &#x60;sync.errorCategory&#x60;: &#x60;ad_account_not_listed&#x60; (access removed or platform change; check permissions, reconnect), &#x60;sync_error&#x60; (see &#x60;sync.error&#x60;) or &#x60;stale&#x60; (no error recorded; retries usually clear it). New values may be added.  ### When it does not fire  A disconnected connection gets &#x60;account.disconnected&#x60; instead, and no recovery event follows. An ad account that never synced successfully, or whose last good sync is over 3 days old, is not announced. 
 
 ### Example
 
@@ -555,7 +555,7 @@ ApiResponse<Void>
 
 Ads sync recovered event
 
-Fired once when an ad account previously reported by &#x60;account.ads.sync_failed&#x60; syncs successfully again. Checked hourly. 
+An ad account previously reported by &#x60;account.ads.sync_failed&#x60; synced successfully again.  ### When it fires  Fires once when a sync succeeds again, found by an hourly check.  ### Payload notes  &#x60;sync.failingSince&#x60; is the last successful sync before the failure started. 
 
 ### Example
 
@@ -624,7 +624,7 @@ null (empty response body)
 
 Ads sync recovered event
 
-Fired once when an ad account previously reported by &#x60;account.ads.sync_failed&#x60; syncs successfully again. Checked hourly. 
+An ad account previously reported by &#x60;account.ads.sync_failed&#x60; synced successfully again.  ### When it fires  Fires once when a sync succeeds again, found by an hourly check.  ### Payload notes  &#x60;sync.failingSince&#x60; is the last successful sync before the failure started. 
 
 ### Example
 
@@ -697,7 +697,7 @@ ApiResponse<Void>
 
 Account connected event
 
-Fired when a account is successfully connected.
+An account was connected to a profile, through OAuth or credentials.  ### Repeat events  Reconnecting an account you already hold fires it again with the same &#x60;accountId&#x60;, since the connect flow upserts per profile and platform. Key your upsert on &#x60;accountId&#x60;. 
 
 ### Example
 
@@ -766,7 +766,7 @@ null (empty response body)
 
 Account connected event
 
-Fired when a account is successfully connected.
+An account was connected to a profile, through OAuth or credentials.  ### Repeat events  Reconnecting an account you already hold fires it again with the same &#x60;accountId&#x60;, since the connect flow upserts per profile and platform. Key your upsert on &#x60;accountId&#x60;. 
 
 ### Example
 
@@ -839,7 +839,7 @@ ApiResponse<Void>
 
 Account disconnected event
 
-Fired when a connected account becomes disconnected: deactivated after an auth error, or flagged as needing reconnection (&#x60;needsReconnection: true&#x60; on GET /v1/accounts).  A flagged account that is later deactivated sends it again with the new reason. A deactivated account does not send it again until it is reconnected.  Requests that need the account answer 409 &#x60;account_disconnected&#x60; until then. A webhook only receives the events it lists, so subscribe to this one explicitly.
+A connected account stopped working or was removed.  ### Intentional  Removed on purpose, such as &#x60;DELETE /v1/accounts/{id}&#x60; or a switch to the Free plan. Kept 1 hour (&#x60;gracePeriodEndsAt&#x60;), then deleted with no further event. Reconnecting within the hour restores the same &#x60;accountId&#x60;.  ### Unintentional  The connection broke (token expired or revoked, access lost). The account stays inactive until reconnected, keeping its &#x60;accountId&#x60;. Removing it instead sends a second event with &#x60;intentional&#x60;.  ### Immediate paths  An API removal emits at once with &#x60;disconnectionType: \&quot;intentional\&quot;&#x60;. A phone-side WhatsApp disconnect emits within seconds of Meta&#39;s notification, with &#x60;unintentional&#x60;.  ### WhatsApp reason  &#x60;reason&#x60; carries Meta&#39;s explanation. Deliberate: &#x60;BUSINESS_DOWNGRADE&#x60;, &#x60;CHANGE_NUMBER&#x60;, &#x60;USER_RE_REGISTERED&#x60;. Idle number dropped by Meta: &#x60;PRIMARY_INACTIVITY&#x60; after about 14 days, &#x60;COMPANION_INACTIVITY&#x60; after about 30.  ### Expired or revoked grants  A publish or analytics sync getting a definitive auth error deactivates the account. Publish tries a token refresh first, so the event means the refresh failed too. &#x60;reason&#x60; carries the platform&#39;s message.  ### Reconnection flags  A dead token on an ads or blog call flags the account, and the posting account sharing its token (&#x60;needsReconnection: true&#x60;). Each flagged account emits once; a later deactivation emits again, then not until reconnected.  ### Lead forms while disconnected  While a Facebook Page is flagged or deactivated, &#x60;GET /v1/ads/lead-forms/{formId}/leads&#x60; answers &#x60;409&#x60; with &#x60;code: \&quot;account_disconnected\&quot;&#x60;.  ### Reconciliation  Anything else (a number deleted in WhatsApp Manager, a channel Meta silently stops serving) is caught by periodic reconciliation, not a notification. It lags minutes to about a day.  ### Do not rely on its absence  Meta&#39;s notifications are best-effort. For WhatsApp, poll &#x60;GET /v1/whatsapp/number-info&#x60; or account health, which runs a live Meta link probe.  ### Subscribing  A webhook only receives the events it lists, so add &#x60;account.disconnected&#x60; explicitly. 
 
 ### Example
 
@@ -908,7 +908,7 @@ null (empty response body)
 
 Account disconnected event
 
-Fired when a connected account becomes disconnected: deactivated after an auth error, or flagged as needing reconnection (&#x60;needsReconnection: true&#x60; on GET /v1/accounts).  A flagged account that is later deactivated sends it again with the new reason. A deactivated account does not send it again until it is reconnected.  Requests that need the account answer 409 &#x60;account_disconnected&#x60; until then. A webhook only receives the events it lists, so subscribe to this one explicitly.
+A connected account stopped working or was removed.  ### Intentional  Removed on purpose, such as &#x60;DELETE /v1/accounts/{id}&#x60; or a switch to the Free plan. Kept 1 hour (&#x60;gracePeriodEndsAt&#x60;), then deleted with no further event. Reconnecting within the hour restores the same &#x60;accountId&#x60;.  ### Unintentional  The connection broke (token expired or revoked, access lost). The account stays inactive until reconnected, keeping its &#x60;accountId&#x60;. Removing it instead sends a second event with &#x60;intentional&#x60;.  ### Immediate paths  An API removal emits at once with &#x60;disconnectionType: \&quot;intentional\&quot;&#x60;. A phone-side WhatsApp disconnect emits within seconds of Meta&#39;s notification, with &#x60;unintentional&#x60;.  ### WhatsApp reason  &#x60;reason&#x60; carries Meta&#39;s explanation. Deliberate: &#x60;BUSINESS_DOWNGRADE&#x60;, &#x60;CHANGE_NUMBER&#x60;, &#x60;USER_RE_REGISTERED&#x60;. Idle number dropped by Meta: &#x60;PRIMARY_INACTIVITY&#x60; after about 14 days, &#x60;COMPANION_INACTIVITY&#x60; after about 30.  ### Expired or revoked grants  A publish or analytics sync getting a definitive auth error deactivates the account. Publish tries a token refresh first, so the event means the refresh failed too. &#x60;reason&#x60; carries the platform&#39;s message.  ### Reconnection flags  A dead token on an ads or blog call flags the account, and the posting account sharing its token (&#x60;needsReconnection: true&#x60;). Each flagged account emits once; a later deactivation emits again, then not until reconnected.  ### Lead forms while disconnected  While a Facebook Page is flagged or deactivated, &#x60;GET /v1/ads/lead-forms/{formId}/leads&#x60; answers &#x60;409&#x60; with &#x60;code: \&quot;account_disconnected\&quot;&#x60;.  ### Reconciliation  Anything else (a number deleted in WhatsApp Manager, a channel Meta silently stops serving) is caught by periodic reconciliation, not a notification. It lags minutes to about a day.  ### Do not rely on its absence  Meta&#39;s notifications are best-effort. For WhatsApp, poll &#x60;GET /v1/whatsapp/number-info&#x60; or account health, which runs a live Meta link probe.  ### Subscribing  A webhook only receives the events it lists, so add &#x60;account.disconnected&#x60; explicitly. 
 
 ### Example
 
@@ -981,7 +981,7 @@ ApiResponse<Void>
 
 Account permissions changed event
 
-Fired when a publish on an account connected through your own OAuth app fails for a missing permission. The account stays connected; only the missing area stops working until the permission is granted and the account reconnected.
+A publish on an account connected through your own OAuth app failed for a missing permission.  ### Behaviour  The account stays connected and its token still works. &#x60;account.missingScopeAreas&#x60; accumulates the affected areas, today &#x60;posting&#x60;. Each area sends one event, however many posts fail afterwards.  ### When it does not fire  Accounts not connected through your own OAuth app. 
 
 ### Example
 
@@ -1050,7 +1050,7 @@ null (empty response body)
 
 Account permissions changed event
 
-Fired when a publish on an account connected through your own OAuth app fails for a missing permission. The account stays connected; only the missing area stops working until the permission is granted and the account reconnected.
+A publish on an account connected through your own OAuth app failed for a missing permission.  ### Behaviour  The account stays connected and its token still works. &#x60;account.missingScopeAreas&#x60; accumulates the affected areas, today &#x60;posting&#x60;. Each area sends one event, however many posts fail afterwards.  ### When it does not fire  Accounts not connected through your own OAuth app. 
 
 ### Example
 
@@ -1123,7 +1123,7 @@ ApiResponse<Void>
 
 Mailbox sending cooldown started
 
-Fired when a Google or Microsoft mailbox enters a sending cooldown (same body to more than 50 recipients in an hour, or a later trigger). Sends answer 429 until &#x60;account.resetsAt&#x60;.
+A Google or Microsoft mailbox was paused after sending one body to over 50 recipients in an hour.  ### Payload notes  &#x60;account.reason&#x60; says why and &#x60;account.resetsAt&#x60; says when sending resumes. Sends answer 429 until then. A later trigger can also start a cooldown. 
 
 ### Example
 
@@ -1192,7 +1192,7 @@ null (empty response body)
 
 Mailbox sending cooldown started
 
-Fired when a Google or Microsoft mailbox enters a sending cooldown (same body to more than 50 recipients in an hour, or a later trigger). Sends answer 429 until &#x60;account.resetsAt&#x60;.
+A Google or Microsoft mailbox was paused after sending one body to over 50 recipients in an hour.  ### Payload notes  &#x60;account.reason&#x60; says why and &#x60;account.resetsAt&#x60; says when sending resumes. Sends answer 429 until then. A later trigger can also start a cooldown. 
 
 ### Example
 
@@ -1265,7 +1265,7 @@ ApiResponse<Void>
 
 Ad account status changed event
 
-Fired when an ad account Zernio already tracked changes status (Meta, Google, TikTok, X). See &#x60;WebhookPayloadAdAccountStatusChanged&#x60; for when it fires and when it does not. 
+An ad account Zernio already tracked became &#x60;active&#x60;, &#x60;restricted&#x60;, &#x60;disabled&#x60; or &#x60;closed&#x60;.  ### When it fires  Fires when ad account discovery sees a tracked ad account change status, at most once per account per 24 hours. Covers Meta, Google, TikTok and X.  ### Status values  &#x60;restricted&#x60; needs something settled first (unpaid Meta balance, risk review, TikTok limit or pending verification, X review). &#x60;disabled&#x60; means the platform disabled or rejected it; &#x60;closed&#x60; means closed or pending closure.  ### Payload notes  &#x60;status.current&#x60; and &#x60;status.previous&#x60; use one vocabulary on every network. &#x60;status.raw&#x60; is the platform&#39;s own value, for example Meta&#39;s &#x60;account_status&#x60; code &#x60;2&#x60;.  ### When it does not fire  An account seen for the first time, an account Zernio has not seen in the last 48 hours, or a platform status Zernio does not recognize. 
 
 ### Example
 
@@ -1334,7 +1334,7 @@ null (empty response body)
 
 Ad account status changed event
 
-Fired when an ad account Zernio already tracked changes status (Meta, Google, TikTok, X). See &#x60;WebhookPayloadAdAccountStatusChanged&#x60; for when it fires and when it does not. 
+An ad account Zernio already tracked became &#x60;active&#x60;, &#x60;restricted&#x60;, &#x60;disabled&#x60; or &#x60;closed&#x60;.  ### When it fires  Fires when ad account discovery sees a tracked ad account change status, at most once per account per 24 hours. Covers Meta, Google, TikTok and X.  ### Status values  &#x60;restricted&#x60; needs something settled first (unpaid Meta balance, risk review, TikTok limit or pending verification, X review). &#x60;disabled&#x60; means the platform disabled or rejected it; &#x60;closed&#x60; means closed or pending closure.  ### Payload notes  &#x60;status.current&#x60; and &#x60;status.previous&#x60; use one vocabulary on every network. &#x60;status.raw&#x60; is the platform&#39;s own value, for example Meta&#39;s &#x60;account_status&#x60; code &#x60;2&#x60;.  ### When it does not fire  An account seen for the first time, an account Zernio has not seen in the last 48 hours, or a platform status Zernio does not recognize. 
 
 ### Example
 
@@ -1407,7 +1407,7 @@ ApiResponse<Void>
 
 Ad created event
 
-Fired when an ad is created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;). Never for history loaded when an account connects, nor for ads older than 7 days. See &#x60;WebhookPayloadAdCreated&#x60;. 
+An ad was created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;).  ### When it fires  Fires once the ad&#39;s campaign and ad set are recorded. A detected ad arrives up to one sync interval late; Meta ads entering review usually arrive within minutes.  ### When it does not fire  History loaded when an account connects, and ads created more than 7 days ago, are never announced. 
 
 ### Example
 
@@ -1476,7 +1476,7 @@ null (empty response body)
 
 Ad created event
 
-Fired when an ad is created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;). Never for history loaded when an account connects, nor for ads older than 7 days. See &#x60;WebhookPayloadAdCreated&#x60;. 
+An ad was created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;).  ### When it fires  Fires once the ad&#39;s campaign and ad set are recorded. A detected ad arrives up to one sync interval late; Meta ads entering review usually arrive within minutes.  ### When it does not fire  History loaded when an account connects, and ads created more than 7 days ago, are never announced. 
 
 ### Example
 
@@ -1549,7 +1549,7 @@ ApiResponse<Void>
 
 Ad delivery issue event
 
-Fired when an ad Zernio already tracked stops delivering for a platform reason (Meta, TikTok, LinkedIn). See &#x60;WebhookPayloadAdDeliveryIssue&#x60; for when it fires and when it does not. 
+An ad Zernio already tracked moved into the platform&#39;s error state and stopped delivering.  ### What triggers it  Meta &#x60;WITH_ISSUES&#x60; (payment, policy or account problems), TikTok account punishment or missing balance, or any platform status Zernio does not recognize yet (check &#x60;issue.raw&#x60;).  ### When it fires  Fires at most once per ad per 24 hours. Ads seen for the first time by a sync never fire it.  ### Payload notes  &#x60;issue.raw&#x60; is the platform&#39;s status string. On Meta, &#x60;issue.reasons&#x60; carries Meta&#39;s messages for the campaign; other networks send none, so it is empty.  ### Platform notes  On Meta the same problem can also arrive as &#x60;ad.status_changed&#x60; with &#x60;WITH_ISSUES&#x60;, straight from Meta&#39;s webhook and usually sooner. Pick one of the two to act on. 
 
 ### Example
 
@@ -1618,7 +1618,7 @@ null (empty response body)
 
 Ad delivery issue event
 
-Fired when an ad Zernio already tracked stops delivering for a platform reason (Meta, TikTok, LinkedIn). See &#x60;WebhookPayloadAdDeliveryIssue&#x60; for when it fires and when it does not. 
+An ad Zernio already tracked moved into the platform&#39;s error state and stopped delivering.  ### What triggers it  Meta &#x60;WITH_ISSUES&#x60; (payment, policy or account problems), TikTok account punishment or missing balance, or any platform status Zernio does not recognize yet (check &#x60;issue.raw&#x60;).  ### When it fires  Fires at most once per ad per 24 hours. Ads seen for the first time by a sync never fire it.  ### Payload notes  &#x60;issue.raw&#x60; is the platform&#39;s status string. On Meta, &#x60;issue.reasons&#x60; carries Meta&#39;s messages for the campaign; other networks send none, so it is empty.  ### Platform notes  On Meta the same problem can also arrive as &#x60;ad.status_changed&#x60; with &#x60;WITH_ISSUES&#x60;, straight from Meta&#39;s webhook and usually sooner. Pick one of the two to act on. 
 
 ### Example
 
@@ -1691,7 +1691,7 @@ ApiResponse<Void>
 
 Ad review approved event
 
-Fired when an ad Zernio already tracked passes platform review, or a rejection is overturned on appeal. Every ad network. See &#x60;WebhookPayloadAdReview&#x60; for when it fires and when it does not. 
+An ad Zernio already tracked passed platform review, or a rejected ad was approved on appeal.  ### When it fires  Fires within one sync cycle of the platform&#39;s decision, not instantly; on Meta the review poll usually reports sooner. Each outcome is delivered at most once per ad per 24 hours.  ### When it does not fire  Ads seen for the first time by a sync never fire it, including history loaded at connect. On Meta, Google, TikTok and Reddit an ad that leaves review while paused sends no &#x60;approved&#x60;.  ### Platform notes  Covers every ad network Zernio syncs, with one payload shape. On X, Pinterest and LinkedIn the review is read apart from delivery status, so an ad leaving review while paused still sends &#x60;approved&#x60;.  ### Payload notes  &#x60;review.raw&#x60; is the platform&#39;s own status string. &#x60;adObject.adId&#x60; is the Zernio ad id, ready for &#x60;GET /v1/ads/{adId}&#x60;. Deduplicate on the event &#x60;id&#x60;. 
 
 ### Example
 
@@ -1760,7 +1760,7 @@ null (empty response body)
 
 Ad review approved event
 
-Fired when an ad Zernio already tracked passes platform review, or a rejection is overturned on appeal. Every ad network. See &#x60;WebhookPayloadAdReview&#x60; for when it fires and when it does not. 
+An ad Zernio already tracked passed platform review, or a rejected ad was approved on appeal.  ### When it fires  Fires within one sync cycle of the platform&#39;s decision, not instantly; on Meta the review poll usually reports sooner. Each outcome is delivered at most once per ad per 24 hours.  ### When it does not fire  Ads seen for the first time by a sync never fire it, including history loaded at connect. On Meta, Google, TikTok and Reddit an ad that leaves review while paused sends no &#x60;approved&#x60;.  ### Platform notes  Covers every ad network Zernio syncs, with one payload shape. On X, Pinterest and LinkedIn the review is read apart from delivery status, so an ad leaving review while paused still sends &#x60;approved&#x60;.  ### Payload notes  &#x60;review.raw&#x60; is the platform&#39;s own status string. &#x60;adObject.adId&#x60; is the Zernio ad id, ready for &#x60;GET /v1/ads/{adId}&#x60;. Deduplicate on the event &#x60;id&#x60;. 
 
 ### Example
 
@@ -1833,7 +1833,7 @@ ApiResponse<Void>
 
 Ad review rejected event
 
-Fired when the platform rejects an ad Zernio already tracked. Every ad network. See &#x60;WebhookPayloadAdReview&#x60; for when it fires and when it does not. 
+The platform rejected an ad Zernio already tracked; &#x60;review.reasons&#x60; carries its reason when it gives one.  ### When it fires  Fires within one sync cycle of the platform&#39;s decision, not instantly; on Meta the review poll usually reports sooner. Each outcome is delivered at most once per ad per 24 hours.  ### When it does not fire  Ads seen for the first time by a sync never fire it, including history loaded at connect.  ### Platform notes  Covers every ad network Zernio syncs. Pinterest, LinkedIn and Reddit send their own reasons, X sends none, and most other networks return a generic message.  ### Payload notes  &#x60;review.raw&#x60; is the platform&#39;s own status string. Show &#x60;review.reasons&#x60; rather than branching on it. &#x60;adObject.adId&#x60; is the Zernio ad id. Deduplicate on the event &#x60;id&#x60;. 
 
 ### Example
 
@@ -1902,7 +1902,7 @@ null (empty response body)
 
 Ad review rejected event
 
-Fired when the platform rejects an ad Zernio already tracked. Every ad network. See &#x60;WebhookPayloadAdReview&#x60; for when it fires and when it does not. 
+The platform rejected an ad Zernio already tracked; &#x60;review.reasons&#x60; carries its reason when it gives one.  ### When it fires  Fires within one sync cycle of the platform&#39;s decision, not instantly; on Meta the review poll usually reports sooner. Each outcome is delivered at most once per ad per 24 hours.  ### When it does not fire  Ads seen for the first time by a sync never fire it, including history loaded at connect.  ### Platform notes  Covers every ad network Zernio syncs. Pinterest, LinkedIn and Reddit send their own reasons, X sends none, and most other networks return a generic message.  ### Payload notes  &#x60;review.raw&#x60; is the platform&#39;s own status string. Show &#x60;review.reasons&#x60; rather than branching on it. &#x60;adObject.adId&#x60; is the Zernio ad id. Deduplicate on the event &#x60;id&#x60;. 
 
 ### Example
 
@@ -1975,7 +1975,7 @@ ApiResponse<Void>
 
 Ad rule triggered event
 
-Fired when a scheduled ad rule run finds campaigns or ad sets meeting every condition, once per object per cooldown. See &#x60;WebhookPayloadAdRuleTriggered&#x60; for when it fires and when it does not. 
+A scheduled run of an ad rule with a &#x60;notify&#x60; action found campaigns or ad sets meeting every condition.  ### When it fires  Each object is announced at most once per rule cooldown. A run where every object is still in cooldown sends nothing.  ### Failed actions  An object whose action &#x60;failed&#x60; gets no cooldown, so the next run retries it and reports it again.  ### Payload notes  &#x60;objects&#x60; lists only the objects the run acted on. &#x60;objects[].conditions&#x60; repeats every condition of the rule with &#x60;actual&#x60;, the value the object reached.  ### Actions  &#x60;objects[].actions&#x60; says what the rule did: &#x60;done&#x60;, &#x60;skipped&#x60; (with a &#x60;reason&#x60; such as &#x60;already_paused&#x60; or &#x60;at_limit&#x60;) or &#x60;failed&#x60;. On &#x60;adjust_budget&#x60; it carries &#x60;previousDailyBudget&#x60; and &#x60;newDailyBudget&#x60;; empty on a notify-only rule.  ### Run context  &#x60;run.today&#x60; and &#x60;run.timezone&#x60; give the ad account&#39;s calendar date the windows used. &#x60;run.timezoneAssumed&#x60; is &#x60;true&#x60; when UTC was assumed. &#x60;run.currency&#x60; is the currency of money metrics, or &#x60;null&#x60; when unknown. 
 
 ### Example
 
@@ -2044,7 +2044,7 @@ null (empty response body)
 
 Ad rule triggered event
 
-Fired when a scheduled ad rule run finds campaigns or ad sets meeting every condition, once per object per cooldown. See &#x60;WebhookPayloadAdRuleTriggered&#x60; for when it fires and when it does not. 
+A scheduled run of an ad rule with a &#x60;notify&#x60; action found campaigns or ad sets meeting every condition.  ### When it fires  Each object is announced at most once per rule cooldown. A run where every object is still in cooldown sends nothing.  ### Failed actions  An object whose action &#x60;failed&#x60; gets no cooldown, so the next run retries it and reports it again.  ### Payload notes  &#x60;objects&#x60; lists only the objects the run acted on. &#x60;objects[].conditions&#x60; repeats every condition of the rule with &#x60;actual&#x60;, the value the object reached.  ### Actions  &#x60;objects[].actions&#x60; says what the rule did: &#x60;done&#x60;, &#x60;skipped&#x60; (with a &#x60;reason&#x60; such as &#x60;already_paused&#x60; or &#x60;at_limit&#x60;) or &#x60;failed&#x60;. On &#x60;adjust_budget&#x60; it carries &#x60;previousDailyBudget&#x60; and &#x60;newDailyBudget&#x60;; empty on a notify-only rule.  ### Run context  &#x60;run.today&#x60; and &#x60;run.timezone&#x60; give the ad account&#39;s calendar date the windows used. &#x60;run.timezoneAssumed&#x60; is &#x60;true&#x60; when UTC was assumed. &#x60;run.currency&#x60; is the currency of money metrics, or &#x60;null&#x60; when unknown. 
 
 ### Example
 
@@ -2117,7 +2117,7 @@ ApiResponse<Void>
 
 Ad status changed event
 
-Fired when a campaign, ad set, or ad on a connected ad platform changes status. Currently emitted only for Meta (&#x60;metaads&#x60;).  It subscribes to two Meta &#x60;ad_account&#x60; webhook fields:  - &#x60;in_process_ad_objects&#x60;: the ad object finished processing and exited the &#x60;IN_PROCESS&#x60; state. &#x60;status.raw&#x60; carries Meta&#39;s &#x60;status_name&#x60; (e.g. &#x60;ACTIVE&#x60;, &#x60;PAUSED&#x60;, &#x60;ARCHIVED&#x60;, &#x60;DELETED&#x60;). - &#x60;with_issues_ad_objects&#x60;: the ad object entered the &#x60;WITH_ISSUES&#x60; state. &#x60;status.raw&#x60; is &#x60;WITH_ISSUES&#x60; and the &#x60;error&#x60; block is populated from Meta&#39;s &#x60;error_code&#x60; / &#x60;error_summary&#x60; / &#x60;error_message&#x60;.  &#x60;adObject.level&#x60; mirrors Meta&#39;s &#x60;level&#x60; and is one of &#x60;CAMPAIGN&#x60;, &#x60;AD_SET&#x60;, or &#x60;AD&#x60;. Creative-level events are not forwarded.  Branch on &#x60;status.raw&#x60; to handle each transition. Use &#x60;error.code&#x60; (when present) as the stable discriminator, since &#x60;error.summary&#x60; and &#x60;error.message&#x60; are localized to the ad-account owner&#39;s Meta locale.  The &#x60;error&#x60; block is optional:  - It is present on most &#x60;WITH_ISSUES&#x60; events but can be absent (Meta does not always include diagnostics). - It is never present on any other status. - Always null-check &#x60;error&#x60; before reading &#x60;error.code&#x60;.  **Fan-out:** matching is keyed on &#x60;adObject.platformAdAccountId&#x60;. When multiple connected Zernio &#x60;metaads&#x60; accounts are linked to the same Meta ad account, each receives its own delivery. 
+A campaign, ad set or ad on a connected Meta ad account (&#x60;metaads&#x60;) changed status.  ### Sources  Two Meta &#x60;ad_account&#x60; fields feed it: &#x60;in_process_ad_objects&#x60; (finished processing, &#x60;status.raw&#x60; is Meta&#39;s &#x60;status_name&#x60;) and &#x60;with_issues_ad_objects&#x60; (&#x60;status.raw&#x60; is &#x60;WITH_ISSUES&#x60;, &#x60;error&#x60; filled from Meta).  ### Payload notes  &#x60;adObject.level&#x60; is &#x60;CAMPAIGN&#x60;, &#x60;AD_SET&#x60; or &#x60;AD&#x60;; creative-level events are not forwarded. Branch on &#x60;status.raw&#x60;. Use &#x60;error.code&#x60; as the stable discriminator, since &#x60;error.summary&#x60; and &#x60;error.message&#x60; are localized to the owner&#39;s Meta locale.  ### The error block  &#x60;error&#x60; is present on most &#x60;WITH_ISSUES&#x60; events but can be absent, and never appears on any other status. Null-check it before reading &#x60;error.code&#x60;.  ### Fan-out  Matching is keyed on &#x60;adObject.platformAdAccountId&#x60;. When several connected &#x60;metaads&#x60; accounts point at the same Meta ad account, each receives its own delivery. 
 
 ### Example
 
@@ -2186,7 +2186,7 @@ null (empty response body)
 
 Ad status changed event
 
-Fired when a campaign, ad set, or ad on a connected ad platform changes status. Currently emitted only for Meta (&#x60;metaads&#x60;).  It subscribes to two Meta &#x60;ad_account&#x60; webhook fields:  - &#x60;in_process_ad_objects&#x60;: the ad object finished processing and exited the &#x60;IN_PROCESS&#x60; state. &#x60;status.raw&#x60; carries Meta&#39;s &#x60;status_name&#x60; (e.g. &#x60;ACTIVE&#x60;, &#x60;PAUSED&#x60;, &#x60;ARCHIVED&#x60;, &#x60;DELETED&#x60;). - &#x60;with_issues_ad_objects&#x60;: the ad object entered the &#x60;WITH_ISSUES&#x60; state. &#x60;status.raw&#x60; is &#x60;WITH_ISSUES&#x60; and the &#x60;error&#x60; block is populated from Meta&#39;s &#x60;error_code&#x60; / &#x60;error_summary&#x60; / &#x60;error_message&#x60;.  &#x60;adObject.level&#x60; mirrors Meta&#39;s &#x60;level&#x60; and is one of &#x60;CAMPAIGN&#x60;, &#x60;AD_SET&#x60;, or &#x60;AD&#x60;. Creative-level events are not forwarded.  Branch on &#x60;status.raw&#x60; to handle each transition. Use &#x60;error.code&#x60; (when present) as the stable discriminator, since &#x60;error.summary&#x60; and &#x60;error.message&#x60; are localized to the ad-account owner&#39;s Meta locale.  The &#x60;error&#x60; block is optional:  - It is present on most &#x60;WITH_ISSUES&#x60; events but can be absent (Meta does not always include diagnostics). - It is never present on any other status. - Always null-check &#x60;error&#x60; before reading &#x60;error.code&#x60;.  **Fan-out:** matching is keyed on &#x60;adObject.platformAdAccountId&#x60;. When multiple connected Zernio &#x60;metaads&#x60; accounts are linked to the same Meta ad account, each receives its own delivery. 
+A campaign, ad set or ad on a connected Meta ad account (&#x60;metaads&#x60;) changed status.  ### Sources  Two Meta &#x60;ad_account&#x60; fields feed it: &#x60;in_process_ad_objects&#x60; (finished processing, &#x60;status.raw&#x60; is Meta&#39;s &#x60;status_name&#x60;) and &#x60;with_issues_ad_objects&#x60; (&#x60;status.raw&#x60; is &#x60;WITH_ISSUES&#x60;, &#x60;error&#x60; filled from Meta).  ### Payload notes  &#x60;adObject.level&#x60; is &#x60;CAMPAIGN&#x60;, &#x60;AD_SET&#x60; or &#x60;AD&#x60;; creative-level events are not forwarded. Branch on &#x60;status.raw&#x60;. Use &#x60;error.code&#x60; as the stable discriminator, since &#x60;error.summary&#x60; and &#x60;error.message&#x60; are localized to the owner&#39;s Meta locale.  ### The error block  &#x60;error&#x60; is present on most &#x60;WITH_ISSUES&#x60; events but can be absent, and never appears on any other status. Null-check it before reading &#x60;error.code&#x60;.  ### Fan-out  Matching is keyed on &#x60;adObject.platformAdAccountId&#x60;. When several connected &#x60;metaads&#x60; accounts point at the same Meta ad account, each receives its own delivery. 
 
 ### Example
 
@@ -2259,7 +2259,7 @@ ApiResponse<Void>
 
 Ad updated event
 
-Fired when an ad is edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or when the sync detects an edit made outside Zernio (&#x60;source: \&quot;platform\&quot;&#x60;). &#x60;changes&#x60; lists the edited fields. See &#x60;WebhookPayloadAdUpdated&#x60;. 
+An ad was edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;), or outside Zernio and detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;).  ### When it fires  Fires once, to the owner of the edited ad. Outside edits arrive up to one sync interval late. Every edit is announced, so use the event &#x60;id&#x60; to drop repeats.  ### Payload notes  &#x60;changes&#x60; lists the edited fields: &#x60;name&#x60;, &#x60;status&#x60; (the ad&#39;s own on/off switch), &#x60;budget&#x60;, &#x60;targeting&#x60; or &#x60;creative&#x60;. Ignore unknown values; new ones can be added.  ### Reading the change  The event never carries old or new values, so read the ad. &#x60;platformId&#x60; can change when a LinkedIn creative is replaced, while &#x60;adId&#x60; stays stable.  ### When it does not fire  From the sync, &#x60;changes&#x60; covers only &#x60;name&#x60; and &#x60;status&#x60;. Budget, bid, schedule and targeting edits made outside Zernio, tracking tag edits and history loaded at connect are not announced. Ad rule changes arrive as &#x60;ad_rule.triggered&#x60;. 
 
 ### Example
 
@@ -2328,7 +2328,7 @@ null (empty response body)
 
 Ad updated event
 
-Fired when an ad is edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or when the sync detects an edit made outside Zernio (&#x60;source: \&quot;platform\&quot;&#x60;). &#x60;changes&#x60; lists the edited fields. See &#x60;WebhookPayloadAdUpdated&#x60;. 
+An ad was edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;), or outside Zernio and detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;).  ### When it fires  Fires once, to the owner of the edited ad. Outside edits arrive up to one sync interval late. Every edit is announced, so use the event &#x60;id&#x60; to drop repeats.  ### Payload notes  &#x60;changes&#x60; lists the edited fields: &#x60;name&#x60;, &#x60;status&#x60; (the ad&#39;s own on/off switch), &#x60;budget&#x60;, &#x60;targeting&#x60; or &#x60;creative&#x60;. Ignore unknown values; new ones can be added.  ### Reading the change  The event never carries old or new values, so read the ad. &#x60;platformId&#x60; can change when a LinkedIn creative is replaced, while &#x60;adId&#x60; stays stable.  ### When it does not fire  From the sync, &#x60;changes&#x60; covers only &#x60;name&#x60; and &#x60;status&#x60;. Budget, bid, schedule and targeting edits made outside Zernio, tracking tag edits and history loaded at connect are not announced. Ad rule changes arrive as &#x60;ad_rule.triggered&#x60;. 
 
 ### Example
 
@@ -2401,7 +2401,7 @@ ApiResponse<Void>
 
 Ad video processed event
 
-Fired once per &#x60;POST /v1/ads/videos&#x60; call made with &#x60;async: true&#x60;, when Meta finishes processing the uploaded video. &#x60;video.status&#x60; is &#x60;ready&#x60; (reference it as &#x60;video.id&#x60; on the create endpoints) or &#x60;error&#x60; (Meta could not process it; &#x60;video.error&#x60; carries the reason).  Zernio watches the video for up to about 13 minutes after the upload request. A video still processing after that sends no event, so keep &#x60;GET /v1/ads/videos/{videoId}&#x60; as the source of truth for long videos. 
+Meta finished processing a video uploaded with &#x60;async: true&#x60; on &#x60;POST /v1/ads/videos&#x60;.  ### Payload notes  &#x60;video.status&#x60; is &#x60;ready&#x60; (reference it as &#x60;video.id&#x60; on the create endpoints) or &#x60;error&#x60;, with &#x60;video.error&#x60; carrying the reason.  ### When it fires  Fires once per upload, when the video leaves &#x60;processing&#x60;. Zernio polls every 10 seconds for about 13 minutes; after that no event is sent, so read &#x60;GET /v1/ads/videos/{videoId}&#x60; for long videos. 
 
 ### Example
 
@@ -2470,7 +2470,7 @@ null (empty response body)
 
 Ad video processed event
 
-Fired once per &#x60;POST /v1/ads/videos&#x60; call made with &#x60;async: true&#x60;, when Meta finishes processing the uploaded video. &#x60;video.status&#x60; is &#x60;ready&#x60; (reference it as &#x60;video.id&#x60; on the create endpoints) or &#x60;error&#x60; (Meta could not process it; &#x60;video.error&#x60; carries the reason).  Zernio watches the video for up to about 13 minutes after the upload request. A video still processing after that sends no event, so keep &#x60;GET /v1/ads/videos/{videoId}&#x60; as the source of truth for long videos. 
+Meta finished processing a video uploaded with &#x60;async: true&#x60; on &#x60;POST /v1/ads/videos&#x60;.  ### Payload notes  &#x60;video.status&#x60; is &#x60;ready&#x60; (reference it as &#x60;video.id&#x60; on the create endpoints) or &#x60;error&#x60;, with &#x60;video.error&#x60; carrying the reason.  ### When it fires  Fires once per upload, when the video leaves &#x60;processing&#x60;. Zernio polls every 10 seconds for about 13 minutes; after that no event is sent, so read &#x60;GET /v1/ads/videos/{videoId}&#x60; for long videos. 
 
 ### Example
 
@@ -2543,7 +2543,7 @@ ApiResponse<Void>
 
 Analytics synced event
 
-Fired once per connected account each time its analytics sync cycle completes successfully. Poll-driven (roughly hourly per account), not real-time, and never fired for a skipped or failed cycle.  A trigger, not a transport: the payload carries no metrics and no cursor. On receipt, call &#x60;GET /v1/analytics/delta&#x60; with your own last &#x60;nextCursor&#x60; to read every post whose analytics changed, across every account, in one paginated stream instead of polling analytics once per account.  The feed holds back its most recent few seconds of writes, so a read issued the instant this event lands often returns an empty page for that account. Poll again with the same cursor rather than reading an empty page as \&quot;nothing changed\&quot;.  High volume (roughly one delivery per connected account per hour). Subscribe to it on a dedicated webhook endpoint: a subscription&#39;s consecutive-failure count is shared across all of its events, so an outage while this event is flowing can suppress the low-volume publishing events on the same subscription. 
+One connected account&#39;s analytics sync cycle completed successfully.  ### Payload notes  It is a trigger: no metrics and no cursor. On receipt, call &#x60;GET /v1/analytics/delta&#x60; with your own last &#x60;nextCursor&#x60; to read what changed across every account.  ### When it fires  Per account, per successful sync cycle, roughly hourly. It does not fire for a failed or skipped cycle, an inactive or disconnected account, or a platform without analytics sync.  ### Empty page  The feed is a materialized view, so an immediate read can return an empty &#x60;data&#x60; array. Re-poll with the same cursor. Advancing on an empty page can lose changes permanently.  ### Use a dedicated endpoint  Volume is about one event per account per hour. The consecutive-failure count is shared by every event on an endpoint, so an outage here can disable it and silence events like &#x60;post.published&#x60;. 
 
 ### Example
 
@@ -2612,7 +2612,7 @@ null (empty response body)
 
 Analytics synced event
 
-Fired once per connected account each time its analytics sync cycle completes successfully. Poll-driven (roughly hourly per account), not real-time, and never fired for a skipped or failed cycle.  A trigger, not a transport: the payload carries no metrics and no cursor. On receipt, call &#x60;GET /v1/analytics/delta&#x60; with your own last &#x60;nextCursor&#x60; to read every post whose analytics changed, across every account, in one paginated stream instead of polling analytics once per account.  The feed holds back its most recent few seconds of writes, so a read issued the instant this event lands often returns an empty page for that account. Poll again with the same cursor rather than reading an empty page as \&quot;nothing changed\&quot;.  High volume (roughly one delivery per connected account per hour). Subscribe to it on a dedicated webhook endpoint: a subscription&#39;s consecutive-failure count is shared across all of its events, so an outage while this event is flowing can suppress the low-volume publishing events on the same subscription. 
+One connected account&#39;s analytics sync cycle completed successfully.  ### Payload notes  It is a trigger: no metrics and no cursor. On receipt, call &#x60;GET /v1/analytics/delta&#x60; with your own last &#x60;nextCursor&#x60; to read what changed across every account.  ### When it fires  Per account, per successful sync cycle, roughly hourly. It does not fire for a failed or skipped cycle, an inactive or disconnected account, or a platform without analytics sync.  ### Empty page  The feed is a materialized view, so an immediate read can return an empty &#x60;data&#x60; array. Re-poll with the same cursor. Advancing on an empty page can lose changes permanently.  ### Use a dedicated endpoint  Volume is about one event per account per hour. The consecutive-failure count is shared by every event on an endpoint, so an outage here can disable it and silence events like &#x60;post.published&#x60;. 
 
 ### Example
 
@@ -2685,7 +2685,7 @@ ApiResponse<Void>
 
 API changelog entry published event
 
-Fired when an entry is published to the API changelog (https://docs.zernio.com/changelog), which happens when a change to this OpenAPI spec goes live.  The event belongs to no profile or account. Every active subscription that opted in receives it; scoped subscriptions (&#x60;profileIds&#x60; / &#x60;accountIds&#x60;) do not.  - &#x60;entry.changes&#x60; is the deterministic diff of the spec (operations and schemas added, removed and modified). - &#x60;entry.impact&#x60; says whether an existing integration must act (&#x60;action_required&#x60;), only gained something (&#x60;additive&#x60;) or nothing changed beyond descriptions (&#x60;none&#x60;). - &#x60;entry.message&#x60; is the written announcement.  Act on &#x60;impact&#x60; and &#x60;changes&#x60;; read &#x60;message&#x60; for the why. Entries are listed by &#x60;GET /v1/changelog&#x60;. 
+An entry was published to the API changelog when a change to the OpenAPI spec went live.  ### Who receives it  It belongs to no profile or account. Every active endpoint subscribed to it receives it; endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not. One subscription per integration is enough.  ### Payload notes  &#x60;entry.type&#x60;, &#x60;entry.message&#x60; (the announcement), &#x60;entry.url&#x60;, &#x60;entry.specVersion&#x60;, &#x60;entry.impact&#x60; (&#x60;action_required&#x60;, &#x60;additive&#x60; or &#x60;none&#x60;) and &#x60;entry.changes&#x60; (the spec diff as data).  ### How to act  Automate on &#x60;impact&#x60;, &#x60;changes&#x60; and &#x60;type&#x60;; read &#x60;message&#x60; for the reason. &#x60;GET /v1/changelog&#x60; lists entries newest first, to back-fill after downtime. 
 
 ### Example
 
@@ -2754,7 +2754,7 @@ null (empty response body)
 
 API changelog entry published event
 
-Fired when an entry is published to the API changelog (https://docs.zernio.com/changelog), which happens when a change to this OpenAPI spec goes live.  The event belongs to no profile or account. Every active subscription that opted in receives it; scoped subscriptions (&#x60;profileIds&#x60; / &#x60;accountIds&#x60;) do not.  - &#x60;entry.changes&#x60; is the deterministic diff of the spec (operations and schemas added, removed and modified). - &#x60;entry.impact&#x60; says whether an existing integration must act (&#x60;action_required&#x60;), only gained something (&#x60;additive&#x60;) or nothing changed beyond descriptions (&#x60;none&#x60;). - &#x60;entry.message&#x60; is the written announcement.  Act on &#x60;impact&#x60; and &#x60;changes&#x60;; read &#x60;message&#x60; for the why. Entries are listed by &#x60;GET /v1/changelog&#x60;. 
+An entry was published to the API changelog when a change to the OpenAPI spec went live.  ### Who receives it  It belongs to no profile or account. Every active endpoint subscribed to it receives it; endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not. One subscription per integration is enough.  ### Payload notes  &#x60;entry.type&#x60;, &#x60;entry.message&#x60; (the announcement), &#x60;entry.url&#x60;, &#x60;entry.specVersion&#x60;, &#x60;entry.impact&#x60; (&#x60;action_required&#x60;, &#x60;additive&#x60; or &#x60;none&#x60;) and &#x60;entry.changes&#x60; (the spec diff as data).  ### How to act  Automate on &#x60;impact&#x60;, &#x60;changes&#x60; and &#x60;type&#x60;; read &#x60;message&#x60; for the reason. &#x60;GET /v1/changelog&#x60; lists entries newest first, to back-fill after downtime. 
 
 ### Example
 
@@ -2827,7 +2827,7 @@ ApiResponse<Void>
 
 Automation action applied event
 
-One change an automation made or tried, sent as it settles. See &#x60;WebhookPayloadAutomationAction&#x60;.
+An automation changed something, such as an ad set paused or a budget raised.  ### Payload notes  &#x60;previous&#x60; and &#x60;target&#x60; carry the value before and the value set. Each action sends one event; dedupe on &#x60;id&#x60;, which stays the same if the event is sent again. 
 
 ### Example
 
@@ -2896,7 +2896,7 @@ null (empty response body)
 
 Automation action applied event
 
-One change an automation made or tried, sent as it settles. See &#x60;WebhookPayloadAutomationAction&#x60;.
+An automation changed something, such as an ad set paused or a budget raised.  ### Payload notes  &#x60;previous&#x60; and &#x60;target&#x60; carry the value before and the value set. Each action sends one event; dedupe on &#x60;id&#x60;, which stays the same if the event is sent again. 
 
 ### Example
 
@@ -2969,7 +2969,7 @@ ApiResponse<Void>
 
 Automation action failed event
 
-One change an automation made or tried, sent as it settles. See &#x60;WebhookPayloadAutomationAction&#x60;.
+An automation change failed or was refused; &#x60;reason&#x60; says why.  ### Skipped changes  A change refused before any platform call has &#x60;status: skipped&#x60;, for example no live ads or a budget at its limit. 
 
 ### Example
 
@@ -3038,7 +3038,7 @@ null (empty response body)
 
 Automation action failed event
 
-One change an automation made or tried, sent as it settles. See &#x60;WebhookPayloadAutomationAction&#x60;.
+An automation change failed or was refused; &#x60;reason&#x60; says why.  ### Skipped changes  A change refused before any platform call has &#x60;status: skipped&#x60;, for example no live ads or a budget at its limit. 
 
 ### Example
 
@@ -3111,7 +3111,7 @@ ApiResponse<Void>
 
 Automation action unknown event
 
-One change an automation made or tried, sent as it settles. See &#x60;WebhookPayloadAutomationAction&#x60;.
+The platform did not answer, so it is unknown whether the automation&#39;s change happened.  ### What happens next  The next check reads the object back and sends &#x60;applied&#x60; or &#x60;failed&#x60;. 
 
 ### Example
 
@@ -3180,7 +3180,7 @@ null (empty response body)
 
 Automation action unknown event
 
-One change an automation made or tried, sent as it settles. See &#x60;WebhookPayloadAutomationAction&#x60;.
+The platform did not answer, so it is unknown whether the automation&#39;s change happened.  ### What happens next  The next check reads the object back and sends &#x60;applied&#x60; or &#x60;failed&#x60;. 
 
 ### Example
 
@@ -3253,7 +3253,7 @@ ApiResponse<Void>
 
 Automation alert escalated event
 
-An alert episode of an automation with a lifecycle. See &#x60;WebhookPayloadAutomationAlert&#x60;.
+An open alert&#39;s &#x60;critical&#x60; conditions held.  ### When it fires  Sent once per episode. 
 
 ### Example
 
@@ -3322,7 +3322,7 @@ null (empty response body)
 
 Automation alert escalated event
 
-An alert episode of an automation with a lifecycle. See &#x60;WebhookPayloadAutomationAlert&#x60;.
+An open alert&#39;s &#x60;critical&#x60; conditions held.  ### When it fires  Sent once per episode. 
 
 ### Example
 
@@ -3395,7 +3395,7 @@ ApiResponse<Void>
 
 Automation alert opened event
 
-An alert episode of an automation with a lifecycle. See &#x60;WebhookPayloadAutomationAlert&#x60;.
+An object matched the rule&#39;s conditions for &#x60;confirmChecks&#x60; runs in a row and its action was recorded.  ### When it fires  Sent once per episode. 
 
 ### Example
 
@@ -3464,7 +3464,7 @@ null (empty response body)
 
 Automation alert opened event
 
-An alert episode of an automation with a lifecycle. See &#x60;WebhookPayloadAutomationAlert&#x60;.
+An object matched the rule&#39;s conditions for &#x60;confirmChecks&#x60; runs in a row and its action was recorded.  ### When it fires  Sent once per episode. 
 
 ### Example
 
@@ -3537,7 +3537,7 @@ ApiResponse<Void>
 
 Automation alert resolved event
 
-An alert episode of an automation with a lifecycle. See &#x60;WebhookPayloadAutomationAlert&#x60;.
+An open alert ended; &#x60;reason&#x60; says which way.  ### Reasons  Its conditions cleared, a pause or reactivation applied, the rule changed, or nothing checked the object for 7 days. 
 
 ### Example
 
@@ -3606,7 +3606,7 @@ null (empty response body)
 
 Automation alert resolved event
 
-An alert episode of an automation with a lifecycle. See &#x60;WebhookPayloadAutomationAlert&#x60;.
+An open alert ended; &#x60;reason&#x60; says which way.  ### Reasons  Its conditions cleared, a pause or reactivation applied, the rule changed, or nothing checked the object for 7 days. 
 
 ### Example
 
@@ -3679,7 +3679,7 @@ ApiResponse<Void>
 
 Automation check completed event
 
-Fired once per scheduled check of an automation, whatever its outcome. See &#x60;WebhookPayloadAutomationCheckCompleted&#x60;.
+One scheduled check of an automation finished, including checks where nothing matched.  ### Payload notes  &#x60;automation.kind&#x60; names the product: &#x60;ad_rule&#x60; today, more as other automations move onto the same engine. 
 
 ### Example
 
@@ -3748,7 +3748,7 @@ null (empty response body)
 
 Automation check completed event
 
-Fired once per scheduled check of an automation, whatever its outcome. See &#x60;WebhookPayloadAutomationCheckCompleted&#x60;.
+One scheduled check of an automation finished, including checks where nothing matched.  ### Payload notes  &#x60;automation.kind&#x60; names the product: &#x60;ad_rule&#x60; today, more as other automations move onto the same engine. 
 
 ### Example
 
@@ -3821,7 +3821,7 @@ ApiResponse<Void>
 
 Caller identity action required event
 
-Fired when a caller identity waits on you. &#x60;reason&#x60; says what:  - &#x60;changes_requested&#x60;: answer the review with PATCH. - &#x60;email_code&#x60;: the authorizer got a 6-digit code from the carrier. Confirm it with the verify-email endpoint. - &#x60;rejected&#x60;: the carrier rejected it. Fix and PATCH. - &#x60;infringement_claim&#x60;: a third party disputes the name or logo. Reply to our email with evidence. - &#x60;expired&#x60;: resubmit. 
+A Branded Calling caller identity is waiting on you; &#x60;reason&#x60; says what.  ### When it fires  Every &#x60;action_required&#x60; is paired with a &#x60;status_updated&#x60;.  ### Reasons  - &#x60;changes_requested&#x60;: answer the review with &#x60;PATCH&#x60;. - &#x60;email_code&#x60;: confirm the code the carrier emailed the authorizer. - &#x60;rejected&#x60;: fix and &#x60;PATCH&#x60;. - &#x60;expired&#x60;: resubmit.  ### Infringement claim  &#x60;infringement_claim&#x60;: a third party filed a trademark or impersonation claim and the carrier suspended the identity. Calls show a plain number and the monthly fee pauses until it is resolved.  Reply to our email with evidence that the name and logo are yours. If the claim is upheld, the identity is rejected for good. 
 
 ### Example
 
@@ -3890,7 +3890,7 @@ null (empty response body)
 
 Caller identity action required event
 
-Fired when a caller identity waits on you. &#x60;reason&#x60; says what:  - &#x60;changes_requested&#x60;: answer the review with PATCH. - &#x60;email_code&#x60;: the authorizer got a 6-digit code from the carrier. Confirm it with the verify-email endpoint. - &#x60;rejected&#x60;: the carrier rejected it. Fix and PATCH. - &#x60;infringement_claim&#x60;: a third party disputes the name or logo. Reply to our email with evidence. - &#x60;expired&#x60;: resubmit. 
+A Branded Calling caller identity is waiting on you; &#x60;reason&#x60; says what.  ### When it fires  Every &#x60;action_required&#x60; is paired with a &#x60;status_updated&#x60;.  ### Reasons  - &#x60;changes_requested&#x60;: answer the review with &#x60;PATCH&#x60;. - &#x60;email_code&#x60;: confirm the code the carrier emailed the authorizer. - &#x60;rejected&#x60;: fix and &#x60;PATCH&#x60;. - &#x60;expired&#x60;: resubmit.  ### Infringement claim  &#x60;infringement_claim&#x60;: a third party filed a trademark or impersonation claim and the carrier suspended the identity. Calls show a plain number and the monthly fee pauses until it is resolved.  Reply to our email with evidence that the name and logo are yours. If the claim is upheld, the identity is rejected for good. 
 
 ### Example
 
@@ -3963,7 +3963,7 @@ ApiResponse<Void>
 
 Caller identity status updated event
 
-Fired on every status change of a Branded Calling caller identity:  - &#x60;requested&#x60;: a new submission or resubmit, in our review. - &#x60;changes_requested&#x60;: we need answers, see &#x60;branded_calling.identity.action_required&#x60;. - &#x60;rejected&#x60;: by our review or by the carrier. &#x60;reason&#x60; says why. - &#x60;pending_email_verification&#x60;: filed with the carrier; the authorizer enters the emailed code. - &#x60;in_review&#x60;: carrier vetting. - &#x60;verified&#x60;: live for a year, attach numbers. - &#x60;suspended&#x60;: an infringement claim is open. - &#x60;expired&#x60;. - &#x60;permanently_rejected&#x60;. 
+A Branded Calling caller identity changed status.  ### When it fires  Fires once per transition of the identity&#39;s &#x60;status&#x60;, the value &#x60;GET /v1/branded-calling/identities/{id}&#x60; returns. Never on a re-check that found nothing new.  ### Statuses  &#x60;requested&#x60;, &#x60;changes_requested&#x60;, &#x60;rejected&#x60; (&#x60;reason&#x60; says why), &#x60;pending_email_verification&#x60;, &#x60;in_review&#x60;, &#x60;verified&#x60; (live for a year, attach numbers), &#x60;suspended&#x60; (infringement claim open), &#x60;expired&#x60;, &#x60;permanently_rejected&#x60;. 
 
 ### Example
 
@@ -4032,7 +4032,7 @@ null (empty response body)
 
 Caller identity status updated event
 
-Fired on every status change of a Branded Calling caller identity:  - &#x60;requested&#x60;: a new submission or resubmit, in our review. - &#x60;changes_requested&#x60;: we need answers, see &#x60;branded_calling.identity.action_required&#x60;. - &#x60;rejected&#x60;: by our review or by the carrier. &#x60;reason&#x60; says why. - &#x60;pending_email_verification&#x60;: filed with the carrier; the authorizer enters the emailed code. - &#x60;in_review&#x60;: carrier vetting. - &#x60;verified&#x60;: live for a year, attach numbers. - &#x60;suspended&#x60;: an infringement claim is open. - &#x60;expired&#x60;. - &#x60;permanently_rejected&#x60;. 
+A Branded Calling caller identity changed status.  ### When it fires  Fires once per transition of the identity&#39;s &#x60;status&#x60;, the value &#x60;GET /v1/branded-calling/identities/{id}&#x60; returns. Never on a re-check that found nothing new.  ### Statuses  &#x60;requested&#x60;, &#x60;changes_requested&#x60;, &#x60;rejected&#x60; (&#x60;reason&#x60; says why), &#x60;pending_email_verification&#x60;, &#x60;in_review&#x60;, &#x60;verified&#x60; (live for a year, attach numbers), &#x60;suspended&#x60; (infringement claim open), &#x60;expired&#x60;, &#x60;permanently_rejected&#x60;. 
 
 ### Example
 
@@ -4105,7 +4105,7 @@ ApiResponse<Void>
 
 Branded number status updated event
 
-Fired when a number attached to a caller identity changes vetting status: &#x60;in_review&#x60;, &#x60;verified&#x60; (calls from it now show the identity), &#x60;unsuccessful&#x60; (refused; detach and re-add to retry), &#x60;suspended&#x60;, &#x60;expired&#x60; or &#x60;permanently_rejected&#x60; (can never be branded again). 
+A number attached to a Branded Calling identity changed vetting status.  ### When it fires  Only starts once the identity is &#x60;verified&#x60; and you attached numbers. A batch is vetted as a unit; each number reports its own status.  ### Statuses  &#x60;submitted&#x60;, &#x60;in_review&#x60;, &#x60;verified&#x60; (calls from it show the identity), &#x60;unsuccessful&#x60; (refused; detach and re-add to retry), &#x60;suspended&#x60;, &#x60;expired&#x60;, &#x60;permanently_rejected&#x60; (can never be branded again). 
 
 ### Example
 
@@ -4174,7 +4174,7 @@ null (empty response body)
 
 Branded number status updated event
 
-Fired when a number attached to a caller identity changes vetting status: &#x60;in_review&#x60;, &#x60;verified&#x60; (calls from it now show the identity), &#x60;unsuccessful&#x60; (refused; detach and re-add to retry), &#x60;suspended&#x60;, &#x60;expired&#x60; or &#x60;permanently_rejected&#x60; (can never be branded again). 
+A number attached to a Branded Calling identity changed vetting status.  ### When it fires  Only starts once the identity is &#x60;verified&#x60; and you attached numbers. A batch is vetted as a unit; each number reports its own status.  ### Statuses  &#x60;submitted&#x60;, &#x60;in_review&#x60;, &#x60;verified&#x60; (calls from it show the identity), &#x60;unsuccessful&#x60; (refused; detach and re-add to retry), &#x60;suspended&#x60;, &#x60;expired&#x60;, &#x60;permanently_rejected&#x60; (can never be branded again). 
 
 ### Example
 
@@ -4247,7 +4247,7 @@ ApiResponse<Void>
 
 Calendar event created
 
-A new event appeared on a connected Microsoft calendar (push, seconds after the change).
+An event was added to the primary calendar of a connected mailbox, by the user, an invitation or the API.  ### Platform notes  On Microsoft the change is pushed seconds after it happens. 
 
 ### Example
 
@@ -4316,7 +4316,7 @@ null (empty response body)
 
 Calendar event created
 
-A new event appeared on a connected Microsoft calendar (push, seconds after the change).
+An event was added to the primary calendar of a connected mailbox, by the user, an invitation or the API.  ### Platform notes  On Microsoft the change is pushed seconds after it happens. 
 
 ### Example
 
@@ -4389,6 +4389,8 @@ ApiResponse<Void>
 
 Calendar event deleted
 
+An event was deleted from the primary calendar.  ### Platform notes  On Google, a cancelled event counts as deleted. 
+
 ### Example
 
 ```java
@@ -4455,6 +4457,8 @@ null (empty response body)
 > ApiResponse<Void> onCalendarEventDeleted onCalendarEventDeletedWithHttpInfo(webhookPayloadCalendarEvent)
 
 Calendar event deleted
+
+An event was deleted from the primary calendar.  ### Platform notes  On Google, a cancelled event counts as deleted. 
 
 ### Example
 
@@ -4527,6 +4531,8 @@ ApiResponse<Void>
 
 Calendar event updated
 
+An event on the primary calendar changed: its time, details or participants&#39; answers. 
+
 ### Example
 
 ```java
@@ -4593,6 +4599,8 @@ null (empty response body)
 > ApiResponse<Void> onCalendarEventUpdated onCalendarEventUpdatedWithHttpInfo(webhookPayloadCalendarEvent)
 
 Calendar event updated
+
+An event on the primary calendar changed: its time, details or participants&#39; answers. 
 
 ### Example
 
@@ -4665,7 +4673,7 @@ ApiResponse<Void>
 
 Call ended event
 
-Fired on call hangup with the duration and a zero-markup billing breakdown (Meta cost, Telnyx cost, recording surcharge, total). Costs are pass-through; no margin is applied. 
+A phone or WhatsApp call ended; carries duration, end reason and a zero-markup cost breakdown.  ### Payload notes  &#x60;durationSeconds&#x60;; &#x60;endReason&#x60; is &#x60;hangup&#x60;, &#x60;no_answer&#x60;, &#x60;rejected&#x60; or &#x60;error&#x60;; &#x60;call.billing&#x60; holds Meta cost, Telnyx cost, recording surcharge and total. Costs are pass-through, with no margin.  ### When it fires  Unanswered, busy and rejected calls end here too. Branch on &#x60;endReason&#x60;; &#x60;call.failed&#x60; is for hard errors.  ### Recordings  With recording enabled, the payload carries &#x60;recordingUrl&#x60;, a signed URL expiring at &#x60;recordingExpiresAt&#x60;. Fetch a fresh one with &#x60;GET /v1/calls/{id}/recording&#x60; and &#x60;call.id&#x60;.  ### Missed-call follow-up  Check for &#x60;endReason: \&quot;no_answer\&quot;&#x60;, then text the caller over the linked &#x60;conversationId&#x60;. 
 
 ### Example
 
@@ -4734,7 +4742,7 @@ null (empty response body)
 
 Call ended event
 
-Fired on call hangup with the duration and a zero-markup billing breakdown (Meta cost, Telnyx cost, recording surcharge, total). Costs are pass-through; no margin is applied. 
+A phone or WhatsApp call ended; carries duration, end reason and a zero-markup cost breakdown.  ### Payload notes  &#x60;durationSeconds&#x60;; &#x60;endReason&#x60; is &#x60;hangup&#x60;, &#x60;no_answer&#x60;, &#x60;rejected&#x60; or &#x60;error&#x60;; &#x60;call.billing&#x60; holds Meta cost, Telnyx cost, recording surcharge and total. Costs are pass-through, with no margin.  ### When it fires  Unanswered, busy and rejected calls end here too. Branch on &#x60;endReason&#x60;; &#x60;call.failed&#x60; is for hard errors.  ### Recordings  With recording enabled, the payload carries &#x60;recordingUrl&#x60;, a signed URL expiring at &#x60;recordingExpiresAt&#x60;. Fetch a fresh one with &#x60;GET /v1/calls/{id}/recording&#x60; and &#x60;call.id&#x60;.  ### Missed-call follow-up  Check for &#x60;endReason: \&quot;no_answer\&quot;&#x60;, then text the caller over the linked &#x60;conversationId&#x60;. 
 
 ### Example
 
@@ -4807,7 +4815,7 @@ ApiResponse<Void>
 
 Call failed event
 
-Fired when a call setup or in-progress call fails (Meta rejected the connect, Telnyx returned an error, etc.). Payload carries the upstream error code and message. 
+A call failed with a hard error before or during bridging, for example the destination rejected the SIP INVITE.  ### Payload notes  Carries the upstream error &#x60;code&#x60; and &#x60;message&#x60;, for example when Meta rejected the connect or Telnyx returned an error. 
 
 ### Example
 
@@ -4876,7 +4884,7 @@ null (empty response body)
 
 Call failed event
 
-Fired when a call setup or in-progress call fails (Meta rejected the connect, Telnyx returned an error, etc.). Payload carries the upstream error code and message. 
+A call failed with a hard error before or during bridging, for example the destination rejected the SIP INVITE.  ### Payload notes  Carries the upstream error &#x60;code&#x60; and &#x60;message&#x60;, for example when Meta rejected the connect or Telnyx returned an error. 
 
 ### Example
 
@@ -4949,7 +4957,7 @@ ApiResponse<Void>
 
 Call permission request reply event
 
-Fired when a consumer replies to a &#x60;call_permission_request&#x60; interactive message (or its marketing-template variant). Carries the response (&#x60;accept&#x60; / &#x60;reject&#x60;), whether the grant is permanent, and the expiration timestamp when it is temporary. 
+A WhatsApp user accepted or rejected your call-permission request.  ### When it fires  Independent of any call: it reports a reply to a permission prompt. Meta permits a business-initiated call only after the consumer taps Allow, and the accept can land days before the call.  ### Payload notes  &#x60;response&#x60; is &#x60;accept&#x60; or &#x60;reject&#x60;. Also carries the user&#39;s number, whether the grant is permanent, and the expiry when it is not. 
 
 ### Example
 
@@ -5018,7 +5026,7 @@ null (empty response body)
 
 Call permission request reply event
 
-Fired when a consumer replies to a &#x60;call_permission_request&#x60; interactive message (or its marketing-template variant). Carries the response (&#x60;accept&#x60; / &#x60;reject&#x60;), whether the grant is permanent, and the expiration timestamp when it is temporary. 
+A WhatsApp user accepted or rejected your call-permission request.  ### When it fires  Independent of any call: it reports a reply to a permission prompt. Meta permits a business-initiated call only after the consumer taps Allow, and the accept can land days before the call.  ### Payload notes  &#x60;response&#x60; is &#x60;accept&#x60; or &#x60;reject&#x60;. Also carries the user&#39;s number, whether the grant is permanent, and the expiry when it is not. 
 
 ### Example
 
@@ -5091,7 +5099,7 @@ ApiResponse<Void>
 
 Call received event
 
-Fired when a WhatsApp Business Call connects. For inbound (UIC) calls the event fires at the moment our Telnyx trunk bridges the consumer leg to the customer&amp;apos;s forward-to destination; for outbound (BIC) calls it fires immediately after Meta accepts the connect. Branch on &#x60;call.direction&#x60; to distinguish. 
+An inbound phone or WhatsApp call reached your number, or an outbound WhatsApp call was placed.  ### When it fires  Fires at ring time, before anyone answers; an unanswered call still emits it, then &#x60;call.ended&#x60; with &#x60;endReason: \&quot;no_answer\&quot;&#x60;. Outbound WhatsApp calls fire at origination with &#x60;direction: \&quot;outbound\&quot;&#x60;. Outbound phone calls never emit it.  ### Payload notes  Carries the Zernio call id, the caller and business numbers, the destination snapshot (&#x60;forwardTo&#x60;), and &#x60;contactId&#x60; and &#x60;conversationId&#x60; to message the caller with the regular send endpoints. 
 
 ### Example
 
@@ -5160,7 +5168,7 @@ null (empty response body)
 
 Call received event
 
-Fired when a WhatsApp Business Call connects. For inbound (UIC) calls the event fires at the moment our Telnyx trunk bridges the consumer leg to the customer&amp;apos;s forward-to destination; for outbound (BIC) calls it fires immediately after Meta accepts the connect. Branch on &#x60;call.direction&#x60; to distinguish. 
+An inbound phone or WhatsApp call reached your number, or an outbound WhatsApp call was placed.  ### When it fires  Fires at ring time, before anyone answers; an unanswered call still emits it, then &#x60;call.ended&#x60; with &#x60;endReason: \&quot;no_answer\&quot;&#x60;. Outbound WhatsApp calls fire at origination with &#x60;direction: \&quot;outbound\&quot;&#x60;. Outbound phone calls never emit it.  ### Payload notes  Carries the Zernio call id, the caller and business numbers, the destination snapshot (&#x60;forwardTo&#x60;), and &#x60;contactId&#x60; and &#x60;conversationId&#x60; to message the caller with the regular send endpoints. 
 
 ### Example
 
@@ -5233,7 +5241,7 @@ ApiResponse<Void>
 
 Campaign budget depleted event
 
-Fired when a campaign Zernio already tracked runs out of budget (TikTok). See &#x60;WebhookPayloadCampaignBudgetDepleted&#x60; for when it fires and when it does not. 
+A campaign Zernio already tracked ran out of budget. TikTok only.  ### When it fires  Fires once per campaign when its budget runs out, at most once per 6 hours, so a daily budget that runs out again the next day is announced again.  ### When it does not fire  Ads seen for the first time by a sync never fire it.  ### Platform notes  Only TikTok reports this on the ad. Meta and Google keep such ads &#x60;ACTIVE&#x60;, so they never fire it. 
 
 ### Example
 
@@ -5302,7 +5310,7 @@ null (empty response body)
 
 Campaign budget depleted event
 
-Fired when a campaign Zernio already tracked runs out of budget (TikTok). See &#x60;WebhookPayloadCampaignBudgetDepleted&#x60; for when it fires and when it does not. 
+A campaign Zernio already tracked ran out of budget. TikTok only.  ### When it fires  Fires once per campaign when its budget runs out, at most once per 6 hours, so a daily budget that runs out again the next day is announced again.  ### When it does not fire  Ads seen for the first time by a sync never fire it.  ### Platform notes  Only TikTok reports this on the ad. Meta and Google keep such ads &#x60;ACTIVE&#x60;, so they never fire it. 
 
 ### Example
 
@@ -5375,7 +5383,7 @@ ApiResponse<Void>
 
 Campaign created event
 
-Fired when a campaign is created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;). Never for history loaded when an account connects, nor for campaigns older than 7 days. See &#x60;WebhookPayloadCampaignCreated&#x60;. 
+A campaign was created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;).  ### When it fires  Fires once the campaign row is recorded. A detected campaign arrives up to one sync interval late.  ### When it does not fire  History loaded when an account connects, and campaigns created more than 7 days ago, are never announced. 
 
 ### Example
 
@@ -5444,7 +5452,7 @@ null (empty response body)
 
 Campaign created event
 
-Fired when a campaign is created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;). Never for history loaded when an account connects, nor for campaigns older than 7 days. See &#x60;WebhookPayloadCampaignCreated&#x60;. 
+A campaign was created through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;).  ### When it fires  Fires once the campaign row is recorded. A detected campaign arrives up to one sync interval late.  ### When it does not fire  History loaded when an account connects, and campaigns created more than 7 days ago, are never announced. 
 
 ### Example
 
@@ -5517,7 +5525,7 @@ ApiResponse<Void>
 
 Campaign participant joined event
 
-Fired once when a creator joins a campaign, from their invite link or the open link.
+A creator joined a campaign from their invite link or the open link.  ### When it fires  It fires once per participant, and &#x60;participant.joinedAt&#x60; says when. 
 
 ### Example
 
@@ -5586,7 +5594,7 @@ null (empty response body)
 
 Campaign participant joined event
 
-Fired once when a creator joins a campaign, from their invite link or the open link.
+A creator joined a campaign from their invite link or the open link.  ### When it fires  It fires once per participant, and &#x60;participant.joinedAt&#x60; says when. 
 
 ### Example
 
@@ -5659,7 +5667,7 @@ ApiResponse<Void>
 
 Campaign participant removed event
 
-Fired when an operator removes a participant.
+You removed a participant from the campaign.  ### When it does not fire  Removing a participant twice fires the event once. 
 
 ### Example
 
@@ -5728,7 +5736,7 @@ null (empty response body)
 
 Campaign participant removed event
 
-Fired when an operator removes a participant.
+You removed a participant from the campaign.  ### When it does not fire  Removing a participant twice fires the event once. 
 
 ### Example
 
@@ -5801,7 +5809,7 @@ ApiResponse<Void>
 
 Campaign participant suspended event
 
-Fired when an operator suspends a participant.
+You suspended a participant.  ### Effect  They can no longer connect accounts or submit posts to this campaign. Posts they already submitted keep earning until you reject them. 
 
 ### Example
 
@@ -5870,7 +5878,7 @@ null (empty response body)
 
 Campaign participant suspended event
 
-Fired when an operator suspends a participant.
+You suspended a participant.  ### Effect  They can no longer connect accounts or submit posts to this campaign. Posts they already submitted keep earning until you reject them. 
 
 ### Example
 
@@ -5943,7 +5951,7 @@ ApiResponse<Void>
 
 Campaign payout failed event
 
-Fired when a treasury payout to a participant is refused, cannot be confirmed, or is reversed. The amount returns to payable, minus anything a rejection claws back.
+A payout through your Zernio balance did not reach the creator.  ### When it fires  Stripe refused it, it stayed unconfirmed for 24 hours, or it was reversed. The amount is payable again, minus anything a rejection claws back. 
 
 ### Example
 
@@ -6012,7 +6020,7 @@ null (empty response body)
 
 Campaign payout failed event
 
-Fired when a treasury payout to a participant is refused, cannot be confirmed, or is reversed. The amount returns to payable, minus anything a rejection claws back.
+A payout through your Zernio balance did not reach the creator.  ### When it fires  Stripe refused it, it stayed unconfirmed for 24 hours, or it was reversed. The amount is payable again, minus anything a rejection claws back. 
 
 ### Example
 
@@ -6085,7 +6093,7 @@ ApiResponse<Void>
 
 Campaign payout payable event
 
-Fired when a participant&#39;s held earnings mature and become payable.
+A participant&#39;s held earnings matured and became payable.  ### Payload notes  &#x60;payout.payableCents&#x60; is the participant&#39;s whole payable balance, the amount to pay when you pay from your own rails. 
 
 ### Example
 
@@ -6154,7 +6162,7 @@ null (empty response body)
 
 Campaign payout payable event
 
-Fired when a participant&#39;s held earnings mature and become payable.
+A participant&#39;s held earnings matured and became payable.  ### Payload notes  &#x60;payout.payableCents&#x60; is the participant&#39;s whole payable balance, the amount to pay when you pay from your own rails. 
 
 ### Example
 
@@ -6227,7 +6235,7 @@ ApiResponse<Void>
 
 Campaign payout settled event
 
-Fired when a settlement to a participant is recorded.
+A payout to a participant was recorded.  ### Payload notes  &#x60;payout.settlement&#x60; holds the amount and the reference. &#x60;recorded&#x60; is true when the money moved outside Zernio. 
 
 ### Example
 
@@ -6296,7 +6304,7 @@ null (empty response body)
 
 Campaign payout settled event
 
-Fired when a settlement to a participant is recorded.
+A payout to a participant was recorded.  ### Payload notes  &#x60;payout.settlement&#x60; holds the amount and the reference. &#x60;recorded&#x60; is true when the money moved outside Zernio. 
 
 ### Example
 
@@ -6369,7 +6377,7 @@ ApiResponse<Void>
 
 Campaign submission approved event
 
-Fired when an operator approves a submission.
+You approved a submission.  ### Earnings  What the submission earned so far moves to owed with the campaign hold. Later earnings post straight to owed. 
 
 ### Example
 
@@ -6438,7 +6446,7 @@ null (empty response body)
 
 Campaign submission approved event
 
-Fired when an operator approves a submission.
+You approved a submission.  ### Earnings  What the submission earned so far moves to owed with the campaign hold. Later earnings post straight to owed. 
 
 ### Example
 
@@ -6511,7 +6519,7 @@ ApiResponse<Void>
 
 Campaign submission flagged event
 
-Fired when a submission gains a fraud flag it did not carry before, at submission or on a later sync.
+A submission gained a fraud flag it did not carry before, at submission or on a later sync.  ### Flags  Flags include &#x60;duplicate_post&#x60;, &#x60;view_spike&#x60;, &#x60;low_authenticity&#x60; and &#x60;x_read_cap&#x60; (the campaign&#39;s X read budget is spent). &#x60;submission.flags&#x60; lists every flag it carries. Zernio never rejects on its own; the decision is yours. 
 
 ### Example
 
@@ -6580,7 +6588,7 @@ null (empty response body)
 
 Campaign submission flagged event
 
-Fired when a submission gains a fraud flag it did not carry before, at submission or on a later sync.
+A submission gained a fraud flag it did not carry before, at submission or on a later sync.  ### Flags  Flags include &#x60;duplicate_post&#x60;, &#x60;view_spike&#x60;, &#x60;low_authenticity&#x60; and &#x60;x_read_cap&#x60; (the campaign&#39;s X read budget is spent). &#x60;submission.flags&#x60; lists every flag it carries. Zernio never rejects on its own; the decision is yours. 
 
 ### Example
 
@@ -6653,7 +6661,7 @@ ApiResponse<Void>
 
 Campaign submission pending review event
 
-Fired when a submission becomes ready for review: a CPM submission reached minViewsToEarn or a pool submission minViewsToQualify; per-post submissions on the first accrual pass after submission.
+A submission is ready for your review.  ### When it fires  A CPM submission reached &#x60;minViewsToEarn&#x60;, a pool submission reached &#x60;minViewsToQualify&#x60;, and per post submissions arrive here after their first accrual. 
 
 ### Example
 
@@ -6722,7 +6730,7 @@ null (empty response body)
 
 Campaign submission pending review event
 
-Fired when a submission becomes ready for review: a CPM submission reached minViewsToEarn or a pool submission minViewsToQualify; per-post submissions on the first accrual pass after submission.
+A submission is ready for your review.  ### When it fires  A CPM submission reached &#x60;minViewsToEarn&#x60;, a pool submission reached &#x60;minViewsToQualify&#x60;, and per post submissions arrive here after their first accrual. 
 
 ### Example
 
@@ -6795,7 +6803,7 @@ ApiResponse<Void>
 
 Campaign submission received event
 
-Fired when a creator submits a post to a campaign and its tracking window opens.
+A creator submitted a post to a campaign, Zernio opened its tracking window and took the first view sample. 
 
 ### Example
 
@@ -6864,7 +6872,7 @@ null (empty response body)
 
 Campaign submission received event
 
-Fired when a creator submits a post to a campaign and its tracking window opens.
+A creator submitted a post to a campaign, Zernio opened its tracking window and took the first view sample. 
 
 ### Example
 
@@ -6937,7 +6945,7 @@ ApiResponse<Void>
 
 Campaign submission rejected event
 
-Fired when an operator rejects a submission.
+You rejected a submission and its tracking window was cancelled.  ### Earnings  Its unsettled earnings go back to the campaign budget. 
 
 ### Example
 
@@ -7006,7 +7014,7 @@ null (empty response body)
 
 Campaign submission rejected event
 
-Fired when an operator rejects a submission.
+You rejected a submission and its tracking window was cancelled.  ### Earnings  Its unsettled earnings go back to the campaign budget. 
 
 ### Example
 
@@ -7079,7 +7087,7 @@ ApiResponse<Void>
 
 Campaign updated event
 
-Fired when a campaign is edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or when the sync detects an edit made outside Zernio (&#x60;source: \&quot;platform\&quot;&#x60;). &#x60;changes&#x60; lists the edited fields. See &#x60;WebhookPayloadCampaignUpdated&#x60;. 
+A campaign was edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;), or outside Zernio and detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;).  ### When it fires  Fires after the platform and Zernio both accepted the edit. Outside edits arrive up to one sync interval late, and only to the user whose sync saw them.  ### Deduplication  Events are not deduplicated, so every edit is announced. Use the event &#x60;id&#x60; to drop repeats.  ### Payload notes  &#x60;changes&#x60; lists the edited fields: &#x60;name&#x60;, &#x60;status&#x60; (the campaign&#39;s own on/off switch), &#x60;budget&#x60;, &#x60;bid&#x60; or &#x60;settings&#x60;. Ignore unknown values. It never carries old or new values, so read the campaign.  ### What the sync detects  From the sync, &#x60;changes&#x60; covers only &#x60;name&#x60;, &#x60;status&#x60; and &#x60;schedule&#x60;. Schedule is detected only on Google, LinkedIn, Pinterest and OpenAI Ads.  ### When it does not fire  Budget edits made outside Zernio, ad set edits and history loaded at connect are not announced. Ad rule changes arrive as &#x60;ad_rule.triggered&#x60;.  ### Google sub-resources  Edits to ad schedule, targeting, negative keywords, conversion goals, assets, asset groups and listing group filters are not announced. 
 
 ### Example
 
@@ -7148,7 +7156,7 @@ null (empty response body)
 
 Campaign updated event
 
-Fired when a campaign is edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;) or when the sync detects an edit made outside Zernio (&#x60;source: \&quot;platform\&quot;&#x60;). &#x60;changes&#x60; lists the edited fields. See &#x60;WebhookPayloadCampaignUpdated&#x60;. 
+A campaign was edited through Zernio (&#x60;source: \&quot;zernio\&quot;&#x60;), or outside Zernio and detected by the sync (&#x60;source: \&quot;platform\&quot;&#x60;).  ### When it fires  Fires after the platform and Zernio both accepted the edit. Outside edits arrive up to one sync interval late, and only to the user whose sync saw them.  ### Deduplication  Events are not deduplicated, so every edit is announced. Use the event &#x60;id&#x60; to drop repeats.  ### Payload notes  &#x60;changes&#x60; lists the edited fields: &#x60;name&#x60;, &#x60;status&#x60; (the campaign&#39;s own on/off switch), &#x60;budget&#x60;, &#x60;bid&#x60; or &#x60;settings&#x60;. Ignore unknown values. It never carries old or new values, so read the campaign.  ### What the sync detects  From the sync, &#x60;changes&#x60; covers only &#x60;name&#x60;, &#x60;status&#x60; and &#x60;schedule&#x60;. Schedule is detected only on Google, LinkedIn, Pinterest and OpenAI Ads.  ### When it does not fire  Budget edits made outside Zernio, ad set edits and history loaded at connect are not announced. Ad rule changes arrive as &#x60;ad_rule.triggered&#x60;.  ### Google sub-resources  Edits to ad schedule, targeting, negative keywords, conversion goals, assets, asset groups and listing group filters are not announced. 
 
 ### Example
 
@@ -7221,7 +7229,7 @@ ApiResponse<Void>
 
 Comment received event
 
-Fired when a new comment is received on a tracked post.  - Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. - X/Twitter does NOT fire this event. - Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook. The rest are poll-driven, so delivery is not instant. - TikTok needs an account connected through the TikTok for Business app. 
+A new comment arrived on a tracked post.  ### Platform notes  Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does not fire it. TikTok needs an account connected through the TikTok for Business app.  ### Delivery timing  Instagram, Facebook, Threads and TikTok arrive in real time from the platform&#39;s webhook. The rest are poll-driven, so delivery is not instant.  ### Live comments  On Instagram, &#x60;comment.isLive: true&#x60; marks a comment made during a live broadcast. The key is absent on every other comment.  ### Ads  &#x60;comment.ad&#x60; is present only on comments made on paid content, so &#x60;if (comment.ad)&#x60; filters ad-driven comments.  ### Ad fields  Instagram carries &#x60;ad.id&#x60; and &#x60;ad.title&#x60;. Facebook carries &#x60;ad.promotionStatus&#x60;: &#x60;active&#x60; for boosted organic posts, &#x60;ineligible&#x60; for dark post creatives.  ### Instagram author profile  Comments may carry &#x60;comment.author.instagramProfile&#x60; (&#x60;isFollower&#x60;, &#x60;isFollowing&#x60;, &#x60;followerCount&#x60;, &#x60;isVerified&#x60;). An absent object means unknown, never \&quot;not a follower\&quot;.  ### Why the profile is often absent  Meta reveals the follow relationship only for people who have messaged the account, and commenting does not grant that consent. The object is absent for most first-time commenters. 
 
 ### Example
 
@@ -7290,7 +7298,7 @@ null (empty response body)
 
 Comment received event
 
-Fired when a new comment is received on a tracked post.  - Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. - X/Twitter does NOT fire this event. - Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook. The rest are poll-driven, so delivery is not instant. - TikTok needs an account connected through the TikTok for Business app. 
+A new comment arrived on a tracked post.  ### Platform notes  Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does not fire it. TikTok needs an account connected through the TikTok for Business app.  ### Delivery timing  Instagram, Facebook, Threads and TikTok arrive in real time from the platform&#39;s webhook. The rest are poll-driven, so delivery is not instant.  ### Live comments  On Instagram, &#x60;comment.isLive: true&#x60; marks a comment made during a live broadcast. The key is absent on every other comment.  ### Ads  &#x60;comment.ad&#x60; is present only on comments made on paid content, so &#x60;if (comment.ad)&#x60; filters ad-driven comments.  ### Ad fields  Instagram carries &#x60;ad.id&#x60; and &#x60;ad.title&#x60;. Facebook carries &#x60;ad.promotionStatus&#x60;: &#x60;active&#x60; for boosted organic posts, &#x60;ineligible&#x60; for dark post creatives.  ### Instagram author profile  Comments may carry &#x60;comment.author.instagramProfile&#x60; (&#x60;isFollower&#x60;, &#x60;isFollowing&#x60;, &#x60;followerCount&#x60;, &#x60;isVerified&#x60;). An absent object means unknown, never \&quot;not a follower\&quot;.  ### Why the profile is often absent  Meta reveals the follow relationship only for people who have messaged the account, and commenting does not grant that consent. The object is absent for most first-time commenters. 
 
 ### Example
 
@@ -7363,7 +7371,7 @@ ApiResponse<Void>
 
 Commerce order created event
 
-Fired when an order is placed on a connected store. The payload carries identifiers only; read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+An order was placed in the store.  ### Payload notes  &#x60;resource.status&#x60; is its normalized state at that moment. Read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fires once per Zernio account. 
 
 ### Example
 
@@ -7432,7 +7440,7 @@ null (empty response body)
 
 Commerce order created event
 
-Fired when an order is placed on a connected store. The payload carries identifiers only; read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+An order was placed in the store.  ### Payload notes  &#x60;resource.status&#x60; is its normalized state at that moment. Read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fires once per Zernio account. 
 
 ### Example
 
@@ -7505,7 +7513,7 @@ ApiResponse<Void>
 
 Commerce order refunded event
 
-Fired when a refund is issued on an order of a connected store. A commerce.order.updated usually follows for the same change. The payload carries identifiers only; read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+A refund was issued on an order.  ### Payload notes  &#x60;resource.id&#x60; is the order id, not the refund id. &#x60;resource.status&#x60; and &#x60;resource.platformStatus&#x60; are &#x60;null&#x60;. A &#x60;commerce.order.updated&#x60; usually follows for the same change. 
 
 ### Example
 
@@ -7574,7 +7582,7 @@ null (empty response body)
 
 Commerce order refunded event
 
-Fired when a refund is issued on an order of a connected store. A commerce.order.updated usually follows for the same change. The payload carries identifiers only; read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+A refund was issued on an order.  ### Payload notes  &#x60;resource.id&#x60; is the order id, not the refund id. &#x60;resource.status&#x60; and &#x60;resource.platformStatus&#x60; are &#x60;null&#x60;. A &#x60;commerce.order.updated&#x60; usually follows for the same change. 
 
 ### Example
 
@@ -7647,7 +7655,7 @@ ApiResponse<Void>
 
 Commerce order updated event
 
-Fired when an order on a connected store changes: payment, fulfilment, cancellation, edits, and refunds too. The payload carries identifiers only; read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+An order changed in the store, such as payment, fulfilment, cancellation or edits.  ### Payload notes  &#x60;resource.status&#x60; is the new state. Refunds also fire it. Fires once per Zernio account connected to the store. 
 
 ### Example
 
@@ -7716,7 +7724,7 @@ null (empty response body)
 
 Commerce order updated event
 
-Fired when an order on a connected store changes: payment, fulfilment, cancellation, edits, and refunds too. The payload carries identifiers only; read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+An order changed in the store, such as payment, fulfilment, cancellation or edits.  ### Payload notes  &#x60;resource.status&#x60; is the new state. Refunds also fire it. Fires once per Zernio account connected to the store. 
 
 ### Example
 
@@ -7789,7 +7797,7 @@ ApiResponse<Void>
 
 Commerce product created event
 
-Fired when a product is created on a connected store. The payload carries identifiers only; read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+A product was created in a connected Shopify store or WooCommerce site.  ### Payload notes  &#x60;resource.id&#x60; is the store&#39;s product id. Read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fires once per Zernio account connected to the store. 
 
 ### Example
 
@@ -7858,7 +7866,7 @@ null (empty response body)
 
 Commerce product created event
 
-Fired when a product is created on a connected store. The payload carries identifiers only; read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+A product was created in a connected Shopify store or WooCommerce site.  ### Payload notes  &#x60;resource.id&#x60; is the store&#39;s product id. Read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fires once per Zernio account connected to the store. 
 
 ### Example
 
@@ -7931,7 +7939,7 @@ ApiResponse<Void>
 
 Commerce product deleted event
 
-Fired when a product is deleted from a connected store. &#x60;status&#x60; and &#x60;platformStatus&#x60; are null. The payload carries identifiers only; read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+A product was deleted in the store.  ### Payload notes  &#x60;resource.status&#x60; and &#x60;resource.platformStatus&#x60; are &#x60;null&#x60;. Fires once per Zernio account connected to the store. 
 
 ### Example
 
@@ -8000,7 +8008,7 @@ null (empty response body)
 
 Commerce product deleted event
 
-Fired when a product is deleted from a connected store. &#x60;status&#x60; and &#x60;platformStatus&#x60; are null. The payload carries identifiers only; read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+A product was deleted in the store.  ### Payload notes  &#x60;resource.status&#x60; and &#x60;resource.platformStatus&#x60; are &#x60;null&#x60;. Fires once per Zernio account connected to the store. 
 
 ### Example
 
@@ -8073,7 +8081,7 @@ ApiResponse<Void>
 
 Commerce product updated event
 
-Fired when a product on a connected store changes: its fields, status, variants or prices. The payload carries identifiers only; read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+A product changed in the store, or WooCommerce restored it from the trash.  ### Payload notes  Fields, status, variants or prices changed; read the product for what. There is no restored event. Fires once per Zernio account connected to the store. 
 
 ### Example
 
@@ -8142,7 +8150,7 @@ null (empty response body)
 
 Commerce product updated event
 
-Fired when a product on a connected store changes: its fields, status, variants or prices. The payload carries identifiers only; read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+A product changed in the store, or WooCommerce restored it from the trash.  ### Payload notes  Fields, status, variants or prices changed; read the product for what. There is no restored event. Fires once per Zernio account connected to the store. 
 
 ### Example
 
@@ -8215,7 +8223,7 @@ ApiResponse<Void>
 
 Contact deleted
 
-The provider contact was deleted; its email channel is removed, the contact row stays when other channels remain.
+A contact was deleted in Google Contacts or Outlook.  ### Effect  Zernio removes its email channel for that account; the contact stays when other channels remain. It arrives up to a day after the change, from the daily sync. 
 
 ### Example
 
@@ -8284,7 +8292,7 @@ null (empty response body)
 
 Contact deleted
 
-The provider contact was deleted; its email channel is removed, the contact row stays when other channels remain.
+A contact was deleted in Google Contacts or Outlook.  ### Effect  Zernio removes its email channel for that account; the contact stays when other channels remain. It arrives up to a day after the change, from the daily sync. 
 
 ### Example
 
@@ -8357,7 +8365,7 @@ ApiResponse<Void>
 
 Contact field changed event
 
-Fired once per custom field whose value a write changed, with the previous and new value.
+A contact custom field changed value; &#x60;field&#x60; is the field slug.  ### When it fires  Once per custom field whose value a write changed. Writing the current value fires nothing.  ### Payload notes  &#x60;previousValue&#x60; is &#x60;null&#x60; when the field was not set. &#x60;value&#x60; is &#x60;null&#x60; when it was removed. 
 
 ### Example
 
@@ -8426,7 +8434,7 @@ null (empty response body)
 
 Contact field changed event
 
-Fired once per custom field whose value a write changed, with the previous and new value.
+A contact custom field changed value; &#x60;field&#x60; is the field slug.  ### When it fires  Once per custom field whose value a write changed. Writing the current value fires nothing.  ### Payload notes  &#x60;previousValue&#x60; is &#x60;null&#x60; when the field was not set. &#x60;value&#x60; is &#x60;null&#x60; when it was removed. 
 
 ### Example
 
@@ -8499,7 +8507,7 @@ ApiResponse<Void>
 
 Contact tag added event
 
-Fired once per tag a write actually added to a contact, whether the API, a workflow add_tag node or a comment-automation click made it.
+A tag was added to a contact by the API, a workflow &#x60;add_tag&#x60; node or a comment-automation click.  ### When it fires  Once per tag a write actually added. Re-adding a tag the contact already has fires nothing.  ### When it does not fire  Creating a contact with tags fires nothing. Only changes to an existing contact do. 
 
 ### Example
 
@@ -8568,7 +8576,7 @@ null (empty response body)
 
 Contact tag added event
 
-Fired once per tag a write actually added to a contact, whether the API, a workflow add_tag node or a comment-automation click made it.
+A tag was added to a contact by the API, a workflow &#x60;add_tag&#x60; node or a comment-automation click.  ### When it fires  Once per tag a write actually added. Re-adding a tag the contact already has fires nothing.  ### When it does not fire  Creating a contact with tags fires nothing. Only changes to an existing contact do. 
 
 ### Example
 
@@ -8641,7 +8649,7 @@ ApiResponse<Void>
 
 Contact tag removed event
 
-Fired once per tag a write actually removed from a contact.
+A tag was removed from a contact.  ### When it fires  Once per tag a write actually removed. 
 
 ### Example
 
@@ -8710,7 +8718,7 @@ null (empty response body)
 
 Contact tag removed event
 
-Fired once per tag a write actually removed from a contact.
+A tag was removed from a contact.  ### When it fires  Once per tag a write actually removed. 
 
 ### Example
 
@@ -8783,7 +8791,7 @@ ApiResponse<Void>
 
 Contact updated
 
-A provider contacts sync (Google Contacts, Outlook) or a WhatsApp coexistence address-book change created or changed a contact.
+A contact sync added or changed a contact; &#x60;contact.id&#x60; is the Zernio contact id.  ### When it fires  It fires from the daily sync of a Google Contacts or Outlook account, so up to a day after the change. It also fires when a WhatsApp coexistence address book adds or renames a contact. 
 
 ### Example
 
@@ -8852,7 +8860,7 @@ null (empty response body)
 
 Contact updated
 
-A provider contacts sync (Google Contacts, Outlook) or a WhatsApp coexistence address-book change created or changed a contact.
+A contact sync added or changed a contact; &#x60;contact.id&#x60; is the Zernio contact id.  ### When it fires  It fires from the daily sync of a Google Contacts or Outlook account, so up to a day after the change. It also fires when a WhatsApp coexistence address book adds or renames a contact. 
 
 ### Example
 
@@ -8925,7 +8933,7 @@ ApiResponse<Void>
 
 Conversation control changed event
 
-Fired on Meta&#39;s handover protocol (&#x60;messaging_handovers&#x60;), when control of a conversation thread changes.  WhatsApp: control moves between Meta Business Agent and your app, or the agent is first seen answering a thread. While &#x60;control.owner&#x60; is &#x60;ai_agent&#x60;:  - Inbound messages arrive on &#x60;message.received&#x60; with &#x60;metadata.standby: true&#x60;. - The agent&#39;s replies arrive on &#x60;message.sent&#x60; with &#x60;source: meta_business_agent&#x60;. - Sending any message takes control back.  Facebook and Instagram: another app passed you the thread (&#x60;owner: app&#x60;), or took or received it (&#x60;owner: other&#x60;, with &#x60;ownerAppId&#x60;). While you are not the owner:  - Inbound messages arrive with &#x60;metadata.standby: true&#x60;. - No automation runs. - Sends fail with &#x60;not_thread_owner&#x60;.  Change control with &#x60;POST /v1/inbox/conversations/{conversationId}/thread-control&#x60;. &#x60;take&#x60; and &#x60;request&#x60; answer 400 &#x60;platform_not_supported&#x60; on Instagram Login connections. 
+Control of a conversation moved under Meta&#39;s handover protocol (&#x60;messaging_handovers&#x60;).  ### Owner values  &#x60;control.owner&#x60; is &#x60;ai_agent&#x60; (Meta Business Agent, WhatsApp), &#x60;app&#x60; (you) or &#x60;other&#x60; (a WhatsApp partner app, or a receiver such as Page Inbox on Messenger and Instagram).  ### Control fields  &#x60;control.previousOwner&#x60; is &#x60;null&#x60; when no handover touched the thread. &#x60;control.ownerAppId&#x60; is the new owner&#39;s Meta app id when named (Page Inbox is &#x60;263902037430900&#x60;). &#x60;control.metadata&#x60; is the transferring app&#39;s note, verbatim.  ### WhatsApp  Meta Business Agent took the conversation, handed it to you, or another partner app took it. While &#x60;ai_agent&#x60; owns it, its replies arrive on &#x60;message.sent&#x60; with &#x60;source: \&quot;meta_business_agent\&quot;&#x60;.  ### Taking control on WhatsApp  Sending any message through the inbox takes control back. To hand it to the agent without sending, call &#x60;POST /v1/inbox/conversations/{conversationId}/thread-control&#x60; with &#x60;action: \&quot;release\&quot;&#x60;.  ### Facebook and Instagram  Another app on the Page passed the thread to you, or took or received it. While you are not the owner, sends answer &#x60;409&#x60; &#x60;not_thread_owner&#x60;.  ### Taking control on Facebook and Instagram  Call &#x60;POST /v1/inbox/conversations/{conversationId}/thread-control&#x60; with &#x60;action: \&quot;take\&quot;&#x60;, or &#x60;\&quot;request\&quot;&#x60; to ask the owner to pass it. Both answer 400 &#x60;platform_not_supported&#x60; on Instagram Login connections.  ### When it does not fire  A repeat report of the same owner fires nothing. A &#x60;request&#x60; changes nothing until the owner passes the thread.  ### Standby messages  While another app owns the conversation, inbound messages arrive on &#x60;message.received&#x60; with &#x60;metadata.standby: true&#x60;. 
 
 ### Example
 
@@ -8994,7 +9002,7 @@ null (empty response body)
 
 Conversation control changed event
 
-Fired on Meta&#39;s handover protocol (&#x60;messaging_handovers&#x60;), when control of a conversation thread changes.  WhatsApp: control moves between Meta Business Agent and your app, or the agent is first seen answering a thread. While &#x60;control.owner&#x60; is &#x60;ai_agent&#x60;:  - Inbound messages arrive on &#x60;message.received&#x60; with &#x60;metadata.standby: true&#x60;. - The agent&#39;s replies arrive on &#x60;message.sent&#x60; with &#x60;source: meta_business_agent&#x60;. - Sending any message takes control back.  Facebook and Instagram: another app passed you the thread (&#x60;owner: app&#x60;), or took or received it (&#x60;owner: other&#x60;, with &#x60;ownerAppId&#x60;). While you are not the owner:  - Inbound messages arrive with &#x60;metadata.standby: true&#x60;. - No automation runs. - Sends fail with &#x60;not_thread_owner&#x60;.  Change control with &#x60;POST /v1/inbox/conversations/{conversationId}/thread-control&#x60;. &#x60;take&#x60; and &#x60;request&#x60; answer 400 &#x60;platform_not_supported&#x60; on Instagram Login connections. 
+Control of a conversation moved under Meta&#39;s handover protocol (&#x60;messaging_handovers&#x60;).  ### Owner values  &#x60;control.owner&#x60; is &#x60;ai_agent&#x60; (Meta Business Agent, WhatsApp), &#x60;app&#x60; (you) or &#x60;other&#x60; (a WhatsApp partner app, or a receiver such as Page Inbox on Messenger and Instagram).  ### Control fields  &#x60;control.previousOwner&#x60; is &#x60;null&#x60; when no handover touched the thread. &#x60;control.ownerAppId&#x60; is the new owner&#39;s Meta app id when named (Page Inbox is &#x60;263902037430900&#x60;). &#x60;control.metadata&#x60; is the transferring app&#39;s note, verbatim.  ### WhatsApp  Meta Business Agent took the conversation, handed it to you, or another partner app took it. While &#x60;ai_agent&#x60; owns it, its replies arrive on &#x60;message.sent&#x60; with &#x60;source: \&quot;meta_business_agent\&quot;&#x60;.  ### Taking control on WhatsApp  Sending any message through the inbox takes control back. To hand it to the agent without sending, call &#x60;POST /v1/inbox/conversations/{conversationId}/thread-control&#x60; with &#x60;action: \&quot;release\&quot;&#x60;.  ### Facebook and Instagram  Another app on the Page passed the thread to you, or took or received it. While you are not the owner, sends answer &#x60;409&#x60; &#x60;not_thread_owner&#x60;.  ### Taking control on Facebook and Instagram  Call &#x60;POST /v1/inbox/conversations/{conversationId}/thread-control&#x60; with &#x60;action: \&quot;take\&quot;&#x60;, or &#x60;\&quot;request\&quot;&#x60; to ask the owner to pass it. Both answer 400 &#x60;platform_not_supported&#x60; on Instagram Login connections.  ### When it does not fire  A repeat report of the same owner fires nothing. A &#x60;request&#x60; changes nothing until the owner passes the thread.  ### Standby messages  While another app owns the conversation, inbound messages arrive on &#x60;message.received&#x60; with &#x60;metadata.standby: true&#x60;. 
 
 ### Example
 
@@ -9067,7 +9075,7 @@ ApiResponse<Void>
 
 Conversation started event
 
-Fired once when a new conversation begins between one of your connected accounts and a contact, in either direction. Works across every DM platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, X, Reddit, Bluesky, TikTok). Naturally deduped: a given conversation only fires this event the very first time it appears. 
+A new conversation began between a connected account and a contact, in either direction, on any DM platform.  ### When it fires  Once per conversation, the first time it appears. Covers Instagram, Messenger, WhatsApp, Telegram, X, Reddit, Bluesky, TikTok, SMS, RCS, iMessage, Slack and email.  ### When it does not fire  DM history replayed when an Instagram or Facebook account connects never fires it. 
 
 ### Example
 
@@ -9136,7 +9144,7 @@ null (empty response body)
 
 Conversation started event
 
-Fired once when a new conversation begins between one of your connected accounts and a contact, in either direction. Works across every DM platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, X, Reddit, Bluesky, TikTok). Naturally deduped: a given conversation only fires this event the very first time it appears. 
+A new conversation began between a connected account and a contact, in either direction, on any DM platform.  ### When it fires  Once per conversation, the first time it appears. Covers Instagram, Messenger, WhatsApp, Telegram, X, Reddit, Bluesky, TikTok, SMS, RCS, iMessage, Slack and email.  ### When it does not fire  DM history replayed when an Instagram or Facebook account connects never fires it. 
 
 ### Example
 
@@ -9209,7 +9217,7 @@ ApiResponse<Void>
 
 Creator campaign budget exhausted event
 
-Fired once when a campaign&#39;s earnings reach its budget.
+A campaign&#39;s earnings reached its budget.  ### When it fires  Nothing more accrues until budget is freed. It fires once per campaign. 
 
 ### Example
 
@@ -9278,7 +9286,7 @@ null (empty response body)
 
 Creator campaign budget exhausted event
 
-Fired once when a campaign&#39;s earnings reach its budget.
+A campaign&#39;s earnings reached its budget.  ### When it fires  Nothing more accrues until budget is freed. It fires once per campaign. 
 
 ### Example
 
@@ -9351,7 +9359,7 @@ ApiResponse<Void>
 
 Creator campaign closed event
 
-Fired once when a campaign closes; a pool campaign is split among participants at this moment.
+A campaign closed, either because you closed it or because &#x60;endsAt&#x60; passed.  ### When it fires  After &#x60;endsAt&#x60;, the campaign closes once every tracking window had its final read. A pool campaign is split among participants at this moment. 
 
 ### Example
 
@@ -9420,7 +9428,7 @@ null (empty response body)
 
 Creator campaign closed event
 
-Fired once when a campaign closes; a pool campaign is split among participants at this moment.
+A campaign closed, either because you closed it or because &#x60;endsAt&#x60; passed.  ### When it fires  After &#x60;endsAt&#x60;, the campaign closes once every tracking window had its final read. A pool campaign is split among participants at this moment. 
 
 ### Example
 
@@ -9493,7 +9501,7 @@ ApiResponse<Void>
 
 File created
 
-A file or folder appeared in a connected Drive or OneDrive (push, seconds after the change).
+A file the account can reach was created in Google Drive or OneDrive.  ### Platform notes  A folder counts as a file. The event is pushed seconds after the change. 
 
 ### Example
 
@@ -9562,7 +9570,7 @@ null (empty response body)
 
 File created
 
-A file or folder appeared in a connected Drive or OneDrive (push, seconds after the change).
+A file the account can reach was created in Google Drive or OneDrive.  ### Platform notes  A folder counts as a file. The event is pushed seconds after the change. 
 
 ### Example
 
@@ -9635,7 +9643,7 @@ ApiResponse<Void>
 
 File deleted
 
-The item was trashed or removed on the provider.
+A file the account could reach was deleted or moved to the trash. 
 
 ### Example
 
@@ -9704,7 +9712,7 @@ null (empty response body)
 
 File deleted
 
-The item was trashed or removed on the provider.
+A file the account could reach was deleted or moved to the trash. 
 
 ### Example
 
@@ -9777,7 +9785,7 @@ ApiResponse<Void>
 
 Files picked
 
-The user finished a hosted picker session (&#x60;POST /v1/files/picker-sessions&#x60;) and picked at least one file. The app can now open those files. Not sent on cancel.
+The user picked files in a picker session; &#x60;picker.files&#x60; lists each one&#39;s &#x60;id&#x60;, &#x60;name&#x60;, &#x60;mimeType&#x60; and &#x60;kind&#x60;.  ### When it fires  It fires when the user finishes a hosted picker session (&#x60;POST /v1/files/picker-sessions&#x60;) and picks at least one file. Not sent on cancel. The files are readable from then on. 
 
 ### Example
 
@@ -9846,7 +9854,7 @@ null (empty response body)
 
 Files picked
 
-The user finished a hosted picker session (&#x60;POST /v1/files/picker-sessions&#x60;) and picked at least one file. The app can now open those files. Not sent on cancel.
+The user picked files in a picker session; &#x60;picker.files&#x60; lists each one&#39;s &#x60;id&#x60;, &#x60;name&#x60;, &#x60;mimeType&#x60; and &#x60;kind&#x60;.  ### When it fires  It fires when the user finishes a hosted picker session (&#x60;POST /v1/files/picker-sessions&#x60;) and picks at least one file. Not sent on cancel. The files are readable from then on. 
 
 ### Example
 
@@ -9919,6 +9927,8 @@ ApiResponse<Void>
 
 File updated
 
+A file the account can reach was changed, renamed or moved. 
+
 ### Example
 
 ```java
@@ -9985,6 +9995,8 @@ null (empty response body)
 > ApiResponse<Void> onFileUpdated onFileUpdatedWithHttpInfo(webhookPayloadFile)
 
 File updated
+
+A file the account can reach was changed, renamed or moved. 
 
 ### Example
 
@@ -10057,7 +10069,7 @@ ApiResponse<Void>
 
 Lead received event
 
-Fired when a new lead is submitted against a Meta Lead Gen (Instant) Form and ingested via the Page &#x60;leadgen&#x60; webhook. &#x60;lead.fields&#x60; is the question-key to answer map; &#x60;lead.formId&#x60; / &#x60;lead.adId&#x60; give provenance. Requires the Ads add-on. 
+A new lead was submitted against a Meta Lead Gen (Instant) form and ingested via the Page &#x60;leadgen&#x60; webhook.  ### Payload notes  &#x60;lead.fields&#x60; maps question key to answer; multiple-choice values are the option key (for example &#x60;k1&#x60;), not the display label.  ### Provenance  &#x60;lead.formId&#x60;, &#x60;lead.adId&#x60; and &#x60;lead.campaignId&#x60; give provenance. &#x60;lead.adId&#x60; is null for organic or test leads.  ### Consents  &#x60;lead.consents&#x60; lists the answer to every custom disclaimer checkbox, for example &#x60;{ \&quot;checkboxKey\&quot;: \&quot;call_consent\&quot;, \&quot;isChecked\&quot;: true }&#x60;. Route call and SMS consent into your CRM from it. Empty when the form has no checkboxes.  ### Checkbox keys  When no key was set on the checkbox, Meta derives &#x60;checkboxKey&#x60; from its text, so match on the full key. &#x60;GET /v1/ads/leads&#x60; and &#x60;GET /v1/ads/lead-forms/{formId}/leads&#x60; return the same array.  ### Deduplication  Deduplicate on &#x60;lead.leadgenId&#x60; (Meta&#39;s lead id) or the event &#x60;id&#x60;.  ### Routing  &#x60;account.profileId&#x60; names the Zernio profile of the Facebook account that received the lead, for multi-tenant routing. Always present, &#x60;null&#x60; only when no profile is on record.  ### Requires ads enabled  Needs ads enabled on the team. Zernio asks for &#x60;leads_retrieval&#x60; at Facebook consent only then; without it Meta refuses the Page&#39;s &#x60;leadgen&#x60; subscription. Accounts connected earlier need a reconnect.  ### Lost subscription  A Page can lose its &#x60;leadgen&#x60; subscription while other events keep arriving. &#x60;leadgen: false&#x60; (with a &#x60;warning&#x60;) on the Page&#39;s webhook subscription means leads are not reaching Zernio; re-subscribe the Page. 
 
 ### Example
 
@@ -10126,7 +10138,7 @@ null (empty response body)
 
 Lead received event
 
-Fired when a new lead is submitted against a Meta Lead Gen (Instant) Form and ingested via the Page &#x60;leadgen&#x60; webhook. &#x60;lead.fields&#x60; is the question-key to answer map; &#x60;lead.formId&#x60; / &#x60;lead.adId&#x60; give provenance. Requires the Ads add-on. 
+A new lead was submitted against a Meta Lead Gen (Instant) form and ingested via the Page &#x60;leadgen&#x60; webhook.  ### Payload notes  &#x60;lead.fields&#x60; maps question key to answer; multiple-choice values are the option key (for example &#x60;k1&#x60;), not the display label.  ### Provenance  &#x60;lead.formId&#x60;, &#x60;lead.adId&#x60; and &#x60;lead.campaignId&#x60; give provenance. &#x60;lead.adId&#x60; is null for organic or test leads.  ### Consents  &#x60;lead.consents&#x60; lists the answer to every custom disclaimer checkbox, for example &#x60;{ \&quot;checkboxKey\&quot;: \&quot;call_consent\&quot;, \&quot;isChecked\&quot;: true }&#x60;. Route call and SMS consent into your CRM from it. Empty when the form has no checkboxes.  ### Checkbox keys  When no key was set on the checkbox, Meta derives &#x60;checkboxKey&#x60; from its text, so match on the full key. &#x60;GET /v1/ads/leads&#x60; and &#x60;GET /v1/ads/lead-forms/{formId}/leads&#x60; return the same array.  ### Deduplication  Deduplicate on &#x60;lead.leadgenId&#x60; (Meta&#39;s lead id) or the event &#x60;id&#x60;.  ### Routing  &#x60;account.profileId&#x60; names the Zernio profile of the Facebook account that received the lead, for multi-tenant routing. Always present, &#x60;null&#x60; only when no profile is on record.  ### Requires ads enabled  Needs ads enabled on the team. Zernio asks for &#x60;leads_retrieval&#x60; at Facebook consent only then; without it Meta refuses the Page&#39;s &#x60;leadgen&#x60; subscription. Accounts connected earlier need a reconnect.  ### Lost subscription  A Page can lose its &#x60;leadgen&#x60; subscription while other events keep arriving. &#x60;leadgen: false&#x60; (with a &#x60;warning&#x60;) on the Page&#39;s webhook subscription means leads are not reaching Zernio; re-subscribe the Page. 
 
 ### Example
 
@@ -10199,7 +10211,7 @@ ApiResponse<Void>
 
 Message deleted event
 
-Fired when a sender deletes (unsends) a message.  - Instagram: incoming unsend. - WhatsApp, outgoing: a message the business deleted (via the Cloud API, or from the WhatsApp Business app on a Coexistence number). - WhatsApp, incoming: a message the customer deleted.  Read &#x60;message.direction&#x60; to tell the two directions apart.  The payload retains the pre-delete text and attachments so API consumers can access the original content for moderation or compliance. The Zernio dashboard UI hides it. 
+A sender deleted (unsent) a message on Instagram or WhatsApp.  ### Platform notes  Instagram reports incoming unsends. WhatsApp reports both directions, including business deletions through the Cloud API or a Coexistence app. &#x60;message.direction&#x60; tells them apart.  ### Payload notes  The payload keeps the pre-delete &#x60;text&#x60; and &#x60;attachments&#x60; for moderation, compliance or archival. The Zernio dashboard does not show this content. 
 
 ### Example
 
@@ -10268,7 +10280,7 @@ null (empty response body)
 
 Message deleted event
 
-Fired when a sender deletes (unsends) a message.  - Instagram: incoming unsend. - WhatsApp, outgoing: a message the business deleted (via the Cloud API, or from the WhatsApp Business app on a Coexistence number). - WhatsApp, incoming: a message the customer deleted.  Read &#x60;message.direction&#x60; to tell the two directions apart.  The payload retains the pre-delete text and attachments so API consumers can access the original content for moderation or compliance. The Zernio dashboard UI hides it. 
+A sender deleted (unsent) a message on Instagram or WhatsApp.  ### Platform notes  Instagram reports incoming unsends. WhatsApp reports both directions, including business deletions through the Cloud API or a Coexistence app. &#x60;message.direction&#x60; tells them apart.  ### Payload notes  The payload keeps the pre-delete &#x60;text&#x60; and &#x60;attachments&#x60; for moderation, compliance or archival. The Zernio dashboard does not show this content. 
 
 ### Example
 
@@ -10341,7 +10353,7 @@ ApiResponse<Void>
 
 Message delivered event
 
-Fired when an outgoing message is delivered to the recipient. Supported on WhatsApp and Facebook Messenger. On WhatsApp, &#x60;pricing&#x60; and &#x60;billingConversation&#x60; carry Meta&#39;s billing context for the message (also on &#x60;message.sent&#x60;, &#x60;message.read&#x60; and &#x60;message.failed&#x60;). 
+An outgoing message was delivered to the recipient on WhatsApp, Facebook Messenger, SMS, RCS or iMessage.  ### Platform notes  On WhatsApp, &#x60;pricing&#x60; and &#x60;billingConversation&#x60; carry Meta&#39;s billing context for the message. 
 
 ### Example
 
@@ -10410,7 +10422,7 @@ null (empty response body)
 
 Message delivered event
 
-Fired when an outgoing message is delivered to the recipient. Supported on WhatsApp and Facebook Messenger. On WhatsApp, &#x60;pricing&#x60; and &#x60;billingConversation&#x60; carry Meta&#39;s billing context for the message (also on &#x60;message.sent&#x60;, &#x60;message.read&#x60; and &#x60;message.failed&#x60;). 
+An outgoing message was delivered to the recipient on WhatsApp, Facebook Messenger, SMS, RCS or iMessage.  ### Platform notes  On WhatsApp, &#x60;pricing&#x60; and &#x60;billingConversation&#x60; carry Meta&#39;s billing context for the message. 
 
 ### Example
 
@@ -10483,7 +10495,7 @@ ApiResponse<Void>
 
 Message edited event
 
-Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, Telegram, and WhatsApp. The payload includes the full editHistory so consumers can show prior versions. 
+A sender edited a previously sent message on Instagram, Facebook Messenger, Telegram or WhatsApp.  ### Payload notes  &#x60;editHistory&#x60; holds every prior version, oldest first. &#x60;message.text&#x60; is the latest version. 
 
 ### Example
 
@@ -10552,7 +10564,7 @@ null (empty response body)
 
 Message edited event
 
-Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, Telegram, and WhatsApp. The payload includes the full editHistory so consumers can show prior versions. 
+A sender edited a previously sent message on Instagram, Facebook Messenger, Telegram or WhatsApp.  ### Payload notes  &#x60;editHistory&#x60; holds every prior version, oldest first. &#x60;message.text&#x60; is the latest version. 
 
 ### Example
 
@@ -10625,7 +10637,7 @@ ApiResponse<Void>
 
 Message delivery failed event
 
-Fired when an outgoing message fails to deliver. Currently only emitted for WhatsApp (other platforms don&#39;t expose per-message failure via webhook). The payload error object contains code, title, and message from the platform. 
+An outgoing message failed to deliver on WhatsApp, SMS, RCS or iMessage.  ### Payload notes  &#x60;error&#x60; carries &#x60;code&#x60;, &#x60;title&#x60; and &#x60;message&#x60; from the platform, for example &#x60;131026&#x60; for an unreachable WhatsApp recipient. On SMS it carries the carrier&#39;s error code. 
 
 ### Example
 
@@ -10694,7 +10706,7 @@ null (empty response body)
 
 Message delivery failed event
 
-Fired when an outgoing message fails to deliver. Currently only emitted for WhatsApp (other platforms don&#39;t expose per-message failure via webhook). The payload error object contains code, title, and message from the platform. 
+An outgoing message failed to deliver on WhatsApp, SMS, RCS or iMessage.  ### Payload notes  &#x60;error&#x60; carries &#x60;code&#x60;, &#x60;title&#x60; and &#x60;message&#x60; from the platform, for example &#x60;131026&#x60; for an unreachable WhatsApp recipient. On SMS it carries the carrier&#39;s error code. 
 
 ### Example
 
@@ -10767,7 +10779,7 @@ ApiResponse<Void>
 
 Message played event
 
-Fires the first time the recipient plays a voice message you sent on WhatsApp.
+A WhatsApp recipient played a voice message you sent, reported the first time they play it. 
 
 ### Example
 
@@ -10836,7 +10848,7 @@ null (empty response body)
 
 Message played event
 
-Fires the first time the recipient plays a voice message you sent on WhatsApp.
+A WhatsApp recipient played a voice message you sent, reported the first time they play it. 
 
 ### Example
 
@@ -10909,7 +10921,7 @@ ApiResponse<Void>
 
 Message read event
 
-Fired when an outgoing message is read by the recipient. Supported on WhatsApp, Facebook Messenger, Instagram, and RCS. 
+An outgoing message was read by the recipient on WhatsApp, Facebook Messenger, Instagram or RCS. 
 
 ### Example
 
@@ -10978,7 +10990,7 @@ null (empty response body)
 
 Message read event
 
-Fired when an outgoing message is read by the recipient. Supported on WhatsApp, Facebook Messenger, Instagram, and RCS. 
+An outgoing message was read by the recipient on WhatsApp, Facebook Messenger, Instagram or RCS. 
 
 ### Example
 
@@ -11051,7 +11063,7 @@ ApiResponse<Void>
 
 Message received event
 
-Fired when a new inbox message is received.
+A new message arrived in the inbox; &#x60;message.text&#x60;, &#x60;message.attachments[]&#x60; and &#x60;message.sender&#x60; describe it.  ### Standby  While another app owns the conversation it carries &#x60;metadata.standby: true&#x60;. Zernio runs no workflow or keyword automation on it. A bot must skip standby messages, or on WhatsApp it takes the conversation from the agent.  ### Interactive replies  Button and list taps, flow responses and orders arrive under &#x60;metadata&#x60; (&#x60;interactiveType&#x60;, &#x60;interactiveId&#x60;, &#x60;flowResponseData&#x60;, &#x60;order&#x60;). Only a referral that arrives without a message becomes &#x60;referral.received&#x60;.  ### Platform notes  New email from Google and Microsoft mailboxes arrives as this event. 
 
 ### Example
 
@@ -11120,7 +11132,7 @@ null (empty response body)
 
 Message received event
 
-Fired when a new inbox message is received.
+A new message arrived in the inbox; &#x60;message.text&#x60;, &#x60;message.attachments[]&#x60; and &#x60;message.sender&#x60; describe it.  ### Standby  While another app owns the conversation it carries &#x60;metadata.standby: true&#x60;. Zernio runs no workflow or keyword automation on it. A bot must skip standby messages, or on WhatsApp it takes the conversation from the agent.  ### Interactive replies  Button and list taps, flow responses and orders arrive under &#x60;metadata&#x60; (&#x60;interactiveType&#x60;, &#x60;interactiveId&#x60;, &#x60;flowResponseData&#x60;, &#x60;order&#x60;). Only a referral that arrives without a message becomes &#x60;referral.received&#x60;.  ### Platform notes  New email from Google and Microsoft mailboxes arrives as this event. 
 
 ### Example
 
@@ -11193,7 +11205,7 @@ ApiResponse<Void>
 
 Message sent event
 
-Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.  Sends that carry platform-specific context deliver it under &#x60;metadata&#x60;. A quote-reply sent through the API arrives with &#x60;metadata.quotedMessageId&#x60;, so mirroring CRMs can thread it without a lookup.  Which surfaces carry that reference is documented on &#x60;WebhookPayloadMessageSent.metadata.quotedMessageId&#x60;. A quote-reply sent from the WhatsApp Business or Instagram app is not one of them. 
+A message was sent through the API, the dashboard, or the WhatsApp Business app on Coexistence numbers.  ### Sender  &#x60;message.sentVia&#x60; is one of &#x60;human&#x60;, &#x60;api&#x60;, &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60; or &#x60;bulk-api&#x60;. It is &#x60;null&#x60; for sends from the platform&#39;s own app and for older messages; treat &#x60;null&#x60; as unknown, never as human.  ### Attribution keys  &#x60;automationId&#x60;, &#x60;workflowId&#x60;, &#x60;executionId&#x60;, &#x60;broadcastId&#x60; and &#x60;sequenceId&#x60; are always present. Each is &#x60;null&#x60; unless that kind of sender produced the message.  ### Quote replies  A quote-reply sent through the API carries &#x60;metadata.quotedMessageId&#x60;. One sent from the WhatsApp Business or Instagram app does not.  ### Platform notes  On Instagram and Facebook the attribution can be missing when Meta&#39;s echo of a send reaches Zernio before the send is recorded. On WhatsApp, Meta Business Agent replies carry &#x60;source: \&quot;meta_business_agent\&quot;&#x60;. 
 
 ### Example
 
@@ -11262,7 +11274,7 @@ null (empty response body)
 
 Message sent event
 
-Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.  Sends that carry platform-specific context deliver it under &#x60;metadata&#x60;. A quote-reply sent through the API arrives with &#x60;metadata.quotedMessageId&#x60;, so mirroring CRMs can thread it without a lookup.  Which surfaces carry that reference is documented on &#x60;WebhookPayloadMessageSent.metadata.quotedMessageId&#x60;. A quote-reply sent from the WhatsApp Business or Instagram app is not one of them. 
+A message was sent through the API, the dashboard, or the WhatsApp Business app on Coexistence numbers.  ### Sender  &#x60;message.sentVia&#x60; is one of &#x60;human&#x60;, &#x60;api&#x60;, &#x60;broadcast&#x60;, &#x60;sequence&#x60;, &#x60;workflow&#x60;, &#x60;comment_automation&#x60; or &#x60;bulk-api&#x60;. It is &#x60;null&#x60; for sends from the platform&#39;s own app and for older messages; treat &#x60;null&#x60; as unknown, never as human.  ### Attribution keys  &#x60;automationId&#x60;, &#x60;workflowId&#x60;, &#x60;executionId&#x60;, &#x60;broadcastId&#x60; and &#x60;sequenceId&#x60; are always present. Each is &#x60;null&#x60; unless that kind of sender produced the message.  ### Quote replies  A quote-reply sent through the API carries &#x60;metadata.quotedMessageId&#x60;. One sent from the WhatsApp Business or Instagram app does not.  ### Platform notes  On Instagram and Facebook the attribution can be missing when Meta&#39;s echo of a send reaches Zernio before the send is recorded. On WhatsApp, Meta Business Agent replies carry &#x60;source: \&quot;meta_business_agent\&quot;&#x60;. 
 
 ### Example
 
@@ -11335,7 +11347,7 @@ ApiResponse<Void>
 
 Phone-number stock available event
 
-Fired by the stock sweep (every 6h) the first time a country you watch via POST /v1/phone-numbers/stock-watches has deliverable numbers again. The watch is consumed, so the event fires once per watch; the stock counts are a snapshot and numbers are sold first come, first served. Buy with POST /v1/phone-numbers/purchase. 
+A country you watch has deliverable phone numbers again; fires once per watch.  ### When it fires  Fired by the 6-hourly stock sweep, before you own a number in that country. The watch (&#x60;POST /v1/phone-numbers/stock-watches&#x60;) is then consumed.  ### Payload notes  &#x60;stock.country&#x60; is the watched country. &#x60;stock.types[]&#x60; lists each number type in stock with its &#x60;availableCount&#x60; at sweep time. Numbers are first come, first served; buy with &#x60;POST /v1/phone-numbers/purchase&#x60;. 
 
 ### Example
 
@@ -11404,7 +11416,7 @@ null (empty response body)
 
 Phone-number stock available event
 
-Fired by the stock sweep (every 6h) the first time a country you watch via POST /v1/phone-numbers/stock-watches has deliverable numbers again. The watch is consumed, so the event fires once per watch; the stock counts are a snapshot and numbers are sold first come, first served. Buy with POST /v1/phone-numbers/purchase. 
+A country you watch has deliverable phone numbers again; fires once per watch.  ### When it fires  Fired by the 6-hourly stock sweep, before you own a number in that country. The watch (&#x60;POST /v1/phone-numbers/stock-watches&#x60;) is then consumed.  ### Payload notes  &#x60;stock.country&#x60; is the watched country. &#x60;stock.types[]&#x60; lists each number type in stock with its &#x60;availableCount&#x60; at sweep time. Numbers are first come, first served; buy with &#x60;POST /v1/phone-numbers/purchase&#x60;. 
 
 ### Example
 
@@ -11477,7 +11489,7 @@ ApiResponse<Void>
 
 Post authenticity changed event
 
-Fired when a tracked post&#39;s authenticity score crosses 40 in either direction. Carries the new and previous score, confidence and reasons. A first score never fires it. 
+A tracked post&#39;s authenticity score crossed 40, in either direction.  ### When it fires  Only while the tracking window is open. A post&#39;s first score never fires it.  ### Payload notes  Carries &#x60;score&#x60;, &#x60;previousScore&#x60;, &#x60;confidence&#x60; and &#x60;reasons&#x60;. 
 
 ### Example
 
@@ -11546,7 +11558,7 @@ null (empty response body)
 
 Post authenticity changed event
 
-Fired when a tracked post&#39;s authenticity score crosses 40 in either direction. Carries the new and previous score, confidence and reasons. A first score never fires it. 
+A tracked post&#39;s authenticity score crossed 40, in either direction.  ### When it fires  Only while the tracking window is open. A post&#39;s first score never fires it.  ### Payload notes  Carries &#x60;score&#x60;, &#x60;previousScore&#x60;, &#x60;confidence&#x60; and &#x60;reasons&#x60;. 
 
 ### Example
 
@@ -11619,7 +11631,7 @@ ApiResponse<Void>
 
 Post cancelled event
 
-Fired when a scheduled post is cancelled because its account was disconnected and nothing published. Not sent when a post is deleted.
+A scheduled post was cancelled because its account was disconnected, and nothing published.  ### When it fires  A multi-platform post fires it only once every platform entry is cancelled. If a platform already published, the rollup is &#x60;post.partial&#x60; instead.  ### When it does not fire  &#x60;DELETE /v1/posts/{postId}&#x60; removes the post without sending this event. 
 
 ### Example
 
@@ -11688,7 +11700,7 @@ null (empty response body)
 
 Post cancelled event
 
-Fired when a scheduled post is cancelled because its account was disconnected and nothing published. Not sent when a post is deleted.
+A scheduled post was cancelled because its account was disconnected, and nothing published.  ### When it fires  A multi-platform post fires it only once every platform entry is cancelled. If a platform already published, the rollup is &#x60;post.partial&#x60; instead.  ### When it does not fire  &#x60;DELETE /v1/posts/{postId}&#x60; removes the post without sending this event. 
 
 ### Example
 
@@ -11761,7 +11773,7 @@ ApiResponse<Void>
 
 External post created event
 
-Fired when Zernio&#39;s background sync detects a natively-authored post (created outside Zernio, e.g. a Google Business Profile localPost made in the Google UI) for the first time. Poll-driven (~hourly), not real-time. &#x60;post.source&#x60; is always \&quot;external\&quot;. 
+A post authored natively on the platform, outside Zernio, was detected for the first time.  ### When it fires  Detected by a background sync roughly hourly, not in real time. Example: a Google Business Profile post created in the Google interface.  ### Payload notes  &#x60;post.source&#x60; is always &#x60;\&quot;external\&quot;&#x60; and &#x60;post.id&#x60; is the platform-native post id.  ### First sync backfill  On a freshly connected account, every existing native post fires it once. Treat it as an idempotent upsert keyed on &#x60;post.id&#x60;. 
 
 ### Example
 
@@ -11830,7 +11842,7 @@ null (empty response body)
 
 External post created event
 
-Fired when Zernio&#39;s background sync detects a natively-authored post (created outside Zernio, e.g. a Google Business Profile localPost made in the Google UI) for the first time. Poll-driven (~hourly), not real-time. &#x60;post.source&#x60; is always \&quot;external\&quot;. 
+A post authored natively on the platform, outside Zernio, was detected for the first time.  ### When it fires  Detected by a background sync roughly hourly, not in real time. Example: a Google Business Profile post created in the Google interface.  ### Payload notes  &#x60;post.source&#x60; is always &#x60;\&quot;external\&quot;&#x60; and &#x60;post.id&#x60; is the platform-native post id.  ### First sync backfill  On a freshly connected account, every existing native post fires it once. Treat it as an idempotent upsert keyed on &#x60;post.id&#x60;. 
 
 ### Example
 
@@ -11903,7 +11915,7 @@ ApiResponse<Void>
 
 External post deleted event
 
-Fired when a tracked native post is detected as removed from the platform.  - &#x60;post.deletedAt&#x60; carries the detection time. - Coverage is bounded to the most recent posts the platform listing returns. - Detection diffs against the posts a prior sync already indexed. An account with no indexed post can never emit this event, no matter how the subscription is configured. 
+A tracked native post was removed from the platform.  ### Payload notes  &#x60;post.deletedAt&#x60; is the detection time.  ### Detection limits  Coverage is bounded to the most recent posts the platform listing returns, so very old deletions may go undetected.  ### When it does not fire  Detection diffs against posts a prior sync already indexed. An account with no indexed post never emits it. 
 
 ### Example
 
@@ -11972,7 +11984,7 @@ null (empty response body)
 
 External post deleted event
 
-Fired when a tracked native post is detected as removed from the platform.  - &#x60;post.deletedAt&#x60; carries the detection time. - Coverage is bounded to the most recent posts the platform listing returns. - Detection diffs against the posts a prior sync already indexed. An account with no indexed post can never emit this event, no matter how the subscription is configured. 
+A tracked native post was removed from the platform.  ### Payload notes  &#x60;post.deletedAt&#x60; is the detection time.  ### Detection limits  Coverage is bounded to the most recent posts the platform listing returns, so very old deletions may go undetected.  ### When it does not fire  Detection diffs against posts a prior sync already indexed. An account with no indexed post never emits it. 
 
 ### Example
 
@@ -12045,7 +12057,7 @@ ApiResponse<Void>
 
 External post updated event
 
-Fired when a tracked native post&#39;s text or media changed on the platform. Detected by comparing text/media structure and, where available, the platform&#39;s own edit timestamp; a media-URL-only refresh does not fire this. 
+A tracked native post&#39;s text or media changed on the platform.  ### How edits are detected  Zernio compares text and media structure and, where available, the platform&#39;s own edit timestamp. A media-URL-only refresh (rotated CDN URLs) does not fire it. 
 
 ### Example
 
@@ -12114,7 +12126,7 @@ null (empty response body)
 
 External post updated event
 
-Fired when a tracked native post&#39;s text or media changed on the platform. Detected by comparing text/media structure and, where available, the platform&#39;s own edit timestamp; a media-URL-only refresh does not fire this. 
+A tracked native post&#39;s text or media changed on the platform.  ### How edits are detected  Zernio compares text and media structure and, where available, the platform&#39;s own edit timestamp. A media-URL-only refresh (rotated CDN URLs) does not fire it. 
 
 ### Example
 
@@ -12187,7 +12199,7 @@ ApiResponse<Void>
 
 Post failed event
 
-Fired when a post fails to publish on all target platforms.
+A post failed on every target platform.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  ### Payload notes  Each &#x60;platforms[]&#x60; entry carries &#x60;error&#x60;, &#x60;errorCategory&#x60; and &#x60;errorSource&#x60;, the same taxonomy as &#x60;platforms[]&#x60; on Get post. Branch on &#x60;errorCategory&#x60;, not on the message text. 
 
 ### Example
 
@@ -12256,7 +12268,7 @@ null (empty response body)
 
 Post failed event
 
-Fired when a post fails to publish on all target platforms.
+A post failed on every target platform.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  ### Payload notes  Each &#x60;platforms[]&#x60; entry carries &#x60;error&#x60;, &#x60;errorCategory&#x60; and &#x60;errorSource&#x60;, the same taxonomy as &#x60;platforms[]&#x60; on Get post. Branch on &#x60;errorCategory&#x60;, not on the message text. 
 
 ### Example
 
@@ -12329,7 +12341,7 @@ ApiResponse<Void>
 
 Post partial event
 
-Fired when a post publishes on some platforms and fails on others.
+A post published on some platforms and failed on others.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  ### Payload notes  Read &#x60;platforms[].status&#x60; to tell them apart. Failed entries carry &#x60;error&#x60;, &#x60;errorCategory&#x60; and &#x60;errorSource&#x60;. 
 
 ### Example
 
@@ -12398,7 +12410,7 @@ null (empty response body)
 
 Post partial event
 
-Fired when a post publishes on some platforms and fails on others.
+A post published on some platforms and failed on others.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  ### Payload notes  Read &#x60;platforms[].status&#x60; to tell them apart. Failed entries carry &#x60;error&#x60;, &#x60;errorCategory&#x60; and &#x60;errorSource&#x60;. 
 
 ### Example
 
@@ -12471,7 +12483,7 @@ ApiResponse<Void>
 
 Post platform deleted event
 
-Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively).  - Detection is poll-driven (~hourly), not real-time, and fires once per platform target. - &#x60;platform.deletedAt&#x60; carries the detection time. - Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. - Coverage is bounded to the posts the platform listing returns. - Detection diffs against the posts a prior sync already indexed. An account with no indexed post can never emit this event, no matter how the subscription is configured. 
+A published platform target was deleted on the platform.  ### When it fires  Detected by a background sync roughly hourly, once per platform target. Platforms push no deletion notice, so it can trail the rollup by days.  ### Payload notes  &#x60;platform.status&#x60; is &#x60;deleted&#x60;. &#x60;platform.deletedAt&#x60; is the detection time, not the moment of deletion.  ### Detection limits  Detection is listing-based: coverage is bounded to the posts the listing returns, and rare false positives happen. The event is not retracted when the post reappears. Re-check before deleting.  ### When it does not fire  Detection diffs against posts a prior sync already indexed. An account with no indexed post never emits it. 
 
 ### Example
 
@@ -12540,7 +12552,7 @@ null (empty response body)
 
 Post platform deleted event
 
-Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively).  - Detection is poll-driven (~hourly), not real-time, and fires once per platform target. - &#x60;platform.deletedAt&#x60; carries the detection time. - Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. - Coverage is bounded to the posts the platform listing returns. - Detection diffs against the posts a prior sync already indexed. An account with no indexed post can never emit this event, no matter how the subscription is configured. 
+A published platform target was deleted on the platform.  ### When it fires  Detected by a background sync roughly hourly, once per platform target. Platforms push no deletion notice, so it can trail the rollup by days.  ### Payload notes  &#x60;platform.status&#x60; is &#x60;deleted&#x60;. &#x60;platform.deletedAt&#x60; is the detection time, not the moment of deletion.  ### Detection limits  Detection is listing-based: coverage is bounded to the posts the listing returns, and rare false positives happen. The event is not retracted when the post reappears. Re-check before deleting.  ### When it does not fire  Detection diffs against posts a prior sync already indexed. An account with no indexed post never emits it. 
 
 ### Example
 
@@ -12613,7 +12625,7 @@ ApiResponse<Void>
 
 Post platform failed event
 
-Fired once per platform target inside a post when that platform fails permanently.  - Temporary/retryable failures do NOT fire this event, so retry loops stay quiet. - The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately, AFTER all platforms have terminated. - It can fire for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later finds the publish never actually completed. 
+One platform target failed permanently.  ### When it fires  Only on permanent failure; retryable errors stay silent. The rollup (&#x60;post.failed&#x60; or &#x60;post.partial&#x60;) fires separately once every platform ends.  ### After a publish  It can fire for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation finds the publish never completed.  ### Payload notes  &#x60;platform.error&#x60; carries the platform&#39;s message. &#x60;platform.errorCategory&#x60; and &#x60;platform.errorSource&#x60; classify it, so a reconnect (&#x60;auth_expired&#x60;) separates from a content fix (&#x60;user_content&#x60;). 
 
 ### Example
 
@@ -12682,7 +12694,7 @@ null (empty response body)
 
 Post platform failed event
 
-Fired once per platform target inside a post when that platform fails permanently.  - Temporary/retryable failures do NOT fire this event, so retry loops stay quiet. - The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately, AFTER all platforms have terminated. - It can fire for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later finds the publish never actually completed. 
+One platform target failed permanently.  ### When it fires  Only on permanent failure; retryable errors stay silent. The rollup (&#x60;post.failed&#x60; or &#x60;post.partial&#x60;) fires separately once every platform ends.  ### After a publish  It can fire for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation finds the publish never completed.  ### Payload notes  &#x60;platform.error&#x60; carries the platform&#39;s message. &#x60;platform.errorCategory&#x60; and &#x60;platform.errorSource&#x60; classify it, so a reconnect (&#x60;auth_expired&#x60;) separates from a content fix (&#x60;user_content&#x60;). 
 
 ### Example
 
@@ -12755,7 +12767,7 @@ ApiResponse<Void>
 
 Post platform published event
 
-Fired once per platform target inside a post, as soon as that platform finishes publishing successfully.  It does NOT wait for the post-level rollup, so incremental UIs get notified immediately, even while other platforms on the same post are still processing.  - The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately, AFTER all platforms have terminated. - If a target later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published), &#x60;post.platform.failed&#x60; fires for the same target afterward. 
+One platform target finished publishing, without waiting for the other targets.  ### When it fires  Once per platform target, as soon as it finishes. A cross-post to 2 accounts on the same platform produces 2 events. Use &#x60;post.published&#x60; for the post-level rollup.  ### Payload notes  &#x60;platform&#x60; carries the platform post id and URL. &#x60;account&#x60; identifies the connected account.  ### Later reconciliation  If a target later fails background reconciliation, &#x60;post.platform.failed&#x60; fires for the same target afterward. 
 
 ### Example
 
@@ -12824,7 +12836,7 @@ null (empty response body)
 
 Post platform published event
 
-Fired once per platform target inside a post, as soon as that platform finishes publishing successfully.  It does NOT wait for the post-level rollup, so incremental UIs get notified immediately, even while other platforms on the same post are still processing.  - The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately, AFTER all platforms have terminated. - If a target later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published), &#x60;post.platform.failed&#x60; fires for the same target afterward. 
+One platform target finished publishing, without waiting for the other targets.  ### When it fires  Once per platform target, as soon as it finishes. A cross-post to 2 accounts on the same platform produces 2 events. Use &#x60;post.published&#x60; for the post-level rollup.  ### Payload notes  &#x60;platform&#x60; carries the platform post id and URL. &#x60;account&#x60; identifies the connected account.  ### Later reconciliation  If a target later fails background reconciliation, &#x60;post.platform.failed&#x60; fires for the same target afterward. 
 
 ### Example
 
@@ -12897,7 +12909,7 @@ ApiResponse<Void>
 
 Post published event
 
-Fired when a post is successfully published.
+Every platform target of a post published.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  ### Payload notes  Each &#x60;platforms[]&#x60; entry carries the &#x60;platformPostId&#x60; and &#x60;publishedUrl&#x60;. 
 
 ### Example
 
@@ -12966,7 +12978,7 @@ null (empty response body)
 
 Post published event
 
-Fired when a post is successfully published.
+Every platform target of a post published.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  ### Payload notes  Each &#x60;platforms[]&#x60; entry carries the &#x60;platformPostId&#x60; and &#x60;publishedUrl&#x60;. 
 
 ### Example
 
@@ -13039,7 +13051,7 @@ ApiResponse<Void>
 
 Post recycled event
 
-Fired when a post is recycled (cloned and re-scheduled for publishing). The new clone also fires a post.scheduled event.
+A recycling schedule cloned a published post for republishing.  ### Payload notes  &#x60;post.id&#x60; is the new clone&#39;s id. The clone emits its own &#x60;post.scheduled&#x60;. 
 
 ### Example
 
@@ -13108,7 +13120,7 @@ null (empty response body)
 
 Post recycled event
 
-Fired when a post is recycled (cloned and re-scheduled for publishing). The new clone also fires a post.scheduled event.
+A recycling schedule cloned a published post for republishing.  ### Payload notes  &#x60;post.id&#x60; is the new clone&#39;s id. The clone emits its own &#x60;post.scheduled&#x60;. 
 
 ### Example
 
@@ -13181,7 +13193,7 @@ ApiResponse<Void>
 
 Post scheduled event
 
-Fired whenever a post enters the scheduled state: created with a schedule, added to a queue, a draft promoted to scheduled or queued, a failed or partial post retried, or a recycled clone created. Not fired when an already-scheduled post is edited or rescheduled.
+A post entered the scheduled state.  ### When it fires  Created with a schedule (with &#x60;publishNow&#x60;, accepted and queued), promoted from draft, added to a queue, retried after failing, or created as a recycled clone.  ### Approval and repeats  A post saved with &#x60;requiresApproval: true&#x60; fires it on approval, not at creation. One post can emit it more than once.  ### When it does not fire  Editing or moving an already-scheduled post to another time does not fire it. 
 
 ### Example
 
@@ -13250,7 +13262,7 @@ null (empty response body)
 
 Post scheduled event
 
-Fired whenever a post enters the scheduled state: created with a schedule, added to a queue, a draft promoted to scheduled or queued, a failed or partial post retried, or a recycled clone created. Not fired when an already-scheduled post is edited or rescheduled.
+A post entered the scheduled state.  ### When it fires  Created with a schedule (with &#x60;publishNow&#x60;, accepted and queued), promoted from draft, added to a queue, retried after failing, or created as a recycled clone.  ### Approval and repeats  A post saved with &#x60;requiresApproval: true&#x60; fires it on approval, not at creation. One post can emit it more than once.  ### When it does not fire  Editing or moving an already-scheduled post to another time does not fire it. 
 
 ### Example
 
@@ -13323,7 +13335,7 @@ ApiResponse<Void>
 
 TikTok post URL resolved event
 
-Fired when an already-published TikTok platform entry gets its public URL backfilled.  TikTok exposes the numeric video id asynchronously (often minutes after PUBLISH_COMPLETE), so the terminal events can carry an empty &#x60;publishedUrl&#x60; for TikTok. This event delivers &#x60;platform.publishedUrl&#x60; and the resolved &#x60;platform.platformPostId&#x60; once available.  - Fires at most once per platform target. - Never fires for private posts (no public URL exists). - For a draft, fires when the creator posts the draft publicly from the TikTok app. A draft the creator never posts never fires it. - The payload shape is identical to &#x60;post.platform.published&#x60;. 
+A published TikTok post&#39;s public URL became available.  ### When it fires  TikTok exposes the video id asynchronously, often minutes after upload, so &#x60;post.published&#x60; can carry an empty &#x60;publishedUrl&#x60;. Fires at most once per platform target. For a draft, it fires when the creator posts the draft publicly from the TikTok app.  ### Payload notes  Delivers &#x60;platform.publishedUrl&#x60; and the resolved &#x60;platform.platformPostId&#x60;. Same shape as &#x60;post.platform.published&#x60;.  ### When it does not fire  Private posts, which have no public URL, and drafts the creator never posts. 
 
 ### Example
 
@@ -13392,7 +13404,7 @@ null (empty response body)
 
 TikTok post URL resolved event
 
-Fired when an already-published TikTok platform entry gets its public URL backfilled.  TikTok exposes the numeric video id asynchronously (often minutes after PUBLISH_COMPLETE), so the terminal events can carry an empty &#x60;publishedUrl&#x60; for TikTok. This event delivers &#x60;platform.publishedUrl&#x60; and the resolved &#x60;platform.platformPostId&#x60; once available.  - Fires at most once per platform target. - Never fires for private posts (no public URL exists). - For a draft, fires when the creator posts the draft publicly from the TikTok app. A draft the creator never posts never fires it. - The payload shape is identical to &#x60;post.platform.published&#x60;. 
+A published TikTok post&#39;s public URL became available.  ### When it fires  TikTok exposes the video id asynchronously, often minutes after upload, so &#x60;post.published&#x60; can carry an empty &#x60;publishedUrl&#x60;. Fires at most once per platform target. For a draft, it fires when the creator posts the draft publicly from the TikTok app.  ### Payload notes  Delivers &#x60;platform.publishedUrl&#x60; and the resolved &#x60;platform.platformPostId&#x60;. Same shape as &#x60;post.platform.published&#x60;.  ### When it does not fire  Private posts, which have no public URL, and drafts the creator never posts. 
 
 ### Example
 
@@ -13465,7 +13477,7 @@ ApiResponse<Void>
 
 Post tracking completed event
 
-Fired once when a post&#39;s tracking window ends and its final analytics read has run. &#x60;final&#x60; carries the closing metrics, or null when none could be read, and &#x60;window.completionReason&#x60; is &#x60;final_read&#x60;, &#x60;unreachable&#x60; or &#x60;post_deleted&#x60;. 
+A post&#39;s tracking window ended and its final analytics read finished.  ### When it fires  Once per window. A cancelled window never fires it.  ### Payload notes  &#x60;final&#x60; holds the closing metrics, or is null when no sample could be read. When the post was deleted, it is the last sample held, if any.  ### Completion reasons  &#x60;window.completionReason&#x60; is &#x60;final_read&#x60; (the read succeeded), &#x60;unreachable&#x60; (the sync failed or no sample exists) or &#x60;post_deleted&#x60; (the post is gone). 
 
 ### Example
 
@@ -13534,7 +13546,7 @@ null (empty response body)
 
 Post tracking completed event
 
-Fired once when a post&#39;s tracking window ends and its final analytics read has run. &#x60;final&#x60; carries the closing metrics, or null when none could be read, and &#x60;window.completionReason&#x60; is &#x60;final_read&#x60;, &#x60;unreachable&#x60; or &#x60;post_deleted&#x60;. 
+A post&#39;s tracking window ended and its final analytics read finished.  ### When it fires  Once per window. A cancelled window never fires it.  ### Payload notes  &#x60;final&#x60; holds the closing metrics, or is null when no sample could be read. When the post was deleted, it is the last sample held, if any.  ### Completion reasons  &#x60;window.completionReason&#x60; is &#x60;final_read&#x60; (the read succeeded), &#x60;unreachable&#x60; (the sync failed or no sample exists) or &#x60;post_deleted&#x60; (the post is gone). 
 
 ### Example
 
@@ -13607,7 +13619,7 @@ ApiResponse<Void>
 
 RCS agent status updated event
 
-Fired on every customer-visible status change of an RCS agent:  - &#x60;changes_requested&#x60;: we need changes before filing. &#x60;reason&#x60; is our note. - &#x60;brand_vetting&#x60;. - &#x60;agent_review&#x60;. - &#x60;testing&#x60;: add test phones, then send the launch filing. With a &#x60;reason&#x60;, the launch filing bounced. - &#x60;launch_review&#x60;. - &#x60;launching&#x60;. - &#x60;live&#x60;: the agent can message any RCS-capable phone. - &#x60;rejected&#x60;: &#x60;reason&#x60; says why. - &#x60;deactivated&#x60;. 
+An RCS agent moved into a new customer-visible status; &#x60;status&#x60; is the new one.  ### Statuses  &#x60;changes_requested&#x60; (note in &#x60;reason&#x60;), &#x60;brand_vetting&#x60;, &#x60;agent_review&#x60;, &#x60;testing&#x60;, &#x60;launch_review&#x60;, &#x60;launching&#x60;, &#x60;live&#x60;, &#x60;rejected&#x60; (&#x60;reason&#x60; says why), &#x60;deactivated&#x60;. In &#x60;testing&#x60;, add test phones, then file the launch; a &#x60;reason&#x60; means it bounced.  ### When it fires  Fires once per move into a status. &#x60;requested&#x60; sends nothing. Overlapping status checks never send the same status twice in a row.  ### Payload notes  &#x60;agent.profileId&#x60; is the owning profile. &#x60;agent.accountId&#x60; is &#x60;null&#x60; when the agent has no linked account. 
 
 ### Example
 
@@ -13676,7 +13688,7 @@ null (empty response body)
 
 RCS agent status updated event
 
-Fired on every customer-visible status change of an RCS agent:  - &#x60;changes_requested&#x60;: we need changes before filing. &#x60;reason&#x60; is our note. - &#x60;brand_vetting&#x60;. - &#x60;agent_review&#x60;. - &#x60;testing&#x60;: add test phones, then send the launch filing. With a &#x60;reason&#x60;, the launch filing bounced. - &#x60;launch_review&#x60;. - &#x60;launching&#x60;. - &#x60;live&#x60;: the agent can message any RCS-capable phone. - &#x60;rejected&#x60;: &#x60;reason&#x60; says why. - &#x60;deactivated&#x60;. 
+An RCS agent moved into a new customer-visible status; &#x60;status&#x60; is the new one.  ### Statuses  &#x60;changes_requested&#x60; (note in &#x60;reason&#x60;), &#x60;brand_vetting&#x60;, &#x60;agent_review&#x60;, &#x60;testing&#x60;, &#x60;launch_review&#x60;, &#x60;launching&#x60;, &#x60;live&#x60;, &#x60;rejected&#x60; (&#x60;reason&#x60; says why), &#x60;deactivated&#x60;. In &#x60;testing&#x60;, add test phones, then file the launch; a &#x60;reason&#x60; means it bounced.  ### When it fires  Fires once per move into a status. &#x60;requested&#x60; sends nothing. Overlapping status checks never send the same status twice in a row.  ### Payload notes  &#x60;agent.profileId&#x60; is the owning profile. &#x60;agent.accountId&#x60; is &#x60;null&#x60; when the agent has no linked account. 
 
 ### Example
 
@@ -13749,7 +13761,7 @@ ApiResponse<Void>
 
 Reaction received event
 
-Fired when a participant adds or removes an emoji reaction on a message. Requires the Inbox add-on.  Supported on WhatsApp, Telegram, Slack, Instagram, Facebook Messenger and TikTok. It is distinct from message.received, so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message.  - &#x60;reaction.action&#x60; is &#x60;added&#x60; or &#x60;removed&#x60;. - On WhatsApp and Meta removals, the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. - On TikTok, a like or emoji reaction on a DM arrives only as this event (never as an empty message.received), with &#x60;reaction.platformMessageId&#x60; set to the TikTok id of the liked message. - Instagram and Facebook accounts connected before reactions shipped only emit this event after their webhook subscription is refreshed. Reconnect the account if reactions never arrive. 
+A participant added or removed an emoji reaction on a message on Instagram, Facebook, WhatsApp, Telegram, Slack or TikTok.  ### Payload notes  Sent as its own event, never as &#x60;message.received&#x60;. &#x60;reaction.action&#x60; is &#x60;added&#x60; or &#x60;removed&#x60;. &#x60;reaction.platformMessageId&#x60; is always present; &#x60;reaction.messageId&#x60; is the Zernio id when resolvable.  ### Removals  On WhatsApp, Instagram and Facebook removals, &#x60;reaction.emoji&#x60; is an empty string because the platform does not say which emoji went away. Match on &#x60;platformMessageId&#x60; to clear a mirrored reaction.  ### TikTok  A like or emoji reaction on a DM arrives only as this event, never as an empty &#x60;message.received&#x60;. &#x60;platformMessageId&#x60; is the TikTok id of the liked message. AI emoji reactions can have an empty &#x60;emoji&#x60;.  ### Telegram  The bot must be an administrator in the chat. Reactions in private chats are never delivered to bots.  ### Accounts connected before August 2026  Instagram and Facebook accounts connected before August 2026 do not receive this event until their webhook subscription is refreshed. Reconnect them, or re-subscribe a Facebook Page without a reconnect. 
 
 ### Example
 
@@ -13818,7 +13830,7 @@ null (empty response body)
 
 Reaction received event
 
-Fired when a participant adds or removes an emoji reaction on a message. Requires the Inbox add-on.  Supported on WhatsApp, Telegram, Slack, Instagram, Facebook Messenger and TikTok. It is distinct from message.received, so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message.  - &#x60;reaction.action&#x60; is &#x60;added&#x60; or &#x60;removed&#x60;. - On WhatsApp and Meta removals, the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. - On TikTok, a like or emoji reaction on a DM arrives only as this event (never as an empty message.received), with &#x60;reaction.platformMessageId&#x60; set to the TikTok id of the liked message. - Instagram and Facebook accounts connected before reactions shipped only emit this event after their webhook subscription is refreshed. Reconnect the account if reactions never arrive. 
+A participant added or removed an emoji reaction on a message on Instagram, Facebook, WhatsApp, Telegram, Slack or TikTok.  ### Payload notes  Sent as its own event, never as &#x60;message.received&#x60;. &#x60;reaction.action&#x60; is &#x60;added&#x60; or &#x60;removed&#x60;. &#x60;reaction.platformMessageId&#x60; is always present; &#x60;reaction.messageId&#x60; is the Zernio id when resolvable.  ### Removals  On WhatsApp, Instagram and Facebook removals, &#x60;reaction.emoji&#x60; is an empty string because the platform does not say which emoji went away. Match on &#x60;platformMessageId&#x60; to clear a mirrored reaction.  ### TikTok  A like or emoji reaction on a DM arrives only as this event, never as an empty &#x60;message.received&#x60;. &#x60;platformMessageId&#x60; is the TikTok id of the liked message. AI emoji reactions can have an empty &#x60;emoji&#x60;.  ### Telegram  The bot must be an administrator in the chat. Reactions in private chats are never delivered to bots.  ### Accounts connected before August 2026  Instagram and Facebook accounts connected before August 2026 do not receive this event until their webhook subscription is refreshed. Reconnect them, or re-subscribe a Facebook Page without a reconnect. 
 
 ### Example
 
@@ -13891,7 +13903,7 @@ ApiResponse<Void>
 
 Referral received event
 
-Fired when someone opens an EXISTING Instagram or Messenger thread through an attributable entry point, which Meta delivers as a standalone referral with no message attached. Requires the Inbox add-on.  Entry points:  - An ig.me / m.me link with a &#x60;ref&#x60; parameter. - (Messenger) A returning Click-to-Message ad click.  A referral that rides an inbound message (first message of a thread, icebreaker taps, returning ad clicks on Instagram) arrives on &#x60;message.received&#x60; under &#x60;metadata.referral&#x60; instead. The two never fire for the same click.  The first referral captured on a conversation is also persisted on it (see &#x60;metadata&#x60; on &#x60;GET /v1/inbox/conversations&#x60;). 
+Someone opened an existing Instagram or Messenger thread through an ig.me or m.me &#x60;ref&#x60; link or returning ad click.  ### Payload notes  Meta&#39;s referral object is forwarded verbatim: &#x60;ref&#x60; and &#x60;source&#x60; for links, &#x60;ad_id&#x60; and &#x60;ads_context_data&#x60; for ad clicks.  ### When it does not fire  A referral that rides an inbound message arrives on &#x60;message.received&#x60; under &#x60;metadata.referral&#x60; instead. The two never fire for the same click.  ### Stored referral  The first referral captured on a conversation is also persisted on it (&#x60;metadata&#x60; on &#x60;GET /v1/inbox/conversations&#x60;). 
 
 ### Example
 
@@ -13960,7 +13972,7 @@ null (empty response body)
 
 Referral received event
 
-Fired when someone opens an EXISTING Instagram or Messenger thread through an attributable entry point, which Meta delivers as a standalone referral with no message attached. Requires the Inbox add-on.  Entry points:  - An ig.me / m.me link with a &#x60;ref&#x60; parameter. - (Messenger) A returning Click-to-Message ad click.  A referral that rides an inbound message (first message of a thread, icebreaker taps, returning ad clicks on Instagram) arrives on &#x60;message.received&#x60; under &#x60;metadata.referral&#x60; instead. The two never fire for the same click.  The first referral captured on a conversation is also persisted on it (see &#x60;metadata&#x60; on &#x60;GET /v1/inbox/conversations&#x60;). 
+Someone opened an existing Instagram or Messenger thread through an ig.me or m.me &#x60;ref&#x60; link or returning ad click.  ### Payload notes  Meta&#39;s referral object is forwarded verbatim: &#x60;ref&#x60; and &#x60;source&#x60; for links, &#x60;ad_id&#x60; and &#x60;ads_context_data&#x60; for ad clicks.  ### When it does not fire  A referral that rides an inbound message arrives on &#x60;message.received&#x60; under &#x60;metadata.referral&#x60; instead. The two never fire for the same click.  ### Stored referral  The first referral captured on a conversation is also persisted on it (&#x60;metadata&#x60; on &#x60;GET /v1/inbox/conversations&#x60;). 
 
 ### Example
 
@@ -14033,7 +14045,7 @@ ApiResponse<Void>
 
 Review deleted event
 
-Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
+Google Business Profile stopped returning a review, for example after its spam filter removed it.  ### When it fires  Zernio detects it by polling, so it usually fires 6 to 12 hours after the review disappears. Only locations covered by a webhook subscribed to &#x60;review.deleted&#x60; or &#x60;review.restored&#x60; are checked.  ### Restores  If the review comes back, &#x60;review.restored&#x60; fires, so a hidden then restored review produces &#x60;review.deleted&#x60; then &#x60;review.restored&#x60;. A &#x60;review.updated&#x60; can arrive for a deleted review; the next check restores it.  ### Payload notes  &#x60;review.id&#x60; is the full review name, the same value &#x60;review.new&#x60; sent. It may arrive for a review id you never received &#x60;review.new&#x60; for, so ignore ids you do not know. 
 
 ### Example
 
@@ -14102,7 +14114,7 @@ null (empty response body)
 
 Review deleted event
 
-Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
+Google Business Profile stopped returning a review, for example after its spam filter removed it.  ### When it fires  Zernio detects it by polling, so it usually fires 6 to 12 hours after the review disappears. Only locations covered by a webhook subscribed to &#x60;review.deleted&#x60; or &#x60;review.restored&#x60; are checked.  ### Restores  If the review comes back, &#x60;review.restored&#x60; fires, so a hidden then restored review produces &#x60;review.deleted&#x60; then &#x60;review.restored&#x60;. A &#x60;review.updated&#x60; can arrive for a deleted review; the next check restores it.  ### Payload notes  &#x60;review.id&#x60; is the full review name, the same value &#x60;review.new&#x60; sent. It may arrive for a review id you never received &#x60;review.new&#x60; for, so ignore ids you do not know. 
 
 ### Example
 
@@ -14175,7 +14187,7 @@ ApiResponse<Void>
 
 Review new event
 
-Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
 
 ### Example
 
@@ -14244,7 +14256,7 @@ null (empty response body)
 
 Review new event
 
-Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
 
 ### Example
 
@@ -14317,7 +14329,7 @@ ApiResponse<Void>
 
 Review restored event
 
-A review reported by review.deleted is returned by Google again. Same payload as review.new. Requires the Inbox add-on. 
+Google returned a review previously reported by &#x60;review.deleted&#x60;; the payload has the same shape as &#x60;review.new&#x60;.  ### When it fires  It may reach a webhook that subscribed after the deletion, so ignore ids you do not know. 
 
 ### Example
 
@@ -14386,7 +14398,7 @@ null (empty response body)
 
 Review restored event
 
-A review reported by review.deleted is returned by Google again. Same payload as review.new. Requires the Inbox add-on. 
+Google returned a review previously reported by &#x60;review.deleted&#x60;; the payload has the same shape as &#x60;review.new&#x60;.  ### When it fires  It may reach a webhook that subscribed after the deletion, so ignore ids you do not know. 
 
 ### Example
 
@@ -14459,7 +14471,7 @@ ApiResponse<Void>
 
 Review updated event
 
-Fired when a Google Business Profile reviewer edits their review text or rating, or when a reply is added, edited or removed. Payload shape matches review.new. Requires the Inbox add-on.  A reply posted through POST /v1/inbox/reviews/{reviewId}/reply fires immediately. The periodic check then reports it again with the full review payload, so expect a second delivery.  Replies written or removed in Google&#39;s own interface, and replies removed through the API, are reported by the periodic check.  For replies written in Google, that is usually within 6 hours for reviews updated in the last 30 days, and usually within about 7 days for older ones. Only locations covered by a webhook subscribed to review.updated are checked. A removed reply fires with hasReply false. 
+A Google Business Profile review changed: the reviewer edited it, or its reply was added, edited or removed.  ### Reply through the API  A reply sent through the Zernio API fires the event immediately. The periodic check then reports it again with the full review payload, so expect a second delivery.  ### Replies written in Google  Google sends no notification for replies written in its interface. The periodic check detects them, usually within 6 hours for reviews updated in the last 30 days, about 7 days for older.  ### Checks  Only teams with a webhook subscribed to &#x60;review.updated&#x60; are checked. A removed reply, through the API or in Google, fires from the periodic check with &#x60;review.hasReply&#x60; set to &#x60;false&#x60;.  ### Payload notes  Same shape as &#x60;review.new&#x60;. When a reply is present, &#x60;review.hasReply&#x60; is &#x60;true&#x60; and &#x60;review.reply&#x60; is populated. 
 
 ### Example
 
@@ -14528,7 +14540,7 @@ null (empty response body)
 
 Review updated event
 
-Fired when a Google Business Profile reviewer edits their review text or rating, or when a reply is added, edited or removed. Payload shape matches review.new. Requires the Inbox add-on.  A reply posted through POST /v1/inbox/reviews/{reviewId}/reply fires immediately. The periodic check then reports it again with the full review payload, so expect a second delivery.  Replies written or removed in Google&#39;s own interface, and replies removed through the API, are reported by the periodic check.  For replies written in Google, that is usually within 6 hours for reviews updated in the last 30 days, and usually within about 7 days for older ones. Only locations covered by a webhook subscribed to review.updated are checked. A removed reply fires with hasReply false. 
+A Google Business Profile review changed: the reviewer edited it, or its reply was added, edited or removed.  ### Reply through the API  A reply sent through the Zernio API fires the event immediately. The periodic check then reports it again with the full review payload, so expect a second delivery.  ### Replies written in Google  Google sends no notification for replies written in its interface. The periodic check detects them, usually within 6 hours for reviews updated in the last 30 days, about 7 days for older.  ### Checks  Only teams with a webhook subscribed to &#x60;review.updated&#x60; are checked. A removed reply, through the API or in Google, fires from the periodic check with &#x60;review.hasReply&#x60; set to &#x60;false&#x60;.  ### Payload notes  Same shape as &#x60;review.new&#x60;. When a reply is present, &#x60;review.hasReply&#x60; is &#x60;true&#x60; and &#x60;review.reply&#x60; is populated. 
 
 ### Example
 
@@ -14601,7 +14613,7 @@ ApiResponse<Void>
 
 Sequence enrolled event
 
-Fired when a contact is enrolled in a sequence.
+A contact was enrolled in a sequence, through the API or a workflow &#x60;enroll_sequence&#x60; node. 
 
 ### Example
 
@@ -14670,7 +14682,7 @@ null (empty response body)
 
 Sequence enrolled event
 
-Fired when a contact is enrolled in a sequence.
+A contact was enrolled in a sequence, through the API or a workflow &#x60;enroll_sequence&#x60; node. 
 
 ### Example
 
@@ -14743,7 +14755,7 @@ ApiResponse<Void>
 
 Sequence exited event
 
-Fired when a contact leaves a sequence, finished or not; exitReason says why.
+A contact left a sequence; &#x60;exitReason&#x60; says why.  ### Exit reasons  - &#x60;completed&#x60;: the last step was sent. - &#x60;replied&#x60; - &#x60;manual&#x60;: unenrolled through the API. - &#x60;failed&#x60;: the step kept failing to send. - &#x60;unsubscribed&#x60; 
 
 ### Example
 
@@ -14812,7 +14824,7 @@ null (empty response body)
 
 Sequence exited event
 
-Fired when a contact leaves a sequence, finished or not; exitReason says why.
+A contact left a sequence; &#x60;exitReason&#x60; says why.  ### Exit reasons  - &#x60;completed&#x60;: the last step was sent. - &#x60;replied&#x60; - &#x60;manual&#x60;: unenrolled through the API. - &#x60;failed&#x60;: the step kept failing to send. - &#x60;unsubscribed&#x60; 
 
 ### Example
 
@@ -14885,7 +14897,7 @@ ApiResponse<Void>
 
 SMS registration action required event
 
-Fired when an SMS registration starts waiting on its owner. &#x60;reason&#x60; says why:  - &#x60;changes_requested&#x60;: we need answers to some points, before submission or to fix a carrier rejection. &#x60;message&#x60; is the request; answer with POST /v1/sms/registrations/{id}/respond. - &#x60;otp_required&#x60;: a sole-proprietor brand needs the code texted to its mobile. Submit it with POST /v1/sms/registrations/{id}/verify-otp. - &#x60;carrier_info_required&#x60;: the toll-free carrier asked for more information. The request expires after 7 days.  A carrier rejection alone does not fire it: we handle the fix, see &#x60;sms.registration.status_updated&#x60;.  It fires once per new request (not on follow-up messages) and once per OTP or carrier request. 
+An SMS registration is waiting on its owner; &#x60;reason&#x60; says why.  ### Reasons  - &#x60;changes_requested&#x60;: answer &#x60;message&#x60; via &#x60;POST /v1/sms/registrations/{id}/respond&#x60;. - &#x60;otp_required&#x60;: submit the texted code via &#x60;POST /v1/sms/registrations/{id}/verify-otp&#x60;; no &#x60;message&#x60;. - &#x60;carrier_info_required&#x60;: expires after 7 days.  ### When it fires  Fires once per new request and once per OTP or carrier request, not on follow-up messages. A carrier rejection alone does not fire it. 
 
 ### Example
 
@@ -14954,7 +14966,7 @@ null (empty response body)
 
 SMS registration action required event
 
-Fired when an SMS registration starts waiting on its owner. &#x60;reason&#x60; says why:  - &#x60;changes_requested&#x60;: we need answers to some points, before submission or to fix a carrier rejection. &#x60;message&#x60; is the request; answer with POST /v1/sms/registrations/{id}/respond. - &#x60;otp_required&#x60;: a sole-proprietor brand needs the code texted to its mobile. Submit it with POST /v1/sms/registrations/{id}/verify-otp. - &#x60;carrier_info_required&#x60;: the toll-free carrier asked for more information. The request expires after 7 days.  A carrier rejection alone does not fire it: we handle the fix, see &#x60;sms.registration.status_updated&#x60;.  It fires once per new request (not on follow-up messages) and once per OTP or carrier request. 
+An SMS registration is waiting on its owner; &#x60;reason&#x60; says why.  ### Reasons  - &#x60;changes_requested&#x60;: answer &#x60;message&#x60; via &#x60;POST /v1/sms/registrations/{id}/respond&#x60;. - &#x60;otp_required&#x60;: submit the texted code via &#x60;POST /v1/sms/registrations/{id}/verify-otp&#x60;; no &#x60;message&#x60;. - &#x60;carrier_info_required&#x60;: expires after 7 days.  ### When it fires  Fires once per new request and once per OTP or carrier request, not on follow-up messages. A carrier rejection alone does not fire it. 
 
 ### Example
 
@@ -15027,7 +15039,7 @@ ApiResponse<Void>
 
 SMS registration status updated event
 
-Fired on every status change of an SMS registration:  - &#x60;changes_requested&#x60;: we need answers, see &#x60;sms.registration.action_required&#x60;. - &#x60;requested&#x60;: a new submission or resubmit, or your answers are back in our review. - &#x60;pending&#x60;: with the carriers, including after we fixed and resent a rejection. - &#x60;approved&#x60;: live, attach numbers and send. - &#x60;rejected&#x60;: the carriers declined it. &#x60;reason&#x60; is their words and we handle the fix. - &#x60;deactivated&#x60;. 
+An SMS registration changed status; &#x60;status&#x60; is the new one.  ### Statuses  - &#x60;changes_requested&#x60;: answers needed. - &#x60;requested&#x60;: submitted, resubmitted, or your answers are back in review. - &#x60;pending&#x60;: with the carriers. - &#x60;approved&#x60;: live, attach numbers. - &#x60;rejected&#x60;: &#x60;reason&#x60; is the carriers&#39; words. - &#x60;deactivated&#x60;  ### Rejections  A carrier rejection needs nothing from you. Zernio handles the fix and resends it, so the status returns to &#x60;pending&#x60;. 
 
 ### Example
 
@@ -15096,7 +15108,7 @@ null (empty response body)
 
 SMS registration status updated event
 
-Fired on every status change of an SMS registration:  - &#x60;changes_requested&#x60;: we need answers, see &#x60;sms.registration.action_required&#x60;. - &#x60;requested&#x60;: a new submission or resubmit, or your answers are back in our review. - &#x60;pending&#x60;: with the carriers, including after we fixed and resent a rejection. - &#x60;approved&#x60;: live, attach numbers and send. - &#x60;rejected&#x60;: the carriers declined it. &#x60;reason&#x60; is their words and we handle the fix. - &#x60;deactivated&#x60;. 
+An SMS registration changed status; &#x60;status&#x60; is the new one.  ### Statuses  - &#x60;changes_requested&#x60;: answers needed. - &#x60;requested&#x60;: submitted, resubmitted, or your answers are back in review. - &#x60;pending&#x60;: with the carriers. - &#x60;approved&#x60;: live, attach numbers. - &#x60;rejected&#x60;: &#x60;reason&#x60; is the carriers&#39; words. - &#x60;deactivated&#x60;  ### Rejections  A carrier rejection needs nothing from you. Zernio handles the fix and resends it, so the status returns to &#x60;pending&#x60;. 
 
 ### Example
 
@@ -15169,7 +15181,7 @@ ApiResponse<Void>
 
 Support Assistant finished event
 
-Fired when the Support Assistant finishes a question. run.status is completed, or needs_human when the assistant handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
+A support run finished with an answer, or handed the question to a person.  ### Payload notes  &#x60;run.status&#x60; is &#x60;completed&#x60;, or &#x60;needs_human&#x60; when Ana handed the question to a person. &#x60;run.answer&#x60; holds the answer; &#x60;run.stopReason&#x60; says why it stopped (&#x60;answered&#x60; or &#x60;human_review&#x60;, among others). 
 
 ### Example
 
@@ -15238,7 +15250,7 @@ null (empty response body)
 
 Support Assistant finished event
 
-Fired when the Support Assistant finishes a question. run.status is completed, or needs_human when the assistant handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
+A support run finished with an answer, or handed the question to a person.  ### Payload notes  &#x60;run.status&#x60; is &#x60;completed&#x60;, or &#x60;needs_human&#x60; when Ana handed the question to a person. &#x60;run.answer&#x60; holds the answer; &#x60;run.stopReason&#x60; says why it stopped (&#x60;answered&#x60; or &#x60;human_review&#x60;, among others). 
 
 ### Example
 
@@ -15311,7 +15323,7 @@ ApiResponse<Void>
 
 Support Assistant failed event
 
-Fired when a Support Assistant question fails or expires. Failed runs are not billed.
+A support run failed or expired, and is not billed.  ### Payload notes  &#x60;run.status&#x60; is &#x60;failed&#x60; and &#x60;run.answer&#x60; is &#x60;null&#x60;. &#x60;run.stopReason&#x60; is &#x60;expired&#x60; when the run never finished. &#x60;run.costUsd&#x60; is 0. 
 
 ### Example
 
@@ -15380,7 +15392,7 @@ null (empty response body)
 
 Support Assistant failed event
 
-Fired when a Support Assistant question fails or expires. Failed runs are not billed.
+A support run failed or expired, and is not billed.  ### Payload notes  &#x60;run.status&#x60; is &#x60;failed&#x60; and &#x60;run.answer&#x60; is &#x60;null&#x60;. &#x60;run.stopReason&#x60; is &#x60;expired&#x60; when the run never finished. &#x60;run.costUsd&#x60; is 0. 
 
 ### Example
 
@@ -15453,7 +15465,7 @@ ApiResponse<Void>
 
 Verification approved event
 
-Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+The recipient submitted the right verification code.  ### Payload notes  Carries &#x60;verification.verificationId&#x60;, &#x60;verification.channel&#x60; (&#x60;sms&#x60;) and &#x60;verification.to&#x60;. 
 
 ### Example
 
@@ -15522,7 +15534,7 @@ null (empty response body)
 
 Verification approved event
 
-Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+The recipient submitted the right verification code.  ### Payload notes  Carries &#x60;verification.verificationId&#x60;, &#x60;verification.channel&#x60; (&#x60;sms&#x60;) and &#x60;verification.to&#x60;. 
 
 ### Example
 
@@ -15595,7 +15607,7 @@ ApiResponse<Void>
 
 Verification failed event
 
-Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+A verification ran out of attempts without a correct code.  ### Payload notes  &#x60;reason&#x60; is &#x60;max_attempts_reached&#x60;. Carries the same &#x60;verification&#x60; fields as &#x60;verification.approved&#x60;. 
 
 ### Example
 
@@ -15664,7 +15676,7 @@ null (empty response body)
 
 Verification failed event
 
-Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+A verification ran out of attempts without a correct code.  ### Payload notes  &#x60;reason&#x60; is &#x60;max_attempts_reached&#x60;. Carries the same &#x60;verification&#x60; fields as &#x60;verification.approved&#x60;. 
 
 ### Example
 
@@ -15737,7 +15749,7 @@ ApiResponse<Void>
 
 Webhook test event
 
-Fired when sending a test webhook to verify the endpoint configuration.
+Zernio sent a test event to an endpoint.  ### When it fires  Sent when you call Test webhook or press test in the dashboard, whatever events the endpoint subscribes to. Sent once, synchronously, and never retried. 
 
 ### Example
 
@@ -15806,7 +15818,7 @@ null (empty response body)
 
 Webhook test event
 
-Fired when sending a test webhook to verify the endpoint configuration.
+Zernio sent a test event to an endpoint.  ### When it fires  Sent when you call Test webhook or press test in the dashboard, whatever events the endpoint subscribes to. Sent once, synchronously, and never retried. 
 
 ### Example
 
@@ -15879,7 +15891,7 @@ ApiResponse<Void>
 
 WhatsApp account alert received
 
-Fired for each Meta &#x60;account_alerts&#x60; notification on a connected WhatsApp Business Account. 
+Meta sent an account alert for a connected WhatsApp Business Account.  ### Payload notes  Forwards Meta&#39;s &#x60;account_alerts&#x60; as is. &#x60;alert.severity&#x60; is &#x60;CRITICAL&#x60;, &#x60;WARNING&#x60; or &#x60;INFORMATIONAL&#x60;; &#x60;alert.type&#x60; is Meta&#39;s alert type; &#x60;alert.description&#x60; is the text.  ### Who receives it  An alert about one number goes to that number&#39;s account. A business-level alert goes to every connected number on the WABA. 
 
 ### Example
 
@@ -15948,7 +15960,7 @@ null (empty response body)
 
 WhatsApp account alert received
 
-Fired for each Meta &#x60;account_alerts&#x60; notification on a connected WhatsApp Business Account. 
+Meta sent an account alert for a connected WhatsApp Business Account.  ### Payload notes  Forwards Meta&#39;s &#x60;account_alerts&#x60; as is. &#x60;alert.severity&#x60; is &#x60;CRITICAL&#x60;, &#x60;WARNING&#x60; or &#x60;INFORMATIONAL&#x60;; &#x60;alert.type&#x60; is Meta&#39;s alert type; &#x60;alert.description&#x60; is the text.  ### Who receives it  An alert about one number goes to that number&#39;s account. A business-level alert goes to every connected number on the WABA. 
 
 ### Example
 
@@ -16021,7 +16033,7 @@ ApiResponse<Void>
 
 WhatsApp display-name review outcome event
 
-Fired when Meta finishes reviewing a WhatsApp Business display-name change. Forwarded from Meta&#39;s &#x60;phone_number_name_update&#x60; webhook field on the WhatsApp Business Account.  - It fires only on a review outcome: &#x60;name.status&#x60; APPROVED, DECLINED, or PENDING_REVIEW. - A name applied without review reports &#x60;name_status: AVAILABLE_WITHOUT_REVIEW&#x60; on the phone node instead, and produces no event here. - &#x60;decision&#x60; REJECTED maps to DECLINED and DEFERRED maps to PENDING_REVIEW, matching the &#x60;name_status&#x60; vocabulary returned by &#x60;GET /v1/whatsapp/number-info&#x60;.  Delivery is at-least-once; dedupe on &#x60;(account.accountId, name.status, name.requestedName)&#x60;. 
+Meta finished reviewing a WhatsApp display-name change on a connected number.  ### When it fires  Fires only on a review outcome, forwarded from Meta&#39;s &#x60;phone_number_name_update&#x60; field. A name applied without review (&#x60;AVAILABLE_WITHOUT_REVIEW&#x60;) produces no event.  ### Payload notes  Branch on &#x60;name.status&#x60; (&#x60;APPROVED&#x60;, &#x60;DECLINED&#x60;, &#x60;PENDING_REVIEW&#x60;). Meta&#39;s &#x60;REJECTED&#x60; maps to &#x60;DECLINED&#x60; and &#x60;DEFERRED&#x60; to &#x60;PENDING_REVIEW&#x60;, because the review is still open. &#x60;name.requestedName&#x60; and &#x60;name.rejectionReason&#x60; are Meta&#39;s values or null.  ### Delivery  Delivery is at-least-once; dedupe on &#x60;(account.accountId, name.status, name.requestedName)&#x60;. 
 
 ### Example
 
@@ -16090,7 +16102,7 @@ null (empty response body)
 
 WhatsApp display-name review outcome event
 
-Fired when Meta finishes reviewing a WhatsApp Business display-name change. Forwarded from Meta&#39;s &#x60;phone_number_name_update&#x60; webhook field on the WhatsApp Business Account.  - It fires only on a review outcome: &#x60;name.status&#x60; APPROVED, DECLINED, or PENDING_REVIEW. - A name applied without review reports &#x60;name_status: AVAILABLE_WITHOUT_REVIEW&#x60; on the phone node instead, and produces no event here. - &#x60;decision&#x60; REJECTED maps to DECLINED and DEFERRED maps to PENDING_REVIEW, matching the &#x60;name_status&#x60; vocabulary returned by &#x60;GET /v1/whatsapp/number-info&#x60;.  Delivery is at-least-once; dedupe on &#x60;(account.accountId, name.status, name.requestedName)&#x60;. 
+Meta finished reviewing a WhatsApp display-name change on a connected number.  ### When it fires  Fires only on a review outcome, forwarded from Meta&#39;s &#x60;phone_number_name_update&#x60; field. A name applied without review (&#x60;AVAILABLE_WITHOUT_REVIEW&#x60;) produces no event.  ### Payload notes  Branch on &#x60;name.status&#x60; (&#x60;APPROVED&#x60;, &#x60;DECLINED&#x60;, &#x60;PENDING_REVIEW&#x60;). Meta&#39;s &#x60;REJECTED&#x60; maps to &#x60;DECLINED&#x60; and &#x60;DEFERRED&#x60; to &#x60;PENDING_REVIEW&#x60;, because the review is still open. &#x60;name.requestedName&#x60; and &#x60;name.rejectionReason&#x60; are Meta&#39;s values or null.  ### Delivery  Delivery is at-least-once; dedupe on &#x60;(account.accountId, name.status, name.requestedName)&#x60;. 
 
 ### Example
 
@@ -16163,7 +16175,7 @@ ApiResponse<Void>
 
 WhatsApp quality rating or messaging limit changed
 
-Fired when a connected WhatsApp number&#39;s quality rating or messaging limit tier changes. Delivery is at-least-once; dedupe on the event &#x60;id&#x60;. 
+A connected number&#39;s quality rating or messaging limit tier changed.  ### When it fires  Fires only when the rating or tier differs from the value Zernio held. A tier change Meta applies to the whole business portfolio fires once per connected number.  ### Payload notes  &#x60;quality.source&#x60; says which Meta signal reported it. Compare &#x60;quality.previousQualityRating&#x60; with &#x60;quality.qualityRating&#x60;, and the previous and current messaging limit tier. &#x60;quality.qualityRating&#x60; is Meta&#39;s live value (&#x60;GREEN&#x60;, &#x60;YELLOW&#x60;, &#x60;RED&#x60;).  ### Delivery  Delivery is at-least-once; dedupe on the event &#x60;id&#x60;. 
 
 ### Example
 
@@ -16232,7 +16244,7 @@ null (empty response body)
 
 WhatsApp quality rating or messaging limit changed
 
-Fired when a connected WhatsApp number&#39;s quality rating or messaging limit tier changes. Delivery is at-least-once; dedupe on the event &#x60;id&#x60;. 
+A connected number&#39;s quality rating or messaging limit tier changed.  ### When it fires  Fires only when the rating or tier differs from the value Zernio held. A tier change Meta applies to the whole business portfolio fires once per connected number.  ### Payload notes  &#x60;quality.source&#x60; says which Meta signal reported it. Compare &#x60;quality.previousQualityRating&#x60; with &#x60;quality.qualityRating&#x60;, and the previous and current messaging limit tier. &#x60;quality.qualityRating&#x60; is Meta&#39;s live value (&#x60;GREEN&#x60;, &#x60;YELLOW&#x60;, &#x60;RED&#x60;).  ### Delivery  Delivery is at-least-once; dedupe on the event &#x60;id&#x60;. 
 
 ### Example
 
@@ -16305,7 +16317,7 @@ ApiResponse<Void>
 
 WhatsApp Business Account restricted or reinstated
 
-Fired when Meta restricts, disables, deletes or reinstates the WhatsApp Business Account, once per connected number on it. 
+Meta restricted, disabled, deleted or reinstated a connected WhatsApp Business Account, or flagged a violation on it.  ### When it fires  Mirrors Meta&#39;s &#x60;account_update&#x60; events. They apply to the whole WhatsApp Business Account, so every connected number on it receives one event.  ### Payload notes  Branch on &#x60;status.status&#x60; (&#x60;restricted&#x60; or &#x60;active&#x60;) and &#x60;status.metaEvent&#x60;. &#x60;status.restrictions&#x60; lists what Meta restricted (for example &#x60;RESTRICTED_BIZ_INITIATED_MESSAGING&#x60;) and when each lifts. The same status is on the account as &#x60;platformStatus&#x60;. 
 
 ### Example
 
@@ -16374,7 +16386,7 @@ null (empty response body)
 
 WhatsApp Business Account restricted or reinstated
 
-Fired when Meta restricts, disables, deletes or reinstates the WhatsApp Business Account, once per connected number on it. 
+Meta restricted, disabled, deleted or reinstated a connected WhatsApp Business Account, or flagged a violation on it.  ### When it fires  Mirrors Meta&#39;s &#x60;account_update&#x60; events. They apply to the whole WhatsApp Business Account, so every connected number on it receives one event.  ### Payload notes  Branch on &#x60;status.status&#x60; (&#x60;restricted&#x60; or &#x60;active&#x60;) and &#x60;status.metaEvent&#x60;. &#x60;status.restrictions&#x60; lists what Meta restricted (for example &#x60;RESTRICTED_BIZ_INITIATED_MESSAGING&#x60;) and when each lifts. The same status is on the account as &#x60;platformStatus&#x60;. 
 
 ### Example
 
@@ -16447,7 +16459,7 @@ ApiResponse<Void>
 
 WhatsApp automatic event detected
 
-Fired when Meta&#39;s automatic event identification detects a lead or purchase in a Click-to-WhatsApp conversation. The identification is opt-in during Embedded Signup and not available for EU/UK/JP businesses.  - Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). - It carries the &#x60;ctwa_clid&#x60;.  Meta omits that clid on a minority of referrals on any number (coexistence or not, most often WhatsApp Status placements). When it does, this event can supply it and Zernio writes it back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
+Meta&#39;s automatic event identification detected a lead or purchase in a Click-to-WhatsApp conversation.  ### Payload notes  Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; or &#x60;Purchase&#x60;). &#x60;Purchase&#x60; may carry the detected amount in &#x60;customData&#x60; (&#x60;currency&#x60;, &#x60;value&#x60;). It carries the &#x60;ctwaClid&#x60;.  ### Conversions API match key  Meta omits the clid on a minority of referrals, most often WhatsApp Status placements; this event can supply it. Zernio writes it onto the conversation, so &#x60;POST /v1/whatsapp/conversions&#x60; becomes usable for it.  ### Availability  Detection is not available for EU, UK and JP businesses. Elsewhere the owner opts in during Embedded Signup. An endpoint subscribed on a number whose owner did not opt in receives nothing. 
 
 ### Example
 
@@ -16516,7 +16528,7 @@ null (empty response body)
 
 WhatsApp automatic event detected
 
-Fired when Meta&#39;s automatic event identification detects a lead or purchase in a Click-to-WhatsApp conversation. The identification is opt-in during Embedded Signup and not available for EU/UK/JP businesses.  - Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). - It carries the &#x60;ctwa_clid&#x60;.  Meta omits that clid on a minority of referrals on any number (coexistence or not, most often WhatsApp Status placements). When it does, this event can supply it and Zernio writes it back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
+Meta&#39;s automatic event identification detected a lead or purchase in a Click-to-WhatsApp conversation.  ### Payload notes  Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; or &#x60;Purchase&#x60;). &#x60;Purchase&#x60; may carry the detected amount in &#x60;customData&#x60; (&#x60;currency&#x60;, &#x60;value&#x60;). It carries the &#x60;ctwaClid&#x60;.  ### Conversions API match key  Meta omits the clid on a minority of referrals, most often WhatsApp Status placements; this event can supply it. Zernio writes it onto the conversation, so &#x60;POST /v1/whatsapp/conversions&#x60; becomes usable for it.  ### Availability  Detection is not available for EU, UK and JP businesses. Elsewhere the owner opts in during Embedded Signup. An endpoint subscribed on a number whose owner did not opt in receives nothing. 
 
 ### Example
 
@@ -16589,7 +16601,7 @@ ApiResponse<Void>
 
 WhatsApp contact identity changed event
 
-Fired when a WhatsApp user changes phone number or Meta regenerates their business-scoped user id (BSUID). Carries the previous and current identifiers so you can re-key records stored against the old phone number or BSUID. Delivery is at-least-once; dedupe on the event &#x60;id&#x60;. 
+A WhatsApp user changed phone number or Meta regenerated their business-scoped user id (BSUID).  ### When it fires  Fires when Meta reports the user under a new phone number (&#x60;reason: \&quot;user_changed_number\&quot;&#x60;) or a new BSUID (&#x60;user_changed_user_id&#x60;, &#x60;user_identity_changed&#x60; or &#x60;user_id_update&#x60;).  ### Payload notes  &#x60;previous&#x60; and &#x60;current&#x60; carry the phone number, BSUID, parent BSUID and username. Use them to re-key records stored against the old value.  ### Already applied  Zernio has already moved the inbox conversation and the contact when the event arrives. &#x60;conversationId&#x60; and &#x60;contactId&#x60; point at them, or are null when there was none.  ### Delivery  Delivery is at-least-once; dedupe on the event &#x60;id&#x60;. 
 
 ### Example
 
@@ -16658,7 +16670,7 @@ null (empty response body)
 
 WhatsApp contact identity changed event
 
-Fired when a WhatsApp user changes phone number or Meta regenerates their business-scoped user id (BSUID). Carries the previous and current identifiers so you can re-key records stored against the old phone number or BSUID. Delivery is at-least-once; dedupe on the event &#x60;id&#x60;. 
+A WhatsApp user changed phone number or Meta regenerated their business-scoped user id (BSUID).  ### When it fires  Fires when Meta reports the user under a new phone number (&#x60;reason: \&quot;user_changed_number\&quot;&#x60;) or a new BSUID (&#x60;user_changed_user_id&#x60;, &#x60;user_identity_changed&#x60; or &#x60;user_id_update&#x60;).  ### Payload notes  &#x60;previous&#x60; and &#x60;current&#x60; carry the phone number, BSUID, parent BSUID and username. Use them to re-key records stored against the old value.  ### Already applied  Zernio has already moved the inbox conversation and the contact when the event arrives. &#x60;conversationId&#x60; and &#x60;contactId&#x60; point at them, or are null when there was none.  ### Delivery  Delivery is at-least-once; dedupe on the event &#x60;id&#x60;. 
 
 ### Example
 
@@ -16731,7 +16743,7 @@ ApiResponse<Void>
 
 WhatsApp number action required event
 
-Fired when the regulator asks for more information on an already-placed regulated number order.  The number stays pending (nothing was rejected). The customer can provide the missing information from the dashboard, or via the remediation endpoint.  - &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. - &#x60;requirements&#x60; lists every requirement on the order with the reviewer&#39;s current verdict. The &#x60;declined&#x60; ones are what to fix, keyed by the same &#x60;requirementId&#x60; the remediation endpoint uses. - Verdicts only change when a reviewer acts, so they describe the review at &#x60;reviewedAt&#x60;, the time of the reviewer&#39;s last comment. 
+The regulator asked for more information on a placed number order; nothing was rejected.  ### When it fires  The order stays pending, and the number stays &#x60;pending_regulatory&#x60;, until you provide the information. The status does not change.  ### Payload notes  &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. &#x60;requirements&#x60; lists every requirement with the reviewer&#39;s current verdict; the &#x60;declined&#x60; ones are what to fix, keyed by &#x60;requirementId&#x60;. Verdicts describe the review at &#x60;reviewedAt&#x60;.  ### How to resolve  Provide the missing details from the dashboard&#39;s phone-numbers page, or re-submit the fields through the remediation endpoint. The review resumes automatically. 
 
 ### Example
 
@@ -16800,7 +16812,7 @@ null (empty response body)
 
 WhatsApp number action required event
 
-Fired when the regulator asks for more information on an already-placed regulated number order.  The number stays pending (nothing was rejected). The customer can provide the missing information from the dashboard, or via the remediation endpoint.  - &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. - &#x60;requirements&#x60; lists every requirement on the order with the reviewer&#39;s current verdict. The &#x60;declined&#x60; ones are what to fix, keyed by the same &#x60;requirementId&#x60; the remediation endpoint uses. - Verdicts only change when a reviewer acts, so they describe the review at &#x60;reviewedAt&#x60;, the time of the reviewer&#39;s last comment. 
+The regulator asked for more information on a placed number order; nothing was rejected.  ### When it fires  The order stays pending, and the number stays &#x60;pending_regulatory&#x60;, until you provide the information. The status does not change.  ### Payload notes  &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. &#x60;requirements&#x60; lists every requirement with the reviewer&#39;s current verdict; the &#x60;declined&#x60; ones are what to fix, keyed by &#x60;requirementId&#x60;. Verdicts describe the review at &#x60;reviewedAt&#x60;.  ### How to resolve  Provide the missing details from the dashboard&#39;s phone-numbers page, or re-submit the fields through the remediation endpoint. The review resumes automatically. 
 
 ### Example
 
@@ -16873,7 +16885,7 @@ ApiResponse<Void>
 
 WhatsApp number activated event
 
-Fired when a purchased WhatsApp number becomes active and usable. Both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/phone-numbers. 
+A number you provisioned through Zernio finished setup and is ready to connect.  ### When it fires  Regulated (non-US) numbers can take 1 to 3 business days after the order is approved. In instant-provisioning countries this is the first event, with no review states before it. 
 
 ### Example
 
@@ -16942,7 +16954,7 @@ null (empty response body)
 
 WhatsApp number activated event
 
-Fired when a purchased WhatsApp number becomes active and usable. Both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/phone-numbers. 
+A number you provisioned through Zernio finished setup and is ready to connect.  ### When it fires  Regulated (non-US) numbers can take 1 to 3 business days after the order is approved. In instant-provisioning countries this is the first event, with no review states before it. 
 
 ### Example
 
@@ -17015,7 +17027,7 @@ ApiResponse<Void>
 
 WhatsApp number declined event
 
-Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+A regulated number order was declined in regulatory review and no number was activated.  ### Payload notes  &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. You are never billed for a declined number.  ### Remediation  Resubmit corrected details and the number returns to &#x60;pending_regulatory&#x60;. It is the same number, with no new billing. 
 
 ### Example
 
@@ -17084,7 +17096,7 @@ null (empty response body)
 
 WhatsApp number declined event
 
-Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+A regulated number order was declined in regulatory review and no number was activated.  ### Payload notes  &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. You are never billed for a declined number.  ### Remediation  Resubmit corrected details and the number returns to &#x60;pending_regulatory&#x60;. It is the same number, with no new billing. 
 
 ### Example
 
@@ -17157,7 +17169,7 @@ ApiResponse<Void>
 
 WhatsApp number KYC submitted event
 
-Fired when an end customer completes a hosted KYC share link (POST /v1/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+An end customer completed a hosted KYC share link and the number entered regulatory review.  ### When it fires  Fires only for hosted share links (&#x60;POST /v1/phone-numbers/kyc/share&#x60;). When you submit KYC over the API, no event fires.  ### What follows  The number is &#x60;pending_regulatory&#x60; under your account. &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. Update your own UI from this event instead of polling. 
 
 ### Example
 
@@ -17226,7 +17238,7 @@ null (empty response body)
 
 WhatsApp number KYC submitted event
 
-Fired when an end customer completes a hosted KYC share link (POST /v1/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+An end customer completed a hosted KYC share link and the number entered regulatory review.  ### When it fires  Fires only for hosted share links (&#x60;POST /v1/phone-numbers/kyc/share&#x60;). When you submit KYC over the API, no event fires.  ### What follows  The number is &#x60;pending_regulatory&#x60; under your account. &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. Update your own UI from this event instead of polling. 
 
 ### Example
 
@@ -17299,7 +17311,7 @@ ApiResponse<Void>
 
 WhatsApp number reactivated event
 
-Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+A suspended number was reactivated, for example after the payment recovered, and is usable again. 
 
 ### Example
 
@@ -17368,7 +17380,7 @@ null (empty response body)
 
 WhatsApp number reactivated event
 
-Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+A suspended number was reactivated, for example after the payment recovered, and is usable again. 
 
 ### Example
 
@@ -17441,7 +17453,7 @@ ApiResponse<Void>
 
 WhatsApp number released event
 
-Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+A number was released and is no longer usable.  ### Payload notes  Released by you, a billing cleanup or an admin. &#x60;reason&#x60; is a value such as &#x60;user_requested&#x60; or &#x60;cleanup_suspended&#x60;. This is the only terminal status. 
 
 ### Example
 
@@ -17510,7 +17522,7 @@ null (empty response body)
 
 WhatsApp number released event
 
-Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+A number was released and is no longer usable.  ### Payload notes  Released by you, a billing cleanup or an admin. &#x60;reason&#x60; is a value such as &#x60;user_requested&#x60; or &#x60;cleanup_suspended&#x60;. This is the only terminal status. 
 
 ### Example
 
@@ -17583,7 +17595,7 @@ ApiResponse<Void>
 
 WhatsApp number suspended event
 
-Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+An active number was suspended, for example after a failed payment.  ### Payload notes  &#x60;reason&#x60; is a value such as &#x60;payment_failed&#x60; or &#x60;subscription_ended&#x60;. The number stops working until the issue is resolved, then &#x60;whatsapp.number.reactivated&#x60; follows.  ### When it does not recover  A suspension left unresolved ends in release. 
 
 ### Example
 
@@ -17652,7 +17664,7 @@ null (empty response body)
 
 WhatsApp number suspended event
 
-Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+An active number was suspended, for example after a failed payment.  ### Payload notes  &#x60;reason&#x60; is a value such as &#x60;payment_failed&#x60; or &#x60;subscription_ended&#x60;. The number stops working until the issue is resolved, then &#x60;whatsapp.number.reactivated&#x60; follows.  ### When it does not recover  A suspension left unresolved ends in release. 
 
 ### Example
 
@@ -17725,7 +17737,7 @@ ApiResponse<Void>
 
 WhatsApp number verification-required event
 
-Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+A regulated number requires the end user to complete an identity check.  ### Payload notes  &#x60;verificationUrl&#x60; is a one-time link to forward to the person whose ID is on file, for example for Australian mobile numbers. The order completes once they pass. The number stays &#x60;pending_regulatory&#x60;. 
 
 ### Example
 
@@ -17794,7 +17806,7 @@ null (empty response body)
 
 WhatsApp number verification-required event
 
-Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+A regulated number requires the end user to complete an identity check.  ### Payload notes  &#x60;verificationUrl&#x60; is a one-time link to forward to the person whose ID is on file, for example for Australian mobile numbers. The order completes once they pass. The number stays &#x60;pending_regulatory&#x60;. 
 
 ### Example
 
@@ -17867,7 +17879,7 @@ ApiResponse<Void>
 
 WhatsApp template category updated event
 
-Fired when Meta reclassifies a WhatsApp Business template&#39;s category after approval.  It is forwarded from Meta&#39;s &#x60;template_category_update&#x60; webhook field on the WhatsApp Business Account. Category drives Meta&#39;s per-conversation tariff and whether the template is subject to the recipient&#39;s marketing opt-out.  - &#x60;template.changeType&#x60; is &#x60;scheduled&#x60; (24h advance notice) or &#x60;applied&#x60;. - &#x60;template.category&#x60; is always the category right now. 
+Meta reclassified a WhatsApp template&#39;s category, first as a 24-hour advance notice and again when applied.  ### When it fires  Sent with &#x60;template.changeType: \&quot;scheduled\&quot;&#x60; for Meta&#39;s 24-hour advance notice, and again with &#x60;\&quot;applied\&quot;&#x60; when the change takes effect.  ### Payload notes  &#x60;template.category&#x60; is always the category right now. Meta clears a custom delivery window when it recategorises a template, so read &#x60;message_send_ttl_seconds&#x60; back after an &#x60;applied&#x60; change.  ### Platform notes  Forwarded from Meta&#39;s &#x60;template_category_update&#x60; field. The category decides Meta&#39;s per-delivery rate and the delivery window the template can carry. 
 
 ### Example
 
@@ -17936,7 +17948,7 @@ null (empty response body)
 
 WhatsApp template category updated event
 
-Fired when Meta reclassifies a WhatsApp Business template&#39;s category after approval.  It is forwarded from Meta&#39;s &#x60;template_category_update&#x60; webhook field on the WhatsApp Business Account. Category drives Meta&#39;s per-conversation tariff and whether the template is subject to the recipient&#39;s marketing opt-out.  - &#x60;template.changeType&#x60; is &#x60;scheduled&#x60; (24h advance notice) or &#x60;applied&#x60;. - &#x60;template.category&#x60; is always the category right now. 
+Meta reclassified a WhatsApp template&#39;s category, first as a 24-hour advance notice and again when applied.  ### When it fires  Sent with &#x60;template.changeType: \&quot;scheduled\&quot;&#x60; for Meta&#39;s 24-hour advance notice, and again with &#x60;\&quot;applied\&quot;&#x60; when the change takes effect.  ### Payload notes  &#x60;template.category&#x60; is always the category right now. Meta clears a custom delivery window when it recategorises a template, so read &#x60;message_send_ttl_seconds&#x60; back after an &#x60;applied&#x60; change.  ### Platform notes  Forwarded from Meta&#39;s &#x60;template_category_update&#x60; field. The category decides Meta&#39;s per-delivery rate and the delivery window the template can carry. 
 
 ### Example
 
@@ -18009,7 +18021,7 @@ ApiResponse<Void>
 
 WhatsApp template status updated event
 
-Fired when Meta finishes (re)reviewing a WhatsApp Business template attached to a connected WABA. Forwarded from Meta&#39;s &#x60;message_template_status_update&#x60; webhook field on the WhatsApp Business Account. Consumers branch on &#x60;template.status&#x60; (APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION). Meta does not include the previous status or the template&#39;s category in this event. 
+Meta finished reviewing or re-reviewing a WhatsApp Business template on a connected WABA.  ### Payload notes  Branch on &#x60;template.status&#x60; (&#x60;APPROVED&#x60;, &#x60;REJECTED&#x60;, &#x60;PENDING&#x60;, &#x60;PAUSED&#x60;, &#x60;DISABLED&#x60;, &#x60;IN_APPEAL&#x60;, &#x60;PENDING_DELETION&#x60;). &#x60;template.reason&#x60; is Meta&#39;s free-form reason or &#x60;\&quot;NONE\&quot;&#x60;.  ### Platform notes  Forwarded from Meta&#39;s &#x60;message_template_status_update&#x60; field. Meta includes neither the previous status nor the template&#39;s category. 
 
 ### Example
 
@@ -18078,7 +18090,7 @@ null (empty response body)
 
 WhatsApp template status updated event
 
-Fired when Meta finishes (re)reviewing a WhatsApp Business template attached to a connected WABA. Forwarded from Meta&#39;s &#x60;message_template_status_update&#x60; webhook field on the WhatsApp Business Account. Consumers branch on &#x60;template.status&#x60; (APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION). Meta does not include the previous status or the template&#39;s category in this event. 
+Meta finished reviewing or re-reviewing a WhatsApp Business template on a connected WABA.  ### Payload notes  Branch on &#x60;template.status&#x60; (&#x60;APPROVED&#x60;, &#x60;REJECTED&#x60;, &#x60;PENDING&#x60;, &#x60;PAUSED&#x60;, &#x60;DISABLED&#x60;, &#x60;IN_APPEAL&#x60;, &#x60;PENDING_DELETION&#x60;). &#x60;template.reason&#x60; is Meta&#39;s free-form reason or &#x60;\&quot;NONE\&quot;&#x60;.  ### Platform notes  Forwarded from Meta&#39;s &#x60;message_template_status_update&#x60; field. Meta includes neither the previous status nor the template&#39;s category. 
 
 ### Example
 
@@ -18151,7 +18163,7 @@ ApiResponse<Void>
 
 Workflow run completed event
 
-Fired when a workflow run ends; execution.status is completed, or exited for a run ended on purpose before its last node.
+A workflow run ended, with &#x60;execution.status&#x60; &#x60;completed&#x60;, or &#x60;exited&#x60; when it ended on purpose before its last node.  ### Exits  An exit is a handoff, or a button that switched the contact to another workflow. 
 
 ### Example
 
@@ -18220,7 +18232,7 @@ null (empty response body)
 
 Workflow run completed event
 
-Fired when a workflow run ends; execution.status is completed, or exited for a run ended on purpose before its last node.
+A workflow run ended, with &#x60;execution.status&#x60; &#x60;completed&#x60;, or &#x60;exited&#x60; when it ended on purpose before its last node.  ### Exits  An exit is a handoff, or a button that switched the contact to another workflow. 
 
 ### Example
 
@@ -18293,7 +18305,7 @@ ApiResponse<Void>
 
 Workflow run failed event
 
-Fired when a workflow run fails; error says which node failed and why.
+A workflow run failed; &#x60;error&#x60; names the node that failed and why. 
 
 ### Example
 
@@ -18362,7 +18374,7 @@ null (empty response body)
 
 Workflow run failed event
 
-Fired when a workflow run fails; error says which node failed and why.
+A workflow run failed; &#x60;error&#x60; names the node that failed and why. 
 
 ### Example
 
@@ -18435,7 +18447,7 @@ ApiResponse<Void>
 
 Workflow run started event
 
-Fired when a workflow run starts for a conversation.
+A workflow run started for a conversation; &#x60;trigger.type&#x60; is the trigger node&#39;s type.  ### Payload notes  &#x60;trigger.text&#x60; is the inbound message that started the run, when there was one. 
 
 ### Example
 
@@ -18504,7 +18516,7 @@ null (empty response body)
 
 Workflow run started event
 
-Fired when a workflow run starts for a conversation.
+A workflow run started for a conversation; &#x60;trigger.type&#x60; is the trigger node&#39;s type.  ### Payload notes  &#x60;trigger.text&#x60; is the inbound message that started the run, when there was one. 
 
 ### Example
 
