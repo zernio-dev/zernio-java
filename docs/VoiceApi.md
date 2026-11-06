@@ -113,6 +113,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **402** | Balance billing only. The balance is at or below $0, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic and calls already connected are never refused. |  -  |
 | **200** | Number attached (idempotent for the same trunk). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -194,6 +195,7 @@ ApiResponse<[**AttachNumberToSipTrunk200Response**](AttachNumberToSipTrunk200Res
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **402** | Balance billing only. The balance is at or below $0, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic and calls already connected are never refused. |  -  |
 | **200** | Number attached (idempotent for the same trunk). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -271,6 +273,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **402** | Balance billing only. The balance is at or below $0, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic and calls already connected are never refused. |  -  |
 | **201** | Trunk created. The digest password is shown only here and on rotate. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -349,6 +352,7 @@ ApiResponse<[**CreateSipTrunk201Response**](CreateSipTrunk201Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **402** | Balance billing only. The balance is at or below $0, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic and calls already connected are never refused. |  -  |
 | **201** | Trunk created. The digest password is shown only here and on rotate. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -427,6 +431,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **402** | Balance billing only. The balance is at or below $0, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic and calls already connected are never refused. |  -  |
 | **200** | Call originated; lifecycle continues asynchronously. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -507,6 +512,7 @@ ApiResponse<[**CreateVoiceCall200Response**](CreateVoiceCall200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **402** | Balance billing only. The balance is at or below $0, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic and calls already connected are never refused. |  -  |
 | **200** | Call originated; lifecycle continues asynchronously. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -1027,6 +1033,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **402** | Balance billing only. The balance is at or below $0, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic and calls already connected are never refused. |  -  |
 | **200** | Call originated; answer/bridge continue asynchronously. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -1105,6 +1112,7 @@ ApiResponse<[**DialVoiceWebCall200Response**](DialVoiceWebCall200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **402** | Balance billing only. The balance is at or below $0, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic and calls already connected are never refused. |  -  |
 | **200** | Call originated; answer/bridge continue asynchronously. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |

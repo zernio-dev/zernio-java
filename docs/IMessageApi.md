@@ -1932,7 +1932,7 @@ public class Example {
 | **202** | Order accepted; activation continues asynchronously. &#x60;sender.status&#x60; is &#x60;ordering&#x60; or &#x60;activating&#x60; when the provider has the order, &#x60;awaiting_payment&#x60; while the first-month charge is still being confirmed (poll the sender; it moves on by itself). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | A valid payment method is required (code: payment_method_required); the last payment failed and is still unpaid, or the card was declined for the first month (code: payment_required). Nothing is ordered; update the card in Billing, then order again. |  -  |
+| **402** | Nothing is ordered. A valid payment method is required (code: payment_method_required), the last payment failed or the first month was declined (code: payment_required), or, on balance billing, the balance is at $0 (code: insufficient_balance or usage_limit_reached). Fix it in Billing, then order again. |  -  |
 | **403** | Sender limit reached (code: imessage_sender_limit) |  -  |
 | **404** | Profile not found or access denied |  -  |
 | **409** | Billing setup is incomplete and support must finish it (code: billing_setup_incomplete). |  -  |
@@ -2013,7 +2013,7 @@ ApiResponse<[**OrderImessageSender202Response**](OrderImessageSender202Response.
 | **202** | Order accepted; activation continues asynchronously. &#x60;sender.status&#x60; is &#x60;ordering&#x60; or &#x60;activating&#x60; when the provider has the order, &#x60;awaiting_payment&#x60; while the first-month charge is still being confirmed (poll the sender; it moves on by itself). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | A valid payment method is required (code: payment_method_required); the last payment failed and is still unpaid, or the card was declined for the first month (code: payment_required). Nothing is ordered; update the card in Billing, then order again. |  -  |
+| **402** | Nothing is ordered. A valid payment method is required (code: payment_method_required), the last payment failed or the first month was declined (code: payment_required), or, on balance billing, the balance is at $0 (code: insufficient_balance or usage_limit_reached). Fix it in Billing, then order again. |  -  |
 | **403** | Sender limit reached (code: imessage_sender_limit) |  -  |
 | **404** | Profile not found or access denied |  -  |
 | **409** | Billing setup is incomplete and support must finish it (code: billing_setup_incomplete). |  -  |

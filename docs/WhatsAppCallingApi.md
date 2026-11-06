@@ -1645,6 +1645,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **402** | Balance billing only. The balance is at or below $0, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic and calls already connected are never refused. |  -  |
 | **200** | Call originated; lifecycle continues asynchronously via webhooks. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | No active call permission. Send a permission request first. |  -  |
@@ -1724,6 +1725,7 @@ ApiResponse<[**InitiateWhatsAppCall200Response**](InitiateWhatsAppCall200Respons
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **402** | Balance billing only. The balance is at or below $0, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic and calls already connected are never refused. |  -  |
 | **200** | Call originated; lifecycle continues asynchronously via webhooks. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | No active call permission. Send a permission request first. |  -  |

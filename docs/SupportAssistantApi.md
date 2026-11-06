@@ -86,7 +86,7 @@ public class Example {
 | **202** | Run accepted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | A card is required (code &#x60;payment_method_required&#x60;) or the last payment failed (code &#x60;payment_required&#x60;). Add or update the card in Billing. |  -  |
+| **402** | A card is required (code &#x60;payment_method_required&#x60;), the last payment failed (code &#x60;payment_required&#x60;), or, on balance billing, the balance is at $0 (code &#x60;insufficient_balance&#x60; or &#x60;usage_limit_reached&#x60;). Fix it in Billing. |  -  |
 | **403** | Code &#x60;insufficient_permissions&#x60;: the credential is not an unrestricted API key, or the user is read-only, restricted or profile-scoped. |  -  |
 | **404** | Code &#x60;support_thread_not_found&#x60; (&#x60;threadId&#x60;), &#x60;post_not_found&#x60;, &#x60;account_not_found&#x60; or &#x60;profile_not_found&#x60; (&#x60;context.*&#x60;). |  -  |
 | **409** | Code &#x60;support_run_in_progress&#x60;: the thread already has a run queued or running, so poll it first. Code &#x60;billing_setup_incomplete&#x60;: no billing customer to attach a card to, contact support. Also returned while a request with the same Idempotency-Key is still processing. |  -  |
@@ -170,7 +170,7 @@ ApiResponse<[**AskSupportQuestion202Response**](AskSupportQuestion202Response.md
 | **202** | Run accepted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | A card is required (code &#x60;payment_method_required&#x60;) or the last payment failed (code &#x60;payment_required&#x60;). Add or update the card in Billing. |  -  |
+| **402** | A card is required (code &#x60;payment_method_required&#x60;), the last payment failed (code &#x60;payment_required&#x60;), or, on balance billing, the balance is at $0 (code &#x60;insufficient_balance&#x60; or &#x60;usage_limit_reached&#x60;). Fix it in Billing. |  -  |
 | **403** | Code &#x60;insufficient_permissions&#x60;: the credential is not an unrestricted API key, or the user is read-only, restricted or profile-scoped. |  -  |
 | **404** | Code &#x60;support_thread_not_found&#x60; (&#x60;threadId&#x60;), &#x60;post_not_found&#x60;, &#x60;account_not_found&#x60; or &#x60;profile_not_found&#x60; (&#x60;context.*&#x60;). |  -  |
 | **409** | Code &#x60;support_run_in_progress&#x60;: the thread already has a run queued or running, so poll it first. Code &#x60;billing_setup_incomplete&#x60;: no billing customer to attach a card to, contact support. Also returned while a request with the same Idempotency-Key is still processing. |  -  |

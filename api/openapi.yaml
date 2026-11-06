@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.504.0
+  version: 1.505.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -27676,6 +27676,8 @@ paths:
               $ref: "#/components/schemas/sendInboxMessage_request_1"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "200":
           content:
             application/json:
@@ -30861,6 +30863,8 @@ paths:
               $ref: "#/components/schemas/retweetPost_request"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "200":
           content:
             application/json:
@@ -30943,6 +30947,8 @@ paths:
               $ref: "#/components/schemas/bookmarkPost_request"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "200":
           content:
             application/json:
@@ -31025,6 +31031,8 @@ paths:
               $ref: "#/components/schemas/followUser_request"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "200":
           content:
             application/json:
@@ -32584,6 +32592,8 @@ paths:
               $ref: "#/components/schemas/initiateWhatsAppCall_request"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "200":
           content:
             application/json:
@@ -33056,6 +33066,8 @@ paths:
               $ref: "#/components/schemas/createVoiceCall_request"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "200":
           content:
             application/json:
@@ -33382,6 +33394,8 @@ paths:
               $ref: "#/components/schemas/dialVoiceWebCall_request"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "200":
           content:
             application/json:
@@ -33559,10 +33573,11 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
-          description: "A valid payment method is required (code: payment_method_required);\
-            \ the last payment failed and is still unpaid, or the card was declined\
-            \ for the first month (code: payment_required). Nothing is ordered; update\
-            \ the card in Billing, then order again."
+          description: "Nothing is ordered. A valid payment method is required (code:\
+            \ payment_method_required), the last payment failed or the first month\
+            \ was declined (code: payment_required), or, on balance billing, the balance\
+            \ is at $0 (code: insufficient_balance or usage_limit_reached). Fix it\
+            \ in Billing, then order again."
           x-summary: "A valid payment method is required, or a payment failed, and\
             \ nothing was ordered: update the card in Billing, then order again."
         "403":
@@ -35362,6 +35377,8 @@ paths:
               $ref: "#/components/schemas/createBrandedCallingIdentity_request"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "201":
           content:
             application/json:
@@ -35811,6 +35828,8 @@ paths:
               $ref: "#/components/schemas/startSmsRegistration_request"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "200":
           content:
             application/json:
@@ -37748,8 +37767,9 @@ paths:
           description: Country requires end-user KYC before the number can be ordered.
         "402":
           description: "Payment method required (usage-based billing account with\
-            \ no card on file). Response body carries code: PAYMENT_REQUIRED; add\
-            \ a card, then retry."
+            \ no card on file): code PAYMENT_REQUIRED, add a card, then retry. On\
+            \ balance billing with the balance at $0: code insufficient_balance or\
+            \ usage_limit_reached, top up in Billing, then retry."
           x-summary: "A payment method is required because the usage-based account\
             \ has no card on file: add a card, then retry."
         "422":
@@ -38188,8 +38208,9 @@ paths:
           description: Country requires end-user KYC before the number can be ordered.
         "402":
           description: "Payment method required (usage-based billing account with\
-            \ no card on file). Response body carries code: PAYMENT_REQUIRED; add\
-            \ a card, then retry."
+            \ no card on file): code PAYMENT_REQUIRED, add a card, then retry. On\
+            \ balance billing with the balance at $0: code insufficient_balance or\
+            \ usage_limit_reached, top up in Billing, then retry."
           x-summary: "A payment method is required because the usage-based account\
             \ has no card on file: add a card, then retry."
         "422":
@@ -39367,6 +39388,8 @@ paths:
               $ref: "#/components/schemas/submitWhatsAppNumberKyc_request"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "200":
           content:
             application/json:
@@ -39956,6 +39979,8 @@ paths:
               $ref: "#/components/schemas/createSipTrunk_request"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "201":
           content:
             application/json:
@@ -40158,6 +40183,8 @@ paths:
               $ref: "#/components/schemas/attachNumberToSipTrunk_request"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "200":
           content:
             application/json:
@@ -43157,9 +43184,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: A card is required (code `payment_method_required`) or the
-            last payment failed (code `payment_required`). Add or update the card
-            in Billing.
+          description: "A card is required (code `payment_method_required`), the last\
+            \ payment failed (code `payment_required`), or, on balance billing, the\
+            \ balance is at $0 (code `insufficient_balance` or `usage_limit_reached`).\
+            \ Fix it in Billing."
           x-summary: "A card is required or the last payment failed: add or update\
             \ the card in Billing."
         "403":
@@ -76474,6 +76502,8 @@ paths:
               $ref: "#/components/schemas/createVerification_request"
         required: true
       responses:
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "201":
           content:
             application/json:
@@ -79250,6 +79280,16 @@ components:
         - `rate_limited`: the mailbox is in a sending cooldown, either from a same-body burst to more than 50 recipients in an hour (`details.cap.kind: recipient_burst`) or an earlier trigger. `retryAfterSeconds` says when it lifts, and `account.rate_limited` fired when it started.
       x-summary: "The email was refused because the mailbox hit its daily cap or a\
         \ sending cooldown: wait until `retryAfterSeconds` passes and retry."
+    BalanceRequired:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: "Balance billing only. The balance is at or below $0, so new pay-per-use\
+        \ is refused: code `insufficient_balance`, or `usage_limit_reached` when the\
+        \ auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic\
+        \ and calls already connected are never refused."
+      x-summary: "Balance at $0: top up in Billing to continue."
     BadRequest:
       content:
         application/json:
