@@ -65,7 +65,7 @@ import dev.zernio.ApiClient;
   AnalyticsListResponsePostsInner.JSON_PROPERTY_IS_SHARED_TO_FEED,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_MEDIA_AUDIO_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T22:41:50.654396961Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T23:29:04.988601974Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsListResponsePostsInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable

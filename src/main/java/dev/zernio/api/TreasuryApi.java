@@ -24,6 +24,7 @@ import dev.zernio.model.CreateTopup201Response;
 import dev.zernio.model.CreateTopupRequest;
 import dev.zernio.model.CreateTransferRequest;
 import dev.zernio.model.ErrorResponse;
+import java.io.File;
 import dev.zernio.model.GetBalance200Response;
 import dev.zernio.model.GetPayoutBatch200Response;
 import dev.zernio.model.GetTopupInvoice200Response;
@@ -71,7 +72,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T22:41:50.654396961Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T23:29:04.988601974Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TreasuryApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1490,23 +1491,25 @@ public class TreasuryApi {
    * Get a top-up receipt
    * The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
    * @param topupId  (required)
-   * @return GetTopupReceipt200Response
+   * @param download true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. (optional)
+   * @return File
    * @throws ApiException if fails to make API call
    */
-  public GetTopupReceipt200Response getTopupReceipt(@javax.annotation.Nonnull String topupId) throws ApiException {
-    return getTopupReceipt(topupId, null);
+  public File getTopupReceipt(@javax.annotation.Nonnull String topupId, @javax.annotation.Nullable Boolean download) throws ApiException {
+    return getTopupReceipt(topupId, download, null);
   }
 
   /**
    * Get a top-up receipt
    * The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
    * @param topupId  (required)
+   * @param download true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. (optional)
    * @param headers Optional headers to include in the request
-   * @return GetTopupReceipt200Response
+   * @return File
    * @throws ApiException if fails to make API call
    */
-  public GetTopupReceipt200Response getTopupReceipt(@javax.annotation.Nonnull String topupId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetTopupReceipt200Response> localVarResponse = getTopupReceiptWithHttpInfo(topupId, headers);
+  public File getTopupReceipt(@javax.annotation.Nonnull String topupId, @javax.annotation.Nullable Boolean download, Map<String, String> headers) throws ApiException {
+    ApiResponse<File> localVarResponse = getTopupReceiptWithHttpInfo(topupId, download, headers);
     return localVarResponse.getData();
   }
 
@@ -1514,23 +1517,25 @@ public class TreasuryApi {
    * Get a top-up receipt
    * The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
    * @param topupId  (required)
-   * @return ApiResponse&lt;GetTopupReceipt200Response&gt;
+   * @param download true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. (optional)
+   * @return ApiResponse&lt;File&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetTopupReceipt200Response> getTopupReceiptWithHttpInfo(@javax.annotation.Nonnull String topupId) throws ApiException {
-    return getTopupReceiptWithHttpInfo(topupId, null);
+  public ApiResponse<File> getTopupReceiptWithHttpInfo(@javax.annotation.Nonnull String topupId, @javax.annotation.Nullable Boolean download) throws ApiException {
+    return getTopupReceiptWithHttpInfo(topupId, download, null);
   }
 
   /**
    * Get a top-up receipt
    * The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
    * @param topupId  (required)
+   * @param download true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetTopupReceipt200Response&gt;
+   * @return ApiResponse&lt;File&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetTopupReceipt200Response> getTopupReceiptWithHttpInfo(@javax.annotation.Nonnull String topupId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getTopupReceiptRequestBuilder(topupId, headers);
+  public ApiResponse<File> getTopupReceiptWithHttpInfo(@javax.annotation.Nonnull String topupId, @javax.annotation.Nullable Boolean download, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getTopupReceiptRequestBuilder(topupId, download, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1545,7 +1550,7 @@ public class TreasuryApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetTopupReceipt200Response>(
+          return new ApiResponse<File>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1553,12 +1558,11 @@ public class TreasuryApi {
         }
 
         
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetTopupReceipt200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetTopupReceipt200Response>() {});
+        // Handle file downloading.
+        File responseValue = downloadFileFromResponse(localVarResponse, localVarResponseBody);
         
 
-        return new ApiResponse<GetTopupReceipt200Response>(
+        return new ApiResponse<File>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1577,7 +1581,7 @@ public class TreasuryApi {
     }
   }
 
-  private HttpRequest.Builder getTopupReceiptRequestBuilder(@javax.annotation.Nonnull String topupId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getTopupReceiptRequestBuilder(@javax.annotation.Nonnull String topupId, @javax.annotation.Nullable Boolean download, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'topupId' is set
     if (topupId == null) {
       throw new ApiException(400, "Missing the required parameter 'topupId' when calling getTopupReceipt");
@@ -1588,9 +1592,24 @@ public class TreasuryApi {
     String localVarPath = "/v1/balance/top-ups/{topupId}/receipt"
         .replace("{topupId}", ApiClient.urlEncode(topupId.toString()));
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "download";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("download", download));
 
-    localVarRequestBuilder.header("Accept", "application/json");
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/pdf, application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {

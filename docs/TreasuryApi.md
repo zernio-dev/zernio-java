@@ -1699,7 +1699,7 @@ ApiResponse<[**GetTopupInvoice200Response**](GetTopupInvoice200Response.md)>
 
 ## getTopupReceipt
 
-> GetTopupReceipt200Response getTopupReceipt(topupId)
+> File getTopupReceipt(topupId, download)
 
 Get a top-up receipt
 
@@ -1727,8 +1727,9 @@ public class Example {
 
         TreasuryApi apiInstance = new TreasuryApi(defaultClient);
         String topupId = "topupId_example"; // String | 
+        Boolean download = true; // Boolean | true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links.
         try {
-            GetTopupReceipt200Response result = apiInstance.getTopupReceipt(topupId);
+            File result = apiInstance.getTopupReceipt(topupId, download);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TreasuryApi#getTopupReceipt");
@@ -1747,10 +1748,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **topupId** | **String**|  | |
+| **download** | **Boolean**| true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. | [optional] |
 
 ### Return type
 
-[**GetTopupReceipt200Response**](GetTopupReceipt200Response.md)
+[**File**](File.md)
 
 
 ### Authorization
@@ -1760,12 +1762,12 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/pdf, application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Receipt link |  -  |
+| **200** | Receipt link, or the receipt PDF with download&#x3D;true |  -  |
 | **400** | Invalid request |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
@@ -1773,7 +1775,7 @@ public class Example {
 
 ## getTopupReceiptWithHttpInfo
 
-> ApiResponse<GetTopupReceipt200Response> getTopupReceipt getTopupReceiptWithHttpInfo(topupId)
+> ApiResponse<File> getTopupReceipt getTopupReceiptWithHttpInfo(topupId, download)
 
 Get a top-up receipt
 
@@ -1802,8 +1804,9 @@ public class Example {
 
         TreasuryApi apiInstance = new TreasuryApi(defaultClient);
         String topupId = "topupId_example"; // String | 
+        Boolean download = true; // Boolean | true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links.
         try {
-            ApiResponse<GetTopupReceipt200Response> response = apiInstance.getTopupReceiptWithHttpInfo(topupId);
+            ApiResponse<File> response = apiInstance.getTopupReceiptWithHttpInfo(topupId, download);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1824,10 +1827,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **topupId** | **String**|  | |
+| **download** | **Boolean**| true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. | [optional] |
 
 ### Return type
 
-ApiResponse<[**GetTopupReceipt200Response**](GetTopupReceipt200Response.md)>
+ApiResponse<[**File**](File.md)>
 
 
 ### Authorization
@@ -1837,12 +1841,12 @@ ApiResponse<[**GetTopupReceipt200Response**](GetTopupReceipt200Response.md)>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/pdf, application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Receipt link |  -  |
+| **200** | Receipt link, or the receipt PDF with download&#x3D;true |  -  |
 | **400** | Invalid request |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |

@@ -4647,13 +4647,26 @@ paths:
         schema:
           type: string
         style: simple
+      - description: "true answers the card receipt itself as a PDF file (application/pdf,\
+          \ as an attachment) instead of the JSON links."
+        explode: true
+        in: query
+        name: download
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
+            application/pdf:
+              schema:
+                format: binary
+                type: string
             application/json:
               schema:
                 $ref: "#/components/schemas/getTopupReceipt_200_response"
-          description: Receipt link
+          description: "Receipt link, or the receipt PDF with download=true"
         "400":
           $ref: "#/components/responses/BadRequest"
         "402":
@@ -4668,6 +4681,7 @@ paths:
       x-resource-group: money
       x-accepts:
       - application/json
+      - application/pdf
   /v1/balance/top-ups/{topupId}/invoice:
     get:
       description: |
@@ -125182,15 +125196,6 @@ components:
       - taxLabel
       - totalCents
     getTopupReceipt_200_response:
-      example:
-        chargedCents: 5
-        amountCents: 0
-        feeCents: 6
-        invoiceUrl: https://openapi-generator.tech
-        format: pdf
-        taxCents: 1
-        receiptUrl: https://openapi-generator.tech
-        url: https://openapi-generator.tech
       properties:
         url:
           format: uri

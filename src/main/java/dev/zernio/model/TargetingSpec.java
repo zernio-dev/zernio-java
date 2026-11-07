@@ -73,7 +73,7 @@ import dev.zernio.ApiClient;
   TargetingSpec.JSON_PROPERTY_CONVERSATION_KEYWORDS,
   TargetingSpec.JSON_PROPERTY_EXCLUDED_CONVERSATION_KEYWORDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T22:41:50.654396961Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T23:29:04.988601974Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpec {
   public static final String JSON_PROPERTY_USER_OS = "userOs";
   @javax.annotation.Nullable
