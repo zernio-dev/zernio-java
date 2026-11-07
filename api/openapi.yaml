@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.525.0
+  version: 1.525.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -174336,7 +174336,7 @@ components:
           items:
             $ref: "#/components/schemas/GoogleSitelink"
           maxItems: 20
-          minItems: 2
+          minItems: 1
           type: array
         callouts:
           items:
