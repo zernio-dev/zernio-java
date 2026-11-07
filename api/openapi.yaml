@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.522.1
+  version: 1.522.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -127697,6 +127697,8 @@ components:
           description: Platform-specific text override.
           type: string
         customMedia:
+          description: "On update, an omitted customMedia keeps the stored per-platform\
+            \ media; send [] to clear it."
           items:
             $ref: "#/components/schemas/MediaItem"
           type: array
