@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.523.0
+  version: 1.524.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -207372,6 +207372,13 @@ components:
           type: number
         quantity:
           type: number
+        paidFrom:
+          description: Present only on pay-per-use paid from the prepaid balance (balance
+            billing). That spend is included in `days` and `totals` but is not on
+            the monthly invoice.
+          enum:
+          - balance
+          type: string
     UsageMetering_peaks:
       description: Peak counts over the window (usage-based COUNT metrics + live active-number
         count). Null when `profileId` / `accountId` is set.

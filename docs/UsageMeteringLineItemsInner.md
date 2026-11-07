@@ -11,6 +11,7 @@
 |**product** | [**ProductEnum**](#ProductEnum) |  |  [optional] |
 |**totalUsd** | **BigDecimal** |  |  [optional] |
 |**quantity** | **BigDecimal** |  |  [optional] |
+|**paidFrom** | [**PaidFromEnum**](#PaidFromEnum) | Present only on pay-per-use paid from the prepaid balance (balance billing). That spend is included in &#x60;days&#x60; and &#x60;totals&#x60; but is not on the monthly invoice. |  [optional] |
 
 
 
@@ -30,6 +31,14 @@
 | ADS | &quot;ads&quot; |
 | CREDITS | &quot;credits&quot; |
 | OTHER | &quot;other&quot; |
+
+
+
+## Enum: PaidFromEnum
+
+| Name | Value |
+|---- | -----|
+| BALANCE | &quot;balance&quot; |
 
 
 
