@@ -59,7 +59,7 @@ import dev.zernio.ApiClient;
   InstagramPlatformData.JSON_PROPERTY_COMMENTS_ENABLED,
   InstagramPlatformData.JSON_PROPERTY_LOCATION_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T15:53:40.275901970Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T16:07:27.552763389Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramPlatformData {
   /**
    * Set to &#39;story&#39; to publish as a Story. Default posts become Reels or feed depending on media.
@@ -231,7 +231,7 @@ public class InstagramPlatformData {
   }
 
   /**
-   * Up to 3 Instagram usernames to invite as collaborators (feed/Reels only). Collaborators are supported on Instagram and Facebook Page Reels only. TikTok, YouTube, Threads, LinkedIn, X and Pinterest do not expose collaborators in their public APIs.
+   * Up to 3 Instagram usernames to invite as collaborators (feed/Reels only). Collaborators are supported on Instagram and Facebook Page Reels only. TikTok, YouTube, Threads, LinkedIn, X and Pinterest do not expose collaborators in their public APIs.  A collaborator Instagram rejects does not fail the post on its own: Zernio retries once without the usernames Instagram named (all of them when it names none). If the retry fails, the post fails with that error.  No error or webhook reports the removal: read droppedCollaborators on the Instagram entry of &#x60;GET /v1/posts/{postId}&#x60;. Invites stay pending until each collaborator accepts; &#x60;GET /v1/accounts/{accountId}/instagram/media/{mediaId}/collaborators&#x60; shows who accepted. 
    * @return collaborators
    */
   @javax.annotation.Nullable

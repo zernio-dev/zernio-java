@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetTikTokDemographics412ResponseScopeStatus.JSON_PROPERTY_REQUIRES_REAUTHORIZATION,
   GetTikTokDemographics412ResponseScopeStatus.JSON_PROPERTY_HAS_INSIGHTS_SCOPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T15:53:40.275901970Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T16:07:27.552763389Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTikTokDemographics412ResponseScopeStatus {
   public static final String JSON_PROPERTY_REQUIRES_REAUTHORIZATION = "requiresReauthorization";
   @javax.annotation.Nullable

@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   PreflightSmsRegistration200ResponseAdvisoriesInner.JSON_PROPERTY_CONCERN,
   PreflightSmsRegistration200ResponseAdvisoriesInner.JSON_PROPERTY_SEVERITY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T15:53:40.275901970Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T16:07:27.552763389Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PreflightSmsRegistration200ResponseAdvisoriesInner {
   public static final String JSON_PROPERTY_FIELD = "field";
   private JsonNullable<String> field = JsonNullable.<String>undefined();

@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.JSON_PROPERTY_PURCHASE_VALUE,
   GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.JSON_PROPERTY_ROAS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T15:53:40.275901970Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T16:07:27.552763389Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics {
   public static final String JSON_PROPERTY_SPEND = "spend";
   private JsonNullable<BigDecimal> spend = JsonNullable.<BigDecimal>undefined();
