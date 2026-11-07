@@ -1121,7 +1121,7 @@ ApiResponse<Void>
 
 Get auto-recharge settings
 
-Your balance&#39;s auto-recharge rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
+Your balance&#39;s auto-recharge rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  Account credit you held when you moved to the balance pays a recharge first, without a card charge or invoice (see &#x60;recentCreditRecharges&#x60; on &#x60;GET /v1/balance&#x60;). The card is charged only once that credit is used up, and only while the balance is still below &#x60;belowCents&#x60;.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
 
 ### Example
 
@@ -1189,7 +1189,7 @@ This endpoint does not need any parameter.
 
 Get auto-recharge settings
 
-Your balance&#39;s auto-recharge rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
+Your balance&#39;s auto-recharge rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  Account credit you held when you moved to the balance pays a recharge first, without a card charge or invoice (see &#x60;recentCreditRecharges&#x60; on &#x60;GET /v1/balance&#x60;). The card is charged only once that credit is used up, and only while the balance is still below &#x60;belowCents&#x60;.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
 
 ### Example
 

@@ -1261,6 +1261,7 @@ docs/GetAutomationControls200Response.md
 docs/GetBalance200Response.md
 docs/GetBalance200ResponsePayoutLocksInner.md
 docs/GetBalance200ResponsePendingReleasesInner.md
+docs/GetBalance200ResponseRecentCreditRechargesInner.md
 docs/GetBestTimeToPost200Response.md
 docs/GetBestTimeToPost200ResponseSlotsInner.md
 docs/GetBestTimeToPost403Response.md
@@ -4839,6 +4840,7 @@ src/main/java/dev/zernio/model/GetAutomationControls200Response.java
 src/main/java/dev/zernio/model/GetBalance200Response.java
 src/main/java/dev/zernio/model/GetBalance200ResponsePayoutLocksInner.java
 src/main/java/dev/zernio/model/GetBalance200ResponsePendingReleasesInner.java
+src/main/java/dev/zernio/model/GetBalance200ResponseRecentCreditRechargesInner.java
 src/main/java/dev/zernio/model/GetBestTimeToPost200Response.java
 src/main/java/dev/zernio/model/GetBestTimeToPost200ResponseSlotsInner.java
 src/main/java/dev/zernio/model/GetBestTimeToPost403Response.java
@@ -7039,3 +7041,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetBalance200ResponseRecentCreditRechargesInnerTest.java

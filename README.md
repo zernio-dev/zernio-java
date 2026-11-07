@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.522.3
+- API version: 1.523.0
 
-- Build date: 2026-11-07T16:38:07.391426915Z[Etc/UTC]
+- Build date: 2026-11-07T17:25:11.032220198Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.522.3</version>
+  <version>1.523.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.522.3"
+compile "dev.zernio:zernio-sdk:1.523.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.522.3.jar`
+- `target/zernio-sdk-1.523.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3707,6 +3707,7 @@ Class | Method | HTTP request | Description
  - [GetBalance200Response](docs/GetBalance200Response.md)
  - [GetBalance200ResponsePayoutLocksInner](docs/GetBalance200ResponsePayoutLocksInner.md)
  - [GetBalance200ResponsePendingReleasesInner](docs/GetBalance200ResponsePendingReleasesInner.md)
+ - [GetBalance200ResponseRecentCreditRechargesInner](docs/GetBalance200ResponseRecentCreditRechargesInner.md)
  - [GetBestTimeToPost200Response](docs/GetBestTimeToPost200Response.md)
  - [GetBestTimeToPost200ResponseSlotsInner](docs/GetBestTimeToPost200ResponseSlotsInner.md)
  - [GetBestTimeToPost403Response](docs/GetBestTimeToPost403Response.md)
