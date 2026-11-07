@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.522.0
+  version: 1.522.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -19048,13 +19048,12 @@ paths:
                 expiresIn: 900
                 botUsername: LateScheduleBot
                 instructions:
-                - 1. Add @ZernioScheduleBot as an administrator in your channel/group
-                - 2. Open a private chat with @ZernioScheduleBot
-                - "3. Send: ZRN-ABC123 @yourchannel (replace @yourchannel with your\
-                  \ channel username)"
-                - 4. Wait for confirmation - the connection will appear in your dashboard
-                - "Tip: If your channel has no public username, forward a message\
-                  \ from it along with the code"
+                - 1. Add @LateScheduleBot as an administrator in your channel/group
+                - 2. Open a private chat with @LateScheduleBot
+                - "3. If your channel has a public username, send: ZRN-ABC123 @yourchannel"
+                - "4. Private channel (no public username)? Forward any message from\
+                  \ it to the bot along with the code: ZRN-ABC123"
+                - 5. Wait for confirmation - the connection will appear in your dashboard
               schema:
                 $ref: "#/components/schemas/getTelegramConnectStatus_200_response"
           description: Access code generated
