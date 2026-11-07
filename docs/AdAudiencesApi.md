@@ -669,7 +669,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Account ID
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID
         String platform = "facebook"; // String | 
-        String type = "customer_list"; // String | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences; the other types return uploaded/derived audiences.
+        String type = "customer_list"; // String | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences and needs no adAccountId; the other types keep only the platform audiences of that type (an empty list when the platform has none). Meta ENGAGEMENT audiences are `meta_engagement`.
         try {
             ListAdAudiences200Response result = apiInstance.listAdAudiences(accountId, adAccountId, platform, type);
             System.out.println(result);
@@ -692,7 +692,7 @@ public class Example {
 | **accountId** | **String**| Account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads, redditads] |
-| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. | [optional] [enum: customer_list, company_list, engagement, meta_engagement, website, website_retargeting, lookalike, saved_targeting] |
+| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences and needs no adAccountId; the other types keep only the platform audiences of that type (an empty list when the platform has none). Meta ENGAGEMENT audiences are &#x60;meta_engagement&#x60;. | [optional] [enum: customer_list, company_list, engagement, meta_engagement, website, website_retargeting, lookalike, saved_targeting] |
 
 ### Return type
 
@@ -751,7 +751,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Account ID
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID
         String platform = "facebook"; // String | 
-        String type = "customer_list"; // String | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences; the other types return uploaded/derived audiences.
+        String type = "customer_list"; // String | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences and needs no adAccountId; the other types keep only the platform audiences of that type (an empty list when the platform has none). Meta ENGAGEMENT audiences are `meta_engagement`.
         try {
             ApiResponse<ListAdAudiences200Response> response = apiInstance.listAdAudiencesWithHttpInfo(accountId, adAccountId, platform, type);
             System.out.println("Status code: " + response.getStatusCode());
@@ -776,7 +776,7 @@ public class Example {
 | **accountId** | **String**| Account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads, redditads] |
-| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. | [optional] [enum: customer_list, company_list, engagement, meta_engagement, website, website_retargeting, lookalike, saved_targeting] |
+| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences and needs no adAccountId; the other types keep only the platform audiences of that type (an empty list when the platform has none). Meta ENGAGEMENT audiences are &#x60;meta_engagement&#x60;. | [optional] [enum: customer_list, company_list, engagement, meta_engagement, website, website_retargeting, lookalike, saved_targeting] |
 
 ### Return type
 
