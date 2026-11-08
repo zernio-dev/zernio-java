@@ -81864,20 +81864,20 @@ components:
       - submissions
     TreasuryTopup:
       example:
-        chargedCents: 4
-        feeCents: 3
+        chargedCents: 7
+        feeCents: 2
         succeededAt: 2000-01-23T04:56:07.000+00:00
         method: card
         purpose: balance
         netCents: 1
         hasInvoice: true
-        taxCents: 2
+        taxCents: 4
         payoutBatch:
           campaignId: campaignId
           id: id
         createdAt: 2000-01-23T04:56:07.000+00:00
-        amountCents: 9
-        stripeFeeCents: 7
+        amountCents: 3
+        stripeFeeCents: 1
         id: id
         feeCoveredByZernio: true
         status: pending
@@ -125086,7 +125086,7 @@ components:
       - unlocksAt
     getBalance_200_response_pendingReleases_inner:
       example:
-        amountCents: 2
+        amountCents: 7
         topupId: topupId
         availableAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -125123,11 +125123,12 @@ components:
     getBalance_200_response:
       example:
         availableCents: 0
+        balanceBilling: true
         pendingReleases:
-        - amountCents: 2
+        - amountCents: 7
           topupId: topupId
           availableAt: 2000-01-23T04:56:07.000+00:00
-        - amountCents: 2
+        - amountCents: 7
           topupId: topupId
           availableAt: 2000-01-23T04:56:07.000+00:00
         recentCreditRecharges:
@@ -125137,43 +125138,44 @@ components:
         - createdAt: 2000-01-23T04:56:07.000+00:00
           amountCents: 1
           id: id
-        promoCents: 6
+        promoCents: 1
         recentTopups:
-        - chargedCents: 4
-          feeCents: 3
+        - chargedCents: 7
+          feeCents: 2
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
           netCents: 1
           hasInvoice: true
-          taxCents: 2
+          taxCents: 4
           payoutBatch:
             campaignId: campaignId
             id: id
           createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 9
-          stripeFeeCents: 7
+          amountCents: 3
+          stripeFeeCents: 1
           id: id
           feeCoveredByZernio: true
           status: pending
-        - chargedCents: 4
-          feeCents: 3
+        - chargedCents: 7
+          feeCents: 2
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
           netCents: 1
           hasInvoice: true
-          taxCents: 2
+          taxCents: 4
           payoutBatch:
             campaignId: campaignId
             id: id
           createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 9
-          stripeFeeCents: 7
+          amountCents: 3
+          stripeFeeCents: 1
           id: id
           feeCoveredByZernio: true
           status: pending
-        payoutLockedCents: 1
+        spendableCents: 6
+        payoutLockedCents: 5
         payoutLocks:
         - amountCents: 5
           chargedAt: 2000-01-23T04:56:07.000+00:00
@@ -125184,14 +125186,24 @@ components:
           topupId: topupId
           unlocksAt: 2000-01-23T04:56:07.000+00:00
         currency: usd
-        pendingCents: 5
-        pendingTopupCents: 7
+        pendingCents: 2
+        pendingTopupCents: 9
       properties:
         availableCents:
           description: "Your balance. It goes negative after a dispute or refund of\
             \ a spent top-up, or when pay-per-use already in flight lands past zero.\
             \ The next top-up covers it. New payout batches are refused while it is\
             \ negative."
+          type: integer
+        balanceBilling:
+          description: "True when the account pays pay-per-use from this prepaid balance\
+            \ (new signups). Absent otherwise: that pay-per-use is on the monthly\
+            \ invoice."
+          type: boolean
+        spendableCents:
+          description: "Balance billing only (absent otherwise). What pay-per-use\
+            \ can still spend: availableCents plus promoCents, minus usage not yet\
+            \ posted. At 0 or below, new pay-per-use answers 402 `insufficient_balance`."
           type: integer
         promoCents:
           description: Balance billing only (absent otherwise). Promotional and support
@@ -125271,37 +125283,37 @@ components:
     listTopups_200_response:
       example:
         topups:
-        - chargedCents: 4
-          feeCents: 3
+        - chargedCents: 7
+          feeCents: 2
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
           netCents: 1
           hasInvoice: true
-          taxCents: 2
+          taxCents: 4
           payoutBatch:
             campaignId: campaignId
             id: id
           createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 9
-          stripeFeeCents: 7
+          amountCents: 3
+          stripeFeeCents: 1
           id: id
           feeCoveredByZernio: true
           status: pending
-        - chargedCents: 4
-          feeCents: 3
+        - chargedCents: 7
+          feeCents: 2
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
           netCents: 1
           hasInvoice: true
-          taxCents: 2
+          taxCents: 4
           payoutBatch:
             campaignId: campaignId
             id: id
           createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 9
-          stripeFeeCents: 7
+          amountCents: 3
+          stripeFeeCents: 1
           id: id
           feeCoveredByZernio: true
           status: pending

@@ -40,6 +40,8 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   GetBalance200Response.JSON_PROPERTY_AVAILABLE_CENTS,
+  GetBalance200Response.JSON_PROPERTY_BALANCE_BILLING,
+  GetBalance200Response.JSON_PROPERTY_SPENDABLE_CENTS,
   GetBalance200Response.JSON_PROPERTY_PROMO_CENTS,
   GetBalance200Response.JSON_PROPERTY_PAYOUT_LOCKED_CENTS,
   GetBalance200Response.JSON_PROPERTY_PAYOUT_LOCKS,
@@ -50,11 +52,19 @@ import dev.zernio.ApiClient;
   GetBalance200Response.JSON_PROPERTY_RECENT_TOPUPS,
   GetBalance200Response.JSON_PROPERTY_RECENT_CREDIT_RECHARGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T03:14:43.302782778Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:01:45.903457475Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetBalance200Response {
   public static final String JSON_PROPERTY_AVAILABLE_CENTS = "availableCents";
   @javax.annotation.Nullable
   private Integer availableCents;
+
+  public static final String JSON_PROPERTY_BALANCE_BILLING = "balanceBilling";
+  @javax.annotation.Nullable
+  private Boolean balanceBilling;
+
+  public static final String JSON_PROPERTY_SPENDABLE_CENTS = "spendableCents";
+  @javax.annotation.Nullable
+  private Integer spendableCents;
 
   public static final String JSON_PROPERTY_PROMO_CENTS = "promoCents";
   @javax.annotation.Nullable
@@ -149,6 +159,54 @@ public class GetBalance200Response {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAvailableCents(@javax.annotation.Nullable Integer availableCents) {
     this.availableCents = availableCents;
+  }
+
+
+  public GetBalance200Response balanceBilling(@javax.annotation.Nullable Boolean balanceBilling) {
+    this.balanceBilling = balanceBilling;
+    return this;
+  }
+
+  /**
+   * True when the account pays pay-per-use from this prepaid balance (new signups). Absent otherwise: that pay-per-use is on the monthly invoice.
+   * @return balanceBilling
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BALANCE_BILLING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getBalanceBilling() {
+    return balanceBilling;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BALANCE_BILLING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBalanceBilling(@javax.annotation.Nullable Boolean balanceBilling) {
+    this.balanceBilling = balanceBilling;
+  }
+
+
+  public GetBalance200Response spendableCents(@javax.annotation.Nullable Integer spendableCents) {
+    this.spendableCents = spendableCents;
+    return this;
+  }
+
+  /**
+   * Balance billing only (absent otherwise). What pay-per-use can still spend: availableCents plus promoCents, minus usage not yet posted. At 0 or below, new pay-per-use answers 402 &#x60;insufficient_balance&#x60;.
+   * @return spendableCents
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SPENDABLE_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getSpendableCents() {
+    return spendableCents;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SPENDABLE_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSpendableCents(@javax.annotation.Nullable Integer spendableCents) {
+    this.spendableCents = spendableCents;
   }
 
 
@@ -415,6 +473,8 @@ public class GetBalance200Response {
     }
     GetBalance200Response getBalance200Response = (GetBalance200Response) o;
     return Objects.equals(this.availableCents, getBalance200Response.availableCents) &&
+        Objects.equals(this.balanceBilling, getBalance200Response.balanceBilling) &&
+        Objects.equals(this.spendableCents, getBalance200Response.spendableCents) &&
         Objects.equals(this.promoCents, getBalance200Response.promoCents) &&
         Objects.equals(this.payoutLockedCents, getBalance200Response.payoutLockedCents) &&
         Objects.equals(this.payoutLocks, getBalance200Response.payoutLocks) &&
@@ -428,7 +488,7 @@ public class GetBalance200Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(availableCents, promoCents, payoutLockedCents, payoutLocks, pendingCents, pendingReleases, pendingTopupCents, currency, recentTopups, recentCreditRecharges);
+    return Objects.hash(availableCents, balanceBilling, spendableCents, promoCents, payoutLockedCents, payoutLocks, pendingCents, pendingReleases, pendingTopupCents, currency, recentTopups, recentCreditRecharges);
   }
 
   @Override
@@ -436,6 +496,8 @@ public class GetBalance200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetBalance200Response {\n");
     sb.append("    availableCents: ").append(toIndentedString(availableCents)).append("\n");
+    sb.append("    balanceBilling: ").append(toIndentedString(balanceBilling)).append("\n");
+    sb.append("    spendableCents: ").append(toIndentedString(spendableCents)).append("\n");
     sb.append("    promoCents: ").append(toIndentedString(promoCents)).append("\n");
     sb.append("    payoutLockedCents: ").append(toIndentedString(payoutLockedCents)).append("\n");
     sb.append("    payoutLocks: ").append(toIndentedString(payoutLocks)).append("\n");
@@ -495,6 +557,16 @@ public class GetBalance200Response {
     // add `availableCents` to the URL query string
     if (getAvailableCents() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%savailableCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAvailableCents()))));
+    }
+
+    // add `balanceBilling` to the URL query string
+    if (getBalanceBilling() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbalanceBilling%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBalanceBilling()))));
+    }
+
+    // add `spendableCents` to the URL query string
+    if (getSpendableCents() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sspendableCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSpendableCents()))));
     }
 
     // add `promoCents` to the URL query string

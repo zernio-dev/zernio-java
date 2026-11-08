@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageDeleted.JSON_PROPERTY_ACCOUNT,
   WebhookPayloadMessageDeleted.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T03:14:43.302782778Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:01:45.903457475Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageDeleted {
   public static final String JSON_PROPERTY_TEST = "test";
   @javax.annotation.Nullable
