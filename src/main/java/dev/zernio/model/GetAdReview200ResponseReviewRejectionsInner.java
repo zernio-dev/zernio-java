@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   GetAdReview200ResponseReviewRejectionsInner.JSON_PROPERTY_FORBIDDEN_LOCATIONS,
   GetAdReview200ResponseReviewRejectionsInner.JSON_PROPERTY_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:44:40.121432799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:52:51.692517694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdReview200ResponseReviewRejectionsInner {
   public static final String JSON_PROPERTY_REASONS = "reasons";
   @javax.annotation.Nullable

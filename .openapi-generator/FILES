@@ -7059,12 +7059,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/BalanceRequiredErrorTest.java
-src/test/java/dev/zernio/model/WebhookPayloadBalanceChargedBalanceTest.java
-src/test/java/dev/zernio/model/WebhookPayloadBalanceChargedTest.java
-src/test/java/dev/zernio/model/WebhookPayloadBalanceChargedTopupCardTest.java
-src/test/java/dev/zernio/model/WebhookPayloadBalanceChargedTopupTest.java
-src/test/java/dev/zernio/model/WebhookPayloadBalanceEmptyBalanceTest.java
-src/test/java/dev/zernio/model/WebhookPayloadBalanceEmptyTest.java
-src/test/java/dev/zernio/model/WebhookPayloadBalanceLowBalanceTest.java
-src/test/java/dev/zernio/model/WebhookPayloadBalanceLowTest.java

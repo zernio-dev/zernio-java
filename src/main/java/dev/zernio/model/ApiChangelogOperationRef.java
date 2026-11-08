@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ApiChangelogOperationRef.JSON_PROPERTY_TAGS,
   ApiChangelogOperationRef.JSON_PROPERTY_X_PLATFORMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:44:40.121432799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:52:51.692517694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ApiChangelogOperationRef {
   public static final String JSON_PROPERTY_METHOD = "method";
   @javax.annotation.Nonnull
