@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetDiscordSettings200Response.JSON_PROPERTY_ACCOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:56:25.391961254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T02:24:25.216842374Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetDiscordSettings200Response {
   public static final String JSON_PROPERTY_ACCOUNT = "account";
   @javax.annotation.Nullable

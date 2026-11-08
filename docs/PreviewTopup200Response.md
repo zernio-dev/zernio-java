@@ -12,6 +12,7 @@
 |**totalCents** | **Integer** | What the card would be charged: amountCents + taxCents. |  |
 |**taxLabel** | **String** | The tax and its rate, for example \&quot;VAT 21%\&quot;. Null when no tax is charged. |  |
 |**reverseCharge** | **Boolean** | True for an EU business with a valid VAT id: no VAT, reverse charge. |  |
+|**country** | **String** | Two-letter country the tax was placed in, from the billing address. Null when Stripe Tax returned no address. |  [optional] |
 
 
 

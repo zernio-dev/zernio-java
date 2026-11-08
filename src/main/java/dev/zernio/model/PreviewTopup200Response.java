@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -37,9 +41,10 @@ import dev.zernio.ApiClient;
   PreviewTopup200Response.JSON_PROPERTY_TAX_CENTS,
   PreviewTopup200Response.JSON_PROPERTY_TOTAL_CENTS,
   PreviewTopup200Response.JSON_PROPERTY_TAX_LABEL,
-  PreviewTopup200Response.JSON_PROPERTY_REVERSE_CHARGE
+  PreviewTopup200Response.JSON_PROPERTY_REVERSE_CHARGE,
+  PreviewTopup200Response.JSON_PROPERTY_COUNTRY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:56:25.391961254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T02:24:25.216842374Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PreviewTopup200Response {
   public static final String JSON_PROPERTY_AMOUNT_CENTS = "amountCents";
   @javax.annotation.Nonnull
@@ -60,6 +65,9 @@ public class PreviewTopup200Response {
   public static final String JSON_PROPERTY_REVERSE_CHARGE = "reverseCharge";
   @javax.annotation.Nonnull
   private Boolean reverseCharge;
+
+  public static final String JSON_PROPERTY_COUNTRY = "country";
+  private JsonNullable<String> country = JsonNullable.<String>undefined();
 
   public PreviewTopup200Response() { 
   }
@@ -184,6 +192,38 @@ public class PreviewTopup200Response {
   }
 
 
+  public PreviewTopup200Response country(@javax.annotation.Nullable String country) {
+    this.country = JsonNullable.<String>of(country);
+    return this;
+  }
+
+  /**
+   * Two-letter country the tax was placed in, from the billing address. Null when Stripe Tax returned no address.
+   * @return country
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getCountry() {
+        return country.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCountry_JsonNullable() {
+    return country;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_COUNTRY)
+  public void setCountry_JsonNullable(JsonNullable<String> country) {
+    this.country = country;
+  }
+
+  public void setCountry(@javax.annotation.Nullable String country) {
+    this.country = JsonNullable.<String>of(country);
+  }
+
+
   /**
    * Return true if this previewTopup_200_response object is equal to o.
    */
@@ -200,12 +240,24 @@ public class PreviewTopup200Response {
         Objects.equals(this.taxCents, previewTopup200Response.taxCents) &&
         Objects.equals(this.totalCents, previewTopup200Response.totalCents) &&
         Objects.equals(this.taxLabel, previewTopup200Response.taxLabel) &&
-        Objects.equals(this.reverseCharge, previewTopup200Response.reverseCharge);
+        Objects.equals(this.reverseCharge, previewTopup200Response.reverseCharge) &&
+        equalsNullable(this.country, previewTopup200Response.country);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amountCents, taxCents, totalCents, taxLabel, reverseCharge);
+    return Objects.hash(amountCents, taxCents, totalCents, taxLabel, reverseCharge, hashCodeNullable(country));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -217,6 +269,7 @@ public class PreviewTopup200Response {
     sb.append("    totalCents: ").append(toIndentedString(totalCents)).append("\n");
     sb.append("    taxLabel: ").append(toIndentedString(taxLabel)).append("\n");
     sb.append("    reverseCharge: ").append(toIndentedString(reverseCharge)).append("\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -287,6 +340,11 @@ public class PreviewTopup200Response {
     // add `reverseCharge` to the URL query string
     if (getReverseCharge() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreverseCharge%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReverseCharge()))));
+    }
+
+    // add `country` to the URL query string
+    if (getCountry() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scountry%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountry()))));
     }
 
     return joiner.toString();

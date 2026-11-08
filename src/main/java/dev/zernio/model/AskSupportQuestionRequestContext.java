@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   AskSupportQuestionRequestContext.JSON_PROPERTY_PROFILE_ID,
   AskSupportQuestionRequestContext.JSON_PROPERTY_REQUEST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:56:25.391961254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T02:24:25.216842374Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AskSupportQuestionRequestContext {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable

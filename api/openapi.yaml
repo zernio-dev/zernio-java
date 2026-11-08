@@ -125359,6 +125359,7 @@ components:
       - amountCents
     previewTopup_200_response:
       example:
+        country: country
         amountCents: 0
         reverseCharge: true
         totalCents: 1
@@ -125383,6 +125384,11 @@ components:
           description: "True for an EU business with a valid VAT id: no VAT, reverse\
             \ charge."
           type: boolean
+        country:
+          description: "Two-letter country the tax was placed in, from the billing\
+            \ address. Null when Stripe Tax returned no address."
+          nullable: true
+          type: string
       required:
       - amountCents
       - reverseCharge

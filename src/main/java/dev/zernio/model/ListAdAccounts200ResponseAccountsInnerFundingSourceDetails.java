@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ListAdAccounts200ResponseAccountsInnerFundingSourceDetails.JSON_PROPERTY_DISPLAY_STRING,
   ListAdAccounts200ResponseAccountsInnerFundingSourceDetails.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:56:25.391961254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T02:24:25.216842374Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAccounts200ResponseAccountsInnerFundingSourceDetails {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
