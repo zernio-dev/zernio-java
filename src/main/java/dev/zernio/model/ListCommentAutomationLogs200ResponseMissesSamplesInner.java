@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListCommentAutomationLogs200ResponseMissesSamplesInner.JSON_PROPERTY_EXCLUDED_BY,
   ListCommentAutomationLogs200ResponseMissesSamplesInner.JSON_PROPERTY_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T03:10:30.702993975Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T03:14:43.302782778Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCommentAutomationLogs200ResponseMissesSamplesInner {
   public static final String JSON_PROPERTY_COMMENT_TEXT = "commentText";
   @javax.annotation.Nullable

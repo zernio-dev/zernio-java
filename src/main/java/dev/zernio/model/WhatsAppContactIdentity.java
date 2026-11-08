@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   WhatsAppContactIdentity.JSON_PROPERTY_PARENT_BUSINESS_SCOPED_USER_ID,
   WhatsAppContactIdentity.JSON_PROPERTY_WHATSAPP_USERNAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T03:10:30.702993975Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T03:14:43.302782778Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppContactIdentity {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
