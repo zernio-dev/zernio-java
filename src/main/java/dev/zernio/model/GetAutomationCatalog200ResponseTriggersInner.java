@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   GetAutomationCatalog200ResponseTriggersInner.JSON_PROPERTY_BOOST,
   GetAutomationCatalog200ResponseTriggersInner.JSON_PROPERTY_LIMITS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:52:51.692517694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:56:25.391961254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAutomationCatalog200ResponseTriggersInner {
   /**
    * Gets or Sets kind

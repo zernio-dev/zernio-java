@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   Pool.JSON_PROPERTY_MIN_VIEWS_TO_QUALIFY,
   Pool.JSON_PROPERTY_ORGANIC_VIEWS_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:52:51.692517694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:56:25.391961254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Pool {
   /**
    * Gets or Sets type

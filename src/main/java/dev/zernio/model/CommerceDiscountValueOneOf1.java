@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CommerceDiscountValueOneOf1.JSON_PROPERTY_AMOUNT,
   CommerceDiscountValueOneOf1.JSON_PROPERTY_APPLIES_ON_EACH_ITEM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:52:51.692517694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:56:25.391961254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceDiscountValueOneOf1 {
   /**
    * Gets or Sets type
