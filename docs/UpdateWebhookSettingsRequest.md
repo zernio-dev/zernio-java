@@ -145,6 +145,9 @@
 | CAMPAIGN_PARTICIPANT_JOINED | &quot;campaign_participant.joined&quot; |
 | CAMPAIGN_PARTICIPANT_SUSPENDED | &quot;campaign_participant.suspended&quot; |
 | CAMPAIGN_PARTICIPANT_REMOVED | &quot;campaign_participant.removed&quot; |
+| BALANCE_LOW | &quot;balance.low&quot; |
+| BALANCE_EMPTY | &quot;balance.empty&quot; |
+| BALANCE_CHARGED | &quot;balance.charged&quot; |
 
 
 

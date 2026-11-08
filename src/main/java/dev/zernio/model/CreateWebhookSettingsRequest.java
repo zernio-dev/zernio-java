@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   CreateWebhookSettingsRequest.JSON_PROPERTY_PROFILE_IDS,
   CreateWebhookSettingsRequest.JSON_PROPERTY_ACCOUNT_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T23:35:36.687992684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:44:40.121432799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
@@ -304,7 +304,13 @@ public class CreateWebhookSettingsRequest {
     
     CAMPAIGN_PARTICIPANT_SUSPENDED(String.valueOf("campaign_participant.suspended")),
     
-    CAMPAIGN_PARTICIPANT_REMOVED(String.valueOf("campaign_participant.removed"));
+    CAMPAIGN_PARTICIPANT_REMOVED(String.valueOf("campaign_participant.removed")),
+    
+    BALANCE_LOW(String.valueOf("balance.low")),
+    
+    BALANCE_EMPTY(String.valueOf("balance.empty")),
+    
+    BALANCE_CHARGED(String.valueOf("balance.charged"));
 
     private String value;
 

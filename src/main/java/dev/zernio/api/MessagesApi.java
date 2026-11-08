@@ -23,6 +23,7 @@ import dev.zernio.model.AcceptConversationRequestRequest;
 import dev.zernio.model.AddConversationLabelRequest;
 import dev.zernio.model.AddMessageReaction200Response;
 import dev.zernio.model.AddMessageReactionRequest;
+import dev.zernio.model.BalanceRequiredError;
 import dev.zernio.model.CreateInboxConversation201Response;
 import dev.zernio.model.CreateInboxConversation400Response;
 import dev.zernio.model.CreateInboxConversation404Response;
@@ -91,7 +92,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T23:35:36.687992684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:44:40.121432799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessagesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

@@ -461,6 +461,7 @@ tags:
     - Contacts and automations: `contact.tag_added`, `contact.tag_removed`, `contact.field_changed`, `contact.updated`, `contact.deleted`, `sequence.enrolled`, `sequence.exited`, `workflow.run.started`, `workflow.run.completed`, `workflow.run.failed`, `support.run.completed`, `support.run.failed`, `automation.check.completed`, `automation.action.applied`, `automation.action.failed`, `automation.action.unknown`, `automation.alert.opened`, `automation.alert.escalated`, `automation.alert.resolved`
     - Creator campaigns: `campaign_submission.received`, `campaign_submission.flagged`, `campaign_submission.pending_review`, `campaign_submission.approved`, `campaign_submission.rejected`, `creator_campaign.budget_exhausted`, `creator_campaign.closed`, `campaign_payout.payable`, `campaign_payout.settled`, `campaign_payout.failed`, `campaign_participant.joined`, `campaign_participant.suspended`, `campaign_participant.removed`
     - Calendar and files: `calendar.event.created`, `calendar.event.updated`, `calendar.event.deleted`, `file.created`, `file.updated`, `file.deleted`, `file.picked`
+    - Billing: `balance.low`, `balance.empty`, `balance.charged`
     - Other: `api.changelog.published`, `webhook.test`
 
     **Headers.** Every delivery carries `X-Zernio-Event` (event name) and `X-Zernio-Event-Id` (the payload `id`). That UUID is minted once per event and is identical across every subscribed endpoint, automatic retry and redelivery, so dedupe on it.
@@ -478,6 +479,7 @@ tags:
     - analytics: `analytics.*`
     - telephony: `whatsapp.number.*`, `verification.*`, `sms.registration.*`
     - creator_campaigns: `campaign_submission.*`, `creator_campaign.*`, `campaign_payout.*`, `campaign_participant.*`
+    - money: `balance.*`
     - webhooks: `api.changelog.published`, `webhook.test`
 
     Support Assistant events (`support.run.*`) belong to no single group: they need every resource group enabled and a first-party full-scope caller (a session or a full-scope key, never an OAuth token or a profile-scoped key).
@@ -33647,8 +33649,8 @@ paths:
           description: "Nothing is ordered. A valid payment method is required (code:\
             \ payment_method_required), the last payment failed or the first month\
             \ was declined (code: payment_required), or, on balance billing, the balance\
-            \ is at $0 (code: insufficient_balance or usage_limit_reached). Fix it\
-            \ in Billing, then order again."
+            \ is at $0 (code: insufficient_balance or usage_limit_reached, with `funding_url`\
+            \ to top up). Fix it in Billing, then order again."
           x-summary: "A valid payment method is required, or a payment failed, and\
             \ nothing was ordered: update the card in Billing, then order again."
         "403":
@@ -34491,9 +34493,11 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
-          description: No payment method on file (payment_method_required). Add a
-            card and retry.
-          x-summary: "No payment method is on file: add a card and retry."
+          description: "No payment method on file (payment_method_required): add a\
+            \ card and retry. On balance billing with the balance at $0: code insufficient_balance\
+            \ or usage_limit_reached, top up at `funding_url`, then retry."
+          x-summary: "No payment method is on file, or the balance is at $0: fund\
+            \ it and retry."
         "403":
           description: "Your plan does not include the inbox, which RCS requires."
         "404":
@@ -37840,7 +37844,7 @@ paths:
           description: "Payment method required (usage-based billing account with\
             \ no card on file): code PAYMENT_REQUIRED, add a card, then retry. On\
             \ balance billing with the balance at $0: code insufficient_balance or\
-            \ usage_limit_reached, top up in Billing, then retry."
+            \ usage_limit_reached, top up at `funding_url`, then retry."
           x-summary: "A payment method is required because the usage-based account\
             \ has no card on file: add a card, then retry."
         "422":
@@ -38281,7 +38285,7 @@ paths:
           description: "Payment method required (usage-based billing account with\
             \ no card on file): code PAYMENT_REQUIRED, add a card, then retry. On\
             \ balance billing with the balance at $0: code insufficient_balance or\
-            \ usage_limit_reached, top up in Billing, then retry."
+            \ usage_limit_reached, top up at `funding_url`, then retry."
           x-summary: "A payment method is required because the usage-based account\
             \ has no card on file: add a card, then retry."
         "422":
@@ -43257,8 +43261,8 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: "A card is required (code `payment_method_required`), the last\
             \ payment failed (code `payment_required`), or, on balance billing, the\
-            \ balance is at $0 (code `insufficient_balance` or `usage_limit_reached`).\
-            \ Fix it in Billing."
+            \ balance is at $0 (code `insufficient_balance` or `usage_limit_reached`,\
+            \ with `funding_url` to top up). Fix it in Billing."
           x-summary: "A card is required or the last payment failed: add or update\
             \ the card in Billing."
         "403":
@@ -81141,12 +81145,13 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorResponse"
+            $ref: "#/components/schemas/BalanceRequiredError"
       description: "Balance billing only. The balance is at or below $0 and auto-recharge\
         \ could not lift it, so new pay-per-use is refused: code `insufficient_balance`,\
-        \ or `usage_limit_reached` when the monthly limit kept it there. Top up in\
-        \ Billing. Inbound traffic and connected calls are never refused."
-      x-summary: "Balance at $0: top up in Billing to continue."
+        \ or `usage_limit_reached` when the monthly limit kept it there. `funding_url`\
+        \ opens Billing with the top-up drawer (the add-card drawer first when there\
+        \ is no card). Inbound traffic and connected calls are never refused."
+      x-summary: "Balance at $0: send the user to `funding_url` to top up, then retry."
     BadRequest:
       content:
         application/json:
@@ -86591,6 +86596,52 @@ components:
           type: string
         message:
           type: string
+    BalanceRequiredError:
+      allOf:
+      - $ref: "#/components/schemas/ErrorResponse"
+      - example:
+          error: "Your balance is at $0, so SMS is paused. Top up your balance in\
+            \ Billing to continue."
+          type: invalid_request_error
+          code: insufficient_balance
+          funding_url: https://zernio.com/dashboard/billing?funding=1
+        properties:
+          funding_url:
+            description: "Dashboard link to Billing that opens the top-up drawer (the\
+              \ add-card drawer first when there is no card). Send the user there,\
+              \ then retry."
+            format: uri
+            type: string
+        required:
+        - funding_url
+      description: "The error envelope of a $0 balance refusal (402 `insufficient_balance`\
+        \ or `usage_limit_reached`), plus where to fund the balance."
+      example:
+        code: code
+        param: param
+        funding_url: https://openapi-generator.tech
+        platformError:
+          key: ""
+        docUrl: docUrl
+        details:
+          quotaScope: DEVELOPER
+          stage: media
+          unconfirmedWrite:
+            type: campaign
+            parentId: parentId
+          adAccountId: adAccountId
+          quotaExhausted: true
+          budgetScope: account
+          createdObjects:
+          - cleanup: deleted
+            id: id
+            type: campaign
+          - cleanup: deleted
+            id: id
+            type: campaign
+        error: error
+        type: invalid_request_error
+        platform: platform
     ErrorResponse:
       description: |
         Canonical error envelope. `error` is the human-readable message; `type`,
@@ -88819,6 +88870,9 @@ components:
             - file.picked
             - contact.updated
             - contact.deleted
+            - balance.low
+            - balance.empty
+            - balance.charged
             type: string
           type: array
         isActive:
@@ -97310,6 +97364,144 @@ components:
       - event
       - id
       - timestamp
+    WebhookPayloadBalanceLow:
+      example:
+        test: true
+        balance:
+          alertBelowCents: 6
+          spendableCents: 0
+        fundingUrl: https://openapi-generator.tech
+        id: id
+        event: balance.low
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - balance.low
+          type: string
+        balance:
+          $ref: "#/components/schemas/WebhookPayloadBalanceLow_balance"
+        fundingUrl:
+          description: Dashboard link that opens the top-up drawer in Billing.
+          format: uri
+          type: string
+        timestamp:
+          description: UTC time at which Zernio generated this event. Retries and
+            redeliveries keep the original value.
+          format: date-time
+          type: string
+      required:
+      - balance
+      - event
+      - fundingUrl
+      - id
+      - timestamp
+    WebhookPayloadBalanceEmpty:
+      example:
+        code: insufficient_balance
+        test: true
+        balance:
+          spendableCents: 0
+        fundingUrl: https://openapi-generator.tech
+        id: id
+        event: balance.empty
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - balance.empty
+          type: string
+        balance:
+          $ref: "#/components/schemas/WebhookPayloadBalanceEmpty_balance"
+        code:
+          description: The 402 code pay-per-use calls get until the balance is funded.
+            `usage_limit_reached` when the auto top-up monthly limit is what keeps
+            it at $0.
+          enum:
+          - insufficient_balance
+          - usage_limit_reached
+          type: string
+        fundingUrl:
+          description: Dashboard link that opens the top-up drawer in Billing.
+          format: uri
+          type: string
+        timestamp:
+          description: UTC time at which Zernio generated this event. Retries and
+            redeliveries keep the original value.
+          format: date-time
+          type: string
+      required:
+      - balance
+      - code
+      - event
+      - fundingUrl
+      - id
+      - timestamp
+    WebhookPayloadBalanceCharged:
+      example:
+        test: true
+        balance:
+          spendableCents: 5
+        topup:
+          chargedCents: 1
+          amountCents: 0
+          taxCents: 6
+          currency: usd
+          id: id
+          trigger: manual
+          card:
+            last4: last4
+            brand: brand
+        id: id
+        event: balance.charged
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - balance.charged
+          type: string
+        topup:
+          $ref: "#/components/schemas/WebhookPayloadBalanceCharged_topup"
+        balance:
+          $ref: "#/components/schemas/WebhookPayloadBalanceCharged_balance"
+        timestamp:
+          description: UTC time at which Zernio generated this event. Retries and
+            redeliveries keep the original value.
+          format: date-time
+          type: string
+      required:
+      - balance
+      - event
+      - id
+      - timestamp
+      - topup
     WebhookPayloadTest:
       description: Webhook payload for test deliveries
       example:
@@ -139235,6 +139427,9 @@ components:
             - campaign_participant.joined
             - campaign_participant.suspended
             - campaign_participant.removed
+            - balance.low
+            - balance.empty
+            - balance.charged
             type: string
           minItems: 1
           type: array
@@ -139465,6 +139660,9 @@ components:
             - campaign_participant.joined
             - campaign_participant.suspended
             - campaign_participant.removed
+            - balance.low
+            - balance.empty
+            - balance.charged
             type: string
           minItems: 1
           type: array
@@ -139750,6 +139948,9 @@ components:
           - commerce.order.created
           - commerce.order.updated
           - commerce.order.refunded
+          - balance.low
+          - balance.empty
+          - balance.charged
           - api.changelog.published
           type: string
       required:
@@ -205394,6 +205595,100 @@ components:
       required:
       - endpoints
       - schemas
+    WebhookPayloadBalanceLow_balance:
+      example:
+        alertBelowCents: 6
+        spendableCents: 0
+      properties:
+        spendableCents:
+          description: "What pay-per-use can spend, in USD cents: available plus promo,\
+            \ less usage not posted yet."
+          type: integer
+        alertBelowCents:
+          description: "The low-balance alert threshold it dropped below, in USD cents."
+          type: integer
+      required:
+      - alertBelowCents
+      - spendableCents
+    WebhookPayloadBalanceEmpty_balance:
+      example:
+        spendableCents: 0
+      properties:
+        spendableCents:
+          description: "What pay-per-use can spend, in USD cents: 0 or below (usage\
+            \ already in flight can take it under 0)."
+          type: integer
+      required:
+      - spendableCents
+    WebhookPayloadBalanceCharged_topup_card:
+      example:
+        last4: last4
+        brand: brand
+      properties:
+        brand:
+          description: "Card brand as Stripe names it, e.g. visa or mastercard."
+          type: string
+        last4:
+          nullable: true
+          type: string
+      required:
+      - brand
+      - last4
+    WebhookPayloadBalanceCharged_topup:
+      example:
+        chargedCents: 1
+        amountCents: 0
+        taxCents: 6
+        currency: usd
+        id: id
+        trigger: manual
+        card:
+          last4: last4
+          brand: brand
+      properties:
+        id:
+          description: "The top-up id, as in GET /v1/balance (`recentTopups`) and\
+            \ its invoice and receipt endpoints."
+          type: string
+        trigger:
+          description: "`manual`: someone topped up in Billing or through the API.\
+            \ `auto_top_up`: the auto top-up rule charged the card."
+          enum:
+          - manual
+          - auto_top_up
+          type: string
+        amountCents:
+          description: "Added to the balance, in USD cents."
+          type: integer
+        taxCents:
+          description: "VAT charged on top, in USD cents (0 when none applies)."
+          type: integer
+        chargedCents:
+          description: "What the card was charged, in USD cents: amount plus tax."
+          type: integer
+        currency:
+          enum:
+          - usd
+          type: string
+        card:
+          $ref: "#/components/schemas/WebhookPayloadBalanceCharged_topup_card"
+      required:
+      - amountCents
+      - card
+      - chargedCents
+      - currency
+      - id
+      - taxCents
+      - trigger
+    WebhookPayloadBalanceCharged_balance:
+      example:
+        spendableCents: 5
+      properties:
+        spendableCents:
+          description: "What pay-per-use can spend after the top-up, in USD cents."
+          type: integer
+      required:
+      - spendableCents
     DiscordGuildMember_user:
       example:
         global_name: global_name
@@ -214838,6 +215133,9 @@ x-documentation:
     - `campaign_participant.joined` - A creator joined a campaign, by opening their invite link or joining from the open link. Fires once per participant
     - `campaign_participant.suspended` - An operator suspended a participant; they can no longer connect accounts or submit posts to the campaign
     - `campaign_participant.removed` - An operator removed a participant from the campaign
+    - `balance.low` - Balance billing: the balance dropped below the low-balance alert set on auto-recharge (`alertBelowCents`), once per drop, unless an auto top-up is already covering it
+    - `balance.empty` - Balance billing: the balance reached $0 and no auto top-up covered it, so pay-per-use calls answer 402 until it is funded. Carries that 402 `code` and `fundingUrl`
+    - `balance.charged` - Balance billing: a card top-up of the balance succeeded, manual or automatic (`topup.trigger`), with the amount, the VAT and the card charge
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Every delivery carries `X-Zernio-Event` (the event name) and `X-Zernio-Event-Id` (the payload's `id`, a UUID generated once when the event is emitted). That id is identical on every subscription that receives the event, on every automatic retry and on a redelivery via `POST /v1/webhooks/logs/redeliver`, so it is the key to dedupe on. Payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header when the subscription has a secret. Legacy `X-Late-*` copies of these three headers are still sent and will be removed in a future major version.
@@ -214861,7 +215159,7 @@ x-documentation:
     | `creator_campaign.*` | none; `campaign.id` is the campaign |
     | `campaign_payout.*` | none; `campaign.id`, `participant.id` and `creator.id` identify the payout |
     | `campaign_participant.*` | none; `campaign.id`, `participant.id` and `creator.id` identify the participant |
-    | `verification.*`, `phone_number.stock_available`, `api.changelog.published`, `webhook.test`, `contact.*`, `sequence.*`, `workflow.run.*` | none (`sequence.*` and `workflow.run.*` still reach subscriptions scoped to the sending account) |
+    | `verification.*`, `phone_number.stock_available`, `balance.*`, `api.changelog.published`, `webhook.test`, `contact.*`, `sequence.*`, `workflow.run.*` | none (`sequence.*` and `workflow.run.*` still reach subscriptions scoped to the sending account) |
 
     ## Full Documentation
 

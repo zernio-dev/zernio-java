@@ -58,6 +58,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**onAutomationAlertResolvedWithHttpInfo**](WebhookEventsApi.md#onAutomationAlertResolvedWithHttpInfo) | **POST** /automation.alert.resolved | Automation alert resolved event |
 | [**onAutomationCheckCompleted**](WebhookEventsApi.md#onAutomationCheckCompleted) | **POST** /automation.check.completed | Automation check completed event |
 | [**onAutomationCheckCompletedWithHttpInfo**](WebhookEventsApi.md#onAutomationCheckCompletedWithHttpInfo) | **POST** /automation.check.completed | Automation check completed event |
+| [**onBalanceCharged**](WebhookEventsApi.md#onBalanceCharged) | **POST** /balance.charged | Balance charged event |
+| [**onBalanceChargedWithHttpInfo**](WebhookEventsApi.md#onBalanceChargedWithHttpInfo) | **POST** /balance.charged | Balance charged event |
+| [**onBalanceEmpty**](WebhookEventsApi.md#onBalanceEmpty) | **POST** /balance.empty | Balance empty event |
+| [**onBalanceEmptyWithHttpInfo**](WebhookEventsApi.md#onBalanceEmptyWithHttpInfo) | **POST** /balance.empty | Balance empty event |
+| [**onBalanceLow**](WebhookEventsApi.md#onBalanceLow) | **POST** /balance.low | Balance low event |
+| [**onBalanceLowWithHttpInfo**](WebhookEventsApi.md#onBalanceLowWithHttpInfo) | **POST** /balance.low | Balance low event |
 | [**onBrandedCallingIdentityActionRequired**](WebhookEventsApi.md#onBrandedCallingIdentityActionRequired) | **POST** /branded_calling.identity.action_required | Caller identity action required event |
 | [**onBrandedCallingIdentityActionRequiredWithHttpInfo**](WebhookEventsApi.md#onBrandedCallingIdentityActionRequiredWithHttpInfo) | **POST** /branded_calling.identity.action_required | Caller identity action required event |
 | [**onBrandedCallingIdentityStatusUpdated**](WebhookEventsApi.md#onBrandedCallingIdentityStatusUpdated) | **POST** /branded_calling.identity.status_updated | Caller identity status updated event |
@@ -4101,6 +4107,432 @@ ApiResponse<Void>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Webhook received |  -  |
+
+
+## onBalanceCharged
+
+> void onBalanceCharged(webhookPayloadBalanceCharged)
+
+Balance charged event
+
+Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadBalanceCharged webhookPayloadBalanceCharged = new WebhookPayloadBalanceCharged(); // WebhookPayloadBalanceCharged | 
+        try {
+            apiInstance.onBalanceCharged(webhookPayloadBalanceCharged);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onBalanceCharged");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadBalanceCharged** | [**WebhookPayloadBalanceCharged**](WebhookPayloadBalanceCharged.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onBalanceChargedWithHttpInfo
+
+> ApiResponse<Void> onBalanceCharged onBalanceChargedWithHttpInfo(webhookPayloadBalanceCharged)
+
+Balance charged event
+
+Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadBalanceCharged webhookPayloadBalanceCharged = new WebhookPayloadBalanceCharged(); // WebhookPayloadBalanceCharged | 
+        try {
+            ApiResponse<Void> response = apiInstance.onBalanceChargedWithHttpInfo(webhookPayloadBalanceCharged);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onBalanceCharged");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadBalanceCharged** | [**WebhookPayloadBalanceCharged**](WebhookPayloadBalanceCharged.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onBalanceEmpty
+
+> void onBalanceEmpty(webhookPayloadBalanceEmpty)
+
+Balance empty event
+
+Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty = new WebhookPayloadBalanceEmpty(); // WebhookPayloadBalanceEmpty | 
+        try {
+            apiInstance.onBalanceEmpty(webhookPayloadBalanceEmpty);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onBalanceEmpty");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadBalanceEmpty** | [**WebhookPayloadBalanceEmpty**](WebhookPayloadBalanceEmpty.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onBalanceEmptyWithHttpInfo
+
+> ApiResponse<Void> onBalanceEmpty onBalanceEmptyWithHttpInfo(webhookPayloadBalanceEmpty)
+
+Balance empty event
+
+Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty = new WebhookPayloadBalanceEmpty(); // WebhookPayloadBalanceEmpty | 
+        try {
+            ApiResponse<Void> response = apiInstance.onBalanceEmptyWithHttpInfo(webhookPayloadBalanceEmpty);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onBalanceEmpty");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadBalanceEmpty** | [**WebhookPayloadBalanceEmpty**](WebhookPayloadBalanceEmpty.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onBalanceLow
+
+> void onBalanceLow(webhookPayloadBalanceLow)
+
+Balance low event
+
+Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadBalanceLow webhookPayloadBalanceLow = new WebhookPayloadBalanceLow(); // WebhookPayloadBalanceLow | 
+        try {
+            apiInstance.onBalanceLow(webhookPayloadBalanceLow);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onBalanceLow");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadBalanceLow** | [**WebhookPayloadBalanceLow**](WebhookPayloadBalanceLow.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onBalanceLowWithHttpInfo
+
+> ApiResponse<Void> onBalanceLow onBalanceLowWithHttpInfo(webhookPayloadBalanceLow)
+
+Balance low event
+
+Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadBalanceLow webhookPayloadBalanceLow = new WebhookPayloadBalanceLow(); // WebhookPayloadBalanceLow | 
+        try {
+            ApiResponse<Void> response = apiInstance.onBalanceLowWithHttpInfo(webhookPayloadBalanceLow);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onBalanceLow");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadBalanceLow** | [**WebhookPayloadBalanceLow**](WebhookPayloadBalanceLow.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
 
 
 ## onBrandedCallingIdentityActionRequired

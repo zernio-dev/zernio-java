@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.525.1
 
-- Build date: 2026-11-07T23:35:36.687992684Z[Etc/UTC]
+- Build date: 2026-11-08T01:44:40.121432799Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2794,6 +2794,7 @@ Class | Method | HTTP request | Description
  - [AutomationTemplateTargetResult](docs/AutomationTemplateTargetResult.md)
  - [AutomationTemplateTargetResultError](docs/AutomationTemplateTargetResultError.md)
  - [AutomationTrigger](docs/AutomationTrigger.md)
+ - [BalanceRequiredError](docs/BalanceRequiredError.md)
  - [BatchAdCatalogProducts202Response](docs/BatchAdCatalogProducts202Response.md)
  - [BatchAdCatalogProductsRequest](docs/BatchAdCatalogProductsRequest.md)
  - [BatchAdCatalogProductsRequestRequestsInner](docs/BatchAdCatalogProductsRequestRequestsInner.md)
@@ -5692,6 +5693,14 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAutomationAlertAlert](docs/WebhookPayloadAutomationAlertAlert.md)
  - [WebhookPayloadAutomationCheckCompleted](docs/WebhookPayloadAutomationCheckCompleted.md)
  - [WebhookPayloadAutomationCheckCompletedCheck](docs/WebhookPayloadAutomationCheckCompletedCheck.md)
+ - [WebhookPayloadBalanceCharged](docs/WebhookPayloadBalanceCharged.md)
+ - [WebhookPayloadBalanceChargedBalance](docs/WebhookPayloadBalanceChargedBalance.md)
+ - [WebhookPayloadBalanceChargedTopup](docs/WebhookPayloadBalanceChargedTopup.md)
+ - [WebhookPayloadBalanceChargedTopupCard](docs/WebhookPayloadBalanceChargedTopupCard.md)
+ - [WebhookPayloadBalanceEmpty](docs/WebhookPayloadBalanceEmpty.md)
+ - [WebhookPayloadBalanceEmptyBalance](docs/WebhookPayloadBalanceEmptyBalance.md)
+ - [WebhookPayloadBalanceLow](docs/WebhookPayloadBalanceLow.md)
+ - [WebhookPayloadBalanceLowBalance](docs/WebhookPayloadBalanceLowBalance.md)
  - [WebhookPayloadCalendarEvent](docs/WebhookPayloadCalendarEvent.md)
  - [WebhookPayloadCalendarEventAccount](docs/WebhookPayloadCalendarEventAccount.md)
  - [WebhookPayloadCalendarEventCalendarEvent](docs/WebhookPayloadCalendarEventCalendarEvent.md)

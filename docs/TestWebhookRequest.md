@@ -145,6 +145,9 @@
 | COMMERCE_ORDER_CREATED | &quot;commerce.order.created&quot; |
 | COMMERCE_ORDER_UPDATED | &quot;commerce.order.updated&quot; |
 | COMMERCE_ORDER_REFUNDED | &quot;commerce.order.refunded&quot; |
+| BALANCE_LOW | &quot;balance.low&quot; |
+| BALANCE_EMPTY | &quot;balance.empty&quot; |
+| BALANCE_CHARGED | &quot;balance.charged&quot; |
 | API_CHANGELOG_PUBLISHED | &quot;api.changelog.published&quot; |
 
 

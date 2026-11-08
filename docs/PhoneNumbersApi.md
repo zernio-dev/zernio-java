@@ -2806,7 +2806,7 @@ public class Example {
 | **409** | The purchase was not made. The code says why:  - PURCHASE_VELOCITY: duplicate-purchase protection, another number was purchased within the last 10 minutes. Retry with allowMultiple: true to confirm. - AREA_CODE_UNAVAILABLE: the requested areaCode has no deliverable inventory right now. Pick another area or omit areaCode. - PHONE_NUMBER_UNAVAILABLE: search again and pick another number. - COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now; pick another. - NO_WHATSAPP_ELIGIBLE_NUMBER: every number the carrier offered is one WhatsApp refuses. Pass an areaCode or try again for a fresh batch.  |  -  |
 | **503** | The carrier could not take the order just now (code CARRIER_UNAVAILABLE); the number is not taken, retry the same request in a minute. |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
-| **402** | Payment method required (usage-based billing account with no card on file): code PAYMENT_REQUIRED, add a card, then retry. On balance billing with the balance at $0: code insufficient_balance or usage_limit_reached, top up in Billing, then retry. |  -  |
+| **402** | Payment method required (usage-based billing account with no card on file): code PAYMENT_REQUIRED, add a card, then retry. On balance billing with the balance at $0: code insufficient_balance or usage_limit_reached, top up at &#x60;funding_url&#x60;, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |
 
 ## purchasePhoneNumberWithHttpInfo
@@ -2887,7 +2887,7 @@ ApiResponse<[**PurchasePhoneNumber200Response**](PurchasePhoneNumber200Response.
 | **409** | The purchase was not made. The code says why:  - PURCHASE_VELOCITY: duplicate-purchase protection, another number was purchased within the last 10 minutes. Retry with allowMultiple: true to confirm. - AREA_CODE_UNAVAILABLE: the requested areaCode has no deliverable inventory right now. Pick another area or omit areaCode. - PHONE_NUMBER_UNAVAILABLE: search again and pick another number. - COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now; pick another. - NO_WHATSAPP_ELIGIBLE_NUMBER: every number the carrier offered is one WhatsApp refuses. Pass an areaCode or try again for a fresh batch.  |  -  |
 | **503** | The carrier could not take the order just now (code CARRIER_UNAVAILABLE); the number is not taken, retry the same request in a minute. |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
-| **402** | Payment method required (usage-based billing account with no card on file): code PAYMENT_REQUIRED, add a card, then retry. On balance billing with the balance at $0: code insufficient_balance or usage_limit_reached, top up in Billing, then retry. |  -  |
+| **402** | Payment method required (usage-based billing account with no card on file): code PAYMENT_REQUIRED, add a card, then retry. On balance billing with the balance at $0: code insufficient_balance or usage_limit_reached, top up at &#x60;funding_url&#x60;, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |
 
 

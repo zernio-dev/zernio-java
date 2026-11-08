@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   MetaLeadFormLegalContent.JSON_PROPERTY_PRIVACY_POLICY,
   MetaLeadFormLegalContent.JSON_PROPERTY_CUSTOM_DISCLAIMER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T23:35:36.687992684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:44:40.121432799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaLeadFormLegalContent {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

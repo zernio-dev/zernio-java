@@ -20,6 +20,7 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.AppealSmsRegistration200Response;
 import dev.zernio.model.AppealSmsRegistrationRequest;
+import dev.zernio.model.BalanceRequiredError;
 import dev.zernio.model.CreateSmsSenderId200Response;
 import dev.zernio.model.CreateSmsSenderIdRequest;
 import dev.zernio.model.DeactivateSmsRegistration200Response;
@@ -82,7 +83,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T23:35:36.687992684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:44:40.121432799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

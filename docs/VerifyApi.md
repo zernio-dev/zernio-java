@@ -235,7 +235,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **402** | Balance billing only. The balance is at or below $0 and auto-recharge could not lift it, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the monthly limit kept it there. Top up in Billing. Inbound traffic and connected calls are never refused. |  -  |
+| **402** | Balance billing only. The balance is at or below $0 and auto-recharge could not lift it, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the monthly limit kept it there. &#x60;funding_url&#x60; opens Billing with the top-up drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused. |  -  |
 | **201** | Verification created and the code sent. |  -  |
 | **200** | Active verification found: a fresh code was resent (&#x60;resend: true&#x60;). |  -  |
 | **400** | Invalid request |  -  |
@@ -317,7 +317,7 @@ ApiResponse<[**Verification**](Verification.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **402** | Balance billing only. The balance is at or below $0 and auto-recharge could not lift it, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the monthly limit kept it there. Top up in Billing. Inbound traffic and connected calls are never refused. |  -  |
+| **402** | Balance billing only. The balance is at or below $0 and auto-recharge could not lift it, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the monthly limit kept it there. &#x60;funding_url&#x60; opens Billing with the top-up drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused. |  -  |
 | **201** | Verification created and the code sent. |  -  |
 | **200** | Active verification found: a fresh code was resent (&#x60;resend: true&#x60;). |  -  |
 | **400** | Invalid request |  -  |

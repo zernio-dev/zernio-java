@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   PreflightBrandedCallingIdentityRequest.JSON_PROPERTY_AUTHORIZER,
   PreflightBrandedCallingIdentityRequest.JSON_PROPERTY_REFERENCES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T23:35:36.687992684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:44:40.121432799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PreflightBrandedCallingIdentityRequest {
   public static final String JSON_PROPERTY_ENTERPRISE_ID = "enterpriseId";
   @javax.annotation.Nonnull

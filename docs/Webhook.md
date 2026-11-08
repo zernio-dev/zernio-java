@@ -157,6 +157,9 @@ Individual webhook configuration for receiving real-time notifications
 | FILE_PICKED | &quot;file.picked&quot; |
 | CONTACT_UPDATED | &quot;contact.updated&quot; |
 | CONTACT_DELETED | &quot;contact.deleted&quot; |
+| BALANCE_LOW | &quot;balance.low&quot; |
+| BALANCE_EMPTY | &quot;balance.empty&quot; |
+| BALANCE_CHARGED | &quot;balance.charged&quot; |
 
 
 

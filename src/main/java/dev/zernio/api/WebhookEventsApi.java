@@ -57,6 +57,9 @@ import dev.zernio.model.WebhookPayloadApiChangelogPublished;
 import dev.zernio.model.WebhookPayloadAutomationAction;
 import dev.zernio.model.WebhookPayloadAutomationAlert;
 import dev.zernio.model.WebhookPayloadAutomationCheckCompleted;
+import dev.zernio.model.WebhookPayloadBalanceCharged;
+import dev.zernio.model.WebhookPayloadBalanceEmpty;
+import dev.zernio.model.WebhookPayloadBalanceLow;
 import dev.zernio.model.WebhookPayloadCalendarEvent;
 import dev.zernio.model.WebhookPayloadCallEnded;
 import dev.zernio.model.WebhookPayloadCallFailed;
@@ -140,7 +143,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T23:35:36.687992684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:44:40.121432799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3185,6 +3188,333 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadAutomationCheckCompleted);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Balance charged event
+   * Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+   * @param webhookPayloadBalanceCharged  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onBalanceCharged(@javax.annotation.Nonnull WebhookPayloadBalanceCharged webhookPayloadBalanceCharged) throws ApiException {
+    onBalanceCharged(webhookPayloadBalanceCharged, null);
+  }
+
+  /**
+   * Balance charged event
+   * Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+   * @param webhookPayloadBalanceCharged  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onBalanceCharged(@javax.annotation.Nonnull WebhookPayloadBalanceCharged webhookPayloadBalanceCharged, Map<String, String> headers) throws ApiException {
+    onBalanceChargedWithHttpInfo(webhookPayloadBalanceCharged, headers);
+  }
+
+  /**
+   * Balance charged event
+   * Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+   * @param webhookPayloadBalanceCharged  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onBalanceChargedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadBalanceCharged webhookPayloadBalanceCharged) throws ApiException {
+    return onBalanceChargedWithHttpInfo(webhookPayloadBalanceCharged, null);
+  }
+
+  /**
+   * Balance charged event
+   * Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+   * @param webhookPayloadBalanceCharged  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onBalanceChargedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadBalanceCharged webhookPayloadBalanceCharged, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onBalanceChargedRequestBuilder(webhookPayloadBalanceCharged, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onBalanceCharged", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onBalanceChargedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadBalanceCharged webhookPayloadBalanceCharged, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadBalanceCharged' is set
+    if (webhookPayloadBalanceCharged == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadBalanceCharged' when calling onBalanceCharged");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/balance.charged";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadBalanceCharged);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Balance empty event
+   * Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+   * @param webhookPayloadBalanceEmpty  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onBalanceEmpty(@javax.annotation.Nonnull WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty) throws ApiException {
+    onBalanceEmpty(webhookPayloadBalanceEmpty, null);
+  }
+
+  /**
+   * Balance empty event
+   * Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+   * @param webhookPayloadBalanceEmpty  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onBalanceEmpty(@javax.annotation.Nonnull WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty, Map<String, String> headers) throws ApiException {
+    onBalanceEmptyWithHttpInfo(webhookPayloadBalanceEmpty, headers);
+  }
+
+  /**
+   * Balance empty event
+   * Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+   * @param webhookPayloadBalanceEmpty  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onBalanceEmptyWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty) throws ApiException {
+    return onBalanceEmptyWithHttpInfo(webhookPayloadBalanceEmpty, null);
+  }
+
+  /**
+   * Balance empty event
+   * Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+   * @param webhookPayloadBalanceEmpty  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onBalanceEmptyWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onBalanceEmptyRequestBuilder(webhookPayloadBalanceEmpty, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onBalanceEmpty", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onBalanceEmptyRequestBuilder(@javax.annotation.Nonnull WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadBalanceEmpty' is set
+    if (webhookPayloadBalanceEmpty == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadBalanceEmpty' when calling onBalanceEmpty");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/balance.empty";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadBalanceEmpty);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Balance low event
+   * Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+   * @param webhookPayloadBalanceLow  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onBalanceLow(@javax.annotation.Nonnull WebhookPayloadBalanceLow webhookPayloadBalanceLow) throws ApiException {
+    onBalanceLow(webhookPayloadBalanceLow, null);
+  }
+
+  /**
+   * Balance low event
+   * Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+   * @param webhookPayloadBalanceLow  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onBalanceLow(@javax.annotation.Nonnull WebhookPayloadBalanceLow webhookPayloadBalanceLow, Map<String, String> headers) throws ApiException {
+    onBalanceLowWithHttpInfo(webhookPayloadBalanceLow, headers);
+  }
+
+  /**
+   * Balance low event
+   * Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+   * @param webhookPayloadBalanceLow  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onBalanceLowWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadBalanceLow webhookPayloadBalanceLow) throws ApiException {
+    return onBalanceLowWithHttpInfo(webhookPayloadBalanceLow, null);
+  }
+
+  /**
+   * Balance low event
+   * Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+   * @param webhookPayloadBalanceLow  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onBalanceLowWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadBalanceLow webhookPayloadBalanceLow, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onBalanceLowRequestBuilder(webhookPayloadBalanceLow, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onBalanceLow", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onBalanceLowRequestBuilder(@javax.annotation.Nonnull WebhookPayloadBalanceLow webhookPayloadBalanceLow, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadBalanceLow' is set
+    if (webhookPayloadBalanceLow == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadBalanceLow' when calling onBalanceLow");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/balance.low";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadBalanceLow);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

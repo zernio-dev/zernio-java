@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   TestWebhookRequest.JSON_PROPERTY_WEBHOOK_ID,
   TestWebhookRequest.JSON_PROPERTY_EVENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T23:35:36.687992684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:44:40.121432799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TestWebhookRequest {
   public static final String JSON_PROPERTY_WEBHOOK_ID = "webhookId";
   @javax.annotation.Nonnull
@@ -303,6 +303,12 @@ public class TestWebhookRequest {
     COMMERCE_ORDER_UPDATED(String.valueOf("commerce.order.updated")),
     
     COMMERCE_ORDER_REFUNDED(String.valueOf("commerce.order.refunded")),
+    
+    BALANCE_LOW(String.valueOf("balance.low")),
+    
+    BALANCE_EMPTY(String.valueOf("balance.empty")),
+    
+    BALANCE_CHARGED(String.valueOf("balance.charged")),
     
     API_CHANGELOG_PUBLISHED(String.valueOf("api.changelog.published"));
 

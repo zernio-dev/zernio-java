@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GrantBusinessPartnerRequest.JSON_PROPERTY_BUSINESS_ID,
   GrantBusinessPartnerRequest.JSON_PROPERTY_PERMITTED_TASKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-07T23:35:36.687992684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T01:44:40.121432799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GrantBusinessPartnerRequest {
   public static final String JSON_PROPERTY_BUSINESS_ID = "businessId";
   @javax.annotation.Nonnull
