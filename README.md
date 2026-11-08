@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.525.1
+- API version: 1.526.1
 
-- Build date: 2026-11-08T02:24:25.216842374Z[Etc/UTC]
+- Build date: 2026-11-08T03:10:30.702993975Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.525.1</version>
+  <version>1.526.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.525.1"
+compile "dev.zernio:zernio-sdk:1.526.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.525.1.jar`
+- `target/zernio-sdk-1.526.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4952,6 +4952,7 @@ Class | Method | HTTP request | Description
  - [RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
  - [ResyncPageWebhookSubscription200Response](docs/ResyncPageWebhookSubscription200Response.md)
  - [RetryPost207Response](docs/RetryPost207Response.md)
+ - [RetryPost402Response](docs/RetryPost402Response.md)
  - [RetweetPost200Response](docs/RetweetPost200Response.md)
  - [RetweetPostRequest](docs/RetweetPostRequest.md)
  - [ReuseSmsRegistrationForNumber200Response](docs/ReuseSmsRegistrationForNumber200Response.md)

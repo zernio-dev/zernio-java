@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.525.1
+  version: 1.526.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -9528,6 +9528,20 @@ paths:
             A publish attempt that aborted before it started (for example the post was already being processed) reports none of the three: `post.status` is unchanged and `platformResults` is absent. Read `error` and `post.platforms[]`, which is always present.
           x-summary: "The post was created but publishing did not fully succeed: branch\
             \ on `post.status` to tell partial, failed and scheduled outcomes apart."
+        "202":
+          $ref: "#/components/responses/XPostWaitingForBalance"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BalanceRequiredError"
+          description: "Balance billing only. The post publishes now (`publishNow:\
+            \ true` or a due `scheduledFor`) to X, and the balance is at $0 after\
+            \ auto-recharge tried the saved card (code `insufficient_balance` or `usage_limit_reached`).\
+            \ Nothing was created. Top up at `funding_url`, then send the request\
+            \ again."
+          x-summary: "Publishing now needs X, and the balance is at $0: send the user\
+            \ to `funding_url` to top up, then retry. Nothing was created."
         "400":
           content:
             application/json:
@@ -10096,6 +10110,19 @@ paths:
             Read `post.status`: `partial` (some platforms published), `failed` (none published, terminal), or `scheduled` (transient errors, platforms reset to `pending`, Zernio retries automatically and this is not a failure). `platformResults` is omitted when the attempt aborted before producing per-platform results; `post.platforms[]` is always present.
           x-summary: "The post was updated, but some platforms failed to publish:\
             \ check `post.status` and retry the failed platforms."
+        "202":
+          $ref: "#/components/responses/XPostWaitingForBalance"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BalanceRequiredError"
+          description: "Balance billing only. `publishNow: true` targets X, and the\
+            \ balance is at $0 after auto-recharge tried the saved card (code `insufficient_balance`\
+            \ or `usage_limit_reached`). The post was not changed. Top up at `funding_url`,\
+            \ then send the request again."
+          x-summary: "Publishing now needs X, and the balance is at $0: send the user\
+            \ to `funding_url` to top up, then retry. The post was not changed."
         "400":
           content:
             application/json:
@@ -10329,6 +10356,8 @@ paths:
             This response carries no `platformResults`. Read `post.status` (`partial`, `failed`, or `scheduled` when transient errors will be retried automatically) and `post.platforms[]` for per-platform detail.
           x-summary: "The retry ran but publishing did not fully succeed: check `post.status`\
             \ and retry the failed platforms."
+        "202":
+          $ref: "#/components/responses/XPostWaitingForBalance"
         "400":
           content:
             application/json:
@@ -10341,8 +10370,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
-          description: "Payment required: the account owner has a failed payment."
+                $ref: "#/components/schemas/retryPost_402_response"
+          description: "Payment required, and the post was not changed. Either the\
+            \ account owner has a failed payment, or (balance billing) the post retries\
+            \ to X and the balance is at $0 after auto-recharge tried the saved card:\
+            \ code `insufficient_balance` or `usage_limit_reached`, top up at `funding_url`,\
+            \ then retry."
+          x-summary: "The account owner has a failed payment, or the post retries\
+            \ to X and the balance is at $0: fix it in Billing, then retry. The post\
+            \ was not changed."
         "403":
           content:
             application/json:
@@ -81154,6 +81190,22 @@ components:
 
         `funding_url` opens Billing with the top-up drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.
       x-summary: "Balance at $0: send the user to `funding_url` to top up, then retry."
+    XPostWaitingForBalance:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/PostPublishIncompleteResponse"
+      description: |
+        Balance billing only. The post was saved, but its X platform found the balance at $0 even after auto-recharge.
+
+        - The X platform is waiting (`post.platforms[].status: pending`, `errorMessage` says why) instead of publishing.
+        - It publishes within minutes of the balance being funded.
+        - It fails with "Your balance was $0" if the balance is still $0 after 24 hours.
+        - Other platforms in `platformResults` published or failed as usual.
+
+        This is not "publishing in progress": send the user to Billing to add funds. Usually the request is refused with 402 `insufficient_balance` before anything is saved; 202 covers a balance that reached $0 during the publish.
+      x-summary: "An X platform is waiting for funds: the balance is $0, so it publishes\
+        \ once the balance is funded and fails after 24 hours."
     BadRequest:
       content:
         application/json:
@@ -128296,6 +128348,10 @@ components:
           type: string
         post:
           $ref: "#/components/schemas/Post"
+    retryPost_402_response:
+      anyOf:
+      - $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
+      - $ref: "#/components/schemas/BalanceRequiredError"
     reviewPost_request:
       properties:
         decision:

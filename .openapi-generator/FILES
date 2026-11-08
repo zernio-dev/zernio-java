@@ -2535,6 +2535,7 @@ docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
 docs/ResyncPageWebhookSubscription200Response.md
 docs/RetryPost207Response.md
+docs/RetryPost402Response.md
 docs/RetweetPost200Response.md
 docs/RetweetPostRequest.md
 docs/ReuseSmsRegistrationForNumber200Response.md
@@ -6094,6 +6095,7 @@ src/main/java/dev/zernio/model/RestoreWorkflowVersion200Response.java
 src/main/java/dev/zernio/model/RestoreWorkflowVersion200ResponseWorkflow.java
 src/main/java/dev/zernio/model/ResyncPageWebhookSubscription200Response.java
 src/main/java/dev/zernio/model/RetryPost207Response.java
+src/main/java/dev/zernio/model/RetryPost402Response.java
 src/main/java/dev/zernio/model/RetweetPost200Response.java
 src/main/java/dev/zernio/model/RetweetPostRequest.java
 src/main/java/dev/zernio/model/ReuseSmsRegistrationForNumber200Response.java
@@ -7059,3 +7061,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/RetryPost402ResponseTest.java
