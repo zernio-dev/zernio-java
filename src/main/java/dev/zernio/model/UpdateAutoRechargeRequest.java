@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   UpdateAutoRechargeRequest.JSON_PROPERTY_MONTHLY_LIMIT_CENTS,
   UpdateAutoRechargeRequest.JSON_PROPERTY_ALERT_BELOW_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:26:46.348818351Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:34:24.221141544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAutoRechargeRequest {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable
@@ -72,7 +72,7 @@ public class UpdateAutoRechargeRequest {
   }
 
   /**
-   * Turns auto-recharge on or off. A rule switched off by failed charges stays off until the card is updated.
+   * Turns auto top-up on or off. A rule switched off by failed charges stays off until the card is updated.
    * @return enabled
    */
   @javax.annotation.Nullable
@@ -96,7 +96,7 @@ public class UpdateAutoRechargeRequest {
   }
 
   /**
-   * Recharge when the balance drops below this, in cents. At least $5.
+   * Top up when the balance drops below this, in cents. At least $5.
    * minimum: 500
    * maximum: 10000000
    * @return belowCents
@@ -122,7 +122,7 @@ public class UpdateAutoRechargeRequest {
   }
 
   /**
-   * Recharge back up to this, in cents. More than $5 above belowCents.
+   * Top back up to this, in cents. More than $5 above belowCents.
    * minimum: 500
    * maximum: 10000000
    * @return toCents
@@ -148,7 +148,7 @@ public class UpdateAutoRechargeRequest {
   }
 
   /**
-   * Most auto-recharge may add per calendar month (UTC), before tax. Null for no limit.
+   * Most auto top-up may add per calendar month (UTC), before tax. Null for no limit.
    * minimum: 500
    * maximum: 10000000
    * @return monthlyLimitCents

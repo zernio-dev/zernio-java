@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAdAccountStatusChangedAdAccount.JSON_PROPERTY_PLATFORM_AD_ACCOUNT_ID,
   WebhookPayloadAdAccountStatusChangedAdAccount.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:26:46.348818351Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:34:24.221141544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAdAccountStatusChangedAdAccount {
   public static final String JSON_PROPERTY_PLATFORM_AD_ACCOUNT_ID = "platformAdAccountId";
   @javax.annotation.Nonnull

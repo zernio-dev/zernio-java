@@ -72,7 +72,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:26:46.348818351Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:34:24.221141544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TreasuryApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1034,8 +1034,8 @@ public class TreasuryApi {
   }
 
   /**
-   * Get auto-recharge settings
-   * Your balance&#39;s auto-recharge rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  Account credit you held when you moved to the balance pays a recharge first, without a card charge or invoice (see &#x60;recentCreditRecharges&#x60; on &#x60;GET /v1/balance&#x60;). The card is charged only once that credit is used up, and only while the balance is still below &#x60;belowCents&#x60;.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
+   * Get auto top-up settings
+   * Your balance&#39;s auto top-up rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  Account credit you held when you moved to the balance pays an auto top-up first, without a card charge or invoice (see &#x60;recentCreditRecharges&#x60; on &#x60;GET /v1/balance&#x60;). The card is charged only once that credit is used up, and only while the balance is still below &#x60;belowCents&#x60;.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
    * @return AutoRecharge
    * @throws ApiException if fails to make API call
    */
@@ -1044,8 +1044,8 @@ public class TreasuryApi {
   }
 
   /**
-   * Get auto-recharge settings
-   * Your balance&#39;s auto-recharge rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  Account credit you held when you moved to the balance pays a recharge first, without a card charge or invoice (see &#x60;recentCreditRecharges&#x60; on &#x60;GET /v1/balance&#x60;). The card is charged only once that credit is used up, and only while the balance is still below &#x60;belowCents&#x60;.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
+   * Get auto top-up settings
+   * Your balance&#39;s auto top-up rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  Account credit you held when you moved to the balance pays an auto top-up first, without a card charge or invoice (see &#x60;recentCreditRecharges&#x60; on &#x60;GET /v1/balance&#x60;). The card is charged only once that credit is used up, and only while the balance is still below &#x60;belowCents&#x60;.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
    * @param headers Optional headers to include in the request
    * @return AutoRecharge
    * @throws ApiException if fails to make API call
@@ -1056,8 +1056,8 @@ public class TreasuryApi {
   }
 
   /**
-   * Get auto-recharge settings
-   * Your balance&#39;s auto-recharge rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  Account credit you held when you moved to the balance pays a recharge first, without a card charge or invoice (see &#x60;recentCreditRecharges&#x60; on &#x60;GET /v1/balance&#x60;). The card is charged only once that credit is used up, and only while the balance is still below &#x60;belowCents&#x60;.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
+   * Get auto top-up settings
+   * Your balance&#39;s auto top-up rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  Account credit you held when you moved to the balance pays an auto top-up first, without a card charge or invoice (see &#x60;recentCreditRecharges&#x60; on &#x60;GET /v1/balance&#x60;). The card is charged only once that credit is used up, and only while the balance is still below &#x60;belowCents&#x60;.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
    * @return ApiResponse&lt;AutoRecharge&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1066,8 +1066,8 @@ public class TreasuryApi {
   }
 
   /**
-   * Get auto-recharge settings
-   * Your balance&#39;s auto-recharge rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  Account credit you held when you moved to the balance pays a recharge first, without a card charge or invoice (see &#x60;recentCreditRecharges&#x60; on &#x60;GET /v1/balance&#x60;). The card is charged only once that credit is used up, and only while the balance is still below &#x60;belowCents&#x60;.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
+   * Get auto top-up settings
+   * Your balance&#39;s auto top-up rule: when the balance drops below &#x60;belowCents&#x60;, the billing owner&#39;s saved card is charged back up to &#x60;toCents&#x60;, tax added on top as for any top-up.  Account credit you held when you moved to the balance pays an auto top-up first, without a card charge or invoice (see &#x60;recentCreditRecharges&#x60; on &#x60;GET /v1/balance&#x60;). The card is charged only once that credit is used up, and only while the balance is still below &#x60;belowCents&#x60;.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;AutoRecharge&gt;
    * @throws ApiException if fails to make API call
@@ -2368,8 +2368,8 @@ public class TreasuryApi {
   }
 
   /**
-   * Update auto-recharge settings
-   * Changes the auto-recharge rule. Omitted fields keep their value.  A declined recharge is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto-recharge switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  A pay-per-use request that finds the balance at $0 runs the recharge first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.  When this month&#39;s auto-recharges plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+   * Update auto top-up settings
+   * Changes the auto top-up rule. Omitted fields keep their value.  A declined auto top-up is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto top-up switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  A pay-per-use request that finds the balance at $0 runs the auto top-up first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.  When this month&#39;s auto top-ups plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
    * @param updateAutoRechargeRequest  (required)
    * @return AutoRecharge
    * @throws ApiException if fails to make API call
@@ -2379,8 +2379,8 @@ public class TreasuryApi {
   }
 
   /**
-   * Update auto-recharge settings
-   * Changes the auto-recharge rule. Omitted fields keep their value.  A declined recharge is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto-recharge switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  A pay-per-use request that finds the balance at $0 runs the recharge first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.  When this month&#39;s auto-recharges plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+   * Update auto top-up settings
+   * Changes the auto top-up rule. Omitted fields keep their value.  A declined auto top-up is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto top-up switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  A pay-per-use request that finds the balance at $0 runs the auto top-up first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.  When this month&#39;s auto top-ups plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
    * @param updateAutoRechargeRequest  (required)
    * @param headers Optional headers to include in the request
    * @return AutoRecharge
@@ -2392,8 +2392,8 @@ public class TreasuryApi {
   }
 
   /**
-   * Update auto-recharge settings
-   * Changes the auto-recharge rule. Omitted fields keep their value.  A declined recharge is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto-recharge switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  A pay-per-use request that finds the balance at $0 runs the recharge first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.  When this month&#39;s auto-recharges plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+   * Update auto top-up settings
+   * Changes the auto top-up rule. Omitted fields keep their value.  A declined auto top-up is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto top-up switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  A pay-per-use request that finds the balance at $0 runs the auto top-up first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.  When this month&#39;s auto top-ups plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
    * @param updateAutoRechargeRequest  (required)
    * @return ApiResponse&lt;AutoRecharge&gt;
    * @throws ApiException if fails to make API call
@@ -2403,8 +2403,8 @@ public class TreasuryApi {
   }
 
   /**
-   * Update auto-recharge settings
-   * Changes the auto-recharge rule. Omitted fields keep their value.  A declined recharge is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto-recharge switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  A pay-per-use request that finds the balance at $0 runs the recharge first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.  When this month&#39;s auto-recharges plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+   * Update auto top-up settings
+   * Changes the auto top-up rule. Omitted fields keep their value.  A declined auto top-up is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto top-up switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  A pay-per-use request that finds the balance at $0 runs the auto top-up first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.  When this month&#39;s auto top-ups plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
    * @param updateAutoRechargeRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;AutoRecharge&gt;

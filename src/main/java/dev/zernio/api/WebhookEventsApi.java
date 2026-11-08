@@ -143,7 +143,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:26:46.348818351Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:34:24.221141544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3423,7 +3423,7 @@ public class WebhookEventsApi {
 
   /**
    * Balance low event
-   * Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+   * Balance billing only. The balance dropped below the low-balance alert set on auto top-up (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
    * @param webhookPayloadBalanceLow  (required)
    * @throws ApiException if fails to make API call
    */
@@ -3433,7 +3433,7 @@ public class WebhookEventsApi {
 
   /**
    * Balance low event
-   * Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+   * Balance billing only. The balance dropped below the low-balance alert set on auto top-up (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
    * @param webhookPayloadBalanceLow  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -3444,7 +3444,7 @@ public class WebhookEventsApi {
 
   /**
    * Balance low event
-   * Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+   * Balance billing only. The balance dropped below the low-balance alert set on auto top-up (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
    * @param webhookPayloadBalanceLow  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -3455,7 +3455,7 @@ public class WebhookEventsApi {
 
   /**
    * Balance low event
-   * Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+   * Balance billing only. The balance dropped below the low-balance alert set on auto top-up (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
    * @param webhookPayloadBalanceLow  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;

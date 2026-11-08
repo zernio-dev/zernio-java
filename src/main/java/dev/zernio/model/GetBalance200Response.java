@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   GetBalance200Response.JSON_PROPERTY_RECENT_TOPUPS,
   GetBalance200Response.JSON_PROPERTY_RECENT_CREDIT_RECHARGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:26:46.348818351Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:34:24.221141544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetBalance200Response {
   public static final String JSON_PROPERTY_AVAILABLE_CENTS = "availableCents";
   @javax.annotation.Nullable
@@ -442,7 +442,7 @@ public class GetBalance200Response {
   }
 
   /**
-   * Balance billing only (absent otherwise). The 10 newest recharges paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry.
+   * Balance billing only (absent otherwise). The 10 newest auto top-ups paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry.
    * @return recentCreditRecharges
    */
   @javax.annotation.Nullable

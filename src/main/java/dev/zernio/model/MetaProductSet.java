@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   MetaProductSet.JSON_PROPERTY_PRODUCT_COUNT,
   MetaProductSet.JSON_PROPERTY_FILTER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:26:46.348818351Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:34:24.221141544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaProductSet {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

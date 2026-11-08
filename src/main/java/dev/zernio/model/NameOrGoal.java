@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   NameOrGoal.JSON_PROPERTY_OP,
   NameOrGoal.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:26:46.348818351Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:34:24.221141544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class NameOrGoal {
   /**
    * The object&#39;s own name, its campaign&#39;s or ad set&#39;s name, or the campaign goal (objective) as the platform reports it.

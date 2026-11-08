@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   AutoRecharge.JSON_PROPERTY_NEXT_RETRY_AT,
   AutoRecharge.JSON_PROPERTY_MONTH_RECHARGED_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:26:46.348818351Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:34:24.221141544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutoRecharge {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nonnull
@@ -124,7 +124,7 @@ public class AutoRecharge {
   }
 
   /**
-   * Whether auto-recharge is on. Charges happen only when this is true and disabledReason is null.
+   * Whether auto top-up is on. Charges happen only when this is true and disabledReason is null.
    * @return enabled
    */
   @javax.annotation.Nonnull
@@ -148,7 +148,7 @@ public class AutoRecharge {
   }
 
   /**
-   * Recharge when the balance drops below this, in cents.
+   * Top up when the balance drops below this, in cents.
    * @return belowCents
    */
   @javax.annotation.Nonnull
@@ -172,7 +172,7 @@ public class AutoRecharge {
   }
 
   /**
-   * Recharge back up to this, in cents. The charge is toCents minus the balance, plus tax.
+   * Top back up to this, in cents. The charge is toCents minus the balance, plus tax.
    * @return toCents
    */
   @javax.annotation.Nonnull
@@ -196,7 +196,7 @@ public class AutoRecharge {
   }
 
   /**
-   * Most auto-recharge may add per calendar month (UTC), before tax; null for no limit.
+   * Most auto top-up may add per calendar month (UTC), before tax; null for no limit.
    * @return monthlyLimitCents
    */
   @javax.annotation.Nullable
@@ -292,7 +292,7 @@ public class AutoRecharge {
   }
 
   /**
-   * When a declined recharge is tried again; null when none is waiting.
+   * When a declined auto top-up is tried again; null when none is waiting.
    * @return nextRetryAt
    */
   @javax.annotation.Nullable
@@ -316,7 +316,7 @@ public class AutoRecharge {
   }
 
   /**
-   * Auto-recharge top-ups this calendar month (UTC), paid or being paid, before tax.
+   * Auto top-ups this calendar month (UTC), paid or being paid, before tax.
    * @return monthRechargedCents
    */
   @javax.annotation.Nonnull

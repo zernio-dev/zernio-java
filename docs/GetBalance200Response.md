@@ -18,7 +18,7 @@
 |**pendingTopupCents** | **Integer** | Top-ups started but not paid yet. |  [optional] |
 |**currency** | [**CurrencyEnum**](#CurrencyEnum) |  |  [optional] |
 |**recentTopups** | [**List&lt;TreasuryTopup&gt;**](TreasuryTopup.md) |  |  [optional] |
-|**recentCreditRecharges** | [**List&lt;GetBalance200ResponseRecentCreditRechargesInner&gt;**](GetBalance200ResponseRecentCreditRechargesInner.md) | Balance billing only (absent otherwise). The 10 newest recharges paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry. |  [optional] |
+|**recentCreditRecharges** | [**List&lt;GetBalance200ResponseRecentCreditRechargesInner&gt;**](GetBalance200ResponseRecentCreditRechargesInner.md) | Balance billing only (absent otherwise). The 10 newest auto top-ups paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry. |  [optional] |
 
 
 

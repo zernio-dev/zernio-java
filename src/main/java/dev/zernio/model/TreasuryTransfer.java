@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   TreasuryTransfer.JSON_PROPERTY_FAILURE_REASON,
   TreasuryTransfer.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:26:46.348818351Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-08T09:34:24.221141544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TreasuryTransfer {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -311,7 +311,7 @@ public class TreasuryTransfer {
   }
 
   /**
-   * Zernio fee added on top, 4% with a 50 cent minimum
+   * Zernio fee added on top: 4%, 50 cents minimum per payout.
    * @return feeCents
    */
   @javax.annotation.Nullable

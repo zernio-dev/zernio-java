@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**enabled** | **Boolean** | Turns auto-recharge on or off. A rule switched off by failed charges stays off until the card is updated. |  [optional] |
-|**belowCents** | **Integer** | Recharge when the balance drops below this, in cents. At least $5. |  [optional] |
-|**toCents** | **Integer** | Recharge back up to this, in cents. More than $5 above belowCents. |  [optional] |
-|**monthlyLimitCents** | **Integer** | Most auto-recharge may add per calendar month (UTC), before tax. Null for no limit. |  [optional] |
+|**enabled** | **Boolean** | Turns auto top-up on or off. A rule switched off by failed charges stays off until the card is updated. |  [optional] |
+|**belowCents** | **Integer** | Top up when the balance drops below this, in cents. At least $5. |  [optional] |
+|**toCents** | **Integer** | Top back up to this, in cents. More than $5 above belowCents. |  [optional] |
+|**monthlyLimitCents** | **Integer** | Most auto top-up may add per calendar month (UTC), before tax. Null for no limit. |  [optional] |
 |**alertBelowCents** | **Integer** | Email the billing owner once each time the balance drops below this. Null for no email. |  [optional] |
 
 

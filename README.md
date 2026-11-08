@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.527.0
 
-- Build date: 2026-11-08T09:26:46.348818351Z[Etc/UTC]
+- Build date: 2026-11-08T09:34:24.221141544Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2131,8 +2131,8 @@ Class | Method | HTTP request | Description
 *TreasuryApi* | [**createTopupWithHttpInfo**](docs/TreasuryApi.md#createTopupWithHttpInfo) | **POST** /v1/balance/top-ups | Create a top-up
 *TreasuryApi* | [**createTransfer**](docs/TreasuryApi.md#createTransfer) | **POST** /v1/transfers | Create a transfer (removed)
 *TreasuryApi* | [**createTransferWithHttpInfo**](docs/TreasuryApi.md#createTransferWithHttpInfo) | **POST** /v1/transfers | Create a transfer (removed)
-*TreasuryApi* | [**getAutoRecharge**](docs/TreasuryApi.md#getAutoRecharge) | **GET** /v1/balance/auto-recharge | Get auto-recharge settings
-*TreasuryApi* | [**getAutoRechargeWithHttpInfo**](docs/TreasuryApi.md#getAutoRechargeWithHttpInfo) | **GET** /v1/balance/auto-recharge | Get auto-recharge settings
+*TreasuryApi* | [**getAutoRecharge**](docs/TreasuryApi.md#getAutoRecharge) | **GET** /v1/balance/auto-recharge | Get auto top-up settings
+*TreasuryApi* | [**getAutoRechargeWithHttpInfo**](docs/TreasuryApi.md#getAutoRechargeWithHttpInfo) | **GET** /v1/balance/auto-recharge | Get auto top-up settings
 *TreasuryApi* | [**getBalance**](docs/TreasuryApi.md#getBalance) | **GET** /v1/balance | Get balance
 *TreasuryApi* | [**getBalanceWithHttpInfo**](docs/TreasuryApi.md#getBalanceWithHttpInfo) | **GET** /v1/balance | Get balance
 *TreasuryApi* | [**getPayoutBatch**](docs/TreasuryApi.md#getPayoutBatch) | **GET** /v1/payout-batches/{batchId} | Get a payout batch
@@ -2153,8 +2153,8 @@ Class | Method | HTTP request | Description
 *TreasuryApi* | [**listTransfersWithHttpInfo**](docs/TreasuryApi.md#listTransfersWithHttpInfo) | **GET** /v1/transfers | List transfers
 *TreasuryApi* | [**previewTopup**](docs/TreasuryApi.md#previewTopup) | **POST** /v1/balance/top-ups/preview | Preview a top-up&#39;s tax
 *TreasuryApi* | [**previewTopupWithHttpInfo**](docs/TreasuryApi.md#previewTopupWithHttpInfo) | **POST** /v1/balance/top-ups/preview | Preview a top-up&#39;s tax
-*TreasuryApi* | [**updateAutoRecharge**](docs/TreasuryApi.md#updateAutoRecharge) | **PATCH** /v1/balance/auto-recharge | Update auto-recharge settings
-*TreasuryApi* | [**updateAutoRechargeWithHttpInfo**](docs/TreasuryApi.md#updateAutoRechargeWithHttpInfo) | **PATCH** /v1/balance/auto-recharge | Update auto-recharge settings
+*TreasuryApi* | [**updateAutoRecharge**](docs/TreasuryApi.md#updateAutoRecharge) | **PATCH** /v1/balance/auto-recharge | Update auto top-up settings
+*TreasuryApi* | [**updateAutoRechargeWithHttpInfo**](docs/TreasuryApi.md#updateAutoRechargeWithHttpInfo) | **PATCH** /v1/balance/auto-recharge | Update auto top-up settings
 *TwitterEngagementApi* | [**bookmarkPost**](docs/TwitterEngagementApi.md#bookmarkPost) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**bookmarkPostWithHttpInfo**](docs/TwitterEngagementApi.md#bookmarkPostWithHttpInfo) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**followUser**](docs/TwitterEngagementApi.md#followUser) | **POST** /v1/twitter/follow | Follow a user
