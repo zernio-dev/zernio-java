@@ -5563,8 +5563,8 @@ public class Example {
 | **404** | Resource not found |  -  |
 | **409** | Meta already reports this number as VERIFIED. Call POST /v1/accounts/{accountId}/whatsapp/register instead. |  -  |
 | **422** | The account has no phone number bound yet, it runs in coexistence with the WhatsApp Business app, or Meta rejected the code request. |  -  |
-| **429** | Our own 10-minute-per-account cooldown is active, or Meta has escalated to a multi-hour lockout after repeated attempts. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
-| **503** | Meta could not dispatch a code for this number yet. Retry shortly. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **429** | Our own 10-minute-per-account cooldown is active, or Meta has escalated to a multi-hour lockout after repeated attempts. |  * Retry-After - Seconds until card payments are tried again. <br>  |
+| **503** | Meta could not dispatch a code for this number yet. Retry shortly. |  * Retry-After - Seconds until card payments are tried again. <br>  |
 
 ## requestWhatsAppVerificationCodeWithHttpInfo
 
@@ -5645,8 +5645,8 @@ ApiResponse<[**RequestWhatsAppVerificationCode200Response**](RequestWhatsAppVeri
 | **404** | Resource not found |  -  |
 | **409** | Meta already reports this number as VERIFIED. Call POST /v1/accounts/{accountId}/whatsapp/register instead. |  -  |
 | **422** | The account has no phone number bound yet, it runs in coexistence with the WhatsApp Business app, or Meta rejected the code request. |  -  |
-| **429** | Our own 10-minute-per-account cooldown is active, or Meta has escalated to a multi-hour lockout after repeated attempts. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
-| **503** | Meta could not dispatch a code for this number yet. Retry shortly. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **429** | Our own 10-minute-per-account cooldown is active, or Meta has escalated to a multi-hour lockout after repeated attempts. |  * Retry-After - Seconds until card payments are tried again. <br>  |
+| **503** | Meta could not dispatch a code for this number yet. Retry shortly. |  * Retry-After - Seconds until card payments are tried again. <br>  |
 
 
 ## sendWhatsAppConversion

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.526.1
+  version: 1.527.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -4554,6 +4554,7 @@ paths:
         - 402 `card_declined`: the bank's reason.
         - 400: `method: bank_transfer` (bank transfers are not available yet).
         - 400 `invalid_billing_address`: the billing address gives no tax location. Add it in Billing, then retry.
+        - 429 `payment_attempts_limited`: five card payments were declined in 24 hours. Nothing reaches the bank until `Retry-After` runs out.
 
         Needs an owner, admin or billing admin, signed in or through a full-access key they created.
       operationId: createTopup
@@ -4590,6 +4591,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         "409":
           $ref: "#/components/responses/IdempotencyKeyInFlight"
+        "429":
+          $ref: "#/components/responses/PaymentAttemptsLimited"
         "422":
           $ref: "#/components/responses/IdempotencyKeyReused"
       summary: Create a top-up
@@ -79927,6 +79930,7 @@ paths:
         - 402: your balance is negative after a dispute or refund.
         - 400: nothing payable ("Nothing is payable.").
         - 400 `invalid_billing_address`: Stripe cannot place your billing address, so it cannot tax the fee. Nothing is held.
+        - 429 `payment_attempts_limited`: five card payments were declined in 24 hours. Nothing is held and nothing reaches the bank until `Retry-After` runs out.
 
         ### Access and retries
 
@@ -79975,6 +79979,8 @@ paths:
           $ref: "#/components/responses/CreatorCampaignNotFound"
         "409":
           $ref: "#/components/responses/CreatorCampaignConflict"
+        "429":
+          $ref: "#/components/responses/PaymentAttemptsLimited"
       security:
       - bearerAuth: []
       summary: Pay creators with one card payment
@@ -81320,6 +81326,24 @@ components:
           style: simple
       x-summary: "The connected account's upstream platform quota is exhausted: wait\
         \ for the limit to reset before retrying, since repeated calls do not succeed."
+    PaymentAttemptsLimited:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: |
+        Code `payment_attempts_limited`: five card payments of the billing owner (top-ups, auto top-ups, payout batches paid by card, cards that failed to save) were declined within 24 hours, so new card payments are refused without reaching the bank until 24 hours after the fifth decline. Nothing was charged.
+
+        The message is "Too many declined payments. Try again tomorrow or contact support." `Retry-After` and `details.retryAt` say when card payments are tried again.
+      headers:
+        Retry-After:
+          description: Seconds until card payments are tried again.
+          explode: false
+          schema:
+            type: integer
+          style: simple
+      x-summary: "Five card payments were declined in 24 hours: no new card payment\
+        \ is tried until `Retry-After` runs out."
     AnalyticsRateLimited:
       content:
         application/json:
