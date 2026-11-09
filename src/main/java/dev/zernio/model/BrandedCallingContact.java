@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   BrandedCallingContact.JSON_PROPERTY_JOB_TITLE,
   BrandedCallingContact.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:22:01.221261454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:58:29.393296013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BrandedCallingContact {
   public static final String JSON_PROPERTY_FIRST_NAME = "firstName";
   @javax.annotation.Nonnull

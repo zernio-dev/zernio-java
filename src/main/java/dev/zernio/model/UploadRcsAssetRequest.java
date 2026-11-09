@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UploadRcsAssetRequest.JSON_PROPERTY_FILE,
   UploadRcsAssetRequest.JSON_PROPERTY_KIND
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:22:01.221261454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:58:29.393296013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadRcsAssetRequest {
   public static final String JSON_PROPERTY_FILE = "file";
   @javax.annotation.Nonnull

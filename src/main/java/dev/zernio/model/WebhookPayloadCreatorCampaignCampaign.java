@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCreatorCampaignCampaign.JSON_PROPERTY_BUDGET_EXHAUSTED_AT,
   WebhookPayloadCreatorCampaignCampaign.JSON_PROPERTY_CLOSED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:22:01.221261454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:58:29.393296013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCreatorCampaignCampaign {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

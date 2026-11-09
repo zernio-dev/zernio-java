@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   GetSmsUsage200Response.JSON_PROPERTY_TOTALS,
   GetSmsUsage200Response.JSON_PROPERTY_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:22:01.221261454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:58:29.393296013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetSmsUsage200Response {
   public static final String JSON_PROPERTY_SINCE = "since";
   @javax.annotation.Nullable

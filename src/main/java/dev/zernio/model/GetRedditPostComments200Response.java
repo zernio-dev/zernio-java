@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   GetRedditPostComments200Response.JSON_PROPERTY_ITEMS,
   GetRedditPostComments200Response.JSON_PROPERTY_MORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:22:01.221261454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:58:29.393296013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetRedditPostComments200Response {
   public static final String JSON_PROPERTY_POST = "post";
   private JsonNullable<RedditPost> post = JsonNullable.<RedditPost>undefined();

@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   AutomationScheduleTrigger.JSON_PROPERTY_ENDS_AT,
   AutomationScheduleTrigger.JSON_PROPERTY_QUIET_HOURS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:22:01.221261454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:58:29.393296013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationScheduleTrigger {
   /**
    * Gets or Sets type

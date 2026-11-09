@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   RedeliverWebhookEventRequest.JSON_PROPERTY_WEBHOOK_ID,
   RedeliverWebhookEventRequest.JSON_PROPERTY_EVENT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:22:01.221261454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:58:29.393296013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RedeliverWebhookEventRequest {
   public static final String JSON_PROPERTY_WEBHOOK_ID = "webhookId";
   @javax.annotation.Nonnull

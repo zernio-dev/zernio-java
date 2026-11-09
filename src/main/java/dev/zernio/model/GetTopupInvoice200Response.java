@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetTopupInvoice200Response.JSON_PROPERTY_TAX_CENTS,
   GetTopupInvoice200Response.JSON_PROPERTY_CHARGED_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:22:01.221261454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:58:29.393296013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTopupInvoice200Response {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull

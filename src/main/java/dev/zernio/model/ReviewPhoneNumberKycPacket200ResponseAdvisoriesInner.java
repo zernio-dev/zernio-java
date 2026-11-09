@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ReviewPhoneNumberKycPacket200ResponseAdvisoriesInner.JSON_PROPERTY_REQUIREMENT_ID,
   ReviewPhoneNumberKycPacket200ResponseAdvisoriesInner.JSON_PROPERTY_CONCERN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:22:01.221261454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:58:29.393296013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReviewPhoneNumberKycPacket200ResponseAdvisoriesInner {
   public static final String JSON_PROPERTY_REQUIREMENT_ID = "requirementId";
   @javax.annotation.Nullable
