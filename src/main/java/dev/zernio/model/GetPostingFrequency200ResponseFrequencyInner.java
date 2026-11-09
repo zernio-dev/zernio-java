@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetPostingFrequency200ResponseFrequencyInner.JSON_PROPERTY_AVG_ENGAGEMENT,
   GetPostingFrequency200ResponseFrequencyInner.JSON_PROPERTY_WEEKS_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T22:55:51.177217774Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T23:01:14.972777779Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPostingFrequency200ResponseFrequencyInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable

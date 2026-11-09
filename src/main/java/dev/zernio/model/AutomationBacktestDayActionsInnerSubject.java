@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   AutomationBacktestDayActionsInnerSubject.JSON_PROPERTY_NAME,
   AutomationBacktestDayActionsInnerSubject.JSON_PROPERTY_CAMPAIGN_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T22:55:51.177217774Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T23:01:14.972777779Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationBacktestDayActionsInnerSubject {
   /**
    * Gets or Sets kind

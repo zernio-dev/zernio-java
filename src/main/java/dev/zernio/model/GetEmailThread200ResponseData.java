@@ -56,7 +56,7 @@ import dev.zernio.ApiClient;
   GetEmailThread200ResponseData.JSON_PROPERTY_LATEST_MESSAGE_SENT_AT,
   GetEmailThread200ResponseData.JSON_PROPERTY_MESSAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T22:55:51.177217774Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T23:01:14.972777779Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEmailThread200ResponseData {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

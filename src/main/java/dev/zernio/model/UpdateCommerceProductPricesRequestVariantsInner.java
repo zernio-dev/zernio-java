@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   UpdateCommerceProductPricesRequestVariantsInner.JSON_PROPERTY_PRICE,
   UpdateCommerceProductPricesRequestVariantsInner.JSON_PROPERTY_COMPARE_AT_PRICE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T22:55:51.177217774Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T23:01:14.972777779Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCommerceProductPricesRequestVariantsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
