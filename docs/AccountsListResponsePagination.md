@@ -2,7 +2,7 @@
 
 # AccountsListResponsePagination
 
-Present on a paginated request: `{ page, limit, total, pages }` with page and limit, `{ limit, nextCursor }` with cursor paging (limit alone or cursor).
+Present on a paginated request: `{ page, limit, total, pages }` with page and limit, `{ limit, nextCursor }` with cursor paging (limit alone or cursor). Also `{ limit, nextCursor }` on an unpaged API request cut at 500 accounts.
 
 ## oneOf schemas
 * [AccountCursorPagination](AccountCursorPagination.md)

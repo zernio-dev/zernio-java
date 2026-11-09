@@ -1955,7 +1955,7 @@ ApiResponse<[**GetFacebookPostReactions200Response**](GetFacebookPostReactions20
 
 Get follower stats
 
-Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day. 
+Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day.  ### Limits  - At most 25 accounts per request: up to 25 &#x60;accountIds&#x60;, or a page of accounts. More than 25 &#x60;accountIds&#x60; returns 400. - Without &#x60;accountIds&#x60;, the response is the first page of 25 accounts even when &#x60;limit&#x60; and &#x60;cursor&#x60; are omitted. Pass &#x60;pagination.nextCursor&#x60; back as &#x60;cursor&#x60; for the next one. - When that default page cuts the list, the response also carries a &#x60;warning&#x60; and the headers &#x60;X-Result-Truncated: true&#x60; and &#x60;X-Result-Limit: 25&#x60;. - At most 1 year between &#x60;fromDate&#x60; and &#x60;toDate&#x60;. A longer range returns 400. 
 
 ### Example
 
@@ -1978,12 +1978,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
-        String accountIds = "accountIds_example"; // String | Comma-separated list of account IDs (optional, defaults to all user's accounts)
+        String accountIds = "accountIds_example"; // String | Comma-separated list of up to 25 account IDs. Optional: without it, the response pages through all your accounts.
         String profileId = "profileId_example"; // String | Filter by profile ID
-        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format (defaults to 30 days ago)
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format (defaults to one year before toDate). At most one year before toDate.
         LocalDate toDate = LocalDate.now(); // LocalDate | End date in YYYY-MM-DD format (defaults to today)
         String granularity = "daily"; // String | Data aggregation level
-        Integer limit = 56; // Integer | Accounts per page, ordered by account id. Send it to page through accounts; the response then carries `pagination.nextCursor`. Without limit or cursor every matching account is returned.
+        Integer limit = 56; // Integer | Accounts per page, ordered by account id; the response carries `pagination.nextCursor`. Without limit or cursor, a request without accountIds still gets a first page of 25.
         String cursor = "cursor_example"; // String | Opaque cursor from a previous response's `pagination.nextCursor`; returns the next page of `limit` accounts (25 when limit is omitted). A cursor we cannot parse returns 400.
         try {
             FollowerStatsResponse result = apiInstance.getFollowerStats(accountIds, profileId, fromDate, toDate, granularity, limit, cursor);
@@ -2004,12 +2004,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountIds** | **String**| Comma-separated list of account IDs (optional, defaults to all user&#39;s accounts) | [optional] |
+| **accountIds** | **String**| Comma-separated list of up to 25 account IDs. Optional: without it, the response pages through all your accounts. | [optional] |
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **fromDate** | **LocalDate**| Start date in YYYY-MM-DD format (defaults to 30 days ago) | [optional] |
+| **fromDate** | **LocalDate**| Start date in YYYY-MM-DD format (defaults to one year before toDate). At most one year before toDate. | [optional] |
 | **toDate** | **LocalDate**| End date in YYYY-MM-DD format (defaults to today) | [optional] |
 | **granularity** | **String**| Data aggregation level | [optional] [default to daily] [enum: daily, weekly, monthly] |
-| **limit** | **Integer**| Accounts per page, ordered by account id. Send it to page through accounts; the response then carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor every matching account is returned. | [optional] |
+| **limit** | **Integer**| Accounts per page, ordered by account id; the response carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor, a request without accountIds still gets a first page of 25. | [optional] |
 | **cursor** | **String**| Opaque cursor from a previous response&#39;s &#x60;pagination.nextCursor&#x60;; returns the next page of &#x60;limit&#x60; accounts (25 when limit is omitted). A cursor we cannot parse returns 400. | [optional] |
 
 ### Return type
@@ -2029,7 +2029,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Follower stats |  -  |
+| **200** | Follower stats |  * X-Result-Truncated - Only when a request without accountIds, limit or cursor got the default page of 25 and more accounts remain. Page through the rest with cursor. <br>  * X-Result-Limit - Only with X-Result-Truncated: the page size that cut the list. <br>  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
@@ -2040,7 +2040,7 @@ public class Example {
 
 Get follower stats
 
-Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day. 
+Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day.  ### Limits  - At most 25 accounts per request: up to 25 &#x60;accountIds&#x60;, or a page of accounts. More than 25 &#x60;accountIds&#x60; returns 400. - Without &#x60;accountIds&#x60;, the response is the first page of 25 accounts even when &#x60;limit&#x60; and &#x60;cursor&#x60; are omitted. Pass &#x60;pagination.nextCursor&#x60; back as &#x60;cursor&#x60; for the next one. - When that default page cuts the list, the response also carries a &#x60;warning&#x60; and the headers &#x60;X-Result-Truncated: true&#x60; and &#x60;X-Result-Limit: 25&#x60;. - At most 1 year between &#x60;fromDate&#x60; and &#x60;toDate&#x60;. A longer range returns 400. 
 
 ### Example
 
@@ -2064,12 +2064,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
-        String accountIds = "accountIds_example"; // String | Comma-separated list of account IDs (optional, defaults to all user's accounts)
+        String accountIds = "accountIds_example"; // String | Comma-separated list of up to 25 account IDs. Optional: without it, the response pages through all your accounts.
         String profileId = "profileId_example"; // String | Filter by profile ID
-        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format (defaults to 30 days ago)
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format (defaults to one year before toDate). At most one year before toDate.
         LocalDate toDate = LocalDate.now(); // LocalDate | End date in YYYY-MM-DD format (defaults to today)
         String granularity = "daily"; // String | Data aggregation level
-        Integer limit = 56; // Integer | Accounts per page, ordered by account id. Send it to page through accounts; the response then carries `pagination.nextCursor`. Without limit or cursor every matching account is returned.
+        Integer limit = 56; // Integer | Accounts per page, ordered by account id; the response carries `pagination.nextCursor`. Without limit or cursor, a request without accountIds still gets a first page of 25.
         String cursor = "cursor_example"; // String | Opaque cursor from a previous response's `pagination.nextCursor`; returns the next page of `limit` accounts (25 when limit is omitted). A cursor we cannot parse returns 400.
         try {
             ApiResponse<FollowerStatsResponse> response = apiInstance.getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity, limit, cursor);
@@ -2092,12 +2092,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountIds** | **String**| Comma-separated list of account IDs (optional, defaults to all user&#39;s accounts) | [optional] |
+| **accountIds** | **String**| Comma-separated list of up to 25 account IDs. Optional: without it, the response pages through all your accounts. | [optional] |
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **fromDate** | **LocalDate**| Start date in YYYY-MM-DD format (defaults to 30 days ago) | [optional] |
+| **fromDate** | **LocalDate**| Start date in YYYY-MM-DD format (defaults to one year before toDate). At most one year before toDate. | [optional] |
 | **toDate** | **LocalDate**| End date in YYYY-MM-DD format (defaults to today) | [optional] |
 | **granularity** | **String**| Data aggregation level | [optional] [default to daily] [enum: daily, weekly, monthly] |
-| **limit** | **Integer**| Accounts per page, ordered by account id. Send it to page through accounts; the response then carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor every matching account is returned. | [optional] |
+| **limit** | **Integer**| Accounts per page, ordered by account id; the response carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor, a request without accountIds still gets a first page of 25. | [optional] |
 | **cursor** | **String**| Opaque cursor from a previous response&#39;s &#x60;pagination.nextCursor&#x60;; returns the next page of &#x60;limit&#x60; accounts (25 when limit is omitted). A cursor we cannot parse returns 400. | [optional] |
 
 ### Return type
@@ -2117,7 +2117,7 @@ ApiResponse<[**FollowerStatsResponse**](FollowerStatsResponse.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Follower stats |  -  |
+| **200** | Follower stats |  * X-Result-Truncated - Only when a request without accountIds, limit or cursor got the default page of 25 and more accounts remain. Page through the rest with cursor. <br>  * X-Result-Limit - Only with X-Result-Truncated: the page size that cut the list. <br>  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
