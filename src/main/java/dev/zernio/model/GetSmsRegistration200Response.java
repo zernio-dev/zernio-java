@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   GetSmsRegistration200Response.JSON_PROPERTY_REVIEW_REQUEST,
   GetSmsRegistration200Response.JSON_PROPERTY_CAMPAIGN_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:46:28.455455713Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:51:13.879286947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetSmsRegistration200Response {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

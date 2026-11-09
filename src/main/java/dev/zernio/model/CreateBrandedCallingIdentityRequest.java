@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   CreateBrandedCallingIdentityRequest.JSON_PROPERTY_AUTHORIZER,
   CreateBrandedCallingIdentityRequest.JSON_PROPERTY_REFERENCES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:46:28.455455713Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:51:13.879286947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateBrandedCallingIdentityRequest {
   public static final String JSON_PROPERTY_ENTERPRISE_ID = "enterpriseId";
   @javax.annotation.Nonnull

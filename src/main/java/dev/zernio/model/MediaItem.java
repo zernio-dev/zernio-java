@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   MediaItem.JSON_PROPERTY_SUBTITLES,
   MediaItem.JSON_PROPERTY_TIKTOK_PROCESSED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:46:28.455455713Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:51:13.879286947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MediaItem {
   /**
    * Optional when the item names a connected file (&#x60;fileId&#x60;): inferred from the file&#39;s MIME type.

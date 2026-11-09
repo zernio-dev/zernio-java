@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   AutomationPostSubjects.JSON_PROPERTY_ACCOUNT_IDS,
   AutomationPostSubjects.JSON_PROPERTY_PUBLISHED_WITHIN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:46:28.455455713Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:51:13.879286947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationPostSubjects {
   /**
    * Gets or Sets each

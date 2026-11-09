@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   BusinessAgentTestMessageResponse.JSON_PROPERTY_QUICK_REPLIES,
   BusinessAgentTestMessageResponse.JSON_PROPERTY_PRODUCT_VARIANT_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:46:28.455455713Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:51:13.879286947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentTestMessageResponse {
   public static final String JSON_PROPERTY_MESSAGE_ID = "message_id";
   @javax.annotation.Nonnull

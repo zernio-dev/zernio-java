@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CreatorPortalParticipantEarnings.JSON_PROPERTY_PAID_CENTS,
   CreatorPortalParticipantEarnings.JSON_PROPERTY_NEXT_RELEASE_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:46:28.455455713Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:51:13.879286947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatorPortalParticipantEarnings {
   public static final String JSON_PROPERTY_ACCRUING_CENTS = "accruingCents";
   @javax.annotation.Nonnull
