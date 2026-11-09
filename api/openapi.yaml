@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.538.0
+  version: 1.539.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -10959,12 +10959,18 @@ paths:
   /v1/posts/{postId}/update-metadata:
     post:
       description: |
-        Updates metadata of a published video on the specified platform without re-uploading. Currently only supported for YouTube. At least one updatable field is required.
+        Updates metadata of a published video on the specified platform without re-uploading. Supported on YouTube and Facebook. At least one updatable field is required.
+
+        ### Platforms
+
+        - YouTube: every field below.
+        - Facebook: `thumbnailUrl` only, on a feed video or Reel published through Zernio (post-based mode). It replaces the video's cover. Any other field, a Story, a non-video post, or direct `videoId` mode returns 400.
+        - Instagram: not supported. Meta does not allow changing a Reel or video cover after publishing, so set `instagramThumbnail` when creating the post.
 
         ### Two modes
 
         1. Post-based (video published through Zernio): pass the Zernio postId in the URL and platform in the body.
-        2. Direct video ID (video uploaded outside Zernio, e.g. directly to YouTube): use _ as the postId, and pass videoId + accountId + platform in the body. The accountId is the Zernio account ID for the connected YouTube channel.
+        2. Direct video ID (YouTube only, video uploaded outside Zernio): use _ as the postId, and pass videoId + accountId + platform in the body. The accountId is the Zernio account ID for the connected YouTube channel.
       operationId: updatePostMetadata
       parameters:
       - description: "Zernio post ID, or \"_\" when using direct video ID mode"
@@ -11007,6 +11013,12 @@ paths:
                   videoId: dQw4w9WgXcQ
                   accountId: 68fb37418bbca9c10cbfef26
                   thumbnailUrl: https://example.com/my-thumbnail.jpg
+              facebook-cover:
+                summary: Change the cover of a Facebook video or Reel published through
+                  Zernio
+                value:
+                  platform: facebook
+                  thumbnailUrl: https://example.com/new-cover.jpg
             schema:
               $ref: "#/components/schemas/updatePostMetadata_request"
         required: true
@@ -11029,8 +11041,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: "Invalid request: unsupported platform, post not published,\
-            \ missing fields, validation error, or the thumbnail could not be set."
+          description: "Invalid request: unsupported platform, a field the platform\
+            \ does not support (Facebook accepts only thumbnailUrl), post not published,\
+            \ a Facebook post that is not a feed video or Reel, missing fields, validation\
+            \ error, or the thumbnail could not be set."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -11059,6 +11073,13 @@ paths:
             \ and retry later rather than immediately."
         "500":
           description: Platform API update failed
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Facebook is still processing the video, so the cover cannot\
+            \ be set yet. Retry in a few minutes."
       summary: Update post metadata
       tags:
       - Posts
@@ -99407,7 +99428,8 @@ components:
         instagramThumbnail:
           description: "Custom cover image URL for Instagram Reels (JPG or PNG, publicly\
             \ accessible). Overrides thumbOffset when provided. Also accepted as reelCover\
-            \ (alias)."
+            \ (alias). The cover cannot be changed after publishing because Meta only\
+            \ allows comment_enabled to be updated on published Instagram media."
           format: uri
           type: string
         reelCover:
@@ -128897,13 +128919,14 @@ components:
     updatePostMetadata_request:
       properties:
         platform:
-          description: The platform to update metadata on
+          description: The platform to update metadata on. Facebook accepts only thumbnailUrl.
           enum:
           - youtube
+          - facebook
           type: string
         videoId:
           description: "YouTube video ID (required for direct mode, ignored for post-based\
-            \ mode)"
+            \ mode). Not supported for Facebook."
           type: string
         accountId:
           description: "Zernio account ID. Required for direct mode. In post-based\
@@ -128935,13 +128958,18 @@ components:
           type: string
         thumbnailUrl:
           description: |
-            Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 50 MB, recommended 1280x720). Works on any video you own, including videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails.
+            Public URL of a custom thumbnail image.
+
+            - YouTube: JPEG, PNG, or GIF, max 50 MB, recommended 1280x720. Works on any video you own, including videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails.
+            - Facebook: JPEG or PNG, max 5 MB, served directly (no redirects). Replaces the cover of a feed video or Reel published through Zernio. Stories are not supported.
 
             **Errors:**
 
-            - 400 with the reason, no field updated: YouTube refuses the thumbnail (e.g. channel without the custom-thumbnail permission, video not owned by the connected channel), or the image URL cannot be fetched or has an unsupported format or size.
+            - 400 with the reason, no field updated: the platform refuses the thumbnail (e.g. YouTube channel without the custom-thumbnail permission, video not owned by the connected account), the Facebook post is not a feed video or Reel, or the image URL cannot be fetched or has an unsupported format or size.
             - 429: YouTube thumbnail rate limit (uploadRateLimitExceeded). Retry later, not immediately, because retries keep the channel over its limit.
-            - 500: any other temporary YouTube or network failure; can be retried.
+            - 404 (Facebook): Facebook cannot find the video. Right after publishing this can be Meta's processing lag, so retry shortly; otherwise the video was deleted or the Page no longer grants access.
+            - 503 (Facebook): Facebook is still processing the video, so the cover cannot be set yet. Retry in a few minutes.
+            - 500: any other temporary platform or network failure; can be retried.
           format: uri
           type: string
         madeForKids:

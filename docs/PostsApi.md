@@ -2027,7 +2027,7 @@ ApiResponse<[**PostUpdateResponse**](PostUpdateResponse.md)>
 
 Update post metadata
 
-Updates metadata of a published video on the specified platform without re-uploading. Currently only supported for YouTube. At least one updatable field is required.  ### Two modes  1. Post-based (video published through Zernio): pass the Zernio postId in the URL and platform in the body. 2. Direct video ID (video uploaded outside Zernio, e.g. directly to YouTube): use _ as the postId, and pass videoId + accountId + platform in the body. The accountId is the Zernio account ID for the connected YouTube channel. 
+Updates metadata of a published video on the specified platform without re-uploading. Supported on YouTube and Facebook. At least one updatable field is required.  ### Platforms  - YouTube: every field below. - Facebook: &#x60;thumbnailUrl&#x60; only, on a feed video or Reel published through Zernio (post-based mode). It replaces the video&#39;s cover. Any other field, a Story, a non-video post, or direct &#x60;videoId&#x60; mode returns 400. - Instagram: not supported. Meta does not allow changing a Reel or video cover after publishing, so set &#x60;instagramThumbnail&#x60; when creating the post.  ### Two modes  1. Post-based (video published through Zernio): pass the Zernio postId in the URL and platform in the body. 2. Direct video ID (YouTube only, video uploaded outside Zernio): use _ as the postId, and pass videoId + accountId + platform in the body. The accountId is the Zernio account ID for the connected YouTube channel. 
 
 ### Example
 
@@ -2092,13 +2092,14 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Metadata updated successfully |  -  |
-| **400** | Invalid request: unsupported platform, post not published, missing fields, validation error, or the thumbnail could not be set. |  -  |
+| **400** | Invalid request: unsupported platform, a field the platform does not support (Facebook accepts only thumbnailUrl), post not published, a Facebook post that is not a feed video or Reel, missing fields, validation error, or the thumbnail could not be set. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post was published to several accounts on this platform and no accountId was sent (ambiguous_account). |  -  |
 | **429** | YouTube rate-limited the thumbnail upload for the channel (uploadRateLimitExceeded). Retry later, not immediately. |  -  |
 | **500** | Platform API update failed |  -  |
+| **503** | Facebook is still processing the video, so the cover cannot be set yet. Retry in a few minutes. |  -  |
 
 ## updatePostMetadataWithHttpInfo
 
@@ -2106,7 +2107,7 @@ public class Example {
 
 Update post metadata
 
-Updates metadata of a published video on the specified platform without re-uploading. Currently only supported for YouTube. At least one updatable field is required.  ### Two modes  1. Post-based (video published through Zernio): pass the Zernio postId in the URL and platform in the body. 2. Direct video ID (video uploaded outside Zernio, e.g. directly to YouTube): use _ as the postId, and pass videoId + accountId + platform in the body. The accountId is the Zernio account ID for the connected YouTube channel. 
+Updates metadata of a published video on the specified platform without re-uploading. Supported on YouTube and Facebook. At least one updatable field is required.  ### Platforms  - YouTube: every field below. - Facebook: &#x60;thumbnailUrl&#x60; only, on a feed video or Reel published through Zernio (post-based mode). It replaces the video&#39;s cover. Any other field, a Story, a non-video post, or direct &#x60;videoId&#x60; mode returns 400. - Instagram: not supported. Meta does not allow changing a Reel or video cover after publishing, so set &#x60;instagramThumbnail&#x60; when creating the post.  ### Two modes  1. Post-based (video published through Zernio): pass the Zernio postId in the URL and platform in the body. 2. Direct video ID (YouTube only, video uploaded outside Zernio): use _ as the postId, and pass videoId + accountId + platform in the body. The accountId is the Zernio account ID for the connected YouTube channel. 
 
 ### Example
 
@@ -2174,11 +2175,12 @@ ApiResponse<[**UpdatePostMetadata200Response**](UpdatePostMetadata200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Metadata updated successfully |  -  |
-| **400** | Invalid request: unsupported platform, post not published, missing fields, validation error, or the thumbnail could not be set. |  -  |
+| **400** | Invalid request: unsupported platform, a field the platform does not support (Facebook accepts only thumbnailUrl), post not published, a Facebook post that is not a feed video or Reel, missing fields, validation error, or the thumbnail could not be set. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post was published to several accounts on this platform and no accountId was sent (ambiguous_account). |  -  |
 | **429** | YouTube rate-limited the thumbnail upload for the channel (uploadRateLimitExceeded). Retry later, not immediately. |  -  |
 | **500** | Platform API update failed |  -  |
+| **503** | Facebook is still processing the video, so the cover cannot be set yet. Retry in a few minutes. |  -  |
 
