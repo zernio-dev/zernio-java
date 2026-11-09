@@ -15,6 +15,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**canPost** | **Boolean** |  |  [optional] |
 |**canFetchAnalytics** | **Boolean** |  |  [optional] |
+|**scopeAreas** | [**Map&lt;String, InnerEnum&gt;**](#Map&lt;String, InnerEnum&gt;) | Present when the account connected with &#x60;scopes&#x60; or through your own OAuth app: each permission area the platform splits, as granted, missing or not_requested. An area never requested does not make the account unhealthy. |  [optional] |
 |**tokenValid** | **Boolean** |  |  [optional] |
 |**tokenExpiresAt** | **OffsetDateTime** |  |  [optional] |
 |**needsReconnect** | **Boolean** | True when the token is expired or revoked, permissions are missing, the account is inactive, or the platform rejected its stored credentials (the same flag the account listing reports as needsReconnection). |  [optional] |
@@ -36,6 +37,16 @@
 | HEALTHY | &quot;healthy&quot; |
 | WARNING | &quot;warning&quot; |
 | ERROR | &quot;error&quot; |
+
+
+
+## Enum: Map&lt;String, InnerEnum&gt;
+
+| Name | Value |
+|---- | -----|
+| GRANTED | &quot;granted&quot; |
+| MISSING | &quot;missing&quot; |
+| NOT_REQUESTED | &quot;not_requested&quot; |
 
 
 

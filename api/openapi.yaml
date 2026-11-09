@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.535.0
+  version: 1.538.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -1680,15 +1680,25 @@ paths:
   /v1/analytics/tiktok/account-insights:
     get:
       description: |
-        Returns account-level TikTok insights from /v2/user/info/ (live) plus historical time series joined from Zernio's daily snapshotter (AccountStats).
+        Returns account-level TikTok insights: the lifetime profile counters (live, with historical time series joined from Zernio's daily snapshotter) and TikTok's own daily account figures (video views, likes, comments, shares, profile views).
 
         - Response shape matches /v1/analytics/instagram/account-insights.
         - Max 89 days, defaults to last 30 days.
         - Requires the user.info.stats scope on the account (412 if missing).
 
-        ### Why the scope is narrow
+        ### Daily account metrics
 
-        This ACCOUNT-level endpoint intentionally exposes only the four counter metrics below. It does not return:
+        `video_views`, `likes`, `comments`, `shares` and `profile_views` are TikTok's daily figures for the whole account, read from the TikTok Business Accounts API. They count every video of the account, not only recent ones, so they differ from GET /v1/analytics/daily-metrics, which sums per-post analytics.
+
+        - With `metricType=time_series` each day is one entry in `values`. With `total_value` the total is the sum over the range.
+        - The latest day available is yesterday, and TikTok can take 24-48 hours to settle a day. Days after the latest available one are left out of `values`.
+        - They work for Business and personal TikTok accounts connected through Zernio's TikTok connection, with the user.insights scope.
+        - Accounts on the original TikTok integration (or on your own TikTok app) cannot read them: each one is listed in `unavailableMetrics` with reason `unsupported_metric`, and reconnecting through Zernio's TikTok connection enables them. A grant without user.insights lists them with reason `permission_missing`. Either way the other requested metrics are still returned.
+        - They are not in the default metric set: ask for them in `metrics`.
+
+        ### What is not exposed
+
+        This ACCOUNT-level endpoint does not return:
 
         - account-level impressions / reach
         - follower inflow / outflow breakdown
@@ -1721,11 +1731,18 @@ paths:
           Comma-separated list. Defaults to
           "follower_count,likes_count,video_count,followers_gained,followers_lost".
 
-          Live from /v2/user/info/ (requires user.info.stats scope):
+          Live profile counters (requires user.info.stats scope):
             - follower_count  (cumulative; time series joined from AccountStats)
             - following_count (cumulative; time series joined from AccountStats.metadata)
             - likes_count     (cumulative; time series joined from AccountStats.metadata)
             - video_count     (cumulative; time series joined from AccountStats.metadata)
+
+          Daily account figures from TikTok (requires user.insights scope and an account on Zernio's TikTok connection):
+            - video_views     (views of all the account's videos that day)
+            - likes           (likes received that day)
+            - comments        (comments received that day)
+            - shares          (shares that day)
+            - profile_views   (profile views that day)
 
           Zernio-synthesized:
             - followers_gained  (sum of positive daily follower deltas)
@@ -1776,8 +1793,8 @@ paths:
           type: string
         style: form
       - description: |
-          "total_value" returns the latest cumulative counter value.
-          "time_series" returns daily values joined from AccountStats snapshots.
+          "total_value" returns the latest value of a cumulative counter, and the sum over the range for a daily account metric.
+          "time_series" returns daily values: joined from AccountStats snapshots for the counters, TikTok's own daily figures for the daily account metrics.
         explode: true
         in: query
         name: metricType
@@ -1811,6 +1828,125 @@ paths:
         "412":
           description: Missing user.info.stats scope
       summary: Get TikTok account-level insights
+      tags:
+      - Analytics
+      x-resource-group: analytics
+      x-accepts:
+      - application/json
+  /v1/analytics/pinterest/account-insights:
+    get:
+      description: |
+        Returns account-level daily Pinterest metrics, read live from Pinterest's account analytics, plus the follower history from Zernio's daily snapshots.
+
+        These are account totals. They include every pin on the account, also pins published long before the account was connected to Zernio, which per-post analytics cannot cover.
+
+        - Response shape matches /v1/analytics/instagram/account-insights.
+        - Defaults to the last 30 days. Pinterest serves at most the last 89 days, so a fromDate older than that returns 400.
+        - Pinterest reports the latest 1-2 days as still processing. Those days are left out of values and totals until Pinterest settles them.
+      operationId: getPinterestAccountInsights
+      parameters:
+      - description: The Zernio SocialAccount ID for the Pinterest account.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: |
+          Comma-separated list. Defaults to "impressions,engagements,follower_count".
+
+          Live from Pinterest, one value per day:
+            - impressions
+            - engagements
+            - saves
+            - pin_clicks
+            - outbound_clicks
+
+          From Zernio daily snapshots:
+            - follower_count    (follower count per day; total is the latest)
+            - followers_gained  (sum of positive daily follower deltas)
+            - followers_lost    (sum of absolute negative daily deltas)
+        explode: true
+        in: query
+        name: metrics
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Start date (YYYY-MM-DD). Defaults to 30 days ago. At most 89
+          days before today.
+        explode: true
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: End date (YYYY-MM-DD). Defaults to today.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
+        explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
+        explode: true
+        in: query
+        name: until
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: |
+          "total_value" returns one total per metric.
+          "time_series" also returns the daily values.
+        explode: true
+        in: query
+        name: metricType
+        required: false
+        schema:
+          default: total_value
+          enum:
+          - time_series
+          - total_value
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InstagramAccountInsightsResponse"
+          description: Account insights data
+        "400":
+          description: "Bad request (invalid accountId / metrics / metricType, a fromDate\
+            \ older than 89 days, or account is not a Pinterest account)"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
+          x-summary: "Analytics access is required: add the Analytics add-on on a\
+            \ legacy plan, or use a usage-based plan where it is included."
+        "404":
+          description: Account not found
+      summary: Get Pinterest account-level insights
       tags:
       - Analytics
       x-resource-group: analytics
@@ -13308,7 +13444,7 @@ paths:
 
           When present, the consent dialog asks only for the scopes behind those areas, plus the scopes every connection needs (identity, token refresh, listing the pages, organizations or channels the user picks from).
 
-          - Scopes never asked for are absent from the account's `permissions`, and the health endpoints report them as not granted. A `posting`-only account cannot read analytics or the inbox until reconnected with more areas.
+          - Scopes never asked for are absent from the account's `permissions`. The account keeps the requested areas in `scopeAreas`, and the health endpoints judge it against them: an area never asked for reads `not_requested` and does not make the account unhealthy, so an `analytics`-only account reports `canPost: false` with `status: healthy`. A `posting`-only account cannot read analytics or the inbox until reconnected with more areas.
           - First comments need `comments`: a `posting`-only account publishes the post and skips the first comment.
           - Scopes in none of the areas (X likes, bookmarks and follows, Pinterest ads-only extras) are requested only when the parameter is omitted.
 
@@ -13325,7 +13461,7 @@ paths:
           | instagram (`loginMethod=facebook_login`) | `instagram_content_publish` | `instagram_manage_insights` | `instagram_manage_comments` | `instagram_manage_messages` | `ads_management`, `ads_read`, `leads_retrieval`, `pages_manage_ads` | `instagram_basic`, `pages_show_list`, `pages_read_engagement`, `business_management`, `pages_messaging`, `pages_manage_metadata` |
           | linkedin | `w_member_social`, `w_organization_social`, `r_organization_social`, `r_organization_followers` | `r_member_postAnalytics`, `r_member_profileAnalytics`, `rw_organization_admin`, `r_organization_social`, `r_organization_followers` | `w_member_social`, `w_member_social_feed`, `w_organization_social`, `w_organization_social_feed`, `r_organization_social`, `r_organization_social_feed` | none | `r_ads`, `rw_ads`, `r_ads_reporting`, `r_marketing_leadgen_automation`, `rw_conversions` | `openid`, `profile`, `email`, `r_basicprofile`, `rw_organization_admin` |
           | twitter | `tweet.write`, `media.write` | (in the always-requested set) | `tweet.write`, `like.write`, `tweet.moderate.write` | `dm.read`, `dm.write`, `media.write` | none | `tweet.read`, `users.read`, `offline.access` |
-          | tiktok | `video.publish` | `user.info.stats`, `user.insights`, `video.list`, `video.insights` | `comment.list`, `comment.list.manage`, `video.list` | `message.list.read`, `message.list.send`, `message.list.manage` | none | `user.info.basic`, `user.info.username`, `user.info.profile`, `user.account.type`, `video.publish`, `video.upload`, `video.list` |
+          | tiktok | `video.publish`, `video.upload` | `user.info.stats`, `user.insights`, `video.list`, `video.insights` | `comment.list`, `comment.list.manage`, `video.list` | `message.list.read`, `message.list.send`, `message.list.manage` | none | `user.info.basic`, `user.info.username`, `user.info.profile`, `user.account.type`, `video.list` |
           | youtube | `youtube.upload` | `yt-analytics.readonly` | `youtube.force-ssl` | none | none | `youtube` |
           | threads | `threads_content_publish`, `threads_manage_replies`, `threads_delete` | `threads_manage_insights` | `threads_content_publish`, `threads_read_replies`, `threads_manage_replies`, `threads_delete` | none | none | `threads_basic` |
           | reddit | `submit`, `read`, `mysubreddits`, `flair`, `history`, `edit` | `read`, `history` | `read`, `history`, `edit`, `vote` | `privatemessages` | none | `identity` |
@@ -13341,6 +13477,8 @@ paths:
           | microsoft | `Mail.ReadWrite`, `Mail.Send` | `Calendars.ReadWrite` | `Files.ReadWrite` | `Contacts.Read` | `openid`, `profile`, `email`, `offline_access`, `User.Read` |
 
           Areas accumulate: reconnecting with more areas widens the grant, and `GET /v1/accounts/{accountId}/health` reports the result.
+
+          On tiktok, a connect without `posting` returns 409 `INVALID_RESOURCE_STATE` (`param: scopes`) when the profile already holds an account from Zernio's older TikTok app: that account can only be replaced by a grant that includes posting.
         explode: true
         in: query
         name: scopes
@@ -88612,6 +88750,7 @@ components:
       - labels
     YouTubeDailyViewsResponse:
       example:
+        stale: true
         durationSeconds: 0
         dateRange:
           endDate: 2000-01-23
@@ -88666,6 +88805,12 @@ components:
         totalViews:
           description: Sum of views across all days in the range
           type: integer
+        stale:
+          description: "Present and true when YouTube refused the refresh (the Analytics\
+            \ quota or its rate limit) and the response serves the days Zernio already\
+            \ stored, so some days may be missing; lastSyncedAt says how old they\
+            \ are. Retry later for a full refresh."
+          type: boolean
         dailyViews:
           items:
             $ref: "#/components/schemas/YouTubeDailyViewsResponse_dailyViews_inner"
@@ -88781,7 +88926,7 @@ components:
     InstagramAccountInsightsResponse:
       description: |
         Shared account-insights response envelope used by every platform-level
-        analytics endpoint (/v1/analytics/{facebook|instagram|youtube|linkedin|tiktok}/*).
+        analytics endpoint (/v1/analytics/{facebook|instagram|youtube|linkedin|tiktok|pinterest}/*).
         The name is historical - the shape was first shipped for Instagram and every
         new platform endpoint reuses it for response-shape consistency. The platform
         field echoes back which platform served the response.
@@ -88832,6 +88977,7 @@ components:
           - youtube
           - linkedin
           - tiktok
+          - pinterest
           type: string
         dateRange:
           $ref: "#/components/schemas/InstagramAccountInsightsResponse_dateRange"
@@ -90035,8 +90181,8 @@ components:
       - timestamp
     WebhookPayloadAccountPermissionsChanged:
       description: "Webhook payload for account.permissions_changed events: an account\
-        \ connected through your own OAuth app hit a missing permission and stays\
-        \ connected for its other areas."
+        \ connected with `scopes` or through your own OAuth app hit a missing permission\
+        \ and stays connected for its other areas."
       example:
         test: true
         profiles:
@@ -102118,9 +102264,9 @@ components:
             Either value can be passed back as `expectedPlatformUserId` on GET /v1/connect/{platform}.
           type: string
         scopeAreas:
-          description: "Accounts connected through your own OAuth app: the permission\
-            \ areas the connect requested. Null on accounts connected through Zernio's\
-            \ app."
+          description: "The permission areas the connect requested: the `scopes` of\
+            \ GET /v1/connect/{platform}, or your OAuth app's areas. Null when the\
+            \ connect requested every area."
           items:
             type: string
           nullable: true
@@ -129208,6 +129354,8 @@ components:
           type: string
     getAllAccountsHealth_200_response_accounts_inner:
       example:
+        scopeAreas:
+          key: granted
         needsReconnect: true
         displayName: displayName
         tokenValid: true
@@ -129258,6 +129406,17 @@ components:
           type: boolean
         canFetchAnalytics:
           type: boolean
+        scopeAreas:
+          additionalProperties:
+            enum:
+            - granted
+            - missing
+            - not_requested
+            type: string
+          description: "Present when the account connected with `scopes` or through\
+            \ your own OAuth app: each permission area the platform splits, as granted,\
+            \ missing or not_requested. An area never requested does not make the\
+            \ account unhealthy."
         tokenValid:
           type: boolean
         tokenExpiresAt:
@@ -129321,7 +129480,9 @@ components:
           warning: 1
           error: 5
         accounts:
-        - needsReconnect: true
+        - scopeAreas:
+            key: granted
+          needsReconnect: true
           displayName: displayName
           tokenValid: true
           unhealthySince: 2000-01-23T04:56:07.000+00:00
@@ -129350,7 +129511,9 @@ components:
           username: username
           status: healthy
           canFetchAnalytics: true
-        - needsReconnect: true
+        - scopeAreas:
+            key: granted
+          needsReconnect: true
           displayName: displayName
           tokenValid: true
           unhealthySince: 2000-01-23T04:56:07.000+00:00
@@ -129511,6 +129674,8 @@ components:
         - scope: scope
           required: true
           granted: true
+        scopeAreas:
+          key: granted
         canPost: true
         missingRequired:
         - missingRequired
@@ -129554,6 +129719,17 @@ components:
           items:
             type: string
           type: array
+        scopeAreas:
+          additionalProperties:
+            enum:
+            - granted
+            - missing
+            - not_requested
+            type: string
+          description: "Present when the account connected with `scopes` or through\
+            \ your own OAuth app: each permission area the platform splits, as granted,\
+            \ missing or not_requested. An area never requested does not make the\
+            \ account unhealthy."
     getAccountHealth_200_response_messagingRestriction:
       description: |
         Observed from Meta's own errors on our sends, not a live probe. It lags reality by one message in each direction.
@@ -129695,6 +129871,8 @@ components:
           - scope: scope
             required: true
             granted: true
+          scopeAreas:
+            key: granted
           canPost: true
           missingRequired:
           - missingRequired
@@ -131374,6 +131552,12 @@ components:
             \ an httpOnly cookie. Integrators send tempToken instead."
           pattern: "^[a-f0-9]{32}$"
           type: string
+        scopes:
+          description: "The `scopes` the callback redirect carried, passed back unchanged\
+            \ so the account records the areas it requested. Omit it when the redirect\
+            \ had none."
+          example: analytics
+          type: string
         userProfile:
           $ref: "#/components/schemas/selectFacebookPage_request_oneOf_userProfile"
         redirect_url:
@@ -131585,6 +131769,12 @@ components:
           description: "Set by the Zernio-hosted picker, whose user token stays in\
             \ an httpOnly cookie. Integrators send tempToken instead."
           pattern: "^[a-f0-9]{32}$"
+          type: string
+        scopes:
+          description: "The `scopes` the callback redirect carried, passed back unchanged\
+            \ so the account records the areas it requested. Omit it when the redirect\
+            \ had none."
+          example: analytics
           type: string
         redirect_url:
           description: Optional custom redirect URL to return to after selection
@@ -201438,7 +201628,9 @@ components:
         displayName:
           type: string
         oauthAppId:
-          description: The OAuth app the account connected through.
+          description: The OAuth app the account connected through; null on Zernio's
+            app.
+          nullable: true
           type: string
         missingScopeAreas:
           description: "Every area now missing. Enable the permission on your app\
@@ -215558,7 +215750,7 @@ x-documentation:
     - `post.external.deleted` - A tracked native post was detected as removed from the platform. `post.deletedAt` carries the detection time. Coverage is bounded to the most recent posts the platform listing returns, and detection is a diff against posts a prior sync already indexed, so an account for which no post has ever been indexed never emits it.
     - `account.connected` - Account connected
     - `account.disconnected` - Account disconnected: deactivated after its token was revoked or rejected (or the platform refused it, e.g. a Facebook Page left out of a later authorization), or flagged as needing reconnection. Not sent again while the account stays deactivated
-    - `account.permissions_changed` - An account connected through your own OAuth app lost a permission area (for example posting) while staying connected
+    - `account.permissions_changed` - An account connected with `scopes` or through your own OAuth app lost a permission area (for example posting) while staying connected
     - `account.rate_limited` - A Google or Microsoft mailbox entered a sending cooldown; sends answer 429 until `account.resetsAt`
     - `account.ads.initial_sync_completed` - Initial ads sync (discovery + 90-day backfill) completed for an ads-enabled account
     - `account.ads.sync_failed` - An ad account's ads stopped syncing (no successful sync for 24 hours, or every live ad at the retry cap). Fires once until it recovers

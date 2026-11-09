@@ -2,7 +2,7 @@
 
 # WebhookPayloadAccountPermissionsChanged
 
-Webhook payload for account.permissions_changed events: an account connected through your own OAuth app hit a missing permission and stays connected for its other areas.
+Webhook payload for account.permissions_changed events: an account connected with `scopes` or through your own OAuth app hit a missing permission and stays connected for its other areas.
 
 ## Properties
 

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.535.0
+- API version: 1.538.0
 
-- Build date: 2026-11-09T22:35:41.766457891Z[Etc/UTC]
+- Build date: 2026-11-09T22:45:28.659365866Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.535.0</version>
+  <version>1.538.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.535.0"
+compile "dev.zernio:zernio-sdk:1.538.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.535.0.jar`
+- `target/zernio-sdk-1.538.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -667,6 +667,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getLinkedInPostAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInPostAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats
 *AnalyticsApi* | [**getLinkedInPostReactions**](docs/AnalyticsApi.md#getLinkedInPostReactions) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions
 *AnalyticsApi* | [**getLinkedInPostReactionsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInPostReactionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions
+*AnalyticsApi* | [**getPinterestAccountInsights**](docs/AnalyticsApi.md#getPinterestAccountInsights) | **GET** /v1/analytics/pinterest/account-insights | Get Pinterest account-level insights
+*AnalyticsApi* | [**getPinterestAccountInsightsWithHttpInfo**](docs/AnalyticsApi.md#getPinterestAccountInsightsWithHttpInfo) | **GET** /v1/analytics/pinterest/account-insights | Get Pinterest account-level insights
 *AnalyticsApi* | [**getPostAuthenticity**](docs/AnalyticsApi.md#getPostAuthenticity) | **GET** /v1/posts/{postId}/authenticity | Get a post&#39;s authenticity score
 *AnalyticsApi* | [**getPostAuthenticityWithHttpInfo**](docs/AnalyticsApi.md#getPostAuthenticityWithHttpInfo) | **GET** /v1/posts/{postId}/authenticity | Get a post&#39;s authenticity score
 *AnalyticsApi* | [**getPostSamples**](docs/AnalyticsApi.md#getPostSamples) | **GET** /v1/analytics/samples | Get post samples

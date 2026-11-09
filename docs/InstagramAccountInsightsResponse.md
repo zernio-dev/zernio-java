@@ -2,7 +2,7 @@
 
 # InstagramAccountInsightsResponse
 
-Shared account-insights response envelope used by every platform-level analytics endpoint (/v1/analytics/{facebook|instagram|youtube|linkedin|tiktok}/_*). The name is historical - the shape was first shipped for Instagram and every new platform endpoint reuses it for response-shape consistency. The platform field echoes back which platform served the response. 
+Shared account-insights response envelope used by every platform-level analytics endpoint (/v1/analytics/{facebook|instagram|youtube|linkedin|tiktok|pinterest}/_*). The name is historical - the shape was first shipped for Instagram and every new platform endpoint reuses it for response-shape consistency. The platform field echoes back which platform served the response. 
 
 ## Properties
 
@@ -29,6 +29,7 @@ Shared account-insights response envelope used by every platform-level analytics
 | YOUTUBE | &quot;youtube&quot; |
 | LINKEDIN | &quot;linkedin&quot; |
 | TIKTOK | &quot;tiktok&quot; |
+| PINTEREST | &quot;pinterest&quot; |
 
 
 
