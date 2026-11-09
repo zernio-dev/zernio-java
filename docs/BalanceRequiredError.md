@@ -16,7 +16,7 @@ The error envelope of a $0 balance refusal (402 `insufficient_balance` or `usage
 |**platform** | **String** | Upstream platform (e.g. meta, google, tiktok), present when type is platform_error. |  [optional] |
 |**platformError** | **Map&lt;String, Object&gt;** | Raw error payload from the upstream platform, passed through verbatim so integrators can read provider-specific codes. For Meta this includes error_subcode, error_user_title, and error_user_msg.  |  [optional] |
 |**details** | **ErrorResponseDetails** |  |  [optional] |
-|**fundingUrl** | **URI** | Dashboard link to Billing that opens the top-up drawer (the add-card drawer first when there is no card). Send the user there, then retry. |  |
+|**fundingUrl** | **URI** | Dashboard link to Billing that opens the Add funds drawer (the add-card drawer first when there is no card). Send the user there, then retry. |  |
 
 
 

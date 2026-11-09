@@ -264,7 +264,7 @@ public class Example {
 | **201** | Agent requested. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | No payment method on file (payment_method_required): add a card and retry. On balance billing with the balance at $0: code insufficient_balance or usage_limit_reached, top up at &#x60;funding_url&#x60;, then retry. |  -  |
+| **402** | No payment method on file (payment_method_required): add a card and retry. On balance billing with the balance at $0: code insufficient_balance or usage_limit_reached, add funds at &#x60;funding_url&#x60;, then retry. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Profile or brand not found |  -  |
 | **409** | The brand was rejected, or the Idempotency-Key is still in flight |  -  |
@@ -346,7 +346,7 @@ ApiResponse<[**CreateRcsAgent201Response**](CreateRcsAgent201Response.md)>
 | **201** | Agent requested. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | No payment method on file (payment_method_required): add a card and retry. On balance billing with the balance at $0: code insufficient_balance or usage_limit_reached, top up at &#x60;funding_url&#x60;, then retry. |  -  |
+| **402** | No payment method on file (payment_method_required): add a card and retry. On balance billing with the balance at $0: code insufficient_balance or usage_limit_reached, add funds at &#x60;funding_url&#x60;, then retry. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Profile or brand not found |  -  |
 | **409** | The brand was rejected, or the Idempotency-Key is still in flight |  -  |

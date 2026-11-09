@@ -14,8 +14,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**confirmTopupWithHttpInfo**](TreasuryApi.md#confirmTopupWithHttpInfo) | **POST** /v1/balance/top-ups/{topupId}/confirm | Confirm a top-up |
 | [**createPayeeOnboardingLink**](TreasuryApi.md#createPayeeOnboardingLink) | **POST** /v1/payees/{payeeId}/onboarding-link | Create a payee onboarding link |
 | [**createPayeeOnboardingLinkWithHttpInfo**](TreasuryApi.md#createPayeeOnboardingLinkWithHttpInfo) | **POST** /v1/payees/{payeeId}/onboarding-link | Create a payee onboarding link |
-| [**createTopup**](TreasuryApi.md#createTopup) | **POST** /v1/balance/top-ups | Create a top-up |
-| [**createTopupWithHttpInfo**](TreasuryApi.md#createTopupWithHttpInfo) | **POST** /v1/balance/top-ups | Create a top-up |
+| [**createTopup**](TreasuryApi.md#createTopup) | **POST** /v1/balance/top-ups | Add funds |
+| [**createTopupWithHttpInfo**](TreasuryApi.md#createTopupWithHttpInfo) | **POST** /v1/balance/top-ups | Add funds |
 | [**createTransfer**](TreasuryApi.md#createTransfer) | **POST** /v1/transfers | Create a transfer (removed) |
 | [**createTransferWithHttpInfo**](TreasuryApi.md#createTransferWithHttpInfo) | **POST** /v1/transfers | Create a transfer (removed) |
 | [**getAutoRecharge**](TreasuryApi.md#getAutoRecharge) | **GET** /v1/balance/auto-recharge | Get auto top-up settings |
@@ -811,7 +811,7 @@ ApiResponse<[**CreatePayeeOnboardingLink200Response**](CreatePayeeOnboardingLink
 
 > CreateTopup201Response createTopup(createTopupRequest, idempotencyKey)
 
-Create a top-up
+Add funds
 
 Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business whose VAT id VIES confirms is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  The invoice also states the VAT in euros at the ECB rate of its date. Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry. - 429 &#x60;payment_attempts_limited&#x60;: five card payments were declined in 24 hours. Nothing reaches the bank until &#x60;Retry-After&#x60; runs out.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
 
@@ -890,7 +890,7 @@ public class Example {
 
 > ApiResponse<CreateTopup201Response> createTopup createTopupWithHttpInfo(createTopupRequest, idempotencyKey)
 
-Create a top-up
+Add funds
 
 Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business whose VAT id VIES confirms is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  The invoice also states the VAT in euros at the ECB rate of its date. Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry. - 429 &#x60;payment_attempts_limited&#x60;: five card payments were declined in 24 hours. Nothing reaches the bank until &#x60;Retry-After&#x60; runs out.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
 
@@ -1263,7 +1263,7 @@ ApiResponse<[**AutoRecharge**](AutoRecharge.md)>
 
 Get balance
 
-Returns your team&#39;s balance:  - the balance pay-per-use draws on - top-ups still waiting for payment - your latest top-ups and payout batch payments  A card top-up is in &#x60;availableCents&#x60; as soon as it is paid. The balance never pays creators: payouts are charged to your card per payout batch.  A card dispute or refund is debited from the available balance and can make it negative. New payout batches are refused until it is positive again.  A profile-scoped key answers 403, since the balance belongs to the whole team. 
+Returns your team&#39;s balance:  - the balance pay-per-use draws on - funds added but still waiting for payment - your latest payments into the balance and payout batch payments  Funds added by card are in &#x60;availableCents&#x60; as soon as they are paid. The balance never pays creators: payouts are charged to your card per payout batch.  A card dispute or refund is debited from the available balance and can make it negative. New payout batches are refused until it is positive again.  A profile-scoped key answers 403, since the balance belongs to the whole team. 
 
 ### Example
 
@@ -1331,7 +1331,7 @@ This endpoint does not need any parameter.
 
 Get balance
 
-Returns your team&#39;s balance:  - the balance pay-per-use draws on - top-ups still waiting for payment - your latest top-ups and payout batch payments  A card top-up is in &#x60;availableCents&#x60; as soon as it is paid. The balance never pays creators: payouts are charged to your card per payout batch.  A card dispute or refund is debited from the available balance and can make it negative. New payout batches are refused until it is positive again.  A profile-scoped key answers 403, since the balance belongs to the whole team. 
+Returns your team&#39;s balance:  - the balance pay-per-use draws on - funds added but still waiting for payment - your latest payments into the balance and payout batch payments  Funds added by card are in &#x60;availableCents&#x60; as soon as they are paid. The balance never pays creators: payouts are charged to your card per payout batch.  A card dispute or refund is debited from the available balance and can make it negative. New payout batches are refused until it is positive again.  A profile-scoped key answers 403, since the balance belongs to the whole team. 
 
 ### Example
 
@@ -1553,7 +1553,7 @@ ApiResponse<[**GetPayoutBatch200Response**](GetPayoutBatch200Response.md)>
 
 Get a top-up invoice
 
-The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+The invoice for funds added to the balance, once paid: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
 
 ### Example
 
@@ -1627,7 +1627,7 @@ public class Example {
 
 Get a top-up invoice
 
-The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+The invoice for funds added to the balance, once paid: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
 
 ### Example
 
@@ -1861,7 +1861,7 @@ ApiResponse<[**File**](File.md)>
 
 Get a top-up invoice (alias)
 
-Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for funds added to the balance, once paid: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
 
 ### Example
 
@@ -1935,7 +1935,7 @@ public class Example {
 
 Get a top-up invoice (alias)
 
-Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for funds added to the balance, once paid: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
 
 ### Example
 
@@ -2751,7 +2751,7 @@ ApiResponse<[**PreviewTopup200Response**](PreviewTopup200Response.md)>
 
 Update auto top-up settings
 
-Changes the auto top-up rule. Omitted fields keep their value.  A declined auto top-up is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto top-up switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  A pay-per-use request that finds the balance at $0 runs the auto top-up first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.  When this month&#39;s auto top-ups plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+Changes the auto top-up rule. Omitted fields keep their value.  A declined auto top-up is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto top-up switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. Adding funds yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to add funds in Billing.  A pay-per-use request that finds the balance at $0 runs the auto top-up first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.  When this month&#39;s auto top-ups plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
 
 ### Example
 
@@ -2824,7 +2824,7 @@ public class Example {
 
 Update auto top-up settings
 
-Changes the auto top-up rule. Omitted fields keep their value.  A declined auto top-up is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto top-up switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  A pay-per-use request that finds the balance at $0 runs the auto top-up first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.  When this month&#39;s auto top-ups plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+Changes the auto top-up rule. Omitted fields keep their value.  A declined auto top-up is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto top-up switches off (&#x60;disabledReason: payment_failed&#x60;) until the card is updated. Adding funds yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to add funds in Billing.  A pay-per-use request that finds the balance at $0 runs the auto top-up first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.  When this month&#39;s auto top-ups plus the next one would pass &#x60;monthlyLimitCents&#x60;, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 &#x60;usage_limit_reached&#x60;.  - 400: a field is out of range, or &#x60;toCents&#x60; is not more than $5 above &#x60;belowCents&#x60;. - 409 &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
 
 ### Example
 

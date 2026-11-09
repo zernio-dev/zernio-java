@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.529.0
+- API version: 1.529.1
 
-- Build date: 2026-11-09T10:55:45.837966138Z[Etc/UTC]
+- Build date: 2026-11-09T11:17:47.797832538Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.529.0</version>
+  <version>1.529.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.529.0"
+compile "dev.zernio:zernio-sdk:1.529.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.529.0.jar`
+- `target/zernio-sdk-1.529.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2127,8 +2127,8 @@ Class | Method | HTTP request | Description
 *TreasuryApi* | [**confirmTopupWithHttpInfo**](docs/TreasuryApi.md#confirmTopupWithHttpInfo) | **POST** /v1/balance/top-ups/{topupId}/confirm | Confirm a top-up
 *TreasuryApi* | [**createPayeeOnboardingLink**](docs/TreasuryApi.md#createPayeeOnboardingLink) | **POST** /v1/payees/{payeeId}/onboarding-link | Create a payee onboarding link
 *TreasuryApi* | [**createPayeeOnboardingLinkWithHttpInfo**](docs/TreasuryApi.md#createPayeeOnboardingLinkWithHttpInfo) | **POST** /v1/payees/{payeeId}/onboarding-link | Create a payee onboarding link
-*TreasuryApi* | [**createTopup**](docs/TreasuryApi.md#createTopup) | **POST** /v1/balance/top-ups | Create a top-up
-*TreasuryApi* | [**createTopupWithHttpInfo**](docs/TreasuryApi.md#createTopupWithHttpInfo) | **POST** /v1/balance/top-ups | Create a top-up
+*TreasuryApi* | [**createTopup**](docs/TreasuryApi.md#createTopup) | **POST** /v1/balance/top-ups | Add funds
+*TreasuryApi* | [**createTopupWithHttpInfo**](docs/TreasuryApi.md#createTopupWithHttpInfo) | **POST** /v1/balance/top-ups | Add funds
 *TreasuryApi* | [**createTransfer**](docs/TreasuryApi.md#createTransfer) | **POST** /v1/transfers | Create a transfer (removed)
 *TreasuryApi* | [**createTransferWithHttpInfo**](docs/TreasuryApi.md#createTransferWithHttpInfo) | **POST** /v1/transfers | Create a transfer (removed)
 *TreasuryApi* | [**getAutoRecharge**](docs/TreasuryApi.md#getAutoRecharge) | **GET** /v1/balance/auto-recharge | Get auto top-up settings

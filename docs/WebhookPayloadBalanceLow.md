@@ -11,7 +11,7 @@
 |**test** | **Boolean** | Always true when present: only a sample sent by POST /v1/webhooks/test with an event carries it. Real deliveries never do. |  [optional] |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**balance** | [**WebhookPayloadBalanceLowBalance**](WebhookPayloadBalanceLowBalance.md) |  |  |
-|**fundingUrl** | **URI** | Dashboard link that opens the top-up drawer in Billing. |  |
+|**fundingUrl** | **URI** | Dashboard link that opens the Add funds drawer in Billing. |  |
 |**timestamp** | **OffsetDateTime** | UTC time at which Zernio generated this event. Retries and redeliveries keep the original value. |  |
 
 

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.529.0
+  version: 1.529.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -90,8 +90,8 @@ tags:
 - description: |
     Fund a balance by card, then transfer money to payees (creators, ad accounts) through Zernio. The dashboard calls this your Balance. Requires usage-based billing. Every operation belongs to the `money` resource group.
 
-    - Money writes (top-ups, transfers, treasury settles, payout batches) need an owner, admin or billing admin, signed in or through a full-access key they created.
-    - Reading the team's balance, top-ups, transfers and payees needs a full-access key or a signed-in session; a profile-scoped key answers 403.
+    - Money writes (adding funds, transfers, treasury settles, payout batches) need an owner, admin or billing admin, signed in or through a full-access key they created.
+    - Reading the team's balance, added funds, transfers and payees needs a full-access key or a signed-in session; a profile-scoped key answers 403.
   name: Treasury
 - description: |
     The pages a creator uses behind a campaign link: read the campaign, join, connect accounts, submit posts and set up payouts.
@@ -4392,10 +4392,10 @@ paths:
         Returns your team's balance:
 
         - the balance pay-per-use draws on
-        - top-ups still waiting for payment
-        - your latest top-ups and payout batch payments
+        - funds added but still waiting for payment
+        - your latest payments into the balance and payout batch payments
 
-        A card top-up is in `availableCents` as soon as it is paid. The balance never pays creators: payouts are charged to your card per payout batch.
+        Funds added by card are in `availableCents` as soon as they are paid. The balance never pays creators: payouts are charged to your card per payout batch.
 
         A card dispute or refund is debited from the available balance and can make it negative. New payout batches are refused until it is positive again.
 
@@ -4453,9 +4453,9 @@ paths:
       description: |
         Changes the auto top-up rule. Omitted fields keep their value.
 
-        A declined auto top-up is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto top-up switches off (`disabledReason: payment_failed`) until the card is updated. A top-up you make yourself resets the retries.
+        A declined auto top-up is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto top-up switches off (`disabledReason: payment_failed`) until the card is updated. Adding funds yourself resets the retries.
 
-        A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.
+        A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to add funds in Billing.
 
         A pay-per-use request that finds the balance at $0 runs the auto top-up first (with the rule on, a saved card and no retry pending) and goes through when the charge lands, so a new balance at $0 is charged on first use.
 
@@ -4595,7 +4595,7 @@ paths:
           $ref: "#/components/responses/PaymentAttemptsLimited"
         "422":
           $ref: "#/components/responses/IdempotencyKeyReused"
-      summary: Create a top-up
+      summary: Add funds
       tags:
       - Treasury
       x-resource-group: money
@@ -4690,7 +4690,7 @@ paths:
   /v1/balance/top-ups/{topupId}/invoice:
     get:
       description: |
-        The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.
+        The invoice for funds added to the balance, once paid: the PDF of the Stripe invoice it was paid through.
 
         It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.
 
@@ -4734,7 +4734,7 @@ paths:
       description: |
         Alias of getTopupInvoice, kept for clients written against its first name.
 
-        The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.
+        The invoice for funds added to the balance, once paid: the PDF of the Stripe invoice it was paid through.
 
         It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.
 
@@ -9541,10 +9541,10 @@ paths:
           description: "Balance billing only. The post publishes now (`publishNow:\
             \ true` or a due `scheduledFor`) to X, and the balance is at $0 after\
             \ auto top-up tried the saved card (code `insufficient_balance` or `usage_limit_reached`).\
-            \ Nothing was created. Top up at `funding_url`, then send the request\
+            \ Nothing was created. Add funds at `funding_url`, then send the request\
             \ again."
           x-summary: "Publishing now needs X, and the balance is at $0: send the user\
-            \ to `funding_url` to top up, then retry. Nothing was created."
+            \ to `funding_url` to add funds, then retry. Nothing was created."
         "400":
           content:
             application/json:
@@ -10122,10 +10122,10 @@ paths:
                 $ref: "#/components/schemas/BalanceRequiredError"
           description: "Balance billing only. `publishNow: true` targets X, and the\
             \ balance is at $0 after auto top-up tried the saved card (code `insufficient_balance`\
-            \ or `usage_limit_reached`). The post was not changed. Top up at `funding_url`,\
+            \ or `usage_limit_reached`). The post was not changed. Add funds at `funding_url`,\
             \ then send the request again."
           x-summary: "Publishing now needs X, and the balance is at $0: send the user\
-            \ to `funding_url` to top up, then retry. The post was not changed."
+            \ to `funding_url` to add funds, then retry. The post was not changed."
         "400":
           content:
             application/json:
@@ -10377,7 +10377,7 @@ paths:
           description: "Payment required, and the post was not changed. Either the\
             \ account owner has a failed payment, or (balance billing) the post retries\
             \ to X and the balance is at $0 after auto top-up tried the saved card:\
-            \ code `insufficient_balance` or `usage_limit_reached`, top up at `funding_url`,\
+            \ code `insufficient_balance` or `usage_limit_reached`, add funds at `funding_url`,\
             \ then retry."
           x-summary: "The account owner has a failed payment, or the post retries\
             \ to X and the balance is at $0: fix it in Billing, then retry. The post\
@@ -33690,7 +33690,7 @@ paths:
             \ payment_method_required), the last payment failed or the first month\
             \ was declined (code: payment_required), or, on balance billing, the balance\
             \ is at $0 (code: insufficient_balance or usage_limit_reached, with `funding_url`\
-            \ to top up). Fix it in Billing, then order again."
+            \ to add funds). Fix it in Billing, then order again."
           x-summary: "A valid payment method is required, or a payment failed, and\
             \ nothing was ordered: update the card in Billing, then order again."
         "403":
@@ -34535,7 +34535,7 @@ paths:
         "402":
           description: "No payment method on file (payment_method_required): add a\
             \ card and retry. On balance billing with the balance at $0: code insufficient_balance\
-            \ or usage_limit_reached, top up at `funding_url`, then retry."
+            \ or usage_limit_reached, add funds at `funding_url`, then retry."
           x-summary: "No payment method is on file, or the balance is at $0: fund\
             \ it and retry."
         "403":
@@ -37884,7 +37884,7 @@ paths:
           description: "Payment method required (usage-based billing account with\
             \ no card on file): code PAYMENT_REQUIRED, add a card, then retry. On\
             \ balance billing with the balance at $0: code insufficient_balance or\
-            \ usage_limit_reached, top up at `funding_url`, then retry."
+            \ usage_limit_reached, add funds at `funding_url`, then retry."
           x-summary: "A payment method is required because the usage-based account\
             \ has no card on file: add a card, then retry."
         "422":
@@ -38325,7 +38325,7 @@ paths:
           description: "Payment method required (usage-based billing account with\
             \ no card on file): code PAYMENT_REQUIRED, add a card, then retry. On\
             \ balance billing with the balance at $0: code insufficient_balance or\
-            \ usage_limit_reached, top up at `funding_url`, then retry."
+            \ usage_limit_reached, add funds at `funding_url`, then retry."
           x-summary: "A payment method is required because the usage-based account\
             \ has no card on file: add a card, then retry."
         "422":
@@ -43302,7 +43302,7 @@ paths:
           description: "A card is required (code `payment_method_required`), the last\
             \ payment failed (code `payment_required`), or, on balance billing, the\
             \ balance is at $0 (code `insufficient_balance` or `usage_limit_reached`,\
-            \ with `funding_url` to top up). Fix it in Billing."
+            \ with `funding_url` to add funds). Fix it in Billing."
           x-summary: "A card is required or the last payment failed: add or update\
             \ the card in Billing."
         "403":
@@ -79951,7 +79951,7 @@ paths:
 
         - 402 `payment_required`: no saved card. Nothing is held.
         - 402 `card_declined`: the bank's reason; every amount is payable again.
-        - 402: card payouts are limited to $10,000.00 gross per rolling 30 days by default. Over it the call answers "Over your instant payout limit. Top up your balance to pay more this month, or contact support to raise the limit."
+        - 402: card payouts are limited to $10,000.00 gross per rolling 30 days by default. Over it the call answers "Over your instant payout limit for the last 30 days. Contact support to raise it."
         - 402: your balance is negative after a dispute or refund.
         - 400: nothing payable ("Nothing is payable.").
         - 400 `invalid_billing_address`: Stripe cannot place your billing address, so it cannot tax the fee. Nothing is held.
@@ -81219,8 +81219,9 @@ components:
         - `insufficient_balance`: the balance is empty.
         - `usage_limit_reached`: the monthly limit kept it there.
 
-        `funding_url` opens Billing with the top-up drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.
-      x-summary: "Balance at $0: send the user to `funding_url` to top up, then retry."
+        `funding_url` opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.
+      x-summary: "Balance at $0: send the user to `funding_url` to add funds, then\
+        \ retry."
     XPostWaitingForBalance:
       content:
         application/json:
@@ -82023,7 +82024,8 @@ components:
             true and disabledReason is null.
           type: boolean
         belowCents:
-          description: "Top up when the balance drops below this, in cents."
+          description: "Auto top-up charges the card when the balance drops below\
+            \ this, in cents."
           type: integer
         toCents:
           description: "Top back up to this, in cents. The charge is toCents minus\
@@ -86703,15 +86705,15 @@ components:
       allOf:
       - $ref: "#/components/schemas/ErrorResponse"
       - example:
-          error: "Your balance is at $0, so SMS is paused. Top up your balance in\
-            \ Billing to continue."
+          error: "Your balance is at $0, so SMS is paused. Add funds in Billing to\
+            \ continue."
           type: invalid_request_error
           code: insufficient_balance
           funding_url: https://zernio.com/dashboard/billing?funding=1
         properties:
           funding_url:
-            description: "Dashboard link to Billing that opens the top-up drawer (the\
-              \ add-card drawer first when there is no card). Send the user there,\
+            description: "Dashboard link to Billing that opens the Add funds drawer\
+              \ (the add-card drawer first when there is no card). Send the user there,\
               \ then retry."
             format: uri
             type: string
@@ -97494,7 +97496,7 @@ components:
         balance:
           $ref: "#/components/schemas/WebhookPayloadBalanceLow_balance"
         fundingUrl:
-          description: Dashboard link that opens the top-up drawer in Billing.
+          description: Dashboard link that opens the Add funds drawer in Billing.
           format: uri
           type: string
         timestamp:
@@ -97543,7 +97545,7 @@ components:
           - usage_limit_reached
           type: string
         fundingUrl:
-          description: Dashboard link that opens the top-up drawer in Billing.
+          description: Dashboard link that opens the Add funds drawer in Billing.
           format: uri
           type: string
         timestamp:
@@ -125241,9 +125243,9 @@ components:
       properties:
         availableCents:
           description: "Your balance. It goes negative after a dispute or refund of\
-            \ a spent top-up, or when pay-per-use already in flight lands past zero.\
-            \ The next top-up covers it. New payout batches are refused while it is\
-            \ negative."
+            \ funds already spent, or when pay-per-use already in flight lands past\
+            \ zero. The next funds you add cover it. New payout batches are refused\
+            \ while it is negative."
           type: integer
         balanceBilling:
           description: "True when the account pays pay-per-use from this prepaid balance\
@@ -125307,8 +125309,8 @@ components:
             charges stays off until the card is updated.
           type: boolean
         belowCents:
-          description: "Top up when the balance drops below this, in cents. At least\
-            \ $5."
+          description: "Auto top-up charges the card when the balance drops below\
+            \ this, in cents. At least $5."
           maximum: 10000000
           minimum: 500
           type: integer
@@ -205783,7 +205785,7 @@ components:
             \ its invoice and receipt endpoints."
           type: string
         trigger:
-          description: "`manual`: someone topped up in Billing or through the API.\
+          description: "`manual`: someone added funds in Billing or through the API.\
             \ `auto_top_up`: the auto top-up rule charged the card."
           enum:
           - manual
@@ -215267,7 +215269,7 @@ x-documentation:
     - `campaign_participant.removed` - An operator removed a participant from the campaign
     - `balance.low` - Balance billing: the balance dropped below the low-balance alert set on auto top-up (`alertBelowCents`), once per drop, unless an auto top-up is already covering it
     - `balance.empty` - Balance billing: the balance reached $0 and no auto top-up covered it, so pay-per-use calls answer 402 until it is funded. Carries that 402 `code` and `fundingUrl`
-    - `balance.charged` - Balance billing: a card top-up of the balance succeeded, manual or automatic (`topup.trigger`), with the amount, the VAT and the card charge
+    - `balance.charged` - Balance billing: funds were added to the balance by card, by you or by auto top-up (`topup.trigger`), with the amount, the VAT and the card charge
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Every delivery carries `X-Zernio-Event` (the event name) and `X-Zernio-Event-Id` (the payload's `id`, a UUID generated once when the event is emitted). That id is identical on every subscription that receives the event, on every automatic retry and on a redelivery via `POST /v1/webhooks/logs/redeliver`, so it is the key to dedupe on. Payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header when the subscription has a secret. Legacy `X-Late-*` copies of these three headers are still sent and will be removed in a future major version.
