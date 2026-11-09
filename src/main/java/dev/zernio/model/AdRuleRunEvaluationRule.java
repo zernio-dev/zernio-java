@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   AdRuleRunEvaluationRule.JSON_PROPERTY_PLATFORM_AD_ACCOUNT_ID,
   AdRuleRunEvaluationRule.JSON_PROPERTY_LEVEL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:17:47.797832538Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T11:22:01.221261454Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleRunEvaluationRule {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
