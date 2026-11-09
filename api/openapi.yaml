@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.528.1
+  version: 1.529.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -66478,6 +66478,8 @@ paths:
         - Search = `search`
         - PageView = `page_visit`
       operationId: sendConversions
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -67327,6 +67329,8 @@ paths:
         - Sending an event again with the same `eventId` replaces the stored one.
         - A stored `Purchase`, `Lead` or `QualifiedLead` tied to one of your campaigns (see `campaign` on each event) counts in `GET /v1/ads/campaign-results` and in ad rules as `sales` and `revenue`, `leads` or `qualified_leads`.
       operationId: sendEvents
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -67356,6 +67360,10 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
+        "409":
+          $ref: "#/components/responses/IdempotencyKeyInFlight"
+        "422":
+          $ref: "#/components/responses/IdempotencyKeyReused"
       security:
       - bearerAuth: []
       summary: Send events to every destination
@@ -188781,6 +188789,7 @@ components:
         events:
           items:
             $ref: "#/components/schemas/ConversionEvent"
+          maxItems: 1000
           minItems: 1
           type: array
         testCode:
