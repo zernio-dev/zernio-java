@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   UpsertCommerceMarketingActivityRequest.JSON_PROPERTY_STARTED_AT,
   UpsertCommerceMarketingActivityRequest.JSON_PROPERTY_ENDED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:51:13.879286947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:55:45.837966138Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpsertCommerceMarketingActivityRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

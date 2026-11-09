@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetConnectUrl200Response.JSON_PROPERTY_STATE,
   GetConnectUrl200Response.JSON_PROPERTY_HANDOFF
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:51:13.879286947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:55:45.837966138Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetConnectUrl200Response {
   public static final String JSON_PROPERTY_AUTH_URL = "authUrl";
   @javax.annotation.Nullable

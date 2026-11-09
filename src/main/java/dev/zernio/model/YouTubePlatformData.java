@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   YouTubePlatformData.JSON_PROPERTY_DEFAULT_LANGUAGE,
   YouTubePlatformData.JSON_PROPERTY_DEFAULT_AUDIO_LANGUAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:51:13.879286947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-09T10:55:45.837966138Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubePlatformData {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
