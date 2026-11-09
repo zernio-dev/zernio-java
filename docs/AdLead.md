@@ -8,7 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Zernio lead id. |  [optional] |
-|**leadgenId** | **String** | Meta lead id. On LinkedIn, the leadFormResponse id. |  [optional] |
+|**platform** | [**PlatformEnum**](#PlatformEnum) | The ad network the lead came from. |  [optional] |
+|**leadgenId** | **String** | Meta lead id. On Google, the lead form submission id; on LinkedIn, the leadFormResponse id. |  [optional] |
 |**formId** | **String** |  |  [optional] |
 |**formName** | **String** |  |  [optional] |
 |**accountId** | **String** |  |  [optional] |
@@ -28,6 +29,17 @@
 |**firstContactedAt** | **OffsetDateTime** | When the first WhatsApp message to the lead was delivered. |  [optional] |
 |**conversationId** | **String** | The Inbox conversation a lead_received workflow opened with the lead. |  [optional] |
 |**webhookDeliveredAt** | **OffsetDateTime** | Meta leads only. When the &#x60;lead.received&#x60; webhook was delivered; null while it has not been. |  [optional] |
+
+
+
+## Enum: PlatformEnum
+
+| Name | Value |
+|---- | -----|
+| META | &quot;meta&quot; |
+| GOOGLE | &quot;google&quot; |
+| LINKEDIN | &quot;linkedin&quot; |
+| TIKTOK | &quot;tiktok&quot; |
 
 
 

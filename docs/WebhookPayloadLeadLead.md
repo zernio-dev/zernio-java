@@ -8,7 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Zernio lead ID (AdLead document ID) |  |
-|**leadgenId** | **String** | Meta lead ID (the platform&#39;s leadgen_id) |  |
+|**platform** | [**PlatformEnum**](#PlatformEnum) | The ad network the lead came from. |  [optional] |
+|**leadgenId** | **String** | The network&#39;s lead id: Meta&#39;s leadgen_id, or the Google lead form submission id |  |
 |**formId** | **String** | Lead Gen form ID the lead was submitted against |  |
 |**formName** | **String** | Human-readable form name (best-effort; may be null) |  [optional] |
 |**adId** | **String** | Meta ad ID that drove the lead (null for organic/test leads) |  [optional] |
@@ -18,6 +19,17 @@
 |**consents** | [**List&lt;AdLeadConsent&gt;**](AdLeadConsent.md) | Sent on every delivery since 2026-10-25. Absent when an older event is redelivered, since redeliveries replay the stored payload. |  [optional] |
 |**isOrganic** | **Boolean** | True when the lead came from an organic post rather than a paid ad |  |
 |**createdAt** | **OffsetDateTime** | Meta&#39;s lead creation time (ISO 8601) |  |
+
+
+
+## Enum: PlatformEnum
+
+| Name | Value |
+|---- | -----|
+| META | &quot;meta&quot; |
+| GOOGLE | &quot;google&quot; |
+| LINKEDIN | &quot;linkedin&quot; |
+| TIKTOK | &quot;tiktok&quot; |
 
 
 
