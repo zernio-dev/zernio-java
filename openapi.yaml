@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Zernio API
-  version: "1.539.0"
+  version: "1.541.0"
   description: |
     API reference for Zernio. Authenticate with a Bearer API key.
     Base URL: https://zernio.com/api
@@ -10752,7 +10752,14 @@ components:
         url:
           type: string
           format: uri
-          description: 'A media item with a null, missing or empty url is dropped, unless it names a connected file with `fileId` + `accountId`.'
+          description: |
+            A media item with a null, missing or empty url is dropped, unless it names a connected file with `fileId` + `accountId`.
+
+            A Google Drive share link is accepted here and in `thumbnail`, `instagramThumbnail`, `customMedia` and cover fields such as TikTok's `video_cover_image_url` (`drive.google.com/file/d/{id}/view`, `open?id={id}`, `uc?id={id}`, `drive.usercontent.google.com/download?id={id}`). Zernio copies the file into its media storage when the post is created or updated and stores that copy's url, so platforms never fetch from Drive. Large files behind Drive's virus-scan page work too.
+
+            The file must be shared as "Anyone with the link". A private, deleted or unknown file, or a folder link, fails the request with a 400 (`invalid_field_value`) before anything is saved. For a private file of a connected Google account, send `fileId` + `accountId` instead.
+
+            A Drive file over 5 GB fails with a 400 (`invalid_field_value`). If Google Drive does not respond, the request fails with a 503 (`temporarily_unavailable`, `Retry-After` set) and nothing is saved, so retry it.
         fileId:
           type: string
           description: |
@@ -27866,6 +27873,7 @@ paths:
         - The type and format come from the bytes, not the Content-Type header.
         - Corrupt, truncated or non-media files return `valid: false` with code `MEDIA_UNDECODABLE`.
         - Private/localhost URLs are rejected for SSRF protection.
+        - A Google Drive share link is checked against the file behind it. A file not shared as "Anyone with the link" returns `valid: false` with code `MEDIA_URL_UNREACHABLE`.
 
         Platform limits are sourced from each platform's actual upload constraints.
       security:
@@ -56397,6 +56405,9 @@ paths:
                   format: uri
                   description: '(Facebook only) URL of an image to attach, publishing a photo comment alongside the text. The URL must be publicly accessible so Meta can fetch it. Returns 400 for other platforms.'
                 commentId: { type: string, description: Reply to specific comment (optional) }
+                mentionAuthor:
+                  type: boolean
+                  description: '(LinkedIn only) When true, the reply starts with an @mention of the author of `commentId` (a member or a page), tagged with their URN and the name LinkedIn returns for them. Requires `commentId`. Returns 400 `platform_not_supported` on other platforms, and 400 `linkedin_mention_name_unavailable` with `details.authorUrn` when LinkedIn does not return the author''s name (for example a page the account does not administer); mention them in `message` as @[Name](urn) instead. If LinkedIn rejects any mention in the reply, it is posted once more with every mention as plain text.'
                 parentCid: { type: string, description: (Bluesky only) Parent content identifier }
                 rootUri: { type: string, description: (Bluesky only) Root post URI }
                 rootCid: { type: string, description: (Bluesky only) Root post CID }
@@ -56417,7 +56428,7 @@ paths:
                       cid: { type: [string, "null"], description: Bluesky CID }
         '400':
           x-summary: "The request is invalid, for example an attachment URL on a non-Facebook platform or a LinkedIn mention that cannot be resolved."
-          description: 'Invalid request (e.g. attachmentUrl on a platform other than Facebook, code PLATFORM_NOT_SUPPORTED). On LinkedIn, a profile or company URL mention that cannot be resolved returns code `linkedin_mentions_invalid`, or `linkedin_mentions_limit_exceeded` for more than 10, with `details.mentions[]`.'
+          description: 'Invalid request (e.g. attachmentUrl on a platform other than Facebook, code PLATFORM_NOT_SUPPORTED). On LinkedIn, a profile or company URL mention that cannot be resolved returns code `linkedin_mentions_invalid`, or `linkedin_mentions_limit_exceeded` for more than 10, with `details.mentions[]`. `mentionAuthor` without `commentId`, or on a platform other than LinkedIn, is rejected, and an author whose name LinkedIn does not return gives `linkedin_mention_name_unavailable` with `details.authorUrn`.'
           content:
             application/json:
               schema:
@@ -56428,6 +56439,7 @@ paths:
                   details:
                     type: object
                     properties:
+                      authorUrn: { type: string, description: '(mentionAuthor) URN of the comment author whose name LinkedIn did not return' }
                       mentions:
                         type: array
                         items: { $ref: '#/components/schemas/LinkedInMentionIssue' }

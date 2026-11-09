@@ -2504,6 +2504,8 @@ docs/ReplyToGoogleBusinessReview200Response.md
 docs/ReplyToGoogleBusinessReviewRequest.md
 docs/ReplyToInboxPost200Response.md
 docs/ReplyToInboxPost200ResponseData.md
+docs/ReplyToInboxPost400Response.md
+docs/ReplyToInboxPost400ResponseDetails.md
 docs/ReplyToInboxPostRequest.md
 docs/ReplyToInboxReview200Response.md
 docs/ReplyToInboxReviewRequest.md
@@ -6067,6 +6069,8 @@ src/main/java/dev/zernio/model/ReplyToGoogleBusinessReview200Response.java
 src/main/java/dev/zernio/model/ReplyToGoogleBusinessReviewRequest.java
 src/main/java/dev/zernio/model/ReplyToInboxPost200Response.java
 src/main/java/dev/zernio/model/ReplyToInboxPost200ResponseData.java
+src/main/java/dev/zernio/model/ReplyToInboxPost400Response.java
+src/main/java/dev/zernio/model/ReplyToInboxPost400ResponseDetails.java
 src/main/java/dev/zernio/model/ReplyToInboxPostRequest.java
 src/main/java/dev/zernio/model/ReplyToInboxReview200Response.java
 src/main/java/dev/zernio/model/ReplyToInboxReviewRequest.java
@@ -7067,3 +7071,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ReplyToInboxPost400ResponseDetailsTest.java
+src/test/java/dev/zernio/model/ReplyToInboxPost400ResponseTest.java
