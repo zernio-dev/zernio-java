@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.527.0
+  version: 1.527.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -111536,11 +111536,10 @@ components:
         - OPT_IN
         - OPT_OUT
         type: string
-      description: "Meta Advantage+ creative enhancements. Map snake_case feature\
-        \ names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified\
-        \ features default to OPT_OUT. auto_promotion_tag is an Advantage+ enhancement,\
-        \ not the Ads Manager Promotion setting. The deprecated standard_enhancements\
-        \ bundle (subcode 3858504) is a 400 before any Meta call."
+      description: |
+        Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys. On creation Zernio sends only the keys you name, so Meta's default applies to the rest; on PUT /v1/ads/{adId} omitted keys keep the creative's current value. Send OPT_OUT to switch an enhancement off.
+
+        auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting. The deprecated standard_enhancements bundle (subcode 3858504) is a 400 before any Meta call.
       example:
         auto_promotion_tag: OPT_IN
     MetaPromotion:
@@ -174086,11 +174085,10 @@ components:
             - OPT_IN
             - OPT_OUT
             type: string
-          description: "Meta Advantage+ creative enhancements. Map snake_case feature\
-            \ names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified\
-            \ features default to OPT_OUT. auto_promotion_tag is an Advantage+ enhancement,\
-            \ not the Ads Manager Promotion setting. The deprecated standard_enhancements\
-            \ bundle (subcode 3858504) is a 400 before any Meta call."
+          description: |
+            Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys. On creation Zernio sends only the keys you name, so Meta's default applies to the rest; on PUT /v1/ads/{adId} omitted keys keep the creative's current value. Send OPT_OUT to switch an enhancement off.
+
+            auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting. The deprecated standard_enhancements bundle (subcode 3858504) is a 400 before any Meta call.
           example:
             auto_promotion_tag: OPT_IN
         catalogFormat:
@@ -182163,11 +182161,10 @@ components:
             - OPT_IN
             - OPT_OUT
             type: string
-          description: "Meta Advantage+ creative enhancements. Map snake_case feature\
-            \ names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified\
-            \ features default to OPT_OUT. auto_promotion_tag is an Advantage+ enhancement,\
-            \ not the Ads Manager Promotion setting. The deprecated standard_enhancements\
-            \ bundle (subcode 3858504) is a 400 before any Meta call."
+          description: |
+            Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys. On creation Zernio sends only the keys you name, so Meta's default applies to the rest; on PUT /v1/ads/{adId} omitted keys keep the creative's current value. Send OPT_OUT to switch an enhancement off.
+
+            auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting. The deprecated standard_enhancements bundle (subcode 3858504) is a 400 before any Meta call.
           example:
             auto_promotion_tag: OPT_IN
         postId:
