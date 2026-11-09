@@ -20,6 +20,7 @@ A post synced from a platform (published directly on the platform, not through Z
 |**isAiGenerated** | **Boolean** | Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it. |  [optional] |
 |**isSharedToFeed** | **Boolean** | Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it. |  [optional] |
 |**mediaAudioType** | **String** | Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it. |  [optional] |
+|**isOwner** | **Boolean** | Pinterest: true when the account created the Pin, false when it saved it from another user; keep true to import only its own Pins. Facebook: false for a collab post by another Page. Null when unknown and for other platforms. |  [optional] |
 |**analytics** | [**ExternalPostSummaryAnalytics**](ExternalPostSummaryAnalytics.md) |  |  [optional] |
 
 
