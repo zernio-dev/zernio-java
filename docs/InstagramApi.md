@@ -1287,11 +1287,11 @@ ApiResponse<[**ListInstagramMediaCollaborators200Response**](ListInstagramMediaC
 
 ## listInstagramStories
 
-> ListInstagramStories200Response listInstagramStories(accountId)
+> ListInstagramStories200Response listInstagramStories(accountId, includeExpired, limit)
 
 List active Instagram stories
 
-Returns the IG Business/Creator account&#39;s currently-active stories. Meta keeps stories live for 24h; expired stories are not returned.  Limitations propagated from Meta (these are NOT bugs): - 24h window only - Live videos excluded - Reshared stories not returned - &#x60;mediaUrl&#x60; may be null if Meta flagged the story for copyright - &#x60;caption&#x60;, &#x60;likeCount&#x60;, &#x60;commentsCount&#x60; do not apply to story media 
+Returns the IG Business/Creator account&#39;s currently-active stories. Meta keeps stories live for 24h. Pass &#x60;includeExpired&#x3D;true&#x60; to also get the stories Zernio archived before they expired: their media is copied into Zernio storage while the story is live, so &#x60;mediaUrl&#x60; and &#x60;thumbnailUrl&#x60; keep working after Meta deletes the story. Archiving needs the insights permission and covers stories posted since the account was connected (hourly readings, a final one at 23h, then Meta&#39;s end-of-story numbers when its webhook arrives).  Limitations propagated from Meta (these are NOT bugs): - 24h window only - Live videos excluded - Reshared stories not returned - &#x60;mediaUrl&#x60; may be null if Meta flagged the story for copyright - &#x60;caption&#x60;, &#x60;likeCount&#x60;, &#x60;commentsCount&#x60; do not apply to story media 
 
 ### Example
 
@@ -1315,8 +1315,10 @@ public class Example {
 
         InstagramApi apiInstance = new InstagramApi(defaultClient);
         String accountId = "accountId_example"; // String | The Instagram account ID
+        Boolean includeExpired = false; // Boolean | Also return archived stories that are no longer live, newest first after the live ones. Every item then carries `expired` and `metrics`.
+        Integer limit = 100; // Integer | Maximum number of archived stories to read when `includeExpired=true` (live stories are always all returned).
         try {
-            ListInstagramStories200Response result = apiInstance.listInstagramStories(accountId);
+            ListInstagramStories200Response result = apiInstance.listInstagramStories(accountId, includeExpired, limit);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling InstagramApi#listInstagramStories");
@@ -1335,6 +1337,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Instagram account ID | |
+| **includeExpired** | **Boolean**| Also return archived stories that are no longer live, newest first after the live ones. Every item then carries &#x60;expired&#x60; and &#x60;metrics&#x60;. | [optional] [default to false] |
+| **limit** | **Integer**| Maximum number of archived stories to read when &#x60;includeExpired&#x3D;true&#x60; (live stories are always all returned). | [optional] [default to 100] |
 
 ### Return type
 
@@ -1355,17 +1359,17 @@ public class Example {
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Active stories |  -  |
-| **400** | Invalid request. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 ## listInstagramStoriesWithHttpInfo
 
-> ApiResponse<ListInstagramStories200Response> listInstagramStories listInstagramStoriesWithHttpInfo(accountId)
+> ApiResponse<ListInstagramStories200Response> listInstagramStories listInstagramStoriesWithHttpInfo(accountId, includeExpired, limit)
 
 List active Instagram stories
 
-Returns the IG Business/Creator account&#39;s currently-active stories. Meta keeps stories live for 24h; expired stories are not returned.  Limitations propagated from Meta (these are NOT bugs): - 24h window only - Live videos excluded - Reshared stories not returned - &#x60;mediaUrl&#x60; may be null if Meta flagged the story for copyright - &#x60;caption&#x60;, &#x60;likeCount&#x60;, &#x60;commentsCount&#x60; do not apply to story media 
+Returns the IG Business/Creator account&#39;s currently-active stories. Meta keeps stories live for 24h. Pass &#x60;includeExpired&#x3D;true&#x60; to also get the stories Zernio archived before they expired: their media is copied into Zernio storage while the story is live, so &#x60;mediaUrl&#x60; and &#x60;thumbnailUrl&#x60; keep working after Meta deletes the story. Archiving needs the insights permission and covers stories posted since the account was connected (hourly readings, a final one at 23h, then Meta&#39;s end-of-story numbers when its webhook arrives).  Limitations propagated from Meta (these are NOT bugs): - 24h window only - Live videos excluded - Reshared stories not returned - &#x60;mediaUrl&#x60; may be null if Meta flagged the story for copyright - &#x60;caption&#x60;, &#x60;likeCount&#x60;, &#x60;commentsCount&#x60; do not apply to story media 
 
 ### Example
 
@@ -1390,8 +1394,10 @@ public class Example {
 
         InstagramApi apiInstance = new InstagramApi(defaultClient);
         String accountId = "accountId_example"; // String | The Instagram account ID
+        Boolean includeExpired = false; // Boolean | Also return archived stories that are no longer live, newest first after the live ones. Every item then carries `expired` and `metrics`.
+        Integer limit = 100; // Integer | Maximum number of archived stories to read when `includeExpired=true` (live stories are always all returned).
         try {
-            ApiResponse<ListInstagramStories200Response> response = apiInstance.listInstagramStoriesWithHttpInfo(accountId);
+            ApiResponse<ListInstagramStories200Response> response = apiInstance.listInstagramStoriesWithHttpInfo(accountId, includeExpired, limit);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1412,6 +1418,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Instagram account ID | |
+| **includeExpired** | **Boolean**| Also return archived stories that are no longer live, newest first after the live ones. Every item then carries &#x60;expired&#x60; and &#x60;metrics&#x60;. | [optional] [default to false] |
+| **limit** | **Integer**| Maximum number of archived stories to read when &#x60;includeExpired&#x3D;true&#x60; (live stories are always all returned). | [optional] [default to 100] |
 
 ### Return type
 
@@ -1432,7 +1440,7 @@ ApiResponse<[**ListInstagramStories200Response**](ListInstagramStories200Respons
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Active stories |  -  |
-| **400** | Invalid request. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 

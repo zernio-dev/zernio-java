@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.542.0
+- API version: 1.543.0
 
-- Build date: 2026-11-09T23:26:43.495171449Z[Etc/UTC]
+- Build date: 2026-11-09T23:41:05.871350955Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.542.0</version>
+  <version>1.543.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.542.0"
+compile "dev.zernio:zernio-sdk:1.543.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.542.0.jar`
+- `target/zernio-sdk-1.543.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4516,6 +4516,7 @@ Class | Method | HTTP request | Description
  - [ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount](docs/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.md)
  - [ListInstagramStories200Response](docs/ListInstagramStories200Response.md)
  - [ListInstagramStories200ResponseDataInner](docs/ListInstagramStories200ResponseDataInner.md)
+ - [ListInstagramStories200ResponseDataInnerMetrics](docs/ListInstagramStories200ResponseDataInnerMetrics.md)
  - [ListInstagramTaggedMedia200Response](docs/ListInstagramTaggedMedia200Response.md)
  - [ListLeadForms200Response](docs/ListLeadForms200Response.md)
  - [ListLeads200Response](docs/ListLeads200Response.md)

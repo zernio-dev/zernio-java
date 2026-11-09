@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.542.0
+  version: 1.543.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -20759,7 +20759,12 @@ paths:
     get:
       description: |
         Returns the IG Business/Creator account's currently-active stories.
-        Meta keeps stories live for 24h; expired stories are not returned.
+        Meta keeps stories live for 24h. Pass `includeExpired=true` to also get the
+        stories Zernio archived before they expired: their media is copied into Zernio
+        storage while the story is live, so `mediaUrl` and `thumbnailUrl` keep working
+        after Meta deletes the story. Archiving needs the insights permission and covers
+        stories posted since the account was connected (hourly readings, a final one at 23h,
+        then Meta's end-of-story numbers when its webhook arrives).
 
         Limitations propagated from Meta (these are NOT bugs):
         - 24h window only
@@ -20777,6 +20782,28 @@ paths:
         schema:
           type: string
         style: simple
+      - description: "Also return archived stories that are no longer live, newest\
+          \ first after the live ones. Every item then carries `expired` and `metrics`."
+        explode: true
+        in: query
+        name: includeExpired
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: Maximum number of archived stories to read when `includeExpired=true`
+          (live stories are always all returned).
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 100
+          maximum: 500
+          minimum: 1
+          type: integer
+        style: form
       responses:
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
@@ -20787,7 +20814,7 @@ paths:
                 $ref: "#/components/schemas/listInstagramStories_200_response"
           description: Active stories
         "400":
-          description: Invalid request.
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -137610,12 +137637,49 @@ components:
           example: Could not resolve real name from LinkedIn. Display name was derived
             from the vanity URL and may not match the profile exactly.
           type: string
+    listInstagramStories_200_response_data_inner_metrics:
+      description: "Only with `includeExpired=true`. Latest archived reading of the\
+        \ story (the final one once it expired), or null when none was taken yet."
+      example:
+        shares: 5
+        lastUpdated: 2000-01-23T04:56:07.000+00:00
+        replies: 1
+        reach: 6
+        follows: 5
+        views: 0
+        profileVisits: 2
+      properties:
+        views:
+          type: integer
+        reach:
+          type: integer
+        replies:
+          type: integer
+        shares:
+          type: integer
+        follows:
+          type: integer
+        profileVisits:
+          type: integer
+        lastUpdated:
+          format: date-time
+          nullable: true
+          type: string
     listInstagramStories_200_response_data_inner:
       example:
+        expired: true
         mediaUrl: mediaUrl
         mediaProductType: mediaProductType
         mediaType: mediaType
         id: id
+        metrics:
+          shares: 5
+          lastUpdated: 2000-01-23T04:56:07.000+00:00
+          replies: 1
+          reach: 6
+          follows: 5
+          views: 0
+          profileVisits: 2
         permalink: permalink
         thumbnailUrl: thumbnailUrl
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -137650,22 +137714,46 @@ components:
           format: date-time
           nullable: true
           type: string
+        expired:
+          description: Only with `includeExpired=true`. True for an archived story
+            that is no longer live; its media urls point to Zernio storage.
+          type: boolean
+        metrics:
+          $ref: "#/components/schemas/listInstagramStories_200_response_data_inner_metrics"
       required:
       - id
     listInstagramStories_200_response:
       example:
         data:
-        - mediaUrl: mediaUrl
+        - expired: true
+          mediaUrl: mediaUrl
           mediaProductType: mediaProductType
           mediaType: mediaType
           id: id
+          metrics:
+            shares: 5
+            lastUpdated: 2000-01-23T04:56:07.000+00:00
+            replies: 1
+            reach: 6
+            follows: 5
+            views: 0
+            profileVisits: 2
           permalink: permalink
           thumbnailUrl: thumbnailUrl
           timestamp: 2000-01-23T04:56:07.000+00:00
-        - mediaUrl: mediaUrl
+        - expired: true
+          mediaUrl: mediaUrl
           mediaProductType: mediaProductType
           mediaType: mediaType
           id: id
+          metrics:
+            shares: 5
+            lastUpdated: 2000-01-23T04:56:07.000+00:00
+            replies: 1
+            reach: 6
+            follows: 5
+            views: 0
+            profileVisits: 2
           permalink: permalink
           thumbnailUrl: thumbnailUrl
           timestamp: 2000-01-23T04:56:07.000+00:00
