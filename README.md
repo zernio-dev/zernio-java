@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.530.0
+- API version: 1.531.0
 
-- Build date: 2026-11-09T15:40:29.649170451Z[Etc/UTC]
+- Build date: 2026-11-09T16:16:02.532288040Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.530.0</version>
+  <version>1.531.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.530.0"
+compile "dev.zernio:zernio-sdk:1.531.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.530.0.jar`
+- `target/zernio-sdk-1.531.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1371,6 +1371,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**getConversionMetricsWithHttpInfo**](docs/ConversionsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
 *ConversionsApi* | [**getConversionsQuality**](docs/ConversionsApi.md#getConversionsQuality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
 *ConversionsApi* | [**getConversionsQualityWithHttpInfo**](docs/ConversionsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
+*ConversionsApi* | [**getEvent**](docs/ConversionsApi.md#getEvent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries
+*ConversionsApi* | [**getEventWithHttpInfo**](docs/ConversionsApi.md#getEventWithHttpInfo) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries
 *ConversionsApi* | [**listAdConversionGoals**](docs/ConversionsApi.md#listAdConversionGoals) | **GET** /v1/ads/conversions/goals | List account conversion goals
 *ConversionsApi* | [**listAdConversionGoalsWithHttpInfo**](docs/ConversionsApi.md#listAdConversionGoalsWithHttpInfo) | **GET** /v1/ads/conversions/goals | List account conversion goals
 *ConversionsApi* | [**listConversionActions**](docs/ConversionsApi.md#listConversionActions) | **GET** /v1/ads/conversions/actions | List conversion actions
@@ -3779,6 +3781,8 @@ Class | Method | HTTP request | Description
  - [GetDsaRecommendations200Response](docs/GetDsaRecommendations200Response.md)
  - [GetEmailThread200Response](docs/GetEmailThread200Response.md)
  - [GetEmailThread200ResponseData](docs/GetEmailThread200ResponseData.md)
+ - [GetEvent200Response](docs/GetEvent200Response.md)
+ - [GetEvent200ResponseDeliveriesInner](docs/GetEvent200ResponseDeliveriesInner.md)
  - [GetFacebookDemographics200Response](docs/GetFacebookDemographics200Response.md)
  - [GetFacebookDemographics200ResponseDemographics](docs/GetFacebookDemographics200ResponseDemographics.md)
  - [GetFacebookDemographics200ResponseDemographicsCountryInner](docs/GetFacebookDemographics200ResponseDemographicsCountryInner.md)
@@ -4451,10 +4455,6 @@ Class | Method | HTTP request | Description
  - [ListEmailThreads200Response](docs/ListEmailThreads200Response.md)
  - [ListEventDestinations200Response](docs/ListEventDestinations200Response.md)
  - [ListEvents200Response](docs/ListEvents200Response.md)
- - [ListEvents200ResponseEventsInner](docs/ListEvents200ResponseEventsInner.md)
- - [ListEvents200ResponseEventsInnerAd](docs/ListEvents200ResponseEventsInnerAd.md)
- - [ListEvents200ResponseEventsInnerClickIds](docs/ListEvents200ResponseEventsInnerClickIds.md)
- - [ListEvents200ResponseEventsInnerUtm](docs/ListEvents200ResponseEventsInnerUtm.md)
  - [ListFacebookPages200Response](docs/ListFacebookPages200Response.md)
  - [ListFacebookPages200ResponsePagesInner](docs/ListFacebookPages200ResponsePagesInner.md)
  - [ListFacebookTaggedPosts200Response](docs/ListFacebookTaggedPosts200Response.md)
@@ -5063,6 +5063,7 @@ Class | Method | HTTP request | Description
  - [SendEvents200Response](docs/SendEvents200Response.md)
  - [SendEvents200ResponseDestinationsInner](docs/SendEvents200ResponseDestinationsInner.md)
  - [SendEvents200ResponseDestinationsInnerFailuresInner](docs/SendEvents200ResponseDestinationsInnerFailuresInner.md)
+ - [SendEvents202Response](docs/SendEvents202Response.md)
  - [SendEventsRequest](docs/SendEventsRequest.md)
  - [SendEventsRequestConsent](docs/SendEventsRequestConsent.md)
  - [SendEventsRequestDestinationsInner](docs/SendEventsRequestDestinationsInner.md)
@@ -5206,6 +5207,10 @@ Class | Method | HTTP request | Description
  - [StartWhatsAppCallerIdVerificationRequest](docs/StartWhatsAppCallerIdVerificationRequest.md)
  - [StorePixelInstall](docs/StorePixelInstall.md)
  - [StorePixelInstallTagsInner](docs/StorePixelInstallTagsInner.md)
+ - [StoredEvent](docs/StoredEvent.md)
+ - [StoredEventAd](docs/StoredEventAd.md)
+ - [StoredEventClickIds](docs/StoredEventClickIds.md)
+ - [StoredEventUtm](docs/StoredEventUtm.md)
  - [SubmitCreatorPost201Response](docs/SubmitCreatorPost201Response.md)
  - [SubmitCreatorPostRequest](docs/SubmitCreatorPostRequest.md)
  - [SubmitFeedbackRequest](docs/SubmitFeedbackRequest.md)

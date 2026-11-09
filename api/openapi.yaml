@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.530.0
+  version: 1.531.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -67381,6 +67381,14 @@ paths:
           description: Events processed. Check each destination for partial failure.
           x-summary: "The events were processed: check each destination for partial\
             \ failure."
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sendEvents_202_response"
+          description: "Stored and queued (`mode: async`). `destinations` is empty;\
+            \ follow each event on GET /v1/events/{eventId}."
+          x-summary: "With `mode: async`: the events were stored and their sends queued."
         "400":
           content:
             application/json:
@@ -67413,6 +67421,47 @@ paths:
       - pinterest
       - reddit
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/events/{eventId}:
+    get:
+      description: |
+        Returns one stored event of a profile (the latest copy of it) and, for each destination it was forwarded to, the newest send: `sent`, `retrying` (failed for now and queued again) or `failed` (final). Requires the Ads add-on.
+      operationId: getEvent
+      parameters:
+      - description: The `eventId` the event was sent with.
+        explode: false
+        in: path
+        name: eventId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Profile the event belongs to.
+        explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getEvent_200_response"
+          description: The event and its deliveries.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get one stored event and its deliveries
+      tags:
+      - Conversions
+      x-resource-group: ads
       x-accepts:
       - application/json
   /v1/events/destinations:
@@ -81543,6 +81592,80 @@ components:
       x-summary: "Billing blocked the request: redirect the user to `dashboard_url`\
         \ to add or verify a card or use the enterprise form."
   schemas:
+    StoredEvent:
+      example:
+        eventId: eventId
+        ad:
+          adId: adId
+          campaignId: campaignId
+          customerId: customerId
+          adSetId: adSetId
+          platform: googleads
+          adGroupId: adGroupId
+        hasExternalId: true
+        receivedAt: 2000-01-23T04:56:07.000+00:00
+        actionSource: actionSource
+        utm:
+          campaign: campaign
+          source: source
+          medium: medium
+          content: content
+        sourceUrl: sourceUrl
+        hasEmail: true
+        zrn: zrn
+        clickIds:
+          gclid: gclid
+          fbc: fbc
+        eventTime: 2000-01-23T04:56:07.000+00:00
+        hasPhone: true
+        eventName: eventName
+        currency: currency
+        value: 0.8008281904610115
+        destinationsSent: 6
+      properties:
+        eventId:
+          type: string
+        eventName:
+          type: string
+        eventTime:
+          format: date-time
+          type: string
+        receivedAt:
+          format: date-time
+          type: string
+        actionSource:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: number
+        currency:
+          nullable: true
+          type: string
+        sourceUrl:
+          description: "Origin, path and attribution parameters only."
+          nullable: true
+          type: string
+        utm:
+          $ref: "#/components/schemas/StoredEvent_utm"
+        zrn:
+          description: Ad ID from the `zrn` parameter Zernio adds to links of ads
+            it creates.
+          nullable: true
+          type: string
+        clickIds:
+          $ref: "#/components/schemas/StoredEvent_clickIds"
+        destinationsSent:
+          description: Destinations the event was forwarded to.
+          type: integer
+        hasEmail:
+          type: boolean
+        hasPhone:
+          type: boolean
+        hasExternalId:
+          type: boolean
+        ad:
+          $ref: "#/components/schemas/StoredEvent_ad"
     CreatorPortalCampaign:
       description: "The campaign as a creator sees it: terms, never the budget."
       example:
@@ -189639,146 +189762,6 @@ components:
           type: string
         goal:
           $ref: "#/components/schemas/GoogleCustomConversionGoal"
-    listEvents_200_response_events_inner_utm:
-      example:
-        campaign: campaign
-        source: source
-        medium: medium
-        content: content
-      properties:
-        source:
-          nullable: true
-          type: string
-        medium:
-          nullable: true
-          type: string
-        campaign:
-          nullable: true
-          type: string
-        content:
-          nullable: true
-          type: string
-    listEvents_200_response_events_inner_clickIds:
-      example:
-        gclid: gclid
-        fbc: fbc
-      properties:
-        gclid:
-          nullable: true
-          type: string
-        fbc:
-          nullable: true
-          type: string
-    listEvents_200_response_events_inner_ad:
-      description: "The ad behind the event, when Zernio can name it. Google: from\
-        \ the click behind `clickIds.gclid` (synced daily from Google Ads click_view\
-        \ for clicks up to 14 days before the event; gbraid/wbraid clicks are not\
-        \ resolved). Meta: from the `zrn` ad id, for Meta ads Zernio holds. `null`\
-        \ otherwise."
-      example:
-        adId: adId
-        campaignId: campaignId
-        customerId: customerId
-        adSetId: adSetId
-        platform: googleads
-        adGroupId: adGroupId
-      properties:
-        platform:
-          enum:
-          - googleads
-          - metaads
-          type: string
-        customerId:
-          description: Google Ads customer id (Google only).
-          type: string
-        campaignId:
-          nullable: true
-          type: string
-        adGroupId:
-          description: Google only.
-          nullable: true
-          type: string
-        adSetId:
-          description: Meta only.
-          nullable: true
-          type: string
-        adId:
-          nullable: true
-          type: string
-    listEvents_200_response_events_inner:
-      example:
-        eventId: eventId
-        ad:
-          adId: adId
-          campaignId: campaignId
-          customerId: customerId
-          adSetId: adSetId
-          platform: googleads
-          adGroupId: adGroupId
-        hasExternalId: true
-        receivedAt: 2000-01-23T04:56:07.000+00:00
-        actionSource: actionSource
-        utm:
-          campaign: campaign
-          source: source
-          medium: medium
-          content: content
-        sourceUrl: sourceUrl
-        hasEmail: true
-        zrn: zrn
-        clickIds:
-          gclid: gclid
-          fbc: fbc
-        eventTime: 2000-01-23T04:56:07.000+00:00
-        hasPhone: true
-        eventName: eventName
-        currency: currency
-        value: 0.8008281904610115
-        destinationsSent: 6
-      properties:
-        eventId:
-          type: string
-        eventName:
-          type: string
-        eventTime:
-          format: date-time
-          type: string
-        receivedAt:
-          format: date-time
-          type: string
-        actionSource:
-          nullable: true
-          type: string
-        value:
-          nullable: true
-          type: number
-        currency:
-          nullable: true
-          type: string
-        sourceUrl:
-          description: "Origin, path and attribution parameters only."
-          nullable: true
-          type: string
-        utm:
-          $ref: "#/components/schemas/listEvents_200_response_events_inner_utm"
-        zrn:
-          description: Ad ID from the `zrn` parameter Zernio adds to links of ads
-            it creates.
-          nullable: true
-          type: string
-        clickIds:
-          $ref: "#/components/schemas/listEvents_200_response_events_inner_clickIds"
-        destinationsSent:
-          description: Destinations the event was forwarded to.
-          type: integer
-        hasEmail:
-          type: boolean
-        hasPhone:
-          type: boolean
-        hasExternalId:
-          type: boolean
-        ad:
-          $ref: "#/components/schemas/listEvents_200_response_events_inner_ad"
     listEvents_200_response:
       example:
         nextCursor: nextCursor
@@ -189842,7 +189825,7 @@ components:
       properties:
         events:
           items:
-            $ref: "#/components/schemas/listEvents_200_response_events_inner"
+            $ref: "#/components/schemas/StoredEvent"
           type: array
         nextCursor:
           description: Pass as `cursor` to get the next page; `null` on the last page.
@@ -189903,6 +189886,17 @@ components:
             A root-level `test_event_code` is accepted as an alias. Test events are
             not stored.
           type: string
+        mode:
+          default: sync
+          description: "`sync` sends to every destination before answering (200, per-destination\
+            \ results). `async` stores and queues the sends, then answers 202 at once;\
+            \ each send is retried while the platform fails for now, and its outcome\
+            \ shows on GET /v1/events/{eventId}. Requests with `testCode` always send\
+            \ now."
+          enum:
+          - sync
+          - async
+          type: string
       required:
       - events
       - profileId
@@ -189935,6 +189929,7 @@ components:
           eventIndex: 5
           message: message
         eventsFailed: 1
+        retrying: true
         eventsSent: 6
         destinationId: destinationId
         error: error
@@ -189967,8 +189962,14 @@ components:
           description: "Set when the destination could not be reached at all (account\
             \ disconnected, unsupported platform, platform error)."
           type: string
+        retrying:
+          description: "The destination failed for now (platform error, timeout, rate\
+            \ limit) and the send is queued for retries; its outcome shows on GET\
+            \ /v1/events/{eventId}."
+          type: boolean
     sendEvents_200_response:
       example:
+        queuedDestinations: 5
         testCode: testCode
         eventsReceived: 0
         stored: true
@@ -189984,6 +189985,7 @@ components:
             eventIndex: 5
             message: message
           eventsFailed: 1
+          retrying: true
           eventsSent: 6
           destinationId: destinationId
           error: error
@@ -189999,6 +190001,7 @@ components:
             eventIndex: 5
             message: message
           eventsFailed: 1
+          retrying: true
           eventsSent: 6
           destinationId: destinationId
           error: error
@@ -190019,6 +190022,135 @@ components:
         destinations:
           items:
             $ref: "#/components/schemas/sendEvents_200_response_destinations_inner"
+          type: array
+        queuedDestinations:
+          description: "Destinations whose sends were queued (all of them with `mode:\
+            \ async`, retries with `sync`)."
+          type: integer
+    sendEvents_202_response:
+      example:
+        queuedDestinations: 7
+        testCode: testCode
+        eventsReceived: 2
+        stored: true
+        destinations: []
+      properties:
+        eventsReceived:
+          type: integer
+        stored:
+          type: boolean
+        queuedDestinations:
+          description: Destinations whose sends were queued.
+          type: integer
+        destinations:
+          items:
+            type: object
+          maxItems: 0
+          type: array
+        testCode:
+          description: "Always `null`: requests with a test code send now and answer\
+            \ 200."
+          nullable: true
+          type: string
+    getEvent_200_response_deliveries_inner:
+      example:
+        accountId: accountId
+        errorCode: errorCode
+        sentAt: 2000-01-23T04:56:07.000+00:00
+        destinationId: destinationId
+        error: error
+        attempt: 0
+        platform: metaads
+        status: sent
+      properties:
+        accountId:
+          type: string
+        destinationId:
+          type: string
+        platform:
+          enum:
+          - metaads
+          - googleads
+          - linkedinads
+          - tiktokads
+          - openaiads
+          - pinterestads
+          - redditads
+          - null
+          nullable: true
+          type: string
+        status:
+          enum:
+          - sent
+          - retrying
+          - failed
+          type: string
+        attempt:
+          description: Send attempt (1 = the first).
+          type: integer
+        error:
+          nullable: true
+          type: string
+        errorCode:
+          nullable: true
+          type: string
+        sentAt:
+          format: date-time
+          type: string
+    getEvent_200_response:
+      example:
+        event:
+          eventId: eventId
+          ad:
+            adId: adId
+            campaignId: campaignId
+            customerId: customerId
+            adSetId: adSetId
+            platform: googleads
+            adGroupId: adGroupId
+          hasExternalId: true
+          receivedAt: 2000-01-23T04:56:07.000+00:00
+          actionSource: actionSource
+          utm:
+            campaign: campaign
+            source: source
+            medium: medium
+            content: content
+          sourceUrl: sourceUrl
+          hasEmail: true
+          zrn: zrn
+          clickIds:
+            gclid: gclid
+            fbc: fbc
+          eventTime: 2000-01-23T04:56:07.000+00:00
+          hasPhone: true
+          eventName: eventName
+          currency: currency
+          value: 0.8008281904610115
+          destinationsSent: 6
+        deliveries:
+        - accountId: accountId
+          errorCode: errorCode
+          sentAt: 2000-01-23T04:56:07.000+00:00
+          destinationId: destinationId
+          error: error
+          attempt: 0
+          platform: metaads
+          status: sent
+        - accountId: accountId
+          errorCode: errorCode
+          sentAt: 2000-01-23T04:56:07.000+00:00
+          destinationId: destinationId
+          error: error
+          attempt: 0
+          platform: metaads
+          status: sent
+      properties:
+        event:
+          $ref: "#/components/schemas/StoredEvent"
+        deliveries:
+          items:
+            $ref: "#/components/schemas/getEvent_200_response_deliveries_inner"
           type: array
     listEventDestinations_200_response:
       example:
@@ -198326,6 +198458,72 @@ components:
         reason:
           description: "Our review note on changes_requested, the reason on rejected,\
             \ or why a launch filing bounced back to testing."
+    StoredEvent_utm:
+      example:
+        campaign: campaign
+        source: source
+        medium: medium
+        content: content
+      properties:
+        source:
+          nullable: true
+          type: string
+        medium:
+          nullable: true
+          type: string
+        campaign:
+          nullable: true
+          type: string
+        content:
+          nullable: true
+          type: string
+    StoredEvent_clickIds:
+      example:
+        gclid: gclid
+        fbc: fbc
+      properties:
+        gclid:
+          nullable: true
+          type: string
+        fbc:
+          nullable: true
+          type: string
+    StoredEvent_ad:
+      description: "The ad behind the event, when Zernio can name it. Google: from\
+        \ the click behind `clickIds.gclid` (synced daily from Google Ads click_view\
+        \ for clicks up to 14 days before the event; gbraid/wbraid clicks are not\
+        \ resolved). Meta: from the `zrn` ad id, for Meta ads Zernio holds. `null`\
+        \ otherwise."
+      example:
+        adId: adId
+        campaignId: campaignId
+        customerId: customerId
+        adSetId: adSetId
+        platform: googleads
+        adGroupId: adGroupId
+      properties:
+        platform:
+          enum:
+          - googleads
+          - metaads
+          type: string
+        customerId:
+          description: Google Ads customer id (Google only).
+          type: string
+        campaignId:
+          nullable: true
+          type: string
+        adGroupId:
+          description: Google only.
+          nullable: true
+          type: string
+        adSetId:
+          description: Meta only.
+          nullable: true
+          type: string
+        adId:
+          nullable: true
+          type: string
     CPM:
       example:
         maxPayoutPerClipCents: 1

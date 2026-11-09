@@ -26,6 +26,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getConversionMetricsWithHttpInfo**](ConversionsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
 | [**getConversionsQuality**](ConversionsApi.md#getConversionsQuality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
 | [**getConversionsQualityWithHttpInfo**](ConversionsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
+| [**getEvent**](ConversionsApi.md#getEvent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
+| [**getEventWithHttpInfo**](ConversionsApi.md#getEventWithHttpInfo) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
 | [**listAdConversionGoals**](ConversionsApi.md#listAdConversionGoals) | **GET** /v1/ads/conversions/goals | List account conversion goals |
 | [**listAdConversionGoalsWithHttpInfo**](ConversionsApi.md#listAdConversionGoalsWithHttpInfo) | **GET** /v1/ads/conversions/goals | List account conversion goals |
 | [**listConversionActions**](ConversionsApi.md#listConversionActions) | **GET** /v1/ads/conversions/actions | List conversion actions |
@@ -1829,6 +1831,158 @@ ApiResponse<[**GetConversionsQuality200Response**](GetConversionsQuality200Respo
 | **405** | Platform does not expose Event Match Quality (neither Meta nor Pinterest). |  -  |
 
 
+## getEvent
+
+> GetEvent200Response getEvent(eventId, profileId)
+
+Get one stored event and its deliveries
+
+Returns one stored event of a profile (the latest copy of it) and, for each destination it was forwarded to, the newest send: &#x60;sent&#x60;, &#x60;retrying&#x60; (failed for now and queued again) or &#x60;failed&#x60; (final). Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String eventId = "eventId_example"; // String | The `eventId` the event was sent with.
+        String profileId = "profileId_example"; // String | Profile the event belongs to.
+        try {
+            GetEvent200Response result = apiInstance.getEvent(eventId, profileId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **eventId** | **String**| The &#x60;eventId&#x60; the event was sent with. | |
+| **profileId** | **String**| Profile the event belongs to. | |
+
+### Return type
+
+[**GetEvent200Response**](GetEvent200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event and its deliveries. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## getEventWithHttpInfo
+
+> ApiResponse<GetEvent200Response> getEvent getEventWithHttpInfo(eventId, profileId)
+
+Get one stored event and its deliveries
+
+Returns one stored event of a profile (the latest copy of it) and, for each destination it was forwarded to, the newest send: &#x60;sent&#x60;, &#x60;retrying&#x60; (failed for now and queued again) or &#x60;failed&#x60; (final). Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String eventId = "eventId_example"; // String | The `eventId` the event was sent with.
+        String profileId = "profileId_example"; // String | Profile the event belongs to.
+        try {
+            ApiResponse<GetEvent200Response> response = apiInstance.getEventWithHttpInfo(eventId, profileId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **eventId** | **String**| The &#x60;eventId&#x60; the event was sent with. | |
+| **profileId** | **String**| Profile the event belongs to. | |
+
+### Return type
+
+ApiResponse<[**GetEvent200Response**](GetEvent200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event and its deliveries. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
 ## listAdConversionGoals
 
 > ListAdConversionGoals200Response listAdConversionGoals(accountId, adAccountId, customerId)
@@ -3536,6 +3690,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Events processed. Check each destination for partial failure. |  -  |
+| **202** | Stored and queued (&#x60;mode: async&#x60;). &#x60;destinations&#x60; is empty; follow each event on GET /v1/events/{eventId}. |  -  |
 | **400** | Invalid body, including a &#x60;test_event_code&#x60; that is not a non-empty string, or &#x60;testCode&#x60; and &#x60;test_event_code&#x60; with different values (&#x60;param: test_event_code&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
@@ -3616,6 +3771,7 @@ ApiResponse<[**SendEvents200Response**](SendEvents200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Events processed. Check each destination for partial failure. |  -  |
+| **202** | Stored and queued (&#x60;mode: async&#x60;). &#x60;destinations&#x60; is empty; follow each event on GET /v1/events/{eventId}. |  -  |
 | **400** | Invalid body, including a &#x60;test_event_code&#x60; that is not a non-empty string, or &#x60;testCode&#x60; and &#x60;test_event_code&#x60; with different values (&#x60;param: test_event_code&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |

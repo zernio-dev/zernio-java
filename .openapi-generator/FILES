@@ -1333,6 +1333,8 @@ docs/GetDsaDefaults200ResponseDsaDefaults.md
 docs/GetDsaRecommendations200Response.md
 docs/GetEmailThread200Response.md
 docs/GetEmailThread200ResponseData.md
+docs/GetEvent200Response.md
+docs/GetEvent200ResponseDeliveriesInner.md
 docs/GetFacebookDemographics200Response.md
 docs/GetFacebookDemographics200ResponseDemographics.md
 docs/GetFacebookDemographics200ResponseDemographicsCountryInner.md
@@ -2020,10 +2022,6 @@ docs/ListEmailMessages200Response.md
 docs/ListEmailThreads200Response.md
 docs/ListEventDestinations200Response.md
 docs/ListEvents200Response.md
-docs/ListEvents200ResponseEventsInner.md
-docs/ListEvents200ResponseEventsInnerAd.md
-docs/ListEvents200ResponseEventsInnerClickIds.md
-docs/ListEvents200ResponseEventsInnerUtm.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
@@ -2647,6 +2645,7 @@ docs/SendEmailRequestAttachmentsInner.md
 docs/SendEvents200Response.md
 docs/SendEvents200ResponseDestinationsInner.md
 docs/SendEvents200ResponseDestinationsInnerFailuresInner.md
+docs/SendEvents202Response.md
 docs/SendEventsRequest.md
 docs/SendEventsRequestConsent.md
 docs/SendEventsRequestDestinationsInner.md
@@ -2793,6 +2792,10 @@ docs/StartWhatsAppCallerIdVerification200Response.md
 docs/StartWhatsAppCallerIdVerificationRequest.md
 docs/StorePixelInstall.md
 docs/StorePixelInstallTagsInner.md
+docs/StoredEvent.md
+docs/StoredEventAd.md
+docs/StoredEventClickIds.md
+docs/StoredEventUtm.md
 docs/SubmitCreatorPost201Response.md
 docs/SubmitCreatorPostRequest.md
 docs/SubmitFeedbackRequest.md
@@ -4922,6 +4925,8 @@ src/main/java/dev/zernio/model/GetDsaDefaults200ResponseDsaDefaults.java
 src/main/java/dev/zernio/model/GetDsaRecommendations200Response.java
 src/main/java/dev/zernio/model/GetEmailThread200Response.java
 src/main/java/dev/zernio/model/GetEmailThread200ResponseData.java
+src/main/java/dev/zernio/model/GetEvent200Response.java
+src/main/java/dev/zernio/model/GetEvent200ResponseDeliveriesInner.java
 src/main/java/dev/zernio/model/GetFacebookDemographics200Response.java
 src/main/java/dev/zernio/model/GetFacebookDemographics200ResponseDemographics.java
 src/main/java/dev/zernio/model/GetFacebookDemographics200ResponseDemographicsCountryInner.java
@@ -5594,10 +5599,6 @@ src/main/java/dev/zernio/model/ListEmailMessages200Response.java
 src/main/java/dev/zernio/model/ListEmailThreads200Response.java
 src/main/java/dev/zernio/model/ListEventDestinations200Response.java
 src/main/java/dev/zernio/model/ListEvents200Response.java
-src/main/java/dev/zernio/model/ListEvents200ResponseEventsInner.java
-src/main/java/dev/zernio/model/ListEvents200ResponseEventsInnerAd.java
-src/main/java/dev/zernio/model/ListEvents200ResponseEventsInnerClickIds.java
-src/main/java/dev/zernio/model/ListEvents200ResponseEventsInnerUtm.java
 src/main/java/dev/zernio/model/ListFacebookPages200Response.java
 src/main/java/dev/zernio/model/ListFacebookPages200ResponsePagesInner.java
 src/main/java/dev/zernio/model/ListFacebookTaggedPosts200Response.java
@@ -6206,6 +6207,7 @@ src/main/java/dev/zernio/model/SendEmailRequestAttachmentsInner.java
 src/main/java/dev/zernio/model/SendEvents200Response.java
 src/main/java/dev/zernio/model/SendEvents200ResponseDestinationsInner.java
 src/main/java/dev/zernio/model/SendEvents200ResponseDestinationsInnerFailuresInner.java
+src/main/java/dev/zernio/model/SendEvents202Response.java
 src/main/java/dev/zernio/model/SendEventsRequest.java
 src/main/java/dev/zernio/model/SendEventsRequestConsent.java
 src/main/java/dev/zernio/model/SendEventsRequestDestinationsInner.java
@@ -6349,6 +6351,10 @@ src/main/java/dev/zernio/model/StartWhatsAppCallerIdVerification200Response.java
 src/main/java/dev/zernio/model/StartWhatsAppCallerIdVerificationRequest.java
 src/main/java/dev/zernio/model/StorePixelInstall.java
 src/main/java/dev/zernio/model/StorePixelInstallTagsInner.java
+src/main/java/dev/zernio/model/StoredEvent.java
+src/main/java/dev/zernio/model/StoredEventAd.java
+src/main/java/dev/zernio/model/StoredEventClickIds.java
+src/main/java/dev/zernio/model/StoredEventUtm.java
 src/main/java/dev/zernio/model/SubmitCreatorPost201Response.java
 src/main/java/dev/zernio/model/SubmitCreatorPostRequest.java
 src/main/java/dev/zernio/model/SubmitFeedbackRequest.java
@@ -7061,3 +7067,10 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetEvent200ResponseDeliveriesInnerTest.java
+src/test/java/dev/zernio/model/GetEvent200ResponseTest.java
+src/test/java/dev/zernio/model/SendEvents202ResponseTest.java
+src/test/java/dev/zernio/model/StoredEventAdTest.java
+src/test/java/dev/zernio/model/StoredEventClickIdsTest.java
+src/test/java/dev/zernio/model/StoredEventTest.java
+src/test/java/dev/zernio/model/StoredEventUtmTest.java

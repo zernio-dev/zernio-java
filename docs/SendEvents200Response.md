@@ -11,6 +11,7 @@
 |**stored** | **Boolean** | Whether the events were stored for reporting (always false with testCode). |  [optional] |
 |**testCode** | **String** | The test code forwarded to every destination, or &#x60;null&#x60; when the request carried none. |  [optional] |
 |**destinations** | [**List&lt;SendEvents200ResponseDestinationsInner&gt;**](SendEvents200ResponseDestinationsInner.md) |  |  [optional] |
+|**queuedDestinations** | **Integer** | Destinations whose sends were queued (all of them with &#x60;mode: async&#x60;, retries with &#x60;sync&#x60;). |  [optional] |
 
 
 

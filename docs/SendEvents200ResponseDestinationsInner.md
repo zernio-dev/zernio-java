@@ -14,6 +14,7 @@
 |**eventsFailed** | **Integer** |  |  [optional] |
 |**failures** | [**List&lt;SendEvents200ResponseDestinationsInnerFailuresInner&gt;**](SendEvents200ResponseDestinationsInnerFailuresInner.md) |  |  [optional] |
 |**error** | **String** | Set when the destination could not be reached at all (account disconnected, unsupported platform, platform error). |  [optional] |
+|**retrying** | **Boolean** | The destination failed for now (platform error, timeout, rate limit) and the send is queued for retries; its outcome shows on GET /v1/events/{eventId}. |  [optional] |
 
 
 
