@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.529.3
+- API version: 1.530.0
 
-- Build date: 2026-11-09T14:02:54.030175419Z[Etc/UTC]
+- Build date: 2026-11-09T15:40:29.649170451Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.529.3</version>
+  <version>1.530.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.529.3"
+compile "dev.zernio:zernio-sdk:1.530.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.529.3.jar`
+- `target/zernio-sdk-1.530.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1239,8 +1239,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getLinkedInOrganizationsWithHttpInfo**](docs/ConnectApi.md#getLinkedInOrganizationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs
 *ConnectApi* | [**getOAuthApp**](docs/ConnectApi.md#getOAuthApp) | **GET** /v1/connect/oauth-apps/{appId} | Get an OAuth app
 *ConnectApi* | [**getOAuthAppWithHttpInfo**](docs/ConnectApi.md#getOAuthAppWithHttpInfo) | **GET** /v1/connect/oauth-apps/{appId} | Get an OAuth app
-*ConnectApi* | [**getPageWebhookSubscription**](docs/ConnectApi.md#getPageWebhookSubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page&#39;s webhook subscription
-*ConnectApi* | [**getPageWebhookSubscriptionWithHttpInfo**](docs/ConnectApi.md#getPageWebhookSubscriptionWithHttpInfo) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page&#39;s webhook subscription
+*ConnectApi* | [**getPageWebhookSubscription**](docs/ConnectApi.md#getPageWebhookSubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read an account&#39;s webhook subscription
+*ConnectApi* | [**getPageWebhookSubscriptionWithHttpInfo**](docs/ConnectApi.md#getPageWebhookSubscriptionWithHttpInfo) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read an account&#39;s webhook subscription
 *ConnectApi* | [**getPendingOAuthData**](docs/ConnectApi.md#getPendingOAuthData) | **GET** /v1/connect/pending-data | Get pending OAuth data
 *ConnectApi* | [**getPendingOAuthDataWithHttpInfo**](docs/ConnectApi.md#getPendingOAuthDataWithHttpInfo) | **GET** /v1/connect/pending-data | Get pending OAuth data
 *ConnectApi* | [**getPinterestBoards**](docs/ConnectApi.md#getPinterestBoards) | **GET** /v1/accounts/{accountId}/pinterest-boards | List Pinterest boards
@@ -1291,8 +1291,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**listSnapchatProfilesWithHttpInfo**](docs/ConnectApi.md#listSnapchatProfilesWithHttpInfo) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles
 *ConnectApi* | [**listWhatsAppPhoneNumbers**](docs/ConnectApi.md#listWhatsAppPhoneNumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection
 *ConnectApi* | [**listWhatsAppPhoneNumbersWithHttpInfo**](docs/ConnectApi.md#listWhatsAppPhoneNumbersWithHttpInfo) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection
-*ConnectApi* | [**resyncPageWebhookSubscription**](docs/ConnectApi.md#resyncPageWebhookSubscription) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe a Facebook Page to Zernio&#39;s webhooks
-*ConnectApi* | [**resyncPageWebhookSubscriptionWithHttpInfo**](docs/ConnectApi.md#resyncPageWebhookSubscriptionWithHttpInfo) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe a Facebook Page to Zernio&#39;s webhooks
+*ConnectApi* | [**resyncPageWebhookSubscription**](docs/ConnectApi.md#resyncPageWebhookSubscription) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe an account to Zernio&#39;s webhooks
+*ConnectApi* | [**resyncPageWebhookSubscriptionWithHttpInfo**](docs/ConnectApi.md#resyncPageWebhookSubscriptionWithHttpInfo) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe an account to Zernio&#39;s webhooks
 *ConnectApi* | [**selectFacebookPage**](docs/ConnectApi.md#selectFacebookPage) | **POST** /v1/connect/facebook/select-page | Select Facebook page
 *ConnectApi* | [**selectFacebookPageWithHttpInfo**](docs/ConnectApi.md#selectFacebookPageWithHttpInfo) | **POST** /v1/connect/facebook/select-page | Select Facebook page
 *ConnectApi* | [**selectGoogleAnalyticsProperty**](docs/ConnectApi.md#selectGoogleAnalyticsProperty) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property

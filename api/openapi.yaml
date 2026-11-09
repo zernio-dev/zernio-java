@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.529.3
+  version: 1.530.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -19250,6 +19250,10 @@ paths:
         Returns the webhook fields Zernio's app is subscribed to on the connected Page, read live from Meta.
         Use it to confirm `leadgen` is present: a Page missing it keeps delivering every other event while
         lead ads stop arriving, with nothing to indicate it.
+
+        For an Instagram account connected through Instagram Login it returns the subscription record
+        (`subscriptionId`) and the webhook fields Meta did not subscribe (`missingFields`). An Instagram account
+        connected through Facebook Login returns 409: its webhooks ride the Facebook Page subscription.
       operationId: getPageWebhookSubscription
       parameters:
       - explode: false
@@ -19271,11 +19275,16 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: The connection has no selected Page
-      summary: Read a Facebook Page's webhook subscription
+          description: "The Facebook connection has no selected Page, or the Instagram\
+            \ account connected through Facebook Login, is disconnected, or has no\
+            \ access token"
+      summary: Read an account's webhook subscription
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - facebook
+      - instagram
       x-accepts:
       - application/json
     post:
@@ -19284,6 +19293,13 @@ paths:
         Meta only honours the field set sent at subscribe time, so a Page connected before a field
         existed stays without it until this runs. The response reflects what Meta actually granted,
         not what was requested.
+
+        For an Instagram account connected through Instagram Login, Meta can keep listing a subscription
+        while delivering nothing, and re-sending the fields over it changes nothing. So this call deletes
+        the subscription and creates it again, and `recreated` is true when the record id moved.
+
+        Events can be missed during the short window in between, so use it when delivery has stopped,
+        not periodically. An Instagram account connected through Facebook Login returns 409.
       operationId: resyncPageWebhookSubscription
       parameters:
       - explode: false
@@ -19305,13 +19321,19 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: The connection has no selected Page
+          description: "The Facebook connection has no selected Page, or the Instagram\
+            \ account connected through Facebook Login, is disconnected, or has no\
+            \ access token"
         "502":
-          description: Meta rejected the subscription
-      summary: Re-subscribe a Facebook Page to Zernio's webhooks
+          description: "Meta rejected the subscription, or (Instagram) the account\
+            \ has no webhook subscription right now"
+      summary: Re-subscribe an account to Zernio's webhooks
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - facebook
+      - instagram
       x-accepts:
       - application/json
   /v1/accounts/{accountId}/business-partners:
@@ -136352,10 +136374,15 @@ components:
       - $ref: "#/components/schemas/Expired"
     getPageWebhookSubscription_200_response:
       example:
+        missingFields:
+        - missingFields
+        - missingFields
         appSubscribed: true
         leadgen: true
+        instagramUserId: instagramUserId
         warning: warning
         pageId: pageId
+        subscriptionId: subscriptionId
         subscribedFields:
         - subscribedFields
         - subscribedFields
@@ -136378,13 +136405,34 @@ components:
           description: Present only when leadgen is missing.
           nullable: true
           type: string
+        instagramUserId:
+          description: Instagram accounts only.
+          type: string
+        subscriptionId:
+          description: Instagram accounts only. Id of the subscription record on Meta;
+            null when there is none.
+          nullable: true
+          type: string
+        missingFields:
+          description: Instagram accounts only. Webhook fields Zernio expects that
+            Meta did not subscribe.
+          items:
+            type: string
+          type: array
     resyncPageWebhookSubscription_200_response:
       example:
+        missingFields:
+        - missingFields
+        - missingFields
         appSubscribed: true
         leadgen: true
+        instagramUserId: instagramUserId
         warning: warning
+        previousSubscriptionId: previousSubscriptionId
+        recreated: true
         resubscribed: true
         pageId: pageId
+        subscriptionId: subscriptionId
         subscribedFields:
         - subscribedFields
         - subscribedFields
@@ -136404,6 +136452,29 @@ components:
         warning:
           nullable: true
           type: string
+        instagramUserId:
+          description: Instagram accounts only.
+          type: string
+        subscriptionId:
+          description: Instagram accounts only. Id of the subscription record after
+            the repair.
+          nullable: true
+          type: string
+        previousSubscriptionId:
+          description: Instagram accounts only. Id of the record before the repair;
+            null when there was none.
+          nullable: true
+          type: string
+        recreated:
+          description: Instagram accounts only. True when the subscription record
+            id changed.
+          type: boolean
+        missingFields:
+          description: Instagram accounts only. Webhook fields Zernio expects that
+            Meta did not subscribe.
+          items:
+            type: string
+          type: array
     listBusinessPartners_200_response:
       example:
         partners:

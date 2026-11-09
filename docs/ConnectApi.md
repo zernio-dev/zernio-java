@@ -64,8 +64,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getLinkedInOrganizationsWithHttpInfo**](ConnectApi.md#getLinkedInOrganizationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs |
 | [**getOAuthApp**](ConnectApi.md#getOAuthApp) | **GET** /v1/connect/oauth-apps/{appId} | Get an OAuth app |
 | [**getOAuthAppWithHttpInfo**](ConnectApi.md#getOAuthAppWithHttpInfo) | **GET** /v1/connect/oauth-apps/{appId} | Get an OAuth app |
-| [**getPageWebhookSubscription**](ConnectApi.md#getPageWebhookSubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page&#39;s webhook subscription |
-| [**getPageWebhookSubscriptionWithHttpInfo**](ConnectApi.md#getPageWebhookSubscriptionWithHttpInfo) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page&#39;s webhook subscription |
+| [**getPageWebhookSubscription**](ConnectApi.md#getPageWebhookSubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read an account&#39;s webhook subscription |
+| [**getPageWebhookSubscriptionWithHttpInfo**](ConnectApi.md#getPageWebhookSubscriptionWithHttpInfo) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read an account&#39;s webhook subscription |
 | [**getPendingOAuthData**](ConnectApi.md#getPendingOAuthData) | **GET** /v1/connect/pending-data | Get pending OAuth data |
 | [**getPendingOAuthDataWithHttpInfo**](ConnectApi.md#getPendingOAuthDataWithHttpInfo) | **GET** /v1/connect/pending-data | Get pending OAuth data |
 | [**getPinterestBoards**](ConnectApi.md#getPinterestBoards) | **GET** /v1/accounts/{accountId}/pinterest-boards | List Pinterest boards |
@@ -116,8 +116,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listSnapchatProfilesWithHttpInfo**](ConnectApi.md#listSnapchatProfilesWithHttpInfo) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles |
 | [**listWhatsAppPhoneNumbers**](ConnectApi.md#listWhatsAppPhoneNumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection |
 | [**listWhatsAppPhoneNumbersWithHttpInfo**](ConnectApi.md#listWhatsAppPhoneNumbersWithHttpInfo) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection |
-| [**resyncPageWebhookSubscription**](ConnectApi.md#resyncPageWebhookSubscription) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe a Facebook Page to Zernio&#39;s webhooks |
-| [**resyncPageWebhookSubscriptionWithHttpInfo**](ConnectApi.md#resyncPageWebhookSubscriptionWithHttpInfo) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe a Facebook Page to Zernio&#39;s webhooks |
+| [**resyncPageWebhookSubscription**](ConnectApi.md#resyncPageWebhookSubscription) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe an account to Zernio&#39;s webhooks |
+| [**resyncPageWebhookSubscriptionWithHttpInfo**](ConnectApi.md#resyncPageWebhookSubscriptionWithHttpInfo) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe an account to Zernio&#39;s webhooks |
 | [**selectFacebookPage**](ConnectApi.md#selectFacebookPage) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**selectFacebookPageWithHttpInfo**](ConnectApi.md#selectFacebookPageWithHttpInfo) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**selectGoogleAnalyticsProperty**](ConnectApi.md#selectGoogleAnalyticsProperty) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property |
@@ -4981,9 +4981,9 @@ ApiResponse<[**CreateOAuthApp201Response**](CreateOAuthApp201Response.md)>
 
 > GetPageWebhookSubscription200Response getPageWebhookSubscription(accountId)
 
-Read a Facebook Page&#39;s webhook subscription
+Read an account&#39;s webhook subscription
 
-Returns the webhook fields Zernio&#39;s app is subscribed to on the connected Page, read live from Meta. Use it to confirm &#x60;leadgen&#x60; is present: a Page missing it keeps delivering every other event while lead ads stop arriving, with nothing to indicate it. 
+Returns the webhook fields Zernio&#39;s app is subscribed to on the connected Page, read live from Meta. Use it to confirm &#x60;leadgen&#x60; is present: a Page missing it keeps delivering every other event while lead ads stop arriving, with nothing to indicate it.  For an Instagram account connected through Instagram Login it returns the subscription record (&#x60;subscriptionId&#x60;) and the webhook fields Meta did not subscribe (&#x60;missingFields&#x60;). An Instagram account connected through Facebook Login returns 409: its webhooks ride the Facebook Page subscription. 
 
 ### Example
 
@@ -5048,15 +5048,15 @@ public class Example {
 | **200** | The Page&#39;s current subscription |  -  |
 | **400** | Invalid request |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The connection has no selected Page |  -  |
+| **409** | The Facebook connection has no selected Page, or the Instagram account connected through Facebook Login, is disconnected, or has no access token |  -  |
 
 ## getPageWebhookSubscriptionWithHttpInfo
 
 > ApiResponse<GetPageWebhookSubscription200Response> getPageWebhookSubscription getPageWebhookSubscriptionWithHttpInfo(accountId)
 
-Read a Facebook Page&#39;s webhook subscription
+Read an account&#39;s webhook subscription
 
-Returns the webhook fields Zernio&#39;s app is subscribed to on the connected Page, read live from Meta. Use it to confirm &#x60;leadgen&#x60; is present: a Page missing it keeps delivering every other event while lead ads stop arriving, with nothing to indicate it. 
+Returns the webhook fields Zernio&#39;s app is subscribed to on the connected Page, read live from Meta. Use it to confirm &#x60;leadgen&#x60; is present: a Page missing it keeps delivering every other event while lead ads stop arriving, with nothing to indicate it.  For an Instagram account connected through Instagram Login it returns the subscription record (&#x60;subscriptionId&#x60;) and the webhook fields Meta did not subscribe (&#x60;missingFields&#x60;). An Instagram account connected through Facebook Login returns 409: its webhooks ride the Facebook Page subscription. 
 
 ### Example
 
@@ -5124,7 +5124,7 @@ ApiResponse<[**GetPageWebhookSubscription200Response**](GetPageWebhookSubscripti
 | **200** | The Page&#39;s current subscription |  -  |
 | **400** | Invalid request |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The connection has no selected Page |  -  |
+| **409** | The Facebook connection has no selected Page, or the Instagram account connected through Facebook Login, is disconnected, or has no access token |  -  |
 
 
 ## getPendingOAuthData
@@ -9163,9 +9163,9 @@ ApiResponse<[**ListWhatsAppPhoneNumbers200Response**](ListWhatsAppPhoneNumbers20
 
 > ResyncPageWebhookSubscription200Response resyncPageWebhookSubscription(accountId)
 
-Re-subscribe a Facebook Page to Zernio&#39;s webhooks
+Re-subscribe an account to Zernio&#39;s webhooks
 
-Re-sends the full field set to Meta and returns the subscription read back afterwards. Meta only honours the field set sent at subscribe time, so a Page connected before a field existed stays without it until this runs. The response reflects what Meta actually granted, not what was requested. 
+Re-sends the full field set to Meta and returns the subscription read back afterwards. Meta only honours the field set sent at subscribe time, so a Page connected before a field existed stays without it until this runs. The response reflects what Meta actually granted, not what was requested.  For an Instagram account connected through Instagram Login, Meta can keep listing a subscription while delivering nothing, and re-sending the fields over it changes nothing. So this call deletes the subscription and creates it again, and &#x60;recreated&#x60; is true when the record id moved.  Events can be missed during the short window in between, so use it when delivery has stopped, not periodically. An Instagram account connected through Facebook Login returns 409. 
 
 ### Example
 
@@ -9230,16 +9230,16 @@ public class Example {
 | **200** | The subscription after re-subscribing |  -  |
 | **400** | Invalid request |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The connection has no selected Page |  -  |
-| **502** | Meta rejected the subscription |  -  |
+| **409** | The Facebook connection has no selected Page, or the Instagram account connected through Facebook Login, is disconnected, or has no access token |  -  |
+| **502** | Meta rejected the subscription, or (Instagram) the account has no webhook subscription right now |  -  |
 
 ## resyncPageWebhookSubscriptionWithHttpInfo
 
 > ApiResponse<ResyncPageWebhookSubscription200Response> resyncPageWebhookSubscription resyncPageWebhookSubscriptionWithHttpInfo(accountId)
 
-Re-subscribe a Facebook Page to Zernio&#39;s webhooks
+Re-subscribe an account to Zernio&#39;s webhooks
 
-Re-sends the full field set to Meta and returns the subscription read back afterwards. Meta only honours the field set sent at subscribe time, so a Page connected before a field existed stays without it until this runs. The response reflects what Meta actually granted, not what was requested. 
+Re-sends the full field set to Meta and returns the subscription read back afterwards. Meta only honours the field set sent at subscribe time, so a Page connected before a field existed stays without it until this runs. The response reflects what Meta actually granted, not what was requested.  For an Instagram account connected through Instagram Login, Meta can keep listing a subscription while delivering nothing, and re-sending the fields over it changes nothing. So this call deletes the subscription and creates it again, and &#x60;recreated&#x60; is true when the record id moved.  Events can be missed during the short window in between, so use it when delivery has stopped, not periodically. An Instagram account connected through Facebook Login returns 409. 
 
 ### Example
 
@@ -9307,8 +9307,8 @@ ApiResponse<[**ResyncPageWebhookSubscription200Response**](ResyncPageWebhookSubs
 | **200** | The subscription after re-subscribing |  -  |
 | **400** | Invalid request |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The connection has no selected Page |  -  |
-| **502** | Meta rejected the subscription |  -  |
+| **409** | The Facebook connection has no selected Page, or the Instagram account connected through Facebook Login, is disconnected, or has no access token |  -  |
+| **502** | Meta rejected the subscription, or (Instagram) the account has no webhook subscription right now |  -  |
 
 
 ## selectFacebookPage
