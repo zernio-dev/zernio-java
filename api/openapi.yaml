@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.543.0
+  version: 1.544.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -461,6 +461,7 @@ tags:
     - Contacts and automations: `contact.tag_added`, `contact.tag_removed`, `contact.field_changed`, `contact.updated`, `contact.deleted`, `sequence.enrolled`, `sequence.exited`, `workflow.run.started`, `workflow.run.completed`, `workflow.run.failed`, `support.run.completed`, `support.run.failed`, `automation.check.completed`, `automation.action.applied`, `automation.action.failed`, `automation.action.unknown`, `automation.alert.opened`, `automation.alert.escalated`, `automation.alert.resolved`
     - Creator campaigns: `campaign_submission.received`, `campaign_submission.flagged`, `campaign_submission.pending_review`, `campaign_submission.approved`, `campaign_submission.rejected`, `creator_campaign.budget_exhausted`, `creator_campaign.closed`, `campaign_payout.payable`, `campaign_payout.settled`, `campaign_payout.failed`, `campaign_participant.joined`, `campaign_participant.suspended`, `campaign_participant.removed`
     - Calendar and files: `calendar.event.created`, `calendar.event.updated`, `calendar.event.deleted`, `file.created`, `file.updated`, `file.deleted`, `file.picked`
+    - Email: `email.opened`, `email.link_clicked`, `email.thread_replied`, `email.send_failed`
     - Billing: `balance.low`, `balance.empty`, `balance.charged`
     - Other: `api.changelog.published`, `webhook.test`
 
@@ -25964,10 +25965,22 @@ paths:
         - Daily cap: Microsoft 1,000; Google Workspace 500; Gmail consumer 200. Reaching it answers 429 `email_send_cap_reached` with `details.cap`.
         - The same body reaching more than 50 distinct recipients within an hour pauses the mailbox with an escalating cooldown (429 `rate_limited`, `account.rate_limited` webhook).
 
+        ### Scheduling
+
+        With `scheduledFor` the request answers 202 with a `ScheduledEmail` instead of sending. The account and payment method are checked now; the caps, cooldowns and the send itself run at `scheduledFor`. A send that fails then fires `email.send_failed`. List, read and cancel scheduled sends under `/v1/email/messages/scheduled`.
+
+        ### Tracking
+
+        - `trackOpens` adds a 1x1 image to the html and fires `email.opened`.
+        - `trackLinks` rewrites every http(s) link in the html through a Zernio redirect and fires `email.link_clicked`.
+        - `trackReplies` fires `email.thread_replied` when someone else writes in the thread.
+
+        Tracking costs nothing extra. Opens are approximate: image proxies prefetch and image blocking hides them.
+
         ### Other errors
 
         - 402: Gmail sends need a payment method on the workspace. Reading, calendar and files do not.
-        - 400: `scheduledFor` and `holdAsDraft` are reserved and currently rejected.
+        - 400: `holdAsDraft` is reserved and rejected; `trackOpens` or `trackLinks` without `html`; `scheduledFor` outside 1 minute to 30 days.
       operationId: sendEmailMessage
       requestBody:
         content:
@@ -26001,6 +26014,12 @@ paths:
                 format: date-time
                 type: string
               style: simple
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sendEmailMessage_202_response"
+          description: "Scheduled: the send leaves at `scheduledFor`"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -26018,6 +26037,133 @@ paths:
       - Email
       x-resource-group: messages
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/email/messages/scheduled:
+    get:
+      description: "Sends made with `scheduledFor` on this mailbox, in send order.\
+        \ Sent, failed and cancelled ones stay listed; filter with `status`."
+      operationId: listScheduledEmails
+      parameters:
+      - $ref: "#/components/parameters/EmailAccountId"
+      - explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - scheduled
+          - sending
+          - sent
+          - failed
+          - cancelled
+          type: string
+        style: form
+      - description: '`pagination.nextCursor` of the previous page.'
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listScheduledEmails_200_response"
+          description: Scheduled emails
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List scheduled emails
+      tags:
+      - Email
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+  /v1/email/messages/scheduled/{scheduleId}:
+    delete:
+      description: "Cancels a send still waiting for its time and returns it with\
+        \ `status: cancelled`. One that is sending, sent or failed answers 409."
+      operationId: cancelScheduledEmail
+      parameters:
+      - explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/EmailAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sendEmailMessage_202_response"
+          description: The cancelled email
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "The send already left, failed or was cancelled; the message\
+            \ names its status."
+      security:
+      - bearerAuth: []
+      summary: Cancel a scheduled email
+      tags:
+      - Email
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    get:
+      operationId: getScheduledEmail
+      parameters:
+      - explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/EmailAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sendEmailMessage_202_response"
+          description: The scheduled email
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a scheduled email
+      tags:
+      - Email
+      x-resource-group: messages
       x-accepts:
       - application/json
   /v1/email/messages/{messageId}:
@@ -26155,11 +26301,10 @@ paths:
       - application/json
   /v1/email/messages/{messageId}/reply:
     post:
-      description: "Replies inside the provider's thread: the provider builds the\
-        \ quoted original and threading headers, your `html` or `text` goes above\
-        \ the quote. `to`, `cc`, `bcc`, `replyTo`, `subject`, `headers` and `attachments`\
-        \ are honoured; `scheduledFor` and `holdAsDraft` are rejected like on send.\
-        \ Same protection, caps and headers as sending."
+      description: |
+        Replies inside the provider's thread: the provider builds the quoted original and threading headers, your `html` or `text` goes above the quote. `to`, `cc`, `bcc`, `replyTo`, `subject`, `headers` and `attachments` are honoured.
+
+        `scheduledFor` schedules the reply (202) and `trackOpens`, `trackLinks` and `trackReplies` track it, as on send; `holdAsDraft` is rejected. Same protection, caps and headers as sending.
       operationId: replyEmailMessage
       parameters:
       - explode: false
@@ -26182,6 +26327,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/sendEmailMessage_201_response"
           description: The sent reply
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sendEmailMessage_202_response"
+          description: "Scheduled: the send leaves at `scheduledFor`"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -89398,6 +89549,10 @@ components:
             - calendar.event.created
             - calendar.event.updated
             - calendar.event.deleted
+            - email.opened
+            - email.link_clicked
+            - email.thread_replied
+            - email.send_failed
             - file.created
             - file.updated
             - file.deleted
@@ -101031,6 +101186,7 @@ components:
         - name: name
           email: email
         text: text
+        trackingId: trackingId
       properties:
         id:
           description: The provider's message id.
@@ -101099,6 +101255,11 @@ components:
         metadata:
           additionalProperties:
             type: string
+        trackingId:
+          description: "Set on a send with `trackOpens`, `trackLinks` or `trackReplies`;\
+            \ the email.* webhooks carry it."
+          nullable: true
+          type: string
     EmailThread:
       example:
         snippet: snippet
@@ -101229,6 +101390,77 @@ components:
           type: string
       required:
       - accountId
+    ScheduledEmail:
+      description: "An email sent with `scheduledFor`. `status` moves scheduled, sending,\
+        \ then sent or failed; a cancelled one never leaves."
+      example:
+        metadata:
+          key: metadata
+        subject: subject
+        sentAt: 2000-01-23T04:56:07.000+00:00
+        error: error
+        accountId: accountId
+        sentMessageId: sentMessageId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        sentThreadId: sentThreadId
+        replyToMessageId: replyToMessageId
+        scheduledFor: 2000-01-23T04:56:07.000+00:00
+        id: id
+        to:
+        - name: name
+          email: email
+        - name: name
+          email: email
+        status: scheduled
+      properties:
+        id:
+          description: The `scheduleId`.
+          type: string
+        accountId:
+          type: string
+        status:
+          enum:
+          - scheduled
+          - sending
+          - sent
+          - failed
+          - cancelled
+          type: string
+        scheduledFor:
+          format: date-time
+          type: string
+        to:
+          items:
+            $ref: "#/components/schemas/EmailAddress"
+          type: array
+        subject:
+          description: Empty on a reply that keeps the thread subject.
+          type: string
+        replyToMessageId:
+          description: Set when scheduled through the reply route.
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+        sentAt:
+          format: date-time
+          nullable: true
+          type: string
+        sentMessageId:
+          description: Provider id of the sent message once `status` is sent.
+          nullable: true
+          type: string
+        sentThreadId:
+          nullable: true
+          type: string
+        error:
+          description: Why a failed send did not leave.
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
     SendEmailRequest:
       example:
         cc:
@@ -101285,6 +101517,7 @@ components:
           contentType: contentType
           url: https://openapi-generator.tech
         subject: subject
+        trackReplies: true
         holdAsDraft: true
         accountId: accountId
         scheduledFor: 2000-01-23T04:56:07.000+00:00
@@ -101364,17 +101597,26 @@ components:
           additionalProperties:
             type: string
         scheduledFor:
-          description: Reserved; currently rejected.
+          description: "Send later, between 1 minute and 30 days from now. The request\
+            \ answers 202 with the scheduled send; it leaves within a minute of this\
+            \ time through the same caps as an immediate send. List or cancel it under\
+            \ `/v1/email/messages/scheduled`."
           format: date-time
           type: string
         holdAsDraft:
           description: Reserved; currently rejected.
           type: boolean
         trackOpens:
-          description: Not available; must be false.
+          description: Adds an open pixel to the html and fires `email.opened`. Needs
+            `html`.
           type: boolean
         trackLinks:
-          description: Not available; must be false.
+          description: Rewrites every http(s) link in the html through a Zernio redirect
+            and fires `email.link_clicked`. Needs `html`.
+          type: boolean
+        trackReplies:
+          description: Fires `email.thread_replied` when someone else writes in this
+            message's thread. Works with text or html.
           type: boolean
       required:
       - accountId
@@ -101765,6 +102007,275 @@ components:
       - calendarEvent
       - event
       - id
+      - timestamp
+    WebhookEmailTrackedMessage:
+      description: "The tracked message an email.* event is about. `messageId` and\
+        \ `threadId` are the provider ids (read the message with `GET /v1/email/messages/{messageId}`);\
+        \ `metadata` is what you sent with it."
+      example:
+        threadId: threadId
+        metadata:
+          key: metadata
+        messageId: messageId
+        trackingId: trackingId
+      properties:
+        messageId:
+          type: string
+        threadId:
+          type: string
+        trackingId:
+          description: Also returned as `data.trackingId` by the send.
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+    WebhookPayloadEmailOpened:
+      description: Webhook payload for email.opened.
+      example:
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: email.opened
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        email:
+          threadId: threadId
+          metadata:
+            key: metadata
+          messageId: messageId
+          trackingId: trackingId
+        open:
+          count: 0
+          firstOpenedAt: 2000-01-23T04:56:07.000+00:00
+          openedAt: 2000-01-23T04:56:07.000+00:00
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - email.opened
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadCalendarEvent_account"
+        email:
+          $ref: "#/components/schemas/WebhookEmailTrackedMessage"
+        open:
+          $ref: "#/components/schemas/WebhookPayloadEmailOpened_open"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - email
+      - event
+      - id
+      - open
+      - timestamp
+    WebhookPayloadEmailLinkClicked:
+      description: Webhook payload for email.link_clicked.
+      example:
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: email.link_clicked
+        click:
+          count: 6
+          clickedAt: 2000-01-23T04:56:07.000+00:00
+          url: url
+          linkIndex: 0
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        email:
+          threadId: threadId
+          metadata:
+            key: metadata
+          messageId: messageId
+          trackingId: trackingId
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - email.link_clicked
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadCalendarEvent_account"
+        email:
+          $ref: "#/components/schemas/WebhookEmailTrackedMessage"
+        click:
+          $ref: "#/components/schemas/WebhookPayloadEmailLinkClicked_click"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - click
+      - email
+      - event
+      - id
+      - timestamp
+    WebhookPayloadEmailThreadReplied:
+      description: Webhook payload for email.thread_replied.
+      example:
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: email.thread_replied
+        reply:
+          count: 0
+          messageId: messageId
+          from: ""
+          receivedAt: 2000-01-23T04:56:07.000+00:00
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        email:
+          threadId: threadId
+          metadata:
+            key: metadata
+          messageId: messageId
+          trackingId: trackingId
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - email.thread_replied
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadCalendarEvent_account"
+        email:
+          $ref: "#/components/schemas/WebhookEmailTrackedMessage"
+        reply:
+          $ref: "#/components/schemas/WebhookPayloadEmailThreadReplied_reply"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - email
+      - event
+      - id
+      - reply
+      - timestamp
+    WebhookPayloadEmailSendFailed:
+      description: "Webhook payload for email.send_failed. Read the send with `GET\
+        \ /v1/email/messages/scheduled/{scheduleId}`."
+      example:
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: email.send_failed
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        scheduledEmail:
+          metadata:
+            key: metadata
+          scheduledFor: 2000-01-23T04:56:07.000+00:00
+          id: id
+          error: error
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - email.send_failed
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadCalendarEvent_account"
+        scheduledEmail:
+          $ref: "#/components/schemas/WebhookPayloadEmailSendFailed_scheduledEmail"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - scheduledEmail
       - timestamp
     FileItem:
       description: A file or folder in a connected Google Drive or OneDrive. Ids are
@@ -140592,6 +141103,10 @@ components:
           - calendar.event.created
           - calendar.event.updated
           - calendar.event.deleted
+          - email.opened
+          - email.link_clicked
+          - email.thread_replied
+          - email.send_failed
           - file.created
           - file.updated
           - file.deleted
@@ -141034,6 +141549,7 @@ components:
           - name: name
             email: email
           text: text
+          trackingId: trackingId
         - cc:
           - name: name
             email: email
@@ -141087,6 +141603,7 @@ components:
           - name: name
             email: email
           text: text
+          trackingId: trackingId
         id: id
         hasAttachments: true
         participants:
@@ -141170,6 +141687,7 @@ components:
             - name: name
               email: email
             text: text
+            trackingId: trackingId
           - cc:
             - name: name
               email: email
@@ -141223,6 +141741,7 @@ components:
             - name: name
               email: email
             text: text
+            trackingId: trackingId
           id: id
           hasAttachments: true
           participants:
@@ -141324,6 +141843,7 @@ components:
           - name: name
             email: email
           text: text
+          trackingId: trackingId
         - cc:
           - name: name
             email: email
@@ -141377,6 +141897,7 @@ components:
           - name: name
             email: email
           text: text
+          trackingId: trackingId
         meta:
           filteredClientSide:
           - filteredClientSide
@@ -141446,9 +141967,83 @@ components:
           - name: name
             email: email
           text: text
+          trackingId: trackingId
       properties:
         data:
           $ref: "#/components/schemas/EmailMessage"
+    sendEmailMessage_202_response:
+      example:
+        data:
+          metadata:
+            key: metadata
+          subject: subject
+          sentAt: 2000-01-23T04:56:07.000+00:00
+          error: error
+          accountId: accountId
+          sentMessageId: sentMessageId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          sentThreadId: sentThreadId
+          replyToMessageId: replyToMessageId
+          scheduledFor: 2000-01-23T04:56:07.000+00:00
+          id: id
+          to:
+          - name: name
+            email: email
+          - name: name
+            email: email
+          status: scheduled
+      properties:
+        data:
+          $ref: "#/components/schemas/ScheduledEmail"
+    listScheduledEmails_200_response:
+      example:
+        pagination:
+          nextCursor: nextCursor
+          hasMore: true
+        data:
+        - metadata:
+            key: metadata
+          subject: subject
+          sentAt: 2000-01-23T04:56:07.000+00:00
+          error: error
+          accountId: accountId
+          sentMessageId: sentMessageId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          sentThreadId: sentThreadId
+          replyToMessageId: replyToMessageId
+          scheduledFor: 2000-01-23T04:56:07.000+00:00
+          id: id
+          to:
+          - name: name
+            email: email
+          - name: name
+            email: email
+          status: scheduled
+        - metadata:
+            key: metadata
+          subject: subject
+          sentAt: 2000-01-23T04:56:07.000+00:00
+          error: error
+          accountId: accountId
+          sentMessageId: sentMessageId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          sentThreadId: sentThreadId
+          replyToMessageId: replyToMessageId
+          scheduledFor: 2000-01-23T04:56:07.000+00:00
+          id: id
+          to:
+          - name: name
+            email: email
+          - name: name
+            email: email
+          status: scheduled
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/ScheduledEmail"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/CursorPagination"
     trashEmailMessage_200_response_data:
       example:
         id: id
@@ -208211,6 +208806,79 @@ components:
           - updated
           - deleted
           type: string
+    WebhookPayloadEmailOpened_open:
+      example:
+        count: 0
+        firstOpenedAt: 2000-01-23T04:56:07.000+00:00
+        openedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        openedAt:
+          format: date-time
+          type: string
+        firstOpenedAt:
+          format: date-time
+          type: string
+        count:
+          description: "Pixel loads so far, including repeat fetches by the same client."
+          type: integer
+    WebhookPayloadEmailLinkClicked_click:
+      example:
+        count: 6
+        clickedAt: 2000-01-23T04:56:07.000+00:00
+        url: url
+        linkIndex: 0
+      properties:
+        url:
+          description: The original link target the recipient was redirected to.
+          type: string
+        linkIndex:
+          description: "Position of the link in the html, from 0."
+          type: integer
+        clickedAt:
+          format: date-time
+          type: string
+        count:
+          description: Clicks on any link of the message so far.
+          type: integer
+    WebhookPayloadEmailThreadReplied_reply:
+      example:
+        count: 0
+        messageId: messageId
+        from: ""
+        receivedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        messageId:
+          description: Provider id of the reply.
+          type: string
+        from:
+          allOf:
+          - $ref: "#/components/schemas/EmailAddress"
+          nullable: true
+        receivedAt:
+          format: date-time
+          type: string
+        count:
+          description: Replies in the thread so far.
+          type: integer
+    WebhookPayloadEmailSendFailed_scheduledEmail:
+      example:
+        metadata:
+          key: metadata
+        scheduledFor: 2000-01-23T04:56:07.000+00:00
+        id: id
+        error: error
+      properties:
+        id:
+          description: The `scheduleId`.
+          type: string
+        scheduledFor:
+          format: date-time
+          type: string
+        error:
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
     WebhookPayloadFilePicked_picker_files_inner:
       example:
         kind: file
@@ -215932,6 +216600,10 @@ x-documentation:
     - `account.ads.sync_failed` - An ad account's ads stopped syncing (no successful sync for 24 hours, or every live ad at the retry cap). Fires once until it recovers
     - `account.ads.sync_recovered` - An ad account reported by `account.ads.sync_failed` is syncing again
     - `calendar.event.created` / `calendar.event.updated` / `calendar.event.deleted` - An event changed on a connected Microsoft calendar (push). Carries the event id and the change; read it with `GET /v1/calendar/events/{id}`
+    - `email.opened` - A recipient's mail client loaded the open pixel of a message sent with `trackOpens`. Carries the message, its `metadata` and the open count
+    - `email.link_clicked` - A recipient followed a link of a message sent with `trackLinks`. Carries the original URL and the click count
+    - `email.thread_replied` - Mail from someone other than the mailbox arrived in the thread of a message sent with `trackReplies`
+    - `email.send_failed` - A scheduled email could not be sent at its `scheduledFor` time; nothing reached the recipients
     - `analytics.synced` - One connected account's analytics sync cycle finished. A trigger, not a transport: it carries no metrics and no cursor, so call `GET /v1/analytics/delta` with your own last `nextCursor` to read what changed across every account. Poll-driven (~hourly per account), not real-time. High volume: subscribe to it on a dedicated endpoint.
     - `post.tracking_completed` - A post's tracking window ended and its final analytics read finished. Carries the closing metrics (or `final: null` when none could be read) and why the window completed: `final_read`, `unreachable` or `post_deleted`
     - `post.authenticity_changed` - A tracked post's authenticity score crossed the flag threshold of 40, in either direction. Carries the new and previous score, confidence and reasons. A post's first score never fires it

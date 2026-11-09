@@ -39,6 +39,10 @@
 | CALENDAR_EVENT_CREATED | &quot;calendar.event.created&quot; |
 | CALENDAR_EVENT_UPDATED | &quot;calendar.event.updated&quot; |
 | CALENDAR_EVENT_DELETED | &quot;calendar.event.deleted&quot; |
+| EMAIL_OPENED | &quot;email.opened&quot; |
+| EMAIL_LINK_CLICKED | &quot;email.link_clicked&quot; |
+| EMAIL_THREAD_REPLIED | &quot;email.thread_replied&quot; |
+| EMAIL_SEND_FAILED | &quot;email.send_failed&quot; |
 | FILE_CREATED | &quot;file.created&quot; |
 | FILE_UPDATED | &quot;file.updated&quot; |
 | FILE_DELETED | &quot;file.deleted&quot; |

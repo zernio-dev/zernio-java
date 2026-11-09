@@ -2130,6 +2130,7 @@ docs/ListQueueSlots200ResponseOneOf.md
 docs/ListRcsAgents200Response.md
 docs/ListRcsBrands200Response.md
 docs/ListRcsTestDevices200Response.md
+docs/ListScheduledEmails200Response.md
 docs/ListSequenceEnrollments200Response.md
 docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md
 docs/ListSequences200Response.md
@@ -2569,6 +2570,7 @@ docs/ScheduledAutomationCheckActionsInner.md
 docs/ScheduledAutomationCheckMatchedInner.md
 docs/ScheduledAutomationDefinition.md
 docs/ScheduledAutomationDefinitionStepsInner.md
+docs/ScheduledEmail.md
 docs/SearchAdInterests200Response.md
 docs/SearchAdInterests200ResponseInterestsInner.md
 docs/SearchAdLibrary200Response.md
@@ -2643,6 +2645,7 @@ docs/SendDiscordDirectMessage200ResponseRecipient.md
 docs/SendDiscordDirectMessageRequest.md
 docs/SendDiscordDirectMessageRequestAttachmentsInner.md
 docs/SendEmailMessage201Response.md
+docs/SendEmailMessage202Response.md
 docs/SendEmailRequest.md
 docs/SendEmailRequestAttachmentsInner.md
 docs/SendEvents200Response.md
@@ -3238,6 +3241,7 @@ docs/WebhookAdsAccount.md
 docs/WebhookAdsSyncAccount.md
 docs/WebhookAdsSyncAdAccount.md
 docs/WebhookAutomationRef.md
+docs/WebhookEmailTrackedMessage.md
 docs/WebhookEventsApi.md
 docs/WebhookLog.md
 docs/WebhookPayloadAccountAdsInitialSyncCompleted.md
@@ -3358,6 +3362,14 @@ docs/WebhookPayloadConversationStarted.md
 docs/WebhookPayloadConversationStartedConversation.md
 docs/WebhookPayloadCreatorCampaign.md
 docs/WebhookPayloadCreatorCampaignCampaign.md
+docs/WebhookPayloadEmailLinkClicked.md
+docs/WebhookPayloadEmailLinkClickedClick.md
+docs/WebhookPayloadEmailOpened.md
+docs/WebhookPayloadEmailOpenedOpen.md
+docs/WebhookPayloadEmailSendFailed.md
+docs/WebhookPayloadEmailSendFailedScheduledEmail.md
+docs/WebhookPayloadEmailThreadReplied.md
+docs/WebhookPayloadEmailThreadRepliedReply.md
 docs/WebhookPayloadExternalPost.md
 docs/WebhookPayloadFile.md
 docs/WebhookPayloadFilePicked.md
@@ -5710,6 +5722,7 @@ src/main/java/dev/zernio/model/ListQueueSlots200ResponseOneOf.java
 src/main/java/dev/zernio/model/ListRcsAgents200Response.java
 src/main/java/dev/zernio/model/ListRcsBrands200Response.java
 src/main/java/dev/zernio/model/ListRcsTestDevices200Response.java
+src/main/java/dev/zernio/model/ListScheduledEmails200Response.java
 src/main/java/dev/zernio/model/ListSequenceEnrollments200Response.java
 src/main/java/dev/zernio/model/ListSequenceEnrollments200ResponseEnrollmentsInner.java
 src/main/java/dev/zernio/model/ListSequences200Response.java
@@ -6134,6 +6147,7 @@ src/main/java/dev/zernio/model/ScheduledAutomationCheckActionsInner.java
 src/main/java/dev/zernio/model/ScheduledAutomationCheckMatchedInner.java
 src/main/java/dev/zernio/model/ScheduledAutomationDefinition.java
 src/main/java/dev/zernio/model/ScheduledAutomationDefinitionStepsInner.java
+src/main/java/dev/zernio/model/ScheduledEmail.java
 src/main/java/dev/zernio/model/SearchAdInterests200Response.java
 src/main/java/dev/zernio/model/SearchAdInterests200ResponseInterestsInner.java
 src/main/java/dev/zernio/model/SearchAdLibrary200Response.java
@@ -6208,6 +6222,7 @@ src/main/java/dev/zernio/model/SendDiscordDirectMessage200ResponseRecipient.java
 src/main/java/dev/zernio/model/SendDiscordDirectMessageRequest.java
 src/main/java/dev/zernio/model/SendDiscordDirectMessageRequestAttachmentsInner.java
 src/main/java/dev/zernio/model/SendEmailMessage201Response.java
+src/main/java/dev/zernio/model/SendEmailMessage202Response.java
 src/main/java/dev/zernio/model/SendEmailRequest.java
 src/main/java/dev/zernio/model/SendEmailRequestAttachmentsInner.java
 src/main/java/dev/zernio/model/SendEvents200Response.java
@@ -6791,6 +6806,7 @@ src/main/java/dev/zernio/model/WebhookAdsAccount.java
 src/main/java/dev/zernio/model/WebhookAdsSyncAccount.java
 src/main/java/dev/zernio/model/WebhookAdsSyncAdAccount.java
 src/main/java/dev/zernio/model/WebhookAutomationRef.java
+src/main/java/dev/zernio/model/WebhookEmailTrackedMessage.java
 src/main/java/dev/zernio/model/WebhookLog.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountAdsInitialSyncCompleted.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountAdsInitialSyncCompletedAccount.java
@@ -6910,6 +6926,14 @@ src/main/java/dev/zernio/model/WebhookPayloadConversationStarted.java
 src/main/java/dev/zernio/model/WebhookPayloadConversationStartedConversation.java
 src/main/java/dev/zernio/model/WebhookPayloadCreatorCampaign.java
 src/main/java/dev/zernio/model/WebhookPayloadCreatorCampaignCampaign.java
+src/main/java/dev/zernio/model/WebhookPayloadEmailLinkClicked.java
+src/main/java/dev/zernio/model/WebhookPayloadEmailLinkClickedClick.java
+src/main/java/dev/zernio/model/WebhookPayloadEmailOpened.java
+src/main/java/dev/zernio/model/WebhookPayloadEmailOpenedOpen.java
+src/main/java/dev/zernio/model/WebhookPayloadEmailSendFailed.java
+src/main/java/dev/zernio/model/WebhookPayloadEmailSendFailedScheduledEmail.java
+src/main/java/dev/zernio/model/WebhookPayloadEmailThreadReplied.java
+src/main/java/dev/zernio/model/WebhookPayloadEmailThreadRepliedReply.java
 src/main/java/dev/zernio/model/WebhookPayloadExternalPost.java
 src/main/java/dev/zernio/model/WebhookPayloadFile.java
 src/main/java/dev/zernio/model/WebhookPayloadFilePicked.java
@@ -7073,4 +7097,15 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ListInstagramStories200ResponseDataInnerMetricsTest.java
+src/test/java/dev/zernio/model/ListScheduledEmails200ResponseTest.java
+src/test/java/dev/zernio/model/ScheduledEmailTest.java
+src/test/java/dev/zernio/model/SendEmailMessage202ResponseTest.java
+src/test/java/dev/zernio/model/WebhookEmailTrackedMessageTest.java
+src/test/java/dev/zernio/model/WebhookPayloadEmailLinkClickedClickTest.java
+src/test/java/dev/zernio/model/WebhookPayloadEmailLinkClickedTest.java
+src/test/java/dev/zernio/model/WebhookPayloadEmailOpenedOpenTest.java
+src/test/java/dev/zernio/model/WebhookPayloadEmailOpenedTest.java
+src/test/java/dev/zernio/model/WebhookPayloadEmailSendFailedScheduledEmailTest.java
+src/test/java/dev/zernio/model/WebhookPayloadEmailSendFailedTest.java
+src/test/java/dev/zernio/model/WebhookPayloadEmailThreadRepliedReplyTest.java
+src/test/java/dev/zernio/model/WebhookPayloadEmailThreadRepliedTest.java

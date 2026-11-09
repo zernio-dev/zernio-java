@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.543.0
+- API version: 1.544.0
 
-- Build date: 2026-11-09T23:41:05.871350955Z[Etc/UTC]
+- Build date: 2026-11-09T23:51:14.486260478Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.543.0</version>
+  <version>1.544.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.543.0"
+compile "dev.zernio:zernio-sdk:1.544.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.543.0.jar`
+- `target/zernio-sdk-1.544.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1545,18 +1545,24 @@ Class | Method | HTTP request | Description
 *DiscordApi* | [**updateDiscordScheduledEventWithHttpInfo**](docs/DiscordApi.md#updateDiscordScheduledEventWithHttpInfo) | **PATCH** /v1/discord/guilds/{guildId}/events/{eventId} | Update a Discord scheduled event
 *DiscordApi* | [**updateDiscordSettings**](docs/DiscordApi.md#updateDiscordSettings) | **PATCH** /v1/accounts/{accountId}/discord-settings | Update Discord settings
 *DiscordApi* | [**updateDiscordSettingsWithHttpInfo**](docs/DiscordApi.md#updateDiscordSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/discord-settings | Update Discord settings
+*EmailApi* | [**cancelScheduledEmail**](docs/EmailApi.md#cancelScheduledEmail) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email
+*EmailApi* | [**cancelScheduledEmailWithHttpInfo**](docs/EmailApi.md#cancelScheduledEmailWithHttpInfo) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email
 *EmailApi* | [**downloadEmailAttachment**](docs/EmailApi.md#downloadEmailAttachment) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment
 *EmailApi* | [**downloadEmailAttachmentWithHttpInfo**](docs/EmailApi.md#downloadEmailAttachmentWithHttpInfo) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment
 *EmailApi* | [**getEmailMessage**](docs/EmailApi.md#getEmailMessage) | **GET** /v1/email/messages/{messageId} | Get an email message
 *EmailApi* | [**getEmailMessageWithHttpInfo**](docs/EmailApi.md#getEmailMessageWithHttpInfo) | **GET** /v1/email/messages/{messageId} | Get an email message
 *EmailApi* | [**getEmailThread**](docs/EmailApi.md#getEmailThread) | **GET** /v1/email/threads/{threadId} | Get an email thread with its messages
 *EmailApi* | [**getEmailThreadWithHttpInfo**](docs/EmailApi.md#getEmailThreadWithHttpInfo) | **GET** /v1/email/threads/{threadId} | Get an email thread with its messages
+*EmailApi* | [**getScheduledEmail**](docs/EmailApi.md#getScheduledEmail) | **GET** /v1/email/messages/scheduled/{scheduleId} | Get a scheduled email
+*EmailApi* | [**getScheduledEmailWithHttpInfo**](docs/EmailApi.md#getScheduledEmailWithHttpInfo) | **GET** /v1/email/messages/scheduled/{scheduleId} | Get a scheduled email
 *EmailApi* | [**listEmailFolders**](docs/EmailApi.md#listEmailFolders) | **GET** /v1/email/folders | List mailbox folders
 *EmailApi* | [**listEmailFoldersWithHttpInfo**](docs/EmailApi.md#listEmailFoldersWithHttpInfo) | **GET** /v1/email/folders | List mailbox folders
 *EmailApi* | [**listEmailMessages**](docs/EmailApi.md#listEmailMessages) | **GET** /v1/email/messages | List email messages
 *EmailApi* | [**listEmailMessagesWithHttpInfo**](docs/EmailApi.md#listEmailMessagesWithHttpInfo) | **GET** /v1/email/messages | List email messages
 *EmailApi* | [**listEmailThreads**](docs/EmailApi.md#listEmailThreads) | **GET** /v1/email/threads | List email threads
 *EmailApi* | [**listEmailThreadsWithHttpInfo**](docs/EmailApi.md#listEmailThreadsWithHttpInfo) | **GET** /v1/email/threads | List email threads
+*EmailApi* | [**listScheduledEmails**](docs/EmailApi.md#listScheduledEmails) | **GET** /v1/email/messages/scheduled | List scheduled emails
+*EmailApi* | [**listScheduledEmailsWithHttpInfo**](docs/EmailApi.md#listScheduledEmailsWithHttpInfo) | **GET** /v1/email/messages/scheduled | List scheduled emails
 *EmailApi* | [**replyEmailMessage**](docs/EmailApi.md#replyEmailMessage) | **POST** /v1/email/messages/{messageId}/reply | Reply to a message
 *EmailApi* | [**replyEmailMessageWithHttpInfo**](docs/EmailApi.md#replyEmailMessageWithHttpInfo) | **POST** /v1/email/messages/{messageId}/reply | Reply to a message
 *EmailApi* | [**sendEmailMessage**](docs/EmailApi.md#sendEmailMessage) | **POST** /v1/email/messages | Send an email
@@ -4565,6 +4571,7 @@ Class | Method | HTTP request | Description
  - [ListRcsAgents200Response](docs/ListRcsAgents200Response.md)
  - [ListRcsBrands200Response](docs/ListRcsBrands200Response.md)
  - [ListRcsTestDevices200Response](docs/ListRcsTestDevices200Response.md)
+ - [ListScheduledEmails200Response](docs/ListScheduledEmails200Response.md)
  - [ListSequenceEnrollments200Response](docs/ListSequenceEnrollments200Response.md)
  - [ListSequenceEnrollments200ResponseEnrollmentsInner](docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md)
  - [ListSequences200Response](docs/ListSequences200Response.md)
@@ -4989,6 +4996,7 @@ Class | Method | HTTP request | Description
  - [ScheduledAutomationCheckMatchedInner](docs/ScheduledAutomationCheckMatchedInner.md)
  - [ScheduledAutomationDefinition](docs/ScheduledAutomationDefinition.md)
  - [ScheduledAutomationDefinitionStepsInner](docs/ScheduledAutomationDefinitionStepsInner.md)
+ - [ScheduledEmail](docs/ScheduledEmail.md)
  - [SearchAdInterests200Response](docs/SearchAdInterests200Response.md)
  - [SearchAdInterests200ResponseInterestsInner](docs/SearchAdInterests200ResponseInterestsInner.md)
  - [SearchAdLibrary200Response](docs/SearchAdLibrary200Response.md)
@@ -5063,6 +5071,7 @@ Class | Method | HTTP request | Description
  - [SendDiscordDirectMessageRequest](docs/SendDiscordDirectMessageRequest.md)
  - [SendDiscordDirectMessageRequestAttachmentsInner](docs/SendDiscordDirectMessageRequestAttachmentsInner.md)
  - [SendEmailMessage201Response](docs/SendEmailMessage201Response.md)
+ - [SendEmailMessage202Response](docs/SendEmailMessage202Response.md)
  - [SendEmailRequest](docs/SendEmailRequest.md)
  - [SendEmailRequestAttachmentsInner](docs/SendEmailRequestAttachmentsInner.md)
  - [SendEvents200Response](docs/SendEvents200Response.md)
@@ -5646,6 +5655,7 @@ Class | Method | HTTP request | Description
  - [WebhookAdsSyncAccount](docs/WebhookAdsSyncAccount.md)
  - [WebhookAdsSyncAdAccount](docs/WebhookAdsSyncAdAccount.md)
  - [WebhookAutomationRef](docs/WebhookAutomationRef.md)
+ - [WebhookEmailTrackedMessage](docs/WebhookEmailTrackedMessage.md)
  - [WebhookLog](docs/WebhookLog.md)
  - [WebhookPayloadAccountAdsInitialSyncCompleted](docs/WebhookPayloadAccountAdsInitialSyncCompleted.md)
  - [WebhookPayloadAccountAdsInitialSyncCompletedAccount](docs/WebhookPayloadAccountAdsInitialSyncCompletedAccount.md)
@@ -5765,6 +5775,14 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadConversationStartedConversation](docs/WebhookPayloadConversationStartedConversation.md)
  - [WebhookPayloadCreatorCampaign](docs/WebhookPayloadCreatorCampaign.md)
  - [WebhookPayloadCreatorCampaignCampaign](docs/WebhookPayloadCreatorCampaignCampaign.md)
+ - [WebhookPayloadEmailLinkClicked](docs/WebhookPayloadEmailLinkClicked.md)
+ - [WebhookPayloadEmailLinkClickedClick](docs/WebhookPayloadEmailLinkClickedClick.md)
+ - [WebhookPayloadEmailOpened](docs/WebhookPayloadEmailOpened.md)
+ - [WebhookPayloadEmailOpenedOpen](docs/WebhookPayloadEmailOpenedOpen.md)
+ - [WebhookPayloadEmailSendFailed](docs/WebhookPayloadEmailSendFailed.md)
+ - [WebhookPayloadEmailSendFailedScheduledEmail](docs/WebhookPayloadEmailSendFailedScheduledEmail.md)
+ - [WebhookPayloadEmailThreadReplied](docs/WebhookPayloadEmailThreadReplied.md)
+ - [WebhookPayloadEmailThreadRepliedReply](docs/WebhookPayloadEmailThreadRepliedReply.md)
  - [WebhookPayloadExternalPost](docs/WebhookPayloadExternalPost.md)
  - [WebhookPayloadFile](docs/WebhookPayloadFile.md)
  - [WebhookPayloadFilePicked](docs/WebhookPayloadFilePicked.md)

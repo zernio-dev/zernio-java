@@ -28,6 +28,7 @@
 |**unread** | **Boolean** |  |  [optional] |
 |**starred** | **Boolean** |  |  [optional] |
 |**metadata** | **Map&lt;String, String&gt;** |  |  [optional] |
+|**trackingId** | **String** | Set on a send with &#x60;trackOpens&#x60;, &#x60;trackLinks&#x60; or &#x60;trackReplies&#x60;; the email.* webhooks carry it. |  [optional] |
 
 
 
