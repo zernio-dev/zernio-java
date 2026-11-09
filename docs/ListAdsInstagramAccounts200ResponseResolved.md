@@ -20,6 +20,8 @@
 | AD_ACCOUNT | &quot;ad_account&quot; |
 | PAGE_BACKED | &quot;page_backed&quot; |
 | BUSINESS | &quot;business&quot; |
+| BUSINESS_PARTNER | &quot;business_partner&quot; |
+| PROMOTE_PAGES | &quot;promote_pages&quot; |
 
 
 
