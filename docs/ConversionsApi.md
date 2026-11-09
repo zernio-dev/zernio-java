@@ -3309,7 +3309,7 @@ ApiResponse<[**RemoveCustomConversionGoal200Response**](RemoveCustomConversionGo
 
 ## sendConversions
 
-> SendConversions200Response sendConversions(sendConversionsRequest, idempotencyKey)
+> SendConversions200Response sendConversions(sendConversionsRequest)
 
 Send conversion events
 
@@ -3337,9 +3337,8 @@ public class Example {
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
         SendConversionsRequest sendConversionsRequest = new SendConversionsRequest(); // SendConversionsRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            SendConversions200Response result = apiInstance.sendConversions(sendConversionsRequest, idempotencyKey);
+            SendConversions200Response result = apiInstance.sendConversions(sendConversionsRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConversionsApi#sendConversions");
@@ -3358,7 +3357,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **sendConversionsRequest** | [**SendConversionsRequest**](SendConversionsRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -3388,7 +3386,7 @@ public class Example {
 
 ## sendConversionsWithHttpInfo
 
-> ApiResponse<SendConversions200Response> sendConversions sendConversionsWithHttpInfo(sendConversionsRequest, idempotencyKey)
+> ApiResponse<SendConversions200Response> sendConversions sendConversionsWithHttpInfo(sendConversionsRequest)
 
 Send conversion events
 
@@ -3417,9 +3415,8 @@ public class Example {
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
         SendConversionsRequest sendConversionsRequest = new SendConversionsRequest(); // SendConversionsRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            ApiResponse<SendConversions200Response> response = apiInstance.sendConversionsWithHttpInfo(sendConversionsRequest, idempotencyKey);
+            ApiResponse<SendConversions200Response> response = apiInstance.sendConversionsWithHttpInfo(sendConversionsRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3440,7 +3437,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **sendConversionsRequest** | [**SendConversionsRequest**](SendConversionsRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
