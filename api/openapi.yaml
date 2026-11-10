@@ -27803,9 +27803,11 @@ paths:
       - application/json
   /v1/calendar/events:
     get:
-      description: Recurring series are expanded into their occurrences inside the
-        window by default (`expandRecurring=false` lists the masters instead). `title`
-        and `location` are substring matches applied to the fetched page.
+      description: "Recurring series are expanded into their occurrences inside the\
+        \ window by default (`expandRecurring=false` lists the masters instead, including\
+        \ series that started before `from` and still recur in the window). Events\
+        \ that overlap the window edges are included. `title` and `location` are substring\
+        \ matches applied to the fetched page."
       operationId: listCalendarEvents
       parameters:
       - $ref: "#/components/parameters/EmailAccountId"
@@ -27870,7 +27872,10 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Order by start time across the whole window. On Google, `desc`\
+          \ reads the window in full, so a window over 2,500 events answers 400; narrow\
+          \ `from` and `to`."
+        explode: true
         in: query
         name: sortOrder
         required: false
@@ -27998,6 +28003,20 @@ paths:
         schema:
           type: string
         style: form
+      - description: Who gets the cancellation email. Google only; `external` and
+          `none` answer 400 on a Microsoft account.
+        explode: true
+        in: query
+        name: notifyParticipants
+        required: false
+        schema:
+          default: all
+          enum:
+          - all
+          - external
+          - none
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -28114,7 +28133,7 @@ paths:
   /v1/calendar/events/{eventId}/rsvp:
     post:
       description: "Accepts, declines or tentatively accepts on behalf of the mailbox\
-        \ and notifies the organizer."
+        \ and notifies the organizer, unless `sendResponse` is false."
       operationId: rsvpCalendarEvent
       parameters:
       - explode: false
@@ -107000,7 +107019,10 @@ components:
         allDay:
           type: boolean
         timezone:
-          description: IANA zone the event is scheduled in. Default UTC.
+          description: "IANA zone the event is scheduled in. Defaults to the calendar's\
+            \ zone on Google and the mailbox's working-hours zone on Microsoft (UTC\
+            \ when Outlook has none, as on personal accounts). A PATCH that moves\
+            \ an event without a zone keeps the zone the event already has."
           type: string
         participants:
           items:
@@ -107031,6 +107053,19 @@ components:
         metadata:
           additionalProperties:
             type: string
+          description: "String pairs stored on the event and returned on reads, on\
+            \ Google and Microsoft."
+        notifyParticipants:
+          default: all
+          description: "Who gets an invitation or update email for this write: everyone,\
+            \ only guests outside the organizer's domain, or nobody. Google only;\
+            \ Outlook always notifies, so `external` and `none` answer 400 `unsupported_for_provider`\
+            \ on a Microsoft account."
+          enum:
+          - all
+          - external
+          - none
+          type: string
     CreateCalendarEventRequest:
       allOf:
       - properties:
@@ -107058,6 +107093,7 @@ components:
         start: start
         description: description
         title: title
+        notifyParticipants: all
         recurrence:
         - recurrence
         - recurrence
@@ -149227,6 +149263,10 @@ components:
         comment:
           maxLength: 1000
           type: string
+        sendResponse:
+          default: true
+          description: false records the response without emailing the organizer.
+          type: boolean
       required:
       - accountId
       - status

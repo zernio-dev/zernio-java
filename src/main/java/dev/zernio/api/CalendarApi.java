@@ -58,7 +58,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:21:01.179138559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:28:58.262021860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CalendarApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -550,11 +550,12 @@ public class CalendarApi {
    * @param eventId  (required)
    * @param accountId The connected Google, Microsoft or IMAP account. (required)
    * @param calendarId The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional)
+   * @param notifyParticipants Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. (optional, default to all)
    * @return DeleteEmailDraft200Response
    * @throws ApiException if fails to make API call
    */
-  public DeleteEmailDraft200Response deleteCalendarEvent(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String calendarId) throws ApiException {
-    return deleteCalendarEvent(eventId, accountId, calendarId, null);
+  public DeleteEmailDraft200Response deleteCalendarEvent(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String calendarId, @javax.annotation.Nullable String notifyParticipants) throws ApiException {
+    return deleteCalendarEvent(eventId, accountId, calendarId, notifyParticipants, null);
   }
 
   /**
@@ -563,12 +564,13 @@ public class CalendarApi {
    * @param eventId  (required)
    * @param accountId The connected Google, Microsoft or IMAP account. (required)
    * @param calendarId The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional)
+   * @param notifyParticipants Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. (optional, default to all)
    * @param headers Optional headers to include in the request
    * @return DeleteEmailDraft200Response
    * @throws ApiException if fails to make API call
    */
-  public DeleteEmailDraft200Response deleteCalendarEvent(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String calendarId, Map<String, String> headers) throws ApiException {
-    ApiResponse<DeleteEmailDraft200Response> localVarResponse = deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId, headers);
+  public DeleteEmailDraft200Response deleteCalendarEvent(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String calendarId, @javax.annotation.Nullable String notifyParticipants, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteEmailDraft200Response> localVarResponse = deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId, notifyParticipants, headers);
     return localVarResponse.getData();
   }
 
@@ -578,11 +580,12 @@ public class CalendarApi {
    * @param eventId  (required)
    * @param accountId The connected Google, Microsoft or IMAP account. (required)
    * @param calendarId The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional)
+   * @param notifyParticipants Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. (optional, default to all)
    * @return ApiResponse&lt;DeleteEmailDraft200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteEmailDraft200Response> deleteCalendarEventWithHttpInfo(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String calendarId) throws ApiException {
-    return deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId, null);
+  public ApiResponse<DeleteEmailDraft200Response> deleteCalendarEventWithHttpInfo(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String calendarId, @javax.annotation.Nullable String notifyParticipants) throws ApiException {
+    return deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId, notifyParticipants, null);
   }
 
   /**
@@ -591,12 +594,13 @@ public class CalendarApi {
    * @param eventId  (required)
    * @param accountId The connected Google, Microsoft or IMAP account. (required)
    * @param calendarId The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional)
+   * @param notifyParticipants Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. (optional, default to all)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DeleteEmailDraft200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteEmailDraft200Response> deleteCalendarEventWithHttpInfo(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String calendarId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteCalendarEventRequestBuilder(eventId, accountId, calendarId, headers);
+  public ApiResponse<DeleteEmailDraft200Response> deleteCalendarEventWithHttpInfo(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String calendarId, @javax.annotation.Nullable String notifyParticipants, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteCalendarEventRequestBuilder(eventId, accountId, calendarId, notifyParticipants, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -643,7 +647,7 @@ public class CalendarApi {
     }
   }
 
-  private HttpRequest.Builder deleteCalendarEventRequestBuilder(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String calendarId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder deleteCalendarEventRequestBuilder(@javax.annotation.Nonnull String eventId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String calendarId, @javax.annotation.Nullable String notifyParticipants, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'eventId' is set
     if (eventId == null) {
       throw new ApiException(400, "Missing the required parameter 'eventId' when calling deleteCalendarEvent");
@@ -665,6 +669,8 @@ public class CalendarApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "calendarId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("calendarId", calendarId));
+    localVarQueryParameterBaseName = "notifyParticipants";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("notifyParticipants", notifyParticipants));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -846,7 +852,7 @@ public class CalendarApi {
 
   /**
    * List events in a window
-   * Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+   * Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
    * @param accountId The connected Google, Microsoft or IMAP account. (required)
    * @param from  (required)
    * @param to  (required)
@@ -856,7 +862,7 @@ public class CalendarApi {
    * @param showCancelled  (optional, default to false)
    * @param expandRecurring  (optional, default to true)
    * @param icalUid  (optional)
-   * @param sortOrder  (optional, default to asc)
+   * @param sortOrder Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. (optional, default to asc)
    * @param cursor  (optional)
    * @param limit  (optional, default to 50)
    * @param timezone IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. (optional)
@@ -869,7 +875,7 @@ public class CalendarApi {
 
   /**
    * List events in a window
-   * Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+   * Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
    * @param accountId The connected Google, Microsoft or IMAP account. (required)
    * @param from  (required)
    * @param to  (required)
@@ -879,7 +885,7 @@ public class CalendarApi {
    * @param showCancelled  (optional, default to false)
    * @param expandRecurring  (optional, default to true)
    * @param icalUid  (optional)
-   * @param sortOrder  (optional, default to asc)
+   * @param sortOrder Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. (optional, default to asc)
    * @param cursor  (optional)
    * @param limit  (optional, default to 50)
    * @param timezone IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. (optional)
@@ -894,7 +900,7 @@ public class CalendarApi {
 
   /**
    * List events in a window
-   * Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+   * Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
    * @param accountId The connected Google, Microsoft or IMAP account. (required)
    * @param from  (required)
    * @param to  (required)
@@ -904,7 +910,7 @@ public class CalendarApi {
    * @param showCancelled  (optional, default to false)
    * @param expandRecurring  (optional, default to true)
    * @param icalUid  (optional)
-   * @param sortOrder  (optional, default to asc)
+   * @param sortOrder Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. (optional, default to asc)
    * @param cursor  (optional)
    * @param limit  (optional, default to 50)
    * @param timezone IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. (optional)
@@ -917,7 +923,7 @@ public class CalendarApi {
 
   /**
    * List events in a window
-   * Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+   * Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
    * @param accountId The connected Google, Microsoft or IMAP account. (required)
    * @param from  (required)
    * @param to  (required)
@@ -927,7 +933,7 @@ public class CalendarApi {
    * @param showCancelled  (optional, default to false)
    * @param expandRecurring  (optional, default to true)
    * @param icalUid  (optional)
-   * @param sortOrder  (optional, default to asc)
+   * @param sortOrder Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. (optional, default to asc)
    * @param cursor  (optional)
    * @param limit  (optional, default to 50)
    * @param timezone IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. (optional)
@@ -1190,7 +1196,7 @@ public class CalendarApi {
 
   /**
    * Respond to an invitation
-   * Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+   * Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
    * @param eventId  (required)
    * @param rsvpCalendarEventRequest  (required)
    * @return CreateCalendarEvent201Response
@@ -1202,7 +1208,7 @@ public class CalendarApi {
 
   /**
    * Respond to an invitation
-   * Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+   * Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
    * @param eventId  (required)
    * @param rsvpCalendarEventRequest  (required)
    * @param headers Optional headers to include in the request
@@ -1216,7 +1222,7 @@ public class CalendarApi {
 
   /**
    * Respond to an invitation
-   * Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+   * Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
    * @param eventId  (required)
    * @param rsvpCalendarEventRequest  (required)
    * @return ApiResponse&lt;CreateCalendarEvent201Response&gt;
@@ -1228,7 +1234,7 @@ public class CalendarApi {
 
   /**
    * Respond to an invitation
-   * Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+   * Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
    * @param eventId  (required)
    * @param rsvpCalendarEventRequest  (required)
    * @param headers Optional headers to include in the request

@@ -11,6 +11,7 @@
 |**calendarId** | **String** | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**comment** | **String** |  |  [optional] |
+|**sendResponse** | **Boolean** | false records the response without emailing the organizer. |  [optional] |
 
 
 

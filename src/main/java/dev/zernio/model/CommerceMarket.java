@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CommerceMarket.JSON_PROPERTY_STATUS,
   CommerceMarket.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:21:01.179138559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:28:58.262021860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceMarket {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

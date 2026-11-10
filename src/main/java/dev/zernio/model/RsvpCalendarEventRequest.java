@@ -36,9 +36,10 @@ import dev.zernio.ApiClient;
   RsvpCalendarEventRequest.JSON_PROPERTY_ACCOUNT_ID,
   RsvpCalendarEventRequest.JSON_PROPERTY_CALENDAR_ID,
   RsvpCalendarEventRequest.JSON_PROPERTY_STATUS,
-  RsvpCalendarEventRequest.JSON_PROPERTY_COMMENT
+  RsvpCalendarEventRequest.JSON_PROPERTY_COMMENT,
+  RsvpCalendarEventRequest.JSON_PROPERTY_SEND_RESPONSE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:21:01.179138559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:28:58.262021860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RsvpCalendarEventRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -92,6 +93,10 @@ public class RsvpCalendarEventRequest {
   public static final String JSON_PROPERTY_COMMENT = "comment";
   @javax.annotation.Nullable
   private String comment;
+
+  public static final String JSON_PROPERTY_SEND_RESPONSE = "sendResponse";
+  @javax.annotation.Nullable
+  private Boolean sendResponse = true;
 
   public RsvpCalendarEventRequest() { 
   }
@@ -192,6 +197,30 @@ public class RsvpCalendarEventRequest {
   }
 
 
+  public RsvpCalendarEventRequest sendResponse(@javax.annotation.Nullable Boolean sendResponse) {
+    this.sendResponse = sendResponse;
+    return this;
+  }
+
+  /**
+   * false records the response without emailing the organizer.
+   * @return sendResponse
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SEND_RESPONSE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getSendResponse() {
+    return sendResponse;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SEND_RESPONSE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSendResponse(@javax.annotation.Nullable Boolean sendResponse) {
+    this.sendResponse = sendResponse;
+  }
+
+
   /**
    * Return true if this rsvpCalendarEvent_request object is equal to o.
    */
@@ -207,12 +236,13 @@ public class RsvpCalendarEventRequest {
     return Objects.equals(this.accountId, rsvpCalendarEventRequest.accountId) &&
         Objects.equals(this.calendarId, rsvpCalendarEventRequest.calendarId) &&
         Objects.equals(this.status, rsvpCalendarEventRequest.status) &&
-        Objects.equals(this.comment, rsvpCalendarEventRequest.comment);
+        Objects.equals(this.comment, rsvpCalendarEventRequest.comment) &&
+        Objects.equals(this.sendResponse, rsvpCalendarEventRequest.sendResponse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, calendarId, status, comment);
+    return Objects.hash(accountId, calendarId, status, comment, sendResponse);
   }
 
   @Override
@@ -223,6 +253,7 @@ public class RsvpCalendarEventRequest {
     sb.append("    calendarId: ").append(toIndentedString(calendarId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
+    sb.append("    sendResponse: ").append(toIndentedString(sendResponse)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -288,6 +319,11 @@ public class RsvpCalendarEventRequest {
     // add `comment` to the URL query string
     if (getComment() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scomment%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getComment()))));
+    }
+
+    // add `sendResponse` to the URL query string
+    if (getSendResponse() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssendResponse%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSendResponse()))));
     }
 
     return joiner.toString();

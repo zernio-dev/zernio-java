@@ -52,9 +52,10 @@ import dev.zernio.ApiClient;
   CalendarEventFields.JSON_PROPERTY_CONFERENCING,
   CalendarEventFields.JSON_PROPERTY_BUSY,
   CalendarEventFields.JSON_PROPERTY_VISIBILITY,
-  CalendarEventFields.JSON_PROPERTY_METADATA
+  CalendarEventFields.JSON_PROPERTY_METADATA,
+  CalendarEventFields.JSON_PROPERTY_NOTIFY_PARTICIPANTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:21:01.179138559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:28:58.262021860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CalendarEventFields {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
@@ -183,6 +184,47 @@ public class CalendarEventFields {
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
   private Map<String, String> metadata = new HashMap<>();
+
+  /**
+   * Who gets an invitation or update email for this write: everyone, only guests outside the organizer&#39;s domain, or nobody. Google only; Outlook always notifies, so &#x60;external&#x60; and &#x60;none&#x60; answer 400 &#x60;unsupported_for_provider&#x60; on a Microsoft account.
+   */
+  public enum NotifyParticipantsEnum {
+    ALL(String.valueOf("all")),
+    
+    EXTERNAL(String.valueOf("external")),
+    
+    NONE(String.valueOf("none"));
+
+    private String value;
+
+    NotifyParticipantsEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static NotifyParticipantsEnum fromValue(String value) {
+      for (NotifyParticipantsEnum b : NotifyParticipantsEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_NOTIFY_PARTICIPANTS = "notifyParticipants";
+  @javax.annotation.Nullable
+  private NotifyParticipantsEnum notifyParticipants = NotifyParticipantsEnum.ALL;
 
   public CalendarEventFields() { 
   }
@@ -337,7 +379,7 @@ public class CalendarEventFields {
   }
 
   /**
-   * IANA zone the event is scheduled in. Default UTC.
+   * IANA zone the event is scheduled in. Defaults to the calendar&#39;s zone on Google and the mailbox&#39;s working-hours zone on Microsoft (UTC when Outlook has none, as on personal accounts). A PATCH that moves an event without a zone keeps the zone the event already has.
    * @return timezone
    */
   @javax.annotation.Nullable
@@ -529,7 +571,7 @@ public class CalendarEventFields {
   }
 
   /**
-   * Get metadata
+   * String pairs stored on the event and returned on reads, on Google and Microsoft.
    * @return metadata
    */
   @javax.annotation.Nullable
@@ -544,6 +586,30 @@ public class CalendarEventFields {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMetadata(@javax.annotation.Nullable Map<String, String> metadata) {
     this.metadata = metadata;
+  }
+
+
+  public CalendarEventFields notifyParticipants(@javax.annotation.Nullable NotifyParticipantsEnum notifyParticipants) {
+    this.notifyParticipants = notifyParticipants;
+    return this;
+  }
+
+  /**
+   * Who gets an invitation or update email for this write: everyone, only guests outside the organizer&#39;s domain, or nobody. Google only; Outlook always notifies, so &#x60;external&#x60; and &#x60;none&#x60; answer 400 &#x60;unsupported_for_provider&#x60; on a Microsoft account.
+   * @return notifyParticipants
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NOTIFY_PARTICIPANTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public NotifyParticipantsEnum getNotifyParticipants() {
+    return notifyParticipants;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NOTIFY_PARTICIPANTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNotifyParticipants(@javax.annotation.Nullable NotifyParticipantsEnum notifyParticipants) {
+    this.notifyParticipants = notifyParticipants;
   }
 
 
@@ -572,12 +638,13 @@ public class CalendarEventFields {
         Objects.equals(this.conferencing, calendarEventFields.conferencing) &&
         Objects.equals(this.busy, calendarEventFields.busy) &&
         Objects.equals(this.visibility, calendarEventFields.visibility) &&
-        Objects.equals(this.metadata, calendarEventFields.metadata);
+        Objects.equals(this.metadata, calendarEventFields.metadata) &&
+        Objects.equals(this.notifyParticipants, calendarEventFields.notifyParticipants);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, description, location, start, end, allDay, timezone, participants, recurrence, reminders, conferencing, busy, visibility, metadata);
+    return Objects.hash(title, description, location, start, end, allDay, timezone, participants, recurrence, reminders, conferencing, busy, visibility, metadata, notifyParticipants);
   }
 
   @Override
@@ -598,6 +665,7 @@ public class CalendarEventFields {
     sb.append("    busy: ").append(toIndentedString(busy)).append("\n");
     sb.append("    visibility: ").append(toIndentedString(visibility)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    notifyParticipants: ").append(toIndentedString(notifyParticipants)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -726,6 +794,11 @@ public class CalendarEventFields {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getMetadata().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getMetadata().get(_key)))));
       }
+    }
+
+    // add `notifyParticipants` to the URL query string
+    if (getNotifyParticipants() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snotifyParticipants%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNotifyParticipants()))));
     }
 
     return joiner.toString();

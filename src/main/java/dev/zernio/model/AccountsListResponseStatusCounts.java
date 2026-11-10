@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   AccountsListResponseStatusCounts.JSON_PROPERTY_ALL,
   AccountsListResponseStatusCounts.JSON_PROPERTY_DISCONNECTED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:21:01.179138559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:28:58.262021860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsListResponseStatusCounts {
   public static final String JSON_PROPERTY_ALL = "all";
   @javax.annotation.Nonnull

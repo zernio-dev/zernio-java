@@ -473,7 +473,7 @@ ApiResponse<[**CreateCalendarEvent201Response**](CreateCalendarEvent201Response.
 
 ## deleteCalendarEvent
 
-> DeleteEmailDraft200Response deleteCalendarEvent(eventId, accountId, calendarId)
+> DeleteEmailDraft200Response deleteCalendarEvent(eventId, accountId, calendarId, notifyParticipants)
 
 Delete an event
 
@@ -501,8 +501,9 @@ public class Example {
         String eventId = "eventId_example"; // String | 
         String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String calendarId = "calendarId_example"; // String | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar.
+        String notifyParticipants = "all"; // String | Who gets the cancellation email. Google only; `external` and `none` answer 400 on a Microsoft account.
         try {
-            DeleteEmailDraft200Response result = apiInstance.deleteCalendarEvent(eventId, accountId, calendarId);
+            DeleteEmailDraft200Response result = apiInstance.deleteCalendarEvent(eventId, accountId, calendarId, notifyParticipants);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CalendarApi#deleteCalendarEvent");
@@ -523,6 +524,7 @@ public class Example {
 | **eventId** | **String**|  | |
 | **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **calendarId** | **String**| The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. | [optional] |
+| **notifyParticipants** | **String**| Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. | [optional] [default to all] [enum: all, external, none] |
 
 ### Return type
 
@@ -549,7 +551,7 @@ public class Example {
 
 ## deleteCalendarEventWithHttpInfo
 
-> ApiResponse<DeleteEmailDraft200Response> deleteCalendarEvent deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId)
+> ApiResponse<DeleteEmailDraft200Response> deleteCalendarEvent deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId, notifyParticipants)
 
 Delete an event
 
@@ -578,8 +580,9 @@ public class Example {
         String eventId = "eventId_example"; // String | 
         String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String calendarId = "calendarId_example"; // String | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar.
+        String notifyParticipants = "all"; // String | Who gets the cancellation email. Google only; `external` and `none` answer 400 on a Microsoft account.
         try {
-            ApiResponse<DeleteEmailDraft200Response> response = apiInstance.deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId);
+            ApiResponse<DeleteEmailDraft200Response> response = apiInstance.deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId, notifyParticipants);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -602,6 +605,7 @@ public class Example {
 | **eventId** | **String**|  | |
 | **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **calendarId** | **String**| The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. | [optional] |
+| **notifyParticipants** | **String**| Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. | [optional] [default to all] [enum: all, external, none] |
 
 ### Return type
 
@@ -793,7 +797,7 @@ ApiResponse<[**CreateCalendarEvent201Response**](CreateCalendarEvent201Response.
 
 List events in a window
 
-Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
 
 ### Example
 
@@ -825,7 +829,7 @@ public class Example {
         Boolean showCancelled = false; // Boolean | 
         Boolean expandRecurring = true; // Boolean | 
         String icalUid = "icalUid_example"; // String | 
-        String sortOrder = "asc"; // String | 
+        String sortOrder = "asc"; // String | Order by start time across the whole window. On Google, `desc` reads the window in full, so a window over 2,500 events answers 400; narrow `from` and `to`.
         String cursor = "cursor_example"; // String | 
         Integer limit = 50; // Integer | 
         String timezone = "timezone_example"; // String | IANA zone the `start` and `end` offsets are rendered in. Default UTC.
@@ -857,7 +861,7 @@ public class Example {
 | **showCancelled** | **Boolean**|  | [optional] [default to false] |
 | **expandRecurring** | **Boolean**|  | [optional] [default to true] |
 | **icalUid** | **String**|  | [optional] |
-| **sortOrder** | **String**|  | [optional] [default to asc] [enum: asc, desc] |
+| **sortOrder** | **String**| Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. | [optional] [default to asc] [enum: asc, desc] |
 | **cursor** | **String**|  | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **timezone** | **String**| IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. | [optional] |
@@ -891,7 +895,7 @@ public class Example {
 
 List events in a window
 
-Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
 
 ### Example
 
@@ -924,7 +928,7 @@ public class Example {
         Boolean showCancelled = false; // Boolean | 
         Boolean expandRecurring = true; // Boolean | 
         String icalUid = "icalUid_example"; // String | 
-        String sortOrder = "asc"; // String | 
+        String sortOrder = "asc"; // String | Order by start time across the whole window. On Google, `desc` reads the window in full, so a window over 2,500 events answers 400; narrow `from` and `to`.
         String cursor = "cursor_example"; // String | 
         Integer limit = 50; // Integer | 
         String timezone = "timezone_example"; // String | IANA zone the `start` and `end` offsets are rendered in. Default UTC.
@@ -958,7 +962,7 @@ public class Example {
 | **showCancelled** | **Boolean**|  | [optional] [default to false] |
 | **expandRecurring** | **Boolean**|  | [optional] [default to true] |
 | **icalUid** | **String**|  | [optional] |
-| **sortOrder** | **String**|  | [optional] [default to asc] [enum: asc, desc] |
+| **sortOrder** | **String**| Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. | [optional] [default to asc] [enum: asc, desc] |
 | **cursor** | **String**|  | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **timezone** | **String**| IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. | [optional] |
@@ -1143,7 +1147,7 @@ ApiResponse<[**ListCalendars200Response**](ListCalendars200Response.md)>
 
 Respond to an invitation
 
-Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
 
 ### Example
 
@@ -1219,7 +1223,7 @@ public class Example {
 
 Respond to an invitation
 
-Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
 
 ### Example
 
