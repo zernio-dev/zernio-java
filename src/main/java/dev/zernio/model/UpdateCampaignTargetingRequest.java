@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateCampaignTargetingRequest.JSON_PROPERTY_PLATFORM,
   UpdateCampaignTargetingRequest.JSON_PROPERTY_TARGETING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:09:38.420869741Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:14:39.000485957Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCampaignTargetingRequest {
   /**
    * Gets or Sets platform

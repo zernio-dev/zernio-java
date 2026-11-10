@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   OrderImessageSenderRequestContact.JSON_PROPERTY_LAST_NAME,
   OrderImessageSenderRequestContact.JSON_PROPERTY_PHOTO_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:09:38.420869741Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:14:39.000485957Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OrderImessageSenderRequestContact {
   public static final String JSON_PROPERTY_FIRST_NAME = "firstName";
   @javax.annotation.Nonnull

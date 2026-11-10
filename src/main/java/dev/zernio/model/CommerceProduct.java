@@ -70,7 +70,7 @@ import dev.zernio.ApiClient;
   CommerceProduct.JSON_PROPERTY_PUBLISHED_AT,
   CommerceProduct.JSON_PROPERTY_PLATFORM_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:09:38.420869741Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:14:39.000485957Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceProduct {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   AdRuleSchedule.JSON_PROPERTY_ENDS_AT,
   AdRuleSchedule.JSON_PROPERTY_QUIET_HOURS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:09:38.420869741Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:14:39.000485957Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleSchedule {
   /**
    * How often the rule runs, in minutes. Null on a rule that runs at set times.

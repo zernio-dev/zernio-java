@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadEmailThreadReplied.JSON_PROPERTY_REPLY,
   WebhookPayloadEmailThreadReplied.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:09:38.420869741Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:14:39.000485957Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadEmailThreadReplied {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
