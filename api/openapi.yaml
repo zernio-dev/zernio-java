@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.564.1
+  version: 1.565.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -28871,6 +28871,363 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-accepts:
+      - application/json
+  /v1/connect/google/org:
+    post:
+      description: |
+        Creates an organization connection for a Google Workspace domain. A super admin then delegates Zernio's client ID with the returned scopes, and you add mailboxes without each user signing in.
+
+        ### Flow
+
+        1. Add `setup.dnsRecord` (a TXT record) to the domain. It proves the domain's owner set up this connection.
+        2. A super admin adds `setup.clientId` with `setup.scopes` under domain-wide delegation in the Admin console.
+        3. Call `POST /v1/org-connections/{orgConnectionId}/verify` with any mailbox in the domain.
+        4. Add mailboxes with `POST /v1/org-connections/{orgConnectionId}/mailboxes`.
+      operationId: createGoogleOrgConnection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createGoogleOrgConnection_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createGoogleOrgConnection_201_response"
+          description: "The connection, pending until verified"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/OrgConnectionForbidden"
+      security:
+      - bearerAuth: []
+      summary: Start a Google Workspace organization connection
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/microsoft/org:
+    post:
+      description: |
+        Creates an organization connection for a Microsoft 365 tenant. An administrator opens `setup.adminConsentUrl` and approves Zernio's application permissions once, then you add mailboxes without each user signing in.
+
+        After consent Microsoft sends the administrator to `redirectUrl` with `orgConnectionId`, `status` (`active`, `pending` or `denied`) and `tenant`.
+
+        Application permissions reach every mailbox in the tenant. Administrators can scope them with an Exchange Online application access policy or RBAC for Applications.
+      operationId: createMicrosoftOrgConnection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createMicrosoftOrgConnection_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createGoogleOrgConnection_201_response"
+          description: "The connection, pending until an administrator consents"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/OrgConnectionForbidden"
+      security:
+      - bearerAuth: []
+      summary: Start a Microsoft 365 organization connection
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/org-connections:
+    get:
+      description: "The Google Workspace and Microsoft 365 organization connections\
+        \ on a profile, newest first."
+      operationId: listOrgConnections
+      parameters:
+      - explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listOrgConnections_200_response"
+          description: The connections
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List organization connections
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+  /v1/org-connections/{orgConnectionId}:
+    delete:
+      description: |
+        Deletes the connection. Mailboxes added from it stay on the profile and answer `401` `reconnect_required` until you disconnect them or connect them another way.
+
+        `mailboxAccountIds` lists them.
+      operationId: deleteOrgConnection
+      parameters:
+      - explode: false
+        in: path
+        name: orgConnectionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteOrgConnection_200_response"
+          description: Deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete an organization connection
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    get:
+      description: One organization connection with its status and setup instructions.
+      operationId: getOrgConnection
+      parameters:
+      - explode: false
+        in: path
+        name: orgConnectionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createGoogleOrgConnection_201_response"
+          description: The connection
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get an organization connection
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    parameters:
+    - explode: false
+      in: path
+      name: orgConnectionId
+      required: true
+      schema:
+        type: string
+      style: simple
+    patch:
+      description: |
+        Changes the allowlist or the Google directory admin.
+
+        Mailboxes already added that a narrowed allowlist excludes answer `401` `reconnect_required` until it includes them again.
+      operationId: updateOrgConnection
+      parameters:
+      - explode: false
+        in: path
+        name: orgConnectionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateOrgConnection_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createGoogleOrgConnection_201_response"
+          description: The updated connection
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Update an organization connection
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/org-connections/{orgConnectionId}/verify:
+    post:
+      description: |
+        Checks the administrator's grant and activates the connection.
+
+        Google: the domain's TXT record and a token for `email` with every delegated scope. Microsoft: a tenant token carrying every application permission the areas need.
+
+        `409` `org_grant_incomplete` says what is still missing.
+      operationId: verifyOrgConnection
+      parameters:
+      - explode: false
+        in: path
+        name: orgConnectionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/verifyOrgConnection_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createGoogleOrgConnection_201_response"
+          description: The active connection
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          $ref: "#/components/responses/OrgGrantIncomplete"
+      security:
+      - bearerAuth: []
+      summary: Verify an organization connection
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/org-connections/{orgConnectionId}/users:
+    get:
+      description: |
+        The organization's users, 100 per page, with whether each is allowed and the `accountId` of those already added.
+
+        Google needs `adminEmail` on the connection and the directory scope delegated.
+      operationId: listOrgConnectionUsers
+      parameters:
+      - explode: false
+        in: path
+        name: orgConnectionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listOrgConnectionUsers_200_response"
+          description: A page of users
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          $ref: "#/components/responses/OrgGrantIncomplete"
+      security:
+      - bearerAuth: []
+      summary: List an organization's users
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+  /v1/org-connections/{orgConnectionId}/mailboxes:
+    post:
+      description: |
+        Adds one mailbox from an active organization connection, with no sign-in from its user. It becomes a `google` or `microsoft` account on the connection's profile and works with every email, calendar, files and contacts endpoint.
+
+        `201` for a new account, `200` when the address was already on the profile and now runs on the organization grant. `account.connected` fires.
+      operationId: addOrgConnectionMailbox
+      parameters:
+      - explode: false
+        in: path
+        name: orgConnectionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/addOrgConnectionMailbox_request"
+        required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/OrgMailboxAdded"
+        "201":
+          $ref: "#/components/responses/OrgMailboxAdded"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/OrgConnectionForbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          $ref: "#/components/responses/OrgGrantIncomplete"
+      security:
+      - bearerAuth: []
+      summary: Add a mailbox from an organization connection
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/inbox/conversations:
@@ -84537,6 +84894,30 @@ components:
         This is not "publishing in progress": send the user to Billing to add funds. Usually the request is refused with 402 `insufficient_balance` before anything is saved; 202 covers a balance that reached $0 during the publish.
       x-summary: "An X platform is waiting for funds: the balance is $0, so it publishes\
         \ once the balance is funded and fails after 24 hours."
+    OrgGrantIncomplete:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: "`org_grant_incomplete`: the TXT record, the delegation, the consent\
+        \ or a permission is missing, or the connection is not active yet."
+      x-summary: "The organization's admin grant is missing or incomplete: `message`\
+        \ says what to add."
+    OrgConnectionForbidden:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: "The key cannot write to the profile, the plan cannot take another\
+        \ account, or the address is not on `allowedEmails`."
+      x-summary: "Write access to the profile is required, or the address is outside\
+        \ the connection's allowlist."
+    OrgMailboxAdded:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/inline_object_1"
+      description: The mailbox account
     BadRequest:
       content:
         application/json:
@@ -84562,7 +84943,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/inline_object_1"
+            $ref: "#/components/schemas/inline_object_2"
       description: Resource not found
     AutomationsAdsRequired:
       content:
@@ -84613,7 +84994,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/inline_object_2"
+            $ref: "#/components/schemas/inline_object_3"
       description: |
         The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:
 
@@ -84683,7 +85064,7 @@ components:
               scope: campaign-analytics
               window: 30 s
           schema:
-            $ref: "#/components/schemas/inline_object_3"
+            $ref: "#/components/schemas/inline_object_4"
       description: |
         A limit on your request rate was reached: your plan's API limit, or the team's analytics read cap on a 30-second sliding window. `details.scope` names the capped group (`campaign-analytics`, `ad-analytics`, `ads-listings` or `post-analytics`) and is absent for the API limit.
       headers:
@@ -84806,7 +85187,7 @@ components:
                   effective_account_limit: 2000
                   current_account_count: 2000
           schema:
-            $ref: "#/components/schemas/inline_object_4"
+            $ref: "#/components/schemas/inline_object_5"
       description: |
         Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on `reason` to render the right prompt:
 
@@ -84822,6 +85203,96 @@ components:
       x-summary: "Billing blocked the request: redirect the user to `dashboard_url`\
         \ to add or verify a card or use the enterprise form."
   schemas:
+    OrgConnection:
+      description: A Google Workspace domain or Microsoft 365 tenant whose administrator
+        granted Zernio access to its mailboxes once.
+      example:
+        lastError: lastError
+        verifiedAt: 2000-01-23T04:56:07.000+00:00
+        areas:
+        - email
+        - email
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        allowedEmails:
+        - allowedEmails
+        - allowedEmails
+        provider: google
+        profileId: profileId
+        domain: domain
+        tenantId: tenantId
+        setup:
+          clientId: clientId
+          applicationPermissions:
+          - applicationPermissions
+          - applicationPermissions
+          directoryScope: directoryScope
+          adminConsentUrl: https://openapi-generator.tech
+          adminConsoleUrl: https://openapi-generator.tech
+          scopes:
+          - scopes
+          - scopes
+          type: google_domain_wide_delegation
+          steps:
+          - steps
+          - steps
+          dnsRecord:
+            host: host
+            type: TXT
+            value: value
+        id: id
+        status: pending
+        adminEmail: adminEmail
+      properties:
+        id:
+          type: string
+        provider:
+          enum:
+          - google
+          - microsoft
+          type: string
+        status:
+          enum:
+          - pending
+          - active
+          - revoked
+          type: string
+        profileId:
+          type: string
+        areas:
+          items:
+            enum:
+            - email
+            - calendar
+            - files
+            - contacts
+            type: string
+          type: array
+        domain:
+          nullable: true
+          type: string
+        tenantId:
+          nullable: true
+          type: string
+        adminEmail:
+          nullable: true
+          type: string
+        allowedEmails:
+          items:
+            type: string
+          nullable: true
+          type: array
+        lastError:
+          nullable: true
+          type: string
+        verifiedAt:
+          format: date-time
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        setup:
+          $ref: "#/components/schemas/OrgConnection_setup"
     ImapDiscovery:
       example:
         unsupportedReason: proton_requires_bridge
@@ -150732,6 +151203,275 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/startMicrosoftAdminConsent_200_response_data"
+    createGoogleOrgConnection_request:
+      properties:
+        profileId:
+          type: string
+        domain:
+          description: The Workspace domain the admin delegates.
+          example: acme.com
+          type: string
+        scopes:
+          description: "Areas the mailboxes get, the same as a user connect."
+          items:
+            enum:
+            - email
+            - calendar
+            - files
+            - contacts
+            type: string
+          type: array
+        adminEmail:
+          description: "A super admin, used to list the domain's users."
+          format: email
+          type: string
+        allowedEmails:
+          description: Addresses or `@domain` entries mailboxes must match. Omit for
+            every mailbox.
+          items:
+            type: string
+          type: array
+      required:
+      - domain
+      - profileId
+      - scopes
+    createGoogleOrgConnection_201_response:
+      example:
+        data:
+          lastError: lastError
+          verifiedAt: 2000-01-23T04:56:07.000+00:00
+          areas:
+          - email
+          - email
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          allowedEmails:
+          - allowedEmails
+          - allowedEmails
+          provider: google
+          profileId: profileId
+          domain: domain
+          tenantId: tenantId
+          setup:
+            clientId: clientId
+            applicationPermissions:
+            - applicationPermissions
+            - applicationPermissions
+            directoryScope: directoryScope
+            adminConsentUrl: https://openapi-generator.tech
+            adminConsoleUrl: https://openapi-generator.tech
+            scopes:
+            - scopes
+            - scopes
+            type: google_domain_wide_delegation
+            steps:
+            - steps
+            - steps
+            dnsRecord:
+              host: host
+              type: TXT
+              value: value
+          id: id
+          status: pending
+          adminEmail: adminEmail
+      properties:
+        data:
+          $ref: "#/components/schemas/OrgConnection"
+    createMicrosoftOrgConnection_request:
+      properties:
+        profileId:
+          type: string
+        scopes:
+          items:
+            enum:
+            - email
+            - calendar
+            - files
+            - contacts
+            type: string
+          type: array
+        allowedEmails:
+          description: Addresses or `@domain` entries mailboxes must match. Omit for
+            every mailbox.
+          items:
+            type: string
+          type: array
+        redirectUrl:
+          description: Where Microsoft sends the administrator after consent.
+          format: uri
+          type: string
+      required:
+      - profileId
+      - scopes
+    listOrgConnections_200_response:
+      example:
+        data:
+        - lastError: lastError
+          verifiedAt: 2000-01-23T04:56:07.000+00:00
+          areas:
+          - email
+          - email
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          allowedEmails:
+          - allowedEmails
+          - allowedEmails
+          provider: google
+          profileId: profileId
+          domain: domain
+          tenantId: tenantId
+          setup:
+            clientId: clientId
+            applicationPermissions:
+            - applicationPermissions
+            - applicationPermissions
+            directoryScope: directoryScope
+            adminConsentUrl: https://openapi-generator.tech
+            adminConsoleUrl: https://openapi-generator.tech
+            scopes:
+            - scopes
+            - scopes
+            type: google_domain_wide_delegation
+            steps:
+            - steps
+            - steps
+            dnsRecord:
+              host: host
+              type: TXT
+              value: value
+          id: id
+          status: pending
+          adminEmail: adminEmail
+        - lastError: lastError
+          verifiedAt: 2000-01-23T04:56:07.000+00:00
+          areas:
+          - email
+          - email
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          allowedEmails:
+          - allowedEmails
+          - allowedEmails
+          provider: google
+          profileId: profileId
+          domain: domain
+          tenantId: tenantId
+          setup:
+            clientId: clientId
+            applicationPermissions:
+            - applicationPermissions
+            - applicationPermissions
+            directoryScope: directoryScope
+            adminConsentUrl: https://openapi-generator.tech
+            adminConsoleUrl: https://openapi-generator.tech
+            scopes:
+            - scopes
+            - scopes
+            type: google_domain_wide_delegation
+            steps:
+            - steps
+            - steps
+            dnsRecord:
+              host: host
+              type: TXT
+              value: value
+          id: id
+          status: pending
+          adminEmail: adminEmail
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/OrgConnection"
+          type: array
+    deleteOrgConnection_200_response_data:
+      example:
+        deleted: true
+        mailboxAccountIds:
+        - mailboxAccountIds
+        - mailboxAccountIds
+      properties:
+        deleted:
+          type: boolean
+        mailboxAccountIds:
+          items:
+            type: string
+          type: array
+    deleteOrgConnection_200_response:
+      example:
+        data:
+          deleted: true
+          mailboxAccountIds:
+          - mailboxAccountIds
+          - mailboxAccountIds
+      properties:
+        data:
+          $ref: "#/components/schemas/deleteOrgConnection_200_response_data"
+    updateOrgConnection_request:
+      properties:
+        allowedEmails:
+          items:
+            type: string
+          nullable: true
+          type: array
+        adminEmail:
+          format: email
+          nullable: true
+          type: string
+    verifyOrgConnection_request:
+      properties:
+        email:
+          description: Google only. Any mailbox in the domain.
+          format: email
+          type: string
+    listOrgConnectionUsers_200_response_data_inner:
+      example:
+        accountId: accountId
+        allowed: true
+        name: name
+        id: id
+        email: email
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          nullable: true
+          type: string
+        allowed:
+          type: boolean
+        accountId:
+          nullable: true
+          type: string
+    listOrgConnectionUsers_200_response:
+      example:
+        nextCursor: nextCursor
+        data:
+        - accountId: accountId
+          allowed: true
+          name: name
+          id: id
+          email: email
+        - accountId: accountId
+          allowed: true
+          name: name
+          id: id
+          email: email
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/listOrgConnectionUsers_200_response_data_inner"
+          type: array
+        nextCursor:
+          nullable: true
+          type: string
+    addOrgConnectionMailbox_request:
+      properties:
+        email:
+          format: email
+          type: string
+        name:
+          description: Display name; defaults to the provider's.
+          type: string
+      required:
+      - email
     listInboxConversations_200_response_data_inner_instagramProfile:
       description: Instagram profile data for the participant. Only present for Instagram
         conversations.
@@ -208907,6 +209647,75 @@ components:
         reason:
           description: "Our review note on changes_requested, the reason on rejected,\
             \ or why a launch filing bounced back to testing."
+    OrgConnection_setup_dnsRecord:
+      example:
+        host: host
+        type: TXT
+        value: value
+      properties:
+        type:
+          enum:
+          - TXT
+          type: string
+        host:
+          type: string
+        value:
+          type: string
+    OrgConnection_setup:
+      description: "What the administrator does. Google returns `dnsRecord`, `adminConsoleUrl`,\
+        \ `clientId`, `scopes` and `directoryScope`; Microsoft returns `adminConsentUrl`\
+        \ and `applicationPermissions`."
+      example:
+        clientId: clientId
+        applicationPermissions:
+        - applicationPermissions
+        - applicationPermissions
+        directoryScope: directoryScope
+        adminConsentUrl: https://openapi-generator.tech
+        adminConsoleUrl: https://openapi-generator.tech
+        scopes:
+        - scopes
+        - scopes
+        type: google_domain_wide_delegation
+        steps:
+        - steps
+        - steps
+        dnsRecord:
+          host: host
+          type: TXT
+          value: value
+      properties:
+        type:
+          enum:
+          - google_domain_wide_delegation
+          - microsoft_admin_consent
+          type: string
+        dnsRecord:
+          $ref: "#/components/schemas/OrgConnection_setup_dnsRecord"
+        adminConsoleUrl:
+          format: uri
+          type: string
+        clientId:
+          nullable: true
+          type: string
+        scopes:
+          items:
+            type: string
+          type: array
+        directoryScope:
+          type: string
+        adminConsentUrl:
+          format: uri
+          nullable: true
+          type: string
+        applicationPermissions:
+          items:
+            type: string
+          type: array
+        steps:
+          items:
+            type: string
+          type: array
     ImapDiscovery_provider:
       example:
         name: name
@@ -227266,14 +228075,52 @@ components:
           type: boolean
       required:
       - success
+    inline_object_1_data:
+      example:
+        displayName: displayName
+        profileId: profileId
+        orgConnectionId: orgConnectionId
+        _id: _id
+        platform: google
+        username: username
+      properties:
+        _id:
+          description: "The account id to use with every email, calendar, files and\
+            \ contacts endpoint."
+          type: string
+        platform:
+          enum:
+          - google
+          - microsoft
+          type: string
+        username:
+          type: string
+        displayName:
+          type: string
+        profileId:
+          type: string
+        orgConnectionId:
+          type: string
     inline_object_1:
+      example:
+        data:
+          displayName: displayName
+          profileId: profileId
+          orgConnectionId: orgConnectionId
+          _id: _id
+          platform: google
+          username: username
+      properties:
+        data:
+          $ref: "#/components/schemas/inline_object_1_data"
+    inline_object_2:
       example:
         error: Not found
       properties:
         error:
           example: Not found
           type: string
-    inline_object_2:
+    inline_object_3:
       example:
         code: insufficient_permissions
         error: This API key has the 'messages' resource group disabled. GET /api/v1/inbox/conversations
@@ -227311,7 +228158,7 @@ components:
           - calendar
           - files
           type: string
-    inline_object_3_details:
+    inline_object_4_details:
       example:
         currentCount: 0
         retryAfterSeconds: 1
@@ -227334,7 +228181,7 @@ components:
           type: string
         window:
           type: string
-    inline_object_3:
+    inline_object_4:
       example:
         details:
           currentCount: 0
@@ -227347,8 +228194,8 @@ components:
         error:
           type: string
         details:
-          $ref: "#/components/schemas/inline_object_3_details"
-    inline_object_4_details:
+          $ref: "#/components/schemas/inline_object_4_details"
+    inline_object_5_details:
       description: Structured context for SDK clients that want to render their own
         UX. Keys vary by `reason`.
       example:
@@ -227384,7 +228231,7 @@ components:
             set when reason=enterprise_required.
           example: 2000
           type: integer
-    inline_object_4:
+    inline_object_5:
       example:
         reason: free_tier_exceeded
         code: PAYMENT_REQUIRED
@@ -227433,7 +228280,7 @@ components:
           format: uri
           type: string
         details:
-          $ref: "#/components/schemas/inline_object_4_details"
+          $ref: "#/components/schemas/inline_object_5_details"
       required:
       - code
       - error

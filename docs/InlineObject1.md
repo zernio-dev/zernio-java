@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**error** | **String** |  |  [optional] |
+|**data** | [**InlineObject1Data**](InlineObject1Data.md) |  |  [optional] |
 
 
 

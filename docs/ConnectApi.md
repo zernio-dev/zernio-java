@@ -4,6 +4,8 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**addOrgConnectionMailbox**](ConnectApi.md#addOrgConnectionMailbox) | **POST** /v1/org-connections/{orgConnectionId}/mailboxes | Add a mailbox from an organization connection |
+| [**addOrgConnectionMailboxWithHttpInfo**](ConnectApi.md#addOrgConnectionMailboxWithHttpInfo) | **POST** /v1/org-connections/{orgConnectionId}/mailboxes | Add a mailbox from an organization connection |
 | [**assignGoogleBusinessLocation**](ConnectApi.md#assignGoogleBusinessLocation) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign Google Business Profile location to another profile |
 | [**assignGoogleBusinessLocationWithHttpInfo**](ConnectApi.md#assignGoogleBusinessLocationWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign Google Business Profile location to another profile |
 | [**completeMetaAdsBusinessLogin**](ConnectApi.md#completeMetaAdsBusinessLogin) | **GET** /v1/connect/meta-ads/callback | Complete Meta business login |
@@ -36,6 +38,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**connectWhopAdsCredentialsWithHttpInfo**](ConnectApi.md#connectWhopAdsCredentialsWithHttpInfo) | **POST** /v1/connect/whop-ads/credentials | Connect a Whop account |
 | [**connectWordPressWithApplicationPassword**](ConnectApi.md#connectWordPressWithApplicationPassword) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password |
 | [**connectWordPressWithApplicationPasswordWithHttpInfo**](ConnectApi.md#connectWordPressWithApplicationPasswordWithHttpInfo) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password |
+| [**createGoogleOrgConnection**](ConnectApi.md#createGoogleOrgConnection) | **POST** /v1/connect/google/org | Start a Google Workspace organization connection |
+| [**createGoogleOrgConnectionWithHttpInfo**](ConnectApi.md#createGoogleOrgConnectionWithHttpInfo) | **POST** /v1/connect/google/org | Start a Google Workspace organization connection |
+| [**createMicrosoftOrgConnection**](ConnectApi.md#createMicrosoftOrgConnection) | **POST** /v1/connect/microsoft/org | Start a Microsoft 365 organization connection |
+| [**createMicrosoftOrgConnectionWithHttpInfo**](ConnectApi.md#createMicrosoftOrgConnectionWithHttpInfo) | **POST** /v1/connect/microsoft/org | Start a Microsoft 365 organization connection |
 | [**createOAuthApp**](ConnectApi.md#createOAuthApp) | **POST** /v1/connect/oauth-apps | Add an OAuth app |
 | [**createOAuthAppWithHttpInfo**](ConnectApi.md#createOAuthAppWithHttpInfo) | **POST** /v1/connect/oauth-apps | Add an OAuth app |
 | [**createPinterestBoard**](ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board |
@@ -46,6 +52,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createYoutubePlaylistWithHttpInfo**](ConnectApi.md#createYoutubePlaylistWithHttpInfo) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist |
 | [**deleteOAuthApp**](ConnectApi.md#deleteOAuthApp) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app |
 | [**deleteOAuthAppWithHttpInfo**](ConnectApi.md#deleteOAuthAppWithHttpInfo) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app |
+| [**deleteOrgConnection**](ConnectApi.md#deleteOrgConnection) | **DELETE** /v1/org-connections/{orgConnectionId} | Delete an organization connection |
+| [**deleteOrgConnectionWithHttpInfo**](ConnectApi.md#deleteOrgConnectionWithHttpInfo) | **DELETE** /v1/org-connections/{orgConnectionId} | Delete an organization connection |
 | [**getConnectHandoff**](ConnectApi.md#getConnectHandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
 | [**getConnectHandoffWithHttpInfo**](ConnectApi.md#getConnectHandoffWithHttpInfo) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
 | [**getConnectUrl**](ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
@@ -66,6 +74,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getLinkedInOrganizationsWithHttpInfo**](ConnectApi.md#getLinkedInOrganizationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs |
 | [**getOAuthApp**](ConnectApi.md#getOAuthApp) | **GET** /v1/connect/oauth-apps/{appId} | Get an OAuth app |
 | [**getOAuthAppWithHttpInfo**](ConnectApi.md#getOAuthAppWithHttpInfo) | **GET** /v1/connect/oauth-apps/{appId} | Get an OAuth app |
+| [**getOrgConnection**](ConnectApi.md#getOrgConnection) | **GET** /v1/org-connections/{orgConnectionId} | Get an organization connection |
+| [**getOrgConnectionWithHttpInfo**](ConnectApi.md#getOrgConnectionWithHttpInfo) | **GET** /v1/org-connections/{orgConnectionId} | Get an organization connection |
 | [**getPageWebhookSubscription**](ConnectApi.md#getPageWebhookSubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read an account&#39;s webhook subscription |
 | [**getPageWebhookSubscriptionWithHttpInfo**](ConnectApi.md#getPageWebhookSubscriptionWithHttpInfo) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read an account&#39;s webhook subscription |
 | [**getPendingOAuthData**](ConnectApi.md#getPendingOAuthData) | **GET** /v1/connect/pending-data | Get pending OAuth data |
@@ -110,6 +120,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**listLinkedInOrganizationsWithHttpInfo**](ConnectApi.md#listLinkedInOrganizationsWithHttpInfo) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs |
 | [**listOAuthApps**](ConnectApi.md#listOAuthApps) | **GET** /v1/connect/oauth-apps | List your OAuth apps |
 | [**listOAuthAppsWithHttpInfo**](ConnectApi.md#listOAuthAppsWithHttpInfo) | **GET** /v1/connect/oauth-apps | List your OAuth apps |
+| [**listOrgConnectionUsers**](ConnectApi.md#listOrgConnectionUsers) | **GET** /v1/org-connections/{orgConnectionId}/users | List an organization&#39;s users |
+| [**listOrgConnectionUsersWithHttpInfo**](ConnectApi.md#listOrgConnectionUsersWithHttpInfo) | **GET** /v1/org-connections/{orgConnectionId}/users | List an organization&#39;s users |
+| [**listOrgConnections**](ConnectApi.md#listOrgConnections) | **GET** /v1/org-connections | List organization connections |
+| [**listOrgConnectionsWithHttpInfo**](ConnectApi.md#listOrgConnectionsWithHttpInfo) | **GET** /v1/org-connections | List organization connections |
 | [**listPinterestBoardsForSelection**](ConnectApi.md#listPinterestBoardsForSelection) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards |
 | [**listPinterestBoardsForSelectionWithHttpInfo**](ConnectApi.md#listPinterestBoardsForSelectionWithHttpInfo) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards |
 | [**listSlackChannels**](ConnectApi.md#listSlackChannels) | **GET** /v1/connect/slack | List Slack channels for the channel picker |
@@ -150,15 +164,179 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateLinkedInOrganizationWithHttpInfo**](ConnectApi.md#updateLinkedInOrganizationWithHttpInfo) | **PUT** /v1/accounts/{accountId}/linkedin-organization | Switch LinkedIn account type |
 | [**updateOAuthApp**](ConnectApi.md#updateOAuthApp) | **PATCH** /v1/connect/oauth-apps/{appId} | Update an OAuth app |
 | [**updateOAuthAppWithHttpInfo**](ConnectApi.md#updateOAuthAppWithHttpInfo) | **PATCH** /v1/connect/oauth-apps/{appId} | Update an OAuth app |
+| [**updateOrgConnection**](ConnectApi.md#updateOrgConnection) | **PATCH** /v1/org-connections/{orgConnectionId} | Update an organization connection |
+| [**updateOrgConnectionWithHttpInfo**](ConnectApi.md#updateOrgConnectionWithHttpInfo) | **PATCH** /v1/org-connections/{orgConnectionId} | Update an organization connection |
 | [**updatePinterestBoards**](ConnectApi.md#updatePinterestBoards) | **PUT** /v1/accounts/{accountId}/pinterest-boards | Set default Pinterest board |
 | [**updatePinterestBoardsWithHttpInfo**](ConnectApi.md#updatePinterestBoardsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/pinterest-boards | Set default Pinterest board |
 | [**updateRedditSubreddits**](ConnectApi.md#updateRedditSubreddits) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit |
 | [**updateRedditSubredditsWithHttpInfo**](ConnectApi.md#updateRedditSubredditsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit |
 | [**updateYoutubeDefaultPlaylist**](ConnectApi.md#updateYoutubeDefaultPlaylist) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist |
 | [**updateYoutubeDefaultPlaylistWithHttpInfo**](ConnectApi.md#updateYoutubeDefaultPlaylistWithHttpInfo) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist |
+| [**verifyOrgConnection**](ConnectApi.md#verifyOrgConnection) | **POST** /v1/org-connections/{orgConnectionId}/verify | Verify an organization connection |
+| [**verifyOrgConnectionWithHttpInfo**](ConnectApi.md#verifyOrgConnectionWithHttpInfo) | **POST** /v1/org-connections/{orgConnectionId}/verify | Verify an organization connection |
 | [**voteRedditThing**](ConnectApi.md#voteRedditThing) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment |
 | [**voteRedditThingWithHttpInfo**](ConnectApi.md#voteRedditThingWithHttpInfo) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment |
 
+
+
+## addOrgConnectionMailbox
+
+> InlineObject1 addOrgConnectionMailbox(orgConnectionId, addOrgConnectionMailboxRequest)
+
+Add a mailbox from an organization connection
+
+Adds one mailbox from an active organization connection, with no sign-in from its user. It becomes a &#x60;google&#x60; or &#x60;microsoft&#x60; account on the connection&#39;s profile and works with every email, calendar, files and contacts endpoint.  &#x60;201&#x60; for a new account, &#x60;200&#x60; when the address was already on the profile and now runs on the organization grant. &#x60;account.connected&#x60; fires. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String orgConnectionId = "orgConnectionId_example"; // String | 
+        AddOrgConnectionMailboxRequest addOrgConnectionMailboxRequest = new AddOrgConnectionMailboxRequest(); // AddOrgConnectionMailboxRequest | 
+        try {
+            InlineObject1 result = apiInstance.addOrgConnectionMailbox(orgConnectionId, addOrgConnectionMailboxRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#addOrgConnectionMailbox");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orgConnectionId** | **String**|  | |
+| **addOrgConnectionMailboxRequest** | [**AddOrgConnectionMailboxRequest**](AddOrgConnectionMailboxRequest.md)|  | |
+
+### Return type
+
+[**InlineObject1**](InlineObject1.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The mailbox account |  -  |
+| **201** | The mailbox account |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The key cannot write to the profile, the plan cannot take another account, or the address is not on &#x60;allowedEmails&#x60;. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | &#x60;org_grant_incomplete&#x60;: the TXT record, the delegation, the consent or a permission is missing, or the connection is not active yet. |  -  |
+
+## addOrgConnectionMailboxWithHttpInfo
+
+> ApiResponse<InlineObject1> addOrgConnectionMailbox addOrgConnectionMailboxWithHttpInfo(orgConnectionId, addOrgConnectionMailboxRequest)
+
+Add a mailbox from an organization connection
+
+Adds one mailbox from an active organization connection, with no sign-in from its user. It becomes a &#x60;google&#x60; or &#x60;microsoft&#x60; account on the connection&#39;s profile and works with every email, calendar, files and contacts endpoint.  &#x60;201&#x60; for a new account, &#x60;200&#x60; when the address was already on the profile and now runs on the organization grant. &#x60;account.connected&#x60; fires. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String orgConnectionId = "orgConnectionId_example"; // String | 
+        AddOrgConnectionMailboxRequest addOrgConnectionMailboxRequest = new AddOrgConnectionMailboxRequest(); // AddOrgConnectionMailboxRequest | 
+        try {
+            ApiResponse<InlineObject1> response = apiInstance.addOrgConnectionMailboxWithHttpInfo(orgConnectionId, addOrgConnectionMailboxRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#addOrgConnectionMailbox");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orgConnectionId** | **String**|  | |
+| **addOrgConnectionMailboxRequest** | [**AddOrgConnectionMailboxRequest**](AddOrgConnectionMailboxRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**InlineObject1**](InlineObject1.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The mailbox account |  -  |
+| **201** | The mailbox account |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The key cannot write to the profile, the plan cannot take another account, or the address is not on &#x60;allowedEmails&#x60;. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | &#x60;org_grant_incomplete&#x60;: the TXT record, the delegation, the consent or a permission is missing, or the connection is not active yet. |  -  |
 
 
 ## assignGoogleBusinessLocation
@@ -2719,6 +2897,306 @@ ApiResponse<[**ConnectWordPressWithApplicationPassword200Response**](ConnectWord
 | **503** | The WordPress site could not be reached. |  -  |
 
 
+## createGoogleOrgConnection
+
+> CreateGoogleOrgConnection201Response createGoogleOrgConnection(createGoogleOrgConnectionRequest)
+
+Start a Google Workspace organization connection
+
+Creates an organization connection for a Google Workspace domain. A super admin then delegates Zernio&#39;s client ID with the returned scopes, and you add mailboxes without each user signing in.  ### Flow  1. Add &#x60;setup.dnsRecord&#x60; (a TXT record) to the domain. It proves the domain&#39;s owner set up this connection. 2. A super admin adds &#x60;setup.clientId&#x60; with &#x60;setup.scopes&#x60; under domain-wide delegation in the Admin console. 3. Call &#x60;POST /v1/org-connections/{orgConnectionId}/verify&#x60; with any mailbox in the domain. 4. Add mailboxes with &#x60;POST /v1/org-connections/{orgConnectionId}/mailboxes&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        CreateGoogleOrgConnectionRequest createGoogleOrgConnectionRequest = new CreateGoogleOrgConnectionRequest(); // CreateGoogleOrgConnectionRequest | 
+        try {
+            CreateGoogleOrgConnection201Response result = apiInstance.createGoogleOrgConnection(createGoogleOrgConnectionRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#createGoogleOrgConnection");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createGoogleOrgConnectionRequest** | [**CreateGoogleOrgConnectionRequest**](CreateGoogleOrgConnectionRequest.md)|  | |
+
+### Return type
+
+[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The connection, pending until verified |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The key cannot write to the profile, the plan cannot take another account, or the address is not on &#x60;allowedEmails&#x60;. |  -  |
+
+## createGoogleOrgConnectionWithHttpInfo
+
+> ApiResponse<CreateGoogleOrgConnection201Response> createGoogleOrgConnection createGoogleOrgConnectionWithHttpInfo(createGoogleOrgConnectionRequest)
+
+Start a Google Workspace organization connection
+
+Creates an organization connection for a Google Workspace domain. A super admin then delegates Zernio&#39;s client ID with the returned scopes, and you add mailboxes without each user signing in.  ### Flow  1. Add &#x60;setup.dnsRecord&#x60; (a TXT record) to the domain. It proves the domain&#39;s owner set up this connection. 2. A super admin adds &#x60;setup.clientId&#x60; with &#x60;setup.scopes&#x60; under domain-wide delegation in the Admin console. 3. Call &#x60;POST /v1/org-connections/{orgConnectionId}/verify&#x60; with any mailbox in the domain. 4. Add mailboxes with &#x60;POST /v1/org-connections/{orgConnectionId}/mailboxes&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        CreateGoogleOrgConnectionRequest createGoogleOrgConnectionRequest = new CreateGoogleOrgConnectionRequest(); // CreateGoogleOrgConnectionRequest | 
+        try {
+            ApiResponse<CreateGoogleOrgConnection201Response> response = apiInstance.createGoogleOrgConnectionWithHttpInfo(createGoogleOrgConnectionRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#createGoogleOrgConnection");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createGoogleOrgConnectionRequest** | [**CreateGoogleOrgConnectionRequest**](CreateGoogleOrgConnectionRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The connection, pending until verified |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The key cannot write to the profile, the plan cannot take another account, or the address is not on &#x60;allowedEmails&#x60;. |  -  |
+
+
+## createMicrosoftOrgConnection
+
+> CreateGoogleOrgConnection201Response createMicrosoftOrgConnection(createMicrosoftOrgConnectionRequest)
+
+Start a Microsoft 365 organization connection
+
+Creates an organization connection for a Microsoft 365 tenant. An administrator opens &#x60;setup.adminConsentUrl&#x60; and approves Zernio&#39;s application permissions once, then you add mailboxes without each user signing in.  After consent Microsoft sends the administrator to &#x60;redirectUrl&#x60; with &#x60;orgConnectionId&#x60;, &#x60;status&#x60; (&#x60;active&#x60;, &#x60;pending&#x60; or &#x60;denied&#x60;) and &#x60;tenant&#x60;.  Application permissions reach every mailbox in the tenant. Administrators can scope them with an Exchange Online application access policy or RBAC for Applications. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        CreateMicrosoftOrgConnectionRequest createMicrosoftOrgConnectionRequest = new CreateMicrosoftOrgConnectionRequest(); // CreateMicrosoftOrgConnectionRequest | 
+        try {
+            CreateGoogleOrgConnection201Response result = apiInstance.createMicrosoftOrgConnection(createMicrosoftOrgConnectionRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#createMicrosoftOrgConnection");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createMicrosoftOrgConnectionRequest** | [**CreateMicrosoftOrgConnectionRequest**](CreateMicrosoftOrgConnectionRequest.md)|  | |
+
+### Return type
+
+[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The connection, pending until an administrator consents |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The key cannot write to the profile, the plan cannot take another account, or the address is not on &#x60;allowedEmails&#x60;. |  -  |
+
+## createMicrosoftOrgConnectionWithHttpInfo
+
+> ApiResponse<CreateGoogleOrgConnection201Response> createMicrosoftOrgConnection createMicrosoftOrgConnectionWithHttpInfo(createMicrosoftOrgConnectionRequest)
+
+Start a Microsoft 365 organization connection
+
+Creates an organization connection for a Microsoft 365 tenant. An administrator opens &#x60;setup.adminConsentUrl&#x60; and approves Zernio&#39;s application permissions once, then you add mailboxes without each user signing in.  After consent Microsoft sends the administrator to &#x60;redirectUrl&#x60; with &#x60;orgConnectionId&#x60;, &#x60;status&#x60; (&#x60;active&#x60;, &#x60;pending&#x60; or &#x60;denied&#x60;) and &#x60;tenant&#x60;.  Application permissions reach every mailbox in the tenant. Administrators can scope them with an Exchange Online application access policy or RBAC for Applications. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        CreateMicrosoftOrgConnectionRequest createMicrosoftOrgConnectionRequest = new CreateMicrosoftOrgConnectionRequest(); // CreateMicrosoftOrgConnectionRequest | 
+        try {
+            ApiResponse<CreateGoogleOrgConnection201Response> response = apiInstance.createMicrosoftOrgConnectionWithHttpInfo(createMicrosoftOrgConnectionRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#createMicrosoftOrgConnection");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createMicrosoftOrgConnectionRequest** | [**CreateMicrosoftOrgConnectionRequest**](CreateMicrosoftOrgConnectionRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The connection, pending until an administrator consents |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The key cannot write to the profile, the plan cannot take another account, or the address is not on &#x60;allowedEmails&#x60;. |  -  |
+
+
 ## createOAuthApp
 
 > CreateOAuthApp201Response createOAuthApp(createOAuthAppRequest)
@@ -3497,6 +3975,154 @@ ApiResponse<[**DeleteOAuthApp200Response**](DeleteOAuthApp200Response.md)>
 | **403** | The caller cannot change workspace settings (INSUFFICIENT_PERMISSIONS). |  -  |
 | **404** | Resource not found |  -  |
 | **409** | Accounts are still connected through the app (OAUTH_APP_IN_USE); resend with confirm&#x3D;true. |  -  |
+
+
+## deleteOrgConnection
+
+> DeleteOrgConnection200Response deleteOrgConnection(orgConnectionId)
+
+Delete an organization connection
+
+Deletes the connection. Mailboxes added from it stay on the profile and answer &#x60;401&#x60; &#x60;reconnect_required&#x60; until you disconnect them or connect them another way.  &#x60;mailboxAccountIds&#x60; lists them. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String orgConnectionId = "orgConnectionId_example"; // String | 
+        try {
+            DeleteOrgConnection200Response result = apiInstance.deleteOrgConnection(orgConnectionId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#deleteOrgConnection");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orgConnectionId** | **String**|  | |
+
+### Return type
+
+[**DeleteOrgConnection200Response**](DeleteOrgConnection200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Deleted |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## deleteOrgConnectionWithHttpInfo
+
+> ApiResponse<DeleteOrgConnection200Response> deleteOrgConnection deleteOrgConnectionWithHttpInfo(orgConnectionId)
+
+Delete an organization connection
+
+Deletes the connection. Mailboxes added from it stay on the profile and answer &#x60;401&#x60; &#x60;reconnect_required&#x60; until you disconnect them or connect them another way.  &#x60;mailboxAccountIds&#x60; lists them. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String orgConnectionId = "orgConnectionId_example"; // String | 
+        try {
+            ApiResponse<DeleteOrgConnection200Response> response = apiInstance.deleteOrgConnectionWithHttpInfo(orgConnectionId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#deleteOrgConnection");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orgConnectionId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**DeleteOrgConnection200Response**](DeleteOrgConnection200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Deleted |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## getConnectHandoff
@@ -5139,6 +5765,154 @@ ApiResponse<[**CreateOAuthApp201Response**](CreateOAuthApp201Response.md)>
 |-------------|-------------|------------------|
 | **200** | The app. |  -  |
 | **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## getOrgConnection
+
+> CreateGoogleOrgConnection201Response getOrgConnection(orgConnectionId)
+
+Get an organization connection
+
+One organization connection with its status and setup instructions.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String orgConnectionId = "orgConnectionId_example"; // String | 
+        try {
+            CreateGoogleOrgConnection201Response result = apiInstance.getOrgConnection(orgConnectionId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getOrgConnection");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orgConnectionId** | **String**|  | |
+
+### Return type
+
+[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The connection |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## getOrgConnectionWithHttpInfo
+
+> ApiResponse<CreateGoogleOrgConnection201Response> getOrgConnection getOrgConnectionWithHttpInfo(orgConnectionId)
+
+Get an organization connection
+
+One organization connection with its status and setup instructions.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String orgConnectionId = "orgConnectionId_example"; // String | 
+        try {
+            ApiResponse<CreateGoogleOrgConnection201Response> response = apiInstance.getOrgConnectionWithHttpInfo(orgConnectionId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getOrgConnection");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orgConnectionId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The connection |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -8679,6 +9453,308 @@ ApiResponse<[**ListOAuthApps200Response**](ListOAuthApps200Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
+## listOrgConnectionUsers
+
+> ListOrgConnectionUsers200Response listOrgConnectionUsers(orgConnectionId, cursor)
+
+List an organization&#39;s users
+
+The organization&#39;s users, 100 per page, with whether each is allowed and the &#x60;accountId&#x60; of those already added.  Google needs &#x60;adminEmail&#x60; on the connection and the directory scope delegated. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String orgConnectionId = "orgConnectionId_example"; // String | 
+        String cursor = "cursor_example"; // String | 
+        try {
+            ListOrgConnectionUsers200Response result = apiInstance.listOrgConnectionUsers(orgConnectionId, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listOrgConnectionUsers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orgConnectionId** | **String**|  | |
+| **cursor** | **String**|  | [optional] |
+
+### Return type
+
+[**ListOrgConnectionUsers200Response**](ListOrgConnectionUsers200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A page of users |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | &#x60;org_grant_incomplete&#x60;: the TXT record, the delegation, the consent or a permission is missing, or the connection is not active yet. |  -  |
+
+## listOrgConnectionUsersWithHttpInfo
+
+> ApiResponse<ListOrgConnectionUsers200Response> listOrgConnectionUsers listOrgConnectionUsersWithHttpInfo(orgConnectionId, cursor)
+
+List an organization&#39;s users
+
+The organization&#39;s users, 100 per page, with whether each is allowed and the &#x60;accountId&#x60; of those already added.  Google needs &#x60;adminEmail&#x60; on the connection and the directory scope delegated. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String orgConnectionId = "orgConnectionId_example"; // String | 
+        String cursor = "cursor_example"; // String | 
+        try {
+            ApiResponse<ListOrgConnectionUsers200Response> response = apiInstance.listOrgConnectionUsersWithHttpInfo(orgConnectionId, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listOrgConnectionUsers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orgConnectionId** | **String**|  | |
+| **cursor** | **String**|  | [optional] |
+
+### Return type
+
+ApiResponse<[**ListOrgConnectionUsers200Response**](ListOrgConnectionUsers200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A page of users |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | &#x60;org_grant_incomplete&#x60;: the TXT record, the delegation, the consent or a permission is missing, or the connection is not active yet. |  -  |
+
+
+## listOrgConnections
+
+> ListOrgConnections200Response listOrgConnections(profileId)
+
+List organization connections
+
+The Google Workspace and Microsoft 365 organization connections on a profile, newest first.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        try {
+            ListOrgConnections200Response result = apiInstance.listOrgConnections(profileId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listOrgConnections");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | |
+
+### Return type
+
+[**ListOrgConnections200Response**](ListOrgConnections200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The connections |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## listOrgConnectionsWithHttpInfo
+
+> ApiResponse<ListOrgConnections200Response> listOrgConnections listOrgConnectionsWithHttpInfo(profileId)
+
+List organization connections
+
+The Google Workspace and Microsoft 365 organization connections on a profile, newest first.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        try {
+            ApiResponse<ListOrgConnections200Response> response = apiInstance.listOrgConnectionsWithHttpInfo(profileId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listOrgConnections");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**ListOrgConnections200Response**](ListOrgConnections200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The connections |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
 ## listPinterestBoardsForSelection
 
 > ListPinterestBoardsForSelection200Response listPinterestBoardsForSelection(xConnectToken, profileId, tempToken)
@@ -11853,6 +12929,160 @@ ApiResponse<[**CreateOAuthApp201Response**](CreateOAuthApp201Response.md)>
 | **404** | Resource not found |  -  |
 
 
+## updateOrgConnection
+
+> CreateGoogleOrgConnection201Response updateOrgConnection(orgConnectionId, updateOrgConnectionRequest)
+
+Update an organization connection
+
+Changes the allowlist or the Google directory admin.  Mailboxes already added that a narrowed allowlist excludes answer &#x60;401&#x60; &#x60;reconnect_required&#x60; until it includes them again. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String orgConnectionId = "orgConnectionId_example"; // String | 
+        UpdateOrgConnectionRequest updateOrgConnectionRequest = new UpdateOrgConnectionRequest(); // UpdateOrgConnectionRequest | 
+        try {
+            CreateGoogleOrgConnection201Response result = apiInstance.updateOrgConnection(orgConnectionId, updateOrgConnectionRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#updateOrgConnection");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orgConnectionId** | **String**|  | |
+| **updateOrgConnectionRequest** | [**UpdateOrgConnectionRequest**](UpdateOrgConnectionRequest.md)|  | |
+
+### Return type
+
+[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated connection |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## updateOrgConnectionWithHttpInfo
+
+> ApiResponse<CreateGoogleOrgConnection201Response> updateOrgConnection updateOrgConnectionWithHttpInfo(orgConnectionId, updateOrgConnectionRequest)
+
+Update an organization connection
+
+Changes the allowlist or the Google directory admin.  Mailboxes already added that a narrowed allowlist excludes answer &#x60;401&#x60; &#x60;reconnect_required&#x60; until it includes them again. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String orgConnectionId = "orgConnectionId_example"; // String | 
+        UpdateOrgConnectionRequest updateOrgConnectionRequest = new UpdateOrgConnectionRequest(); // UpdateOrgConnectionRequest | 
+        try {
+            ApiResponse<CreateGoogleOrgConnection201Response> response = apiInstance.updateOrgConnectionWithHttpInfo(orgConnectionId, updateOrgConnectionRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#updateOrgConnection");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orgConnectionId** | **String**|  | |
+| **updateOrgConnectionRequest** | [**UpdateOrgConnectionRequest**](UpdateOrgConnectionRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated connection |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
 ## updatePinterestBoards
 
 > ConnectBlueskyCredentials200Response updatePinterestBoards(accountId, updatePinterestBoardsRequest)
@@ -12315,6 +13545,162 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+
+
+## verifyOrgConnection
+
+> CreateGoogleOrgConnection201Response verifyOrgConnection(orgConnectionId, verifyOrgConnectionRequest)
+
+Verify an organization connection
+
+Checks the administrator&#39;s grant and activates the connection.  Google: the domain&#39;s TXT record and a token for &#x60;email&#x60; with every delegated scope. Microsoft: a tenant token carrying every application permission the areas need.  &#x60;409&#x60; &#x60;org_grant_incomplete&#x60; says what is still missing. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String orgConnectionId = "orgConnectionId_example"; // String | 
+        VerifyOrgConnectionRequest verifyOrgConnectionRequest = new VerifyOrgConnectionRequest(); // VerifyOrgConnectionRequest | 
+        try {
+            CreateGoogleOrgConnection201Response result = apiInstance.verifyOrgConnection(orgConnectionId, verifyOrgConnectionRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#verifyOrgConnection");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orgConnectionId** | **String**|  | |
+| **verifyOrgConnectionRequest** | [**VerifyOrgConnectionRequest**](VerifyOrgConnectionRequest.md)|  | [optional] |
+
+### Return type
+
+[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The active connection |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | &#x60;org_grant_incomplete&#x60;: the TXT record, the delegation, the consent or a permission is missing, or the connection is not active yet. |  -  |
+
+## verifyOrgConnectionWithHttpInfo
+
+> ApiResponse<CreateGoogleOrgConnection201Response> verifyOrgConnection verifyOrgConnectionWithHttpInfo(orgConnectionId, verifyOrgConnectionRequest)
+
+Verify an organization connection
+
+Checks the administrator&#39;s grant and activates the connection.  Google: the domain&#39;s TXT record and a token for &#x60;email&#x60; with every delegated scope. Microsoft: a tenant token carrying every application permission the areas need.  &#x60;409&#x60; &#x60;org_grant_incomplete&#x60; says what is still missing. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String orgConnectionId = "orgConnectionId_example"; // String | 
+        VerifyOrgConnectionRequest verifyOrgConnectionRequest = new VerifyOrgConnectionRequest(); // VerifyOrgConnectionRequest | 
+        try {
+            ApiResponse<CreateGoogleOrgConnection201Response> response = apiInstance.verifyOrgConnectionWithHttpInfo(orgConnectionId, verifyOrgConnectionRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#verifyOrgConnection");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orgConnectionId** | **String**|  | |
+| **verifyOrgConnectionRequest** | [**VerifyOrgConnectionRequest**](VerifyOrgConnectionRequest.md)|  | [optional] |
+
+### Return type
+
+ApiResponse<[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The active connection |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | &#x60;org_grant_incomplete&#x60;: the TXT record, the delegation, the consent or a permission is missing, or the connection is not active yet. |  -  |
 
 
 ## voteRedditThing
