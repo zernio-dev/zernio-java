@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   AutomationTemplatePublisher.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T12:37:14.498174046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T12:43:26.418367798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationTemplatePublisher {
   /**
    * &#x60;team&#x60; for your team&#39;s templates and shared ones, &#x60;zernio&#x60; for Zernio&#39;s own.
