@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SelectLinkedInOrganization200ResponseFailedInner.JSON_PROPERTY_CODE,
   SelectLinkedInOrganization200ResponseFailedInner.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:04:43.290471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:12:24.818206242Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectLinkedInOrganization200ResponseFailedInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ListAdRuleRuns200Response.JSON_PROPERTY_RUNS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:04:43.290471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:12:24.818206242Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdRuleRuns200Response {
   public static final String JSON_PROPERTY_RUNS = "runs";
   @javax.annotation.Nonnull

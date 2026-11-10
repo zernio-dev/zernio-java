@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateTransferRequest.JSON_PROPERTY_AMOUNT_CENTS,
   CreateTransferRequest.JSON_PROPERTY_REFERENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:04:43.290471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:12:24.818206242Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateTransferRequest {
   public static final String JSON_PROPERTY_PAYEE_ID = "payeeId";
   @javax.annotation.Nonnull
