@@ -166,6 +166,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onConversationControlChangedWithHttpInfo**](WebhookEventsApi.md#onConversationControlChangedWithHttpInfo) | **POST** /conversation.control_changed | Conversation control changed event |
 | [**onConversationStarted**](WebhookEventsApi.md#onConversationStarted) | **POST** /conversation.started | Conversation started event |
 | [**onConversationStartedWithHttpInfo**](WebhookEventsApi.md#onConversationStartedWithHttpInfo) | **POST** /conversation.started | Conversation started event |
+| [**onConversionReceived**](WebhookEventsApi.md#onConversionReceived) | **POST** /conversion.received | Conversion received event |
+| [**onConversionReceivedWithHttpInfo**](WebhookEventsApi.md#onConversionReceivedWithHttpInfo) | **POST** /conversion.received | Conversion received event |
 | [**onCreatorCampaignBudgetExhausted**](WebhookEventsApi.md#onCreatorCampaignBudgetExhausted) | **POST** /creator_campaign.budget_exhausted | Creator campaign budget exhausted event |
 | [**onCreatorCampaignBudgetExhaustedWithHttpInfo**](WebhookEventsApi.md#onCreatorCampaignBudgetExhaustedWithHttpInfo) | **POST** /creator_campaign.budget_exhausted | Creator campaign budget exhausted event |
 | [**onCreatorCampaignClosed**](WebhookEventsApi.md#onCreatorCampaignClosed) | **POST** /creator_campaign.closed | Creator campaign closed event |
@@ -11800,6 +11802,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadConversationStarted** | [**WebhookPayloadConversationStarted**](WebhookPayloadConversationStarted.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onConversionReceived
+
+> void onConversionReceived(webhookPayloadConversion)
+
+Conversion received event
+
+Zernio stored an event: one sent to &#x60;POST /v1/events&#x60; or &#x60;POST /v1/ads/conversions&#x60;, or one a connected source sent for you (a lead form lead, a Shopify or WooCommerce order, a HubSpot deal). It fires again when a newer version of the same event is stored, such as an order that changed.  &#x60;conversion&#x60; has the fields of &#x60;GET /v1/events/{eventId}&#x60;, plus &#x60;source&#x60;, &#x60;campaign&#x60; (the campaign the event counts for, or null) and &#x60;campaignMatch&#x60; (why there is none). Personal data is never sent: &#x60;hasEmail&#x60;, &#x60;hasPhone&#x60; and &#x60;hasExternalId&#x60; only say what the event carried.  ### Deduplication  The event &#x60;id&#x60; follows the stored event and its version, so a resend of the same version carries the same &#x60;id&#x60;. Deduplicate on it.  ### Not sent for  Test events (they are never stored), corrections made with &#x60;PATCH&#x60; or &#x60;DELETE /v1/events/{eventId}&#x60;, and the hourly re-match that ties an earlier event to its campaign. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadConversion webhookPayloadConversion = new WebhookPayloadConversion(); // WebhookPayloadConversion | 
+        try {
+            apiInstance.onConversionReceived(webhookPayloadConversion);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onConversionReceived");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadConversion** | [**WebhookPayloadConversion**](WebhookPayloadConversion.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onConversionReceivedWithHttpInfo
+
+> ApiResponse<Void> onConversionReceived onConversionReceivedWithHttpInfo(webhookPayloadConversion)
+
+Conversion received event
+
+Zernio stored an event: one sent to &#x60;POST /v1/events&#x60; or &#x60;POST /v1/ads/conversions&#x60;, or one a connected source sent for you (a lead form lead, a Shopify or WooCommerce order, a HubSpot deal). It fires again when a newer version of the same event is stored, such as an order that changed.  &#x60;conversion&#x60; has the fields of &#x60;GET /v1/events/{eventId}&#x60;, plus &#x60;source&#x60;, &#x60;campaign&#x60; (the campaign the event counts for, or null) and &#x60;campaignMatch&#x60; (why there is none). Personal data is never sent: &#x60;hasEmail&#x60;, &#x60;hasPhone&#x60; and &#x60;hasExternalId&#x60; only say what the event carried.  ### Deduplication  The event &#x60;id&#x60; follows the stored event and its version, so a resend of the same version carries the same &#x60;id&#x60;. Deduplicate on it.  ### Not sent for  Test events (they are never stored), corrections made with &#x60;PATCH&#x60; or &#x60;DELETE /v1/events/{eventId}&#x60;, and the hourly re-match that ties an earlier event to its campaign. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadConversion webhookPayloadConversion = new WebhookPayloadConversion(); // WebhookPayloadConversion | 
+        try {
+            ApiResponse<Void> response = apiInstance.onConversionReceivedWithHttpInfo(webhookPayloadConversion);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onConversionReceived");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadConversion** | [**WebhookPayloadConversion**](WebhookPayloadConversion.md)|  | |
 
 ### Return type
 

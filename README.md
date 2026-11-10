@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.560.0
+- API version: 1.562.0
 
-- Build date: 2026-11-10T16:53:59.774990698Z[Etc/UTC]
+- Build date: 2026-11-10T17:00:03.420219115Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.560.0</version>
+  <version>1.562.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.560.0"
+compile "dev.zernio:zernio-sdk:1.562.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.560.0.jar`
+- `target/zernio-sdk-1.562.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -6013,6 +6013,9 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadConversationControlChangedControl](docs/WebhookPayloadConversationControlChangedControl.md)
  - [WebhookPayloadConversationStarted](docs/WebhookPayloadConversationStarted.md)
  - [WebhookPayloadConversationStartedConversation](docs/WebhookPayloadConversationStartedConversation.md)
+ - [WebhookPayloadConversion](docs/WebhookPayloadConversion.md)
+ - [WebhookPayloadConversionConversion](docs/WebhookPayloadConversionConversion.md)
+ - [WebhookPayloadConversionConversionCampaign](docs/WebhookPayloadConversionConversionCampaign.md)
  - [WebhookPayloadCreatorCampaign](docs/WebhookPayloadCreatorCampaign.md)
  - [WebhookPayloadCreatorCampaignCampaign](docs/WebhookPayloadCreatorCampaignCampaign.md)
  - [WebhookPayloadEmailBounced](docs/WebhookPayloadEmailBounced.md)

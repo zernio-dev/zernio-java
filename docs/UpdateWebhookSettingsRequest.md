@@ -72,6 +72,7 @@
 | REVIEW_DELETED | &quot;review.deleted&quot; |
 | REVIEW_RESTORED | &quot;review.restored&quot; |
 | LEAD_RECEIVED | &quot;lead.received&quot; |
+| CONVERSION_RECEIVED | &quot;conversion.received&quot; |
 | AD_STATUS_CHANGED | &quot;ad.status_changed&quot; |
 | AD_CREATED | &quot;ad.created&quot; |
 | AD_UPDATED | &quot;ad.updated&quot; |

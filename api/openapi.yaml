@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.560.0
+  version: 1.562.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -92539,6 +92539,7 @@ components:
             - review.deleted
             - review.restored
             - lead.received
+            - conversion.received
             - ad.status_changed
             - ad.created
             - ad.updated
@@ -97269,6 +97270,83 @@ components:
       - event
       - id
       - post
+      - timestamp
+    WebhookPayloadConversion:
+      description: Webhook payload for conversion.received events.
+      example:
+        test: true
+        profileId: profileId
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: conversion.received
+        conversion:
+          eventId: eventId
+          hasExternalId: true
+          source: source
+          receivedAt: 2000-01-23T04:56:07.000+00:00
+          actionSource: actionSource
+          utm:
+            campaign: campaign
+            source: source
+            medium: medium
+            content: content
+          sourceUrl: sourceUrl
+          hasEmail: true
+          zrn: zrn
+          clickIds:
+            gclid: gclid
+            fbc: fbc
+          eventTime: 2000-01-23T04:56:07.000+00:00
+          hasPhone: true
+          eventName: eventName
+          campaign:
+            adAccountId: adAccountId
+            campaignId: campaignId
+            platform: platform
+          currency: currency
+          value: 0.8008281904610115
+          campaignMatch: campaignMatch
+          destinationsSent: 6
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header. It follows the stored event and its version."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - conversion.received
+          type: string
+        conversion:
+          $ref: "#/components/schemas/WebhookPayloadConversion_conversion"
+        profileId:
+          description: The profile the event belongs to.
+          type: string
+        timestamp:
+          description: UTC time at which Zernio generated this event.
+          format: date-time
+          type: string
+      required:
+      - conversion
+      - event
+      - id
+      - profileId
       - timestamp
     WebhookPayloadLead:
       description: Webhook payload for lead.received events (Meta Lead Gen / Instant
@@ -147014,6 +147092,7 @@ components:
             - review.deleted
             - review.restored
             - lead.received
+            - conversion.received
             - ad.status_changed
             - ad.created
             - ad.updated
@@ -147261,6 +147340,7 @@ components:
             - review.deleted
             - review.restored
             - lead.received
+            - conversion.received
             - ad.status_changed
             - ad.created
             - ad.updated
@@ -147627,6 +147707,7 @@ components:
           - automation.alert.escalated
           - automation.alert.resolved
           - lead.received
+          - conversion.received
           - whatsapp.template.status_updated
           - whatsapp.template.category_updated
           - whatsapp.account.name_status_updated
@@ -213319,6 +213400,106 @@ components:
       - id
       - platform
       - username
+    WebhookPayloadConversion_conversion_campaign:
+      description: The campaign the event counts for in campaign results and ad rules.
+      example:
+        adAccountId: adAccountId
+        campaignId: campaignId
+        platform: platform
+      properties:
+        platform:
+          type: string
+        adAccountId:
+          type: string
+        campaignId:
+          type: string
+    WebhookPayloadConversion_conversion:
+      example:
+        eventId: eventId
+        hasExternalId: true
+        source: source
+        receivedAt: 2000-01-23T04:56:07.000+00:00
+        actionSource: actionSource
+        utm:
+          campaign: campaign
+          source: source
+          medium: medium
+          content: content
+        sourceUrl: sourceUrl
+        hasEmail: true
+        zrn: zrn
+        clickIds:
+          gclid: gclid
+          fbc: fbc
+        eventTime: 2000-01-23T04:56:07.000+00:00
+        hasPhone: true
+        eventName: eventName
+        campaign:
+          adAccountId: adAccountId
+          campaignId: campaignId
+          platform: platform
+        currency: currency
+        value: 0.8008281904610115
+        campaignMatch: campaignMatch
+        destinationsSent: 6
+      properties:
+        eventId:
+          type: string
+        eventName:
+          type: string
+        eventTime:
+          format: date-time
+          type: string
+        receivedAt:
+          format: date-time
+          type: string
+        source:
+          description: "Who sent it: `api`, `relay`, a lead form (`meta_leads`, `google_leads`,\
+            \ `linkedin_leads`, `tiktok_leads`), a store (`shopify`, `woocommerce`)\
+            \ or `hubspot`."
+          type: string
+        actionSource:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: number
+        currency:
+          nullable: true
+          type: string
+        sourceUrl:
+          description: "Origin, path and attribution parameters only."
+          nullable: true
+          type: string
+        utm:
+          $ref: "#/components/schemas/StoredEvent_utm"
+        zrn:
+          nullable: true
+          type: string
+        clickIds:
+          $ref: "#/components/schemas/StoredEvent_clickIds"
+        destinationsSent:
+          type: integer
+        hasEmail:
+          type: boolean
+        hasPhone:
+          type: boolean
+        hasExternalId:
+          type: boolean
+        campaign:
+          $ref: "#/components/schemas/WebhookPayloadConversion_conversion_campaign"
+        campaignMatch:
+          description: "`matched`, or why there is no campaign: `no_hint`, `no_campaign`,\
+            \ `ambiguous`, `not_counted` or `match_failed`."
+          type: string
+      required:
+      - campaign
+      - campaignMatch
+      - eventId
+      - eventName
+      - eventTime
+      - receivedAt
+      - source
     WebhookPayloadLead_lead:
       example:
         formId: formId
@@ -225765,10 +225946,12 @@ components:
             Maximum effective list size on LinkedIn is 1.
           type: string
         ipAddress:
-          description: Client IP address. Sent plaintext.
+          description: "Client IP address. Sent plaintext (Meta, Pinterest, Reddit,\
+            \ OpenAI, Google Ads)."
           type: string
         userAgent:
-          description: Client user-agent string. Sent plaintext.
+          description: "Client user-agent string. Sent plaintext (Meta, Pinterest,\
+            \ Reddit, OpenAI, Google Ads)."
           type: string
         country:
           description: "ISO 3166-1 alpha-2 country code, e.g. 'us'."
@@ -225782,8 +225965,9 @@ components:
             Meta only.
           type: string
         zip:
-          description: Meta advanced matching (zp). US uses first 5 digits; hashed
-            server-side. Meta only.
+          description: "Postal code. Meta advanced matching (zp; US uses first 5 digits;\
+            \ hashed server-side). Google Ads sends it plain in an address identifier\
+            \ with firstName, lastName and country, only when all four are present."
           type: string
         dob:
           description: Meta advanced matching (db). YYYYMMDD; hashed server-side.
@@ -226930,6 +227114,7 @@ x-documentation:
     - `review.updated` - A Google Business Profile reviewer edited their review text or rating, or a reply was added, edited or removed. A reply posted through `POST /v1/inbox/reviews/{reviewId}/reply` fires immediately, and the periodic check reports it again with the full review payload, so expect a second delivery. A reply removed through the API, or written or removed in Google's own interface, is reported by the periodic check: for replies written in Google, usually within 6 hours for reviews updated in the last 30 days and usually within about 7 days for older ones. Only teams with a webhook subscribed to `review.updated` are checked. A removed reply fires with `hasReply: false`.
     - `review.deleted` - Google Business Profile stopped returning this review, for example after Google's spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to `review.deleted` or `review.restored`. If the review comes back, `review.restored` fires. May arrive for a review id you never received `review.new` for. A review hidden and restored by Google may produce `review.deleted` followed by `review.restored`, and a `review.updated` can arrive for a review previously reported by `review.deleted` (it is restored on the next check).
     - `review.restored` - A review reported by `review.deleted` is returned by Google again. Same payload as `review.new`.
+    - `conversion.received` - Zernio stored an event sent to `POST /v1/events`, by the relay or by a connected source (lead forms, stores, HubSpot), new or a newer version. `conversion.campaign` is the campaign it counts for.
     - `lead.received` - New lead submitted against a Meta Lead Gen (Instant) Form or a Google Ads lead form (`account.platform` tells them apart). `lead.fields` is the question-key → answer map; `lead.formId`/`lead.adId` give provenance.
     - `ad.status_changed` - Ad, ad set, or campaign changed status on the ad platform (Meta: `in_process_ad_objects` entry/exit and `with_issues_ad_objects` violations)
     - `ad.created` - An ad was created through Zernio (`source` is `zernio`) or detected by the sync (`source` is `platform`). Never for history loaded when an account connects, nor for ads older than 7 days
