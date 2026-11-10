@@ -1156,6 +1156,7 @@ docs/EmailClean.md
 docs/EmailCleanForwarded.md
 docs/EmailCleanRemoved.md
 docs/EmailDraft.md
+docs/EmailDraftObject.md
 docs/EmailFolder.md
 docs/EmailLabel.md
 docs/EmailLabelColor.md
@@ -4911,6 +4912,7 @@ src/main/java/dev/zernio/model/EmailClean.java
 src/main/java/dev/zernio/model/EmailCleanForwarded.java
 src/main/java/dev/zernio/model/EmailCleanRemoved.java
 src/main/java/dev/zernio/model/EmailDraft.java
+src/main/java/dev/zernio/model/EmailDraftObject.java
 src/main/java/dev/zernio/model/EmailFolder.java
 src/main/java/dev/zernio/model/EmailLabel.java
 src/main/java/dev/zernio/model/EmailLabelColor.java
@@ -7389,3 +7391,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/EmailDraftObjectTest.java

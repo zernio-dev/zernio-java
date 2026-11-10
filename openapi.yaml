@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Zernio API
-  version: "1.556.1"
+  version: "1.556.2"
   description: |
     API reference for Zernio. Authenticate with a Bearer API key.
     Base URL: https://zernio.com/api
@@ -14281,13 +14281,17 @@ components:
         trackOpens: { type: boolean, description: 'Adds an open pixel to the html and fires `email.opened`. Needs `html`.' }
         trackLinks: { type: boolean, description: 'Rewrites every http(s) link in the html through a Zernio redirect and fires `email.link_clicked`. Needs `html`.' }
         trackReplies: { type: boolean, description: 'Fires `email.thread_replied` when someone else writes in this message''s thread. Works with text or html.' }
+    EmailDraftObject:
+      type: string
+      enum: [draft]
+      description: Always `draft`.
     EmailDraft:
       description: 'A draft in the mailbox. Carries the message fields; `id` is the draft id the drafts endpoints take. Store `id`, not `messageId`.'
       allOf:
         - $ref: '#/components/schemas/EmailMessage'
         - type: object
           properties:
-            object: { type: string, enum: [draft] }
+            object: { $ref: '#/components/schemas/EmailDraftObject' }
             id: { type: string, description: 'The draft id: the Gmail draft id, or the Outlook message id.' }
             kind: { type: string, enum: [new, reply, forward], description: 'Fixed when the draft is created. A draft the user wrote in their mail client is read from its headers.' }
             version: { type: string, description: 'Changes on every edit, the user''s in their mail app included. Pass it as `If-Match` to update or send only that version. Also the `ETag` response header.' }

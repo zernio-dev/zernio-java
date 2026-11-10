@@ -35,7 +35,7 @@ A draft in the mailbox. Carries the message fields; `id` is the draft id the dra
 |**clean** | [**EmailClean**](EmailClean.md) |  |  [optional] |
 |**draftId** | **String** | On a mail sent from a draft (&#x60;POST /v1/email/drafts/{draftId}/send&#x60;): the draft it was. The sent mail has a new id. |  [optional] |
 |**forwardedFrom** | **String** | On a forward: the message it forwarded. |  [optional] |
-|**_object** | [**ObjectEnum**](#ObjectEnum) |  |  [optional] |
+|**_object** | **EmailDraftObject** |  |  [optional] |
 |**kind** | [**KindEnum**](#KindEnum) | Fixed when the draft is created. A draft the user wrote in their mail client is read from its headers. |  [optional] |
 |**version** | **String** | Changes on every edit, the user&#39;s in their mail app included. Pass it as &#x60;If-Match&#x60; to update or send only that version. Also the &#x60;ETag&#x60; response header. |  [optional] |
 |**messageId** | **String** | The provider message behind the draft. Volatile: Gmail replaces it on every save. |  [optional] |
@@ -51,14 +51,6 @@ A draft in the mailbox. Carries the message fields; `id` is the draft id the dra
 | GOOGLE | &quot;google&quot; |
 | MICROSOFT | &quot;microsoft&quot; |
 | IMAP | &quot;imap&quot; |
-
-
-
-## Enum: ObjectEnum
-
-| Name | Value |
-|---- | -----|
-| DRAFT | &quot;draft&quot; |
 
 
 

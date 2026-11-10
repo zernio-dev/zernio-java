@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.556.1
+  version: 1.556.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -106323,14 +106323,17 @@ components:
       - accountId
       - subject
       - to
+    EmailDraftObject:
+      description: Always `draft`.
+      enum:
+      - draft
+      type: string
     EmailDraft:
       allOf:
       - $ref: "#/components/schemas/EmailMessage"
       - properties:
           object:
-            enum:
-            - draft
-            type: string
+            $ref: "#/components/schemas/EmailDraftObject"
           id:
             description: "The draft id: the Gmail draft id, or the Outlook message\
               \ id."
