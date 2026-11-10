@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   SupportRunDiagnosis.JSON_PROPERTY_DOCS_LINKS,
   SupportRunDiagnosis.JSON_PROPERTY_WHO_MUST_ACT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T01:14:02.590680224Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:12:27.368329126Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SupportRunDiagnosis {
   /**
    * What kind of problem the answer describes. New values may be added: treat any value you do not recognize as &#x60;other&#x60;.

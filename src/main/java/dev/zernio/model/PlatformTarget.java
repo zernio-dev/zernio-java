@@ -65,7 +65,7 @@ import dev.zernio.ApiClient;
   PlatformTarget.JSON_PROPERTY_ERROR_SOURCE,
   PlatformTarget.JSON_PROPERTY_PLATFORM_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T01:14:02.590680224Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:12:27.368329126Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PlatformTarget {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -433,7 +433,7 @@ public class PlatformTarget {
   }
 
   /**
-   * Platform-specific status: pending, processing, uploading, published, failed, cancelled (removed from the platform via POST /v1/posts/{postId}/unpublish)
+   * Platform-specific status: pending, processing, uploading, published, failed, cancelled (removed from the platform via POST /v1/posts/{postId}/unpublish). On TikTok, uploading means TikTok accepted the post and is still processing it: this can last up to 48 hours, the post stays publishing meanwhile, and the entry then becomes published or failed on its own.
    * @return status
    */
   @javax.annotation.Nullable

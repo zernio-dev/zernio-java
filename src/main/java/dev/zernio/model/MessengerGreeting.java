@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   MessengerGreeting.JSON_PROPERTY_LOCALE,
   MessengerGreeting.JSON_PROPERTY_TEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T01:14:02.590680224Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:12:27.368329126Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessengerGreeting {
   public static final String JSON_PROPERTY_LOCALE = "locale";
   @javax.annotation.Nonnull
