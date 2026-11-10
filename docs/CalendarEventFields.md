@@ -14,8 +14,8 @@
 |**end** | **String** | Exclusive for all-day events. |  [optional] |
 |**allDay** | **Boolean** |  |  [optional] |
 |**timezone** | **String** | IANA zone the event is scheduled in. Defaults to the calendar&#39;s zone on Google and the mailbox&#39;s working-hours zone on Microsoft (UTC when Outlook has none, as on personal accounts). A PATCH that moves an event without a zone keeps the zone the event already has. |  [optional] |
-|**participants** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  |  [optional] |
-|**recurrence** | **List&lt;String&gt;** | RRULE lines, e.g. &#x60;RRULE:FREQ&#x3D;WEEKLY;BYDAY&#x3D;MO,WE;COUNT&#x3D;10&#x60;. |  [optional] |
+|**participants** | [**List&lt;CalendarEventFieldsParticipantsInner&gt;**](CalendarEventFieldsParticipantsInner.md) |  |  [optional] |
+|**recurrence** | **List&lt;String&gt;** | RRULE lines, e.g. &#x60;RRULE:FREQ&#x3D;WEEKLY;BYDAY&#x3D;MO,WE;COUNT&#x3D;10&#x60;. Microsoft takes one RRULE plus EXDATE lines; Zernio removes the EXDATE occurrences after saving the series. |  [optional] |
 |**reminders** | [**CalendarEventFieldsReminders**](CalendarEventFieldsReminders.md) |  |  [optional] |
 |**conferencing** | [**ConferencingEnum**](#ConferencingEnum) |  |  [optional] |
 |**busy** | **Boolean** |  |  [optional] |

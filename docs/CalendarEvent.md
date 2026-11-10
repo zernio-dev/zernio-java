@@ -28,6 +28,8 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**icalUid** | **String** |  |  [optional] |
 |**masterEventId** | **String** |  |  [optional] |
+|**type** | [**TypeEnum**](#TypeEnum) | &#x60;series&#x60; is a recurring master, &#x60;occurrence&#x60; one of its instances, and &#x60;exception&#x60; an instance changed on its own. Google flags an instance as an exception only when it was moved off its slot. |  [optional] |
+|**originalStart** | **String** | For an occurrence or exception, the start it has in the series pattern. |  [optional] |
 |**htmlLink** | **String** |  |  [optional] |
 |**readOnly** | **Boolean** |  |  [optional] |
 |**metadata** | **Map&lt;String, String&gt;** |  |  [optional] |
@@ -62,6 +64,17 @@
 | CONFIRMED | &quot;confirmed&quot; |
 | TENTATIVE | &quot;tentative&quot; |
 | CANCELLED | &quot;cancelled&quot; |
+
+
+
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| SINGLE | &quot;single&quot; |
+| SERIES | &quot;series&quot; |
+| OCCURRENCE | &quot;occurrence&quot; |
+| EXCEPTION | &quot;exception&quot; |
 
 
 

@@ -14,6 +14,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteCalendarEventWithHttpInfo**](CalendarApi.md#deleteCalendarEventWithHttpInfo) | **DELETE** /v1/calendar/events/{eventId} | Delete an event |
 | [**getCalendarEvent**](CalendarApi.md#getCalendarEvent) | **GET** /v1/calendar/events/{eventId} | Get an event |
 | [**getCalendarEventWithHttpInfo**](CalendarApi.md#getCalendarEventWithHttpInfo) | **GET** /v1/calendar/events/{eventId} | Get an event |
+| [**listCalendarEventInstances**](CalendarApi.md#listCalendarEventInstances) | **GET** /v1/calendar/events/{eventId}/instances | List the occurrences of a recurring event |
+| [**listCalendarEventInstancesWithHttpInfo**](CalendarApi.md#listCalendarEventInstancesWithHttpInfo) | **GET** /v1/calendar/events/{eventId}/instances | List the occurrences of a recurring event |
 | [**listCalendarEvents**](CalendarApi.md#listCalendarEvents) | **GET** /v1/calendar/events | List events in a window |
 | [**listCalendarEventsWithHttpInfo**](CalendarApi.md#listCalendarEventsWithHttpInfo) | **GET** /v1/calendar/events | List events in a window |
 | [**listCalendars**](CalendarApi.md#listCalendars) | **GET** /v1/calendar/calendars | List calendars |
@@ -181,6 +183,8 @@ ApiResponse<[**CalendarAvailability200Response**](CalendarAvailability200Respons
 
 Busy blocks for one or more accounts
 
+Reads busy time for up to 10 connected accounts, Google and Microsoft mixed, in parallel.  By default a Google account reads every calendar shown in Google Calendar, and a Microsoft account reads the mailbox&#39;s schedule. Name calendars with &#x60;accounts[].calendarIds&#x60;.  Check coworkers who never connected with &#x60;accounts[].emails&#x60;, read through that account (Google: up to 50 calendars and addresses per account; Microsoft: up to 19 coworkers, work accounts only).  An account that cannot be read gets &#x60;busy: null&#x60; and an &#x60;error&#x60;, and the others still answer. When no account can be read, the first error is returned as the response. 
+
 ### Example
 
 ```java
@@ -251,6 +255,8 @@ public class Example {
 > ApiResponse<CalendarFreeBusy200Response> calendarFreeBusy calendarFreeBusyWithHttpInfo(calendarFreeBusyRequest)
 
 Busy blocks for one or more accounts
+
+Reads busy time for up to 10 connected accounts, Google and Microsoft mixed, in parallel.  By default a Google account reads every calendar shown in Google Calendar, and a Microsoft account reads the mailbox&#39;s schedule. Name calendars with &#x60;accounts[].calendarIds&#x60;.  Check coworkers who never connected with &#x60;accounts[].emails&#x60;, read through that account (Google: up to 50 calendars and addresses per account; Microsoft: up to 19 coworkers, work accounts only).  An account that cannot be read gets &#x60;busy: null&#x60; and an &#x60;error&#x60;, and the others still answer. When no account can be read, the first error is returned as the response. 
 
 ### Example
 
@@ -785,6 +791,186 @@ ApiResponse<[**CreateCalendarEvent201Response**](CreateCalendarEvent201Response.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The event |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+
+## listCalendarEventInstances
+
+> ListCalendarEventInstances200Response listCalendarEventInstances(eventId, accountId, from, to, calendarId, timezone, cursor, limit)
+
+List the occurrences of a recurring event
+
+Lists the occurrences and exceptions of a series between &#x60;from&#x60; and &#x60;to&#x60;. Each one has its own &#x60;id&#x60; to read, update or delete just that occurrence, and &#x60;originalStart&#x60; for its place in the pattern.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CalendarApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CalendarApi apiInstance = new CalendarApi(defaultClient);
+        String eventId = "eventId_example"; // String | The series (master) event id.
+        String accountId = "accountId_example"; // String | 
+        OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | 
+        OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | 
+        String calendarId = "calendarId_example"; // String | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar.
+        String timezone = "timezone_example"; // String | IANA zone the `start` and `end` offsets are rendered in.
+        String cursor = "cursor_example"; // String | 
+        Integer limit = 50; // Integer | 
+        try {
+            ListCalendarEventInstances200Response result = apiInstance.listCalendarEventInstances(eventId, accountId, from, to, calendarId, timezone, cursor, limit);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CalendarApi#listCalendarEventInstances");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **eventId** | **String**| The series (master) event id. | |
+| **accountId** | **String**|  | |
+| **from** | **OffsetDateTime**|  | |
+| **to** | **OffsetDateTime**|  | |
+| **calendarId** | **String**| The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. | [optional] |
+| **timezone** | **String**| IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. | [optional] |
+| **cursor** | **String**|  | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+
+### Return type
+
+[**ListCalendarEventInstances200Response**](ListCalendarEventInstances200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Occurrences in the window |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+## listCalendarEventInstancesWithHttpInfo
+
+> ApiResponse<ListCalendarEventInstances200Response> listCalendarEventInstances listCalendarEventInstancesWithHttpInfo(eventId, accountId, from, to, calendarId, timezone, cursor, limit)
+
+List the occurrences of a recurring event
+
+Lists the occurrences and exceptions of a series between &#x60;from&#x60; and &#x60;to&#x60;. Each one has its own &#x60;id&#x60; to read, update or delete just that occurrence, and &#x60;originalStart&#x60; for its place in the pattern.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CalendarApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CalendarApi apiInstance = new CalendarApi(defaultClient);
+        String eventId = "eventId_example"; // String | The series (master) event id.
+        String accountId = "accountId_example"; // String | 
+        OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | 
+        OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | 
+        String calendarId = "calendarId_example"; // String | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar.
+        String timezone = "timezone_example"; // String | IANA zone the `start` and `end` offsets are rendered in.
+        String cursor = "cursor_example"; // String | 
+        Integer limit = 50; // Integer | 
+        try {
+            ApiResponse<ListCalendarEventInstances200Response> response = apiInstance.listCalendarEventInstancesWithHttpInfo(eventId, accountId, from, to, calendarId, timezone, cursor, limit);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CalendarApi#listCalendarEventInstances");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **eventId** | **String**| The series (master) event id. | |
+| **accountId** | **String**|  | |
+| **from** | **OffsetDateTime**|  | |
+| **to** | **OffsetDateTime**|  | |
+| **calendarId** | **String**| The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. | [optional] |
+| **timezone** | **String**| IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. | [optional] |
+| **cursor** | **String**|  | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+
+### Return type
+
+ApiResponse<[**ListCalendarEventInstances200Response**](ListCalendarEventInstances200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Occurrences in the window |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |

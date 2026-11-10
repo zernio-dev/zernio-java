@@ -160,6 +160,8 @@ Individual webhook configuration for receiving real-time notifications
 | EMAIL_THREAD_REPLIED | &quot;email.thread_replied&quot; |
 | EMAIL_SEND_FAILED | &quot;email.send_failed&quot; |
 | EMAIL_BOUNCED | &quot;email.bounced&quot; |
+| EMAIL_UPDATED | &quot;email.updated&quot; |
+| EMAIL_DELETED | &quot;email.deleted&quot; |
 | FILE_CREATED | &quot;file.created&quot; |
 | FILE_UPDATED | &quot;file.updated&quot; |
 | FILE_DELETED | &quot;file.deleted&quot; |

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.556.2
+  version: 1.560.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -465,7 +465,7 @@ tags:
     - Contacts and automations: `contact.tag_added`, `contact.tag_removed`, `contact.field_changed`, `contact.updated`, `contact.deleted`, `sequence.enrolled`, `sequence.exited`, `workflow.run.started`, `workflow.run.completed`, `workflow.run.failed`, `support.run.completed`, `support.run.failed`, `automation.check.completed`, `automation.action.applied`, `automation.action.failed`, `automation.action.unknown`, `automation.alert.opened`, `automation.alert.escalated`, `automation.alert.resolved`
     - Creator campaigns: `campaign_submission.received`, `campaign_submission.flagged`, `campaign_submission.pending_review`, `campaign_submission.approved`, `campaign_submission.rejected`, `creator_campaign.budget_exhausted`, `creator_campaign.closed`, `campaign_payout.payable`, `campaign_payout.settled`, `campaign_payout.failed`, `campaign_participant.joined`, `campaign_participant.pending`, `campaign_participant.approved`, `campaign_participant.denied`, `campaign_participant.suspended`, `campaign_participant.removed`, `campaign_draft.submitted`, `campaign_draft.approved`, `campaign_draft.revision_requested`, `campaign_draft.rejected`, `campaign_sample.requested`, `campaign_sample.approved`, `campaign_sample.shipped`, `campaign_sample.declined`
     - Calendar and files: `calendar.event.created`, `calendar.event.updated`, `calendar.event.deleted`, `file.created`, `file.updated`, `file.deleted`, `file.picked`
-    - Email: `email.sent`, `email.opened`, `email.link_clicked`, `email.thread_replied`, `email.send_failed`, `email.bounced`
+    - Email: `email.sent`, `email.opened`, `email.link_clicked`, `email.thread_replied`, `email.send_failed`, `email.bounced`, `email.updated`, `email.deleted`
     - Billing: `balance.low`, `balance.empty`, `balance.charged`
     - Other: `api.changelog.published`, `webhook.test`
 
@@ -28130,6 +28130,101 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/calendar/events/{eventId}/instances:
+    get:
+      description: "Lists the occurrences and exceptions of a series between `from`\
+        \ and `to`. Each one has its own `id` to read, update or delete just that\
+        \ occurrence, and `originalStart` for its place in the pattern."
+      operationId: listCalendarEventInstances
+      parameters:
+      - description: The series (master) event id.
+        explode: false
+        in: path
+        name: eventId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The calendar holding the event (an id from GET /v1/calendar/calendars).
+          Defaults to the primary calendar.
+        explode: true
+        in: query
+        name: calendarId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: IANA zone the `start` and `end` offsets are rendered in.
+        explode: true
+        in: query
+        name: timezone
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCalendarEventInstances_200_response"
+          description: Occurrences in the window
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "412":
+          $ref: "#/components/responses/MailboxPreconditionFailed"
+      security:
+      - bearerAuth: []
+      summary: List the occurrences of a recurring event
+      tags:
+      - Calendar
+      x-resource-group: calendar
+      x-accepts:
+      - application/json
   /v1/calendar/events/{eventId}/rsvp:
     post:
       description: "Accepts, declines or tentatively accepts on behalf of the mailbox\
@@ -28175,6 +28270,14 @@ paths:
       - application/json
   /v1/calendar/free-busy:
     post:
+      description: |
+        Reads busy time for up to 10 connected accounts, Google and Microsoft mixed, in parallel.
+
+        By default a Google account reads every calendar shown in Google Calendar, and a Microsoft account reads the mailbox's schedule. Name calendars with `accounts[].calendarIds`.
+
+        Check coworkers who never connected with `accounts[].emails`, read through that account (Google: up to 50 calendars and addresses per account; Microsoft: up to 19 coworkers, work accounts only).
+
+        An account that cannot be read gets `busy: null` and an `error`, and the others still answer. When no account can be read, the first error is returned as the response.
       operationId: calendarFreeBusy
       requestBody:
         content:
@@ -92522,6 +92625,8 @@ components:
             - email.thread_replied
             - email.send_failed
             - email.bounced
+            - email.updated
+            - email.deleted
             - file.created
             - file.updated
             - file.deleted
@@ -94880,6 +94985,7 @@ components:
         name: name
         sampleContentDueDays: 45
         payableCents: 6
+        autoPayout: ""
         status: draft
       properties:
         id:
@@ -95054,6 +95160,10 @@ components:
           description: What each creator discount code takes off.
           nullable: true
           type: integer
+        autoPayout:
+          allOf:
+          - $ref: "#/components/schemas/CreatorCampaignAutoPayout"
+          nullable: true
         pendingParticipantCount:
           description: Creators who asked to join through the open link and wait for
             a decision. Not counted in `participantCount`.
@@ -95140,6 +95250,7 @@ components:
         name: name
         sampleContentDueDays: 206
         startsAt: 2000-01-23T04:56:07.000+00:00
+        autoPayout: ""
         endsAt: 2000-01-23T04:56:07.000+00:00
         landingUrl: https://openapi-generator.tech
       properties:
@@ -95232,6 +95343,10 @@ components:
           minimum: 1
           nullable: true
           type: integer
+        autoPayout:
+          allOf:
+          - $ref: "#/components/schemas/CreatorCampaignAutoPayout"
+          nullable: true
         joinApproval:
           default: auto
           description: manual holds creators who join through the open link as `pending`
@@ -95275,6 +95390,18 @@ components:
       - economics
       - name
       - profileId
+    CreatorCampaignAutoPayout:
+      properties:
+        enabled:
+          type: boolean
+        cadence:
+          enum:
+          - weekly
+          - daily
+          type: string
+      required:
+      - cadence
+      - enabled
     UpdateCreatorCampaignRequest:
       description: Every field is optional; send at least one. `economics` can only
         change while the campaign is a draft.
@@ -95319,6 +95446,7 @@ components:
         name: name
         sampleContentDueDays: 206
         startsAt: 2000-01-23T04:56:07.000+00:00
+        autoPayout: ""
         endsAt: 2000-01-23T04:56:07.000+00:00
         landingUrl: https://openapi-generator.tech
       minProperties: 1
@@ -95396,6 +95524,10 @@ components:
           minimum: 1
           nullable: true
           type: integer
+        autoPayout:
+          allOf:
+          - $ref: "#/components/schemas/CreatorCampaignAutoPayout"
+          nullable: true
         joinApproval:
           description: manual holds creators who join through the open link as `pending`
             until you approve them. Personal invites are never held.
@@ -107003,6 +107135,17 @@ components:
           type: string
         readOnly:
           type: boolean
+    FreeBusyError:
+      description: "Why this account, calendar or address could not be read. The provider's\
+        \ code when it gave one."
+      example:
+        code: code
+        message: message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     CalendarEventFields:
       properties:
         title:
@@ -107029,11 +107172,13 @@ components:
           type: string
         participants:
           items:
-            $ref: "#/components/schemas/EmailAddress"
+            $ref: "#/components/schemas/CalendarEventFields_participants_inner"
           maxItems: 100
           type: array
         recurrence:
-          description: "RRULE lines, e.g. `RRULE:FREQ=WEEKLY;BYDAY=MO,WE;COUNT=10`."
+          description: "RRULE lines, e.g. `RRULE:FREQ=WEEKLY;BYDAY=MO,WE;COUNT=10`.\
+            \ Microsoft takes one RRULE plus EXDATE lines; Zernio removes the EXDATE\
+            \ occurrences after saving the series."
           items:
             type: string
           maxItems: 5
@@ -107111,15 +107256,25 @@ components:
         end: end
         conferencing: google_meet
         participants:
-        - name: name
+        - resource: true
+          name: name
+          optional: true
           email: email
-        - name: name
+        - resource: true
+          name: name
+          optional: true
           email: email
-        - name: name
+        - resource: true
+          name: name
+          optional: true
           email: email
-        - name: name
+        - resource: true
+          name: name
+          optional: true
           email: email
-        - name: name
+        - resource: true
+          name: name
+          optional: true
           email: email
     CalendarEvent:
       example:
@@ -107133,6 +107288,7 @@ components:
         timezone: timezone
         description: description
         title: title
+        type: single
         allDay: true
         createdAt: 2000-01-23T04:56:07.000+00:00
         provider: google
@@ -107141,12 +107297,20 @@ components:
         id: id
         masterEventId: masterEventId
         participants:
-        - name: name
+        - resource: true
+          organizer: true
+          name: name
+          self: true
           comment: comment
+          optional: true
           email: email
           status: accepted
-        - name: name
+        - resource: true
+          organizer: true
+          name: name
+          self: true
           comment: comment
+          optional: true
           email: email
           status: accepted
         updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -107161,6 +107325,7 @@ components:
         accountId: accountId
         calendarId: calendarId
         organizer: ""
+        originalStart: originalStart
         location: location
         conferencing:
           provider: google_meet
@@ -107232,6 +107397,21 @@ components:
           nullable: true
           type: string
         masterEventId:
+          nullable: true
+          type: string
+        type:
+          description: "`series` is a recurring master, `occurrence` one of its instances,\
+            \ and `exception` an instance changed on its own. Google flags an instance\
+            \ as an exception only when it was moved off its slot."
+          enum:
+          - single
+          - series
+          - occurrence
+          - exception
+          type: string
+        originalStart:
+          description: "For an occurrence or exception, the start it has in the series\
+            \ pattern."
           nullable: true
           type: string
         htmlLink:
@@ -107329,8 +107509,10 @@ components:
         - externalId: tenant_42
           id: id
         calendarEvent:
+          calendarId: calendarId
           changeType: created
           id: id
+          masterEventId: masterEventId
         id: id
         event: calendar.event.created
         account:
@@ -107722,6 +107904,132 @@ components:
       - event
       - id
       - timestamp
+    WebhookPayloadEmailUpdated:
+      description: "Webhook payload for email.updated. Gmail sends `changes`; Outlook\
+        \ sends the message as it is now and `changes: null`."
+      example:
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        changes:
+          folder: folder
+          starred: true
+          unread: true
+          labelsAdded:
+          - labelsAdded
+          - labelsAdded
+          labelsRemoved:
+          - labelsRemoved
+          - labelsRemoved
+        id: id
+        event: email.updated
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        email:
+          threadId: threadId
+          folder: folder
+          starred: true
+          unread: true
+          messageId: messageId
+          labels:
+          - labels
+          - labels
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - email.updated
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadCalendarEvent_account"
+        email:
+          $ref: "#/components/schemas/WebhookPayloadEmailUpdated_email"
+        changes:
+          $ref: "#/components/schemas/WebhookPayloadEmailUpdated_changes"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - changes
+      - email
+      - event
+      - id
+      - timestamp
+    WebhookPayloadEmailDeleted:
+      description: Webhook payload for email.deleted.
+      example:
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: email.deleted
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        email:
+          threadId: threadId
+          messageId: messageId
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - email.deleted
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadCalendarEvent_account"
+        email:
+          $ref: "#/components/schemas/WebhookPayloadEmailDeleted_email"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - email
+      - event
+      - id
+      - timestamp
     WebhookPayloadEmailSent:
       description: Webhook payload for email.sent.
       example:
@@ -108057,7 +108365,7 @@ components:
         account:
           $ref: "#/components/schemas/WebhookPayloadCalendarEvent_account"
         file:
-          $ref: "#/components/schemas/WebhookPayloadCalendarEvent_calendarEvent"
+          $ref: "#/components/schemas/WebhookPayloadFile_file"
         timestamp:
           format: date-time
           type: string
@@ -147228,6 +147536,8 @@ components:
           - email.thread_replied
           - email.send_failed
           - email.bounced
+          - email.updated
+          - email.deleted
           - file.created
           - file.updated
           - file.deleted
@@ -149105,6 +149415,7 @@ components:
           timezone: timezone
           description: description
           title: title
+          type: single
           allDay: true
           createdAt: 2000-01-23T04:56:07.000+00:00
           provider: google
@@ -149113,12 +149424,20 @@ components:
           id: id
           masterEventId: masterEventId
           participants:
-          - name: name
+          - resource: true
+            organizer: true
+            name: name
+            self: true
             comment: comment
+            optional: true
             email: email
             status: accepted
-          - name: name
+          - resource: true
+            organizer: true
+            name: name
+            self: true
             comment: comment
+            optional: true
             email: email
             status: accepted
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -149133,6 +149452,7 @@ components:
           accountId: accountId
           calendarId: calendarId
           organizer: ""
+          originalStart: originalStart
           location: location
           conferencing:
             provider: google_meet
@@ -149148,6 +149468,7 @@ components:
           timezone: timezone
           description: description
           title: title
+          type: single
           allDay: true
           createdAt: 2000-01-23T04:56:07.000+00:00
           provider: google
@@ -149156,12 +149477,20 @@ components:
           id: id
           masterEventId: masterEventId
           participants:
-          - name: name
+          - resource: true
+            organizer: true
+            name: name
+            self: true
             comment: comment
+            optional: true
             email: email
             status: accepted
-          - name: name
+          - resource: true
+            organizer: true
+            name: name
+            self: true
             comment: comment
+            optional: true
             email: email
             status: accepted
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -149176,6 +149505,7 @@ components:
           accountId: accountId
           calendarId: calendarId
           organizer: ""
+          originalStart: originalStart
           location: location
           conferencing:
             provider: google_meet
@@ -149201,6 +149531,7 @@ components:
           timezone: timezone
           description: description
           title: title
+          type: single
           allDay: true
           createdAt: 2000-01-23T04:56:07.000+00:00
           provider: google
@@ -149209,12 +149540,20 @@ components:
           id: id
           masterEventId: masterEventId
           participants:
-          - name: name
+          - resource: true
+            organizer: true
+            name: name
+            self: true
             comment: comment
+            optional: true
             email: email
             status: accepted
-          - name: name
+          - resource: true
+            organizer: true
+            name: name
+            self: true
             comment: comment
+            optional: true
             email: email
             status: accepted
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -149229,6 +149568,7 @@ components:
           accountId: accountId
           calendarId: calendarId
           organizer: ""
+          originalStart: originalStart
           location: location
           conferencing:
             provider: google_meet
@@ -149249,6 +149589,135 @@ components:
         required:
         - accountId
       - $ref: "#/components/schemas/CalendarEventFields"
+    listCalendarEventInstances_200_response_pagination:
+      example:
+        nextCursor: nextCursor
+        hasMore: true
+      properties:
+        hasMore:
+          type: boolean
+        nextCursor:
+          nullable: true
+          type: string
+    listCalendarEventInstances_200_response:
+      example:
+        pagination:
+          nextCursor: nextCursor
+          hasMore: true
+        data:
+        - reminders:
+            useDefault: true
+            overrides:
+            - minutes: 0
+            - minutes: 0
+          metadata:
+            key: metadata
+          timezone: timezone
+          description: description
+          title: title
+          type: single
+          allDay: true
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          provider: google
+          busy: true
+          end: end
+          id: id
+          masterEventId: masterEventId
+          participants:
+          - resource: true
+            organizer: true
+            name: name
+            self: true
+            comment: comment
+            optional: true
+            email: email
+            status: accepted
+          - resource: true
+            organizer: true
+            name: name
+            self: true
+            comment: comment
+            optional: true
+            email: email
+            status: accepted
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          visibility: default
+          htmlLink: htmlLink
+          start: start
+          readOnly: true
+          icalUid: icalUid
+          recurrence:
+          - recurrence
+          - recurrence
+          accountId: accountId
+          calendarId: calendarId
+          organizer: ""
+          originalStart: originalStart
+          location: location
+          conferencing:
+            provider: google_meet
+            url: https://openapi-generator.tech
+          status: confirmed
+        - reminders:
+            useDefault: true
+            overrides:
+            - minutes: 0
+            - minutes: 0
+          metadata:
+            key: metadata
+          timezone: timezone
+          description: description
+          title: title
+          type: single
+          allDay: true
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          provider: google
+          busy: true
+          end: end
+          id: id
+          masterEventId: masterEventId
+          participants:
+          - resource: true
+            organizer: true
+            name: name
+            self: true
+            comment: comment
+            optional: true
+            email: email
+            status: accepted
+          - resource: true
+            organizer: true
+            name: name
+            self: true
+            comment: comment
+            optional: true
+            email: email
+            status: accepted
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          visibility: default
+          htmlLink: htmlLink
+          start: start
+          readOnly: true
+          icalUid: icalUid
+          recurrence:
+          - recurrence
+          - recurrence
+          accountId: accountId
+          calendarId: calendarId
+          organizer: ""
+          originalStart: originalStart
+          location: location
+          conferencing:
+            provider: google_meet
+            url: https://openapi-generator.tech
+          status: confirmed
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/CalendarEvent"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listCalendarEventInstances_200_response_pagination"
     rsvpCalendarEvent_request:
       properties:
         accountId:
@@ -149273,11 +149742,41 @@ components:
       required:
       - accountId
       - status
+    calendarFreeBusy_request_accounts_inner:
+      properties:
+        accountId:
+          type: string
+        calendarIds:
+          description: "Calendars to read (ids from GET /v1/calendar/calendars, or\
+            \ `primary`)."
+          items:
+            type: string
+          maxItems: 50
+          minItems: 1
+          type: array
+        emails:
+          description: "Coworkers whose free-busy this account can see, usually people\
+            \ in the same organization."
+          items:
+            format: email
+            type: string
+          maxItems: 20
+          type: array
+      required:
+      - accountId
     calendarFreeBusy_request:
       properties:
         accountIds:
+          description: Accounts to read with their defaults. Send this or `accounts`.
           items:
             type: string
+          maxItems: 10
+          minItems: 1
+          type: array
+        accounts:
+          description: Accounts with per-account options. Send this or `accountIds`.
+          items:
+            $ref: "#/components/schemas/calendarFreeBusy_request_accounts_inner"
           maxItems: 10
           minItems: 1
           type: array
@@ -149288,12 +149787,70 @@ components:
           format: date-time
           type: string
       required:
-      - accountIds
       - from
       - to
+    calendarFreeBusy_200_response_data_inner_calendars_inner:
+      example:
+        busy:
+        - start: 2000-01-23T04:56:07.000+00:00
+          end: 2000-01-23T04:56:07.000+00:00
+        - start: 2000-01-23T04:56:07.000+00:00
+          end: 2000-01-23T04:56:07.000+00:00
+        id: id
+        error:
+          code: code
+          message: message
+      properties:
+        id:
+          type: string
+        busy:
+          items:
+            $ref: "#/components/schemas/BusyBlock"
+          type: array
+        error:
+          $ref: "#/components/schemas/FreeBusyError"
+    calendarFreeBusy_200_response_data_inner_people_inner:
+      example:
+        busy:
+        - start: 2000-01-23T04:56:07.000+00:00
+          end: 2000-01-23T04:56:07.000+00:00
+        - start: 2000-01-23T04:56:07.000+00:00
+          end: 2000-01-23T04:56:07.000+00:00
+        error:
+          code: code
+          message: message
+        email: email
+      properties:
+        email:
+          type: string
+        busy:
+          items:
+            $ref: "#/components/schemas/BusyBlock"
+          type: array
+        error:
+          $ref: "#/components/schemas/FreeBusyError"
     calendarFreeBusy_200_response_data_inner:
       example:
         accountId: accountId
+        calendars:
+        - busy:
+          - start: 2000-01-23T04:56:07.000+00:00
+            end: 2000-01-23T04:56:07.000+00:00
+          - start: 2000-01-23T04:56:07.000+00:00
+            end: 2000-01-23T04:56:07.000+00:00
+          id: id
+          error:
+            code: code
+            message: message
+        - busy:
+          - start: 2000-01-23T04:56:07.000+00:00
+            end: 2000-01-23T04:56:07.000+00:00
+          - start: 2000-01-23T04:56:07.000+00:00
+            end: 2000-01-23T04:56:07.000+00:00
+          id: id
+          error:
+            code: code
+            message: message
         busy:
         - start: 2000-01-23T04:56:07.000+00:00
           end: 2000-01-23T04:56:07.000+00:00
@@ -149301,6 +149858,28 @@ components:
           end: 2000-01-23T04:56:07.000+00:00
         from: 2000-01-23T04:56:07.000+00:00
         to: 2000-01-23T04:56:07.000+00:00
+        error:
+          code: code
+          message: message
+        people:
+        - busy:
+          - start: 2000-01-23T04:56:07.000+00:00
+            end: 2000-01-23T04:56:07.000+00:00
+          - start: 2000-01-23T04:56:07.000+00:00
+            end: 2000-01-23T04:56:07.000+00:00
+          error:
+            code: code
+            message: message
+          email: email
+        - busy:
+          - start: 2000-01-23T04:56:07.000+00:00
+            end: 2000-01-23T04:56:07.000+00:00
+          - start: 2000-01-23T04:56:07.000+00:00
+            end: 2000-01-23T04:56:07.000+00:00
+          error:
+            code: code
+            message: message
+          email: email
       properties:
         accountId:
           type: string
@@ -149311,13 +149890,45 @@ components:
           format: date-time
           type: string
         busy:
+          description: "The account's own busy time across the calendars read, merged.\
+            \ Null when the account could not be read."
           items:
             $ref: "#/components/schemas/BusyBlock"
+          nullable: true
           type: array
+        calendars:
+          items:
+            $ref: "#/components/schemas/calendarFreeBusy_200_response_data_inner_calendars_inner"
+          type: array
+        people:
+          items:
+            $ref: "#/components/schemas/calendarFreeBusy_200_response_data_inner_people_inner"
+          type: array
+        error:
+          $ref: "#/components/schemas/FreeBusyError"
     calendarFreeBusy_200_response:
       example:
         data:
         - accountId: accountId
+          calendars:
+          - busy:
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            id: id
+            error:
+              code: code
+              message: message
+          - busy:
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            id: id
+            error:
+              code: code
+              message: message
           busy:
           - start: 2000-01-23T04:56:07.000+00:00
             end: 2000-01-23T04:56:07.000+00:00
@@ -149325,7 +149936,48 @@ components:
             end: 2000-01-23T04:56:07.000+00:00
           from: 2000-01-23T04:56:07.000+00:00
           to: 2000-01-23T04:56:07.000+00:00
+          error:
+            code: code
+            message: message
+          people:
+          - busy:
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            error:
+              code: code
+              message: message
+            email: email
+          - busy:
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            error:
+              code: code
+              message: message
+            email: email
         - accountId: accountId
+          calendars:
+          - busy:
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            id: id
+            error:
+              code: code
+              message: message
+          - busy:
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            id: id
+            error:
+              code: code
+              message: message
           busy:
           - start: 2000-01-23T04:56:07.000+00:00
             end: 2000-01-23T04:56:07.000+00:00
@@ -149333,6 +149985,28 @@ components:
             end: 2000-01-23T04:56:07.000+00:00
           from: 2000-01-23T04:56:07.000+00:00
           to: 2000-01-23T04:56:07.000+00:00
+          error:
+            code: code
+            message: message
+          people:
+          - busy:
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            error:
+              code: code
+              message: message
+            email: email
+          - busy:
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            - start: 2000-01-23T04:56:07.000+00:00
+              end: 2000-01-23T04:56:07.000+00:00
+            error:
+              code: code
+              message: message
+            email: email
       properties:
         data:
           items:
@@ -149459,16 +150133,6 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/calendarAvailability_200_response_data"
-    listFiles_200_response_pagination:
-      example:
-        nextCursor: nextCursor
-        hasMore: true
-      properties:
-        hasMore:
-          type: boolean
-        nextCursor:
-          nullable: true
-          type: string
     listFiles_200_response:
       example:
         pagination:
@@ -149509,7 +150173,7 @@ components:
             $ref: "#/components/schemas/FileItem"
           type: array
         pagination:
-          $ref: "#/components/schemas/listFiles_200_response_pagination"
+          $ref: "#/components/schemas/listCalendarEventInstances_200_response_pagination"
     uploadFile_request:
       properties:
         accountId:
@@ -150109,7 +150773,7 @@ components:
             $ref: "#/components/schemas/listInboxConversations_200_response_data_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/listFiles_200_response_pagination"
+          $ref: "#/components/schemas/listCalendarEventInstances_200_response_pagination"
         meta:
           $ref: "#/components/schemas/listInboxConversations_200_response_meta"
     createInboxConversation_request_templateButtonParams_inner:
@@ -150787,7 +151451,7 @@ components:
             $ref: "#/components/schemas/searchInboxConversations_200_response_data_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/listFiles_200_response_pagination"
+          $ref: "#/components/schemas/listCalendarEventInstances_200_response_pagination"
         meta:
           $ref: "#/components/schemas/searchInboxConversations_200_response_meta"
     getInboxConversation_200_response_data:
@@ -153457,7 +154121,7 @@ components:
             $ref: "#/components/schemas/listInboxComments_200_response_data_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/listFiles_200_response_pagination"
+          $ref: "#/components/schemas/listCalendarEventInstances_200_response_pagination"
         meta:
           $ref: "#/components/schemas/listInboxComments_200_response_meta"
     getInboxPostComments_200_response_comments_inner_from:
@@ -155184,7 +155848,7 @@ components:
             $ref: "#/components/schemas/listInboxReviews_200_response_data_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/listFiles_200_response_pagination"
+          $ref: "#/components/schemas/listCalendarEventInstances_200_response_pagination"
         meta:
           $ref: "#/components/schemas/listInboxConversations_200_response_meta"
         summary:
@@ -204894,6 +205558,7 @@ components:
           name: name
           sampleContentDueDays: 45
           payableCents: 6
+          autoPayout: ""
           status: draft
         - trackingDays: 0
           activatedAt: 2000-01-23T04:56:07.000+00:00
@@ -204983,6 +205648,7 @@ components:
           name: name
           sampleContentDueDays: 45
           payableCents: 6
+          autoPayout: ""
           status: draft
       properties:
         campaigns:
@@ -205085,6 +205751,7 @@ components:
           name: name
           sampleContentDueDays: 45
           payableCents: 6
+          autoPayout: ""
           status: draft
       properties:
         campaign:
@@ -217933,6 +218600,22 @@ components:
       required:
       - contentType
       - filename
+    CalendarEventFields_participants_inner:
+      allOf:
+      - $ref: "#/components/schemas/EmailAddress"
+      - properties:
+          optional:
+            description: The guest may skip the event.
+            type: boolean
+          resource:
+            description: "A room or equipment address: Google and Outlook book it\
+              \ as a resource."
+            type: boolean
+      example:
+        resource: true
+        name: name
+        optional: true
+        email: email
     CalendarEventFields_reminders_overrides_inner:
       example:
         minutes: 0
@@ -217970,9 +218653,24 @@ components:
           comment:
             nullable: true
             type: string
+          optional:
+            description: The guest may skip the event.
+            type: boolean
+          resource:
+            description: A room or equipment address.
+            type: boolean
+          self:
+            description: This guest is the connected mailbox.
+            type: boolean
+          organizer:
+            type: boolean
       example:
+        resource: true
+        organizer: true
         name: name
+        self: true
         comment: comment
+        optional: true
         email: email
         status: accepted
     CalendarEvent_reminders:
@@ -218093,8 +218791,10 @@ components:
           type: string
     WebhookPayloadCalendarEvent_calendarEvent:
       example:
+        calendarId: calendarId
         changeType: created
         id: id
+        masterEventId: masterEventId
       properties:
         id:
           type: string
@@ -218103,6 +218803,17 @@ components:
           - created
           - updated
           - deleted
+          type: string
+        calendarId:
+          description: "The calendar holding the event, to pass as `calendarId` when\
+            \ reading it: `primary` for the user's main calendar. Null when it is\
+            \ not known, as for a deleted Outlook event."
+          nullable: true
+          type: string
+        masterEventId:
+          description: "The series this event belongs to, when it is an occurrence\
+            \ or exception."
+          nullable: true
           type: string
     WebhookPayloadEmailOpened_open:
       example:
@@ -218322,6 +219033,78 @@ components:
             the send.
           format: date-time
           type: string
+    WebhookPayloadEmailUpdated_email:
+      description: The message as it is after the change.
+      example:
+        threadId: threadId
+        folder: folder
+        starred: true
+        unread: true
+        messageId: messageId
+        labels:
+        - labels
+        - labels
+      properties:
+        messageId:
+          type: string
+        threadId:
+          nullable: true
+          type: string
+        folder:
+          description: "`inbox`, `sent`, `archive`, `trash`, `spam`, `drafts`, or\
+            \ the provider folder id for any other folder."
+          nullable: true
+          type: string
+        unread:
+          nullable: true
+          type: boolean
+        starred:
+          description: Gmail star or Outlook flag.
+          nullable: true
+          type: boolean
+        labels:
+          description: Gmail user label ids or Outlook category names.
+          items:
+            type: string
+          nullable: true
+          type: array
+    WebhookPayloadEmailUpdated_changes:
+      description: What changed. Gmail only; null on Outlook.
+      example:
+        folder: folder
+        starred: true
+        unread: true
+        labelsAdded:
+        - labelsAdded
+        - labelsAdded
+        labelsRemoved:
+        - labelsRemoved
+        - labelsRemoved
+      properties:
+        unread:
+          type: boolean
+        starred:
+          type: boolean
+        folder:
+          type: string
+        labelsAdded:
+          items:
+            type: string
+          type: array
+        labelsRemoved:
+          items:
+            type: string
+          type: array
+    WebhookPayloadEmailDeleted_email:
+      example:
+        threadId: threadId
+        messageId: messageId
+      properties:
+        messageId:
+          type: string
+        threadId:
+          nullable: true
+          type: string
     WebhookPayloadEmailSent_email:
       example:
         threadId: threadId
@@ -218419,6 +219202,19 @@ components:
           items:
             $ref: "#/components/schemas/WebhookPayloadFilePicked_picker_files_inner"
           type: array
+    WebhookPayloadFile_file:
+      example:
+        changeType: created
+        id: id
+      properties:
+        id:
+          type: string
+        changeType:
+          enum:
+          - created
+          - updated
+          - deleted
+          type: string
     WebhookPayloadContact_contact:
       example:
         changeType: updated
@@ -226112,6 +226908,8 @@ x-documentation:
     - `email.thread_replied` - Mail from someone other than the mailbox arrived in the thread of a message sent with `trackReplies`
     - `email.send_failed` - A scheduled email could not be sent at its `scheduledFor` time; nothing reached the recipients
     - `email.bounced` - A delivery failure report (bounce) for mail the mailbox sent arrived. One event per failed recipient, with the status code, the diagnostic and whether it is hard or soft
+    - `email.updated` - A message in the mailbox changed: read state, star or flag, labels or categories, or folder (archived, trashed, moved). Gmail and Outlook
+    - `email.deleted` - A message was deleted from the mailbox for good. Gmail and Outlook
     - `analytics.synced` - One connected account's analytics sync cycle finished. A trigger, not a transport: it carries no metrics and no cursor, so call `GET /v1/analytics/delta` with your own last `nextCursor` to read what changed across every account. Poll-driven (~hourly per account), not real-time. High volume: subscribe to it on a dedicated endpoint.
     - `post.tracking_completed` - A post's tracking window ended and its final analytics read finished. Carries the closing metrics (or `final: null` when none could be read) and why the window completed: `final_read`, `unreachable` or `post_deleted`
     - `post.authenticity_changed` - A tracked post's authenticity score crossed the flag threshold of 40, in either direction. Carries the new and previous score, confidence and reasons. A post's first score never fires it

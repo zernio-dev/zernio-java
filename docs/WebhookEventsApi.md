@@ -172,6 +172,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onCreatorCampaignClosedWithHttpInfo**](WebhookEventsApi.md#onCreatorCampaignClosedWithHttpInfo) | **POST** /creator_campaign.closed | Creator campaign closed event |
 | [**onEmailBounced**](WebhookEventsApi.md#onEmailBounced) | **POST** /email.bounced | Email bounced |
 | [**onEmailBouncedWithHttpInfo**](WebhookEventsApi.md#onEmailBouncedWithHttpInfo) | **POST** /email.bounced | Email bounced |
+| [**onEmailDeleted**](WebhookEventsApi.md#onEmailDeleted) | **POST** /email.deleted | Email deleted |
+| [**onEmailDeletedWithHttpInfo**](WebhookEventsApi.md#onEmailDeletedWithHttpInfo) | **POST** /email.deleted | Email deleted |
 | [**onEmailLinkClicked**](WebhookEventsApi.md#onEmailLinkClicked) | **POST** /email.link_clicked | Email link clicked |
 | [**onEmailLinkClickedWithHttpInfo**](WebhookEventsApi.md#onEmailLinkClickedWithHttpInfo) | **POST** /email.link_clicked | Email link clicked |
 | [**onEmailOpened**](WebhookEventsApi.md#onEmailOpened) | **POST** /email.opened | Email opened |
@@ -182,6 +184,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onEmailSentWithHttpInfo**](WebhookEventsApi.md#onEmailSentWithHttpInfo) | **POST** /email.sent | Email sent |
 | [**onEmailThreadReplied**](WebhookEventsApi.md#onEmailThreadReplied) | **POST** /email.thread_replied | Email thread replied |
 | [**onEmailThreadRepliedWithHttpInfo**](WebhookEventsApi.md#onEmailThreadRepliedWithHttpInfo) | **POST** /email.thread_replied | Email thread replied |
+| [**onEmailUpdated**](WebhookEventsApi.md#onEmailUpdated) | **POST** /email.updated | Email updated |
+| [**onEmailUpdatedWithHttpInfo**](WebhookEventsApi.md#onEmailUpdatedWithHttpInfo) | **POST** /email.updated | Email updated |
 | [**onFileCreated**](WebhookEventsApi.md#onFileCreated) | **POST** /file.created | File created |
 | [**onFileCreatedWithHttpInfo**](WebhookEventsApi.md#onFileCreatedWithHttpInfo) | **POST** /file.created | File created |
 | [**onFileDeleted**](WebhookEventsApi.md#onFileDeleted) | **POST** /file.deleted | File deleted |
@@ -12243,6 +12247,148 @@ ApiResponse<Void>
 | **200** | Webhook received successfully |  -  |
 
 
+## onEmailDeleted
+
+> void onEmailDeleted(webhookPayloadEmailDeleted)
+
+Email deleted
+
+A message was deleted from the mailbox for good. Moving it to Trash is &#x60;email.updated&#x60; with &#x60;folder: \&quot;trash\&quot;&#x60;. IMAP mailboxes do not send it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadEmailDeleted webhookPayloadEmailDeleted = new WebhookPayloadEmailDeleted(); // WebhookPayloadEmailDeleted | 
+        try {
+            apiInstance.onEmailDeleted(webhookPayloadEmailDeleted);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onEmailDeleted");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadEmailDeleted** | [**WebhookPayloadEmailDeleted**](WebhookPayloadEmailDeleted.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onEmailDeletedWithHttpInfo
+
+> ApiResponse<Void> onEmailDeleted onEmailDeletedWithHttpInfo(webhookPayloadEmailDeleted)
+
+Email deleted
+
+A message was deleted from the mailbox for good. Moving it to Trash is &#x60;email.updated&#x60; with &#x60;folder: \&quot;trash\&quot;&#x60;. IMAP mailboxes do not send it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadEmailDeleted webhookPayloadEmailDeleted = new WebhookPayloadEmailDeleted(); // WebhookPayloadEmailDeleted | 
+        try {
+            ApiResponse<Void> response = apiInstance.onEmailDeletedWithHttpInfo(webhookPayloadEmailDeleted);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onEmailDeleted");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadEmailDeleted** | [**WebhookPayloadEmailDeleted**](WebhookPayloadEmailDeleted.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
 ## onEmailLinkClicked
 
 > void onEmailLinkClicked(webhookPayloadEmailLinkClicked)
@@ -12932,6 +13078,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadEmailThreadReplied** | [**WebhookPayloadEmailThreadReplied**](WebhookPayloadEmailThreadReplied.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onEmailUpdated
+
+> void onEmailUpdated(webhookPayloadEmailUpdated)
+
+Email updated
+
+A message in the mailbox changed: it was read or marked unread, starred or flagged, labelled or categorized, archived, trashed or moved. Covers the Inbox, and Sent on Gmail. A change can arrive more than once; key on &#x60;email.messageId&#x60;.  Gmail reports exactly what changed in &#x60;changes&#x60;. Outlook reports the message as it is now, with &#x60;changes: null&#x60;. A message deleted for good fires &#x60;email.deleted&#x60; instead. IMAP mailboxes do not send it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadEmailUpdated webhookPayloadEmailUpdated = new WebhookPayloadEmailUpdated(); // WebhookPayloadEmailUpdated | 
+        try {
+            apiInstance.onEmailUpdated(webhookPayloadEmailUpdated);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onEmailUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadEmailUpdated** | [**WebhookPayloadEmailUpdated**](WebhookPayloadEmailUpdated.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onEmailUpdatedWithHttpInfo
+
+> ApiResponse<Void> onEmailUpdated onEmailUpdatedWithHttpInfo(webhookPayloadEmailUpdated)
+
+Email updated
+
+A message in the mailbox changed: it was read or marked unread, starred or flagged, labelled or categorized, archived, trashed or moved. Covers the Inbox, and Sent on Gmail. A change can arrive more than once; key on &#x60;email.messageId&#x60;.  Gmail reports exactly what changed in &#x60;changes&#x60;. Outlook reports the message as it is now, with &#x60;changes: null&#x60;. A message deleted for good fires &#x60;email.deleted&#x60; instead. IMAP mailboxes do not send it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadEmailUpdated webhookPayloadEmailUpdated = new WebhookPayloadEmailUpdated(); // WebhookPayloadEmailUpdated | 
+        try {
+            ApiResponse<Void> response = apiInstance.onEmailUpdatedWithHttpInfo(webhookPayloadEmailUpdated);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onEmailUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadEmailUpdated** | [**WebhookPayloadEmailUpdated**](WebhookPayloadEmailUpdated.md)|  | |
 
 ### Return type
 

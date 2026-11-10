@@ -13,7 +13,7 @@ Webhook payload for file.created, file.updated and file.deleted. Carries the pro
 |**test** | **Boolean** | Always true when present: only a sample sent by POST /v1/webhooks/test with an event carries it. Real deliveries never do. |  [optional] |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**account** | [**WebhookPayloadCalendarEventAccount**](WebhookPayloadCalendarEventAccount.md) |  |  |
-|**_file** | [**WebhookPayloadCalendarEventCalendarEvent**](WebhookPayloadCalendarEventCalendarEvent.md) |  |  |
+|**_file** | [**WebhookPayloadFileFile**](WebhookPayloadFileFile.md) |  |  |
 |**timestamp** | **OffsetDateTime** |  |  |
 
 

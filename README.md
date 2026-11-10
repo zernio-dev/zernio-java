@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.556.2
+- API version: 1.560.0
 
-- Build date: 2026-11-10T16:40:04.191284963Z[Etc/UTC]
+- Build date: 2026-11-10T16:53:59.774990698Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.556.2</version>
+  <version>1.560.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.556.2"
+compile "dev.zernio:zernio-sdk:1.560.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.556.2.jar`
+- `target/zernio-sdk-1.560.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -971,6 +971,8 @@ Class | Method | HTTP request | Description
 *CalendarApi* | [**deleteCalendarEventWithHttpInfo**](docs/CalendarApi.md#deleteCalendarEventWithHttpInfo) | **DELETE** /v1/calendar/events/{eventId} | Delete an event
 *CalendarApi* | [**getCalendarEvent**](docs/CalendarApi.md#getCalendarEvent) | **GET** /v1/calendar/events/{eventId} | Get an event
 *CalendarApi* | [**getCalendarEventWithHttpInfo**](docs/CalendarApi.md#getCalendarEventWithHttpInfo) | **GET** /v1/calendar/events/{eventId} | Get an event
+*CalendarApi* | [**listCalendarEventInstances**](docs/CalendarApi.md#listCalendarEventInstances) | **GET** /v1/calendar/events/{eventId}/instances | List the occurrences of a recurring event
+*CalendarApi* | [**listCalendarEventInstancesWithHttpInfo**](docs/CalendarApi.md#listCalendarEventInstancesWithHttpInfo) | **GET** /v1/calendar/events/{eventId}/instances | List the occurrences of a recurring event
 *CalendarApi* | [**listCalendarEvents**](docs/CalendarApi.md#listCalendarEvents) | **GET** /v1/calendar/events | List events in a window
 *CalendarApi* | [**listCalendarEventsWithHttpInfo**](docs/CalendarApi.md#listCalendarEventsWithHttpInfo) | **GET** /v1/calendar/events | List events in a window
 *CalendarApi* | [**listCalendars**](docs/CalendarApi.md#listCalendars) | **GET** /v1/calendar/calendars | List calendars
@@ -3017,13 +3019,17 @@ Class | Method | HTTP request | Description
  - [CalendarEvent](docs/CalendarEvent.md)
  - [CalendarEventConferencing](docs/CalendarEventConferencing.md)
  - [CalendarEventFields](docs/CalendarEventFields.md)
+ - [CalendarEventFieldsParticipantsInner](docs/CalendarEventFieldsParticipantsInner.md)
  - [CalendarEventFieldsReminders](docs/CalendarEventFieldsReminders.md)
  - [CalendarEventFieldsRemindersOverridesInner](docs/CalendarEventFieldsRemindersOverridesInner.md)
  - [CalendarEventParticipantsInner](docs/CalendarEventParticipantsInner.md)
  - [CalendarEventReminders](docs/CalendarEventReminders.md)
  - [CalendarFreeBusy200Response](docs/CalendarFreeBusy200Response.md)
  - [CalendarFreeBusy200ResponseDataInner](docs/CalendarFreeBusy200ResponseDataInner.md)
+ - [CalendarFreeBusy200ResponseDataInnerCalendarsInner](docs/CalendarFreeBusy200ResponseDataInnerCalendarsInner.md)
+ - [CalendarFreeBusy200ResponseDataInnerPeopleInner](docs/CalendarFreeBusy200ResponseDataInnerPeopleInner.md)
  - [CalendarFreeBusyRequest](docs/CalendarFreeBusyRequest.md)
+ - [CalendarFreeBusyRequestAccountsInner](docs/CalendarFreeBusyRequestAccountsInner.md)
  - [CallRecord](docs/CallRecord.md)
  - [CallRecordBilling](docs/CallRecordBilling.md)
  - [CallRecordCallErrorsInner](docs/CallRecordCallErrorsInner.md)
@@ -3544,6 +3550,7 @@ Class | Method | HTTP request | Description
  - [CreatorCampaignAdResultsSubmissionsInnerCreator](docs/CreatorCampaignAdResultsSubmissionsInnerCreator.md)
  - [CreatorCampaignAdResultsSubmissionsInnerLaunchesInner](docs/CreatorCampaignAdResultsSubmissionsInnerLaunchesInner.md)
  - [CreatorCampaignAdResultsTotals](docs/CreatorCampaignAdResultsTotals.md)
+ - [CreatorCampaignAutoPayout](docs/CreatorCampaignAutoPayout.md)
  - [CreatorCampaignBranding](docs/CreatorCampaignBranding.md)
  - [CreatorCampaignCaps](docs/CreatorCampaignCaps.md)
  - [CreatorCampaignCommissionTerms](docs/CreatorCampaignCommissionTerms.md)
@@ -3784,6 +3791,7 @@ Class | Method | HTTP request | Description
  - [FoodMenuSection](docs/FoodMenuSection.md)
  - [ForwardEmailRequest](docs/ForwardEmailRequest.md)
  - [ForwardingRule](docs/ForwardingRule.md)
+ - [FreeBusyError](docs/FreeBusyError.md)
  - [FromASharedTemplate](docs/FromASharedTemplate.md)
  - [FromAZernioTemplate](docs/FromAZernioTemplate.md)
  - [FromYourAutomations](docs/FromYourAutomations.md)
@@ -4581,6 +4589,8 @@ Class | Method | HTTP request | Description
  - [ListBusinessAgentUiSkills200Response](docs/ListBusinessAgentUiSkills200Response.md)
  - [ListBusinessAgentWebsites200Response](docs/ListBusinessAgentWebsites200Response.md)
  - [ListBusinessPartners200Response](docs/ListBusinessPartners200Response.md)
+ - [ListCalendarEventInstances200Response](docs/ListCalendarEventInstances200Response.md)
+ - [ListCalendarEventInstances200ResponsePagination](docs/ListCalendarEventInstances200ResponsePagination.md)
  - [ListCalendarEvents200Response](docs/ListCalendarEvents200Response.md)
  - [ListCalendars200Response](docs/ListCalendars200Response.md)
  - [ListCalls200Response](docs/ListCalls200Response.md)
@@ -4666,7 +4676,6 @@ Class | Method | HTTP request | Description
  - [ListFacebookTaggedPosts200Response](docs/ListFacebookTaggedPosts200Response.md)
  - [ListFacebookVisitorPosts200Response](docs/ListFacebookVisitorPosts200Response.md)
  - [ListFiles200Response](docs/ListFiles200Response.md)
- - [ListFiles200ResponsePagination](docs/ListFiles200ResponsePagination.md)
  - [ListFormLeads200Response](docs/ListFormLeads200Response.md)
  - [ListFormLeads200ResponseLeadsInner](docs/ListFormLeads200ResponseLeadsInner.md)
  - [ListFormLeads200ResponseMeta](docs/ListFormLeads200ResponseMeta.md)
@@ -6009,6 +6018,8 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadEmailBounced](docs/WebhookPayloadEmailBounced.md)
  - [WebhookPayloadEmailBouncedBounce](docs/WebhookPayloadEmailBouncedBounce.md)
  - [WebhookPayloadEmailBouncedEmail](docs/WebhookPayloadEmailBouncedEmail.md)
+ - [WebhookPayloadEmailDeleted](docs/WebhookPayloadEmailDeleted.md)
+ - [WebhookPayloadEmailDeletedEmail](docs/WebhookPayloadEmailDeletedEmail.md)
  - [WebhookPayloadEmailLinkClicked](docs/WebhookPayloadEmailLinkClicked.md)
  - [WebhookPayloadEmailLinkClickedClick](docs/WebhookPayloadEmailLinkClickedClick.md)
  - [WebhookPayloadEmailOpened](docs/WebhookPayloadEmailOpened.md)
@@ -6020,8 +6031,12 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadEmailThreadReplied](docs/WebhookPayloadEmailThreadReplied.md)
  - [WebhookPayloadEmailThreadRepliedReply](docs/WebhookPayloadEmailThreadRepliedReply.md)
  - [WebhookPayloadEmailThreadRepliedReplyClean](docs/WebhookPayloadEmailThreadRepliedReplyClean.md)
+ - [WebhookPayloadEmailUpdated](docs/WebhookPayloadEmailUpdated.md)
+ - [WebhookPayloadEmailUpdatedChanges](docs/WebhookPayloadEmailUpdatedChanges.md)
+ - [WebhookPayloadEmailUpdatedEmail](docs/WebhookPayloadEmailUpdatedEmail.md)
  - [WebhookPayloadExternalPost](docs/WebhookPayloadExternalPost.md)
  - [WebhookPayloadFile](docs/WebhookPayloadFile.md)
+ - [WebhookPayloadFileFile](docs/WebhookPayloadFileFile.md)
  - [WebhookPayloadFilePicked](docs/WebhookPayloadFilePicked.md)
  - [WebhookPayloadFilePickedPicker](docs/WebhookPayloadFilePickedPicker.md)
  - [WebhookPayloadFilePickedPickerFilesInner](docs/WebhookPayloadFilePickedPickerFilesInner.md)
