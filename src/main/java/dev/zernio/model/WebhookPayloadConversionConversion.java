@@ -61,7 +61,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadConversionConversion.JSON_PROPERTY_CAMPAIGN,
   WebhookPayloadConversionConversion.JSON_PROPERTY_CAMPAIGN_MATCH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:00:03.420219115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:04:43.290471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadConversionConversion {
   public static final String JSON_PROPERTY_EVENT_ID = "eventId";
   @javax.annotation.Nonnull

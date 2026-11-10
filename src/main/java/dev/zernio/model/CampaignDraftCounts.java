@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CampaignDraftCounts.JSON_PROPERTY_REVISION_REQUESTED,
   CampaignDraftCounts.JSON_PROPERTY_REJECTED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:00:03.420219115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:04:43.290471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignDraftCounts {
   public static final String JSON_PROPERTY_SUBMITTED = "submitted";
   @javax.annotation.Nonnull

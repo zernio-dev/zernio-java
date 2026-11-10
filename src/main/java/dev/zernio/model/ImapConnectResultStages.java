@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ImapConnectResultStages.JSON_PROPERTY_SMTP_CONNECT,
   ImapConnectResultStages.JSON_PROPERTY_SMTP_AUTH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:00:03.420219115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:04:43.290471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ImapConnectResultStages {
   /**
    * Gets or Sets imapConnect

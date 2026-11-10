@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCallTranscriptSegmentSegment.JSON_PROPERTY_CONFIDENCE,
   WebhookPayloadCallTranscriptSegmentSegment.JSON_PROPERTY_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:00:03.420219115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:04:43.290471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCallTranscriptSegmentSegment {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nonnull

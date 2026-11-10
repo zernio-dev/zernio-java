@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpsertCommerceMarketingActivity200ResponseMarketingActivity.JSON_PROPERTY_ID,
   UpsertCommerceMarketingActivity200ResponseMarketingActivity.JSON_PROPERTY_REMOTE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:00:03.420219115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:04:43.290471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpsertCommerceMarketingActivity200ResponseMarketingActivity {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

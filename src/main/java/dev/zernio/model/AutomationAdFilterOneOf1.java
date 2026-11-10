@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   AutomationAdFilterOneOf1.JSON_PROPERTY_OP,
   AutomationAdFilterOneOf1.JSON_PROPERTY_VALUES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:00:03.420219115Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:04:43.290471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationAdFilterOneOf1 {
   /**
    * Gets or Sets field
