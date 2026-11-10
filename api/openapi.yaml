@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.547.3
+  version: 1.547.4
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -26501,9 +26501,9 @@ paths:
       - application/json
   /v1/email/labels:
     get:
-      description: "Gmail labels, system and user, or the Outlook category list. Reading\
-        \ the Outlook list needs mailbox settings access, which Zernio does not request,\
-        \ so it can come back empty while categories still apply to messages by name."
+      description: "Gmail labels, system and user, or the Outlook category list. If\
+        \ an organization blocks reading the Outlook list, it comes back empty and\
+        \ categories still apply to messages by name."
       operationId: listEmailLabels
       parameters:
       - $ref: "#/components/parameters/EmailAccountId"
@@ -26570,9 +26570,9 @@ paths:
   /v1/email/labels/{labelId}:
     delete:
       description: "Deletes a Gmail user label or an Outlook category, by id or name\
-        \ (URL-encode a slash). Gmail removes the label from every message. Deleting\
-        \ an Outlook category needs mailbox settings access and returns 412 without\
-        \ it."
+        \ (URL-encode a slash). Gmail removes the label from every message. Outlook\
+        \ keeps a deleted category on messages that already carry it; 412 when the\
+        \ organization blocks the category list."
       operationId: deleteEmailLabel
       parameters:
       - explode: false
