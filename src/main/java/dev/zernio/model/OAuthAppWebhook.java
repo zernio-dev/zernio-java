@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   OAuthAppWebhook.JSON_PROPERTY_OBJECT,
   OAuthAppWebhook.JSON_PROPERTY_FIELDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:38:00.024928928Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:42:59.524935426Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OAuthAppWebhook {
   public static final String JSON_PROPERTY_CALLBACK_URL = "callbackUrl";
   @javax.annotation.Nonnull

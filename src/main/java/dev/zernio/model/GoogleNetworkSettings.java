@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GoogleNetworkSettings.JSON_PROPERTY_SEARCH_PARTNERS,
   GoogleNetworkSettings.JSON_PROPERTY_DISPLAY_NETWORK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:38:00.024928928Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:42:59.524935426Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleNetworkSettings {
   public static final String JSON_PROPERTY_SEARCH_PARTNERS = "searchPartners";
   @javax.annotation.Nullable

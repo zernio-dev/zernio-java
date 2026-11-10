@@ -59,7 +59,7 @@ import dev.zernio.ApiClient;
   StoredEvent.JSON_PROPERTY_HAS_EXTERNAL_ID,
   StoredEvent.JSON_PROPERTY_AD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:38:00.024928928Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:42:59.524935426Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StoredEvent {
   public static final String JSON_PROPERTY_EVENT_ID = "eventId";
   @javax.annotation.Nullable

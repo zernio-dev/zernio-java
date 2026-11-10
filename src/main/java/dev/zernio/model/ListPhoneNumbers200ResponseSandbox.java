@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   ListPhoneNumbers200ResponseSandbox.JSON_PROPERTY_TEMPLATE,
   ListPhoneNumbers200ResponseSandbox.JSON_PROPERTY_IS_SANDBOX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:38:00.024928928Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:42:59.524935426Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumbers200ResponseSandbox {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
