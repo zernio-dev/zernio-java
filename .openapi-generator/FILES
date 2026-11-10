@@ -7125,15 +7125,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/ContentRetentionApiTest.java
-src/test/java/dev/zernio/model/ContentRetentionResponseTest.java
-src/test/java/dev/zernio/model/UpdateContentRetentionRequestTest.java
-src/test/java/dev/zernio/model/WebhookPayloadCallRecordingReadyCallTest.java
-src/test/java/dev/zernio/model/WebhookPayloadCallRecordingReadyRecordingTest.java
-src/test/java/dev/zernio/model/WebhookPayloadCallRecordingReadyTest.java
-src/test/java/dev/zernio/model/WebhookPayloadCallTranscriptSegmentCallTest.java
-src/test/java/dev/zernio/model/WebhookPayloadCallTranscriptSegmentSegmentTest.java
-src/test/java/dev/zernio/model/WebhookPayloadCallTranscriptSegmentTest.java
-src/test/java/dev/zernio/model/WebhookPayloadMentionAccountTest.java
-src/test/java/dev/zernio/model/WebhookPayloadMentionMentionTest.java
-src/test/java/dev/zernio/model/WebhookPayloadMentionTest.java
