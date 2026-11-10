@@ -473,7 +473,7 @@ ApiResponse<[**CreateCalendarEvent201Response**](CreateCalendarEvent201Response.
 
 ## deleteCalendarEvent
 
-> DeleteCalendarEvent200Response deleteCalendarEvent(eventId, accountId, calendarId)
+> DeleteEmailLabel200Response deleteCalendarEvent(eventId, accountId, calendarId)
 
 Delete an event
 
@@ -502,7 +502,7 @@ public class Example {
         String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
         String calendarId = "calendarId_example"; // String | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar.
         try {
-            DeleteCalendarEvent200Response result = apiInstance.deleteCalendarEvent(eventId, accountId, calendarId);
+            DeleteEmailLabel200Response result = apiInstance.deleteCalendarEvent(eventId, accountId, calendarId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CalendarApi#deleteCalendarEvent");
@@ -526,7 +526,7 @@ public class Example {
 
 ### Return type
 
-[**DeleteCalendarEvent200Response**](DeleteCalendarEvent200Response.md)
+[**DeleteEmailLabel200Response**](DeleteEmailLabel200Response.md)
 
 
 ### Authorization
@@ -549,7 +549,7 @@ public class Example {
 
 ## deleteCalendarEventWithHttpInfo
 
-> ApiResponse<DeleteCalendarEvent200Response> deleteCalendarEvent deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId)
+> ApiResponse<DeleteEmailLabel200Response> deleteCalendarEvent deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId)
 
 Delete an event
 
@@ -579,7 +579,7 @@ public class Example {
         String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
         String calendarId = "calendarId_example"; // String | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar.
         try {
-            ApiResponse<DeleteCalendarEvent200Response> response = apiInstance.deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId);
+            ApiResponse<DeleteEmailLabel200Response> response = apiInstance.deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -605,7 +605,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**DeleteCalendarEvent200Response**](DeleteCalendarEvent200Response.md)>
+ApiResponse<[**DeleteEmailLabel200Response**](DeleteEmailLabel200Response.md)>
 
 
 ### Authorization

@@ -781,6 +781,9 @@ docs/CreateDiscordScheduledEventRequestEntityOneOf2.md
 docs/CreateDiscordThread200Response.md
 docs/CreateDiscordThread200ResponseData.md
 docs/CreateDiscordThreadRequest.md
+docs/CreateEmailLabel200Response.md
+docs/CreateEmailLabelRequest.md
+docs/CreateEmailLabelRequestColor.md
 docs/CreateEventDestination201Response.md
 docs/CreateEventDestinationRequest.md
 docs/CreateFilePickerSession201Response.md
@@ -1010,8 +1013,6 @@ docs/DeleteAdSet200Response.md
 docs/DeleteAdVideo200Response.md
 docs/DeleteAutomationTemplate200Response.md
 docs/DeleteBrandedCallingEnterprise200Response.md
-docs/DeleteCalendarEvent200Response.md
-docs/DeleteCalendarEvent200ResponseData.md
 docs/DeleteCommerceCatalogSync200Response.md
 docs/DeleteCommerceCollection200Response.md
 docs/DeleteCommerceDiscount200Response.md
@@ -1023,6 +1024,8 @@ docs/DeleteCommercePriceListPrices200Response.md
 docs/DeleteCommerceProductMetafields200Response.md
 docs/DeleteCommerceRedirect200Response.md
 docs/DeleteDiscordScheduledEvent200Response.md
+docs/DeleteEmailLabel200Response.md
+docs/DeleteEmailLabel200ResponseData.md
 docs/DeleteGoogleBusinessMedia200Response.md
 docs/DeleteGoogleBusinessPlaceAction200Response.md
 docs/DeleteGoogleBusinessReviewReply200Response.md
@@ -1092,6 +1095,8 @@ docs/EmailAddress.md
 docs/EmailApi.md
 docs/EmailAttachment.md
 docs/EmailFolder.md
+docs/EmailLabel.md
+docs/EmailLabelColor.md
 docs/EmailListMeta.md
 docs/EmailMessage.md
 docs/EmailMessagePatch.md
@@ -2021,6 +2026,7 @@ docs/ListDiscordPinnedMessages200Response.md
 docs/ListDiscordPinnedMessages200ResponseDataInner.md
 docs/ListDiscordScheduledEvents200Response.md
 docs/ListEmailFolders200Response.md
+docs/ListEmailLabels200Response.md
 docs/ListEmailMessages200Response.md
 docs/ListEmailThreads200Response.md
 docs/ListEventDestinations200Response.md
@@ -4409,6 +4415,9 @@ src/main/java/dev/zernio/model/CreateDiscordScheduledEventRequestEntityOneOf2.ja
 src/main/java/dev/zernio/model/CreateDiscordThread200Response.java
 src/main/java/dev/zernio/model/CreateDiscordThread200ResponseData.java
 src/main/java/dev/zernio/model/CreateDiscordThreadRequest.java
+src/main/java/dev/zernio/model/CreateEmailLabel200Response.java
+src/main/java/dev/zernio/model/CreateEmailLabelRequest.java
+src/main/java/dev/zernio/model/CreateEmailLabelRequestColor.java
 src/main/java/dev/zernio/model/CreateEventDestination201Response.java
 src/main/java/dev/zernio/model/CreateEventDestinationRequest.java
 src/main/java/dev/zernio/model/CreateFilePickerSession201Response.java
@@ -4635,8 +4644,6 @@ src/main/java/dev/zernio/model/DeleteAdSet200Response.java
 src/main/java/dev/zernio/model/DeleteAdVideo200Response.java
 src/main/java/dev/zernio/model/DeleteAutomationTemplate200Response.java
 src/main/java/dev/zernio/model/DeleteBrandedCallingEnterprise200Response.java
-src/main/java/dev/zernio/model/DeleteCalendarEvent200Response.java
-src/main/java/dev/zernio/model/DeleteCalendarEvent200ResponseData.java
 src/main/java/dev/zernio/model/DeleteCommerceCatalogSync200Response.java
 src/main/java/dev/zernio/model/DeleteCommerceCollection200Response.java
 src/main/java/dev/zernio/model/DeleteCommerceDiscount200Response.java
@@ -4648,6 +4655,8 @@ src/main/java/dev/zernio/model/DeleteCommercePriceListPrices200Response.java
 src/main/java/dev/zernio/model/DeleteCommerceProductMetafields200Response.java
 src/main/java/dev/zernio/model/DeleteCommerceRedirect200Response.java
 src/main/java/dev/zernio/model/DeleteDiscordScheduledEvent200Response.java
+src/main/java/dev/zernio/model/DeleteEmailLabel200Response.java
+src/main/java/dev/zernio/model/DeleteEmailLabel200ResponseData.java
 src/main/java/dev/zernio/model/DeleteGoogleBusinessMedia200Response.java
 src/main/java/dev/zernio/model/DeleteGoogleBusinessPlaceAction200Response.java
 src/main/java/dev/zernio/model/DeleteGoogleBusinessReviewReply200Response.java
@@ -4715,6 +4724,8 @@ src/main/java/dev/zernio/model/EditPostRequest.java
 src/main/java/dev/zernio/model/EmailAddress.java
 src/main/java/dev/zernio/model/EmailAttachment.java
 src/main/java/dev/zernio/model/EmailFolder.java
+src/main/java/dev/zernio/model/EmailLabel.java
+src/main/java/dev/zernio/model/EmailLabelColor.java
 src/main/java/dev/zernio/model/EmailListMeta.java
 src/main/java/dev/zernio/model/EmailMessage.java
 src/main/java/dev/zernio/model/EmailMessagePatch.java
@@ -5627,6 +5638,7 @@ src/main/java/dev/zernio/model/ListDiscordPinnedMessages200Response.java
 src/main/java/dev/zernio/model/ListDiscordPinnedMessages200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListDiscordScheduledEvents200Response.java
 src/main/java/dev/zernio/model/ListEmailFolders200Response.java
+src/main/java/dev/zernio/model/ListEmailLabels200Response.java
 src/main/java/dev/zernio/model/ListEmailMessages200Response.java
 src/main/java/dev/zernio/model/ListEmailThreads200Response.java
 src/main/java/dev/zernio/model/ListEventDestinations200Response.java
@@ -7125,3 +7137,11 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateEmailLabel200ResponseTest.java
+src/test/java/dev/zernio/model/CreateEmailLabelRequestColorTest.java
+src/test/java/dev/zernio/model/CreateEmailLabelRequestTest.java
+src/test/java/dev/zernio/model/DeleteEmailLabel200ResponseDataTest.java
+src/test/java/dev/zernio/model/DeleteEmailLabel200ResponseTest.java
+src/test/java/dev/zernio/model/EmailLabelColorTest.java
+src/test/java/dev/zernio/model/EmailLabelTest.java
+src/test/java/dev/zernio/model/ListEmailLabels200ResponseTest.java

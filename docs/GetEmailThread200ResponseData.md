@@ -16,6 +16,7 @@
 |**messageIds** | **List&lt;String&gt;** |  |  [optional] |
 |**draftIds** | **List&lt;String&gt;** |  |  [optional] |
 |**folders** | **List&lt;String&gt;** |  |  [optional] |
+|**labels** | **List&lt;String&gt;** | Every label (Gmail) or category (Outlook) on any message of the thread. |  [optional] |
 |**hasAttachments** | **Boolean** |  |  [optional] |
 |**hasDrafts** | **Boolean** |  |  [optional] |
 |**unread** | **Boolean** |  |  [optional] |

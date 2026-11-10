@@ -6,6 +6,10 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**cancelScheduledEmail**](EmailApi.md#cancelScheduledEmail) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email |
 | [**cancelScheduledEmailWithHttpInfo**](EmailApi.md#cancelScheduledEmailWithHttpInfo) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email |
+| [**createEmailLabel**](EmailApi.md#createEmailLabel) | **POST** /v1/email/labels | Create a label |
+| [**createEmailLabelWithHttpInfo**](EmailApi.md#createEmailLabelWithHttpInfo) | **POST** /v1/email/labels | Create a label |
+| [**deleteEmailLabel**](EmailApi.md#deleteEmailLabel) | **DELETE** /v1/email/labels/{labelId} | Delete a label |
+| [**deleteEmailLabelWithHttpInfo**](EmailApi.md#deleteEmailLabelWithHttpInfo) | **DELETE** /v1/email/labels/{labelId} | Delete a label |
 | [**downloadEmailAttachment**](EmailApi.md#downloadEmailAttachment) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment |
 | [**downloadEmailAttachmentWithHttpInfo**](EmailApi.md#downloadEmailAttachmentWithHttpInfo) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment |
 | [**getEmailMessage**](EmailApi.md#getEmailMessage) | **GET** /v1/email/messages/{messageId} | Get an email message |
@@ -16,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getScheduledEmailWithHttpInfo**](EmailApi.md#getScheduledEmailWithHttpInfo) | **GET** /v1/email/messages/scheduled/{scheduleId} | Get a scheduled email |
 | [**listEmailFolders**](EmailApi.md#listEmailFolders) | **GET** /v1/email/folders | List mailbox folders |
 | [**listEmailFoldersWithHttpInfo**](EmailApi.md#listEmailFoldersWithHttpInfo) | **GET** /v1/email/folders | List mailbox folders |
+| [**listEmailLabels**](EmailApi.md#listEmailLabels) | **GET** /v1/email/labels | List labels |
+| [**listEmailLabelsWithHttpInfo**](EmailApi.md#listEmailLabelsWithHttpInfo) | **GET** /v1/email/labels | List labels |
 | [**listEmailMessages**](EmailApi.md#listEmailMessages) | **GET** /v1/email/messages | List email messages |
 | [**listEmailMessagesWithHttpInfo**](EmailApi.md#listEmailMessagesWithHttpInfo) | **GET** /v1/email/messages | List email messages |
 | [**listEmailThreads**](EmailApi.md#listEmailThreads) | **GET** /v1/email/threads | List email threads |
@@ -28,8 +34,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**sendEmailMessageWithHttpInfo**](EmailApi.md#sendEmailMessageWithHttpInfo) | **POST** /v1/email/messages | Send an email |
 | [**trashEmailMessage**](EmailApi.md#trashEmailMessage) | **DELETE** /v1/email/messages/{messageId} | Move a message to trash |
 | [**trashEmailMessageWithHttpInfo**](EmailApi.md#trashEmailMessageWithHttpInfo) | **DELETE** /v1/email/messages/{messageId} | Move a message to trash |
-| [**updateEmailMessage**](EmailApi.md#updateEmailMessage) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, or move a message |
-| [**updateEmailMessageWithHttpInfo**](EmailApi.md#updateEmailMessageWithHttpInfo) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, or move a message |
+| [**updateEmailMessage**](EmailApi.md#updateEmailMessage) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, label, or move a message |
+| [**updateEmailMessageWithHttpInfo**](EmailApi.md#updateEmailMessageWithHttpInfo) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, label, or move a message |
 | [**updateEmailThread**](EmailApi.md#updateEmailThread) | **PATCH** /v1/email/threads/{threadId} | Update every message in a thread |
 | [**updateEmailThreadWithHttpInfo**](EmailApi.md#updateEmailThreadWithHttpInfo) | **PATCH** /v1/email/threads/{threadId} | Update every message in a thread |
 
@@ -189,6 +195,314 @@ ApiResponse<[**SendEmailMessage202Response**](SendEmailMessage202Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The send already left, failed or was cancelled; the message names its status. |  -  |
+
+
+## createEmailLabel
+
+> CreateEmailLabel200Response createEmailLabel(createEmailLabelRequest)
+
+Create a label
+
+Creates a Gmail label or an Outlook category. Safe to repeat: when the name already exists (case-insensitive) the existing label comes back with 200.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        CreateEmailLabelRequest createEmailLabelRequest = new CreateEmailLabelRequest(); // CreateEmailLabelRequest | 
+        try {
+            CreateEmailLabel200Response result = apiInstance.createEmailLabel(createEmailLabelRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#createEmailLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createEmailLabelRequest** | [**CreateEmailLabelRequest**](CreateEmailLabelRequest.md)|  | |
+
+### Return type
+
+[**CreateEmailLabel200Response**](CreateEmailLabel200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A label with this name already existed |  -  |
+| **201** | The label was created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+## createEmailLabelWithHttpInfo
+
+> ApiResponse<CreateEmailLabel200Response> createEmailLabel createEmailLabelWithHttpInfo(createEmailLabelRequest)
+
+Create a label
+
+Creates a Gmail label or an Outlook category. Safe to repeat: when the name already exists (case-insensitive) the existing label comes back with 200.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        CreateEmailLabelRequest createEmailLabelRequest = new CreateEmailLabelRequest(); // CreateEmailLabelRequest | 
+        try {
+            ApiResponse<CreateEmailLabel200Response> response = apiInstance.createEmailLabelWithHttpInfo(createEmailLabelRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#createEmailLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createEmailLabelRequest** | [**CreateEmailLabelRequest**](CreateEmailLabelRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateEmailLabel200Response**](CreateEmailLabel200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A label with this name already existed |  -  |
+| **201** | The label was created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+
+## deleteEmailLabel
+
+> DeleteEmailLabel200Response deleteEmailLabel(labelId, accountId)
+
+Delete a label
+
+Deletes a Gmail user label or an Outlook category, by id or name (URL-encode a slash). Gmail removes the label from every message. Deleting an Outlook category needs mailbox settings access and returns 412 without it.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String labelId = "labelId_example"; // String | 
+        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        try {
+            DeleteEmailLabel200Response result = apiInstance.deleteEmailLabel(labelId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#deleteEmailLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **labelId** | **String**|  | |
+| **accountId** | **String**| The connected Google or Microsoft account. | |
+
+### Return type
+
+[**DeleteEmailLabel200Response**](DeleteEmailLabel200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The label was deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+## deleteEmailLabelWithHttpInfo
+
+> ApiResponse<DeleteEmailLabel200Response> deleteEmailLabel deleteEmailLabelWithHttpInfo(labelId, accountId)
+
+Delete a label
+
+Deletes a Gmail user label or an Outlook category, by id or name (URL-encode a slash). Gmail removes the label from every message. Deleting an Outlook category needs mailbox settings access and returns 412 without it.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String labelId = "labelId_example"; // String | 
+        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        try {
+            ApiResponse<DeleteEmailLabel200Response> response = apiInstance.deleteEmailLabelWithHttpInfo(labelId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#deleteEmailLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **labelId** | **String**|  | |
+| **accountId** | **String**| The connected Google or Microsoft account. | |
+
+### Return type
+
+ApiResponse<[**DeleteEmailLabel200Response**](DeleteEmailLabel200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The label was deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
 
 
 ## downloadEmailAttachment
@@ -963,6 +1277,156 @@ ApiResponse<[**ListEmailFolders200Response**](ListEmailFolders200Response.md)>
 | **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
 
 
+## listEmailLabels
+
+> ListEmailLabels200Response listEmailLabels(accountId)
+
+List labels
+
+Gmail labels, system and user, or the Outlook category list. Reading the Outlook list needs mailbox settings access, which Zernio does not request, so it can come back empty while categories still apply to messages by name.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        try {
+            ListEmailLabels200Response result = apiInstance.listEmailLabels(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#listEmailLabels");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The connected Google or Microsoft account. | |
+
+### Return type
+
+[**ListEmailLabels200Response**](ListEmailLabels200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The mailbox&#39;s labels |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+## listEmailLabelsWithHttpInfo
+
+> ApiResponse<ListEmailLabels200Response> listEmailLabels listEmailLabelsWithHttpInfo(accountId)
+
+List labels
+
+Gmail labels, system and user, or the Outlook category list. Reading the Outlook list needs mailbox settings access, which Zernio does not request, so it can come back empty while categories still apply to messages by name.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        try {
+            ApiResponse<ListEmailLabels200Response> response = apiInstance.listEmailLabelsWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#listEmailLabels");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The connected Google or Microsoft account. | |
+
+### Return type
+
+ApiResponse<[**ListEmailLabels200Response**](ListEmailLabels200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The mailbox&#39;s labels |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+
 ## listEmailMessages
 
 > ListEmailMessages200Response listEmailMessages(accountId, folder, unread, starred, hasAttachment, subject, from, to, cc, bcc, anyEmail, after, before, searchQueryNative, sortOrder, cursor, limit)
@@ -1561,7 +2025,7 @@ ApiResponse<[**ListScheduledEmails200Response**](ListScheduledEmails200Response.
 
 Reply to a message
 
-Replies inside the provider&#39;s thread: the provider builds the quoted original and threading headers, your &#x60;html&#x60; or &#x60;text&#x60; goes above the quote. &#x60;to&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;, &#x60;replyTo&#x60;, &#x60;subject&#x60;, &#x60;headers&#x60; and &#x60;attachments&#x60; are honoured.  &#x60;scheduledFor&#x60; schedules the reply (202) and &#x60;trackOpens&#x60;, &#x60;trackLinks&#x60; and &#x60;trackReplies&#x60; track it, as on send; &#x60;holdAsDraft&#x60; is rejected. Same protection, caps and headers as sending. 
+Replies inside the provider&#39;s thread: the provider builds the quoted original and threading headers, your &#x60;html&#x60; or &#x60;text&#x60; goes above the quote. &#x60;to&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;, &#x60;replyTo&#x60;, &#x60;subject&#x60;, &#x60;headers&#x60; and &#x60;attachments&#x60; are honoured.  &#x60;scheduledFor&#x60; schedules the reply (202) and &#x60;trackOpens&#x60;, &#x60;trackLinks&#x60; and &#x60;trackReplies&#x60; track it, as on send; &#x60;holdAsDraft&#x60; holds it as a reply draft in the thread until then. Same protection, caps and headers as sending. 
 
 ### Example
 
@@ -1640,7 +2104,7 @@ public class Example {
 
 Reply to a message
 
-Replies inside the provider&#39;s thread: the provider builds the quoted original and threading headers, your &#x60;html&#x60; or &#x60;text&#x60; goes above the quote. &#x60;to&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;, &#x60;replyTo&#x60;, &#x60;subject&#x60;, &#x60;headers&#x60; and &#x60;attachments&#x60; are honoured.  &#x60;scheduledFor&#x60; schedules the reply (202) and &#x60;trackOpens&#x60;, &#x60;trackLinks&#x60; and &#x60;trackReplies&#x60; track it, as on send; &#x60;holdAsDraft&#x60; is rejected. Same protection, caps and headers as sending. 
+Replies inside the provider&#39;s thread: the provider builds the quoted original and threading headers, your &#x60;html&#x60; or &#x60;text&#x60; goes above the quote. &#x60;to&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;, &#x60;replyTo&#x60;, &#x60;subject&#x60;, &#x60;headers&#x60; and &#x60;attachments&#x60; are honoured.  &#x60;scheduledFor&#x60; schedules the reply (202) and &#x60;trackOpens&#x60;, &#x60;trackLinks&#x60; and &#x60;trackReplies&#x60; track it, as on send; &#x60;holdAsDraft&#x60; holds it as a reply draft in the thread until then. Same protection, caps and headers as sending. 
 
 ### Example
 
@@ -1723,7 +2187,7 @@ ApiResponse<[**SendEmailMessage201Response**](SendEmailMessage201Response.md)>
 
 Send an email
 
-Sends from the connected mailbox and returns the stored sent copy.  The message is mirrored into the inbox (&#x60;message.sent&#x60; fires once) and counted against the mailbox&#39;s daily cap. The cap is reported in the &#x60;X-Zernio-Send-Limit&#x60;, &#x60;X-Zernio-Send-Remaining&#x60; and &#x60;X-Zernio-Send-Reset&#x60; response headers.  ### Sending limits  These mailboxes are for one-to-one mail, not bulk sends. Protection on every mailbox:  - Daily cap: Microsoft 1,000; Google Workspace 500; Gmail consumer 200. Reaching it answers 429 &#x60;email_send_cap_reached&#x60; with &#x60;details.cap&#x60;. - The same body reaching more than 50 distinct recipients within an hour pauses the mailbox with an escalating cooldown (429 &#x60;rate_limited&#x60;, &#x60;account.rate_limited&#x60; webhook).  ### Scheduling  With &#x60;scheduledFor&#x60; the request answers 202 with a &#x60;ScheduledEmail&#x60; instead of sending. The account and payment method are checked now; the caps, cooldowns and the send itself run at &#x60;scheduledFor&#x60;. A send that fails then fires &#x60;email.send_failed&#x60;. List, read and cancel scheduled sends under &#x60;/v1/email/messages/scheduled&#x60;.  ### Tracking  - &#x60;trackOpens&#x60; adds a 1x1 image to the html and fires &#x60;email.opened&#x60;. - &#x60;trackLinks&#x60; rewrites every http(s) link in the html through a Zernio redirect and fires &#x60;email.link_clicked&#x60;. - &#x60;trackReplies&#x60; fires &#x60;email.thread_replied&#x60; when someone else writes in the thread.  Tracking costs nothing extra. Opens are approximate: image proxies prefetch and image blocking hides them.  ### Other errors  - 402: Gmail sends need a payment method on the workspace. Reading, calendar and files do not. - 400: &#x60;holdAsDraft&#x60; is reserved and rejected; &#x60;trackOpens&#x60; or &#x60;trackLinks&#x60; without &#x60;html&#x60;; &#x60;scheduledFor&#x60; outside 1 minute to 30 days. 
+Sends from the connected mailbox and returns the stored sent copy.  The message is mirrored into the inbox (&#x60;message.sent&#x60; fires once) and counted against the mailbox&#39;s daily cap. The cap is reported in the &#x60;X-Zernio-Send-Limit&#x60;, &#x60;X-Zernio-Send-Remaining&#x60; and &#x60;X-Zernio-Send-Reset&#x60; response headers.  ### Sending limits  These mailboxes are for one-to-one mail, not bulk sends. Protection on every mailbox:  - Daily cap: Microsoft 1,000; Google Workspace 500; Gmail consumer 200. Reaching it answers 429 &#x60;email_send_cap_reached&#x60; with &#x60;details.cap&#x60;. - The same body reaching more than 50 distinct recipients within an hour pauses the mailbox with an escalating cooldown (429 &#x60;rate_limited&#x60;, &#x60;account.rate_limited&#x60; webhook).  ### Scheduling  With &#x60;scheduledFor&#x60; the request answers 202 with a &#x60;ScheduledEmail&#x60; instead of sending. The account and payment method are checked now; the caps, cooldowns and the send itself run at &#x60;scheduledFor&#x60;. A send that fails then fires &#x60;email.send_failed&#x60;. List, read and cancel scheduled sends under &#x60;/v1/email/messages/scheduled&#x60;.  ### Tracking  - &#x60;trackOpens&#x60; adds a 1x1 image to the html and fires &#x60;email.opened&#x60;. - &#x60;trackLinks&#x60; rewrites every http(s) link in the html through a Zernio redirect and fires &#x60;email.link_clicked&#x60;. - &#x60;trackReplies&#x60; fires &#x60;email.thread_replied&#x60; when someone else writes in the thread.  Tracking costs nothing extra. Opens are approximate: image proxies prefetch and image blocking hides them.  ### Other errors  - 402: Gmail sends need a payment method on the workspace. Reading, calendar and files do not. - 400: &#x60;holdAsDraft&#x60; without &#x60;scheduledFor&#x60;; &#x60;trackOpens&#x60; or &#x60;trackLinks&#x60; without &#x60;html&#x60;; &#x60;scheduledFor&#x60; outside 1 minute to 30 days. 
 
 ### Example
 
@@ -1799,7 +2263,7 @@ public class Example {
 
 Send an email
 
-Sends from the connected mailbox and returns the stored sent copy.  The message is mirrored into the inbox (&#x60;message.sent&#x60; fires once) and counted against the mailbox&#39;s daily cap. The cap is reported in the &#x60;X-Zernio-Send-Limit&#x60;, &#x60;X-Zernio-Send-Remaining&#x60; and &#x60;X-Zernio-Send-Reset&#x60; response headers.  ### Sending limits  These mailboxes are for one-to-one mail, not bulk sends. Protection on every mailbox:  - Daily cap: Microsoft 1,000; Google Workspace 500; Gmail consumer 200. Reaching it answers 429 &#x60;email_send_cap_reached&#x60; with &#x60;details.cap&#x60;. - The same body reaching more than 50 distinct recipients within an hour pauses the mailbox with an escalating cooldown (429 &#x60;rate_limited&#x60;, &#x60;account.rate_limited&#x60; webhook).  ### Scheduling  With &#x60;scheduledFor&#x60; the request answers 202 with a &#x60;ScheduledEmail&#x60; instead of sending. The account and payment method are checked now; the caps, cooldowns and the send itself run at &#x60;scheduledFor&#x60;. A send that fails then fires &#x60;email.send_failed&#x60;. List, read and cancel scheduled sends under &#x60;/v1/email/messages/scheduled&#x60;.  ### Tracking  - &#x60;trackOpens&#x60; adds a 1x1 image to the html and fires &#x60;email.opened&#x60;. - &#x60;trackLinks&#x60; rewrites every http(s) link in the html through a Zernio redirect and fires &#x60;email.link_clicked&#x60;. - &#x60;trackReplies&#x60; fires &#x60;email.thread_replied&#x60; when someone else writes in the thread.  Tracking costs nothing extra. Opens are approximate: image proxies prefetch and image blocking hides them.  ### Other errors  - 402: Gmail sends need a payment method on the workspace. Reading, calendar and files do not. - 400: &#x60;holdAsDraft&#x60; is reserved and rejected; &#x60;trackOpens&#x60; or &#x60;trackLinks&#x60; without &#x60;html&#x60;; &#x60;scheduledFor&#x60; outside 1 minute to 30 days. 
+Sends from the connected mailbox and returns the stored sent copy.  The message is mirrored into the inbox (&#x60;message.sent&#x60; fires once) and counted against the mailbox&#39;s daily cap. The cap is reported in the &#x60;X-Zernio-Send-Limit&#x60;, &#x60;X-Zernio-Send-Remaining&#x60; and &#x60;X-Zernio-Send-Reset&#x60; response headers.  ### Sending limits  These mailboxes are for one-to-one mail, not bulk sends. Protection on every mailbox:  - Daily cap: Microsoft 1,000; Google Workspace 500; Gmail consumer 200. Reaching it answers 429 &#x60;email_send_cap_reached&#x60; with &#x60;details.cap&#x60;. - The same body reaching more than 50 distinct recipients within an hour pauses the mailbox with an escalating cooldown (429 &#x60;rate_limited&#x60;, &#x60;account.rate_limited&#x60; webhook).  ### Scheduling  With &#x60;scheduledFor&#x60; the request answers 202 with a &#x60;ScheduledEmail&#x60; instead of sending. The account and payment method are checked now; the caps, cooldowns and the send itself run at &#x60;scheduledFor&#x60;. A send that fails then fires &#x60;email.send_failed&#x60;. List, read and cancel scheduled sends under &#x60;/v1/email/messages/scheduled&#x60;.  ### Tracking  - &#x60;trackOpens&#x60; adds a 1x1 image to the html and fires &#x60;email.opened&#x60;. - &#x60;trackLinks&#x60; rewrites every http(s) link in the html through a Zernio redirect and fires &#x60;email.link_clicked&#x60;. - &#x60;trackReplies&#x60; fires &#x60;email.thread_replied&#x60; when someone else writes in the thread.  Tracking costs nothing extra. Opens are approximate: image proxies prefetch and image blocking hides them.  ### Other errors  - 402: Gmail sends need a payment method on the workspace. Reading, calendar and files do not. - 400: &#x60;holdAsDraft&#x60; without &#x60;scheduledFor&#x60;; &#x60;trackOpens&#x60; or &#x60;trackLinks&#x60; without &#x60;html&#x60;; &#x60;scheduledFor&#x60; outside 1 minute to 30 days. 
 
 ### Example
 
@@ -2029,9 +2493,9 @@ ApiResponse<[**TrashEmailMessage200Response**](TrashEmailMessage200Response.md)>
 
 > SendEmailMessage201Response updateEmailMessage(messageId, emailMessagePatch)
 
-Mark read or starred, or move a message
+Mark read or starred, label, or move a message
 
-&#x60;folder&#x60; moves the message. On Google a move swaps the inbox, trash and spam labels and keeps every other label; &#x60;archive&#x60; removes the inbox label.
+&#x60;addLabels&#x60; and &#x60;removeLabels&#x60; tag the message without moving it. &#x60;folder&#x60; moves it: on Google a move files the mail in one place, so it drops the inbox, trash, spam and user labels it held; &#x60;archive&#x60; removes the inbox label.
 
 ### Example
 
@@ -2105,9 +2569,9 @@ public class Example {
 
 > ApiResponse<SendEmailMessage201Response> updateEmailMessage updateEmailMessageWithHttpInfo(messageId, emailMessagePatch)
 
-Mark read or starred, or move a message
+Mark read or starred, label, or move a message
 
-&#x60;folder&#x60; moves the message. On Google a move swaps the inbox, trash and spam labels and keeps every other label; &#x60;archive&#x60; removes the inbox label.
+&#x60;addLabels&#x60; and &#x60;removeLabels&#x60; tag the message without moving it. &#x60;folder&#x60; moves it: on Google a move files the mail in one place, so it drops the inbox, trash, spam and user labels it held; &#x60;archive&#x60; removes the inbox label.
 
 ### Example
 
@@ -2187,7 +2651,7 @@ ApiResponse<[**SendEmailMessage201Response**](SendEmailMessage201Response.md)>
 
 Update every message in a thread
 
-Applies &#x60;unread&#x60;, &#x60;starred&#x60; or a &#x60;folder&#x60; move to each message of the thread.
+Applies &#x60;unread&#x60;, &#x60;starred&#x60;, &#x60;addLabels&#x60;, &#x60;removeLabels&#x60; or a &#x60;folder&#x60; move to each message of the thread.
 
 ### Example
 
@@ -2263,7 +2727,7 @@ public class Example {
 
 Update every message in a thread
 
-Applies &#x60;unread&#x60;, &#x60;starred&#x60; or a &#x60;folder&#x60; move to each message of the thread.
+Applies &#x60;unread&#x60;, &#x60;starred&#x60;, &#x60;addLabels&#x60;, &#x60;removeLabels&#x60; or a &#x60;folder&#x60; move to each message of the thread.
 
 ### Example
 

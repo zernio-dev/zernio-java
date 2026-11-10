@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.547.1
+- API version: 1.547.3
 
-- Build date: 2026-11-10T09:03:57.075608242Z[Etc/UTC]
+- Build date: 2026-11-10T09:44:00.967909634Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.547.1</version>
+  <version>1.547.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.547.1"
+compile "dev.zernio:zernio-sdk:1.547.3"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.547.1.jar`
+- `target/zernio-sdk-1.547.3.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1551,6 +1551,10 @@ Class | Method | HTTP request | Description
 *DiscordApi* | [**updateDiscordSettingsWithHttpInfo**](docs/DiscordApi.md#updateDiscordSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/discord-settings | Update Discord settings
 *EmailApi* | [**cancelScheduledEmail**](docs/EmailApi.md#cancelScheduledEmail) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email
 *EmailApi* | [**cancelScheduledEmailWithHttpInfo**](docs/EmailApi.md#cancelScheduledEmailWithHttpInfo) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email
+*EmailApi* | [**createEmailLabel**](docs/EmailApi.md#createEmailLabel) | **POST** /v1/email/labels | Create a label
+*EmailApi* | [**createEmailLabelWithHttpInfo**](docs/EmailApi.md#createEmailLabelWithHttpInfo) | **POST** /v1/email/labels | Create a label
+*EmailApi* | [**deleteEmailLabel**](docs/EmailApi.md#deleteEmailLabel) | **DELETE** /v1/email/labels/{labelId} | Delete a label
+*EmailApi* | [**deleteEmailLabelWithHttpInfo**](docs/EmailApi.md#deleteEmailLabelWithHttpInfo) | **DELETE** /v1/email/labels/{labelId} | Delete a label
 *EmailApi* | [**downloadEmailAttachment**](docs/EmailApi.md#downloadEmailAttachment) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment
 *EmailApi* | [**downloadEmailAttachmentWithHttpInfo**](docs/EmailApi.md#downloadEmailAttachmentWithHttpInfo) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment
 *EmailApi* | [**getEmailMessage**](docs/EmailApi.md#getEmailMessage) | **GET** /v1/email/messages/{messageId} | Get an email message
@@ -1561,6 +1565,8 @@ Class | Method | HTTP request | Description
 *EmailApi* | [**getScheduledEmailWithHttpInfo**](docs/EmailApi.md#getScheduledEmailWithHttpInfo) | **GET** /v1/email/messages/scheduled/{scheduleId} | Get a scheduled email
 *EmailApi* | [**listEmailFolders**](docs/EmailApi.md#listEmailFolders) | **GET** /v1/email/folders | List mailbox folders
 *EmailApi* | [**listEmailFoldersWithHttpInfo**](docs/EmailApi.md#listEmailFoldersWithHttpInfo) | **GET** /v1/email/folders | List mailbox folders
+*EmailApi* | [**listEmailLabels**](docs/EmailApi.md#listEmailLabels) | **GET** /v1/email/labels | List labels
+*EmailApi* | [**listEmailLabelsWithHttpInfo**](docs/EmailApi.md#listEmailLabelsWithHttpInfo) | **GET** /v1/email/labels | List labels
 *EmailApi* | [**listEmailMessages**](docs/EmailApi.md#listEmailMessages) | **GET** /v1/email/messages | List email messages
 *EmailApi* | [**listEmailMessagesWithHttpInfo**](docs/EmailApi.md#listEmailMessagesWithHttpInfo) | **GET** /v1/email/messages | List email messages
 *EmailApi* | [**listEmailThreads**](docs/EmailApi.md#listEmailThreads) | **GET** /v1/email/threads | List email threads
@@ -1573,8 +1579,8 @@ Class | Method | HTTP request | Description
 *EmailApi* | [**sendEmailMessageWithHttpInfo**](docs/EmailApi.md#sendEmailMessageWithHttpInfo) | **POST** /v1/email/messages | Send an email
 *EmailApi* | [**trashEmailMessage**](docs/EmailApi.md#trashEmailMessage) | **DELETE** /v1/email/messages/{messageId} | Move a message to trash
 *EmailApi* | [**trashEmailMessageWithHttpInfo**](docs/EmailApi.md#trashEmailMessageWithHttpInfo) | **DELETE** /v1/email/messages/{messageId} | Move a message to trash
-*EmailApi* | [**updateEmailMessage**](docs/EmailApi.md#updateEmailMessage) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, or move a message
-*EmailApi* | [**updateEmailMessageWithHttpInfo**](docs/EmailApi.md#updateEmailMessageWithHttpInfo) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, or move a message
+*EmailApi* | [**updateEmailMessage**](docs/EmailApi.md#updateEmailMessage) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, label, or move a message
+*EmailApi* | [**updateEmailMessageWithHttpInfo**](docs/EmailApi.md#updateEmailMessageWithHttpInfo) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, label, or move a message
 *EmailApi* | [**updateEmailThread**](docs/EmailApi.md#updateEmailThread) | **PATCH** /v1/email/threads/{threadId} | Update every message in a thread
 *EmailApi* | [**updateEmailThreadWithHttpInfo**](docs/EmailApi.md#updateEmailThreadWithHttpInfo) | **PATCH** /v1/email/threads/{threadId} | Update every message in a thread
 *FeedbackApi* | [**submitFeedback**](docs/FeedbackApi.md#submitFeedback) | **POST** /v1/feedback | Submit feedback
@@ -3247,6 +3253,9 @@ Class | Method | HTTP request | Description
  - [CreateDiscordThread200Response](docs/CreateDiscordThread200Response.md)
  - [CreateDiscordThread200ResponseData](docs/CreateDiscordThread200ResponseData.md)
  - [CreateDiscordThreadRequest](docs/CreateDiscordThreadRequest.md)
+ - [CreateEmailLabel200Response](docs/CreateEmailLabel200Response.md)
+ - [CreateEmailLabelRequest](docs/CreateEmailLabelRequest.md)
+ - [CreateEmailLabelRequestColor](docs/CreateEmailLabelRequestColor.md)
  - [CreateEventDestination201Response](docs/CreateEventDestination201Response.md)
  - [CreateEventDestinationRequest](docs/CreateEventDestinationRequest.md)
  - [CreateFilePickerSession201Response](docs/CreateFilePickerSession201Response.md)
@@ -3473,8 +3482,6 @@ Class | Method | HTTP request | Description
  - [DeleteAdVideo200Response](docs/DeleteAdVideo200Response.md)
  - [DeleteAutomationTemplate200Response](docs/DeleteAutomationTemplate200Response.md)
  - [DeleteBrandedCallingEnterprise200Response](docs/DeleteBrandedCallingEnterprise200Response.md)
- - [DeleteCalendarEvent200Response](docs/DeleteCalendarEvent200Response.md)
- - [DeleteCalendarEvent200ResponseData](docs/DeleteCalendarEvent200ResponseData.md)
  - [DeleteCommerceCatalogSync200Response](docs/DeleteCommerceCatalogSync200Response.md)
  - [DeleteCommerceCollection200Response](docs/DeleteCommerceCollection200Response.md)
  - [DeleteCommerceDiscount200Response](docs/DeleteCommerceDiscount200Response.md)
@@ -3486,6 +3493,8 @@ Class | Method | HTTP request | Description
  - [DeleteCommerceProductMetafields200Response](docs/DeleteCommerceProductMetafields200Response.md)
  - [DeleteCommerceRedirect200Response](docs/DeleteCommerceRedirect200Response.md)
  - [DeleteDiscordScheduledEvent200Response](docs/DeleteDiscordScheduledEvent200Response.md)
+ - [DeleteEmailLabel200Response](docs/DeleteEmailLabel200Response.md)
+ - [DeleteEmailLabel200ResponseData](docs/DeleteEmailLabel200ResponseData.md)
  - [DeleteGoogleBusinessMedia200Response](docs/DeleteGoogleBusinessMedia200Response.md)
  - [DeleteGoogleBusinessPlaceAction200Response](docs/DeleteGoogleBusinessPlaceAction200Response.md)
  - [DeleteGoogleBusinessReviewReply200Response](docs/DeleteGoogleBusinessReviewReply200Response.md)
@@ -3553,6 +3562,8 @@ Class | Method | HTTP request | Description
  - [EmailAddress](docs/EmailAddress.md)
  - [EmailAttachment](docs/EmailAttachment.md)
  - [EmailFolder](docs/EmailFolder.md)
+ - [EmailLabel](docs/EmailLabel.md)
+ - [EmailLabelColor](docs/EmailLabelColor.md)
  - [EmailListMeta](docs/EmailListMeta.md)
  - [EmailMessage](docs/EmailMessage.md)
  - [EmailMessagePatch](docs/EmailMessagePatch.md)
@@ -4465,6 +4476,7 @@ Class | Method | HTTP request | Description
  - [ListDiscordPinnedMessages200ResponseDataInner](docs/ListDiscordPinnedMessages200ResponseDataInner.md)
  - [ListDiscordScheduledEvents200Response](docs/ListDiscordScheduledEvents200Response.md)
  - [ListEmailFolders200Response](docs/ListEmailFolders200Response.md)
+ - [ListEmailLabels200Response](docs/ListEmailLabels200Response.md)
  - [ListEmailMessages200Response](docs/ListEmailMessages200Response.md)
  - [ListEmailThreads200Response](docs/ListEmailThreads200Response.md)
  - [ListEventDestinations200Response](docs/ListEventDestinations200Response.md)

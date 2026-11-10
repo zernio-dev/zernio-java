@@ -12,6 +12,8 @@ An email sent with `scheduledFor`. `status` moves scheduled, sending, then sent 
 |**accountId** | **String** |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**scheduledFor** | **OffsetDateTime** |  |  [optional] |
+|**holdAsDraft** | **Boolean** | True when the email waits as a draft in the mailbox and is sent as that draft stands at &#x60;scheduledFor&#x60;. |  [optional] |
+|**draftId** | **String** | The mailbox draft of a &#x60;holdAsDraft&#x60; send: the Gmail draft id, or the Outlook message id. &#x60;null&#x60; otherwise. |  [optional] |
 |**to** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  |  [optional] |
 |**subject** | **String** | Empty on a reply that keeps the thread subject. &#x60;null&#x60; once the send finishes under zero content retention. |  [optional] |
 |**contentNotRetained** | **Boolean** | Present and &#x60;true&#x60; when the email content was dropped under [zero content retention](/security/zero-content-retention). |  [optional] |
