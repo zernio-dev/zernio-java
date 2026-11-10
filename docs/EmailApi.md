@@ -4,6 +4,8 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**addEmailSharedMailbox**](EmailApi.md#addEmailSharedMailbox) | **POST** /v1/email/shared-mailboxes | Add a shared mailbox |
+| [**addEmailSharedMailboxWithHttpInfo**](EmailApi.md#addEmailSharedMailboxWithHttpInfo) | **POST** /v1/email/shared-mailboxes | Add a shared mailbox |
 | [**cancelScheduledEmail**](EmailApi.md#cancelScheduledEmail) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email |
 | [**cancelScheduledEmailWithHttpInfo**](EmailApi.md#cancelScheduledEmailWithHttpInfo) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email |
 | [**createEmailDraft**](EmailApi.md#createEmailDraft) | **POST** /v1/email/drafts | Create a draft |
@@ -52,6 +54,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listEmailMessagesWithHttpInfo**](EmailApi.md#listEmailMessagesWithHttpInfo) | **GET** /v1/email/messages | List email messages |
 | [**listEmailSendAs**](EmailApi.md#listEmailSendAs) | **GET** /v1/email/send-as | List send-as addresses |
 | [**listEmailSendAsWithHttpInfo**](EmailApi.md#listEmailSendAsWithHttpInfo) | **GET** /v1/email/send-as | List send-as addresses |
+| [**listEmailSharedMailboxes**](EmailApi.md#listEmailSharedMailboxes) | **GET** /v1/email/shared-mailboxes | List shared mailboxes |
+| [**listEmailSharedMailboxesWithHttpInfo**](EmailApi.md#listEmailSharedMailboxesWithHttpInfo) | **GET** /v1/email/shared-mailboxes | List shared mailboxes |
 | [**listEmailSignatures**](EmailApi.md#listEmailSignatures) | **GET** /v1/email/signatures | List signatures |
 | [**listEmailSignaturesWithHttpInfo**](EmailApi.md#listEmailSignaturesWithHttpInfo) | **GET** /v1/email/signatures | List signatures |
 | [**listEmailThreads**](EmailApi.md#listEmailThreads) | **GET** /v1/email/threads | List email threads |
@@ -75,6 +79,160 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateEmailThread**](EmailApi.md#updateEmailThread) | **PATCH** /v1/email/threads/{threadId} | Update every message in a thread |
 | [**updateEmailThreadWithHttpInfo**](EmailApi.md#updateEmailThreadWithHttpInfo) | **PATCH** /v1/email/threads/{threadId} | Update every message in a thread |
 
+
+
+## addEmailSharedMailbox
+
+> AddEmailSharedMailbox200Response addEmailSharedMailbox(addEmailSharedMailboxRequest)
+
+Add a shared mailbox
+
+Adds an Outlook shared mailbox the connected user can open (Full Access in Exchange) as an account of its own on the same profile. It counts as a connected account.  The Microsoft account needs the &#x60;shared_mailboxes&#x60; area: connect or reconnect it with &#x60;scopes&#x3D;email,shared_mailboxes&#x60;. Without it the call answers 412.  Zernio opens the mailbox before saving it. 403 &#x60;shared_mailbox_access_denied&#x60; means the user cannot open that address. Adding an address again returns the existing account with 200.  New mail is read every minute, because Microsoft sends no change notifications for shared mailboxes opened this way. Sending needs Send As or Send on Behalf on the mailbox. Remove it with &#x60;DELETE /v1/accounts/{accountId}&#x60;. Disconnecting the Microsoft account removes its shared mailboxes too. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        AddEmailSharedMailboxRequest addEmailSharedMailboxRequest = new AddEmailSharedMailboxRequest(); // AddEmailSharedMailboxRequest | 
+        try {
+            AddEmailSharedMailbox200Response result = apiInstance.addEmailSharedMailbox(addEmailSharedMailboxRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#addEmailSharedMailbox");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **addEmailSharedMailboxRequest** | [**AddEmailSharedMailboxRequest**](AddEmailSharedMailboxRequest.md)|  | |
+
+### Return type
+
+[**AddEmailSharedMailbox200Response**](AddEmailSharedMailbox200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The shared mailbox was already added |  -  |
+| **201** | The shared mailbox was added as a new account |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | &#x60;shared_mailbox_access_denied&#x60;: the user cannot open that address. It must be a mailbox in the same organization, with Full Access granted to the user. |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+## addEmailSharedMailboxWithHttpInfo
+
+> ApiResponse<AddEmailSharedMailbox200Response> addEmailSharedMailbox addEmailSharedMailboxWithHttpInfo(addEmailSharedMailboxRequest)
+
+Add a shared mailbox
+
+Adds an Outlook shared mailbox the connected user can open (Full Access in Exchange) as an account of its own on the same profile. It counts as a connected account.  The Microsoft account needs the &#x60;shared_mailboxes&#x60; area: connect or reconnect it with &#x60;scopes&#x3D;email,shared_mailboxes&#x60;. Without it the call answers 412.  Zernio opens the mailbox before saving it. 403 &#x60;shared_mailbox_access_denied&#x60; means the user cannot open that address. Adding an address again returns the existing account with 200.  New mail is read every minute, because Microsoft sends no change notifications for shared mailboxes opened this way. Sending needs Send As or Send on Behalf on the mailbox. Remove it with &#x60;DELETE /v1/accounts/{accountId}&#x60;. Disconnecting the Microsoft account removes its shared mailboxes too. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        AddEmailSharedMailboxRequest addEmailSharedMailboxRequest = new AddEmailSharedMailboxRequest(); // AddEmailSharedMailboxRequest | 
+        try {
+            ApiResponse<AddEmailSharedMailbox200Response> response = apiInstance.addEmailSharedMailboxWithHttpInfo(addEmailSharedMailboxRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#addEmailSharedMailbox");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **addEmailSharedMailboxRequest** | [**AddEmailSharedMailboxRequest**](AddEmailSharedMailboxRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AddEmailSharedMailbox200Response**](AddEmailSharedMailbox200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The shared mailbox was already added |  -  |
+| **201** | The shared mailbox was added as a new account |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | &#x60;shared_mailbox_access_denied&#x60;: the user cannot open that address. It must be a mailbox in the same organization, with Full Access granted to the user. |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
 
 
 ## cancelScheduledEmail
@@ -3818,6 +3976,156 @@ ApiResponse<[**ListEmailSendAs200Response**](ListEmailSendAs200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The mailbox&#39;s send-as addresses, the mailbox address first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+
+## listEmailSharedMailboxes
+
+> ListEmailSharedMailboxes200Response listEmailSharedMailboxes(accountId)
+
+List shared mailboxes
+
+The Outlook shared mailboxes added under this Microsoft account. Each one is an account: pass its &#x60;accountId&#x60; to any &#x60;/v1/email&#x60; endpoint.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
+        try {
+            ListEmailSharedMailboxes200Response result = apiInstance.listEmailSharedMailboxes(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#listEmailSharedMailboxes");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
+
+### Return type
+
+[**ListEmailSharedMailboxes200Response**](ListEmailSharedMailboxes200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The shared mailboxes, active ones first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+## listEmailSharedMailboxesWithHttpInfo
+
+> ApiResponse<ListEmailSharedMailboxes200Response> listEmailSharedMailboxes listEmailSharedMailboxesWithHttpInfo(accountId)
+
+List shared mailboxes
+
+The Outlook shared mailboxes added under this Microsoft account. Each one is an account: pass its &#x60;accountId&#x60; to any &#x60;/v1/email&#x60; endpoint.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
+        try {
+            ApiResponse<ListEmailSharedMailboxes200Response> response = apiInstance.listEmailSharedMailboxesWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#listEmailSharedMailboxes");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
+
+### Return type
+
+ApiResponse<[**ListEmailSharedMailboxes200Response**](ListEmailSharedMailboxes200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The shared mailboxes, active ones first |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |

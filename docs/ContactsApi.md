@@ -4,6 +4,8 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**autocompleteContacts**](ContactsApi.md#autocompleteContacts) | **GET** /v1/contacts/autocomplete | Search people |
+| [**autocompleteContactsWithHttpInfo**](ContactsApi.md#autocompleteContactsWithHttpInfo) | **GET** /v1/contacts/autocomplete | Search people |
 | [**bulkCreateContacts**](ContactsApi.md#bulkCreateContacts) | **POST** /v1/contacts/bulk | Bulk create contacts |
 | [**bulkCreateContactsWithHttpInfo**](ContactsApi.md#bulkCreateContactsWithHttpInfo) | **POST** /v1/contacts/bulk | Bulk create contacts |
 | [**createContact**](ContactsApi.md#createContact) | **POST** /v1/contacts | Create contact |
@@ -21,6 +23,166 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateContact**](ContactsApi.md#updateContact) | **PATCH** /v1/contacts/{contactId} | Update contact |
 | [**updateContactWithHttpInfo**](ContactsApi.md#updateContactWithHttpInfo) | **PATCH** /v1/contacts/{contactId} | Update contact |
 
+
+
+## autocompleteContacts
+
+> AutocompleteContacts200Response autocompleteContacts(accountId, q, limit)
+
+Search people
+
+Finds people for an address field, read live from a Google or Microsoft account. Nothing is stored.  With the contacts area it searches the user&#39;s address book. With the directory area it also searches coworkers and the people the user mails: Microsoft ranks them by relevance, Google adds its Workspace directory and other contacts.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ContactsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ContactsApi apiInstance = new ContactsApi(defaultClient);
+        String accountId = "accountId_example"; // String | A Google or Microsoft account connected with the contacts or directory area.
+        String q = "q_example"; // String | What the user typed: a name or the start of an email address.
+        Integer limit = 10; // Integer | 
+        try {
+            AutocompleteContacts200Response result = apiInstance.autocompleteContacts(accountId, q, limit);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ContactsApi#autocompleteContacts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| A Google or Microsoft account connected with the contacts or directory area. | |
+| **q** | **String**| What the user typed: a name or the start of an email address. | |
+| **limit** | **Integer**|  | [optional] [default to 10] |
+
+### Return type
+
+[**AutocompleteContacts200Response**](AutocompleteContacts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Matching people, best first, one entry per email address |  -  |
+| **400** | Invalid request, or the account is not a Google or Microsoft account |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The account was connected without the contacts or directory area |  -  |
+
+## autocompleteContactsWithHttpInfo
+
+> ApiResponse<AutocompleteContacts200Response> autocompleteContacts autocompleteContactsWithHttpInfo(accountId, q, limit)
+
+Search people
+
+Finds people for an address field, read live from a Google or Microsoft account. Nothing is stored.  With the contacts area it searches the user&#39;s address book. With the directory area it also searches coworkers and the people the user mails: Microsoft ranks them by relevance, Google adds its Workspace directory and other contacts.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ContactsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ContactsApi apiInstance = new ContactsApi(defaultClient);
+        String accountId = "accountId_example"; // String | A Google or Microsoft account connected with the contacts or directory area.
+        String q = "q_example"; // String | What the user typed: a name or the start of an email address.
+        Integer limit = 10; // Integer | 
+        try {
+            ApiResponse<AutocompleteContacts200Response> response = apiInstance.autocompleteContactsWithHttpInfo(accountId, q, limit);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ContactsApi#autocompleteContacts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| A Google or Microsoft account connected with the contacts or directory area. | |
+| **q** | **String**| What the user typed: a name or the start of an email address. | |
+| **limit** | **Integer**|  | [optional] [default to 10] |
+
+### Return type
+
+ApiResponse<[**AutocompleteContacts200Response**](AutocompleteContacts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Matching people, best first, one entry per email address |  -  |
+| **400** | Invalid request, or the account is not a Google or Microsoft account |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The account was connected without the contacts or directory area |  -  |
 
 
 ## bulkCreateContacts

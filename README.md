@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.563.0
+- API version: 1.564.1
 
-- Build date: 2026-11-10T19:10:07.616108549Z[Etc/UTC]
+- Build date: 2026-11-10T19:29:59.249744292Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.563.0</version>
+  <version>1.564.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.563.0"
+compile "dev.zernio:zernio-sdk:1.564.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.563.0.jar`
+- `target/zernio-sdk-1.564.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1341,6 +1341,8 @@ Class | Method | HTTP request | Description
 *ConnectedAppsApi* | [**listConnectedAppsWithHttpInfo**](docs/ConnectedAppsApi.md#listConnectedAppsWithHttpInfo) | **GET** /v1/me/connected-apps | List connected apps
 *ConnectedAppsApi* | [**revokeConnectedApp**](docs/ConnectedAppsApi.md#revokeConnectedApp) | **DELETE** /v1/me/connected-apps/{clientId} | Revoke connected app
 *ConnectedAppsApi* | [**revokeConnectedAppWithHttpInfo**](docs/ConnectedAppsApi.md#revokeConnectedAppWithHttpInfo) | **DELETE** /v1/me/connected-apps/{clientId} | Revoke connected app
+*ContactsApi* | [**autocompleteContacts**](docs/ContactsApi.md#autocompleteContacts) | **GET** /v1/contacts/autocomplete | Search people
+*ContactsApi* | [**autocompleteContactsWithHttpInfo**](docs/ContactsApi.md#autocompleteContactsWithHttpInfo) | **GET** /v1/contacts/autocomplete | Search people
 *ContactsApi* | [**bulkCreateContacts**](docs/ContactsApi.md#bulkCreateContacts) | **POST** /v1/contacts/bulk | Bulk create contacts
 *ContactsApi* | [**bulkCreateContactsWithHttpInfo**](docs/ContactsApi.md#bulkCreateContactsWithHttpInfo) | **POST** /v1/contacts/bulk | Bulk create contacts
 *ContactsApi* | [**createContact**](docs/ContactsApi.md#createContact) | **POST** /v1/contacts | Create contact
@@ -1601,6 +1603,8 @@ Class | Method | HTTP request | Description
 *DiscordApi* | [**updateDiscordScheduledEventWithHttpInfo**](docs/DiscordApi.md#updateDiscordScheduledEventWithHttpInfo) | **PATCH** /v1/discord/guilds/{guildId}/events/{eventId} | Update a Discord scheduled event
 *DiscordApi* | [**updateDiscordSettings**](docs/DiscordApi.md#updateDiscordSettings) | **PATCH** /v1/accounts/{accountId}/discord-settings | Update Discord settings
 *DiscordApi* | [**updateDiscordSettingsWithHttpInfo**](docs/DiscordApi.md#updateDiscordSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/discord-settings | Update Discord settings
+*EmailApi* | [**addEmailSharedMailbox**](docs/EmailApi.md#addEmailSharedMailbox) | **POST** /v1/email/shared-mailboxes | Add a shared mailbox
+*EmailApi* | [**addEmailSharedMailboxWithHttpInfo**](docs/EmailApi.md#addEmailSharedMailboxWithHttpInfo) | **POST** /v1/email/shared-mailboxes | Add a shared mailbox
 *EmailApi* | [**cancelScheduledEmail**](docs/EmailApi.md#cancelScheduledEmail) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email
 *EmailApi* | [**cancelScheduledEmailWithHttpInfo**](docs/EmailApi.md#cancelScheduledEmailWithHttpInfo) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email
 *EmailApi* | [**createEmailDraft**](docs/EmailApi.md#createEmailDraft) | **POST** /v1/email/drafts | Create a draft
@@ -1649,6 +1653,8 @@ Class | Method | HTTP request | Description
 *EmailApi* | [**listEmailMessagesWithHttpInfo**](docs/EmailApi.md#listEmailMessagesWithHttpInfo) | **GET** /v1/email/messages | List email messages
 *EmailApi* | [**listEmailSendAs**](docs/EmailApi.md#listEmailSendAs) | **GET** /v1/email/send-as | List send-as addresses
 *EmailApi* | [**listEmailSendAsWithHttpInfo**](docs/EmailApi.md#listEmailSendAsWithHttpInfo) | **GET** /v1/email/send-as | List send-as addresses
+*EmailApi* | [**listEmailSharedMailboxes**](docs/EmailApi.md#listEmailSharedMailboxes) | **GET** /v1/email/shared-mailboxes | List shared mailboxes
+*EmailApi* | [**listEmailSharedMailboxesWithHttpInfo**](docs/EmailApi.md#listEmailSharedMailboxesWithHttpInfo) | **GET** /v1/email/shared-mailboxes | List shared mailboxes
 *EmailApi* | [**listEmailSignatures**](docs/EmailApi.md#listEmailSignatures) | **GET** /v1/email/signatures | List signatures
 *EmailApi* | [**listEmailSignaturesWithHttpInfo**](docs/EmailApi.md#listEmailSignaturesWithHttpInfo) | **GET** /v1/email/signatures | List signatures
 *EmailApi* | [**listEmailThreads**](docs/EmailApi.md#listEmailThreads) | **GET** /v1/email/threads | List email threads
@@ -2725,6 +2731,8 @@ Class | Method | HTTP request | Description
  - [AddConversionAssociations200ResponseFailedInner](docs/AddConversionAssociations200ResponseFailedInner.md)
  - [AddConversionAssociationsRequest](docs/AddConversionAssociationsRequest.md)
  - [AddDiscordMemberRole200Response](docs/AddDiscordMemberRole200Response.md)
+ - [AddEmailSharedMailbox200Response](docs/AddEmailSharedMailbox200Response.md)
+ - [AddEmailSharedMailboxRequest](docs/AddEmailSharedMailboxRequest.md)
  - [AddImessageGroupParticipant200Response](docs/AddImessageGroupParticipant200Response.md)
  - [AddImessageGroupParticipantRequest](docs/AddImessageGroupParticipantRequest.md)
  - [AddImessageSandboxContact201Response](docs/AddImessageSandboxContact201Response.md)
@@ -2810,6 +2818,10 @@ Class | Method | HTTP request | Description
  - [AttachNumberToSipTrunk200Response](docs/AttachNumberToSipTrunk200Response.md)
  - [AttachNumberToSipTrunkRequest](docs/AttachNumberToSipTrunkRequest.md)
  - [AutoRecharge](docs/AutoRecharge.md)
+ - [AutocompleteContacts200Response](docs/AutocompleteContacts200Response.md)
+ - [AutocompleteContacts200ResponseDataInner](docs/AutocompleteContacts200ResponseDataInner.md)
+ - [AutocompleteContacts200ResponseMeta](docs/AutocompleteContacts200ResponseMeta.md)
+ - [AutocompleteContacts200ResponseMetaSourcesInner](docs/AutocompleteContacts200ResponseMetaSourcesInner.md)
  - [Automation](docs/Automation.md)
  - [AutomationAction](docs/AutomationAction.md)
  - [AutomationActionAllOfAdAccount](docs/AutomationActionAllOfAdAccount.md)
@@ -3725,6 +3737,7 @@ Class | Method | HTTP request | Description
  - [EmailMessagePatch](docs/EmailMessagePatch.md)
  - [EmailSendAs](docs/EmailSendAs.md)
  - [EmailSendAsSignature](docs/EmailSendAsSignature.md)
+ - [EmailSharedMailbox](docs/EmailSharedMailbox.md)
  - [EmailSignature](docs/EmailSignature.md)
  - [EmailThread](docs/EmailThread.md)
  - [EnableSmsOnNumber200Response](docs/EnableSmsOnNumber200Response.md)
@@ -4672,6 +4685,7 @@ Class | Method | HTTP request | Description
  - [ListEmailMessages200Response](docs/ListEmailMessages200Response.md)
  - [ListEmailSendAs200Response](docs/ListEmailSendAs200Response.md)
  - [ListEmailSendAs200ResponseMeta](docs/ListEmailSendAs200ResponseMeta.md)
+ - [ListEmailSharedMailboxes200Response](docs/ListEmailSharedMailboxes200Response.md)
  - [ListEmailSignatures200Response](docs/ListEmailSignatures200Response.md)
  - [ListEmailThreads200Response](docs/ListEmailThreads200Response.md)
  - [ListEventDestinations200Response](docs/ListEventDestinations200Response.md)
