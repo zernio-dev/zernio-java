@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.551.1
+- API version: 1.552.0
 
-- Build date: 2026-11-10T13:36:32.348761649Z[Etc/UTC]
+- Build date: 2026-11-10T13:47:53.565190111Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.551.1</version>
+  <version>1.552.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.551.1"
+compile "dev.zernio:zernio-sdk:1.552.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.551.1.jar`
+- `target/zernio-sdk-1.552.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1229,6 +1229,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getConnectUrlWithHttpInfo**](docs/ConnectApi.md#getConnectUrlWithHttpInfo) | **GET** /v1/connect/{platform} | Get OAuth connect URL
 *ConnectApi* | [**getConnectWelcomeScreen**](docs/ConnectApi.md#getConnectWelcomeScreen) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen
 *ConnectApi* | [**getConnectWelcomeScreenWithHttpInfo**](docs/ConnectApi.md#getConnectWelcomeScreenWithHttpInfo) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen
+*ConnectApi* | [**getEmailConnectUrl**](docs/ConnectApi.md#getEmailConnectUrl) | **GET** /v1/connect/email | Get a hosted link to connect any mailbox
+*ConnectApi* | [**getEmailConnectUrlWithHttpInfo**](docs/ConnectApi.md#getEmailConnectUrlWithHttpInfo) | **GET** /v1/connect/email | Get a hosted link to connect any mailbox
 *ConnectApi* | [**getFacebookPages**](docs/ConnectApi.md#getFacebookPages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages
 *ConnectApi* | [**getFacebookPagesWithHttpInfo**](docs/ConnectApi.md#getFacebookPagesWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages
 *ConnectApi* | [**getGmbLocations**](docs/ConnectApi.md#getGmbLocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations
@@ -1557,6 +1559,8 @@ Class | Method | HTTP request | Description
 *EmailApi* | [**createEmailLabelWithHttpInfo**](docs/EmailApi.md#createEmailLabelWithHttpInfo) | **POST** /v1/email/labels | Create a label
 *EmailApi* | [**createEmailSignature**](docs/EmailApi.md#createEmailSignature) | **POST** /v1/email/signatures | Create a signature
 *EmailApi* | [**createEmailSignatureWithHttpInfo**](docs/EmailApi.md#createEmailSignatureWithHttpInfo) | **POST** /v1/email/signatures | Create a signature
+*EmailApi* | [**createImapAccount**](docs/EmailApi.md#createImapAccount) | **POST** /v1/email/imap/accounts | Connect an IMAP mailbox
+*EmailApi* | [**createImapAccountWithHttpInfo**](docs/EmailApi.md#createImapAccountWithHttpInfo) | **POST** /v1/email/imap/accounts | Connect an IMAP mailbox
 *EmailApi* | [**declareEmailSendAs**](docs/EmailApi.md#declareEmailSendAs) | **POST** /v1/email/send-as | Declare a send-as address
 *EmailApi* | [**declareEmailSendAsWithHttpInfo**](docs/EmailApi.md#declareEmailSendAsWithHttpInfo) | **POST** /v1/email/send-as | Declare a send-as address
 *EmailApi* | [**deleteEmailDraft**](docs/EmailApi.md#deleteEmailDraft) | **DELETE** /v1/email/drafts/{draftId} | Delete a draft
@@ -1567,6 +1571,8 @@ Class | Method | HTTP request | Description
 *EmailApi* | [**deleteEmailSendAsWithHttpInfo**](docs/EmailApi.md#deleteEmailSendAsWithHttpInfo) | **DELETE** /v1/email/send-as/{email} | Remove a declared send-as address
 *EmailApi* | [**deleteEmailSignature**](docs/EmailApi.md#deleteEmailSignature) | **DELETE** /v1/email/signatures/{signatureId} | Delete a signature
 *EmailApi* | [**deleteEmailSignatureWithHttpInfo**](docs/EmailApi.md#deleteEmailSignatureWithHttpInfo) | **DELETE** /v1/email/signatures/{signatureId} | Delete a signature
+*EmailApi* | [**discoverImapSettings**](docs/EmailApi.md#discoverImapSettings) | **POST** /v1/email/imap/discover | Find the mail settings for an address
+*EmailApi* | [**discoverImapSettingsWithHttpInfo**](docs/EmailApi.md#discoverImapSettingsWithHttpInfo) | **POST** /v1/email/imap/discover | Find the mail settings for an address
 *EmailApi* | [**downloadEmailAttachment**](docs/EmailApi.md#downloadEmailAttachment) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment
 *EmailApi* | [**downloadEmailAttachmentWithHttpInfo**](docs/EmailApi.md#downloadEmailAttachmentWithHttpInfo) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment
 *EmailApi* | [**forwardEmailMessage**](docs/EmailApi.md#forwardEmailMessage) | **POST** /v1/email/messages/{messageId}/forward | Forward a message
@@ -3308,6 +3314,10 @@ Class | Method | HTTP request | Description
  - [CreateGoogleBusinessPlaceActionRequest](docs/CreateGoogleBusinessPlaceActionRequest.md)
  - [CreateHighDemandPeriod201Response](docs/CreateHighDemandPeriod201Response.md)
  - [CreateHighDemandPeriodRequest](docs/CreateHighDemandPeriodRequest.md)
+ - [CreateImapAccountRequest](docs/CreateImapAccountRequest.md)
+ - [CreateImapAccountRequestIdentitiesInner](docs/CreateImapAccountRequestIdentitiesInner.md)
+ - [CreateImapAccountRequestImap](docs/CreateImapAccountRequestImap.md)
+ - [CreateImapAccountRequestSmtp](docs/CreateImapAccountRequestSmtp.md)
  - [CreateImessageGroup202Response](docs/CreateImessageGroup202Response.md)
  - [CreateImessageGroupRequest](docs/CreateImessageGroupRequest.md)
  - [CreateImessageOptInLink200Response](docs/CreateImessageOptInLink200Response.md)
@@ -3575,6 +3585,8 @@ Class | Method | HTTP request | Description
  - [DiscordRole](docs/DiscordRole.md)
  - [DiscordScheduledEvent](docs/DiscordScheduledEvent.md)
  - [DiscordScheduledEventEntityMetadata](docs/DiscordScheduledEventEntityMetadata.md)
+ - [DiscoverImapSettings200Response](docs/DiscoverImapSettings200Response.md)
+ - [DiscoverImapSettingsRequest](docs/DiscoverImapSettingsRequest.md)
  - [DismissAdsAlert200Response](docs/DismissAdsAlert200Response.md)
  - [DismissGoogleRecommendationsRequest](docs/DismissGoogleRecommendationsRequest.md)
  - [DmButton](docs/DmButton.md)
@@ -3863,6 +3875,7 @@ Class | Method | HTTP request | Description
  - [GetDsaDefaults200Response](docs/GetDsaDefaults200Response.md)
  - [GetDsaDefaults200ResponseDsaDefaults](docs/GetDsaDefaults200ResponseDsaDefaults.md)
  - [GetDsaRecommendations200Response](docs/GetDsaRecommendations200Response.md)
+ - [GetEmailConnectUrl200Response](docs/GetEmailConnectUrl200Response.md)
  - [GetEmailThread200Response](docs/GetEmailThread200Response.md)
  - [GetEmailThread200ResponseData](docs/GetEmailThread200ResponseData.md)
  - [GetEvent200Response](docs/GetEvent200Response.md)
@@ -4267,6 +4280,17 @@ Class | Method | HTTP request | Description
  - [HideInboxCommentRequest](docs/HideInboxCommentRequest.md)
  - [HubSpotSettings](docs/HubSpotSettings.md)
  - [Ids](docs/Ids.md)
+ - [ImapConnectResult](docs/ImapConnectResult.md)
+ - [ImapConnectResultAccount](docs/ImapConnectResultAccount.md)
+ - [ImapConnectResultFolders](docs/ImapConnectResultFolders.md)
+ - [ImapConnectResultSettings](docs/ImapConnectResultSettings.md)
+ - [ImapConnectResultStages](docs/ImapConnectResultStages.md)
+ - [ImapDiscovery](docs/ImapDiscovery.md)
+ - [ImapDiscoveryAuth](docs/ImapDiscoveryAuth.md)
+ - [ImapDiscoveryImap](docs/ImapDiscoveryImap.md)
+ - [ImapDiscoveryPreflightInner](docs/ImapDiscoveryPreflightInner.md)
+ - [ImapDiscoveryProvider](docs/ImapDiscoveryProvider.md)
+ - [ImapDiscoverySmtp](docs/ImapDiscoverySmtp.md)
  - [ImessageAudienceContact](docs/ImessageAudienceContact.md)
  - [ImessageAudienceContactOptIn](docs/ImessageAudienceContactOptIn.md)
  - [ImessageSandboxContact](docs/ImessageSandboxContact.md)

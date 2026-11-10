@@ -12,6 +12,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createEmailLabelWithHttpInfo**](EmailApi.md#createEmailLabelWithHttpInfo) | **POST** /v1/email/labels | Create a label |
 | [**createEmailSignature**](EmailApi.md#createEmailSignature) | **POST** /v1/email/signatures | Create a signature |
 | [**createEmailSignatureWithHttpInfo**](EmailApi.md#createEmailSignatureWithHttpInfo) | **POST** /v1/email/signatures | Create a signature |
+| [**createImapAccount**](EmailApi.md#createImapAccount) | **POST** /v1/email/imap/accounts | Connect an IMAP mailbox |
+| [**createImapAccountWithHttpInfo**](EmailApi.md#createImapAccountWithHttpInfo) | **POST** /v1/email/imap/accounts | Connect an IMAP mailbox |
 | [**declareEmailSendAs**](EmailApi.md#declareEmailSendAs) | **POST** /v1/email/send-as | Declare a send-as address |
 | [**declareEmailSendAsWithHttpInfo**](EmailApi.md#declareEmailSendAsWithHttpInfo) | **POST** /v1/email/send-as | Declare a send-as address |
 | [**deleteEmailDraft**](EmailApi.md#deleteEmailDraft) | **DELETE** /v1/email/drafts/{draftId} | Delete a draft |
@@ -22,6 +24,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteEmailSendAsWithHttpInfo**](EmailApi.md#deleteEmailSendAsWithHttpInfo) | **DELETE** /v1/email/send-as/{email} | Remove a declared send-as address |
 | [**deleteEmailSignature**](EmailApi.md#deleteEmailSignature) | **DELETE** /v1/email/signatures/{signatureId} | Delete a signature |
 | [**deleteEmailSignatureWithHttpInfo**](EmailApi.md#deleteEmailSignatureWithHttpInfo) | **DELETE** /v1/email/signatures/{signatureId} | Delete a signature |
+| [**discoverImapSettings**](EmailApi.md#discoverImapSettings) | **POST** /v1/email/imap/discover | Find the mail settings for an address |
+| [**discoverImapSettingsWithHttpInfo**](EmailApi.md#discoverImapSettingsWithHttpInfo) | **POST** /v1/email/imap/discover | Find the mail settings for an address |
 | [**downloadEmailAttachment**](EmailApi.md#downloadEmailAttachment) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment |
 | [**downloadEmailAttachmentWithHttpInfo**](EmailApi.md#downloadEmailAttachmentWithHttpInfo) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment |
 | [**forwardEmailMessage**](EmailApi.md#forwardEmailMessage) | **POST** /v1/email/messages/{messageId}/forward | Forward a message |
@@ -683,6 +687,160 @@ ApiResponse<[**CreateEmailSignature201Response**](CreateEmailSignature201Respons
 | **201** | The signature was created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
+## createImapAccount
+
+> ImapConnectResult createImapAccount(createImapAccountRequest)
+
+Connect an IMAP mailbox
+
+Connects any IMAP/SMTP mailbox without the hosted page. Email and password are enough when discovery finds the servers. Every check runs before anything is stored; a failure answers 422 with the failing stage&#39;s code. An address already on the profile is updated in place and keeps its accountId.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        CreateImapAccountRequest createImapAccountRequest = new CreateImapAccountRequest(); // CreateImapAccountRequest | 
+        try {
+            ImapConnectResult result = apiInstance.createImapAccount(createImapAccountRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#createImapAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createImapAccountRequest** | [**CreateImapAccountRequest**](CreateImapAccountRequest.md)|  | |
+
+### Return type
+
+[**ImapConnectResult**](ImapConnectResult.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A dry run passed, or an existing account was updated in place |  -  |
+| **201** | The mailbox was connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **422** | A check failed. code names the stage (imap_auth_failed, app_password_required, use_oauth, imap_disabled, imap_unreachable, tls_hostname_mismatch, tls_untrusted, smtp_unreachable, smtp_auth_failed, provider_unsupported, discovery_failed); details.stages says which checks passed. |  -  |
+| **429** | too_many_attempts: the provider is refusing sign-ins; wait before retrying. |  -  |
+
+## createImapAccountWithHttpInfo
+
+> ApiResponse<ImapConnectResult> createImapAccount createImapAccountWithHttpInfo(createImapAccountRequest)
+
+Connect an IMAP mailbox
+
+Connects any IMAP/SMTP mailbox without the hosted page. Email and password are enough when discovery finds the servers. Every check runs before anything is stored; a failure answers 422 with the failing stage&#39;s code. An address already on the profile is updated in place and keeps its accountId.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        CreateImapAccountRequest createImapAccountRequest = new CreateImapAccountRequest(); // CreateImapAccountRequest | 
+        try {
+            ApiResponse<ImapConnectResult> response = apiInstance.createImapAccountWithHttpInfo(createImapAccountRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#createImapAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createImapAccountRequest** | [**CreateImapAccountRequest**](CreateImapAccountRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ImapConnectResult**](ImapConnectResult.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A dry run passed, or an existing account was updated in place |  -  |
+| **201** | The mailbox was connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **422** | A check failed. code names the stage (imap_auth_failed, app_password_required, use_oauth, imap_disabled, imap_unreachable, tls_hostname_mismatch, tls_untrusted, smtp_unreachable, smtp_auth_failed, provider_unsupported, discovery_failed); details.stages says which checks passed. |  -  |
+| **429** | too_many_attempts: the provider is refusing sign-ins; wait before retrying. |  -  |
 
 
 ## declareEmailSendAs
@@ -1443,6 +1601,154 @@ ApiResponse<[**DeleteEmailDraft200Response**](DeleteEmailDraft200Response.md)>
 | **200** | The signature was deleted |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+
+## discoverImapSettings
+
+> DiscoverImapSettings200Response discoverImapSettings(discoverImapSettingsRequest)
+
+Find the mail settings for an address
+
+The routing decision the hosted page makes, for your own connect form: Google or Microsoft OAuth, IMAP with the servers and the provider&#39;s app-password steps, or unsupported. Sources run in parallel inside 15 seconds: presets, MX, autoconfig, Thunderbird&#39;s ISPDB (sent the domain only), SRV records, then a probe.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        DiscoverImapSettingsRequest discoverImapSettingsRequest = new DiscoverImapSettingsRequest(); // DiscoverImapSettingsRequest | 
+        try {
+            DiscoverImapSettings200Response result = apiInstance.discoverImapSettings(discoverImapSettingsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#discoverImapSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **discoverImapSettingsRequest** | [**DiscoverImapSettingsRequest**](DiscoverImapSettingsRequest.md)|  | |
+
+### Return type
+
+[**DiscoverImapSettings200Response**](DiscoverImapSettings200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Where this address connects, and how |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## discoverImapSettingsWithHttpInfo
+
+> ApiResponse<DiscoverImapSettings200Response> discoverImapSettings discoverImapSettingsWithHttpInfo(discoverImapSettingsRequest)
+
+Find the mail settings for an address
+
+The routing decision the hosted page makes, for your own connect form: Google or Microsoft OAuth, IMAP with the servers and the provider&#39;s app-password steps, or unsupported. Sources run in parallel inside 15 seconds: presets, MX, autoconfig, Thunderbird&#39;s ISPDB (sent the domain only), SRV records, then a probe.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        DiscoverImapSettingsRequest discoverImapSettingsRequest = new DiscoverImapSettingsRequest(); // DiscoverImapSettingsRequest | 
+        try {
+            ApiResponse<DiscoverImapSettings200Response> response = apiInstance.discoverImapSettingsWithHttpInfo(discoverImapSettingsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#discoverImapSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **discoverImapSettingsRequest** | [**DiscoverImapSettingsRequest**](DiscoverImapSettingsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**DiscoverImapSettings200Response**](DiscoverImapSettings200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Where this address connects, and how |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## downloadEmailAttachment

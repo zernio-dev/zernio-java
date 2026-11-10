@@ -12,6 +12,8 @@
 |**platform** | **String** |  |  |
 |**username** | **String** |  |  |
 |**displayName** | **String** |  |  [optional] |
+|**reconnected** | **Boolean** | Present and true when a reconnect restored an existing account in place, keeping its accountId. |  [optional] |
+|**replacedAccountId** | **String** | The IMAP account this connection replaces, when a reconnected mailbox moved to Google or Microsoft. That account is retired at the same time, with account.disconnected and reasonCode replaced. |  [optional] |
 
 
 

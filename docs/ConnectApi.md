@@ -52,6 +52,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getConnectUrlWithHttpInfo**](ConnectApi.md#getConnectUrlWithHttpInfo) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**getConnectWelcomeScreen**](ConnectApi.md#getConnectWelcomeScreen) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen |
 | [**getConnectWelcomeScreenWithHttpInfo**](ConnectApi.md#getConnectWelcomeScreenWithHttpInfo) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen |
+| [**getEmailConnectUrl**](ConnectApi.md#getEmailConnectUrl) | **GET** /v1/connect/email | Get a hosted link to connect any mailbox |
+| [**getEmailConnectUrlWithHttpInfo**](ConnectApi.md#getEmailConnectUrlWithHttpInfo) | **GET** /v1/connect/email | Get a hosted link to connect any mailbox |
 | [**getFacebookPages**](ConnectApi.md#getFacebookPages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages |
 | [**getFacebookPagesWithHttpInfo**](ConnectApi.md#getFacebookPagesWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages |
 | [**getGmbLocations**](ConnectApi.md#getGmbLocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations |
@@ -4016,6 +4018,170 @@ ApiResponse<[**ConnectWelcomeScreen**](ConnectWelcomeScreen.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The saved settings. A workspace that never saved any gets &#x60;showByDefault&#x60; false and null fields. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
+## getEmailConnectUrl
+
+> GetEmailConnectUrl200Response getEmailConnectUrl(profileId, redirectUrl, email, name, reconnectAccountId)
+
+Get a hosted link to connect any mailbox
+
+One link for any address. The page asks for the email first, sends Gmail, Google Workspace, Outlook.com and Microsoft 365 (found by domain or MX) to their OAuth connect, and every other mailbox to IMAP with the provider&#39;s app-password steps. Valid for one hour.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        URI redirectUrl = new URI(); // URI | Where the page sends the user afterwards, with status, accountId, platform and email (or status=error and error).
+        String email = "email_example"; // String | Prefills the address and skips the first screen.
+        String name = "name_example"; // String | Display name for sent mail; the page asks for it when absent.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | Opens the reconnect variant for an IMAP account: only the new password is asked for, and the accountId stays the same.
+        try {
+            GetEmailConnectUrl200Response result = apiInstance.getEmailConnectUrl(profileId, redirectUrl, email, name, reconnectAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getEmailConnectUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | |
+| **redirectUrl** | **URI**| Where the page sends the user afterwards, with status, accountId, platform and email (or status&#x3D;error and error). | [optional] |
+| **email** | **String**| Prefills the address and skips the first screen. | [optional] |
+| **name** | **String**| Display name for sent mail; the page asks for it when absent. | [optional] |
+| **reconnectAccountId** | **String**| Opens the reconnect variant for an IMAP account: only the new password is asked for, and the accountId stays the same. | [optional] |
+
+### Return type
+
+[**GetEmailConnectUrl200Response**](GetEmailConnectUrl200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The hosted page URL |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## getEmailConnectUrlWithHttpInfo
+
+> ApiResponse<GetEmailConnectUrl200Response> getEmailConnectUrl getEmailConnectUrlWithHttpInfo(profileId, redirectUrl, email, name, reconnectAccountId)
+
+Get a hosted link to connect any mailbox
+
+One link for any address. The page asks for the email first, sends Gmail, Google Workspace, Outlook.com and Microsoft 365 (found by domain or MX) to their OAuth connect, and every other mailbox to IMAP with the provider&#39;s app-password steps. Valid for one hour.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        URI redirectUrl = new URI(); // URI | Where the page sends the user afterwards, with status, accountId, platform and email (or status=error and error).
+        String email = "email_example"; // String | Prefills the address and skips the first screen.
+        String name = "name_example"; // String | Display name for sent mail; the page asks for it when absent.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | Opens the reconnect variant for an IMAP account: only the new password is asked for, and the accountId stays the same.
+        try {
+            ApiResponse<GetEmailConnectUrl200Response> response = apiInstance.getEmailConnectUrlWithHttpInfo(profileId, redirectUrl, email, name, reconnectAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getEmailConnectUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | |
+| **redirectUrl** | **URI**| Where the page sends the user afterwards, with status, accountId, platform and email (or status&#x3D;error and error). | [optional] |
+| **email** | **String**| Prefills the address and skips the first screen. | [optional] |
+| **name** | **String**| Display name for sent mail; the page asks for it when absent. | [optional] |
+| **reconnectAccountId** | **String**| Opens the reconnect variant for an IMAP account: only the new password is asked for, and the accountId stays the same. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetEmailConnectUrl200Response**](GetEmailConnectUrl200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The hosted page URL |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
