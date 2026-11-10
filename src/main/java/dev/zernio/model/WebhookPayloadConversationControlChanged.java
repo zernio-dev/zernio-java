@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Who answers a conversation changed under Meta&#39;s handover protocol. WhatsApp: Meta Business Agent took it over, handed it to you, or another partner app took it. Facebook and Instagram: another app passed the thread to you, or took or received it. 
+ * Who answers a conversation changed. WhatsApp: Meta Business Agent took it over, handed it to you, or another partner app took it. Facebook and Instagram (Meta&#39;s conversation routing): another app passed the thread to you or took it from you. 
  */
 @JsonPropertyOrder({
   WebhookPayloadConversationControlChanged.JSON_PROPERTY_TEST,
@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadConversationControlChanged.JSON_PROPERTY_CHANGED_AT,
   WebhookPayloadConversationControlChanged.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:46:14.179236639Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:53:31.365411880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadConversationControlChanged {
   public static final String JSON_PROPERTY_TEST = "test";
   @javax.annotation.Nullable

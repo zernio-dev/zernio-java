@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   BrandedCallingIdentityNumber.JSON_PROPERTY_VERIFIED_AT,
   BrandedCallingIdentityNumber.JSON_PROPERTY_ADDED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:46:14.179236639Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:53:31.365411880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BrandedCallingIdentityNumber {
   public static final String JSON_PROPERTY_PHONE_NUMBER_ID = "phoneNumberId";
   @javax.annotation.Nullable

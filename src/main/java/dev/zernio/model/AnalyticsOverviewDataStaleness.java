@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   AnalyticsOverviewDataStaleness.JSON_PROPERTY_STALE_ACCOUNT_COUNT,
   AnalyticsOverviewDataStaleness.JSON_PROPERTY_SYNC_TRIGGERED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:46:14.179236639Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:53:31.365411880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsOverviewDataStaleness {
   public static final String JSON_PROPERTY_STALE_ACCOUNT_COUNT = "staleAccountCount";
   @javax.annotation.Nullable

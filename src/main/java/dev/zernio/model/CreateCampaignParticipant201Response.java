@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateCampaignParticipant201Response.JSON_PROPERTY_PARTICIPANT,
   CreateCampaignParticipant201Response.JSON_PROPERTY_INVITE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:46:14.179236639Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:53:31.365411880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCampaignParticipant201Response {
   public static final String JSON_PROPERTY_PARTICIPANT = "participant";
   @javax.annotation.Nonnull

@@ -42,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Platform-specific message context (present when the message is a quick reply tap, postback button tap, inline keyboard callback, a quote-reply to an earlier message, an inbound another app is answering under Meta&#39;s handover protocol, or a TikTok DM that is not plain text)
+ * Platform-specific message context (present when the message is a quick reply tap, postback button tap, inline keyboard callback, a quote-reply to an earlier message, an inbound another app is answering under Meta&#39;s conversation routing, or a TikTok DM that is not plain text)
  */
 @JsonPropertyOrder({
   WebhookPayloadMessageMetadata.JSON_PROPERTY_STANDBY,
@@ -73,7 +73,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_NO_RENDERABLE_CONTENT,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_TIKTOK_MESSAGE_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:46:14.179236639Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:53:31.365411880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_STANDBY = "standby";
   @javax.annotation.Nullable
@@ -264,7 +264,7 @@ public class WebhookPayloadMessageMetadata {
   }
 
   /**
-   * true when this inbound arrived on Meta&#39;s standby path because another app owned the conversation: Meta Business Agent on WhatsApp, or another handover receiver (such as Page Inbox) on Facebook and Instagram. That app answers it; Zernio only observes and no automation runs. See conversation.control_changed.  To take control back:  - WhatsApp: sending a reply takes control back. - Facebook, and Instagram accounts connected through a Facebook Page: take control first with POST /v1/inbox/conversations/{conversationId}/thread-control. - Instagram Login connections: cannot take or request control; wait for the owner to pass it. 
+   * true when this inbound arrived on Meta&#39;s standby path because another app owned the conversation: Meta Business Agent on WhatsApp, or another handover receiver (such as Page Inbox) on Facebook and Instagram. That app answers it; Zernio only observes and no automation runs. See conversation.control_changed.  To take control back:  - WhatsApp: sending a reply takes control back. - Facebook, and Instagram accounts connected through a Facebook Page: a send tries take_thread_control once and resends. Meta allows the take only when the account has a default app set in conversation routing and has allowed Zernio to take control of conversations. - Instagram Login connections: cannot take or request control; wait for the owner to pass it. 
    * @return standby
    */
   @javax.annotation.Nullable

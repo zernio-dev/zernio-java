@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetMediaPresignedUrlRequest.JSON_PROPERTY_CONTENT_TYPE,
   GetMediaPresignedUrlRequest.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:46:14.179236639Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:53:31.365411880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetMediaPresignedUrlRequest {
   public static final String JSON_PROPERTY_FILENAME = "filename";
   @javax.annotation.Nonnull

@@ -2,13 +2,13 @@
 
 # WebhookPayloadMessageMetadata
 
-Platform-specific message context (present when the message is a quick reply tap, postback button tap, inline keyboard callback, a quote-reply to an earlier message, an inbound another app is answering under Meta's handover protocol, or a TikTok DM that is not plain text)
+Platform-specific message context (present when the message is a quick reply tap, postback button tap, inline keyboard callback, a quote-reply to an earlier message, an inbound another app is answering under Meta's conversation routing, or a TikTok DM that is not plain text)
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**standby** | **Boolean** | true when this inbound arrived on Meta&#39;s standby path because another app owned the conversation: Meta Business Agent on WhatsApp, or another handover receiver (such as Page Inbox) on Facebook and Instagram. That app answers it; Zernio only observes and no automation runs. See conversation.control_changed.  To take control back:  - WhatsApp: sending a reply takes control back. - Facebook, and Instagram accounts connected through a Facebook Page: take control first with POST /v1/inbox/conversations/{conversationId}/thread-control. - Instagram Login connections: cannot take or request control; wait for the owner to pass it.  |  [optional] |
+|**standby** | **Boolean** | true when this inbound arrived on Meta&#39;s standby path because another app owned the conversation: Meta Business Agent on WhatsApp, or another handover receiver (such as Page Inbox) on Facebook and Instagram. That app answers it; Zernio only observes and no automation runs. See conversation.control_changed.  To take control back:  - WhatsApp: sending a reply takes control back. - Facebook, and Instagram accounts connected through a Facebook Page: a send tries take_thread_control once and resends. Meta allows the take only when the account has a default app set in conversation routing and has allowed Zernio to take control of conversations. - Instagram Login connections: cannot take or request control; wait for the owner to pass it.  |  [optional] |
 |**quotedMessageId** | **String** | Raw platform envelope id (WhatsApp &#x60;context.id&#x60;; Instagram and Facebook Messenger &#x60;reply_to.mid&#x60;) of the message this one is a quote-reply to, forwarded verbatim. It may not equal the stored id of that message (see &#x60;quotedMessage.platformMessageId&#x60;). On outgoing messages the same field appears on &#x60;message.sent&#x60;, but only on some surfaces: see WebhookPayloadMessageSent.metadata.quotedMessageId.  |  [optional] |
 |**quotedMessage** | [**WebhookPayloadMessageMetadataQuotedMessage**](WebhookPayloadMessageMetadataQuotedMessage.md) |  |  [optional] |
 |**quickReplyPayload** | **String** | Payload from a quick reply tap (Facebook/Instagram Messenger). |  [optional] |

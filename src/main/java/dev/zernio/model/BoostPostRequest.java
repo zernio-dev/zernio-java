@@ -115,7 +115,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_META_OBJECTIVE,
   BoostPostRequest.JSON_PROPERTY_VALIDATE_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:46:14.179236639Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:53:31.365411880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   /**
    * Gets or Sets inner
