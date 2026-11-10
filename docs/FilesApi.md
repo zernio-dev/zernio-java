@@ -353,7 +353,7 @@ public class Example {
 
         FilesApi apiInstance = new FilesApi(defaultClient);
         String fileId = "fileId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             File result = apiInstance.downloadFile(fileId, accountId);
             System.out.println(result);
@@ -374,7 +374,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fileId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -430,7 +430,7 @@ public class Example {
 
         FilesApi apiInstance = new FilesApi(defaultClient);
         String fileId = "fileId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<File> response = apiInstance.downloadFileWithHttpInfo(fileId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -453,7 +453,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fileId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -509,7 +509,7 @@ public class Example {
 
         FilesApi apiInstance = new FilesApi(defaultClient);
         String fileId = "fileId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             UploadFile201Response result = apiInstance.getFile(fileId, accountId);
             System.out.println(result);
@@ -530,7 +530,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fileId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -586,7 +586,7 @@ public class Example {
 
         FilesApi apiInstance = new FilesApi(defaultClient);
         String fileId = "fileId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<UploadFile201Response> response = apiInstance.getFileWithHttpInfo(fileId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -609,7 +609,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fileId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -665,7 +665,7 @@ public class Example {
 
         FilesApi apiInstance = new FilesApi(defaultClient);
         String fileId = "fileId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             GetFileShareLink200Response result = apiInstance.getFileShareLink(fileId, accountId);
             System.out.println(result);
@@ -686,7 +686,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fileId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -742,7 +742,7 @@ public class Example {
 
         FilesApi apiInstance = new FilesApi(defaultClient);
         String fileId = "fileId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<GetFileShareLink200Response> response = apiInstance.getFileShareLinkWithHttpInfo(fileId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -765,7 +765,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fileId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -820,7 +820,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         FilesApi apiInstance = new FilesApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String folderId = "folderId_example"; // String | Provider folder id; omit for the root.
         String q = "q_example"; // String | Name search.
         String cursor = "cursor_example"; // String | 
@@ -844,7 +844,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **folderId** | **String**| Provider folder id; omit for the root. | [optional] |
 | **q** | **String**| Name search. | [optional] |
 | **cursor** | **String**|  | [optional] |
@@ -902,7 +902,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         FilesApi apiInstance = new FilesApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String folderId = "folderId_example"; // String | Provider folder id; omit for the root.
         String q = "q_example"; // String | Name search.
         String cursor = "cursor_example"; // String | 
@@ -928,7 +928,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **folderId** | **String**| Provider folder id; omit for the root. | [optional] |
 | **q** | **String**| Name search. | [optional] |
 | **cursor** | **String**|  | [optional] |
@@ -987,7 +987,7 @@ public class Example {
 
         FilesApi apiInstance = new FilesApi(defaultClient);
         String fileId = "fileId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             TrashFile200Response result = apiInstance.trashFile(fileId, accountId);
             System.out.println(result);
@@ -1008,7 +1008,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fileId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -1064,7 +1064,7 @@ public class Example {
 
         FilesApi apiInstance = new FilesApi(defaultClient);
         String fileId = "fileId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<TrashFile200Response> response = apiInstance.trashFileWithHttpInfo(fileId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1087,7 +1087,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fileId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 

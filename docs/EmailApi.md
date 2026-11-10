@@ -107,7 +107,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String scheduleId = "scheduleId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             SendEmailMessage202Response result = apiInstance.cancelScheduledEmail(scheduleId, accountId);
             System.out.println(result);
@@ -128,7 +128,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **scheduleId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -184,7 +184,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String scheduleId = "scheduleId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<SendEmailMessage202Response> response = apiInstance.cancelScheduledEmailWithHttpInfo(scheduleId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -207,7 +207,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **scheduleId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -239,7 +239,7 @@ ApiResponse<[**SendEmailMessage202Response**](SendEmailMessage202Response.md)>
 
 Create a draft
 
-Saves a draft in the user&#39;s mailbox, where they see it in Gmail or Outlook. Recipients and subject can come later. &#x60;inReplyTo&#x60; makes a reply draft in that thread and &#x60;forwardOf&#x60; a forward draft with the original&#39;s attachments; the &#x60;kind&#x60; is fixed for the life of the draft.  Send it with &#x60;POST /v1/email/drafts/{draftId}/send&#x60;. Edits the user makes in their mail client are what goes out. Store the draft &#x60;id&#x60;, and pass its &#x60;version&#x60; as &#x60;If-Match&#x60; so an update or send applies only to the version you saw. 
+Saves a draft in the user&#39;s mailbox, where they see it in their mail app. Recipients and subject can come later. &#x60;inReplyTo&#x60; makes a reply draft in that thread and &#x60;forwardOf&#x60; a forward draft with the original&#39;s attachments; the &#x60;kind&#x60; is fixed for the life of the draft.  Send it with &#x60;POST /v1/email/drafts/{draftId}/send&#x60;. Edits the user makes in their mail client are what goes out. Store the draft &#x60;id&#x60;, and pass its &#x60;version&#x60; as &#x60;If-Match&#x60; so an update or send applies only to the version you saw. 
 
 ### Example
 
@@ -315,7 +315,7 @@ public class Example {
 
 Create a draft
 
-Saves a draft in the user&#39;s mailbox, where they see it in Gmail or Outlook. Recipients and subject can come later. &#x60;inReplyTo&#x60; makes a reply draft in that thread and &#x60;forwardOf&#x60; a forward draft with the original&#39;s attachments; the &#x60;kind&#x60; is fixed for the life of the draft.  Send it with &#x60;POST /v1/email/drafts/{draftId}/send&#x60;. Edits the user makes in their mail client are what goes out. Store the draft &#x60;id&#x60;, and pass its &#x60;version&#x60; as &#x60;If-Match&#x60; so an update or send applies only to the version you saw. 
+Saves a draft in the user&#39;s mailbox, where they see it in their mail app. Recipients and subject can come later. &#x60;inReplyTo&#x60; makes a reply draft in that thread and &#x60;forwardOf&#x60; a forward draft with the original&#39;s attachments; the &#x60;kind&#x60; is fixed for the life of the draft.  Send it with &#x60;POST /v1/email/drafts/{draftId}/send&#x60;. Edits the user makes in their mail client are what goes out. Store the draft &#x60;id&#x60;, and pass its &#x60;version&#x60; as &#x60;If-Match&#x60; so an update or send applies only to the version you saw. 
 
 ### Example
 
@@ -1023,7 +1023,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String draftId = "draftId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             DeleteEmailDraft200Response result = apiInstance.deleteEmailDraft(draftId, accountId);
             System.out.println(result);
@@ -1044,7 +1044,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **draftId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -1098,7 +1098,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String draftId = "draftId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<DeleteEmailDraft200Response> response = apiInstance.deleteEmailDraftWithHttpInfo(draftId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1121,7 +1121,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **draftId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -1177,7 +1177,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String labelId = "labelId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             DeleteEmailDraft200Response result = apiInstance.deleteEmailLabel(labelId, accountId);
             System.out.println(result);
@@ -1198,7 +1198,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **labelId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -1254,7 +1254,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String labelId = "labelId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<DeleteEmailDraft200Response> response = apiInstance.deleteEmailLabelWithHttpInfo(labelId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1277,7 +1277,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **labelId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -1333,7 +1333,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String email = "email_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             DeleteEmailSendAs200Response result = apiInstance.deleteEmailSendAs(email, accountId);
             System.out.println(result);
@@ -1354,7 +1354,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **email** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -1410,7 +1410,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String email = "email_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<DeleteEmailSendAs200Response> response = apiInstance.deleteEmailSendAsWithHttpInfo(email, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1433,7 +1433,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **email** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -1781,7 +1781,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String attachmentId = "attachmentId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String messageId = "messageId_example"; // String | 
         try {
             File result = apiInstance.downloadEmailAttachment(attachmentId, accountId, messageId);
@@ -1803,7 +1803,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **attachmentId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **messageId** | **String**|  | |
 
 ### Return type
@@ -1860,7 +1860,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String attachmentId = "attachmentId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String messageId = "messageId_example"; // String | 
         try {
             ApiResponse<File> response = apiInstance.downloadEmailAttachmentWithHttpInfo(attachmentId, accountId, messageId);
@@ -1884,7 +1884,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **attachmentId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **messageId** | **String**|  | |
 
 ### Return type
@@ -2107,7 +2107,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String draftId = "draftId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             CreateEmailDraft201Response result = apiInstance.getEmailDraft(draftId, accountId);
             System.out.println(result);
@@ -2128,7 +2128,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **draftId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -2184,7 +2184,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String draftId = "draftId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<CreateEmailDraft201Response> response = apiInstance.getEmailDraftWithHttpInfo(draftId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2207,7 +2207,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **draftId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -2261,10 +2261,10 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String messageId = "messageId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         Boolean includeHeaders = false; // Boolean | Include the raw internet headers under `headers`.
         Boolean raw = false; // Boolean | Include the MIME source under `raw`.
-        Boolean clean = false; // Boolean | Add `cleanText`: the new text only, without quoted replies, forwarded history, signature or tracking pixels. Ready to hand to an LLM.
+        Boolean clean = false; // Boolean | Add a `clean` object: the new text without quoted replies, footers or tracking pixels, the `signature` on its own (it also stays in `text`), and a parsed `forwarded` header. Ready to hand to an LLM.
         try {
             SendEmailMessage201Response result = apiInstance.getEmailMessage(messageId, accountId, includeHeaders, raw, clean);
             System.out.println(result);
@@ -2285,10 +2285,10 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **messageId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **includeHeaders** | **Boolean**| Include the raw internet headers under &#x60;headers&#x60;. | [optional] [default to false] |
 | **raw** | **Boolean**| Include the MIME source under &#x60;raw&#x60;. | [optional] [default to false] |
-| **clean** | **Boolean**| Add &#x60;cleanText&#x60;: the new text only, without quoted replies, forwarded history, signature or tracking pixels. Ready to hand to an LLM. | [optional] [default to false] |
+| **clean** | **Boolean**| Add a &#x60;clean&#x60; object: the new text without quoted replies, footers or tracking pixels, the &#x60;signature&#x60; on its own (it also stays in &#x60;text&#x60;), and a parsed &#x60;forwarded&#x60; header. Ready to hand to an LLM. | [optional] [default to false] |
 
 ### Return type
 
@@ -2342,10 +2342,10 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String messageId = "messageId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         Boolean includeHeaders = false; // Boolean | Include the raw internet headers under `headers`.
         Boolean raw = false; // Boolean | Include the MIME source under `raw`.
-        Boolean clean = false; // Boolean | Add `cleanText`: the new text only, without quoted replies, forwarded history, signature or tracking pixels. Ready to hand to an LLM.
+        Boolean clean = false; // Boolean | Add a `clean` object: the new text without quoted replies, footers or tracking pixels, the `signature` on its own (it also stays in `text`), and a parsed `forwarded` header. Ready to hand to an LLM.
         try {
             ApiResponse<SendEmailMessage201Response> response = apiInstance.getEmailMessageWithHttpInfo(messageId, accountId, includeHeaders, raw, clean);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2368,10 +2368,10 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **messageId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **includeHeaders** | **Boolean**| Include the raw internet headers under &#x60;headers&#x60;. | [optional] [default to false] |
 | **raw** | **Boolean**| Include the MIME source under &#x60;raw&#x60;. | [optional] [default to false] |
-| **clean** | **Boolean**| Add &#x60;cleanText&#x60;: the new text only, without quoted replies, forwarded history, signature or tracking pixels. Ready to hand to an LLM. | [optional] [default to false] |
+| **clean** | **Boolean**| Add a &#x60;clean&#x60; object: the new text without quoted replies, footers or tracking pixels, the &#x60;signature&#x60; on its own (it also stays in &#x60;text&#x60;), and a parsed &#x60;forwarded&#x60; header. Ready to hand to an LLM. | [optional] [default to false] |
 
 ### Return type
 
@@ -2569,8 +2569,8 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String threadId = "threadId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
-        Boolean clean = false; // Boolean | Add `cleanText` to every message: what each one added to the conversation, without the quoted history.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
+        Boolean clean = false; // Boolean | Add a `clean` object to every message: the text each one added, without quoted replies, footers or tracking pixels, plus its `signature` and a parsed `forwarded` header.
         try {
             GetEmailThread200Response result = apiInstance.getEmailThread(threadId, accountId, clean);
             System.out.println(result);
@@ -2591,8 +2591,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **threadId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
-| **clean** | **Boolean**| Add &#x60;cleanText&#x60; to every message: what each one added to the conversation, without the quoted history. | [optional] [default to false] |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
+| **clean** | **Boolean**| Add a &#x60;clean&#x60; object to every message: the text each one added, without quoted replies, footers or tracking pixels, plus its &#x60;signature&#x60; and a parsed &#x60;forwarded&#x60; header. | [optional] [default to false] |
 
 ### Return type
 
@@ -2646,8 +2646,8 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String threadId = "threadId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
-        Boolean clean = false; // Boolean | Add `cleanText` to every message: what each one added to the conversation, without the quoted history.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
+        Boolean clean = false; // Boolean | Add a `clean` object to every message: the text each one added, without quoted replies, footers or tracking pixels, plus its `signature` and a parsed `forwarded` header.
         try {
             ApiResponse<GetEmailThread200Response> response = apiInstance.getEmailThreadWithHttpInfo(threadId, accountId, clean);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2670,8 +2670,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **threadId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
-| **clean** | **Boolean**| Add &#x60;cleanText&#x60; to every message: what each one added to the conversation, without the quoted history. | [optional] [default to false] |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
+| **clean** | **Boolean**| Add a &#x60;clean&#x60; object to every message: the text each one added, without quoted replies, footers or tracking pixels, plus its &#x60;signature&#x60; and a parsed &#x60;forwarded&#x60; header. | [optional] [default to false] |
 
 ### Return type
 
@@ -2725,7 +2725,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String scheduleId = "scheduleId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             SendEmailMessage202Response result = apiInstance.getScheduledEmail(scheduleId, accountId);
             System.out.println(result);
@@ -2746,7 +2746,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **scheduleId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -2799,7 +2799,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String scheduleId = "scheduleId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<SendEmailMessage202Response> response = apiInstance.getScheduledEmailWithHttpInfo(scheduleId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2822,7 +2822,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **scheduleId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -2876,7 +2876,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ListEmailSignatures200Response result = apiInstance.importEmailSignatures(accountId);
             System.out.println(result);
@@ -2896,7 +2896,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -2950,7 +2950,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<ListEmailSignatures200Response> response = apiInstance.importEmailSignaturesWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2972,7 +2972,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -3003,7 +3003,7 @@ ApiResponse<[**ListEmailSignatures200Response**](ListEmailSignatures200Response.
 
 List drafts
 
-The mailbox&#39;s drafts, newest first, including drafts the user wrote in Gmail or Outlook. Drafts in the trash are left out. Rows carry no bodies on Google; get a draft to read them.
+The mailbox&#39;s drafts, newest first, including drafts the user wrote in their mail app. Drafts in the trash are left out. Rows carry no bodies on Google; get a draft to read them.
 
 ### Example
 
@@ -3026,7 +3026,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | 
         try {
@@ -3048,7 +3048,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**|  | [optional] |
 
@@ -3081,7 +3081,7 @@ public class Example {
 
 List drafts
 
-The mailbox&#39;s drafts, newest first, including drafts the user wrote in Gmail or Outlook. Drafts in the trash are left out. Rows carry no bodies on Google; get a draft to read them.
+The mailbox&#39;s drafts, newest first, including drafts the user wrote in their mail app. Drafts in the trash are left out. Rows carry no bodies on Google; get a draft to read them.
 
 ### Example
 
@@ -3105,7 +3105,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | 
         try {
@@ -3129,7 +3129,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**|  | [optional] |
 
@@ -3186,7 +3186,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ListEmailFolders200Response result = apiInstance.listEmailFolders(accountId);
             System.out.println(result);
@@ -3206,7 +3206,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -3260,7 +3260,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<ListEmailFolders200Response> response = apiInstance.listEmailFoldersWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -3282,7 +3282,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -3336,7 +3336,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ListEmailLabels200Response result = apiInstance.listEmailLabels(accountId);
             System.out.println(result);
@@ -3356,7 +3356,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -3410,7 +3410,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<ListEmailLabels200Response> response = apiInstance.listEmailLabelsWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -3432,7 +3432,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -3486,7 +3486,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String folder = "folder_example"; // String | 
         Boolean unread = true; // Boolean | 
         Boolean starred = true; // Boolean | 
@@ -3522,7 +3522,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **folder** | **String**|  | [optional] |
 | **unread** | **Boolean**|  | [optional] |
 | **starred** | **Boolean**|  | [optional] |
@@ -3593,7 +3593,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String folder = "folder_example"; // String | 
         Boolean unread = true; // Boolean | 
         Boolean starred = true; // Boolean | 
@@ -3631,7 +3631,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **folder** | **String**|  | [optional] |
 | **unread** | **Boolean**|  | [optional] |
 | **starred** | **Boolean**|  | [optional] |
@@ -3702,7 +3702,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ListEmailSendAs200Response result = apiInstance.listEmailSendAs(accountId);
             System.out.println(result);
@@ -3722,7 +3722,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -3776,7 +3776,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<ListEmailSendAs200Response> response = apiInstance.listEmailSendAsWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -3798,7 +3798,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -3977,7 +3977,7 @@ ApiResponse<[**ListEmailSignatures200Response**](ListEmailSignatures200Response.
 
 List email threads
 
-Threads of a connected Google or Microsoft mailbox, newest first. Every filter that the provider cannot apply server-side is applied to the fetched page instead and named in &#x60;meta.filteredClientSide&#x60;, so a filtered page can hold fewer than &#x60;limit&#x60; items while &#x60;pagination.hasMore&#x60; stays true.  On Google, folders are Gmail labels: &#x60;folder&#x60; takes a well-known name or a label id, &#x60;archive&#x60; means mail carrying none of the inbox, trash or spam labels, and &#x60;sortOrder&#x3D;asc&#x60; reverses the fetched page (Gmail lists newest first only).  The account must have been connected with &#x60;scopes&#x3D;email&#x60; (412 &#x60;account_scope_missing&#x60; otherwise). 
+Threads of a connected Google, Microsoft or IMAP mailbox, newest first. Every filter that the provider cannot apply server-side is applied to the fetched page instead and named in &#x60;meta.filteredClientSide&#x60;, so a filtered page can hold fewer than &#x60;limit&#x60; items while &#x60;pagination.hasMore&#x60; stays true.  On Google, folders are Gmail labels: &#x60;folder&#x60; takes a well-known name or a label id, &#x60;archive&#x60; means mail carrying none of the inbox, trash or spam labels, and &#x60;sortOrder&#x3D;asc&#x60; reverses the fetched page (Gmail lists newest first only).  The account must have been connected with &#x60;scopes&#x3D;email&#x60; (412 &#x60;account_scope_missing&#x60; otherwise). 
 
 ### Example
 
@@ -4000,7 +4000,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String folder = "folder_example"; // String | Well-known folder (`inbox`, `sent`, `drafts`, `trash`, `spam`, `archive`) or a provider folder id from `GET /v1/email/folders`. Default inbox.
         Boolean unread = true; // Boolean | 
         Boolean starred = true; // Boolean | 
@@ -4036,7 +4036,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **folder** | **String**| Well-known folder (&#x60;inbox&#x60;, &#x60;sent&#x60;, &#x60;drafts&#x60;, &#x60;trash&#x60;, &#x60;spam&#x60;, &#x60;archive&#x60;) or a provider folder id from &#x60;GET /v1/email/folders&#x60;. Default inbox. | [optional] |
 | **unread** | **Boolean**|  | [optional] |
 | **starred** | **Boolean**|  | [optional] |
@@ -4083,7 +4083,7 @@ public class Example {
 
 List email threads
 
-Threads of a connected Google or Microsoft mailbox, newest first. Every filter that the provider cannot apply server-side is applied to the fetched page instead and named in &#x60;meta.filteredClientSide&#x60;, so a filtered page can hold fewer than &#x60;limit&#x60; items while &#x60;pagination.hasMore&#x60; stays true.  On Google, folders are Gmail labels: &#x60;folder&#x60; takes a well-known name or a label id, &#x60;archive&#x60; means mail carrying none of the inbox, trash or spam labels, and &#x60;sortOrder&#x3D;asc&#x60; reverses the fetched page (Gmail lists newest first only).  The account must have been connected with &#x60;scopes&#x3D;email&#x60; (412 &#x60;account_scope_missing&#x60; otherwise). 
+Threads of a connected Google, Microsoft or IMAP mailbox, newest first. Every filter that the provider cannot apply server-side is applied to the fetched page instead and named in &#x60;meta.filteredClientSide&#x60;, so a filtered page can hold fewer than &#x60;limit&#x60; items while &#x60;pagination.hasMore&#x60; stays true.  On Google, folders are Gmail labels: &#x60;folder&#x60; takes a well-known name or a label id, &#x60;archive&#x60; means mail carrying none of the inbox, trash or spam labels, and &#x60;sortOrder&#x3D;asc&#x60; reverses the fetched page (Gmail lists newest first only).  The account must have been connected with &#x60;scopes&#x3D;email&#x60; (412 &#x60;account_scope_missing&#x60; otherwise). 
 
 ### Example
 
@@ -4107,7 +4107,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String folder = "folder_example"; // String | Well-known folder (`inbox`, `sent`, `drafts`, `trash`, `spam`, `archive`) or a provider folder id from `GET /v1/email/folders`. Default inbox.
         Boolean unread = true; // Boolean | 
         Boolean starred = true; // Boolean | 
@@ -4145,7 +4145,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **folder** | **String**| Well-known folder (&#x60;inbox&#x60;, &#x60;sent&#x60;, &#x60;drafts&#x60;, &#x60;trash&#x60;, &#x60;spam&#x60;, &#x60;archive&#x60;) or a provider folder id from &#x60;GET /v1/email/folders&#x60;. Default inbox. | [optional] |
 | **unread** | **Boolean**|  | [optional] |
 | **starred** | **Boolean**|  | [optional] |
@@ -4216,7 +4216,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String status = "scheduled"; // String | 
         String cursor = "cursor_example"; // String | `pagination.nextCursor` of the previous page.
         Integer limit = 50; // Integer | 
@@ -4239,7 +4239,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **status** | **String**|  | [optional] [enum: scheduled, sending, sent, failed, cancelled] |
 | **cursor** | **String**| &#x60;pagination.nextCursor&#x60; of the previous page. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
@@ -4295,7 +4295,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         EmailApi apiInstance = new EmailApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String status = "scheduled"; // String | 
         String cursor = "cursor_example"; // String | `pagination.nextCursor` of the previous page.
         Integer limit = 50; // Integer | 
@@ -4320,7 +4320,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **status** | **String**|  | [optional] [enum: scheduled, sending, sent, failed, cancelled] |
 | **cursor** | **String**| &#x60;pagination.nextCursor&#x60; of the previous page. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
@@ -4521,7 +4521,7 @@ ApiResponse<[**SendEmailMessage201Response**](SendEmailMessage201Response.md)>
 
 Send a draft
 
-Sends the draft as it stands in the mailbox now, edits made in Gmail or Outlook included, and returns the sent message with &#x60;draftId&#x60;. The draft needs at least one recipient. A draft the user deleted or already sent answers 404 &#x60;draft_not_found&#x60;.  With &#x60;If-Match&#x60; it goes out only if it is still the version the approver saw (412 &#x60;draft_conflict&#x60; otherwise). If the user removed the open pixel or rewrote links, tracking is put back before it is sent. Fires &#x60;email.sent&#x60; with &#x60;source: draft&#x60;.  Tracking set when the draft was created applies, and its &#x60;metadata&#x60; comes back on the sent message. Same protection, caps and headers as sending. 
+Sends the draft as it stands in the mailbox now, edits made in their mail app included, and returns the sent message with &#x60;draftId&#x60;. The draft needs at least one recipient. A draft the user deleted or already sent answers 404 &#x60;draft_not_found&#x60;.  With &#x60;If-Match&#x60; it goes out only if it is still the version the approver saw (412 &#x60;draft_conflict&#x60; otherwise). If the user removed the open pixel or rewrote links, tracking is put back before it is sent. Fires &#x60;email.sent&#x60; with &#x60;source: draft&#x60;.  Tracking set when the draft was created applies, and its &#x60;metadata&#x60; comes back on the sent message. Same protection, caps and headers as sending. 
 
 ### Example
 
@@ -4605,7 +4605,7 @@ public class Example {
 
 Send a draft
 
-Sends the draft as it stands in the mailbox now, edits made in Gmail or Outlook included, and returns the sent message with &#x60;draftId&#x60;. The draft needs at least one recipient. A draft the user deleted or already sent answers 404 &#x60;draft_not_found&#x60;.  With &#x60;If-Match&#x60; it goes out only if it is still the version the approver saw (412 &#x60;draft_conflict&#x60; otherwise). If the user removed the open pixel or rewrote links, tracking is put back before it is sent. Fires &#x60;email.sent&#x60; with &#x60;source: draft&#x60;.  Tracking set when the draft was created applies, and its &#x60;metadata&#x60; comes back on the sent message. Same protection, caps and headers as sending. 
+Sends the draft as it stands in the mailbox now, edits made in their mail app included, and returns the sent message with &#x60;draftId&#x60;. The draft needs at least one recipient. A draft the user deleted or already sent answers 404 &#x60;draft_not_found&#x60;.  With &#x60;If-Match&#x60; it goes out only if it is still the version the approver saw (412 &#x60;draft_conflict&#x60; otherwise). If the user removed the open pixel or rewrote links, tracking is put back before it is sent. Fires &#x60;email.sent&#x60; with &#x60;source: draft&#x60;.  Tracking set when the draft was created applies, and its &#x60;metadata&#x60; comes back on the sent message. Same protection, caps and headers as sending. 
 
 ### Example
 
@@ -4877,7 +4877,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String messageId = "messageId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             TrashEmailMessage200Response result = apiInstance.trashEmailMessage(messageId, accountId);
             System.out.println(result);
@@ -4898,7 +4898,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **messageId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -4952,7 +4952,7 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         String messageId = "messageId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<TrashEmailMessage200Response> response = apiInstance.trashEmailMessageWithHttpInfo(messageId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -4975,7 +4975,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **messageId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 

@@ -499,7 +499,7 @@ public class Example {
 
         CalendarApi apiInstance = new CalendarApi(defaultClient);
         String eventId = "eventId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String calendarId = "calendarId_example"; // String | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar.
         try {
             DeleteEmailDraft200Response result = apiInstance.deleteCalendarEvent(eventId, accountId, calendarId);
@@ -521,7 +521,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **eventId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **calendarId** | **String**| The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. | [optional] |
 
 ### Return type
@@ -576,7 +576,7 @@ public class Example {
 
         CalendarApi apiInstance = new CalendarApi(defaultClient);
         String eventId = "eventId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String calendarId = "calendarId_example"; // String | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar.
         try {
             ApiResponse<DeleteEmailDraft200Response> response = apiInstance.deleteCalendarEventWithHttpInfo(eventId, accountId, calendarId);
@@ -600,7 +600,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **eventId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **calendarId** | **String**| The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. | [optional] |
 
 ### Return type
@@ -655,7 +655,7 @@ public class Example {
 
         CalendarApi apiInstance = new CalendarApi(defaultClient);
         String eventId = "eventId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String calendarId = "calendarId_example"; // String | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar.
         String timezone = "timezone_example"; // String | 
         try {
@@ -678,7 +678,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **eventId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **calendarId** | **String**| The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. | [optional] |
 | **timezone** | **String**|  | [optional] |
 
@@ -734,7 +734,7 @@ public class Example {
 
         CalendarApi apiInstance = new CalendarApi(defaultClient);
         String eventId = "eventId_example"; // String | 
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         String calendarId = "calendarId_example"; // String | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar.
         String timezone = "timezone_example"; // String | 
         try {
@@ -759,7 +759,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **eventId** | **String**|  | |
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **calendarId** | **String**| The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. | [optional] |
 | **timezone** | **String**|  | [optional] |
 
@@ -816,7 +816,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CalendarApi apiInstance = new CalendarApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | 
         OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | 
         String calendarId = "calendarId_example"; // String | Defaults to the primary calendar.
@@ -848,7 +848,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **from** | **OffsetDateTime**|  | |
 | **to** | **OffsetDateTime**|  | |
 | **calendarId** | **String**| Defaults to the primary calendar. | [optional] |
@@ -915,7 +915,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CalendarApi apiInstance = new CalendarApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | 
         OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | 
         String calendarId = "calendarId_example"; // String | Defaults to the primary calendar.
@@ -949,7 +949,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 | **from** | **OffsetDateTime**|  | |
 | **to** | **OffsetDateTime**|  | |
 | **calendarId** | **String**| Defaults to the primary calendar. | [optional] |
@@ -1016,7 +1016,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CalendarApi apiInstance = new CalendarApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ListCalendars200Response result = apiInstance.listCalendars(accountId);
             System.out.println(result);
@@ -1036,7 +1036,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 
@@ -1090,7 +1090,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CalendarApi apiInstance = new CalendarApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        String accountId = "accountId_example"; // String | The connected Google, Microsoft or IMAP account.
         try {
             ApiResponse<ListCalendars200Response> response = apiInstance.listCalendarsWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1112,7 +1112,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **accountId** | **String**| The connected Google, Microsoft or IMAP account. | |
 
 ### Return type
 

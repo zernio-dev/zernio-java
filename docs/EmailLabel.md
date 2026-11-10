@@ -23,6 +23,7 @@ A Gmail label or an Outlook category. Outlook categories are addressed by name, 
 |---- | -----|
 | GOOGLE | &quot;google&quot; |
 | MICROSOFT | &quot;microsoft&quot; |
+| IMAP | &quot;imap&quot; |
 
 
 

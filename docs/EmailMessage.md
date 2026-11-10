@@ -43,6 +43,7 @@
 |---- | -----|
 | GOOGLE | &quot;google&quot; |
 | MICROSOFT | &quot;microsoft&quot; |
+| IMAP | &quot;imap&quot; |
 
 
 

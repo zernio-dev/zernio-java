@@ -14663,7 +14663,7 @@ ApiResponse<Void>
 
 Message received event
 
-A new message arrived in the inbox; &#x60;message.text&#x60;, &#x60;message.attachments[]&#x60; and &#x60;message.sender&#x60; describe it.  ### Standby  While another app owns the conversation it carries &#x60;metadata.standby: true&#x60;. Zernio runs no workflow or keyword automation on it. A bot must skip standby messages, or on WhatsApp it takes the conversation from the agent.  ### Interactive replies  Button and list taps, flow responses and orders arrive under &#x60;metadata&#x60; (&#x60;interactiveType&#x60;, &#x60;interactiveId&#x60;, &#x60;flowResponseData&#x60;, &#x60;order&#x60;). Only a referral that arrives without a message becomes &#x60;referral.received&#x60;.  ### Platform notes  New email from Google and Microsoft mailboxes arrives as this event. 
+A new message arrived in the inbox; &#x60;message.text&#x60;, &#x60;message.attachments[]&#x60; and &#x60;message.sender&#x60; describe it.  ### Standby  While another app owns the conversation it carries &#x60;metadata.standby: true&#x60;. Zernio runs no workflow or keyword automation on it. A bot must skip standby messages, or on WhatsApp it takes the conversation from the agent.  ### Interactive replies  Button and list taps, flow responses and orders arrive under &#x60;metadata&#x60; (&#x60;interactiveType&#x60;, &#x60;interactiveId&#x60;, &#x60;flowResponseData&#x60;, &#x60;order&#x60;). Only a referral that arrives without a message becomes &#x60;referral.received&#x60;.  ### Platform notes  New email from Google, Microsoft and IMAP mailboxes arrives as this event. 
 
 ### Example
 
@@ -14732,7 +14732,7 @@ null (empty response body)
 
 Message received event
 
-A new message arrived in the inbox; &#x60;message.text&#x60;, &#x60;message.attachments[]&#x60; and &#x60;message.sender&#x60; describe it.  ### Standby  While another app owns the conversation it carries &#x60;metadata.standby: true&#x60;. Zernio runs no workflow or keyword automation on it. A bot must skip standby messages, or on WhatsApp it takes the conversation from the agent.  ### Interactive replies  Button and list taps, flow responses and orders arrive under &#x60;metadata&#x60; (&#x60;interactiveType&#x60;, &#x60;interactiveId&#x60;, &#x60;flowResponseData&#x60;, &#x60;order&#x60;). Only a referral that arrives without a message becomes &#x60;referral.received&#x60;.  ### Platform notes  New email from Google and Microsoft mailboxes arrives as this event. 
+A new message arrived in the inbox; &#x60;message.text&#x60;, &#x60;message.attachments[]&#x60; and &#x60;message.sender&#x60; describe it.  ### Standby  While another app owns the conversation it carries &#x60;metadata.standby: true&#x60;. Zernio runs no workflow or keyword automation on it. A bot must skip standby messages, or on WhatsApp it takes the conversation from the agent.  ### Interactive replies  Button and list taps, flow responses and orders arrive under &#x60;metadata&#x60; (&#x60;interactiveType&#x60;, &#x60;interactiveId&#x60;, &#x60;flowResponseData&#x60;, &#x60;order&#x60;). Only a referral that arrives without a message becomes &#x60;referral.received&#x60;.  ### Platform notes  New email from Google, Microsoft and IMAP mailboxes arrives as this event. 
 
 ### Example
 

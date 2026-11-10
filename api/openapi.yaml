@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.553.1
+  version: 1.554.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -186,8 +186,9 @@ tags:
     OAuth and credential flows for connecting accounts, plus per-platform selection
     steps (Facebook pages, Pinterest boards, LinkedIn organizations, Google Business Profile locations, etc.).
   name: Connect
-- description: "Read, send and organize mail in connected Google Workspace and Microsoft\
-    \ 365 mailboxes. Connect with `scopes=email`."
+- description: "Read, send and organize mail in connected Google, Microsoft and IMAP\
+    \ mailboxes. Connect Google or Microsoft with `scopes=email`, or any mailbox with\
+    \ `GET /v1/connect/email`."
   name: Email
 - description: "Calendars, events, RSVPs, free/busy and cross-account availability\
     \ for connected Google and Microsoft accounts. Connect with `scopes=calendar`."
@@ -25992,7 +25993,7 @@ paths:
   /v1/email/threads:
     get:
       description: |
-        Threads of a connected Google or Microsoft mailbox, newest first. Every filter that the provider cannot apply server-side is applied to the fetched page instead and named in `meta.filteredClientSide`, so a filtered page can hold fewer than `limit` items while `pagination.hasMore` stays true.
+        Threads of a connected Google, Microsoft or IMAP mailbox, newest first. Every filter that the provider cannot apply server-side is applied to the fetched page instead and named in `meta.filteredClientSide`, so a filtered page can hold fewer than `limit` items while `pagination.hasMore` stays true.
 
         On Google, folders are Gmail labels: `folder` takes a well-known name or a label id, `archive` means mail carrying none of the inbox, trash or spam labels, and `sortOrder=asc` reverses the fetched page (Gmail lists newest first only).
 
@@ -26168,8 +26169,9 @@ paths:
           type: string
         style: simple
       - $ref: "#/components/parameters/EmailAccountId"
-      - description: "Add `cleanText` to every message: what each one added to the\
-          \ conversation, without the quoted history."
+      - description: "Add a `clean` object to every message: the text each one added,\
+          \ without quoted replies, footers or tracking pixels, plus its `signature`\
+          \ and a parsed `forwarded` header."
         explode: true
         in: query
         name: clean
@@ -26688,8 +26690,9 @@ paths:
           default: false
           type: boolean
         style: form
-      - description: "Add `cleanText`: the new text only, without quoted replies,\
-          \ forwarded history, signature or tracking pixels. Ready to hand to an LLM."
+      - description: "Add a `clean` object: the new text without quoted replies, footers\
+          \ or tracking pixels, the `signature` on its own (it also stays in `text`),\
+          \ and a parsed `forwarded` header. Ready to hand to an LLM."
         explode: true
         in: query
         name: clean
@@ -26893,8 +26896,8 @@ paths:
   /v1/email/drafts:
     get:
       description: "The mailbox's drafts, newest first, including drafts the user\
-        \ wrote in Gmail or Outlook. Drafts in the trash are left out. Rows carry\
-        \ no bodies on Google; get a draft to read them."
+        \ wrote in their mail app. Drafts in the trash are left out. Rows carry no\
+        \ bodies on Google; get a draft to read them."
       operationId: listEmailDrafts
       parameters:
       - $ref: "#/components/parameters/EmailAccountId"
@@ -26940,7 +26943,7 @@ paths:
       - application/json
     post:
       description: |
-        Saves a draft in the user's mailbox, where they see it in Gmail or Outlook. Recipients and subject can come later. `inReplyTo` makes a reply draft in that thread and `forwardOf` a forward draft with the original's attachments; the `kind` is fixed for the life of the draft.
+        Saves a draft in the user's mailbox, where they see it in their mail app. Recipients and subject can come later. `inReplyTo` makes a reply draft in that thread and `forwardOf` a forward draft with the original's attachments; the `kind` is fixed for the life of the draft.
 
         Send it with `POST /v1/email/drafts/{draftId}/send`. Edits the user makes in their mail client are what goes out. Store the draft `id`, and pass its `version` as `If-Match` so an update or send applies only to the version you saw.
       operationId: createEmailDraft
@@ -27116,7 +27119,7 @@ paths:
   /v1/email/drafts/{draftId}/send:
     post:
       description: |
-        Sends the draft as it stands in the mailbox now, edits made in Gmail or Outlook included, and returns the sent message with `draftId`. The draft needs at least one recipient. A draft the user deleted or already sent answers 404 `draft_not_found`.
+        Sends the draft as it stands in the mailbox now, edits made in their mail app included, and returns the sent message with `draftId`. The draft needs at least one recipient. A draft the user deleted or already sent answers 404 `draft_not_found`.
 
         With `If-Match` it goes out only if it is still the version the approver saw (412 `draft_conflict` otherwise). If the user removed the open pixel or rewrote links, tracking is put back before it is sent. Fires `email.sent` with `source: draft`.
 
@@ -28825,9 +28828,9 @@ paths:
       description: |
         Start a direct message conversation with a user. If a conversation with that recipient already exists, the message is added to the existing thread.
 
-        Supported platforms: X, Bluesky, Reddit, WhatsApp, SMS, Slack, iMessage, and email (Google and Microsoft accounts). Other platforms return PLATFORM_NOT_SUPPORTED.
+        Supported platforms: X, Bluesky, Reddit, WhatsApp, SMS, Slack, iMessage, and email (Google, Microsoft and IMAP accounts). Other platforms return PLATFORM_NOT_SUPPORTED.
 
-        ### Email (Google / Microsoft)
+        ### Email (Google, Microsoft, IMAP)
 
         Pass the recipient address as participantId with `subject`, `message` and optionally `cc`. The mail is sent from the mailbox and mirrored into the inbox. The response names the inbox conversation it opened (the provider thread id, usable with the other inbox endpoints).
 
@@ -83496,7 +83499,7 @@ components:
         type: string
       style: simple
     EmailAccountId:
-      description: The connected Google or Microsoft account.
+      description: "The connected Google, Microsoft or IMAP account."
       explode: true
       in: query
       name: accountId
@@ -105362,6 +105365,7 @@ components:
           enum:
           - google
           - microsoft
+          - imap
           type: string
         folders:
           items:
@@ -105481,8 +105485,8 @@ components:
         forwarded:
           $ref: "#/components/schemas/EmailClean_forwarded"
     EmailCapabilities:
-      description: "On Google and Microsoft accounts connected with the email area:\
-        \ what this mailbox provider can do, so you can branch before calling."
+      description: "On Google, Microsoft and IMAP accounts with email access: what\
+        \ this mailbox provider can do, so you can branch before calling."
       example:
         forward:
           asAttachment: true
@@ -105566,6 +105570,7 @@ components:
           enum:
           - google
           - microsoft
+          - imap
           type: string
         subject:
           type: string
@@ -105631,6 +105636,7 @@ components:
           enum:
           - google
           - microsoft
+          - imap
           type: string
         name:
           type: string
@@ -105715,6 +105721,7 @@ components:
           enum:
           - google
           - microsoft
+          - imap
           type: string
         name:
           description: "Gmail nests labels with a slash, as in `Hermia/Handled`."
@@ -106074,7 +106081,7 @@ components:
         holdAsDraft:
           description: "Needs `scheduledFor`. Saves the email as a draft in the mailbox\
             \ now and sends that draft at `scheduledFor`, with any edits the user\
-            \ made in Gmail or Outlook. A draft deleted or sent from the mailbox first\
+            \ made in their mail app. A draft deleted or sent from the mailbox first\
             \ fails the send (`email.send_failed`). Cancelling deletes the draft."
           type: boolean
         trackOpens:
@@ -106114,7 +106121,7 @@ components:
             - forward
             type: string
           version:
-            description: "Changes on every edit, the user's in Gmail or Outlook included.\
+            description: "Changes on every edit, the user's in their mail app included.\
               \ Pass it as `If-Match` to update or send only that version. Also the\
               \ `ETag` response header."
             type: string
@@ -108135,6 +108142,7 @@ components:
           - whopads
           - google
           - microsoft
+          - imap
           - hubspot
           - webflow
           - googleanalytics
@@ -221685,7 +221693,7 @@ components:
       additionalProperties: false
       properties:
         accountId:
-          description: A connected Gmail or Outlook mailbox with email access.
+          description: "A connected Gmail, Outlook or IMAP mailbox with email access."
           type: string
         to:
           description: "The address that receives the alert, sent as a new email from\
@@ -222562,7 +222570,7 @@ components:
         accountId:
           type: string
         to:
-          description: An address for a connected Gmail or Outlook account.
+          description: "An address, sent from a connected Gmail, Outlook or IMAP mailbox."
           format: email
           type: string
         channelId:

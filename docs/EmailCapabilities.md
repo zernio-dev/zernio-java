@@ -2,7 +2,7 @@
 
 # EmailCapabilities
 
-On Google and Microsoft accounts connected with the email area: what this mailbox provider can do, so you can branch before calling.
+On Google, Microsoft and IMAP accounts with email access: what this mailbox provider can do, so you can branch before calling.
 
 ## Properties
 

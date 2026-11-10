@@ -74,6 +74,7 @@
 | WHOPADS | &quot;whopads&quot; |
 | GOOGLE | &quot;google&quot; |
 | MICROSOFT | &quot;microsoft&quot; |
+| IMAP | &quot;imap&quot; |
 | HUBSPOT | &quot;hubspot&quot; |
 | WEBFLOW | &quot;webflow&quot; |
 | GOOGLEANALYTICS | &quot;googleanalytics&quot; |
