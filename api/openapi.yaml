@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.547.4
+  version: 1.548.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -4695,6 +4695,7 @@ paths:
         - 402 `card_declined`: the bank's reason.
         - 400: `method: bank_transfer` (bank transfers are not available yet).
         - 400 `invalid_billing_address`: the billing address gives no tax location. Add it in Billing, then retry.
+        - 400 `billing_address_required`: the total with tax is over EUR 400 (at the day's ECB rate) and the billing details hold no name and street address. An invoice over that amount must name the buyer and their address. Add them in Billing > Billing details, then retry. Nothing is charged.
         - 429 `payment_attempts_limited`: five card payments were declined in 24 hours. Nothing reaches the bank until `Retry-After` runs out.
 
         Needs an owner, admin or billing admin, signed in or through a full-access key they created.
@@ -104111,28 +104112,8 @@ components:
           type: array
     PostAnalytics:
       example:
-        comments: 0
-        reelsSkipRate: 48.8
         reach: 0
-        igReelsVideoViewTotalTime: 0
-        audienceCountries:
-          US: 0.62
-          GB: 0.11
-          CA: 0.07
-          DE: 0.05
-          other: 0.15
-        follows: 0
         websiteClicks: 0
-        impressionSources:
-          forYou: 0.84
-          follow: 0.05
-          search: 0.06
-          personalProfile: 0.03
-          sound: 0.01
-          directMessage: 0
-          other: 0.01
-        profileViews: 0
-        impressions: 0
         completionRate: 0
         videoDurationSeconds: 30
         shares: 0
@@ -104146,16 +104127,39 @@ components:
           returnViewer: 0.01
         saves: 0
         igReelsAvgWatchTime: 0
+        views: 0
+        likes: 0
+        comments: 0
+        reelsSkipRate: 48.8
+        igReelsVideoViewTotalTime: 0
+        audienceCountries:
+          US: 0.62
+          GB: 0.11
+          CA: 0.07
+          DE: 0.05
+          other: 0.15
+        follows: 0
+        impressionSources:
+          forYou: 0.84
+          follow: 0.05
+          search: 0.06
+          personalProfile: 0.03
+          sound: 0.01
+          directMessage: 0
+          other: 0.01
+        profileViews: 0
+        impressions: 0
+        totalComments: 3
         clicks: 0
+        totalViews: 12379
         retentionCurve:
           "0": 0.9923
           "1": 0.9937
           "4": 0.8637
           "8": 0.5313
           "12": 0.3605
-        views: 0
+        totalLikes: 330
         reposts: 0
-        likes: 0
       properties:
         impressions:
           example: 0
@@ -104315,6 +104319,34 @@ components:
             - Other platforms: 0, including Threads, where reposts are counted in shares instead.
           example: 0
           type: integer
+        totalViews:
+          description: |-
+            Views across every surface Meta counts for the post (Meta total_views_count): Instagram itself, the same post shared to Facebook, and its boosts and ads, replays included. Instagram videos and Reels on accounts connected with Facebook Login only. `views` stays Instagram organic only.
+
+            - Null for Instagram Login accounts, other platforms, and snapshots taken before the field existed (it fills on the post's next analytics sync).
+            - On a post published to several accounts, the sum across accounts, counting views for the accounts that do not report it. Null when no account reports it.
+            - Also null for images and carousels.
+          example: 12379
+          nullable: true
+          type: integer
+        totalLikes:
+          description: |-
+            Likes across every surface Meta counts for the post (Meta total_like_count): Instagram itself, the same post shared to Facebook, and its boosts and ads. Instagram accounts connected with Facebook Login only. `likes` stays Instagram organic only.
+
+            - Null for Instagram Login accounts, other platforms, and snapshots taken before the field existed (it fills on the post's next analytics sync).
+            - On a post published to several accounts, the sum across accounts, counting likes for the accounts that do not report it. Null when no account reports it.
+          example: 330
+          nullable: true
+          type: integer
+        totalComments:
+          description: |-
+            Comments across every surface Meta counts for the post (Meta total_comments_count): Instagram itself, the same post shared to Facebook, and its boosts and ads. Instagram accounts connected with Facebook Login only. `comments` stays Instagram organic only.
+
+            - Null for Instagram Login accounts, other platforms, and snapshots taken before the field existed (it fills on the post's next analytics sync).
+            - On a post published to several accounts, the sum across accounts, counting comments for the accounts that do not report it. Null when no account reports it.
+          example: 3
+          nullable: true
+          type: integer
         videoDurationSeconds:
           description: |-
             Video length in seconds. Null when unknown: platforms that do not report a length, non-video media, or when Instagram does not expose the media URL (e.g. reels with copyrighted audio).
@@ -104463,28 +104495,8 @@ components:
         contentNotRetained: true
         platform: platform
         analytics:
-          comments: 0
-          reelsSkipRate: 48.8
           reach: 0
-          igReelsVideoViewTotalTime: 0
-          audienceCountries:
-            US: 0.62
-            GB: 0.11
-            CA: 0.07
-            DE: 0.05
-            other: 0.15
-          follows: 0
           websiteClicks: 0
-          impressionSources:
-            forYou: 0.84
-            follow: 0.05
-            search: 0.06
-            personalProfile: 0.03
-            sound: 0.01
-            directMessage: 0
-            other: 0.01
-          profileViews: 0
-          impressions: 0
           completionRate: 0
           videoDurationSeconds: 30
           shares: 0
@@ -104498,16 +104510,39 @@ components:
             returnViewer: 0.01
           saves: 0
           igReelsAvgWatchTime: 0
+          views: 0
+          likes: 0
+          comments: 0
+          reelsSkipRate: 48.8
+          igReelsVideoViewTotalTime: 0
+          audienceCountries:
+            US: 0.62
+            GB: 0.11
+            CA: 0.07
+            DE: 0.05
+            other: 0.15
+          follows: 0
+          impressionSources:
+            forYou: 0.84
+            follow: 0.05
+            search: 0.06
+            personalProfile: 0.03
+            sound: 0.01
+            directMessage: 0
+            other: 0.01
+          profileViews: 0
+          impressions: 0
+          totalComments: 3
           clicks: 0
+          totalViews: 12379
           retentionCurve:
             "0": 0.9923
             "1": 0.9937
             "4": 0.8637
             "8": 0.5313
             "12": 0.3605
-          views: 0
+          totalLikes: 330
           reposts: 0
-          likes: 0
         isSharedToFeed: true
         mediaItems:
         - thumbnail: https://openapi-generator.tech
