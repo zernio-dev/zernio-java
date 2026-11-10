@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   UpdateWhatsAppTemplateRequest.JSON_PROPERTY_COMPONENTS,
   UpdateWhatsAppTemplateRequest.JSON_PROPERTY_MESSAGE_SEND_TTL_SECONDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:31:46.520991442Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:38:00.024928928Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppTemplateRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

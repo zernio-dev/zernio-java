@@ -101,7 +101,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:31:46.520991442Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:38:00.024928928Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2792,7 +2792,7 @@ public class PhoneNumbersApi {
 
   /**
    * Reply to the regulatory reviewer
-   * Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A reply to a comment-style ask moves the number back to \&quot;in review\&quot;. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
+   * Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A text reply to a comment-style ask moves the number back to \&quot;in review\&quot;. A reply with only files keeps the ask open, so send the fix through the structured form or add a written answer. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
    * @param id  (required)
    * @param replyToPhoneNumberReviewerRequest  (required)
    * @return ReplyToPhoneNumberReviewer200Response
@@ -2804,7 +2804,7 @@ public class PhoneNumbersApi {
 
   /**
    * Reply to the regulatory reviewer
-   * Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A reply to a comment-style ask moves the number back to \&quot;in review\&quot;. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
+   * Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A text reply to a comment-style ask moves the number back to \&quot;in review\&quot;. A reply with only files keeps the ask open, so send the fix through the structured form or add a written answer. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
    * @param id  (required)
    * @param replyToPhoneNumberReviewerRequest  (required)
    * @param headers Optional headers to include in the request
@@ -2818,7 +2818,7 @@ public class PhoneNumbersApi {
 
   /**
    * Reply to the regulatory reviewer
-   * Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A reply to a comment-style ask moves the number back to \&quot;in review\&quot;. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
+   * Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A text reply to a comment-style ask moves the number back to \&quot;in review\&quot;. A reply with only files keeps the ask open, so send the fix through the structured form or add a written answer. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
    * @param id  (required)
    * @param replyToPhoneNumberReviewerRequest  (required)
    * @return ApiResponse&lt;ReplyToPhoneNumberReviewer200Response&gt;
@@ -2830,7 +2830,7 @@ public class PhoneNumbersApi {
 
   /**
    * Reply to the regulatory reviewer
-   * Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A reply to a comment-style ask moves the number back to \&quot;in review\&quot;. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
+   * Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A text reply to a comment-style ask moves the number back to \&quot;in review\&quot;. A reply with only files keeps the ask open, so send the fix through the structured form or add a written answer. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
    * @param id  (required)
    * @param replyToPhoneNumberReviewerRequest  (required)
    * @param headers Optional headers to include in the request

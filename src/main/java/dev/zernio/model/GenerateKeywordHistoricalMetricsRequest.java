@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   GenerateKeywordHistoricalMetricsRequest.JSON_PROPERTY_INCLUDE_ADULT_KEYWORDS,
   GenerateKeywordHistoricalMetricsRequest.JSON_PROPERTY_INCLUDE_AVERAGE_CPC
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:31:46.520991442Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:38:00.024928928Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GenerateKeywordHistoricalMetricsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

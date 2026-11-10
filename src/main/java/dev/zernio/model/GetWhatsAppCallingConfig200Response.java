@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppCallingConfig200Response.JSON_PROPERTY_MAX_CALL_DURATION_SECONDS,
   GetWhatsAppCallingConfig200Response.JSON_PROPERTY_FORWARD_CALLER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:31:46.520991442Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:38:00.024928928Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppCallingConfig200Response {
   public static final String JSON_PROPERTY_PHONE_NUMBER_DOC_ID = "phoneNumberDocId";
   @javax.annotation.Nullable

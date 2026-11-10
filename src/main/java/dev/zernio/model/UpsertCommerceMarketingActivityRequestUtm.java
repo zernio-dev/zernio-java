@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpsertCommerceMarketingActivityRequestUtm.JSON_PROPERTY_SOURCE,
   UpsertCommerceMarketingActivityRequestUtm.JSON_PROPERTY_MEDIUM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:31:46.520991442Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:38:00.024928928Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpsertCommerceMarketingActivityRequestUtm {
   public static final String JSON_PROPERTY_CAMPAIGN = "campaign";
   @javax.annotation.Nonnull

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetBalance200ResponsePendingReleasesInner.JSON_PROPERTY_AMOUNT_CENTS,
   GetBalance200ResponsePendingReleasesInner.JSON_PROPERTY_AVAILABLE_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:31:46.520991442Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:38:00.024928928Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetBalance200ResponsePendingReleasesInner {
   public static final String JSON_PROPERTY_TOPUP_ID = "topupId";
   @javax.annotation.Nonnull

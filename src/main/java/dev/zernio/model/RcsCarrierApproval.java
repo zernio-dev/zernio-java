@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   RcsCarrierApproval.JSON_PROPERTY_APPROVED_AT,
   RcsCarrierApproval.JSON_PROPERTY_REJECTED_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:31:46.520991442Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T11:38:00.024928928Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RcsCarrierApproval {
   public static final String JSON_PROPERTY_APPROVAL_ID = "approvalId";
   @javax.annotation.Nullable
