@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.548.1
+  version: 1.548.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -26142,6 +26142,13 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "402":
           $ref: "#/components/responses/PaymentRequired"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Outlook refused `from`: the mailbox has no Send As or Send\
+            \ on Behalf right on it."
         "412":
           $ref: "#/components/responses/MailboxPreconditionFailed"
         "429":
@@ -26456,6 +26463,13 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "402":
           $ref: "#/components/responses/PaymentRequired"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Outlook refused `from`: the mailbox has no Send As or Send\
+            \ on Behalf right on it."
         "404":
           $ref: "#/components/responses/NotFound"
         "412":
@@ -26566,6 +26580,36 @@ paths:
       - Email
       x-resource-group: messages
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/email/send-as:
+    get:
+      description: "The addresses a mailbox can send from, for the `from` field of\
+        \ a send or reply. Gmail lists every send-as alias with its signature, and\
+        \ `from` must be one of them. Outlook lists the mailbox address and its aliases;\
+        \ Exchange checks any other `from` at send time."
+      operationId: listEmailSendAs
+      parameters:
+      - $ref: "#/components/parameters/EmailAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listEmailSendAs_200_response"
+          description: "The mailbox's send-as addresses, the mailbox address first"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "412":
+          $ref: "#/components/responses/MailboxPreconditionFailed"
+      security:
+      - bearerAuth: []
+      summary: List send-as addresses
+      tags:
+      - Email
+      x-resource-group: messages
       x-accepts:
       - application/json
   /v1/email/labels/{labelId}:
@@ -102002,6 +102046,40 @@ components:
           type: string
         color:
           $ref: "#/components/schemas/EmailLabel_color"
+    EmailSendAs:
+      description: An address the mailbox can send from.
+      example:
+        isDefault: true
+        signature: signature
+        displayName: displayName
+        isPrimary: true
+        replyTo: replyTo
+        verified: true
+        email: email
+      properties:
+        email:
+          type: string
+        displayName:
+          nullable: true
+          type: string
+        replyTo:
+          description: "Gmail alias reply-to address, if set."
+          nullable: true
+          type: string
+        isPrimary:
+          description: The mailbox's own address.
+          type: boolean
+        isDefault:
+          description: The address Gmail picks by default in its compose window.
+          type: boolean
+        verified:
+          description: Gmail sends from an alias only once it is verified. Always
+            `true` on Outlook.
+          type: boolean
+        signature:
+          description: Signature html. Gmail only; always `null` on Outlook.
+          nullable: true
+          type: string
     ScheduledEmail:
       description: "An email sent with `scheduledFor`. `status` moves scheduled, sending,\
         \ then sent or failed; a cancelled one never leaves."
@@ -102147,6 +102225,7 @@ components:
           contentType: contentType
           url: https://openapi-generator.tech
         subject: subject
+        appendSignature: true
         trackReplies: true
         holdAsDraft: true
         accountId: accountId
@@ -102163,6 +102242,7 @@ components:
         - name: name
           email: email
         fromName: fromName
+        from: from
         html: html
         to:
         - name: name
@@ -102204,6 +102284,18 @@ components:
         fromName:
           maxLength: 200
           type: string
+        from:
+          description: "Send from another address of the mailbox, listed by `GET /v1/email/send-as`.\
+            \ Gmail: a verified send-as alias, else 400. Outlook: any address the\
+            \ mailbox has Send As or Send on Behalf rights on, else 403. Omitted,\
+            \ the mail leaves from the mailbox address."
+          format: email
+          type: string
+        appendSignature:
+          description: "Gmail only. Appends the signature of the sending address (the\
+            \ `from` alias, or the mailbox address) to `html` and `text`. Outlook\
+            \ answers 400: Graph does not expose Outlook signatures."
+          type: boolean
         subject:
           maxLength: 998
           type: string
@@ -142936,6 +143028,45 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/EmailLabel"
+    listEmailSendAs_200_response_meta:
+      example:
+        completeList: true
+        signatures: true
+      properties:
+        completeList:
+          description: '`true` when `from` must be in this list (Gmail). `false` when
+            the provider decides at send time (Outlook).'
+          type: boolean
+        signatures:
+          description: Whether `appendSignature` works on this mailbox.
+          type: boolean
+    listEmailSendAs_200_response:
+      example:
+        data:
+        - isDefault: true
+          signature: signature
+          displayName: displayName
+          isPrimary: true
+          replyTo: replyTo
+          verified: true
+          email: email
+        - isDefault: true
+          signature: signature
+          displayName: displayName
+          isPrimary: true
+          replyTo: replyTo
+          verified: true
+          email: email
+        meta:
+          completeList: true
+          signatures: true
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/EmailSendAs"
+          type: array
+        meta:
+          $ref: "#/components/schemas/listEmailSendAs_200_response_meta"
     deleteEmailLabel_200_response_data:
       example:
         deleted: true

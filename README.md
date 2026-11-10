@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.548.1
+- API version: 1.548.2
 
-- Build date: 2026-11-10T10:21:37.202455048Z[Etc/UTC]
+- Build date: 2026-11-10T11:31:46.520991442Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.548.1</version>
+  <version>1.548.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.548.1"
+compile "dev.zernio:zernio-sdk:1.548.2"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.548.1.jar`
+- `target/zernio-sdk-1.548.2.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1569,6 +1569,8 @@ Class | Method | HTTP request | Description
 *EmailApi* | [**listEmailLabelsWithHttpInfo**](docs/EmailApi.md#listEmailLabelsWithHttpInfo) | **GET** /v1/email/labels | List labels
 *EmailApi* | [**listEmailMessages**](docs/EmailApi.md#listEmailMessages) | **GET** /v1/email/messages | List email messages
 *EmailApi* | [**listEmailMessagesWithHttpInfo**](docs/EmailApi.md#listEmailMessagesWithHttpInfo) | **GET** /v1/email/messages | List email messages
+*EmailApi* | [**listEmailSendAs**](docs/EmailApi.md#listEmailSendAs) | **GET** /v1/email/send-as | List send-as addresses
+*EmailApi* | [**listEmailSendAsWithHttpInfo**](docs/EmailApi.md#listEmailSendAsWithHttpInfo) | **GET** /v1/email/send-as | List send-as addresses
 *EmailApi* | [**listEmailThreads**](docs/EmailApi.md#listEmailThreads) | **GET** /v1/email/threads | List email threads
 *EmailApi* | [**listEmailThreadsWithHttpInfo**](docs/EmailApi.md#listEmailThreadsWithHttpInfo) | **GET** /v1/email/threads | List email threads
 *EmailApi* | [**listScheduledEmails**](docs/EmailApi.md#listScheduledEmails) | **GET** /v1/email/messages/scheduled | List scheduled emails
@@ -3567,6 +3569,7 @@ Class | Method | HTTP request | Description
  - [EmailListMeta](docs/EmailListMeta.md)
  - [EmailMessage](docs/EmailMessage.md)
  - [EmailMessagePatch](docs/EmailMessagePatch.md)
+ - [EmailSendAs](docs/EmailSendAs.md)
  - [EmailThread](docs/EmailThread.md)
  - [EnableSmsOnNumber200Response](docs/EnableSmsOnNumber200Response.md)
  - [EnableSmsOnNumber200ResponseReusable](docs/EnableSmsOnNumber200ResponseReusable.md)
@@ -4478,6 +4481,8 @@ Class | Method | HTTP request | Description
  - [ListEmailFolders200Response](docs/ListEmailFolders200Response.md)
  - [ListEmailLabels200Response](docs/ListEmailLabels200Response.md)
  - [ListEmailMessages200Response](docs/ListEmailMessages200Response.md)
+ - [ListEmailSendAs200Response](docs/ListEmailSendAs200Response.md)
+ - [ListEmailSendAs200ResponseMeta](docs/ListEmailSendAs200ResponseMeta.md)
  - [ListEmailThreads200Response](docs/ListEmailThreads200Response.md)
  - [ListEventDestinations200Response](docs/ListEventDestinations200Response.md)
  - [ListEvents200Response](docs/ListEvents200Response.md)
