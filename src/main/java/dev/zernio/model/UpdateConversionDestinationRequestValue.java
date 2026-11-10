@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateConversionDestinationRequestValue.JSON_PROPERTY_CURRENCY_CODE,
   UpdateConversionDestinationRequestValue.JSON_PROPERTY_AMOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T08:58:36.288876788Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T09:03:57.075608242Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateConversionDestinationRequestValue {
   public static final String JSON_PROPERTY_CURRENCY_CODE = "currencyCode";
   @javax.annotation.Nullable

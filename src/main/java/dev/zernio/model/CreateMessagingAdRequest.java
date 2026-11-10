@@ -135,7 +135,7 @@ import dev.zernio.ApiClient;
   CreateMessagingAdRequest.JSON_PROPERTY_WORKFLOW_ID,
   CreateMessagingAdRequest.JSON_PROPERTY_VALIDATE_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T08:58:36.288876788Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T09:03:57.075608242Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateMessagingAdRequest {
   public static final String JSON_PROPERTY_RETRY_ON_SERVER_ERROR = "retryOnServerError";
   @javax.annotation.Nullable
