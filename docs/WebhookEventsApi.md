@@ -5013,7 +5013,7 @@ ApiResponse<Void>
 
 Calendar event created
 
-An event was added to the primary calendar of a connected mailbox, by the user, an invitation or the API.  ### Platform notes  On Microsoft the change is pushed seconds after it happens. 
+An event was added to a watched calendar of a connected mailbox, by the user, an invitation or the API. Google watches every calendar the user shows (up to 25), Outlook the default calendar; &#x60;calendarId&#x60; names it.  ### Platform notes  On Microsoft the change is pushed seconds after it happens. 
 
 ### Example
 
@@ -5082,7 +5082,7 @@ null (empty response body)
 
 Calendar event created
 
-An event was added to the primary calendar of a connected mailbox, by the user, an invitation or the API.  ### Platform notes  On Microsoft the change is pushed seconds after it happens. 
+An event was added to a watched calendar of a connected mailbox, by the user, an invitation or the API. Google watches every calendar the user shows (up to 25), Outlook the default calendar; &#x60;calendarId&#x60; names it.  ### Platform notes  On Microsoft the change is pushed seconds after it happens. 
 
 ### Example
 
@@ -5155,7 +5155,7 @@ ApiResponse<Void>
 
 Calendar event deleted
 
-An event was deleted from the primary calendar.  ### Platform notes  On Google, a cancelled event counts as deleted. 
+An event was deleted from a watched calendar.  ### Platform notes  On Google, a cancelled event counts as deleted. 
 
 ### Example
 
@@ -5224,7 +5224,7 @@ null (empty response body)
 
 Calendar event deleted
 
-An event was deleted from the primary calendar.  ### Platform notes  On Google, a cancelled event counts as deleted. 
+An event was deleted from a watched calendar.  ### Platform notes  On Google, a cancelled event counts as deleted. 
 
 ### Example
 
@@ -5297,7 +5297,7 @@ ApiResponse<Void>
 
 Calendar event updated
 
-An event on the primary calendar changed: its time, details or participants&#39; answers. 
+An event on a watched calendar changed: its time, details or participants&#39; answers. 
 
 ### Example
 
@@ -5366,7 +5366,7 @@ null (empty response body)
 
 Calendar event updated
 
-An event on the primary calendar changed: its time, details or participants&#39; answers. 
+An event on a watched calendar changed: its time, details or participants&#39; answers. 
 
 ### Example
 

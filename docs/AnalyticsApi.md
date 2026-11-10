@@ -1957,7 +1957,7 @@ ApiResponse<[**GetFacebookPostReactions200Response**](GetFacebookPostReactions20
 
 Get follower stats
 
-Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day.  ### Limits  - At most 25 accounts per request: up to 25 &#x60;accountIds&#x60;, or a page of accounts. More than 25 &#x60;accountIds&#x60; returns 400. - Without &#x60;accountIds&#x60;, the response is the first page of 25 accounts even when &#x60;limit&#x60; and &#x60;cursor&#x60; are omitted. Pass &#x60;pagination.nextCursor&#x60; back as &#x60;cursor&#x60; for the next one. - When that default page cuts the list, the response also carries a &#x60;warning&#x60; and the headers &#x60;X-Result-Truncated: true&#x60; and &#x60;X-Result-Limit: 25&#x60;. - At most 1 year between &#x60;fromDate&#x60; and &#x60;toDate&#x60;. A longer range returns 400. 
+Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day.  ### Limits  - At most 25 accounts per request: up to 25 &#x60;accountIds&#x60;, or a page of accounts. More than 25 &#x60;accountIds&#x60; returns 400. - Without &#x60;accountIds&#x60;, the response is the first page of 25 accounts even when &#x60;limit&#x60; and &#x60;cursor&#x60; are omitted. Pass &#x60;pagination.nextCursor&#x60; back as &#x60;cursor&#x60; for the next one. - When that default page cuts the list, the response also carries a &#x60;warning&#x60; and the headers &#x60;X-Result-Truncated: true&#x60; and &#x60;X-Result-Limit: 25&#x60;. - At most 1 year between &#x60;fromDate&#x60; and &#x60;toDate&#x60;. A longer range is cut to the year before &#x60;toDate&#x60;: &#x60;dateRange.from&#x60; shows where the data starts and the response carries a &#x60;warning&#x60;. 
 
 ### Example
 
@@ -1982,7 +1982,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountIds = "accountIds_example"; // String | Comma-separated list of up to 25 account IDs. Optional: without it, the response pages through all your accounts.
         String profileId = "profileId_example"; // String | Filter by profile ID
-        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format (defaults to one year before toDate). At most one year before toDate.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format (defaults to one year before toDate). An earlier date is moved to one year before toDate.
         LocalDate toDate = LocalDate.now(); // LocalDate | End date in YYYY-MM-DD format (defaults to today)
         String granularity = "daily"; // String | Data aggregation level
         Integer limit = 56; // Integer | Accounts per page, ordered by account id; the response carries `pagination.nextCursor`. Without limit or cursor, a request without accountIds still gets a first page of 25.
@@ -2008,7 +2008,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountIds** | **String**| Comma-separated list of up to 25 account IDs. Optional: without it, the response pages through all your accounts. | [optional] |
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **fromDate** | **LocalDate**| Start date in YYYY-MM-DD format (defaults to one year before toDate). At most one year before toDate. | [optional] |
+| **fromDate** | **LocalDate**| Start date in YYYY-MM-DD format (defaults to one year before toDate). An earlier date is moved to one year before toDate. | [optional] |
 | **toDate** | **LocalDate**| End date in YYYY-MM-DD format (defaults to today) | [optional] |
 | **granularity** | **String**| Data aggregation level | [optional] [default to daily] [enum: daily, weekly, monthly] |
 | **limit** | **Integer**| Accounts per page, ordered by account id; the response carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor, a request without accountIds still gets a first page of 25. | [optional] |
@@ -2042,7 +2042,7 @@ public class Example {
 
 Get follower stats
 
-Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day.  ### Limits  - At most 25 accounts per request: up to 25 &#x60;accountIds&#x60;, or a page of accounts. More than 25 &#x60;accountIds&#x60; returns 400. - Without &#x60;accountIds&#x60;, the response is the first page of 25 accounts even when &#x60;limit&#x60; and &#x60;cursor&#x60; are omitted. Pass &#x60;pagination.nextCursor&#x60; back as &#x60;cursor&#x60; for the next one. - When that default page cuts the list, the response also carries a &#x60;warning&#x60; and the headers &#x60;X-Result-Truncated: true&#x60; and &#x60;X-Result-Limit: 25&#x60;. - At most 1 year between &#x60;fromDate&#x60; and &#x60;toDate&#x60;. A longer range returns 400. 
+Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day.  ### Limits  - At most 25 accounts per request: up to 25 &#x60;accountIds&#x60;, or a page of accounts. More than 25 &#x60;accountIds&#x60; returns 400. - Without &#x60;accountIds&#x60;, the response is the first page of 25 accounts even when &#x60;limit&#x60; and &#x60;cursor&#x60; are omitted. Pass &#x60;pagination.nextCursor&#x60; back as &#x60;cursor&#x60; for the next one. - When that default page cuts the list, the response also carries a &#x60;warning&#x60; and the headers &#x60;X-Result-Truncated: true&#x60; and &#x60;X-Result-Limit: 25&#x60;. - At most 1 year between &#x60;fromDate&#x60; and &#x60;toDate&#x60;. A longer range is cut to the year before &#x60;toDate&#x60;: &#x60;dateRange.from&#x60; shows where the data starts and the response carries a &#x60;warning&#x60;. 
 
 ### Example
 
@@ -2068,7 +2068,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountIds = "accountIds_example"; // String | Comma-separated list of up to 25 account IDs. Optional: without it, the response pages through all your accounts.
         String profileId = "profileId_example"; // String | Filter by profile ID
-        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format (defaults to one year before toDate). At most one year before toDate.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format (defaults to one year before toDate). An earlier date is moved to one year before toDate.
         LocalDate toDate = LocalDate.now(); // LocalDate | End date in YYYY-MM-DD format (defaults to today)
         String granularity = "daily"; // String | Data aggregation level
         Integer limit = 56; // Integer | Accounts per page, ordered by account id; the response carries `pagination.nextCursor`. Without limit or cursor, a request without accountIds still gets a first page of 25.
@@ -2096,7 +2096,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountIds** | **String**| Comma-separated list of up to 25 account IDs. Optional: without it, the response pages through all your accounts. | [optional] |
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **fromDate** | **LocalDate**| Start date in YYYY-MM-DD format (defaults to one year before toDate). At most one year before toDate. | [optional] |
+| **fromDate** | **LocalDate**| Start date in YYYY-MM-DD format (defaults to one year before toDate). An earlier date is moved to one year before toDate. | [optional] |
 | **toDate** | **LocalDate**| End date in YYYY-MM-DD format (defaults to today) | [optional] |
 | **granularity** | **String**| Data aggregation level | [optional] [default to daily] [enum: daily, weekly, monthly] |
 | **limit** | **Integer**| Accounts per page, ordered by account id; the response carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor, a request without accountIds still gets a first page of 25. | [optional] |

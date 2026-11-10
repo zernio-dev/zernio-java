@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.562.0
+  version: 1.562.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -12051,7 +12051,7 @@ paths:
         - At most 25 accounts per request: up to 25 `accountIds`, or a page of accounts. More than 25 `accountIds` returns 400.
         - Without `accountIds`, the response is the first page of 25 accounts even when `limit` and `cursor` are omitted. Pass `pagination.nextCursor` back as `cursor` for the next one.
         - When that default page cuts the list, the response also carries a `warning` and the headers `X-Result-Truncated: true` and `X-Result-Limit: 25`.
-        - At most 1 year between `fromDate` and `toDate`. A longer range returns 400.
+        - At most 1 year between `fromDate` and `toDate`. A longer range is cut to the year before `toDate`: `dateRange.from` shows where the data starts and the response carries a `warning`.
       operationId: getFollowerStats
       parameters:
       - description: "Comma-separated list of up to 25 account IDs. Optional: without\
@@ -12072,7 +12072,7 @@ paths:
           type: string
         style: form
       - description: Start date in YYYY-MM-DD format (defaults to one year before
-          toDate). At most one year before toDate.
+          toDate). An earlier date is moved to one year before toDate.
         explode: true
         in: query
         name: fromDate
@@ -112788,8 +112788,10 @@ components:
           description: "Present when limit or cursor is sent, and on the default page\
             \ of 25 that an API request without accountIds gets."
         warning:
-          description: Only when the default page of 25 cut the list. Page through
-            the rest with cursor.
+          description: "Only when the response was cut: the default page of 25 accounts\
+            \ (page through the rest with cursor), or a date range longer than a year\
+            \ (dateRange.from shows where the data starts). Both reasons are joined\
+            \ when they apply together."
           type: string
     UploadedFile:
       properties:
@@ -218987,8 +218989,8 @@ components:
           type: string
         calendarId:
           description: "The calendar holding the event, to pass as `calendarId` when\
-            \ reading it: `primary` for the user's main calendar. Null when it is\
-            \ not known, as for a deleted Outlook event."
+            \ reading it: `primary` for the user's main calendar, else the Google\
+            \ calendar id. Null when it is not known, as for a deleted Outlook event."
           nullable: true
           type: string
         masterEventId:
