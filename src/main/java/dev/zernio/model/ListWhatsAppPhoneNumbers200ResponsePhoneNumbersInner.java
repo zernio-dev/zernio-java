@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInner.JSON_PROPERTY_WABA_ID,
   ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInner.JSON_PROPERTY_WABA_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:12:27.368329126Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:17:47.918454526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

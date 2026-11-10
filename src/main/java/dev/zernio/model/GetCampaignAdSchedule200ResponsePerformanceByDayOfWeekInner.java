@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetCampaignAdSchedule200ResponsePerformanceByDayOfWeekInner.JSON_PROPERTY_COST,
   GetCampaignAdSchedule200ResponsePerformanceByDayOfWeekInner.JSON_PROPERTY_CONVERSIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:12:27.368329126Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:17:47.918454526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCampaignAdSchedule200ResponsePerformanceByDayOfWeekInner {
   /**
    * Gets or Sets dayOfWeek
