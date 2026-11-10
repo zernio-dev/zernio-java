@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   AdRuleActionOneOf.JSON_PROPERTY_TYPE,
   AdRuleActionOneOf.JSON_PROPERTY_SEND
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:17:47.918454526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:22:03.113456192Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleActionOneOf {
   /**
    * Send the &#x60;ad_rule.triggered&#x60; webhook, and the alert to every &#x60;send&#x60; destination.

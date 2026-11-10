@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ApiChangelogEntryChanges.JSON_PROPERTY_ENDPOINTS,
   ApiChangelogEntryChanges.JSON_PROPERTY_SCHEMAS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:17:47.918454526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:22:03.113456192Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ApiChangelogEntryChanges {
   public static final String JSON_PROPERTY_ENDPOINTS = "endpoints";
   @javax.annotation.Nonnull

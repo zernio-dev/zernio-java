@@ -56,7 +56,7 @@ import dev.zernio.ApiClient;
   UsageMetering.JSON_PROPERTY_ATTRIBUTION,
   UsageMetering.JSON_PROPERTY_SCOPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:17:47.918454526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:22:03.113456192Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageMetering {
   public static final String JSON_PROPERTY_SUPPORTED = "supported";
   @javax.annotation.Nullable

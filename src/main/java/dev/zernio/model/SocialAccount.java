@@ -63,7 +63,7 @@ import dev.zernio.ApiClient;
   SocialAccount.JSON_PROPERTY_RATE_LIMITED_UNTIL,
   SocialAccount.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:17:47.918454526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T02:22:03.113456192Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SocialAccount {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
