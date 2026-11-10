@@ -8,7 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  |
-|**content** | **String** |  |  |
+|**content** | **String** | Absent once publishing finishes when the team does not retain content. |  [optional] |
+|**contentNotRetained** | **Boolean** | True when this team does not retain content and the post text was already cleared. |  [optional] |
 |**status** | **String** |  |  |
 |**scheduledFor** | **OffsetDateTime** |  |  |
 |**publishedAt** | **OffsetDateTime** |  |  [optional] |

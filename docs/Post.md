@@ -10,7 +10,8 @@
 |**id** | **String** |  |  [optional] |
 |**userId** | [**PostUserId**](PostUserId.md) |  |  [optional] |
 |**title** | **String** | Stored on the post for reference/display only. This field is NOT used as the video title when publishing. To set a YouTube video title, use platformSpecificData.title on the youtube platform target (falls back to the first line of content when omitted). |  [optional] |
-|**content** | **String** |  |  [optional] |
+|**content** | **String** | Null once publishing finishes when the team does not retain content. |  [optional] |
+|**contentNotRetained** | **Boolean** | True when this team does not retain content, so &#x60;title&#x60;, &#x60;content&#x60; and every &#x60;customContent&#x60; are null after publishing. Identifiers and metadata stay. |  [optional] |
 |**mediaItems** | [**List&lt;MediaItem&gt;**](MediaItem.md) |  |  [optional] |
 |**platforms** | [**List&lt;PlatformTarget&gt;**](PlatformTarget.md) |  |  [optional] |
 |**scheduledFor** | **OffsetDateTime** |  |  [optional] |

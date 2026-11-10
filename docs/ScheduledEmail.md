@@ -13,7 +13,8 @@ An email sent with `scheduledFor`. `status` moves scheduled, sending, then sent 
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**scheduledFor** | **OffsetDateTime** |  |  [optional] |
 |**to** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  |  [optional] |
-|**subject** | **String** | Empty on a reply that keeps the thread subject. |  [optional] |
+|**subject** | **String** | Empty on a reply that keeps the thread subject. &#x60;null&#x60; once the send finishes under zero content retention. |  [optional] |
+|**contentNotRetained** | **Boolean** | Present and &#x60;true&#x60; when the email content was dropped under [zero content retention](/security/zero-content-retention). |  [optional] |
 |**replyToMessageId** | **String** | Set when scheduled through the reply route. |  [optional] |
 |**metadata** | **Map&lt;String, String&gt;** |  |  [optional] |
 |**sentAt** | **OffsetDateTime** |  |  [optional] |

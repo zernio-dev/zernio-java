@@ -84,6 +84,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**onCallPermissionRequestWithHttpInfo**](WebhookEventsApi.md#onCallPermissionRequestWithHttpInfo) | **POST** /call.permission_request | Call permission request reply event |
 | [**onCallReceived**](WebhookEventsApi.md#onCallReceived) | **POST** /call.received | Call received event |
 | [**onCallReceivedWithHttpInfo**](WebhookEventsApi.md#onCallReceivedWithHttpInfo) | **POST** /call.received | Call received event |
+| [**onCallRecordingReady**](WebhookEventsApi.md#onCallRecordingReady) | **POST** /call.recording_ready | Call recording ready event |
+| [**onCallRecordingReadyWithHttpInfo**](WebhookEventsApi.md#onCallRecordingReadyWithHttpInfo) | **POST** /call.recording_ready | Call recording ready event |
+| [**onCallTranscriptSegment**](WebhookEventsApi.md#onCallTranscriptSegment) | **POST** /call.transcript_segment | Call transcript segment event |
+| [**onCallTranscriptSegmentWithHttpInfo**](WebhookEventsApi.md#onCallTranscriptSegmentWithHttpInfo) | **POST** /call.transcript_segment | Call transcript segment event |
 | [**onCampaignBudgetDepleted**](WebhookEventsApi.md#onCampaignBudgetDepleted) | **POST** /campaign.budget.depleted | Campaign budget depleted event |
 | [**onCampaignBudgetDepletedWithHttpInfo**](WebhookEventsApi.md#onCampaignBudgetDepletedWithHttpInfo) | **POST** /campaign.budget.depleted | Campaign budget depleted event |
 | [**onCampaignCreated**](WebhookEventsApi.md#onCampaignCreated) | **POST** /campaign.created | Campaign created event |
@@ -162,6 +166,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onFileUpdatedWithHttpInfo**](WebhookEventsApi.md#onFileUpdatedWithHttpInfo) | **POST** /file.updated | File updated |
 | [**onLeadReceived**](WebhookEventsApi.md#onLeadReceived) | **POST** /lead.received | Lead received event |
 | [**onLeadReceivedWithHttpInfo**](WebhookEventsApi.md#onLeadReceivedWithHttpInfo) | **POST** /lead.received | Lead received event |
+| [**onMentionReceived**](WebhookEventsApi.md#onMentionReceived) | **POST** /mention.received | Mention received event |
+| [**onMentionReceivedWithHttpInfo**](WebhookEventsApi.md#onMentionReceivedWithHttpInfo) | **POST** /mention.received | Mention received event |
 | [**onMessageDeleted**](WebhookEventsApi.md#onMessageDeleted) | **POST** /message.deleted | Message deleted event |
 | [**onMessageDeletedWithHttpInfo**](WebhookEventsApi.md#onMessageDeletedWithHttpInfo) | **POST** /message.deleted | Message deleted event |
 | [**onMessageDelivered**](WebhookEventsApi.md#onMessageDelivered) | **POST** /message.delivered | Message delivered event |
@@ -5963,6 +5969,290 @@ ApiResponse<Void>
 | **200** | Webhook received successfully |  -  |
 
 
+## onCallRecordingReady
+
+> void onCallRecordingReady(webhookPayloadCallRecordingReady)
+
+Call recording ready event
+
+A call recording is ready to download.  ### When it fires  Only for teams with zero content retention, on calls with recording on, and only while a webhook listens to it. Zernio keeps no recording for these teams, and the copy behind the link expires after about 3 days. Download the file before &#x60;recording.expiresAt&#x60;.  ### Payload notes  &#x60;call.isVoicemail&#x60; tells a voicemail from a recorded call. If the recording could not be copied, no event fires and &#x60;call.ended&#x60; lists it in &#x60;callErrors&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCallRecordingReady webhookPayloadCallRecordingReady = new WebhookPayloadCallRecordingReady(); // WebhookPayloadCallRecordingReady | 
+        try {
+            apiInstance.onCallRecordingReady(webhookPayloadCallRecordingReady);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCallRecordingReady");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCallRecordingReady** | [**WebhookPayloadCallRecordingReady**](WebhookPayloadCallRecordingReady.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onCallRecordingReadyWithHttpInfo
+
+> ApiResponse<Void> onCallRecordingReady onCallRecordingReadyWithHttpInfo(webhookPayloadCallRecordingReady)
+
+Call recording ready event
+
+A call recording is ready to download.  ### When it fires  Only for teams with zero content retention, on calls with recording on, and only while a webhook listens to it. Zernio keeps no recording for these teams, and the copy behind the link expires after about 3 days. Download the file before &#x60;recording.expiresAt&#x60;.  ### Payload notes  &#x60;call.isVoicemail&#x60; tells a voicemail from a recorded call. If the recording could not be copied, no event fires and &#x60;call.ended&#x60; lists it in &#x60;callErrors&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCallRecordingReady webhookPayloadCallRecordingReady = new WebhookPayloadCallRecordingReady(); // WebhookPayloadCallRecordingReady | 
+        try {
+            ApiResponse<Void> response = apiInstance.onCallRecordingReadyWithHttpInfo(webhookPayloadCallRecordingReady);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCallRecordingReady");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCallRecordingReady** | [**WebhookPayloadCallRecordingReady**](WebhookPayloadCallRecordingReady.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onCallTranscriptSegment
+
+> void onCallTranscriptSegment(webhookPayloadCallTranscriptSegment)
+
+Call transcript segment event
+
+One final segment of a live call transcript.  ### When it fires  Only for teams with zero content retention, on calls with transcription on: once per final segment, while the call is live. Zernio stores no transcript for these teams, so it cannot be fetched later. Store each segment when it arrives.  ### Payload notes  &#x60;segment.text&#x60; is the final text, &#x60;segment.confidence&#x60; the recognition confidence and &#x60;segment.at&#x60; when it was transcribed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCallTranscriptSegment webhookPayloadCallTranscriptSegment = new WebhookPayloadCallTranscriptSegment(); // WebhookPayloadCallTranscriptSegment | 
+        try {
+            apiInstance.onCallTranscriptSegment(webhookPayloadCallTranscriptSegment);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCallTranscriptSegment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCallTranscriptSegment** | [**WebhookPayloadCallTranscriptSegment**](WebhookPayloadCallTranscriptSegment.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onCallTranscriptSegmentWithHttpInfo
+
+> ApiResponse<Void> onCallTranscriptSegment onCallTranscriptSegmentWithHttpInfo(webhookPayloadCallTranscriptSegment)
+
+Call transcript segment event
+
+One final segment of a live call transcript.  ### When it fires  Only for teams with zero content retention, on calls with transcription on: once per final segment, while the call is live. Zernio stores no transcript for these teams, so it cannot be fetched later. Store each segment when it arrives.  ### Payload notes  &#x60;segment.text&#x60; is the final text, &#x60;segment.confidence&#x60; the recognition confidence and &#x60;segment.at&#x60; when it was transcribed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCallTranscriptSegment webhookPayloadCallTranscriptSegment = new WebhookPayloadCallTranscriptSegment(); // WebhookPayloadCallTranscriptSegment | 
+        try {
+            ApiResponse<Void> response = apiInstance.onCallTranscriptSegmentWithHttpInfo(webhookPayloadCallTranscriptSegment);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCallTranscriptSegment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCallTranscriptSegment** | [**WebhookPayloadCallTranscriptSegment**](WebhookPayloadCallTranscriptSegment.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
 ## onCampaignBudgetDepleted
 
 > void onCampaignBudgetDepleted(webhookPayloadCampaignBudgetDepleted)
@@ -11480,6 +11770,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadLead** | [**WebhookPayloadLead**](WebhookPayloadLead.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onMentionReceived
+
+> void onMentionReceived(webhookPayloadMention)
+
+Mention received event
+
+A connected Instagram, Facebook or LinkedIn account was mentioned in a post, caption or comment.  ### When it fires  Once per mention, the first time Zernio sees it. Delivery is at most once: reconcile with &#x60;GET /v1/inbox/mentions&#x60;.  - Instagram and Facebook arrive in real time from the platform&#39;s webhook. - LinkedIn arrives from its webhook or from polling, so delivery can take minutes. A newly connected account can receive mentions from the last 48 hours once.  ### Payload notes  Carries the same fields as &#x60;GET /v1/inbox/mentions&#x60;. Fields a platform does not provide are null. A LinkedIn mention found by polling for a team that does not retain content has no author, and an Instagram mention has no content if the live read fails. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadMention webhookPayloadMention = new WebhookPayloadMention(); // WebhookPayloadMention | 
+        try {
+            apiInstance.onMentionReceived(webhookPayloadMention);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onMentionReceived");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadMention** | [**WebhookPayloadMention**](WebhookPayloadMention.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onMentionReceivedWithHttpInfo
+
+> ApiResponse<Void> onMentionReceived onMentionReceivedWithHttpInfo(webhookPayloadMention)
+
+Mention received event
+
+A connected Instagram, Facebook or LinkedIn account was mentioned in a post, caption or comment.  ### When it fires  Once per mention, the first time Zernio sees it. Delivery is at most once: reconcile with &#x60;GET /v1/inbox/mentions&#x60;.  - Instagram and Facebook arrive in real time from the platform&#39;s webhook. - LinkedIn arrives from its webhook or from polling, so delivery can take minutes. A newly connected account can receive mentions from the last 48 hours once.  ### Payload notes  Carries the same fields as &#x60;GET /v1/inbox/mentions&#x60;. Fields a platform does not provide are null. A LinkedIn mention found by polling for a team that does not retain content has no author, and an Instagram mention has no content if the live read fails. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadMention webhookPayloadMention = new WebhookPayloadMention(); // WebhookPayloadMention | 
+        try {
+            ApiResponse<Void> response = apiInstance.onMentionReceivedWithHttpInfo(webhookPayloadMention);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onMentionReceived");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadMention** | [**WebhookPayloadMention**](WebhookPayloadMention.md)|  | |
 
 ### Return type
 

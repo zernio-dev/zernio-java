@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.545.2
+- API version: 1.546.0
 
-- Build date: 2026-11-10T06:55:36.344285373Z[Etc/UTC]
+- Build date: 2026-11-10T08:28:27.065235853Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.545.2</version>
+  <version>1.546.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.545.2"
+compile "dev.zernio:zernio-sdk:1.546.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.545.2.jar`
+- `target/zernio-sdk-1.546.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1351,6 +1351,10 @@ Class | Method | HTTP request | Description
 *ContactsApi* | [**listContactsWithHttpInfo**](docs/ContactsApi.md#listContactsWithHttpInfo) | **GET** /v1/contacts | List contacts
 *ContactsApi* | [**updateContact**](docs/ContactsApi.md#updateContact) | **PATCH** /v1/contacts/{contactId} | Update contact
 *ContactsApi* | [**updateContactWithHttpInfo**](docs/ContactsApi.md#updateContactWithHttpInfo) | **PATCH** /v1/contacts/{contactId} | Update contact
+*ContentRetentionApi* | [**getContentRetention**](docs/ContentRetentionApi.md#getContentRetention) | **GET** /v1/content-retention | Get content retention mode
+*ContentRetentionApi* | [**getContentRetentionWithHttpInfo**](docs/ContentRetentionApi.md#getContentRetentionWithHttpInfo) | **GET** /v1/content-retention | Get content retention mode
+*ContentRetentionApi* | [**updateContentRetention**](docs/ContentRetentionApi.md#updateContentRetention) | **PUT** /v1/content-retention | Turn zero content retention on or off
+*ContentRetentionApi* | [**updateContentRetentionWithHttpInfo**](docs/ContentRetentionApi.md#updateContentRetentionWithHttpInfo) | **PUT** /v1/content-retention | Turn zero content retention on or off
 *ConversionsApi* | [**addConversionAssociations**](docs/ConversionsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
 *ConversionsApi* | [**addConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
 *ConversionsApi* | [**adjustConversions**](docs/ConversionsApi.md#adjustConversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
@@ -3099,6 +3103,7 @@ Class | Method | HTTP request | Description
  - [Connected](docs/Connected.md)
  - [ConnectedAccount](docs/ConnectedAccount.md)
  - [ConnectedApp](docs/ConnectedApp.md)
+ - [ContentRetentionResponse](docs/ContentRetentionResponse.md)
  - [ConversationAdAttribution](docs/ConversationAdAttribution.md)
  - [ConversionAction](docs/ConversionAction.md)
  - [ConversionActionTagSnippetsInner](docs/ConversionActionTagSnippetsInner.md)
@@ -3512,6 +3517,7 @@ Class | Method | HTTP request | Description
  - [DiscordPlatformDataEmbedsInnerAuthor](docs/DiscordPlatformDataEmbedsInnerAuthor.md)
  - [DiscordPlatformDataEmbedsInnerFieldsInner](docs/DiscordPlatformDataEmbedsInnerFieldsInner.md)
  - [DiscordPlatformDataEmbedsInnerFooter](docs/DiscordPlatformDataEmbedsInnerFooter.md)
+ - [DiscordPlatformDataEmbedsInnerImage](docs/DiscordPlatformDataEmbedsInnerImage.md)
  - [DiscordPlatformDataPoll](docs/DiscordPlatformDataPoll.md)
  - [DiscordPlatformDataPollAnswersInner](docs/DiscordPlatformDataPollAnswersInner.md)
  - [DiscordPlatformDataPollAnswersInnerPollMedia](docs/DiscordPlatformDataPollAnswersInnerPollMedia.md)
@@ -4937,6 +4943,7 @@ Class | Method | HTTP request | Description
  - [ReplyToInboxPost400ResponseDetails](docs/ReplyToInboxPost400ResponseDetails.md)
  - [ReplyToInboxPostRequest](docs/ReplyToInboxPostRequest.md)
  - [ReplyToInboxReview200Response](docs/ReplyToInboxReview200Response.md)
+ - [ReplyToInboxReview200ResponseReply](docs/ReplyToInboxReview200ResponseReply.md)
  - [ReplyToInboxReviewRequest](docs/ReplyToInboxReviewRequest.md)
  - [ReplyToMention200Response](docs/ReplyToMention200Response.md)
  - [ReplyToMentionRequest](docs/ReplyToMentionRequest.md)
@@ -5434,6 +5441,7 @@ Class | Method | HTTP request | Description
  - [UpdateContact200Response](docs/UpdateContact200Response.md)
  - [UpdateContact200ResponseContact](docs/UpdateContact200ResponseContact.md)
  - [UpdateContactRequest](docs/UpdateContactRequest.md)
+ - [UpdateContentRetentionRequest](docs/UpdateContentRetentionRequest.md)
  - [UpdateConversionAction200Response](docs/UpdateConversionAction200Response.md)
  - [UpdateConversionAction200ResponseAction](docs/UpdateConversionAction200ResponseAction.md)
  - [UpdateConversionActionRequest](docs/UpdateConversionActionRequest.md)
@@ -5734,6 +5742,12 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadCallPermissionRequestPermission](docs/WebhookPayloadCallPermissionRequestPermission.md)
  - [WebhookPayloadCallReceived](docs/WebhookPayloadCallReceived.md)
  - [WebhookPayloadCallReceivedCall](docs/WebhookPayloadCallReceivedCall.md)
+ - [WebhookPayloadCallRecordingReady](docs/WebhookPayloadCallRecordingReady.md)
+ - [WebhookPayloadCallRecordingReadyCall](docs/WebhookPayloadCallRecordingReadyCall.md)
+ - [WebhookPayloadCallRecordingReadyRecording](docs/WebhookPayloadCallRecordingReadyRecording.md)
+ - [WebhookPayloadCallTranscriptSegment](docs/WebhookPayloadCallTranscriptSegment.md)
+ - [WebhookPayloadCallTranscriptSegmentCall](docs/WebhookPayloadCallTranscriptSegmentCall.md)
+ - [WebhookPayloadCallTranscriptSegmentSegment](docs/WebhookPayloadCallTranscriptSegmentSegment.md)
  - [WebhookPayloadCampaignBudgetDepleted](docs/WebhookPayloadCampaignBudgetDepleted.md)
  - [WebhookPayloadCampaignBudgetDepletedAdObject](docs/WebhookPayloadCampaignBudgetDepletedAdObject.md)
  - [WebhookPayloadCampaignBudgetDepletedBudget](docs/WebhookPayloadCampaignBudgetDepletedBudget.md)
@@ -5791,6 +5805,9 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadLead](docs/WebhookPayloadLead.md)
  - [WebhookPayloadLeadAccount](docs/WebhookPayloadLeadAccount.md)
  - [WebhookPayloadLeadLead](docs/WebhookPayloadLeadLead.md)
+ - [WebhookPayloadMention](docs/WebhookPayloadMention.md)
+ - [WebhookPayloadMentionAccount](docs/WebhookPayloadMentionAccount.md)
+ - [WebhookPayloadMentionMention](docs/WebhookPayloadMentionMention.md)
  - [WebhookPayloadMessage](docs/WebhookPayloadMessage.md)
  - [WebhookPayloadMessageDeleted](docs/WebhookPayloadMessageDeleted.md)
  - [WebhookPayloadMessageDeliveryStatus](docs/WebhookPayloadMessageDeliveryStatus.md)

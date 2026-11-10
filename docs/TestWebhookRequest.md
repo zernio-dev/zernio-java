@@ -91,7 +91,10 @@
 | CALL_ENDED | &quot;call.ended&quot; |
 | CALL_FAILED | &quot;call.failed&quot; |
 | CALL_PERMISSION_REQUEST | &quot;call.permission_request&quot; |
+| CALL_TRANSCRIPT_SEGMENT | &quot;call.transcript_segment&quot; |
+| CALL_RECORDING_READY | &quot;call.recording_ready&quot; |
 | COMMENT_RECEIVED | &quot;comment.received&quot; |
+| MENTION_RECEIVED | &quot;mention.received&quot; |
 | REVIEW_NEW | &quot;review.new&quot; |
 | REVIEW_UPDATED | &quot;review.updated&quot; |
 | REVIEW_DELETED | &quot;review.deleted&quot; |

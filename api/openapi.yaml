@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.545.2
+  version: 1.546.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -138,6 +138,9 @@ tags:
 - description: |
     Read the authenticated user and team members.
   name: Users
+- description: |
+    Read or change whether your team stores message, comment, lead, post and call content. With zero content retention, Zernio keeps identifiers and metadata only and webhooks are the only copy of the content.
+  name: Content Retention
 - description: |
     Usage and metering.
 
@@ -451,8 +454,8 @@ tags:
     - Posts: `post.scheduled`, `post.published`, `post.failed`, `post.partial`, `post.cancelled`, `post.recycled`, `post.platform.published`, `post.platform.failed`, `post.platform.deleted`, `post.tiktok.url_resolved`, `post.external.created`, `post.external.updated`, `post.external.deleted`, `post.tracking_completed`, `post.authenticity_changed`
     - Accounts and analytics: `account.connected`, `account.disconnected`, `account.permissions_changed`, `account.ads.initial_sync_completed`, `account.ads.sync_failed`, `account.ads.sync_recovered`, `account.rate_limited`, `analytics.synced`
     - Messages: `message.received`, `message.sent`, `message.edited`, `message.deleted`, `message.delivered`, `message.read`, `message.played`, `message.failed`, `reaction.received`, `referral.received`, `conversation.started`, `conversation.control_changed`
-    - Calls: `call.received`, `call.ended`, `call.failed`, `call.permission_request`
-    - Engagement and leads: `comment.received`, `review.new`, `review.updated`, `review.deleted`, `review.restored`, `lead.received`
+    - Calls: `call.received`, `call.ended`, `call.failed`, `call.permission_request`, `call.transcript_segment`, `call.recording_ready`
+    - Engagement and leads: `comment.received`, `mention.received`, `review.new`, `review.updated`, `review.deleted`, `review.restored`, `lead.received`
     - Ads: `ad.status_changed`, `ad.created`, `ad.updated`, `campaign.created`, `campaign.updated`, `ad_set.created`, `ad_set.updated`, `ad.review.approved`, `ad.review.rejected`, `ad.delivery_issue`, `campaign.budget.depleted`, `ad_account.status_changed`, `ad.video.processed`, `ad_rule.triggered`
     - WhatsApp: `whatsapp.template.status_updated`, `whatsapp.template.category_updated`, `whatsapp.account.name_status_updated`, `whatsapp.account.quality_updated`, `whatsapp.account.status_updated`, `whatsapp.account.alert_received`, `whatsapp.contact.identity_changed`, `whatsapp.automatic_event`
     - WhatsApp numbers: `whatsapp.number.activated`, `whatsapp.number.declined`, `whatsapp.number.action_required`, `whatsapp.number.verification_required`, `whatsapp.number.suspended`, `whatsapp.number.reactivated`, `whatsapp.number.released`, `whatsapp.number.kyc_submitted`
@@ -10296,6 +10299,17 @@ paths:
             - `invalid_resource_state`: requiresApproval was sent on a post that is not a draft.
           x-summary: "The requested time collides with another queued post, or approval\
             \ was requested on a non-draft post: change the time or the request."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid resource state (`invalid_resource_state`): this team\
+            \ does not retain content and the post text was cleared once publishing\
+            \ finished, so the post cannot be changed or published again. Create a\
+            \ new post instead."
+          x-summary: "The post text was cleared after publishing because the team\
+            \ does not retain content: create a new post."
       summary: Update post
       tags:
       - Posts
@@ -10541,6 +10555,17 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Post is currently publishing
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid resource state (`invalid_resource_state`): this team\
+            \ does not retain content and the post text was cleared once publishing\
+            \ finished, so the post cannot be changed or published again. Create a\
+            \ new post instead."
+          x-summary: "The post text was cleared after publishing because the team\
+            \ does not retain content: create a new post."
         "429":
           content:
             application/json:
@@ -11402,7 +11427,7 @@ paths:
       - application/json
     put:
       description: "Updates a profile's name, description, color, default timezone,\
-        \ externalId, or default status."
+        \ externalId, default status, or zero content retention."
       operationId: updateProfile
       parameters:
       - explode: false
@@ -11449,9 +11474,15 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
+        "403":
+          description: "Only the team owner can change contentRetention, with a session\
+            \ or a full-access key."
         "409":
           description: "A profile with this name (code: profile_name_conflict) or\
-            \ this externalId (code: profile_external_id_conflict) already exists."
+            \ this externalId (code: profile_external_id_conflict) already exists,\
+            \ or contentRetention cannot change now: the whole team uses zero content\
+            \ retention, or a Zernio number of this profile has a WhatsApp verification\
+            \ in progress."
       summary: Update profile
       tags:
       - Profiles
@@ -13047,6 +13078,85 @@ paths:
       tags:
       - API Keys
       x-resource-group: admin-plane
+      x-accepts:
+      - application/json
+  /v1/content-retention:
+    get:
+      description: |
+        Returns whether your team stores content. `none` is zero content retention: Zernio keeps identifiers and metadata only, and content fields come back as `null` with `contentNotRetained: true`. See the zero content retention guide for what changes.
+      operationId: getContentRetention
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                mode: standard
+              schema:
+                $ref: "#/components/schemas/ContentRetentionResponse"
+          description: The team's content retention mode
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
+      summary: Get content retention mode
+      tags:
+      - Content Retention
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    put:
+      description: |
+        Sets your team's content retention mode for every member. Only the team owner can change it, with a signed-in session or a full-access API key.
+
+        - `none` turns on zero content retention: from then on Zernio stores no message text, comments, lead answers, mentions, post text after publishing, call transcripts or recordings. Webhooks become the only copy, so store each event when it arrives.
+        - `standard` stores content again for new data. Content that was not stored cannot come back.
+        - The change applies to new data within about 5 minutes. Content stored before it stays until it is deleted.
+      operationId: updateContentRetention
+      requestBody:
+        content:
+          application/json:
+            example:
+              mode: none
+            schema:
+              $ref: "#/components/schemas/updateContentRetention_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                mode: none
+              schema:
+                $ref: "#/components/schemas/ContentRetentionResponse"
+          description: The mode now set
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Only the team owner can change the mode, on a signed-in session\
+            \ or a full-access API key (`insufficient_permissions`). Read-only, profile-scoped\
+            \ and restricted API keys and third-party OAuth tokens get 403 too."
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid resource state (`invalid_resource_state`): a Zernio\
+            \ phone number of the team has a WhatsApp verification in progress. Teams\
+            \ with zero content retention cannot receive the verification code, so\
+            \ finish or cancel it first."
+          x-summary: "A Zernio number of the team has a WhatsApp verification in progress:\
+            \ finish or cancel it, then try again."
+      summary: Turn zero content retention on or off
+      tags:
+      - Content Retention
+      x-resource-group: accounts
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/me/connected-apps:
@@ -25239,8 +25349,9 @@ paths:
           description: Webhook subscription not found
         "422":
           description: "Original payload not replayable: no delivery matches this\
-            \ event inside the 30-day retention window, or the stored payload is truncated\
-            \ or not valid JSON"
+            \ event inside the 30-day retention window, the stored payload is truncated\
+            \ or not valid JSON, or the team does not retain content so no payload\
+            \ is stored"
           x-summary: "The original payload cannot be replayed because no delivery\
             \ matches within 30 days, or the stored payload is truncated or invalid."
         "502":
@@ -33235,7 +33346,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
-          description: "Call not found, or no recording is available for this call"
+          description: "Call not found, or no recording is available for this call.\
+            \ A team that does not retain content gets 404 on the redirect form and\
+            \ `{ url: null, contentNotRetained: true }` with JSON."
         "502":
           description: Recording provider lookup failed
       security:
@@ -33485,7 +33598,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
-          description: "Call not found, or no recording is available for this call"
+          description: "Call not found, or no recording is available for this call.\
+            \ A team that does not retain content gets 404 on the redirect form and\
+            \ `{ url: null, contentNotRetained: true }` with JSON."
         "502":
           description: Recording provider lookup failed
       security:
@@ -33741,7 +33856,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
-          description: "Call not found, or no recording is available for this call"
+          description: "Call not found, or no recording is available for this call.\
+            \ A team that does not retain content gets 404 on the redirect form and\
+            \ `{ url: null, contentNotRetained: true }` with JSON."
         "502":
           description: Recording provider lookup failed
       security:
@@ -82945,6 +83062,7 @@ components:
         isOrganic: true
         webhookDeliveredAt: 2000-01-23T04:56:07.000+00:00
         platform: meta
+        contentNotRetained: true
         accountId: accountId
         statusChangedAt: 2000-01-23T04:56:07.000+00:00
         adId: adId
@@ -83018,6 +83136,7 @@ components:
           description: Raw Meta field_data.
           items:
             type: object
+          nullable: true
           type: array
         consents:
           description: "Meta lead forms only: the answer to every custom disclaimer\
@@ -83027,6 +83146,10 @@ components:
           items:
             $ref: "#/components/schemas/AdLeadConsent"
           type: array
+        contentNotRetained:
+          description: "True when this team does not retain content, so the content\
+            \ fields of this row are null. Identifiers and metadata stay."
+          type: boolean
         status:
           description: "Meta leads only. `contacted` is set when the first WhatsApp\
             \ message of a lead_received workflow is delivered, `unreachable` when\
@@ -89460,6 +89583,8 @@ components:
             - call.ended
             - call.failed
             - call.permission_request
+            - call.transcript_segment
+            - call.recording_ready
             - message.sent
             - message.edited
             - message.deleted
@@ -89470,6 +89595,7 @@ components:
             - reaction.received
             - referral.received
             - comment.received
+            - mention.received
             - review.new
             - review.updated
             - review.deleted
@@ -89639,6 +89765,29 @@ components:
           items:
             type: string
           type: array
+    ContentRetentionResponse:
+      example:
+        mode: standard
+        profileIds:
+        - profileIds
+        - profileIds
+      properties:
+        mode:
+          description: "`standard` stores content. `none` is zero content retention:\
+            \ identifiers and metadata only."
+          enum:
+          - standard
+          - none
+          type: string
+        profileIds:
+          description: "Returned by GET. Profiles that use zero content retention\
+            \ on their own while the team is `standard`. Change one with `contentRetention`\
+            \ on PUT /v1/profiles/{profileId}."
+          items:
+            type: string
+          type: array
+      required:
+      - mode
     WebhookLog:
       description: A single webhook delivery attempt recorded by Zernio (30-day retention).
       example:
@@ -89695,13 +89844,16 @@ components:
           type: integer
         requestPayload:
           additionalProperties: true
-          description: The JSON payload sent to the destination endpoint
+          description: The JSON payload sent to the destination endpoint. Empty when
+            the team does not retain content.
           type: object
         responseBody:
-          description: Response body returned by the destination endpoint
+          description: Response body returned by the destination endpoint. Empty when
+            the team does not retain content.
           type: string
         errorMessage:
-          description: Error message when delivery failed
+          description: Error message when delivery failed. When the team does not
+            retain content it only holds `Detail not retained (<category>)`.
           type: string
         attemptNumber:
           description: Delivery attempt number (increments on retries)
@@ -89732,6 +89884,7 @@ components:
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           id: id
           content: content
+          contentNotRetained: true
           status: status
           platforms:
           - accountId: accountId
@@ -92875,6 +93028,74 @@ components:
       - id
       - sync
       - timestamp
+    WebhookPayloadMention:
+      description: "Webhook payload for mention received events (Instagram, Facebook,\
+        \ LinkedIn)."
+      example:
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: mention.received
+        account:
+          accountId: accountId
+          id: id
+          platform: platform
+          username: username
+        mention:
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          authorUsername: authorUsername
+          postId: postId
+          type: caption
+          mediaId: mediaId
+          platform: instagram
+          content: content
+          authorUrn: authorUrn
+          authorName: authorName
+          commentId: commentId
+          id: id
+          authorPicture: authorPicture
+          permalink: permalink
+          organizationalEntity: organizationalEntity
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - mention.received
+          type: string
+        mention:
+          $ref: "#/components/schemas/WebhookPayloadMention_mention"
+        account:
+          $ref: "#/components/schemas/WebhookPayloadMention_account"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - mention
+      - timestamp
     WebhookPayloadComment:
       description: "Webhook payload for comment received events (Instagram, Facebook,\
         \ Threads, YouTube, LinkedIn, Bluesky, Reddit, TikTok). X/Twitter does NOT\
@@ -95389,6 +95610,7 @@ components:
         endReason: hangup
         conversationId: conversationId
         forwardTo: forwardTo
+        contentNotRetained: true
         hangupCause: hangupCause
         accountId: accountId
         endedAt: 2000-01-23T04:56:07.000+00:00
@@ -95526,6 +95748,11 @@ components:
           description: "Most recent transcript segment, for list previews."
           nullable: true
           type: string
+        contentNotRetained:
+          description: "True when this team does not retain content and the call asked\
+            \ for a recording, a transcript or a voicemail. Use the `call.transcript_segment`\
+            \ and `call.recording_ready` webhooks."
+          type: boolean
         transcript:
           description: Full transcript segments (detail endpoint only; omitted from
             lists).
@@ -95843,6 +96070,166 @@ components:
       - event
       - id
       - permission
+      - timestamp
+    WebhookPayloadCallTranscriptSegment:
+      description: |
+        Webhook payload for the `call.transcript_segment` event. Fires once
+        per final transcript segment of a call with transcription on, for
+        teams with zero content retention. Zernio does not store the
+        transcript, so this event is the only copy.
+      example:
+        call:
+          accountId: accountId
+          contactId: contactId
+          metaCallId: metaCallId
+          conversationId: conversationId
+          from: from
+          id: id
+          to: to
+          phoneNumberId: phoneNumberId
+          direction: inbound
+        test: true
+        segment:
+          at: 2000-01-23T04:56:07.000+00:00
+          confidence: 0.8008281904610115
+          text: text
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: call.transcript_segment
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          id: id
+          pageId: pageId
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        event:
+          enum:
+          - call.transcript_segment
+          type: string
+        call:
+          $ref: "#/components/schemas/WebhookPayloadCallTranscriptSegment_call"
+        segment:
+          $ref: "#/components/schemas/WebhookPayloadCallTranscriptSegment_segment"
+        account:
+          $ref: "#/components/schemas/InboxWebhookAccount"
+        timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
+          format: date-time
+          type: string
+      required:
+      - account
+      - call
+      - event
+      - id
+      - segment
+      - timestamp
+    WebhookPayloadCallRecordingReady:
+      description: |
+        Webhook payload for the `call.recording_ready` event. Fires when the
+        recording of a call (or voicemail) is ready, for teams with zero
+        content retention. Zernio does not keep the recording: download it
+        from `recording.url` before `recording.expiresAt`.
+      example:
+        call:
+          accountId: accountId
+          isVoicemail: true
+          contactId: contactId
+          metaCallId: metaCallId
+          conversationId: conversationId
+          from: from
+          id: id
+          to: to
+          phoneNumberId: phoneNumberId
+          direction: inbound
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        recording:
+          url: https://openapi-generator.tech
+          expiresAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        event: call.recording_ready
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          id: id
+          pageId: pageId
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        event:
+          enum:
+          - call.recording_ready
+          type: string
+        call:
+          $ref: "#/components/schemas/WebhookPayloadCallRecordingReady_call"
+        recording:
+          $ref: "#/components/schemas/WebhookPayloadCallRecordingReady_recording"
+        account:
+          $ref: "#/components/schemas/InboxWebhookAccount"
+        timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
+          format: date-time
+          type: string
+      required:
+      - account
+      - call
+      - event
+      - id
+      - recording
       - timestamp
     WebhookPayloadAdVideoProcessed:
       description: |
@@ -98613,6 +99000,7 @@ components:
           description: "Platform-specific text override. When set, this content is\
             \ used instead of the top-level post content for this platform. Useful\
             \ for tailoring captions per platform (e.g. keeping tweets under 280 characters)."
+          nullable: true
           type: string
         customMedia:
           items:
@@ -98795,6 +99183,7 @@ components:
         title: title
         userId: Post_userId
         content: content
+        contentNotRetained: true
         platforms:
         - platformSpecificData:
             key: ""
@@ -99004,9 +99393,18 @@ components:
             \ is NOT used as the video title when publishing. To set a YouTube video\
             \ title, use platformSpecificData.title on the youtube platform target\
             \ (falls back to the first line of content when omitted)."
+          nullable: true
           type: string
         content:
+          description: Null once publishing finishes when the team does not retain
+            content.
+          nullable: true
           type: string
+        contentNotRetained:
+          description: "True when this team does not retain content, so `title`, `content`\
+            \ and every `customContent` are null after publishing. Identifiers and\
+            \ metadata stay."
+          type: boolean
         mediaItems:
           items:
             $ref: "#/components/schemas/MediaItem"
@@ -101034,17 +101432,19 @@ components:
           type: integer
     Profile:
       example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        isDefault: true
         accountCount: 0
         color: color
         timezone: timezone
-        name: name
         description: description
         externalId: externalId
-        _id: _id
+        contentRetention: standard
+        effectiveContentRetention: standard
         userId: userId
         isOverLimit: true
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        isDefault: true
+        name: name
+        _id: _id
       properties:
         _id:
           type: string
@@ -101065,6 +101465,21 @@ components:
           description: "Your own identifier for this profile, set on create or update.\
             \ Null when none is set."
           nullable: true
+          type: string
+        contentRetention:
+          description: This profile's own zero content retention setting. `none` stores
+            identifiers and metadata only for this profile. Change it with `contentRetention`
+            on update; only the team owner can.
+          enum:
+          - standard
+          - none
+          type: string
+        effectiveContentRetention:
+          description: "The mode that applies to this profile: `none` when the profile\
+            \ or the whole team uses zero content retention."
+          enum:
+          - standard
+          - none
           type: string
         isDefault:
           type: boolean
@@ -101407,6 +101822,7 @@ components:
         subject: subject
         sentAt: 2000-01-23T04:56:07.000+00:00
         error: error
+        contentNotRetained: true
         accountId: accountId
         sentMessageId: sentMessageId
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -101442,8 +101858,14 @@ components:
             $ref: "#/components/schemas/EmailAddress"
           type: array
         subject:
-          description: Empty on a reply that keeps the thread subject.
+          description: Empty on a reply that keeps the thread subject. `null` once
+            the send finishes under zero content retention.
+          nullable: true
           type: string
+        contentNotRetained:
+          description: "Present and `true` when the email content was dropped under\
+            \ [zero content retention](/security/zero-content-retention)."
+          type: boolean
         replyToMessageId:
           description: Set when scheduled through the reply route.
           nullable: true
@@ -103836,6 +104258,7 @@ components:
           status: published
           platformPostId: platformPostId
         content: content
+        contentNotRetained: true
         platform: platform
         analytics:
           comments: 0
@@ -103930,7 +104353,12 @@ components:
           - cancelled
           type: string
         content:
+          nullable: true
           type: string
+        contentNotRetained:
+          description: "True when this team does not retain content, so the content\
+            \ fields of this row are null. Identifiers and metadata stay."
+          type: boolean
         scheduledFor:
           format: date-time
           type: string
@@ -104323,6 +104751,7 @@ components:
           title: title
           userId: Post_userId
           content: content
+          contentNotRetained: true
           platforms:
           - platformSpecificData:
               key: ""
@@ -104548,6 +104977,7 @@ components:
           title: title
           userId: Post_userId
           content: content
+          contentNotRetained: true
           platforms:
           - platformSpecificData:
               key: ""
@@ -104783,6 +105213,7 @@ components:
           title: title
           userId: Post_userId
           content: content
+          contentNotRetained: true
           platforms:
           - platformSpecificData:
               key: ""
@@ -105287,6 +105718,7 @@ components:
           title: title
           userId: Post_userId
           content: content
+          contentNotRetained: true
           platforms:
           - platformSpecificData:
               key: ""
@@ -105532,6 +105964,7 @@ components:
           title: title
           userId: Post_userId
           content: content
+          contentNotRetained: true
           platforms:
           - platformSpecificData:
               key: ""
@@ -105776,6 +106209,7 @@ components:
           title: title
           userId: Post_userId
           content: content
+          contentNotRetained: true
           platforms:
           - platformSpecificData:
               key: ""
@@ -106047,6 +106481,7 @@ components:
           title: title
           userId: Post_userId
           content: content
+          contentNotRetained: true
           platforms:
           - platformSpecificData:
               key: ""
@@ -106256,28 +106691,32 @@ components:
       example:
         total: 6
         profiles:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          isDefault: true
-          accountCount: 0
+        - accountCount: 0
           color: color
           timezone: timezone
-          name: name
           description: description
           externalId: externalId
-          _id: _id
+          contentRetention: standard
+          effectiveContentRetention: standard
           userId: userId
           isOverLimit: true
-        - createdAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
           isDefault: true
-          accountCount: 0
+          name: name
+          _id: _id
+        - accountCount: 0
           color: color
           timezone: timezone
-          name: name
           description: description
           externalId: externalId
-          _id: _id
+          contentRetention: standard
+          effectiveContentRetention: standard
           userId: userId
           isOverLimit: true
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isDefault: true
+          name: name
+          _id: _id
         limit: 5
         skip: 1
       properties:
@@ -106298,17 +106737,19 @@ components:
     ProfileCreateResponse:
       example:
         profile:
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          isDefault: true
           accountCount: 0
           color: color
           timezone: timezone
-          name: name
           description: description
           externalId: externalId
-          _id: _id
+          contentRetention: standard
+          effectiveContentRetention: standard
           userId: userId
           isOverLimit: true
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isDefault: true
+          name: name
+          _id: _id
         message: message
       properties:
         message:
@@ -106318,34 +106759,38 @@ components:
     ProfileGetResponse:
       example:
         profile:
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          isDefault: true
           accountCount: 0
           color: color
           timezone: timezone
-          name: name
           description: description
           externalId: externalId
-          _id: _id
+          contentRetention: standard
+          effectiveContentRetention: standard
           userId: userId
           isOverLimit: true
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isDefault: true
+          name: name
+          _id: _id
       properties:
         profile:
           $ref: "#/components/schemas/Profile"
     ProfileUpdateResponse:
       example:
         profile:
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          isDefault: true
           accountCount: 0
           color: color
           timezone: timezone
-          name: name
           description: description
           externalId: externalId
-          _id: _id
+          contentRetention: standard
+          effectiveContentRetention: standard
           userId: userId
           isOverLimit: true
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isDefault: true
+          name: name
+          _id: _id
         message: message
       properties:
         message:
@@ -129178,6 +129623,7 @@ components:
           title: title
           userId: Post_userId
           content: content
+          contentNotRetained: true
           platforms:
           - platformSpecificData:
               key: ""
@@ -129706,6 +130152,14 @@ components:
           maxLength: 255
           minLength: 1
           type: string
+        contentRetention:
+          description: "Set `none` to create the profile with zero content retention,\
+            \ so nothing of its accounts is stored from the first sync. Only the team\
+            \ owner can, with a session or a full-access key; anyone else gets 403."
+          enum:
+          - standard
+          - none
+          type: string
       required:
       - name
     updateProfile_request:
@@ -129738,6 +130192,16 @@ components:
           type: string
         isDefault:
           type: boolean
+        contentRetention:
+          description: "Turns zero content retention on (`none`) or off (`standard`)\
+            \ for this profile only, for new data within about a minute. Only the\
+            \ team owner can change it. `standard` answers 409 while the whole team\
+            \ has it on; `none` answers 409 during a WhatsApp verification of a number\
+            \ of this profile."
+          enum:
+          - standard
+          - none
+          type: string
     getFollowerStats_403_response:
       example:
         error: Analytics add-on required
@@ -131360,6 +131824,16 @@ components:
           type: string
         apiKey:
           $ref: "#/components/schemas/ApiKey"
+    updateContentRetention_request:
+      additionalProperties: {}
+      properties:
+        mode:
+          enum:
+          - standard
+          - none
+          type: string
+      required:
+      - mode
     listConnectedApps_200_response:
       example:
         connectedApps:
@@ -140608,6 +141082,8 @@ components:
             - call.ended
             - call.failed
             - call.permission_request
+            - call.transcript_segment
+            - call.recording_ready
             - message.sent
             - message.edited
             - message.deleted
@@ -140618,6 +141094,7 @@ components:
             - reaction.received
             - referral.received
             - comment.received
+            - mention.received
             - review.new
             - review.updated
             - review.deleted
@@ -140841,6 +141318,8 @@ components:
             - call.ended
             - call.failed
             - call.permission_request
+            - call.transcript_segment
+            - call.recording_ready
             - message.sent
             - message.edited
             - message.deleted
@@ -140851,6 +141330,7 @@ components:
             - reaction.received
             - referral.received
             - comment.received
+            - mention.received
             - review.new
             - review.updated
             - review.deleted
@@ -141166,7 +141646,10 @@ components:
           - call.ended
           - call.failed
           - call.permission_request
+          - call.transcript_segment
+          - call.recording_ready
           - comment.received
+          - mention.received
           - review.new
           - review.updated
           - review.deleted
@@ -141990,6 +142473,7 @@ components:
           subject: subject
           sentAt: 2000-01-23T04:56:07.000+00:00
           error: error
+          contentNotRetained: true
           accountId: accountId
           sentMessageId: sentMessageId
           createdAt: 2000-01-23T04:56:07.000+00:00
@@ -142017,6 +142501,7 @@ components:
           subject: subject
           sentAt: 2000-01-23T04:56:07.000+00:00
           error: error
+          contentNotRetained: true
           accountId: accountId
           sentMessageId: sentMessageId
           createdAt: 2000-01-23T04:56:07.000+00:00
@@ -142035,6 +142520,7 @@ components:
           subject: subject
           sentAt: 2000-01-23T04:56:07.000+00:00
           error: error
+          contentNotRetained: true
           accountId: accountId
           sentMessageId: sentMessageId
           createdAt: 2000-01-23T04:56:07.000+00:00
@@ -142816,6 +143302,7 @@ components:
         pageId: pageId
         whatsappUsername: whatsappUsername
         platform: platform
+        contentNotRetained: true
         url: url
         instagramProfile:
           isFollowing: true
@@ -142855,7 +143342,12 @@ components:
         participantId:
           type: string
         participantName:
+          nullable: true
           type: string
+        contentNotRetained:
+          description: "True when this team does not retain content, so the content\
+            \ fields of this row are null. Identifiers and metadata stay."
+          type: boolean
         participantPicture:
           nullable: true
           type: string
@@ -142879,6 +143371,7 @@ components:
             \ from inbound messages, so older threads fill in on their next inbound."
           type: string
         lastMessage:
+          nullable: true
           type: string
         updatedTime:
           format: date-time
@@ -143050,6 +143543,7 @@ components:
           pageId: pageId
           whatsappUsername: whatsappUsername
           platform: platform
+          contentNotRetained: true
           url: url
           instagramProfile:
             isFollowing: true
@@ -143110,6 +143604,7 @@ components:
           pageId: pageId
           whatsappUsername: whatsappUsername
           platform: platform
+          contentNotRetained: true
           url: url
           instagramProfile:
             isFollowing: true
@@ -143576,16 +144071,18 @@ components:
       - $ref: "#/components/schemas/WhatsAppTemplateLookupError"
     searchInboxConversations_200_response_data_inner_conversation:
       example:
-        accountId: accountId
-        lastMessageAt: 2000-01-23T04:56:07.000+00:00
         participantPicture: participantPicture
         lastMessage: lastMessage
-        id: id
-        participantName: participantName
         whatsappUsername: whatsappUsername
         participantUsername: participantUsername
-        businessScopedUserId: businessScopedUserId
         platform: platform
+        contentNotRetained: true
+        participantId: participantId
+        accountId: accountId
+        lastMessageAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        participantName: participantName
+        businessScopedUserId: businessScopedUserId
         status: active
       properties:
         id:
@@ -143594,6 +144091,9 @@ components:
         platform:
           type: string
         accountId:
+          type: string
+        participantId:
+          nullable: true
           type: string
         participantName:
           nullable: true
@@ -143604,6 +144104,10 @@ components:
         participantPicture:
           nullable: true
           type: string
+        contentNotRetained:
+          description: "True when this team does not retain content, so the content\
+            \ fields of this row are null. Identifiers and metadata stay."
+          type: boolean
         businessScopedUserId:
           description: "WhatsApp only. Meta business-scoped user ID (BSUID), the stable\
             \ identity anchor; present when Meta has sent it for this participant."
@@ -143660,16 +144164,18 @@ components:
           direction: incoming
           timestamp: 2000-01-23T04:56:07.000+00:00
         conversation:
-          accountId: accountId
-          lastMessageAt: 2000-01-23T04:56:07.000+00:00
           participantPicture: participantPicture
           lastMessage: lastMessage
-          id: id
-          participantName: participantName
           whatsappUsername: whatsappUsername
           participantUsername: participantUsername
-          businessScopedUserId: businessScopedUserId
           platform: platform
+          contentNotRetained: true
+          participantId: participantId
+          accountId: accountId
+          lastMessageAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          participantName: participantName
+          businessScopedUserId: businessScopedUserId
           status: active
       properties:
         conversation:
@@ -143720,6 +144226,7 @@ components:
         - accountId: accountId
           platform: platform
         accountsQueried: 6
+        contentNotRetained: true
       properties:
         accountsQueried:
           type: integer
@@ -143732,6 +144239,11 @@ components:
         lastUpdated:
           format: date-time
           type: string
+        contentNotRetained:
+          description: "True when a searched account belongs to a team that does not\
+            \ retain content. Message text is not searchable there, only identifiers\
+            \ match."
+          type: boolean
         accountsSkipped:
           description: Connected messaging accounts that cannot be searched (live-fetched
             platforms)
@@ -143755,16 +144267,18 @@ components:
             direction: incoming
             timestamp: 2000-01-23T04:56:07.000+00:00
           conversation:
-            accountId: accountId
-            lastMessageAt: 2000-01-23T04:56:07.000+00:00
             participantPicture: participantPicture
             lastMessage: lastMessage
-            id: id
-            participantName: participantName
             whatsappUsername: whatsappUsername
             participantUsername: participantUsername
-            businessScopedUserId: businessScopedUserId
             platform: platform
+            contentNotRetained: true
+            participantId: participantId
+            accountId: accountId
+            lastMessageAt: 2000-01-23T04:56:07.000+00:00
+            id: id
+            participantName: participantName
+            businessScopedUserId: businessScopedUserId
             status: active
         - matchCount: 0
           matches:
@@ -143777,16 +144291,18 @@ components:
             direction: incoming
             timestamp: 2000-01-23T04:56:07.000+00:00
           conversation:
-            accountId: accountId
-            lastMessageAt: 2000-01-23T04:56:07.000+00:00
             participantPicture: participantPicture
             lastMessage: lastMessage
-            id: id
-            participantName: participantName
             whatsappUsername: whatsappUsername
             participantUsername: participantUsername
-            businessScopedUserId: businessScopedUserId
             platform: platform
+            contentNotRetained: true
+            participantId: participantId
+            accountId: accountId
+            lastMessageAt: 2000-01-23T04:56:07.000+00:00
+            id: id
+            participantName: participantName
+            businessScopedUserId: businessScopedUserId
             status: active
         meta:
           lastUpdated: 2000-01-23T04:56:07.000+00:00
@@ -143806,6 +144322,7 @@ components:
           - accountId: accountId
             platform: platform
           accountsQueried: 6
+          contentNotRetained: true
       properties:
         data:
           items:
@@ -143857,6 +144374,7 @@ components:
         pageId: pageId
         whatsappUsername: whatsappUsername
         platform: platform
+        contentNotRetained: true
         instagramProfile:
           isFollowing: true
           isVerified: true
@@ -143898,7 +144416,12 @@ components:
           - archived
           type: string
         participantName:
+          nullable: true
           type: string
+        contentNotRetained:
+          description: "True when this team does not retain content, so the content\
+            \ fields of this row are null. Identifiers and metadata stay."
+          type: boolean
         participantId:
           type: string
         participantVerifiedType:
@@ -143921,6 +144444,7 @@ components:
             \ from inbound messages, so older threads fill in on their next inbound."
           type: string
         lastMessage:
+          nullable: true
           type: string
         lastMessageAt:
           format: date-time
@@ -143981,6 +144505,7 @@ components:
           pageId: pageId
           whatsappUsername: whatsappUsername
           platform: platform
+          contentNotRetained: true
           instagramProfile:
             isFollowing: true
             isVerified: true
@@ -144281,6 +144806,7 @@ components:
         sentAt: 2000-01-23T04:56:07.000+00:00
         message: message
         readAt: 2000-01-23T04:56:07.000+00:00
+        contentNotRetained: true
         deliveredAt: 2000-01-23T04:56:07.000+00:00
         deliveryError:
           code: 6
@@ -144315,7 +144841,12 @@ components:
         platform:
           type: string
         message:
+          nullable: true
           type: string
+        contentNotRetained:
+          description: "True when this team does not retain content, so the content\
+            \ fields of this row are null. Identifiers and metadata stay."
+          type: boolean
         senderId:
           type: string
         senderName:
@@ -144523,6 +145054,7 @@ components:
           sentAt: 2000-01-23T04:56:07.000+00:00
           message: message
           readAt: 2000-01-23T04:56:07.000+00:00
+          contentNotRetained: true
           deliveredAt: 2000-01-23T04:56:07.000+00:00
           deliveryError:
             code: 6
@@ -144604,6 +145136,7 @@ components:
           sentAt: 2000-01-23T04:56:07.000+00:00
           message: message
           readAt: 2000-01-23T04:56:07.000+00:00
+          contentNotRetained: true
           deliveredAt: 2000-01-23T04:56:07.000+00:00
           deliveryError:
             code: 6
@@ -147779,6 +148312,7 @@ components:
         mediaId: mediaId
         platform: linkedin
         content: content
+        contentNotRetained: true
         accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
         authorUrn: authorUrn
@@ -147833,7 +148367,12 @@ components:
           description: "Text that mentioned you: the post text on LinkedIn, the caption\
             \ or comment text on Instagram, the post or comment text on Facebook.\
             \ Empty until it has been read."
+          nullable: true
           type: string
+        contentNotRetained:
+          description: "True when this team does not retain content, so the content\
+            \ fields of this row are null. Identifiers and metadata stay."
+          type: boolean
         permalink:
           description: URL to the source post on LinkedIn. Null on Instagram and Facebook.
           nullable: true
@@ -147896,6 +148435,7 @@ components:
           mediaId: mediaId
           platform: linkedin
           content: content
+          contentNotRetained: true
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
           authorUrn: authorUrn
@@ -147913,6 +148453,7 @@ components:
           mediaId: mediaId
           platform: linkedin
           content: content
+          contentNotRetained: true
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
           authorUrn: authorUrn
@@ -148199,19 +148740,40 @@ components:
       required:
       - accountId
       - message
+    replyToInboxReview_200_response_reply:
+      example:
+        created: 2000-01-23T04:56:07.000+00:00
+        id: id
+        text: text
+        contentNotRetained: true
+      properties:
+        id:
+          type: string
+        text:
+          description: "`null` under [zero content retention](/security/zero-content-retention)."
+          nullable: true
+          type: string
+        contentNotRetained:
+          description: Present and `true` when the reply text is not returned under
+            zero content retention.
+          type: boolean
+        created:
+          format: date-time
+          type: string
     replyToInboxReview_200_response:
       example:
         reply:
           created: 2000-01-23T04:56:07.000+00:00
           id: id
           text: text
+          contentNotRetained: true
         platform: platform
         status: status
       properties:
         status:
           type: string
         reply:
-          $ref: "#/components/schemas/listInboxReviews_200_response_data_inner_reply"
+          $ref: "#/components/schemas/replyToInboxReview_200_response_reply"
         platform:
           type: string
     deleteInboxReviewReply_request:
@@ -149110,9 +149672,15 @@ components:
     getWhatsAppCallRecording_200_response:
       example:
         url: url
+        contentNotRetained: true
       properties:
         url:
+          nullable: true
           type: string
+        contentNotRetained:
+          description: "True when this team does not retain content: no recording\
+            \ is stored, and `url` is null. Use the `call.recording_ready` webhook."
+          type: boolean
     getWhatsAppCallEstimate_200_response_breakdown:
       example:
         metaCostUSD: 1.4658129805029452
@@ -149213,6 +149781,7 @@ components:
         conversationId: conversationId
         contactName: contactName
         forwardTo: forwardTo
+        contentNotRetained: true
         hangupCause: hangupCause
         accountId: accountId
         endedAt: 2000-01-23T04:56:07.000+00:00
@@ -149271,6 +149840,7 @@ components:
           conversationId: conversationId
           contactName: contactName
           forwardTo: forwardTo
+          contentNotRetained: true
           hangupCause: hangupCause
           accountId: accountId
           endedAt: 2000-01-23T04:56:07.000+00:00
@@ -149325,6 +149895,7 @@ components:
           conversationId: conversationId
           contactName: contactName
           forwardTo: forwardTo
+          contentNotRetained: true
           hangupCause: hangupCause
           accountId: accountId
           endedAt: 2000-01-23T04:56:07.000+00:00
@@ -149392,6 +149963,7 @@ components:
           conversationId: conversationId
           contactName: contactName
           forwardTo: forwardTo
+          contentNotRetained: true
           hangupCause: hangupCause
           accountId: accountId
           endedAt: 2000-01-23T04:56:07.000+00:00
@@ -149452,6 +150024,7 @@ components:
           endReason: hangup
           conversationId: conversationId
           forwardTo: forwardTo
+          contentNotRetained: true
           hangupCause: hangupCause
           accountId: accountId
           endedAt: 2000-01-23T04:56:07.000+00:00
@@ -149505,6 +150078,7 @@ components:
           endReason: hangup
           conversationId: conversationId
           forwardTo: forwardTo
+          contentNotRetained: true
           hangupCause: hangupCause
           accountId: accountId
           endedAt: 2000-01-23T04:56:07.000+00:00
@@ -149670,6 +150244,7 @@ components:
           endReason: hangup
           conversationId: conversationId
           forwardTo: forwardTo
+          contentNotRetained: true
           hangupCause: hangupCause
           accountId: accountId
           endedAt: 2000-01-23T04:56:07.000+00:00
@@ -158432,6 +159007,7 @@ components:
         from: from
         id: id
         receivedAt: 2000-01-23T04:56:07.000+00:00
+        contentNotRetained: true
       properties:
         id:
           description: Message ID
@@ -158454,11 +159030,16 @@ components:
           type: string
         data:
           description: Submitted field values (flow_token removed)
+          nullable: true
           type: object
         raw:
           description: Raw response_json string
           nullable: true
           type: string
+        contentNotRetained:
+          description: "True when this team does not retain content, so the content\
+            \ fields of this row are null. Identifiers and metadata stay."
+          type: boolean
     listWhatsAppFlowResponses_200_response:
       example:
         responses:
@@ -158470,6 +159051,7 @@ components:
           from: from
           id: id
           receivedAt: 2000-01-23T04:56:07.000+00:00
+          contentNotRetained: true
         - flowToken: flowToken
           senderName: senderName
           data: "{}"
@@ -158478,6 +159060,7 @@ components:
           from: from
           id: id
           receivedAt: 2000-01-23T04:56:07.000+00:00
+          contentNotRetained: true
       properties:
         responses:
           items:
@@ -158509,6 +159092,7 @@ components:
         id:
           type: string
         name:
+          nullable: true
           type: string
         email:
           type: string
@@ -158697,6 +159281,7 @@ components:
         id:
           type: string
         name:
+          nullable: true
           type: string
         email:
           type: string
@@ -160606,8 +161191,8 @@ components:
         waitingFor:
           $ref: "#/components/schemas/listWorkflowExecutions_200_response_executions_inner_waitingFor"
         variables:
-          additionalProperties: true
-          type: object
+          additionalProperties: {}
+          description: Empty once the run finishes when the team does not retain content.
         platformIdentifier:
           type: string
         conversationId:
@@ -161641,6 +162226,7 @@ components:
         platformIdentifier:
           type: string
         contactName:
+          nullable: true
           type: string
         currentStepIndex:
           type: integer
@@ -163642,8 +164228,10 @@ components:
         commentText: commentText
       properties:
         commentText:
+          nullable: true
           type: string
         commenterName:
+          nullable: true
           type: string
         excludedBy:
           description: Set when an exclusion keyword vetoed an otherwise matching
@@ -187083,6 +187671,7 @@ components:
       example:
         lastCheckedAt: 2000-01-23T04:56:07.000+00:00
         lastUpdated: 2000-01-23T04:56:07.000+00:00
+        contentNotRetained: true
       properties:
         lastCheckedAt:
           description: "Meta only, present when `accountId` is passed: when Zernio\
@@ -187094,6 +187683,10 @@ components:
         lastUpdated:
           format: date-time
           type: string
+        contentNotRetained:
+          description: True when this team does not retain content. Answers and form
+            names are not searchable with `q`.
+          type: boolean
     listLeads_200_response:
       example:
         pagination:
@@ -187110,6 +187703,7 @@ components:
           isOrganic: true
           webhookDeliveredAt: 2000-01-23T04:56:07.000+00:00
           platform: meta
+          contentNotRetained: true
           accountId: accountId
           statusChangedAt: 2000-01-23T04:56:07.000+00:00
           adId: adId
@@ -187139,6 +187733,7 @@ components:
           isOrganic: true
           webhookDeliveredAt: 2000-01-23T04:56:07.000+00:00
           platform: meta
+          contentNotRetained: true
           accountId: accountId
           statusChangedAt: 2000-01-23T04:56:07.000+00:00
           adId: adId
@@ -187161,6 +187756,7 @@ components:
         meta:
           lastCheckedAt: 2000-01-23T04:56:07.000+00:00
           lastUpdated: 2000-01-23T04:56:07.000+00:00
+          contentNotRetained: true
         status: success
       properties:
         status:
@@ -187252,6 +187848,7 @@ components:
           isOrganic: true
           webhookDeliveredAt: 2000-01-23T04:56:07.000+00:00
           platform: meta
+          contentNotRetained: true
           accountId: accountId
           statusChangedAt: 2000-01-23T04:56:07.000+00:00
           adId: adId
@@ -202025,6 +202622,7 @@ components:
         scheduledFor: 2000-01-23T04:56:07.000+00:00
         id: id
         content: content
+        contentNotRetained: true
         status: status
         platforms:
         - accountId: accountId
@@ -202055,7 +202653,13 @@ components:
         id:
           type: string
         content:
+          description: Absent once publishing finishes when the team does not retain
+            content.
           type: string
+        contentNotRetained:
+          description: True when this team does not retain content and the post text
+            was already cleared.
+          type: boolean
         status:
           type: string
         scheduledFor:
@@ -202075,7 +202679,6 @@ components:
             \ when the post was created without it."
           type: object
       required:
-      - content
       - id
       - platforms
       - scheduledFor
@@ -203404,6 +204007,113 @@ components:
       required:
       - postsUpdated
       - syncedAt
+    WebhookPayloadMention_mention:
+      example:
+        publishedAt: 2000-01-23T04:56:07.000+00:00
+        authorUsername: authorUsername
+        postId: postId
+        type: caption
+        mediaId: mediaId
+        platform: instagram
+        content: content
+        authorUrn: authorUrn
+        authorName: authorName
+        commentId: commentId
+        id: id
+        authorPicture: authorPicture
+        permalink: permalink
+        organizationalEntity: organizationalEntity
+      properties:
+        id:
+          description: "Mention ID, the same as `id` on GET /v1/inbox/mentions."
+          type: string
+        platform:
+          enum:
+          - instagram
+          - facebook
+          - linkedin
+          type: string
+        type:
+          description: Null on LinkedIn.
+          enum:
+          - caption
+          - post
+          - comment
+          - null
+          nullable: true
+          type: string
+        mediaId:
+          description: Instagram media ID.
+          nullable: true
+          type: string
+        postId:
+          description: Facebook post ID.
+          nullable: true
+          type: string
+        commentId:
+          nullable: true
+          type: string
+        content:
+          description: Text that mentioned the account.
+          nullable: true
+          type: string
+        permalink:
+          description: URL to the source post on LinkedIn. Null on Instagram and Facebook.
+          nullable: true
+          type: string
+        authorUrn:
+          nullable: true
+          type: string
+        authorName:
+          nullable: true
+          type: string
+        authorUsername:
+          nullable: true
+          type: string
+        authorPicture:
+          nullable: true
+          type: string
+        organizationalEntity:
+          description: "The mentioned organization, Page or Instagram account."
+          type: string
+        publishedAt:
+          format: date-time
+          type: string
+      required:
+      - authorName
+      - authorPicture
+      - authorUrn
+      - authorUsername
+      - commentId
+      - content
+      - id
+      - mediaId
+      - organizationalEntity
+      - permalink
+      - platform
+      - postId
+      - publishedAt
+      - type
+    WebhookPayloadMention_account:
+      example:
+        accountId: accountId
+        id: id
+        platform: platform
+        username: username
+      properties:
+        id:
+          type: string
+        accountId:
+          description: "SocialAccount id, the same as `id`."
+          type: string
+        platform:
+          type: string
+        username:
+          type: string
+      required:
+      - id
+      - platform
+      - username
     WebhookPayloadComment_comment_author_instagramProfile:
       description: |
         Instagram only, best-effort. Present ONLY for commenters who have
@@ -205689,6 +206399,125 @@ components:
         responseSource:
           description: "Meta's response source, typically `user_action`"
           type: string
+    WebhookPayloadCallTranscriptSegment_call:
+      example:
+        accountId: accountId
+        contactId: contactId
+        metaCallId: metaCallId
+        conversationId: conversationId
+        from: from
+        id: id
+        to: to
+        phoneNumberId: phoneNumberId
+        direction: inbound
+      properties:
+        id:
+          description: Internal Zernio Call doc id
+          type: string
+        metaCallId:
+          description: Meta wacid.* call id when known
+          nullable: true
+          type: string
+        accountId:
+          type: string
+        phoneNumberId:
+          description: Meta phone_number_id
+          type: string
+        direction:
+          enum:
+          - inbound
+          - outbound
+          type: string
+        from:
+          description: Consumer wa_id / E.164
+          type: string
+        to:
+          description: Business number (E.164)
+          type: string
+        contactId:
+          type: string
+        conversationId:
+          type: string
+    WebhookPayloadCallTranscriptSegment_segment:
+      example:
+        at: 2000-01-23T04:56:07.000+00:00
+        confidence: 0.8008281904610115
+        text: text
+      properties:
+        text:
+          description: The final text of this segment.
+          type: string
+        confidence:
+          description: "Speech recognition confidence from 0 to 1, when the provider\
+            \ reports it."
+          nullable: true
+          type: number
+        at:
+          description: When the segment was transcribed.
+          format: date-time
+          type: string
+      required:
+      - at
+      - confidence
+      - text
+    WebhookPayloadCallRecordingReady_call:
+      example:
+        accountId: accountId
+        isVoicemail: true
+        contactId: contactId
+        metaCallId: metaCallId
+        conversationId: conversationId
+        from: from
+        id: id
+        to: to
+        phoneNumberId: phoneNumberId
+        direction: inbound
+      properties:
+        id:
+          description: Internal Zernio Call doc id
+          type: string
+        metaCallId:
+          description: Meta wacid.* call id when known
+          nullable: true
+          type: string
+        accountId:
+          type: string
+        phoneNumberId:
+          description: Meta phone_number_id
+          type: string
+        direction:
+          enum:
+          - inbound
+          - outbound
+          type: string
+        from:
+          description: Consumer wa_id / E.164
+          type: string
+        to:
+          description: Business number (E.164)
+          type: string
+        contactId:
+          type: string
+        conversationId:
+          type: string
+        isVoicemail:
+          type: boolean
+    WebhookPayloadCallRecordingReady_recording:
+      example:
+        url: https://openapi-generator.tech
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        url:
+          description: Temporary link to the recording file.
+          format: uri
+          type: string
+        expiresAt:
+          description: "When the link stops working, about 3 days after the call."
+          format: date-time
+          type: string
+      required:
+      - expiresAt
+      - url
     WebhookPayloadAdVideoProcessed_account:
       description: The connected ads account the video was uploaded with.
       example:
@@ -208501,6 +209330,10 @@ components:
           type: integer
       required:
       - musicSoundId
+    DiscordPlatformData_embeds_inner_image:
+      properties:
+        url:
+          type: string
     DiscordPlatformData_embeds_inner_footer:
       properties:
         text:
@@ -208547,9 +209380,9 @@ components:
             Convert hex to decimal.
           type: integer
         image:
-          $ref: "#/components/schemas/getWhatsAppCallRecording_200_response"
+          $ref: "#/components/schemas/DiscordPlatformData_embeds_inner_image"
         thumbnail:
-          $ref: "#/components/schemas/getWhatsAppCallRecording_200_response"
+          $ref: "#/components/schemas/DiscordPlatformData_embeds_inner_image"
         footer:
           $ref: "#/components/schemas/DiscordPlatformData_embeds_inner_footer"
         author:
@@ -209627,7 +210460,12 @@ components:
           nullable: true
           type: string
         content:
+          nullable: true
           type: string
+        contentNotRetained:
+          description: "True when this team does not retain content, so the content\
+            \ fields of this row are null. Identifiers and metadata stay."
+          type: boolean
         scheduledFor:
           format: date-time
           type: string
@@ -216630,6 +217468,7 @@ x-documentation:
     - `reaction.received` - A participant added or removed an emoji reaction on a message (WhatsApp, Telegram, Slack, Instagram, Facebook Messenger, TikTok)
     - `referral.received` - Someone opened an existing Instagram/Messenger thread through an ig.me/m.me `ref` link or a returning Messenger ad click; carries Meta's referral object (a referral that rides an inbound message arrives on `message.received` under `metadata.referral` instead)
     - `comment.received` - New comment received on a post (Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit, TikTok). X/Twitter does NOT fire this event
+    - `mention.received` - Your account was mentioned in a post, caption or comment (Instagram, Facebook, LinkedIn)
     - `review.new` - New review posted on a connected account (Google Business Profile)
     - `review.updated` - A Google Business Profile reviewer edited their review text or rating, or a reply was added, edited or removed. A reply posted through `POST /v1/inbox/reviews/{reviewId}/reply` fires immediately, and the periodic check reports it again with the full review payload, so expect a second delivery. A reply removed through the API, or written or removed in Google's own interface, is reported by the periodic check: for replies written in Google, usually within 6 hours for reviews updated in the last 30 days and usually within about 7 days for older ones. Only teams with a webhook subscribed to `review.updated` are checked. A removed reply fires with `hasReply: false`.
     - `review.deleted` - Google Business Profile stopped returning this review, for example after Google's spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to `review.deleted` or `review.restored`. If the review comes back, `review.restored` fires. May arrive for a review id you never received `review.new` for. A review hidden and restored by Google may produce `review.deleted` followed by `review.restored`, and a `review.updated` can arrive for a review previously reported by `review.deleted` (it is restored on the next check).
@@ -216663,6 +217502,8 @@ x-documentation:
     - `call.ended` - A call ended; carries duration, end reason, cost breakdown, and the recording when enabled
     - `call.failed` - A call failed with a hard error before or during bridging
     - `call.permission_request` - A WhatsApp user accepted or rejected your call-permission request
+    - `call.transcript_segment` - One final segment of a live call transcript (teams with zero content retention only)
+    - `call.recording_ready` - A call recording is ready; its link expires after about 3 days (teams with zero content retention only)
     - `whatsapp.automatic_event` - Meta's automatic event identification detected a lead or purchase in a Click-to-WhatsApp conversation. Branch on `eventName` (`LeadSubmitted` | `Purchase`); carries the `ctwa_clid` Conversions API match key
     - `phone_number.stock_available` - An out-of-stock country you watch (POST /v1/phone-numbers/stock-watches) has deliverable numbers again. Fires once per watch, then the watch is consumed. Carries the deliverable count per number type at sweep time (first come, first served).
     - `whatsapp.number.kyc_submitted` - An end customer completed a hosted KYC share link; the number entered regulatory review under your account
@@ -216726,7 +217567,7 @@ x-documentation:
     | --- | --- |
     | `account.*`, `analytics.synced` | `account.accountId` |
     | `post.tracking_completed`, `post.authenticity_changed` | `post.accountId` |
-    | `message.*`, `reaction.received`, `referral.received`, `conversation.*`, `comment.received`, `review.*`, `lead.received`, `call.*` | `account.accountId` (`account.id` carries the same value, kept for compatibility; `call.received`, `call.ended` and `call.failed` also carry `call.accountId`) |
+    | `message.*`, `reaction.received`, `referral.received`, `conversation.*`, `comment.received`, `mention.received`, `review.*`, `lead.received`, `call.*` | `account.accountId` (`account.id` carries the same value, kept for compatibility; `call.received`, `call.ended` and `call.failed` also carry `call.accountId`) |
     | `post.platform.*`, `post.tiktok.url_resolved` | `account.accountId` (the target this event is about; `post.platforms[].accountId` lists every target) |
     | `post.scheduled`, `post.published`, `post.failed`, `post.partial`, `post.cancelled`, `post.recycled` | `post.platforms[].accountId`, one per target; there is no top-level account |
     | `post.external.*` | `account.accountId` (also `post.accountId`) |

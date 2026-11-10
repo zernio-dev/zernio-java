@@ -10,6 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**latePostId** | **String** | Original Zernio post ID if scheduled via Zernio |  [optional] |
 |**content** | **String** |  |  [optional] |
+|**contentNotRetained** | **Boolean** | True when this team does not retain content, so the content fields of this row are null. Identifiers and metadata stay. |  [optional] |
 |**scheduledFor** | **OffsetDateTime** |  |  [optional] |
 |**publishedAt** | **OffsetDateTime** |  |  [optional] |
 |**status** | **String** |  |  [optional] |

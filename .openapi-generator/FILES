@@ -635,6 +635,8 @@ docs/ConnectedAccount.md
 docs/ConnectedApp.md
 docs/ConnectedAppsApi.md
 docs/ContactsApi.md
+docs/ContentRetentionApi.md
+docs/ContentRetentionResponse.md
 docs/ConversationAdAttribution.md
 docs/ConversionAction.md
 docs/ConversionActionTagSnippetsInner.md
@@ -1053,6 +1055,7 @@ docs/DiscordPlatformDataEmbedsInner.md
 docs/DiscordPlatformDataEmbedsInnerAuthor.md
 docs/DiscordPlatformDataEmbedsInnerFieldsInner.md
 docs/DiscordPlatformDataEmbedsInnerFooter.md
+docs/DiscordPlatformDataEmbedsInnerImage.md
 docs/DiscordPlatformDataPoll.md
 docs/DiscordPlatformDataPollAnswersInner.md
 docs/DiscordPlatformDataPollAnswersInnerPollMedia.md
@@ -2510,6 +2513,7 @@ docs/ReplyToInboxPost400Response.md
 docs/ReplyToInboxPost400ResponseDetails.md
 docs/ReplyToInboxPostRequest.md
 docs/ReplyToInboxReview200Response.md
+docs/ReplyToInboxReview200ResponseReply.md
 docs/ReplyToInboxReviewRequest.md
 docs/ReplyToMention200Response.md
 docs/ReplyToMentionRequest.md
@@ -3015,6 +3019,7 @@ docs/UpdateConnectWelcomeScreenRequest.md
 docs/UpdateContact200Response.md
 docs/UpdateContact200ResponseContact.md
 docs/UpdateContactRequest.md
+docs/UpdateContentRetentionRequest.md
 docs/UpdateConversionAction200Response.md
 docs/UpdateConversionAction200ResponseAction.md
 docs/UpdateConversionActionRequest.md
@@ -3321,6 +3326,12 @@ docs/WebhookPayloadCallPermissionRequest.md
 docs/WebhookPayloadCallPermissionRequestPermission.md
 docs/WebhookPayloadCallReceived.md
 docs/WebhookPayloadCallReceivedCall.md
+docs/WebhookPayloadCallRecordingReady.md
+docs/WebhookPayloadCallRecordingReadyCall.md
+docs/WebhookPayloadCallRecordingReadyRecording.md
+docs/WebhookPayloadCallTranscriptSegment.md
+docs/WebhookPayloadCallTranscriptSegmentCall.md
+docs/WebhookPayloadCallTranscriptSegmentSegment.md
 docs/WebhookPayloadCampaignBudgetDepleted.md
 docs/WebhookPayloadCampaignBudgetDepletedAdObject.md
 docs/WebhookPayloadCampaignBudgetDepletedBudget.md
@@ -3378,6 +3389,9 @@ docs/WebhookPayloadFilePickedPickerFilesInner.md
 docs/WebhookPayloadLead.md
 docs/WebhookPayloadLeadAccount.md
 docs/WebhookPayloadLeadLead.md
+docs/WebhookPayloadMention.md
+docs/WebhookPayloadMentionAccount.md
+docs/WebhookPayloadMentionMention.md
 docs/WebhookPayloadMessage.md
 docs/WebhookPayloadMessageDeleted.md
 docs/WebhookPayloadMessageDeliveryStatus.md
@@ -3588,6 +3602,7 @@ src/main/java/dev/zernio/api/CommerceApi.java
 src/main/java/dev/zernio/api/ConnectApi.java
 src/main/java/dev/zernio/api/ConnectedAppsApi.java
 src/main/java/dev/zernio/api/ContactsApi.java
+src/main/java/dev/zernio/api/ContentRetentionApi.java
 src/main/java/dev/zernio/api/ConversionsApi.java
 src/main/java/dev/zernio/api/CreatorCampaignsApi.java
 src/main/java/dev/zernio/api/CreatorPortalApi.java
@@ -4250,6 +4265,7 @@ src/main/java/dev/zernio/model/ConnectWordPressWithApplicationPasswordRequest.ja
 src/main/java/dev/zernio/model/Connected.java
 src/main/java/dev/zernio/model/ConnectedAccount.java
 src/main/java/dev/zernio/model/ConnectedApp.java
+src/main/java/dev/zernio/model/ContentRetentionResponse.java
 src/main/java/dev/zernio/model/ConversationAdAttribution.java
 src/main/java/dev/zernio/model/ConversionAction.java
 src/main/java/dev/zernio/model/ConversionActionTagSnippetsInner.java
@@ -4663,6 +4679,7 @@ src/main/java/dev/zernio/model/DiscordPlatformDataEmbedsInner.java
 src/main/java/dev/zernio/model/DiscordPlatformDataEmbedsInnerAuthor.java
 src/main/java/dev/zernio/model/DiscordPlatformDataEmbedsInnerFieldsInner.java
 src/main/java/dev/zernio/model/DiscordPlatformDataEmbedsInnerFooter.java
+src/main/java/dev/zernio/model/DiscordPlatformDataEmbedsInnerImage.java
 src/main/java/dev/zernio/model/DiscordPlatformDataPoll.java
 src/main/java/dev/zernio/model/DiscordPlatformDataPollAnswersInner.java
 src/main/java/dev/zernio/model/DiscordPlatformDataPollAnswersInnerPollMedia.java
@@ -6088,6 +6105,7 @@ src/main/java/dev/zernio/model/ReplyToInboxPost400Response.java
 src/main/java/dev/zernio/model/ReplyToInboxPost400ResponseDetails.java
 src/main/java/dev/zernio/model/ReplyToInboxPostRequest.java
 src/main/java/dev/zernio/model/ReplyToInboxReview200Response.java
+src/main/java/dev/zernio/model/ReplyToInboxReview200ResponseReply.java
 src/main/java/dev/zernio/model/ReplyToInboxReviewRequest.java
 src/main/java/dev/zernio/model/ReplyToMention200Response.java
 src/main/java/dev/zernio/model/ReplyToMentionRequest.java
@@ -6585,6 +6603,7 @@ src/main/java/dev/zernio/model/UpdateConnectWelcomeScreenRequest.java
 src/main/java/dev/zernio/model/UpdateContact200Response.java
 src/main/java/dev/zernio/model/UpdateContact200ResponseContact.java
 src/main/java/dev/zernio/model/UpdateContactRequest.java
+src/main/java/dev/zernio/model/UpdateContentRetentionRequest.java
 src/main/java/dev/zernio/model/UpdateConversionAction200Response.java
 src/main/java/dev/zernio/model/UpdateConversionAction200ResponseAction.java
 src/main/java/dev/zernio/model/UpdateConversionActionRequest.java
@@ -6885,6 +6904,12 @@ src/main/java/dev/zernio/model/WebhookPayloadCallPermissionRequest.java
 src/main/java/dev/zernio/model/WebhookPayloadCallPermissionRequestPermission.java
 src/main/java/dev/zernio/model/WebhookPayloadCallReceived.java
 src/main/java/dev/zernio/model/WebhookPayloadCallReceivedCall.java
+src/main/java/dev/zernio/model/WebhookPayloadCallRecordingReady.java
+src/main/java/dev/zernio/model/WebhookPayloadCallRecordingReadyCall.java
+src/main/java/dev/zernio/model/WebhookPayloadCallRecordingReadyRecording.java
+src/main/java/dev/zernio/model/WebhookPayloadCallTranscriptSegment.java
+src/main/java/dev/zernio/model/WebhookPayloadCallTranscriptSegmentCall.java
+src/main/java/dev/zernio/model/WebhookPayloadCallTranscriptSegmentSegment.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignBudgetDepleted.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignBudgetDepletedAdObject.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignBudgetDepletedBudget.java
@@ -6942,6 +6967,9 @@ src/main/java/dev/zernio/model/WebhookPayloadFilePickedPickerFilesInner.java
 src/main/java/dev/zernio/model/WebhookPayloadLead.java
 src/main/java/dev/zernio/model/WebhookPayloadLeadAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadLeadLead.java
+src/main/java/dev/zernio/model/WebhookPayloadMention.java
+src/main/java/dev/zernio/model/WebhookPayloadMentionAccount.java
+src/main/java/dev/zernio/model/WebhookPayloadMentionMention.java
 src/main/java/dev/zernio/model/WebhookPayloadMessage.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageDeleted.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageDeliveryStatus.java
@@ -7097,3 +7125,15 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/api/ContentRetentionApiTest.java
+src/test/java/dev/zernio/model/ContentRetentionResponseTest.java
+src/test/java/dev/zernio/model/UpdateContentRetentionRequestTest.java
+src/test/java/dev/zernio/model/WebhookPayloadCallRecordingReadyCallTest.java
+src/test/java/dev/zernio/model/WebhookPayloadCallRecordingReadyRecordingTest.java
+src/test/java/dev/zernio/model/WebhookPayloadCallRecordingReadyTest.java
+src/test/java/dev/zernio/model/WebhookPayloadCallTranscriptSegmentCallTest.java
+src/test/java/dev/zernio/model/WebhookPayloadCallTranscriptSegmentSegmentTest.java
+src/test/java/dev/zernio/model/WebhookPayloadCallTranscriptSegmentTest.java
+src/test/java/dev/zernio/model/WebhookPayloadMentionAccountTest.java
+src/test/java/dev/zernio/model/WebhookPayloadMentionMentionTest.java
+src/test/java/dev/zernio/model/WebhookPayloadMentionTest.java

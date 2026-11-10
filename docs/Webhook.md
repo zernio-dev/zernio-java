@@ -56,6 +56,8 @@ Individual webhook configuration for receiving real-time notifications
 | CALL_ENDED | &quot;call.ended&quot; |
 | CALL_FAILED | &quot;call.failed&quot; |
 | CALL_PERMISSION_REQUEST | &quot;call.permission_request&quot; |
+| CALL_TRANSCRIPT_SEGMENT | &quot;call.transcript_segment&quot; |
+| CALL_RECORDING_READY | &quot;call.recording_ready&quot; |
 | MESSAGE_SENT | &quot;message.sent&quot; |
 | MESSAGE_EDITED | &quot;message.edited&quot; |
 | MESSAGE_DELETED | &quot;message.deleted&quot; |
@@ -66,6 +68,7 @@ Individual webhook configuration for receiving real-time notifications
 | REACTION_RECEIVED | &quot;reaction.received&quot; |
 | REFERRAL_RECEIVED | &quot;referral.received&quot; |
 | COMMENT_RECEIVED | &quot;comment.received&quot; |
+| MENTION_RECEIVED | &quot;mention.received&quot; |
 | REVIEW_NEW | &quot;review.new&quot; |
 | REVIEW_UPDATED | &quot;review.updated&quot; |
 | REVIEW_DELETED | &quot;review.deleted&quot; |

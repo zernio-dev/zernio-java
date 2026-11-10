@@ -36,6 +36,7 @@
 |**callErrors** | [**List&lt;CallRecordCallErrorsInner&gt;**](CallRecordCallErrorsInner.md) | Per-call failure log (dial failed, bridge failed, recording error). |  [optional] |
 |**recordingUrl** | **String** | May be expired. Resolve a fresh playable URL via GET /v1/calls/{id}/recording (any channel). |  [optional] |
 |**lastTranscriptSnippet** | **String** | Most recent transcript segment, for list previews. |  [optional] |
+|**contentNotRetained** | **Boolean** | True when this team does not retain content and the call asked for a recording, a transcript or a voicemail. Use the &#x60;call.transcript_segment&#x60; and &#x60;call.recording_ready&#x60; webhooks. |  [optional] |
 |**transcript** | [**List&lt;CallRecordTranscriptInner&gt;**](CallRecordTranscriptInner.md) | Full transcript segments (detail endpoint only; omitted from lists). |  [optional] |
 |**billing** | [**CallRecordBilling**](CallRecordBilling.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |

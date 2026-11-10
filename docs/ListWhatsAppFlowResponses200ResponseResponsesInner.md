@@ -15,6 +15,7 @@
 |**flowToken** | **String** |  |  [optional] |
 |**data** | **Object** | Submitted field values (flow_token removed) |  [optional] |
 |**raw** | **String** | Raw response_json string |  [optional] |
+|**contentNotRetained** | **Boolean** | True when this team does not retain content, so the content fields of this row are null. Identifiers and metadata stay. |  [optional] |
 
 
 

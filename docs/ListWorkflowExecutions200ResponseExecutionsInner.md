@@ -11,7 +11,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**currentNodeId** | **String** |  |  [optional] |
 |**waitingFor** | [**ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor**](ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor.md) |  |  [optional] |
-|**variables** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**variables** | **Map&lt;String, Object&gt;** | Empty once the run finishes when the team does not retain content. |  [optional] |
 |**platformIdentifier** | **String** |  |  [optional] |
 |**conversationId** | **String** | Null only while a comment-triggered run has not sent its private reply yet. |  [optional] |
 |**stepCount** | **Integer** |  |  [optional] |

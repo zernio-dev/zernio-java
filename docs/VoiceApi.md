@@ -2112,7 +2112,7 @@ public class Example {
 | **302** | Redirect to a freshly-signed recording URL. |  -  |
 | **200** | Recording URL (&#x60;as&#x3D;json&#x60; only). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **404** | Call not found, or no recording is available for this call |  -  |
+| **404** | Call not found, or no recording is available for this call. A team that does not retain content gets 404 on the redirect form and &#x60;{ url: null, contentNotRetained: true }&#x60; with JSON. |  -  |
 | **502** | Recording provider lookup failed |  -  |
 
 ## getVoiceCallRecordingWithHttpInfo
@@ -2191,7 +2191,7 @@ ApiResponse<[**GetWhatsAppCallRecording200Response**](GetWhatsAppCallRecording20
 | **302** | Redirect to a freshly-signed recording URL. |  -  |
 | **200** | Recording URL (&#x60;as&#x3D;json&#x60; only). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **404** | Call not found, or no recording is available for this call |  -  |
+| **404** | Call not found, or no recording is available for this call. A team that does not retain content gets 404 on the redirect form and &#x60;{ url: null, contentNotRetained: true }&#x60; with JSON. |  -  |
 | **502** | Recording provider lookup failed |  -  |
 
 

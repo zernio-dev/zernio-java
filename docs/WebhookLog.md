@@ -17,9 +17,9 @@ A single webhook delivery attempt recorded by Zernio (30-day retention).
 |**url** | **URI** | Destination URL the webhook was delivered to |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Delivery outcome |  [optional] |
 |**statusCode** | **Integer** | HTTP status code returned by the destination endpoint |  [optional] |
-|**requestPayload** | **Map&lt;String, Object&gt;** | The JSON payload sent to the destination endpoint |  [optional] |
-|**responseBody** | **String** | Response body returned by the destination endpoint |  [optional] |
-|**errorMessage** | **String** | Error message when delivery failed |  [optional] |
+|**requestPayload** | **Map&lt;String, Object&gt;** | The JSON payload sent to the destination endpoint. Empty when the team does not retain content. |  [optional] |
+|**responseBody** | **String** | Response body returned by the destination endpoint. Empty when the team does not retain content. |  [optional] |
+|**errorMessage** | **String** | Error message when delivery failed. When the team does not retain content it only holds &#x60;Detail not retained (&lt;category&gt;)&#x60;. |  [optional] |
 |**attemptNumber** | **Integer** | Delivery attempt number (increments on retries) |  [optional] |
 |**responseTime** | **Integer** | Time taken by the destination endpoint to respond, in milliseconds |  [optional] |
 |**createdAt** | **OffsetDateTime** | Timestamp the delivery was attempted |  [optional] |

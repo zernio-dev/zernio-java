@@ -12,6 +12,7 @@
 |**accountId** | **String** |  |  [optional] |
 |**platform** | **String** |  |  [optional] |
 |**message** | **String** |  |  [optional] |
+|**contentNotRetained** | **Boolean** | True when this team does not retain content, so the content fields of this row are null. Identifiers and metadata stay. |  [optional] |
 |**senderId** | **String** |  |  [optional] |
 |**senderName** | **String** |  |  [optional] |
 |**senderVerifiedType** | [**SenderVerifiedTypeEnum**](#SenderVerifiedTypeEnum) | X verified badge type. Only present for X messages. |  [optional] |
