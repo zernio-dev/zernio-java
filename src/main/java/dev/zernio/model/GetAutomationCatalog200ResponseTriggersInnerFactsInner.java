@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetAutomationCatalog200ResponseTriggersInnerFactsInner.JSON_PROPERTY_TYPE,
   GetAutomationCatalog200ResponseTriggersInnerFactsInner.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:40:59.112705790Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:46:05.291412778Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAutomationCatalog200ResponseTriggersInnerFactsInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

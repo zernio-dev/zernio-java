@@ -58,7 +58,7 @@ import dev.zernio.ApiClient;
   AutomationOneOf2.JSON_PROPERTY_UPDATED_AT,
   AutomationOneOf2.JSON_PROPERTY_TEMPLATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:40:59.112705790Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:46:05.291412778Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationOneOf2 {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CampaignReportViews.JSON_PROPERTY_TOTAL,
   CampaignReportViews.JSON_PROPERTY_PAID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:40:59.112705790Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:46:05.291412778Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignReportViews {
   public static final String JSON_PROPERTY_ELIGIBLE = "eligible";
   @javax.annotation.Nonnull

@@ -55,7 +55,7 @@ import dev.zernio.ApiClient;
   CalendarEventFields.JSON_PROPERTY_METADATA,
   CalendarEventFields.JSON_PROPERTY_NOTIFY_PARTICIPANTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:40:59.112705790Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:46:05.291412778Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CalendarEventFields {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable

@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   AdsPerformanceResponseAdsInner.JSON_PROPERTY_CREATIVE,
   AdsPerformanceResponseAdsInner.JSON_PROPERTY_METRICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:40:59.112705790Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T17:46:05.291412778Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsPerformanceResponseAdsInner {
   public static final String JSON_PROPERTY_AD_ID = "adId";
   @javax.annotation.Nullable
