@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   ListImessageAvailableNumbers200Response.JSON_PROPERTY_NUMBERS,
   ListImessageAvailableNumbers200Response.JSON_PROPERTY_REGION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:24:15.482641127Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:28:58.039790488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListImessageAvailableNumbers200Response {
   public static final String JSON_PROPERTY_NUMBERS = "numbers";
   @javax.annotation.Nullable

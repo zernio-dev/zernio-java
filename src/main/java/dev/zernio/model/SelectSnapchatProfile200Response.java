@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SelectSnapchatProfile200Response.JSON_PROPERTY_REDIRECT_URL,
   SelectSnapchatProfile200Response.JSON_PROPERTY_ACCOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:24:15.482641127Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:28:58.039790488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectSnapchatProfile200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

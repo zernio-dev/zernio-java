@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ConnectWelcomeScreen.JSON_PROPERTY_LOGO_URL,
   ConnectWelcomeScreen.JSON_PROPERTY_THEME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:24:15.482641127Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:28:58.039790488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectWelcomeScreen {
   public static final String JSON_PROPERTY_SHOW_BY_DEFAULT = "showByDefault";
   @javax.annotation.Nullable

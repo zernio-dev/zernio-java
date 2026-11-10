@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   SetConversationThreadControl200ResponseControl.JSON_PROPERTY_OWNER,
   SetConversationThreadControl200ResponseControl.JSON_PROPERTY_OWNER_APP_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:24:15.482641127Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:28:58.039790488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetConversationThreadControl200ResponseControl {
   /**
    * Gets or Sets owner

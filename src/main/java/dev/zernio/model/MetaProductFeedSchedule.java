@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   MetaProductFeedSchedule.JSON_PROPERTY_HOUR,
   MetaProductFeedSchedule.JSON_PROPERTY_DAY_OF_WEEK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:24:15.482641127Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:28:58.039790488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaProductFeedSchedule {
   public static final String JSON_PROPERTY_INTERVAL = "interval";
   @javax.annotation.Nullable

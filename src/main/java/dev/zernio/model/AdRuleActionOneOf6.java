@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   AdRuleActionOneOf6.JSON_PROPERTY_MAX_CHANGES_PER_DAY,
   AdRuleActionOneOf6.JSON_PROPERTY_MAX_CHANGES_PER_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:24:15.482641127Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:28:58.039790488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleActionOneOf6 {
   /**
    * Move daily budget from the matched objects ranked worst by &#x60;metric&#x60; to those ranked best, keeping the total the same. Not with &#x60;lifecycle&#x60; or &#x60;groups&#x60;.  Campaign or ad set rules where the budget sits at that level: objects whose budget sits at another level (Meta CBO and ad set budgets), Google shared budgets and lifetime budgets are left out.  Changes are reserved all at once: when &#x60;maxChangesPerDay&#x60; would hold back any of them, none is made. A receiver is raised only after every giver&#39;s cut applied (else it fails with &#x60;reallocation_incomplete&#x60; and the move is tried again next run).  Amounts move in the currency&#39;s smallest unit (whole units for JPY or KRW). Counts as raising live spend for the free ads allowance.

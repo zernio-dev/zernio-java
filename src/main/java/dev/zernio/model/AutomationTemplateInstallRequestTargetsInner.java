@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   AutomationTemplateInstallRequestTargetsInner.JSON_PROPERTY_INPUTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:24:15.482641127Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:28:58.039790488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationTemplateInstallRequestTargetsInner {
   public static final String JSON_PROPERTY_INPUTS = "inputs";
   @javax.annotation.Nonnull
