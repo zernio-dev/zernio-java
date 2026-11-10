@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.562.2
+  version: 1.563.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -44233,6 +44233,17 @@ paths:
           - sms
           type: string
         style: form
+      - description: "A group id from GET /v1/contacts/groups, such as contactGroups/abc,\
+          \ folder:default or category:VIP. Returns the contacts the Google or Outlook\
+          \ contacts sync filed in that group on the account. Requires accountId.\
+          \ Memberships are not stored while content retention is off."
+        explode: true
+        in: query
+        name: group
+        required: false
+        schema:
+          type: string
+        style: form
       - explode: true
         in: query
         name: isSubscribed
@@ -44313,6 +44324,58 @@ paths:
       - Contacts
       x-resource-group: contacts
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/contacts/groups:
+    get:
+      description: |-
+        Lists the groups of a Google or Microsoft account's address book, read live from the provider: Google contact labels, and Outlook contact folders and categories. The account needs the contacts area.
+
+        Each group id is what synced contacts carry in their channel's metadata.groups, and what the group filter of GET /v1/contacts takes.
+      operationId: listContactGroups
+      parameters:
+      - description: A Google or Microsoft account connected with the contacts area.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                - id: contactGroups/5a7c1d2e0b8f3a91
+                  name: Clients
+                  type: group
+                  system: false
+                  memberCount: 12
+                - id: contactGroups/starred
+                  name: Starred
+                  type: group
+                  system: true
+                  memberCount: 3
+                meta:
+                  accountId: 6ae0bff7c1a2b3c4d5e6f708
+              schema:
+                $ref: "#/components/schemas/listContactGroups_200_response"
+          description: The account's contact groups
+        "400":
+          description: "Invalid request, or the account is not a Google or Microsoft\
+            \ account"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "412":
+          description: The account was connected without the contacts area
+      summary: List contact groups
+      tags:
+      - Contacts
+      x-resource-group: contacts
       x-accepts:
       - application/json
   /v1/contacts/{contactId}:
@@ -166554,6 +166617,62 @@ components:
           $ref: "#/components/schemas/createContact_200_response_channel"
         warning:
           type: string
+    listContactGroups_200_response_data_inner:
+      example:
+        system: true
+        memberCount: 0
+        name: name
+        id: id
+        type: group
+      properties:
+        id:
+          description: "Google contactGroups/{id}; Outlook folder:{folderId} (folder:default\
+            \ for the default Contacts folder) or category:{name}."
+          type: string
+        name:
+          type: string
+        type:
+          enum:
+          - group
+          - folder
+          - category
+          type: string
+        system:
+          description: "A group the provider defines, such as Google starred or the\
+            \ default Outlook Contacts folder."
+          type: boolean
+        memberCount:
+          description: Members as Google counts them. Null for Outlook.
+          nullable: true
+          type: integer
+    listContactGroups_200_response_meta:
+      example:
+        accountId: accountId
+      properties:
+        accountId:
+          type: string
+    listContactGroups_200_response:
+      example:
+        data:
+        - system: true
+          memberCount: 0
+          name: name
+          id: id
+          type: group
+        - system: true
+          memberCount: 0
+          name: name
+          id: id
+          type: group
+        meta:
+          accountId: accountId
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/listContactGroups_200_response_data_inner"
+          type: array
+        meta:
+          $ref: "#/components/schemas/listContactGroups_200_response_meta"
     getContact_200_response_contact:
       example:
         messagesReceivedCount: 6

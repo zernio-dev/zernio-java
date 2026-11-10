@@ -2103,6 +2103,9 @@ docs/ListCommerceProductMetafields200Response.md
 docs/ListCommerceProducts200Response.md
 docs/ListCommerceRedirects200Response.md
 docs/ListConnectedApps200Response.md
+docs/ListContactGroups200Response.md
+docs/ListContactGroups200ResponseDataInner.md
+docs/ListContactGroups200ResponseMeta.md
 docs/ListContacts200Response.md
 docs/ListContacts200ResponseContactsInner.md
 docs/ListContacts200ResponseFilters.md
@@ -5858,6 +5861,9 @@ src/main/java/dev/zernio/model/ListCommerceProductMetafields200Response.java
 src/main/java/dev/zernio/model/ListCommerceProducts200Response.java
 src/main/java/dev/zernio/model/ListCommerceRedirects200Response.java
 src/main/java/dev/zernio/model/ListConnectedApps200Response.java
+src/main/java/dev/zernio/model/ListContactGroups200Response.java
+src/main/java/dev/zernio/model/ListContactGroups200ResponseDataInner.java
+src/main/java/dev/zernio/model/ListContactGroups200ResponseMeta.java
 src/main/java/dev/zernio/model/ListContacts200Response.java
 src/main/java/dev/zernio/model/ListContacts200ResponseContactsInner.java
 src/main/java/dev/zernio/model/ListContacts200ResponseFilters.java
@@ -7423,3 +7429,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListContactGroups200ResponseDataInnerTest.java
+src/test/java/dev/zernio/model/ListContactGroups200ResponseMetaTest.java
+src/test/java/dev/zernio/model/ListContactGroups200ResponseTest.java

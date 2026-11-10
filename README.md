@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.562.2
+- API version: 1.563.0
 
-- Build date: 2026-11-10T17:46:05.291412778Z[Etc/UTC]
+- Build date: 2026-11-10T19:10:07.616108549Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.562.2</version>
+  <version>1.563.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.562.2"
+compile "dev.zernio:zernio-sdk:1.563.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.562.2.jar`
+- `target/zernio-sdk-1.563.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1351,6 +1351,8 @@ Class | Method | HTTP request | Description
 *ContactsApi* | [**getContactWithHttpInfo**](docs/ContactsApi.md#getContactWithHttpInfo) | **GET** /v1/contacts/{contactId} | Get contact
 *ContactsApi* | [**getContactChannels**](docs/ContactsApi.md#getContactChannels) | **GET** /v1/contacts/{contactId}/channels | List channels for a contact
 *ContactsApi* | [**getContactChannelsWithHttpInfo**](docs/ContactsApi.md#getContactChannelsWithHttpInfo) | **GET** /v1/contacts/{contactId}/channels | List channels for a contact
+*ContactsApi* | [**listContactGroups**](docs/ContactsApi.md#listContactGroups) | **GET** /v1/contacts/groups | List contact groups
+*ContactsApi* | [**listContactGroupsWithHttpInfo**](docs/ContactsApi.md#listContactGroupsWithHttpInfo) | **GET** /v1/contacts/groups | List contact groups
 *ContactsApi* | [**listContacts**](docs/ContactsApi.md#listContacts) | **GET** /v1/contacts | List contacts
 *ContactsApi* | [**listContactsWithHttpInfo**](docs/ContactsApi.md#listContactsWithHttpInfo) | **GET** /v1/contacts | List contacts
 *ContactsApi* | [**updateContact**](docs/ContactsApi.md#updateContact) | **PATCH** /v1/contacts/{contactId} | Update contact
@@ -4639,6 +4641,9 @@ Class | Method | HTTP request | Description
  - [ListCommerceProducts200Response](docs/ListCommerceProducts200Response.md)
  - [ListCommerceRedirects200Response](docs/ListCommerceRedirects200Response.md)
  - [ListConnectedApps200Response](docs/ListConnectedApps200Response.md)
+ - [ListContactGroups200Response](docs/ListContactGroups200Response.md)
+ - [ListContactGroups200ResponseDataInner](docs/ListContactGroups200ResponseDataInner.md)
+ - [ListContactGroups200ResponseMeta](docs/ListContactGroups200ResponseMeta.md)
  - [ListContacts200Response](docs/ListContacts200Response.md)
  - [ListContacts200ResponseContactsInner](docs/ListContacts200ResponseContactsInner.md)
  - [ListContacts200ResponseFilters](docs/ListContacts200ResponseFilters.md)

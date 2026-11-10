@@ -14,6 +14,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getContactWithHttpInfo**](ContactsApi.md#getContactWithHttpInfo) | **GET** /v1/contacts/{contactId} | Get contact |
 | [**getContactChannels**](ContactsApi.md#getContactChannels) | **GET** /v1/contacts/{contactId}/channels | List channels for a contact |
 | [**getContactChannelsWithHttpInfo**](ContactsApi.md#getContactChannelsWithHttpInfo) | **GET** /v1/contacts/{contactId}/channels | List channels for a contact |
+| [**listContactGroups**](ContactsApi.md#listContactGroups) | **GET** /v1/contacts/groups | List contact groups |
+| [**listContactGroupsWithHttpInfo**](ContactsApi.md#listContactGroupsWithHttpInfo) | **GET** /v1/contacts/groups | List contact groups |
 | [**listContacts**](ContactsApi.md#listContacts) | **GET** /v1/contacts | List contacts |
 | [**listContactsWithHttpInfo**](ContactsApi.md#listContactsWithHttpInfo) | **GET** /v1/contacts | List contacts |
 | [**updateContact**](ContactsApi.md#updateContact) | **PATCH** /v1/contacts/{contactId} | Update contact |
@@ -767,9 +769,161 @@ ApiResponse<[**GetContactChannels200Response**](GetContactChannels200Response.md
 | **404** | Resource not found |  -  |
 
 
+## listContactGroups
+
+> ListContactGroups200Response listContactGroups(accountId)
+
+List contact groups
+
+Lists the groups of a Google or Microsoft account&#39;s address book, read live from the provider: Google contact labels, and Outlook contact folders and categories. The account needs the contacts area.  Each group id is what synced contacts carry in their channel&#39;s metadata.groups, and what the group filter of GET /v1/contacts takes.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ContactsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ContactsApi apiInstance = new ContactsApi(defaultClient);
+        String accountId = "accountId_example"; // String | A Google or Microsoft account connected with the contacts area.
+        try {
+            ListContactGroups200Response result = apiInstance.listContactGroups(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ContactsApi#listContactGroups");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| A Google or Microsoft account connected with the contacts area. | |
+
+### Return type
+
+[**ListContactGroups200Response**](ListContactGroups200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The account&#39;s contact groups |  -  |
+| **400** | Invalid request, or the account is not a Google or Microsoft account |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The account was connected without the contacts area |  -  |
+
+## listContactGroupsWithHttpInfo
+
+> ApiResponse<ListContactGroups200Response> listContactGroups listContactGroupsWithHttpInfo(accountId)
+
+List contact groups
+
+Lists the groups of a Google or Microsoft account&#39;s address book, read live from the provider: Google contact labels, and Outlook contact folders and categories. The account needs the contacts area.  Each group id is what synced contacts carry in their channel&#39;s metadata.groups, and what the group filter of GET /v1/contacts takes.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ContactsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ContactsApi apiInstance = new ContactsApi(defaultClient);
+        String accountId = "accountId_example"; // String | A Google or Microsoft account connected with the contacts area.
+        try {
+            ApiResponse<ListContactGroups200Response> response = apiInstance.listContactGroupsWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ContactsApi#listContactGroups");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| A Google or Microsoft account connected with the contacts area. | |
+
+### Return type
+
+ApiResponse<[**ListContactGroups200Response**](ListContactGroups200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The account&#39;s contact groups |  -  |
+| **400** | Invalid request, or the account is not a Google or Microsoft account |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The account was connected without the contacts area |  -  |
+
+
 ## listContacts
 
-> ListContacts200Response listContacts(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip)
+> ListContacts200Response listContacts(profileId, accountId, search, tag, tags, platform, group, isSubscribed, limit, skip)
 
 List contacts
 
@@ -802,11 +956,12 @@ public class Example {
         String tag = "tag_example"; // String | 
         String tags = "tags_example"; // String | Comma-separated tags, matches contacts carrying any of them
         String platform = "instagram"; // String | 
+        String group = "group_example"; // String | A group id from GET /v1/contacts/groups, such as contactGroups/abc, folder:default or category:VIP. Returns the contacts the Google or Outlook contacts sync filed in that group on the account. Requires accountId. Memberships are not stored while content retention is off.
         String isSubscribed = "true"; // String | 
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            ListContacts200Response result = apiInstance.listContacts(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip);
+            ListContacts200Response result = apiInstance.listContacts(profileId, accountId, search, tag, tags, platform, group, isSubscribed, limit, skip);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#listContacts");
@@ -830,6 +985,7 @@ public class Example {
 | **tag** | **String**|  | [optional] |
 | **tags** | **String**| Comma-separated tags, matches contacts carrying any of them | [optional] |
 | **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp, slack, sms] |
+| **group** | **String**| A group id from GET /v1/contacts/groups, such as contactGroups/abc, folder:default or category:VIP. Returns the contacts the Google or Outlook contacts sync filed in that group on the account. Requires accountId. Memberships are not stored while content retention is off. | [optional] |
 | **isSubscribed** | **String**|  | [optional] [enum: true, false] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **skip** | **Integer**|  | [optional] [default to 0] |
@@ -857,7 +1013,7 @@ public class Example {
 
 ## listContactsWithHttpInfo
 
-> ApiResponse<ListContacts200Response> listContacts listContactsWithHttpInfo(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip)
+> ApiResponse<ListContacts200Response> listContacts listContactsWithHttpInfo(profileId, accountId, search, tag, tags, platform, group, isSubscribed, limit, skip)
 
 List contacts
 
@@ -891,11 +1047,12 @@ public class Example {
         String tag = "tag_example"; // String | 
         String tags = "tags_example"; // String | Comma-separated tags, matches contacts carrying any of them
         String platform = "instagram"; // String | 
+        String group = "group_example"; // String | A group id from GET /v1/contacts/groups, such as contactGroups/abc, folder:default or category:VIP. Returns the contacts the Google or Outlook contacts sync filed in that group on the account. Requires accountId. Memberships are not stored while content retention is off.
         String isSubscribed = "true"; // String | 
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            ApiResponse<ListContacts200Response> response = apiInstance.listContactsWithHttpInfo(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip);
+            ApiResponse<ListContacts200Response> response = apiInstance.listContactsWithHttpInfo(profileId, accountId, search, tag, tags, platform, group, isSubscribed, limit, skip);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -921,6 +1078,7 @@ public class Example {
 | **tag** | **String**|  | [optional] |
 | **tags** | **String**| Comma-separated tags, matches contacts carrying any of them | [optional] |
 | **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp, slack, sms] |
+| **group** | **String**| A group id from GET /v1/contacts/groups, such as contactGroups/abc, folder:default or category:VIP. Returns the contacts the Google or Outlook contacts sync filed in that group on the account. Requires accountId. Memberships are not stored while content retention is off. | [optional] |
 | **isSubscribed** | **String**|  | [optional] [enum: true, false] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **skip** | **Integer**|  | [optional] [default to 0] |
