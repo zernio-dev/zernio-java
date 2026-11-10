@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ChangeCommerceProductTags200Response.JSON_PROPERTY_SUCCEEDED,
   ChangeCommerceProductTags200Response.JSON_PROPERTY_FAILED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T09:49:42.322332060Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T09:54:52.578971247Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ChangeCommerceProductTags200Response {
   public static final String JSON_PROPERTY_SUCCEEDED = "succeeded";
   @javax.annotation.Nullable
