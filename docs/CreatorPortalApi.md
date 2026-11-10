@@ -1473,7 +1473,7 @@ No authorization required
 
 Start connecting a creator account
 
-Returns the authorization URL that connects one of the creator&#39;s own social accounts, read-only, so their posts can be verified. Send the creator&#39;s browser to &#x60;authUrl&#x60;; they come back to their participant page. Only the campaign&#39;s platforms are accepted. 
+Returns the URL that connects one of the creator&#39;s own social accounts, read-only, so their posts can be verified. Only the campaign&#39;s platforms are accepted.  &#x60;authUrl&#x60; opens the welcome screen in the campaign&#39;s brand, then the platform&#39;s sign-in.  The creator comes back to their participant page, or to the connect window&#39;s result screen when &#x60;windowUrl&#x60; is sent. 
 
 ### Example
 
@@ -1533,7 +1533,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Authorization URL. |  -  |
-| **400** | The platform is not part of the campaign (&#x60;invalid_field_value&#x60;), the campaign allows no more connected accounts (\&quot;This campaign allows N connected accounts.\&quot;), or the campaign has ended (&#x60;invalid_resource_state&#x60;). |  -  |
+| **400** | The platform or &#x60;windowUrl&#x60; is not accepted (&#x60;invalid_field_value&#x60;), the campaign allows no more connected accounts, or the campaign has ended (&#x60;invalid_resource_state&#x60;). |  -  |
 | **404** | The token is malformed, unknown or expired. Every case answers the same, so a link can never be probed. |  -  |
 | **409** | The creator&#39;s participation was suspended or removed (&#x60;invalid_resource_state&#x60;). |  -  |
 
@@ -1543,7 +1543,7 @@ No authorization required
 
 Start connecting a creator account
 
-Returns the authorization URL that connects one of the creator&#39;s own social accounts, read-only, so their posts can be verified. Send the creator&#39;s browser to &#x60;authUrl&#x60;; they come back to their participant page. Only the campaign&#39;s platforms are accepted. 
+Returns the URL that connects one of the creator&#39;s own social accounts, read-only, so their posts can be verified. Only the campaign&#39;s platforms are accepted.  &#x60;authUrl&#x60; opens the welcome screen in the campaign&#39;s brand, then the platform&#39;s sign-in.  The creator comes back to their participant page, or to the connect window&#39;s result screen when &#x60;windowUrl&#x60; is sent. 
 
 ### Example
 
@@ -1606,7 +1606,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Authorization URL. |  -  |
-| **400** | The platform is not part of the campaign (&#x60;invalid_field_value&#x60;), the campaign allows no more connected accounts (\&quot;This campaign allows N connected accounts.\&quot;), or the campaign has ended (&#x60;invalid_resource_state&#x60;). |  -  |
+| **400** | The platform or &#x60;windowUrl&#x60; is not accepted (&#x60;invalid_field_value&#x60;), the campaign allows no more connected accounts, or the campaign has ended (&#x60;invalid_resource_state&#x60;). |  -  |
 | **404** | The token is malformed, unknown or expired. Every case answers the same, so a link can never be probed. |  -  |
 | **409** | The creator&#39;s participation was suspended or removed (&#x60;invalid_resource_state&#x60;). |  -  |
 

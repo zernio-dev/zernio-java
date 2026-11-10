@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.555.0
+  version: 1.556.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -5304,9 +5304,13 @@ paths:
     - $ref: "#/components/parameters/CreatorPortalToken"
     post:
       description: |
-        Returns the authorization URL that connects one of the creator's own social accounts,
-        read-only, so their posts can be verified. Send the creator's browser to `authUrl`; they
-        come back to their participant page. Only the campaign's platforms are accepted.
+        Returns the URL that connects one of the creator's own social accounts, read-only, so their
+        posts can be verified. Only the campaign's platforms are accepted.
+
+        `authUrl` opens the welcome screen in the campaign's brand, then the platform's sign-in.
+
+        The creator comes back to their participant page, or to the connect window's result screen
+        when `windowUrl` is sent.
       operationId: startCreatorConnect
       parameters:
       - $ref: "#/components/parameters/CreatorPortalToken"
@@ -5328,11 +5332,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: "The platform is not part of the campaign (`invalid_field_value`),\
-            \ the campaign allows no more connected accounts (\"This campaign allows\
-            \ N connected accounts.\"), or the campaign has ended (`invalid_resource_state`)."
+          description: "The platform or `windowUrl` is not accepted (`invalid_field_value`),\
+            \ the campaign allows no more connected accounts, or the campaign has\
+            \ ended (`invalid_resource_state`)."
           x-summary: "The connect request is invalid because the platform is not in\
-            \ the campaign, the account limit is reached, or the campaign ended."
+            \ the campaign, the window URL is not ours, the account limit is reached,\
+            \ or the campaign ended."
         "404":
           $ref: "#/components/responses/CreatorPortalLinkNotFound"
         "409":
@@ -106256,7 +106261,8 @@ components:
         html:
           type: string
         attachments:
-          description: 25 MB in total; 3 MB per attachment on Microsoft.
+          description: "25 MB in total on every provider. Send files over 4 MB by\
+            \ url: request bodies are capped at 4.5 MB."
           items:
             $ref: "#/components/schemas/SendEmailRequest_attachments_inner"
           maxItems: 20
@@ -132508,6 +132514,11 @@ components:
           description: "One of the campaign's platforms, for example tiktok."
           maxLength: 40
           minLength: 1
+          type: string
+        windowUrl:
+          description: The Zernio connect window the participant page opened (`/connect/complete`
+            with its `window` id). Any other URL answers 400 `invalid_field_value`.
+          maxLength: 2000
           type: string
       required:
       - platform

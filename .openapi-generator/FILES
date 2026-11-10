@@ -7389,11 +7389,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateForwardingRule201ResponseTest.java
-src/test/java/dev/zernio/model/CreateForwardingRuleRequestTest.java
-src/test/java/dev/zernio/model/EventCorrectionTest.java
-src/test/java/dev/zernio/model/ForwardingRuleTest.java
-src/test/java/dev/zernio/model/ListForwardingRules200ResponseTest.java
-src/test/java/dev/zernio/model/RestateEvent200ResponseTest.java
-src/test/java/dev/zernio/model/RestateEventRequestTest.java
-src/test/java/dev/zernio/model/RetractEvent200ResponseTest.java
