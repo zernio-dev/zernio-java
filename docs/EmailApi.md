@@ -695,7 +695,7 @@ ApiResponse<[**CreateEmailSignature201Response**](CreateEmailSignature201Respons
 
 Connect an IMAP mailbox
 
-Connects any IMAP/SMTP mailbox without the hosted page. Email and password are enough when discovery finds the servers. Every check runs before anything is stored; a failure answers 422 with the failing stage&#39;s code. An address already on the profile is updated in place and keeps its accountId.
+Connects any IMAP/SMTP mailbox without the hosted page. Email and password are enough when discovery finds the servers. Every check runs before anything is stored; a failure answers 422 with the failing stage&#39;s code. An address already on the profile is updated in place and keeps its accountId.  Send &#x60;Accept: application/x-ndjson&#x60; to stream one line per check as it runs, ending with a &#x60;result&#x60; line that holds the status and this body.
 
 ### Example
 
@@ -770,7 +770,7 @@ public class Example {
 
 Connect an IMAP mailbox
 
-Connects any IMAP/SMTP mailbox without the hosted page. Email and password are enough when discovery finds the servers. Every check runs before anything is stored; a failure answers 422 with the failing stage&#39;s code. An address already on the profile is updated in place and keeps its accountId.
+Connects any IMAP/SMTP mailbox without the hosted page. Email and password are enough when discovery finds the servers. Every check runs before anything is stored; a failure answers 422 with the failing stage&#39;s code. An address already on the profile is updated in place and keeps its accountId.  Send &#x60;Accept: application/x-ndjson&#x60; to stream one line per check as it runs, ending with a &#x60;result&#x60; line that holds the status and this body.
 
 ### Example
 
