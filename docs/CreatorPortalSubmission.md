@@ -10,6 +10,7 @@
 |**id** | **String** |  |  |
 |**platform** | **String** |  |  |
 |**postId** | **String** |  |  |
+|**hasSparkCode** | **Boolean** | A TikTok post whose Spark code the creator pasted, so the brand can run it as a Spark Ad. The code itself is never returned. |  |
 |**url** | **String** |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**submittedAt** | **OffsetDateTime** |  |  |
@@ -21,6 +22,7 @@
 |**rejectReason** | **String** |  |  |
 |**flags** | [**List&lt;FlagsEnum&gt;**](#List&lt;FlagsEnum&gt;) | Creator-safe flags only. Every other review flag shows as &#x60;under_review&#x60;. |  |
 |**trackingEndsAt** | **OffsetDateTime** |  |  |
+|**draftId** | **String** | The approved draft this post publishes. |  |
 
 
 

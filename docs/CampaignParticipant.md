@@ -25,9 +25,11 @@
 | Name | Value |
 |---- | -----|
 | INVITED | &quot;invited&quot; |
+| PENDING | &quot;pending&quot; |
 | ACTIVE | &quot;active&quot; |
 | SUSPENDED | &quot;suspended&quot; |
 | REMOVED | &quot;removed&quot; |
+| DENIED | &quot;denied&quot; |
 
 
 

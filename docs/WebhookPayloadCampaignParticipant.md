@@ -2,7 +2,7 @@
 
 # WebhookPayloadCampaignParticipant
 
-Webhook payload for `campaign_participant.joined`, `campaign_participant.suspended` and `campaign_participant.removed`. `participant.status` is the status after the change. `participant.joinedAt` is null for a participant removed before they ever joined. 
+Webhook payload for `campaign_participant.joined`, `campaign_participant.pending`, `campaign_participant.approved`, `campaign_participant.denied`, `campaign_participant.suspended` and `campaign_participant.removed`. `participant.status` is the status after the change. `participant.joinedAt` is null for a participant who never joined (pending, denied, or removed before joining). 
 
 ## Properties
 
@@ -24,6 +24,9 @@ Webhook payload for `campaign_participant.joined`, `campaign_participant.suspend
 | Name | Value |
 |---- | -----|
 | CAMPAIGN_PARTICIPANT_JOINED | &quot;campaign_participant.joined&quot; |
+| CAMPAIGN_PARTICIPANT_PENDING | &quot;campaign_participant.pending&quot; |
+| CAMPAIGN_PARTICIPANT_APPROVED | &quot;campaign_participant.approved&quot; |
+| CAMPAIGN_PARTICIPANT_DENIED | &quot;campaign_participant.denied&quot; |
 | CAMPAIGN_PARTICIPANT_SUSPENDED | &quot;campaign_participant.suspended&quot; |
 | CAMPAIGN_PARTICIPANT_REMOVED | &quot;campaign_participant.removed&quot; |
 

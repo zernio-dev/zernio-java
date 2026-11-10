@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.552.0
+  version: 1.553.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -83,7 +83,7 @@ tags:
 
     Amounts are USD cents. Earnings move through four states per participant: accruing (earned, not approved), owed (approved, on hold for `holdDays`), payable and settled.
 
-    Webhooks: `campaign_submission.*`, `creator_campaign.*`, `campaign_payout.*` and `campaign_participant.*`.
+    Webhooks: `campaign_submission.*`, `creator_campaign.*`, `campaign_payout.*`, `campaign_participant.*`, `campaign_draft.*` and `campaign_sample.*`.
 
     Creator campaigns run on usage-based billing; every operation answers 403 `feature_not_available` for a workspace not on it. Every operation belongs to the `creator_campaigns` resource group.
   name: Creator Campaigns
@@ -462,7 +462,7 @@ tags:
     - Telephony: `phone_number.stock_available`, `verification.approved`, `verification.failed`, `sms.registration.action_required`, `sms.registration.status_updated`, `branded_calling.identity.status_updated`, `branded_calling.identity.action_required`, `branded_calling.number.status_updated`, `rcs.agent.status_updated`
     - Commerce: `commerce.product.created`, `commerce.product.updated`, `commerce.product.deleted`, `commerce.order.created`, `commerce.order.updated`, `commerce.order.refunded`
     - Contacts and automations: `contact.tag_added`, `contact.tag_removed`, `contact.field_changed`, `contact.updated`, `contact.deleted`, `sequence.enrolled`, `sequence.exited`, `workflow.run.started`, `workflow.run.completed`, `workflow.run.failed`, `support.run.completed`, `support.run.failed`, `automation.check.completed`, `automation.action.applied`, `automation.action.failed`, `automation.action.unknown`, `automation.alert.opened`, `automation.alert.escalated`, `automation.alert.resolved`
-    - Creator campaigns: `campaign_submission.received`, `campaign_submission.flagged`, `campaign_submission.pending_review`, `campaign_submission.approved`, `campaign_submission.rejected`, `creator_campaign.budget_exhausted`, `creator_campaign.closed`, `campaign_payout.payable`, `campaign_payout.settled`, `campaign_payout.failed`, `campaign_participant.joined`, `campaign_participant.suspended`, `campaign_participant.removed`
+    - Creator campaigns: `campaign_submission.received`, `campaign_submission.flagged`, `campaign_submission.pending_review`, `campaign_submission.approved`, `campaign_submission.rejected`, `creator_campaign.budget_exhausted`, `creator_campaign.closed`, `campaign_payout.payable`, `campaign_payout.settled`, `campaign_payout.failed`, `campaign_participant.joined`, `campaign_participant.pending`, `campaign_participant.approved`, `campaign_participant.denied`, `campaign_participant.suspended`, `campaign_participant.removed`, `campaign_draft.submitted`, `campaign_draft.approved`, `campaign_draft.revision_requested`, `campaign_draft.rejected`, `campaign_sample.requested`, `campaign_sample.approved`, `campaign_sample.shipped`, `campaign_sample.declined`
     - Calendar and files: `calendar.event.created`, `calendar.event.updated`, `calendar.event.deleted`, `file.created`, `file.updated`, `file.deleted`, `file.picked`
     - Email: `email.sent`, `email.opened`, `email.link_clicked`, `email.thread_replied`, `email.send_failed`, `email.bounced`
     - Billing: `balance.low`, `balance.empty`, `balance.charged`
@@ -482,7 +482,7 @@ tags:
     - accounts: `account.*`, `whatsapp.template.*`, `whatsapp.account.*`
     - analytics: `analytics.*`
     - telephony: `whatsapp.number.*`, `verification.*`, `sms.registration.*`
-    - creator_campaigns: `campaign_submission.*`, `creator_campaign.*`, `campaign_payout.*`, `campaign_participant.*`
+    - creator_campaigns: `campaign_submission.*`, `creator_campaign.*`, `campaign_payout.*`, `campaign_participant.*`, `campaign_draft.*`, `campaign_sample.*`
     - money: `balance.*`
     - webhooks: `api.changelog.published`, `webhook.test`
 
@@ -5213,7 +5213,7 @@ paths:
         `token` is one of:
 
         - An open invite token (from `POST /v1/creator-campaigns/{campaignId}/invite-link`): answers `kind: invite` with the campaign only.
-        - A participant token (from an invite or a join): answers `kind: participant` with the creator's connected accounts, latest 100 submissions, earnings and payout setup.
+        - A participant token (from an invite or a join): answers `kind: participant` with the creator's connected accounts, latest 100 submissions, draft versions, sample requests, earnings and payout setup. A creator held for approval reads it with `participant.status` `pending` (or `denied` once turned away).
 
         Reading a participant page also re-checks the creator's connected accounts.
       operationId: getCreatorPortal
@@ -5243,6 +5243,7 @@ paths:
 
         - Participant token: the body is ignored and the invite is accepted.
         - Open invite token: a new participant is created from `displayName` (required) and `email` (optional), and a fresh participant token comes back. Keep it: it is the creator's only key to their page.
+        - On a campaign with `joinApproval: manual`, an open-link joiner lands `pending` and `campaign_participant.pending` fires instead of `campaign_participant.joined`. A pending creator holds no place under `caps.maxParticipants` (the limit is checked when the operator approves them) and cannot submit posts, drafts or sample requests until approved. Personal invites always get straight in.
 
         Open-link joins are limited to about 20 per IP address and 60 per link every 10 minutes.
       operationId: joinCreatorCampaign
@@ -5280,7 +5281,9 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: "The campaign is not taking new creators (`feature_not_available`,\
             \ \"This campaign is not taking new creators right now. Ask the campaign\
-            \ team.\"), for example because it reached its participant cap."
+            \ team.\"), for example because it reached its participant cap. Not returned\
+            \ for the cap on a `joinApproval: manual` campaign, where the cap is checked\
+            \ on approval."
           x-summary: "The campaign is not taking new creators right now, for example\
             \ because it reached its participant cap: ask the campaign team."
         "404":
@@ -5380,6 +5383,7 @@ paths:
             - `param: url`: the link is not a post of an accepted platform, or the post was published before the campaign started or longer ago than the campaign accepts.
             - TikTok and X post ids carry their creation time, so a post from before the campaign is refused as such even when no connected account has it.
             - The post is from an account past the campaign's `caps.maxAccountsPerParticipant` ("This campaign allows 2 connected accounts."). Only the first accounts the creator connected, up to that count, can submit.
+            - `param: draftId` (`missing_required_field`): the campaign requires draft approval and no `draftId` was sent.
           x-summary: "The post is refused: submit an accepted platform post made within\
             \ the campaign window, from one of the creator's allowed accounts."
         "403":
@@ -5409,17 +5413,199 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: "The invite is not accepted yet, the campaign is not accepting\
-            \ posts (not started, paused or ended), the post was already submitted,\
-            \ today's per-participant post limit is reached, or the participation\
-            \ was suspended or removed (`invalid_resource_state`; the message says\
-            \ which)."
+          description: |
+            `invalid_resource_state`, and the message says which:
+
+            - The invite is not accepted yet, the creator is still pending approval or was denied, or the participation was suspended or removed.
+            - The campaign is not accepting posts (not started, paused or ended).
+            - The post was already submitted, or today's per-participant post limit is reached.
+            - `draftId` is not one of the creator's approved drafts or already backs another post.
           x-summary: "The post cannot be submitted: accept the invite, wait for an\
             \ active campaign, and submit each post once within the daily limit."
         "429":
           $ref: "#/components/responses/CreatorPortalRateLimited"
       security: []
       summary: Submit a post
+      tags:
+      - Creator Portal
+      x-resource-group: public
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /public/creator-campaigns/{token}/drafts/upload:
+    parameters:
+    - $ref: "#/components/parameters/CreatorPortalToken"
+    post:
+      description: |
+        Returns a presigned URL to upload one draft file to, on a campaign with `requireDraftApproval`. `PUT` the file to `uploadUrl` with the same `Content-Type`, then pass `publicUrl` as `mediaUrl` to `POST /public/creator-campaigns/{token}/drafts`. The URL expires after `expiresIn` seconds.
+
+        Accepted files: MP4, MOV or WebM video, JPG, PNG or WebP image, up to 500 MB. About 20 uploads per participant every 10 minutes.
+      operationId: presignCreatorDraftUpload
+      parameters:
+      - $ref: "#/components/parameters/CreatorPortalToken"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/presignCreatorDraftUpload_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/presignCreatorDraftUpload_200_response"
+          description: Upload URL.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "An invalid field: an unsupported `contentType` or a `size`\
+            \ over 500 MB."
+          x-summary: "The file name, type or size is invalid: upload a supported video\
+            \ or image under 500 MB."
+        "404":
+          $ref: "#/components/responses/CreatorPortalLinkNotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The campaign does not review drafts, is not accepting posts\
+            \ (not started, paused or ended), the invite is not accepted yet, or the\
+            \ creator is pending, denied, suspended or removed (`invalid_resource_state`;\
+            \ the message says which)."
+          x-summary: "Drafts cannot be uploaded now: the campaign does not review\
+            \ drafts, is not accepting posts, or the creator is not active in it."
+        "429":
+          $ref: "#/components/responses/CreatorPortalRateLimited"
+      security: []
+      summary: Get an upload URL for a draft
+      tags:
+      - Creator Portal
+      x-resource-group: public
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /public/creator-campaigns/{token}/drafts:
+    parameters:
+    - $ref: "#/components/parameters/CreatorPortalToken"
+    post:
+      description: |
+        Sends a draft for the campaign team to review before the creator publishes, on a campaign with `requireDraftApproval`, and fires `campaign_draft.submitted`. `mediaUrl` must be a `publicUrl` from `POST /public/creator-campaigns/{token}/drafts/upload`.
+
+        ### Revisions
+
+        - Without `revisionOf` the draft starts a new chain at version 1.
+        - With `revisionOf` it is the next version of that chain. Only one of the creator's own versions marked `revision_requested` takes a new version, and only once.
+
+        About 20 drafts per participant every 10 minutes.
+      operationId: submitCreatorDraft
+      parameters:
+      - $ref: "#/components/parameters/CreatorPortalToken"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/submitCreatorDraft_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/submitCreatorDraft_201_response"
+          description: Draft submitted.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "An invalid field, or `mediaUrl` is not a file uploaded for\
+            \ this campaign (`invalid_field_value`, `param: mediaUrl`, \"Upload the\
+            \ file from your campaign page first\")."
+          x-summary: "The draft is invalid: upload the file from the campaign page\
+            \ first and pass its public URL."
+        "404":
+          $ref: "#/components/responses/CreatorPortalLinkNotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: |
+            `invalid_resource_state`, and the message says which:
+
+            - The campaign does not review drafts or is not accepting posts.
+            - The creator is not active in it (invite not accepted, pending, denied, suspended or removed).
+            - `revisionOf` is not one of the creator's versions or is not `revision_requested`, or a newer version of it was already uploaded.
+          x-summary: "The draft cannot be submitted now: check the campaign accepts\
+            \ drafts and that the revised version is yours and awaits changes."
+        "429":
+          $ref: "#/components/responses/CreatorPortalRateLimited"
+      security: []
+      summary: Submit a draft for review
+      tags:
+      - Creator Portal
+      x-resource-group: public
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /public/creator-campaigns/{token}/samples:
+    parameters:
+    - $ref: "#/components/parameters/CreatorPortalToken"
+    post:
+      description: |
+        Asks for a free sample of one of the campaign's `sampleProducts`, shipped to `shippingAddress`, and fires `campaign_sample.requested`. The request waits for the campaign team; on approval the creator gets a single-use discount code for the product.
+
+        - A product with `variants` needs `variantId`.
+        - One open request per product: asking again while one is pending, approved or shipped answers 409. A declined product can be asked again.
+
+        About 10 requests per participant every 10 minutes.
+      operationId: requestCreatorSample
+      parameters:
+      - $ref: "#/components/parameters/CreatorPortalToken"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/requestCreatorSample_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/requestCreatorSample_201_response"
+          description: Sample requested.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "An invalid field, a product the campaign does not offer (`invalid_field_value`,\
+            \ `param: productId`), or a missing or unknown option (`param: variantId`,\
+            \ \"Pick one of the options for this product\")."
+          x-summary: "The request is invalid: pick a product the campaign offers and\
+            \ one of its options."
+        "404":
+          $ref: "#/components/responses/CreatorPortalLinkNotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The campaign offers no samples or is not accepting posts,\
+            \ the creator is not active in it (invite not accepted, pending, denied,\
+            \ suspended or removed), or the creator already has an open request for\
+            \ this product (`invalid_resource_state`; the message says which)."
+          x-summary: "The sample cannot be requested now: the campaign offers none,\
+            \ a request for this product is open, or the creator is not active."
+        "429":
+          $ref: "#/components/responses/CreatorPortalRateLimited"
+      security: []
+      summary: Request a product sample
       tags:
       - Creator Portal
       x-resource-group: public
@@ -5487,6 +5673,74 @@ paths:
       schema:
         type: string
       style: simple
+  /public/creator-campaigns/{token}/submissions/{submissionId}/spark-code:
+    parameters:
+    - $ref: "#/components/parameters/CreatorPortalToken"
+    - description: The `id` of one of the participant's `submissions`.
+      explode: false
+      in: path
+      name: submissionId
+      required: true
+      schema:
+        type: string
+      style: simple
+    put:
+      description: |
+        The creator pastes the Spark code of one of their TikTok posts (generated in the TikTok app under the post's
+        ad settings), so the brand can run the post as a Spark Ad under the creator's handle.
+
+        Send `null` to clear it. The code is never returned: submissions only expose `hasSparkCode`.
+      operationId: setCreatorSparkCode
+      parameters:
+      - $ref: "#/components/parameters/CreatorPortalToken"
+      - description: The `id` of one of the participant's `submissions`.
+        explode: false
+        in: path
+        name: submissionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/setCreatorSparkCode_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/setCreatorSparkCode_200_response"
+          description: Saved.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid input, or the post is not a TikTok post (`invalid_field_value`)."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The link is invalid or expired, or the post is not one of\
+            \ the participant's submissions (`resource_not_found`)."
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The post was rejected or withdrawn (`invalid_resource_state`).
+      security: []
+      summary: Set a post's Spark code
+      tags:
+      - Creator Portal
+      x-resource-group: public
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /public/creator-campaigns/{token}/payouts:
     get:
       description: |
@@ -80977,9 +81231,11 @@ paths:
         schema:
           enum:
           - invited
+          - pending
           - active
           - suspended
           - removed
+          - denied
           type: string
         style: form
       - explode: true
@@ -81124,6 +81380,113 @@ paths:
       security:
       - bearerAuth: []
       summary: Get campaign participant
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/participants/{participantId}/approve:
+    post:
+      description: |
+        Lets a `pending` creator into the campaign: they become `active`, `joinedAt` is set, the creator is emailed and `campaign_participant.approved` fires (not `campaign_participant.joined`).
+
+        A creator is `pending` when they joined through the open link of a campaign with `joinApproval: manual`. Personal invites are never held.
+
+        ### Creator limit
+
+        Pending creators do not count toward `caps.maxParticipants`; the limit is checked here instead. A full campaign refuses the approval with 403 `feature_not_available` and the creator stays `pending`.
+
+        ### Errors
+
+        - 403 `feature_not_available`: the campaign reached `caps.maxParticipants`.
+        - 409 `invalid_resource_state`: the participant is not `pending`, or the campaign is closed.
+      operationId: approveCampaignParticipant
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Participant ID.
+        explode: false
+        in: path
+        name: participantId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCampaignParticipant_200_response"
+          description: Participant approved
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+        "409":
+          $ref: "#/components/responses/CreatorCampaignConflict"
+      security:
+      - bearerAuth: []
+      summary: Approve pending campaign participant
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/participants/{participantId}/deny:
+    post:
+      description: |
+        Turns a `pending` creator away: they become `denied`, the creator is emailed and `campaign_participant.denied` fires. A denied creator cannot submit posts, drafts or sample requests. Any status other than `pending` answers 409.
+      operationId: denyCampaignParticipant
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Participant ID.
+        explode: false
+        in: path
+        name: participantId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCampaignParticipant_200_response"
+          description: Participant denied
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+        "409":
+          $ref: "#/components/responses/CreatorCampaignConflict"
+      security:
+      - bearerAuth: []
+      summary: Deny pending campaign participant
       tags:
       - Creator Campaigns
       x-resource-group: creator_campaigns
@@ -82103,6 +82466,563 @@ paths:
       x-resource-group: creator_campaigns
       x-accepts:
       - application/json
+  /v1/creator-campaigns/{campaignId}/drafts:
+    get:
+      description: |
+        Lists the drafts creators uploaded for review on a campaign with `requireDraftApproval`, newest first.
+
+        Each draft is a chain of versions: a revision is a new version in the same `chainId`. Only the latest version of each chain is listed, so `status` is the chain's current state and `total` counts chains. Earlier versions come with `GET /v1/creator-campaigns/{campaignId}/drafts/{draftId}`.
+      operationId: listCampaignDrafts
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Only drafts whose latest version is in this status. `submitted`
+          is the review queue.
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - submitted
+          - approved
+          - revision_requested
+          - rejected
+          type: string
+        style: form
+      - description: Only drafts of this participant.
+        explode: true
+        in: query
+        name: participantId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          minimum: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCampaignDrafts_200_response"
+          description: Drafts
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+      security:
+      - bearerAuth: []
+      summary: List campaign drafts
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/drafts/{draftId}:
+    get:
+      description: |
+        Returns one draft version and every version of its chain (`versions`, newest first, including this one), each with its review comments.
+      operationId: getCampaignDraft
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Draft version ID.
+        explode: false
+        in: path
+        name: draftId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCampaignDraft_200_response"
+          description: Draft
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get campaign draft
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/drafts/{draftId}/approve:
+    post:
+      description: |
+        Approves a `submitted` draft version, emails the creator and fires `campaign_draft.approved`. The creator can then publish it and submit the live post with this `draftId`; each approved draft backs one post only.
+
+        Each version is decided once: a version that is no longer `submitted` answers 409.
+      operationId: approveCampaignDraft
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Draft version ID.
+        explode: false
+        in: path
+        name: draftId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/approveCampaignDraft_200_response"
+          description: Draft approved
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+        "409":
+          $ref: "#/components/responses/CreatorCampaignConflict"
+        "422":
+          $ref: "#/components/responses/IdempotencyKeyReused"
+      security:
+      - bearerAuth: []
+      summary: Approve campaign draft
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/drafts/{draftId}/request-revision:
+    post:
+      description: |
+        Marks a `submitted` draft version `revision_requested`, emails the creator and fires `campaign_draft.revision_requested`. The creator answers with one new version (`revisionOf` set to this version).
+
+        Send a `note`, at least one entry in `comments`, or both; neither answers 400 `missing_required_field`. A comment with `atMs` is pinned to that moment of the video.
+
+        Each version is decided once: a version that is no longer `submitted` answers 409.
+      operationId: requestCampaignDraftRevision
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Draft version ID.
+        explode: false
+        in: path
+        name: draftId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/requestCampaignDraftRevision_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/approveCampaignDraft_200_response"
+          description: Changes requested
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+        "409":
+          $ref: "#/components/responses/CreatorCampaignConflict"
+        "422":
+          $ref: "#/components/responses/IdempotencyKeyReused"
+      security:
+      - bearerAuth: []
+      summary: Request changes on a campaign draft
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/drafts/{draftId}/reject:
+    post:
+      description: |
+        Rejects a `submitted` draft version for good, emails the creator and fires `campaign_draft.rejected`. The reason is stored as `reviewNote`. A rejected draft takes no new version and backs no post.
+
+        Each version is decided once: a version that is no longer `submitted` answers 409.
+      operationId: rejectCampaignDraft
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Draft version ID.
+        explode: false
+        in: path
+        name: draftId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/rejectCampaignDraft_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/approveCampaignDraft_200_response"
+          description: Draft rejected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+        "409":
+          $ref: "#/components/responses/CreatorCampaignConflict"
+        "422":
+          $ref: "#/components/responses/IdempotencyKeyReused"
+      security:
+      - bearerAuth: []
+      summary: Reject campaign draft
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/samples:
+    get:
+      description: |
+        Lists the free product samples creators asked for, newest first. `contentOwed` marks an approved or shipped sample whose creator submitted no post in the `sampleContentDueDays` since the approval.
+      operationId: listCampaignSamples
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Only requests in this status. `pending` is the review queue.
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - pending
+          - approved
+          - shipped
+          - declined
+          type: string
+        style: form
+      - description: Only requests of this participant.
+        explode: true
+        in: query
+        name: participantId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          minimum: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCampaignSamples_200_response"
+          description: Sample requests
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+      security:
+      - bearerAuth: []
+      summary: List campaign sample requests
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/samples/{sampleId}/approve:
+    post:
+      description: |
+        Approves a `pending` sample request. Zernio creates a 100%-off, single-use discount code (`SAMPLE-XXXXXXXX`) limited to the requested product in the campaign's store (Shopify or WooCommerce), returns it as `discountCode`, emails it to the creator and fires `campaign_sample.approved`. The creator redeems it at checkout.
+
+        The code is created before the request changes, so when the store refuses (missing discount permission, an unsupported store, a store error) its error is returned and the request stays `pending`. The approval also starts the `sampleContentDueDays` clock behind `contentDueAt` and `contentOwed`.
+
+        ### Errors
+
+        - 400 `platform_not_supported`: the store cannot create discounts.
+        - 403: the store has not granted the permission discounts need.
+        - 409 `invalid_resource_state`: the request is not `pending`.
+        - 502 `platform_api_error`: the store is unavailable.
+      operationId: approveCampaignSample
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Sample request ID.
+        explode: false
+        in: path
+        name: sampleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/approveCampaignSample_200_response"
+          description: Sample approved
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+        "409":
+          $ref: "#/components/responses/CreatorCampaignConflict"
+        "422":
+          $ref: "#/components/responses/IdempotencyKeyReused"
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The store did not answer (`platform_api_error`). No code was
+            created and the request stays `pending`.
+          x-summary: "The store is unavailable: retry later. The request stays pending."
+      security:
+      - bearerAuth: []
+      summary: Approve campaign sample request
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/samples/{sampleId}/decline:
+    post:
+      description: |
+        Declines a `pending` sample request with a reason, emails the creator and fires `campaign_sample.declined`. The creator can ask for the same product again. Any other status answers 409.
+      operationId: declineCampaignSample
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Sample request ID.
+        explode: false
+        in: path
+        name: sampleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/declineCampaignSample_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/approveCampaignSample_200_response"
+          description: Sample declined
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+        "409":
+          $ref: "#/components/responses/CreatorCampaignConflict"
+        "422":
+          $ref: "#/components/responses/IdempotencyKeyReused"
+      security:
+      - bearerAuth: []
+      summary: Decline campaign sample request
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/samples/{sampleId}/ship:
+    post:
+      description: |
+        Records that you sent an `approved` sample yourself, with an optional tracking link, emails the creator and fires `campaign_sample.shipped`. No store call or money is involved. Any other status answers 409.
+      operationId: shipCampaignSample
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Sample request ID.
+        explode: false
+        in: path
+        name: sampleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/shipCampaignSample_request"
+        description: "Optional: no body marks the sample shipped without a tracking\
+          \ link."
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/approveCampaignSample_200_response"
+          description: Sample marked shipped
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+        "409":
+          $ref: "#/components/responses/CreatorCampaignConflict"
+        "422":
+          $ref: "#/components/responses/IdempotencyKeyReused"
+      security:
+      - bearerAuth: []
+      summary: Mark campaign sample shipped
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/creator-campaigns/{campaignId}/payables:
     get:
       description: |
@@ -82284,6 +83204,86 @@ paths:
       x-resource-group: creator_campaigns
       x-accepts:
       - application/json
+  /v1/creator-campaigns/{campaignId}/orders:
+    get:
+      description: |
+        Lists the store orders a commission or smart retainer campaign credited to its creators, newest first, and every
+        active creator's discount code and tracking link.
+
+        An order is `pending` while the store is still attributing it (Shopify does so for a few minutes after checkout),
+        `matched` once it is credited to a creator and `unmatched` when it never was. Commission is approved `holdDays`
+        after the order was placed.
+      operationId: listCampaignOrders
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Only this creator's orders.
+        explode: true
+        in: query
+        name: participantId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - pending
+          - matched
+          - unmatched
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          minimum: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCampaignOrders_200_response"
+          description: Orders and creator codes
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+      security:
+      - bearerAuth: []
+      summary: List campaign orders
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-accepts:
+      - application/json
   /v1/creator-campaigns/{campaignId}/report:
     get:
       description: |
@@ -82317,6 +83317,151 @@ paths:
       security:
       - bearerAuth: []
       summary: Get campaign report
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/ads/launch:
+    post:
+      description: |
+        Runs approved posts of an active campaign as ads, each post on its own: a post that cannot run is reported
+        in `results` and never stops the rest.
+
+        A post already launched (or launching) into the same placement is
+        reported as `already_launched` or `in_progress` and never gets a second ad, so a retry is safe.
+
+        ### What each post becomes
+
+        - **Meta, `identity: brand`**: a new ad from the post media in the existing ad set `adSetId`, under the brand's Page.
+        - **Meta, `identity: creator`**: a Partnership Ad of the Instagram post under the creator's handle. Partnership Ads are a limited release while Meta reviews the permission they need (`capabilities.partnershipAds` in `GET /v1/creator-campaigns/{campaignId}/ad-results`); without it these posts fail with a message to launch them with brand identity. Facebook posts only run with brand identity.
+        - **TikTok** (`identity: creator` only): a Spark Ad of the creator's post in its own ad group with `dailyBudget`, inside the existing campaign `existingCampaignId`. Needs the Spark code the creator pasted on their campaign page (`hasSparkCode` on the submission).
+
+        One launch runs on one network: posts from the other network fail with a message to launch them separately.
+        Needs ads access (403 `ads_addon_required`) and room in the managed ads allowance (403 `ads_allowance_exceeded`).
+      operationId: launchCampaignAds
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/launchCampaignAds_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/launchCampaignAds_200_response"
+          description: "One result per distinct submission ID, in no particular order."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "No ads access (`ads_addon_required`), over the managed ads\
+            \ allowance (`ads_allowance_exceeded`), or a restricted API key without\
+            \ the `creator_campaigns` resource group (`insufficient_permissions`)."
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+        "409":
+          $ref: "#/components/responses/CreatorCampaignConflict"
+        "422":
+          $ref: "#/components/responses/IdempotencyKeyReused"
+      security:
+      - bearerAuth: []
+      summary: Launch campaign posts as ads
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/ad-results:
+    get:
+      description: |
+        What the campaign's posts did as ads: totals, each post with its ads and launches, and the creators ranked
+        by `rankBy`.
+
+        An ad counts for a post when it was launched from the post, or when it runs the post (a boosted
+        post, the Instagram media it shows, or a TikTok Spark item).
+
+        Figures come from the ads' daily metrics; money is in the campaign currency, and ads billed in
+        another currency are left out of money figures.
+      operationId: getCampaignAdResults
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: How `creators` is ranked.
+        explode: true
+        in: query
+        name: rankBy
+        required: false
+        schema:
+          default: spend
+          enum:
+          - spend
+          - roas
+          - purchases
+          type: string
+        style: form
+      - description: "First day counted (YYYY-MM-DD, UTC). Omit to count from the\
+          \ first day of data."
+        explode: true
+        in: query
+        name: from
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: "Last day counted (YYYY-MM-DD, UTC). Omit to count through the\
+          \ latest day of data."
+        explode: true
+        in: query
+        name: to
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCampaignAdResults_200_response"
+          description: Campaign ad results
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+      security:
+      - bearerAuth: []
+      summary: Get campaign ad results
       tags:
       - Creator Campaigns
       x-resource-group: creator_campaigns
@@ -82740,11 +83885,14 @@ components:
           schema:
             $ref: "#/components/schemas/ErrorResponse"
       description: |
-        Refused. Code `feature_not_available`: creator campaigns run on usage-based
-        billing and the workspace that owns the campaign is not on it yet ("Creator campaigns
-        require usage-based billing..."; contact support to switch), or the campaign reached
-        `caps.maxParticipants` (invites and joins only).
-        Code `insufficient_permissions`: a restricted API key without the `creator_campaigns`
+        Refused.
+
+        - Code `feature_not_available`: creator campaigns run on usage-based billing and the workspace
+          that owns the campaign is not on it yet ("Creator campaigns require usage-based billing...";
+          contact support to switch).
+        - Code `feature_not_available`: the campaign reached `caps.maxParticipants` (invites, joins and
+          approving a pending creator).
+        - Code `insufficient_permissions`: a restricted API key without the `creator_campaigns`
         resource group.
       x-summary: "The workspace lacks usage-based billing, the campaign is full, or\
         \ the key lacks access: switch billing or use a permitted key."
@@ -82757,10 +83905,12 @@ components:
             code: resource_not_found
           schema:
             $ref: "#/components/schemas/ErrorResponse"
-      description: "The campaign, participant or submission does not exist, belongs\
-        \ to another team, or sits in a profile this key cannot reach (code `resource_not_found`)."
-      x-summary: "The campaign, participant or submission does not exist or is not\
-        \ reachable with this key: check the ID and the key's scope."
+      description: "The campaign, participant, submission, draft or sample request\
+        \ does not exist, belongs to another team, or sits in a profile this key cannot\
+        \ reach (code `resource_not_found`)."
+      x-summary: "The campaign, participant, submission, draft or sample request does\
+        \ not exist or is not reachable with this key: check the ID and the key's\
+        \ scope."
     CreatorCampaignConflict:
       content:
         application/json:
@@ -82770,9 +83920,10 @@ components:
             code: invalid_resource_state
           schema:
             $ref: "#/components/schemas/ErrorResponse"
-      description: "The campaign, participant or submission is not in a state that\
-        \ allows this action (code `invalid_resource_state`); the message names the\
-        \ current state. Also returned while the same `Idempotency-Key` is still processing."
+      description: "The campaign, participant, submission, draft or sample request\
+        \ is not in a state that allows this action (code `invalid_resource_state`);\
+        \ the message names the current state. Also returned while the same `Idempotency-Key`\
+        \ is still processing."
       x-summary: "The resource state does not allow this action, or the idempotency\
         \ key is still processing: check the current state and retry later."
     MailboxPreconditionFailed:
@@ -83344,6 +84495,7 @@ components:
         startedAt: 2000-01-23T04:56:07.000+00:00
         holdDays: 5
         logoUrl: logoUrl
+        requireDraftApproval: true
         platforms:
         - platforms
         - platforms
@@ -83359,7 +84511,26 @@ components:
           - likes
           minViewsToEarn: 6
         maxPostAgeMinutes: 5
+        joinApproval: auto
+        sampleProducts:
+        - productId: productId
+          imageUrl: imageUrl
+          variants:
+          - id: id
+            title: title
+          - id: id
+            title: title
+          title: title
+        - productId: productId
+          imageUrl: imageUrl
+          variants:
+          - id: id
+            title: title
+          - id: id
+            title: title
+          title: title
         name: name
+        sampleContentDueDays: 9
         startsAt: 2000-01-23T04:56:07.000+00:00
         theme: "{}"
         currency: currency
@@ -83429,6 +84600,26 @@ components:
             limit.
           nullable: true
           type: integer
+        joinApproval:
+          description: "manual: a creator who joins through the open link waits `pending`\
+            \ until the campaign team accepts them."
+          enum:
+          - auto
+          - manual
+          type: string
+        requireDraftApproval:
+          description: "The creator uploads a draft for review first, and submits\
+            \ the live post for an approved draft."
+          type: boolean
+        sampleProducts:
+          description: Products the creator can ask a free sample of; empty when the
+            campaign offers none.
+          items:
+            $ref: "#/components/schemas/CreatorCampaignSampleProduct"
+          type: array
+        sampleContentDueDays:
+          description: Days after a sample is approved by which a post is expected.
+          type: integer
       required:
       - brandName
       - contentRules
@@ -83437,11 +84628,15 @@ components:
       - endsAt
       - holdDays
       - id
+      - joinApproval
       - logoUrl
       - maxAccountsPerParticipant
       - maxPostAgeMinutes
       - name
       - platforms
+      - requireDraftApproval
+      - sampleContentDueDays
+      - sampleProducts
       - startedAt
       - startsAt
       - status
@@ -83454,8 +84649,11 @@ components:
       - $ref: "#/components/schemas/CPM"
       - $ref: "#/components/schemas/Per_post"
       - $ref: "#/components/schemas/Pool"
+      - $ref: "#/components/schemas/Retainer"
+      - $ref: "#/components/schemas/CreatorPortalEconomics_oneOf"
     CreatorPortalSubmission:
       example:
+        draftId: draftId
         publishedAt: 2000-01-23T04:56:07.000+00:00
         flags:
         - unreachable
@@ -83470,6 +84668,7 @@ components:
         engagements: 6
         id: id
         submittedAt: 2000-01-23T04:56:07.000+00:00
+        hasSparkCode: true
         views: 0
         status: received
       properties:
@@ -83479,6 +84678,10 @@ components:
           type: string
         postId:
           type: string
+        hasSparkCode:
+          description: "A TikTok post whose Spark code the creator pasted, so the\
+            \ brand can run it as a Spark Ad. The code itself is never returned."
+          type: boolean
         url:
           nullable: true
           type: string
@@ -83531,10 +84734,16 @@ components:
           format: date-time
           nullable: true
           type: string
+        draftId:
+          description: The approved draft this post publishes.
+          nullable: true
+          type: string
       required:
+      - draftId
       - earnedCents
       - engagements
       - flags
+      - hasSparkCode
       - id
       - platform
       - postId
@@ -83660,6 +84869,7 @@ components:
           startedAt: 2000-01-23T04:56:07.000+00:00
           holdDays: 5
           logoUrl: logoUrl
+          requireDraftApproval: true
           platforms:
           - platforms
           - platforms
@@ -83675,7 +84885,26 @@ components:
             - likes
             minViewsToEarn: 6
           maxPostAgeMinutes: 5
+          joinApproval: auto
+          sampleProducts:
+          - productId: productId
+            imageUrl: imageUrl
+            variants:
+            - id: id
+              title: title
+            - id: id
+              title: title
+            title: title
+          - productId: productId
+            imageUrl: imageUrl
+            variants:
+            - id: id
+              title: title
+            - id: id
+              title: title
+            title: title
           name: name
+          sampleContentDueDays: 9
           startsAt: 2000-01-23T04:56:07.000+00:00
           theme: "{}"
           currency: currency
@@ -83712,18 +84941,224 @@ components:
           items:
             $ref: "#/components/schemas/CreatorPortalSubmission"
           type: array
+        drafts:
+          description: "The latest 100 draft versions, newest first. Empty on a campaign\
+            \ that does not review drafts."
+          items:
+            $ref: "#/components/schemas/CreatorPortalDraft"
+          type: array
+        samples:
+          description: "Every sample request of the creator, newest first."
+          items:
+            $ref: "#/components/schemas/CreatorPortalSample"
+          type: array
         earnings:
           $ref: "#/components/schemas/CreatorPortalParticipant_earnings"
         payouts:
           $ref: "#/components/schemas/CreatorPortalPayoutSetup"
+        referral:
+          allOf:
+          - $ref: "#/components/schemas/CreatorPortalReferral"
+          nullable: true
+        retainer:
+          $ref: "#/components/schemas/CreatorPortalParticipant_retainer"
       required:
       - accounts
       - campaign
+      - drafts
       - earnings
       - kind
       - participant
       - payouts
+      - samples
       - submissions
+    CreatorPortalReferral:
+      properties:
+        code:
+          description: "The creator's discount code. Null while the store has not\
+            \ created it yet, or on a link-only campaign."
+          nullable: true
+          type: string
+        discountPercent:
+          description: What the code takes off an order.
+          nullable: true
+          type: integer
+        trackingUrl:
+          description: The landing page with the UTM parameters that credit the creator.
+            Null on a code-only campaign.
+          nullable: true
+          type: string
+        orders:
+          description: The latest 50 credited orders.
+          items:
+            $ref: "#/components/schemas/CreatorPortalReferral_orders_inner"
+          type: array
+        totals:
+          $ref: "#/components/schemas/CreatorPortalReferral_totals"
+      required:
+      - code
+      - discountPercent
+      - orders
+      - totals
+      - trackingUrl
+    CreatorPortalDraft:
+      description: One version of a draft the creator uploaded for review.
+      example:
+        comments:
+        - atMs: 6
+          body: body
+        - atMs: 6
+          body: body
+        mediaUrl: https://openapi-generator.tech
+        reviewedAt: 2000-01-23T04:56:07.000+00:00
+        caption: caption
+        mediaType: video
+        version: 1
+        reviewNote: reviewNote
+        submissionId: submissionId
+        revisionOf: revisionOf
+        chainId: chainId
+        id: id
+        submittedAt: 2000-01-23T04:56:07.000+00:00
+        status: submitted
+      properties:
+        id:
+          description: "Pass as `draftId` when submitting the live post of an approved\
+            \ draft, or as `revisionOf` to answer a revision request."
+          type: string
+        chainId:
+          type: string
+        version:
+          minimum: 1
+          type: integer
+        revisionOf:
+          nullable: true
+          type: string
+        status:
+          enum:
+          - submitted
+          - approved
+          - revision_requested
+          - rejected
+          type: string
+        mediaUrl:
+          format: uri
+          type: string
+        mediaType:
+          enum:
+          - video
+          - image
+          type: string
+        caption:
+          type: string
+        reviewNote:
+          nullable: true
+          type: string
+        comments:
+          items:
+            $ref: "#/components/schemas/CreatorPortalDraft_comments_inner"
+          type: array
+        submittedAt:
+          format: date-time
+          type: string
+        reviewedAt:
+          format: date-time
+          nullable: true
+          type: string
+        submissionId:
+          description: The live post submitted for this draft.
+          nullable: true
+          type: string
+      required:
+      - caption
+      - chainId
+      - comments
+      - id
+      - mediaType
+      - mediaUrl
+      - reviewNote
+      - reviewedAt
+      - revisionOf
+      - status
+      - submissionId
+      - submittedAt
+      - version
+    CreatorPortalSample:
+      example:
+        productTitle: productTitle
+        variantTitle: variantTitle
+        note: note
+        productId: productId
+        discountCode: discountCode
+        trackingUrl: trackingUrl
+        requestedAt: 2000-01-23T04:56:07.000+00:00
+        contentDueAt: 2000-01-23T04:56:07.000+00:00
+        shippingAddress:
+          country: country
+          city: city
+          phone: phone
+          postalCode: postalCode
+          name: name
+          region: region
+          line2: line2
+          line1: line1
+        id: id
+        declineReason: declineReason
+        status: pending
+      properties:
+        id:
+          type: string
+        productId:
+          type: string
+        productTitle:
+          type: string
+        variantTitle:
+          nullable: true
+          type: string
+        status:
+          enum:
+          - pending
+          - approved
+          - shipped
+          - declined
+          type: string
+        shippingAddress:
+          $ref: "#/components/schemas/CampaignSampleShippingAddress"
+        note:
+          nullable: true
+          type: string
+        discountCode:
+          description: "The single-use code to redeem the product at checkout, once\
+            \ approved."
+          nullable: true
+          type: string
+        trackingUrl:
+          nullable: true
+          type: string
+        declineReason:
+          nullable: true
+          type: string
+        requestedAt:
+          format: date-time
+          type: string
+        contentDueAt:
+          description: When a post is due for the sample; null until approved.
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - contentDueAt
+      - declineReason
+      - discountCode
+      - id
+      - note
+      - productId
+      - productTitle
+      - requestedAt
+      - shippingAddress
+      - status
+      - trackingUrl
+      - variantTitle
     TreasuryTopup:
       example:
         chargedCents: 7
@@ -90864,6 +92299,17 @@ components:
             - balance.low
             - balance.empty
             - balance.charged
+            - campaign_participant.pending
+            - campaign_participant.approved
+            - campaign_participant.denied
+            - campaign_draft.submitted
+            - campaign_draft.approved
+            - campaign_draft.revision_requested
+            - campaign_draft.rejected
+            - campaign_sample.requested
+            - campaign_sample.approved
+            - campaign_sample.shipped
+            - campaign_sample.declined
             type: string
           type: array
         isActive:
@@ -92319,9 +93765,10 @@ components:
       - timestamp
     WebhookPayloadCampaignParticipant:
       description: |
-        Webhook payload for `campaign_participant.joined`, `campaign_participant.suspended` and
-        `campaign_participant.removed`. `participant.status` is the status after the change.
-        `participant.joinedAt` is null for a participant removed before they ever joined.
+        Webhook payload for `campaign_participant.joined`, `campaign_participant.pending`,
+        `campaign_participant.approved`, `campaign_participant.denied`, `campaign_participant.suspended`
+        and `campaign_participant.removed`. `participant.status` is the status after the change.
+        `participant.joinedAt` is null for a participant who never joined (pending, denied, or removed before joining).
       example:
         creator:
           displayName: displayName
@@ -92363,6 +93810,9 @@ components:
         event:
           enum:
           - campaign_participant.joined
+          - campaign_participant.pending
+          - campaign_participant.approved
+          - campaign_participant.denied
           - campaign_participant.suspended
           - campaign_participant.removed
           type: string
@@ -92386,6 +93836,184 @@ components:
       - id
       - participant
       - timestamp
+    WebhookPayloadCampaignDraft:
+      description: |
+        Webhook payload for `campaign_draft.submitted`, `campaign_draft.approved`,
+        `campaign_draft.revision_requested` and `campaign_draft.rejected`. `draft` is the version
+        the event is about; `draft.status` is its status after the change.
+      example:
+        creator:
+          displayName: displayName
+          id: id
+        test: true
+        draft:
+          reviewNote: reviewNote
+          comments:
+          - atMs: 6
+            body: body
+          - atMs: 6
+            body: body
+          revisionOf: revisionOf
+          mediaUrl: mediaUrl
+          chainId: chainId
+          caption: caption
+          mediaType: video
+          id: id
+          version: 1
+          status: submitted
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        campaign:
+          name: name
+          id: id
+        id: id
+        event: campaign_draft.submitted
+        participant:
+          id: id
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - campaign_draft.submitted
+          - campaign_draft.approved
+          - campaign_draft.revision_requested
+          - campaign_draft.rejected
+          type: string
+        campaign:
+          $ref: "#/components/schemas/updateAd_request_targeting_interests_inner"
+        participant:
+          $ref: "#/components/schemas/WebhookPayloadCampaignSubmission_participant"
+        creator:
+          $ref: "#/components/schemas/WebhookPayloadCampaignSubmission_creator"
+        draft:
+          $ref: "#/components/schemas/WebhookPayloadCampaignDraft_draft"
+        timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
+          format: date-time
+          type: string
+      required:
+      - campaign
+      - creator
+      - draft
+      - event
+      - id
+      - participant
+      - timestamp
+    WebhookPayloadCampaignSample:
+      description: |
+        Webhook payload for `campaign_sample.requested`, `campaign_sample.approved`,
+        `campaign_sample.shipped` and `campaign_sample.declined`. `sample.status` is the status
+        after the change; `sample.discountCode` is set from approval on.
+      example:
+        creator:
+          displayName: displayName
+          id: id
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        campaign:
+          name: name
+          id: id
+        id: id
+        event: campaign_sample.requested
+        sample:
+          productTitle: productTitle
+          variantTitle: variantTitle
+          note: note
+          storeAccountId: storeAccountId
+          productId: productId
+          discountCode: discountCode
+          trackingUrl: trackingUrl
+          shippingAddress:
+            country: country
+            city: city
+            phone: phone
+            postalCode: postalCode
+            name: name
+            region: region
+            line2: line2
+            line1: line1
+          id: id
+          variantId: variantId
+          declineReason: declineReason
+          status: pending
+        participant:
+          id: id
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - campaign_sample.requested
+          - campaign_sample.approved
+          - campaign_sample.shipped
+          - campaign_sample.declined
+          type: string
+        campaign:
+          $ref: "#/components/schemas/updateAd_request_targeting_interests_inner"
+        participant:
+          $ref: "#/components/schemas/WebhookPayloadCampaignSubmission_participant"
+        creator:
+          $ref: "#/components/schemas/WebhookPayloadCampaignSubmission_creator"
+        sample:
+          $ref: "#/components/schemas/WebhookPayloadCampaignSample_sample"
+        timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
+          format: date-time
+          type: string
+      required:
+      - campaign
+      - creator
+      - event
+      - id
+      - participant
+      - sample
+      - timestamp
     CreatorCampaignEconomics:
       description: |
         How the campaign pays, picked by `type`. Amounts are USD cents.
@@ -92395,16 +94023,107 @@ components:
         - `cpm`: `ratePer1kCents` per 1,000 of the counted `metric` (views by default), earned once a post reaches `minViewsToEarn` of it, capped per post by `maxPayoutPerClipCents`.
         - `per_post`: `perApprovedPostCents` for each approved post, at most `maxPostsPerParticipant` per participant.
         - `pool`: `budgetCents` is split at close among approved posts by eligible views; a post needs `minViewsToQualify` views to share.
+        - `ad_performance`: pays on the results of the ads that run each post (see `GET /v1/creator-campaigns/{campaignId}/ad-results`), counted once a day through the previous UTC day. Only Instagram, Facebook and TikTok posts.
+        - `retainer`: `amountCents` per `period` once the creator has `requiredApprovedPosts` approved posts in it. `mode: smart` tops the period's commission up to `amountCents`.
+        - `commission`: a share of the sales of the linked store (`storeAccountId`) credited to each creator by their discount code or tracking link.
       discriminator:
         mapping:
           cpm: "#/components/schemas/CreatorCampaignEconomicsCpm"
           per_post: "#/components/schemas/CreatorCampaignEconomicsPerPost"
           pool: "#/components/schemas/CreatorCampaignEconomicsPool"
+          ad_performance: "#/components/schemas/CreatorCampaignEconomicsAdPerformance"
+          retainer: "#/components/schemas/CreatorCampaignEconomicsRetainer"
+          commission: "#/components/schemas/CreatorCampaignEconomicsCommission"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/CreatorCampaignEconomicsCpm"
       - $ref: "#/components/schemas/CreatorCampaignEconomicsPerPost"
       - $ref: "#/components/schemas/CreatorCampaignEconomicsPool"
+      - $ref: "#/components/schemas/CreatorCampaignEconomicsAdPerformance"
+      - $ref: "#/components/schemas/CreatorCampaignEconomicsRetainer"
+      - $ref: "#/components/schemas/CreatorCampaignEconomicsCommission"
+    CreatorCampaignCommissionTerms:
+      description: "Commission on store orders. Set `percentOfSalesBps`, `perOrderCents`\
+        \ or both. Sales are the line items after discounts, before shipping and tax;\
+        \ refunds come off them, and a cancelled or fully refunded order earns nothing."
+      properties:
+        percentOfSalesBps:
+          description: "Share of the sales in basis points: 1500 is 15%."
+          maximum: 10000
+          minimum: 1
+          type: integer
+        perOrderCents:
+          description: A flat amount per credited order.
+          minimum: 1
+          type: integer
+        attribution:
+          default: code_or_link
+          description: "How an order is credited: the creator's discount code, the\
+            \ last click on their tracking link, or both with the code winning."
+          enum:
+          - code_or_link
+          - code
+          - link
+          type: string
+    CreatorCampaignEconomicsRetainer:
+      properties:
+        type:
+          enum:
+          - retainer
+          type: string
+        mode:
+          default: standard
+          description: "`standard` pays `amountCents` per period. `smart` guarantees\
+            \ it: the commission the creator earned in the period is topped up to\
+            \ `amountCents`. Smart needs `commission` and a linked store."
+          enum:
+          - standard
+          - smart
+          type: string
+        amountCents:
+          minimum: 1
+          type: integer
+        period:
+          description: "Weeks start Monday 00:00 UTC, months on the 1st. A period\
+            \ is paid within a day after it ends. A standard `once` retainer pays\
+            \ as soon as the posts are approved; a smart one when the campaign ends."
+          enum:
+          - week
+          - month
+          - once
+          type: string
+        requiredApprovedPosts:
+          description: Posts approved within the period that it needs. 0 pays without
+            posts.
+          minimum: 0
+          type: integer
+        commission:
+          $ref: "#/components/schemas/CreatorCampaignCommissionTerms"
+        budgetCents:
+          minimum: 0
+          type: integer
+      required:
+      - amountCents
+      - budgetCents
+      - period
+      - requiredApprovedPosts
+      - type
+      title: Retainer
+    CreatorCampaignEconomicsCommission:
+      allOf:
+      - properties:
+          type:
+            enum:
+            - commission
+            type: string
+          budgetCents:
+            minimum: 0
+            type: integer
+        required:
+        - budgetCents
+        - type
+        title: Commission
+      - $ref: "#/components/schemas/CreatorCampaignCommissionTerms"
     CreatorCampaignEconomicsCpm:
       example:
         maxPayoutPerClipCents: 1
@@ -92516,6 +94235,241 @@ components:
       - minViewsToQualify
       - type
       title: Pool
+    CreatorCampaignEconomicsAdPerformance:
+      additionalProperties: false
+      description: |
+        Pays on what the ads running a post achieve. `spend` and `purchase_value` take `rateBps` (a share of the amount), `purchases` and `clicks` take `centsPerUnit` each, and `impressions` takes `centsPerUnit` per 1,000.
+
+        Sending the other rate field, or `organicViewsOnly`, answers 400. Every campaign platform must be Instagram, Facebook or TikTok. Money from an ad billed in another currency than the campaign does not count.
+      properties:
+        type:
+          enum:
+          - ad_performance
+          type: string
+        metric:
+          enum:
+          - spend
+          - purchases
+          - purchase_value
+          - clicks
+          - impressions
+          type: string
+        rateBps:
+          description: "Basis points of the spend or purchase value: 1000 is 10%."
+          maximum: 10000
+          minimum: 1
+          type: integer
+        centsPerUnit:
+          description: "Cents per purchase or click, or per 1,000 impressions."
+          minimum: 1
+          type: integer
+        maxPayoutPerPostCents:
+          minimum: 1
+          type: integer
+        budgetCents:
+          minimum: 0
+          type: integer
+      required:
+      - budgetCents
+      - metric
+      - type
+      title: On ad results
+    CreatorCampaignAdResultFigures:
+      example:
+        ctr: 1.1730742509559433
+        cpaCents: 7
+        purchases: 1
+        clicks: 1
+        roas: 6.84685269835264
+        spendCents: 4
+        impressions: 7
+        purchaseValueCents: 1
+      properties:
+        spendCents:
+          description: Ad spend in minor units of the campaign currency.
+          type: integer
+        impressions:
+          type: integer
+        clicks:
+          type: integer
+        purchases:
+          type: integer
+        purchaseValueCents:
+          type: integer
+        roas:
+          description: Purchase value over spend. Null before any spend.
+          nullable: true
+          type: number
+        cpaCents:
+          description: Spend per purchase. Null without purchases.
+          nullable: true
+          type: integer
+        ctr:
+          description: "Clicks over impressions, in percent. Null without impressions."
+          nullable: true
+          type: number
+      required:
+      - clicks
+      - cpaCents
+      - ctr
+      - impressions
+      - purchaseValueCents
+      - purchases
+      - roas
+      - spendCents
+    CreatorCampaignAdResults:
+      example:
+        capabilities:
+          partnershipAds: true
+        submissions:
+        - participantId: participantId
+          ads:
+          - name: name
+            id: id
+            platformAdId: platformAdId
+            status: status
+          - name: name
+            id: id
+            platformAdId: platformAdId
+            status: status
+          creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          submissionId: submissionId
+          results:
+            ctr: 1.1730742509559433
+            cpaCents: 7
+            purchases: 1
+            clicks: 1
+            roas: 6.84685269835264
+            spendCents: 4
+            impressions: 7
+            purchaseValueCents: 1
+          platform: platform
+          launches:
+          - placementKey: placementKey
+            adId: adId
+            identity: brand
+            error: error
+            status: launching
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          - placementKey: placementKey
+            adId: adId
+            identity: brand
+            error: error
+            status: launching
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          platformPostId: platformPostId
+        - participantId: participantId
+          ads:
+          - name: name
+            id: id
+            platformAdId: platformAdId
+            status: status
+          - name: name
+            id: id
+            platformAdId: platformAdId
+            status: status
+          creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          submissionId: submissionId
+          results:
+            ctr: 1.1730742509559433
+            cpaCents: 7
+            purchases: 1
+            clicks: 1
+            roas: 6.84685269835264
+            spendCents: 4
+            impressions: 7
+            purchaseValueCents: 1
+          platform: platform
+          launches:
+          - placementKey: placementKey
+            adId: adId
+            identity: brand
+            error: error
+            status: launching
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          - placementKey: placementKey
+            adId: adId
+            identity: brand
+            error: error
+            status: launching
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          platformPostId: platformPostId
+        creators:
+        - ctr: 6.438423552598547
+          creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          cpaCents: 9
+          purchases: 9
+          impressions: 5
+          purchaseValueCents: 6
+          posts: 6
+          participantId: participantId
+          ads: 1
+          clicks: 9
+          rank: 1
+          roas: 8.762042012749001
+          spendCents: 4
+        - ctr: 6.438423552598547
+          creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          cpaCents: 9
+          purchases: 9
+          impressions: 5
+          purchaseValueCents: 6
+          posts: 6
+          participantId: participantId
+          ads: 1
+          clicks: 9
+          rank: 1
+          roas: 8.762042012749001
+          spendCents: 4
+        currency: currency
+        totals:
+          ctr: 9.301444243932576
+          ads: 2
+          cpaCents: 7
+          purchases: 5
+          clicks: 1
+          roas: 2.3021358869347655
+          spendCents: 0
+          impressions: 6
+          purchaseValueCents: 5
+          posts: 3
+      properties:
+        currency:
+          type: string
+        totals:
+          $ref: "#/components/schemas/CreatorCampaignAdResults_totals"
+        submissions:
+          description: "Posts that run as ads or had a launch, biggest spend first.\
+            \ An ad belongs to the post it was launched from, else to the post it\
+            \ runs (boosted post, effective Instagram media, Spark item)."
+          items:
+            $ref: "#/components/schemas/CreatorCampaignAdResults_submissions_inner"
+          type: array
+        creators:
+          description: "Creators whose posts run as ads, ranked by `rankBy`."
+          items:
+            $ref: "#/components/schemas/CreatorCampaignAdResults_creators_inner"
+          type: array
+        capabilities:
+          $ref: "#/components/schemas/CreatorCampaignAdResults_capabilities"
+      required:
+      - capabilities
+      - creators
+      - currency
+      - submissions
+      - totals
     CreatorCampaignCaps:
       example:
         maxAccountsPerParticipant: 1
@@ -92574,13 +94528,13 @@ components:
     CampaignSubmissionCounts:
       description: Number of submissions in each status.
       example:
-        approved: 1
-        pending_review: 7
-        expired: 5
-        rejected: 4
+        approved: 4
+        pending_review: 1
+        expired: 9
+        rejected: 5
         withdrawn: 9
-        received: 1
-        tracking: 6
+        received: 6
+        tracking: 7
       properties:
         received:
           type: integer
@@ -92611,6 +94565,7 @@ components:
         branding: ""
         type: cpm
         holdDays: 6
+        pendingParticipantCount: 9
         platforms:
         - tiktok
         - tiktok
@@ -92623,7 +94578,25 @@ components:
           maxParticipants: 1
         createdAt: 2000-01-23T04:56:07.000+00:00
         hasOpenInvite: true
+        codeDiscountPercent: 8
         maxPostAgeMinutes: 1
+        sampleProducts:
+        - productId: productId
+          imageUrl: imageUrl
+          variants:
+          - id: id
+            title: title
+          - id: id
+            title: title
+          title: title
+        - productId: productId
+          imageUrl: imageUrl
+          variants:
+          - id: id
+            title: title
+          - id: id
+            title: title
+          title: title
         participantCount: 1
         startsAt: 2000-01-23T04:56:07.000+00:00
         currency: usd
@@ -92631,19 +94604,32 @@ components:
         budgetExhaustedAt: 2000-01-23T04:56:07.000+00:00
         closedAt: 2000-01-23T04:56:07.000+00:00
         endsAt: 2000-01-23T04:56:07.000+00:00
+        landingUrl: landingUrl
         updatedAt: 2000-01-23T04:56:07.000+00:00
         contentRules: contentRules
         brandName: brandName
+        storeAccountId: storeAccountId
         kind: clipping
+        sampleCounts:
+          approved: 6
+          shipped: 6
+          declined: 5
+          pending: 2
         userId: userId
+        requireDraftApproval: true
         submissionCounts:
-          approved: 1
-          pending_review: 7
-          expired: 5
-          rejected: 4
+          approved: 4
+          pending_review: 1
+          expired: 9
+          rejected: 5
           withdrawn: 9
-          received: 1
-          tracking: 6
+          received: 6
+          tracking: 7
+        draftCounts:
+          approved: 3
+          submitted: 6
+          revision_requested: 6
+          rejected: 1
         economics:
           maxPayoutPerClipCents: 1
           metric: views
@@ -92655,11 +94641,13 @@ components:
           - likes
           minViewsToEarn: 0
           budgetCents: 0
+        joinApproval: auto
         profileId: profileId
         payableScannedAt: 2000-01-23T04:56:07.000+00:00
         consumedCents: 1
         name: name
-        payableCents: 9
+        sampleContentDueDays: 45
+        payableCents: 6
         status: draft
       properties:
         id:
@@ -92693,6 +94681,9 @@ components:
           - cpm
           - per_post
           - pool
+          - retainer
+          - commission
+          - ad_performance
           type: string
         currency:
           example: usd
@@ -92772,6 +94763,35 @@ components:
           format: date-time
           nullable: true
           type: string
+        joinApproval:
+          description: "auto: creators who join through the open link are active at\
+            \ once. manual: they land `pending` until you approve or deny them. Personal\
+            \ invites are never held."
+          enum:
+          - auto
+          - manual
+          type: string
+        requireDraftApproval:
+          description: "Creators upload a draft for review first, and submit the live\
+            \ post for an approved draft (`draftId`)."
+          type: boolean
+        storeAccountId:
+          description: The connected store (Shopify or WooCommerce) whose orders pay
+            commission and whose products creators can ask as samples. Null when the
+            campaign has neither.
+          nullable: true
+          type: string
+        sampleProducts:
+          description: Products creators can ask a free sample of.
+          items:
+            $ref: "#/components/schemas/CreatorCampaignSampleProduct"
+          type: array
+        sampleContentDueDays:
+          description: Days after a sample is approved before a creator with no post
+            since shows as owing content (`contentOwed`).
+          maximum: 365
+          minimum: 1
+          type: integer
         createdAt:
           format: date-time
           type: string
@@ -92794,6 +94814,22 @@ components:
           description: "What the campaign's creators can be paid now, summed over\
             \ every participant's payable balance."
           type: integer
+        landingUrl:
+          description: The page creator tracking links open.
+          nullable: true
+          type: string
+        codeDiscountPercent:
+          description: What each creator discount code takes off.
+          nullable: true
+          type: integer
+        pendingParticipantCount:
+          description: Creators who asked to join through the open link and wait for
+            a decision. Not counted in `participantCount`.
+          type: integer
+        draftCounts:
+          $ref: "#/components/schemas/CampaignDraftCounts"
+        sampleCounts:
+          $ref: "#/components/schemas/CampaignSampleCounts"
       required:
       - activatedAt
       - brandName
@@ -92805,22 +94841,30 @@ components:
       - contentRules
       - createdAt
       - currency
+      - draftCounts
       - economics
       - endsAt
       - hasOpenInvite
       - holdDays
       - id
+      - joinApproval
       - kind
       - maxPostAgeMinutes
       - name
       - participantCount
       - payableCents
       - payableScannedAt
+      - pendingParticipantCount
       - platforms
       - profileId
+      - requireDraftApproval
+      - sampleContentDueDays
+      - sampleCounts
+      - sampleProducts
       - settlement
       - startsAt
       - status
+      - storeAccountId
       - submissionCounts
       - trackingDays
       - type
@@ -92831,13 +94875,16 @@ components:
         contentRules: contentRules
         trackingDays: 30
         brandName: brandName
+        storeAccountId: storeAccountId
         branding: ""
         holdDays: 54
+        requireDraftApproval: false
         caps: ""
         platforms:
         - tiktok
         - tiktok
         settlement: none
+        codeDiscountPercent: 60
         economics:
           maxPayoutPerClipCents: 1
           metric: views
@@ -92850,10 +94897,19 @@ components:
           minViewsToEarn: 0
           budgetCents: 0
         maxPostAgeMinutes: 1
+        joinApproval: auto
+        sampleProductIds:
+        - sampleProductIds
+        - sampleProductIds
+        - sampleProductIds
+        - sampleProductIds
+        - sampleProductIds
         profileId: profileId
         name: name
+        sampleContentDueDays: 206
         startsAt: 2000-01-23T04:56:07.000+00:00
         endsAt: 2000-01-23T04:56:07.000+00:00
+        landingUrl: https://openapi-generator.tech
       properties:
         profileId:
           description: Profile the campaign lives in. Creator accounts connect into
@@ -92930,6 +94986,58 @@ components:
           allOf:
           - $ref: "#/components/schemas/CreatorCampaignBranding"
           nullable: true
+        landingUrl:
+          description: The page creator tracking links open. Required unless `attribution`
+            is `code`.
+          format: uri
+          maxLength: 2000
+          nullable: true
+          type: string
+        codeDiscountPercent:
+          description: What each creator's discount code takes off an order. Required
+            unless `attribution` is `link`.
+          maximum: 100
+          minimum: 1
+          nullable: true
+          type: integer
+        joinApproval:
+          default: auto
+          description: manual holds creators who join through the open link as `pending`
+            until you approve them. Personal invites are never held.
+          enum:
+          - auto
+          - manual
+          type: string
+        requireDraftApproval:
+          default: false
+          description: "Creators upload a draft for review before publishing, and\
+            \ each submitted post must name an approved draft."
+          type: boolean
+        storeAccountId:
+          description: |
+            A connected Shopify or WooCommerce store account. On `commission` and smart `retainer` economics its orders pay commission: required there, and fixed once such a campaign leaves draft.
+
+            On any campaign creators can ask for free samples of its products (`sampleProductIds`). Changing it without `sampleProductIds` clears the sample products; null removes the store and the products.
+          nullable: true
+          type: string
+        sampleProductIds:
+          description: "Product ids in the store that creators can ask a free sample\
+            \ of. Each is read from the store and saved as `sampleProducts`; an unknown\
+            \ product answers 404 `product_not_found`. Needs a store, otherwise 400\
+            \ `missing_required_field` (`param: storeAccountId`)."
+          items:
+            maxLength: 64
+            minLength: 1
+            type: string
+          maxItems: 20
+          type: array
+        sampleContentDueDays:
+          default: 14
+          description: Days after a sample is approved before a creator with no post
+            since shows as owing content.
+          maximum: 365
+          minimum: 1
+          type: integer
       required:
       - brandName
       - economics
@@ -92942,8 +95050,10 @@ components:
         contentRules: contentRules
         trackingDays: 30
         brandName: brandName
+        storeAccountId: storeAccountId
         branding: ""
         holdDays: 54
+        requireDraftApproval: true
         platforms:
         - tiktok
         - tiktok
@@ -92954,6 +95064,7 @@ components:
           maxXReadSpendCents: 1
           authenticityThreshold: 73.86281948385884
           maxParticipants: 1
+        codeDiscountPercent: 60
         maxPostAgeMinutes: 1
         economics:
           maxPayoutPerClipCents: 1
@@ -92966,9 +95077,18 @@ components:
           - likes
           minViewsToEarn: 0
           budgetCents: 0
+        joinApproval: auto
+        sampleProductIds:
+        - sampleProductIds
+        - sampleProductIds
+        - sampleProductIds
+        - sampleProductIds
+        - sampleProductIds
         name: name
+        sampleContentDueDays: 206
         startsAt: 2000-01-23T04:56:07.000+00:00
         endsAt: 2000-01-23T04:56:07.000+00:00
+        landingUrl: https://openapi-generator.tech
       minProperties: 1
       properties:
         name:
@@ -93030,6 +95150,55 @@ components:
           allOf:
           - $ref: "#/components/schemas/CreatorCampaignBranding"
           nullable: true
+        landingUrl:
+          description: The page creator tracking links open. Required unless `attribution`
+            is `code`.
+          format: uri
+          maxLength: 2000
+          nullable: true
+          type: string
+        codeDiscountPercent:
+          description: What each creator's discount code takes off an order. Required
+            unless `attribution` is `link`.
+          maximum: 100
+          minimum: 1
+          nullable: true
+          type: integer
+        joinApproval:
+          description: manual holds creators who join through the open link as `pending`
+            until you approve them. Personal invites are never held.
+          enum:
+          - auto
+          - manual
+          type: string
+        requireDraftApproval:
+          description: "Creators upload a draft for review before publishing, and\
+            \ each submitted post must name an approved draft."
+          type: boolean
+        storeAccountId:
+          description: |
+            A connected Shopify or WooCommerce store account. On `commission` and smart `retainer` economics its orders pay commission: required there, and fixed once such a campaign leaves draft.
+
+            On any campaign creators can ask for free samples of its products (`sampleProductIds`). Changing it without `sampleProductIds` clears the sample products; null removes the store and the products.
+          nullable: true
+          type: string
+        sampleProductIds:
+          description: "Product ids in the store that creators can ask a free sample\
+            \ of. Each is read from the store and saved as `sampleProducts`; an unknown\
+            \ product answers 404 `product_not_found`. Needs a store, otherwise 400\
+            \ `missing_required_field` (`param: storeAccountId`)."
+          items:
+            maxLength: 64
+            minLength: 1
+            type: string
+          maxItems: 20
+          type: array
+        sampleContentDueDays:
+          description: Days after a sample is approved before a creator with no post
+            since shows as owing content.
+          maximum: 365
+          minimum: 1
+          type: integer
     CampaignParticipantBalances:
       description: "USD cents in each state. accruing: earned on posts not yet approved.\
         \ owed: approved and on hold. payable: past the hold, ready to pay. settling:\
@@ -93061,6 +95230,7 @@ components:
     CampaignParticipant:
       example:
         creator:
+          avatarUrl: avatarUrl
           displayName: displayName
           id: id
           email: email
@@ -93093,13 +95263,13 @@ components:
           username: username
         status: invited
         submissionCounts:
-          approved: 1
-          pending_review: 7
-          expired: 5
-          rejected: 4
+          approved: 4
+          pending_review: 1
+          expired: 9
+          rejected: 5
           withdrawn: 9
-          received: 1
-          tracking: 6
+          received: 6
+          tracking: 7
       properties:
         id:
           type: string
@@ -93110,9 +95280,11 @@ components:
         status:
           enum:
           - invited
+          - pending
           - active
           - suspended
           - removed
+          - denied
           type: string
         joinedAt:
           format: date-time
@@ -93213,7 +95385,9 @@ components:
         viewsPaid: 2
         releasedCents: 1
         updatedAt: 2000-01-23T04:56:07.000+00:00
+        draftId: draftId
         creator:
+          avatarUrl: avatarUrl
           displayName: displayName
           id: id
         approvedCents: 3
@@ -93233,6 +95407,7 @@ components:
           id: id
           endsAt: 2000-01-23T04:56:07.000+00:00
           status: status
+        hasSparkCode: true
         platformPostId: platformPostId
         status: received
         engagementsLatest: 5
@@ -93248,6 +95423,10 @@ components:
         accountId:
           description: The creator account the post was published from.
           type: string
+        hasSparkCode:
+          description: "The creator pasted a TikTok Spark code for this post, so it\
+            \ can launch as a Spark Ad. The code itself is never returned."
+          type: boolean
         platform:
           enum:
           - tiktok
@@ -93361,6 +95540,11 @@ components:
           items:
             $ref: "#/components/schemas/CampaignSubmissionFlag"
           type: array
+        draftId:
+          description: "The approved draft this post publishes, on a campaign with\
+            \ `requireDraftApproval`."
+          nullable: true
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -93368,7 +95552,7 @@ components:
           format: date-time
           type: string
         creator:
-          $ref: "#/components/schemas/WebhookPayloadCampaignSubmission_creator"
+          $ref: "#/components/schemas/CreatorCampaignAdResults_submissions_inner_creator"
         authenticity:
           $ref: "#/components/schemas/CampaignSubmission_authenticity"
         earnedCents:
@@ -93398,6 +95582,7 @@ components:
       - createdAt
       - creator
       - creatorId
+      - draftId
       - earnedCents
       - engagementsLatest
       - externalPostId
@@ -93475,7 +95660,9 @@ components:
         viewsPaid: 2
         releasedCents: 1
         updatedAt: 2000-01-23T04:56:07.000+00:00
+        draftId: draftId
         creator:
+          avatarUrl: avatarUrl
           displayName: displayName
           id: id
         approvedCents: 3
@@ -93508,9 +95695,362 @@ components:
           id: id
           endsAt: 2000-01-23T04:56:07.000+00:00
           status: status
+        hasSparkCode: true
         platformPostId: platformPostId
         status: received
         engagementsLatest: 5
+    CreatorCampaignSampleProduct:
+      description: "A product creators can ask a free sample of, as it was in the\
+        \ store when it was picked."
+      example:
+        productId: productId
+        imageUrl: imageUrl
+        variants:
+        - id: id
+          title: title
+        - id: id
+          title: title
+        title: title
+      properties:
+        productId:
+          type: string
+        title:
+          type: string
+        imageUrl:
+          nullable: true
+          type: string
+        variants:
+          description: The options a creator picks from. Empty for a product with
+            a single variant.
+          items:
+            $ref: "#/components/schemas/CreatorCampaignSampleProduct_variants_inner"
+          type: array
+      required:
+      - imageUrl
+      - productId
+      - title
+      - variants
+    CampaignDraftCounts:
+      description: Drafts by the status of their latest version.
+      example:
+        approved: 3
+        submitted: 6
+        revision_requested: 6
+        rejected: 1
+      properties:
+        submitted:
+          type: integer
+        approved:
+          type: integer
+        revision_requested:
+          type: integer
+        rejected:
+          type: integer
+      required:
+      - approved
+      - rejected
+      - revision_requested
+      - submitted
+    CampaignSampleCounts:
+      description: Sample requests by status.
+      example:
+        approved: 6
+        shipped: 6
+        declined: 5
+        pending: 2
+      properties:
+        pending:
+          type: integer
+        approved:
+          type: integer
+        shipped:
+          type: integer
+        declined:
+          type: integer
+      required:
+      - approved
+      - declined
+      - pending
+      - shipped
+    CampaignDraft:
+      description: "One version of a creator's content, uploaded for review before\
+        \ it is published. A revision is a new version in the same `chainId` with\
+        \ `version` + 1 and `revisionOf` set to the version it answers."
+      example:
+        creator:
+          avatarUrl: avatarUrl
+          displayName: displayName
+          id: id
+        comments:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          atMs: 6
+          id: id
+          body: body
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          atMs: 6
+          id: id
+          body: body
+        mediaUrl: https://openapi-generator.tech
+        campaignId: campaignId
+        reviewedAt: 2000-01-23T04:56:07.000+00:00
+        caption: caption
+        mediaType: video
+        version: 1
+        participantId: participantId
+        reviewNote: reviewNote
+        submissionId: submissionId
+        revisionOf: revisionOf
+        chainId: chainId
+        id: id
+        submittedAt: 2000-01-23T04:56:07.000+00:00
+        status: submitted
+      properties:
+        id:
+          type: string
+        campaignId:
+          type: string
+        participantId:
+          type: string
+        creator:
+          $ref: "#/components/schemas/CreatorCampaignAdResults_submissions_inner_creator"
+        chainId:
+          description: The id of the first version of the chain.
+          type: string
+        version:
+          minimum: 1
+          type: integer
+        revisionOf:
+          description: The version this one answers; null on version 1.
+          nullable: true
+          type: string
+        mediaUrl:
+          format: uri
+          type: string
+        mediaType:
+          enum:
+          - video
+          - image
+          type: string
+        caption:
+          type: string
+        status:
+          description: "submitted: waits for review. approved: the creator may publish\
+            \ it. revision_requested: the creator should upload a new version. rejected:\
+            \ final."
+          enum:
+          - submitted
+          - approved
+          - revision_requested
+          - rejected
+          type: string
+        reviewNote:
+          description: "The note sent with a revision request, or the rejection reason."
+          nullable: true
+          type: string
+        reviewedAt:
+          format: date-time
+          nullable: true
+          type: string
+        submittedAt:
+          format: date-time
+          type: string
+        comments:
+          description: "Review comments on this version, in video order."
+          items:
+            $ref: "#/components/schemas/CampaignDraft_comments_inner"
+          type: array
+        submissionId:
+          description: "The live post submitted for this draft, once the creator published\
+            \ it."
+          nullable: true
+          type: string
+      required:
+      - campaignId
+      - caption
+      - chainId
+      - comments
+      - creator
+      - id
+      - mediaType
+      - mediaUrl
+      - participantId
+      - reviewNote
+      - reviewedAt
+      - revisionOf
+      - status
+      - submissionId
+      - submittedAt
+      - version
+    CampaignSampleShippingAddress:
+      example:
+        country: country
+        city: city
+        phone: phone
+        postalCode: postalCode
+        name: name
+        region: region
+        line2: line2
+        line1: line1
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+        line1:
+          maxLength: 300
+          minLength: 1
+          type: string
+        line2:
+          maxLength: 300
+          type: string
+        city:
+          maxLength: 200
+          minLength: 1
+          type: string
+        region:
+          maxLength: 200
+          type: string
+        postalCode:
+          maxLength: 32
+          minLength: 1
+          type: string
+        country:
+          description: ISO 3166-1 alpha-2 country code.
+          maxLength: 2
+          minLength: 2
+          type: string
+        phone:
+          maxLength: 40
+          type: string
+      required:
+      - city
+      - country
+      - line1
+      - name
+      - postalCode
+    CampaignSample:
+      description: A free product sample a creator asked for.
+      example:
+        variantTitle: variantTitle
+        note: note
+        creator:
+          avatarUrl: avatarUrl
+          displayName: displayName
+          id: id
+        storeAccountId: storeAccountId
+        productId: productId
+        trackingUrl: trackingUrl
+        campaignId: campaignId
+        approvedAt: 2000-01-23T04:56:07.000+00:00
+        contentOwed: true
+        participantId: participantId
+        productTitle: productTitle
+        discountCode: discountCode
+        requestedAt: 2000-01-23T04:56:07.000+00:00
+        contentDueAt: 2000-01-23T04:56:07.000+00:00
+        shippedAt: 2000-01-23T04:56:07.000+00:00
+        shippingAddress:
+          country: country
+          city: city
+          phone: phone
+          postalCode: postalCode
+          name: name
+          region: region
+          line2: line2
+          line1: line1
+        id: id
+        variantId: variantId
+        declineReason: declineReason
+        status: pending
+      properties:
+        id:
+          type: string
+        campaignId:
+          type: string
+        participantId:
+          type: string
+        creator:
+          $ref: "#/components/schemas/CreatorCampaignAdResults_submissions_inner_creator"
+        storeAccountId:
+          description: The store the sample comes from.
+          type: string
+        productId:
+          type: string
+        variantId:
+          nullable: true
+          type: string
+        productTitle:
+          type: string
+        variantTitle:
+          nullable: true
+          type: string
+        shippingAddress:
+          $ref: "#/components/schemas/CampaignSampleShippingAddress"
+        note:
+          description: The creator's note.
+          nullable: true
+          type: string
+        status:
+          description: "pending: waits for review. approved: a discount code was created.\
+            \ shipped: you recorded that you sent it. declined: final for this request."
+          enum:
+          - pending
+          - approved
+          - shipped
+          - declined
+          type: string
+        declineReason:
+          nullable: true
+          type: string
+        discountCode:
+          description: "The 100%-off, single-use code for the product, set on approval."
+          nullable: true
+          type: string
+        trackingUrl:
+          nullable: true
+          type: string
+        approvedAt:
+          format: date-time
+          nullable: true
+          type: string
+        shippedAt:
+          format: date-time
+          nullable: true
+          type: string
+        requestedAt:
+          format: date-time
+          type: string
+        contentDueAt:
+          description: "When a post is due: the approval plus the campaign's `sampleContentDueDays`.\
+            \ Null unless approved or shipped."
+          format: date-time
+          nullable: true
+          type: string
+        contentOwed:
+          description: True past `contentDueAt` when the creator submitted no post
+            since the approval.
+          type: boolean
+      required:
+      - approvedAt
+      - campaignId
+      - contentDueAt
+      - contentOwed
+      - creator
+      - declineReason
+      - discountCode
+      - id
+      - note
+      - participantId
+      - productId
+      - productTitle
+      - requestedAt
+      - shippedAt
+      - shippingAddress
+      - status
+      - storeAccountId
+      - trackingUrl
+      - variantId
+      - variantTitle
     CampaignLedgerEntry:
       example:
         kind: accrual
@@ -93716,13 +96256,13 @@ components:
     CampaignReport:
       example:
         submissions:
-          approved: 1
-          pending_review: 7
-          expired: 5
-          rejected: 4
+          approved: 4
+          pending_review: 1
+          expired: 9
+          rejected: 5
           withdrawn: 9
-          received: 1
-          tracking: 6
+          received: 6
+          tracking: 7
         spend:
           consumedCents: 6
           settledCents: 1
@@ -129714,11 +132254,18 @@ components:
           maxLength: 2048
           minLength: 1
           type: string
+        draftId:
+          description: "The approved draft this post publishes. Required when the\
+            \ campaign has `requireDraftApproval`: it must be one of the creator's\
+            \ own drafts, `approved`, and not used by another post yet (each draft\
+            \ backs one post only)."
+          type: string
       required:
       - url
     submitCreatorPost_201_response:
       example:
         submission:
+          draftId: draftId
           publishedAt: 2000-01-23T04:56:07.000+00:00
           flags:
           - unreachable
@@ -129733,6 +132280,7 @@ components:
           engagements: 6
           id: id
           submittedAt: 2000-01-23T04:56:07.000+00:00
+          hasSparkCode: true
           views: 0
           status: received
       properties:
@@ -129740,6 +132288,149 @@ components:
           $ref: "#/components/schemas/CreatorPortalSubmission"
       required:
       - submission
+    presignCreatorDraftUpload_request:
+      properties:
+        filename:
+          maxLength: 255
+          minLength: 1
+          type: string
+        contentType:
+          enum:
+          - video/mp4
+          - video/quicktime
+          - video/webm
+          - image/jpeg
+          - image/png
+          - image/webp
+          type: string
+        size:
+          description: File size in bytes. Optional; over 500 MB answers 400.
+          maximum: 524288000
+          minimum: 0
+          type: integer
+      required:
+      - contentType
+      - filename
+    presignCreatorDraftUpload_200_response:
+      example:
+        expiresIn: 0
+        uploadUrl: https://openapi-generator.tech
+        publicUrl: https://openapi-generator.tech
+        key: key
+      properties:
+        uploadUrl:
+          description: Presigned URL to `PUT` the file to.
+          format: uri
+          type: string
+        publicUrl:
+          description: Where the file is served once uploaded. Pass it as `mediaUrl`.
+          format: uri
+          type: string
+        key:
+          type: string
+        expiresIn:
+          description: Seconds until `uploadUrl` expires.
+          type: integer
+      required:
+      - expiresIn
+      - key
+      - publicUrl
+      - uploadUrl
+    submitCreatorDraft_request:
+      properties:
+        mediaUrl:
+          description: The `publicUrl` of the uploaded file.
+          format: uri
+          maxLength: 2048
+          type: string
+        mediaType:
+          enum:
+          - video
+          - image
+          type: string
+        caption:
+          default: ""
+          maxLength: 5000
+          type: string
+        revisionOf:
+          description: The version marked `revision_requested` that this draft answers.
+          type: string
+      required:
+      - mediaType
+      - mediaUrl
+    submitCreatorDraft_201_response:
+      example:
+        draft:
+          comments:
+          - atMs: 6
+            body: body
+          - atMs: 6
+            body: body
+          mediaUrl: https://openapi-generator.tech
+          reviewedAt: 2000-01-23T04:56:07.000+00:00
+          caption: caption
+          mediaType: video
+          version: 1
+          reviewNote: reviewNote
+          submissionId: submissionId
+          revisionOf: revisionOf
+          chainId: chainId
+          id: id
+          submittedAt: 2000-01-23T04:56:07.000+00:00
+          status: submitted
+      properties:
+        draft:
+          $ref: "#/components/schemas/CreatorPortalDraft"
+      required:
+      - draft
+    requestCreatorSample_request:
+      properties:
+        productId:
+          description: A `productId` from the campaign's `sampleProducts`.
+          maxLength: 64
+          minLength: 1
+          type: string
+        variantId:
+          description: Required when the product lists `variants`.
+          maxLength: 64
+          minLength: 1
+          type: string
+        shippingAddress:
+          $ref: "#/components/schemas/CampaignSampleShippingAddress"
+        note:
+          maxLength: 1000
+          type: string
+      required:
+      - productId
+      - shippingAddress
+    requestCreatorSample_201_response:
+      example:
+        sample:
+          productTitle: productTitle
+          variantTitle: variantTitle
+          note: note
+          productId: productId
+          discountCode: discountCode
+          trackingUrl: trackingUrl
+          requestedAt: 2000-01-23T04:56:07.000+00:00
+          contentDueAt: 2000-01-23T04:56:07.000+00:00
+          shippingAddress:
+            country: country
+            city: city
+            phone: phone
+            postalCode: postalCode
+            name: name
+            region: region
+            line2: line2
+            line1: line1
+          id: id
+          declineReason: declineReason
+          status: pending
+      properties:
+        sample:
+          $ref: "#/components/schemas/CreatorPortalSample"
+      required:
+      - sample
     removeCreatorAccount_200_response:
       example:
         removed: true
@@ -129749,6 +132440,38 @@ components:
           type: boolean
       required:
       - removed
+    setCreatorSparkCode_request:
+      properties:
+        sparkAuthCode:
+          description: "The Spark code, or null to clear it."
+          maxLength: 500
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - sparkAuthCode
+    setCreatorSparkCode_200_response_submission:
+      example:
+        id: id
+        hasSparkCode: true
+      properties:
+        id:
+          type: string
+        hasSparkCode:
+          type: boolean
+      required:
+      - hasSparkCode
+      - id
+    setCreatorSparkCode_200_response:
+      example:
+        submission:
+          id: id
+          hasSparkCode: true
+      properties:
+        submission:
+          $ref: "#/components/schemas/setCreatorSparkCode_200_response_submission"
+      required:
+      - submission
     getCreatorPayouts_200_response:
       example:
         payouts:
@@ -143739,6 +146462,17 @@ components:
             - balance.low
             - balance.empty
             - balance.charged
+            - campaign_participant.pending
+            - campaign_participant.approved
+            - campaign_participant.denied
+            - campaign_draft.submitted
+            - campaign_draft.approved
+            - campaign_draft.revision_requested
+            - campaign_draft.rejected
+            - campaign_sample.requested
+            - campaign_sample.approved
+            - campaign_sample.shipped
+            - campaign_sample.declined
             type: string
           minItems: 1
           type: array
@@ -143975,6 +146709,17 @@ components:
             - balance.low
             - balance.empty
             - balance.charged
+            - campaign_participant.pending
+            - campaign_participant.approved
+            - campaign_participant.denied
+            - campaign_draft.submitted
+            - campaign_draft.approved
+            - campaign_draft.revision_requested
+            - campaign_draft.rejected
+            - campaign_sample.requested
+            - campaign_sample.approved
+            - campaign_sample.shipped
+            - campaign_sample.declined
             type: string
           minItems: 1
           type: array
@@ -144202,8 +146947,19 @@ components:
           - campaign_payout.settled
           - campaign_payout.failed
           - campaign_participant.joined
+          - campaign_participant.pending
+          - campaign_participant.approved
+          - campaign_participant.denied
           - campaign_participant.suspended
           - campaign_participant.removed
+          - campaign_draft.submitted
+          - campaign_draft.approved
+          - campaign_draft.revision_requested
+          - campaign_draft.rejected
+          - campaign_sample.requested
+          - campaign_sample.approved
+          - campaign_sample.shipped
+          - campaign_sample.declined
           - call.received
           - call.ended
           - call.failed
@@ -201603,6 +204359,7 @@ components:
           branding: ""
           type: cpm
           holdDays: 6
+          pendingParticipantCount: 9
           platforms:
           - tiktok
           - tiktok
@@ -201615,7 +204372,25 @@ components:
             maxParticipants: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           hasOpenInvite: true
+          codeDiscountPercent: 8
           maxPostAgeMinutes: 1
+          sampleProducts:
+          - productId: productId
+            imageUrl: imageUrl
+            variants:
+            - id: id
+              title: title
+            - id: id
+              title: title
+            title: title
+          - productId: productId
+            imageUrl: imageUrl
+            variants:
+            - id: id
+              title: title
+            - id: id
+              title: title
+            title: title
           participantCount: 1
           startsAt: 2000-01-23T04:56:07.000+00:00
           currency: usd
@@ -201623,19 +204398,32 @@ components:
           budgetExhaustedAt: 2000-01-23T04:56:07.000+00:00
           closedAt: 2000-01-23T04:56:07.000+00:00
           endsAt: 2000-01-23T04:56:07.000+00:00
+          landingUrl: landingUrl
           updatedAt: 2000-01-23T04:56:07.000+00:00
           contentRules: contentRules
           brandName: brandName
+          storeAccountId: storeAccountId
           kind: clipping
+          sampleCounts:
+            approved: 6
+            shipped: 6
+            declined: 5
+            pending: 2
           userId: userId
+          requireDraftApproval: true
           submissionCounts:
-            approved: 1
-            pending_review: 7
-            expired: 5
-            rejected: 4
+            approved: 4
+            pending_review: 1
+            expired: 9
+            rejected: 5
             withdrawn: 9
-            received: 1
-            tracking: 6
+            received: 6
+            tracking: 7
+          draftCounts:
+            approved: 3
+            submitted: 6
+            revision_requested: 6
+            rejected: 1
           economics:
             maxPayoutPerClipCents: 1
             metric: views
@@ -201647,17 +204435,20 @@ components:
             - likes
             minViewsToEarn: 0
             budgetCents: 0
+          joinApproval: auto
           profileId: profileId
           payableScannedAt: 2000-01-23T04:56:07.000+00:00
           consumedCents: 1
           name: name
-          payableCents: 9
+          sampleContentDueDays: 45
+          payableCents: 6
           status: draft
         - trackingDays: 0
           activatedAt: 2000-01-23T04:56:07.000+00:00
           branding: ""
           type: cpm
           holdDays: 6
+          pendingParticipantCount: 9
           platforms:
           - tiktok
           - tiktok
@@ -201670,7 +204461,25 @@ components:
             maxParticipants: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           hasOpenInvite: true
+          codeDiscountPercent: 8
           maxPostAgeMinutes: 1
+          sampleProducts:
+          - productId: productId
+            imageUrl: imageUrl
+            variants:
+            - id: id
+              title: title
+            - id: id
+              title: title
+            title: title
+          - productId: productId
+            imageUrl: imageUrl
+            variants:
+            - id: id
+              title: title
+            - id: id
+              title: title
+            title: title
           participantCount: 1
           startsAt: 2000-01-23T04:56:07.000+00:00
           currency: usd
@@ -201678,19 +204487,32 @@ components:
           budgetExhaustedAt: 2000-01-23T04:56:07.000+00:00
           closedAt: 2000-01-23T04:56:07.000+00:00
           endsAt: 2000-01-23T04:56:07.000+00:00
+          landingUrl: landingUrl
           updatedAt: 2000-01-23T04:56:07.000+00:00
           contentRules: contentRules
           brandName: brandName
+          storeAccountId: storeAccountId
           kind: clipping
+          sampleCounts:
+            approved: 6
+            shipped: 6
+            declined: 5
+            pending: 2
           userId: userId
+          requireDraftApproval: true
           submissionCounts:
-            approved: 1
-            pending_review: 7
-            expired: 5
-            rejected: 4
+            approved: 4
+            pending_review: 1
+            expired: 9
+            rejected: 5
             withdrawn: 9
-            received: 1
-            tracking: 6
+            received: 6
+            tracking: 7
+          draftCounts:
+            approved: 3
+            submitted: 6
+            revision_requested: 6
+            rejected: 1
           economics:
             maxPayoutPerClipCents: 1
             metric: views
@@ -201702,11 +204524,13 @@ components:
             - likes
             minViewsToEarn: 0
             budgetCents: 0
+          joinApproval: auto
           profileId: profileId
           payableScannedAt: 2000-01-23T04:56:07.000+00:00
           consumedCents: 1
           name: name
-          payableCents: 9
+          sampleContentDueDays: 45
+          payableCents: 6
           status: draft
       properties:
         campaigns:
@@ -201726,6 +204550,7 @@ components:
           branding: ""
           type: cpm
           holdDays: 6
+          pendingParticipantCount: 9
           platforms:
           - tiktok
           - tiktok
@@ -201738,7 +204563,25 @@ components:
             maxParticipants: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           hasOpenInvite: true
+          codeDiscountPercent: 8
           maxPostAgeMinutes: 1
+          sampleProducts:
+          - productId: productId
+            imageUrl: imageUrl
+            variants:
+            - id: id
+              title: title
+            - id: id
+              title: title
+            title: title
+          - productId: productId
+            imageUrl: imageUrl
+            variants:
+            - id: id
+              title: title
+            - id: id
+              title: title
+            title: title
           participantCount: 1
           startsAt: 2000-01-23T04:56:07.000+00:00
           currency: usd
@@ -201746,19 +204589,32 @@ components:
           budgetExhaustedAt: 2000-01-23T04:56:07.000+00:00
           closedAt: 2000-01-23T04:56:07.000+00:00
           endsAt: 2000-01-23T04:56:07.000+00:00
+          landingUrl: landingUrl
           updatedAt: 2000-01-23T04:56:07.000+00:00
           contentRules: contentRules
           brandName: brandName
+          storeAccountId: storeAccountId
           kind: clipping
+          sampleCounts:
+            approved: 6
+            shipped: 6
+            declined: 5
+            pending: 2
           userId: userId
+          requireDraftApproval: true
           submissionCounts:
-            approved: 1
-            pending_review: 7
-            expired: 5
-            rejected: 4
+            approved: 4
+            pending_review: 1
+            expired: 9
+            rejected: 5
             withdrawn: 9
-            received: 1
-            tracking: 6
+            received: 6
+            tracking: 7
+          draftCounts:
+            approved: 3
+            submitted: 6
+            revision_requested: 6
+            rejected: 1
           economics:
             maxPayoutPerClipCents: 1
             metric: views
@@ -201770,11 +204626,13 @@ components:
             - likes
             minViewsToEarn: 0
             budgetCents: 0
+          joinApproval: auto
           profileId: profileId
           payableScannedAt: 2000-01-23T04:56:07.000+00:00
           consumedCents: 1
           name: name
-          payableCents: 9
+          sampleContentDueDays: 45
+          payableCents: 6
           status: draft
       properties:
         campaign:
@@ -201794,6 +204652,7 @@ components:
         total: 2
         participants:
         - creator:
+            avatarUrl: avatarUrl
             displayName: displayName
             id: id
             email: email
@@ -201826,14 +204685,15 @@ components:
             username: username
           status: invited
           submissionCounts:
-            approved: 1
-            pending_review: 7
-            expired: 5
-            rejected: 4
+            approved: 4
+            pending_review: 1
+            expired: 9
+            rejected: 5
             withdrawn: 9
-            received: 1
-            tracking: 6
+            received: 6
+            tracking: 7
         - creator:
+            avatarUrl: avatarUrl
             displayName: displayName
             id: id
             email: email
@@ -201866,13 +204726,13 @@ components:
             username: username
           status: invited
           submissionCounts:
-            approved: 1
-            pending_review: 7
-            expired: 5
-            rejected: 4
+            approved: 4
+            pending_review: 1
+            expired: 9
+            rejected: 5
             withdrawn: 9
-            received: 1
-            tracking: 6
+            received: 6
+            tracking: 7
       properties:
         participants:
           items:
@@ -201899,6 +204759,7 @@ components:
         inviteUrl: https://openapi-generator.tech
         participant:
           creator:
+            avatarUrl: avatarUrl
             displayName: displayName
             id: id
             email: email
@@ -201931,13 +204792,13 @@ components:
             username: username
           status: invited
           submissionCounts:
-            approved: 1
-            pending_review: 7
-            expired: 5
-            rejected: 4
+            approved: 4
+            pending_review: 1
+            expired: 9
+            rejected: 5
             withdrawn: 9
-            received: 1
-            tracking: 6
+            received: 6
+            tracking: 7
       properties:
         participant:
           $ref: "#/components/schemas/CampaignParticipant"
@@ -201952,6 +204813,7 @@ components:
       example:
         participant:
           creator:
+            avatarUrl: avatarUrl
             displayName: displayName
             id: id
             email: email
@@ -201984,13 +204846,13 @@ components:
             username: username
           status: invited
           submissionCounts:
-            approved: 1
-            pending_review: 7
-            expired: 5
-            rejected: 4
+            approved: 4
+            pending_review: 1
+            expired: 9
+            rejected: 5
             withdrawn: 9
-            received: 1
-            tracking: 6
+            received: 6
+            tracking: 7
       properties:
         participant:
           $ref: "#/components/schemas/CampaignParticipant"
@@ -202025,6 +204887,7 @@ components:
           moved: 0
         participant:
           creator:
+            avatarUrl: avatarUrl
             displayName: displayName
             id: id
             email: email
@@ -202057,13 +204920,13 @@ components:
             username: username
           status: invited
           submissionCounts:
-            approved: 1
-            pending_review: 7
-            expired: 5
-            rejected: 4
+            approved: 4
+            pending_review: 1
+            expired: 9
+            rejected: 5
             withdrawn: 9
-            received: 1
-            tracking: 6
+            received: 6
+            tracking: 7
       properties:
         participant:
           $ref: "#/components/schemas/CampaignParticipant"
@@ -202381,7 +205244,9 @@ components:
           viewsPaid: 2
           releasedCents: 1
           updatedAt: 2000-01-23T04:56:07.000+00:00
+          draftId: draftId
           creator:
+            avatarUrl: avatarUrl
             displayName: displayName
             id: id
           approvedCents: 3
@@ -202401,6 +205266,7 @@ components:
             id: id
             endsAt: 2000-01-23T04:56:07.000+00:00
             status: status
+          hasSparkCode: true
           platformPostId: platformPostId
           status: received
           engagementsLatest: 5
@@ -202440,7 +205306,9 @@ components:
           viewsPaid: 2
           releasedCents: 1
           updatedAt: 2000-01-23T04:56:07.000+00:00
+          draftId: draftId
           creator:
+            avatarUrl: avatarUrl
             displayName: displayName
             id: id
           approvedCents: 3
@@ -202460,6 +205328,7 @@ components:
             id: id
             endsAt: 2000-01-23T04:56:07.000+00:00
             status: status
+          hasSparkCode: true
           platformPostId: platformPostId
           status: received
           engagementsLatest: 5
@@ -202512,7 +205381,9 @@ components:
           viewsPaid: 2
           releasedCents: 1
           updatedAt: 2000-01-23T04:56:07.000+00:00
+          draftId: draftId
           creator:
+            avatarUrl: avatarUrl
             displayName: displayName
             id: id
           approvedCents: 3
@@ -202545,6 +205416,7 @@ components:
             id: id
             endsAt: 2000-01-23T04:56:07.000+00:00
             status: status
+          hasSparkCode: true
           platformPostId: platformPostId
           status: received
           engagementsLatest: 5
@@ -202592,7 +205464,9 @@ components:
           viewsPaid: 2
           releasedCents: 1
           updatedAt: 2000-01-23T04:56:07.000+00:00
+          draftId: draftId
           creator:
+            avatarUrl: avatarUrl
             displayName: displayName
             id: id
           approvedCents: 3
@@ -202612,6 +205486,7 @@ components:
             id: id
             endsAt: 2000-01-23T04:56:07.000+00:00
             status: status
+          hasSparkCode: true
           platformPostId: platformPostId
           status: received
           engagementsLatest: 5
@@ -202628,6 +205503,370 @@ components:
           type: string
       required:
       - reason
+    listCampaignDrafts_200_response:
+      example:
+        total: 1
+        drafts:
+        - creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          comments:
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            atMs: 6
+            id: id
+            body: body
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            atMs: 6
+            id: id
+            body: body
+          mediaUrl: https://openapi-generator.tech
+          campaignId: campaignId
+          reviewedAt: 2000-01-23T04:56:07.000+00:00
+          caption: caption
+          mediaType: video
+          version: 1
+          participantId: participantId
+          reviewNote: reviewNote
+          submissionId: submissionId
+          revisionOf: revisionOf
+          chainId: chainId
+          id: id
+          submittedAt: 2000-01-23T04:56:07.000+00:00
+          status: submitted
+        - creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          comments:
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            atMs: 6
+            id: id
+            body: body
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            atMs: 6
+            id: id
+            body: body
+          mediaUrl: https://openapi-generator.tech
+          campaignId: campaignId
+          reviewedAt: 2000-01-23T04:56:07.000+00:00
+          caption: caption
+          mediaType: video
+          version: 1
+          participantId: participantId
+          reviewNote: reviewNote
+          submissionId: submissionId
+          revisionOf: revisionOf
+          chainId: chainId
+          id: id
+          submittedAt: 2000-01-23T04:56:07.000+00:00
+          status: submitted
+      properties:
+        drafts:
+          items:
+            $ref: "#/components/schemas/CampaignDraft"
+          type: array
+        total:
+          type: integer
+      required:
+      - drafts
+      - total
+    getCampaignDraft_200_response:
+      example:
+        versions:
+        - creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          comments:
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            atMs: 6
+            id: id
+            body: body
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            atMs: 6
+            id: id
+            body: body
+          mediaUrl: https://openapi-generator.tech
+          campaignId: campaignId
+          reviewedAt: 2000-01-23T04:56:07.000+00:00
+          caption: caption
+          mediaType: video
+          version: 1
+          participantId: participantId
+          reviewNote: reviewNote
+          submissionId: submissionId
+          revisionOf: revisionOf
+          chainId: chainId
+          id: id
+          submittedAt: 2000-01-23T04:56:07.000+00:00
+          status: submitted
+        - creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          comments:
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            atMs: 6
+            id: id
+            body: body
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            atMs: 6
+            id: id
+            body: body
+          mediaUrl: https://openapi-generator.tech
+          campaignId: campaignId
+          reviewedAt: 2000-01-23T04:56:07.000+00:00
+          caption: caption
+          mediaType: video
+          version: 1
+          participantId: participantId
+          reviewNote: reviewNote
+          submissionId: submissionId
+          revisionOf: revisionOf
+          chainId: chainId
+          id: id
+          submittedAt: 2000-01-23T04:56:07.000+00:00
+          status: submitted
+        draft:
+          creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          comments:
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            atMs: 6
+            id: id
+            body: body
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            atMs: 6
+            id: id
+            body: body
+          mediaUrl: https://openapi-generator.tech
+          campaignId: campaignId
+          reviewedAt: 2000-01-23T04:56:07.000+00:00
+          caption: caption
+          mediaType: video
+          version: 1
+          participantId: participantId
+          reviewNote: reviewNote
+          submissionId: submissionId
+          revisionOf: revisionOf
+          chainId: chainId
+          id: id
+          submittedAt: 2000-01-23T04:56:07.000+00:00
+          status: submitted
+      properties:
+        draft:
+          $ref: "#/components/schemas/CampaignDraft"
+        versions:
+          description: "Every version of the chain, newest first."
+          items:
+            $ref: "#/components/schemas/CampaignDraft"
+          type: array
+      required:
+      - draft
+      - versions
+    approveCampaignDraft_200_response:
+      example:
+        draft:
+          creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          comments:
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            atMs: 6
+            id: id
+            body: body
+          - createdAt: 2000-01-23T04:56:07.000+00:00
+            atMs: 6
+            id: id
+            body: body
+          mediaUrl: https://openapi-generator.tech
+          campaignId: campaignId
+          reviewedAt: 2000-01-23T04:56:07.000+00:00
+          caption: caption
+          mediaType: video
+          version: 1
+          participantId: participantId
+          reviewNote: reviewNote
+          submissionId: submissionId
+          revisionOf: revisionOf
+          chainId: chainId
+          id: id
+          submittedAt: 2000-01-23T04:56:07.000+00:00
+          status: submitted
+      properties:
+        draft:
+          $ref: "#/components/schemas/CampaignDraft"
+      required:
+      - draft
+    requestCampaignDraftRevision_request_comments_inner:
+      properties:
+        atMs:
+          description: Milliseconds into the video the comment is about. Null or omitted
+            for a general comment.
+          minimum: 0
+          nullable: true
+          type: integer
+        body:
+          maxLength: 2000
+          minLength: 1
+          type: string
+      required:
+      - body
+    requestCampaignDraftRevision_request:
+      properties:
+        note:
+          description: What to change overall. Stored as `reviewNote`.
+          maxLength: 5000
+          type: string
+        comments:
+          default: []
+          items:
+            $ref: "#/components/schemas/requestCampaignDraftRevision_request_comments_inner"
+          maxItems: 50
+          type: array
+    rejectCampaignDraft_request:
+      properties:
+        reason:
+          maxLength: 2000
+          minLength: 1
+          type: string
+      required:
+      - reason
+    listCampaignSamples_200_response:
+      example:
+        total: 0
+        samples:
+        - variantTitle: variantTitle
+          note: note
+          creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          storeAccountId: storeAccountId
+          productId: productId
+          trackingUrl: trackingUrl
+          campaignId: campaignId
+          approvedAt: 2000-01-23T04:56:07.000+00:00
+          contentOwed: true
+          participantId: participantId
+          productTitle: productTitle
+          discountCode: discountCode
+          requestedAt: 2000-01-23T04:56:07.000+00:00
+          contentDueAt: 2000-01-23T04:56:07.000+00:00
+          shippedAt: 2000-01-23T04:56:07.000+00:00
+          shippingAddress:
+            country: country
+            city: city
+            phone: phone
+            postalCode: postalCode
+            name: name
+            region: region
+            line2: line2
+            line1: line1
+          id: id
+          variantId: variantId
+          declineReason: declineReason
+          status: pending
+        - variantTitle: variantTitle
+          note: note
+          creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          storeAccountId: storeAccountId
+          productId: productId
+          trackingUrl: trackingUrl
+          campaignId: campaignId
+          approvedAt: 2000-01-23T04:56:07.000+00:00
+          contentOwed: true
+          participantId: participantId
+          productTitle: productTitle
+          discountCode: discountCode
+          requestedAt: 2000-01-23T04:56:07.000+00:00
+          contentDueAt: 2000-01-23T04:56:07.000+00:00
+          shippedAt: 2000-01-23T04:56:07.000+00:00
+          shippingAddress:
+            country: country
+            city: city
+            phone: phone
+            postalCode: postalCode
+            name: name
+            region: region
+            line2: line2
+            line1: line1
+          id: id
+          variantId: variantId
+          declineReason: declineReason
+          status: pending
+      properties:
+        samples:
+          items:
+            $ref: "#/components/schemas/CampaignSample"
+          type: array
+        total:
+          type: integer
+      required:
+      - samples
+      - total
+    approveCampaignSample_200_response:
+      example:
+        sample:
+          variantTitle: variantTitle
+          note: note
+          creator:
+            avatarUrl: avatarUrl
+            displayName: displayName
+            id: id
+          storeAccountId: storeAccountId
+          productId: productId
+          trackingUrl: trackingUrl
+          campaignId: campaignId
+          approvedAt: 2000-01-23T04:56:07.000+00:00
+          contentOwed: true
+          participantId: participantId
+          productTitle: productTitle
+          discountCode: discountCode
+          requestedAt: 2000-01-23T04:56:07.000+00:00
+          contentDueAt: 2000-01-23T04:56:07.000+00:00
+          shippedAt: 2000-01-23T04:56:07.000+00:00
+          shippingAddress:
+            country: country
+            city: city
+            phone: phone
+            postalCode: postalCode
+            name: name
+            region: region
+            line2: line2
+            line1: line1
+          id: id
+          variantId: variantId
+          declineReason: declineReason
+          status: pending
+      properties:
+        sample:
+          $ref: "#/components/schemas/CampaignSample"
+      required:
+      - sample
+    declineCampaignSample_request:
+      properties:
+        reason:
+          description: Shown to the creator.
+          maxLength: 1000
+          minLength: 1
+          type: string
+      required:
+      - reason
+    shipCampaignSample_request:
+      properties:
+        trackingUrl:
+          description: "The carrier tracking link, shown to the creator."
+          format: uri
+          maxLength: 2048
+          type: string
     listCampaignPayables_200_response:
       example:
         payables:
@@ -202757,17 +205996,210 @@ components:
       required:
       - entries
       - pagination
+    listCampaignOrders_200_response_orders_inner:
+      example:
+        salesCents: 0
+        refundedCents: 6
+        orderNumber: orderNumber
+        creatorName: creatorName
+        creatorAvatarUrl: creatorAvatarUrl
+        approvedAt: 2000-01-23T04:56:07.000+00:00
+        participantId: participantId
+        discountCode: discountCode
+        currency: currency
+        id: id
+        matchedBy: code
+        platformOrderId: platformOrderId
+        commissionCents: 1
+        orderCreatedAt: 2000-01-23T04:56:07.000+00:00
+        status: pending
+      properties:
+        id:
+          type: string
+        platformOrderId:
+          description: "The order id on the store, as in `GET /v1/commerce/orders/{orderId}`."
+          type: string
+        orderNumber:
+          type: string
+        status:
+          enum:
+          - pending
+          - matched
+          - unmatched
+          type: string
+        participantId:
+          nullable: true
+          type: string
+        creatorName:
+          nullable: true
+          type: string
+        creatorAvatarUrl:
+          description: The creator's profile picture. Same source as a participant's
+            `creator.avatarUrl`.
+          nullable: true
+          type: string
+        matchedBy:
+          enum:
+          - code
+          - link
+          - null
+          nullable: true
+          type: string
+        discountCode:
+          nullable: true
+          type: string
+        currency:
+          type: string
+        salesCents:
+          type: integer
+        refundedCents:
+          type: integer
+        commissionCents:
+          description: "Commission the order holds now, net of refunds."
+          type: integer
+        orderCreatedAt:
+          format: date-time
+          type: string
+        approvedAt:
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - approvedAt
+      - commissionCents
+      - creatorAvatarUrl
+      - creatorName
+      - currency
+      - discountCode
+      - id
+      - matchedBy
+      - orderCreatedAt
+      - orderNumber
+      - participantId
+      - platformOrderId
+      - refundedCents
+      - salesCents
+      - status
+    listCampaignOrders_200_response_referrals_inner:
+      example:
+        participantId: participantId
+        code: code
+        trackingUrl: trackingUrl
+        creatorName: creatorName
+        creatorAvatarUrl: creatorAvatarUrl
+        codeFailureReason: codeFailureReason
+        codeStatus: ready
+      properties:
+        participantId:
+          type: string
+        creatorName:
+          type: string
+        creatorAvatarUrl:
+          description: The creator's profile picture. Same source as a participant's
+            `creator.avatarUrl`.
+          nullable: true
+          type: string
+        code:
+          nullable: true
+          type: string
+        codeStatus:
+          description: "Null until the code is first created, when the creator opens\
+            \ their page."
+          enum:
+          - ready
+          - failed
+          - null
+          nullable: true
+          type: string
+        codeFailureReason:
+          nullable: true
+          type: string
+        trackingUrl:
+          nullable: true
+          type: string
+      required:
+      - code
+      - codeFailureReason
+      - codeStatus
+      - creatorAvatarUrl
+      - creatorName
+      - participantId
+      - trackingUrl
+    listCampaignOrders_200_response:
+      example:
+        total: 5
+        referrals:
+        - participantId: participantId
+          code: code
+          trackingUrl: trackingUrl
+          creatorName: creatorName
+          creatorAvatarUrl: creatorAvatarUrl
+          codeFailureReason: codeFailureReason
+          codeStatus: ready
+        - participantId: participantId
+          code: code
+          trackingUrl: trackingUrl
+          creatorName: creatorName
+          creatorAvatarUrl: creatorAvatarUrl
+          codeFailureReason: codeFailureReason
+          codeStatus: ready
+        orders:
+        - salesCents: 0
+          refundedCents: 6
+          orderNumber: orderNumber
+          creatorName: creatorName
+          creatorAvatarUrl: creatorAvatarUrl
+          approvedAt: 2000-01-23T04:56:07.000+00:00
+          participantId: participantId
+          discountCode: discountCode
+          currency: currency
+          id: id
+          matchedBy: code
+          platformOrderId: platformOrderId
+          commissionCents: 1
+          orderCreatedAt: 2000-01-23T04:56:07.000+00:00
+          status: pending
+        - salesCents: 0
+          refundedCents: 6
+          orderNumber: orderNumber
+          creatorName: creatorName
+          creatorAvatarUrl: creatorAvatarUrl
+          approvedAt: 2000-01-23T04:56:07.000+00:00
+          participantId: participantId
+          discountCode: discountCode
+          currency: currency
+          id: id
+          matchedBy: code
+          platformOrderId: platformOrderId
+          commissionCents: 1
+          orderCreatedAt: 2000-01-23T04:56:07.000+00:00
+          status: pending
+      properties:
+        orders:
+          items:
+            $ref: "#/components/schemas/listCampaignOrders_200_response_orders_inner"
+          type: array
+        total:
+          type: integer
+        referrals:
+          items:
+            $ref: "#/components/schemas/listCampaignOrders_200_response_referrals_inner"
+          type: array
+      required:
+      - orders
+      - referrals
+      - total
     getCampaignReport_200_response:
       example:
         report:
           submissions:
-            approved: 1
-            pending_review: 7
-            expired: 5
-            rejected: 4
+            approved: 4
+            pending_review: 1
+            expired: 9
+            rejected: 5
             withdrawn: 9
-            received: 1
-            tracking: 6
+            received: 6
+            tracking: 7
           spend:
             consumedCents: 6
             settledCents: 1
@@ -202804,6 +206236,273 @@ components:
           $ref: "#/components/schemas/CampaignReport"
       required:
       - report
+    launchCampaignAds_request:
+      additionalProperties: {}
+      properties:
+        submissionIds:
+          description: Approved submissions to run as ads.
+          items:
+            type: string
+          maxItems: 50
+          minItems: 1
+          type: array
+        network:
+          description: Meta runs Instagram and Facebook posts; TikTok runs TikTok
+            posts.
+          enum:
+          - meta
+          - tiktok
+          type: string
+        accountId:
+          description: "The brand's connected ads account (Facebook or TikTok) the\
+            \ ads run from, as in `/v1/accounts`."
+          type: string
+        adAccountId:
+          description: Platform ad account ID.
+          minLength: 1
+          type: string
+        adSetId:
+          description: Existing Meta ad set the ads go into. Required when `network`
+            is `meta`.
+          minLength: 1
+          type: string
+        existingCampaignId:
+          description: Existing TikTok campaign that gets one ad group per post. Required
+            when `network` is `tiktok`.
+          minLength: 1
+          type: string
+        dailyBudget:
+          description: "Daily budget of each TikTok ad group, in the ad account currency.\
+            \ Required when `network` is `tiktok`."
+          type: number
+        identity:
+          description: Whose handle the ad runs under. TikTok takes `creator` only.
+          enum:
+          - brand
+          - creator
+          type: string
+        body:
+          description: Primary text of brand ads. Defaults to the post caption.
+          maxLength: 2200
+          minLength: 1
+          type: string
+        headline:
+          maxLength: 255
+          minLength: 1
+          type: string
+        callToAction:
+          description: "Call to action, as in `POST /v1/ads/create`."
+          minLength: 1
+          type: string
+        linkUrl:
+          description: Destination URL (http or https).
+          format: uri
+          type: string
+        status:
+          default: PAUSED
+          description: Ads launch paused unless set to `ACTIVE`.
+          enum:
+          - ACTIVE
+          - PAUSED
+          type: string
+      required:
+      - accountId
+      - adAccountId
+      - identity
+      - network
+      - submissionIds
+    launchCampaignAds_200_response_results_inner:
+      example:
+        submissionId: submissionId
+        adId: adId
+        identity: brand
+        error: error
+        outcome: launched
+      properties:
+        submissionId:
+          type: string
+        outcome:
+          description: "`in_progress`: another launch of this post into the same placement\
+            \ is still running."
+          enum:
+          - launched
+          - already_launched
+          - in_progress
+          - failed
+          type: string
+        identity:
+          enum:
+          - brand
+          - creator
+          type: string
+        adId:
+          description: "Zernio ad id, as in /v1/ads."
+          nullable: true
+          type: string
+        error:
+          description: Why the post did not launch.
+          nullable: true
+          type: string
+      required:
+      - adId
+      - error
+      - identity
+      - outcome
+      - submissionId
+    launchCampaignAds_200_response:
+      example:
+        results:
+        - submissionId: submissionId
+          adId: adId
+          identity: brand
+          error: error
+          outcome: launched
+        - submissionId: submissionId
+          adId: adId
+          identity: brand
+          error: error
+          outcome: launched
+      properties:
+        results:
+          items:
+            $ref: "#/components/schemas/launchCampaignAds_200_response_results_inner"
+          type: array
+      required:
+      - results
+    getCampaignAdResults_200_response:
+      example:
+        adResults:
+          capabilities:
+            partnershipAds: true
+          submissions:
+          - participantId: participantId
+            ads:
+            - name: name
+              id: id
+              platformAdId: platformAdId
+              status: status
+            - name: name
+              id: id
+              platformAdId: platformAdId
+              status: status
+            creator:
+              avatarUrl: avatarUrl
+              displayName: displayName
+              id: id
+            submissionId: submissionId
+            results:
+              ctr: 1.1730742509559433
+              cpaCents: 7
+              purchases: 1
+              clicks: 1
+              roas: 6.84685269835264
+              spendCents: 4
+              impressions: 7
+              purchaseValueCents: 1
+            platform: platform
+            launches:
+            - placementKey: placementKey
+              adId: adId
+              identity: brand
+              error: error
+              status: launching
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - placementKey: placementKey
+              adId: adId
+              identity: brand
+              error: error
+              status: launching
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            platformPostId: platformPostId
+          - participantId: participantId
+            ads:
+            - name: name
+              id: id
+              platformAdId: platformAdId
+              status: status
+            - name: name
+              id: id
+              platformAdId: platformAdId
+              status: status
+            creator:
+              avatarUrl: avatarUrl
+              displayName: displayName
+              id: id
+            submissionId: submissionId
+            results:
+              ctr: 1.1730742509559433
+              cpaCents: 7
+              purchases: 1
+              clicks: 1
+              roas: 6.84685269835264
+              spendCents: 4
+              impressions: 7
+              purchaseValueCents: 1
+            platform: platform
+            launches:
+            - placementKey: placementKey
+              adId: adId
+              identity: brand
+              error: error
+              status: launching
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - placementKey: placementKey
+              adId: adId
+              identity: brand
+              error: error
+              status: launching
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            platformPostId: platformPostId
+          creators:
+          - ctr: 6.438423552598547
+            creator:
+              avatarUrl: avatarUrl
+              displayName: displayName
+              id: id
+            cpaCents: 9
+            purchases: 9
+            impressions: 5
+            purchaseValueCents: 6
+            posts: 6
+            participantId: participantId
+            ads: 1
+            clicks: 9
+            rank: 1
+            roas: 8.762042012749001
+            spendCents: 4
+          - ctr: 6.438423552598547
+            creator:
+              avatarUrl: avatarUrl
+              displayName: displayName
+              id: id
+            cpaCents: 9
+            purchases: 9
+            impressions: 5
+            purchaseValueCents: 6
+            posts: 6
+            participantId: participantId
+            ads: 1
+            clicks: 9
+            rank: 1
+            roas: 8.762042012749001
+            spendCents: 4
+          currency: currency
+          totals:
+            ctr: 9.301444243932576
+            ads: 2
+            cpaCents: 7
+            purchases: 5
+            clicks: 1
+            roas: 2.3021358869347655
+            spendCents: 0
+            impressions: 6
+            purchaseValueCents: 5
+            posts: 3
+      properties:
+        adResults:
+          $ref: "#/components/schemas/CreatorCampaignAdResults"
+      required:
+      - adResults
     onWhatsAppAutomaticEvent_request_customData:
       description: Purchase events may carry the detected amount.
       properties:
@@ -203845,6 +207544,50 @@ components:
       - poolCents
       - type
       title: Pool
+    Retainer:
+      properties:
+        type:
+          enum:
+          - retainer
+          type: string
+        mode:
+          enum:
+          - standard
+          - smart
+          type: string
+        amountCents:
+          type: integer
+        period:
+          enum:
+          - week
+          - month
+          - once
+          type: string
+        requiredApprovedPosts:
+          type: integer
+        commission:
+          allOf:
+          - $ref: "#/components/schemas/CreatorCampaignCommissionTerms"
+          nullable: true
+      required:
+      - amountCents
+      - commission
+      - mode
+      - period
+      - requiredApprovedPosts
+      - type
+      title: Retainer
+    CreatorPortalEconomics_oneOf:
+      allOf:
+      - properties:
+          type:
+            enum:
+            - commission
+            type: string
+        required:
+        - type
+        title: Commission
+      - $ref: "#/components/schemas/CreatorCampaignCommissionTerms"
     CreatorPortalPayoutSetup_transfers_inner:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -203869,9 +207612,11 @@ components:
         status:
           enum:
           - invited
+          - pending
           - active
           - suspended
           - removed
+          - denied
           type: string
         joinedAt:
           format: date-time
@@ -203935,6 +207680,99 @@ components:
       - paidCents
       - payableCents
       - payingCents
+    CreatorPortalParticipant_retainer:
+      nullable: true
+      properties:
+        periodStart:
+          format: date-time
+          type: string
+        periodEnd:
+          description: Null on a one-time retainer of a campaign without an end date.
+          format: date-time
+          nullable: true
+          type: string
+        approvedPosts:
+          type: integer
+        requiredApprovedPosts:
+          type: integer
+        commissionCents:
+          description: Commission earned in the period; a smart retainer tops it up
+            to its amount.
+          type: integer
+      required:
+      - approvedPosts
+      - commissionCents
+      - periodEnd
+      - periodStart
+      - requiredApprovedPosts
+    CreatorPortalReferral_orders_inner:
+      properties:
+        id:
+          type: string
+        number:
+          type: string
+        placedAt:
+          format: date-time
+          type: string
+        matchedBy:
+          enum:
+          - code
+          - link
+          type: string
+        salesCents:
+          type: integer
+        refundedCents:
+          type: integer
+        commissionCents:
+          type: integer
+        status:
+          enum:
+          - in_refund_window
+          - confirmed
+          - refunded
+          type: string
+        confirmsAt:
+          description: "Order date plus the campaign hold, when the commission is\
+            \ approved."
+          format: date-time
+          type: string
+      required:
+      - commissionCents
+      - confirmsAt
+      - id
+      - matchedBy
+      - number
+      - placedAt
+      - refundedCents
+      - salesCents
+      - status
+    CreatorPortalReferral_totals:
+      properties:
+        orders:
+          type: integer
+        salesCents:
+          description: Sales net of refunds.
+          type: integer
+        commissionCents:
+          type: integer
+      required:
+      - commissionCents
+      - orders
+      - salesCents
+    CreatorPortalDraft_comments_inner:
+      example:
+        atMs: 6
+        body: body
+      properties:
+        atMs:
+          description: Milliseconds into the video; null for a general comment.
+          nullable: true
+          type: integer
+        body:
+          type: string
+      required:
+      - atMs
+      - body
     TreasuryTopup_payoutBatch:
       description: The payout batch this payment paid for; null for a balance top-up.
       example:
@@ -207097,9 +210935,11 @@ components:
         status:
           enum:
           - invited
+          - pending
           - active
           - suspended
           - removed
+          - denied
           type: string
         joinedAt:
           format: date-time
@@ -207109,8 +210949,367 @@ components:
       - id
       - joinedAt
       - status
+    WebhookPayloadCampaignDraft_draft:
+      example:
+        reviewNote: reviewNote
+        comments:
+        - atMs: 6
+          body: body
+        - atMs: 6
+          body: body
+        revisionOf: revisionOf
+        mediaUrl: mediaUrl
+        chainId: chainId
+        caption: caption
+        mediaType: video
+        id: id
+        version: 1
+        status: submitted
+      properties:
+        id:
+          type: string
+        chainId:
+          type: string
+        version:
+          minimum: 1
+          type: integer
+        revisionOf:
+          nullable: true
+          type: string
+        status:
+          enum:
+          - submitted
+          - approved
+          - revision_requested
+          - rejected
+          type: string
+        mediaUrl:
+          type: string
+        mediaType:
+          enum:
+          - video
+          - image
+          type: string
+        caption:
+          type: string
+        reviewNote:
+          description: The revision note or the rejection reason.
+          nullable: true
+          type: string
+        comments:
+          items:
+            $ref: "#/components/schemas/CreatorPortalDraft_comments_inner"
+          type: array
+      required:
+      - caption
+      - chainId
+      - comments
+      - id
+      - mediaType
+      - mediaUrl
+      - reviewNote
+      - revisionOf
+      - status
+      - version
+    WebhookPayloadCampaignSample_sample:
+      example:
+        productTitle: productTitle
+        variantTitle: variantTitle
+        note: note
+        storeAccountId: storeAccountId
+        productId: productId
+        discountCode: discountCode
+        trackingUrl: trackingUrl
+        shippingAddress:
+          country: country
+          city: city
+          phone: phone
+          postalCode: postalCode
+          name: name
+          region: region
+          line2: line2
+          line1: line1
+        id: id
+        variantId: variantId
+        declineReason: declineReason
+        status: pending
+      properties:
+        id:
+          type: string
+        storeAccountId:
+          type: string
+        productId:
+          type: string
+        variantId:
+          nullable: true
+          type: string
+        productTitle:
+          type: string
+        variantTitle:
+          nullable: true
+          type: string
+        status:
+          enum:
+          - pending
+          - approved
+          - shipped
+          - declined
+          type: string
+        shippingAddress:
+          $ref: "#/components/schemas/CampaignSampleShippingAddress"
+        note:
+          nullable: true
+          type: string
+        discountCode:
+          description: "The 100%-off, single-use code, set from approval on."
+          nullable: true
+          type: string
+        trackingUrl:
+          nullable: true
+          type: string
+        declineReason:
+          nullable: true
+          type: string
+      required:
+      - declineReason
+      - discountCode
+      - id
+      - note
+      - productId
+      - productTitle
+      - shippingAddress
+      - status
+      - storeAccountId
+      - trackingUrl
+      - variantId
+      - variantTitle
+    CreatorCampaignAdResults_totals:
+      allOf:
+      - $ref: "#/components/schemas/CreatorCampaignAdResultFigures"
+      - properties:
+          posts:
+            description: Posts with at least one ad.
+            type: integer
+          ads:
+            type: integer
+        required:
+        - ads
+        - posts
+      example:
+        ctr: 9.301444243932576
+        ads: 2
+        cpaCents: 7
+        purchases: 5
+        clicks: 1
+        roas: 2.3021358869347655
+        spendCents: 0
+        impressions: 6
+        purchaseValueCents: 5
+        posts: 3
+    CreatorCampaignAdResults_submissions_inner_creator:
+      example:
+        avatarUrl: avatarUrl
+        displayName: displayName
+        id: id
+      properties:
+        id:
+          type: string
+        displayName:
+          type: string
+        avatarUrl:
+          description: "The creator's profile picture: their connected account with\
+            \ the most followers, else their Gravatar. Null when neither exists. Platform\
+            \ picture URLs can expire, so show initials when the image fails to load."
+          nullable: true
+          type: string
+      required:
+      - avatarUrl
+      - displayName
+      - id
+    CreatorCampaignAdResults_submissions_inner_ads_inner:
+      example:
+        name: name
+        id: id
+        platformAdId: platformAdId
+        status: status
+      properties:
+        id:
+          description: "Zernio ad id, as in /v1/ads."
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        platformAdId:
+          nullable: true
+          type: string
+      required:
+      - id
+      - name
+      - platformAdId
+      - status
+    CreatorCampaignAdResults_submissions_inner_launches_inner:
+      example:
+        placementKey: placementKey
+        adId: adId
+        identity: brand
+        error: error
+        status: launching
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        placementKey:
+          description: Ad account and ad set or campaign the post was launched into.
+          type: string
+        identity:
+          enum:
+          - brand
+          - creator
+          type: string
+        status:
+          enum:
+          - launching
+          - launched
+          - failed
+          type: string
+        adId:
+          nullable: true
+          type: string
+        error:
+          nullable: true
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - adId
+      - error
+      - identity
+      - placementKey
+      - status
+      - updatedAt
+    CreatorCampaignAdResults_submissions_inner:
+      example:
+        participantId: participantId
+        ads:
+        - name: name
+          id: id
+          platformAdId: platformAdId
+          status: status
+        - name: name
+          id: id
+          platformAdId: platformAdId
+          status: status
+        creator:
+          avatarUrl: avatarUrl
+          displayName: displayName
+          id: id
+        submissionId: submissionId
+        results:
+          ctr: 1.1730742509559433
+          cpaCents: 7
+          purchases: 1
+          clicks: 1
+          roas: 6.84685269835264
+          spendCents: 4
+          impressions: 7
+          purchaseValueCents: 1
+        platform: platform
+        launches:
+        - placementKey: placementKey
+          adId: adId
+          identity: brand
+          error: error
+          status: launching
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - placementKey: placementKey
+          adId: adId
+          identity: brand
+          error: error
+          status: launching
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        platformPostId: platformPostId
+      properties:
+        submissionId:
+          type: string
+        participantId:
+          type: string
+        creator:
+          $ref: "#/components/schemas/CreatorCampaignAdResults_submissions_inner_creator"
+        platform:
+          type: string
+        platformPostId:
+          type: string
+        ads:
+          items:
+            $ref: "#/components/schemas/CreatorCampaignAdResults_submissions_inner_ads_inner"
+          type: array
+        launches:
+          items:
+            $ref: "#/components/schemas/CreatorCampaignAdResults_submissions_inner_launches_inner"
+          type: array
+        results:
+          $ref: "#/components/schemas/CreatorCampaignAdResultFigures"
+      required:
+      - ads
+      - creator
+      - launches
+      - participantId
+      - platform
+      - platformPostId
+      - results
+      - submissionId
+    CreatorCampaignAdResults_creators_inner:
+      allOf:
+      - $ref: "#/components/schemas/CreatorCampaignAdResultFigures"
+      - properties:
+          rank:
+            minimum: 1
+            type: integer
+          participantId:
+            type: string
+          creator:
+            $ref: "#/components/schemas/CreatorCampaignAdResults_submissions_inner_creator"
+          posts:
+            type: integer
+          ads:
+            type: integer
+        required:
+        - ads
+        - creator
+        - participantId
+        - posts
+        - rank
+      example:
+        ctr: 6.438423552598547
+        creator:
+          avatarUrl: avatarUrl
+          displayName: displayName
+          id: id
+        cpaCents: 9
+        purchases: 9
+        impressions: 5
+        purchaseValueCents: 6
+        posts: 6
+        participantId: participantId
+        ads: 1
+        clicks: 9
+        rank: 1
+        roas: 8.762042012749001
+        spendCents: 4
+    CreatorCampaignAdResults_capabilities:
+      example:
+        partnershipAds: true
+      properties:
+        partnershipAds:
+          description: Whether creator identity on Instagram (Partnership Ads) is
+            available to the caller. It is a limited release while Meta reviews the
+            permission it needs.
+          type: boolean
+      required:
+      - partnershipAds
     CampaignParticipant_creator:
       example:
+        avatarUrl: avatarUrl
         displayName: displayName
         id: id
         email: email
@@ -207122,7 +211321,14 @@ components:
         email:
           nullable: true
           type: string
+        avatarUrl:
+          description: "The creator's profile picture: their connected account with\
+            \ the most followers, else their Gravatar. Null when neither exists. Platform\
+            \ picture URLs can expire, so show initials when the image fails to load."
+          nullable: true
+          type: string
       required:
+      - avatarUrl
       - displayName
       - email
       - id
@@ -207290,6 +211496,41 @@ components:
       - shares
       - syncedAt
       - views
+    CreatorCampaignSampleProduct_variants_inner:
+      example:
+        id: id
+        title: title
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+      required:
+      - id
+      - title
+    CampaignDraft_comments_inner:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        atMs: 6
+        id: id
+        body: body
+      properties:
+        id:
+          type: string
+        atMs:
+          description: Milliseconds into the video; null for a general comment.
+          nullable: true
+          type: integer
+        body:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+      required:
+      - atMs
+      - body
+      - createdAt
+      - id
     CampaignReport_spend:
       example:
         consumedCents: 6
@@ -221516,8 +225757,19 @@ x-documentation:
     - `campaign_payout.settled` - A payout to a participant was recorded; `payout.settlement` holds the amount and the external reference
     - `campaign_payout.failed` - A treasury payout to a participant did not reach the creator: Stripe refused it (`returned`), it could not be confirmed within 24 hours (`stale`), or it was reversed after it was sent (`reversed`). The amount is payable again, minus any amount a rejection made while the payout was in flight claws back to the campaign budget; `payout.failure` holds the transfer and the reason
     - `campaign_participant.joined` - A creator joined a campaign, by opening their invite link or joining from the open link. Fires once per participant
+    - `campaign_participant.pending` - A creator joined through the open link of a campaign with `joinApproval: manual` and waits for the operator to approve or deny them
+    - `campaign_participant.approved` - An operator approved a pending creator, who is now active. Fires instead of `campaign_participant.joined` for that creator
+    - `campaign_participant.denied` - An operator denied a pending creator
     - `campaign_participant.suspended` - An operator suspended a participant; they can no longer connect accounts or submit posts to the campaign
     - `campaign_participant.removed` - An operator removed a participant from the campaign
+    - `campaign_draft.submitted` - A creator uploaded a draft, or a new version of one, for review on a campaign with `requireDraftApproval`
+    - `campaign_draft.approved` - An operator approved a draft version; the creator may publish it and submit the post for it
+    - `campaign_draft.revision_requested` - An operator asked for changes on a draft version; `draft.reviewNote` and `draft.comments` (with `atMs` timestamps) say what to change
+    - `campaign_draft.rejected` - An operator rejected a draft version for good; `draft.reviewNote` is the reason
+    - `campaign_sample.requested` - A creator asked for a free sample of one of the campaign's products
+    - `campaign_sample.approved` - An operator approved a sample request; `sample.discountCode` is the 100%-off, single-use code for the product in the campaign's store
+    - `campaign_sample.shipped` - An operator marked an approved sample as shipped, with an optional `sample.trackingUrl`
+    - `campaign_sample.declined` - An operator declined a sample request; `sample.declineReason` is the reason
     - `balance.low` - Balance billing: the balance dropped below the low-balance alert set on auto top-up (`alertBelowCents`), once per drop, unless an auto top-up is already covering it
     - `balance.empty` - Balance billing: the balance reached $0 and no auto top-up covered it, so pay-per-use calls answer 402 until it is funded. Carries that 402 `code` and `fundingUrl`
     - `balance.charged` - Balance billing: funds were added to the balance by card, by you or by auto top-up (`topup.trigger`), with the amount, the VAT and the card charge
@@ -221544,6 +225796,8 @@ x-documentation:
     | `creator_campaign.*` | none; `campaign.id` is the campaign |
     | `campaign_payout.*` | none; `campaign.id`, `participant.id` and `creator.id` identify the payout |
     | `campaign_participant.*` | none; `campaign.id`, `participant.id` and `creator.id` identify the participant |
+    | `campaign_draft.*` | none; `draft.id` is the draft version and `campaign.id`, `participant.id`, `creator.id` identify the rest |
+    | `campaign_sample.*` | none; `sample.id` is the sample request, `sample.storeAccountId` the store, and `campaign.id`, `participant.id`, `creator.id` identify the rest |
     | `verification.*`, `phone_number.stock_available`, `balance.*`, `api.changelog.published`, `webhook.test`, `contact.*`, `sequence.*`, `workflow.run.*` | none (`sequence.*` and `workflow.run.*` still reach subscriptions scoped to the sending account) |
 
     ## Full Documentation

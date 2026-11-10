@@ -169,6 +169,17 @@ Individual webhook configuration for receiving real-time notifications
 | BALANCE_LOW | &quot;balance.low&quot; |
 | BALANCE_EMPTY | &quot;balance.empty&quot; |
 | BALANCE_CHARGED | &quot;balance.charged&quot; |
+| CAMPAIGN_PARTICIPANT_PENDING | &quot;campaign_participant.pending&quot; |
+| CAMPAIGN_PARTICIPANT_APPROVED | &quot;campaign_participant.approved&quot; |
+| CAMPAIGN_PARTICIPANT_DENIED | &quot;campaign_participant.denied&quot; |
+| CAMPAIGN_DRAFT_SUBMITTED | &quot;campaign_draft.submitted&quot; |
+| CAMPAIGN_DRAFT_APPROVED | &quot;campaign_draft.approved&quot; |
+| CAMPAIGN_DRAFT_REVISION_REQUESTED | &quot;campaign_draft.revision_requested&quot; |
+| CAMPAIGN_DRAFT_REJECTED | &quot;campaign_draft.rejected&quot; |
+| CAMPAIGN_SAMPLE_REQUESTED | &quot;campaign_sample.requested&quot; |
+| CAMPAIGN_SAMPLE_APPROVED | &quot;campaign_sample.approved&quot; |
+| CAMPAIGN_SAMPLE_SHIPPED | &quot;campaign_sample.shipped&quot; |
+| CAMPAIGN_SAMPLE_DECLINED | &quot;campaign_sample.declined&quot; |
 
 
 

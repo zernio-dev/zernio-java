@@ -14,14 +14,22 @@ All URIs are relative to *https://zernio.com/api*
 | [**getCreatorPortalWithHttpInfo**](CreatorPortalApi.md#getCreatorPortalWithHttpInfo) | **GET** /public/creator-campaigns/{token} | Read a creator invite or participant page |
 | [**joinCreatorCampaign**](CreatorPortalApi.md#joinCreatorCampaign) | **POST** /public/creator-campaigns/{token} | Join a campaign |
 | [**joinCreatorCampaignWithHttpInfo**](CreatorPortalApi.md#joinCreatorCampaignWithHttpInfo) | **POST** /public/creator-campaigns/{token} | Join a campaign |
+| [**presignCreatorDraftUpload**](CreatorPortalApi.md#presignCreatorDraftUpload) | **POST** /public/creator-campaigns/{token}/drafts/upload | Get an upload URL for a draft |
+| [**presignCreatorDraftUploadWithHttpInfo**](CreatorPortalApi.md#presignCreatorDraftUploadWithHttpInfo) | **POST** /public/creator-campaigns/{token}/drafts/upload | Get an upload URL for a draft |
 | [**recoverCreatorPortalLinks**](CreatorPortalApi.md#recoverCreatorPortalLinks) | **POST** /public/creator-campaigns/recover-link | Email a creator their campaign links |
 | [**recoverCreatorPortalLinksWithHttpInfo**](CreatorPortalApi.md#recoverCreatorPortalLinksWithHttpInfo) | **POST** /public/creator-campaigns/recover-link | Email a creator their campaign links |
 | [**removeCreatorAccount**](CreatorPortalApi.md#removeCreatorAccount) | **DELETE** /public/creator-campaigns/{token}/accounts/{accountId} | Remove a connected account |
 | [**removeCreatorAccountWithHttpInfo**](CreatorPortalApi.md#removeCreatorAccountWithHttpInfo) | **DELETE** /public/creator-campaigns/{token}/accounts/{accountId} | Remove a connected account |
+| [**requestCreatorSample**](CreatorPortalApi.md#requestCreatorSample) | **POST** /public/creator-campaigns/{token}/samples | Request a product sample |
+| [**requestCreatorSampleWithHttpInfo**](CreatorPortalApi.md#requestCreatorSampleWithHttpInfo) | **POST** /public/creator-campaigns/{token}/samples | Request a product sample |
+| [**setCreatorSparkCode**](CreatorPortalApi.md#setCreatorSparkCode) | **PUT** /public/creator-campaigns/{token}/submissions/{submissionId}/spark-code | Set a post&#39;s Spark code |
+| [**setCreatorSparkCodeWithHttpInfo**](CreatorPortalApi.md#setCreatorSparkCodeWithHttpInfo) | **PUT** /public/creator-campaigns/{token}/submissions/{submissionId}/spark-code | Set a post&#39;s Spark code |
 | [**startCreatorConnect**](CreatorPortalApi.md#startCreatorConnect) | **POST** /public/creator-campaigns/{token}/connect | Start connecting a creator account |
 | [**startCreatorConnectWithHttpInfo**](CreatorPortalApi.md#startCreatorConnectWithHttpInfo) | **POST** /public/creator-campaigns/{token}/connect | Start connecting a creator account |
 | [**startCreatorPayouts**](CreatorPortalApi.md#startCreatorPayouts) | **POST** /public/creator-campaigns/{token}/payouts | Start payout onboarding |
 | [**startCreatorPayoutsWithHttpInfo**](CreatorPortalApi.md#startCreatorPayoutsWithHttpInfo) | **POST** /public/creator-campaigns/{token}/payouts | Start payout onboarding |
+| [**submitCreatorDraft**](CreatorPortalApi.md#submitCreatorDraft) | **POST** /public/creator-campaigns/{token}/drafts | Submit a draft for review |
+| [**submitCreatorDraftWithHttpInfo**](CreatorPortalApi.md#submitCreatorDraftWithHttpInfo) | **POST** /public/creator-campaigns/{token}/drafts | Submit a draft for review |
 | [**submitCreatorPost**](CreatorPortalApi.md#submitCreatorPost) | **POST** /public/creator-campaigns/{token}/submissions | Submit a post |
 | [**submitCreatorPostWithHttpInfo**](CreatorPortalApi.md#submitCreatorPostWithHttpInfo) | **POST** /public/creator-campaigns/{token}/submissions | Submit a post |
 
@@ -461,7 +469,7 @@ No authorization required
 
 Read a creator invite or participant page
 
-What a creator sees behind a campaign link, with no API key. Never cached.  &#x60;token&#x60; is one of:  - An open invite token (from &#x60;POST /v1/creator-campaigns/{campaignId}/invite-link&#x60;): answers &#x60;kind: invite&#x60; with the campaign only. - A participant token (from an invite or a join): answers &#x60;kind: participant&#x60; with the creator&#39;s connected accounts, latest 100 submissions, earnings and payout setup.  Reading a participant page also re-checks the creator&#39;s connected accounts. 
+What a creator sees behind a campaign link, with no API key. Never cached.  &#x60;token&#x60; is one of:  - An open invite token (from &#x60;POST /v1/creator-campaigns/{campaignId}/invite-link&#x60;): answers &#x60;kind: invite&#x60; with the campaign only. - A participant token (from an invite or a join): answers &#x60;kind: participant&#x60; with the creator&#39;s connected accounts, latest 100 submissions, draft versions, sample requests, earnings and payout setup. A creator held for approval reads it with &#x60;participant.status&#x60; &#x60;pending&#x60; (or &#x60;denied&#x60; once turned away).  Reading a participant page also re-checks the creator&#39;s connected accounts. 
 
 ### Example
 
@@ -527,7 +535,7 @@ No authorization required
 
 Read a creator invite or participant page
 
-What a creator sees behind a campaign link, with no API key. Never cached.  &#x60;token&#x60; is one of:  - An open invite token (from &#x60;POST /v1/creator-campaigns/{campaignId}/invite-link&#x60;): answers &#x60;kind: invite&#x60; with the campaign only. - A participant token (from an invite or a join): answers &#x60;kind: participant&#x60; with the creator&#39;s connected accounts, latest 100 submissions, earnings and payout setup.  Reading a participant page also re-checks the creator&#39;s connected accounts. 
+What a creator sees behind a campaign link, with no API key. Never cached.  &#x60;token&#x60; is one of:  - An open invite token (from &#x60;POST /v1/creator-campaigns/{campaignId}/invite-link&#x60;): answers &#x60;kind: invite&#x60; with the campaign only. - A participant token (from an invite or a join): answers &#x60;kind: participant&#x60; with the creator&#39;s connected accounts, latest 100 submissions, draft versions, sample requests, earnings and payout setup. A creator held for approval reads it with &#x60;participant.status&#x60; &#x60;pending&#x60; (or &#x60;denied&#x60; once turned away).  Reading a participant page also re-checks the creator&#39;s connected accounts. 
 
 ### Example
 
@@ -597,7 +605,7 @@ No authorization required
 
 Join a campaign
 
-Accepts a participant invite, or joins through an open invite link.  - Participant token: the body is ignored and the invite is accepted. - Open invite token: a new participant is created from &#x60;displayName&#x60; (required) and &#x60;email&#x60; (optional), and a fresh participant token comes back. Keep it: it is the creator&#39;s only key to their page.  Open-link joins are limited to about 20 per IP address and 60 per link every 10 minutes. 
+Accepts a participant invite, or joins through an open invite link.  - Participant token: the body is ignored and the invite is accepted. - Open invite token: a new participant is created from &#x60;displayName&#x60; (required) and &#x60;email&#x60; (optional), and a fresh participant token comes back. Keep it: it is the creator&#39;s only key to their page. - On a campaign with &#x60;joinApproval: manual&#x60;, an open-link joiner lands &#x60;pending&#x60; and &#x60;campaign_participant.pending&#x60; fires instead of &#x60;campaign_participant.joined&#x60;. A pending creator holds no place under &#x60;caps.maxParticipants&#x60; (the limit is checked when the operator approves them) and cannot submit posts, drafts or sample requests until approved. Personal invites always get straight in.  Open-link joins are limited to about 20 per IP address and 60 per link every 10 minutes. 
 
 ### Example
 
@@ -658,7 +666,7 @@ No authorization required
 |-------------|-------------|------------------|
 | **201** | Joined. Use &#x60;participantToken&#x60; for every later call. |  -  |
 | **400** | Missing &#x60;displayName&#x60; on an open-link join (\&quot;Add your name to join.\&quot;, &#x60;missing_required_field&#x60;), an invalid field, or the campaign has ended (&#x60;invalid_resource_state&#x60;, \&quot;This campaign has ended.\&quot;). |  -  |
-| **403** | The campaign is not taking new creators (&#x60;feature_not_available&#x60;, \&quot;This campaign is not taking new creators right now. Ask the campaign team.\&quot;), for example because it reached its participant cap. |  -  |
+| **403** | The campaign is not taking new creators (&#x60;feature_not_available&#x60;, \&quot;This campaign is not taking new creators right now. Ask the campaign team.\&quot;), for example because it reached its participant cap. Not returned for the cap on a &#x60;joinApproval: manual&#x60; campaign, where the cap is checked on approval. |  -  |
 | **404** | The token is malformed, unknown or expired. Every case answers the same, so a link can never be probed. |  -  |
 | **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
 
@@ -668,7 +676,7 @@ No authorization required
 
 Join a campaign
 
-Accepts a participant invite, or joins through an open invite link.  - Participant token: the body is ignored and the invite is accepted. - Open invite token: a new participant is created from &#x60;displayName&#x60; (required) and &#x60;email&#x60; (optional), and a fresh participant token comes back. Keep it: it is the creator&#39;s only key to their page.  Open-link joins are limited to about 20 per IP address and 60 per link every 10 minutes. 
+Accepts a participant invite, or joins through an open invite link.  - Participant token: the body is ignored and the invite is accepted. - Open invite token: a new participant is created from &#x60;displayName&#x60; (required) and &#x60;email&#x60; (optional), and a fresh participant token comes back. Keep it: it is the creator&#39;s only key to their page. - On a campaign with &#x60;joinApproval: manual&#x60;, an open-link joiner lands &#x60;pending&#x60; and &#x60;campaign_participant.pending&#x60; fires instead of &#x60;campaign_participant.joined&#x60;. A pending creator holds no place under &#x60;caps.maxParticipants&#x60; (the limit is checked when the operator approves them) and cannot submit posts, drafts or sample requests until approved. Personal invites always get straight in.  Open-link joins are limited to about 20 per IP address and 60 per link every 10 minutes. 
 
 ### Example
 
@@ -732,8 +740,154 @@ No authorization required
 |-------------|-------------|------------------|
 | **201** | Joined. Use &#x60;participantToken&#x60; for every later call. |  -  |
 | **400** | Missing &#x60;displayName&#x60; on an open-link join (\&quot;Add your name to join.\&quot;, &#x60;missing_required_field&#x60;), an invalid field, or the campaign has ended (&#x60;invalid_resource_state&#x60;, \&quot;This campaign has ended.\&quot;). |  -  |
-| **403** | The campaign is not taking new creators (&#x60;feature_not_available&#x60;, \&quot;This campaign is not taking new creators right now. Ask the campaign team.\&quot;), for example because it reached its participant cap. |  -  |
+| **403** | The campaign is not taking new creators (&#x60;feature_not_available&#x60;, \&quot;This campaign is not taking new creators right now. Ask the campaign team.\&quot;), for example because it reached its participant cap. Not returned for the cap on a &#x60;joinApproval: manual&#x60; campaign, where the cap is checked on approval. |  -  |
 | **404** | The token is malformed, unknown or expired. Every case answers the same, so a link can never be probed. |  -  |
+| **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
+
+
+## presignCreatorDraftUpload
+
+> PresignCreatorDraftUpload200Response presignCreatorDraftUpload(token, presignCreatorDraftUploadRequest)
+
+Get an upload URL for a draft
+
+Returns a presigned URL to upload one draft file to, on a campaign with &#x60;requireDraftApproval&#x60;. &#x60;PUT&#x60; the file to &#x60;uploadUrl&#x60; with the same &#x60;Content-Type&#x60;, then pass &#x60;publicUrl&#x60; as &#x60;mediaUrl&#x60; to &#x60;POST /public/creator-campaigns/{token}/drafts&#x60;. The URL expires after &#x60;expiresIn&#x60; seconds.  Accepted files: MP4, MOV or WebM video, JPG, PNG or WebP image, up to 500 MB. About 20 uploads per participant every 10 minutes. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorPortalApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+
+        CreatorPortalApi apiInstance = new CreatorPortalApi(defaultClient);
+        String token = "token_example"; // String | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
+        PresignCreatorDraftUploadRequest presignCreatorDraftUploadRequest = new PresignCreatorDraftUploadRequest(); // PresignCreatorDraftUploadRequest | 
+        try {
+            PresignCreatorDraftUpload200Response result = apiInstance.presignCreatorDraftUpload(token, presignCreatorDraftUploadRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorPortalApi#presignCreatorDraftUpload");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| A participant token or an open invite token. A malformed token answers 404 like an unknown one. | |
+| **presignCreatorDraftUploadRequest** | [**PresignCreatorDraftUploadRequest**](PresignCreatorDraftUploadRequest.md)|  | |
+
+### Return type
+
+[**PresignCreatorDraftUpload200Response**](PresignCreatorDraftUpload200Response.md)
+
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Upload URL. |  -  |
+| **400** | An invalid field: an unsupported &#x60;contentType&#x60; or a &#x60;size&#x60; over 500 MB. |  -  |
+| **404** | The token is malformed, unknown or expired. Every case answers the same, so a link can never be probed. |  -  |
+| **409** | The campaign does not review drafts, is not accepting posts (not started, paused or ended), the invite is not accepted yet, or the creator is pending, denied, suspended or removed (&#x60;invalid_resource_state&#x60;; the message says which). |  -  |
+| **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
+
+## presignCreatorDraftUploadWithHttpInfo
+
+> ApiResponse<PresignCreatorDraftUpload200Response> presignCreatorDraftUpload presignCreatorDraftUploadWithHttpInfo(token, presignCreatorDraftUploadRequest)
+
+Get an upload URL for a draft
+
+Returns a presigned URL to upload one draft file to, on a campaign with &#x60;requireDraftApproval&#x60;. &#x60;PUT&#x60; the file to &#x60;uploadUrl&#x60; with the same &#x60;Content-Type&#x60;, then pass &#x60;publicUrl&#x60; as &#x60;mediaUrl&#x60; to &#x60;POST /public/creator-campaigns/{token}/drafts&#x60;. The URL expires after &#x60;expiresIn&#x60; seconds.  Accepted files: MP4, MOV or WebM video, JPG, PNG or WebP image, up to 500 MB. About 20 uploads per participant every 10 minutes. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorPortalApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+
+        CreatorPortalApi apiInstance = new CreatorPortalApi(defaultClient);
+        String token = "token_example"; // String | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
+        PresignCreatorDraftUploadRequest presignCreatorDraftUploadRequest = new PresignCreatorDraftUploadRequest(); // PresignCreatorDraftUploadRequest | 
+        try {
+            ApiResponse<PresignCreatorDraftUpload200Response> response = apiInstance.presignCreatorDraftUploadWithHttpInfo(token, presignCreatorDraftUploadRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorPortalApi#presignCreatorDraftUpload");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| A participant token or an open invite token. A malformed token answers 404 like an unknown one. | |
+| **presignCreatorDraftUploadRequest** | [**PresignCreatorDraftUploadRequest**](PresignCreatorDraftUploadRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**PresignCreatorDraftUpload200Response**](PresignCreatorDraftUpload200Response.md)>
+
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Upload URL. |  -  |
+| **400** | An invalid field: an unsupported &#x60;contentType&#x60; or a &#x60;size&#x60; over 500 MB. |  -  |
+| **404** | The token is malformed, unknown or expired. Every case answers the same, so a link can never be probed. |  -  |
+| **409** | The campaign does not review drafts, is not accepting posts (not started, paused or ended), the invite is not accepted yet, or the creator is pending, denied, suspended or removed (&#x60;invalid_resource_state&#x60;; the message says which). |  -  |
 | **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
 
 
@@ -1017,6 +1171,300 @@ No authorization required
 | **400** | Invalid request |  -  |
 | **404** | The link is invalid or expired, or the account is not one of the participant&#39;s accounts on the campaign&#39;s platforms (&#x60;resource_not_found&#x60;). |  -  |
 | **409** | A post from the account is still counting views (&#x60;invalid_resource_state&#x60;; the message says how many). |  -  |
+
+
+## requestCreatorSample
+
+> RequestCreatorSample201Response requestCreatorSample(token, requestCreatorSampleRequest)
+
+Request a product sample
+
+Asks for a free sample of one of the campaign&#39;s &#x60;sampleProducts&#x60;, shipped to &#x60;shippingAddress&#x60;, and fires &#x60;campaign_sample.requested&#x60;. The request waits for the campaign team; on approval the creator gets a single-use discount code for the product.  - A product with &#x60;variants&#x60; needs &#x60;variantId&#x60;. - One open request per product: asking again while one is pending, approved or shipped answers 409. A declined product can be asked again.  About 10 requests per participant every 10 minutes. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorPortalApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+
+        CreatorPortalApi apiInstance = new CreatorPortalApi(defaultClient);
+        String token = "token_example"; // String | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
+        RequestCreatorSampleRequest requestCreatorSampleRequest = new RequestCreatorSampleRequest(); // RequestCreatorSampleRequest | 
+        try {
+            RequestCreatorSample201Response result = apiInstance.requestCreatorSample(token, requestCreatorSampleRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorPortalApi#requestCreatorSample");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| A participant token or an open invite token. A malformed token answers 404 like an unknown one. | |
+| **requestCreatorSampleRequest** | [**RequestCreatorSampleRequest**](RequestCreatorSampleRequest.md)|  | |
+
+### Return type
+
+[**RequestCreatorSample201Response**](RequestCreatorSample201Response.md)
+
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Sample requested. |  -  |
+| **400** | An invalid field, a product the campaign does not offer (&#x60;invalid_field_value&#x60;, &#x60;param: productId&#x60;), or a missing or unknown option (&#x60;param: variantId&#x60;, \&quot;Pick one of the options for this product\&quot;). |  -  |
+| **404** | The token is malformed, unknown or expired. Every case answers the same, so a link can never be probed. |  -  |
+| **409** | The campaign offers no samples or is not accepting posts, the creator is not active in it (invite not accepted, pending, denied, suspended or removed), or the creator already has an open request for this product (&#x60;invalid_resource_state&#x60;; the message says which). |  -  |
+| **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
+
+## requestCreatorSampleWithHttpInfo
+
+> ApiResponse<RequestCreatorSample201Response> requestCreatorSample requestCreatorSampleWithHttpInfo(token, requestCreatorSampleRequest)
+
+Request a product sample
+
+Asks for a free sample of one of the campaign&#39;s &#x60;sampleProducts&#x60;, shipped to &#x60;shippingAddress&#x60;, and fires &#x60;campaign_sample.requested&#x60;. The request waits for the campaign team; on approval the creator gets a single-use discount code for the product.  - A product with &#x60;variants&#x60; needs &#x60;variantId&#x60;. - One open request per product: asking again while one is pending, approved or shipped answers 409. A declined product can be asked again.  About 10 requests per participant every 10 minutes. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorPortalApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+
+        CreatorPortalApi apiInstance = new CreatorPortalApi(defaultClient);
+        String token = "token_example"; // String | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
+        RequestCreatorSampleRequest requestCreatorSampleRequest = new RequestCreatorSampleRequest(); // RequestCreatorSampleRequest | 
+        try {
+            ApiResponse<RequestCreatorSample201Response> response = apiInstance.requestCreatorSampleWithHttpInfo(token, requestCreatorSampleRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorPortalApi#requestCreatorSample");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| A participant token or an open invite token. A malformed token answers 404 like an unknown one. | |
+| **requestCreatorSampleRequest** | [**RequestCreatorSampleRequest**](RequestCreatorSampleRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**RequestCreatorSample201Response**](RequestCreatorSample201Response.md)>
+
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Sample requested. |  -  |
+| **400** | An invalid field, a product the campaign does not offer (&#x60;invalid_field_value&#x60;, &#x60;param: productId&#x60;), or a missing or unknown option (&#x60;param: variantId&#x60;, \&quot;Pick one of the options for this product\&quot;). |  -  |
+| **404** | The token is malformed, unknown or expired. Every case answers the same, so a link can never be probed. |  -  |
+| **409** | The campaign offers no samples or is not accepting posts, the creator is not active in it (invite not accepted, pending, denied, suspended or removed), or the creator already has an open request for this product (&#x60;invalid_resource_state&#x60;; the message says which). |  -  |
+| **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
+
+
+## setCreatorSparkCode
+
+> SetCreatorSparkCode200Response setCreatorSparkCode(token, submissionId, setCreatorSparkCodeRequest)
+
+Set a post&#39;s Spark code
+
+The creator pastes the Spark code of one of their TikTok posts (generated in the TikTok app under the post&#39;s ad settings), so the brand can run the post as a Spark Ad under the creator&#39;s handle.  Send &#x60;null&#x60; to clear it. The code is never returned: submissions only expose &#x60;hasSparkCode&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorPortalApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+
+        CreatorPortalApi apiInstance = new CreatorPortalApi(defaultClient);
+        String token = "token_example"; // String | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
+        String submissionId = "submissionId_example"; // String | The `id` of one of the participant's `submissions`.
+        SetCreatorSparkCodeRequest setCreatorSparkCodeRequest = new SetCreatorSparkCodeRequest(); // SetCreatorSparkCodeRequest | 
+        try {
+            SetCreatorSparkCode200Response result = apiInstance.setCreatorSparkCode(token, submissionId, setCreatorSparkCodeRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorPortalApi#setCreatorSparkCode");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| A participant token or an open invite token. A malformed token answers 404 like an unknown one. | |
+| **submissionId** | **String**| The &#x60;id&#x60; of one of the participant&#39;s &#x60;submissions&#x60;. | |
+| **setCreatorSparkCodeRequest** | [**SetCreatorSparkCodeRequest**](SetCreatorSparkCodeRequest.md)|  | |
+
+### Return type
+
+[**SetCreatorSparkCode200Response**](SetCreatorSparkCode200Response.md)
+
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Saved. |  -  |
+| **400** | Invalid input, or the post is not a TikTok post (&#x60;invalid_field_value&#x60;). |  -  |
+| **404** | The link is invalid or expired, or the post is not one of the participant&#39;s submissions (&#x60;resource_not_found&#x60;). |  -  |
+| **409** | The post was rejected or withdrawn (&#x60;invalid_resource_state&#x60;). |  -  |
+
+## setCreatorSparkCodeWithHttpInfo
+
+> ApiResponse<SetCreatorSparkCode200Response> setCreatorSparkCode setCreatorSparkCodeWithHttpInfo(token, submissionId, setCreatorSparkCodeRequest)
+
+Set a post&#39;s Spark code
+
+The creator pastes the Spark code of one of their TikTok posts (generated in the TikTok app under the post&#39;s ad settings), so the brand can run the post as a Spark Ad under the creator&#39;s handle.  Send &#x60;null&#x60; to clear it. The code is never returned: submissions only expose &#x60;hasSparkCode&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorPortalApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+
+        CreatorPortalApi apiInstance = new CreatorPortalApi(defaultClient);
+        String token = "token_example"; // String | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
+        String submissionId = "submissionId_example"; // String | The `id` of one of the participant's `submissions`.
+        SetCreatorSparkCodeRequest setCreatorSparkCodeRequest = new SetCreatorSparkCodeRequest(); // SetCreatorSparkCodeRequest | 
+        try {
+            ApiResponse<SetCreatorSparkCode200Response> response = apiInstance.setCreatorSparkCodeWithHttpInfo(token, submissionId, setCreatorSparkCodeRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorPortalApi#setCreatorSparkCode");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| A participant token or an open invite token. A malformed token answers 404 like an unknown one. | |
+| **submissionId** | **String**| The &#x60;id&#x60; of one of the participant&#39;s &#x60;submissions&#x60;. | |
+| **setCreatorSparkCodeRequest** | [**SetCreatorSparkCodeRequest**](SetCreatorSparkCodeRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**SetCreatorSparkCode200Response**](SetCreatorSparkCode200Response.md)>
+
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Saved. |  -  |
+| **400** | Invalid input, or the post is not a TikTok post (&#x60;invalid_field_value&#x60;). |  -  |
+| **404** | The link is invalid or expired, or the post is not one of the participant&#39;s submissions (&#x60;resource_not_found&#x60;). |  -  |
+| **409** | The post was rejected or withdrawn (&#x60;invalid_resource_state&#x60;). |  -  |
 
 
 ## startCreatorConnect
@@ -1309,6 +1757,152 @@ No authorization required
 | **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
 
 
+## submitCreatorDraft
+
+> SubmitCreatorDraft201Response submitCreatorDraft(token, submitCreatorDraftRequest)
+
+Submit a draft for review
+
+Sends a draft for the campaign team to review before the creator publishes, on a campaign with &#x60;requireDraftApproval&#x60;, and fires &#x60;campaign_draft.submitted&#x60;. &#x60;mediaUrl&#x60; must be a &#x60;publicUrl&#x60; from &#x60;POST /public/creator-campaigns/{token}/drafts/upload&#x60;.  ### Revisions  - Without &#x60;revisionOf&#x60; the draft starts a new chain at version 1. - With &#x60;revisionOf&#x60; it is the next version of that chain. Only one of the creator&#39;s own versions marked &#x60;revision_requested&#x60; takes a new version, and only once.  About 20 drafts per participant every 10 minutes. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorPortalApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+
+        CreatorPortalApi apiInstance = new CreatorPortalApi(defaultClient);
+        String token = "token_example"; // String | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
+        SubmitCreatorDraftRequest submitCreatorDraftRequest = new SubmitCreatorDraftRequest(); // SubmitCreatorDraftRequest | 
+        try {
+            SubmitCreatorDraft201Response result = apiInstance.submitCreatorDraft(token, submitCreatorDraftRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorPortalApi#submitCreatorDraft");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| A participant token or an open invite token. A malformed token answers 404 like an unknown one. | |
+| **submitCreatorDraftRequest** | [**SubmitCreatorDraftRequest**](SubmitCreatorDraftRequest.md)|  | |
+
+### Return type
+
+[**SubmitCreatorDraft201Response**](SubmitCreatorDraft201Response.md)
+
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Draft submitted. |  -  |
+| **400** | An invalid field, or &#x60;mediaUrl&#x60; is not a file uploaded for this campaign (&#x60;invalid_field_value&#x60;, &#x60;param: mediaUrl&#x60;, \&quot;Upload the file from your campaign page first\&quot;). |  -  |
+| **404** | The token is malformed, unknown or expired. Every case answers the same, so a link can never be probed. |  -  |
+| **409** | &#x60;invalid_resource_state&#x60;, and the message says which:  - The campaign does not review drafts or is not accepting posts. - The creator is not active in it (invite not accepted, pending, denied, suspended or removed). - &#x60;revisionOf&#x60; is not one of the creator&#39;s versions or is not &#x60;revision_requested&#x60;, or a newer version of it was already uploaded.  |  -  |
+| **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
+
+## submitCreatorDraftWithHttpInfo
+
+> ApiResponse<SubmitCreatorDraft201Response> submitCreatorDraft submitCreatorDraftWithHttpInfo(token, submitCreatorDraftRequest)
+
+Submit a draft for review
+
+Sends a draft for the campaign team to review before the creator publishes, on a campaign with &#x60;requireDraftApproval&#x60;, and fires &#x60;campaign_draft.submitted&#x60;. &#x60;mediaUrl&#x60; must be a &#x60;publicUrl&#x60; from &#x60;POST /public/creator-campaigns/{token}/drafts/upload&#x60;.  ### Revisions  - Without &#x60;revisionOf&#x60; the draft starts a new chain at version 1. - With &#x60;revisionOf&#x60; it is the next version of that chain. Only one of the creator&#39;s own versions marked &#x60;revision_requested&#x60; takes a new version, and only once.  About 20 drafts per participant every 10 minutes. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorPortalApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+
+        CreatorPortalApi apiInstance = new CreatorPortalApi(defaultClient);
+        String token = "token_example"; // String | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
+        SubmitCreatorDraftRequest submitCreatorDraftRequest = new SubmitCreatorDraftRequest(); // SubmitCreatorDraftRequest | 
+        try {
+            ApiResponse<SubmitCreatorDraft201Response> response = apiInstance.submitCreatorDraftWithHttpInfo(token, submitCreatorDraftRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorPortalApi#submitCreatorDraft");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **token** | **String**| A participant token or an open invite token. A malformed token answers 404 like an unknown one. | |
+| **submitCreatorDraftRequest** | [**SubmitCreatorDraftRequest**](SubmitCreatorDraftRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**SubmitCreatorDraft201Response**](SubmitCreatorDraft201Response.md)>
+
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Draft submitted. |  -  |
+| **400** | An invalid field, or &#x60;mediaUrl&#x60; is not a file uploaded for this campaign (&#x60;invalid_field_value&#x60;, &#x60;param: mediaUrl&#x60;, \&quot;Upload the file from your campaign page first\&quot;). |  -  |
+| **404** | The token is malformed, unknown or expired. Every case answers the same, so a link can never be probed. |  -  |
+| **409** | &#x60;invalid_resource_state&#x60;, and the message says which:  - The campaign does not review drafts or is not accepting posts. - The creator is not active in it (invite not accepted, pending, denied, suspended or removed). - &#x60;revisionOf&#x60; is not one of the creator&#39;s versions or is not &#x60;revision_requested&#x60;, or a newer version of it was already uploaded.  |  -  |
+| **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
+
+
 ## submitCreatorPost
 
 > SubmitCreatorPost201Response submitCreatorPost(token, submitCreatorPostRequest)
@@ -1375,10 +1969,10 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Submitted. |  -  |
-| **400** | The post cannot be submitted: 400 &#x60;invalid_field_value&#x60;.  - &#x60;param: url&#x60;: the link is not a post of an accepted platform, or the post was published before the campaign started or longer ago than the campaign accepts. - TikTok and X post ids carry their creation time, so a post from before the campaign is refused as such even when no connected account has it. - The post is from an account past the campaign&#39;s &#x60;caps.maxAccountsPerParticipant&#x60; (\&quot;This campaign allows 2 connected accounts.\&quot;). Only the first accounts the creator connected, up to that count, can submit.  |  -  |
+| **400** | The post cannot be submitted: 400 &#x60;invalid_field_value&#x60;.  - &#x60;param: url&#x60;: the link is not a post of an accepted platform, or the post was published before the campaign started or longer ago than the campaign accepts. - TikTok and X post ids carry their creation time, so a post from before the campaign is refused as such even when no connected account has it. - The post is from an account past the campaign&#39;s &#x60;caps.maxAccountsPerParticipant&#x60; (\&quot;This campaign allows 2 connected accounts.\&quot;). Only the first accounts the creator connected, up to that count, can submit. - &#x60;param: draftId&#x60; (&#x60;missing_required_field&#x60;): the campaign requires draft approval and no &#x60;draftId&#x60; was sent.  |  -  |
 | **403** | The creator has not connected an account on that platform yet (&#x60;insufficient_permissions&#x60;, \&quot;Connect your TikTok account first, then submit the post again\&quot;). |  -  |
 | **404** | The link is invalid or expired, or no connected account has the post (&#x60;resource_not_found&#x60;, &#x60;param: url&#x60;).  - When the link names its author (TikTok, Instagram, Threads, X) and that is not one of the creator&#39;s accounts, the message names both handles. - Otherwise it says the post was not found yet, for example because it was published moments ago.  |  -  |
-| **409** | The invite is not accepted yet, the campaign is not accepting posts (not started, paused or ended), the post was already submitted, today&#39;s per-participant post limit is reached, or the participation was suspended or removed (&#x60;invalid_resource_state&#x60;; the message says which). |  -  |
+| **409** | &#x60;invalid_resource_state&#x60;, and the message says which:  - The invite is not accepted yet, the creator is still pending approval or was denied, or the participation was suspended or removed. - The campaign is not accepting posts (not started, paused or ended). - The post was already submitted, or today&#39;s per-participant post limit is reached. - &#x60;draftId&#x60; is not one of the creator&#39;s approved drafts or already backs another post.  |  -  |
 | **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
 
 ## submitCreatorPostWithHttpInfo
@@ -1450,9 +2044,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Submitted. |  -  |
-| **400** | The post cannot be submitted: 400 &#x60;invalid_field_value&#x60;.  - &#x60;param: url&#x60;: the link is not a post of an accepted platform, or the post was published before the campaign started or longer ago than the campaign accepts. - TikTok and X post ids carry their creation time, so a post from before the campaign is refused as such even when no connected account has it. - The post is from an account past the campaign&#39;s &#x60;caps.maxAccountsPerParticipant&#x60; (\&quot;This campaign allows 2 connected accounts.\&quot;). Only the first accounts the creator connected, up to that count, can submit.  |  -  |
+| **400** | The post cannot be submitted: 400 &#x60;invalid_field_value&#x60;.  - &#x60;param: url&#x60;: the link is not a post of an accepted platform, or the post was published before the campaign started or longer ago than the campaign accepts. - TikTok and X post ids carry their creation time, so a post from before the campaign is refused as such even when no connected account has it. - The post is from an account past the campaign&#39;s &#x60;caps.maxAccountsPerParticipant&#x60; (\&quot;This campaign allows 2 connected accounts.\&quot;). Only the first accounts the creator connected, up to that count, can submit. - &#x60;param: draftId&#x60; (&#x60;missing_required_field&#x60;): the campaign requires draft approval and no &#x60;draftId&#x60; was sent.  |  -  |
 | **403** | The creator has not connected an account on that platform yet (&#x60;insufficient_permissions&#x60;, \&quot;Connect your TikTok account first, then submit the post again\&quot;). |  -  |
 | **404** | The link is invalid or expired, or no connected account has the post (&#x60;resource_not_found&#x60;, &#x60;param: url&#x60;).  - When the link names its author (TikTok, Instagram, Threads, X) and that is not one of the creator&#39;s accounts, the message names both handles. - Otherwise it says the post was not found yet, for example because it was published moments ago.  |  -  |
-| **409** | The invite is not accepted yet, the campaign is not accepting posts (not started, paused or ended), the post was already submitted, today&#39;s per-participant post limit is reached, or the participation was suspended or removed (&#x60;invalid_resource_state&#x60;; the message says which). |  -  |
+| **409** | &#x60;invalid_resource_state&#x60;, and the message says which:  - The invite is not accepted yet, the creator is still pending approval or was denied, or the participation was suspended or removed. - The campaign is not accepting posts (not started, paused or ended). - The post was already submitted, or today&#39;s per-participant post limit is reached. - &#x60;draftId&#x60; is not one of the creator&#39;s approved drafts or already backs another post.  |  -  |
 | **429** | Too many attempts from this link or IP address (&#x60;rate_limited&#x60;). Wait a few minutes and try again. |  -  |
 

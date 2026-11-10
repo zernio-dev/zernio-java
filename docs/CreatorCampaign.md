@@ -31,6 +31,11 @@
 |**budgetExhaustedAt** | **OffsetDateTime** |  |  |
 |**closedAt** | **OffsetDateTime** |  |  |
 |**payableScannedAt** | **OffsetDateTime** | Internal watermark of the payable scan. |  |
+|**joinApproval** | [**JoinApprovalEnum**](#JoinApprovalEnum) | auto: creators who join through the open link are active at once. manual: they land &#x60;pending&#x60; until you approve or deny them. Personal invites are never held. |  |
+|**requireDraftApproval** | **Boolean** | Creators upload a draft for review first, and submit the live post for an approved draft (&#x60;draftId&#x60;). |  |
+|**storeAccountId** | **String** | The connected store (Shopify or WooCommerce) whose orders pay commission and whose products creators can ask as samples. Null when the campaign has neither. |  |
+|**sampleProducts** | [**List&lt;CreatorCampaignSampleProduct&gt;**](CreatorCampaignSampleProduct.md) | Products creators can ask a free sample of. |  |
+|**sampleContentDueDays** | **Integer** | Days after a sample is approved before a creator with no post since shows as owing content (&#x60;contentOwed&#x60;). |  |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**updatedAt** | **OffsetDateTime** |  |  |
 |**hasOpenInvite** | **Boolean** | True once an open invite link was created. The link itself is returned only when it is created. |  |
@@ -38,6 +43,11 @@
 |**participantCount** | **Integer** |  |  |
 |**submissionCounts** | [**CampaignSubmissionCounts**](CampaignSubmissionCounts.md) |  |  |
 |**payableCents** | **Integer** | What the campaign&#39;s creators can be paid now, summed over every participant&#39;s payable balance. |  |
+|**landingUrl** | **String** | The page creator tracking links open. |  [optional] |
+|**codeDiscountPercent** | **Integer** | What each creator discount code takes off. |  [optional] |
+|**pendingParticipantCount** | **Integer** | Creators who asked to join through the open link and wait for a decision. Not counted in &#x60;participantCount&#x60;. |  |
+|**draftCounts** | [**CampaignDraftCounts**](CampaignDraftCounts.md) |  |  |
+|**sampleCounts** | [**CampaignSampleCounts**](CampaignSampleCounts.md) |  |  |
 
 
 
@@ -59,6 +69,9 @@
 | CPM | &quot;cpm&quot; |
 | PER_POST | &quot;per_post&quot; |
 | POOL | &quot;pool&quot; |
+| RETAINER | &quot;retainer&quot; |
+| COMMISSION | &quot;commission&quot; |
+| AD_PERFORMANCE | &quot;ad_performance&quot; |
 
 
 
@@ -83,6 +96,15 @@
 | NONE | &quot;none&quot; |
 | EXTERNAL | &quot;external&quot; |
 | TREASURY | &quot;treasury&quot; |
+
+
+
+## Enum: JoinApprovalEnum
+
+| Name | Value |
+|---- | -----|
+| AUTO | &quot;auto&quot; |
+| MANUAL | &quot;manual&quot; |
 
 
 
