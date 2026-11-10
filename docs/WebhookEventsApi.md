@@ -13495,7 +13495,7 @@ ApiResponse<Void>
 
 Post failed event
 
-A post failed on every target platform.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  ### Payload notes  Each &#x60;platforms[]&#x60; entry carries &#x60;error&#x60;, &#x60;errorCategory&#x60; and &#x60;errorSource&#x60;, the same taxonomy as &#x60;platforms[]&#x60; on Get post. Branch on &#x60;errorCategory&#x60;, not on the message text. 
+A post failed on every target platform.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  A TikTok target TikTok is still processing (status &#x60;uploading&#x60;) holds it for up to 48 hours. Meanwhile &#x60;post.platform.published&#x60; and &#x60;post.platform.failed&#x60; report the other targets.  ### Payload notes  Each &#x60;platforms[]&#x60; entry carries &#x60;error&#x60;, &#x60;errorCategory&#x60; and &#x60;errorSource&#x60;, the same taxonomy as &#x60;platforms[]&#x60; on Get post. Branch on &#x60;errorCategory&#x60;, not on the message text. 
 
 ### Example
 
@@ -13564,7 +13564,7 @@ null (empty response body)
 
 Post failed event
 
-A post failed on every target platform.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  ### Payload notes  Each &#x60;platforms[]&#x60; entry carries &#x60;error&#x60;, &#x60;errorCategory&#x60; and &#x60;errorSource&#x60;, the same taxonomy as &#x60;platforms[]&#x60; on Get post. Branch on &#x60;errorCategory&#x60;, not on the message text. 
+A post failed on every target platform.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  A TikTok target TikTok is still processing (status &#x60;uploading&#x60;) holds it for up to 48 hours. Meanwhile &#x60;post.platform.published&#x60; and &#x60;post.platform.failed&#x60; report the other targets.  ### Payload notes  Each &#x60;platforms[]&#x60; entry carries &#x60;error&#x60;, &#x60;errorCategory&#x60; and &#x60;errorSource&#x60;, the same taxonomy as &#x60;platforms[]&#x60; on Get post. Branch on &#x60;errorCategory&#x60;, not on the message text. 
 
 ### Example
 
@@ -13637,7 +13637,7 @@ ApiResponse<Void>
 
 Post partial event
 
-A post published on some platforms and failed on others.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  ### Payload notes  Read &#x60;platforms[].status&#x60; to tell them apart. Failed entries carry &#x60;error&#x60;, &#x60;errorCategory&#x60; and &#x60;errorSource&#x60;. 
+A post published on some platforms and failed on others.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  A TikTok target TikTok is still processing (status &#x60;uploading&#x60;) holds it for up to 48 hours. Meanwhile &#x60;post.platform.published&#x60; and &#x60;post.platform.failed&#x60; report the other targets.  It can follow a &#x60;post.failed&#x60; for the same post when TikTok later reports a failed TikTok target as published.  ### Payload notes  Read &#x60;platforms[].status&#x60; to tell them apart. Failed entries carry &#x60;error&#x60;, &#x60;errorCategory&#x60; and &#x60;errorSource&#x60;. 
 
 ### Example
 
@@ -13706,7 +13706,7 @@ null (empty response body)
 
 Post partial event
 
-A post published on some platforms and failed on others.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  ### Payload notes  Read &#x60;platforms[].status&#x60; to tell them apart. Failed entries carry &#x60;error&#x60;, &#x60;errorCategory&#x60; and &#x60;errorSource&#x60;. 
+A post published on some platforms and failed on others.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  A TikTok target TikTok is still processing (status &#x60;uploading&#x60;) holds it for up to 48 hours. Meanwhile &#x60;post.platform.published&#x60; and &#x60;post.platform.failed&#x60; report the other targets.  It can follow a &#x60;post.failed&#x60; for the same post when TikTok later reports a failed TikTok target as published.  ### Payload notes  Read &#x60;platforms[].status&#x60; to tell them apart. Failed entries carry &#x60;error&#x60;, &#x60;errorCategory&#x60; and &#x60;errorSource&#x60;. 
 
 ### Example
 
@@ -14063,7 +14063,7 @@ ApiResponse<Void>
 
 Post platform published event
 
-One platform target finished publishing, without waiting for the other targets.  ### When it fires  Once per platform target, as soon as it finishes. A cross-post to 2 accounts on the same platform produces 2 events. Use &#x60;post.published&#x60; for the post-level rollup.  ### Payload notes  &#x60;platform&#x60; carries the platform post id and URL. &#x60;account&#x60; identifies the connected account.  ### Later reconciliation  If a target later fails background reconciliation, &#x60;post.platform.failed&#x60; fires for the same target afterward. 
+One platform target finished publishing, without waiting for the other targets.  ### When it fires  Once per platform target, as soon as it finishes. A cross-post to 2 accounts on the same platform produces 2 events. Use &#x60;post.published&#x60; for the post-level rollup.  ### Payload notes  &#x60;platform&#x60; carries the platform post id and URL. &#x60;account&#x60; identifies the connected account.  ### TikTok targets still processing  TikTok can keep processing a post for up to 48 hours (entry status &#x60;uploading&#x60;). That target fires when TikTok finishes. The other targets fire as they finish, and the post rollup waits for TikTok.  ### Later reconciliation  If a target later fails background reconciliation, &#x60;post.platform.failed&#x60; fires for the same target afterward.  A failed TikTok target that TikTok later reports as published fires &#x60;post.platform.published&#x60; afterward, and the rollup fires again. 
 
 ### Example
 
@@ -14132,7 +14132,7 @@ null (empty response body)
 
 Post platform published event
 
-One platform target finished publishing, without waiting for the other targets.  ### When it fires  Once per platform target, as soon as it finishes. A cross-post to 2 accounts on the same platform produces 2 events. Use &#x60;post.published&#x60; for the post-level rollup.  ### Payload notes  &#x60;platform&#x60; carries the platform post id and URL. &#x60;account&#x60; identifies the connected account.  ### Later reconciliation  If a target later fails background reconciliation, &#x60;post.platform.failed&#x60; fires for the same target afterward. 
+One platform target finished publishing, without waiting for the other targets.  ### When it fires  Once per platform target, as soon as it finishes. A cross-post to 2 accounts on the same platform produces 2 events. Use &#x60;post.published&#x60; for the post-level rollup.  ### Payload notes  &#x60;platform&#x60; carries the platform post id and URL. &#x60;account&#x60; identifies the connected account.  ### TikTok targets still processing  TikTok can keep processing a post for up to 48 hours (entry status &#x60;uploading&#x60;). That target fires when TikTok finishes. The other targets fire as they finish, and the post rollup waits for TikTok.  ### Later reconciliation  If a target later fails background reconciliation, &#x60;post.platform.failed&#x60; fires for the same target afterward.  A failed TikTok target that TikTok later reports as published fires &#x60;post.platform.published&#x60; afterward, and the rollup fires again. 
 
 ### Example
 
@@ -14205,7 +14205,7 @@ ApiResponse<Void>
 
 Post published event
 
-Every platform target of a post published.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  ### Payload notes  Each &#x60;platforms[]&#x60; entry carries the &#x60;platformPostId&#x60; and &#x60;publishedUrl&#x60;. 
+Every platform target of a post published.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  A TikTok target TikTok is still processing (status &#x60;uploading&#x60;) holds it for up to 48 hours. Meanwhile &#x60;post.platform.published&#x60; and &#x60;post.platform.failed&#x60; report the other targets.  It can follow a &#x60;post.partial&#x60; or &#x60;post.failed&#x60; for the same post when TikTok later reports a failed TikTok target as published.  ### Payload notes  Each &#x60;platforms[]&#x60; entry carries the &#x60;platformPostId&#x60; and &#x60;publishedUrl&#x60;. 
 
 ### Example
 
@@ -14274,7 +14274,7 @@ null (empty response body)
 
 Post published event
 
-Every platform target of a post published.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  ### Payload notes  Each &#x60;platforms[]&#x60; entry carries the &#x60;platformPostId&#x60; and &#x60;publishedUrl&#x60;. 
+Every platform target of a post published.  ### When it fires  Once per publishing job, after every platform target ends. Exactly one of &#x60;post.published&#x60;, &#x60;post.partial&#x60; or &#x60;post.failed&#x60; fires.  A TikTok target TikTok is still processing (status &#x60;uploading&#x60;) holds it for up to 48 hours. Meanwhile &#x60;post.platform.published&#x60; and &#x60;post.platform.failed&#x60; report the other targets.  It can follow a &#x60;post.partial&#x60; or &#x60;post.failed&#x60; for the same post when TikTok later reports a failed TikTok target as published.  ### Payload notes  Each &#x60;platforms[]&#x60; entry carries the &#x60;platformPostId&#x60; and &#x60;publishedUrl&#x60;. 
 
 ### Example
 

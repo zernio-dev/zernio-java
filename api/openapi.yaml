@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.545.0
+  version: 1.545.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -216594,7 +216594,7 @@ x-documentation:
     - `post.partial` - Post published to some platforms, failed on others. Can follow an earlier `post.published` for the same post when background reconciliation discovers one target's publish never actually completed.
     - `post.cancelled` - A scheduled post was cancelled because its account was disconnected (not sent by `DELETE /v1/posts/{postId}`)
     - `post.recycled` - Post recycled (cloned and re-scheduled)
-    - `post.platform.published` - A single platform target inside a post finished publishing successfully. Fires once per platform-account as it terminates, without waiting for other platforms on the same post. Use this for incremental UIs; use `post.published` for the post-level rollup. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits `post.platform.failed` afterward for the same target.
+    - `post.platform.published` - A single platform target inside a post finished publishing successfully. Fires once per platform-account as it terminates, without waiting for other platforms on the same post. Use this for incremental UIs; use `post.published` for the post-level rollup. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits `post.platform.failed` afterward for the same target. A TikTok target TikTok is still processing (status `uploading`, up to 48 hours) fires when TikTok finishes, while the post's other targets fire as they finish and the rollup waits.
     - `post.platform.failed` - A single platform target inside a post failed permanently. Temporary/retryable failures do NOT fire this event, only permanent ones, so retry loops stay quiet. Can fire after this same target already emitted `post.platform.published`, when background reconciliation later discovers the publish never actually completed on the platform's side.
     - `post.platform.deleted` - A single platform target inside a post was detected as deleted on the platform after publishing (e.g. the user deleted the Instagram post natively). Detection is poll-driven via Zernio background sync (~hourly), not real-time. `platform.deletedAt` carries the detection time. Coverage is bounded to the posts the platform listing returns.
     - `post.tiktok.url_resolved` - A published TikTok post's public URL became available. TikTok exposes the numeric video id asynchronously, so `post.published` / `post.platform.published` can carry an empty `publishedUrl` for TikTok; this event delivers the URL once resolved (at most once per platform target). Never fires for private posts, which have no public URL. For a draft, it fires when the creator posts the draft publicly from the TikTok app.
