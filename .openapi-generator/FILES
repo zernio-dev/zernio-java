@@ -7097,15 +7097,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ListScheduledEmails200ResponseTest.java
-src/test/java/dev/zernio/model/ScheduledEmailTest.java
-src/test/java/dev/zernio/model/SendEmailMessage202ResponseTest.java
-src/test/java/dev/zernio/model/WebhookEmailTrackedMessageTest.java
-src/test/java/dev/zernio/model/WebhookPayloadEmailLinkClickedClickTest.java
-src/test/java/dev/zernio/model/WebhookPayloadEmailLinkClickedTest.java
-src/test/java/dev/zernio/model/WebhookPayloadEmailOpenedOpenTest.java
-src/test/java/dev/zernio/model/WebhookPayloadEmailOpenedTest.java
-src/test/java/dev/zernio/model/WebhookPayloadEmailSendFailedScheduledEmailTest.java
-src/test/java/dev/zernio/model/WebhookPayloadEmailSendFailedTest.java
-src/test/java/dev/zernio/model/WebhookPayloadEmailThreadRepliedReplyTest.java
-src/test/java/dev/zernio/model/WebhookPayloadEmailThreadRepliedTest.java
