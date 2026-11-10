@@ -6,18 +6,28 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**cancelScheduledEmail**](EmailApi.md#cancelScheduledEmail) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email |
 | [**cancelScheduledEmailWithHttpInfo**](EmailApi.md#cancelScheduledEmailWithHttpInfo) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email |
+| [**createEmailDraft**](EmailApi.md#createEmailDraft) | **POST** /v1/email/drafts | Create a draft |
+| [**createEmailDraftWithHttpInfo**](EmailApi.md#createEmailDraftWithHttpInfo) | **POST** /v1/email/drafts | Create a draft |
 | [**createEmailLabel**](EmailApi.md#createEmailLabel) | **POST** /v1/email/labels | Create a label |
 | [**createEmailLabelWithHttpInfo**](EmailApi.md#createEmailLabelWithHttpInfo) | **POST** /v1/email/labels | Create a label |
+| [**deleteEmailDraft**](EmailApi.md#deleteEmailDraft) | **DELETE** /v1/email/drafts/{draftId} | Delete a draft |
+| [**deleteEmailDraftWithHttpInfo**](EmailApi.md#deleteEmailDraftWithHttpInfo) | **DELETE** /v1/email/drafts/{draftId} | Delete a draft |
 | [**deleteEmailLabel**](EmailApi.md#deleteEmailLabel) | **DELETE** /v1/email/labels/{labelId} | Delete a label |
 | [**deleteEmailLabelWithHttpInfo**](EmailApi.md#deleteEmailLabelWithHttpInfo) | **DELETE** /v1/email/labels/{labelId} | Delete a label |
 | [**downloadEmailAttachment**](EmailApi.md#downloadEmailAttachment) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment |
 | [**downloadEmailAttachmentWithHttpInfo**](EmailApi.md#downloadEmailAttachmentWithHttpInfo) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment |
+| [**forwardEmailMessage**](EmailApi.md#forwardEmailMessage) | **POST** /v1/email/messages/{messageId}/forward | Forward a message |
+| [**forwardEmailMessageWithHttpInfo**](EmailApi.md#forwardEmailMessageWithHttpInfo) | **POST** /v1/email/messages/{messageId}/forward | Forward a message |
+| [**getEmailDraft**](EmailApi.md#getEmailDraft) | **GET** /v1/email/drafts/{draftId} | Get a draft |
+| [**getEmailDraftWithHttpInfo**](EmailApi.md#getEmailDraftWithHttpInfo) | **GET** /v1/email/drafts/{draftId} | Get a draft |
 | [**getEmailMessage**](EmailApi.md#getEmailMessage) | **GET** /v1/email/messages/{messageId} | Get an email message |
 | [**getEmailMessageWithHttpInfo**](EmailApi.md#getEmailMessageWithHttpInfo) | **GET** /v1/email/messages/{messageId} | Get an email message |
 | [**getEmailThread**](EmailApi.md#getEmailThread) | **GET** /v1/email/threads/{threadId} | Get an email thread with its messages |
 | [**getEmailThreadWithHttpInfo**](EmailApi.md#getEmailThreadWithHttpInfo) | **GET** /v1/email/threads/{threadId} | Get an email thread with its messages |
 | [**getScheduledEmail**](EmailApi.md#getScheduledEmail) | **GET** /v1/email/messages/scheduled/{scheduleId} | Get a scheduled email |
 | [**getScheduledEmailWithHttpInfo**](EmailApi.md#getScheduledEmailWithHttpInfo) | **GET** /v1/email/messages/scheduled/{scheduleId} | Get a scheduled email |
+| [**listEmailDrafts**](EmailApi.md#listEmailDrafts) | **GET** /v1/email/drafts | List drafts |
+| [**listEmailDraftsWithHttpInfo**](EmailApi.md#listEmailDraftsWithHttpInfo) | **GET** /v1/email/drafts | List drafts |
 | [**listEmailFolders**](EmailApi.md#listEmailFolders) | **GET** /v1/email/folders | List mailbox folders |
 | [**listEmailFoldersWithHttpInfo**](EmailApi.md#listEmailFoldersWithHttpInfo) | **GET** /v1/email/folders | List mailbox folders |
 | [**listEmailLabels**](EmailApi.md#listEmailLabels) | **GET** /v1/email/labels | List labels |
@@ -32,10 +42,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**listScheduledEmailsWithHttpInfo**](EmailApi.md#listScheduledEmailsWithHttpInfo) | **GET** /v1/email/messages/scheduled | List scheduled emails |
 | [**replyEmailMessage**](EmailApi.md#replyEmailMessage) | **POST** /v1/email/messages/{messageId}/reply | Reply to a message |
 | [**replyEmailMessageWithHttpInfo**](EmailApi.md#replyEmailMessageWithHttpInfo) | **POST** /v1/email/messages/{messageId}/reply | Reply to a message |
+| [**sendEmailDraft**](EmailApi.md#sendEmailDraft) | **POST** /v1/email/drafts/{draftId}/send | Send a draft |
+| [**sendEmailDraftWithHttpInfo**](EmailApi.md#sendEmailDraftWithHttpInfo) | **POST** /v1/email/drafts/{draftId}/send | Send a draft |
 | [**sendEmailMessage**](EmailApi.md#sendEmailMessage) | **POST** /v1/email/messages | Send an email |
 | [**sendEmailMessageWithHttpInfo**](EmailApi.md#sendEmailMessageWithHttpInfo) | **POST** /v1/email/messages | Send an email |
 | [**trashEmailMessage**](EmailApi.md#trashEmailMessage) | **DELETE** /v1/email/messages/{messageId} | Move a message to trash |
 | [**trashEmailMessageWithHttpInfo**](EmailApi.md#trashEmailMessageWithHttpInfo) | **DELETE** /v1/email/messages/{messageId} | Move a message to trash |
+| [**updateEmailDraft**](EmailApi.md#updateEmailDraft) | **PATCH** /v1/email/drafts/{draftId} | Update a draft |
+| [**updateEmailDraftWithHttpInfo**](EmailApi.md#updateEmailDraftWithHttpInfo) | **PATCH** /v1/email/drafts/{draftId} | Update a draft |
 | [**updateEmailMessage**](EmailApi.md#updateEmailMessage) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, label, or move a message |
 | [**updateEmailMessageWithHttpInfo**](EmailApi.md#updateEmailMessageWithHttpInfo) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, label, or move a message |
 | [**updateEmailThread**](EmailApi.md#updateEmailThread) | **PATCH** /v1/email/threads/{threadId} | Update every message in a thread |
@@ -199,6 +213,162 @@ ApiResponse<[**SendEmailMessage202Response**](SendEmailMessage202Response.md)>
 | **409** | The send already left, failed or was cancelled; the message names its status. |  -  |
 
 
+## createEmailDraft
+
+> CreateEmailDraft201Response createEmailDraft(createEmailDraftRequest, idempotencyKey)
+
+Create a draft
+
+Saves a draft in the user&#39;s mailbox, where they see it in Gmail or Outlook. Recipients and subject can come later. &#x60;inReplyTo&#x60; makes a reply draft in that thread and &#x60;forwardOf&#x60; a forward draft with the original&#39;s attachments; the &#x60;kind&#x60; is fixed for the life of the draft.  Send it with &#x60;POST /v1/email/drafts/{draftId}/send&#x60;. Edits the user makes in their mail client are what goes out. Store the draft &#x60;id&#x60;, and pass its &#x60;version&#x60; as &#x60;If-Match&#x60; so an update or send applies only to the version you saw. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        CreateEmailDraftRequest createEmailDraftRequest = new CreateEmailDraftRequest(); // CreateEmailDraftRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
+        try {
+            CreateEmailDraft201Response result = apiInstance.createEmailDraft(createEmailDraftRequest, idempotencyKey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#createEmailDraft");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createEmailDraftRequest** | [**CreateEmailDraftRequest**](CreateEmailDraftRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
+
+### Return type
+
+[**CreateEmailDraft201Response**](CreateEmailDraft201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The saved draft |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+## createEmailDraftWithHttpInfo
+
+> ApiResponse<CreateEmailDraft201Response> createEmailDraft createEmailDraftWithHttpInfo(createEmailDraftRequest, idempotencyKey)
+
+Create a draft
+
+Saves a draft in the user&#39;s mailbox, where they see it in Gmail or Outlook. Recipients and subject can come later. &#x60;inReplyTo&#x60; makes a reply draft in that thread and &#x60;forwardOf&#x60; a forward draft with the original&#39;s attachments; the &#x60;kind&#x60; is fixed for the life of the draft.  Send it with &#x60;POST /v1/email/drafts/{draftId}/send&#x60;. Edits the user makes in their mail client are what goes out. Store the draft &#x60;id&#x60;, and pass its &#x60;version&#x60; as &#x60;If-Match&#x60; so an update or send applies only to the version you saw. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        CreateEmailDraftRequest createEmailDraftRequest = new CreateEmailDraftRequest(); // CreateEmailDraftRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
+        try {
+            ApiResponse<CreateEmailDraft201Response> response = apiInstance.createEmailDraftWithHttpInfo(createEmailDraftRequest, idempotencyKey);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#createEmailDraft");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createEmailDraftRequest** | [**CreateEmailDraftRequest**](CreateEmailDraftRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
+
+### Return type
+
+ApiResponse<[**CreateEmailDraft201Response**](CreateEmailDraft201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The saved draft |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+
 ## createEmailLabel
 
 > CreateEmailLabel200Response createEmailLabel(createEmailLabelRequest)
@@ -351,9 +521,161 @@ ApiResponse<[**CreateEmailLabel200Response**](CreateEmailLabel200Response.md)>
 | **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
 
 
+## deleteEmailDraft
+
+> DeleteEmailDraft200Response deleteEmailDraft(draftId, accountId)
+
+Delete a draft
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String draftId = "draftId_example"; // String | 
+        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        try {
+            DeleteEmailDraft200Response result = apiInstance.deleteEmailDraft(draftId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#deleteEmailDraft");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **draftId** | **String**|  | |
+| **accountId** | **String**| The connected Google or Microsoft account. | |
+
+### Return type
+
+[**DeleteEmailDraft200Response**](DeleteEmailDraft200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+## deleteEmailDraftWithHttpInfo
+
+> ApiResponse<DeleteEmailDraft200Response> deleteEmailDraft deleteEmailDraftWithHttpInfo(draftId, accountId)
+
+Delete a draft
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String draftId = "draftId_example"; // String | 
+        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        try {
+            ApiResponse<DeleteEmailDraft200Response> response = apiInstance.deleteEmailDraftWithHttpInfo(draftId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#deleteEmailDraft");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **draftId** | **String**|  | |
+| **accountId** | **String**| The connected Google or Microsoft account. | |
+
+### Return type
+
+ApiResponse<[**DeleteEmailDraft200Response**](DeleteEmailDraft200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+
 ## deleteEmailLabel
 
-> DeleteEmailLabel200Response deleteEmailLabel(labelId, accountId)
+> DeleteEmailDraft200Response deleteEmailLabel(labelId, accountId)
 
 Delete a label
 
@@ -383,7 +705,7 @@ public class Example {
         String labelId = "labelId_example"; // String | 
         String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
         try {
-            DeleteEmailLabel200Response result = apiInstance.deleteEmailLabel(labelId, accountId);
+            DeleteEmailDraft200Response result = apiInstance.deleteEmailLabel(labelId, accountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling EmailApi#deleteEmailLabel");
@@ -406,7 +728,7 @@ public class Example {
 
 ### Return type
 
-[**DeleteEmailLabel200Response**](DeleteEmailLabel200Response.md)
+[**DeleteEmailDraft200Response**](DeleteEmailDraft200Response.md)
 
 
 ### Authorization
@@ -429,7 +751,7 @@ public class Example {
 
 ## deleteEmailLabelWithHttpInfo
 
-> ApiResponse<DeleteEmailLabel200Response> deleteEmailLabel deleteEmailLabelWithHttpInfo(labelId, accountId)
+> ApiResponse<DeleteEmailDraft200Response> deleteEmailLabel deleteEmailLabelWithHttpInfo(labelId, accountId)
 
 Delete a label
 
@@ -460,7 +782,7 @@ public class Example {
         String labelId = "labelId_example"; // String | 
         String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
         try {
-            ApiResponse<DeleteEmailLabel200Response> response = apiInstance.deleteEmailLabelWithHttpInfo(labelId, accountId);
+            ApiResponse<DeleteEmailDraft200Response> response = apiInstance.deleteEmailLabelWithHttpInfo(labelId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -485,7 +807,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**DeleteEmailLabel200Response**](DeleteEmailLabel200Response.md)>
+ApiResponse<[**DeleteEmailDraft200Response**](DeleteEmailDraft200Response.md)>
 
 
 ### Authorization
@@ -667,9 +989,331 @@ ApiResponse<[**File**](File.md)>
 | **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
 
 
+## forwardEmailMessage
+
+> SendEmailMessage201Response forwardEmailMessage(messageId, forwardEmailRequest, idempotencyKey)
+
+Forward a message
+
+Forwards the message with its attachments. Your &#x60;text&#x60; or &#x60;html&#x60; goes above the forwarded mail, and the subject defaults to \&quot;Fwd: \&quot; plus the original&#39;s. On Google the forward stays in the original thread; on Microsoft it goes through Outlook&#39;s own forward.  &#x60;includeAttachments: false&#x60; keeps only the original&#39;s inline images, and &#x60;excludeAttachmentIds&#x60; leaves out the ones you name. Everything together stays under 25 MB.  &#x60;trackOpens&#x60;, &#x60;trackLinks&#x60; and &#x60;trackReplies&#x60; work as on send. Same protection, caps and headers as sending. The response carries &#x60;forwardedFrom&#x60;, and &#x60;email.sent&#x60; fires with &#x60;source: forward&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String messageId = "messageId_example"; // String | 
+        ForwardEmailRequest forwardEmailRequest = new ForwardEmailRequest(); // ForwardEmailRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
+        try {
+            SendEmailMessage201Response result = apiInstance.forwardEmailMessage(messageId, forwardEmailRequest, idempotencyKey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#forwardEmailMessage");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **messageId** | **String**|  | |
+| **forwardEmailRequest** | [**ForwardEmailRequest**](ForwardEmailRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
+
+### Return type
+
+[**SendEmailMessage201Response**](SendEmailMessage201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The sent forward |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+| **413** | attachment_too_large: the forwarded and added attachments pass 25 MB; details.limitBytes |  -  |
+| **429** | The send was refused before reaching the provider.  - &#x60;email_send_cap_reached&#x60;: today&#39;s cap for the mailbox is spent. &#x60;details.cap&#x60; names the limit and &#x60;resetsAt&#x60;; &#x60;retryAfterSeconds&#x60; counts to midnight UTC. - &#x60;rate_limited&#x60;: the mailbox is in a sending cooldown, either from a same-body burst to more than 50 recipients in an hour (&#x60;details.cap.kind: recipient_burst&#x60;) or an earlier trigger. &#x60;retryAfterSeconds&#x60; says when it lifts, and &#x60;account.rate_limited&#x60; fired when it started.  |  -  |
+
+## forwardEmailMessageWithHttpInfo
+
+> ApiResponse<SendEmailMessage201Response> forwardEmailMessage forwardEmailMessageWithHttpInfo(messageId, forwardEmailRequest, idempotencyKey)
+
+Forward a message
+
+Forwards the message with its attachments. Your &#x60;text&#x60; or &#x60;html&#x60; goes above the forwarded mail, and the subject defaults to \&quot;Fwd: \&quot; plus the original&#39;s. On Google the forward stays in the original thread; on Microsoft it goes through Outlook&#39;s own forward.  &#x60;includeAttachments: false&#x60; keeps only the original&#39;s inline images, and &#x60;excludeAttachmentIds&#x60; leaves out the ones you name. Everything together stays under 25 MB.  &#x60;trackOpens&#x60;, &#x60;trackLinks&#x60; and &#x60;trackReplies&#x60; work as on send. Same protection, caps and headers as sending. The response carries &#x60;forwardedFrom&#x60;, and &#x60;email.sent&#x60; fires with &#x60;source: forward&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String messageId = "messageId_example"; // String | 
+        ForwardEmailRequest forwardEmailRequest = new ForwardEmailRequest(); // ForwardEmailRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
+        try {
+            ApiResponse<SendEmailMessage201Response> response = apiInstance.forwardEmailMessageWithHttpInfo(messageId, forwardEmailRequest, idempotencyKey);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#forwardEmailMessage");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **messageId** | **String**|  | |
+| **forwardEmailRequest** | [**ForwardEmailRequest**](ForwardEmailRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
+
+### Return type
+
+ApiResponse<[**SendEmailMessage201Response**](SendEmailMessage201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The sent forward |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+| **413** | attachment_too_large: the forwarded and added attachments pass 25 MB; details.limitBytes |  -  |
+| **429** | The send was refused before reaching the provider.  - &#x60;email_send_cap_reached&#x60;: today&#39;s cap for the mailbox is spent. &#x60;details.cap&#x60; names the limit and &#x60;resetsAt&#x60;; &#x60;retryAfterSeconds&#x60; counts to midnight UTC. - &#x60;rate_limited&#x60;: the mailbox is in a sending cooldown, either from a same-body burst to more than 50 recipients in an hour (&#x60;details.cap.kind: recipient_burst&#x60;) or an earlier trigger. &#x60;retryAfterSeconds&#x60; says when it lifts, and &#x60;account.rate_limited&#x60; fired when it started.  |  -  |
+
+
+## getEmailDraft
+
+> CreateEmailDraft201Response getEmailDraft(draftId, accountId)
+
+Get a draft
+
+The draft as it stands in the mailbox now, with its bodies. A draft deleted in the mail client answers 404.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String draftId = "draftId_example"; // String | 
+        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        try {
+            CreateEmailDraft201Response result = apiInstance.getEmailDraft(draftId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#getEmailDraft");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **draftId** | **String**|  | |
+| **accountId** | **String**| The connected Google or Microsoft account. | |
+
+### Return type
+
+[**CreateEmailDraft201Response**](CreateEmailDraft201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The draft |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+## getEmailDraftWithHttpInfo
+
+> ApiResponse<CreateEmailDraft201Response> getEmailDraft getEmailDraftWithHttpInfo(draftId, accountId)
+
+Get a draft
+
+The draft as it stands in the mailbox now, with its bodies. A draft deleted in the mail client answers 404.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String draftId = "draftId_example"; // String | 
+        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        try {
+            ApiResponse<CreateEmailDraft201Response> response = apiInstance.getEmailDraftWithHttpInfo(draftId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#getEmailDraft");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **draftId** | **String**|  | |
+| **accountId** | **String**| The connected Google or Microsoft account. | |
+
+### Return type
+
+ApiResponse<[**CreateEmailDraft201Response**](CreateEmailDraft201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The draft |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+
 ## getEmailMessage
 
-> SendEmailMessage201Response getEmailMessage(messageId, accountId, includeHeaders, raw)
+> SendEmailMessage201Response getEmailMessage(messageId, accountId, includeHeaders, raw, clean)
 
 Get an email message
 
@@ -698,8 +1342,9 @@ public class Example {
         String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
         Boolean includeHeaders = false; // Boolean | Include the raw internet headers under `headers`.
         Boolean raw = false; // Boolean | Include the MIME source under `raw`.
+        Boolean clean = false; // Boolean | Add `cleanText`: the new text only, without quoted replies, forwarded history, signature or tracking pixels. Ready to hand to an LLM.
         try {
-            SendEmailMessage201Response result = apiInstance.getEmailMessage(messageId, accountId, includeHeaders, raw);
+            SendEmailMessage201Response result = apiInstance.getEmailMessage(messageId, accountId, includeHeaders, raw, clean);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling EmailApi#getEmailMessage");
@@ -721,6 +1366,7 @@ public class Example {
 | **accountId** | **String**| The connected Google or Microsoft account. | |
 | **includeHeaders** | **Boolean**| Include the raw internet headers under &#x60;headers&#x60;. | [optional] [default to false] |
 | **raw** | **Boolean**| Include the MIME source under &#x60;raw&#x60;. | [optional] [default to false] |
+| **clean** | **Boolean**| Add &#x60;cleanText&#x60;: the new text only, without quoted replies, forwarded history, signature or tracking pixels. Ready to hand to an LLM. | [optional] [default to false] |
 
 ### Return type
 
@@ -747,7 +1393,7 @@ public class Example {
 
 ## getEmailMessageWithHttpInfo
 
-> ApiResponse<SendEmailMessage201Response> getEmailMessage getEmailMessageWithHttpInfo(messageId, accountId, includeHeaders, raw)
+> ApiResponse<SendEmailMessage201Response> getEmailMessage getEmailMessageWithHttpInfo(messageId, accountId, includeHeaders, raw, clean)
 
 Get an email message
 
@@ -777,8 +1423,9 @@ public class Example {
         String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
         Boolean includeHeaders = false; // Boolean | Include the raw internet headers under `headers`.
         Boolean raw = false; // Boolean | Include the MIME source under `raw`.
+        Boolean clean = false; // Boolean | Add `cleanText`: the new text only, without quoted replies, forwarded history, signature or tracking pixels. Ready to hand to an LLM.
         try {
-            ApiResponse<SendEmailMessage201Response> response = apiInstance.getEmailMessageWithHttpInfo(messageId, accountId, includeHeaders, raw);
+            ApiResponse<SendEmailMessage201Response> response = apiInstance.getEmailMessageWithHttpInfo(messageId, accountId, includeHeaders, raw, clean);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -802,6 +1449,7 @@ public class Example {
 | **accountId** | **String**| The connected Google or Microsoft account. | |
 | **includeHeaders** | **Boolean**| Include the raw internet headers under &#x60;headers&#x60;. | [optional] [default to false] |
 | **raw** | **Boolean**| Include the MIME source under &#x60;raw&#x60;. | [optional] [default to false] |
+| **clean** | **Boolean**| Add &#x60;cleanText&#x60;: the new text only, without quoted replies, forwarded history, signature or tracking pixels. Ready to hand to an LLM. | [optional] [default to false] |
 
 ### Return type
 
@@ -829,7 +1477,7 @@ ApiResponse<[**SendEmailMessage201Response**](SendEmailMessage201Response.md)>
 
 ## getEmailThread
 
-> GetEmailThread200Response getEmailThread(threadId, accountId)
+> GetEmailThread200Response getEmailThread(threadId, accountId, clean)
 
 Get an email thread with its messages
 
@@ -856,8 +1504,9 @@ public class Example {
         EmailApi apiInstance = new EmailApi(defaultClient);
         String threadId = "threadId_example"; // String | 
         String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        Boolean clean = false; // Boolean | Add `cleanText` to every message: what each one added to the conversation, without the quoted history.
         try {
-            GetEmailThread200Response result = apiInstance.getEmailThread(threadId, accountId);
+            GetEmailThread200Response result = apiInstance.getEmailThread(threadId, accountId, clean);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling EmailApi#getEmailThread");
@@ -877,6 +1526,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **threadId** | **String**|  | |
 | **accountId** | **String**| The connected Google or Microsoft account. | |
+| **clean** | **Boolean**| Add &#x60;cleanText&#x60; to every message: what each one added to the conversation, without the quoted history. | [optional] [default to false] |
 
 ### Return type
 
@@ -903,7 +1553,7 @@ public class Example {
 
 ## getEmailThreadWithHttpInfo
 
-> ApiResponse<GetEmailThread200Response> getEmailThread getEmailThreadWithHttpInfo(threadId, accountId)
+> ApiResponse<GetEmailThread200Response> getEmailThread getEmailThreadWithHttpInfo(threadId, accountId, clean)
 
 Get an email thread with its messages
 
@@ -931,8 +1581,9 @@ public class Example {
         EmailApi apiInstance = new EmailApi(defaultClient);
         String threadId = "threadId_example"; // String | 
         String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        Boolean clean = false; // Boolean | Add `cleanText` to every message: what each one added to the conversation, without the quoted history.
         try {
-            ApiResponse<GetEmailThread200Response> response = apiInstance.getEmailThreadWithHttpInfo(threadId, accountId);
+            ApiResponse<GetEmailThread200Response> response = apiInstance.getEmailThreadWithHttpInfo(threadId, accountId, clean);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -954,6 +1605,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **threadId** | **String**|  | |
 | **accountId** | **String**| The connected Google or Microsoft account. | |
+| **clean** | **Boolean**| Add &#x60;cleanText&#x60; to every message: what each one added to the conversation, without the quoted history. | [optional] [default to false] |
 
 ### Return type
 
@@ -1127,6 +1779,166 @@ ApiResponse<[**SendEmailMessage202Response**](SendEmailMessage202Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+
+## listEmailDrafts
+
+> ListEmailDrafts200Response listEmailDrafts(accountId, limit, cursor)
+
+List drafts
+
+The mailbox&#39;s drafts, newest first, including drafts the user wrote in Gmail or Outlook. Drafts in the trash are left out. Rows carry no bodies on Google; get a draft to read them.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        Integer limit = 25; // Integer | 
+        String cursor = "cursor_example"; // String | 
+        try {
+            ListEmailDrafts200Response result = apiInstance.listEmailDrafts(accountId, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#listEmailDrafts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **cursor** | **String**|  | [optional] |
+
+### Return type
+
+[**ListEmailDrafts200Response**](ListEmailDrafts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A page of drafts |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+## listEmailDraftsWithHttpInfo
+
+> ApiResponse<ListEmailDrafts200Response> listEmailDrafts listEmailDraftsWithHttpInfo(accountId, limit, cursor)
+
+List drafts
+
+The mailbox&#39;s drafts, newest first, including drafts the user wrote in Gmail or Outlook. Drafts in the trash are left out. Rows carry no bodies on Google; get a draft to read them.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String accountId = "accountId_example"; // String | The connected Google or Microsoft account.
+        Integer limit = 25; // Integer | 
+        String cursor = "cursor_example"; // String | 
+        try {
+            ApiResponse<ListEmailDrafts200Response> response = apiInstance.listEmailDraftsWithHttpInfo(accountId, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#listEmailDrafts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The connected Google or Microsoft account. | |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **cursor** | **String**|  | [optional] |
+
+### Return type
+
+ApiResponse<[**ListEmailDrafts200Response**](ListEmailDrafts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A page of drafts |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
 
 
 ## listEmailFolders
@@ -2173,7 +2985,7 @@ ApiResponse<[**ListScheduledEmails200Response**](ListScheduledEmails200Response.
 
 ## replyEmailMessage
 
-> SendEmailMessage201Response replyEmailMessage(messageId, replyEmailMessageRequest)
+> SendEmailMessage201Response replyEmailMessage(messageId, replyEmailMessageRequest, idempotencyKey)
 
 Reply to a message
 
@@ -2202,8 +3014,9 @@ public class Example {
         EmailApi apiInstance = new EmailApi(defaultClient);
         String messageId = "messageId_example"; // String | 
         ReplyEmailMessageRequest replyEmailMessageRequest = new ReplyEmailMessageRequest(); // ReplyEmailMessageRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            SendEmailMessage201Response result = apiInstance.replyEmailMessage(messageId, replyEmailMessageRequest);
+            SendEmailMessage201Response result = apiInstance.replyEmailMessage(messageId, replyEmailMessageRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling EmailApi#replyEmailMessage");
@@ -2223,6 +3036,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **messageId** | **String**|  | |
 | **replyEmailMessageRequest** | [**ReplyEmailMessageRequest**](ReplyEmailMessageRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -2253,7 +3067,7 @@ public class Example {
 
 ## replyEmailMessageWithHttpInfo
 
-> ApiResponse<SendEmailMessage201Response> replyEmailMessage replyEmailMessageWithHttpInfo(messageId, replyEmailMessageRequest)
+> ApiResponse<SendEmailMessage201Response> replyEmailMessage replyEmailMessageWithHttpInfo(messageId, replyEmailMessageRequest, idempotencyKey)
 
 Reply to a message
 
@@ -2283,8 +3097,9 @@ public class Example {
         EmailApi apiInstance = new EmailApi(defaultClient);
         String messageId = "messageId_example"; // String | 
         ReplyEmailMessageRequest replyEmailMessageRequest = new ReplyEmailMessageRequest(); // ReplyEmailMessageRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            ApiResponse<SendEmailMessage201Response> response = apiInstance.replyEmailMessageWithHttpInfo(messageId, replyEmailMessageRequest);
+            ApiResponse<SendEmailMessage201Response> response = apiInstance.replyEmailMessageWithHttpInfo(messageId, replyEmailMessageRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2306,6 +3121,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **messageId** | **String**|  | |
 | **replyEmailMessageRequest** | [**ReplyEmailMessageRequest**](ReplyEmailMessageRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -2335,9 +3151,181 @@ ApiResponse<[**SendEmailMessage201Response**](SendEmailMessage201Response.md)>
 | **429** | The send was refused before reaching the provider.  - &#x60;email_send_cap_reached&#x60;: today&#39;s cap for the mailbox is spent. &#x60;details.cap&#x60; names the limit and &#x60;resetsAt&#x60;; &#x60;retryAfterSeconds&#x60; counts to midnight UTC. - &#x60;rate_limited&#x60;: the mailbox is in a sending cooldown, either from a same-body burst to more than 50 recipients in an hour (&#x60;details.cap.kind: recipient_burst&#x60;) or an earlier trigger. &#x60;retryAfterSeconds&#x60; says when it lifts, and &#x60;account.rate_limited&#x60; fired when it started.  |  -  |
 
 
+## sendEmailDraft
+
+> SendEmailMessage201Response sendEmailDraft(draftId, sendEmailDraftRequest, ifMatch, idempotencyKey)
+
+Send a draft
+
+Sends the draft as it stands in the mailbox now, edits made in Gmail or Outlook included, and returns the sent message with &#x60;draftId&#x60;. The draft needs at least one recipient. A draft the user deleted or already sent answers 404 &#x60;draft_not_found&#x60;.  With &#x60;If-Match&#x60; it goes out only if it is still the version the approver saw (412 &#x60;draft_conflict&#x60; otherwise). If the user removed the open pixel or rewrote links, tracking is put back before it is sent. Fires &#x60;email.sent&#x60; with &#x60;source: draft&#x60;.  Tracking set when the draft was created applies, and its &#x60;metadata&#x60; comes back on the sent message. Same protection, caps and headers as sending. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String draftId = "draftId_example"; // String | 
+        SendEmailDraftRequest sendEmailDraftRequest = new SendEmailDraftRequest(); // SendEmailDraftRequest | 
+        String ifMatch = "ifMatch_example"; // String | The draft `version` (also its `ETag`). The request applies only if the draft is still that version; otherwise 412 `draft_conflict` with the current draft in `details.draft`.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
+        try {
+            SendEmailMessage201Response result = apiInstance.sendEmailDraft(draftId, sendEmailDraftRequest, ifMatch, idempotencyKey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#sendEmailDraft");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **draftId** | **String**|  | |
+| **sendEmailDraftRequest** | [**SendEmailDraftRequest**](SendEmailDraftRequest.md)|  | |
+| **ifMatch** | **String**| The draft &#x60;version&#x60; (also its &#x60;ETag&#x60;). The request applies only if the draft is still that version; otherwise 412 &#x60;draft_conflict&#x60; with the current draft in &#x60;details.draft&#x60;. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
+
+### Return type
+
+[**SendEmailMessage201Response**](SendEmailMessage201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The sent message |  -  |
+| **202** | Scheduled with &#x60;sendAt&#x60; |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **404** | Resource not found |  -  |
+| **409** | draft_sending: a send of this draft is in flight |  -  |
+| **412** | draft_conflict (the draft is no longer the If-Match version; the current draft is in details.draft), or the mailbox precondition failed |  -  |
+| **429** | The send was refused before reaching the provider.  - &#x60;email_send_cap_reached&#x60;: today&#39;s cap for the mailbox is spent. &#x60;details.cap&#x60; names the limit and &#x60;resetsAt&#x60;; &#x60;retryAfterSeconds&#x60; counts to midnight UTC. - &#x60;rate_limited&#x60;: the mailbox is in a sending cooldown, either from a same-body burst to more than 50 recipients in an hour (&#x60;details.cap.kind: recipient_burst&#x60;) or an earlier trigger. &#x60;retryAfterSeconds&#x60; says when it lifts, and &#x60;account.rate_limited&#x60; fired when it started.  |  -  |
+
+## sendEmailDraftWithHttpInfo
+
+> ApiResponse<SendEmailMessage201Response> sendEmailDraft sendEmailDraftWithHttpInfo(draftId, sendEmailDraftRequest, ifMatch, idempotencyKey)
+
+Send a draft
+
+Sends the draft as it stands in the mailbox now, edits made in Gmail or Outlook included, and returns the sent message with &#x60;draftId&#x60;. The draft needs at least one recipient. A draft the user deleted or already sent answers 404 &#x60;draft_not_found&#x60;.  With &#x60;If-Match&#x60; it goes out only if it is still the version the approver saw (412 &#x60;draft_conflict&#x60; otherwise). If the user removed the open pixel or rewrote links, tracking is put back before it is sent. Fires &#x60;email.sent&#x60; with &#x60;source: draft&#x60;.  Tracking set when the draft was created applies, and its &#x60;metadata&#x60; comes back on the sent message. Same protection, caps and headers as sending. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String draftId = "draftId_example"; // String | 
+        SendEmailDraftRequest sendEmailDraftRequest = new SendEmailDraftRequest(); // SendEmailDraftRequest | 
+        String ifMatch = "ifMatch_example"; // String | The draft `version` (also its `ETag`). The request applies only if the draft is still that version; otherwise 412 `draft_conflict` with the current draft in `details.draft`.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
+        try {
+            ApiResponse<SendEmailMessage201Response> response = apiInstance.sendEmailDraftWithHttpInfo(draftId, sendEmailDraftRequest, ifMatch, idempotencyKey);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#sendEmailDraft");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **draftId** | **String**|  | |
+| **sendEmailDraftRequest** | [**SendEmailDraftRequest**](SendEmailDraftRequest.md)|  | |
+| **ifMatch** | **String**| The draft &#x60;version&#x60; (also its &#x60;ETag&#x60;). The request applies only if the draft is still that version; otherwise 412 &#x60;draft_conflict&#x60; with the current draft in &#x60;details.draft&#x60;. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
+
+### Return type
+
+ApiResponse<[**SendEmailMessage201Response**](SendEmailMessage201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The sent message |  -  |
+| **202** | Scheduled with &#x60;sendAt&#x60; |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **404** | Resource not found |  -  |
+| **409** | draft_sending: a send of this draft is in flight |  -  |
+| **412** | draft_conflict (the draft is no longer the If-Match version; the current draft is in details.draft), or the mailbox precondition failed |  -  |
+| **429** | The send was refused before reaching the provider.  - &#x60;email_send_cap_reached&#x60;: today&#39;s cap for the mailbox is spent. &#x60;details.cap&#x60; names the limit and &#x60;resetsAt&#x60;; &#x60;retryAfterSeconds&#x60; counts to midnight UTC. - &#x60;rate_limited&#x60;: the mailbox is in a sending cooldown, either from a same-body burst to more than 50 recipients in an hour (&#x60;details.cap.kind: recipient_burst&#x60;) or an earlier trigger. &#x60;retryAfterSeconds&#x60; says when it lifts, and &#x60;account.rate_limited&#x60; fired when it started.  |  -  |
+
+
 ## sendEmailMessage
 
-> SendEmailMessage201Response sendEmailMessage(sendEmailRequest)
+> SendEmailMessage201Response sendEmailMessage(sendEmailRequest, idempotencyKey)
 
 Send an email
 
@@ -2365,8 +3353,9 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         SendEmailRequest sendEmailRequest = new SendEmailRequest(); // SendEmailRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            SendEmailMessage201Response result = apiInstance.sendEmailMessage(sendEmailRequest);
+            SendEmailMessage201Response result = apiInstance.sendEmailMessage(sendEmailRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling EmailApi#sendEmailMessage");
@@ -2385,6 +3374,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **sendEmailRequest** | [**SendEmailRequest**](SendEmailRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -2414,7 +3404,7 @@ public class Example {
 
 ## sendEmailMessageWithHttpInfo
 
-> ApiResponse<SendEmailMessage201Response> sendEmailMessage sendEmailMessageWithHttpInfo(sendEmailRequest)
+> ApiResponse<SendEmailMessage201Response> sendEmailMessage sendEmailMessageWithHttpInfo(sendEmailRequest, idempotencyKey)
 
 Send an email
 
@@ -2443,8 +3433,9 @@ public class Example {
 
         EmailApi apiInstance = new EmailApi(defaultClient);
         SendEmailRequest sendEmailRequest = new SendEmailRequest(); // SendEmailRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            ApiResponse<SendEmailMessage201Response> response = apiInstance.sendEmailMessageWithHttpInfo(sendEmailRequest);
+            ApiResponse<SendEmailMessage201Response> response = apiInstance.sendEmailMessageWithHttpInfo(sendEmailRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2465,6 +3456,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **sendEmailRequest** | [**SendEmailRequest**](SendEmailRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -2643,6 +3635,168 @@ ApiResponse<[**TrashEmailMessage200Response**](TrashEmailMessage200Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+
+## updateEmailDraft
+
+> CreateEmailDraft201Response updateEmailDraft(draftId, updateEmailDraftRequest, ifMatch)
+
+Update a draft
+
+Changes the fields you send and keeps the rest. A reply draft stays in its thread, and a new body on a reply or forward draft goes above the quoted original. With &#x60;If-Match&#x60;, a draft someone edited since answers 412 &#x60;draft_conflict&#x60; with the current draft.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String draftId = "draftId_example"; // String | 
+        UpdateEmailDraftRequest updateEmailDraftRequest = new UpdateEmailDraftRequest(); // UpdateEmailDraftRequest | 
+        String ifMatch = "ifMatch_example"; // String | The draft `version` (also its `ETag`). The request applies only if the draft is still that version; otherwise 412 `draft_conflict` with the current draft in `details.draft`.
+        try {
+            CreateEmailDraft201Response result = apiInstance.updateEmailDraft(draftId, updateEmailDraftRequest, ifMatch);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#updateEmailDraft");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **draftId** | **String**|  | |
+| **updateEmailDraftRequest** | [**UpdateEmailDraftRequest**](UpdateEmailDraftRequest.md)|  | |
+| **ifMatch** | **String**| The draft &#x60;version&#x60; (also its &#x60;ETag&#x60;). The request applies only if the draft is still that version; otherwise 412 &#x60;draft_conflict&#x60; with the current draft in &#x60;details.draft&#x60;. | [optional] |
+
+### Return type
+
+[**CreateEmailDraft201Response**](CreateEmailDraft201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated draft. On Google &#x60;messageId&#x60; changes on every update; the draft &#x60;id&#x60; does not. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | draft_sending: a send of this draft is in flight |  -  |
+| **412** | draft_conflict (stale If-Match, current draft in details.draft), or the mailbox precondition failed |  -  |
+
+## updateEmailDraftWithHttpInfo
+
+> ApiResponse<CreateEmailDraft201Response> updateEmailDraft updateEmailDraftWithHttpInfo(draftId, updateEmailDraftRequest, ifMatch)
+
+Update a draft
+
+Changes the fields you send and keeps the rest. A reply draft stays in its thread, and a new body on a reply or forward draft goes above the quoted original. With &#x60;If-Match&#x60;, a draft someone edited since answers 412 &#x60;draft_conflict&#x60; with the current draft.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.EmailApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        EmailApi apiInstance = new EmailApi(defaultClient);
+        String draftId = "draftId_example"; // String | 
+        UpdateEmailDraftRequest updateEmailDraftRequest = new UpdateEmailDraftRequest(); // UpdateEmailDraftRequest | 
+        String ifMatch = "ifMatch_example"; // String | The draft `version` (also its `ETag`). The request applies only if the draft is still that version; otherwise 412 `draft_conflict` with the current draft in `details.draft`.
+        try {
+            ApiResponse<CreateEmailDraft201Response> response = apiInstance.updateEmailDraftWithHttpInfo(draftId, updateEmailDraftRequest, ifMatch);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EmailApi#updateEmailDraft");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **draftId** | **String**|  | |
+| **updateEmailDraftRequest** | [**UpdateEmailDraftRequest**](UpdateEmailDraftRequest.md)|  | |
+| **ifMatch** | **String**| The draft &#x60;version&#x60; (also its &#x60;ETag&#x60;). The request applies only if the draft is still that version; otherwise 412 &#x60;draft_conflict&#x60; with the current draft in &#x60;details.draft&#x60;. | [optional] |
+
+### Return type
+
+ApiResponse<[**CreateEmailDraft201Response**](CreateEmailDraft201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated draft. On Google &#x60;messageId&#x60; changes on every update; the draft &#x60;id&#x60; does not. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | draft_sending: a send of this draft is in flight |  -  |
+| **412** | draft_conflict (stale If-Match, current draft in details.draft), or the mailbox precondition failed |  -  |
 
 
 ## updateEmailMessage

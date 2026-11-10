@@ -148,12 +148,16 @@ All URIs are relative to *https://zernio.com/api*
 | [**onCreatorCampaignBudgetExhaustedWithHttpInfo**](WebhookEventsApi.md#onCreatorCampaignBudgetExhaustedWithHttpInfo) | **POST** /creator_campaign.budget_exhausted | Creator campaign budget exhausted event |
 | [**onCreatorCampaignClosed**](WebhookEventsApi.md#onCreatorCampaignClosed) | **POST** /creator_campaign.closed | Creator campaign closed event |
 | [**onCreatorCampaignClosedWithHttpInfo**](WebhookEventsApi.md#onCreatorCampaignClosedWithHttpInfo) | **POST** /creator_campaign.closed | Creator campaign closed event |
+| [**onEmailBounced**](WebhookEventsApi.md#onEmailBounced) | **POST** /email.bounced | Email bounced |
+| [**onEmailBouncedWithHttpInfo**](WebhookEventsApi.md#onEmailBouncedWithHttpInfo) | **POST** /email.bounced | Email bounced |
 | [**onEmailLinkClicked**](WebhookEventsApi.md#onEmailLinkClicked) | **POST** /email.link_clicked | Email link clicked |
 | [**onEmailLinkClickedWithHttpInfo**](WebhookEventsApi.md#onEmailLinkClickedWithHttpInfo) | **POST** /email.link_clicked | Email link clicked |
 | [**onEmailOpened**](WebhookEventsApi.md#onEmailOpened) | **POST** /email.opened | Email opened |
 | [**onEmailOpenedWithHttpInfo**](WebhookEventsApi.md#onEmailOpenedWithHttpInfo) | **POST** /email.opened | Email opened |
 | [**onEmailSendFailed**](WebhookEventsApi.md#onEmailSendFailed) | **POST** /email.send_failed | Scheduled email failed |
 | [**onEmailSendFailedWithHttpInfo**](WebhookEventsApi.md#onEmailSendFailedWithHttpInfo) | **POST** /email.send_failed | Scheduled email failed |
+| [**onEmailSent**](WebhookEventsApi.md#onEmailSent) | **POST** /email.sent | Email sent |
+| [**onEmailSentWithHttpInfo**](WebhookEventsApi.md#onEmailSentWithHttpInfo) | **POST** /email.sent | Email sent |
 | [**onEmailThreadReplied**](WebhookEventsApi.md#onEmailThreadReplied) | **POST** /email.thread_replied | Email thread replied |
 | [**onEmailThreadRepliedWithHttpInfo**](WebhookEventsApi.md#onEmailThreadRepliedWithHttpInfo) | **POST** /email.thread_replied | Email thread replied |
 | [**onFileCreated**](WebhookEventsApi.md#onFileCreated) | **POST** /file.created | File created |
@@ -10513,6 +10517,148 @@ ApiResponse<Void>
 | **200** | Webhook received successfully |  -  |
 
 
+## onEmailBounced
+
+> void onEmailBounced(webhookPayloadEmailBounced)
+
+Email bounced
+
+A delivery failure report for mail the mailbox sent arrived: the receiving server refused it for a recipient. Fires for every send from the mailbox, once per failed recipient. Delayed-delivery warnings and out-of-office replies do not fire it.  Act on &#x60;recommendedAction&#x60;: &#x60;remove&#x60; means the address does not take mail. Refusals on the sending side (&#x60;auth_failure&#x60;, &#x60;blocklisted&#x60;, &#x60;spam_blocked&#x60;, &#x60;policy_blocked&#x60;) never say &#x60;remove&#x60;. The report also arrives as &#x60;message.received&#x60;, and it does not count as a reply for &#x60;email.thread_replied&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadEmailBounced webhookPayloadEmailBounced = new WebhookPayloadEmailBounced(); // WebhookPayloadEmailBounced | 
+        try {
+            apiInstance.onEmailBounced(webhookPayloadEmailBounced);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onEmailBounced");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadEmailBounced** | [**WebhookPayloadEmailBounced**](WebhookPayloadEmailBounced.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onEmailBouncedWithHttpInfo
+
+> ApiResponse<Void> onEmailBounced onEmailBouncedWithHttpInfo(webhookPayloadEmailBounced)
+
+Email bounced
+
+A delivery failure report for mail the mailbox sent arrived: the receiving server refused it for a recipient. Fires for every send from the mailbox, once per failed recipient. Delayed-delivery warnings and out-of-office replies do not fire it.  Act on &#x60;recommendedAction&#x60;: &#x60;remove&#x60; means the address does not take mail. Refusals on the sending side (&#x60;auth_failure&#x60;, &#x60;blocklisted&#x60;, &#x60;spam_blocked&#x60;, &#x60;policy_blocked&#x60;) never say &#x60;remove&#x60;. The report also arrives as &#x60;message.received&#x60;, and it does not count as a reply for &#x60;email.thread_replied&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadEmailBounced webhookPayloadEmailBounced = new WebhookPayloadEmailBounced(); // WebhookPayloadEmailBounced | 
+        try {
+            ApiResponse<Void> response = apiInstance.onEmailBouncedWithHttpInfo(webhookPayloadEmailBounced);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onEmailBounced");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadEmailBounced** | [**WebhookPayloadEmailBounced**](WebhookPayloadEmailBounced.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
 ## onEmailLinkClicked
 
 > void onEmailLinkClicked(webhookPayloadEmailLinkClicked)
@@ -10939,13 +11085,155 @@ ApiResponse<Void>
 | **200** | Webhook received successfully |  -  |
 
 
+## onEmailSent
+
+> void onEmailSent(webhookPayloadEmailSent)
+
+Email sent
+
+A mail left through the email API. Exactly one event per mail, whichever path sent it: &#x60;source&#x60; is &#x60;send&#x60;, &#x60;reply&#x60;, &#x60;forward&#x60;, &#x60;draft&#x60; or &#x60;scheduled&#x60;. A scheduled draft carries both &#x60;scheduleId&#x60; and &#x60;draftId&#x60;.  Use it to record sends in your own system with the &#x60;metadata&#x60; you passed. The sent copy also arrives as &#x60;message.sent&#x60; in the inbox. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadEmailSent webhookPayloadEmailSent = new WebhookPayloadEmailSent(); // WebhookPayloadEmailSent | 
+        try {
+            apiInstance.onEmailSent(webhookPayloadEmailSent);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onEmailSent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadEmailSent** | [**WebhookPayloadEmailSent**](WebhookPayloadEmailSent.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onEmailSentWithHttpInfo
+
+> ApiResponse<Void> onEmailSent onEmailSentWithHttpInfo(webhookPayloadEmailSent)
+
+Email sent
+
+A mail left through the email API. Exactly one event per mail, whichever path sent it: &#x60;source&#x60; is &#x60;send&#x60;, &#x60;reply&#x60;, &#x60;forward&#x60;, &#x60;draft&#x60; or &#x60;scheduled&#x60;. A scheduled draft carries both &#x60;scheduleId&#x60; and &#x60;draftId&#x60;.  Use it to record sends in your own system with the &#x60;metadata&#x60; you passed. The sent copy also arrives as &#x60;message.sent&#x60; in the inbox. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadEmailSent webhookPayloadEmailSent = new WebhookPayloadEmailSent(); // WebhookPayloadEmailSent | 
+        try {
+            ApiResponse<Void> response = apiInstance.onEmailSentWithHttpInfo(webhookPayloadEmailSent);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onEmailSent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadEmailSent** | [**WebhookPayloadEmailSent**](WebhookPayloadEmailSent.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
 ## onEmailThreadReplied
 
 > void onEmailThreadReplied(webhookPayloadEmailThreadReplied)
 
 Email thread replied
 
-Mail from someone other than the mailbox arrived in the thread of a message sent with &#x60;trackReplies: true&#x60;. Works on text and html sends. Auto-replies and bounce reports in the thread count as replies.  The reply also arrives as &#x60;message.received&#x60; with its full content. 
+Mail from someone other than the mailbox arrived in the thread of a message sent with &#x60;trackReplies: true&#x60;. Works on text and html sends. Auto-replies count as replies; bounce reports do not and fire &#x60;email.bounced&#x60; instead.  &#x60;reply.clean.text&#x60; is the reply without the quoted history, so an agent can act on it without reading the message. The reply also arrives as &#x60;message.received&#x60; with its full content. 
 
 ### Example
 
@@ -11014,7 +11302,7 @@ null (empty response body)
 
 Email thread replied
 
-Mail from someone other than the mailbox arrived in the thread of a message sent with &#x60;trackReplies: true&#x60;. Works on text and html sends. Auto-replies and bounce reports in the thread count as replies.  The reply also arrives as &#x60;message.received&#x60; with its full content. 
+Mail from someone other than the mailbox arrived in the thread of a message sent with &#x60;trackReplies: true&#x60;. Works on text and html sends. Auto-replies count as replies; bounce reports do not and fire &#x60;email.bounced&#x60; instead.  &#x60;reply.clean.text&#x60; is the reply without the quoted history, so an agent can act on it without reading the message. The reply also arrives as &#x60;message.received&#x60; with its full content. 
 
 ### Example
 

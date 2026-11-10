@@ -12,6 +12,7 @@
 |**profileId** | [**SocialAccountProfileId**](SocialAccountProfileId.md) |  |  |
 |**username** | **String** |  |  [optional] |
 |**displayName** | **String** |  |  [optional] |
+|**capabilities** | [**EmailCapabilities**](EmailCapabilities.md) |  |  [optional] |
 |**platformUserId** | **String** | The account&#39;s id on its platform, as the platform reports it to Zernio. Stable across reconnects, so use it to match an account against your own records.  - **Instagram Login accounts:** the app-scoped user id (the professional account id is in &#x60;metadata.instagramScopedId&#x60;). - **Instagram via Facebook Login:** the professional account id (&#x60;17841...&#x60;). - **TikTok:** the open_id of Zernio&#39;s TikTok app, which differs from the open_id any other app sees for the same user.  Either value can be passed back as &#x60;expectedPlatformUserId&#x60; on GET /v1/connect/{platform}.  |  [optional] |
 |**scopeAreas** | **List&lt;String&gt;** | The permission areas the connect requested: the &#x60;scopes&#x60; of GET /v1/connect/{platform}, or your OAuth app&#39;s areas. Null when the connect requested every area. |  [optional] |
 |**oauthAppId** | **String** | The id of your own OAuth app this account connected through (see /v1/connect/oauth-apps); null when it uses Zernio&#39;s app. |  [optional] |

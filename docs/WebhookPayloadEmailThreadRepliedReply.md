@@ -11,6 +11,7 @@
 |**from** | [**EmailAddress**](EmailAddress.md) |  |  [optional] |
 |**receivedAt** | **OffsetDateTime** |  |  [optional] |
 |**count** | **Integer** | Replies in the thread so far. |  [optional] |
+|**clean** | [**WebhookPayloadEmailThreadRepliedReplyClean**](WebhookPayloadEmailThreadRepliedReplyClean.md) |  |  [optional] |
 
 
 

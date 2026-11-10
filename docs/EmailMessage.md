@@ -30,6 +30,9 @@
 |**labels** | **List&lt;String&gt;** | Gmail: the ids of the user labels on the message (names come from &#x60;GET /v1/email/labels&#x60;). Outlook: its category names. |  [optional] |
 |**metadata** | **Map&lt;String, String&gt;** |  |  [optional] |
 |**trackingId** | **String** | Set on a send with &#x60;trackOpens&#x60;, &#x60;trackLinks&#x60; or &#x60;trackReplies&#x60;; the email.* webhooks carry it. |  [optional] |
+|**clean** | [**EmailClean**](EmailClean.md) |  |  [optional] |
+|**draftId** | **String** | On a mail sent from a draft (&#x60;POST /v1/email/drafts/{draftId}/send&#x60;): the draft it was. The sent mail has a new id. |  [optional] |
+|**forwardedFrom** | **String** | On a forward: the message it forwarded. |  [optional] |
 
 
 
