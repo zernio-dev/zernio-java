@@ -7217,13 +7217,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateEmailSignature201ResponseTest.java
-src/test/java/dev/zernio/model/CreateEmailSignatureRequestTest.java
-src/test/java/dev/zernio/model/DeclareEmailSendAs200ResponseTest.java
-src/test/java/dev/zernio/model/DeclareEmailSendAsRequestTest.java
-src/test/java/dev/zernio/model/DeleteEmailSendAs200ResponseDataTest.java
-src/test/java/dev/zernio/model/DeleteEmailSendAs200ResponseTest.java
-src/test/java/dev/zernio/model/EmailSendAsSignatureTest.java
-src/test/java/dev/zernio/model/EmailSignatureTest.java
-src/test/java/dev/zernio/model/ListEmailSignatures200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateEmailSignatureRequestTest.java
