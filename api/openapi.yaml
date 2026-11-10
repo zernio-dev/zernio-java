@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.545.1
+  version: 1.545.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -120581,6 +120581,8 @@ components:
         quality:
           $ref: "#/components/schemas/AdKeyword_quality"
         syncedAt:
+          description: "When Zernio last read this keyword from Google: the last successful\
+            \ keyword sync of its ad account, or a later edit through Zernio."
           format: date-time
           nullable: true
           type: string

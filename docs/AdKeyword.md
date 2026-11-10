@@ -26,7 +26,7 @@
 |**negative** | **Boolean** |  |  [optional] |
 |**qualityScore** | **Integer** | Deprecated, use &#x60;quality.score&#x60;. Google Quality Score, 1-10. Null when unrated. |  [optional] |
 |**quality** | [**AdKeywordQuality**](AdKeywordQuality.md) |  |  [optional] |
-|**syncedAt** | **OffsetDateTime** |  |  [optional] |
+|**syncedAt** | **OffsetDateTime** | When Zernio last read this keyword from Google: the last successful keyword sync of its ad account, or a later edit through Zernio. |  [optional] |
 |**metrics** | [**AdKeywordMetrics**](AdKeywordMetrics.md) |  |  [optional] |
 
 
