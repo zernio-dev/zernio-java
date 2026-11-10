@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.554.0
+- API version: 1.555.0
 
-- Build date: 2026-11-10T16:03:13.288751267Z[Etc/UTC]
+- Build date: 2026-11-10T16:12:20.086823703Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.554.0</version>
+  <version>1.555.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.554.0"
+compile "dev.zernio:zernio-sdk:1.555.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.554.0.jar`
+- `target/zernio-sdk-1.555.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1369,10 +1369,14 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**createCustomConversionGoalWithHttpInfo**](docs/ConversionsApi.md#createCustomConversionGoalWithHttpInfo) | **POST** /v1/ads/conversions/custom-goals | Create a custom conversion goal
 *ConversionsApi* | [**createEventDestination**](docs/ConversionsApi.md#createEventDestination) | **POST** /v1/events/destinations | Add an event destination
 *ConversionsApi* | [**createEventDestinationWithHttpInfo**](docs/ConversionsApi.md#createEventDestinationWithHttpInfo) | **POST** /v1/events/destinations | Add an event destination
+*ConversionsApi* | [**createForwardingRule**](docs/ConversionsApi.md#createForwardingRule) | **POST** /v1/events/forwarding-rules | Add a forwarding rule
+*ConversionsApi* | [**createForwardingRuleWithHttpInfo**](docs/ConversionsApi.md#createForwardingRuleWithHttpInfo) | **POST** /v1/events/forwarding-rules | Add a forwarding rule
 *ConversionsApi* | [**deleteConversionDestination**](docs/ConversionsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
 *ConversionsApi* | [**deleteConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
 *ConversionsApi* | [**deleteEventDestination**](docs/ConversionsApi.md#deleteEventDestination) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination
 *ConversionsApi* | [**deleteEventDestinationWithHttpInfo**](docs/ConversionsApi.md#deleteEventDestinationWithHttpInfo) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination
+*ConversionsApi* | [**deleteForwardingRule**](docs/ConversionsApi.md#deleteForwardingRule) | **DELETE** /v1/events/forwarding-rules/{ruleId} | Remove a forwarding rule
+*ConversionsApi* | [**deleteForwardingRuleWithHttpInfo**](docs/ConversionsApi.md#deleteForwardingRuleWithHttpInfo) | **DELETE** /v1/events/forwarding-rules/{ruleId} | Remove a forwarding rule
 *ConversionsApi* | [**getConversionDestination**](docs/ConversionsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
 *ConversionsApi* | [**getConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
 *ConversionsApi* | [**getConversionMetrics**](docs/ConversionsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
@@ -1395,10 +1399,16 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**listEventDestinationsWithHttpInfo**](docs/ConversionsApi.md#listEventDestinationsWithHttpInfo) | **GET** /v1/events/destinations | List event destinations
 *ConversionsApi* | [**listEvents**](docs/ConversionsApi.md#listEvents) | **GET** /v1/events | List stored events
 *ConversionsApi* | [**listEventsWithHttpInfo**](docs/ConversionsApi.md#listEventsWithHttpInfo) | **GET** /v1/events | List stored events
+*ConversionsApi* | [**listForwardingRules**](docs/ConversionsApi.md#listForwardingRules) | **GET** /v1/events/forwarding-rules | List forwarding rules
+*ConversionsApi* | [**listForwardingRulesWithHttpInfo**](docs/ConversionsApi.md#listForwardingRulesWithHttpInfo) | **GET** /v1/events/forwarding-rules | List forwarding rules
 *ConversionsApi* | [**removeConversionAssociations**](docs/ConversionsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
 *ConversionsApi* | [**removeConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
 *ConversionsApi* | [**removeCustomConversionGoal**](docs/ConversionsApi.md#removeCustomConversionGoal) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal
 *ConversionsApi* | [**removeCustomConversionGoalWithHttpInfo**](docs/ConversionsApi.md#removeCustomConversionGoalWithHttpInfo) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal
+*ConversionsApi* | [**restateEvent**](docs/ConversionsApi.md#restateEvent) | **PATCH** /v1/events/{eventId} | Change a stored event&#39;s value
+*ConversionsApi* | [**restateEventWithHttpInfo**](docs/ConversionsApi.md#restateEventWithHttpInfo) | **PATCH** /v1/events/{eventId} | Change a stored event&#39;s value
+*ConversionsApi* | [**retractEvent**](docs/ConversionsApi.md#retractEvent) | **DELETE** /v1/events/{eventId} | Retract a stored event
+*ConversionsApi* | [**retractEventWithHttpInfo**](docs/ConversionsApi.md#retractEventWithHttpInfo) | **DELETE** /v1/events/{eventId} | Retract a stored event
 *ConversionsApi* | [**sendConversions**](docs/ConversionsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events
 *ConversionsApi* | [**sendConversionsWithHttpInfo**](docs/ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events
 *ConversionsApi* | [**sendEvents**](docs/ConversionsApi.md#sendEvents) | **POST** /v1/events | Send events to every destination
@@ -3347,6 +3357,8 @@ Class | Method | HTTP request | Description
  - [CreateFilePickerSession201Response](docs/CreateFilePickerSession201Response.md)
  - [CreateFilePickerSessionRequest](docs/CreateFilePickerSessionRequest.md)
  - [CreateFolderRequest](docs/CreateFolderRequest.md)
+ - [CreateForwardingRule201Response](docs/CreateForwardingRule201Response.md)
+ - [CreateForwardingRuleRequest](docs/CreateForwardingRuleRequest.md)
  - [CreateGoogleAdAccountRequest](docs/CreateGoogleAdAccountRequest.md)
  - [CreateGoogleAssetGroup200Response](docs/CreateGoogleAssetGroup200Response.md)
  - [CreateGoogleAssetGroup201Response](docs/CreateGoogleAssetGroup201Response.md)
@@ -3729,6 +3741,7 @@ Class | Method | HTTP request | Description
  - [EventAutomationCheck](docs/EventAutomationCheck.md)
  - [EventAutomationCheckSubject](docs/EventAutomationCheckSubject.md)
  - [EventAutomationDefinition](docs/EventAutomationDefinition.md)
+ - [EventCorrection](docs/EventCorrection.md)
  - [EventDestination](docs/EventDestination.md)
  - [Expired](docs/Expired.md)
  - [ExternalPostMediaItem](docs/ExternalPostMediaItem.md)
@@ -3769,6 +3782,7 @@ Class | Method | HTTP request | Description
  - [FoodMenuLabel](docs/FoodMenuLabel.md)
  - [FoodMenuSection](docs/FoodMenuSection.md)
  - [ForwardEmailRequest](docs/ForwardEmailRequest.md)
+ - [ForwardingRule](docs/ForwardingRule.md)
  - [FromASharedTemplate](docs/FromASharedTemplate.md)
  - [FromAZernioTemplate](docs/FromAZernioTemplate.md)
  - [FromYourAutomations](docs/FromYourAutomations.md)
@@ -4655,6 +4669,7 @@ Class | Method | HTTP request | Description
  - [ListFormLeads200Response](docs/ListFormLeads200Response.md)
  - [ListFormLeads200ResponseLeadsInner](docs/ListFormLeads200ResponseLeadsInner.md)
  - [ListFormLeads200ResponseMeta](docs/ListFormLeads200ResponseMeta.md)
+ - [ListForwardingRules200Response](docs/ListForwardingRules200Response.md)
  - [ListGoogleAnalyticsProperties200Response](docs/ListGoogleAnalyticsProperties200Response.md)
  - [ListGoogleAnalyticsProperties200ResponsePropertiesInner](docs/ListGoogleAnalyticsProperties200ResponsePropertiesInner.md)
  - [ListGoogleAssetGroups200Response](docs/ListGoogleAssetGroups200Response.md)
@@ -5151,10 +5166,13 @@ Class | Method | HTTP request | Description
  - [RespondToSmsRegistrationReview200Response](docs/RespondToSmsRegistrationReview200Response.md)
  - [RespondToSmsRegistrationReviewRequest](docs/RespondToSmsRegistrationReviewRequest.md)
  - [RespondToSmsRegistrationReviewRequestAnswersInner](docs/RespondToSmsRegistrationReviewRequestAnswersInner.md)
+ - [RestateEvent200Response](docs/RestateEvent200Response.md)
+ - [RestateEventRequest](docs/RestateEventRequest.md)
  - [RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
  - [RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
  - [ResyncPageWebhookSubscription200Response](docs/ResyncPageWebhookSubscription200Response.md)
  - [Retainer](docs/Retainer.md)
+ - [RetractEvent200Response](docs/RetractEvent200Response.md)
  - [RetryPost207Response](docs/RetryPost207Response.md)
  - [RetryPost402Response](docs/RetryPost402Response.md)
  - [RetweetPost200Response](docs/RetweetPost200Response.md)

@@ -16,10 +16,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**createCustomConversionGoalWithHttpInfo**](ConversionsApi.md#createCustomConversionGoalWithHttpInfo) | **POST** /v1/ads/conversions/custom-goals | Create a custom conversion goal |
 | [**createEventDestination**](ConversionsApi.md#createEventDestination) | **POST** /v1/events/destinations | Add an event destination |
 | [**createEventDestinationWithHttpInfo**](ConversionsApi.md#createEventDestinationWithHttpInfo) | **POST** /v1/events/destinations | Add an event destination |
+| [**createForwardingRule**](ConversionsApi.md#createForwardingRule) | **POST** /v1/events/forwarding-rules | Add a forwarding rule |
+| [**createForwardingRuleWithHttpInfo**](ConversionsApi.md#createForwardingRuleWithHttpInfo) | **POST** /v1/events/forwarding-rules | Add a forwarding rule |
 | [**deleteConversionDestination**](ConversionsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
 | [**deleteConversionDestinationWithHttpInfo**](ConversionsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
 | [**deleteEventDestination**](ConversionsApi.md#deleteEventDestination) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination |
 | [**deleteEventDestinationWithHttpInfo**](ConversionsApi.md#deleteEventDestinationWithHttpInfo) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination |
+| [**deleteForwardingRule**](ConversionsApi.md#deleteForwardingRule) | **DELETE** /v1/events/forwarding-rules/{ruleId} | Remove a forwarding rule |
+| [**deleteForwardingRuleWithHttpInfo**](ConversionsApi.md#deleteForwardingRuleWithHttpInfo) | **DELETE** /v1/events/forwarding-rules/{ruleId} | Remove a forwarding rule |
 | [**getConversionDestination**](ConversionsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
 | [**getConversionDestinationWithHttpInfo**](ConversionsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
 | [**getConversionMetrics**](ConversionsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
@@ -42,10 +46,16 @@ All URIs are relative to *https://zernio.com/api*
 | [**listEventDestinationsWithHttpInfo**](ConversionsApi.md#listEventDestinationsWithHttpInfo) | **GET** /v1/events/destinations | List event destinations |
 | [**listEvents**](ConversionsApi.md#listEvents) | **GET** /v1/events | List stored events |
 | [**listEventsWithHttpInfo**](ConversionsApi.md#listEventsWithHttpInfo) | **GET** /v1/events | List stored events |
+| [**listForwardingRules**](ConversionsApi.md#listForwardingRules) | **GET** /v1/events/forwarding-rules | List forwarding rules |
+| [**listForwardingRulesWithHttpInfo**](ConversionsApi.md#listForwardingRulesWithHttpInfo) | **GET** /v1/events/forwarding-rules | List forwarding rules |
 | [**removeConversionAssociations**](ConversionsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
 | [**removeConversionAssociationsWithHttpInfo**](ConversionsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
 | [**removeCustomConversionGoal**](ConversionsApi.md#removeCustomConversionGoal) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal |
 | [**removeCustomConversionGoalWithHttpInfo**](ConversionsApi.md#removeCustomConversionGoalWithHttpInfo) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal |
+| [**restateEvent**](ConversionsApi.md#restateEvent) | **PATCH** /v1/events/{eventId} | Change a stored event&#39;s value |
+| [**restateEventWithHttpInfo**](ConversionsApi.md#restateEventWithHttpInfo) | **PATCH** /v1/events/{eventId} | Change a stored event&#39;s value |
+| [**retractEvent**](ConversionsApi.md#retractEvent) | **DELETE** /v1/events/{eventId} | Retract a stored event |
+| [**retractEventWithHttpInfo**](ConversionsApi.md#retractEventWithHttpInfo) | **DELETE** /v1/events/{eventId} | Retract a stored event |
 | [**sendConversions**](ConversionsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events |
 | [**sendConversionsWithHttpInfo**](ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events |
 | [**sendEvents**](ConversionsApi.md#sendEvents) | **POST** /v1/events | Send events to every destination |
@@ -233,7 +243,7 @@ ApiResponse<[**AddConversionAssociations200Response**](AddConversionAssociations
 
 Adjust uploaded conversions
 
-Retracts, restates the value of, or enhances conversions you already sent to Google Ads, for refunds or late customer data.  It adjusts conversions previously uploaded via &#x60;POST /v1/ads/conversions&#x60;: retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  ### Google Ads only  Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;). The Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  ### Adjustment types  - &#x60;RETRACTION&#x60;: remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60;: change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60;: attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  ### Identifying the original conversion  Per adjustment, send one of:  - &#x60;orderId&#x60;: the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - &#x60;gclid&#x60; + &#x60;conversionTime&#x60;: the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  ### Other fields  - &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). - PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext. - Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format.  ### Limits  Up to 2000 adjustments per request. Partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
+Retracts, restates the value of, or enhances conversions you already sent to Google Ads, for refunds or late customer data. To change Zernio&#39;s stored event too, and every platform at once, use &#x60;PATCH&#x60; or &#x60;DELETE /v1/events/{eventId}&#x60;.  It adjusts conversions previously uploaded via &#x60;POST /v1/ads/conversions&#x60;: retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  ### Google Ads only  Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;). The Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  ### Adjustment types  - &#x60;RETRACTION&#x60;: remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60;: change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60;: attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  ### Identifying the original conversion  Per adjustment, send one of:  - &#x60;orderId&#x60;: the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - &#x60;gclid&#x60; + &#x60;conversionTime&#x60;: the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  ### Other fields  - &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). - PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext. - Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format.  ### Limits  Up to 2000 adjustments per request. Partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
 
 ### Example
 
@@ -310,7 +320,7 @@ public class Example {
 
 Adjust uploaded conversions
 
-Retracts, restates the value of, or enhances conversions you already sent to Google Ads, for refunds or late customer data.  It adjusts conversions previously uploaded via &#x60;POST /v1/ads/conversions&#x60;: retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  ### Google Ads only  Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;). The Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  ### Adjustment types  - &#x60;RETRACTION&#x60;: remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60;: change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60;: attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  ### Identifying the original conversion  Per adjustment, send one of:  - &#x60;orderId&#x60;: the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - &#x60;gclid&#x60; + &#x60;conversionTime&#x60;: the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  ### Other fields  - &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). - PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext. - Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format.  ### Limits  Up to 2000 adjustments per request. Partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
+Retracts, restates the value of, or enhances conversions you already sent to Google Ads, for refunds or late customer data. To change Zernio&#39;s stored event too, and every platform at once, use &#x60;PATCH&#x60; or &#x60;DELETE /v1/events/{eventId}&#x60;.  It adjusts conversions previously uploaded via &#x60;POST /v1/ads/conversions&#x60;: retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  ### Google Ads only  Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;). The Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  ### Adjustment types  - &#x60;RETRACTION&#x60;: remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60;: change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60;: attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  ### Identifying the original conversion  Per adjustment, send one of:  - &#x60;orderId&#x60;: the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - &#x60;gclid&#x60; + &#x60;conversionTime&#x60;: the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  ### Other fields  - &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). - PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext. - Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format.  ### Limits  Up to 2000 adjustments per request. Partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
 
 ### Example
 
@@ -869,7 +879,7 @@ ApiResponse<[**CreateSharedBudget201ResponseBudget**](CreateSharedBudget201Respo
 
 Add an event destination
 
-Saves an ad platform destination for a profile, so events sent to &#x60;POST /v1/events&#x60; for that profile are forwarded to it. Pick &#x60;destinationId&#x60; from &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events (for example only &#x60;Purchase&#x60;); leave it out to forward every event. 
+The first name of &#x60;POST /v1/events/forwarding-rules&#x60;, which saves the same rule. It keeps working and answers under &#x60;destination&#x60;.
 
 ### Example
 
@@ -943,7 +953,7 @@ public class Example {
 
 Add an event destination
 
-Saves an ad platform destination for a profile, so events sent to &#x60;POST /v1/events&#x60; for that profile are forwarded to it. Pick &#x60;destinationId&#x60; from &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events (for example only &#x60;Purchase&#x60;); leave it out to forward every event. 
+The first name of &#x60;POST /v1/events/forwarding-rules&#x60;, which saves the same rule. It keeps working and answers under &#x60;destination&#x60;.
 
 ### Example
 
@@ -1013,6 +1023,158 @@ ApiResponse<[**CreateEventDestination201Response**](CreateEventDestination201Res
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The profile already sends events to this destination (code &#x60;invalid_resource_state&#x60;). |  -  |
+
+
+## createForwardingRule
+
+> CreateForwardingRule201Response createForwardingRule(createForwardingRuleRequest)
+
+Add a forwarding rule
+
+Saves where a profile&#39;s events go: every event sent to &#x60;POST /v1/events&#x60; for that profile is then forwarded to this destination.  Pick &#x60;destinationId&#x60; from &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events, such as only &#x60;Purchase&#x60;; leave it out to forward every event. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        CreateForwardingRuleRequest createForwardingRuleRequest = new CreateForwardingRuleRequest(); // CreateForwardingRuleRequest | 
+        try {
+            CreateForwardingRule201Response result = apiInstance.createForwardingRule(createForwardingRuleRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#createForwardingRule");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createForwardingRuleRequest** | [**CreateForwardingRuleRequest**](CreateForwardingRuleRequest.md)|  | |
+
+### Return type
+
+[**CreateForwardingRule201Response**](CreateForwardingRule201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Rule saved. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The profile already forwards events to this destination (code &#x60;invalid_resource_state&#x60;). |  -  |
+
+## createForwardingRuleWithHttpInfo
+
+> ApiResponse<CreateForwardingRule201Response> createForwardingRule createForwardingRuleWithHttpInfo(createForwardingRuleRequest)
+
+Add a forwarding rule
+
+Saves where a profile&#39;s events go: every event sent to &#x60;POST /v1/events&#x60; for that profile is then forwarded to this destination.  Pick &#x60;destinationId&#x60; from &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events, such as only &#x60;Purchase&#x60;; leave it out to forward every event. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        CreateForwardingRuleRequest createForwardingRuleRequest = new CreateForwardingRuleRequest(); // CreateForwardingRuleRequest | 
+        try {
+            ApiResponse<CreateForwardingRule201Response> response = apiInstance.createForwardingRuleWithHttpInfo(createForwardingRuleRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#createForwardingRule");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createForwardingRuleRequest** | [**CreateForwardingRuleRequest**](CreateForwardingRuleRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateForwardingRule201Response**](CreateForwardingRule201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Rule saved. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The profile already forwards events to this destination (code &#x60;invalid_resource_state&#x60;). |  -  |
 
 
 ## deleteConversionDestination
@@ -1185,7 +1347,7 @@ ApiResponse<Void>
 
 Remove an event destination
 
-Stops forwarding events to this destination. &#x60;destinationId&#x60; is the event destination &#x60;id&#x60;, not the platform destination.
+The first name of &#x60;DELETE /v1/events/forwarding-rules/{ruleId}&#x60;. &#x60;destinationId&#x60; here is the rule &#x60;id&#x60;, not the platform destination.
 
 ### Example
 
@@ -1258,7 +1420,7 @@ public class Example {
 
 Remove an event destination
 
-Stops forwarding events to this destination. &#x60;destinationId&#x60; is the event destination &#x60;id&#x60;, not the platform destination.
+The first name of &#x60;DELETE /v1/events/forwarding-rules/{ruleId}&#x60;. &#x60;destinationId&#x60; here is the rule &#x60;id&#x60;, not the platform destination.
 
 ### Example
 
@@ -1324,6 +1486,156 @@ ApiResponse<[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Destination removed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## deleteForwardingRule
+
+> DeleteSmsSenderId200Response deleteForwardingRule(ruleId)
+
+Remove a forwarding rule
+
+Stops forwarding events to this rule&#39;s destination. Events already sent are not affected.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String ruleId = "ruleId_example"; // String | The rule `id`.
+        try {
+            DeleteSmsSenderId200Response result = apiInstance.deleteForwardingRule(ruleId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#deleteForwardingRule");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ruleId** | **String**| The rule &#x60;id&#x60;. | |
+
+### Return type
+
+[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Rule removed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## deleteForwardingRuleWithHttpInfo
+
+> ApiResponse<DeleteSmsSenderId200Response> deleteForwardingRule deleteForwardingRuleWithHttpInfo(ruleId)
+
+Remove a forwarding rule
+
+Stops forwarding events to this rule&#39;s destination. Events already sent are not affected.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String ruleId = "ruleId_example"; // String | The rule `id`.
+        try {
+            ApiResponse<DeleteSmsSenderId200Response> response = apiInstance.deleteForwardingRuleWithHttpInfo(ruleId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#deleteForwardingRule");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ruleId** | **String**| The rule &#x60;id&#x60;. | |
+
+### Return type
+
+ApiResponse<[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Rule removed. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
@@ -2809,7 +3121,7 @@ ApiResponse<[**ListCustomConversionGoals200Response**](ListCustomConversionGoals
 
 List event destinations
 
-Lists the ad platform destinations that receive events sent to &#x60;POST /v1/events&#x60;, for one profile or every profile you can access.
+The first name of &#x60;GET /v1/events/forwarding-rules&#x60;, which lists the same rules. It keeps working and answers under &#x60;destinations&#x60;.
 
 ### Example
 
@@ -2882,7 +3194,7 @@ public class Example {
 
 List event destinations
 
-Lists the ad platform destinations that receive events sent to &#x60;POST /v1/events&#x60;, for one profile or every profile you can access.
+The first name of &#x60;GET /v1/events/forwarding-rules&#x60;, which lists the same rules. It keeps working and answers under &#x60;destinations&#x60;.
 
 ### Example
 
@@ -3118,6 +3430,156 @@ ApiResponse<[**ListEvents200Response**](ListEvents200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A page of stored events. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## listForwardingRules
+
+> ListForwardingRules200Response listForwardingRules(profileId)
+
+List forwarding rules
+
+Lists the forwarding rules of one profile, or of every profile you can access. A rule sends a profile&#39;s events to one ad platform destination.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        try {
+            ListForwardingRules200Response result = apiInstance.listForwardingRules(profileId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listForwardingRules");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | [optional] |
+
+### Return type
+
+[**ListForwardingRules200Response**](ListForwardingRules200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Forwarding rules. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## listForwardingRulesWithHttpInfo
+
+> ApiResponse<ListForwardingRules200Response> listForwardingRules listForwardingRulesWithHttpInfo(profileId)
+
+List forwarding rules
+
+Lists the forwarding rules of one profile, or of every profile you can access. A rule sends a profile&#39;s events to one ad platform destination.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        try {
+            ApiResponse<ListForwardingRules200Response> response = apiInstance.listForwardingRulesWithHttpInfo(profileId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listForwardingRules");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | [optional] |
+
+### Return type
+
+ApiResponse<[**ListForwardingRules200Response**](ListForwardingRules200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Forwarding rules. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
@@ -3459,6 +3921,314 @@ ApiResponse<[**RemoveCustomConversionGoal200Response**](RemoveCustomConversionGo
 | **404** | Goal not found on this customer, or account unavailable |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+
+## restateEvent
+
+> RestateEvent200Response restateEvent(eventId, restateEventRequest)
+
+Change a stored event&#39;s value
+
+Changes the value of an event you already sent, for a partial refund or an upgrade. Send the corrected total, not a difference.  Zernio stores a new version of the event, so campaign results count the new value at once. It then passes the change to each destination the event reached: Google Ads restates the conversion, and platforms without a correction API report &#x60;not_supported&#x60; and keep their count. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String eventId = "eventId_example"; // String | The `eventId` the event was sent with.
+        RestateEventRequest restateEventRequest = new RestateEventRequest(); // RestateEventRequest | 
+        try {
+            RestateEvent200Response result = apiInstance.restateEvent(eventId, restateEventRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#restateEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **eventId** | **String**| The &#x60;eventId&#x60; the event was sent with. | |
+| **restateEventRequest** | [**RestateEventRequest**](RestateEventRequest.md)|  | |
+
+### Return type
+
+[**RestateEvent200Response**](RestateEvent200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event was restated. Check each destination. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## restateEventWithHttpInfo
+
+> ApiResponse<RestateEvent200Response> restateEvent restateEventWithHttpInfo(eventId, restateEventRequest)
+
+Change a stored event&#39;s value
+
+Changes the value of an event you already sent, for a partial refund or an upgrade. Send the corrected total, not a difference.  Zernio stores a new version of the event, so campaign results count the new value at once. It then passes the change to each destination the event reached: Google Ads restates the conversion, and platforms without a correction API report &#x60;not_supported&#x60; and keep their count. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String eventId = "eventId_example"; // String | The `eventId` the event was sent with.
+        RestateEventRequest restateEventRequest = new RestateEventRequest(); // RestateEventRequest | 
+        try {
+            ApiResponse<RestateEvent200Response> response = apiInstance.restateEventWithHttpInfo(eventId, restateEventRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#restateEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **eventId** | **String**| The &#x60;eventId&#x60; the event was sent with. | |
+| **restateEventRequest** | [**RestateEventRequest**](RestateEventRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**RestateEvent200Response**](RestateEvent200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event was restated. Check each destination. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## retractEvent
+
+> RetractEvent200Response retractEvent(eventId, profileId)
+
+Retract a stored event
+
+Retracts an event you already sent, for a refund, a cancelled order or a lost deal. It stops counting in campaign results and ad rules.  Each destination the event reached is told where the platform allows it: Google Ads retracts the conversion, and the other platforms report &#x60;not_supported&#x60; and keep their count. Sending the same &#x60;eventId&#x60; again stores it anew. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String eventId = "eventId_example"; // String | The `eventId` the event was sent with.
+        String profileId = "profileId_example"; // String | Profile the event belongs to.
+        try {
+            RetractEvent200Response result = apiInstance.retractEvent(eventId, profileId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#retractEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **eventId** | **String**| The &#x60;eventId&#x60; the event was sent with. | |
+| **profileId** | **String**| Profile the event belongs to. | |
+
+### Return type
+
+[**RetractEvent200Response**](RetractEvent200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event was retracted. Check each destination. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## retractEventWithHttpInfo
+
+> ApiResponse<RetractEvent200Response> retractEvent retractEventWithHttpInfo(eventId, profileId)
+
+Retract a stored event
+
+Retracts an event you already sent, for a refund, a cancelled order or a lost deal. It stops counting in campaign results and ad rules.  Each destination the event reached is told where the platform allows it: Google Ads retracts the conversion, and the other platforms report &#x60;not_supported&#x60; and keep their count. Sending the same &#x60;eventId&#x60; again stores it anew. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String eventId = "eventId_example"; // String | The `eventId` the event was sent with.
+        String profileId = "profileId_example"; // String | Profile the event belongs to.
+        try {
+            ApiResponse<RetractEvent200Response> response = apiInstance.retractEventWithHttpInfo(eventId, profileId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#retractEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **eventId** | **String**| The &#x60;eventId&#x60; the event was sent with. | |
+| **profileId** | **String**| Profile the event belongs to. | |
+
+### Return type
+
+ApiResponse<[**RetractEvent200Response**](RetractEvent200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event was retracted. Check each destination. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## sendConversions

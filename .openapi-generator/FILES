@@ -801,6 +801,8 @@ docs/CreateEventDestinationRequest.md
 docs/CreateFilePickerSession201Response.md
 docs/CreateFilePickerSessionRequest.md
 docs/CreateFolderRequest.md
+docs/CreateForwardingRule201Response.md
+docs/CreateForwardingRuleRequest.md
 docs/CreateGoogleAdAccountRequest.md
 docs/CreateGoogleAssetGroup200Response.md
 docs/CreateGoogleAssetGroup201Response.md
@@ -1188,6 +1190,7 @@ docs/EstimateAdReachRequest.md
 docs/EventAutomationCheck.md
 docs/EventAutomationCheckSubject.md
 docs/EventAutomationDefinition.md
+docs/EventCorrection.md
 docs/EventDestination.md
 docs/Expired.md
 docs/ExternalPostMediaItem.md
@@ -1230,6 +1233,7 @@ docs/FoodMenuItemOptionsInner.md
 docs/FoodMenuLabel.md
 docs/FoodMenuSection.md
 docs/ForwardEmailRequest.md
+docs/ForwardingRule.md
 docs/FromASharedTemplate.md
 docs/FromAZernioTemplate.md
 docs/FromYourAutomations.md
@@ -2131,6 +2135,7 @@ docs/ListFiles200ResponsePagination.md
 docs/ListFormLeads200Response.md
 docs/ListFormLeads200ResponseLeadsInner.md
 docs/ListFormLeads200ResponseMeta.md
+docs/ListForwardingRules200Response.md
 docs/ListGoogleAnalyticsProperties200Response.md
 docs/ListGoogleAnalyticsProperties200ResponsePropertiesInner.md
 docs/ListGoogleAssetGroups200Response.md
@@ -2641,10 +2646,13 @@ docs/RespondToPhoneNumberReviewerRequestDocumentsInner.md
 docs/RespondToSmsRegistrationReview200Response.md
 docs/RespondToSmsRegistrationReviewRequest.md
 docs/RespondToSmsRegistrationReviewRequestAnswersInner.md
+docs/RestateEvent200Response.md
+docs/RestateEventRequest.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
 docs/ResyncPageWebhookSubscription200Response.md
 docs/Retainer.md
+docs/RetractEvent200Response.md
 docs/RetryPost207Response.md
 docs/RetryPost402Response.md
 docs/RetweetPost200Response.md
@@ -4553,6 +4561,8 @@ src/main/java/dev/zernio/model/CreateEventDestinationRequest.java
 src/main/java/dev/zernio/model/CreateFilePickerSession201Response.java
 src/main/java/dev/zernio/model/CreateFilePickerSessionRequest.java
 src/main/java/dev/zernio/model/CreateFolderRequest.java
+src/main/java/dev/zernio/model/CreateForwardingRule201Response.java
+src/main/java/dev/zernio/model/CreateForwardingRuleRequest.java
 src/main/java/dev/zernio/model/CreateGoogleAdAccountRequest.java
 src/main/java/dev/zernio/model/CreateGoogleAssetGroup200Response.java
 src/main/java/dev/zernio/model/CreateGoogleAssetGroup201Response.java
@@ -4935,6 +4945,7 @@ src/main/java/dev/zernio/model/EstimateAdReachRequest.java
 src/main/java/dev/zernio/model/EventAutomationCheck.java
 src/main/java/dev/zernio/model/EventAutomationCheckSubject.java
 src/main/java/dev/zernio/model/EventAutomationDefinition.java
+src/main/java/dev/zernio/model/EventCorrection.java
 src/main/java/dev/zernio/model/EventDestination.java
 src/main/java/dev/zernio/model/Expired.java
 src/main/java/dev/zernio/model/ExternalPostMediaItem.java
@@ -4975,6 +4986,7 @@ src/main/java/dev/zernio/model/FoodMenuItemOptionsInner.java
 src/main/java/dev/zernio/model/FoodMenuLabel.java
 src/main/java/dev/zernio/model/FoodMenuSection.java
 src/main/java/dev/zernio/model/ForwardEmailRequest.java
+src/main/java/dev/zernio/model/ForwardingRule.java
 src/main/java/dev/zernio/model/FromASharedTemplate.java
 src/main/java/dev/zernio/model/FromAZernioTemplate.java
 src/main/java/dev/zernio/model/FromYourAutomations.java
@@ -5861,6 +5873,7 @@ src/main/java/dev/zernio/model/ListFiles200ResponsePagination.java
 src/main/java/dev/zernio/model/ListFormLeads200Response.java
 src/main/java/dev/zernio/model/ListFormLeads200ResponseLeadsInner.java
 src/main/java/dev/zernio/model/ListFormLeads200ResponseMeta.java
+src/main/java/dev/zernio/model/ListForwardingRules200Response.java
 src/main/java/dev/zernio/model/ListGoogleAnalyticsProperties200Response.java
 src/main/java/dev/zernio/model/ListGoogleAnalyticsProperties200ResponsePropertiesInner.java
 src/main/java/dev/zernio/model/ListGoogleAssetGroups200Response.java
@@ -6357,10 +6370,13 @@ src/main/java/dev/zernio/model/RespondToPhoneNumberReviewerRequestDocumentsInner
 src/main/java/dev/zernio/model/RespondToSmsRegistrationReview200Response.java
 src/main/java/dev/zernio/model/RespondToSmsRegistrationReviewRequest.java
 src/main/java/dev/zernio/model/RespondToSmsRegistrationReviewRequestAnswersInner.java
+src/main/java/dev/zernio/model/RestateEvent200Response.java
+src/main/java/dev/zernio/model/RestateEventRequest.java
 src/main/java/dev/zernio/model/RestoreWorkflowVersion200Response.java
 src/main/java/dev/zernio/model/RestoreWorkflowVersion200ResponseWorkflow.java
 src/main/java/dev/zernio/model/ResyncPageWebhookSubscription200Response.java
 src/main/java/dev/zernio/model/Retainer.java
+src/main/java/dev/zernio/model/RetractEvent200Response.java
 src/main/java/dev/zernio/model/RetryPost207Response.java
 src/main/java/dev/zernio/model/RetryPost402Response.java
 src/main/java/dev/zernio/model/RetweetPost200Response.java
@@ -7373,3 +7389,11 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateForwardingRule201ResponseTest.java
+src/test/java/dev/zernio/model/CreateForwardingRuleRequestTest.java
+src/test/java/dev/zernio/model/EventCorrectionTest.java
+src/test/java/dev/zernio/model/ForwardingRuleTest.java
+src/test/java/dev/zernio/model/ListForwardingRules200ResponseTest.java
+src/test/java/dev/zernio/model/RestateEvent200ResponseTest.java
+src/test/java/dev/zernio/model/RestateEventRequestTest.java
+src/test/java/dev/zernio/model/RetractEvent200ResponseTest.java
