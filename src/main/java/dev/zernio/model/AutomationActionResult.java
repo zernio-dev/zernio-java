@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   AutomationActionResult.JSON_PROPERTY_PREVIOUS,
   AutomationActionResult.JSON_PROPERTY_TARGET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T00:39:53.104734498Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T01:14:02.590680224Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationActionResult {
   public static final String JSON_PROPERTY_STEP = "step";
   @javax.annotation.Nonnull
