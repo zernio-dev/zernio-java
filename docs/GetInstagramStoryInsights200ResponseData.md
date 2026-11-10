@@ -17,6 +17,7 @@
 | Name | Value |
 |---- | -----|
 | LIVE | &quot;live&quot; |
+| ARCHIVED | &quot;archived&quot; |
 | CACHED | &quot;cached&quot; |
 | UNAVAILABLE | &quot;unavailable&quot; |
 
