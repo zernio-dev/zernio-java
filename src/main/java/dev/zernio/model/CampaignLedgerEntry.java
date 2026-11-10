@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   CampaignLedgerEntry.JSON_PROPERTY_ACTOR,
   CampaignLedgerEntry.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T09:59:50.523180222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:09:38.420869741Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignLedgerEntry {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

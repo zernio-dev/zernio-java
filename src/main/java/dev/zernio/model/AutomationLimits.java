@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AutomationLimits.JSON_PROPERTY_MAX_CHANGES_PER_DAY,
   AutomationLimits.JSON_PROPERTY_MAX_CHANGES_PER_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T09:59:50.523180222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:09:38.420869741Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationLimits {
   public static final String JSON_PROPERTY_COOLDOWN = "cooldown";
   @javax.annotation.Nullable

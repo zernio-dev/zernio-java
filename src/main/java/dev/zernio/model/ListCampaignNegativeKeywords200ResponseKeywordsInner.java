@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ListCampaignNegativeKeywords200ResponseKeywordsInner.JSON_PROPERTY_TEXT,
   ListCampaignNegativeKeywords200ResponseKeywordsInner.JSON_PROPERTY_MATCH_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T09:59:50.523180222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:09:38.420869741Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCampaignNegativeKeywords200ResponseKeywordsInner {
   public static final String JSON_PROPERTY_CRITERION_ID = "criterionId";
   @javax.annotation.Nullable

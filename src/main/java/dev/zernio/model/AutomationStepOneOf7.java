@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   AutomationStepOneOf7.JSON_PROPERTY_MAX,
   AutomationStepOneOf7.JSON_PROPERTY_MIN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T09:59:50.523180222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T10:09:38.420869741Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationStepOneOf7 {
   /**
    * Gets or Sets id
