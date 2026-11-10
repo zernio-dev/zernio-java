@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessServices200ResponseServicesInnerPrice.JSON_PROPERTY_UNITS,
   GetGoogleBusinessServices200ResponseServicesInnerPrice.JSON_PROPERTY_NANOS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:58:07.980004700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:03:13.288751267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessServices200ResponseServicesInnerPrice {
   public static final String JSON_PROPERTY_CURRENCY_CODE = "currencyCode";
   @javax.annotation.Nullable

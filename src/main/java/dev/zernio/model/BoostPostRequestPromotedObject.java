@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   BoostPostRequestPromotedObject.JSON_PROPERTY_CUSTOM_EVENT_STR,
   BoostPostRequestPromotedObject.JSON_PROPERTY_CUSTOM_CONVERSION_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:58:07.980004700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:03:13.288751267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequestPromotedObject {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable

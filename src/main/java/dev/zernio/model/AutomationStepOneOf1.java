@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AutomationStepOneOf1.JSON_PROPERTY_TYPE,
   AutomationStepOneOf1.JSON_PROPERTY_INCLUDE_MANUALLY_PAUSED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:58:07.980004700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:03:13.288751267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationStepOneOf1 {
   /**
    * Gets or Sets id

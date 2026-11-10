@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   OpenHoursInner.JSON_PROPERTY_END,
   OpenHoursInner.JSON_PROPERTY_EXDATES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:58:07.980004700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:03:13.288751267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OpenHoursInner {
   public static final String JSON_PROPERTY_DAYS = "days";
   @javax.annotation.Nonnull

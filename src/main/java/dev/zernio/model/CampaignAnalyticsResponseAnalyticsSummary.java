@@ -87,7 +87,7 @@ import dev.zernio.ApiClient;
   CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_SEARCH_TOP_IMPRESSION_SHARE,
   CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_SEARCH_ABSOLUTE_TOP_IMPRESSION_SHARE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:58:07.980004700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:03:13.288751267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignAnalyticsResponseAnalyticsSummary {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable

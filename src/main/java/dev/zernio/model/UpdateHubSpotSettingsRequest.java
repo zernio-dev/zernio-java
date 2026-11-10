@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UpdateHubSpotSettingsRequest.JSON_PROPERTY_REPORT_DEALS,
   UpdateHubSpotSettingsRequest.JSON_PROPERTY_USE_DEALS_AS_RESULTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T15:58:07.980004700Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-10T16:03:13.288751267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateHubSpotSettingsRequest {
   public static final String JSON_PROPERTY_SYNC_CONTACTS = "syncContacts";
   @javax.annotation.Nullable
