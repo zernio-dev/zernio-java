@@ -17,6 +17,7 @@ Every field is optional; the ones you leave out keep their current value. `text`
 |**text** | **String** |  |  [optional] |
 |**html** | **String** | On a draft created with tracking, the new html is instrumented again under the same &#x60;trackingId&#x60;. |  [optional] |
 |**attachments** | [**List&lt;EmailAttachmentInput&gt;**](EmailAttachmentInput.md) |  |  [optional] |
+|**signatureId** | **String** | Swaps the Zernio signature block in the new &#x60;html&#x60; or &#x60;text&#x60; for this signature, so switching never stacks two; &#x60;null&#x60; removes it. Needs &#x60;html&#x60; or &#x60;text&#x60; in the same request. |  [optional] |
 
 
 

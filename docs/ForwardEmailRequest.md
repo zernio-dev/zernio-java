@@ -14,7 +14,8 @@
 |**replyTo** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  |  [optional] |
 |**fromName** | **String** |  |  [optional] |
 |**from** | **String** | Send from another address of the mailbox, as on &#x60;POST /v1/email/messages&#x60;. |  [optional] |
-|**appendSignature** | **Boolean** | Gmail only. Appends the signature of the sending address to the note. Outlook answers 400. |  [optional] |
+|**appendSignature** | **Boolean** | Appends the signature of the sending address to the note, above the forwarded original: its Zernio default first, else its Gmail signature. |  [optional] |
+|**signatureId** | **String** | Appends this Zernio signature to the note instead. Wins over &#x60;appendSignature&#x60;. |  [optional] |
 |**subject** | **String** | Defaults to \&quot;Fwd: \&quot; plus the original subject. |  [optional] |
 |**text** | **String** | Optional note above the forwarded mail. |  [optional] |
 |**html** | **String** | Optional note above the forwarded mail, as html. |  [optional] |

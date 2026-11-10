@@ -13,6 +13,7 @@
 |**provider** | [**ProviderEnum**](#ProviderEnum) |  |  [optional] |
 |**folders** | **List&lt;String&gt;** |  |  [optional] |
 |**from** | [**EmailAddress**](EmailAddress.md) |  |  [optional] |
+|**sender** | [**EmailAddress**](EmailAddress.md) |  |  [optional] |
 |**to** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  |  [optional] |
 |**cc** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  |  [optional] |
 |**bcc** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  |  [optional] |

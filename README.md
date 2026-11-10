@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.550.0
+- API version: 1.551.0
 
-- Build date: 2026-11-10T12:48:28.185921359Z[Etc/UTC]
+- Build date: 2026-11-10T13:00:47.733951843Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.550.0</version>
+  <version>1.551.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.550.0"
+compile "dev.zernio:zernio-sdk:1.551.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.550.0.jar`
+- `target/zernio-sdk-1.551.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1555,10 +1555,18 @@ Class | Method | HTTP request | Description
 *EmailApi* | [**createEmailDraftWithHttpInfo**](docs/EmailApi.md#createEmailDraftWithHttpInfo) | **POST** /v1/email/drafts | Create a draft
 *EmailApi* | [**createEmailLabel**](docs/EmailApi.md#createEmailLabel) | **POST** /v1/email/labels | Create a label
 *EmailApi* | [**createEmailLabelWithHttpInfo**](docs/EmailApi.md#createEmailLabelWithHttpInfo) | **POST** /v1/email/labels | Create a label
+*EmailApi* | [**createEmailSignature**](docs/EmailApi.md#createEmailSignature) | **POST** /v1/email/signatures | Create a signature
+*EmailApi* | [**createEmailSignatureWithHttpInfo**](docs/EmailApi.md#createEmailSignatureWithHttpInfo) | **POST** /v1/email/signatures | Create a signature
+*EmailApi* | [**declareEmailSendAs**](docs/EmailApi.md#declareEmailSendAs) | **POST** /v1/email/send-as | Declare a send-as address
+*EmailApi* | [**declareEmailSendAsWithHttpInfo**](docs/EmailApi.md#declareEmailSendAsWithHttpInfo) | **POST** /v1/email/send-as | Declare a send-as address
 *EmailApi* | [**deleteEmailDraft**](docs/EmailApi.md#deleteEmailDraft) | **DELETE** /v1/email/drafts/{draftId} | Delete a draft
 *EmailApi* | [**deleteEmailDraftWithHttpInfo**](docs/EmailApi.md#deleteEmailDraftWithHttpInfo) | **DELETE** /v1/email/drafts/{draftId} | Delete a draft
 *EmailApi* | [**deleteEmailLabel**](docs/EmailApi.md#deleteEmailLabel) | **DELETE** /v1/email/labels/{labelId} | Delete a label
 *EmailApi* | [**deleteEmailLabelWithHttpInfo**](docs/EmailApi.md#deleteEmailLabelWithHttpInfo) | **DELETE** /v1/email/labels/{labelId} | Delete a label
+*EmailApi* | [**deleteEmailSendAs**](docs/EmailApi.md#deleteEmailSendAs) | **DELETE** /v1/email/send-as/{email} | Remove a declared send-as address
+*EmailApi* | [**deleteEmailSendAsWithHttpInfo**](docs/EmailApi.md#deleteEmailSendAsWithHttpInfo) | **DELETE** /v1/email/send-as/{email} | Remove a declared send-as address
+*EmailApi* | [**deleteEmailSignature**](docs/EmailApi.md#deleteEmailSignature) | **DELETE** /v1/email/signatures/{signatureId} | Delete a signature
+*EmailApi* | [**deleteEmailSignatureWithHttpInfo**](docs/EmailApi.md#deleteEmailSignatureWithHttpInfo) | **DELETE** /v1/email/signatures/{signatureId} | Delete a signature
 *EmailApi* | [**downloadEmailAttachment**](docs/EmailApi.md#downloadEmailAttachment) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment
 *EmailApi* | [**downloadEmailAttachmentWithHttpInfo**](docs/EmailApi.md#downloadEmailAttachmentWithHttpInfo) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment
 *EmailApi* | [**forwardEmailMessage**](docs/EmailApi.md#forwardEmailMessage) | **POST** /v1/email/messages/{messageId}/forward | Forward a message
@@ -1567,10 +1575,14 @@ Class | Method | HTTP request | Description
 *EmailApi* | [**getEmailDraftWithHttpInfo**](docs/EmailApi.md#getEmailDraftWithHttpInfo) | **GET** /v1/email/drafts/{draftId} | Get a draft
 *EmailApi* | [**getEmailMessage**](docs/EmailApi.md#getEmailMessage) | **GET** /v1/email/messages/{messageId} | Get an email message
 *EmailApi* | [**getEmailMessageWithHttpInfo**](docs/EmailApi.md#getEmailMessageWithHttpInfo) | **GET** /v1/email/messages/{messageId} | Get an email message
+*EmailApi* | [**getEmailSignature**](docs/EmailApi.md#getEmailSignature) | **GET** /v1/email/signatures/{signatureId} | Get a signature
+*EmailApi* | [**getEmailSignatureWithHttpInfo**](docs/EmailApi.md#getEmailSignatureWithHttpInfo) | **GET** /v1/email/signatures/{signatureId} | Get a signature
 *EmailApi* | [**getEmailThread**](docs/EmailApi.md#getEmailThread) | **GET** /v1/email/threads/{threadId} | Get an email thread with its messages
 *EmailApi* | [**getEmailThreadWithHttpInfo**](docs/EmailApi.md#getEmailThreadWithHttpInfo) | **GET** /v1/email/threads/{threadId} | Get an email thread with its messages
 *EmailApi* | [**getScheduledEmail**](docs/EmailApi.md#getScheduledEmail) | **GET** /v1/email/messages/scheduled/{scheduleId} | Get a scheduled email
 *EmailApi* | [**getScheduledEmailWithHttpInfo**](docs/EmailApi.md#getScheduledEmailWithHttpInfo) | **GET** /v1/email/messages/scheduled/{scheduleId} | Get a scheduled email
+*EmailApi* | [**importEmailSignatures**](docs/EmailApi.md#importEmailSignatures) | **POST** /v1/email/signatures/import | Import Gmail signatures
+*EmailApi* | [**importEmailSignaturesWithHttpInfo**](docs/EmailApi.md#importEmailSignaturesWithHttpInfo) | **POST** /v1/email/signatures/import | Import Gmail signatures
 *EmailApi* | [**listEmailDrafts**](docs/EmailApi.md#listEmailDrafts) | **GET** /v1/email/drafts | List drafts
 *EmailApi* | [**listEmailDraftsWithHttpInfo**](docs/EmailApi.md#listEmailDraftsWithHttpInfo) | **GET** /v1/email/drafts | List drafts
 *EmailApi* | [**listEmailFolders**](docs/EmailApi.md#listEmailFolders) | **GET** /v1/email/folders | List mailbox folders
@@ -1581,6 +1593,8 @@ Class | Method | HTTP request | Description
 *EmailApi* | [**listEmailMessagesWithHttpInfo**](docs/EmailApi.md#listEmailMessagesWithHttpInfo) | **GET** /v1/email/messages | List email messages
 *EmailApi* | [**listEmailSendAs**](docs/EmailApi.md#listEmailSendAs) | **GET** /v1/email/send-as | List send-as addresses
 *EmailApi* | [**listEmailSendAsWithHttpInfo**](docs/EmailApi.md#listEmailSendAsWithHttpInfo) | **GET** /v1/email/send-as | List send-as addresses
+*EmailApi* | [**listEmailSignatures**](docs/EmailApi.md#listEmailSignatures) | **GET** /v1/email/signatures | List signatures
+*EmailApi* | [**listEmailSignaturesWithHttpInfo**](docs/EmailApi.md#listEmailSignaturesWithHttpInfo) | **GET** /v1/email/signatures | List signatures
 *EmailApi* | [**listEmailThreads**](docs/EmailApi.md#listEmailThreads) | **GET** /v1/email/threads | List email threads
 *EmailApi* | [**listEmailThreadsWithHttpInfo**](docs/EmailApi.md#listEmailThreadsWithHttpInfo) | **GET** /v1/email/threads | List email threads
 *EmailApi* | [**listScheduledEmails**](docs/EmailApi.md#listScheduledEmails) | **GET** /v1/email/messages/scheduled | List scheduled emails
@@ -1597,6 +1611,8 @@ Class | Method | HTTP request | Description
 *EmailApi* | [**updateEmailDraftWithHttpInfo**](docs/EmailApi.md#updateEmailDraftWithHttpInfo) | **PATCH** /v1/email/drafts/{draftId} | Update a draft
 *EmailApi* | [**updateEmailMessage**](docs/EmailApi.md#updateEmailMessage) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, label, or move a message
 *EmailApi* | [**updateEmailMessageWithHttpInfo**](docs/EmailApi.md#updateEmailMessageWithHttpInfo) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, label, or move a message
+*EmailApi* | [**updateEmailSignature**](docs/EmailApi.md#updateEmailSignature) | **PATCH** /v1/email/signatures/{signatureId} | Update a signature
+*EmailApi* | [**updateEmailSignatureWithHttpInfo**](docs/EmailApi.md#updateEmailSignatureWithHttpInfo) | **PATCH** /v1/email/signatures/{signatureId} | Update a signature
 *EmailApi* | [**updateEmailThread**](docs/EmailApi.md#updateEmailThread) | **PATCH** /v1/email/threads/{threadId} | Update every message in a thread
 *EmailApi* | [**updateEmailThreadWithHttpInfo**](docs/EmailApi.md#updateEmailThreadWithHttpInfo) | **PATCH** /v1/email/threads/{threadId} | Update every message in a thread
 *FeedbackApi* | [**submitFeedback**](docs/FeedbackApi.md#submitFeedback) | **POST** /v1/feedback | Submit feedback
@@ -3274,6 +3290,8 @@ Class | Method | HTTP request | Description
  - [CreateEmailLabel200Response](docs/CreateEmailLabel200Response.md)
  - [CreateEmailLabelRequest](docs/CreateEmailLabelRequest.md)
  - [CreateEmailLabelRequestColor](docs/CreateEmailLabelRequestColor.md)
+ - [CreateEmailSignature201Response](docs/CreateEmailSignature201Response.md)
+ - [CreateEmailSignatureRequest](docs/CreateEmailSignatureRequest.md)
  - [CreateEventDestination201Response](docs/CreateEventDestination201Response.md)
  - [CreateEventDestinationRequest](docs/CreateEventDestinationRequest.md)
  - [CreateFilePickerSession201Response](docs/CreateFilePickerSession201Response.md)
@@ -3488,6 +3506,8 @@ Class | Method | HTTP request | Description
  - [CustomConversionResult](docs/CustomConversionResult.md)
  - [DaysLive](docs/DaysLive.md)
  - [DeactivateSmsRegistration200Response](docs/DeactivateSmsRegistration200Response.md)
+ - [DeclareEmailSendAs200Response](docs/DeclareEmailSendAs200Response.md)
+ - [DeclareEmailSendAsRequest](docs/DeclareEmailSendAsRequest.md)
  - [DeleteAccountGroup200Response](docs/DeleteAccountGroup200Response.md)
  - [DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
  - [DeleteAdCampaignRequest](docs/DeleteAdCampaignRequest.md)
@@ -3513,6 +3533,8 @@ Class | Method | HTTP request | Description
  - [DeleteDiscordScheduledEvent200Response](docs/DeleteDiscordScheduledEvent200Response.md)
  - [DeleteEmailDraft200Response](docs/DeleteEmailDraft200Response.md)
  - [DeleteEmailDraft200ResponseData](docs/DeleteEmailDraft200ResponseData.md)
+ - [DeleteEmailSendAs200Response](docs/DeleteEmailSendAs200Response.md)
+ - [DeleteEmailSendAs200ResponseData](docs/DeleteEmailSendAs200ResponseData.md)
  - [DeleteGoogleBusinessMedia200Response](docs/DeleteGoogleBusinessMedia200Response.md)
  - [DeleteGoogleBusinessPlaceAction200Response](docs/DeleteGoogleBusinessPlaceAction200Response.md)
  - [DeleteGoogleBusinessReviewReply200Response](docs/DeleteGoogleBusinessReviewReply200Response.md)
@@ -3600,6 +3622,8 @@ Class | Method | HTTP request | Description
  - [EmailMessage](docs/EmailMessage.md)
  - [EmailMessagePatch](docs/EmailMessagePatch.md)
  - [EmailSendAs](docs/EmailSendAs.md)
+ - [EmailSendAsSignature](docs/EmailSendAsSignature.md)
+ - [EmailSignature](docs/EmailSignature.md)
  - [EmailThread](docs/EmailThread.md)
  - [EnableSmsOnNumber200Response](docs/EnableSmsOnNumber200Response.md)
  - [EnableSmsOnNumber200ResponseReusable](docs/EnableSmsOnNumber200ResponseReusable.md)
@@ -4516,6 +4540,7 @@ Class | Method | HTTP request | Description
  - [ListEmailMessages200Response](docs/ListEmailMessages200Response.md)
  - [ListEmailSendAs200Response](docs/ListEmailSendAs200Response.md)
  - [ListEmailSendAs200ResponseMeta](docs/ListEmailSendAs200ResponseMeta.md)
+ - [ListEmailSignatures200Response](docs/ListEmailSignatures200Response.md)
  - [ListEmailThreads200Response](docs/ListEmailThreads200Response.md)
  - [ListEventDestinations200Response](docs/ListEventDestinations200Response.md)
  - [ListEvents200Response](docs/ListEvents200Response.md)
@@ -5509,6 +5534,7 @@ Class | Method | HTTP request | Description
  - [UpdateDiscordSettings200ResponseAccount](docs/UpdateDiscordSettings200ResponseAccount.md)
  - [UpdateDiscordSettingsRequest](docs/UpdateDiscordSettingsRequest.md)
  - [UpdateEmailDraftRequest](docs/UpdateEmailDraftRequest.md)
+ - [UpdateEmailSignatureRequest](docs/UpdateEmailSignatureRequest.md)
  - [UpdateEmailThread200Response](docs/UpdateEmailThread200Response.md)
  - [UpdateFacebookPage200Response](docs/UpdateFacebookPage200Response.md)
  - [UpdateFacebookPage200ResponseSelectedPage](docs/UpdateFacebookPage200ResponseSelectedPage.md)

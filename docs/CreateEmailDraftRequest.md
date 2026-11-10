@@ -14,7 +14,8 @@
 |**replyTo** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  |  [optional] |
 |**fromName** | **String** |  |  [optional] |
 |**from** | **String** | Send from another address of the mailbox, as on &#x60;POST /v1/email/messages&#x60;. Checked when the draft is saved. |  [optional] |
-|**appendSignature** | **Boolean** | Gmail only. Puts the signature of the sending address in the draft body, where the user sees it. |  [optional] |
+|**appendSignature** | **Boolean** | Puts the signature of the sending address in the draft body, where the user sees it: its Zernio default first, else its Gmail signature. |  [optional] |
+|**signatureId** | **String** | Puts this Zernio signature in the draft body instead. Wins over &#x60;appendSignature&#x60;. |  [optional] |
 |**subject** | **String** | On a reply draft, empty keeps the thread subject. |  [optional] |
 |**text** | **String** |  |  [optional] |
 |**html** | **String** |  |  [optional] |
