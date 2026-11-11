@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.576.3
+- API version: 1.577.0
 
-- Build date: 2026-11-11T22:40:10.755150126Z[Etc/UTC]
+- Build date: 2026-11-11T23:03:05.931857475Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.576.3</version>
+  <version>1.577.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.576.3"
+compile "dev.zernio:zernio-sdk:1.577.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.576.3.jar`
+- `target/zernio-sdk-1.577.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3984,6 +3984,7 @@ Class | Method | HTTP request | Description
  - [GetAutomationCatalog200ResponseTriggersInnerFactsInner](docs/GetAutomationCatalog200ResponseTriggersInnerFactsInner.md)
  - [GetAutomationControls200Response](docs/GetAutomationControls200Response.md)
  - [GetBalance200Response](docs/GetBalance200Response.md)
+ - [GetBalance200ResponseHeld](docs/GetBalance200ResponseHeld.md)
  - [GetBalance200ResponsePayoutLocksInner](docs/GetBalance200ResponsePayoutLocksInner.md)
  - [GetBalance200ResponsePendingReleasesInner](docs/GetBalance200ResponsePendingReleasesInner.md)
  - [GetBalance200ResponseRecentCreditRechargesInner](docs/GetBalance200ResponseRecentCreditRechargesInner.md)
