@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CreateCustomFieldRequest.JSON_PROPERTY_TYPE,
   CreateCustomFieldRequest.JSON_PROPERTY_OPTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:09:32.587947895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:23:09.715448973Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCustomFieldRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   JoinCreatorCampaignRequest.JSON_PROPERTY_DISPLAY_NAME,
   JoinCreatorCampaignRequest.JSON_PROPERTY_EMAIL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:09:32.587947895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:23:09.715448973Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class JoinCreatorCampaignRequest {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nullable

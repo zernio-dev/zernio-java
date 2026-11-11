@@ -51,9 +51,10 @@ import dev.zernio.ApiClient;
   BalanceRequiredError.JSON_PROPERTY_REQUEST_ID,
   BalanceRequiredError.JSON_PROPERTY_DOCS_URL,
   BalanceRequiredError.JSON_PROPERTY_DETAILS,
-  BalanceRequiredError.JSON_PROPERTY_FUNDING_URL
+  BalanceRequiredError.JSON_PROPERTY_FUNDING_URL,
+  BalanceRequiredError.JSON_PROPERTY_REQUIRED_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:09:32.587947895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:23:09.715448973Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BalanceRequiredError {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
@@ -155,6 +156,10 @@ public class BalanceRequiredError {
   public static final String JSON_PROPERTY_FUNDING_URL = "funding_url";
   @javax.annotation.Nonnull
   private URI fundingUrl;
+
+  public static final String JSON_PROPERTY_REQUIRED_CENTS = "required_cents";
+  @javax.annotation.Nullable
+  private Integer requiredCents;
 
   public BalanceRequiredError() { 
   }
@@ -503,6 +508,30 @@ public class BalanceRequiredError {
   }
 
 
+  public BalanceRequiredError requiredCents(@javax.annotation.Nullable Integer requiredCents) {
+    this.requiredCents = requiredCents;
+    return this;
+  }
+
+  /**
+   * Only when an item debited later (a phone number&#39;s first month, all numbers of the order) is refused: what the balance must hold, in cents.
+   * @return requiredCents
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REQUIRED_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getRequiredCents() {
+    return requiredCents;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REQUIRED_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRequiredCents(@javax.annotation.Nullable Integer requiredCents) {
+    this.requiredCents = requiredCents;
+  }
+
+
   /**
    * Return true if this BalanceRequiredError object is equal to o.
    */
@@ -528,12 +557,13 @@ public class BalanceRequiredError {
         Objects.equals(this.requestId, balanceRequiredError.requestId) &&
         Objects.equals(this.docsUrl, balanceRequiredError.docsUrl) &&
         Objects.equals(this.details, balanceRequiredError.details) &&
-        Objects.equals(this.fundingUrl, balanceRequiredError.fundingUrl);
+        Objects.equals(this.fundingUrl, balanceRequiredError.fundingUrl) &&
+        Objects.equals(this.requiredCents, balanceRequiredError.requiredCents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(error, type, code, param, docUrl, platform, platformError, provider, providerError, retryable, requestId, docsUrl, details, fundingUrl);
+    return Objects.hash(error, type, code, param, docUrl, platform, platformError, provider, providerError, retryable, requestId, docsUrl, details, fundingUrl, requiredCents);
   }
 
   @Override
@@ -554,6 +584,7 @@ public class BalanceRequiredError {
     sb.append("    docsUrl: ").append(toIndentedString(docsUrl)).append("\n");
     sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("    fundingUrl: ").append(toIndentedString(fundingUrl)).append("\n");
+    sb.append("    requiredCents: ").append(toIndentedString(requiredCents)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -673,6 +704,11 @@ public class BalanceRequiredError {
     // add `funding_url` to the URL query string
     if (getFundingUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sfunding_url%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFundingUrl()))));
+    }
+
+    // add `required_cents` to the URL query string
+    if (getRequiredCents() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srequired_cents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRequiredCents()))));
     }
 
     return joiner.toString();

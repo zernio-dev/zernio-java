@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ApiKeyCreatedBy.JSON_PROPERTY_ID,
   ApiKeyCreatedBy.JSON_PROPERTY_EMAIL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:09:32.587947895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:23:09.715448973Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ApiKeyCreatedBy {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

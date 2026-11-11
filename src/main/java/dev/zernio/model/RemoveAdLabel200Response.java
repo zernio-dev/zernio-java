@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   RemoveAdLabel200Response.JSON_PROPERTY_LABEL_ID,
   RemoveAdLabel200Response.JSON_PROPERTY_REMOVED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:09:32.587947895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:23:09.715448973Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RemoveAdLabel200Response {
   public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
   @javax.annotation.Nullable

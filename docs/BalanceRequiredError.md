@@ -22,6 +22,7 @@ The error envelope of a $0 balance refusal (402 `insufficient_balance` or `usage
 |**docsUrl** | **String** | Email API: where this &#x60;code&#x60; is documented. |  [optional] |
 |**details** | **ErrorResponseDetails** |  |  [optional] |
 |**fundingUrl** | **URI** | Dashboard link to Billing that opens the Add funds drawer (the add-card drawer first when there is no card). Send the user there, then retry. |  |
+|**requiredCents** | **Integer** | Only when an item debited later (a phone number&#39;s first month, all numbers of the order) is refused: what the balance must hold, in cents. |  [optional] |
 
 
 

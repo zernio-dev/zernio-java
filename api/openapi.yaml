@@ -40236,8 +40236,11 @@ paths:
         "402":
           description: "Payment method required (usage-based billing account with\
             \ no card on file): code PAYMENT_REQUIRED, add a card, then retry. On\
-            \ balance billing with the balance at $0: code insufficient_balance or\
-            \ usage_limit_reached, add funds at `funding_url`, then retry."
+            \ balance billing with the balance at $0, or below the number's first\
+            \ month while auto top-up cannot refill it (off, no card, or past its\
+            \ monthly limit): code insufficient_balance (with `required_cents`, what\
+            \ the balance must hold) or usage_limit_reached, add funds at `funding_url`,\
+            \ then retry."
           x-summary: "A payment method is required because the usage-based account\
             \ has no card on file: add a card, then retry."
         "422":
@@ -40677,9 +40680,11 @@ paths:
         "402":
           description: "Payment method required (usage-based billing account with\
             \ no card on file): code PAYMENT_REQUIRED, add a card, then retry. On\
-            \ balance billing with the balance at $0, or below the first month with\
-            \ auto top-up off: code insufficient_balance or usage_limit_reached, add\
-            \ funds at `funding_url`, then retry."
+            \ balance billing with the balance at $0, or below the first month of\
+            \ every number ordered while auto top-up cannot refill it (off, no card,\
+            \ or past its monthly limit): code insufficient_balance (with `required_cents`,\
+            \ what the balance must hold) or usage_limit_reached, add funds at `funding_url`,\
+            \ then retry."
           x-summary: "A payment method is required because the usage-based account\
             \ has no card on file: add a card, then retry."
         "422":
@@ -41004,6 +41009,8 @@ paths:
             \ resend with `preOrder` when offered, or pick another area or number."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
       security:
       - bearerAuth: []
       summary: Submit KYC
@@ -84881,7 +84888,7 @@ components:
       description: |
         Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.
 
-        - `insufficient_balance`: the balance is empty, or, when buying a phone number with auto top-up off, it is below the number's first month (the message says how much to add).
+        - `insufficient_balance`: the balance is empty, or, when buying a phone number or submitting its KYC, it is below the number's first month and auto top-up cannot refill it (off, no card, or past its monthly limit). The message says how much to add, and `required_cents` is what the balance must hold.
         - `usage_limit_reached`: the monthly limit kept it there.
 
         `funding_url` opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.
@@ -91027,6 +91034,11 @@ components:
               \ then retry."
             format: uri
             type: string
+          required_cents:
+            description: "Only when an item debited later (a phone number's first\
+              \ month, all numbers of the order) is refused: what the balance must\
+              \ hold, in cents."
+            type: integer
         required:
         - funding_url
       description: "The error envelope of a $0 balance refusal (402 `insufficient_balance`\
@@ -91035,6 +91047,7 @@ components:
         retryable: true
         code: code
         funding_url: https://openapi-generator.tech
+        required_cents: 0
         error: error
         type: invalid_request_error
         platform: platform

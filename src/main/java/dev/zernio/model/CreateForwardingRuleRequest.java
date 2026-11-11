@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreateForwardingRuleRequest.JSON_PROPERTY_DESTINATION_ID,
   CreateForwardingRuleRequest.JSON_PROPERTY_EVENT_NAMES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:09:32.587947895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:23:09.715448973Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateForwardingRuleRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
