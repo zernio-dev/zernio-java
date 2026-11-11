@@ -32,6 +32,7 @@
 | SMS | &quot;sms&quot; |
 | SLACK | &quot;slack&quot; |
 | IMESSAGE | &quot;imessage&quot; |
+| LINE | &quot;line&quot; |
 
 
 

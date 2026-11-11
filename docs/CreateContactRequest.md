@@ -34,6 +34,8 @@
 | WHATSAPP | &quot;whatsapp&quot; |
 | SLACK | &quot;slack&quot; |
 | SMS | &quot;sms&quot; |
+| LINE | &quot;line&quot; |
+| WECHAT | &quot;wechat&quot; |
 
 
 

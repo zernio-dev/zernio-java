@@ -1146,7 +1146,7 @@ public class Example {
 | **search** | **String**| Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. | [optional] |
 | **tag** | **String**|  | [optional] |
 | **tags** | **String**| Comma-separated tags, matches contacts carrying any of them | [optional] |
-| **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp, slack, sms] |
+| **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp, slack, sms, line, wechat] |
 | **group** | **String**| A group id from GET /v1/contacts/groups, such as contactGroups/abc, folder:default or category:VIP. Returns the contacts the Google or Outlook contacts sync filed in that group on the account. Requires accountId. Memberships are not stored while content retention is off. | [optional] |
 | **isSubscribed** | **String**|  | [optional] [enum: true, false] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
@@ -1239,7 +1239,7 @@ public class Example {
 | **search** | **String**| Case-insensitive substring match on the contact name, email and company. Phone numbers and other platform identifiers are not matched: they live on the contact channel, not on the contact. To reach a contact from an inbox webhook, use the conversation.contactId it already carries. | [optional] |
 | **tag** | **String**|  | [optional] |
 | **tags** | **String**| Comma-separated tags, matches contacts carrying any of them | [optional] |
-| **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp, slack, sms] |
+| **platform** | **String**|  | [optional] [enum: instagram, facebook, telegram, twitter, bluesky, reddit, whatsapp, slack, sms, line, wechat] |
 | **group** | **String**| A group id from GET /v1/contacts/groups, such as contactGroups/abc, folder:default or category:VIP. Returns the contacts the Google or Outlook contacts sync filed in that group on the account. Requires accountId. Memberships are not stored while content retention is off. | [optional] |
 | **isSubscribed** | **String**|  | [optional] [enum: true, false] |
 | **limit** | **Integer**|  | [optional] [default to 50] |

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.569.0
+- API version: 1.570.0
 
-- Build date: 2026-11-11T13:28:50.658292326Z[Etc/UTC]
+- Build date: 2026-11-11T14:47:07.945065291Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.569.0</version>
+  <version>1.570.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.569.0"
+compile "dev.zernio:zernio-sdk:1.570.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.569.0.jar`
+- `target/zernio-sdk-1.570.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1205,6 +1205,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectBlueskyCredentialsWithHttpInfo**](docs/ConnectApi.md#connectBlueskyCredentialsWithHttpInfo) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**connectDiscordChannel**](docs/ConnectApi.md#connectDiscordChannel) | **POST** /v1/connect/discord | Connect a Discord channel
 *ConnectApi* | [**connectDiscordChannelWithHttpInfo**](docs/ConnectApi.md#connectDiscordChannelWithHttpInfo) | **POST** /v1/connect/discord | Connect a Discord channel
+*ConnectApi* | [**connectLineCredentials**](docs/ConnectApi.md#connectLineCredentials) | **POST** /v1/connect/line/credentials | Connect LINE Official Account
+*ConnectApi* | [**connectLineCredentialsWithHttpInfo**](docs/ConnectApi.md#connectLineCredentialsWithHttpInfo) | **POST** /v1/connect/line/credentials | Connect LINE Official Account
 *ConnectApi* | [**connectOpenAIAdsCredentials**](docs/ConnectApi.md#connectOpenAIAdsCredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account
 *ConnectApi* | [**connectOpenAIAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectOpenAIAdsCredentialsWithHttpInfo) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account
 *ConnectApi* | [**connectShopifyWithToken**](docs/ConnectApi.md#connectShopifyWithToken) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token
@@ -1213,6 +1215,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectSlackChannelWithHttpInfo**](docs/ConnectApi.md#connectSlackChannelWithHttpInfo) | **POST** /v1/connect/slack | Connect a Slack channel
 *ConnectApi* | [**connectWebflowWithSiteToken**](docs/ConnectApi.md#connectWebflowWithSiteToken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token
 *ConnectApi* | [**connectWebflowWithSiteTokenWithHttpInfo**](docs/ConnectApi.md#connectWebflowWithSiteTokenWithHttpInfo) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token
+*ConnectApi* | [**connectWechatCredentials**](docs/ConnectApi.md#connectWechatCredentials) | **POST** /v1/connect/wechat/credentials | Connect WeChat Official Account
+*ConnectApi* | [**connectWechatCredentialsWithHttpInfo**](docs/ConnectApi.md#connectWechatCredentialsWithHttpInfo) | **POST** /v1/connect/wechat/credentials | Connect WeChat Official Account
 *ConnectApi* | [**connectWhatsAppCredentials**](docs/ConnectApi.md#connectWhatsAppCredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**connectWhatsAppCredentialsWithHttpInfo**](docs/ConnectApi.md#connectWhatsAppCredentialsWithHttpInfo) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**connectWhatsAppEmbeddedSignup**](docs/ConnectApi.md#connectWhatsAppEmbeddedSignup) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup
@@ -1279,6 +1283,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getTelegramConnectStatusWithHttpInfo**](docs/ConnectApi.md#getTelegramConnectStatusWithHttpInfo) | **GET** /v1/connect/telegram | Generate Telegram code
 *ConnectApi* | [**getWebflowConnectUrl**](docs/ConnectApi.md#getWebflowConnectUrl) | **GET** /v1/connect/webflow | Get Webflow OAuth URL
 *ConnectApi* | [**getWebflowConnectUrlWithHttpInfo**](docs/ConnectApi.md#getWebflowConnectUrlWithHttpInfo) | **GET** /v1/connect/webflow | Get Webflow OAuth URL
+*ConnectApi* | [**getWechatIpWhitelist**](docs/ConnectApi.md#getWechatIpWhitelist) | **GET** /v1/connect/wechat/ip-whitelist | Get WeChat IP whitelist
+*ConnectApi* | [**getWechatIpWhitelistWithHttpInfo**](docs/ConnectApi.md#getWechatIpWhitelistWithHttpInfo) | **GET** /v1/connect/wechat/ip-whitelist | Get WeChat IP whitelist
 *ConnectApi* | [**getWhatsAppSdkConfig**](docs/ConnectApi.md#getWhatsAppSdkConfig) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config
 *ConnectApi* | [**getWhatsAppSdkConfigWithHttpInfo**](docs/ConnectApi.md#getWhatsAppSdkConfigWithHttpInfo) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config
 *ConnectApi* | [**getWixConnectUrl**](docs/ConnectApi.md#getWixConnectUrl) | **GET** /v1/connect/wix | Get Wix site install URL
@@ -3245,6 +3251,9 @@ Class | Method | HTTP request | Description
  - [ConnectHandoffAccountsInner](docs/ConnectHandoffAccountsInner.md)
  - [ConnectHandoffError](docs/ConnectHandoffError.md)
  - [ConnectHandoffLink](docs/ConnectHandoffLink.md)
+ - [ConnectLineCredentials200Response](docs/ConnectLineCredentials200Response.md)
+ - [ConnectLineCredentials200ResponseWebhook](docs/ConnectLineCredentials200ResponseWebhook.md)
+ - [ConnectLineCredentialsRequest](docs/ConnectLineCredentialsRequest.md)
  - [ConnectOpenAIAdsCredentials200Response](docs/ConnectOpenAIAdsCredentials200Response.md)
  - [ConnectOpenAIAdsCredentialsRequest](docs/ConnectOpenAIAdsCredentialsRequest.md)
  - [ConnectShopifyWithToken200Response](docs/ConnectShopifyWithToken200Response.md)
@@ -3254,6 +3263,9 @@ Class | Method | HTTP request | Description
  - [ConnectWebflowWithSiteToken200Response](docs/ConnectWebflowWithSiteToken200Response.md)
  - [ConnectWebflowWithSiteToken200ResponseAccount](docs/ConnectWebflowWithSiteToken200ResponseAccount.md)
  - [ConnectWebflowWithSiteTokenRequest](docs/ConnectWebflowWithSiteTokenRequest.md)
+ - [ConnectWechatCredentials200Response](docs/ConnectWechatCredentials200Response.md)
+ - [ConnectWechatCredentials200ResponseServer](docs/ConnectWechatCredentials200ResponseServer.md)
+ - [ConnectWechatCredentialsRequest](docs/ConnectWechatCredentialsRequest.md)
  - [ConnectWelcomeScreen](docs/ConnectWelcomeScreen.md)
  - [ConnectWhatsAppCredentials200Response](docs/ConnectWhatsAppCredentials200Response.md)
  - [ConnectWhatsAppCredentials200ResponseAccount](docs/ConnectWhatsAppCredentials200ResponseAccount.md)
@@ -3269,6 +3281,7 @@ Class | Method | HTTP request | Description
  - [Connected](docs/Connected.md)
  - [ConnectedAccount](docs/ConnectedAccount.md)
  - [ConnectedApp](docs/ConnectedApp.md)
+ - [ConnectedMessagingAccount](docs/ConnectedMessagingAccount.md)
  - [ContentRetentionResponse](docs/ContentRetentionResponse.md)
  - [ConversationAdAttribution](docs/ConversationAdAttribution.md)
  - [ConversionAction](docs/ConversionAction.md)
@@ -4294,6 +4307,7 @@ Class | Method | HTTP request | Description
  - [GetWebhookLogs200Response](docs/GetWebhookLogs200Response.md)
  - [GetWebhookLogs200ResponsePagination](docs/GetWebhookLogs200ResponsePagination.md)
  - [GetWebhookSettings200Response](docs/GetWebhookSettings200Response.md)
+ - [GetWechatIpWhitelist200Response](docs/GetWechatIpWhitelist200Response.md)
  - [GetWhatsAppBlockStatus200Response](docs/GetWhatsAppBlockStatus200Response.md)
  - [GetWhatsAppBlockedUsers200Response](docs/GetWhatsAppBlockedUsers200Response.md)
  - [GetWhatsAppBlockedUsers200ResponseBlockedUsersInner](docs/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.md)

@@ -30,6 +30,8 @@ The message object included in inbox webhook payloads.
 | TELEGRAM | &quot;telegram&quot; |
 | WHATSAPP | &quot;whatsapp&quot; |
 | SMS | &quot;sms&quot; |
+| LINE | &quot;line&quot; |
+| WECHAT | &quot;wechat&quot; |
 
 
 

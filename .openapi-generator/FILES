@@ -629,6 +629,9 @@ docs/ConnectHandoff.md
 docs/ConnectHandoffAccountsInner.md
 docs/ConnectHandoffError.md
 docs/ConnectHandoffLink.md
+docs/ConnectLineCredentials200Response.md
+docs/ConnectLineCredentials200ResponseWebhook.md
+docs/ConnectLineCredentialsRequest.md
 docs/ConnectOpenAIAdsCredentials200Response.md
 docs/ConnectOpenAIAdsCredentialsRequest.md
 docs/ConnectShopifyWithToken200Response.md
@@ -638,6 +641,9 @@ docs/ConnectSlackChannelRequest.md
 docs/ConnectWebflowWithSiteToken200Response.md
 docs/ConnectWebflowWithSiteToken200ResponseAccount.md
 docs/ConnectWebflowWithSiteTokenRequest.md
+docs/ConnectWechatCredentials200Response.md
+docs/ConnectWechatCredentials200ResponseServer.md
+docs/ConnectWechatCredentialsRequest.md
 docs/ConnectWelcomeScreen.md
 docs/ConnectWhatsAppCredentials200Response.md
 docs/ConnectWhatsAppCredentials200ResponseAccount.md
@@ -654,6 +660,7 @@ docs/Connected.md
 docs/ConnectedAccount.md
 docs/ConnectedApp.md
 docs/ConnectedAppsApi.md
+docs/ConnectedMessagingAccount.md
 docs/ContactsApi.md
 docs/ContentRetentionApi.md
 docs/ContentRetentionResponse.md
@@ -1689,6 +1696,7 @@ docs/GetWebflowConnectUrl200Response.md
 docs/GetWebhookLogs200Response.md
 docs/GetWebhookLogs200ResponsePagination.md
 docs/GetWebhookSettings200Response.md
+docs/GetWechatIpWhitelist200Response.md
 docs/GetWhatsAppBlockStatus200Response.md
 docs/GetWhatsAppBlockedUsers200Response.md
 docs/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.md
@@ -4446,6 +4454,9 @@ src/main/java/dev/zernio/model/ConnectHandoff.java
 src/main/java/dev/zernio/model/ConnectHandoffAccountsInner.java
 src/main/java/dev/zernio/model/ConnectHandoffError.java
 src/main/java/dev/zernio/model/ConnectHandoffLink.java
+src/main/java/dev/zernio/model/ConnectLineCredentials200Response.java
+src/main/java/dev/zernio/model/ConnectLineCredentials200ResponseWebhook.java
+src/main/java/dev/zernio/model/ConnectLineCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectOpenAIAdsCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectOpenAIAdsCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectShopifyWithToken200Response.java
@@ -4455,6 +4466,9 @@ src/main/java/dev/zernio/model/ConnectSlackChannelRequest.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteToken200Response.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteToken200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteTokenRequest.java
+src/main/java/dev/zernio/model/ConnectWechatCredentials200Response.java
+src/main/java/dev/zernio/model/ConnectWechatCredentials200ResponseServer.java
+src/main/java/dev/zernio/model/ConnectWechatCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectWelcomeScreen.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200ResponseAccount.java
@@ -4470,6 +4484,7 @@ src/main/java/dev/zernio/model/ConnectWordPressWithApplicationPasswordRequest.ja
 src/main/java/dev/zernio/model/Connected.java
 src/main/java/dev/zernio/model/ConnectedAccount.java
 src/main/java/dev/zernio/model/ConnectedApp.java
+src/main/java/dev/zernio/model/ConnectedMessagingAccount.java
 src/main/java/dev/zernio/model/ContentRetentionResponse.java
 src/main/java/dev/zernio/model/ConversationAdAttribution.java
 src/main/java/dev/zernio/model/ConversionAction.java
@@ -5495,6 +5510,7 @@ src/main/java/dev/zernio/model/GetWebflowConnectUrl200Response.java
 src/main/java/dev/zernio/model/GetWebhookLogs200Response.java
 src/main/java/dev/zernio/model/GetWebhookLogs200ResponsePagination.java
 src/main/java/dev/zernio/model/GetWebhookSettings200Response.java
+src/main/java/dev/zernio/model/GetWechatIpWhitelist200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppBlockStatus200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppBlockedUsers200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.java
@@ -7495,3 +7511,11 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ConnectLineCredentials200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectLineCredentials200ResponseWebhookTest.java
+src/test/java/dev/zernio/model/ConnectLineCredentialsRequestTest.java
+src/test/java/dev/zernio/model/ConnectWechatCredentials200ResponseServerTest.java
+src/test/java/dev/zernio/model/ConnectWechatCredentials200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectWechatCredentialsRequestTest.java
+src/test/java/dev/zernio/model/ConnectedMessagingAccountTest.java
+src/test/java/dev/zernio/model/GetWechatIpWhitelist200ResponseTest.java

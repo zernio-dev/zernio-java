@@ -22,20 +22,20 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.569.0
+  version: 1.570.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
-    Zernio is the social media API that replaces 29 integrations. Schedule posts, retrieve analytics,
+    Zernio is the social media API that replaces 31 integrations. Schedule posts, retrieve analytics,
     manage DMs, comments, and reviews across X, Instagram, WhatsApp, TikTok, LinkedIn,
     Facebook, YouTube, Threads, Pinterest, Bluesky, Telegram, Google Business Profile, Snapchat,
-    Discord, Slack, and iMessage, all from a single REST API. Run paid ads on Meta (Facebook + Instagram), Google,
+    Discord, Slack, iMessage, LINE, and WeChat, all from a single REST API. Run paid ads on Meta (Facebook + Instagram), Google,
     TikTok, LinkedIn, Pinterest, X, OpenAI, Reddit, and Microsoft from the same account.
 
     Connect Shopify, WordPress and Wix as blog accounts to list sites and manage
     articles, drafts, featured images, tags, authors, and native scheduling.
 
-    Key features: Unified posting to 16 platforms, ads management on 9 ad networks (via /v1/ads), aggregated analytics, unified inbox (DMs, comments, reviews), webhooks, OAuth connect, queue scheduling, and white-label support for agencies managing unlimited accounts.
+    Key features: Unified posting and messaging across 18 platforms, ads management on 9 ad networks (via /v1/ads), aggregated analytics, unified inbox (DMs, comments, reviews), webhooks, OAuth connect, queue scheduling, and white-label support for agencies managing unlimited accounts.
 
     Supported posting platforms: X, Instagram, WhatsApp, Facebook, LinkedIn, TikTok, YouTube, Pinterest, Bluesky, Threads, Google Business Profile, Telegram, Snapchat, Discord, Slack. Supported ad platforms: Meta Ads, Google Ads, TikTok Ads, LinkedIn Ads, Pinterest Ads, X Ads, OpenAI Ads, Reddit Ads, Microsoft Ads. Snapchat is a closed beta with no public release date: connections are gated behind approval and return 403 `PLATFORM_BETA_RESTRICTED` until then. Organic Reddit is temporarily unavailable: Reddit has blocked third-party apps from its API, so Reddit posting, messages, analytics and the Reddit endpoints return 503 `PLATFORM_DISABLED` until Reddit restores access. Your Reddit accounts stay connected. Reddit Ads is not affected.
   x-category: Social
@@ -12401,6 +12401,8 @@ paths:
           - hubspot
           - webflow
           - googleanalytics
+          - line
+          - wechat
           type: string
         style: form
       - description: Filter by health status
@@ -19807,6 +19809,197 @@ paths:
       - Connect
       x-resource-group: accounts
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/line/credentials:
+    post:
+      description: |
+        Connect a LINE Official Account with the Channel ID and Channel secret of its Messaging API channel (LINE Official Account Manager > Settings > Messaging API, also shown in the LINE Developers Console under the channel's Basic settings).
+
+        Zernio issues a channel access token, reads the bot's profile and sets the channel's webhook URL for you. A channel has one webhook URL, so if it already pointed somewhere else, that integration stops receiving events; the response names it in `webhook.previousUrl`.
+
+        Two settings stay on the customer's side, in LINE Official Account Manager > Settings > Response settings. `nextSteps` in the response lists them:
+
+        - Turn on Webhooks. Until it is on, LINE delivers nothing to Zernio.
+        - Turn off auto-response and greeting messages.
+
+        Reconnecting the same channel on the same profile updates the existing account.
+        To get your userId for the state parameter, call GET /v1/users which includes a currentUserId field.
+      operationId: connectLineCredentials
+      requestBody:
+        content:
+          application/json:
+            example:
+              channelId: "2001234567"
+              channelSecret: 0123456789abcdef0123456789abcdef
+              state: 6507a1b2c3d4e5f6a7b8c9d0-6507a1b2c3d4e5f6a7b8c9d1
+              redirect_url: https://yourapp.com/connected
+            schema:
+              $ref: "#/components/schemas/connectLineCredentials_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                message: LINE Official Account connected. Turn on webhooks and turn
+                  off auto-responses in LINE Official Account Manager to start receiving
+                  messages.
+                account:
+                  accountId: 6507a1b2c3d4e5f6a7b8c9e0
+                  platform: line
+                  username: '@123abcde'
+                  displayName: Acme Store
+                  isActive: true
+                webhook:
+                  url: https://zernio.com/api/webhook/line/6507a1b2c3d4e5f6a7b8c9e0
+                  configured: true
+                  testSucceeded: true
+                nextSteps:
+                - "In LINE Official Account Manager, open Settings > Response settings\
+                  \ and turn on Webhooks."
+                - "In the same screen, turn off Auto-response messages and Greeting\
+                  \ messages so they do not answer before you do."
+                redirectUrl: https://yourapp.com/connected
+              schema:
+                $ref: "#/components/schemas/connectLineCredentials_200_response"
+          description: LINE connected
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Invalid request. `code` is `invalid_field_value` with `param`
+            `channelSecret` when LINE rejected the Channel ID and Channel secret.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The connect token was issued for a different profile or platform
+            (INSUFFICIENT_PERMISSIONS).
+      summary: Connect LINE Official Account
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/wechat/credentials:
+    post:
+      description: |
+        Connect a verified WeChat Official Account (Service Account) with its AppID and AppSecret (Weixin Official Accounts Platform > Settings and Development > Basic Configuration).
+
+        Before calling this, add every IP from GET /v1/connect/wechat/ip-whitelist to the account's API IP whitelist on the same page. WeChat refuses calls from any other IP, and this endpoint then returns 400 with code `wechat_ip_not_whitelisted`.
+
+        The response carries a Server URL, a Token and an EncodingAESKey. Paste them into Server Configuration on the same page, choose Safe mode for message encryption, and enable the configuration. Until then WeChat delivers nothing to Zernio.
+
+        Enabling Server Configuration turns off the auto-replies and menus set in the WeChat dashboard.
+
+        Reconnecting the same AppID on the same profile keeps the existing Token and EncodingAESKey, so nothing has to be pasted again.
+        To get your userId for the state parameter, call GET /v1/users which includes a currentUserId field.
+      operationId: connectWechatCredentials
+      requestBody:
+        content:
+          application/json:
+            example:
+              appId: wx1234567890abcdef
+              appSecret: 0123456789abcdef0123456789abcdef
+              state: 6507a1b2c3d4e5f6a7b8c9d0-6507a1b2c3d4e5f6a7b8c9d1
+              displayName: Acme China
+            schema:
+              $ref: "#/components/schemas/connectWechatCredentials_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                message: WeChat Official Account connected. Finish the server configuration
+                  in the WeChat dashboard to start receiving messages.
+                account:
+                  accountId: 6507a1b2c3d4e5f6a7b8c9e1
+                  platform: wechat
+                  username: wx1234567890abcdef
+                  displayName: Acme China
+                  isActive: true
+                server:
+                  url: https://zernio.com/api/webhook/wechat/6507a1b2c3d4e5f6a7b8c9e1
+                  token: Zq8x2LmP4vR7tY1wK9sD3fH6jN0bC5eA
+                  encodingAESKey: hT3kP9xQ2mV7wL4rZ8nB1cF6yJ0dG5sA3uE9iO2tR7q
+                  encryptionMode: safe
+                ipWhitelist:
+                - 203.0.113.10
+                nextSteps:
+                - "In the WeChat Official Account platform, open Settings and Development\
+                  \ > Basic configuration."
+                - "Under Server configuration, click Modify and paste the server URL,\
+                  \ Token and EncodingAESKey shown here. Choose Safe mode as the message\
+                  \ encryption method, then submit and click Enable."
+                - Enabling server configuration turns off the auto-replies and menus
+                  set in the WeChat dashboard; recreate any you need as Zernio automations.
+                redirectUrl: https://yourapp.com/connected
+              schema:
+                $ref: "#/components/schemas/connectWechatCredentials_200_response"
+          description: WeChat connected
+        "400":
+          content:
+            application/json:
+              example:
+                error: "WeChat refused the call because Zernio's IP is not on the\
+                  \ API IP whitelist. Add 203.0.113.10, then try again."
+                type: invalid_request_error
+                code: wechat_ip_not_whitelisted
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid request. `code` is `wechat_ip_not_whitelisted` when\
+            \ WeChat refused the call because Zernio's IPs are not on the account's\
+            \ API IP whitelist (`details.ips` lists them), and `invalid_field_value`\
+            \ with `param` set to `appId` or `appSecret` when WeChat rejected that\
+            \ value."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The connect token was issued for a different profile or platform
+            (INSUFFICIENT_PERMISSIONS).
+      summary: Connect WeChat Official Account
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/wechat/ip-whitelist:
+    get:
+      description: The IPs Zernio calls WeChat from. Add all of them to the Official
+        Account's API IP whitelist before calling POST /v1/connect/wechat/credentials.
+      operationId: getWechatIpWhitelist
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                ips:
+                - 203.0.113.10
+              schema:
+                $ref: "#/components/schemas/getWechatIpWhitelist_200_response"
+          description: The IPs to whitelist
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
+      summary: Get WeChat IP whitelist
+      tags:
+      - Connect
+      x-resource-group: accounts
       x-accepts:
       - application/json
   /v1/connect/telegram:
@@ -29424,6 +29617,8 @@ paths:
           - whatsapp
           - imessage
           - sms
+          - line
+          - wechat
           type: string
         style: form
       - description: Filter by conversation status
@@ -29825,6 +30020,8 @@ paths:
           - rcs
           - slack
           - imessage
+          - line
+          - wechat
           type: string
         style: form
       - description: Filter by specific account ID
@@ -30174,6 +30371,14 @@ paths:
         - It uses the sender's 15-minute spacing and daily warm-up (`429 new_contact_limit`).
 
         Text must be shorter than 10,000 characters.
+
+        ### LINE replies
+
+        A reply sent within about a minute of the customer's message uses LINE's free reply token. Later replies go out as push messages, which count toward the LINE Official Account's monthly message quota (set and billed by LINE).
+
+        ### WeChat 48-hour window
+
+        WeChat only accepts replies within 48 hours of the customer's last message, and up to 5 messages in that window. Outside it the send is rejected; the window opens again when the customer writes.
 
         ### WhatsApp template messages
 
@@ -44823,6 +45028,8 @@ paths:
           - whatsapp
           - slack
           - sms
+          - line
+          - wechat
           type: string
         style: form
       - description: "A group id from GET /v1/contacts/groups, such as contactGroups/abc,\
@@ -86416,6 +86623,29 @@ components:
           type: boolean
         ad:
           $ref: "#/components/schemas/StoredEvent_ad"
+    ConnectedMessagingAccount:
+      description: The account a credentials connect created or updated.
+      example:
+        accountId: accountId
+        displayName: displayName
+        isActive: true
+        platform: line
+        username: username
+      properties:
+        accountId:
+          type: string
+        platform:
+          enum:
+          - line
+          - wechat
+          type: string
+        username:
+          description: The LINE basic ID (for example @123abcde) or the WeChat AppID.
+          type: string
+        displayName:
+          type: string
+        isActive:
+          type: boolean
     CreatorPortalCampaign:
       description: "The campaign as a creator sees it: terms, never the budget."
       example:
@@ -99610,6 +99840,8 @@ components:
           - telegram
           - whatsapp
           - sms
+          - line
+          - wechat
           type: string
         platformMessageId:
           description: Platform's message ID
@@ -99728,6 +99960,8 @@ components:
           - slack
           - tiktok
           - imessage
+          - line
+          - wechat
           type: string
         platformConversationId:
           description: Same value as `id`.
@@ -110441,6 +110675,8 @@ components:
           - imessage
           - tiktokshop
           - microsoftads
+          - line
+          - wechat
           type: string
         profileId:
           $ref: "#/components/schemas/SocialAccount_profileId"
@@ -110582,6 +110818,10 @@ components:
 
             - loginMethod: "facebook_login" when connected through Facebook Login; absent for Instagram Login. On facebook_login accounts, comment reads leave hidden comments out entirely instead of returning them with isHidden true.
             - instagramScopedId: the Instagram professional account id (`17841...`). On Instagram Login accounts it is the same whichever app connected the account, while platformUserId is app-scoped. Facebook Login accounts hold this id as platformUserId.
+
+            **LINE accounts:** channelId, basicId (also in username) and webhookUrl.
+
+            **WeChat accounts:** appId (also in username and platformUserId).
 
             **X (Twitter) accounts:**
 
@@ -145406,6 +145646,188 @@ components:
           type: string
       required:
       - profileId
+    connectLineCredentials_request:
+      properties:
+        channelId:
+          description: The Messaging API channel's Channel ID (digits only).
+          pattern: "^[0-9]+$"
+          type: string
+        channelSecret:
+          description: The Messaging API channel's Channel secret (32 hex characters).
+          pattern: "^[0-9a-fA-F]{32}$"
+          type: string
+        state:
+          description: "Required state formatted as {userId}-{profileId}. Get userId\
+            \ from GET /v1/users and profileId from GET /v1/profiles."
+          example: 6507a1b2c3d4e5f6a7b8c9d0-6507a1b2c3d4e5f6a7b8c9d1
+          type: string
+        redirect_url:
+          description: Optional URL to redirect to after a successful connection.
+          format: uri
+          type: string
+      required:
+      - channelId
+      - channelSecret
+      - state
+    connectLineCredentials_200_response_webhook:
+      example:
+        configured: true
+        previousUrl: previousUrl
+        testSucceeded: true
+        detail: detail
+        url: https://openapi-generator.tech
+      properties:
+        url:
+          description: The webhook URL Zernio set on the channel.
+          format: uri
+          type: string
+        configured:
+          description: "Whether LINE accepted the webhook URL. When false, paste `url`\
+            \ into the LINE Developers Console > Messaging API > Webhook URL yourself."
+          type: boolean
+        testSucceeded:
+          description: Whether LINE's webhook test call reached Zernio.
+          type: boolean
+        detail:
+          description: What LINE answered when the setup or the test did not succeed.
+          type: string
+        previousUrl:
+          description: "Present when the channel pointed at another webhook URL before\
+            \ this connect. LINE allows one webhook URL per channel, so that URL stopped\
+            \ receiving events once Zernio set its own; `nextSteps` says so too."
+          type: string
+    connectLineCredentials_200_response:
+      example:
+        nextSteps:
+        - nextSteps
+        - nextSteps
+        webhook:
+          configured: true
+          previousUrl: previousUrl
+          testSucceeded: true
+          detail: detail
+          url: https://openapi-generator.tech
+        redirectUrl: redirectUrl
+        message: message
+        account:
+          accountId: accountId
+          displayName: displayName
+          isActive: true
+          platform: line
+          username: username
+      properties:
+        message:
+          type: string
+        account:
+          $ref: "#/components/schemas/ConnectedMessagingAccount"
+        webhook:
+          $ref: "#/components/schemas/connectLineCredentials_200_response_webhook"
+        nextSteps:
+          description: "Settings the account owner still has to change in LINE Official\
+            \ Account Manager, led by a warning when `webhook.previousUrl` is set."
+          items:
+            type: string
+          type: array
+        redirectUrl:
+          type: string
+    connectWechatCredentials_request:
+      properties:
+        appId:
+          description: The Official Account's AppID (starts with wx).
+          pattern: "^wx[0-9a-zA-Z]{16}$"
+          type: string
+        appSecret:
+          description: The Official Account's AppSecret (32 characters).
+          pattern: "^[0-9a-zA-Z]{32}$"
+          type: string
+        state:
+          description: "Required state formatted as {userId}-{profileId}. Get userId\
+            \ from GET /v1/users and profileId from GET /v1/profiles."
+          example: 6507a1b2c3d4e5f6a7b8c9d0-6507a1b2c3d4e5f6a7b8c9d1
+          type: string
+        displayName:
+          description: Name to show for the account. Defaults to "WeChat Official
+            Account".
+          type: string
+        redirect_url:
+          description: Optional URL to redirect to after a successful connection.
+          format: uri
+          type: string
+      required:
+      - appId
+      - appSecret
+      - state
+    connectWechatCredentials_200_response_server:
+      description: Values to paste into Server Configuration in the Official Accounts
+        Platform.
+      example:
+        encryptionMode: safe
+        url: https://openapi-generator.tech
+        token: token
+        encodingAESKey: encodingAESKey
+      properties:
+        url:
+          format: uri
+          type: string
+        token:
+          type: string
+        encodingAESKey:
+          type: string
+        encryptionMode:
+          enum:
+          - safe
+          type: string
+    connectWechatCredentials_200_response:
+      example:
+        nextSteps:
+        - nextSteps
+        - nextSteps
+        server:
+          encryptionMode: safe
+          url: https://openapi-generator.tech
+          token: token
+          encodingAESKey: encodingAESKey
+        redirectUrl: redirectUrl
+        message: message
+        ipWhitelist:
+        - ipWhitelist
+        - ipWhitelist
+        account:
+          accountId: accountId
+          displayName: displayName
+          isActive: true
+          platform: line
+          username: username
+      properties:
+        message:
+          type: string
+        account:
+          $ref: "#/components/schemas/ConnectedMessagingAccount"
+        server:
+          $ref: "#/components/schemas/connectWechatCredentials_200_response_server"
+        ipWhitelist:
+          description: IPs that must stay on the account's API IP whitelist.
+          items:
+            type: string
+          type: array
+        nextSteps:
+          items:
+            type: string
+          type: array
+        redirectUrl:
+          type: string
+    getWechatIpWhitelist_200_response:
+      example:
+        ips:
+        - ips
+        - ips
+      properties:
+        ips:
+          items:
+            type: string
+          type: array
+      required:
+      - ips
     getTelegramConnectStatus_200_response:
       example:
         expiresIn: 900
@@ -168513,6 +168935,8 @@ components:
           - whatsapp
           - slack
           - sms
+          - line
+          - wechat
           type: string
         platformIdentifier:
           type: string
@@ -169526,6 +169950,7 @@ components:
           - sms
           - slack
           - imessage
+          - line
           type: string
         name:
           type: string
@@ -216728,6 +217153,8 @@ components:
           - slack
           - tiktok
           - imessage
+          - line
+          - wechat
           type: string
         platformMessageId:
           description: Platform's message ID
@@ -217436,6 +217863,8 @@ components:
           - slack
           - tiktok
           - imessage
+          - line
+          - wechat
           type: string
         platformMessageId:
           description: Platform's message ID
@@ -229554,7 +229983,7 @@ x-documentation:
   readme: |
     # Zernio API
 
-    The social media API that replaces 29 integrations. Build social media and blog publishing features into your app in minutes, not months.
+    The social media API that replaces 31 integrations. Build social media and blog publishing features into your app in minutes, not months.
 
     ## Quick Start
 

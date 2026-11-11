@@ -22,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**connectBlueskyCredentialsWithHttpInfo**](ConnectApi.md#connectBlueskyCredentialsWithHttpInfo) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account |
 | [**connectDiscordChannel**](ConnectApi.md#connectDiscordChannel) | **POST** /v1/connect/discord | Connect a Discord channel |
 | [**connectDiscordChannelWithHttpInfo**](ConnectApi.md#connectDiscordChannelWithHttpInfo) | **POST** /v1/connect/discord | Connect a Discord channel |
+| [**connectLineCredentials**](ConnectApi.md#connectLineCredentials) | **POST** /v1/connect/line/credentials | Connect LINE Official Account |
+| [**connectLineCredentialsWithHttpInfo**](ConnectApi.md#connectLineCredentialsWithHttpInfo) | **POST** /v1/connect/line/credentials | Connect LINE Official Account |
 | [**connectOpenAIAdsCredentials**](ConnectApi.md#connectOpenAIAdsCredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account |
 | [**connectOpenAIAdsCredentialsWithHttpInfo**](ConnectApi.md#connectOpenAIAdsCredentialsWithHttpInfo) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account |
 | [**connectShopifyWithToken**](ConnectApi.md#connectShopifyWithToken) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token |
@@ -30,6 +32,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**connectSlackChannelWithHttpInfo**](ConnectApi.md#connectSlackChannelWithHttpInfo) | **POST** /v1/connect/slack | Connect a Slack channel |
 | [**connectWebflowWithSiteToken**](ConnectApi.md#connectWebflowWithSiteToken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token |
 | [**connectWebflowWithSiteTokenWithHttpInfo**](ConnectApi.md#connectWebflowWithSiteTokenWithHttpInfo) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token |
+| [**connectWechatCredentials**](ConnectApi.md#connectWechatCredentials) | **POST** /v1/connect/wechat/credentials | Connect WeChat Official Account |
+| [**connectWechatCredentialsWithHttpInfo**](ConnectApi.md#connectWechatCredentialsWithHttpInfo) | **POST** /v1/connect/wechat/credentials | Connect WeChat Official Account |
 | [**connectWhatsAppCredentials**](ConnectApi.md#connectWhatsAppCredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials |
 | [**connectWhatsAppCredentialsWithHttpInfo**](ConnectApi.md#connectWhatsAppCredentialsWithHttpInfo) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials |
 | [**connectWhatsAppEmbeddedSignup**](ConnectApi.md#connectWhatsAppEmbeddedSignup) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup |
@@ -96,6 +100,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getTelegramConnectStatusWithHttpInfo**](ConnectApi.md#getTelegramConnectStatusWithHttpInfo) | **GET** /v1/connect/telegram | Generate Telegram code |
 | [**getWebflowConnectUrl**](ConnectApi.md#getWebflowConnectUrl) | **GET** /v1/connect/webflow | Get Webflow OAuth URL |
 | [**getWebflowConnectUrlWithHttpInfo**](ConnectApi.md#getWebflowConnectUrlWithHttpInfo) | **GET** /v1/connect/webflow | Get Webflow OAuth URL |
+| [**getWechatIpWhitelist**](ConnectApi.md#getWechatIpWhitelist) | **GET** /v1/connect/wechat/ip-whitelist | Get WeChat IP whitelist |
+| [**getWechatIpWhitelistWithHttpInfo**](ConnectApi.md#getWechatIpWhitelistWithHttpInfo) | **GET** /v1/connect/wechat/ip-whitelist | Get WeChat IP whitelist |
 | [**getWhatsAppSdkConfig**](ConnectApi.md#getWhatsAppSdkConfig) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config |
 | [**getWhatsAppSdkConfigWithHttpInfo**](ConnectApi.md#getWhatsAppSdkConfigWithHttpInfo) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config |
 | [**getWixConnectUrl**](ConnectApi.md#getWixConnectUrl) | **GET** /v1/connect/wix | Get Wix site install URL |
@@ -1641,6 +1647,156 @@ ApiResponse<Void>
 | **404** | Profile not found |  -  |
 
 
+## connectLineCredentials
+
+> ConnectLineCredentials200Response connectLineCredentials(connectLineCredentialsRequest)
+
+Connect LINE Official Account
+
+Connect a LINE Official Account with the Channel ID and Channel secret of its Messaging API channel (LINE Official Account Manager &gt; Settings &gt; Messaging API, also shown in the LINE Developers Console under the channel&#39;s Basic settings).  Zernio issues a channel access token, reads the bot&#39;s profile and sets the channel&#39;s webhook URL for you. A channel has one webhook URL, so if it already pointed somewhere else, that integration stops receiving events; the response names it in &#x60;webhook.previousUrl&#x60;.  Two settings stay on the customer&#39;s side, in LINE Official Account Manager &gt; Settings &gt; Response settings. &#x60;nextSteps&#x60; in the response lists them:  - Turn on Webhooks. Until it is on, LINE delivers nothing to Zernio. - Turn off auto-response and greeting messages.  Reconnecting the same channel on the same profile updates the existing account. To get your userId for the state parameter, call GET /v1/users which includes a currentUserId field. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectLineCredentialsRequest connectLineCredentialsRequest = new ConnectLineCredentialsRequest(); // ConnectLineCredentialsRequest | 
+        try {
+            ConnectLineCredentials200Response result = apiInstance.connectLineCredentials(connectLineCredentialsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectLineCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectLineCredentialsRequest** | [**ConnectLineCredentialsRequest**](ConnectLineCredentialsRequest.md)|  | |
+
+### Return type
+
+[**ConnectLineCredentials200Response**](ConnectLineCredentials200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | LINE connected |  -  |
+| **400** | Invalid request. &#x60;code&#x60; is &#x60;invalid_field_value&#x60; with &#x60;param&#x60; &#x60;channelSecret&#x60; when LINE rejected the Channel ID and Channel secret. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+
+## connectLineCredentialsWithHttpInfo
+
+> ApiResponse<ConnectLineCredentials200Response> connectLineCredentials connectLineCredentialsWithHttpInfo(connectLineCredentialsRequest)
+
+Connect LINE Official Account
+
+Connect a LINE Official Account with the Channel ID and Channel secret of its Messaging API channel (LINE Official Account Manager &gt; Settings &gt; Messaging API, also shown in the LINE Developers Console under the channel&#39;s Basic settings).  Zernio issues a channel access token, reads the bot&#39;s profile and sets the channel&#39;s webhook URL for you. A channel has one webhook URL, so if it already pointed somewhere else, that integration stops receiving events; the response names it in &#x60;webhook.previousUrl&#x60;.  Two settings stay on the customer&#39;s side, in LINE Official Account Manager &gt; Settings &gt; Response settings. &#x60;nextSteps&#x60; in the response lists them:  - Turn on Webhooks. Until it is on, LINE delivers nothing to Zernio. - Turn off auto-response and greeting messages.  Reconnecting the same channel on the same profile updates the existing account. To get your userId for the state parameter, call GET /v1/users which includes a currentUserId field. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectLineCredentialsRequest connectLineCredentialsRequest = new ConnectLineCredentialsRequest(); // ConnectLineCredentialsRequest | 
+        try {
+            ApiResponse<ConnectLineCredentials200Response> response = apiInstance.connectLineCredentialsWithHttpInfo(connectLineCredentialsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectLineCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectLineCredentialsRequest** | [**ConnectLineCredentialsRequest**](ConnectLineCredentialsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ConnectLineCredentials200Response**](ConnectLineCredentials200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | LINE connected |  -  |
+| **400** | Invalid request. &#x60;code&#x60; is &#x60;invalid_field_value&#x60; with &#x60;param&#x60; &#x60;channelSecret&#x60; when LINE rejected the Channel ID and Channel secret. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+
+
 ## connectOpenAIAdsCredentials
 
 > ConnectOpenAIAdsCredentials200Response connectOpenAIAdsCredentials(connectOpenAIAdsCredentialsRequest)
@@ -2265,6 +2421,156 @@ ApiResponse<[**ConnectWebflowWithSiteToken200Response**](ConnectWebflowWithSiteT
 | **403** | API key does not have access to this profile. |  -  |
 | **404** | Profile not found or access denied. |  -  |
 | **502** | Webflow returned an unclassified upstream error. |  -  |
+
+
+## connectWechatCredentials
+
+> ConnectWechatCredentials200Response connectWechatCredentials(connectWechatCredentialsRequest)
+
+Connect WeChat Official Account
+
+Connect a verified WeChat Official Account (Service Account) with its AppID and AppSecret (Weixin Official Accounts Platform &gt; Settings and Development &gt; Basic Configuration).  Before calling this, add every IP from GET /v1/connect/wechat/ip-whitelist to the account&#39;s API IP whitelist on the same page. WeChat refuses calls from any other IP, and this endpoint then returns 400 with code &#x60;wechat_ip_not_whitelisted&#x60;.  The response carries a Server URL, a Token and an EncodingAESKey. Paste them into Server Configuration on the same page, choose Safe mode for message encryption, and enable the configuration. Until then WeChat delivers nothing to Zernio.  Enabling Server Configuration turns off the auto-replies and menus set in the WeChat dashboard.  Reconnecting the same AppID on the same profile keeps the existing Token and EncodingAESKey, so nothing has to be pasted again. To get your userId for the state parameter, call GET /v1/users which includes a currentUserId field. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectWechatCredentialsRequest connectWechatCredentialsRequest = new ConnectWechatCredentialsRequest(); // ConnectWechatCredentialsRequest | 
+        try {
+            ConnectWechatCredentials200Response result = apiInstance.connectWechatCredentials(connectWechatCredentialsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectWechatCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectWechatCredentialsRequest** | [**ConnectWechatCredentialsRequest**](ConnectWechatCredentialsRequest.md)|  | |
+
+### Return type
+
+[**ConnectWechatCredentials200Response**](ConnectWechatCredentials200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | WeChat connected |  -  |
+| **400** | Invalid request. &#x60;code&#x60; is &#x60;wechat_ip_not_whitelisted&#x60; when WeChat refused the call because Zernio&#39;s IPs are not on the account&#39;s API IP whitelist (&#x60;details.ips&#x60; lists them), and &#x60;invalid_field_value&#x60; with &#x60;param&#x60; set to &#x60;appId&#x60; or &#x60;appSecret&#x60; when WeChat rejected that value. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+
+## connectWechatCredentialsWithHttpInfo
+
+> ApiResponse<ConnectWechatCredentials200Response> connectWechatCredentials connectWechatCredentialsWithHttpInfo(connectWechatCredentialsRequest)
+
+Connect WeChat Official Account
+
+Connect a verified WeChat Official Account (Service Account) with its AppID and AppSecret (Weixin Official Accounts Platform &gt; Settings and Development &gt; Basic Configuration).  Before calling this, add every IP from GET /v1/connect/wechat/ip-whitelist to the account&#39;s API IP whitelist on the same page. WeChat refuses calls from any other IP, and this endpoint then returns 400 with code &#x60;wechat_ip_not_whitelisted&#x60;.  The response carries a Server URL, a Token and an EncodingAESKey. Paste them into Server Configuration on the same page, choose Safe mode for message encryption, and enable the configuration. Until then WeChat delivers nothing to Zernio.  Enabling Server Configuration turns off the auto-replies and menus set in the WeChat dashboard.  Reconnecting the same AppID on the same profile keeps the existing Token and EncodingAESKey, so nothing has to be pasted again. To get your userId for the state parameter, call GET /v1/users which includes a currentUserId field. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectWechatCredentialsRequest connectWechatCredentialsRequest = new ConnectWechatCredentialsRequest(); // ConnectWechatCredentialsRequest | 
+        try {
+            ApiResponse<ConnectWechatCredentials200Response> response = apiInstance.connectWechatCredentialsWithHttpInfo(connectWechatCredentialsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectWechatCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectWechatCredentialsRequest** | [**ConnectWechatCredentialsRequest**](ConnectWechatCredentialsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ConnectWechatCredentials200Response**](ConnectWechatCredentials200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | WeChat connected |  -  |
+| **400** | Invalid request. &#x60;code&#x60; is &#x60;wechat_ip_not_whitelisted&#x60; when WeChat refused the call because Zernio&#39;s IPs are not on the account&#39;s API IP whitelist (&#x60;details.ips&#x60; lists them), and &#x60;invalid_field_value&#x60; with &#x60;param&#x60; set to &#x60;appId&#x60; or &#x60;appSecret&#x60; when WeChat rejected that value. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 
 
 ## connectWhatsAppCredentials
@@ -7501,6 +7807,148 @@ ApiResponse<[**GetWebflowConnectUrl200Response**](GetWebflowConnectUrl200Respons
 | **403** | API key does not have access to this profile. |  -  |
 | **404** | Profile not found or access denied. |  -  |
 | **503** | The Webflow app or state signing is not configured. |  -  |
+
+
+## getWechatIpWhitelist
+
+> GetWechatIpWhitelist200Response getWechatIpWhitelist()
+
+Get WeChat IP whitelist
+
+The IPs Zernio calls WeChat from. Add all of them to the Official Account&#39;s API IP whitelist before calling POST /v1/connect/wechat/credentials.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        try {
+            GetWechatIpWhitelist200Response result = apiInstance.getWechatIpWhitelist();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getWechatIpWhitelist");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetWechatIpWhitelist200Response**](GetWechatIpWhitelist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The IPs to whitelist |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+
+## getWechatIpWhitelistWithHttpInfo
+
+> ApiResponse<GetWechatIpWhitelist200Response> getWechatIpWhitelist getWechatIpWhitelistWithHttpInfo()
+
+Get WeChat IP whitelist
+
+The IPs Zernio calls WeChat from. Add all of them to the Official Account&#39;s API IP whitelist before calling POST /v1/connect/wechat/credentials.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        try {
+            ApiResponse<GetWechatIpWhitelist200Response> response = apiInstance.getWechatIpWhitelistWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getWechatIpWhitelist");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**GetWechatIpWhitelist200Response**](GetWechatIpWhitelist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The IPs to whitelist |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
 
 
 ## getWhatsAppSdkConfig
