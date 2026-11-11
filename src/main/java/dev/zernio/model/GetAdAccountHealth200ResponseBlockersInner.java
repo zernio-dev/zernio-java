@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetAdAccountHealth200ResponseBlockersInner.JSON_PROPERTY_HINT,
   GetAdAccountHealth200ResponseBlockersInner.JSON_PROPERTY_FIX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:05:26.672944278Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:09:32.587947895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAccountHealth200ResponseBlockersInner {
   public static final String JSON_PROPERTY_CHECK = "check";
   @javax.annotation.Nonnull

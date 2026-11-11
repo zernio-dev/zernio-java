@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   AutomationFactResult.JSON_PROPERTY_ACTUAL,
   AutomationFactResult.JSON_PROPERTY_MET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:05:26.672944278Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:09:32.587947895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationFactResult {
   public static final String JSON_PROPERTY_FIELD = "field";
   @javax.annotation.Nullable

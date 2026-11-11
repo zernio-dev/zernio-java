@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   AdRuleActionOneOf5.JSON_PROPERTY_MAX_CHANGES_PER_DAY,
   AdRuleActionOneOf5.JSON_PROPERTY_MAX_CHANGES_PER_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:05:26.672944278Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T09:09:32.587947895Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleActionOneOf5 {
   /**
    * Move a Google campaign&#39;s target CPA or target ROAS inside the strategy it is on (Target CPA or Maximize conversions for &#x60;cpa&#x60;, Target ROAS or Maximize conversion value for &#x60;roas&#x60;), never switching strategies. Campaign rules on Google only.  Skipped with &#x60;portfolio_bid_strategy&#x60; on a portfolio strategy, &#x60;unsupported_bid_strategy&#x60; on one with no target (Manual CPC, Maximize clicks), and &#x60;no_target_cpa&#x60; or &#x60;no_target_roas&#x60; when the strategy holds no such target. A target CPA in a zero-decimal currency is rounded to whole units.
