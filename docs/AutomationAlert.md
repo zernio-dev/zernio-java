@@ -2,7 +2,7 @@
 
 # AutomationAlert
 
-Turns matches into alerts: the ad rule acts only after `confirmChecks` matching checks in a row, keeps the alert open while `hold` holds and marks it critical when `critical` holds.
+Turns matches into alerts: the ad rule acts only after `confirmChecks` matching checks in a row, keeps the alert open while `hold` holds and marks it critical while `critical` holds.
 
 ## Properties
 
