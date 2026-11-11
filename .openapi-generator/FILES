@@ -1643,6 +1643,7 @@ docs/GetSmsRegistration200ResponseCampaignContent.md
 docs/GetSmsUsage200Response.md
 docs/GetSmsUsage200ResponseGroupsInner.md
 docs/GetSmsUsage200ResponseTotals.md
+docs/GetStripeConnectUrl200Response.md
 docs/GetSubredditRules200Response.md
 docs/GetSubredditRules200ResponseRulesInner.md
 docs/GetTelegramCommands200Response.md
@@ -5444,6 +5445,7 @@ src/main/java/dev/zernio/model/GetSmsRegistration200ResponseCampaignContent.java
 src/main/java/dev/zernio/model/GetSmsUsage200Response.java
 src/main/java/dev/zernio/model/GetSmsUsage200ResponseGroupsInner.java
 src/main/java/dev/zernio/model/GetSmsUsage200ResponseTotals.java
+src/main/java/dev/zernio/model/GetStripeConnectUrl200Response.java
 src/main/java/dev/zernio/model/GetSubredditRules200Response.java
 src/main/java/dev/zernio/model/GetSubredditRules200ResponseRulesInner.java
 src/main/java/dev/zernio/model/GetTelegramCommands200Response.java
@@ -7485,3 +7487,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetStripeConnectUrl200ResponseTest.java

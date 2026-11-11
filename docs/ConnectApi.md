@@ -88,6 +88,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getRedditSubredditsWithHttpInfo**](ConnectApi.md#getRedditSubredditsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits |
 | [**getShopifyConnectUrl**](ConnectApi.md#getShopifyConnectUrl) | **GET** /v1/connect/shopify | Get Shopify OAuth connect URL |
 | [**getShopifyConnectUrlWithHttpInfo**](ConnectApi.md#getShopifyConnectUrlWithHttpInfo) | **GET** /v1/connect/shopify | Get Shopify OAuth connect URL |
+| [**getStripeConnectUrl**](ConnectApi.md#getStripeConnectUrl) | **GET** /v1/connect/stripe | Get Stripe connect URL |
+| [**getStripeConnectUrlWithHttpInfo**](ConnectApi.md#getStripeConnectUrlWithHttpInfo) | **GET** /v1/connect/stripe | Get Stripe connect URL |
 | [**getSubredditRules**](ConnectApi.md#getSubredditRules) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules |
 | [**getSubredditRulesWithHttpInfo**](ConnectApi.md#getSubredditRulesWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules |
 | [**getTelegramConnectStatus**](ConnectApi.md#getTelegramConnectStatus) | **GET** /v1/connect/telegram | Generate Telegram code |
@@ -6839,6 +6841,182 @@ ApiResponse<[**GetShopifyConnectUrl200Response**](GetShopifyConnectUrl200Respons
 | **403** | API key does not have access to this profile. |  -  |
 | **404** | Profile not found or access denied. |  -  |
 | **500** | Shopify API not configured (missing credentials). |  -  |
+
+
+## getStripeConnectUrl
+
+> GetStripeConnectUrl200Response getStripeConnectUrl(profileId, redirectUrl, reconnectAccountId)
+
+Get Stripe connect URL
+
+Initiates Stripe Connect OAuth for the customer&#39;s own Stripe account, with read-only access. Stripe is a connect-only sales source: each paid charge becomes a &#x60;Purchase&#x60; event in &#x60;GET /v1/events&#x60; (source &#x60;stripe&#x60;), and refunds lower or retract it.  One Stripe account can be connected per profile. Connecting a different account to a profile that already has one redirects with &#x60;error&#x3D;stripe_profile_has_account&#x60;.  ### Flow  1. Redirect the user to &#x60;authUrl&#x60;. 2. After authorization, Stripe returns the browser to Zernio&#39;s internal callback. 3. Zernio redirects to &#x60;redirect_url&#x60; (or the dashboard when omitted).  On success the redirect carries &#x60;connected&#x3D;stripe&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60; (the Stripe account name). On failure it carries &#x60;error&#x60;, &#x60;platform&#x3D;stripe&#x60; and &#x60;error_message&#x60;.  To match a payment to the ad campaign behind it, set &#x60;zrn&#x60;, &#x60;gclid&#x60;, &#x60;fbclid&#x60; or &#x60;utm_*&#x60; keys (and optionally &#x60;landing_url&#x60;) in the metadata of the Checkout Session, PaymentIntent or subscription. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
+        String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The Stripe connection being reconnected. The callback refuses to write to any other account.
+        try {
+            GetStripeConnectUrl200Response result = apiInstance.getStripeConnectUrl(profileId, redirectUrl, reconnectAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getStripeConnectUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
+| **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The Stripe connection being reconnected. The callback refuses to write to any other account. | [optional] |
+
+### Return type
+
+[**GetStripeConnectUrl200Response**](GetStripeConnectUrl200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Stripe Connect is not configured. |  -  |
+
+## getStripeConnectUrlWithHttpInfo
+
+> ApiResponse<GetStripeConnectUrl200Response> getStripeConnectUrl getStripeConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId)
+
+Get Stripe connect URL
+
+Initiates Stripe Connect OAuth for the customer&#39;s own Stripe account, with read-only access. Stripe is a connect-only sales source: each paid charge becomes a &#x60;Purchase&#x60; event in &#x60;GET /v1/events&#x60; (source &#x60;stripe&#x60;), and refunds lower or retract it.  One Stripe account can be connected per profile. Connecting a different account to a profile that already has one redirects with &#x60;error&#x3D;stripe_profile_has_account&#x60;.  ### Flow  1. Redirect the user to &#x60;authUrl&#x60;. 2. After authorization, Stripe returns the browser to Zernio&#39;s internal callback. 3. Zernio redirects to &#x60;redirect_url&#x60; (or the dashboard when omitted).  On success the redirect carries &#x60;connected&#x3D;stripe&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60; (the Stripe account name). On failure it carries &#x60;error&#x60;, &#x60;platform&#x3D;stripe&#x60; and &#x60;error_message&#x60;.  To match a payment to the ad campaign behind it, set &#x60;zrn&#x60;, &#x60;gclid&#x60;, &#x60;fbclid&#x60; or &#x60;utm_*&#x60; keys (and optionally &#x60;landing_url&#x60;) in the metadata of the Checkout Session, PaymentIntent or subscription. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
+        String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The Stripe connection being reconnected. The callback refuses to write to any other account.
+        try {
+            ApiResponse<GetStripeConnectUrl200Response> response = apiInstance.getStripeConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getStripeConnectUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
+| **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The Stripe connection being reconnected. The callback refuses to write to any other account. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetStripeConnectUrl200Response**](GetStripeConnectUrl200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Stripe Connect is not configured. |  -  |
 
 
 ## getSubredditRules

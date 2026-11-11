@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.567.0
+- API version: 1.568.0
 
-- Build date: 2026-11-11T12:12:50.835605219Z[Etc/UTC]
+- Build date: 2026-11-11T13:03:11.230715487Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.567.0</version>
+  <version>1.568.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.567.0"
+compile "dev.zernio:zernio-sdk:1.568.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.567.0.jar`
+- `target/zernio-sdk-1.568.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1267,6 +1267,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getRedditSubredditsWithHttpInfo**](docs/ConnectApi.md#getRedditSubredditsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits
 *ConnectApi* | [**getShopifyConnectUrl**](docs/ConnectApi.md#getShopifyConnectUrl) | **GET** /v1/connect/shopify | Get Shopify OAuth connect URL
 *ConnectApi* | [**getShopifyConnectUrlWithHttpInfo**](docs/ConnectApi.md#getShopifyConnectUrlWithHttpInfo) | **GET** /v1/connect/shopify | Get Shopify OAuth connect URL
+*ConnectApi* | [**getStripeConnectUrl**](docs/ConnectApi.md#getStripeConnectUrl) | **GET** /v1/connect/stripe | Get Stripe connect URL
+*ConnectApi* | [**getStripeConnectUrlWithHttpInfo**](docs/ConnectApi.md#getStripeConnectUrlWithHttpInfo) | **GET** /v1/connect/stripe | Get Stripe connect URL
 *ConnectApi* | [**getSubredditRules**](docs/ConnectApi.md#getSubredditRules) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules
 *ConnectApi* | [**getSubredditRulesWithHttpInfo**](docs/ConnectApi.md#getSubredditRulesWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules
 *ConnectApi* | [**getTelegramConnectStatus**](docs/ConnectApi.md#getTelegramConnectStatus) | **GET** /v1/connect/telegram | Generate Telegram code
@@ -4242,6 +4244,7 @@ Class | Method | HTTP request | Description
  - [GetSmsUsage200Response](docs/GetSmsUsage200Response.md)
  - [GetSmsUsage200ResponseGroupsInner](docs/GetSmsUsage200ResponseGroupsInner.md)
  - [GetSmsUsage200ResponseTotals](docs/GetSmsUsage200ResponseTotals.md)
+ - [GetStripeConnectUrl200Response](docs/GetStripeConnectUrl200Response.md)
  - [GetSubredditRules200Response](docs/GetSubredditRules200Response.md)
  - [GetSubredditRules200ResponseRulesInner](docs/GetSubredditRules200ResponseRulesInner.md)
  - [GetTelegramCommands200Response](docs/GetTelegramCommands200Response.md)

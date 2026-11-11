@@ -11,7 +11,7 @@
 |**eventName** | **String** |  |  |
 |**eventTime** | **OffsetDateTime** |  |  |
 |**receivedAt** | **OffsetDateTime** |  |  |
-|**source** | **String** | Who sent it: &#x60;api&#x60;, &#x60;relay&#x60;, a lead form (&#x60;meta_leads&#x60;, &#x60;google_leads&#x60;, &#x60;linkedin_leads&#x60;, &#x60;tiktok_leads&#x60;), a store (&#x60;shopify&#x60;, &#x60;woocommerce&#x60;) or &#x60;hubspot&#x60;. |  |
+|**source** | **String** | Who sent it: &#x60;api&#x60;, &#x60;relay&#x60;, a lead form (&#x60;meta_leads&#x60;, &#x60;google_leads&#x60;, &#x60;linkedin_leads&#x60;, &#x60;tiktok_leads&#x60;), a store (&#x60;shopify&#x60;, &#x60;woocommerce&#x60;), &#x60;stripe&#x60; or &#x60;hubspot&#x60;. |  |
 |**actionSource** | **String** |  |  [optional] |
 |**value** | **BigDecimal** |  |  [optional] |
 |**currency** | **String** |  |  [optional] |

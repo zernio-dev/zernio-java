@@ -4755,7 +4755,7 @@ ApiResponse<[**ListEventDestinations200Response**](ListEventDestinations200Respo
 
 ## listEvents
 
-> ListEvents200Response listEvents(profileId, limit, from, to, eventName, cursor)
+> ListEvents200Response listEvents(profileId, limit, from, to, eventName, source, cursor)
 
 List stored events
 
@@ -4787,9 +4787,10 @@ public class Example {
         OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Only events at or after this time (ISO 8601, on the event time).
         OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Only events before this time (ISO 8601, on the event time).
         String eventName = "eventName_example"; // String | Only events with this name, such as `Purchase`.
+        String source = "api"; // String | Only events from this source, such as `stripe` for the payments of a connected Stripe account.
         String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
         try {
-            ListEvents200Response result = apiInstance.listEvents(profileId, limit, from, to, eventName, cursor);
+            ListEvents200Response result = apiInstance.listEvents(profileId, limit, from, to, eventName, source, cursor);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConversionsApi#listEvents");
@@ -4812,6 +4813,7 @@ public class Example {
 | **from** | **OffsetDateTime**| Only events at or after this time (ISO 8601, on the event time). | [optional] |
 | **to** | **OffsetDateTime**| Only events before this time (ISO 8601, on the event time). | [optional] |
 | **eventName** | **String**| Only events with this name, such as &#x60;Purchase&#x60;. | [optional] |
+| **source** | **String**| Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. | [optional] [enum: api, relay, hubspot, meta_leads, google_leads, linkedin_leads, tiktok_leads, shopify, woocommerce, stripe, web] |
 | **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
 
 ### Return type
@@ -4838,7 +4840,7 @@ public class Example {
 
 ## listEventsWithHttpInfo
 
-> ApiResponse<ListEvents200Response> listEvents listEventsWithHttpInfo(profileId, limit, from, to, eventName, cursor)
+> ApiResponse<ListEvents200Response> listEvents listEventsWithHttpInfo(profileId, limit, from, to, eventName, source, cursor)
 
 List stored events
 
@@ -4871,9 +4873,10 @@ public class Example {
         OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Only events at or after this time (ISO 8601, on the event time).
         OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Only events before this time (ISO 8601, on the event time).
         String eventName = "eventName_example"; // String | Only events with this name, such as `Purchase`.
+        String source = "api"; // String | Only events from this source, such as `stripe` for the payments of a connected Stripe account.
         String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
         try {
-            ApiResponse<ListEvents200Response> response = apiInstance.listEventsWithHttpInfo(profileId, limit, from, to, eventName, cursor);
+            ApiResponse<ListEvents200Response> response = apiInstance.listEventsWithHttpInfo(profileId, limit, from, to, eventName, source, cursor);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4898,6 +4901,7 @@ public class Example {
 | **from** | **OffsetDateTime**| Only events at or after this time (ISO 8601, on the event time). | [optional] |
 | **to** | **OffsetDateTime**| Only events before this time (ISO 8601, on the event time). | [optional] |
 | **eventName** | **String**| Only events with this name, such as &#x60;Purchase&#x60;. | [optional] |
+| **source** | **String**| Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. | [optional] [enum: api, relay, hubspot, meta_leads, google_leads, linkedin_leads, tiktok_leads, shopify, woocommerce, stripe, web] |
 | **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
 
 ### Return type
