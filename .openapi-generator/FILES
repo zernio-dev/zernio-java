@@ -7511,11 +7511,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ConnectLineCredentials200ResponseTest.java
-src/test/java/dev/zernio/model/ConnectLineCredentials200ResponseWebhookTest.java
-src/test/java/dev/zernio/model/ConnectLineCredentialsRequestTest.java
-src/test/java/dev/zernio/model/ConnectWechatCredentials200ResponseServerTest.java
-src/test/java/dev/zernio/model/ConnectWechatCredentials200ResponseTest.java
-src/test/java/dev/zernio/model/ConnectWechatCredentialsRequestTest.java
-src/test/java/dev/zernio/model/ConnectedMessagingAccountTest.java
-src/test/java/dev/zernio/model/GetWechatIpWhitelist200ResponseTest.java
