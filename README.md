@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.568.0
+- API version: 1.569.0
 
-- Build date: 2026-11-11T13:03:11.230715487Z[Etc/UTC]
+- Build date: 2026-11-11T13:21:48.180569591Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.568.0</version>
+  <version>1.569.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.568.0"
+compile "dev.zernio:zernio-sdk:1.569.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.568.0.jar`
+- `target/zernio-sdk-1.569.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -191,6 +191,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getInstagramFollowStatusWithHttpInfo**](docs/AccountsApi.md#getInstagramFollowStatusWithHttpInfo) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account
 *AccountsApi* | [**getSlackSettings**](docs/AccountsApi.md#getSlackSettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
 *AccountsApi* | [**getSlackSettingsWithHttpInfo**](docs/AccountsApi.md#getSlackSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
+*AccountsApi* | [**getStripeSettings**](docs/AccountsApi.md#getStripeSettings) | **GET** /v1/accounts/{accountId}/stripe-settings | Get Stripe account settings
+*AccountsApi* | [**getStripeSettingsWithHttpInfo**](docs/AccountsApi.md#getStripeSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/stripe-settings | Get Stripe account settings
 *AccountsApi* | [**getTikTokCreatorInfo**](docs/AccountsApi.md#getTikTokCreatorInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
 *AccountsApi* | [**getTikTokCreatorInfoWithHttpInfo**](docs/AccountsApi.md#getTikTokCreatorInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
 *AccountsApi* | [**grantBusinessPartner**](docs/AccountsApi.md#grantBusinessPartner) | **POST** /v1/accounts/{accountId}/business-partners | Share the Page with a partner business
@@ -215,6 +217,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**updateHubSpotSettingsWithHttpInfo**](docs/AccountsApi.md#updateHubSpotSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings
 *AccountsApi* | [**updateSlackSettings**](docs/AccountsApi.md#updateSlackSettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
 *AccountsApi* | [**updateSlackSettingsWithHttpInfo**](docs/AccountsApi.md#updateSlackSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
+*AccountsApi* | [**updateStripeSettings**](docs/AccountsApi.md#updateStripeSettings) | **PATCH** /v1/accounts/{accountId}/stripe-settings | Update Stripe account settings
+*AccountsApi* | [**updateStripeSettingsWithHttpInfo**](docs/AccountsApi.md#updateStripeSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/stripe-settings | Update Stripe account settings
 *AdAccountsApi* | [**addAccountCallouts**](docs/AdAccountsApi.md#addAccountCallouts) | **POST** /v1/ads/accounts/callouts | Add account callouts
 *AdAccountsApi* | [**addAccountCalloutsWithHttpInfo**](docs/AdAccountsApi.md#addAccountCalloutsWithHttpInfo) | **POST** /v1/ads/accounts/callouts | Add account callouts
 *AdAccountsApi* | [**addAccountSitelinks**](docs/AdAccountsApi.md#addAccountSitelinks) | **POST** /v1/ads/accounts/sitelinks | Add account sitelinks
@@ -4245,6 +4249,7 @@ Class | Method | HTTP request | Description
  - [GetSmsUsage200ResponseGroupsInner](docs/GetSmsUsage200ResponseGroupsInner.md)
  - [GetSmsUsage200ResponseTotals](docs/GetSmsUsage200ResponseTotals.md)
  - [GetStripeConnectUrl200Response](docs/GetStripeConnectUrl200Response.md)
+ - [GetStripeSettings200Response](docs/GetStripeSettings200Response.md)
  - [GetSubredditRules200Response](docs/GetSubredditRules200Response.md)
  - [GetSubredditRules200ResponseRulesInner](docs/GetSubredditRules200ResponseRulesInner.md)
  - [GetTelegramCommands200Response](docs/GetTelegramCommands200Response.md)
@@ -5529,6 +5534,7 @@ Class | Method | HTTP request | Description
  - [StoredEventAd](docs/StoredEventAd.md)
  - [StoredEventClickIds](docs/StoredEventClickIds.md)
  - [StoredEventUtm](docs/StoredEventUtm.md)
+ - [StripeSettings](docs/StripeSettings.md)
  - [SubmitCreatorDraft201Response](docs/SubmitCreatorDraft201Response.md)
  - [SubmitCreatorDraftRequest](docs/SubmitCreatorDraftRequest.md)
  - [SubmitCreatorPost201Response](docs/SubmitCreatorPost201Response.md)
@@ -5840,6 +5846,8 @@ Class | Method | HTTP request | Description
  - [UpdateSequenceRequestStepsInner](docs/UpdateSequenceRequestStepsInner.md)
  - [UpdateSequenceRequestStepsInnerTemplate](docs/UpdateSequenceRequestStepsInnerTemplate.md)
  - [UpdateSlackSettingsRequest](docs/UpdateSlackSettingsRequest.md)
+ - [UpdateStripeSettings200Response](docs/UpdateStripeSettings200Response.md)
+ - [UpdateStripeSettingsRequest](docs/UpdateStripeSettingsRequest.md)
  - [UpdateTrackingTagRequest](docs/UpdateTrackingTagRequest.md)
  - [UpdateValueRuleSet200Response](docs/UpdateValueRuleSet200Response.md)
  - [UpdateValueRuleSetRequest](docs/UpdateValueRuleSetRequest.md)

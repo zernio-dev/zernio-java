@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.568.0
+  version: 1.569.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -23361,6 +23361,77 @@ paths:
         "404":
           description: Account not found
       summary: Update HubSpot account settings
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/stripe-settings:
+    get:
+      description: Read a connected Stripe account and whether its sales go to the
+        ad platforms.
+      operationId: getStripeSettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getStripeSettings_200_response"
+          description: Stripe settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Get Stripe account settings
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    patch:
+      description: Turn sending Stripe sales to the ad platforms on or off for a connected
+        Stripe account. Sales are always stored and counted in campaign results; this
+        only decides whether they are also forwarded.
+      operationId: updateStripeSettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateStripeSettings_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateStripeSettings_200_response"
+          description: Updated settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Update Stripe account settings
       tags:
       - Accounts
       x-resource-group: accounts
@@ -110070,6 +110141,38 @@ components:
       - event
       - id
       - timestamp
+    StripeSettings:
+      example:
+        stripeAccountId: stripeAccountId
+        livemode: true
+        forwardSales: true
+        _id: _id
+        platform: stripe
+      properties:
+        _id:
+          description: Zernio account ID of the Stripe connection.
+          type: string
+        platform:
+          enum:
+          - stripe
+          type: string
+        stripeAccountId:
+          description: The connected Stripe account ID (`acct_...`).
+          type: string
+        livemode:
+          description: Whether the connection counts live payments (`true`) or test
+            payments (`false`).
+          type: boolean
+        forwardSales:
+          description: Whether new customers' first payments go to the profile's forwarding
+            rules.
+          type: boolean
+      required:
+      - _id
+      - forwardSales
+      - livemode
+      - platform
+      - stripeAccountId
     HubSpotSettings:
       example:
         hubId: hubId
@@ -128415,6 +128518,7 @@ components:
             - tiktok_leads
             - shopify
             - woocommerce
+            - stripe
             - web
             type: string
           nullable: true
@@ -147471,6 +147575,41 @@ components:
           type: string
         account:
           $ref: "#/components/schemas/HubSpotSettings"
+    getStripeSettings_200_response:
+      example:
+        account:
+          stripeAccountId: stripeAccountId
+          livemode: true
+          forwardSales: true
+          _id: _id
+          platform: stripe
+      properties:
+        account:
+          $ref: "#/components/schemas/StripeSettings"
+    updateStripeSettings_request:
+      properties:
+        forwardSales:
+          description: "Send one-off sales as `Purchase`, a subscription's first payment\
+            \ as `Subscribe` and trial starts as `StartTrial` through the profile's\
+            \ forwarding rules that take the `stripe` source. Renewals and refunds\
+            \ are never sent."
+          type: boolean
+      required:
+      - forwardSales
+    updateStripeSettings_200_response:
+      example:
+        message: message
+        account:
+          stripeAccountId: stripeAccountId
+          livemode: true
+          forwardSales: true
+          _id: _id
+          platform: stripe
+      properties:
+        message:
+          type: string
+        account:
+          $ref: "#/components/schemas/StripeSettings"
     getSlackSettings_200_response_account:
       example:
         teamName: teamName
@@ -201335,6 +201474,7 @@ components:
             - tiktok_leads
             - shopify
             - woocommerce
+            - stripe
             - web
             type: string
           minItems: 1

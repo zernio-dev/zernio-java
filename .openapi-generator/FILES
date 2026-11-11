@@ -1644,6 +1644,7 @@ docs/GetSmsUsage200Response.md
 docs/GetSmsUsage200ResponseGroupsInner.md
 docs/GetSmsUsage200ResponseTotals.md
 docs/GetStripeConnectUrl200Response.md
+docs/GetStripeSettings200Response.md
 docs/GetSubredditRules200Response.md
 docs/GetSubredditRules200ResponseRulesInner.md
 docs/GetTelegramCommands200Response.md
@@ -2961,6 +2962,7 @@ docs/StoredEvent.md
 docs/StoredEventAd.md
 docs/StoredEventClickIds.md
 docs/StoredEventUtm.md
+docs/StripeSettings.md
 docs/SubmitCreatorDraft201Response.md
 docs/SubmitCreatorDraftRequest.md
 docs/SubmitCreatorPost201Response.md
@@ -3276,6 +3278,8 @@ docs/UpdateSequenceRequest.md
 docs/UpdateSequenceRequestStepsInner.md
 docs/UpdateSequenceRequestStepsInnerTemplate.md
 docs/UpdateSlackSettingsRequest.md
+docs/UpdateStripeSettings200Response.md
+docs/UpdateStripeSettingsRequest.md
 docs/UpdateTrackingTagRequest.md
 docs/UpdateValueRuleSet200Response.md
 docs/UpdateValueRuleSetRequest.md
@@ -5446,6 +5450,7 @@ src/main/java/dev/zernio/model/GetSmsUsage200Response.java
 src/main/java/dev/zernio/model/GetSmsUsage200ResponseGroupsInner.java
 src/main/java/dev/zernio/model/GetSmsUsage200ResponseTotals.java
 src/main/java/dev/zernio/model/GetStripeConnectUrl200Response.java
+src/main/java/dev/zernio/model/GetStripeSettings200Response.java
 src/main/java/dev/zernio/model/GetSubredditRules200Response.java
 src/main/java/dev/zernio/model/GetSubredditRules200ResponseRulesInner.java
 src/main/java/dev/zernio/model/GetTelegramCommands200Response.java
@@ -6730,6 +6735,7 @@ src/main/java/dev/zernio/model/StoredEvent.java
 src/main/java/dev/zernio/model/StoredEventAd.java
 src/main/java/dev/zernio/model/StoredEventClickIds.java
 src/main/java/dev/zernio/model/StoredEventUtm.java
+src/main/java/dev/zernio/model/StripeSettings.java
 src/main/java/dev/zernio/model/SubmitCreatorDraft201Response.java
 src/main/java/dev/zernio/model/SubmitCreatorDraftRequest.java
 src/main/java/dev/zernio/model/SubmitCreatorPost201Response.java
@@ -7041,6 +7047,8 @@ src/main/java/dev/zernio/model/UpdateSequenceRequest.java
 src/main/java/dev/zernio/model/UpdateSequenceRequestStepsInner.java
 src/main/java/dev/zernio/model/UpdateSequenceRequestStepsInnerTemplate.java
 src/main/java/dev/zernio/model/UpdateSlackSettingsRequest.java
+src/main/java/dev/zernio/model/UpdateStripeSettings200Response.java
+src/main/java/dev/zernio/model/UpdateStripeSettingsRequest.java
 src/main/java/dev/zernio/model/UpdateTrackingTagRequest.java
 src/main/java/dev/zernio/model/UpdateValueRuleSet200Response.java
 src/main/java/dev/zernio/model/UpdateValueRuleSetRequest.java
@@ -7487,4 +7495,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetStripeConnectUrl200ResponseTest.java
+src/test/java/dev/zernio/model/GetStripeSettings200ResponseTest.java
+src/test/java/dev/zernio/model/StripeSettingsTest.java
+src/test/java/dev/zernio/model/UpdateStripeSettings200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateStripeSettingsRequestTest.java

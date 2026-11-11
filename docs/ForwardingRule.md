@@ -30,6 +30,7 @@
 | TIKTOK_LEADS | &quot;tiktok_leads&quot; |
 | SHOPIFY | &quot;shopify&quot; |
 | WOOCOMMERCE | &quot;woocommerce&quot; |
+| STRIPE | &quot;stripe&quot; |
 | WEB | &quot;web&quot; |
 
 
