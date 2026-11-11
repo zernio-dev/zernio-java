@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   InlineObject1Data.JSON_PROPERTY_PROFILE_ID,
   InlineObject1Data.JSON_PROPERTY_ORG_CONNECTION_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T04:58:45.282898863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T05:14:30.567327143Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InlineObject1Data {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable

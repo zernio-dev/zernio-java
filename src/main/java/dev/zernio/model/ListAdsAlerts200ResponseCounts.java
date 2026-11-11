@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ListAdsAlerts200ResponseCounts.JSON_PROPERTY_WARNING,
   ListAdsAlerts200ResponseCounts.JSON_PROPERTY_INFO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T04:58:45.282898863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T05:14:30.567327143Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdsAlerts200ResponseCounts {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable

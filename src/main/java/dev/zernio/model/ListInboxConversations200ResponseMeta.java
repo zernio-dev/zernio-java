@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseMeta.JSON_PROPERTY_LAST_UPDATED,
   ListInboxConversations200ResponseMeta.JSON_PROPERTY_ACCOUNTS_SKIPPED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T04:58:45.282898863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T05:14:30.567327143Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponseMeta {
   public static final String JSON_PROPERTY_ACCOUNTS_QUERIED = "accountsQueried";
   @javax.annotation.Nullable

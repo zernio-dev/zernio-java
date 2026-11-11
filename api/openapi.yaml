@@ -41183,6 +41183,8 @@ paths:
           description: Country does not require KYC (not a regulated country).
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
       security:
       - bearerAuth: []
       summary: Create a hosted KYC link
@@ -42033,6 +42035,8 @@ paths:
           description: Country does not require KYC (not a regulated country).
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
       security:
       - bearerAuth: []
       summary: Create a hosted KYC link

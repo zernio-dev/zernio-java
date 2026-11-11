@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   EmailCapabilities.JSON_PROPERTY_SCHEDULED_SEND,
   EmailCapabilities.JSON_PROPERTY_TRACKING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T04:58:45.282898863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T05:14:30.567327143Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EmailCapabilities {
   public static final String JSON_PROPERTY_SYNC = "sync";
   @javax.annotation.Nullable

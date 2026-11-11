@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetVoiceCallEstimate200ResponseBreakdown.JSON_PROPERTY_BILLABLE_COST_U_S_D,
   GetVoiceCallEstimate200ResponseBreakdown.JSON_PROPERTY_TOTAL_COST_U_S_D
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T04:58:45.282898863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T05:14:30.567327143Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetVoiceCallEstimate200ResponseBreakdown {
   public static final String JSON_PROPERTY_TELNYX_COST_U_S_D = "telnyxCostUSD";
   @javax.annotation.Nullable

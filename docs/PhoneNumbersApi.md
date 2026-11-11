@@ -598,6 +598,7 @@ public class Example {
 | **200** | Hosted KYC link created. |  -  |
 | **400** | Country does not require KYC (not a regulated country). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty, or, when buying a phone number with auto top-up off, it is below the number&#39;s first month (the message says how much to add). - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there.  &#x60;funding_url&#x60; opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
 
 ## createPhoneNumberKycLinkWithHttpInfo
 
@@ -673,6 +674,7 @@ ApiResponse<[**CreatePhoneNumberKycLink200Response**](CreatePhoneNumberKycLink20
 | **200** | Hosted KYC link created. |  -  |
 | **400** | Country does not require KYC (not a regulated country). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty, or, when buying a phone number with auto top-up off, it is below the number&#39;s first month (the message says how much to add). - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there.  &#x60;funding_url&#x60; opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
 
 
 ## createPhoneNumberPortIn

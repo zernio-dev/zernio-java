@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   DeleteAdCreative200Response.JSON_PROPERTY_CREATIVE_ID,
   DeleteAdCreative200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T04:58:45.282898863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T05:14:30.567327143Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DeleteAdCreative200Response {
   public static final String JSON_PROPERTY_CREATIVE_ID = "creativeId";
   @javax.annotation.Nullable

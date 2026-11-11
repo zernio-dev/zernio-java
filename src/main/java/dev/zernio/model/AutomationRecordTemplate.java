@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   AutomationRecordTemplate.JSON_PROPERTY_VERSION,
   AutomationRecordTemplate.JSON_PROPERTY_LATEST_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T04:58:45.282898863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T05:14:30.567327143Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationRecordTemplate {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
