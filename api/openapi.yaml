@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.566.0
+  version: 1.567.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -128279,6 +128279,9 @@ components:
       example:
         accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
+        sources:
+        - api
+        - api
         profileId: profileId
         eventNames:
         - eventNames
@@ -128300,6 +128303,24 @@ components:
           description: Event names forwarded to this destination; null forwards every
             event.
           items:
+            type: string
+          nullable: true
+          type: array
+        sources:
+          description: Event sources forwarded to this destination; null forwards
+            events from every source.
+          items:
+            enum:
+            - api
+            - relay
+            - hubspot
+            - meta_leads
+            - google_leads
+            - linkedin_leads
+            - tiktok_leads
+            - shopify
+            - woocommerce
+            - web
             type: string
           nullable: true
           type: array
@@ -201147,6 +201168,9 @@ components:
         forwardingRules:
         - accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
+          sources:
+          - api
+          - api
           profileId: profileId
           eventNames:
           - eventNames
@@ -201155,6 +201179,9 @@ components:
           destinationId: destinationId
         - accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
+          sources:
+          - api
+          - api
           profileId: profileId
           eventNames:
           - eventNames
@@ -201184,6 +201211,24 @@ components:
           maxItems: 50
           minItems: 1
           type: array
+        sources:
+          description: "Forward only events from these sources, such as only `web`\
+            \ for a tracked website. Leave it out to forward events from every source."
+          items:
+            enum:
+            - api
+            - relay
+            - hubspot
+            - meta_leads
+            - google_leads
+            - linkedin_leads
+            - tiktok_leads
+            - shopify
+            - woocommerce
+            - web
+            type: string
+          minItems: 1
+          type: array
       required:
       - accountId
       - destinationId
@@ -201193,6 +201238,9 @@ components:
         forwardingRule:
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
+          sources:
+          - api
+          - api
           profileId: profileId
           eventNames:
           - eventNames
