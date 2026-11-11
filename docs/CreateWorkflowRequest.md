@@ -30,6 +30,8 @@
 | BLUESKY | &quot;bluesky&quot; |
 | REDDIT | &quot;reddit&quot; |
 | TIKTOK | &quot;tiktok&quot; |
+| LINE | &quot;line&quot; |
+| WECHAT | &quot;wechat&quot; |
 
 
 

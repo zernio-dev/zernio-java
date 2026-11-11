@@ -30,6 +30,9 @@
 | REDDIT | &quot;reddit&quot; |
 | WHATSAPP | &quot;whatsapp&quot; |
 | SLACK | &quot;slack&quot; |
+| IMESSAGE | &quot;imessage&quot; |
+| LINE | &quot;line&quot; |
+| WECHAT | &quot;wechat&quot; |
 
 
 

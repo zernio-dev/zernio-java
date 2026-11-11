@@ -11687,7 +11687,7 @@ ApiResponse<Void>
 
 Conversation started event
 
-A new conversation began between a connected account and a contact, in either direction, on any DM platform.  ### When it fires  Once per conversation, the first time it appears. Covers Instagram, Messenger, WhatsApp, Telegram, X, Reddit, Bluesky, TikTok, SMS, RCS, iMessage, Slack and email.  ### When it does not fire  DM history replayed when an Instagram or Facebook account connects never fires it. 
+A new conversation began between a connected account and a contact, in either direction, on any DM platform.  ### When it fires  Once per conversation, the first time it appears. Covers Instagram, Messenger, WhatsApp, Telegram, X, Reddit, Bluesky, TikTok, SMS, RCS, iMessage, Slack, LINE, WeChat and email.  ### When it does not fire  DM history replayed when an Instagram or Facebook account connects never fires it. 
 
 ### Example
 
@@ -11756,7 +11756,7 @@ null (empty response body)
 
 Conversation started event
 
-A new conversation began between a connected account and a contact, in either direction, on any DM platform.  ### When it fires  Once per conversation, the first time it appears. Covers Instagram, Messenger, WhatsApp, Telegram, X, Reddit, Bluesky, TikTok, SMS, RCS, iMessage, Slack and email.  ### When it does not fire  DM history replayed when an Instagram or Facebook account connects never fires it. 
+A new conversation began between a connected account and a contact, in either direction, on any DM platform.  ### When it fires  Once per conversation, the first time it appears. Covers Instagram, Messenger, WhatsApp, Telegram, X, Reddit, Bluesky, TikTok, SMS, RCS, iMessage, Slack, LINE, WeChat and email.  ### When it does not fire  DM history replayed when an Instagram or Facebook account connects never fires it. 
 
 ### Example
 

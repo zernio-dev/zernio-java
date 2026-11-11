@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.570.1
+  version: 1.571.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -11810,9 +11810,9 @@ paths:
         style: form
       - description: "Only accounts of this kind. ads = ad accounts (Meta, Google,\
           \ LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit, Microsoft), communication\
-          \ = WhatsApp, Telegram, Discord, Slack and iMessage, blogs = Shopify and\
-          \ WordPress, crm = HubSpot, analytics = Google Analytics, social = every\
-          \ other platform."
+          \ = WhatsApp, Telegram, Discord, Slack, iMessage, LINE and WeChat, blogs\
+          \ = Shopify and WordPress, crm = HubSpot, analytics = Google Analytics,\
+          \ social = every other platform."
         explode: true
         in: query
         name: category
@@ -29573,7 +29573,7 @@ paths:
       description: |
         Fetch conversations (DMs) from all connected messaging accounts in a single API call. Supports filtering by profile and platform. Results are aggregated and deduplicated.
 
-        Supported platforms: Facebook, Instagram, X, Bluesky, Reddit, Telegram, WhatsApp, iMessage and SMS.
+        Supported platforms: Facebook, Instagram, X, Bluesky, Reddit, Telegram, WhatsApp, iMessage, SMS, LINE and WeChat.
 
         ### X limitation
 
@@ -64148,9 +64148,9 @@ paths:
 
         ### Meta retries and failures
 
-        This operation is not idempotent and Zernio never automatically retries it. Unknown body fields are rejected. The Meta flow has no validateOnly or dry-run option.
+        Zernio never retries creation. Send an Idempotency-Key to make a resend safe: the same key and body replay the original 201 without creating again. Without a key every request creates a new account. Unknown body fields are rejected. The Meta flow has no validateOnly or dry-run option.
 
-        - After a timeout or a 502 with details.creationStatus=unknown, check the business in Ads Manager before attempting another creation.
+        - After a timeout or a 502 with details.creationStatus=unknown, check the business in Ads Manager before attempting another creation. An Idempotency-Key does not cover that 502.
         - A 201 with connectionUpdated=false means the account exists but needs reconnecting via GET /v1/connect/facebook/ads, with adAccountIds containing the returned ID and the previous scoped IDs. Do not repeat the create call.
 
         **Google** (send `platform: google`).
@@ -64171,8 +64171,13 @@ paths:
 
         `validateOnly: true` asks Google to validate the request without creating anything and returns 200.
 
-        A real create is not idempotent: after a 502 with details.creationStatus=unknown, check the manager in Google Ads before trying again.
+        Zernio never retries creation. Send an Idempotency-Key to make a resend safe: the same key and body replay the original 201 without creating again. Without a key every request creates a new account.
+
+        - A validateOnly call and the real create need different keys.
+        - After a 502 with details.creationStatus=unknown, check the manager in Google Ads before trying again: an Idempotency-Key does not cover that 502.
       operationId: createAdAccount
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -64199,7 +64204,18 @@ paths:
         required: true
       responses:
         "409":
-          $ref: "#/components/responses/AccountConnectionRequired"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The account exists but is inactive or needs reconnection.\
+            \ Reconnect it, then read GET /v1/accounts for its current account ID\
+            \ before retrying (code ads_connection_required). Also returned when a\
+            \ request with the same Idempotency-Key is still in progress: retry shortly."
+          x-summary: "The account needs reconnection or a request with the same Idempotency-Key\
+            \ is still running: reconnect it, or retry shortly."
+        "422":
+          $ref: "#/components/responses/IdempotencyKeyReused"
         "200":
           content:
             application/json:
@@ -155859,7 +155875,7 @@ components:
           description: |
             Zernio conversation id, echoed so the thread can be read back or replied to. Omitted when the send succeeded but the conversation could not be resolved to a stored record.
 
-            - Telegram, WhatsApp, SMS and Slack: equals the id the list-conversations endpoint returns.
+            - Telegram, WhatsApp, SMS, Slack, LINE and WeChat: equals the id the list-conversations endpoint returns.
             - Facebook, Instagram, Bluesky and Reddit: that endpoint returns the platform thread id instead, so do not correlate the two by equality.
             - X: when the request addressed the conversation by its Twitter dm_conversation_id, that platform id is echoed back instead.
           type: string
@@ -170719,6 +170735,8 @@ components:
           - bluesky
           - reddit
           - tiktok
+          - line
+          - wechat
           type: string
         name:
           type: string
@@ -171718,6 +171736,9 @@ components:
           - reddit
           - whatsapp
           - slack
+          - imessage
+          - line
+          - wechat
           type: string
         name:
           type: string
