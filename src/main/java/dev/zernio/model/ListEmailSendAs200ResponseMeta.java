@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ListEmailSendAs200ResponseMeta.JSON_PROPERTY_LIST,
   ListEmailSendAs200ResponseMeta.JSON_PROPERTY_PROVIDER_SIGNATURES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T03:50:26.259886287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T04:58:45.282898863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListEmailSendAs200ResponseMeta {
   /**
    * &#x60;provider&#x60;: the provider lists every address (Gmail), nothing can be declared. &#x60;partial&#x60;: declare the addresses the provider cannot list (Outlook).

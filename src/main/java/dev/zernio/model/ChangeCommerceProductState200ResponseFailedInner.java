@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ChangeCommerceProductState200ResponseFailedInner.JSON_PROPERTY_PRODUCT_ID,
   ChangeCommerceProductState200ResponseFailedInner.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T03:50:26.259886287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T04:58:45.282898863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ChangeCommerceProductState200ResponseFailedInner {
   public static final String JSON_PROPERTY_PRODUCT_ID = "productId";
   @javax.annotation.Nullable

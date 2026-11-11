@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   CreateWhatsAppNumberKycLinkRequest.JSON_PROPERTY_BRANDING,
   CreateWhatsAppNumberKycLinkRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T03:50:26.259886287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T04:58:45.282898863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppNumberKycLinkRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

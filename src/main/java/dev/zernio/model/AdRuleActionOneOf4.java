@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   AdRuleActionOneOf4.JSON_PROPERTY_MAX_CHANGES_PER_DAY,
   AdRuleActionOneOf4.JSON_PROPERTY_MAX_CHANGES_PER_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T03:50:26.259886287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T04:58:45.282898863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleActionOneOf4 {
   /**
    * Move the bid cap or cost cap of a Meta ad set, in the ad account currency. Ad set rules on Meta only. An ad set without a cap is skipped with &#x60;no_bid_cap&#x60;.

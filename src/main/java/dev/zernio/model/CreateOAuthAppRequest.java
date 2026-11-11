@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   CreateOAuthAppRequest.JSON_PROPERTY_SLACK_SIGNING_SECRET,
   CreateOAuthAppRequest.JSON_PROPERTY_SCOPE_AREAS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T03:50:26.259886287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T04:58:45.282898863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateOAuthAppRequest {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nonnull
