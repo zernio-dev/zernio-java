@@ -37,7 +37,7 @@
 |**actions** | [**CommentAutomationActions**](CommentAutomationActions.md) |  |  [optional] |
 |**quickReplies** | [**List&lt;CommentAutomationQuickReply&gt;**](CommentAutomationQuickReply.md) | Opt-in quick-reply chips on the DM (up to 13). Chips do not render in Message Requests, where a first DM to a cold commenter lands, so prefer buttons for first contact. Mutually exclusive with buttons and template (400).  |  [optional] |
 |**dmMedia** | [**CommentAutomationDmMedia**](CommentAutomationDmMedia.md) |  |  [optional] |
-|**isActive** | **Boolean** | Create the automation paused with false. |  [optional] |
+|**isActive** | **Boolean** | Create the automation paused with false. Once switched on, it answers only comments posted from that moment. |  [optional] |
 
 
 
