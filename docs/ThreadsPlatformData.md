@@ -2,7 +2,7 @@
 
 # ThreadsPlatformData
 
-Up to 10 images per carousel (no videos). Videos must be H.264/AAC MP4, max 5 min. Images JPEG/PNG, max 8 MB. Use threadItems for reply chains.
+Up to 20 images per carousel, or up to 10 items when it includes a video. Videos must be H.264/AAC MP4, max 5 min. Images JPEG/PNG, max 8 MB. Use threadItems for reply chains.
 
 ## Properties
 
