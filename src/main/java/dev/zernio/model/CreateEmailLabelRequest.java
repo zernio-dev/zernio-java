@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateEmailLabelRequest.JSON_PROPERTY_NAME,
   CreateEmailLabelRequest.JSON_PROPERTY_COLOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T13:21:48.180569591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T13:28:50.658292326Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateEmailLabelRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

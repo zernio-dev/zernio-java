@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   AdRuleConditionsOneOf1.JSON_PROPERTY_ANY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T13:21:48.180569591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T13:28:50.658292326Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleConditionsOneOf1 {
   public static final String JSON_PROPERTY_ANY = "any";
   @javax.annotation.Nonnull

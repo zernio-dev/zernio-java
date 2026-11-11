@@ -7495,7 +7495,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetStripeSettings200ResponseTest.java
-src/test/java/dev/zernio/model/StripeSettingsTest.java
-src/test/java/dev/zernio/model/UpdateStripeSettings200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateStripeSettingsRequestTest.java

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   RequestCampaignDraftRevisionRequest.JSON_PROPERTY_NOTE,
   RequestCampaignDraftRevisionRequest.JSON_PROPERTY_COMMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T13:21:48.180569591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T13:28:50.658292326Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RequestCampaignDraftRevisionRequest {
   public static final String JSON_PROPERTY_NOTE = "note";
   @javax.annotation.Nullable
