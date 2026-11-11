@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   ListOrgConnectionUsers200ResponseDataInner.JSON_PROPERTY_ALLOWED,
   ListOrgConnectionUsers200ResponseDataInner.JSON_PROPERTY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:52:55.419120985Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:58:16.756510691Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListOrgConnectionUsers200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

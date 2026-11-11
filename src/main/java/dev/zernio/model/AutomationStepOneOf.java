@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   AutomationStepOneOf.JSON_PROPERTY_ID,
   AutomationStepOneOf.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:52:55.419120985Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:58:16.756510691Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationStepOneOf {
   /**
    * Gets or Sets id

@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   GetTikTokSmartPlusMaterialReport200ResponseRowsInner.JSON_PROPERTY_AD_GROUP_ID,
   GetTikTokSmartPlusMaterialReport200ResponseRowsInner.JSON_PROPERTY_METRICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:52:55.419120985Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:58:16.756510691Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTikTokSmartPlusMaterialReport200ResponseRowsInner {
   public static final String JSON_PROPERTY_MATERIAL_ID = "materialId";
   @javax.annotation.Nullable

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListWorkflowVersions200Response.JSON_PROPERTY_SUCCESS,
   ListWorkflowVersions200Response.JSON_PROPERTY_VERSIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:52:55.419120985Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:58:16.756510691Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWorkflowVersions200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

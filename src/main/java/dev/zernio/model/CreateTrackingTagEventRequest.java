@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CreateTrackingTagEventRequest.JSON_PROPERTY_VIEW_WINDOW_DAYS,
   CreateTrackingTagEventRequest.JSON_PROPERTY_URL_CONTAINS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:52:55.419120985Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:58:16.756510691Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateTrackingTagEventRequest {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nullable

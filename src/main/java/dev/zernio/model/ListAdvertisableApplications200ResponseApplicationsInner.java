@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListAdvertisableApplications200ResponseApplicationsInner.JSON_PROPERTY_SUPPORTED_PLATFORMS,
   ListAdvertisableApplications200ResponseApplicationsInner.JSON_PROPERTY_STORE_URLS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:52:55.419120985Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:58:16.756510691Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdvertisableApplications200ResponseApplicationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

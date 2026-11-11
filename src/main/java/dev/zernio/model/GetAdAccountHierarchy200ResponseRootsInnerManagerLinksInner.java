@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.JSON_PROPERTY_MANAGER_LINK_ID,
   GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:52:55.419120985Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:58:16.756510691Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner {
   public static final String JSON_PROPERTY_MANAGER_CUSTOMER_ID = "managerCustomerId";
   @javax.annotation.Nullable

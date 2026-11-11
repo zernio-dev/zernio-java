@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestInteractiveActionOneOf2Parameters.JSON_PROPERTY_TTL_MINUTES,
   SendInboxMessageRequestInteractiveActionOneOf2Parameters.JSON_PROPERTY_PAYLOAD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:52:55.419120985Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-11T15:58:16.756510691Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf2Parameters {
   public static final String JSON_PROPERTY_DISPLAY_TEXT = "display_text";
   @javax.annotation.Nullable
