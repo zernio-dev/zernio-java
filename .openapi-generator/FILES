@@ -7541,10 +7541,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationActionsInnerTest.java
-src/test/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationRefsAccountTest.java
-src/test/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationRefsPlatformsInnerTest.java
-src/test/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationRefsPostTest.java
-src/test/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationRefsTest.java
-src/test/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationTest.java
-src/test/java/dev/zernio/model/WebhookPayloadNotificationSentTest.java
