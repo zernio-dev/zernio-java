@@ -1583,7 +1583,7 @@ ApiResponse<[**CreateAdNegativeKeywordList201Response**](CreateAdNegativeKeyword
 
 Create custom conversion
 
-Creates a Meta custom conversion for ads to optimise toward, reusing an existing one with the same name and pixel.  It provisions the Meta custom conversion an ads flow optimises toward, and hands back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. This removes the manual \&quot;create it in Ads Manager first\&quot; step.  ### Reuse is ours, not Meta&#39;s  Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history.  A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  ### Rule  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;). Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;. 
+The first path of &#x60;POST /v1/ads/conversions/custom-conversions&#x60; (&#x60;createAdCustomConversion&#x60;), which does the same with &#x60;accountId&#x60; as a parameter. It keeps working. 
 
 ### Example
 
@@ -1661,7 +1661,7 @@ public class Example {
 
 Create custom conversion
 
-Creates a Meta custom conversion for ads to optimise toward, reusing an existing one with the same name and pixel.  It provisions the Meta custom conversion an ads flow optimises toward, and hands back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. This removes the manual \&quot;create it in Ads Manager first\&quot; step.  ### Reuse is ours, not Meta&#39;s  Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history.  A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  ### Rule  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;). Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;. 
+The first path of &#x60;POST /v1/ads/conversions/custom-conversions&#x60; (&#x60;createAdCustomConversion&#x60;), which does the same with &#x60;accountId&#x60; as a parameter. It keeps working. 
 
 ### Example
 
@@ -7545,11 +7545,11 @@ ApiResponse<[**ListAdvertisableApplications200Response**](ListAdvertisableApplic
 
 ## listCustomConversions
 
-> ListCustomConversions200Response listCustomConversions(accountId, adAccountId)
+> ListAdCustomConversions200Response listCustomConversions(accountId, adAccountId)
 
 List custom conversions
 
-Lists a Meta ad account&#39;s custom conversions, including archived ones.  The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;). 
+The first path of &#x60;GET /v1/ads/conversions/custom-conversions&#x60; (&#x60;listAdCustomConversions&#x60;), which does the same with &#x60;accountId&#x60; as a parameter. It keeps working. 
 
 ### Example
 
@@ -7575,7 +7575,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Meta ads SocialAccount id.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
         try {
-            ListCustomConversions200Response result = apiInstance.listCustomConversions(accountId, adAccountId);
+            ListAdCustomConversions200Response result = apiInstance.listCustomConversions(accountId, adAccountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#listCustomConversions");
@@ -7598,7 +7598,7 @@ public class Example {
 
 ### Return type
 
-[**ListCustomConversions200Response**](ListCustomConversions200Response.md)
+[**ListAdCustomConversions200Response**](ListAdCustomConversions200Response.md)
 
 
 ### Authorization
@@ -7622,11 +7622,11 @@ public class Example {
 
 ## listCustomConversionsWithHttpInfo
 
-> ApiResponse<ListCustomConversions200Response> listCustomConversions listCustomConversionsWithHttpInfo(accountId, adAccountId)
+> ApiResponse<ListAdCustomConversions200Response> listCustomConversions listCustomConversionsWithHttpInfo(accountId, adAccountId)
 
 List custom conversions
 
-Lists a Meta ad account&#39;s custom conversions, including archived ones.  The ad account&#39;s Meta custom conversions, including archived ones (&#x60;isArchived&#x60;). 
+The first path of &#x60;GET /v1/ads/conversions/custom-conversions&#x60; (&#x60;listAdCustomConversions&#x60;), which does the same with &#x60;accountId&#x60; as a parameter. It keeps working. 
 
 ### Example
 
@@ -7653,7 +7653,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Meta ads SocialAccount id.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
         try {
-            ApiResponse<ListCustomConversions200Response> response = apiInstance.listCustomConversionsWithHttpInfo(accountId, adAccountId);
+            ApiResponse<ListAdCustomConversions200Response> response = apiInstance.listCustomConversionsWithHttpInfo(accountId, adAccountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -7678,7 +7678,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**ListCustomConversions200Response**](ListCustomConversions200Response.md)>
+ApiResponse<[**ListAdCustomConversions200Response**](ListAdCustomConversions200Response.md)>
 
 
 ### Authorization

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.565.5
+- API version: 1.566.0
 
-- Build date: 2026-11-11T09:44:55.568569634Z[Etc/UTC]
+- Build date: 2026-11-11T11:38:34.181562988Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.565.5</version>
+  <version>1.566.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.565.5"
+compile "dev.zernio:zernio-sdk:1.566.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.565.5.jar`
+- `target/zernio-sdk-1.566.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1381,12 +1381,18 @@ Class | Method | HTTP request | Description
 *ContentRetentionApi* | [**getContentRetentionWithHttpInfo**](docs/ContentRetentionApi.md#getContentRetentionWithHttpInfo) | **GET** /v1/content-retention | Get content retention mode
 *ContentRetentionApi* | [**updateContentRetention**](docs/ContentRetentionApi.md#updateContentRetention) | **PUT** /v1/content-retention | Turn zero content retention on or off
 *ContentRetentionApi* | [**updateContentRetentionWithHttpInfo**](docs/ContentRetentionApi.md#updateContentRetentionWithHttpInfo) | **PUT** /v1/content-retention | Turn zero content retention on or off
+*ConversionsApi* | [**addAdConversionAssociations**](docs/ConversionsApi.md#addAdConversionAssociations) | **POST** /v1/ads/conversions/destinations/{destinationId}/associations | Associate campaigns
+*ConversionsApi* | [**addAdConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#addAdConversionAssociationsWithHttpInfo) | **POST** /v1/ads/conversions/destinations/{destinationId}/associations | Associate campaigns
 *ConversionsApi* | [**addConversionAssociations**](docs/ConversionsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
 *ConversionsApi* | [**addConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
 *ConversionsApi* | [**adjustConversions**](docs/ConversionsApi.md#adjustConversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
 *ConversionsApi* | [**adjustConversionsWithHttpInfo**](docs/ConversionsApi.md#adjustConversionsWithHttpInfo) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
-*ConversionsApi* | [**createConversionAction**](docs/ConversionsApi.md#createConversionAction) | **POST** /v1/ads/conversions/actions | Create website conversion action
-*ConversionsApi* | [**createConversionActionWithHttpInfo**](docs/ConversionsApi.md#createConversionActionWithHttpInfo) | **POST** /v1/ads/conversions/actions | Create website conversion action
+*ConversionsApi* | [**createAdConversionDestination**](docs/ConversionsApi.md#createAdConversionDestination) | **POST** /v1/ads/conversions/destinations | Create a conversion destination
+*ConversionsApi* | [**createAdConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#createAdConversionDestinationWithHttpInfo) | **POST** /v1/ads/conversions/destinations | Create a conversion destination
+*ConversionsApi* | [**createAdCustomConversion**](docs/ConversionsApi.md#createAdCustomConversion) | **POST** /v1/ads/conversions/custom-conversions | Create custom conversion
+*ConversionsApi* | [**createAdCustomConversionWithHttpInfo**](docs/ConversionsApi.md#createAdCustomConversionWithHttpInfo) | **POST** /v1/ads/conversions/custom-conversions | Create custom conversion
+*ConversionsApi* | [**createConversionAction**](docs/ConversionsApi.md#createConversionAction) | **POST** /v1/ads/conversions/actions | Create conversion action
+*ConversionsApi* | [**createConversionActionWithHttpInfo**](docs/ConversionsApi.md#createConversionActionWithHttpInfo) | **POST** /v1/ads/conversions/actions | Create conversion action
 *ConversionsApi* | [**createConversionDestination**](docs/ConversionsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
 *ConversionsApi* | [**createConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
 *ConversionsApi* | [**createCustomConversionGoal**](docs/ConversionsApi.md#createCustomConversionGoal) | **POST** /v1/ads/conversions/custom-goals | Create a custom conversion goal
@@ -1395,12 +1401,18 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**createEventDestinationWithHttpInfo**](docs/ConversionsApi.md#createEventDestinationWithHttpInfo) | **POST** /v1/events/destinations | Add an event destination
 *ConversionsApi* | [**createForwardingRule**](docs/ConversionsApi.md#createForwardingRule) | **POST** /v1/events/forwarding-rules | Add a forwarding rule
 *ConversionsApi* | [**createForwardingRuleWithHttpInfo**](docs/ConversionsApi.md#createForwardingRuleWithHttpInfo) | **POST** /v1/events/forwarding-rules | Add a forwarding rule
+*ConversionsApi* | [**deleteAdConversionDestination**](docs/ConversionsApi.md#deleteAdConversionDestination) | **DELETE** /v1/ads/conversions/destinations/{destinationId} | Delete a conversion destination
+*ConversionsApi* | [**deleteAdConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#deleteAdConversionDestinationWithHttpInfo) | **DELETE** /v1/ads/conversions/destinations/{destinationId} | Delete a conversion destination
 *ConversionsApi* | [**deleteConversionDestination**](docs/ConversionsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
 *ConversionsApi* | [**deleteConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
 *ConversionsApi* | [**deleteEventDestination**](docs/ConversionsApi.md#deleteEventDestination) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination
 *ConversionsApi* | [**deleteEventDestinationWithHttpInfo**](docs/ConversionsApi.md#deleteEventDestinationWithHttpInfo) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination
 *ConversionsApi* | [**deleteForwardingRule**](docs/ConversionsApi.md#deleteForwardingRule) | **DELETE** /v1/events/forwarding-rules/{ruleId} | Remove a forwarding rule
 *ConversionsApi* | [**deleteForwardingRuleWithHttpInfo**](docs/ConversionsApi.md#deleteForwardingRuleWithHttpInfo) | **DELETE** /v1/events/forwarding-rules/{ruleId} | Remove a forwarding rule
+*ConversionsApi* | [**getAdConversionDestination**](docs/ConversionsApi.md#getAdConversionDestination) | **GET** /v1/ads/conversions/destinations/{destinationId} | Get a conversion destination
+*ConversionsApi* | [**getAdConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#getAdConversionDestinationWithHttpInfo) | **GET** /v1/ads/conversions/destinations/{destinationId} | Get a conversion destination
+*ConversionsApi* | [**getAdConversionMetrics**](docs/ConversionsApi.md#getAdConversionMetrics) | **GET** /v1/ads/conversions/destinations/{destinationId}/metrics | Get attribution metrics
+*ConversionsApi* | [**getAdConversionMetricsWithHttpInfo**](docs/ConversionsApi.md#getAdConversionMetricsWithHttpInfo) | **GET** /v1/ads/conversions/destinations/{destinationId}/metrics | Get attribution metrics
 *ConversionsApi* | [**getConversionDestination**](docs/ConversionsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
 *ConversionsApi* | [**getConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
 *ConversionsApi* | [**getConversionMetrics**](docs/ConversionsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
@@ -1409,8 +1421,14 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**getConversionsQualityWithHttpInfo**](docs/ConversionsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
 *ConversionsApi* | [**getEvent**](docs/ConversionsApi.md#getEvent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries
 *ConversionsApi* | [**getEventWithHttpInfo**](docs/ConversionsApi.md#getEventWithHttpInfo) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries
+*ConversionsApi* | [**listAdConversionAssociations**](docs/ConversionsApi.md#listAdConversionAssociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns
+*ConversionsApi* | [**listAdConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#listAdConversionAssociationsWithHttpInfo) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns
+*ConversionsApi* | [**listAdConversionDestinations**](docs/ConversionsApi.md#listAdConversionDestinations) | **GET** /v1/ads/conversions/destinations | List conversion destinations
+*ConversionsApi* | [**listAdConversionDestinationsWithHttpInfo**](docs/ConversionsApi.md#listAdConversionDestinationsWithHttpInfo) | **GET** /v1/ads/conversions/destinations | List conversion destinations
 *ConversionsApi* | [**listAdConversionGoals**](docs/ConversionsApi.md#listAdConversionGoals) | **GET** /v1/ads/conversions/goals | List account conversion goals
 *ConversionsApi* | [**listAdConversionGoalsWithHttpInfo**](docs/ConversionsApi.md#listAdConversionGoalsWithHttpInfo) | **GET** /v1/ads/conversions/goals | List account conversion goals
+*ConversionsApi* | [**listAdCustomConversions**](docs/ConversionsApi.md#listAdCustomConversions) | **GET** /v1/ads/conversions/custom-conversions | List custom conversions
+*ConversionsApi* | [**listAdCustomConversionsWithHttpInfo**](docs/ConversionsApi.md#listAdCustomConversionsWithHttpInfo) | **GET** /v1/ads/conversions/custom-conversions | List custom conversions
 *ConversionsApi* | [**listConversionActions**](docs/ConversionsApi.md#listConversionActions) | **GET** /v1/ads/conversions/actions | List conversion actions
 *ConversionsApi* | [**listConversionActionsWithHttpInfo**](docs/ConversionsApi.md#listConversionActionsWithHttpInfo) | **GET** /v1/ads/conversions/actions | List conversion actions
 *ConversionsApi* | [**listConversionAssociations**](docs/ConversionsApi.md#listConversionAssociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns
@@ -1425,6 +1443,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**listEventsWithHttpInfo**](docs/ConversionsApi.md#listEventsWithHttpInfo) | **GET** /v1/events | List stored events
 *ConversionsApi* | [**listForwardingRules**](docs/ConversionsApi.md#listForwardingRules) | **GET** /v1/events/forwarding-rules | List forwarding rules
 *ConversionsApi* | [**listForwardingRulesWithHttpInfo**](docs/ConversionsApi.md#listForwardingRulesWithHttpInfo) | **GET** /v1/events/forwarding-rules | List forwarding rules
+*ConversionsApi* | [**removeAdConversionAssociations**](docs/ConversionsApi.md#removeAdConversionAssociations) | **DELETE** /v1/ads/conversions/destinations/{destinationId}/associations | Remove associated campaigns
+*ConversionsApi* | [**removeAdConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#removeAdConversionAssociationsWithHttpInfo) | **DELETE** /v1/ads/conversions/destinations/{destinationId}/associations | Remove associated campaigns
 *ConversionsApi* | [**removeConversionAssociations**](docs/ConversionsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
 *ConversionsApi* | [**removeConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
 *ConversionsApi* | [**removeCustomConversionGoal**](docs/ConversionsApi.md#removeCustomConversionGoal) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal
@@ -1437,6 +1457,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**sendConversionsWithHttpInfo**](docs/ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events
 *ConversionsApi* | [**sendEvents**](docs/ConversionsApi.md#sendEvents) | **POST** /v1/events | Send events to every destination
 *ConversionsApi* | [**sendEventsWithHttpInfo**](docs/ConversionsApi.md#sendEventsWithHttpInfo) | **POST** /v1/events | Send events to every destination
+*ConversionsApi* | [**updateAdConversionDestination**](docs/ConversionsApi.md#updateAdConversionDestination) | **PATCH** /v1/ads/conversions/destinations/{destinationId} | Update a conversion destination
+*ConversionsApi* | [**updateAdConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#updateAdConversionDestinationWithHttpInfo) | **PATCH** /v1/ads/conversions/destinations/{destinationId} | Update a conversion destination
 *ConversionsApi* | [**updateAdConversionGoals**](docs/ConversionsApi.md#updateAdConversionGoals) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals
 *ConversionsApi* | [**updateAdConversionGoalsWithHttpInfo**](docs/ConversionsApi.md#updateAdConversionGoalsWithHttpInfo) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals
 *ConversionsApi* | [**updateConversionAction**](docs/ConversionsApi.md#updateConversionAction) | **PATCH** /v1/ads/conversions/actions/{actionId} | Update a conversion action&#39;s settings
@@ -2733,6 +2755,9 @@ Class | Method | HTTP request | Description
  - [AddAccountStructuredSnippets201Response](docs/AddAccountStructuredSnippets201Response.md)
  - [AddAccountStructuredSnippets201ResponseStructuredSnippetsInner](docs/AddAccountStructuredSnippets201ResponseStructuredSnippetsInner.md)
  - [AddAccountStructuredSnippetsRequest](docs/AddAccountStructuredSnippetsRequest.md)
+ - [AddAdConversionAssociations200Response](docs/AddAdConversionAssociations200Response.md)
+ - [AddAdConversionAssociations200ResponseFailedInner](docs/AddAdConversionAssociations200ResponseFailedInner.md)
+ - [AddAdConversionAssociationsRequest](docs/AddAdConversionAssociationsRequest.md)
  - [AddAdKeywords201Response](docs/AddAdKeywords201Response.md)
  - [AddAdKeywordsRequest](docs/AddAdKeywordsRequest.md)
  - [AddAdKeywordsRequestKeywordsInner](docs/AddAdKeywordsRequestKeywordsInner.md)
@@ -2745,8 +2770,6 @@ Class | Method | HTTP request | Description
  - [AddCommerceMarketingEngagementRequest](docs/AddCommerceMarketingEngagementRequest.md)
  - [AddCommerceProductImagesRequest](docs/AddCommerceProductImagesRequest.md)
  - [AddConversationLabelRequest](docs/AddConversationLabelRequest.md)
- - [AddConversionAssociations200Response](docs/AddConversionAssociations200Response.md)
- - [AddConversionAssociations200ResponseFailedInner](docs/AddConversionAssociations200ResponseFailedInner.md)
  - [AddConversionAssociationsRequest](docs/AddConversionAssociationsRequest.md)
  - [AddDiscordMemberRole200Response](docs/AddDiscordMemberRole200Response.md)
  - [AddEmailSharedMailbox200Response](docs/AddEmailSharedMailbox200Response.md)
@@ -3276,9 +3299,13 @@ Class | Method | HTTP request | Description
  - [CreateAdCatalogProductSet201Response](docs/CreateAdCatalogProductSet201Response.md)
  - [CreateAdCatalogProductSetRequest](docs/CreateAdCatalogProductSetRequest.md)
  - [CreateAdCatalogRequest](docs/CreateAdCatalogRequest.md)
+ - [CreateAdConversionDestination201Response](docs/CreateAdConversionDestination201Response.md)
+ - [CreateAdConversionDestinationRequest](docs/CreateAdConversionDestinationRequest.md)
+ - [CreateAdConversionDestinationRequestValue](docs/CreateAdConversionDestinationRequestValue.md)
  - [CreateAdCreative201Response](docs/CreateAdCreative201Response.md)
  - [CreateAdCreativeRequest](docs/CreateAdCreativeRequest.md)
  - [CreateAdCreativeRequestCarouselCardsInner](docs/CreateAdCreativeRequestCarouselCardsInner.md)
+ - [CreateAdCustomConversionRequest](docs/CreateAdCustomConversionRequest.md)
  - [CreateAdInsightsReport202Response](docs/CreateAdInsightsReport202Response.md)
  - [CreateAdInsightsReportRequest](docs/CreateAdInsightsReportRequest.md)
  - [CreateAdInsightsReportRequestFilteringInner](docs/CreateAdInsightsReportRequestFilteringInner.md)
@@ -3364,9 +3391,7 @@ Class | Method | HTTP request | Description
  - [CreateContactRequest](docs/CreateContactRequest.md)
  - [CreateConversionAction201Response](docs/CreateConversionAction201Response.md)
  - [CreateConversionActionRequest](docs/CreateConversionActionRequest.md)
- - [CreateConversionDestination201Response](docs/CreateConversionDestination201Response.md)
  - [CreateConversionDestinationRequest](docs/CreateConversionDestinationRequest.md)
- - [CreateConversionDestinationRequestValue](docs/CreateConversionDestinationRequestValue.md)
  - [CreateCreatorCampaign201Response](docs/CreateCreatorCampaign201Response.md)
  - [CreateCreatorCampaignRequest](docs/CreateCreatorCampaignRequest.md)
  - [CreateCustomConversionGoalRequest](docs/CreateCustomConversionGoalRequest.md)
@@ -3888,6 +3913,10 @@ Class | Method | HTTP request | Description
  - [GetAdComments200Response](docs/GetAdComments200Response.md)
  - [GetAdComments200ResponseMeta](docs/GetAdComments200ResponseMeta.md)
  - [GetAdComments200ResponsePagination](docs/GetAdComments200ResponsePagination.md)
+ - [GetAdConversionDestination200Response](docs/GetAdConversionDestination200Response.md)
+ - [GetAdConversionMetrics200Response](docs/GetAdConversionMetrics200Response.md)
+ - [GetAdConversionMetrics200ResponseRowsInner](docs/GetAdConversionMetrics200ResponseRowsInner.md)
+ - [GetAdConversionMetrics200ResponseRowsInnerMetricsValue](docs/GetAdConversionMetrics200ResponseRowsInnerMetricsValue.md)
  - [GetAdCreative200Response](docs/GetAdCreative200Response.md)
  - [GetAdInsightsReport200Response](docs/GetAdInsightsReport200Response.md)
  - [GetAdInsightsReport200ResponsePaging](docs/GetAdInsightsReport200ResponsePaging.md)
@@ -3985,10 +4014,6 @@ Class | Method | HTTP request | Description
  - [GetContactChannels200ResponseChannelsInner](docs/GetContactChannels200ResponseChannelsInner.md)
  - [GetContentDecay200Response](docs/GetContentDecay200Response.md)
  - [GetContentDecay200ResponseBucketsInner](docs/GetContentDecay200ResponseBucketsInner.md)
- - [GetConversionDestination200Response](docs/GetConversionDestination200Response.md)
- - [GetConversionMetrics200Response](docs/GetConversionMetrics200Response.md)
- - [GetConversionMetrics200ResponseRowsInner](docs/GetConversionMetrics200ResponseRowsInner.md)
- - [GetConversionMetrics200ResponseRowsInnerMetricsValue](docs/GetConversionMetrics200ResponseRowsInnerMetricsValue.md)
  - [GetConversionsQuality200Response](docs/GetConversionsQuality200Response.md)
  - [GetConversionsQuality200ResponseRowsInner](docs/GetConversionsQuality200ResponseRowsInner.md)
  - [GetConversionsQuality200ResponseRowsInnerMatchKeysInner](docs/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.md)
@@ -4559,8 +4584,14 @@ Class | Method | HTTP request | Description
  - [ListAdCatalogProductSets200ResponseProductSetsInner](docs/ListAdCatalogProductSets200ResponseProductSetsInner.md)
  - [ListAdCatalogProducts200Response](docs/ListAdCatalogProducts200Response.md)
  - [ListAdCatalogs200Response](docs/ListAdCatalogs200Response.md)
+ - [ListAdConversionAssociations200Response](docs/ListAdConversionAssociations200Response.md)
+ - [ListAdConversionAssociations200ResponseAssociationsInner](docs/ListAdConversionAssociations200ResponseAssociationsInner.md)
+ - [ListAdConversionDestinations200Response](docs/ListAdConversionDestinations200Response.md)
+ - [ListAdConversionDestinations200ResponseDestinationsInner](docs/ListAdConversionDestinations200ResponseDestinationsInner.md)
+ - [ListAdConversionDestinations200ResponseDestinationsInnerConversionEventsInner](docs/ListAdConversionDestinations200ResponseDestinationsInnerConversionEventsInner.md)
  - [ListAdConversionGoals200Response](docs/ListAdConversionGoals200Response.md)
  - [ListAdCreatives200Response](docs/ListAdCreatives200Response.md)
+ - [ListAdCustomConversions200Response](docs/ListAdCustomConversions200Response.md)
  - [ListAdGroupAssets200Response](docs/ListAdGroupAssets200Response.md)
  - [ListAdGroupAssets200ResponseCalloutsInner](docs/ListAdGroupAssets200ResponseCalloutsInner.md)
  - [ListAdGroupAssets200ResponseImagesInner](docs/ListAdGroupAssets200ResponseImagesInner.md)
@@ -4688,14 +4719,8 @@ Class | Method | HTTP request | Description
  - [ListContacts200ResponseFilters](docs/ListContacts200ResponseFilters.md)
  - [ListContacts200ResponsePagination](docs/ListContacts200ResponsePagination.md)
  - [ListConversionActions200Response](docs/ListConversionActions200Response.md)
- - [ListConversionAssociations200Response](docs/ListConversionAssociations200Response.md)
- - [ListConversionAssociations200ResponseAssociationsInner](docs/ListConversionAssociations200ResponseAssociationsInner.md)
- - [ListConversionDestinations200Response](docs/ListConversionDestinations200Response.md)
- - [ListConversionDestinations200ResponseDestinationsInner](docs/ListConversionDestinations200ResponseDestinationsInner.md)
- - [ListConversionDestinations200ResponseDestinationsInnerConversionEventsInner](docs/ListConversionDestinations200ResponseDestinationsInnerConversionEventsInner.md)
  - [ListCreatorCampaigns200Response](docs/ListCreatorCampaigns200Response.md)
  - [ListCustomConversionGoals200Response](docs/ListCustomConversionGoals200Response.md)
- - [ListCustomConversions200Response](docs/ListCustomConversions200Response.md)
  - [ListCustomFields200Response](docs/ListCustomFields200Response.md)
  - [ListCustomFields200ResponseFieldsInner](docs/ListCustomFields200ResponseFieldsInner.md)
  - [ListDiscordGuildMembers200Response](docs/ListDiscordGuildMembers200Response.md)
@@ -5157,11 +5182,11 @@ Class | Method | HTTP request | Description
  - [RemediatePhoneNumberRequestDocumentsInnerOneOf](docs/RemediatePhoneNumberRequestDocumentsInnerOneOf.md)
  - [RemoveAccountCallout200Response](docs/RemoveAccountCallout200Response.md)
  - [RemoveAdAccountUser200Response](docs/RemoveAdAccountUser200Response.md)
+ - [RemoveAdConversionAssociations200Response](docs/RemoveAdConversionAssociations200Response.md)
  - [RemoveAdKeyword200Response](docs/RemoveAdKeyword200Response.md)
  - [RemoveAdLabel200Response](docs/RemoveAdLabel200Response.md)
  - [RemoveBookmark200Response](docs/RemoveBookmark200Response.md)
  - [RemoveCampaignAssets200Response](docs/RemoveCampaignAssets200Response.md)
- - [RemoveConversionAssociations200Response](docs/RemoveConversionAssociations200Response.md)
  - [RemoveCreatorAccount200Response](docs/RemoveCreatorAccount200Response.md)
  - [RemoveCustomConversionGoal200Response](docs/RemoveCustomConversionGoal200Response.md)
  - [RemoveDiscordMemberRole200Response](docs/RemoveDiscordMemberRole200Response.md)
@@ -5617,6 +5642,8 @@ Class | Method | HTTP request | Description
  - [UpdateAdCampaignStatusRequest](docs/UpdateAdCampaignStatusRequest.md)
  - [UpdateAdCatalogProductRequest](docs/UpdateAdCatalogProductRequest.md)
  - [UpdateAdCatalogProductSetRequest](docs/UpdateAdCatalogProductSetRequest.md)
+ - [UpdateAdConversionDestinationRequest](docs/UpdateAdConversionDestinationRequest.md)
+ - [UpdateAdConversionDestinationRequestValue](docs/UpdateAdConversionDestinationRequestValue.md)
  - [UpdateAdConversionGoals200Response](docs/UpdateAdConversionGoals200Response.md)
  - [UpdateAdConversionGoalsRequest](docs/UpdateAdConversionGoalsRequest.md)
  - [UpdateAdCreative200Response](docs/UpdateAdCreative200Response.md)
@@ -5717,7 +5744,6 @@ Class | Method | HTTP request | Description
  - [UpdateConversionAction200ResponseAction](docs/UpdateConversionAction200ResponseAction.md)
  - [UpdateConversionActionRequest](docs/UpdateConversionActionRequest.md)
  - [UpdateConversionDestinationRequest](docs/UpdateConversionDestinationRequest.md)
- - [UpdateConversionDestinationRequestValue](docs/UpdateConversionDestinationRequestValue.md)
  - [UpdateCreatorCampaignRequest](docs/UpdateCreatorCampaignRequest.md)
  - [UpdateCustomConversionGoal200Response](docs/UpdateCustomConversionGoal200Response.md)
  - [UpdateCustomConversionGoalRequest](docs/UpdateCustomConversionGoalRequest.md)

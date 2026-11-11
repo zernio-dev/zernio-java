@@ -11,7 +11,7 @@
 |**adAccountId** | **String** | Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. |  [optional] |
 |**customerId** | **String** | Alias of adAccountId, kept for existing callers |  [optional] |
 |**name** | **String** |  |  |
-|**type** | [**TypeEnum**](#TypeEnum) | Only WEBPAGE is supported for creation today. |  |
+|**type** | [**TypeEnum**](#TypeEnum) | WEBPAGE for a website tag, UPLOAD_CLICKS for the conversions you send to Zernio. |  |
 |**defaultValue** | **BigDecimal** | Default conversion value used when an event doesn&#39;t carry its own value. |  [optional] |
 |**alwaysUseDefaultValue** | **Boolean** | When true, always use defaultValue and ignore any value sent with the event. Defaults to true when defaultValue is set. |  [optional] |
 |**category** | [**CategoryEnum**](#CategoryEnum) | conversion_action.category. Defaults to DEFAULT on create. |  [optional] |
@@ -19,7 +19,7 @@
 |**defaultCurrency** | **String** | ISO 4217 currency of defaultValue (value_settings.default_currency_code). |  [optional] |
 |**clickThroughLookbackWindowDays** | **Integer** | Days after an ad click a conversion still counts. |  [optional] |
 |**viewThroughLookbackWindowDays** | **Integer** | Days after an ad view a view-through conversion still counts. |  [optional] |
-|**primaryForGoal** | **Boolean** | true &#x3D; primary (counts toward bidding when its goal is biddable), false &#x3D; secondary. |  [optional] |
+|**primaryForGoal** | **Boolean** | true &#x3D; primary (counts toward bidding when its goal is biddable), false &#x3D; secondary. Defaults to secondary for UPLOAD_CLICKS. |  [optional] |
 
 
 
@@ -28,6 +28,7 @@
 | Name | Value |
 |---- | -----|
 | WEBPAGE | &quot;WEBPAGE&quot; |
+| UPLOAD_CLICKS | &quot;UPLOAD_CLICKS&quot; |
 
 
 

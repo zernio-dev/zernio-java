@@ -15,7 +15,7 @@ At least one mutable field beyond `adAccountId` is required; the route returns 4
 |**postClickAttributionWindowSize** | [**PostClickAttributionWindowSizeEnum**](#PostClickAttributionWindowSizeEnum) | 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types.  |  [optional] |
 |**viewThroughAttributionWindowSize** | [**ViewThroughAttributionWindowSizeEnum**](#ViewThroughAttributionWindowSizeEnum) | 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types.  |  [optional] |
 |**valueType** | [**ValueTypeEnum**](#ValueTypeEnum) |  |  [optional] |
-|**value** | [**UpdateConversionDestinationRequestValue**](UpdateConversionDestinationRequestValue.md) |  |  [optional] |
+|**value** | [**UpdateAdConversionDestinationRequestValue**](UpdateAdConversionDestinationRequestValue.md) |  |  [optional] |
 
 
 
