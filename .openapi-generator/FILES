@@ -1445,6 +1445,12 @@ docs/GetEmailThread200Response.md
 docs/GetEmailThread200ResponseData.md
 docs/GetEvent200Response.md
 docs/GetEvent200ResponseDeliveriesInner.md
+docs/GetEventsOverview200Response.md
+docs/GetEventsOverview200ResponsePlatformsInner.md
+docs/GetEventsOverview200ResponseSourcesInner.md
+docs/GetEventsOverview200ResponseToday.md
+docs/GetEventsOverview200ResponseWebsite.md
+docs/GetEventsOverview200ResponseWebsiteStepsInner.md
 docs/GetFacebookDemographics200Response.md
 docs/GetFacebookDemographics200ResponseDemographics.md
 docs/GetFacebookDemographics200ResponseDemographicsCountryInner.md
@@ -2167,6 +2173,8 @@ docs/ListEmailSignatures200Response.md
 docs/ListEmailThreads200Response.md
 docs/ListEventDestinations200Response.md
 docs/ListEvents200Response.md
+docs/ListEvents200ResponseEventsInner.md
+docs/ListEvents200ResponseEventsInnerAllOfDeliveriesInner.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
@@ -5259,6 +5267,12 @@ src/main/java/dev/zernio/model/GetEmailThread200Response.java
 src/main/java/dev/zernio/model/GetEmailThread200ResponseData.java
 src/main/java/dev/zernio/model/GetEvent200Response.java
 src/main/java/dev/zernio/model/GetEvent200ResponseDeliveriesInner.java
+src/main/java/dev/zernio/model/GetEventsOverview200Response.java
+src/main/java/dev/zernio/model/GetEventsOverview200ResponsePlatformsInner.java
+src/main/java/dev/zernio/model/GetEventsOverview200ResponseSourcesInner.java
+src/main/java/dev/zernio/model/GetEventsOverview200ResponseToday.java
+src/main/java/dev/zernio/model/GetEventsOverview200ResponseWebsite.java
+src/main/java/dev/zernio/model/GetEventsOverview200ResponseWebsiteStepsInner.java
 src/main/java/dev/zernio/model/GetFacebookDemographics200Response.java
 src/main/java/dev/zernio/model/GetFacebookDemographics200ResponseDemographics.java
 src/main/java/dev/zernio/model/GetFacebookDemographics200ResponseDemographicsCountryInner.java
@@ -5966,6 +5980,8 @@ src/main/java/dev/zernio/model/ListEmailSignatures200Response.java
 src/main/java/dev/zernio/model/ListEmailThreads200Response.java
 src/main/java/dev/zernio/model/ListEventDestinations200Response.java
 src/main/java/dev/zernio/model/ListEvents200Response.java
+src/main/java/dev/zernio/model/ListEvents200ResponseEventsInner.java
+src/main/java/dev/zernio/model/ListEvents200ResponseEventsInnerAllOfDeliveriesInner.java
 src/main/java/dev/zernio/model/ListFacebookPages200Response.java
 src/main/java/dev/zernio/model/ListFacebookPages200ResponsePagesInner.java
 src/main/java/dev/zernio/model/ListFacebookTaggedPosts200Response.java
@@ -7511,3 +7527,10 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetEventsOverview200ResponsePlatformsInnerTest.java
+src/test/java/dev/zernio/model/GetEventsOverview200ResponseSourcesInnerTest.java
+src/test/java/dev/zernio/model/GetEventsOverview200ResponseTest.java
+src/test/java/dev/zernio/model/GetEventsOverview200ResponseTodayTest.java
+src/test/java/dev/zernio/model/GetEventsOverview200ResponseWebsiteStepsInnerTest.java
+src/test/java/dev/zernio/model/GetEventsOverview200ResponseWebsiteTest.java
+src/test/java/dev/zernio/model/ListEvents200ResponseEventsInnerAllOfDeliveriesInnerTest.java

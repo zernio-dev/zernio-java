@@ -44,6 +44,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getConversionsQualityWithHttpInfo**](ConversionsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
 | [**getEvent**](ConversionsApi.md#getEvent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
 | [**getEventWithHttpInfo**](ConversionsApi.md#getEventWithHttpInfo) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
+| [**getEventsOverview**](ConversionsApi.md#getEventsOverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
+| [**getEventsOverviewWithHttpInfo**](ConversionsApi.md#getEventsOverviewWithHttpInfo) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
 | [**listAdConversionAssociations**](ConversionsApi.md#listAdConversionAssociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns |
 | [**listAdConversionAssociationsWithHttpInfo**](ConversionsApi.md#listAdConversionAssociationsWithHttpInfo) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns |
 | [**listAdConversionDestinations**](ConversionsApi.md#listAdConversionDestinations) | **GET** /v1/ads/conversions/destinations | List conversion destinations |
@@ -3299,6 +3301,156 @@ ApiResponse<[**GetEvent200Response**](GetEvent200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The event and its deliveries. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## getEventsOverview
+
+> GetEventsOverview200Response getEventsOverview(profileId)
+
+Get today&#39;s tracking overview
+
+How a profile&#39;s conversion tracking is doing today (UTC day): events stored, how many reached the ad platforms, each forwarding rule&#39;s destination, each event source and, when the profile has a tracking site, the site&#39;s funnel. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        try {
+            GetEventsOverview200Response result = apiInstance.getEventsOverview(profileId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getEventsOverview");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | |
+
+### Return type
+
+[**GetEventsOverview200Response**](GetEventsOverview200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The profile&#39;s tracking overview. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## getEventsOverviewWithHttpInfo
+
+> ApiResponse<GetEventsOverview200Response> getEventsOverview getEventsOverviewWithHttpInfo(profileId)
+
+Get today&#39;s tracking overview
+
+How a profile&#39;s conversion tracking is doing today (UTC day): events stored, how many reached the ad platforms, each forwarding rule&#39;s destination, each event source and, when the profile has a tracking site, the site&#39;s funnel. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        try {
+            ApiResponse<GetEventsOverview200Response> response = apiInstance.getEventsOverviewWithHttpInfo(profileId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getEventsOverview");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetEventsOverview200Response**](GetEventsOverview200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The profile&#39;s tracking overview. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.571.0
+- API version: 1.572.0
 
-- Build date: 2026-11-11T15:58:16.756510691Z[Etc/UTC]
+- Build date: 2026-11-11T16:12:05.952606227Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.571.0</version>
+  <version>1.572.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.571.0"
+compile "dev.zernio:zernio-sdk:1.572.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.571.0.jar`
+- `target/zernio-sdk-1.572.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1433,6 +1433,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**getConversionsQualityWithHttpInfo**](docs/ConversionsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
 *ConversionsApi* | [**getEvent**](docs/ConversionsApi.md#getEvent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries
 *ConversionsApi* | [**getEventWithHttpInfo**](docs/ConversionsApi.md#getEventWithHttpInfo) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries
+*ConversionsApi* | [**getEventsOverview**](docs/ConversionsApi.md#getEventsOverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview
+*ConversionsApi* | [**getEventsOverviewWithHttpInfo**](docs/ConversionsApi.md#getEventsOverviewWithHttpInfo) | **GET** /v1/events/overview | Get today&#39;s tracking overview
 *ConversionsApi* | [**listAdConversionAssociations**](docs/ConversionsApi.md#listAdConversionAssociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns
 *ConversionsApi* | [**listAdConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#listAdConversionAssociationsWithHttpInfo) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns
 *ConversionsApi* | [**listAdConversionDestinations**](docs/ConversionsApi.md#listAdConversionDestinations) | **GET** /v1/ads/conversions/destinations | List conversion destinations
@@ -4056,6 +4058,12 @@ Class | Method | HTTP request | Description
  - [GetEmailThread200ResponseData](docs/GetEmailThread200ResponseData.md)
  - [GetEvent200Response](docs/GetEvent200Response.md)
  - [GetEvent200ResponseDeliveriesInner](docs/GetEvent200ResponseDeliveriesInner.md)
+ - [GetEventsOverview200Response](docs/GetEventsOverview200Response.md)
+ - [GetEventsOverview200ResponsePlatformsInner](docs/GetEventsOverview200ResponsePlatformsInner.md)
+ - [GetEventsOverview200ResponseSourcesInner](docs/GetEventsOverview200ResponseSourcesInner.md)
+ - [GetEventsOverview200ResponseToday](docs/GetEventsOverview200ResponseToday.md)
+ - [GetEventsOverview200ResponseWebsite](docs/GetEventsOverview200ResponseWebsite.md)
+ - [GetEventsOverview200ResponseWebsiteStepsInner](docs/GetEventsOverview200ResponseWebsiteStepsInner.md)
  - [GetFacebookDemographics200Response](docs/GetFacebookDemographics200Response.md)
  - [GetFacebookDemographics200ResponseDemographics](docs/GetFacebookDemographics200ResponseDemographics.md)
  - [GetFacebookDemographics200ResponseDemographicsCountryInner](docs/GetFacebookDemographics200ResponseDemographicsCountryInner.md)
@@ -4763,6 +4771,8 @@ Class | Method | HTTP request | Description
  - [ListEmailThreads200Response](docs/ListEmailThreads200Response.md)
  - [ListEventDestinations200Response](docs/ListEventDestinations200Response.md)
  - [ListEvents200Response](docs/ListEvents200Response.md)
+ - [ListEvents200ResponseEventsInner](docs/ListEvents200ResponseEventsInner.md)
+ - [ListEvents200ResponseEventsInnerAllOfDeliveriesInner](docs/ListEvents200ResponseEventsInnerAllOfDeliveriesInner.md)
  - [ListFacebookPages200Response](docs/ListFacebookPages200Response.md)
  - [ListFacebookPages200ResponsePagesInner](docs/ListFacebookPages200ResponsePagesInner.md)
  - [ListFacebookTaggedPosts200Response](docs/ListFacebookTaggedPosts200Response.md)

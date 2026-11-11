@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.571.0
+  version: 1.572.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -70318,6 +70318,42 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/events/overview:
+    get:
+      description: |
+        How a profile's conversion tracking is doing today (UTC day): events stored, how many reached the ad platforms,
+        each forwarding rule's destination, each event source and, when the profile has a tracking site, the site's funnel.
+        Requires the Ads add-on.
+      operationId: getEventsOverview
+      parameters:
+      - explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getEventsOverview_200_response"
+          description: The profile's tracking overview.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get today's tracking overview
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-accepts:
+      - application/json
   /v1/events/{eventId}:
     delete:
       description: |
@@ -86578,6 +86614,7 @@ components:
           platform: googleads
           adGroupId: adGroupId
         hasExternalId: true
+        source: source
         receivedAt: 2000-01-23T04:56:07.000+00:00
         actionSource: actionSource
         utm:
@@ -86599,6 +86636,11 @@ components:
         destinationsSent: 6
       properties:
         eventId:
+          type: string
+        source:
+          description: "Where the event came from: `api`, `relay`, `web`, `shopify`,\
+            \ `woocommerce`, `hubspot`, `meta_leads`, `google_leads`, `linkedin_leads`\
+            \ or `tiktok_leads`."
           type: string
         eventName:
           type: string
@@ -201347,6 +201389,66 @@ components:
           type: string
         goal:
           $ref: "#/components/schemas/GoogleCustomConversionGoal"
+    listEvents_200_response_events_inner_allOf_deliveries_inner:
+      example:
+        platform: platform
+        status: sent
+      properties:
+        platform:
+          description: "Ad platform of the destination, such as `metaads`; empty when\
+            \ the send failed before the platform was known."
+          type: string
+        status:
+          enum:
+          - sent
+          - retrying
+          - failed
+          type: string
+    listEvents_200_response_events_inner:
+      allOf:
+      - $ref: "#/components/schemas/StoredEvent"
+      - properties:
+          deliveries:
+            description: "Each destination the event was forwarded to, with its latest\
+              \ send status. The full detail is on GET /v1/events/{eventId}."
+            items:
+              $ref: "#/components/schemas/listEvents_200_response_events_inner_allOf_deliveries_inner"
+            type: array
+      example:
+        eventId: eventId
+        ad:
+          adId: adId
+          campaignId: campaignId
+          customerId: customerId
+          adSetId: adSetId
+          platform: googleads
+          adGroupId: adGroupId
+        hasExternalId: true
+        source: source
+        receivedAt: 2000-01-23T04:56:07.000+00:00
+        actionSource: actionSource
+        utm:
+          campaign: campaign
+          source: source
+          medium: medium
+          content: content
+        deliveries:
+        - platform: platform
+          status: sent
+        - platform: platform
+          status: sent
+        sourceUrl: sourceUrl
+        hasEmail: true
+        zrn: zrn
+        clickIds:
+          gclid: gclid
+          fbc: fbc
+        eventTime: 2000-01-23T04:56:07.000+00:00
+        hasPhone: true
+        eventName: eventName
+        currency: currency
+        value: 0.8008281904610115
+        destinationsSent: 6
     listEvents_200_response:
       example:
         nextCursor: nextCursor
@@ -201360,6 +201462,7 @@ components:
             platform: googleads
             adGroupId: adGroupId
           hasExternalId: true
+          source: source
           receivedAt: 2000-01-23T04:56:07.000+00:00
           actionSource: actionSource
           utm:
@@ -201367,6 +201470,11 @@ components:
             source: source
             medium: medium
             content: content
+          deliveries:
+          - platform: platform
+            status: sent
+          - platform: platform
+            status: sent
           sourceUrl: sourceUrl
           hasEmail: true
           zrn: zrn
@@ -201388,6 +201496,7 @@ components:
             platform: googleads
             adGroupId: adGroupId
           hasExternalId: true
+          source: source
           receivedAt: 2000-01-23T04:56:07.000+00:00
           actionSource: actionSource
           utm:
@@ -201395,6 +201504,11 @@ components:
             source: source
             medium: medium
             content: content
+          deliveries:
+          - platform: platform
+            status: sent
+          - platform: platform
+            status: sent
           sourceUrl: sourceUrl
           hasEmail: true
           zrn: zrn
@@ -201410,7 +201524,7 @@ components:
       properties:
         events:
           items:
-            $ref: "#/components/schemas/StoredEvent"
+            $ref: "#/components/schemas/listEvents_200_response_events_inner"
           type: array
         nextCursor:
           description: Pass as `cursor` to get the next page; `null` on the last page.
@@ -201637,6 +201751,244 @@ components:
             \ 200."
           nullable: true
           type: string
+    getEventsOverview_200_response_today:
+      example:
+        conversions: 0
+        accepted: 5
+        currency: currency
+        matched: 5
+        value: 6.027456183070403
+        sent: 1
+      properties:
+        conversions:
+          description: "Stored events that occurred today, retracted ones excluded."
+          type: integer
+        value:
+          description: Value of those events in `currency`. Events in other currencies
+            are left out.
+          type: number
+        currency:
+          description: The currency most of today's valued events use; `null` when
+            none carried a value.
+          nullable: true
+          type: string
+        sent:
+          description: "Event sends to a destination today, one per event and destination."
+          type: integer
+        accepted:
+          description: Those whose latest send the platform accepted.
+          type: integer
+        matched:
+          description: Today's events matched to an ad campaign.
+          type: integer
+    getEventsOverview_200_response_platforms_inner:
+      example:
+        accountId: accountId
+        lastError: lastError
+        accountName: accountName
+        failedToday: 7
+        destinationName: destinationName
+        lastEventName: lastEventName
+        fixUrl: fixUrl
+        lastSentAt: 2000-01-23T04:56:07.000+00:00
+        platform: platform
+        sentToday: 2
+      properties:
+        accountId:
+          type: string
+        platform:
+          description: "Ad platform, such as `metaads` or `googleads`."
+          type: string
+        accountName:
+          type: string
+        destinationName:
+          description: "The destination (pixel, dataset or conversion action) id."
+          type: string
+        sentToday:
+          description: Events the platform accepted today.
+          type: integer
+        failedToday:
+          description: Events that failed for good today.
+          type: integer
+        lastSentAt:
+          description: Last accepted send in the last 30 days.
+          format: date-time
+          nullable: true
+          type: string
+        lastEventName:
+          description: Name of the event in that send.
+          nullable: true
+          type: string
+        lastError:
+          description: The platform's error on the last failed send in the last 30
+            days.
+          nullable: true
+          type: string
+        fixUrl:
+          description: Where to fix a failing destination. Always `null` for now.
+          nullable: true
+          type: string
+    getEventsOverview_200_response_sources_inner:
+      example:
+        lastSeenAt: 2000-01-23T04:56:07.000+00:00
+        eventsToday: 9
+        source: source
+        label: label
+        state: "on"
+      properties:
+        source:
+          description: "Source id, such as `web`, `shopify` or `api` (which also covers\
+            \ `relay`)."
+          type: string
+        label:
+          description: "The source in plain words, such as `Shopify orders`."
+          type: string
+        state:
+          description: "Always `on` for now: the source is sending events."
+          enum:
+          - "on"
+          - available
+          - connect
+          type: string
+        eventsToday:
+          type: integer
+        lastSeenAt:
+          format: date-time
+          nullable: true
+          type: string
+    getEventsOverview_200_response_website_steps_inner:
+      example:
+        name: name
+        count: 3
+        label: label
+      properties:
+        name:
+          description: "Event name, such as `PageView`."
+          type: string
+        label:
+          type: string
+        count:
+          type: integer
+    getEventsOverview_200_response_website:
+      description: '`null` when the profile has no tracking site. Hit counts are approximate
+        distinct counts.'
+      example:
+        serverPlatforms:
+        - serverPlatforms
+        - serverPlatforms
+        visits: 1
+        recovered: 2
+        conversions: 4
+        bots: 1
+        steps:
+        - name: name
+          count: 3
+          label: label
+        - name: name
+          count: 3
+          label: label
+        consented: 7
+      properties:
+        steps:
+          description: "The funnel: page views, product views, add to cart, checkouts\
+            \ and purchases today."
+          items:
+            $ref: "#/components/schemas/getEventsOverview_200_response_website_steps_inner"
+          type: array
+        recovered:
+          description: "Purchases with ad consent for which no browser pixel fired,\
+            \ so only the server reported them."
+          type: integer
+        conversions:
+          description: Purchases today.
+          type: integer
+        consented:
+          description: Page views with ad storage consent.
+          type: integer
+        visits:
+          description: Page views today.
+          type: integer
+        bots:
+          description: Page views from bots.
+          type: integer
+        serverPlatforms:
+          description: Platforms of the forwarding rules that receive website events.
+          items:
+            type: string
+          type: array
+    getEventsOverview_200_response:
+      example:
+        website:
+          serverPlatforms:
+          - serverPlatforms
+          - serverPlatforms
+          visits: 1
+          recovered: 2
+          conversions: 4
+          bots: 1
+          steps:
+          - name: name
+            count: 3
+            label: label
+          - name: name
+            count: 3
+            label: label
+          consented: 7
+        sources:
+        - lastSeenAt: 2000-01-23T04:56:07.000+00:00
+          eventsToday: 9
+          source: source
+          label: label
+          state: "on"
+        - lastSeenAt: 2000-01-23T04:56:07.000+00:00
+          eventsToday: 9
+          source: source
+          label: label
+          state: "on"
+        today:
+          conversions: 0
+          accepted: 5
+          currency: currency
+          matched: 5
+          value: 6.027456183070403
+          sent: 1
+        platforms:
+        - accountId: accountId
+          lastError: lastError
+          accountName: accountName
+          failedToday: 7
+          destinationName: destinationName
+          lastEventName: lastEventName
+          fixUrl: fixUrl
+          lastSentAt: 2000-01-23T04:56:07.000+00:00
+          platform: platform
+          sentToday: 2
+        - accountId: accountId
+          lastError: lastError
+          accountName: accountName
+          failedToday: 7
+          destinationName: destinationName
+          lastEventName: lastEventName
+          fixUrl: fixUrl
+          lastSentAt: 2000-01-23T04:56:07.000+00:00
+          platform: platform
+          sentToday: 2
+      properties:
+        today:
+          $ref: "#/components/schemas/getEventsOverview_200_response_today"
+        platforms:
+          description: One entry per forwarding rule of the profile.
+          items:
+            $ref: "#/components/schemas/getEventsOverview_200_response_platforms_inner"
+          type: array
+        sources:
+          description: "Each source that stored an event in the last 30 days, most\
+            \ recent first."
+          items:
+            $ref: "#/components/schemas/getEventsOverview_200_response_sources_inner"
+          type: array
+        website:
+          $ref: "#/components/schemas/getEventsOverview_200_response_website"
     getEvent_200_response_deliveries_inner:
       example:
         accountId: accountId
@@ -201644,7 +201996,7 @@ components:
         sentAt: 2000-01-23T04:56:07.000+00:00
         destinationId: destinationId
         error: error
-        attempt: 0
+        attempt: 1
         platform: metaads
         status: sent
       properties:
@@ -201694,6 +202046,7 @@ components:
             platform: googleads
             adGroupId: adGroupId
           hasExternalId: true
+          source: source
           receivedAt: 2000-01-23T04:56:07.000+00:00
           actionSource: actionSource
           utm:
@@ -201719,7 +202072,7 @@ components:
           sentAt: 2000-01-23T04:56:07.000+00:00
           destinationId: destinationId
           error: error
-          attempt: 0
+          attempt: 1
           platform: metaads
           status: sent
         - accountId: accountId
@@ -201727,7 +202080,7 @@ components:
           sentAt: 2000-01-23T04:56:07.000+00:00
           destinationId: destinationId
           error: error
-          attempt: 0
+          attempt: 1
           platform: metaads
           status: sent
       properties:
