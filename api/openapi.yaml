@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.586.0
+  version: 1.587.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -203500,11 +203500,11 @@ components:
           minItems: 1
           type: array
         apiSecret:
-          description: "Google Analytics destinations only, and required for them:\
-            \ the data stream's Measurement Protocol API secret, from GA4 Admin ›\
-            \ Data streams › Measurement Protocol API secrets. Checked with one hit\
-            \ to Google's validation server (which cannot confirm the secret itself),\
-            \ stored encrypted and never returned. Change it later with `PATCH /v1/events/forwarding-rules/{ruleId}`."
+          description: "Google Analytics streams only: the stream's Measurement Protocol\
+            \ API secret (GA4 Admin › Data streams). Optional when the connection\
+            \ has edit access, since Zernio then creates it. Checked against Google's\
+            \ validation server, stored encrypted, never returned. Change it with\
+            \ `PATCH /v1/events/forwarding-rules/{ruleId}`."
           maxLength: 200
           type: string
           writeOnly: true
