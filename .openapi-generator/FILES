@@ -7641,15 +7641,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateGoogleBusinessLocation200ResponseTest.java
-src/test/java/dev/zernio/model/CreateGoogleBusinessLocationRequestServiceAreaPlacesPlaceInfosInnerTest.java
-src/test/java/dev/zernio/model/CreateGoogleBusinessLocationRequestServiceAreaPlacesTest.java
-src/test/java/dev/zernio/model/CreateGoogleBusinessLocationRequestServiceAreaTest.java
-src/test/java/dev/zernio/model/CreateGoogleBusinessLocationRequestStorefrontAddressTest.java
-src/test/java/dev/zernio/model/CreateGoogleBusinessLocationRequestTest.java
-src/test/java/dev/zernio/model/ListGoogleBusinessCategories200ResponseCategoriesInnerTest.java
-src/test/java/dev/zernio/model/ListGoogleBusinessCategories200ResponseTest.java
-src/test/java/dev/zernio/model/SearchGoogleBusinessLocations200ResponseGoogleLocationsInnerTest.java
-src/test/java/dev/zernio/model/SearchGoogleBusinessLocations200ResponseTest.java
-src/test/java/dev/zernio/model/SearchGoogleBusinessLocationsRequestLocationTest.java
-src/test/java/dev/zernio/model/SearchGoogleBusinessLocationsRequestTest.java
