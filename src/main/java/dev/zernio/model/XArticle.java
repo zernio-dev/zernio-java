@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   XArticle.JSON_PROPERTY_MODE,
   XArticle.JSON_PROPERTY_COVER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:14:38.000003879Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:24:22.408325523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XArticle {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nonnull

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   InstagramPlatformDataAudioConfiguration.JSON_PROPERTY_AUDIO_VOLUME,
   InstagramPlatformDataAudioConfiguration.JSON_PROPERTY_VIDEO_VOLUME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:14:38.000003879Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:24:22.408325523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramPlatformDataAudioConfiguration {
   public static final String JSON_PROPERTY_AUDIO_ID = "audioId";
   @javax.annotation.Nonnull

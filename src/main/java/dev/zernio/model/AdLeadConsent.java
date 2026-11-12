@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   AdLeadConsent.JSON_PROPERTY_CHECKBOX_KEY,
   AdLeadConsent.JSON_PROPERTY_IS_CHECKED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:14:38.000003879Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:24:22.408325523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdLeadConsent {
   public static final String JSON_PROPERTY_CHECKBOX_KEY = "checkboxKey";
   @javax.annotation.Nonnull

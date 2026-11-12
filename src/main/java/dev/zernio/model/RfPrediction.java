@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   RfPrediction.JSON_PROPERTY_STOP_TIME,
   RfPrediction.JSON_PROPERTY_EXPIRES_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:14:38.000003879Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:24:22.408325523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RfPrediction {
   public static final String JSON_PROPERTY_PREDICTION_ID = "predictionId";
   @javax.annotation.Nullable

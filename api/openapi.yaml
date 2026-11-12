@@ -47866,6 +47866,27 @@ paths:
           format: date
           type: string
         style: form
+      - description: |-
+          `full` (default) returns every field. `summary` is about 80% smaller per ad and keeps only:
+
+          - `_id`, `name`, `platform`, `status`, `platformStatus`, `servingStatuses` (left out when empty), `configuredStatus`, `reviewStatus`, `rejectionReason`, `goal`.
+          - The platform ids, `accountId`, `profileId`, `campaignName`, `adSetName`, `budget`, `currency`, `isExternal`, `creativeType`, `platformCreatedAt`, `createdAt`.
+          - `postId` as the post id, not the expanded post.
+          - `creative` with only `headline`, `body` (cut to 200 characters), `linkUrl`, `callToAction` and `effectiveObjectStoryId`.
+          - `metrics` without `costPerAction` and without any metric that is 0: an absent metric means 0.
+
+          Read one ad with `platformAdId` and `view=full` for the rest.
+        explode: true
+        in: query
+        name: view
+        required: false
+        schema:
+          default: full
+          enum:
+          - full
+          - summary
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -53619,6 +53640,20 @@ paths:
           type: integer
         style: form
       - $ref: "#/components/parameters/LiveStatusRead"
+      - description: "`full` returns every field. `summary` leaves `targeting` out\
+          \ of each ad set, which is most of a row's size; read one ad set's targeting\
+          \ with `adSetId` and `view=full`."
+        explode: true
+        in: query
+        name: view
+        required: false
+        schema:
+          default: full
+          enum:
+          - full
+          - summary
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -54695,6 +54730,24 @@ paths:
         required: false
         schema:
           type: boolean
+        style: form
+      - description: |-
+          How deep the tree goes. Metrics always roll up over every ad, whatever the depth.
+
+          - `ad` (default): campaigns, their ad sets and each ad set's ads.
+          - `adset`: campaigns and ad sets; every `ads[]` is empty and `adCount` still counts the ads.
+          - `campaign`: campaigns only; every `adSets[]` is empty and `adSetCount` / `adCount` still count them.
+        explode: true
+        in: query
+        name: depth
+        required: false
+        schema:
+          default: ad
+          enum:
+          - campaign
+          - adset
+          - ad
+          type: string
         style: form
       responses:
         "200":

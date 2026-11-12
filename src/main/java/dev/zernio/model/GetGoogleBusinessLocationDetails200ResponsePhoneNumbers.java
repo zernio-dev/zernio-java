@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessLocationDetails200ResponsePhoneNumbers.JSON_PROPERTY_PRIMARY_PHONE,
   GetGoogleBusinessLocationDetails200ResponsePhoneNumbers.JSON_PROPERTY_ADDITIONAL_PHONES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:14:38.000003879Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:24:22.408325523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessLocationDetails200ResponsePhoneNumbers {
   public static final String JSON_PROPERTY_PRIMARY_PHONE = "primaryPhone";
   @javax.annotation.Nullable

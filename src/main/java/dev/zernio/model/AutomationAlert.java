@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   AutomationAlert.JSON_PROPERTY_HOLD,
   AutomationAlert.JSON_PROPERTY_CRITICAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:14:38.000003879Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:24:22.408325523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationAlert {
   public static final String JSON_PROPERTY_CONFIRM_CHECKS = "confirmChecks";
   @javax.annotation.Nullable
