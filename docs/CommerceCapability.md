@@ -71,5 +71,11 @@
 
 * `CUSTOMERS_READ` (value: `"customers.read"`)
 
+* `ORDERS_EDIT` (value: `"orders.edit"`)
+
+* `DRAFT_ORDERS_READ` (value: `"draft_orders.read"`)
+
+* `DRAFT_ORDERS_WRITE` (value: `"draft_orders.write"`)
+
 
 

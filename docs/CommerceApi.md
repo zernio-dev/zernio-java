@@ -30,10 +30,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**createCommerceCollectionWithHttpInfo**](CommerceApi.md#createCommerceCollectionWithHttpInfo) | **POST** /v1/commerce/collections | Create a collection |
 | [**createCommerceDiscount**](CommerceApi.md#createCommerceDiscount) | **POST** /v1/commerce/discounts | Create a discount |
 | [**createCommerceDiscountWithHttpInfo**](CommerceApi.md#createCommerceDiscountWithHttpInfo) | **POST** /v1/commerce/discounts | Create a discount |
+| [**createCommerceDraftOrder**](CommerceApi.md#createCommerceDraftOrder) | **POST** /v1/commerce/draft-orders | Create a draft order |
+| [**createCommerceDraftOrderWithHttpInfo**](CommerceApi.md#createCommerceDraftOrderWithHttpInfo) | **POST** /v1/commerce/draft-orders | Create a draft order |
 | [**createCommerceMenu**](CommerceApi.md#createCommerceMenu) | **POST** /v1/commerce/menus | Create a navigation menu |
 | [**createCommerceMenuWithHttpInfo**](CommerceApi.md#createCommerceMenuWithHttpInfo) | **POST** /v1/commerce/menus | Create a navigation menu |
 | [**createCommerceMetaobject**](CommerceApi.md#createCommerceMetaobject) | **POST** /v1/commerce/metaobjects | Create a metaobject |
 | [**createCommerceMetaobjectWithHttpInfo**](CommerceApi.md#createCommerceMetaobjectWithHttpInfo) | **POST** /v1/commerce/metaobjects | Create a metaobject |
+| [**createCommerceOrderEdit**](CommerceApi.md#createCommerceOrderEdit) | **POST** /v1/commerce/orders/{orderId}/edits | Edit an order |
+| [**createCommerceOrderEditWithHttpInfo**](CommerceApi.md#createCommerceOrderEditWithHttpInfo) | **POST** /v1/commerce/orders/{orderId}/edits | Edit an order |
 | [**createCommercePage**](CommerceApi.md#createCommercePage) | **POST** /v1/commerce/pages | Create a page |
 | [**createCommercePageWithHttpInfo**](CommerceApi.md#createCommercePageWithHttpInfo) | **POST** /v1/commerce/pages | Create a page |
 | [**createCommerceProduct**](CommerceApi.md#createCommerceProduct) | **POST** /v1/commerce/products | Create a product |
@@ -82,6 +86,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getCommerceCustomerWithHttpInfo**](CommerceApi.md#getCommerceCustomerWithHttpInfo) | **GET** /v1/commerce/customers/{customerId} | Get a customer |
 | [**getCommerceDiscount**](CommerceApi.md#getCommerceDiscount) | **GET** /v1/commerce/discounts/{discountId} | Get a discount |
 | [**getCommerceDiscountWithHttpInfo**](CommerceApi.md#getCommerceDiscountWithHttpInfo) | **GET** /v1/commerce/discounts/{discountId} | Get a discount |
+| [**getCommerceDraftOrder**](CommerceApi.md#getCommerceDraftOrder) | **GET** /v1/commerce/draft-orders/{draftOrderId} | Get a draft order |
+| [**getCommerceDraftOrderWithHttpInfo**](CommerceApi.md#getCommerceDraftOrderWithHttpInfo) | **GET** /v1/commerce/draft-orders/{draftOrderId} | Get a draft order |
 | [**getCommerceMenu**](CommerceApi.md#getCommerceMenu) | **GET** /v1/commerce/menus/{menuId} | Get a navigation menu |
 | [**getCommerceMenuWithHttpInfo**](CommerceApi.md#getCommerceMenuWithHttpInfo) | **GET** /v1/commerce/menus/{menuId} | Get a navigation menu |
 | [**getCommerceMetaobject**](CommerceApi.md#getCommerceMetaobject) | **GET** /v1/commerce/metaobjects/{metaobjectId} | Get a metaobject |
@@ -138,6 +144,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**reorderCommerceProductImagesWithHttpInfo**](CommerceApi.md#reorderCommerceProductImagesWithHttpInfo) | **POST** /v1/commerce/products/{productId}/images/reorder | Reorder images |
 | [**runCommerceCatalogSync**](CommerceApi.md#runCommerceCatalogSync) | **POST** /v1/commerce/catalog-syncs/{syncId}/run | Run a catalog sync now |
 | [**runCommerceCatalogSyncWithHttpInfo**](CommerceApi.md#runCommerceCatalogSyncWithHttpInfo) | **POST** /v1/commerce/catalog-syncs/{syncId}/run | Run a catalog sync now |
+| [**sendCommerceDraftOrderInvoice**](CommerceApi.md#sendCommerceDraftOrderInvoice) | **POST** /v1/commerce/draft-orders/{draftOrderId}/invoice | Send a draft order invoice |
+| [**sendCommerceDraftOrderInvoiceWithHttpInfo**](CommerceApi.md#sendCommerceDraftOrderInvoiceWithHttpInfo) | **POST** /v1/commerce/draft-orders/{draftOrderId}/invoice | Send a draft order invoice |
 | [**setCommerceCollectionMetafields**](CommerceApi.md#setCommerceCollectionMetafields) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields |
 | [**setCommerceCollectionMetafieldsWithHttpInfo**](CommerceApi.md#setCommerceCollectionMetafieldsWithHttpInfo) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields |
 | [**setCommerceDiscountActive**](CommerceApi.md#setCommerceDiscountActive) | **POST** /v1/commerce/discounts/{discountId}/state | Activate or deactivate a discount |
@@ -2201,6 +2209,164 @@ ApiResponse<[**CreateCommerceDiscount201Response**](CreateCommerceDiscount201Res
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
+## createCommerceDraftOrder
+
+> CreateCommerceDraftOrder201Response createCommerceDraftOrder(createCommerceDraftOrderRequest, idempotencyKey)
+
+Create a draft order
+
+Creates a draft order for a customer, for a replacement, a phone order or a custom quote. Needs draft_orders.write.  Send the buyer its checkout link with the invoice endpoint; the draft becomes an order once they pay. Amounts in the response are in the currency the buyer pays in; custom prices you send are in the store currency. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        CreateCommerceDraftOrderRequest createCommerceDraftOrderRequest = new CreateCommerceDraftOrderRequest(); // CreateCommerceDraftOrderRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | A retry with the same key returns the first draft instead of creating another.
+        try {
+            CreateCommerceDraftOrder201Response result = apiInstance.createCommerceDraftOrder(createCommerceDraftOrderRequest, idempotencyKey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#createCommerceDraftOrder");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createCommerceDraftOrderRequest** | [**CreateCommerceDraftOrderRequest**](CreateCommerceDraftOrderRequest.md)|  | |
+| **idempotencyKey** | **String**| A retry with the same key returns the first draft instead of creating another. | [optional] |
+
+### Return type
+
+[**CreateCommerceDraftOrder201Response**](CreateCommerceDraftOrder201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Draft order created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted draft_orders.write (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or store not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## createCommerceDraftOrderWithHttpInfo
+
+> ApiResponse<CreateCommerceDraftOrder201Response> createCommerceDraftOrder createCommerceDraftOrderWithHttpInfo(createCommerceDraftOrderRequest, idempotencyKey)
+
+Create a draft order
+
+Creates a draft order for a customer, for a replacement, a phone order or a custom quote. Needs draft_orders.write.  Send the buyer its checkout link with the invoice endpoint; the draft becomes an order once they pay. Amounts in the response are in the currency the buyer pays in; custom prices you send are in the store currency. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        CreateCommerceDraftOrderRequest createCommerceDraftOrderRequest = new CreateCommerceDraftOrderRequest(); // CreateCommerceDraftOrderRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | A retry with the same key returns the first draft instead of creating another.
+        try {
+            ApiResponse<CreateCommerceDraftOrder201Response> response = apiInstance.createCommerceDraftOrderWithHttpInfo(createCommerceDraftOrderRequest, idempotencyKey);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#createCommerceDraftOrder");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createCommerceDraftOrderRequest** | [**CreateCommerceDraftOrderRequest**](CreateCommerceDraftOrderRequest.md)|  | |
+| **idempotencyKey** | **String**| A retry with the same key returns the first draft instead of creating another. | [optional] |
+
+### Return type
+
+ApiResponse<[**CreateCommerceDraftOrder201Response**](CreateCommerceDraftOrder201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Draft order created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted draft_orders.write (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or store not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
 ## createCommerceMenu
 
 > CreateCommerceMenu201Response createCommerceMenu(createCommerceMenuRequest)
@@ -2506,6 +2672,168 @@ ApiResponse<[**CreateCommerceMetaobject201Response**](CreateCommerceMetaobject20
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
+## createCommerceOrderEdit
+
+> CreateCommerceOrderEdit200Response createCommerceOrderEdit(orderId, createCommerceOrderEditRequest, idempotencyKey)
+
+Edit an order
+
+Adds products to an order and changes or removes its lines. Needs orders.edit.  - Preview first with &#x60;validateOnly: true&#x60;: it returns the new totals and what the buyer would owe, and changes nothing. - A real edit needs an &#x60;Idempotency-Key&#x60; header (a UUID per edit): a retry with the same key never applies it twice. - When the edit raises the total, the buyer owes &#x60;outstanding&#x60;; &#x60;notifyCustomer&#x60; emails them the change. When it lowers it, refund the difference with the refunds endpoint. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String orderId = "orderId_example"; // String | Platform-native order id.
+        CreateCommerceOrderEditRequest createCommerceOrderEditRequest = new CreateCommerceOrderEditRequest(); // CreateCommerceOrderEditRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Required unless validateOnly is true.
+        try {
+            CreateCommerceOrderEdit200Response result = apiInstance.createCommerceOrderEdit(orderId, createCommerceOrderEditRequest, idempotencyKey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#createCommerceOrderEdit");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderId** | **String**| Platform-native order id. | |
+| **createCommerceOrderEditRequest** | [**CreateCommerceOrderEditRequest**](CreateCommerceOrderEditRequest.md)|  | |
+| **idempotencyKey** | **String**| Required unless validateOnly is true. | [optional] |
+
+### Return type
+
+[**CreateCommerceOrderEdit200Response**](CreateCommerceOrderEdit200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The edit, applied (with the updated order) or previewed (validateOnly) |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted orders.edit (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or order or line item not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## createCommerceOrderEditWithHttpInfo
+
+> ApiResponse<CreateCommerceOrderEdit200Response> createCommerceOrderEdit createCommerceOrderEditWithHttpInfo(orderId, createCommerceOrderEditRequest, idempotencyKey)
+
+Edit an order
+
+Adds products to an order and changes or removes its lines. Needs orders.edit.  - Preview first with &#x60;validateOnly: true&#x60;: it returns the new totals and what the buyer would owe, and changes nothing. - A real edit needs an &#x60;Idempotency-Key&#x60; header (a UUID per edit): a retry with the same key never applies it twice. - When the edit raises the total, the buyer owes &#x60;outstanding&#x60;; &#x60;notifyCustomer&#x60; emails them the change. When it lowers it, refund the difference with the refunds endpoint. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String orderId = "orderId_example"; // String | Platform-native order id.
+        CreateCommerceOrderEditRequest createCommerceOrderEditRequest = new CreateCommerceOrderEditRequest(); // CreateCommerceOrderEditRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Required unless validateOnly is true.
+        try {
+            ApiResponse<CreateCommerceOrderEdit200Response> response = apiInstance.createCommerceOrderEditWithHttpInfo(orderId, createCommerceOrderEditRequest, idempotencyKey);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#createCommerceOrderEdit");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderId** | **String**| Platform-native order id. | |
+| **createCommerceOrderEditRequest** | [**CreateCommerceOrderEditRequest**](CreateCommerceOrderEditRequest.md)|  | |
+| **idempotencyKey** | **String**| Required unless validateOnly is true. | [optional] |
+
+### Return type
+
+ApiResponse<[**CreateCommerceOrderEdit200Response**](CreateCommerceOrderEdit200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The edit, applied (with the updated order) or previewed (validateOnly) |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted orders.edit (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or order or line item not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
@@ -6296,6 +6624,164 @@ ApiResponse<[**CreateCommerceDiscount201Response**](CreateCommerceDiscount201Res
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
+## getCommerceDraftOrder
+
+> CreateCommerceDraftOrder201Response getCommerceDraftOrder(draftOrderId, accountId)
+
+Get a draft order
+
+One draft order with its status, checkout link and, once paid, the order it became. Needs draft_orders.read.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String draftOrderId = "draftOrderId_example"; // String | Platform-native draft order id.
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        try {
+            CreateCommerceDraftOrder201Response result = apiInstance.getCommerceDraftOrder(draftOrderId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#getCommerceDraftOrder");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **draftOrderId** | **String**| Platform-native draft order id. | |
+| **accountId** | **String**| Connected store SocialAccount id. | |
+
+### Return type
+
+[**CreateCommerceDraftOrder201Response**](CreateCommerceDraftOrder201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The draft order |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted draft_orders.read (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or draft order not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## getCommerceDraftOrderWithHttpInfo
+
+> ApiResponse<CreateCommerceDraftOrder201Response> getCommerceDraftOrder getCommerceDraftOrderWithHttpInfo(draftOrderId, accountId)
+
+Get a draft order
+
+One draft order with its status, checkout link and, once paid, the order it became. Needs draft_orders.read.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String draftOrderId = "draftOrderId_example"; // String | Platform-native draft order id.
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        try {
+            ApiResponse<CreateCommerceDraftOrder201Response> response = apiInstance.getCommerceDraftOrderWithHttpInfo(draftOrderId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#getCommerceDraftOrder");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **draftOrderId** | **String**| Platform-native draft order id. | |
+| **accountId** | **String**| Connected store SocialAccount id. | |
+
+### Return type
+
+ApiResponse<[**CreateCommerceDraftOrder201Response**](CreateCommerceDraftOrder201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The draft order |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted draft_orders.read (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or draft order not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
@@ -10777,6 +11263,164 @@ ApiResponse<[**CreateCommerceCatalogSync202Response**](CreateCommerceCatalogSync
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Catalog sync not found (code resource_not_found). |  -  |
 | **409** | A run is already in progress (code catalog_sync_conflict). |  -  |
+
+
+## sendCommerceDraftOrderInvoice
+
+> CreateCommerceDraftOrder201Response sendCommerceDraftOrderInvoice(draftOrderId, sendCommerceDraftOrderInvoiceRequest)
+
+Send a draft order invoice
+
+Emails the buyer the draft&#39;s checkout link. The draft becomes an order when they pay. Needs draft_orders.write.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String draftOrderId = "draftOrderId_example"; // String | Platform-native draft order id.
+        SendCommerceDraftOrderInvoiceRequest sendCommerceDraftOrderInvoiceRequest = new SendCommerceDraftOrderInvoiceRequest(); // SendCommerceDraftOrderInvoiceRequest | 
+        try {
+            CreateCommerceDraftOrder201Response result = apiInstance.sendCommerceDraftOrderInvoice(draftOrderId, sendCommerceDraftOrderInvoiceRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#sendCommerceDraftOrderInvoice");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **draftOrderId** | **String**| Platform-native draft order id. | |
+| **sendCommerceDraftOrderInvoiceRequest** | [**SendCommerceDraftOrderInvoiceRequest**](SendCommerceDraftOrderInvoiceRequest.md)|  | |
+
+### Return type
+
+[**CreateCommerceDraftOrder201Response**](CreateCommerceDraftOrder201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Invoice sent |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted draft_orders.write (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or draft order not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## sendCommerceDraftOrderInvoiceWithHttpInfo
+
+> ApiResponse<CreateCommerceDraftOrder201Response> sendCommerceDraftOrderInvoice sendCommerceDraftOrderInvoiceWithHttpInfo(draftOrderId, sendCommerceDraftOrderInvoiceRequest)
+
+Send a draft order invoice
+
+Emails the buyer the draft&#39;s checkout link. The draft becomes an order when they pay. Needs draft_orders.write.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String draftOrderId = "draftOrderId_example"; // String | Platform-native draft order id.
+        SendCommerceDraftOrderInvoiceRequest sendCommerceDraftOrderInvoiceRequest = new SendCommerceDraftOrderInvoiceRequest(); // SendCommerceDraftOrderInvoiceRequest | 
+        try {
+            ApiResponse<CreateCommerceDraftOrder201Response> response = apiInstance.sendCommerceDraftOrderInvoiceWithHttpInfo(draftOrderId, sendCommerceDraftOrderInvoiceRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#sendCommerceDraftOrderInvoice");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **draftOrderId** | **String**| Platform-native draft order id. | |
+| **sendCommerceDraftOrderInvoiceRequest** | [**SendCommerceDraftOrderInvoiceRequest**](SendCommerceDraftOrderInvoiceRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateCommerceDraftOrder201Response**](CreateCommerceDraftOrder201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Invoice sent |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted draft_orders.write (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or draft order not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
 ## setCommerceCollectionMetafields

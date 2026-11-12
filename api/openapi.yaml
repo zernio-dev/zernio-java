@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.584.0
+  version: 1.585.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -78499,6 +78499,73 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/commerce/orders/{orderId}/edits:
+    post:
+      description: |
+        Adds products to an order and changes or removes its lines. Needs orders.edit.
+
+        - Preview first with `validateOnly: true`: it returns the new totals and what the buyer would owe, and changes nothing.
+        - A real edit needs an `Idempotency-Key` header (a UUID per edit): a retry with the same key never applies it twice.
+        - When the edit raises the total, the buyer owes `outstanding`; `notifyCustomer` emails them the change. When it lowers it, refund the difference with the refunds endpoint.
+      operationId: createCommerceOrderEdit
+      parameters:
+      - description: Platform-native order id.
+        explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Required unless validateOnly is true.
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createCommerceOrderEdit_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createCommerceOrderEdit_200_response"
+          description: "The edit, applied (with the updated order) or previewed (validateOnly)"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The store has not granted orders.edit (code insufficient_permissions).
+            GET /v1/commerce/store returns grantPermissionsUrl for the store owner
+            to approve it.
+          x-summary: "The store has not granted the permission: have the store owner\
+            \ approve it using `grantPermissionsUrl` from the store endpoint."
+        "404":
+          description: Account not found (code account_not_found) or order or line
+            item not found (code resource_not_found).
+        "429":
+          description: "Rate limited, either by Zernio or by the platform. Retry later."
+          x-summary: "Zernio or the platform rate limited the request: retry later."
+      security:
+      - bearerAuth: []
+      summary: Edit an order
+      tags:
+      - Commerce
+      x-resource-group: commerce
+      x-platforms:
+      - shopify
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/commerce/orders/{orderId}/cancel:
     post:
       description: |
@@ -78554,6 +78621,173 @@ paths:
       security:
       - bearerAuth: []
       summary: Cancel an order
+      tags:
+      - Commerce
+      x-resource-group: commerce
+      x-platforms:
+      - shopify
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/commerce/draft-orders:
+    post:
+      description: |
+        Creates a draft order for a customer, for a replacement, a phone order or a custom quote. Needs draft_orders.write.
+
+        Send the buyer its checkout link with the invoice endpoint; the draft becomes an order once they pay. Amounts in the response are in the currency the buyer pays in; custom prices you send are in the store currency.
+      operationId: createCommerceDraftOrder
+      parameters:
+      - description: A retry with the same key returns the first draft instead of
+          creating another.
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createCommerceDraftOrder_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createCommerceDraftOrder_201_response"
+          description: Draft order created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The store has not granted draft_orders.write (code insufficient_permissions).
+            GET /v1/commerce/store returns grantPermissionsUrl for the store owner
+            to approve it.
+          x-summary: "The store has not granted the permission: have the store owner\
+            \ approve it using `grantPermissionsUrl` from the store endpoint."
+        "404":
+          description: Account not found (code account_not_found) or store not found
+            (code resource_not_found).
+        "429":
+          description: "Rate limited, either by Zernio or by the platform. Retry later."
+          x-summary: "Zernio or the platform rate limited the request: retry later."
+      security:
+      - bearerAuth: []
+      summary: Create a draft order
+      tags:
+      - Commerce
+      x-resource-group: commerce
+      x-platforms:
+      - shopify
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/commerce/draft-orders/{draftOrderId}:
+    get:
+      description: "One draft order with its status, checkout link and, once paid,\
+        \ the order it became. Needs draft_orders.read."
+      operationId: getCommerceDraftOrder
+      parameters:
+      - description: Platform-native draft order id.
+        explode: false
+        in: path
+        name: draftOrderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Connected store SocialAccount id.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createCommerceDraftOrder_201_response"
+          description: The draft order
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The store has not granted draft_orders.read (code insufficient_permissions).
+            GET /v1/commerce/store returns grantPermissionsUrl for the store owner
+            to approve it.
+          x-summary: "The store has not granted the permission: have the store owner\
+            \ approve it using `grantPermissionsUrl` from the store endpoint."
+        "404":
+          description: Account not found (code account_not_found) or draft order not
+            found (code resource_not_found).
+        "429":
+          description: "Rate limited, either by Zernio or by the platform. Retry later."
+          x-summary: "Zernio or the platform rate limited the request: retry later."
+      security:
+      - bearerAuth: []
+      summary: Get a draft order
+      tags:
+      - Commerce
+      x-resource-group: commerce
+      x-platforms:
+      - shopify
+      x-accepts:
+      - application/json
+  /v1/commerce/draft-orders/{draftOrderId}/invoice:
+    post:
+      description: Emails the buyer the draft's checkout link. The draft becomes an
+        order when they pay. Needs draft_orders.write.
+      operationId: sendCommerceDraftOrderInvoice
+      parameters:
+      - description: Platform-native draft order id.
+        explode: false
+        in: path
+        name: draftOrderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/sendCommerceDraftOrderInvoice_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createCommerceDraftOrder_201_response"
+          description: Invoice sent
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The store has not granted draft_orders.write (code insufficient_permissions).
+            GET /v1/commerce/store returns grantPermissionsUrl for the store owner
+            to approve it.
+          x-summary: "The store has not granted the permission: have the store owner\
+            \ approve it using `grantPermissionsUrl` from the store endpoint."
+        "404":
+          description: Account not found (code account_not_found) or draft order not
+            found (code resource_not_found).
+        "429":
+          description: "Rate limited, either by Zernio or by the platform. Retry later."
+          x-summary: "Zernio or the platform rate limited the request: retry later."
+      security:
+      - bearerAuth: []
+      summary: Send a draft order invoice
       tags:
       - Commerce
       x-resource-group: commerce
@@ -130113,6 +130347,9 @@ components:
       - orders.refund
       - orders.cancel
       - customers.read
+      - orders.edit
+      - draft_orders.read
+      - draft_orders.write
       type: string
     CommerceImage:
       example:
@@ -130472,6 +130709,180 @@ components:
           allOf:
           - $ref: "#/components/schemas/CommerceAddress"
           nullable: true
+    CommerceOrderEditPreview:
+      description: The order as the edit leaves it. Amounts are in the currency the
+        buyer paid in.
+      example:
+        lineItems:
+        - unitPrice:
+            amount: "19.90"
+            currency: USD
+          quantity: 0
+          lineItemId: lineItemId
+          variantId: variantId
+          title: title
+        - unitPrice:
+            amount: "19.90"
+            currency: USD
+          quantity: 0
+          lineItemId: lineItemId
+          variantId: variantId
+          title: title
+        total:
+          amount: "19.90"
+          currency: USD
+        outstanding: ""
+        subtotal:
+          amount: "19.90"
+          currency: USD
+      properties:
+        subtotal:
+          $ref: "#/components/schemas/CommerceMoney"
+        total:
+          $ref: "#/components/schemas/CommerceMoney"
+        outstanding:
+          allOf:
+          - $ref: "#/components/schemas/CommerceMoney"
+          description: "What the buyer still owes. Negative when the edit leaves them\
+            \ overpaid: refund that with the refunds endpoint."
+        lineItems:
+          items:
+            $ref: "#/components/schemas/CommerceOrderEditPreview_lineItems_inner"
+          type: array
+    CommerceDraftOrder:
+      example:
+        note: note
+        completedAt: 2000-01-23T04:56:07.000+00:00
+        orderId: orderId
+        taxTotal:
+          amount: "19.90"
+          currency: USD
+        invoiceSentAt: 2000-01-23T04:56:07.000+00:00
+        platform: shopify
+        tags:
+        - tags
+        - tags
+        shippingTotal:
+          amount: "19.90"
+          currency: USD
+        lineItems:
+        - unitPrice:
+            amount: "19.90"
+            currency: USD
+          variantTitle: variantTitle
+          total: ""
+          quantity: 0
+          productId: productId
+          id: id
+          variantId: variantId
+          title: title
+          sku: sku
+        - unitPrice:
+            amount: "19.90"
+            currency: USD
+          variantTitle: variantTitle
+          total: ""
+          quantity: 0
+          productId: productId
+          id: id
+          variantId: variantId
+          title: title
+          sku: sku
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        total:
+          amount: "19.90"
+          currency: USD
+        discountTotal:
+          amount: "19.90"
+          currency: USD
+        invoiceUrl: invoiceUrl
+        subtotal:
+          amount: "19.90"
+          currency: USD
+        name: "#D12"
+        customerId: customerId
+        shippingAddress: ""
+        currency: currency
+        id: id
+        email: email
+        status: open
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        platform:
+          enum:
+          - shopify
+          - woocommerce
+          type: string
+        name:
+          example: "#D12"
+          type: string
+        status:
+          enum:
+          - open
+          - invoice_sent
+          - completed
+          type: string
+        invoiceUrl:
+          description: The checkout link the buyer pays through.
+          nullable: true
+          type: string
+        invoiceSentAt:
+          format: date-time
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        customerId:
+          nullable: true
+          type: string
+        note:
+          nullable: true
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        currency:
+          description: The currency the buyer pays in; every amount uses it.
+          type: string
+        subtotal:
+          $ref: "#/components/schemas/CommerceMoney"
+        discountTotal:
+          $ref: "#/components/schemas/CommerceMoney"
+        shippingTotal:
+          $ref: "#/components/schemas/CommerceMoney"
+        taxTotal:
+          $ref: "#/components/schemas/CommerceMoney"
+        total:
+          $ref: "#/components/schemas/CommerceMoney"
+        lineItems:
+          items:
+            $ref: "#/components/schemas/CommerceDraftOrder_lineItems_inner"
+          type: array
+        shippingAddress:
+          allOf:
+          - $ref: "#/components/schemas/CommerceAddress"
+          nullable: true
+        orderId:
+          description: The order it became once completed.
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        completedAt:
+          format: date-time
+          nullable: true
+          type: string
     CommerceAddress:
       properties:
         firstName:
@@ -207359,6 +207770,315 @@ components:
           $ref: "#/components/schemas/CommerceOrderRefund"
         order:
           $ref: "#/components/schemas/CommerceOrder"
+    createCommerceOrderEdit_request_add_inner:
+      properties:
+        variantId:
+          type: string
+        quantity:
+          minimum: 1
+          type: integer
+      required:
+      - quantity
+      - variantId
+    createCommerceOrderEdit_request_quantities_inner:
+      properties:
+        lineItemId:
+          description: A line item id from the order.
+          type: string
+        quantity:
+          description: The new quantity; 0 removes the line.
+          minimum: 0
+          type: integer
+        restock:
+          default: true
+          description: Put removed units back in stock.
+          type: boolean
+      required:
+      - lineItemId
+      - quantity
+    createCommerceOrderEdit_request:
+      description: Pass at least one of add or quantities.
+      properties:
+        accountId:
+          description: Connected store SocialAccount id.
+          type: string
+        add:
+          items:
+            $ref: "#/components/schemas/createCommerceOrderEdit_request_add_inner"
+          maxItems: 50
+          type: array
+        quantities:
+          items:
+            $ref: "#/components/schemas/createCommerceOrderEdit_request_quantities_inner"
+          maxItems: 100
+          type: array
+        notifyCustomer:
+          default: false
+          type: boolean
+        staffNote:
+          maxLength: 255
+          type: string
+        validateOnly:
+          default: false
+          description: Return the edited totals without changing the order.
+          type: boolean
+      required:
+      - accountId
+    createCommerceOrderEdit_200_response:
+      example:
+        validateOnly: true
+        edit:
+          lineItems:
+          - unitPrice:
+              amount: "19.90"
+              currency: USD
+            quantity: 0
+            lineItemId: lineItemId
+            variantId: variantId
+            title: title
+          - unitPrice:
+              amount: "19.90"
+              currency: USD
+            quantity: 0
+            lineItemId: lineItemId
+            variantId: variantId
+            title: title
+          total:
+            amount: "19.90"
+            currency: USD
+          outstanding: ""
+          subtotal:
+            amount: "19.90"
+            currency: USD
+        order:
+          platformData:
+            key: ""
+          taxTotal:
+            amount: "19.90"
+            currency: USD
+          platform: shopify
+          refunds:
+          - lineItems:
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            note: note
+            amount:
+              amount: "19.90"
+              currency: USD
+            id: id
+          - lineItems:
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            note: note
+            amount:
+              amount: "19.90"
+              currency: USD
+            id: id
+          lineItems:
+          - unitPrice: ""
+            variantTitle: variantTitle
+            total: ""
+            quantity: 0
+            productId: productId
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            subtotal: ""
+            id: id
+            variantId: variantId
+            sku: sku
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          - unitPrice: ""
+            variantTitle: variantTitle
+            total: ""
+            quantity: 0
+            productId: productId
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            subtotal: ""
+            id: id
+            variantId: variantId
+            sku: sku
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          number: "#1001"
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          fulfillments:
+          - carrierName: carrierName
+            trackingUrl: trackingUrl
+            trackingNumber: trackingNumber
+          - carrierName: carrierName
+            trackingUrl: trackingUrl
+            trackingNumber: trackingNumber
+          total:
+            amount: "19.90"
+            currency: USD
+          paymentMethods:
+          - paymentMethods
+          - paymentMethods
+          currency: EUR
+          id: id
+          cancelReason: cancelReason
+          paymentStatus: pending
+          feeLines:
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          taxesIncluded: true
+          discountCodes:
+          - discountCodes
+          - discountCodes
+          shippingLines:
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          cancelledAt: 2000-01-23T04:56:07.000+00:00
+          refundedTotal:
+            amount: "19.90"
+            currency: USD
+          platformStatus: platformStatus
+          shippingTotal:
+            amount: "19.90"
+            currency: USD
+          accountId: accountId
+          discountTotal:
+            amount: "19.90"
+            currency: USD
+          platformPaymentStatus: platformPaymentStatus
+          subtotal: ""
+          buyerNote: buyerNote
+          attribution:
+            ready: true
+            lastVisit: ""
+            firstVisit: ""
+            customAttributes:
+            - value: value
+              key: key
+            - value: value
+              key: key
+          paidAt: 2000-01-23T04:56:07.000+00:00
+          shippingAddress: ""
+          billingAddress: ""
+          taxLines:
+          - ratePercent: 6.027456183070403
+            amount:
+              amount: "19.90"
+              currency: USD
+            title: TVA 20%
+          - ratePercent: 6.027456183070403
+            amount:
+              amount: "19.90"
+              currency: USD
+            title: TVA 20%
+          status: pending_payment
+          customer:
+            firstName: firstName
+            lastName: lastName
+            phone: phone
+            id: id
+            email: email
+      properties:
+        validateOnly:
+          type: boolean
+        order:
+          $ref: "#/components/schemas/CommerceOrder"
+        edit:
+          $ref: "#/components/schemas/CommerceOrderEditPreview"
     cancelCommerceOrder_request:
       properties:
         accountId:
@@ -207853,6 +208573,198 @@ components:
         cancelled:
           description: "False: the platform is still cancelling."
           type: boolean
+    createCommerceDraftOrder_request_lineItems_inner:
+      properties:
+        variantId:
+          type: string
+        title:
+          description: Custom item only.
+          type: string
+        price:
+          description: "Custom item only, in the store currency."
+          example: "25.00"
+          type: string
+        quantity:
+          minimum: 1
+          type: integer
+        taxable:
+          default: true
+          description: Custom item only.
+          type: boolean
+        requiresShipping:
+          default: true
+          description: Custom item only.
+          type: boolean
+      required:
+      - quantity
+    createCommerceDraftOrder_request_discount:
+      description: A discount on the whole draft.
+      properties:
+        type:
+          enum:
+          - percentage
+          - fixed
+          type: string
+        value:
+          description: A percentage (at most 100) or an amount in the store currency.
+          type: number
+        title:
+          type: string
+      required:
+      - type
+      - value
+    createCommerceDraftOrder_request_shipping:
+      properties:
+        title:
+          type: string
+        price:
+          example: "0.00"
+          type: string
+      required:
+      - price
+      - title
+    createCommerceDraftOrder_request_shippingAddress:
+      description: "Where to ship. Without one, the customer's default address is\
+        \ used."
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type: string
+        phone:
+          type: string
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        region:
+          description: "State or province code, e.g. CA."
+          type: string
+        postalCode:
+          type: string
+        countryCode:
+          description: "ISO 3166 code, e.g. US."
+          type: string
+      required:
+      - countryCode
+    createCommerceDraftOrder_request:
+      properties:
+        accountId:
+          description: Connected store SocialAccount id.
+          type: string
+        customerId:
+          description: "The customer it is for, from the customers endpoints."
+          type: string
+        email:
+          format: email
+          type: string
+        lineItems:
+          description: A product variant (variantId) or a custom item (title and price).
+          items:
+            $ref: "#/components/schemas/createCommerceDraftOrder_request_lineItems_inner"
+          maxItems: 250
+          minItems: 1
+          type: array
+        discount:
+          $ref: "#/components/schemas/createCommerceDraftOrder_request_discount"
+        shipping:
+          $ref: "#/components/schemas/createCommerceDraftOrder_request_shipping"
+        shippingAddress:
+          $ref: "#/components/schemas/createCommerceDraftOrder_request_shippingAddress"
+        note:
+          maxLength: 5000
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+      required:
+      - accountId
+      - lineItems
+    createCommerceDraftOrder_201_response:
+      example:
+        draftOrder:
+          note: note
+          completedAt: 2000-01-23T04:56:07.000+00:00
+          orderId: orderId
+          taxTotal:
+            amount: "19.90"
+            currency: USD
+          invoiceSentAt: 2000-01-23T04:56:07.000+00:00
+          platform: shopify
+          tags:
+          - tags
+          - tags
+          shippingTotal:
+            amount: "19.90"
+            currency: USD
+          lineItems:
+          - unitPrice:
+              amount: "19.90"
+              currency: USD
+            variantTitle: variantTitle
+            total: ""
+            quantity: 0
+            productId: productId
+            id: id
+            variantId: variantId
+            title: title
+            sku: sku
+          - unitPrice:
+              amount: "19.90"
+              currency: USD
+            variantTitle: variantTitle
+            total: ""
+            quantity: 0
+            productId: productId
+            id: id
+            variantId: variantId
+            title: title
+            sku: sku
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          total:
+            amount: "19.90"
+            currency: USD
+          discountTotal:
+            amount: "19.90"
+            currency: USD
+          invoiceUrl: invoiceUrl
+          subtotal:
+            amount: "19.90"
+            currency: USD
+          name: "#D12"
+          customerId: customerId
+          shippingAddress: ""
+          currency: currency
+          id: id
+          email: email
+          status: open
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        draftOrder:
+          $ref: "#/components/schemas/CommerceDraftOrder"
+    sendCommerceDraftOrderInvoice_request:
+      properties:
+        accountId:
+          description: Connected store SocialAccount id.
+          type: string
+        to:
+          description: Defaults to the draft's email.
+          format: email
+          type: string
+        subject:
+          maxLength: 255
+          type: string
+        customMessage:
+          maxLength: 5000
+          type: string
+      required:
+      - accountId
     listCommerceCustomers_200_response:
       example:
         nextCursor: nextCursor
@@ -231278,6 +232190,67 @@ components:
           type: string
         amount:
           $ref: "#/components/schemas/CommerceMoney"
+    CommerceOrderEditPreview_lineItems_inner:
+      example:
+        unitPrice:
+          amount: "19.90"
+          currency: USD
+        quantity: 0
+        lineItemId: lineItemId
+        variantId: variantId
+        title: title
+      properties:
+        lineItemId:
+          description: Null for a line the edit adds.
+          nullable: true
+          type: string
+        variantId:
+          nullable: true
+          type: string
+        title:
+          type: string
+        quantity:
+          type: integer
+        unitPrice:
+          $ref: "#/components/schemas/CommerceMoney"
+    CommerceDraftOrder_lineItems_inner:
+      example:
+        unitPrice:
+          amount: "19.90"
+          currency: USD
+        variantTitle: variantTitle
+        total: ""
+        quantity: 0
+        productId: productId
+        id: id
+        variantId: variantId
+        title: title
+        sku: sku
+      properties:
+        id:
+          type: string
+        productId:
+          nullable: true
+          type: string
+        variantId:
+          nullable: true
+          type: string
+        title:
+          type: string
+        variantTitle:
+          nullable: true
+          type: string
+        sku:
+          nullable: true
+          type: string
+        quantity:
+          type: integer
+        unitPrice:
+          $ref: "#/components/schemas/CommerceMoney"
+        total:
+          allOf:
+          - $ref: "#/components/schemas/CommerceMoney"
+          description: After the line discount.
     CommerceOrderVisit_utm:
       description: Null when the landing URL carried no UTM parameters.
       properties:

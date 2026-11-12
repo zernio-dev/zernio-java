@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.584.0
+- API version: 1.585.0
 
-- Build date: 2026-11-12T10:29:48.989988954Z[Etc/UTC]
+- Build date: 2026-11-12T10:46:10.741952209Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.584.0</version>
+  <version>1.585.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.584.0"
+compile "dev.zernio:zernio-sdk:1.585.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.584.0.jar`
+- `target/zernio-sdk-1.585.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1061,10 +1061,14 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**createCommerceCollectionWithHttpInfo**](docs/CommerceApi.md#createCommerceCollectionWithHttpInfo) | **POST** /v1/commerce/collections | Create a collection
 *CommerceApi* | [**createCommerceDiscount**](docs/CommerceApi.md#createCommerceDiscount) | **POST** /v1/commerce/discounts | Create a discount
 *CommerceApi* | [**createCommerceDiscountWithHttpInfo**](docs/CommerceApi.md#createCommerceDiscountWithHttpInfo) | **POST** /v1/commerce/discounts | Create a discount
+*CommerceApi* | [**createCommerceDraftOrder**](docs/CommerceApi.md#createCommerceDraftOrder) | **POST** /v1/commerce/draft-orders | Create a draft order
+*CommerceApi* | [**createCommerceDraftOrderWithHttpInfo**](docs/CommerceApi.md#createCommerceDraftOrderWithHttpInfo) | **POST** /v1/commerce/draft-orders | Create a draft order
 *CommerceApi* | [**createCommerceMenu**](docs/CommerceApi.md#createCommerceMenu) | **POST** /v1/commerce/menus | Create a navigation menu
 *CommerceApi* | [**createCommerceMenuWithHttpInfo**](docs/CommerceApi.md#createCommerceMenuWithHttpInfo) | **POST** /v1/commerce/menus | Create a navigation menu
 *CommerceApi* | [**createCommerceMetaobject**](docs/CommerceApi.md#createCommerceMetaobject) | **POST** /v1/commerce/metaobjects | Create a metaobject
 *CommerceApi* | [**createCommerceMetaobjectWithHttpInfo**](docs/CommerceApi.md#createCommerceMetaobjectWithHttpInfo) | **POST** /v1/commerce/metaobjects | Create a metaobject
+*CommerceApi* | [**createCommerceOrderEdit**](docs/CommerceApi.md#createCommerceOrderEdit) | **POST** /v1/commerce/orders/{orderId}/edits | Edit an order
+*CommerceApi* | [**createCommerceOrderEditWithHttpInfo**](docs/CommerceApi.md#createCommerceOrderEditWithHttpInfo) | **POST** /v1/commerce/orders/{orderId}/edits | Edit an order
 *CommerceApi* | [**createCommercePage**](docs/CommerceApi.md#createCommercePage) | **POST** /v1/commerce/pages | Create a page
 *CommerceApi* | [**createCommercePageWithHttpInfo**](docs/CommerceApi.md#createCommercePageWithHttpInfo) | **POST** /v1/commerce/pages | Create a page
 *CommerceApi* | [**createCommerceProduct**](docs/CommerceApi.md#createCommerceProduct) | **POST** /v1/commerce/products | Create a product
@@ -1113,6 +1117,8 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**getCommerceCustomerWithHttpInfo**](docs/CommerceApi.md#getCommerceCustomerWithHttpInfo) | **GET** /v1/commerce/customers/{customerId} | Get a customer
 *CommerceApi* | [**getCommerceDiscount**](docs/CommerceApi.md#getCommerceDiscount) | **GET** /v1/commerce/discounts/{discountId} | Get a discount
 *CommerceApi* | [**getCommerceDiscountWithHttpInfo**](docs/CommerceApi.md#getCommerceDiscountWithHttpInfo) | **GET** /v1/commerce/discounts/{discountId} | Get a discount
+*CommerceApi* | [**getCommerceDraftOrder**](docs/CommerceApi.md#getCommerceDraftOrder) | **GET** /v1/commerce/draft-orders/{draftOrderId} | Get a draft order
+*CommerceApi* | [**getCommerceDraftOrderWithHttpInfo**](docs/CommerceApi.md#getCommerceDraftOrderWithHttpInfo) | **GET** /v1/commerce/draft-orders/{draftOrderId} | Get a draft order
 *CommerceApi* | [**getCommerceMenu**](docs/CommerceApi.md#getCommerceMenu) | **GET** /v1/commerce/menus/{menuId} | Get a navigation menu
 *CommerceApi* | [**getCommerceMenuWithHttpInfo**](docs/CommerceApi.md#getCommerceMenuWithHttpInfo) | **GET** /v1/commerce/menus/{menuId} | Get a navigation menu
 *CommerceApi* | [**getCommerceMetaobject**](docs/CommerceApi.md#getCommerceMetaobject) | **GET** /v1/commerce/metaobjects/{metaobjectId} | Get a metaobject
@@ -1169,6 +1175,8 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**reorderCommerceProductImagesWithHttpInfo**](docs/CommerceApi.md#reorderCommerceProductImagesWithHttpInfo) | **POST** /v1/commerce/products/{productId}/images/reorder | Reorder images
 *CommerceApi* | [**runCommerceCatalogSync**](docs/CommerceApi.md#runCommerceCatalogSync) | **POST** /v1/commerce/catalog-syncs/{syncId}/run | Run a catalog sync now
 *CommerceApi* | [**runCommerceCatalogSyncWithHttpInfo**](docs/CommerceApi.md#runCommerceCatalogSyncWithHttpInfo) | **POST** /v1/commerce/catalog-syncs/{syncId}/run | Run a catalog sync now
+*CommerceApi* | [**sendCommerceDraftOrderInvoice**](docs/CommerceApi.md#sendCommerceDraftOrderInvoice) | **POST** /v1/commerce/draft-orders/{draftOrderId}/invoice | Send a draft order invoice
+*CommerceApi* | [**sendCommerceDraftOrderInvoiceWithHttpInfo**](docs/CommerceApi.md#sendCommerceDraftOrderInvoiceWithHttpInfo) | **POST** /v1/commerce/draft-orders/{draftOrderId}/invoice | Send a draft order invoice
 *CommerceApi* | [**setCommerceCollectionMetafields**](docs/CommerceApi.md#setCommerceCollectionMetafields) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields
 *CommerceApi* | [**setCommerceCollectionMetafieldsWithHttpInfo**](docs/CommerceApi.md#setCommerceCollectionMetafieldsWithHttpInfo) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields
 *CommerceApi* | [**setCommerceDiscountActive**](docs/CommerceApi.md#setCommerceDiscountActive) | **POST** /v1/commerce/discounts/{discountId}/state | Activate or deactivate a discount
@@ -3216,6 +3224,8 @@ Class | Method | HTTP request | Description
  - [CommerceDiscountValue](docs/CommerceDiscountValue.md)
  - [CommerceDiscountValueOneOf](docs/CommerceDiscountValueOneOf.md)
  - [CommerceDiscountValueOneOf1](docs/CommerceDiscountValueOneOf1.md)
+ - [CommerceDraftOrder](docs/CommerceDraftOrder.md)
+ - [CommerceDraftOrderLineItemsInner](docs/CommerceDraftOrderLineItemsInner.md)
  - [CommerceImage](docs/CommerceImage.md)
  - [CommerceInventoryItem](docs/CommerceInventoryItem.md)
  - [CommerceInventoryItemLevelsInner](docs/CommerceInventoryItemLevelsInner.md)
@@ -3235,6 +3245,8 @@ Class | Method | HTTP request | Description
  - [CommerceOrderAttribution](docs/CommerceOrderAttribution.md)
  - [CommerceOrderChargeLine](docs/CommerceOrderChargeLine.md)
  - [CommerceOrderCustomer](docs/CommerceOrderCustomer.md)
+ - [CommerceOrderEditPreview](docs/CommerceOrderEditPreview.md)
+ - [CommerceOrderEditPreviewLineItemsInner](docs/CommerceOrderEditPreviewLineItemsInner.md)
  - [CommerceOrderFulfillmentsInner](docs/CommerceOrderFulfillmentsInner.md)
  - [CommerceOrderLineItemsInner](docs/CommerceOrderLineItemsInner.md)
  - [CommerceOrderRefund](docs/CommerceOrderRefund.md)
@@ -3408,10 +3420,20 @@ Class | Method | HTTP request | Description
  - [CreateCommerceCollectionRequest](docs/CreateCommerceCollectionRequest.md)
  - [CreateCommerceDiscount201Response](docs/CreateCommerceDiscount201Response.md)
  - [CreateCommerceDiscountRequest](docs/CreateCommerceDiscountRequest.md)
+ - [CreateCommerceDraftOrder201Response](docs/CreateCommerceDraftOrder201Response.md)
+ - [CreateCommerceDraftOrderRequest](docs/CreateCommerceDraftOrderRequest.md)
+ - [CreateCommerceDraftOrderRequestDiscount](docs/CreateCommerceDraftOrderRequestDiscount.md)
+ - [CreateCommerceDraftOrderRequestLineItemsInner](docs/CreateCommerceDraftOrderRequestLineItemsInner.md)
+ - [CreateCommerceDraftOrderRequestShipping](docs/CreateCommerceDraftOrderRequestShipping.md)
+ - [CreateCommerceDraftOrderRequestShippingAddress](docs/CreateCommerceDraftOrderRequestShippingAddress.md)
  - [CreateCommerceMenu201Response](docs/CreateCommerceMenu201Response.md)
  - [CreateCommerceMenuRequest](docs/CreateCommerceMenuRequest.md)
  - [CreateCommerceMetaobject201Response](docs/CreateCommerceMetaobject201Response.md)
  - [CreateCommerceMetaobjectRequest](docs/CreateCommerceMetaobjectRequest.md)
+ - [CreateCommerceOrderEdit200Response](docs/CreateCommerceOrderEdit200Response.md)
+ - [CreateCommerceOrderEditRequest](docs/CreateCommerceOrderEditRequest.md)
+ - [CreateCommerceOrderEditRequestAddInner](docs/CreateCommerceOrderEditRequestAddInner.md)
+ - [CreateCommerceOrderEditRequestQuantitiesInner](docs/CreateCommerceOrderEditRequestQuantitiesInner.md)
  - [CreateCommercePage201Response](docs/CreateCommercePage201Response.md)
  - [CreateCommercePageRequest](docs/CreateCommercePageRequest.md)
  - [CreateCommerceProduct201Response](docs/CreateCommerceProduct201Response.md)
@@ -5418,6 +5440,7 @@ Class | Method | HTTP request | Description
  - [SendBusinessAgentEvent202Response](docs/SendBusinessAgentEvent202Response.md)
  - [SendBusinessAgentEventRequest](docs/SendBusinessAgentEventRequest.md)
  - [SendBusinessAgentTestMessageRequest](docs/SendBusinessAgentTestMessageRequest.md)
+ - [SendCommerceDraftOrderInvoiceRequest](docs/SendCommerceDraftOrderInvoiceRequest.md)
  - [SendConversions200Response](docs/SendConversions200Response.md)
  - [SendConversions200ResponseFailuresInner](docs/SendConversions200ResponseFailuresInner.md)
  - [SendConversions200ResponseFailuresInnerCode](docs/SendConversions200ResponseFailuresInnerCode.md)
