@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.597.0
+  version: 1.598.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -98577,6 +98577,7 @@ components:
           raisedAt: 2000-01-23T04:56:07.000+00:00
           detail: detail
         payout:
+          country: MX
           status: not_started
         id: id
         accounts:
@@ -212592,6 +212593,7 @@ components:
             raisedAt: 2000-01-23T04:56:07.000+00:00
             detail: detail
           payout:
+            country: MX
             status: not_started
           id: id
           accounts:
@@ -212633,6 +212635,7 @@ components:
             raisedAt: 2000-01-23T04:56:07.000+00:00
             detail: detail
           payout:
+            country: MX
             status: not_started
           id: id
           accounts:
@@ -212699,6 +212702,7 @@ components:
             raisedAt: 2000-01-23T04:56:07.000+00:00
             detail: detail
           payout:
+            country: MX
             status: not_started
           id: id
           accounts:
@@ -212753,6 +212757,7 @@ components:
             raisedAt: 2000-01-23T04:56:07.000+00:00
             detail: detail
           payout:
+            country: MX
             status: not_started
           id: id
           accounts:
@@ -212827,6 +212832,7 @@ components:
             raisedAt: 2000-01-23T04:56:07.000+00:00
             detail: detail
           payout:
+            country: MX
             status: not_started
           id: id
           accounts:
@@ -219376,6 +219382,7 @@ components:
       description: How far the creator got with Stripe payout setup. Only `ready`
         creators can be paid through the Zernio treasury.
       example:
+        country: MX
         status: not_started
       properties:
         status:
@@ -219387,6 +219394,14 @@ components:
           - onboarding
           - ready
           - restricted
+          type: string
+        country:
+          description: "ISO 3166-1 alpha-2 country of the payout account, null before\
+            \ setup starts. Zernio pays out only to the US, Canada, the UK, the EEA,\
+            \ Switzerland and Gibraltar; pay creators elsewhere yourself and record\
+            \ it with `recordOnly: true`."
+          example: MX
+          nullable: true
           type: string
       required:
       - status
