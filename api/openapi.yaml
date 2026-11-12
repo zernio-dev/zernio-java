@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.585.0
+  version: 1.586.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -70294,6 +70294,27 @@ paths:
           - woocommerce
           - stripe
           - web
+          type: string
+        style: form
+      - description: "Only events sent to this ad platform, such as `metaads` or `googleads`."
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Only events whose latest send to a destination (of `platform`,\
+          \ when given) was accepted (`sent`) or was not (`failed`: failed or still\
+          \ retrying)."
+        explode: true
+        in: query
+        name: deliveryStatus
+        required: false
+        schema:
+          enum:
+          - sent
+          - failed
           type: string
         style: form
       - description: '`nextCursor` from the previous page.'
