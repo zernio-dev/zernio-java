@@ -103,6 +103,7 @@ import dev.zernio.model.WebhookPayloadMessageDeleted;
 import dev.zernio.model.WebhookPayloadMessageDeliveryStatus;
 import dev.zernio.model.WebhookPayloadMessageEdited;
 import dev.zernio.model.WebhookPayloadMessageSent;
+import dev.zernio.model.WebhookPayloadNotificationSent;
 import dev.zernio.model.WebhookPayloadPhoneNumberStockAvailable;
 import dev.zernio.model.WebhookPayloadPost;
 import dev.zernio.model.WebhookPayloadPostAuthenticityChanged;
@@ -157,7 +158,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:53:30.317134213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T11:12:13.534331255Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -11813,6 +11814,115 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadMessageSent);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Notification sent event
+   * Built for agents. One event for every notification we would email the account owner: a scheduled post failed to publish (&#x60;type: post_failed&#x60;), or a connected account was disconnected (&#x60;type: account_disconnected&#x60;).  It carries the email&#39;s &#x60;subject&#x60; and &#x60;text&#x60;, references to the post or account, and the &#x60;actions&#x60; that resolve it, so an agent subscribes to one event and handles every notification the same way.  ### Agents or state sync  Subscribe to &#x60;notification.sent&#x60; when an agent or automation reads the alert and acts on it. Subscribe to &#x60;post.platform.failed&#x60;, &#x60;post.failed&#x60;, &#x60;post.partial&#x60; and &#x60;account.disconnected&#x60; when your system keeps post and account state in sync: they carry the structured post or account and fire on every state change.  ### When it fires  Once for each such notification, in near real time, regardless of the user&#39;s email toggles, and even when the owner has no email address or the email is held back by the sender&#39;s limits. It fires alongside &#x60;post.failed&#x60; and &#x60;account.disconnected&#x60;, which stay as they are.  The user&#39;s notification channel (Slack or Telegram) follows the email toggles, so it only receives the alerts whose toggle is on.  - &#x60;post_failed&#x60;: once the failure is final (a permanent error, or a temporary one on its last retry), once per publish attempt that failed, for scheduled posts only (not \&quot;post now\&quot;). &#x60;refs.platforms&#x60; lists every platform that failed in that attempt. - &#x60;account_disconnected&#x60;: every time an account is disconnected, never for creator-profile accounts. &#x60;reason&#x60; says why.  ### Payload notes  &#x60;text&#x60; is the email body without the greeting. When your content retention is set to keep no content, the post text is replaced by &#x60;Content not retained&#x60; and each platform error by a generic description of its category.  ### How to act  Each entry of &#x60;actions&#x60; is a public API call with the ids already in the path: &#x60;retry_post&#x60; (&#x60;retryPost&#x60;, &#x60;POST /v1/posts/{postId}/retry&#x60;), &#x60;reconnect_account&#x60; (&#x60;getConnectUrl&#x60;, &#x60;GET /v1/connect/{platform}&#x60;) and &#x60;check_account&#x60; (&#x60;getAccountHealth&#x60;, &#x60;GET /v1/accounts/{accountId}/health&#x60;).  ### Who receives it  Endpoints subscribed to &#x60;notification.sent&#x60;. Scoped endpoints receive it for their profiles and accounts. Restricted keys need the &#x60;publishing&#x60; resource group. 
+   * @param webhookPayloadNotificationSent  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onNotificationSent(@javax.annotation.Nonnull WebhookPayloadNotificationSent webhookPayloadNotificationSent) throws ApiException {
+    onNotificationSent(webhookPayloadNotificationSent, null);
+  }
+
+  /**
+   * Notification sent event
+   * Built for agents. One event for every notification we would email the account owner: a scheduled post failed to publish (&#x60;type: post_failed&#x60;), or a connected account was disconnected (&#x60;type: account_disconnected&#x60;).  It carries the email&#39;s &#x60;subject&#x60; and &#x60;text&#x60;, references to the post or account, and the &#x60;actions&#x60; that resolve it, so an agent subscribes to one event and handles every notification the same way.  ### Agents or state sync  Subscribe to &#x60;notification.sent&#x60; when an agent or automation reads the alert and acts on it. Subscribe to &#x60;post.platform.failed&#x60;, &#x60;post.failed&#x60;, &#x60;post.partial&#x60; and &#x60;account.disconnected&#x60; when your system keeps post and account state in sync: they carry the structured post or account and fire on every state change.  ### When it fires  Once for each such notification, in near real time, regardless of the user&#39;s email toggles, and even when the owner has no email address or the email is held back by the sender&#39;s limits. It fires alongside &#x60;post.failed&#x60; and &#x60;account.disconnected&#x60;, which stay as they are.  The user&#39;s notification channel (Slack or Telegram) follows the email toggles, so it only receives the alerts whose toggle is on.  - &#x60;post_failed&#x60;: once the failure is final (a permanent error, or a temporary one on its last retry), once per publish attempt that failed, for scheduled posts only (not \&quot;post now\&quot;). &#x60;refs.platforms&#x60; lists every platform that failed in that attempt. - &#x60;account_disconnected&#x60;: every time an account is disconnected, never for creator-profile accounts. &#x60;reason&#x60; says why.  ### Payload notes  &#x60;text&#x60; is the email body without the greeting. When your content retention is set to keep no content, the post text is replaced by &#x60;Content not retained&#x60; and each platform error by a generic description of its category.  ### How to act  Each entry of &#x60;actions&#x60; is a public API call with the ids already in the path: &#x60;retry_post&#x60; (&#x60;retryPost&#x60;, &#x60;POST /v1/posts/{postId}/retry&#x60;), &#x60;reconnect_account&#x60; (&#x60;getConnectUrl&#x60;, &#x60;GET /v1/connect/{platform}&#x60;) and &#x60;check_account&#x60; (&#x60;getAccountHealth&#x60;, &#x60;GET /v1/accounts/{accountId}/health&#x60;).  ### Who receives it  Endpoints subscribed to &#x60;notification.sent&#x60;. Scoped endpoints receive it for their profiles and accounts. Restricted keys need the &#x60;publishing&#x60; resource group. 
+   * @param webhookPayloadNotificationSent  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onNotificationSent(@javax.annotation.Nonnull WebhookPayloadNotificationSent webhookPayloadNotificationSent, Map<String, String> headers) throws ApiException {
+    onNotificationSentWithHttpInfo(webhookPayloadNotificationSent, headers);
+  }
+
+  /**
+   * Notification sent event
+   * Built for agents. One event for every notification we would email the account owner: a scheduled post failed to publish (&#x60;type: post_failed&#x60;), or a connected account was disconnected (&#x60;type: account_disconnected&#x60;).  It carries the email&#39;s &#x60;subject&#x60; and &#x60;text&#x60;, references to the post or account, and the &#x60;actions&#x60; that resolve it, so an agent subscribes to one event and handles every notification the same way.  ### Agents or state sync  Subscribe to &#x60;notification.sent&#x60; when an agent or automation reads the alert and acts on it. Subscribe to &#x60;post.platform.failed&#x60;, &#x60;post.failed&#x60;, &#x60;post.partial&#x60; and &#x60;account.disconnected&#x60; when your system keeps post and account state in sync: they carry the structured post or account and fire on every state change.  ### When it fires  Once for each such notification, in near real time, regardless of the user&#39;s email toggles, and even when the owner has no email address or the email is held back by the sender&#39;s limits. It fires alongside &#x60;post.failed&#x60; and &#x60;account.disconnected&#x60;, which stay as they are.  The user&#39;s notification channel (Slack or Telegram) follows the email toggles, so it only receives the alerts whose toggle is on.  - &#x60;post_failed&#x60;: once the failure is final (a permanent error, or a temporary one on its last retry), once per publish attempt that failed, for scheduled posts only (not \&quot;post now\&quot;). &#x60;refs.platforms&#x60; lists every platform that failed in that attempt. - &#x60;account_disconnected&#x60;: every time an account is disconnected, never for creator-profile accounts. &#x60;reason&#x60; says why.  ### Payload notes  &#x60;text&#x60; is the email body without the greeting. When your content retention is set to keep no content, the post text is replaced by &#x60;Content not retained&#x60; and each platform error by a generic description of its category.  ### How to act  Each entry of &#x60;actions&#x60; is a public API call with the ids already in the path: &#x60;retry_post&#x60; (&#x60;retryPost&#x60;, &#x60;POST /v1/posts/{postId}/retry&#x60;), &#x60;reconnect_account&#x60; (&#x60;getConnectUrl&#x60;, &#x60;GET /v1/connect/{platform}&#x60;) and &#x60;check_account&#x60; (&#x60;getAccountHealth&#x60;, &#x60;GET /v1/accounts/{accountId}/health&#x60;).  ### Who receives it  Endpoints subscribed to &#x60;notification.sent&#x60;. Scoped endpoints receive it for their profiles and accounts. Restricted keys need the &#x60;publishing&#x60; resource group. 
+   * @param webhookPayloadNotificationSent  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onNotificationSentWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadNotificationSent webhookPayloadNotificationSent) throws ApiException {
+    return onNotificationSentWithHttpInfo(webhookPayloadNotificationSent, null);
+  }
+
+  /**
+   * Notification sent event
+   * Built for agents. One event for every notification we would email the account owner: a scheduled post failed to publish (&#x60;type: post_failed&#x60;), or a connected account was disconnected (&#x60;type: account_disconnected&#x60;).  It carries the email&#39;s &#x60;subject&#x60; and &#x60;text&#x60;, references to the post or account, and the &#x60;actions&#x60; that resolve it, so an agent subscribes to one event and handles every notification the same way.  ### Agents or state sync  Subscribe to &#x60;notification.sent&#x60; when an agent or automation reads the alert and acts on it. Subscribe to &#x60;post.platform.failed&#x60;, &#x60;post.failed&#x60;, &#x60;post.partial&#x60; and &#x60;account.disconnected&#x60; when your system keeps post and account state in sync: they carry the structured post or account and fire on every state change.  ### When it fires  Once for each such notification, in near real time, regardless of the user&#39;s email toggles, and even when the owner has no email address or the email is held back by the sender&#39;s limits. It fires alongside &#x60;post.failed&#x60; and &#x60;account.disconnected&#x60;, which stay as they are.  The user&#39;s notification channel (Slack or Telegram) follows the email toggles, so it only receives the alerts whose toggle is on.  - &#x60;post_failed&#x60;: once the failure is final (a permanent error, or a temporary one on its last retry), once per publish attempt that failed, for scheduled posts only (not \&quot;post now\&quot;). &#x60;refs.platforms&#x60; lists every platform that failed in that attempt. - &#x60;account_disconnected&#x60;: every time an account is disconnected, never for creator-profile accounts. &#x60;reason&#x60; says why.  ### Payload notes  &#x60;text&#x60; is the email body without the greeting. When your content retention is set to keep no content, the post text is replaced by &#x60;Content not retained&#x60; and each platform error by a generic description of its category.  ### How to act  Each entry of &#x60;actions&#x60; is a public API call with the ids already in the path: &#x60;retry_post&#x60; (&#x60;retryPost&#x60;, &#x60;POST /v1/posts/{postId}/retry&#x60;), &#x60;reconnect_account&#x60; (&#x60;getConnectUrl&#x60;, &#x60;GET /v1/connect/{platform}&#x60;) and &#x60;check_account&#x60; (&#x60;getAccountHealth&#x60;, &#x60;GET /v1/accounts/{accountId}/health&#x60;).  ### Who receives it  Endpoints subscribed to &#x60;notification.sent&#x60;. Scoped endpoints receive it for their profiles and accounts. Restricted keys need the &#x60;publishing&#x60; resource group. 
+   * @param webhookPayloadNotificationSent  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onNotificationSentWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadNotificationSent webhookPayloadNotificationSent, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onNotificationSentRequestBuilder(webhookPayloadNotificationSent, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onNotificationSent", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onNotificationSentRequestBuilder(@javax.annotation.Nonnull WebhookPayloadNotificationSent webhookPayloadNotificationSent, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadNotificationSent' is set
+    if (webhookPayloadNotificationSent == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadNotificationSent' when calling onNotificationSent");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/notification.sent";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadNotificationSent);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

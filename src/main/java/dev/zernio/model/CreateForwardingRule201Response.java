@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CreateForwardingRule201Response.JSON_PROPERTY_FORWARDING_RULE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:53:30.317134213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T11:12:13.534331255Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateForwardingRule201Response {
   public static final String JSON_PROPERTY_FORWARDING_RULE = "forwardingRule";
   @javax.annotation.Nullable

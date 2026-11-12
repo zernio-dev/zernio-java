@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.585.0
 
-- Build date: 2026-11-12T10:53:30.317134213Z[Etc/UTC]
+- Build date: 2026-11-12T11:12:13.534331255Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -6243,6 +6243,13 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadMessageSentMessageSender](docs/WebhookPayloadMessageSentMessageSender.md)
  - [WebhookPayloadMessageSentMetadata](docs/WebhookPayloadMessageSentMetadata.md)
  - [WebhookPayloadMessageSentMetadataLocation](docs/WebhookPayloadMessageSentMetadataLocation.md)
+ - [WebhookPayloadNotificationSent](docs/WebhookPayloadNotificationSent.md)
+ - [WebhookPayloadNotificationSentNotification](docs/WebhookPayloadNotificationSentNotification.md)
+ - [WebhookPayloadNotificationSentNotificationActionsInner](docs/WebhookPayloadNotificationSentNotificationActionsInner.md)
+ - [WebhookPayloadNotificationSentNotificationRefs](docs/WebhookPayloadNotificationSentNotificationRefs.md)
+ - [WebhookPayloadNotificationSentNotificationRefsAccount](docs/WebhookPayloadNotificationSentNotificationRefsAccount.md)
+ - [WebhookPayloadNotificationSentNotificationRefsPlatformsInner](docs/WebhookPayloadNotificationSentNotificationRefsPlatformsInner.md)
+ - [WebhookPayloadNotificationSentNotificationRefsPost](docs/WebhookPayloadNotificationSentNotificationRefsPost.md)
  - [WebhookPayloadPhoneNumberStockAvailable](docs/WebhookPayloadPhoneNumberStockAvailable.md)
  - [WebhookPayloadPhoneNumberStockAvailableStock](docs/WebhookPayloadPhoneNumberStockAvailableStock.md)
  - [WebhookPayloadPhoneNumberStockAvailableStockTypesInner](docs/WebhookPayloadPhoneNumberStockAvailableStockTypesInner.md)

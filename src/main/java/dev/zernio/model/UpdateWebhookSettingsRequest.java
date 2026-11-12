@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   UpdateWebhookSettingsRequest.JSON_PROPERTY_PROFILE_IDS,
   UpdateWebhookSettingsRequest.JSON_PROPERTY_ACCOUNT_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:53:30.317134213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T11:12:13.534331255Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_WEBHOOK_ID = "webhookId";
   @javax.annotation.Nullable
@@ -350,7 +350,9 @@ public class UpdateWebhookSettingsRequest {
     
     CAMPAIGN_SAMPLE_SHIPPED(String.valueOf("campaign_sample.shipped")),
     
-    CAMPAIGN_SAMPLE_DECLINED(String.valueOf("campaign_sample.declined"));
+    CAMPAIGN_SAMPLE_DECLINED(String.valueOf("campaign_sample.declined")),
+    
+    NOTIFICATION_SENT(String.valueOf("notification.sent"));
 
     private String value;
 

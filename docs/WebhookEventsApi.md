@@ -216,6 +216,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onMessageReceivedWithHttpInfo**](WebhookEventsApi.md#onMessageReceivedWithHttpInfo) | **POST** /message.received | Message received event |
 | [**onMessageSent**](WebhookEventsApi.md#onMessageSent) | **POST** /message.sent | Message sent event |
 | [**onMessageSentWithHttpInfo**](WebhookEventsApi.md#onMessageSentWithHttpInfo) | **POST** /message.sent | Message sent event |
+| [**onNotificationSent**](WebhookEventsApi.md#onNotificationSent) | **POST** /notification.sent | Notification sent event |
+| [**onNotificationSentWithHttpInfo**](WebhookEventsApi.md#onNotificationSentWithHttpInfo) | **POST** /notification.sent | Notification sent event |
 | [**onPhoneNumberStockAvailable**](WebhookEventsApi.md#onPhoneNumberStockAvailable) | **POST** /phone_number.stock_available | Phone-number stock available event |
 | [**onPhoneNumberStockAvailableWithHttpInfo**](WebhookEventsApi.md#onPhoneNumberStockAvailableWithHttpInfo) | **POST** /phone_number.stock_available | Phone-number stock available event |
 | [**onPostAuthenticityChanged**](WebhookEventsApi.md#onPostAuthenticityChanged) | **POST** /post.authenticity_changed | Post authenticity changed event |
@@ -15352,6 +15354,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadMessageSent** | [**WebhookPayloadMessageSent**](WebhookPayloadMessageSent.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onNotificationSent
+
+> void onNotificationSent(webhookPayloadNotificationSent)
+
+Notification sent event
+
+Built for agents. One event for every notification we would email the account owner: a scheduled post failed to publish (&#x60;type: post_failed&#x60;), or a connected account was disconnected (&#x60;type: account_disconnected&#x60;).  It carries the email&#39;s &#x60;subject&#x60; and &#x60;text&#x60;, references to the post or account, and the &#x60;actions&#x60; that resolve it, so an agent subscribes to one event and handles every notification the same way.  ### Agents or state sync  Subscribe to &#x60;notification.sent&#x60; when an agent or automation reads the alert and acts on it. Subscribe to &#x60;post.platform.failed&#x60;, &#x60;post.failed&#x60;, &#x60;post.partial&#x60; and &#x60;account.disconnected&#x60; when your system keeps post and account state in sync: they carry the structured post or account and fire on every state change.  ### When it fires  Once for each such notification, in near real time, regardless of the user&#39;s email toggles, and even when the owner has no email address or the email is held back by the sender&#39;s limits. It fires alongside &#x60;post.failed&#x60; and &#x60;account.disconnected&#x60;, which stay as they are.  The user&#39;s notification channel (Slack or Telegram) follows the email toggles, so it only receives the alerts whose toggle is on.  - &#x60;post_failed&#x60;: once the failure is final (a permanent error, or a temporary one on its last retry), once per publish attempt that failed, for scheduled posts only (not \&quot;post now\&quot;). &#x60;refs.platforms&#x60; lists every platform that failed in that attempt. - &#x60;account_disconnected&#x60;: every time an account is disconnected, never for creator-profile accounts. &#x60;reason&#x60; says why.  ### Payload notes  &#x60;text&#x60; is the email body without the greeting. When your content retention is set to keep no content, the post text is replaced by &#x60;Content not retained&#x60; and each platform error by a generic description of its category.  ### How to act  Each entry of &#x60;actions&#x60; is a public API call with the ids already in the path: &#x60;retry_post&#x60; (&#x60;retryPost&#x60;, &#x60;POST /v1/posts/{postId}/retry&#x60;), &#x60;reconnect_account&#x60; (&#x60;getConnectUrl&#x60;, &#x60;GET /v1/connect/{platform}&#x60;) and &#x60;check_account&#x60; (&#x60;getAccountHealth&#x60;, &#x60;GET /v1/accounts/{accountId}/health&#x60;).  ### Who receives it  Endpoints subscribed to &#x60;notification.sent&#x60;. Scoped endpoints receive it for their profiles and accounts. Restricted keys need the &#x60;publishing&#x60; resource group. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadNotificationSent webhookPayloadNotificationSent = new WebhookPayloadNotificationSent(); // WebhookPayloadNotificationSent | 
+        try {
+            apiInstance.onNotificationSent(webhookPayloadNotificationSent);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onNotificationSent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadNotificationSent** | [**WebhookPayloadNotificationSent**](WebhookPayloadNotificationSent.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onNotificationSentWithHttpInfo
+
+> ApiResponse<Void> onNotificationSent onNotificationSentWithHttpInfo(webhookPayloadNotificationSent)
+
+Notification sent event
+
+Built for agents. One event for every notification we would email the account owner: a scheduled post failed to publish (&#x60;type: post_failed&#x60;), or a connected account was disconnected (&#x60;type: account_disconnected&#x60;).  It carries the email&#39;s &#x60;subject&#x60; and &#x60;text&#x60;, references to the post or account, and the &#x60;actions&#x60; that resolve it, so an agent subscribes to one event and handles every notification the same way.  ### Agents or state sync  Subscribe to &#x60;notification.sent&#x60; when an agent or automation reads the alert and acts on it. Subscribe to &#x60;post.platform.failed&#x60;, &#x60;post.failed&#x60;, &#x60;post.partial&#x60; and &#x60;account.disconnected&#x60; when your system keeps post and account state in sync: they carry the structured post or account and fire on every state change.  ### When it fires  Once for each such notification, in near real time, regardless of the user&#39;s email toggles, and even when the owner has no email address or the email is held back by the sender&#39;s limits. It fires alongside &#x60;post.failed&#x60; and &#x60;account.disconnected&#x60;, which stay as they are.  The user&#39;s notification channel (Slack or Telegram) follows the email toggles, so it only receives the alerts whose toggle is on.  - &#x60;post_failed&#x60;: once the failure is final (a permanent error, or a temporary one on its last retry), once per publish attempt that failed, for scheduled posts only (not \&quot;post now\&quot;). &#x60;refs.platforms&#x60; lists every platform that failed in that attempt. - &#x60;account_disconnected&#x60;: every time an account is disconnected, never for creator-profile accounts. &#x60;reason&#x60; says why.  ### Payload notes  &#x60;text&#x60; is the email body without the greeting. When your content retention is set to keep no content, the post text is replaced by &#x60;Content not retained&#x60; and each platform error by a generic description of its category.  ### How to act  Each entry of &#x60;actions&#x60; is a public API call with the ids already in the path: &#x60;retry_post&#x60; (&#x60;retryPost&#x60;, &#x60;POST /v1/posts/{postId}/retry&#x60;), &#x60;reconnect_account&#x60; (&#x60;getConnectUrl&#x60;, &#x60;GET /v1/connect/{platform}&#x60;) and &#x60;check_account&#x60; (&#x60;getAccountHealth&#x60;, &#x60;GET /v1/accounts/{accountId}/health&#x60;).  ### Who receives it  Endpoints subscribed to &#x60;notification.sent&#x60;. Scoped endpoints receive it for their profiles and accounts. Restricted keys need the &#x60;publishing&#x60; resource group. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadNotificationSent webhookPayloadNotificationSent = new WebhookPayloadNotificationSent(); // WebhookPayloadNotificationSent | 
+        try {
+            ApiResponse<Void> response = apiInstance.onNotificationSentWithHttpInfo(webhookPayloadNotificationSent);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onNotificationSent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadNotificationSent** | [**WebhookPayloadNotificationSent**](WebhookPayloadNotificationSent.md)|  | |
 
 ### Return type
 

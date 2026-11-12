@@ -161,6 +161,7 @@
 | CAMPAIGN_SAMPLE_APPROVED | &quot;campaign_sample.approved&quot; |
 | CAMPAIGN_SAMPLE_SHIPPED | &quot;campaign_sample.shipped&quot; |
 | CAMPAIGN_SAMPLE_DECLINED | &quot;campaign_sample.declined&quot; |
+| NOTIFICATION_SENT | &quot;notification.sent&quot; |
 
 
 

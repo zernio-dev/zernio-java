@@ -467,6 +467,7 @@ tags:
     - Calendar and files: `calendar.event.created`, `calendar.event.updated`, `calendar.event.deleted`, `file.created`, `file.updated`, `file.deleted`, `file.picked`
     - Email: `email.sent`, `email.opened`, `email.link_clicked`, `email.thread_replied`, `email.send_failed`, `email.bounced`, `email.updated`, `email.deleted`
     - Billing: `balance.low`, `balance.empty`, `balance.charged`
+    - Notifications: `notification.sent`
     - Other: `api.changelog.published`, `webhook.test`
 
     **Headers.** Every delivery carries `X-Zernio-Event` (event name) and `X-Zernio-Event-Id` (the payload `id`). That UUID is minted once per event and is identical across every subscribed endpoint, automatic retry and redelivery, so dedupe on it.
@@ -95202,6 +95203,7 @@ components:
             - campaign_sample.approved
             - campaign_sample.shipped
             - campaign_sample.declined
+            - notification.sent
             type: string
           type: array
         isActive:
@@ -105299,6 +105301,80 @@ components:
       - id
       - timestamp
       - topup
+    WebhookPayloadNotificationSent:
+      example:
+        notification:
+          reason: reason
+          refs:
+            post:
+              id: id
+            account:
+              profileId: profileId
+              id: id
+              platform: platform
+              username: username
+            platforms:
+            - accountId: accountId
+              platform: platform
+            - accountId: accountId
+              platform: platform
+          subject: subject
+          text: text
+          category: postFailures
+          type: post_failed
+          actions:
+          - path: path
+            method: GET
+            operationId: retryPost
+            type: retry_post
+          - path: path
+            method: GET
+            operationId: retryPost
+            type: retry_post
+          url: https://openapi-generator.tech
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: notification.sent
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - notification.sent
+          type: string
+        notification:
+          $ref: "#/components/schemas/WebhookPayloadNotificationSent_notification"
+        timestamp:
+          description: UTC time at which Zernio generated this event. Retries and
+            redeliveries keep the original value.
+          format: date-time
+          type: string
+      required:
+      - event
+      - id
+      - notification
+      - timestamp
     WebhookPayloadTest:
       description: Webhook payload for test deliveries
       example:
@@ -150504,6 +150580,7 @@ components:
             - campaign_sample.approved
             - campaign_sample.shipped
             - campaign_sample.declined
+            - notification.sent
             type: string
           minItems: 1
           type: array
@@ -150752,6 +150829,7 @@ components:
             - campaign_sample.approved
             - campaign_sample.shipped
             - campaign_sample.declined
+            - notification.sent
             type: string
           minItems: 1
           type: array
@@ -151063,6 +151141,7 @@ components:
           - balance.low
           - balance.empty
           - balance.charged
+          - notification.sent
           - api.changelog.published
           type: string
       required:
@@ -223032,6 +223111,177 @@ components:
           type: integer
       required:
       - spendableCents
+    WebhookPayloadNotificationSent_notification_refs_post:
+      example:
+        id: id
+      properties:
+        id:
+          description: "The post id, as in GET /v1/posts/{postId}."
+          type: string
+      required:
+      - id
+    WebhookPayloadNotificationSent_notification_refs_platforms_inner:
+      example:
+        accountId: accountId
+        platform: platform
+      properties:
+        platform:
+          type: string
+        accountId:
+          type: string
+      required:
+      - accountId
+      - platform
+    WebhookPayloadNotificationSent_notification_refs_account:
+      example:
+        profileId: profileId
+        id: id
+        platform: platform
+        username: username
+      properties:
+        id:
+          description: The disconnected account id.
+          type: string
+        platform:
+          type: string
+        username:
+          type: string
+        profileId:
+          type: string
+      required:
+      - id
+      - platform
+      - profileId
+      - username
+    WebhookPayloadNotificationSent_notification_refs:
+      example:
+        post:
+          id: id
+        account:
+          profileId: profileId
+          id: id
+          platform: platform
+          username: username
+        platforms:
+        - accountId: accountId
+          platform: platform
+        - accountId: accountId
+          platform: platform
+      properties:
+        post:
+          $ref: "#/components/schemas/WebhookPayloadNotificationSent_notification_refs_post"
+        platforms:
+          description: Every platform of the post that failed in this notification.
+          items:
+            $ref: "#/components/schemas/WebhookPayloadNotificationSent_notification_refs_platforms_inner"
+          type: array
+        account:
+          $ref: "#/components/schemas/WebhookPayloadNotificationSent_notification_refs_account"
+    WebhookPayloadNotificationSent_notification_actions_inner:
+      example:
+        path: path
+        method: GET
+        operationId: retryPost
+        type: retry_post
+      properties:
+        type:
+          enum:
+          - retry_post
+          - reconnect_account
+          - check_account
+          type: string
+        operationId:
+          description: The operationId of the public API call.
+          enum:
+          - retryPost
+          - getConnectUrl
+          - getAccountHealth
+          type: string
+        method:
+          enum:
+          - GET
+          - POST
+          type: string
+        path:
+          description: The request path.
+          type: string
+      required:
+      - method
+      - operationId
+      - path
+      - type
+    WebhookPayloadNotificationSent_notification:
+      example:
+        reason: reason
+        refs:
+          post:
+            id: id
+          account:
+            profileId: profileId
+            id: id
+            platform: platform
+            username: username
+          platforms:
+          - accountId: accountId
+            platform: platform
+          - accountId: accountId
+            platform: platform
+        subject: subject
+        text: text
+        category: postFailures
+        type: post_failed
+        actions:
+        - path: path
+          method: GET
+          operationId: retryPost
+          type: retry_post
+        - path: path
+          method: GET
+          operationId: retryPost
+          type: retry_post
+        url: https://openapi-generator.tech
+      properties:
+        category:
+          description: The email notification preference this notification belongs
+            to.
+          enum:
+          - postFailures
+          - accountIssues
+          type: string
+        type:
+          enum:
+          - post_failed
+          - account_disconnected
+          type: string
+        subject:
+          description: The email subject.
+          type: string
+        text:
+          description: "The email body as plain text, without the greeting."
+          type: string
+        url:
+          description: Dashboard link for the notification.
+          format: uri
+          type: string
+        refs:
+          $ref: "#/components/schemas/WebhookPayloadNotificationSent_notification_refs"
+        reason:
+          description: Why the account was disconnected. Only on account_disconnected.
+          type: string
+        actions:
+          description: "API calls that act on the notification, with the ids already\
+            \ in the path."
+          items:
+            $ref: "#/components/schemas/WebhookPayloadNotificationSent_notification_actions_inner"
+          type: array
+      required:
+      - actions
+      - category
+      - refs
+      - subject
+      - text
+      - type
+      - url
     DiscordGuildMember_user:
       example:
         global_name: global_name
@@ -233299,6 +233549,7 @@ x-documentation:
     - `balance.low` - Balance billing: the balance dropped below the low-balance alert set on auto top-up (`alertBelowCents`), once per drop, unless an auto top-up is already covering it
     - `balance.empty` - Balance billing: the balance reached $0 and no auto top-up covered it, so pay-per-use calls answer 402 until it is funded. Carries that 402 `code` and `fundingUrl`
     - `balance.charged` - Balance billing: funds were added to the balance by card, by you or by auto top-up (`topup.trigger`), with the amount, the VAT and the card charge
+    - `notification.sent` - Built for agents: one event for every notification we would email (a scheduled post failed to publish, or a connected account was disconnected), with the email's `subject` and `text`, references to the post or account, and the `actions` that resolve it. Fires regardless of the user's email toggles, and whether or not an email can be sent. The user's notification channel (Slack or Telegram) follows the toggles instead. To keep post and account state in sync, use `post.platform.failed`, `post.failed` and `account.disconnected`
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Every delivery carries `X-Zernio-Event` (the event name) and `X-Zernio-Event-Id` (the payload's `id`, a UUID generated once when the event is emitted). That id is identical on every subscription that receives the event, on every automatic retry and on a redelivery via `POST /v1/webhooks/logs/redeliver`, so it is the key to dedupe on. Payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header when the subscription has a secret. Legacy `X-Late-*` copies of these three headers are still sent and will be removed in a future major version.

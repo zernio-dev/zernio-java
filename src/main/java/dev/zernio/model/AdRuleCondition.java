@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   AdRuleCondition.JSON_PROPERTY_COMPARE_TO,
   AdRuleCondition.JSON_PROPERTY_OF
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:53:30.317134213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T11:12:13.534331255Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleCondition {
   /**
    * Gets or Sets metric
