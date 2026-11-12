@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.579.0
+  version: 1.581.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -12406,6 +12406,7 @@ paths:
           - redditads
           - microsoftads
           - whopads
+          - applovinads
           - hubspot
           - webflow
           - googleanalytics
@@ -111098,6 +111099,7 @@ components:
           - phone
           - rcs
           - whopads
+          - applovinads
           - google
           - microsoft
           - imap
@@ -133164,6 +133166,7 @@ components:
           - linkedinads
           - pinterestads
           - whopads
+          - applovinads
           type: string
         kind:
           description: "Platform-native flavor of the tag (Meta: `pixel`)."
@@ -204819,6 +204822,7 @@ components:
           - linkedinads
           - pinterestads
           - whopads
+          - applovinads
           type: string
         tags:
           items:
@@ -204937,6 +204941,7 @@ components:
           - linkedinads
           - pinterestads
           - whopads
+          - applovinads
           type: string
         tag:
           $ref: "#/components/schemas/TrackingTag"
@@ -205001,6 +205006,7 @@ components:
           - linkedinads
           - pinterestads
           - whopads
+          - applovinads
           type: string
         tag:
           $ref: "#/components/schemas/TrackingTag"
@@ -205208,6 +205214,7 @@ components:
           - linkedinads
           - pinterestads
           - whopads
+          - applovinads
           type: string
         install:
           $ref: "#/components/schemas/getTrackingTagStoreInstall_200_response_install"
@@ -205328,6 +205335,7 @@ components:
           - linkedinads
           - pinterestads
           - whopads
+          - applovinads
           type: string
         install:
           $ref: "#/components/schemas/installTrackingTagOnStore_200_response_install"
@@ -205426,6 +205434,7 @@ components:
           - linkedinads
           - pinterestads
           - whopads
+          - applovinads
           type: string
         install:
           $ref: "#/components/schemas/removeTrackingTagFromStore_200_response_install"
@@ -205660,6 +205669,7 @@ components:
           - linkedinads
           - pinterestads
           - whopads
+          - applovinads
           type: string
         stats:
           $ref: "#/components/schemas/getTrackingTagStats_200_response_stats"
@@ -230784,6 +230794,19 @@ components:
         rdt_uuid:
           description: "Reddit Pixel browser id (the `_rdt_uuid` first-party cookie).\
             \ Sent to Reddit as `user.uuid`, not hashed."
+          type: string
+        aleid:
+          description: "Axon (AppLovin) click id (the `aleid` URL param Axon adds\
+            \ to ad clicks, kept by its pixel in the `_axeid` cookie). Sent to Axon\
+            \ as `user_data.aleid`, not hashed."
+          type: string
+        alart:
+          description: "Axon (AppLovin) attribution token (the `alart` URL param,\
+            \ `_axart` cookie). Sent to Axon as `user_data.alart`, not hashed."
+          type: string
+        axwrt:
+          description: "Axon Pixel browser id (the `_axwrt` cookie). Sent to Axon\
+            \ as `user_data.axwrt`, not hashed."
           type: string
     ConversionEvent_user:
       description: User identity fields. More signals mean higher match rates.

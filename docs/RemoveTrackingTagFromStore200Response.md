@@ -24,6 +24,7 @@
 | LINKEDINADS | &quot;linkedinads&quot; |
 | PINTERESTADS | &quot;pinterestads&quot; |
 | WHOPADS | &quot;whopads&quot; |
+| APPLOVINADS | &quot;applovinads&quot; |
 
 
 

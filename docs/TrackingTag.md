@@ -39,6 +39,7 @@ A platform measurement tag: the thing you create, install on a website, send eve
 | LINKEDINADS | &quot;linkedinads&quot; |
 | PINTERESTADS | &quot;pinterestads&quot; |
 | WHOPADS | &quot;whopads&quot; |
+| APPLOVINADS | &quot;applovinads&quot; |
 
 
 
