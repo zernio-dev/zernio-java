@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.583.0
+- API version: 1.584.0
 
-- Build date: 2026-11-12T10:19:33.660729293Z[Etc/UTC]
+- Build date: 2026-11-12T10:24:06.469719130Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.583.0</version>
+  <version>1.584.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.583.0"
+compile "dev.zernio:zernio-sdk:1.584.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.583.0.jar`
+- `target/zernio-sdk-1.584.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1489,6 +1489,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**updateConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
 *ConversionsApi* | [**updateCustomConversionGoal**](docs/ConversionsApi.md#updateCustomConversionGoal) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal
 *ConversionsApi* | [**updateCustomConversionGoalWithHttpInfo**](docs/ConversionsApi.md#updateCustomConversionGoalWithHttpInfo) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal
+*ConversionsApi* | [**updateForwardingRule**](docs/ConversionsApi.md#updateForwardingRule) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret
+*ConversionsApi* | [**updateForwardingRuleWithHttpInfo**](docs/ConversionsApi.md#updateForwardingRuleWithHttpInfo) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret
 *CreatorCampaignsApi* | [**activateCreatorCampaign**](docs/CreatorCampaignsApi.md#activateCreatorCampaign) | **POST** /v1/creator-campaigns/{campaignId}/activate | Activate creator campaign
 *CreatorCampaignsApi* | [**activateCreatorCampaignWithHttpInfo**](docs/CreatorCampaignsApi.md#activateCreatorCampaignWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/activate | Activate creator campaign
 *CreatorCampaignsApi* | [**approveCampaignDraft**](docs/CreatorCampaignsApi.md#approveCampaignDraft) | **POST** /v1/creator-campaigns/{campaignId}/drafts/{draftId}/approve | Approve campaign draft
@@ -5821,6 +5823,7 @@ Class | Method | HTTP request | Description
  - [UpdateFacebookPageInfoRequest](docs/UpdateFacebookPageInfoRequest.md)
  - [UpdateFacebookPageRequest](docs/UpdateFacebookPageRequest.md)
  - [UpdateFileRequest](docs/UpdateFileRequest.md)
+ - [UpdateForwardingRuleRequest](docs/UpdateForwardingRuleRequest.md)
  - [UpdateGmbLocation200Response](docs/UpdateGmbLocation200Response.md)
  - [UpdateGmbLocationRequest](docs/UpdateGmbLocationRequest.md)
  - [UpdateGoogleAssetGroup200Response](docs/UpdateGoogleAssetGroup200Response.md)

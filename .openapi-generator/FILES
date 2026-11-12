@@ -3237,6 +3237,7 @@ docs/UpdateFacebookPage200ResponseSelectedPage.md
 docs/UpdateFacebookPageInfoRequest.md
 docs/UpdateFacebookPageRequest.md
 docs/UpdateFileRequest.md
+docs/UpdateForwardingRuleRequest.md
 docs/UpdateGmbLocation200Response.md
 docs/UpdateGmbLocationRequest.md
 docs/UpdateGoogleAssetGroup200Response.md
@@ -7040,6 +7041,7 @@ src/main/java/dev/zernio/model/UpdateFacebookPage200ResponseSelectedPage.java
 src/main/java/dev/zernio/model/UpdateFacebookPageInfoRequest.java
 src/main/java/dev/zernio/model/UpdateFacebookPageRequest.java
 src/main/java/dev/zernio/model/UpdateFileRequest.java
+src/main/java/dev/zernio/model/UpdateForwardingRuleRequest.java
 src/main/java/dev/zernio/model/UpdateGmbLocation200Response.java
 src/main/java/dev/zernio/model/UpdateGmbLocationRequest.java
 src/main/java/dev/zernio/model/UpdateGoogleAssetGroup200Response.java
@@ -7563,3 +7565,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/UpdateForwardingRuleRequestTest.java

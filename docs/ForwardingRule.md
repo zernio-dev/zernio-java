@@ -13,6 +13,7 @@
 |**destinationId** | **String** | Platform destination (pixel, conversion action, rule, ...). |  [optional] |
 |**eventNames** | **List&lt;String&gt;** | Event names forwarded to this destination; null forwards every event. |  [optional] |
 |**sources** | [**List&lt;SourcesEnum&gt;**](#List&lt;SourcesEnum&gt;) | Event sources forwarded to this destination; null forwards events from every source. |  [optional] |
+|**apiSecretVerified** | **Boolean** | Only when an &#x60;apiSecret&#x60; was saved by this request. Google Analytics never confirms a Measurement Protocol API secret, so it is &#x60;false&#x60; there: the first events in GA4 Realtime prove the secret is right. |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 
 

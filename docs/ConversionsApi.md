@@ -92,6 +92,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateConversionDestinationWithHttpInfo**](ConversionsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
 | [**updateCustomConversionGoal**](ConversionsApi.md#updateCustomConversionGoal) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal |
 | [**updateCustomConversionGoalWithHttpInfo**](ConversionsApi.md#updateCustomConversionGoalWithHttpInfo) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal |
+| [**updateForwardingRule**](ConversionsApi.md#updateForwardingRule) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret |
+| [**updateForwardingRuleWithHttpInfo**](ConversionsApi.md#updateForwardingRuleWithHttpInfo) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret |
 
 
 
@@ -7165,4 +7167,158 @@ ApiResponse<[**UpdateCustomConversionGoal200Response**](UpdateCustomConversionGo
 | **404** | Goal not found on this customer, or account unavailable |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+
+## updateForwardingRule
+
+> CreateForwardingRule201Response updateForwardingRule(ruleId, updateForwardingRuleRequest)
+
+Change a forwarding rule&#39;s API secret
+
+Replaces the &#x60;apiSecret&#x60; of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String ruleId = "ruleId_example"; // String | The rule `id`.
+        UpdateForwardingRuleRequest updateForwardingRuleRequest = new UpdateForwardingRuleRequest(); // UpdateForwardingRuleRequest | 
+        try {
+            CreateForwardingRule201Response result = apiInstance.updateForwardingRule(ruleId, updateForwardingRuleRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#updateForwardingRule");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ruleId** | **String**| The rule &#x60;id&#x60;. | |
+| **updateForwardingRuleRequest** | [**UpdateForwardingRuleRequest**](UpdateForwardingRuleRequest.md)|  | |
+
+### Return type
+
+[**CreateForwardingRule201Response**](CreateForwardingRule201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Secret saved. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## updateForwardingRuleWithHttpInfo
+
+> ApiResponse<CreateForwardingRule201Response> updateForwardingRule updateForwardingRuleWithHttpInfo(ruleId, updateForwardingRuleRequest)
+
+Change a forwarding rule&#39;s API secret
+
+Replaces the &#x60;apiSecret&#x60; of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String ruleId = "ruleId_example"; // String | The rule `id`.
+        UpdateForwardingRuleRequest updateForwardingRuleRequest = new UpdateForwardingRuleRequest(); // UpdateForwardingRuleRequest | 
+        try {
+            ApiResponse<CreateForwardingRule201Response> response = apiInstance.updateForwardingRuleWithHttpInfo(ruleId, updateForwardingRuleRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#updateForwardingRule");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ruleId** | **String**| The rule &#x60;id&#x60;. | |
+| **updateForwardingRuleRequest** | [**UpdateForwardingRuleRequest**](UpdateForwardingRuleRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateForwardingRule201Response**](CreateForwardingRule201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Secret saved. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
