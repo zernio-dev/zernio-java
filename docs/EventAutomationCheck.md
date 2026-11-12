@@ -11,7 +11,7 @@ One event that reached an event automation.
 |**id** | **String** |  |  |
 |**automationId** | **String** |  |  |
 |**checkedAt** | **OffsetDateTime** |  |  |
-|**outcome** | [**OutcomeEnum**](#OutcomeEnum) |  |  |
+|**outcome** | [**OutcomeEnum**](#OutcomeEnum) | &#x60;paused&#x60;: the team used its free automation runs with no payment method on file, so the check did not run. &#x60;error&#x60; says why. |  |
 |**evaluated** | **Integer** |  |  |
 |**event** | **String** |  |  |
 |**eventId** | **String** |  |  |
@@ -32,6 +32,7 @@ One event that reached an event automation.
 | COOLDOWN | &quot;cooldown&quot; |
 | DAILY_LIMIT | &quot;daily_limit&quot; |
 | FAILED | &quot;failed&quot; |
+| PAUSED | &quot;paused&quot; |
 
 
 
