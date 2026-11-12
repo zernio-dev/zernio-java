@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   EmailClean.JSON_PROPERTY_SIGNATURE,
   EmailClean.JSON_PROPERTY_FORWARDED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:36:34.298719203Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:41:39.890961396Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EmailClean {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nullable

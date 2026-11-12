@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   StartCreatorConnectRequest.JSON_PROPERTY_PLATFORM,
   StartCreatorConnectRequest.JSON_PROPERTY_WINDOW_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:36:34.298719203Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:41:39.890961396Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartCreatorConnectRequest {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nonnull

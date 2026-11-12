@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UpdateEmailSignatureRequest.JSON_PROPERTY_TEXT,
   UpdateEmailSignatureRequest.JSON_PROPERTY_DEFAULT_FOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:36:34.298719203Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:41:39.890961396Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateEmailSignatureRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

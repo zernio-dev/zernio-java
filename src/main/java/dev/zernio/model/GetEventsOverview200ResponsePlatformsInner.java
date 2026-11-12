@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   GetEventsOverview200ResponsePlatformsInner.JSON_PROPERTY_LAST_ERROR,
   GetEventsOverview200ResponsePlatformsInner.JSON_PROPERTY_FIX_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:36:34.298719203Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:41:39.890961396Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEventsOverview200ResponsePlatformsInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
