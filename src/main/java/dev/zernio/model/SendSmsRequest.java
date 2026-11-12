@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   SendSmsRequest.JSON_PROPERTY_MEDIA_URLS,
   SendSmsRequest.JSON_PROPERTY_SEND_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:46:10.741952209Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:53:30.317134213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendSmsRequest {
   public static final String JSON_PROPERTY_FROM = "from";
   @javax.annotation.Nonnull

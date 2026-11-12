@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAdRuleTriggeredObjectsInnerActionsInner.JSON_PROPERTY_PREVIOUS_TARGET,
   WebhookPayloadAdRuleTriggeredObjectsInnerActionsInner.JSON_PROPERTY_NEW_TARGET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:46:10.741952209Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:53:30.317134213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAdRuleTriggeredObjectsInnerActionsInner {
   /**
    * Gets or Sets type

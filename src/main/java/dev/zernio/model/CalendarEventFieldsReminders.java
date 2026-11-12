@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CalendarEventFieldsReminders.JSON_PROPERTY_USE_DEFAULT,
   CalendarEventFieldsReminders.JSON_PROPERTY_OVERRIDES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:46:10.741952209Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:53:30.317134213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CalendarEventFieldsReminders {
   public static final String JSON_PROPERTY_USE_DEFAULT = "useDefault";
   @javax.annotation.Nullable

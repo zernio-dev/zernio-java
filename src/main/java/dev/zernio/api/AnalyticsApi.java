@@ -112,7 +112,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:46:10.741952209Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:53:30.317134213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -362,11 +362,12 @@ public class AnalyticsApi {
    * @param sortBy Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional, default to date)
    * @param order Sort order (optional, default to desc)
    * @param tags Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional)
+   * @param view full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional, default to full)
    * @return GetAnalytics200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAnalytics200Response getAnalytics(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, @javax.annotation.Nullable String tags) throws ApiException {
-    return getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, null);
+  public GetAnalytics200Response getAnalytics(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String view) throws ApiException {
+    return getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view, null);
   }
 
   /**
@@ -384,12 +385,13 @@ public class AnalyticsApi {
    * @param sortBy Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional, default to date)
    * @param order Sort order (optional, default to desc)
    * @param tags Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional)
+   * @param view full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional, default to full)
    * @param headers Optional headers to include in the request
    * @return GetAnalytics200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAnalytics200Response getAnalytics(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, @javax.annotation.Nullable String tags, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetAnalytics200Response> localVarResponse = getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, headers);
+  public GetAnalytics200Response getAnalytics(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String view, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAnalytics200Response> localVarResponse = getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view, headers);
     return localVarResponse.getData();
   }
 
@@ -408,11 +410,12 @@ public class AnalyticsApi {
    * @param sortBy Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional, default to date)
    * @param order Sort order (optional, default to desc)
    * @param tags Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional)
+   * @param view full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional, default to full)
    * @return ApiResponse&lt;GetAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAnalytics200Response> getAnalyticsWithHttpInfo(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, @javax.annotation.Nullable String tags) throws ApiException {
-    return getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, null);
+  public ApiResponse<GetAnalytics200Response> getAnalyticsWithHttpInfo(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String view) throws ApiException {
+    return getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view, null);
   }
 
   /**
@@ -430,12 +433,13 @@ public class AnalyticsApi {
    * @param sortBy Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional, default to date)
    * @param order Sort order (optional, default to desc)
    * @param tags Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional)
+   * @param view full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional, default to full)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAnalytics200Response> getAnalyticsWithHttpInfo(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, @javax.annotation.Nullable String tags, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAnalyticsRequestBuilder(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, headers);
+  public ApiResponse<GetAnalytics200Response> getAnalyticsWithHttpInfo(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String view, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAnalyticsRequestBuilder(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -482,7 +486,7 @@ public class AnalyticsApi {
     }
   }
 
-  private HttpRequest.Builder getAnalyticsRequestBuilder(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, @javax.annotation.Nullable String tags, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getAnalyticsRequestBuilder(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, @javax.annotation.Nullable String tags, @javax.annotation.Nullable String view, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -515,6 +519,8 @@ public class AnalyticsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("order", order));
     localVarQueryParameterBaseName = "tags";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("tags", tags));
+    localVarQueryParameterBaseName = "view";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("view", view));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

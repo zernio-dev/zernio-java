@@ -59,7 +59,7 @@ import dev.zernio.ApiClient;
   ForwardEmailRequest.JSON_PROPERTY_TRACK_LINKS,
   ForwardEmailRequest.JSON_PROPERTY_TRACK_REPLIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:46:10.741952209Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:53:30.317134213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ForwardEmailRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

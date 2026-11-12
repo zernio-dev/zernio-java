@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ListTikTokSmartPlusReviews200ResponseCounts.JSON_PROPERTY_PENDING,
   ListTikTokSmartPlusReviews200ResponseCounts.JSON_PROPERTY_FAILED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:46:10.741952209Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:53:30.317134213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListTikTokSmartPlusReviews200ResponseCounts {
   public static final String JSON_PROPERTY_FRESH = "fresh";
   @javax.annotation.Nullable

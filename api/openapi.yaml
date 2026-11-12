@@ -981,6 +981,21 @@ paths:
           example: job
           type: string
         style: form
+      - description: "full returns the listing as before. summary leaves out the accounts\
+          \ list, each platform entry's copy of analytics, the impressionSources,\
+          \ audienceTypes, audienceCountries and retentionCurve maps, and mediaItems\
+          \ (thumbnailUrl stays). Ignored when postId is set."
+        explode: true
+        in: query
+        name: view
+        required: false
+        schema:
+          default: full
+          enum:
+          - full
+          - summary
+          type: string
+        style: form
       responses:
         "200":
           content:

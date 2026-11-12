@@ -249,7 +249,7 @@ ApiResponse<[**TrackingWindowResponse**](TrackingWindowResponse.md)>
 
 ## getAnalytics
 
-> GetAnalytics200Response getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags)
+> GetAnalytics200Response getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view)
 
 Get post analytics
 
@@ -288,8 +288,9 @@ public class Example {
         String sortBy = "date"; // String | Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0.
         String order = "asc"; // String | Sort order
         String tags = "job"; // String | Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set.
+        String view = "full"; // String | full returns the listing as before. summary leaves out the accounts list, each platform entry's copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set.
         try {
-            GetAnalytics200Response result = apiInstance.getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags);
+            GetAnalytics200Response result = apiInstance.getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getAnalytics");
@@ -319,6 +320,7 @@ public class Example {
 | **sortBy** | **String**| Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows, ig_reels_avg_watch_time, ig_reels_video_view_total_time, reposts, reels_skip_rate, completion_rate, profile_views, website_clicks] |
 | **order** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 | **tags** | **String**| Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. | [optional] |
+| **view** | **String**| full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. | [optional] [default to full] [enum: full, summary] |
 
 ### Return type
 
@@ -349,7 +351,7 @@ public class Example {
 
 ## getAnalyticsWithHttpInfo
 
-> ApiResponse<GetAnalytics200Response> getAnalytics getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags)
+> ApiResponse<GetAnalytics200Response> getAnalytics getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view)
 
 Get post analytics
 
@@ -389,8 +391,9 @@ public class Example {
         String sortBy = "date"; // String | Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0.
         String order = "asc"; // String | Sort order
         String tags = "job"; // String | Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set.
+        String view = "full"; // String | full returns the listing as before. summary leaves out the accounts list, each platform entry's copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set.
         try {
-            ApiResponse<GetAnalytics200Response> response = apiInstance.getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags);
+            ApiResponse<GetAnalytics200Response> response = apiInstance.getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -422,6 +425,7 @@ public class Example {
 | **sortBy** | **String**| Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows, ig_reels_avg_watch_time, ig_reels_video_view_total_time, reposts, reels_skip_rate, completion_rate, profile_views, website_clicks] |
 | **order** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 | **tags** | **String**| Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. | [optional] |
+| **view** | **String**| full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. | [optional] [default to full] [enum: full, summary] |
 
 ### Return type
 

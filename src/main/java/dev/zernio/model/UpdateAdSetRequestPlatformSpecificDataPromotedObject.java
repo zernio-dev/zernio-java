@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_OFFLINE_CONVERSION_DATA_SET_ID,
   UpdateAdSetRequestPlatformSpecificDataPromotedObject.JSON_PROPERTY_WHATSAPP_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:46:10.741952209Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:53:30.317134213Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetRequestPlatformSpecificDataPromotedObject {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
