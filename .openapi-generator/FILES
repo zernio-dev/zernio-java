@@ -3679,6 +3679,7 @@ docs/WebhookPayloadNotificationSentNotification.md
 docs/WebhookPayloadNotificationSentNotificationActionsInner.md
 docs/WebhookPayloadNotificationSentNotificationRefs.md
 docs/WebhookPayloadNotificationSentNotificationRefsAccount.md
+docs/WebhookPayloadNotificationSentNotificationRefsApiKey.md
 docs/WebhookPayloadNotificationSentNotificationRefsPlatformsInner.md
 docs/WebhookPayloadNotificationSentNotificationRefsPost.md
 docs/WebhookPayloadPhoneNumberStockAvailable.md
@@ -7520,6 +7521,7 @@ src/main/java/dev/zernio/model/WebhookPayloadNotificationSentNotification.java
 src/main/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationActionsInner.java
 src/main/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationRefs.java
 src/main/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationRefsAccount.java
+src/main/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationRefsApiKey.java
 src/main/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationRefsPlatformsInner.java
 src/main/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationRefsPost.java
 src/main/java/dev/zernio/model/WebhookPayloadPhoneNumberStockAvailable.java
@@ -7651,3 +7653,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookPayloadNotificationSentNotificationRefsApiKeyTest.java

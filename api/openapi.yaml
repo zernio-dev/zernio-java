@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.596.1
+  version: 1.597.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -105802,6 +105802,10 @@ components:
           refs:
             post:
               id: id
+            apiKey:
+              keyPreview: keyPreview
+              id: id
+              expiresAt: 2000-01-23T04:56:07.000+00:00
             account:
               profileId: profileId
               id: id
@@ -224043,10 +224047,36 @@ components:
       - platform
       - profileId
       - username
+    WebhookPayloadNotificationSent_notification_refs_apiKey:
+      example:
+        keyPreview: keyPreview
+        id: id
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: The handed-over API key id.
+          type: string
+        keyPreview:
+          description: "The key prefix and suffix, never the secret."
+          nullable: true
+          type: string
+        expiresAt:
+          description: When the handed-over key stops working.
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - expiresAt
+      - id
+      - keyPreview
     WebhookPayloadNotificationSent_notification_refs:
       example:
         post:
           id: id
+        apiKey:
+          keyPreview: keyPreview
+          id: id
+          expiresAt: 2000-01-23T04:56:07.000+00:00
         account:
           profileId: profileId
           id: id
@@ -224067,6 +224097,8 @@ components:
           type: array
         account:
           $ref: "#/components/schemas/WebhookPayloadNotificationSent_notification_refs_account"
+        apiKey:
+          $ref: "#/components/schemas/WebhookPayloadNotificationSent_notification_refs_apiKey"
     WebhookPayloadNotificationSent_notification_actions_inner:
       example:
         path: path
@@ -224106,6 +224138,10 @@ components:
         refs:
           post:
             id: id
+          apiKey:
+            keyPreview: keyPreview
+            id: id
+            expiresAt: 2000-01-23T04:56:07.000+00:00
           account:
             profileId: profileId
             id: id
@@ -224132,16 +224168,18 @@ components:
         url: https://openapi-generator.tech
       properties:
         category:
-          description: The email notification preference this notification belongs
-            to.
+          description: "The email notification preference this notification belongs\
+            \ to. securityAlerts has no preference: it is always sent."
           enum:
           - postFailures
           - accountIssues
+          - securityAlerts
           type: string
         type:
           enum:
           - post_failed
           - account_disconnected
+          - api_key_handed_over
           type: string
         subject:
           description: The email subject.
