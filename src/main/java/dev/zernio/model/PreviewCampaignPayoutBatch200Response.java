@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   PreviewCampaignPayoutBatch200Response.JSON_PROPERTY_TAX_LABEL,
   PreviewCampaignPayoutBatch200Response.JSON_PROPERTY_REVERSE_CHARGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T16:32:01.468174786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T16:44:49.747775867Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PreviewCampaignPayoutBatch200Response {
   public static final String JSON_PROPERTY_PAYOUT_COUNT = "payoutCount";
   @javax.annotation.Nonnull

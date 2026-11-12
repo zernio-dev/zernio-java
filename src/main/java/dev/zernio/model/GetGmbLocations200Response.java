@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetGmbLocations200Response.JSON_PROPERTY_SELECTED_LOCATION_ID,
   GetGmbLocations200Response.JSON_PROPERTY_CACHED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T16:32:01.468174786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T16:44:49.747775867Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGmbLocations200Response {
   public static final String JSON_PROPERTY_LOCATIONS = "locations";
   @javax.annotation.Nullable

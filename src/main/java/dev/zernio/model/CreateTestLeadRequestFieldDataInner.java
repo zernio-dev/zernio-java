@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateTestLeadRequestFieldDataInner.JSON_PROPERTY_NAME,
   CreateTestLeadRequestFieldDataInner.JSON_PROPERTY_VALUES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T16:32:01.468174786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T16:44:49.747775867Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateTestLeadRequestFieldDataInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
