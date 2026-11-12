@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.590.2
+  version: 1.593.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -13816,6 +13816,20 @@ paths:
           type: boolean
         style: form
       - description: |
+          Google Business only (`platform=googlebusiness`); any other platform answers 400. Lets a Google account with no Business Profile location finish the connect instead of ending with `error=no_google_locations`.
+
+          The selection step (`step=select_location`, or the hosted page) then lists no locations. Call `POST /v1/connect/googlebusiness/select-location` without `locationId` or `locations` to connect the account with no location (`needsLocation: true`).
+
+          Without it, a sign-in that lists no location still ends with `no_google_locations`. The marker travels in the redirect_url we hand you, so pass that URL back unchanged in headless mode.
+        explode: true
+        in: query
+        name: allowNoLocation
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: |
           Your custom redirect URL after the connection completes. It MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback). A relative path is rejected with 400 `INVALID_REDIRECT_URL`.
 
           **Exit notice:** when `redirect_url` is an http(s) URL on another site (anything but zernio.com), every redirect of the flow lands first on `https://zernio.com/connect/continue?to=<your URL>`, a Zernio page that names your site and continues to it with one click. All params below reach your URL unchanged.
@@ -17413,6 +17427,94 @@ paths:
       summary: Get attribute metadata
       tags:
       - GMB Attributes
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/gmb-categories:
+    get:
+      description: |
+        Lists the business categories Google accepts for a region, localized to `languageCode`.
+        Use the returned `name` (e.g. `categories/gcid:afghani_restaurant`) as the primary category when creating or updating a location.
+
+        Not location-scoped: works for a Google Business Profile account that has no location yet.
+
+        `query` matches only the START of the display name in `languageCode` (`Restaurante` returns `Restaurante afgano`, but `afgano` returns nothing). Results are paginated with `nextPageToken`, 100 per page.
+      operationId: listGoogleBusinessCategories
+      parameters:
+      - description: The Zernio account ID (from /v1/accounts)
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "CLDR region code the categories are relevant for (e.g. \"US\"\
+          , \"ES\")."
+        explode: true
+        in: query
+        name: regionCode
+        required: true
+        schema:
+          example: ES
+          type: string
+        style: form
+      - description: "BCP-47 language code the category names are returned in (e.g.\
+          \ \"en\", \"es\")."
+        explode: true
+        in: query
+        name: languageCode
+        required: true
+        schema:
+          example: es
+          type: string
+        style: form
+      - description: Prefix of the localized category display name.
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Pagination token from a previous response's nextPageToken field.
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                accountId: 64f1a2b3c4d5e6f7a8b9c0d1
+                categories:
+                - name: categories/gcid:afghani_restaurant
+                  displayName: Restaurante afgano
+                nextPageToken: CgQIARAB
+              schema:
+                $ref: "#/components/schemas/listGoogleBusinessCategories_200_response"
+          description: Categories fetched successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid request (missing regionCode or languageCode, wrong\
+            \ platform, or Google rejected a field)"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: List Google Business Profile categories
+      tags:
+      - Connect
       x-resource-group: accounts
       x-accepts:
       - application/json
@@ -22827,6 +22929,95 @@ paths:
       x-resource-group: accounts
       x-accepts:
       - application/json
+    post:
+      description: |
+        Creates a Google Business Profile listing under the Google account of this Zernio account and attaches it to this account, so verification, details, posts and reviews work on it right away.
+
+        Only for an account with no location yet (connected with `allowNoLocation`). If the account already has a location, the request is rejected with 409 and nothing is created.
+
+        Search first with `POST /v1/accounts/{accountId}/gmb-locations/search` to avoid duplicating an existing listing, and pick `primaryCategory` from `GET /v1/accounts/{accountId}/gmb-categories`.
+
+        Required by Google: `title`, `languageCode` (immutable once set) and `primaryCategory`. At least one of `storefrontAddress` or `serviceArea` is required. When `storefrontAddress` is absent, at least one of `phone` or `websiteUri` is required. Both rules are checked before Google is called and a violation returns 400 naming the field.
+
+        Set `validateOnly` to check the request with Google without creating anything: the response carries the would-be `location` and nothing is attached.
+
+        A new listing is not on Google Maps until it is verified. `voiceOfMerchantState.hasVoiceOfMerchant` is `false` after creation; start verification with the `gmb-verifications` endpoints. `voiceOfMerchantState` is `null` if Google could not return it, and the listing was still created.
+
+        If Google creates the listing but it cannot be attached, the error message names the created `locations/<id>`; attach it with `PUT /v1/accounts/{accountId}/gmb-locations`.
+      operationId: createGoogleBusinessLocation
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
+      requestBody:
+        content:
+          application/json:
+            example:
+              title: Fontanería Rápida Madrid
+              languageCode: es
+              primaryCategory: categories/gcid:plumber
+              serviceArea:
+                businessType: CUSTOMER_LOCATION_ONLY
+                regionCode: ES
+              websiteUri: https://fontaneria-rapida.example
+            schema:
+              $ref: "#/components/schemas/createGoogleBusinessLocation_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                accountId: 64f1a2b3c4d5e6f7a8b9c0d1
+                location:
+                  id: "1234567890123456789"
+                  name: locations/1234567890123456789
+                  title: Fontanería Rápida Madrid
+                voiceOfMerchantState:
+                  hasVoiceOfMerchant: false
+              schema:
+                $ref: "#/components/schemas/createGoogleBusinessLocation_200_response"
+          description: "Listing created and attached (or validated, when `validateOnly`\
+            \ is true)"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
+        "404":
+          description: Account not found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The account already has a location (code `profile_platform_conflict`),\
+            \ or the same `Idempotency-Key` is still processing; retry after a short\
+            \ backoff."
+        "422":
+          $ref: "#/components/responses/IdempotencyKeyReused"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Google created the listing but it could not be attached to\
+            \ this account. The message names the created `locations/<id>`; attach\
+            \ it with `PUT /v1/accounts/{accountId}/gmb-locations`."
+      summary: Create Google Business Profile location
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
     put:
       description: Switch which Google Business Profile location is active for a connected
         account.
@@ -22875,6 +23066,86 @@ paths:
           description: Another account on this profile is already connected to that
             destination (profile_platform_conflict).
       summary: Update Google Business Profile location
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/gmb-locations/search:
+    post:
+      description: |
+        Searches Google Maps for listings that match a business name or a partial location, so you can check whether the business already exists before creating a new listing.
+
+        Not location-scoped: works for a Google Business Profile account that has no location yet.
+
+        Send exactly one of `query` (free text) or `location` (a partial location with at least `title`). Google returns at most 10 matches and does not paginate.
+
+        `requestAdminRightsUri` is present only when the listing is already claimed; send the business owner there to request admin rights instead of creating a duplicate.
+      operationId: searchGoogleBusinessLocations
+      parameters:
+      - description: The Zernio account ID (from /v1/accounts)
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              byQuery:
+                summary: Free-text search
+                value:
+                  query: Cafe Central Madrid
+              byLocation:
+                summary: Partial location
+                value:
+                  location:
+                    title: Cafe Central
+                    storefrontAddress:
+                      regionCode: ES
+                      locality: Madrid
+                  pageSize: 5
+            schema:
+              $ref: "#/components/schemas/searchGoogleBusinessLocations_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                accountId: 64f1a2b3c4d5e6f7a8b9c0d1
+                googleLocations:
+                - name: googleLocations/ChIJ_example
+                  location:
+                    title: Cafe Central
+                    storefrontAddress:
+                      regionCode: ES
+                      locality: Madrid
+                  requestAdminRightsUri: https://business.google.com/arc/p/ChIJ_example
+              schema:
+                $ref: "#/components/schemas/searchGoogleBusinessLocations_200_response"
+          description: Matching Google listings
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid request (neither or both of query and location, pageSize\
+            \ out of range, wrong platform, or Google rejected a field)"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Read-only API key, or the key is not scoped to this account"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Search existing Google listings
       tags:
       - Connect
       x-resource-group: accounts
@@ -142291,7 +142562,9 @@ components:
           type: string
         locationId:
           description: "The Google Business Profile location ID selected by the user.\
-            \ Send this or locations, not both."
+            \ Send this or locations, not both. Omit both to connect with no location\
+            \ (`needsLocation: true`), allowed only when the connect used allowNoLocation=true,\
+            \ the sign-in listed no locations and it is not a reconnect."
           type: string
         locations:
           description: |
@@ -142306,6 +142579,12 @@ components:
         accountId:
           description: |
             Optional but recommended. The Google Business Profile Account resource name ("accounts/123") that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts.
+          type: string
+        googleAccountId:
+          description: "Only when connecting with no location. The Google Business\
+            \ Profile Account resource name (\"accounts/123\") to attach. Defaults\
+            \ to the sign-in's personal account, else its first account. Must be one\
+            \ of the accounts the sign-in lists, otherwise 400."
           type: string
         pendingDataToken:
           description: Token from the OAuth callback redirect (pendingDataToken query
@@ -142323,6 +142602,7 @@ components:
         accountId: accountId
         selectedLocationName: selectedLocationName
         displayName: displayName
+        needsLocation: true
         selectedLocationId: selectedLocationId
         isActive: true
         platform: googlebusiness
@@ -142343,14 +142623,21 @@ components:
           type: boolean
         selectedLocationName:
           description: "Human-readable location display name, NOT a resource name.\
-            \ Do not use it to build API paths."
+            \ Do not use it to build API paths. Null when connected with no location."
+          nullable: true
           type: string
         selectedLocationId:
           description: "Bare Google Business Profile location id. Combine with the\
             \ Google Business Profile account id as accounts/{gbpAccountId}/locations/{selectedLocationId}\
             \ to form the location resource names that gmb-reviews/batch expects in\
-            \ locationNames."
+            \ locationNames. Null when connected with no location."
+          nullable: true
           type: string
+        needsLocation:
+          description: "Present and true when the account was connected with no location\
+            \ (allowNoLocation=true). Create one with POST /v1/accounts/{accountId}/gmb-locations\
+            \ before using the location endpoints."
+          type: boolean
     selectGoogleBusinessLocation_200_response_failed_inner:
       example:
         code: code
@@ -142382,6 +142669,7 @@ components:
           accountId: accountId
           selectedLocationName: selectedLocationName
           displayName: displayName
+          needsLocation: true
           selectedLocationId: selectedLocationId
           isActive: true
           platform: googlebusiness
@@ -144973,6 +145261,40 @@ components:
           type: array
         nextPageToken:
           description: Present when additional pages of results are available.
+          type: string
+    listGoogleBusinessCategories_200_response_categories_inner:
+      example:
+        displayName: displayName
+        name: name
+      properties:
+        name:
+          description: "Category resource name, e.g. \"categories/gcid:afghani_restaurant\"\
+            ."
+          type: string
+        displayName:
+          description: Category name localized to languageCode.
+          type: string
+    listGoogleBusinessCategories_200_response:
+      example:
+        accountId: accountId
+        success: true
+        nextPageToken: nextPageToken
+        categories:
+        - displayName: displayName
+          name: name
+        - displayName: displayName
+          name: name
+      properties:
+        success:
+          type: boolean
+        accountId:
+          type: string
+        categories:
+          items:
+            $ref: "#/components/schemas/listGoogleBusinessCategories_200_response_categories_inner"
+          type: array
+        nextPageToken:
+          description: Present when more categories are available.
           type: string
     getGoogleBusinessAttributes_200_response_attributes_inner_repeatedEnumValue:
       example:
@@ -148939,6 +149261,201 @@ components:
           type: string
         selectedLocation:
           $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+    createGoogleBusinessLocation_request_storefrontAddress:
+      description: Physical address of the business. Required unless serviceArea is
+        provided.
+      properties:
+        regionCode:
+          description: CLDR region code (e.g. "ES").
+          type: string
+        languageCode:
+          type: string
+        postalCode:
+          type: string
+        administrativeArea:
+          type: string
+        locality:
+          type: string
+        addressLines:
+          items:
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - addressLines
+      - regionCode
+    createGoogleBusinessLocation_request_serviceArea_places_placeInfos_inner:
+      properties:
+        placeName:
+          type: string
+        placeId:
+          type: string
+      required:
+      - placeId
+      - placeName
+    createGoogleBusinessLocation_request_serviceArea_places:
+      properties:
+        placeInfos:
+          items:
+            $ref: "#/components/schemas/createGoogleBusinessLocation_request_serviceArea_places_placeInfos_inner"
+          maxItems: 20
+          type: array
+    createGoogleBusinessLocation_request_serviceArea:
+      description: Areas the business serves. Required unless storefrontAddress is
+        provided.
+      properties:
+        businessType:
+          enum:
+          - CUSTOMER_LOCATION_ONLY
+          - CUSTOMER_AND_BUSINESS_LOCATION
+          type: string
+        regionCode:
+          description: Required when businessType is CUSTOMER_LOCATION_ONLY.
+          type: string
+        places:
+          $ref: "#/components/schemas/createGoogleBusinessLocation_request_serviceArea_places"
+      required:
+      - businessType
+    createGoogleBusinessLocation_request:
+      properties:
+        title:
+          description: Business name as shown on Google.
+          minLength: 1
+          type: string
+        languageCode:
+          description: BCP-47 language of the listing (e.g. "es"). Immutable after
+            creation.
+          minLength: 1
+          type: string
+        primaryCategory:
+          description: Category name from GET gmb-categories (e.g. "categories/gcid:cafe").
+            A bare "gcid:cafe" is also accepted.
+          type: string
+        additionalCategories:
+          description: "Further category names, same format as primaryCategory."
+          items:
+            type: string
+          type: array
+        storefrontAddress:
+          $ref: "#/components/schemas/createGoogleBusinessLocation_request_storefrontAddress"
+        serviceArea:
+          $ref: "#/components/schemas/createGoogleBusinessLocation_request_serviceArea"
+        phone:
+          description: Primary phone number. Required when storefrontAddress is absent
+            and websiteUri is not set.
+          type: string
+        websiteUri:
+          description: Website URL. Required when storefrontAddress is absent and
+            phone is not set.
+          type: string
+        description:
+          description: Business description (Google profile.description).
+          type: string
+        regularHours:
+          additionalProperties: {}
+          description: "Google `regularHours` object (periods with openDay, openTime,\
+            \ closeDay, closeTime)."
+        validateOnly:
+          description: Validate with Google without creating the listing or attaching
+            anything.
+          type: boolean
+      required:
+      - languageCode
+      - primaryCategory
+      - title
+    createGoogleBusinessLocation_200_response:
+      example:
+        accountId: accountId
+        validateOnly: true
+        voiceOfMerchantState:
+          key: ""
+        success: true
+        location:
+          key: ""
+      properties:
+        success:
+          type: boolean
+        accountId:
+          type: string
+        validateOnly:
+          description: Present and true when validateOnly was requested.
+          type: boolean
+        location:
+          additionalProperties: {}
+          description: The location as Google returns it. `id` is present on a real
+            create.
+        voiceOfMerchantState:
+          additionalProperties: {}
+          description: Verification state of the new listing; null if Google could
+            not return it.
+    searchGoogleBusinessLocations_request_location:
+      additionalProperties: {}
+      description: Partial Google Business Information location (e.g. title and storefrontAddress).
+        Mutually exclusive with query.
+      properties:
+        title:
+          minLength: 1
+          type: string
+        storefrontAddress:
+          additionalProperties: true
+          type: object
+      required:
+      - title
+    searchGoogleBusinessLocations_request:
+      properties:
+        query:
+          description: Free-text search (business name and address). Mutually exclusive
+            with location.
+          minLength: 1
+          type: string
+        location:
+          $ref: "#/components/schemas/searchGoogleBusinessLocations_request_location"
+        pageSize:
+          description: Maximum matches to return. Google defaults to 3.
+          maximum: 10
+          minimum: 1
+          type: integer
+    searchGoogleBusinessLocations_200_response_googleLocations_inner:
+      example:
+        requestAdminRightsUri: requestAdminRightsUri
+        name: name
+        location:
+          key: ""
+      properties:
+        name:
+          description: "Google location resource name, e.g. \"googleLocations/ChIJ...\"\
+            ."
+          type: string
+        location:
+          additionalProperties: {}
+          description: "The matched location as Google returns it (title, storefrontAddress,\
+            \ categories, ...)."
+        requestAdminRightsUri:
+          description: Present only when the listing is already claimed. Link to request
+            admin rights.
+          type: string
+    searchGoogleBusinessLocations_200_response:
+      example:
+        accountId: accountId
+        googleLocations:
+        - requestAdminRightsUri: requestAdminRightsUri
+          name: name
+          location:
+            key: ""
+        - requestAdminRightsUri: requestAdminRightsUri
+          name: name
+          location:
+            key: ""
+        success: true
+      properties:
+        success:
+          type: boolean
+        accountId:
+          type: string
+        googleLocations:
+          items:
+            $ref: "#/components/schemas/searchGoogleBusinessLocations_200_response_googleLocations_inner"
+          type: array
     assignGoogleBusinessLocation_request:
       properties:
         profileId:
