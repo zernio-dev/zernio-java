@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.596.0
+  version: 1.596.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -25976,8 +25976,9 @@ paths:
       x-accepts:
       - application/json
     get:
-      description: Retrieve all configured webhooks for the authenticated user. Supports
-        up to 50 webhooks per user.
+      description: "Retrieve all configured webhooks for the authenticated user. Supports\
+        \ up to 50 webhooks per user. A profile-scoped API key, or a team member limited\
+        \ to specific profiles, gets 403."
       operationId: getWebhookSettings
       responses:
         "200":
@@ -26228,6 +26229,8 @@ paths:
       description: |
         Retrieve recorded webhook delivery attempts for the authenticated user, most recent first.
 
+        A profile-scoped API key, or a team member limited to specific profiles, gets 403.
+
         Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination.
 
         ### Restricted keys
@@ -26344,6 +26347,8 @@ paths:
         the payload is gone and the request fails with a 422. Replays run the same
         resource-group checks as live delivery, against both the key's groups and the
         subscription's `disabledResourceGroups`.
+
+        A profile-scoped API key, or a team member limited to specific profiles, gets 403.
       operationId: redeliverWebhookEvent
       requestBody:
         content:
@@ -26403,6 +26408,8 @@ paths:
     post:
       description: |
         Send a test webhook to verify your endpoint is configured correctly. The test payload includes event: "webhook.test" to distinguish it from real events.
+
+        A profile-scoped API key, or a team member limited to specific profiles, gets 403.
 
         ### Sample payload for a specific event
 
