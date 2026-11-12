@@ -14063,8 +14063,8 @@ paths:
           - **Copy**: `heading` (up to 120 characters); `trustLine`, `consentLine` and `statusLine` (up to 200 each, `statusLine` being the line above the button); `buttonLabel` (up to 30, the label of the link the button becomes if the redirect stalls).
           - **Closing page** (shown when there is no `redirect_url`): `successHeading` and `errorHeading` (up to 120), `successBody` and `errorBody` (up to 200). All copy may contain the placeholders `{brand}` and `{platform}`.
           - **Colors**: `primaryColor` (the button), `accentColor` (the header gradient, built as a scale of that colour, and the icons), `pageColor`, `cardColor` and `textColor`, all as `#RRGGBB`.
-          - **Style**: `cornerRadius` as an integer from 0 to 24 (pixels); `font` as `sans`, `serif` or `mono`; `bannerStyle` as `halftone` (default), `solid` (a flat tint of `accentColor`) or `plain` (no banner fill).
-          - **Icons**: `trustLineIcon` (default `shield`) and `consentLineIcon` (default `link`), each one of `shield`, `lock`, `link`, `check`, `user`, `sparkles` or `none`.
+          - **Style**: `cornerRadius` as an integer from 0 to 24 (pixels); `font` as `sans`, `serif` or `mono`; `bannerStyle` as `waves` (default, halftone waves in `accentColor`), `halftone` (dots in shades of `accentColor` blooming from the corners), `solid` (a flat tint of `accentColor`) or `plain` (no banner fill).
+          - **Icons**: `trustLineIcon` (default `shield`) and `consentLineIcon` (default `user`), each one of `shield`, `lock`, `link`, `check`, `user`, `sparkles` or `none`.
           - **Visibility**: `hide`, an array of any of `heading`, `trustLine`, `consentLine`, `statusLine`, `successBody` and `errorBody`, removes those lines from the screens.
           - **Links**: `termsUrl` and `privacyUrl` (https, up to 2048 characters) add small Terms and Privacy links at the bottom of every hosted screen.
 
@@ -125430,9 +125430,9 @@ components:
       type: array
     AdRuleFilters:
       description: "Narrows the objects the rule checks. Every filter must hold. A\
-        \ campaign rule reads `name`, `campaign_id`, `goal`, `days_live` and `budget_level`;\
-        \ an ad set rule also `campaign_name` and `adset_id`; an ad rule also `adset_name`\
-        \ and `ad_id`."
+        \ campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`\
+        \ and `budget_level`; an ad set rule all but `days_since_change`, plus `campaign_name`\
+        \ and `adset_id`; an ad rule also `adset_name` and `ad_id`."
       items:
         $ref: "#/components/schemas/AdRuleFilters_inner"
       maxItems: 10
@@ -125722,6 +125722,7 @@ components:
       - $ref: "#/components/schemas/AutomationAdFilter_oneOf_1"
       - $ref: "#/components/schemas/AutomationAdFilter_oneOf_2"
       - $ref: "#/components/schemas/AutomationAdFilter_oneOf_3"
+      - $ref: "#/components/schemas/AutomationAdFilter_oneOf_4"
     AutomationSubjects:
       additionalProperties: {}
       description: "What an ad rule checks, and where."
@@ -128525,9 +128526,9 @@ components:
           type: array
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live` and\
-            \ `budget_level`; an ad set rule also `campaign_name` and `adset_id`;\
-            \ an ad rule also `adset_name` and `ad_id`."
+            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`\
+            \ and `budget_level`; an ad set rule all but `days_since_change`, plus\
+            \ `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -179046,9 +179047,9 @@ components:
           type: array
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live` and\
-            \ `budget_level`; an ad set rule also `campaign_name` and `adset_id`;\
-            \ an ad rule also `adset_name` and `ad_id`."
+            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`\
+            \ and `budget_level`; an ad set rule all but `days_since_change`, plus\
+            \ `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -179691,9 +179692,9 @@ components:
           type: array
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live` and\
-            \ `budget_level`; an ad set rule also `campaign_name` and `adset_id`;\
-            \ an ad rule also `adset_name` and `ad_id`."
+            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`\
+            \ and `budget_level`; an ad set rule all but `days_since_change`, plus\
+            \ `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -228495,9 +228496,9 @@ components:
           type: string
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live` and\
-            \ `budget_level`; an ad set rule also `campaign_name` and `adset_id`;\
-            \ an ad rule also `adset_name` and `ad_id`."
+            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`\
+            \ and `budget_level`; an ad set rule all but `days_since_change`, plus\
+            \ `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -228610,12 +228611,47 @@ components:
       - op
       - value
       title: Days live
+    Days_since_change:
+      description: |
+        Days since the campaign's budget, bidding, status or conversion goal last changed, on the campaign or, on Meta, one of its ad sets. Read from the platform's change history, Meta and Google only.
+
+        A campaign with no such change in the history passes `>=` and fails `<`. Google records an edit of conversion goals as a campaign update naming no field, so `goal` reads those.
+
+        On Google, a change to a shared (portfolio) bid strategy does not count as a `bidding` change of its campaigns.
+      properties:
+        field:
+          enum:
+          - days_since_change
+          type: string
+        change:
+          enum:
+          - budget
+          - bidding
+          - status
+          - goal
+          type: string
+        op:
+          enum:
+          - '>='
+          - <
+          type: string
+        value:
+          maximum: 28
+          minimum: 1
+          type: integer
+      required:
+      - change
+      - field
+      - op
+      - value
+      title: Days since change
     AdRuleFilters_inner:
       oneOf:
       - $ref: "#/components/schemas/Name_or_goal"
       - $ref: "#/components/schemas/Ids"
       - $ref: "#/components/schemas/Budget_level"
       - $ref: "#/components/schemas/Days_live"
+      - $ref: "#/components/schemas/Days_since_change"
     AdRuleSchedule_times_inner:
       example:
         at: 09:00
@@ -228859,6 +228895,37 @@ components:
       - op
       - value
     AutomationAdFilter_oneOf_3:
+      additionalProperties: false
+      description: "Days since the campaign's budget, bidding, status or goal last\
+        \ changed, from the platform's change history. Campaign rules on Meta and\
+        \ Google only."
+      properties:
+        field:
+          enum:
+          - days_since_change
+          type: string
+        change:
+          enum:
+          - budget
+          - bidding
+          - status
+          - goal
+          type: string
+        op:
+          enum:
+          - '>='
+          - <
+          type: string
+        value:
+          maximum: 28
+          minimum: 1
+          type: integer
+      required:
+      - change
+      - field
+      - op
+      - value
+    AutomationAdFilter_oneOf_4:
       additionalProperties: false
       description: "Where the budget sits: on the campaign (Meta CBO, every Google\
         \ campaign) or on each ad set."

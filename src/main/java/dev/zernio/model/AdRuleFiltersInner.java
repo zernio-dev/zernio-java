@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BudgetLevel;
 import dev.zernio.model.DaysLive;
+import dev.zernio.model.DaysSinceChange;
 import dev.zernio.model.Ids;
 import dev.zernio.model.NameOrGoal;
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:24:06.469719130Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:29:48.989988954Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = AdRuleFiltersInner.AdRuleFiltersInnerDeserializer.class)
 @JsonSerialize(using = AdRuleFiltersInner.AdRuleFiltersInnerSerializer.class)
 public class AdRuleFiltersInner extends AbstractOpenApiSchema {
@@ -147,6 +148,32 @@ public class AdRuleFiltersInner extends AbstractOpenApiSchema {
                 log.log(Level.FINER, "Input data does not match schema 'DaysLive'", e);
             }
 
+            // deserialize DaysSinceChange
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (DaysSinceChange.class.equals(Integer.class) || DaysSinceChange.class.equals(Long.class) || DaysSinceChange.class.equals(Float.class) || DaysSinceChange.class.equals(Double.class) || DaysSinceChange.class.equals(Boolean.class) || DaysSinceChange.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((DaysSinceChange.class.equals(Integer.class) || DaysSinceChange.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((DaysSinceChange.class.equals(Float.class) || DaysSinceChange.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (DaysSinceChange.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (DaysSinceChange.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(DaysSinceChange.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'DaysSinceChange'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'DaysSinceChange'", e);
+            }
+
             // deserialize Ids
             try {
                 boolean attemptParsing = true;
@@ -233,6 +260,11 @@ public class AdRuleFiltersInner extends AbstractOpenApiSchema {
         setActualInstance(o);
     }
 
+    public AdRuleFiltersInner(DaysSinceChange o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
     public AdRuleFiltersInner(Ids o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
@@ -246,6 +278,7 @@ public class AdRuleFiltersInner extends AbstractOpenApiSchema {
     static {
         schemas.put("BudgetLevel", BudgetLevel.class);
         schemas.put("DaysLive", DaysLive.class);
+        schemas.put("DaysSinceChange", DaysSinceChange.class);
         schemas.put("Ids", Ids.class);
         schemas.put("NameOrGoal", NameOrGoal.class);
         JSON.registerDescendants(AdRuleFiltersInner.class, Collections.unmodifiableMap(schemas));
@@ -259,7 +292,7 @@ public class AdRuleFiltersInner extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * BudgetLevel, DaysLive, Ids, NameOrGoal
+     * BudgetLevel, DaysLive, DaysSinceChange, Ids, NameOrGoal
      *
      * It could be an instance of the 'oneOf' schemas.
      * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
@@ -276,6 +309,11 @@ public class AdRuleFiltersInner extends AbstractOpenApiSchema {
             return;
         }
 
+        if (JSON.isInstanceOf(DaysSinceChange.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
         if (JSON.isInstanceOf(Ids.class, instance, new HashSet<Class<?>>())) {
             super.setActualInstance(instance);
             return;
@@ -286,14 +324,14 @@ public class AdRuleFiltersInner extends AbstractOpenApiSchema {
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be BudgetLevel, DaysLive, Ids, NameOrGoal");
+        throw new RuntimeException("Invalid instance type. Must be BudgetLevel, DaysLive, DaysSinceChange, Ids, NameOrGoal");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * BudgetLevel, DaysLive, Ids, NameOrGoal
+     * BudgetLevel, DaysLive, DaysSinceChange, Ids, NameOrGoal
      *
-     * @return The actual instance (BudgetLevel, DaysLive, Ids, NameOrGoal)
+     * @return The actual instance (BudgetLevel, DaysLive, DaysSinceChange, Ids, NameOrGoal)
      */
     @Override
     public Object getActualInstance() {
@@ -320,6 +358,17 @@ public class AdRuleFiltersInner extends AbstractOpenApiSchema {
      */
     public DaysLive getDaysLive() throws ClassCastException {
         return (DaysLive)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `DaysSinceChange`. If the actual instance is not `DaysSinceChange`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `DaysSinceChange`
+     * @throws ClassCastException if the instance is not `DaysSinceChange`
+     */
+    public DaysSinceChange getDaysSinceChange() throws ClassCastException {
+        return (DaysSinceChange)super.getActualInstance();
     }
 
     /**
@@ -399,6 +448,12 @@ public class AdRuleFiltersInner extends AbstractOpenApiSchema {
     if (getActualInstance() instanceof DaysLive) {
         if (getActualInstance() != null) {
           joiner.add(((DaysLive)getActualInstance()).toUrlQueryString(prefix + "one_of_3" + suffix));
+        }
+        return joiner.toString();
+    }
+    if (getActualInstance() instanceof DaysSinceChange) {
+        if (getActualInstance() != null) {
+          joiner.add(((DaysSinceChange)getActualInstance()).toUrlQueryString(prefix + "one_of_4" + suffix));
         }
         return joiner.toString();
     }

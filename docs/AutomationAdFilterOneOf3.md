@@ -2,15 +2,16 @@
 
 # AutomationAdFilterOneOf3
 
-Where the budget sits: on the campaign (Meta CBO, every Google campaign) or on each ad set.
+Days since the campaign's budget, bidding, status or goal last changed, from the platform's change history. Campaign rules on Meta and Google only.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**field** | [**FieldEnum**](#FieldEnum) |  |  |
+|**change** | [**ChangeEnum**](#ChangeEnum) |  |  |
 |**op** | [**OpEnum**](#OpEnum) |  |  |
-|**value** | [**ValueEnum**](#ValueEnum) |  |  |
+|**value** | **Integer** |  |  |
 
 
 
@@ -18,7 +19,18 @@ Where the budget sits: on the campaign (Meta CBO, every Google campaign) or on e
 
 | Name | Value |
 |---- | -----|
-| BUDGET_LEVEL | &quot;budget_level&quot; |
+| DAYS_SINCE_CHANGE | &quot;days_since_change&quot; |
+
+
+
+## Enum: ChangeEnum
+
+| Name | Value |
+|---- | -----|
+| BUDGET | &quot;budget&quot; |
+| BIDDING | &quot;bidding&quot; |
+| STATUS | &quot;status&quot; |
+| GOAL | &quot;goal&quot; |
 
 
 
@@ -26,16 +38,8 @@ Where the budget sits: on the campaign (Meta CBO, every Google campaign) or on e
 
 | Name | Value |
 |---- | -----|
-| EQUALS | &quot;equals&quot; |
-
-
-
-## Enum: ValueEnum
-
-| Name | Value |
-|---- | -----|
-| CAMPAIGN | &quot;campaign&quot; |
-| ADSET | &quot;adset&quot; |
+| GREATER_THAN_OR_EQUAL_TO | &quot;&gt;&#x3D;&quot; |
+| LESS_THAN | &quot;&lt;&quot; |
 
 
 

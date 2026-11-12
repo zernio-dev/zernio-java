@@ -28,6 +28,7 @@ import dev.zernio.model.AutomationAdFilterOneOf;
 import dev.zernio.model.AutomationAdFilterOneOf1;
 import dev.zernio.model.AutomationAdFilterOneOf2;
 import dev.zernio.model.AutomationAdFilterOneOf3;
+import dev.zernio.model.AutomationAdFilterOneOf4;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,7 +59,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:24:06.469719130Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:29:48.989988954Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = AutomationAdFilter.AutomationAdFilterDeserializer.class)
 @JsonSerialize(using = AutomationAdFilter.AutomationAdFilterSerializer.class)
 public class AutomationAdFilter extends AbstractOpenApiSchema {
@@ -199,6 +200,32 @@ public class AutomationAdFilter extends AbstractOpenApiSchema {
                 log.log(Level.FINER, "Input data does not match schema 'AutomationAdFilterOneOf3'", e);
             }
 
+            // deserialize AutomationAdFilterOneOf4
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (AutomationAdFilterOneOf4.class.equals(Integer.class) || AutomationAdFilterOneOf4.class.equals(Long.class) || AutomationAdFilterOneOf4.class.equals(Float.class) || AutomationAdFilterOneOf4.class.equals(Double.class) || AutomationAdFilterOneOf4.class.equals(Boolean.class) || AutomationAdFilterOneOf4.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((AutomationAdFilterOneOf4.class.equals(Integer.class) || AutomationAdFilterOneOf4.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((AutomationAdFilterOneOf4.class.equals(Float.class) || AutomationAdFilterOneOf4.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (AutomationAdFilterOneOf4.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (AutomationAdFilterOneOf4.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(AutomationAdFilterOneOf4.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'AutomationAdFilterOneOf4'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'AutomationAdFilterOneOf4'", e);
+            }
+
             if (match == 1) {
                 AutomationAdFilter ret = new AutomationAdFilter();
                 ret.setActualInstance(deserialized);
@@ -243,11 +270,17 @@ public class AutomationAdFilter extends AbstractOpenApiSchema {
         setActualInstance(o);
     }
 
+    public AutomationAdFilter(AutomationAdFilterOneOf4 o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
     static {
         schemas.put("AutomationAdFilterOneOf", AutomationAdFilterOneOf.class);
         schemas.put("AutomationAdFilterOneOf1", AutomationAdFilterOneOf1.class);
         schemas.put("AutomationAdFilterOneOf2", AutomationAdFilterOneOf2.class);
         schemas.put("AutomationAdFilterOneOf3", AutomationAdFilterOneOf3.class);
+        schemas.put("AutomationAdFilterOneOf4", AutomationAdFilterOneOf4.class);
         JSON.registerDescendants(AutomationAdFilter.class, Collections.unmodifiableMap(schemas));
     }
 
@@ -259,7 +292,7 @@ public class AutomationAdFilter extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * AutomationAdFilterOneOf, AutomationAdFilterOneOf1, AutomationAdFilterOneOf2, AutomationAdFilterOneOf3
+     * AutomationAdFilterOneOf, AutomationAdFilterOneOf1, AutomationAdFilterOneOf2, AutomationAdFilterOneOf3, AutomationAdFilterOneOf4
      *
      * It could be an instance of the 'oneOf' schemas.
      * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
@@ -286,14 +319,19 @@ public class AutomationAdFilter extends AbstractOpenApiSchema {
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be AutomationAdFilterOneOf, AutomationAdFilterOneOf1, AutomationAdFilterOneOf2, AutomationAdFilterOneOf3");
+        if (JSON.isInstanceOf(AutomationAdFilterOneOf4.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be AutomationAdFilterOneOf, AutomationAdFilterOneOf1, AutomationAdFilterOneOf2, AutomationAdFilterOneOf3, AutomationAdFilterOneOf4");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * AutomationAdFilterOneOf, AutomationAdFilterOneOf1, AutomationAdFilterOneOf2, AutomationAdFilterOneOf3
+     * AutomationAdFilterOneOf, AutomationAdFilterOneOf1, AutomationAdFilterOneOf2, AutomationAdFilterOneOf3, AutomationAdFilterOneOf4
      *
-     * @return The actual instance (AutomationAdFilterOneOf, AutomationAdFilterOneOf1, AutomationAdFilterOneOf2, AutomationAdFilterOneOf3)
+     * @return The actual instance (AutomationAdFilterOneOf, AutomationAdFilterOneOf1, AutomationAdFilterOneOf2, AutomationAdFilterOneOf3, AutomationAdFilterOneOf4)
      */
     @Override
     public Object getActualInstance() {
@@ -342,6 +380,17 @@ public class AutomationAdFilter extends AbstractOpenApiSchema {
      */
     public AutomationAdFilterOneOf3 getAutomationAdFilterOneOf3() throws ClassCastException {
         return (AutomationAdFilterOneOf3)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `AutomationAdFilterOneOf4`. If the actual instance is not `AutomationAdFilterOneOf4`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `AutomationAdFilterOneOf4`
+     * @throws ClassCastException if the instance is not `AutomationAdFilterOneOf4`
+     */
+    public AutomationAdFilterOneOf4 getAutomationAdFilterOneOf4() throws ClassCastException {
+        return (AutomationAdFilterOneOf4)super.getActualInstance();
     }
 
 
@@ -399,6 +448,12 @@ public class AutomationAdFilter extends AbstractOpenApiSchema {
     if (getActualInstance() instanceof AutomationAdFilterOneOf3) {
         if (getActualInstance() != null) {
           joiner.add(((AutomationAdFilterOneOf3)getActualInstance()).toUrlQueryString(prefix + "one_of_3" + suffix));
+        }
+        return joiner.toString();
+    }
+    if (getActualInstance() instanceof AutomationAdFilterOneOf4) {
+        if (getActualInstance() != null) {
+          joiner.add(((AutomationAdFilterOneOf4)getActualInstance()).toUrlQueryString(prefix + "one_of_4" + suffix));
         }
         return joiner.toString();
     }

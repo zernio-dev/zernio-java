@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   CreatorCampaignAdResultsCreatorsInner.JSON_PROPERTY_POSTS,
   CreatorCampaignAdResultsCreatorsInner.JSON_PROPERTY_ADS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:24:06.469719130Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:29:48.989988954Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatorCampaignAdResultsCreatorsInner {
   public static final String JSON_PROPERTY_SPEND_CENTS = "spendCents";
   @javax.annotation.Nonnull

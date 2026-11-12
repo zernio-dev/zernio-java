@@ -253,6 +253,7 @@ docs/AutomationAdFilterOneOf.md
 docs/AutomationAdFilterOneOf1.md
 docs/AutomationAdFilterOneOf2.md
 docs/AutomationAdFilterOneOf3.md
+docs/AutomationAdFilterOneOf4.md
 docs/AutomationAlert.md
 docs/AutomationApproval.md
 docs/AutomationApprovalChange.md
@@ -1081,6 +1082,7 @@ docs/CustomConversion.md
 docs/CustomConversionResult.md
 docs/CustomFieldsApi.md
 docs/DaysLive.md
+docs/DaysSinceChange.md
 docs/DeactivateSmsRegistration200Response.md
 docs/DeclareEmailSendAs200Response.md
 docs/DeclareEmailSendAsRequest.md
@@ -4117,6 +4119,7 @@ src/main/java/dev/zernio/model/AutomationAdFilterOneOf.java
 src/main/java/dev/zernio/model/AutomationAdFilterOneOf1.java
 src/main/java/dev/zernio/model/AutomationAdFilterOneOf2.java
 src/main/java/dev/zernio/model/AutomationAdFilterOneOf3.java
+src/main/java/dev/zernio/model/AutomationAdFilterOneOf4.java
 src/main/java/dev/zernio/model/AutomationAlert.java
 src/main/java/dev/zernio/model/AutomationApproval.java
 src/main/java/dev/zernio/model/AutomationApprovalChange.java
@@ -4926,6 +4929,7 @@ src/main/java/dev/zernio/model/CursorPagination.java
 src/main/java/dev/zernio/model/CustomConversion.java
 src/main/java/dev/zernio/model/CustomConversionResult.java
 src/main/java/dev/zernio/model/DaysLive.java
+src/main/java/dev/zernio/model/DaysSinceChange.java
 src/main/java/dev/zernio/model/DeactivateSmsRegistration200Response.java
 src/main/java/dev/zernio/model/DeclareEmailSendAs200Response.java
 src/main/java/dev/zernio/model/DeclareEmailSendAsRequest.java
@@ -7565,4 +7569,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/UpdateForwardingRuleRequestTest.java
+src/test/java/dev/zernio/model/AutomationAdFilterOneOf4Test.java
+src/test/java/dev/zernio/model/DaysSinceChangeTest.java

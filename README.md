@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.584.0
 
-- Build date: 2026-11-12T10:24:06.469719130Z[Etc/UTC]
+- Build date: 2026-11-12T10:29:48.989988954Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2899,6 +2899,7 @@ Class | Method | HTTP request | Description
  - [AutomationAdFilterOneOf1](docs/AutomationAdFilterOneOf1.md)
  - [AutomationAdFilterOneOf2](docs/AutomationAdFilterOneOf2.md)
  - [AutomationAdFilterOneOf3](docs/AutomationAdFilterOneOf3.md)
+ - [AutomationAdFilterOneOf4](docs/AutomationAdFilterOneOf4.md)
  - [AutomationAlert](docs/AutomationAlert.md)
  - [AutomationApproval](docs/AutomationApproval.md)
  - [AutomationApprovalChange](docs/AutomationApprovalChange.md)
@@ -3708,6 +3709,7 @@ Class | Method | HTTP request | Description
  - [CustomConversion](docs/CustomConversion.md)
  - [CustomConversionResult](docs/CustomConversionResult.md)
  - [DaysLive](docs/DaysLive.md)
+ - [DaysSinceChange](docs/DaysSinceChange.md)
  - [DeactivateSmsRegistration200Response](docs/DeactivateSmsRegistration200Response.md)
  - [DeclareEmailSendAs200Response](docs/DeclareEmailSendAs200Response.md)
  - [DeclareEmailSendAsRequest](docs/DeclareEmailSendAsRequest.md)

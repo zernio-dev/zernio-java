@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ListCalendarEventInstances200ResponsePagination.JSON_PROPERTY_HAS_MORE,
   ListCalendarEventInstances200ResponsePagination.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:24:06.469719130Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:29:48.989988954Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCalendarEventInstances200ResponsePagination {
   public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
   @javax.annotation.Nullable

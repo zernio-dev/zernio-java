@@ -30,20 +30,21 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Where the budget sits: on the campaign (Meta CBO, every Google campaign) or on each ad set.
+ * Days since the campaign&#39;s budget, bidding, status or goal last changed, from the platform&#39;s change history. Campaign rules on Meta and Google only.
  */
 @JsonPropertyOrder({
   AutomationAdFilterOneOf3.JSON_PROPERTY_FIELD,
+  AutomationAdFilterOneOf3.JSON_PROPERTY_CHANGE,
   AutomationAdFilterOneOf3.JSON_PROPERTY_OP,
   AutomationAdFilterOneOf3.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:24:06.469719130Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T10:29:48.989988954Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationAdFilterOneOf3 {
   /**
    * Gets or Sets field
    */
   public enum FieldEnum {
-    BUDGET_LEVEL(String.valueOf("budget_level"));
+    DAYS_SINCE_CHANGE(String.valueOf("days_since_change"));
 
     private String value;
 
@@ -77,10 +78,55 @@ public class AutomationAdFilterOneOf3 {
   private FieldEnum field;
 
   /**
+   * Gets or Sets change
+   */
+  public enum ChangeEnum {
+    BUDGET(String.valueOf("budget")),
+    
+    BIDDING(String.valueOf("bidding")),
+    
+    STATUS(String.valueOf("status")),
+    
+    GOAL(String.valueOf("goal"));
+
+    private String value;
+
+    ChangeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ChangeEnum fromValue(String value) {
+      for (ChangeEnum b : ChangeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CHANGE = "change";
+  @javax.annotation.Nonnull
+  private ChangeEnum change;
+
+  /**
    * Gets or Sets op
    */
   public enum OpEnum {
-    EQUALS(String.valueOf("equals"));
+    GREATER_THAN_OR_EQUAL_TO(String.valueOf(">=")),
+    
+    LESS_THAN(String.valueOf("<"));
 
     private String value;
 
@@ -113,44 +159,9 @@ public class AutomationAdFilterOneOf3 {
   @javax.annotation.Nonnull
   private OpEnum op;
 
-  /**
-   * Gets or Sets value
-   */
-  public enum ValueEnum {
-    CAMPAIGN(String.valueOf("campaign")),
-    
-    ADSET(String.valueOf("adset"));
-
-    private String value;
-
-    ValueEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ValueEnum fromValue(String value) {
-      for (ValueEnum b : ValueEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_VALUE = "value";
   @javax.annotation.Nonnull
-  private ValueEnum value;
+  private Integer value;
 
   public AutomationAdFilterOneOf3() { 
   }
@@ -179,6 +190,30 @@ public class AutomationAdFilterOneOf3 {
   }
 
 
+  public AutomationAdFilterOneOf3 change(@javax.annotation.Nonnull ChangeEnum change) {
+    this.change = change;
+    return this;
+  }
+
+  /**
+   * Get change
+   * @return change
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_CHANGE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public ChangeEnum getChange() {
+    return change;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CHANGE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setChange(@javax.annotation.Nonnull ChangeEnum change) {
+    this.change = change;
+  }
+
+
   public AutomationAdFilterOneOf3 op(@javax.annotation.Nonnull OpEnum op) {
     this.op = op;
     return this;
@@ -203,26 +238,28 @@ public class AutomationAdFilterOneOf3 {
   }
 
 
-  public AutomationAdFilterOneOf3 value(@javax.annotation.Nonnull ValueEnum value) {
+  public AutomationAdFilterOneOf3 value(@javax.annotation.Nonnull Integer value) {
     this.value = value;
     return this;
   }
 
   /**
    * Get value
+   * minimum: 1
+   * maximum: 28
    * @return value
    */
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_VALUE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public ValueEnum getValue() {
+  public Integer getValue() {
     return value;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_VALUE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setValue(@javax.annotation.Nonnull ValueEnum value) {
+  public void setValue(@javax.annotation.Nonnull Integer value) {
     this.value = value;
   }
 
@@ -240,13 +277,14 @@ public class AutomationAdFilterOneOf3 {
     }
     AutomationAdFilterOneOf3 automationAdFilterOneOf3 = (AutomationAdFilterOneOf3) o;
     return Objects.equals(this.field, automationAdFilterOneOf3.field) &&
+        Objects.equals(this.change, automationAdFilterOneOf3.change) &&
         Objects.equals(this.op, automationAdFilterOneOf3.op) &&
         Objects.equals(this.value, automationAdFilterOneOf3.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(field, op, value);
+    return Objects.hash(field, change, op, value);
   }
 
   @Override
@@ -254,6 +292,7 @@ public class AutomationAdFilterOneOf3 {
     StringBuilder sb = new StringBuilder();
     sb.append("class AutomationAdFilterOneOf3 {\n");
     sb.append("    field: ").append(toIndentedString(field)).append("\n");
+    sb.append("    change: ").append(toIndentedString(change)).append("\n");
     sb.append("    op: ").append(toIndentedString(op)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
@@ -306,6 +345,11 @@ public class AutomationAdFilterOneOf3 {
     // add `field` to the URL query string
     if (getField() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sfield%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getField()))));
+    }
+
+    // add `change` to the URL query string
+    if (getChange() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%schange%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getChange()))));
     }
 
     // add `op` to the URL query string

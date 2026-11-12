@@ -5,6 +5,7 @@
 ## oneOf schemas
 * [BudgetLevel](BudgetLevel.md)
 * [DaysLive](DaysLive.md)
+* [DaysSinceChange](DaysSinceChange.md)
 * [Ids](Ids.md)
 * [NameOrGoal](NameOrGoal.md)
 
@@ -14,6 +15,7 @@
 import dev.zernio.model.AdRuleFiltersInner;
 import dev.zernio.model.BudgetLevel;
 import dev.zernio.model.DaysLive;
+import dev.zernio.model.DaysSinceChange;
 import dev.zernio.model.Ids;
 import dev.zernio.model.NameOrGoal;
 
@@ -34,6 +36,13 @@ public class Example {
         exampleAdRuleFiltersInner.setActualInstance(exampleDaysLive);
         // to get back the DaysLive set earlier
         DaysLive testDaysLive = (DaysLive) exampleAdRuleFiltersInner.getActualInstance();
+
+        // create a new DaysSinceChange
+        DaysSinceChange exampleDaysSinceChange = new DaysSinceChange();
+        // set AdRuleFiltersInner to DaysSinceChange
+        exampleAdRuleFiltersInner.setActualInstance(exampleDaysSinceChange);
+        // to get back the DaysSinceChange set earlier
+        DaysSinceChange testDaysSinceChange = (DaysSinceChange) exampleAdRuleFiltersInner.getActualInstance();
 
         // create a new Ids
         Ids exampleIds = new Ids();
