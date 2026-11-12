@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.594.0
+- API version: 1.595.0
 
-- Build date: 2026-11-12T13:48:48.380920971Z[Etc/UTC]
+- Build date: 2026-11-12T13:56:20.740196310Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.594.0</version>
+  <version>1.595.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.594.0"
+compile "dev.zernio:zernio-sdk:1.595.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.594.0.jar`
+- `target/zernio-sdk-1.595.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4125,6 +4125,7 @@ Class | Method | HTTP request | Description
  - [GetEvent200ResponseDeliveriesInner](docs/GetEvent200ResponseDeliveriesInner.md)
  - [GetEventsOverview200Response](docs/GetEventsOverview200Response.md)
  - [GetEventsOverview200ResponsePlatformsInner](docs/GetEventsOverview200ResponsePlatformsInner.md)
+ - [GetEventsOverview200ResponseSitesInner](docs/GetEventsOverview200ResponseSitesInner.md)
  - [GetEventsOverview200ResponseSourcesInner](docs/GetEventsOverview200ResponseSourcesInner.md)
  - [GetEventsOverview200ResponseToday](docs/GetEventsOverview200ResponseToday.md)
  - [GetEventsOverview200ResponseWebsite](docs/GetEventsOverview200ResponseWebsite.md)

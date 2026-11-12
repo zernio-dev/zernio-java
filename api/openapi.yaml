@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.594.0
+  version: 1.595.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -203791,6 +203791,22 @@ components:
           items:
             type: string
           type: array
+    getEventsOverview_200_response_sites_inner:
+      example:
+        lastActiveOn: 2000-01-23
+        siteId: siteId
+        hitsToday: 1
+      properties:
+        siteId:
+          type: string
+        hitsToday:
+          description: Hits today.
+          type: integer
+        lastActiveOn:
+          description: The last day in the past 7 with a hit. `null` when none.
+          format: date
+          nullable: true
+          type: string
     getEventsOverview_200_response:
       example:
         website:
@@ -203827,6 +203843,13 @@ components:
           matched: 5
           value: 6.027456183070403
           sent: 1
+        sites:
+        - lastActiveOn: 2000-01-23
+          siteId: siteId
+          hitsToday: 1
+        - lastActiveOn: 2000-01-23
+          siteId: siteId
+          hitsToday: 1
         platforms:
         - accountId: accountId
           lastError: lastError
@@ -203866,6 +203889,12 @@ components:
           type: array
         website:
           $ref: "#/components/schemas/getEventsOverview_200_response_website"
+        sites:
+          description: Each tracking site of the profile with its activity. Hit counts
+            are approximate distinct counts without bots.
+          items:
+            $ref: "#/components/schemas/getEventsOverview_200_response_sites_inner"
+          type: array
     getEvent_200_response_deliveries_inner:
       example:
         accountId: accountId
