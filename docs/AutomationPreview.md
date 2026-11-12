@@ -13,6 +13,7 @@ What an ad rule would do if it ran now. Nothing is changed. Cooldowns and daily 
 |**timezone** | **String** |  |  |
 |**timezoneAssumed** | **Boolean** | True when the ad account timezone is unknown and UTC was used. |  |
 |**currency** | **String** |  |  |
+|**hourlyThrough** | **OffsetDateTime** | Where the hourly windows (&#x60;last_complete_hour&#x60;, &#x60;last_3h&#x60;, &#x60;today_so_far&#x60;) ended: the end of the latest hour a sync has settled. Null when the rule has none or they could not be read. |  [optional] |
 |**evaluated** | **Integer** |  |  |
 |**matched** | **Integer** |  |  |
 |**truncated** | **Boolean** | True when more subjects were judged than &#x60;limit&#x60; lists. |  |

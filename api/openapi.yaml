@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.587.0
+  version: 1.588.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -127035,6 +127035,7 @@ components:
       description: |
         What an ad rule would do if it ran now. Nothing is changed. Cooldowns and daily caps are left out, so a run right after can act on fewer objects.
       example:
+        hourlyThrough: 2000-01-23T04:56:07.000+00:00
         timezone: timezone
         today: 2000-01-23
         subjects:
@@ -127161,6 +127162,13 @@ components:
           description: True when the ad account timezone is unknown and UTC was used.
           type: boolean
         currency:
+          nullable: true
+          type: string
+        hourlyThrough:
+          description: "Where the hourly windows (`last_complete_hour`, `last_3h`,\
+            \ `today_so_far`) ended: the end of the latest hour a sync has settled.\
+            \ Null when the rule has none or they could not be read."
+          format: date-time
           nullable: true
           type: string
         evaluated:
@@ -129009,6 +129017,7 @@ components:
       - name
     AdRuleEvaluation:
       example:
+        hourlyThrough: 2000-01-23T04:56:07.000+00:00
         timezone: timezone
         today: 2000-01-23
         objects:
@@ -129095,6 +129104,13 @@ components:
         currency:
           nullable: true
           type: string
+        hourlyThrough:
+          description: "Where the hourly windows (`last_complete_hour`, `last_3h`,\
+            \ `today_so_far`) ended: the end of the latest hour a sync has settled.\
+            \ Null when the rule has none or they could not be read."
+          format: date-time
+          nullable: true
+          type: string
         matched:
           description: How many objects meet every condition.
           type: integer
@@ -129124,6 +129140,7 @@ components:
           notification:
             reason: reason
             status: done
+          hourlyThrough: 2000-01-23T04:56:07.000+00:00
           timezone: timezone
           today: 2000-01-23
           rule:
@@ -180355,6 +180372,7 @@ components:
             notification:
               reason: reason
               status: done
+            hourlyThrough: 2000-01-23T04:56:07.000+00:00
             timezone: timezone
             today: 2000-01-23
             rule:
@@ -180450,6 +180468,7 @@ components:
             notification:
               reason: reason
               status: done
+            hourlyThrough: 2000-01-23T04:56:07.000+00:00
             timezone: timezone
             today: 2000-01-23
             rule:
@@ -231898,6 +231917,7 @@ components:
         notification:
           reason: reason
           status: done
+        hourlyThrough: 2000-01-23T04:56:07.000+00:00
         timezone: timezone
         today: 2000-01-23
         rule:
@@ -231992,6 +232012,12 @@ components:
         timezoneAssumed:
           type: boolean
         currency:
+          nullable: true
+          type: string
+        hourlyThrough:
+          description: Where the run's hourly windows ended. Absent on runs recorded
+            before November 2026.
+          format: date-time
           nullable: true
           type: string
         matched:
