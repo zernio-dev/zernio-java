@@ -65,5 +65,11 @@
 
 * `ORDERS_READ` (value: `"orders.read"`)
 
+* `ORDERS_REFUND` (value: `"orders.refund"`)
+
+* `ORDERS_CANCEL` (value: `"orders.cancel"`)
+
+* `CUSTOMERS_READ` (value: `"customers.read"`)
+
 
 

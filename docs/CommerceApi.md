@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**addCommerceMarketingEngagementWithHttpInfo**](CommerceApi.md#addCommerceMarketingEngagementWithHttpInfo) | **POST** /v1/commerce/marketing-activities/{remoteId}/engagements | Report daily engagement |
 | [**addCommerceProductImages**](CommerceApi.md#addCommerceProductImages) | **POST** /v1/commerce/products/{productId}/images | Add images |
 | [**addCommerceProductImagesWithHttpInfo**](CommerceApi.md#addCommerceProductImagesWithHttpInfo) | **POST** /v1/commerce/products/{productId}/images | Add images |
+| [**cancelCommerceOrder**](CommerceApi.md#cancelCommerceOrder) | **POST** /v1/commerce/orders/{orderId}/cancel | Cancel an order |
+| [**cancelCommerceOrderWithHttpInfo**](CommerceApi.md#cancelCommerceOrderWithHttpInfo) | **POST** /v1/commerce/orders/{orderId}/cancel | Cancel an order |
 | [**changeCommerceCollectionChannels**](CommerceApi.md#changeCommerceCollectionChannels) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection |
 | [**changeCommerceCollectionChannelsWithHttpInfo**](CommerceApi.md#changeCommerceCollectionChannelsWithHttpInfo) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection |
 | [**changeCommerceCollectionProducts**](CommerceApi.md#changeCommerceCollectionProducts) | **POST** /v1/commerce/collections/{collectionId}/products | Add or remove products in a collection |
@@ -42,6 +44,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createCommerceProductVariantsWithHttpInfo**](CommerceApi.md#createCommerceProductVariantsWithHttpInfo) | **POST** /v1/commerce/products/{productId}/variants | Add variants |
 | [**createCommerceRedirect**](CommerceApi.md#createCommerceRedirect) | **POST** /v1/commerce/redirects | Create a URL redirect |
 | [**createCommerceRedirectWithHttpInfo**](CommerceApi.md#createCommerceRedirectWithHttpInfo) | **POST** /v1/commerce/redirects | Create a URL redirect |
+| [**createCommerceRefund**](CommerceApi.md#createCommerceRefund) | **POST** /v1/commerce/orders/{orderId}/refunds | Refund an order |
+| [**createCommerceRefundWithHttpInfo**](CommerceApi.md#createCommerceRefundWithHttpInfo) | **POST** /v1/commerce/orders/{orderId}/refunds | Refund an order |
 | [**deleteCommerceCatalogSync**](CommerceApi.md#deleteCommerceCatalogSync) | **DELETE** /v1/commerce/catalog-syncs/{syncId} | Stop a catalog sync |
 | [**deleteCommerceCatalogSyncWithHttpInfo**](CommerceApi.md#deleteCommerceCatalogSyncWithHttpInfo) | **DELETE** /v1/commerce/catalog-syncs/{syncId} | Stop a catalog sync |
 | [**deleteCommerceCollection**](CommerceApi.md#deleteCommerceCollection) | **DELETE** /v1/commerce/collections/{collectionId} | Delete a collection |
@@ -74,6 +78,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getCommerceCatalogSyncWithHttpInfo**](CommerceApi.md#getCommerceCatalogSyncWithHttpInfo) | **GET** /v1/commerce/catalog-syncs/{syncId} | Get a catalog sync |
 | [**getCommerceCollection**](CommerceApi.md#getCommerceCollection) | **GET** /v1/commerce/collections/{collectionId} | Get a collection |
 | [**getCommerceCollectionWithHttpInfo**](CommerceApi.md#getCommerceCollectionWithHttpInfo) | **GET** /v1/commerce/collections/{collectionId} | Get a collection |
+| [**getCommerceCustomer**](CommerceApi.md#getCommerceCustomer) | **GET** /v1/commerce/customers/{customerId} | Get a customer |
+| [**getCommerceCustomerWithHttpInfo**](CommerceApi.md#getCommerceCustomerWithHttpInfo) | **GET** /v1/commerce/customers/{customerId} | Get a customer |
 | [**getCommerceDiscount**](CommerceApi.md#getCommerceDiscount) | **GET** /v1/commerce/discounts/{discountId} | Get a discount |
 | [**getCommerceDiscountWithHttpInfo**](CommerceApi.md#getCommerceDiscountWithHttpInfo) | **GET** /v1/commerce/discounts/{discountId} | Get a discount |
 | [**getCommerceMenu**](CommerceApi.md#getCommerceMenu) | **GET** /v1/commerce/menus/{menuId} | Get a navigation menu |
@@ -96,6 +102,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listCommerceCollectionMetafieldsWithHttpInfo**](CommerceApi.md#listCommerceCollectionMetafieldsWithHttpInfo) | **GET** /v1/commerce/collections/{collectionId}/metafields | List collection metafields |
 | [**listCommerceCollections**](CommerceApi.md#listCommerceCollections) | **GET** /v1/commerce/collections | List collections |
 | [**listCommerceCollectionsWithHttpInfo**](CommerceApi.md#listCommerceCollectionsWithHttpInfo) | **GET** /v1/commerce/collections | List collections |
+| [**listCommerceCustomers**](CommerceApi.md#listCommerceCustomers) | **GET** /v1/commerce/customers | List customers |
+| [**listCommerceCustomersWithHttpInfo**](CommerceApi.md#listCommerceCustomersWithHttpInfo) | **GET** /v1/commerce/customers | List customers |
 | [**listCommerceDiscounts**](CommerceApi.md#listCommerceDiscounts) | **GET** /v1/commerce/discounts | List discounts |
 | [**listCommerceDiscountsWithHttpInfo**](CommerceApi.md#listCommerceDiscountsWithHttpInfo) | **GET** /v1/commerce/discounts | List discounts |
 | [**listCommerceInventory**](CommerceApi.md#listCommerceInventory) | **GET** /v1/commerce/inventory | Get a product&#39;s stock |
@@ -630,6 +638,166 @@ ApiResponse<[**CreateCommerceProduct201Response**](CreateCommerceProduct201Respo
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
+## cancelCommerceOrder
+
+> CancelCommerceOrder200Response cancelCommerceOrder(orderId, cancelCommerceOrderRequest)
+
+Cancel an order
+
+Cancels an order, by default refunding it to the original payment methods and restocking it. Needs orders.cancel.  The platform cancels in the background. The call waits a few seconds: &#x60;200&#x60; with &#x60;cancelled: true&#x60; when it finished, &#x60;202&#x60; with &#x60;cancelled: false&#x60; when it is still running (the &#x60;commerce.order.updated&#x60; webhook reports the outcome). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String orderId = "orderId_example"; // String | Platform-native order id.
+        CancelCommerceOrderRequest cancelCommerceOrderRequest = new CancelCommerceOrderRequest(); // CancelCommerceOrderRequest | 
+        try {
+            CancelCommerceOrder200Response result = apiInstance.cancelCommerceOrder(orderId, cancelCommerceOrderRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#cancelCommerceOrder");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderId** | **String**| Platform-native order id. | |
+| **cancelCommerceOrderRequest** | [**CancelCommerceOrderRequest**](CancelCommerceOrderRequest.md)|  | |
+
+### Return type
+
+[**CancelCommerceOrder200Response**](CancelCommerceOrder200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Order cancelled |  -  |
+| **202** | Still cancelling: the order webhook reports when it is done |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted orders.cancel, or the platform has not yet approved Zernio&#39;s access to order and customer data (code insufficient_permissions; the message says which). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or order not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## cancelCommerceOrderWithHttpInfo
+
+> ApiResponse<CancelCommerceOrder200Response> cancelCommerceOrder cancelCommerceOrderWithHttpInfo(orderId, cancelCommerceOrderRequest)
+
+Cancel an order
+
+Cancels an order, by default refunding it to the original payment methods and restocking it. Needs orders.cancel.  The platform cancels in the background. The call waits a few seconds: &#x60;200&#x60; with &#x60;cancelled: true&#x60; when it finished, &#x60;202&#x60; with &#x60;cancelled: false&#x60; when it is still running (the &#x60;commerce.order.updated&#x60; webhook reports the outcome). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String orderId = "orderId_example"; // String | Platform-native order id.
+        CancelCommerceOrderRequest cancelCommerceOrderRequest = new CancelCommerceOrderRequest(); // CancelCommerceOrderRequest | 
+        try {
+            ApiResponse<CancelCommerceOrder200Response> response = apiInstance.cancelCommerceOrderWithHttpInfo(orderId, cancelCommerceOrderRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#cancelCommerceOrder");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderId** | **String**| Platform-native order id. | |
+| **cancelCommerceOrderRequest** | [**CancelCommerceOrderRequest**](CancelCommerceOrderRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CancelCommerceOrder200Response**](CancelCommerceOrder200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Order cancelled |  -  |
+| **202** | Still cancelling: the order webhook reports when it is done |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted orders.cancel, or the platform has not yet approved Zernio&#39;s access to order and customer data (code insufficient_permissions; the message says which). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or order not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
@@ -3116,6 +3284,170 @@ ApiResponse<[**CreateCommerceRedirect201Response**](CreateCommerceRedirect201Res
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
+## createCommerceRefund
+
+> CreateCommerceRefund200Response createCommerceRefund(orderId, createCommerceRefundRequest, idempotencyKey)
+
+Refund an order
+
+Refunds line items, shipping or an amount of money to the buyer&#39;s original payment methods. Needs orders.refund.  - Preview first with &#x60;validateOnly: true&#x60;: it returns what the buyer gets back and to which payments, without refunding anything. - A real refund needs an &#x60;Idempotency-Key&#x60; header (a UUID per refund): a retry with the same key never refunds twice. - Every amount, sent or returned, is in the currency the buyer paid in, the one refunds are made in. Send &#x60;currency&#x60; to have a mismatch refused instead of guessed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String orderId = "orderId_example"; // String | Platform-native order id.
+        CreateCommerceRefundRequest createCommerceRefundRequest = new CreateCommerceRefundRequest(); // CreateCommerceRefundRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Required unless validateOnly is true. A retry with the same key returns the first response and never refunds twice.
+        try {
+            CreateCommerceRefund200Response result = apiInstance.createCommerceRefund(orderId, createCommerceRefundRequest, idempotencyKey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#createCommerceRefund");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderId** | **String**| Platform-native order id. | |
+| **createCommerceRefundRequest** | [**CreateCommerceRefundRequest**](CreateCommerceRefundRequest.md)|  | |
+| **idempotencyKey** | **String**| Required unless validateOnly is true. A retry with the same key returns the first response and never refunds twice. | [optional] |
+
+### Return type
+
+[**CreateCommerceRefund200Response**](CreateCommerceRefund200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | validateOnly: the refund the platform would make |  -  |
+| **201** | Refund created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted orders.refund, or the platform has not yet approved Zernio&#39;s access to order and customer data (code insufficient_permissions; the message says which). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or order not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## createCommerceRefundWithHttpInfo
+
+> ApiResponse<CreateCommerceRefund200Response> createCommerceRefund createCommerceRefundWithHttpInfo(orderId, createCommerceRefundRequest, idempotencyKey)
+
+Refund an order
+
+Refunds line items, shipping or an amount of money to the buyer&#39;s original payment methods. Needs orders.refund.  - Preview first with &#x60;validateOnly: true&#x60;: it returns what the buyer gets back and to which payments, without refunding anything. - A real refund needs an &#x60;Idempotency-Key&#x60; header (a UUID per refund): a retry with the same key never refunds twice. - Every amount, sent or returned, is in the currency the buyer paid in, the one refunds are made in. Send &#x60;currency&#x60; to have a mismatch refused instead of guessed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String orderId = "orderId_example"; // String | Platform-native order id.
+        CreateCommerceRefundRequest createCommerceRefundRequest = new CreateCommerceRefundRequest(); // CreateCommerceRefundRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Required unless validateOnly is true. A retry with the same key returns the first response and never refunds twice.
+        try {
+            ApiResponse<CreateCommerceRefund200Response> response = apiInstance.createCommerceRefundWithHttpInfo(orderId, createCommerceRefundRequest, idempotencyKey);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#createCommerceRefund");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderId** | **String**| Platform-native order id. | |
+| **createCommerceRefundRequest** | [**CreateCommerceRefundRequest**](CreateCommerceRefundRequest.md)|  | |
+| **idempotencyKey** | **String**| Required unless validateOnly is true. A retry with the same key returns the first response and never refunds twice. | [optional] |
+
+### Return type
+
+ApiResponse<[**CreateCommerceRefund200Response**](CreateCommerceRefund200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | validateOnly: the refund the platform would make |  -  |
+| **201** | Refund created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted orders.refund, or the platform has not yet approved Zernio&#39;s access to order and customer data (code insufficient_permissions; the message says which). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or order not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
@@ -5651,6 +5983,164 @@ ApiResponse<[**CreateCommerceCollection201Response**](CreateCommerceCollection20
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
+## getCommerceCustomer
+
+> GetCommerceCustomer200Response getCommerceCustomer(customerId, accountId)
+
+Get a customer
+
+One customer with their order count, total spent and default address. Needs customers.read.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String customerId = "customerId_example"; // String | Platform-native customer id.
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        try {
+            GetCommerceCustomer200Response result = apiInstance.getCommerceCustomer(customerId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#getCommerceCustomer");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **customerId** | **String**| Platform-native customer id. | |
+| **accountId** | **String**| Connected store SocialAccount id. | |
+
+### Return type
+
+[**GetCommerceCustomer200Response**](GetCommerceCustomer200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The customer |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted customers.read, or the platform has not yet approved Zernio&#39;s access to order and customer data (code insufficient_permissions; the message says which). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or customer not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## getCommerceCustomerWithHttpInfo
+
+> ApiResponse<GetCommerceCustomer200Response> getCommerceCustomer getCommerceCustomerWithHttpInfo(customerId, accountId)
+
+Get a customer
+
+One customer with their order count, total spent and default address. Needs customers.read.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String customerId = "customerId_example"; // String | Platform-native customer id.
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        try {
+            ApiResponse<GetCommerceCustomer200Response> response = apiInstance.getCommerceCustomerWithHttpInfo(customerId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#getCommerceCustomer");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **customerId** | **String**| Platform-native customer id. | |
+| **accountId** | **String**| Connected store SocialAccount id. | |
+
+### Return type
+
+ApiResponse<[**GetCommerceCustomer200Response**](GetCommerceCustomer200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The customer |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted customers.read, or the platform has not yet approved Zernio&#39;s access to order and customer data (code insufficient_permissions; the message says which). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or customer not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
 ## getCommerceDiscount
 
 > CreateCommerceDiscount201Response getCommerceDiscount(discountId, accountId)
@@ -7379,6 +7869,180 @@ ApiResponse<[**ListCommerceCollections200Response**](ListCommerceCollections200R
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
+## listCommerceCustomers
+
+> ListCommerceCustomers200Response listCommerceCustomers(accountId, limit, cursor, email, phone, search)
+
+List customers
+
+The store&#39;s customers, most recently updated first. Needs customers.read.  Find the customer behind a support ticket with &#x60;email&#x60;, &#x60;phone&#x60; or &#x60;search&#x60;, then read their orders with &#x60;GET /v1/commerce/orders?customerId&#x3D;&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        Integer limit = 20; // Integer | 
+        String cursor = "cursor_example"; // String | 
+        String email = "email_example"; // String | 
+        String phone = "phone_example"; // String | 
+        String search = "search_example"; // String | Free text matched against name, email and phone.
+        try {
+            ListCommerceCustomers200Response result = apiInstance.listCommerceCustomers(accountId, limit, cursor, email, phone, search);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#listCommerceCustomers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Connected store SocialAccount id. | |
+| **limit** | **Integer**|  | [optional] [default to 20] |
+| **cursor** | **String**|  | [optional] |
+| **email** | **String**|  | [optional] |
+| **phone** | **String**|  | [optional] |
+| **search** | **String**| Free text matched against name, email and phone. | [optional] |
+
+### Return type
+
+[**ListCommerceCustomers200Response**](ListCommerceCustomers200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Customers listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted customers.read, or the platform has not yet approved Zernio&#39;s access to order and customer data (code insufficient_permissions; the message says which). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or store not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## listCommerceCustomersWithHttpInfo
+
+> ApiResponse<ListCommerceCustomers200Response> listCommerceCustomers listCommerceCustomersWithHttpInfo(accountId, limit, cursor, email, phone, search)
+
+List customers
+
+The store&#39;s customers, most recently updated first. Needs customers.read.  Find the customer behind a support ticket with &#x60;email&#x60;, &#x60;phone&#x60; or &#x60;search&#x60;, then read their orders with &#x60;GET /v1/commerce/orders?customerId&#x3D;&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        Integer limit = 20; // Integer | 
+        String cursor = "cursor_example"; // String | 
+        String email = "email_example"; // String | 
+        String phone = "phone_example"; // String | 
+        String search = "search_example"; // String | Free text matched against name, email and phone.
+        try {
+            ApiResponse<ListCommerceCustomers200Response> response = apiInstance.listCommerceCustomersWithHttpInfo(accountId, limit, cursor, email, phone, search);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#listCommerceCustomers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Connected store SocialAccount id. | |
+| **limit** | **Integer**|  | [optional] [default to 20] |
+| **cursor** | **String**|  | [optional] |
+| **email** | **String**|  | [optional] |
+| **phone** | **String**|  | [optional] |
+| **search** | **String**| Free text matched against name, email and phone. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListCommerceCustomers200Response**](ListCommerceCustomers200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Customers listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted customers.read, or the platform has not yet approved Zernio&#39;s access to order and customer data (code insufficient_permissions; the message says which). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or store not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
 ## listCommerceDiscounts
 
 > ListCommerceDiscounts200Response listCommerceDiscounts(accountId, limit, cursor, query)
@@ -8487,7 +9151,7 @@ ApiResponse<[**ListCommerceMetaobjects200Response**](ListCommerceMetaobjects200R
 
 ## listCommerceOrders
 
-> ListCommerceOrders200Response listCommerceOrders(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter)
+> ListCommerceOrders200Response listCommerceOrders(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter, customerId, email)
 
 List orders
 
@@ -8520,8 +9184,10 @@ public class Example {
         OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | 
         OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | 
         OffsetDateTime updatedAfter = OffsetDateTime.now(); // OffsetDateTime | Only orders changed after this time, oldest change first.
+        String customerId = "customerId_example"; // String | Only this customer's orders (`customer.id` on an order, or `id` from the customers endpoints).
+        String email = "email_example"; // String | Only orders placed with this email. Shopify only; WooCommerce answers 400 platform_not_supported.
         try {
-            ListCommerceOrders200Response result = apiInstance.listCommerceOrders(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter);
+            ListCommerceOrders200Response result = apiInstance.listCommerceOrders(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter, customerId, email);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CommerceApi#listCommerceOrders");
@@ -8545,6 +9211,8 @@ public class Example {
 | **createdAfter** | **OffsetDateTime**|  | [optional] |
 | **createdBefore** | **OffsetDateTime**|  | [optional] |
 | **updatedAfter** | **OffsetDateTime**| Only orders changed after this time, oldest change first. | [optional] |
+| **customerId** | **String**| Only this customer&#39;s orders (&#x60;customer.id&#x60; on an order, or &#x60;id&#x60; from the customers endpoints). | [optional] |
+| **email** | **String**| Only orders placed with this email. Shopify only; WooCommerce answers 400 platform_not_supported. | [optional] |
 
 ### Return type
 
@@ -8572,7 +9240,7 @@ public class Example {
 
 ## listCommerceOrdersWithHttpInfo
 
-> ApiResponse<ListCommerceOrders200Response> listCommerceOrders listCommerceOrdersWithHttpInfo(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter)
+> ApiResponse<ListCommerceOrders200Response> listCommerceOrders listCommerceOrdersWithHttpInfo(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter, customerId, email)
 
 List orders
 
@@ -8606,8 +9274,10 @@ public class Example {
         OffsetDateTime createdAfter = OffsetDateTime.now(); // OffsetDateTime | 
         OffsetDateTime createdBefore = OffsetDateTime.now(); // OffsetDateTime | 
         OffsetDateTime updatedAfter = OffsetDateTime.now(); // OffsetDateTime | Only orders changed after this time, oldest change first.
+        String customerId = "customerId_example"; // String | Only this customer's orders (`customer.id` on an order, or `id` from the customers endpoints).
+        String email = "email_example"; // String | Only orders placed with this email. Shopify only; WooCommerce answers 400 platform_not_supported.
         try {
-            ApiResponse<ListCommerceOrders200Response> response = apiInstance.listCommerceOrdersWithHttpInfo(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter);
+            ApiResponse<ListCommerceOrders200Response> response = apiInstance.listCommerceOrdersWithHttpInfo(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter, customerId, email);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -8633,6 +9303,8 @@ public class Example {
 | **createdAfter** | **OffsetDateTime**|  | [optional] |
 | **createdBefore** | **OffsetDateTime**|  | [optional] |
 | **updatedAfter** | **OffsetDateTime**| Only orders changed after this time, oldest change first. | [optional] |
+| **customerId** | **String**| Only this customer&#39;s orders (&#x60;customer.id&#x60; on an order, or &#x60;id&#x60; from the customers endpoints). | [optional] |
+| **email** | **String**| Only orders placed with this email. Shopify only; WooCommerce answers 400 platform_not_supported. | [optional] |
 
 ### Return type
 

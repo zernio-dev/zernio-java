@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.578.0
+- API version: 1.579.0
 
-- Build date: 2026-11-12T00:34:50.449955844Z[Etc/UTC]
+- Build date: 2026-11-12T10:04:55.052061028Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.578.0</version>
+  <version>1.579.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.578.0"
+compile "dev.zernio:zernio-sdk:1.579.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.578.0.jar`
+- `target/zernio-sdk-1.579.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1041,6 +1041,8 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**addCommerceMarketingEngagementWithHttpInfo**](docs/CommerceApi.md#addCommerceMarketingEngagementWithHttpInfo) | **POST** /v1/commerce/marketing-activities/{remoteId}/engagements | Report daily engagement
 *CommerceApi* | [**addCommerceProductImages**](docs/CommerceApi.md#addCommerceProductImages) | **POST** /v1/commerce/products/{productId}/images | Add images
 *CommerceApi* | [**addCommerceProductImagesWithHttpInfo**](docs/CommerceApi.md#addCommerceProductImagesWithHttpInfo) | **POST** /v1/commerce/products/{productId}/images | Add images
+*CommerceApi* | [**cancelCommerceOrder**](docs/CommerceApi.md#cancelCommerceOrder) | **POST** /v1/commerce/orders/{orderId}/cancel | Cancel an order
+*CommerceApi* | [**cancelCommerceOrderWithHttpInfo**](docs/CommerceApi.md#cancelCommerceOrderWithHttpInfo) | **POST** /v1/commerce/orders/{orderId}/cancel | Cancel an order
 *CommerceApi* | [**changeCommerceCollectionChannels**](docs/CommerceApi.md#changeCommerceCollectionChannels) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection
 *CommerceApi* | [**changeCommerceCollectionChannelsWithHttpInfo**](docs/CommerceApi.md#changeCommerceCollectionChannelsWithHttpInfo) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection
 *CommerceApi* | [**changeCommerceCollectionProducts**](docs/CommerceApi.md#changeCommerceCollectionProducts) | **POST** /v1/commerce/collections/{collectionId}/products | Add or remove products in a collection
@@ -1073,6 +1075,8 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**createCommerceProductVariantsWithHttpInfo**](docs/CommerceApi.md#createCommerceProductVariantsWithHttpInfo) | **POST** /v1/commerce/products/{productId}/variants | Add variants
 *CommerceApi* | [**createCommerceRedirect**](docs/CommerceApi.md#createCommerceRedirect) | **POST** /v1/commerce/redirects | Create a URL redirect
 *CommerceApi* | [**createCommerceRedirectWithHttpInfo**](docs/CommerceApi.md#createCommerceRedirectWithHttpInfo) | **POST** /v1/commerce/redirects | Create a URL redirect
+*CommerceApi* | [**createCommerceRefund**](docs/CommerceApi.md#createCommerceRefund) | **POST** /v1/commerce/orders/{orderId}/refunds | Refund an order
+*CommerceApi* | [**createCommerceRefundWithHttpInfo**](docs/CommerceApi.md#createCommerceRefundWithHttpInfo) | **POST** /v1/commerce/orders/{orderId}/refunds | Refund an order
 *CommerceApi* | [**deleteCommerceCatalogSync**](docs/CommerceApi.md#deleteCommerceCatalogSync) | **DELETE** /v1/commerce/catalog-syncs/{syncId} | Stop a catalog sync
 *CommerceApi* | [**deleteCommerceCatalogSyncWithHttpInfo**](docs/CommerceApi.md#deleteCommerceCatalogSyncWithHttpInfo) | **DELETE** /v1/commerce/catalog-syncs/{syncId} | Stop a catalog sync
 *CommerceApi* | [**deleteCommerceCollection**](docs/CommerceApi.md#deleteCommerceCollection) | **DELETE** /v1/commerce/collections/{collectionId} | Delete a collection
@@ -1105,6 +1109,8 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**getCommerceCatalogSyncWithHttpInfo**](docs/CommerceApi.md#getCommerceCatalogSyncWithHttpInfo) | **GET** /v1/commerce/catalog-syncs/{syncId} | Get a catalog sync
 *CommerceApi* | [**getCommerceCollection**](docs/CommerceApi.md#getCommerceCollection) | **GET** /v1/commerce/collections/{collectionId} | Get a collection
 *CommerceApi* | [**getCommerceCollectionWithHttpInfo**](docs/CommerceApi.md#getCommerceCollectionWithHttpInfo) | **GET** /v1/commerce/collections/{collectionId} | Get a collection
+*CommerceApi* | [**getCommerceCustomer**](docs/CommerceApi.md#getCommerceCustomer) | **GET** /v1/commerce/customers/{customerId} | Get a customer
+*CommerceApi* | [**getCommerceCustomerWithHttpInfo**](docs/CommerceApi.md#getCommerceCustomerWithHttpInfo) | **GET** /v1/commerce/customers/{customerId} | Get a customer
 *CommerceApi* | [**getCommerceDiscount**](docs/CommerceApi.md#getCommerceDiscount) | **GET** /v1/commerce/discounts/{discountId} | Get a discount
 *CommerceApi* | [**getCommerceDiscountWithHttpInfo**](docs/CommerceApi.md#getCommerceDiscountWithHttpInfo) | **GET** /v1/commerce/discounts/{discountId} | Get a discount
 *CommerceApi* | [**getCommerceMenu**](docs/CommerceApi.md#getCommerceMenu) | **GET** /v1/commerce/menus/{menuId} | Get a navigation menu
@@ -1127,6 +1133,8 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**listCommerceCollectionMetafieldsWithHttpInfo**](docs/CommerceApi.md#listCommerceCollectionMetafieldsWithHttpInfo) | **GET** /v1/commerce/collections/{collectionId}/metafields | List collection metafields
 *CommerceApi* | [**listCommerceCollections**](docs/CommerceApi.md#listCommerceCollections) | **GET** /v1/commerce/collections | List collections
 *CommerceApi* | [**listCommerceCollectionsWithHttpInfo**](docs/CommerceApi.md#listCommerceCollectionsWithHttpInfo) | **GET** /v1/commerce/collections | List collections
+*CommerceApi* | [**listCommerceCustomers**](docs/CommerceApi.md#listCommerceCustomers) | **GET** /v1/commerce/customers | List customers
+*CommerceApi* | [**listCommerceCustomersWithHttpInfo**](docs/CommerceApi.md#listCommerceCustomersWithHttpInfo) | **GET** /v1/commerce/customers | List customers
 *CommerceApi* | [**listCommerceDiscounts**](docs/CommerceApi.md#listCommerceDiscounts) | **GET** /v1/commerce/discounts | List discounts
 *CommerceApi* | [**listCommerceDiscountsWithHttpInfo**](docs/CommerceApi.md#listCommerceDiscountsWithHttpInfo) | **GET** /v1/commerce/discounts | List discounts
 *CommerceApi* | [**listCommerceInventory**](docs/CommerceApi.md#listCommerceInventory) | **GET** /v1/commerce/inventory | Get a product&#39;s stock
@@ -3146,6 +3154,9 @@ Class | Method | HTTP request | Description
  - [CampaignSubmissionPost](docs/CampaignSubmissionPost.md)
  - [CampaignSubmissionWindow](docs/CampaignSubmissionWindow.md)
  - [CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
+ - [CancelCommerceOrder200Response](docs/CancelCommerceOrder200Response.md)
+ - [CancelCommerceOrder202Response](docs/CancelCommerceOrder202Response.md)
+ - [CancelCommerceOrderRequest](docs/CancelCommerceOrderRequest.md)
  - [CancelPhoneNumberPortIn200Response](docs/CancelPhoneNumberPortIn200Response.md)
  - [ChangeCommerceCollectionChannels200Response](docs/ChangeCommerceCollectionChannels200Response.md)
  - [ChangeCommerceCollectionProducts200Response](docs/ChangeCommerceCollectionProducts200Response.md)
@@ -3195,6 +3206,7 @@ Class | Method | HTTP request | Description
  - [CommerceCatalogSync](docs/CommerceCatalogSync.md)
  - [CommerceChannel](docs/CommerceChannel.md)
  - [CommerceCollection](docs/CommerceCollection.md)
+ - [CommerceCustomer](docs/CommerceCustomer.md)
  - [CommerceDiscount](docs/CommerceDiscount.md)
  - [CommerceDiscountAppliesTo](docs/CommerceDiscountAppliesTo.md)
  - [CommerceDiscountMinimum](docs/CommerceDiscountMinimum.md)
@@ -3222,8 +3234,8 @@ Class | Method | HTTP request | Description
  - [CommerceOrderCustomer](docs/CommerceOrderCustomer.md)
  - [CommerceOrderFulfillmentsInner](docs/CommerceOrderFulfillmentsInner.md)
  - [CommerceOrderLineItemsInner](docs/CommerceOrderLineItemsInner.md)
- - [CommerceOrderRefundsInner](docs/CommerceOrderRefundsInner.md)
- - [CommerceOrderRefundsInnerLineItemsInner](docs/CommerceOrderRefundsInnerLineItemsInner.md)
+ - [CommerceOrderRefund](docs/CommerceOrderRefund.md)
+ - [CommerceOrderRefundLineItemsInner](docs/CommerceOrderRefundLineItemsInner.md)
  - [CommerceOrderStatus](docs/CommerceOrderStatus.md)
  - [CommerceOrderVisit](docs/CommerceOrderVisit.md)
  - [CommerceOrderVisitUtm](docs/CommerceOrderVisitUtm.md)
@@ -3232,6 +3244,14 @@ Class | Method | HTTP request | Description
  - [CommerceProduct](docs/CommerceProduct.md)
  - [CommerceProductStatus](docs/CommerceProductStatus.md)
  - [CommerceRedirect](docs/CommerceRedirect.md)
+ - [CommerceRefundPreview](docs/CommerceRefundPreview.md)
+ - [CommerceRefundPreviewLineItemsInner](docs/CommerceRefundPreviewLineItemsInner.md)
+ - [CommerceRefundPreviewTransactionsInner](docs/CommerceRefundPreviewTransactionsInner.md)
+ - [CommerceRefundRequest](docs/CommerceRefundRequest.md)
+ - [CommerceRefundRequestLineItemsInner](docs/CommerceRefundRequestLineItemsInner.md)
+ - [CommerceRefundRequestShipping](docs/CommerceRefundRequestShipping.md)
+ - [CommerceRefundRequestShippingOneOf](docs/CommerceRefundRequestShippingOneOf.md)
+ - [CommerceRefundRequestShippingOneOf1](docs/CommerceRefundRequestShippingOneOf1.md)
  - [CommerceStore](docs/CommerceStore.md)
  - [CommerceTaxLine](docs/CommerceTaxLine.md)
  - [CommerceVariant](docs/CommerceVariant.md)
@@ -3406,6 +3426,9 @@ Class | Method | HTTP request | Description
  - [CreateCommerceProductVariantsRequestVariantsInnerOptionsInner](docs/CreateCommerceProductVariantsRequestVariantsInnerOptionsInner.md)
  - [CreateCommerceRedirect201Response](docs/CreateCommerceRedirect201Response.md)
  - [CreateCommerceRedirectRequest](docs/CreateCommerceRedirectRequest.md)
+ - [CreateCommerceRefund200Response](docs/CreateCommerceRefund200Response.md)
+ - [CreateCommerceRefund201Response](docs/CreateCommerceRefund201Response.md)
+ - [CreateCommerceRefundRequest](docs/CreateCommerceRefundRequest.md)
  - [CreateContact200Response](docs/CreateContact200Response.md)
  - [CreateContact200ResponseChannel](docs/CreateContact200ResponseChannel.md)
  - [CreateContact200ResponseContact](docs/CreateContact200ResponseContact.md)
@@ -4026,6 +4049,7 @@ Class | Method | HTTP request | Description
  - [GetCampaignTargeting200ResponseLocationsInner](docs/GetCampaignTargeting200ResponseLocationsInner.md)
  - [GetCommentAutomation200Response](docs/GetCommentAutomation200Response.md)
  - [GetCommentAutomation200ResponseAutomation](docs/GetCommentAutomation200ResponseAutomation.md)
+ - [GetCommerceCustomer200Response](docs/GetCommerceCustomer200Response.md)
  - [GetCommerceOrder200Response](docs/GetCommerceOrder200Response.md)
  - [GetCommerceStore200Response](docs/GetCommerceStore200Response.md)
  - [GetConnectUrl200Response](docs/GetConnectUrl200Response.md)
@@ -4728,6 +4752,7 @@ Class | Method | HTTP request | Description
  - [ListCommerceCatalogSyncs200Response](docs/ListCommerceCatalogSyncs200Response.md)
  - [ListCommerceChannels200Response](docs/ListCommerceChannels200Response.md)
  - [ListCommerceCollections200Response](docs/ListCommerceCollections200Response.md)
+ - [ListCommerceCustomers200Response](docs/ListCommerceCustomers200Response.md)
  - [ListCommerceDiscounts200Response](docs/ListCommerceDiscounts200Response.md)
  - [ListCommerceInventory200Response](docs/ListCommerceInventory200Response.md)
  - [ListCommerceLocations200Response](docs/ListCommerceLocations200Response.md)

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.578.0
+  version: 1.579.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -78274,6 +78274,24 @@ paths:
           format: date-time
           type: string
         style: form
+      - description: "Only this customer's orders (`customer.id` on an order, or `id`\
+          \ from the customers endpoints)."
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Only orders placed with this email. Shopify only; WooCommerce
+          answers 400 platform_not_supported.
+        explode: true
+        in: query
+        name: email
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -78362,6 +78380,289 @@ paths:
       x-platforms:
       - shopify
       - woocommerce
+      x-accepts:
+      - application/json
+  /v1/commerce/orders/{orderId}/refunds:
+    post:
+      description: |
+        Refunds line items, shipping or an amount of money to the buyer's original payment methods. Needs orders.refund.
+
+        - Preview first with `validateOnly: true`: it returns what the buyer gets back and to which payments, without refunding anything.
+        - A real refund needs an `Idempotency-Key` header (a UUID per refund): a retry with the same key never refunds twice.
+        - Every amount, sent or returned, is in the currency the buyer paid in, the one refunds are made in. Send `currency` to have a mismatch refused instead of guessed.
+      operationId: createCommerceRefund
+      parameters:
+      - description: Platform-native order id.
+        explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Required unless validateOnly is true. A retry with the same key
+          returns the first response and never refunds twice.
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createCommerceRefund_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createCommerceRefund_200_response"
+          description: "validateOnly: the refund the platform would make"
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createCommerceRefund_201_response"
+          description: Refund created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "The store has not granted orders.refund, or the platform has\
+            \ not yet approved Zernio's access to order and customer data (code insufficient_permissions;\
+            \ the message says which). GET /v1/commerce/store returns grantPermissionsUrl\
+            \ for the store owner to approve it."
+          x-summary: "The store has not granted the permission: have the store owner\
+            \ approve it using `grantPermissionsUrl` from the store endpoint."
+        "404":
+          description: Account not found (code account_not_found) or order not found
+            (code resource_not_found).
+        "429":
+          description: "Rate limited, either by Zernio or by the platform. Retry later."
+          x-summary: "Zernio or the platform rate limited the request: retry later."
+      security:
+      - bearerAuth: []
+      summary: Refund an order
+      tags:
+      - Commerce
+      x-resource-group: commerce
+      x-platforms:
+      - shopify
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/commerce/orders/{orderId}/cancel:
+    post:
+      description: |
+        Cancels an order, by default refunding it to the original payment methods and restocking it. Needs orders.cancel.
+
+        The platform cancels in the background. The call waits a few seconds: `200` with `cancelled: true` when it finished, `202` with `cancelled: false` when it is still running (the `commerce.order.updated` webhook reports the outcome).
+      operationId: cancelCommerceOrder
+      parameters:
+      - description: Platform-native order id.
+        explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/cancelCommerceOrder_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cancelCommerceOrder_200_response"
+          description: Order cancelled
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cancelCommerceOrder_202_response"
+          description: "Still cancelling: the order webhook reports when it is done"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "The store has not granted orders.cancel, or the platform has\
+            \ not yet approved Zernio's access to order and customer data (code insufficient_permissions;\
+            \ the message says which). GET /v1/commerce/store returns grantPermissionsUrl\
+            \ for the store owner to approve it."
+          x-summary: "The store has not granted the permission: have the store owner\
+            \ approve it using `grantPermissionsUrl` from the store endpoint."
+        "404":
+          description: Account not found (code account_not_found) or order not found
+            (code resource_not_found).
+        "429":
+          description: "Rate limited, either by Zernio or by the platform. Retry later."
+          x-summary: "Zernio or the platform rate limited the request: retry later."
+      security:
+      - bearerAuth: []
+      summary: Cancel an order
+      tags:
+      - Commerce
+      x-resource-group: commerce
+      x-platforms:
+      - shopify
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/commerce/customers:
+    get:
+      description: |
+        The store's customers, most recently updated first. Needs customers.read.
+
+        Find the customer behind a support ticket with `email`, `phone` or `search`, then read their orders with `GET /v1/commerce/orders?customerId=`.
+      operationId: listCommerceCustomers
+      parameters:
+      - description: Connected store SocialAccount id.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: email
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: phone
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Free text matched against name, email and phone."
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCommerceCustomers_200_response"
+          description: Customers listed
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "The store has not granted customers.read, or the platform\
+            \ has not yet approved Zernio's access to order and customer data (code\
+            \ insufficient_permissions; the message says which). GET /v1/commerce/store\
+            \ returns grantPermissionsUrl for the store owner to approve it."
+          x-summary: "The store has not granted the permission: have the store owner\
+            \ approve it using `grantPermissionsUrl` from the store endpoint."
+        "404":
+          description: Account not found (code account_not_found) or store not found
+            (code resource_not_found).
+        "429":
+          description: "Rate limited, either by Zernio or by the platform. Retry later."
+          x-summary: "Zernio or the platform rate limited the request: retry later."
+      security:
+      - bearerAuth: []
+      summary: List customers
+      tags:
+      - Commerce
+      x-resource-group: commerce
+      x-platforms:
+      - shopify
+      x-accepts:
+      - application/json
+  /v1/commerce/customers/{customerId}:
+    get:
+      description: "One customer with their order count, total spent and default address.\
+        \ Needs customers.read."
+      operationId: getCommerceCustomer
+      parameters:
+      - description: Platform-native customer id.
+        explode: false
+        in: path
+        name: customerId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Connected store SocialAccount id.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCommerceCustomer_200_response"
+          description: The customer
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "The store has not granted customers.read, or the platform\
+            \ has not yet approved Zernio's access to order and customer data (code\
+            \ insufficient_permissions; the message says which). GET /v1/commerce/store\
+            \ returns grantPermissionsUrl for the store owner to approve it."
+          x-summary: "The store has not granted the permission: have the store owner\
+            \ approve it using `grantPermissionsUrl` from the store endpoint."
+        "404":
+          description: Account not found (code account_not_found) or customer not
+            found (code resource_not_found).
+        "429":
+          description: "Rate limited, either by Zernio or by the platform. Retry later."
+          x-summary: "Zernio or the platform rate limited the request: retry later."
+      security:
+      - bearerAuth: []
+      summary: Get a customer
+      tags:
+      - Commerce
+      x-resource-group: commerce
+      x-platforms:
+      - shopify
       x-accepts:
       - application/json
   /v1/commerce/products:
@@ -129758,6 +130059,9 @@ components:
       - markets.write
       - marketing.write
       - orders.read
+      - orders.refund
+      - orders.cancel
+      - customers.read
       type: string
     CommerceImage:
       example:
@@ -129936,6 +130240,187 @@ components:
           type: number
         amount:
           $ref: "#/components/schemas/CommerceMoney"
+    CommerceOrderRefund:
+      example:
+        lineItems:
+        - amount: ""
+          quantity: 1
+          lineItemId: lineItemId
+        - amount: ""
+          quantity: 1
+          lineItemId: lineItemId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        note: note
+        amount:
+          amount: "19.90"
+          currency: USD
+        id: id
+      properties:
+        id:
+          type: string
+        createdAt:
+          format: date-time
+          nullable: true
+          type: string
+        note:
+          nullable: true
+          type: string
+        amount:
+          $ref: "#/components/schemas/CommerceMoney"
+        lineItems:
+          items:
+            $ref: "#/components/schemas/CommerceOrderRefund_lineItems_inner"
+          type: array
+    CommerceRefundRequest:
+      description: "What to refund. Pass at least one of lineItems, shipping or amount."
+      properties:
+        accountId:
+          description: Connected store SocialAccount id.
+          type: string
+        lineItems:
+          items:
+            $ref: "#/components/schemas/CommerceRefundRequest_lineItems_inner"
+          maxItems: 250
+          type: array
+        shipping:
+          $ref: "#/components/schemas/CommerceRefundRequest_shipping"
+        amount:
+          description: "Refund this much money instead of what the lines and shipping\
+            \ are worth, for a goodwill refund or a partial one. Taken from the order's\
+            \ payments in order, up to what each can still refund."
+          example: "10.00"
+          type: string
+        currency:
+          description: "The currency your amounts are in. Refused (400) unless it\
+            \ is the one the buyer paid in, which every refund amount uses."
+          example: EUR
+          type: string
+      required:
+      - accountId
+    CommerceRefundPreview:
+      description: "What a refund would return, computed by the platform. Amounts\
+        \ are in the currency the buyer paid in, which refunds are made in."
+      example:
+        lineItems:
+        - amount:
+            amount: "19.90"
+            currency: USD
+          quantity: 0
+          lineItemId: lineItemId
+          restock: none
+        - amount:
+            amount: "19.90"
+            currency: USD
+          quantity: 0
+          lineItemId: lineItemId
+          restock: none
+        amount:
+          amount: "19.90"
+          currency: USD
+        shipping:
+          amount: "19.90"
+          currency: USD
+        subtotal:
+          amount: "19.90"
+          currency: USD
+        tax:
+          amount: "19.90"
+          currency: USD
+        transactions:
+        - amount:
+            amount: "19.90"
+            currency: USD
+          gateway: gateway
+        - amount:
+            amount: "19.90"
+            currency: USD
+          gateway: gateway
+        maximumRefundable:
+          amount: "19.90"
+          currency: USD
+      properties:
+        amount:
+          $ref: "#/components/schemas/CommerceMoney"
+        maximumRefundable:
+          $ref: "#/components/schemas/CommerceMoney"
+        subtotal:
+          $ref: "#/components/schemas/CommerceMoney"
+        tax:
+          $ref: "#/components/schemas/CommerceMoney"
+        shipping:
+          $ref: "#/components/schemas/CommerceMoney"
+        lineItems:
+          items:
+            $ref: "#/components/schemas/CommerceRefundPreview_lineItems_inner"
+          type: array
+        transactions:
+          description: The payments the money goes back to.
+          items:
+            $ref: "#/components/schemas/CommerceRefundPreview_transactions_inner"
+          type: array
+    CommerceCustomer:
+      example:
+        lastName: lastName
+        note: note
+        totalSpent:
+          amount: "19.90"
+          currency: USD
+        platform: shopify
+        tags:
+        - tags
+        - tags
+        accountId: accountId
+        firstName: firstName
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        ordersCount: 0
+        phone: phone
+        id: id
+        email: email
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+        defaultAddress: ""
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        platform:
+          enum:
+          - shopify
+          - woocommerce
+          type: string
+        firstName:
+          nullable: true
+          type: string
+        lastName:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        phone:
+          nullable: true
+          type: string
+        ordersCount:
+          type: integer
+        totalSpent:
+          $ref: "#/components/schemas/CommerceMoney"
+        tags:
+          items:
+            type: string
+          type: array
+        note:
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        defaultAddress:
+          allOf:
+          - $ref: "#/components/schemas/CommerceAddress"
+          nullable: true
     CommerceAddress:
       properties:
         firstName:
@@ -130411,7 +130896,7 @@ components:
           type: array
         refunds:
           items:
-            $ref: "#/components/schemas/CommerceOrder_refunds_inner"
+            $ref: "#/components/schemas/CommerceOrderRefund"
           type: array
         fulfillments:
           items:
@@ -206481,6 +206966,878 @@ components:
       properties:
         order:
           $ref: "#/components/schemas/CommerceOrder"
+    createCommerceRefund_request:
+      allOf:
+      - $ref: "#/components/schemas/CommerceRefundRequest"
+      - properties:
+          note:
+            description: "Kept on the refund, visible to staff."
+            maxLength: 1000
+            type: string
+          notifyCustomer:
+            default: false
+            description: Email the buyer about the refund.
+            type: boolean
+          validateOnly:
+            default: false
+            description: "Return the refund the platform would make, without refunding\
+              \ anything."
+            type: boolean
+    createCommerceRefund_200_response:
+      example:
+        validateOnly: true
+        refund:
+          lineItems:
+          - amount:
+              amount: "19.90"
+              currency: USD
+            quantity: 0
+            lineItemId: lineItemId
+            restock: none
+          - amount:
+              amount: "19.90"
+              currency: USD
+            quantity: 0
+            lineItemId: lineItemId
+            restock: none
+          amount:
+            amount: "19.90"
+            currency: USD
+          shipping:
+            amount: "19.90"
+            currency: USD
+          subtotal:
+            amount: "19.90"
+            currency: USD
+          tax:
+            amount: "19.90"
+            currency: USD
+          transactions:
+          - amount:
+              amount: "19.90"
+              currency: USD
+            gateway: gateway
+          - amount:
+              amount: "19.90"
+              currency: USD
+            gateway: gateway
+          maximumRefundable:
+            amount: "19.90"
+            currency: USD
+      properties:
+        validateOnly:
+          type: boolean
+        refund:
+          $ref: "#/components/schemas/CommerceRefundPreview"
+    createCommerceRefund_201_response:
+      example:
+        refund:
+          lineItems:
+          - amount: ""
+            quantity: 1
+            lineItemId: lineItemId
+          - amount: ""
+            quantity: 1
+            lineItemId: lineItemId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          note: note
+          amount:
+            amount: "19.90"
+            currency: USD
+          id: id
+        order:
+          platformData:
+            key: ""
+          taxTotal:
+            amount: "19.90"
+            currency: USD
+          platform: shopify
+          refunds:
+          - lineItems:
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            note: note
+            amount:
+              amount: "19.90"
+              currency: USD
+            id: id
+          - lineItems:
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            note: note
+            amount:
+              amount: "19.90"
+              currency: USD
+            id: id
+          lineItems:
+          - unitPrice: ""
+            variantTitle: variantTitle
+            total: ""
+            quantity: 0
+            productId: productId
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            subtotal: ""
+            id: id
+            variantId: variantId
+            sku: sku
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          - unitPrice: ""
+            variantTitle: variantTitle
+            total: ""
+            quantity: 0
+            productId: productId
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            subtotal: ""
+            id: id
+            variantId: variantId
+            sku: sku
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          number: "#1001"
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          fulfillments:
+          - carrierName: carrierName
+            trackingUrl: trackingUrl
+            trackingNumber: trackingNumber
+          - carrierName: carrierName
+            trackingUrl: trackingUrl
+            trackingNumber: trackingNumber
+          total:
+            amount: "19.90"
+            currency: USD
+          paymentMethods:
+          - paymentMethods
+          - paymentMethods
+          currency: EUR
+          id: id
+          cancelReason: cancelReason
+          paymentStatus: pending
+          feeLines:
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          taxesIncluded: true
+          discountCodes:
+          - discountCodes
+          - discountCodes
+          shippingLines:
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          cancelledAt: 2000-01-23T04:56:07.000+00:00
+          refundedTotal:
+            amount: "19.90"
+            currency: USD
+          platformStatus: platformStatus
+          shippingTotal:
+            amount: "19.90"
+            currency: USD
+          accountId: accountId
+          discountTotal:
+            amount: "19.90"
+            currency: USD
+          platformPaymentStatus: platformPaymentStatus
+          subtotal: ""
+          buyerNote: buyerNote
+          attribution:
+            ready: true
+            lastVisit: ""
+            firstVisit: ""
+            customAttributes:
+            - value: value
+              key: key
+            - value: value
+              key: key
+          paidAt: 2000-01-23T04:56:07.000+00:00
+          shippingAddress: ""
+          billingAddress: ""
+          taxLines:
+          - ratePercent: 6.027456183070403
+            amount:
+              amount: "19.90"
+              currency: USD
+            title: TVA 20%
+          - ratePercent: 6.027456183070403
+            amount:
+              amount: "19.90"
+              currency: USD
+            title: TVA 20%
+          status: pending_payment
+          customer:
+            firstName: firstName
+            lastName: lastName
+            phone: phone
+            id: id
+            email: email
+      properties:
+        refund:
+          $ref: "#/components/schemas/CommerceOrderRefund"
+        order:
+          $ref: "#/components/schemas/CommerceOrder"
+    cancelCommerceOrder_request:
+      properties:
+        accountId:
+          description: Connected store SocialAccount id.
+          type: string
+        reason:
+          enum:
+          - customer
+          - declined
+          - fraud
+          - inventory
+          - staff
+          - other
+          type: string
+        refund:
+          default: true
+          description: Refund the payments to the original methods. Authorized payments
+            are voided either way.
+          type: boolean
+        restock:
+          default: true
+          type: boolean
+        notifyCustomer:
+          default: false
+          type: boolean
+        staffNote:
+          description: Visible to staff only.
+          maxLength: 255
+          type: string
+      required:
+      - accountId
+      - reason
+    cancelCommerceOrder_200_response:
+      example:
+        cancelled: true
+        order:
+          platformData:
+            key: ""
+          taxTotal:
+            amount: "19.90"
+            currency: USD
+          platform: shopify
+          refunds:
+          - lineItems:
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            note: note
+            amount:
+              amount: "19.90"
+              currency: USD
+            id: id
+          - lineItems:
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            note: note
+            amount:
+              amount: "19.90"
+              currency: USD
+            id: id
+          lineItems:
+          - unitPrice: ""
+            variantTitle: variantTitle
+            total: ""
+            quantity: 0
+            productId: productId
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            subtotal: ""
+            id: id
+            variantId: variantId
+            sku: sku
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          - unitPrice: ""
+            variantTitle: variantTitle
+            total: ""
+            quantity: 0
+            productId: productId
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            subtotal: ""
+            id: id
+            variantId: variantId
+            sku: sku
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          number: "#1001"
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          fulfillments:
+          - carrierName: carrierName
+            trackingUrl: trackingUrl
+            trackingNumber: trackingNumber
+          - carrierName: carrierName
+            trackingUrl: trackingUrl
+            trackingNumber: trackingNumber
+          total:
+            amount: "19.90"
+            currency: USD
+          paymentMethods:
+          - paymentMethods
+          - paymentMethods
+          currency: EUR
+          id: id
+          cancelReason: cancelReason
+          paymentStatus: pending
+          feeLines:
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          taxesIncluded: true
+          discountCodes:
+          - discountCodes
+          - discountCodes
+          shippingLines:
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          cancelledAt: 2000-01-23T04:56:07.000+00:00
+          refundedTotal:
+            amount: "19.90"
+            currency: USD
+          platformStatus: platformStatus
+          shippingTotal:
+            amount: "19.90"
+            currency: USD
+          accountId: accountId
+          discountTotal:
+            amount: "19.90"
+            currency: USD
+          platformPaymentStatus: platformPaymentStatus
+          subtotal: ""
+          buyerNote: buyerNote
+          attribution:
+            ready: true
+            lastVisit: ""
+            firstVisit: ""
+            customAttributes:
+            - value: value
+              key: key
+            - value: value
+              key: key
+          paidAt: 2000-01-23T04:56:07.000+00:00
+          shippingAddress: ""
+          billingAddress: ""
+          taxLines:
+          - ratePercent: 6.027456183070403
+            amount:
+              amount: "19.90"
+              currency: USD
+            title: TVA 20%
+          - ratePercent: 6.027456183070403
+            amount:
+              amount: "19.90"
+              currency: USD
+            title: TVA 20%
+          status: pending_payment
+          customer:
+            firstName: firstName
+            lastName: lastName
+            phone: phone
+            id: id
+            email: email
+      properties:
+        order:
+          $ref: "#/components/schemas/CommerceOrder"
+        cancelled:
+          description: "True: the cancel finished."
+          type: boolean
+    cancelCommerceOrder_202_response:
+      example:
+        cancelled: true
+        order:
+          platformData:
+            key: ""
+          taxTotal:
+            amount: "19.90"
+            currency: USD
+          platform: shopify
+          refunds:
+          - lineItems:
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            note: note
+            amount:
+              amount: "19.90"
+              currency: USD
+            id: id
+          - lineItems:
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            - amount: ""
+              quantity: 1
+              lineItemId: lineItemId
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            note: note
+            amount:
+              amount: "19.90"
+              currency: USD
+            id: id
+          lineItems:
+          - unitPrice: ""
+            variantTitle: variantTitle
+            total: ""
+            quantity: 0
+            productId: productId
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            subtotal: ""
+            id: id
+            variantId: variantId
+            sku: sku
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          - unitPrice: ""
+            variantTitle: variantTitle
+            total: ""
+            quantity: 0
+            productId: productId
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            subtotal: ""
+            id: id
+            variantId: variantId
+            sku: sku
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          number: "#1001"
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          fulfillments:
+          - carrierName: carrierName
+            trackingUrl: trackingUrl
+            trackingNumber: trackingNumber
+          - carrierName: carrierName
+            trackingUrl: trackingUrl
+            trackingNumber: trackingNumber
+          total:
+            amount: "19.90"
+            currency: USD
+          paymentMethods:
+          - paymentMethods
+          - paymentMethods
+          currency: EUR
+          id: id
+          cancelReason: cancelReason
+          paymentStatus: pending
+          feeLines:
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          taxesIncluded: true
+          discountCodes:
+          - discountCodes
+          - discountCodes
+          shippingLines:
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          - amount: ""
+            discountTotal:
+              amount: "19.90"
+              currency: USD
+            id: id
+            title: title
+            taxLines:
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+            - ratePercent: 6.027456183070403
+              amount:
+                amount: "19.90"
+                currency: USD
+              title: TVA 20%
+          cancelledAt: 2000-01-23T04:56:07.000+00:00
+          refundedTotal:
+            amount: "19.90"
+            currency: USD
+          platformStatus: platformStatus
+          shippingTotal:
+            amount: "19.90"
+            currency: USD
+          accountId: accountId
+          discountTotal:
+            amount: "19.90"
+            currency: USD
+          platformPaymentStatus: platformPaymentStatus
+          subtotal: ""
+          buyerNote: buyerNote
+          attribution:
+            ready: true
+            lastVisit: ""
+            firstVisit: ""
+            customAttributes:
+            - value: value
+              key: key
+            - value: value
+              key: key
+          paidAt: 2000-01-23T04:56:07.000+00:00
+          shippingAddress: ""
+          billingAddress: ""
+          taxLines:
+          - ratePercent: 6.027456183070403
+            amount:
+              amount: "19.90"
+              currency: USD
+            title: TVA 20%
+          - ratePercent: 6.027456183070403
+            amount:
+              amount: "19.90"
+              currency: USD
+            title: TVA 20%
+          status: pending_payment
+          customer:
+            firstName: firstName
+            lastName: lastName
+            phone: phone
+            id: id
+            email: email
+      properties:
+        order:
+          $ref: "#/components/schemas/CommerceOrder"
+        cancelled:
+          description: "False: the platform is still cancelling."
+          type: boolean
+    listCommerceCustomers_200_response:
+      example:
+        nextCursor: nextCursor
+        customers:
+        - lastName: lastName
+          note: note
+          totalSpent:
+            amount: "19.90"
+            currency: USD
+          platform: shopify
+          tags:
+          - tags
+          - tags
+          accountId: accountId
+          firstName: firstName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          ordersCount: 0
+          phone: phone
+          id: id
+          email: email
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          defaultAddress: ""
+        - lastName: lastName
+          note: note
+          totalSpent:
+            amount: "19.90"
+            currency: USD
+          platform: shopify
+          tags:
+          - tags
+          - tags
+          accountId: accountId
+          firstName: firstName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          ordersCount: 0
+          phone: phone
+          id: id
+          email: email
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          defaultAddress: ""
+      properties:
+        customers:
+          items:
+            $ref: "#/components/schemas/CommerceCustomer"
+          type: array
+        nextCursor:
+          nullable: true
+          type: string
+    getCommerceCustomer_200_response:
+      example:
+        customer:
+          lastName: lastName
+          note: note
+          totalSpent:
+            amount: "19.90"
+            currency: USD
+          platform: shopify
+          tags:
+          - tags
+          - tags
+          accountId: accountId
+          firstName: firstName
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          ordersCount: 0
+          phone: phone
+          id: id
+          email: email
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          defaultAddress: ""
+      properties:
+        customer:
+          $ref: "#/components/schemas/CommerceCustomer"
     listCommerceProducts_200_response:
       example:
         nextCursor: nextCursor
@@ -229673,6 +231030,88 @@ components:
         incoming:
           nullable: true
           type: integer
+    CommerceOrderRefund_lineItems_inner:
+      example:
+        amount: ""
+        quantity: 1
+        lineItemId: lineItemId
+      properties:
+        lineItemId:
+          type: string
+        quantity:
+          type: integer
+        amount:
+          allOf:
+          - $ref: "#/components/schemas/CommerceMoney"
+          description: Before tax.
+    CommerceRefundRequest_lineItems_inner:
+      properties:
+        lineItemId:
+          description: "A line item id from the order (`lineItems[].id`)."
+          type: string
+        quantity:
+          minimum: 1
+          type: integer
+        restock:
+          default: false
+          description: Put the units back in stock. Unshipped units are cancelled
+            and shipped ones count as returned.
+          type: boolean
+      required:
+      - lineItemId
+      - quantity
+    CommerceRefundRequest_shipping_oneOf:
+      properties:
+        full:
+          description: Must be true.
+          type: boolean
+      required:
+      - full
+    CommerceRefundRequest_shipping_oneOf_1:
+      properties:
+        amount:
+          example: "5.00"
+          type: string
+      required:
+      - amount
+    CommerceRefundRequest_shipping:
+      description: "Refund the shipping: `{ \"full\": true }` for what is left of\
+        \ it, or `{ \"amount\": \"5.00\" }` for part of it."
+      oneOf:
+      - $ref: "#/components/schemas/CommerceRefundRequest_shipping_oneOf"
+      - $ref: "#/components/schemas/CommerceRefundRequest_shipping_oneOf_1"
+    CommerceRefundPreview_lineItems_inner:
+      example:
+        amount:
+          amount: "19.90"
+          currency: USD
+        quantity: 0
+        lineItemId: lineItemId
+        restock: none
+      properties:
+        lineItemId:
+          type: string
+        quantity:
+          type: integer
+        restock:
+          enum:
+          - none
+          - restock
+          type: string
+        amount:
+          $ref: "#/components/schemas/CommerceMoney"
+    CommerceRefundPreview_transactions_inner:
+      example:
+        amount:
+          amount: "19.90"
+          currency: USD
+        gateway: gateway
+      properties:
+        gateway:
+          nullable: true
+          type: string
+        amount:
+          $ref: "#/components/schemas/CommerceMoney"
     CommerceOrderVisit_utm:
       description: Null when the landing URL carried no UTM parameters.
       properties:
@@ -229779,51 +231218,6 @@ components:
         taxLines:
           items:
             $ref: "#/components/schemas/CommerceTaxLine"
-          type: array
-    CommerceOrder_refunds_inner_lineItems_inner:
-      example:
-        amount: ""
-        quantity: 1
-        lineItemId: lineItemId
-      properties:
-        lineItemId:
-          type: string
-        quantity:
-          type: integer
-        amount:
-          allOf:
-          - $ref: "#/components/schemas/CommerceMoney"
-          description: Before tax.
-    CommerceOrder_refunds_inner:
-      example:
-        lineItems:
-        - amount: ""
-          quantity: 1
-          lineItemId: lineItemId
-        - amount: ""
-          quantity: 1
-          lineItemId: lineItemId
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        note: note
-        amount:
-          amount: "19.90"
-          currency: USD
-        id: id
-      properties:
-        id:
-          type: string
-        createdAt:
-          format: date-time
-          nullable: true
-          type: string
-        note:
-          nullable: true
-          type: string
-        amount:
-          $ref: "#/components/schemas/CommerceMoney"
-        lineItems:
-          items:
-            $ref: "#/components/schemas/CommerceOrder_refunds_inner_lineItems_inner"
           type: array
     CommerceOrder_fulfillments_inner:
       example:

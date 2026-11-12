@@ -40,7 +40,7 @@ An order with what an invoice needs. Every amount is in `currency`, the store cu
 |**shippingLines** | [**List&lt;CommerceOrderChargeLine&gt;**](CommerceOrderChargeLine.md) |  |  [optional] |
 |**feeLines** | [**List&lt;CommerceOrderChargeLine&gt;**](CommerceOrderChargeLine.md) | WooCommerce fees. Always empty on Shopify. |  [optional] |
 |**taxLines** | [**List&lt;CommerceTaxLine&gt;**](CommerceTaxLine.md) | Order tax by rate, line items and shipping together. |  [optional] |
-|**refunds** | [**List&lt;CommerceOrderRefundsInner&gt;**](CommerceOrderRefundsInner.md) |  |  [optional] |
+|**refunds** | [**List&lt;CommerceOrderRefund&gt;**](CommerceOrderRefund.md) |  |  [optional] |
 |**fulfillments** | [**List&lt;CommerceOrderFulfillmentsInner&gt;**](CommerceOrderFulfillmentsInner.md) |  |  [optional] |
 |**platformData** | **Map&lt;String, Object&gt;** | Platform-only fields. Null when the platform has none. |  [optional] |
 
