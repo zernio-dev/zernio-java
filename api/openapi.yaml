@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.599.1
+  version: 1.600.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -32548,6 +32548,56 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/wechat-server-config:
+    get:
+      description: |
+        Returns the Server URL, Token and EncodingAESKey of a connected WeChat Official Account: the same values the connect response carries, for pasting into Server Configuration in the Official Accounts Platform (Safe mode). The AppSecret is never returned.
+
+        Needs write access from a session or an API key: read-only team members, read-only API keys and OAuth access tokens get 403.
+      operationId: getWechatServerConfig
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                server:
+                  url: https://zernio.com/api/webhook/wechat/6507a1b2c3d4e5f6a7b8c9e1
+                  token: Zq8x2LmP4vR7tY1wK9sD3fH6jN0bC5eA
+                  encodingAESKey: hT3kP9xQ2mV7wL4rZ8nB1cF6yJ0dG5sA3uE9iO2tR7q
+                  encryptionMode: safe
+              schema:
+                $ref: "#/components/schemas/getWechatServerConfig_200_response"
+          description: Server configuration
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Read-only team member, read-only API key or OAuth access token\
+            \ (code `insufficient_permissions`), or an API key without access to the\
+            \ account's profile."
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get WeChat server config
+      tags:
+      - Account Settings
+      x-resource-group: accounts
       x-accepts:
       - application/json
   /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index}:
@@ -158529,6 +158579,34 @@ components:
           type: array
       required:
       - commands
+    getWechatServerConfig_200_response_server:
+      example:
+        encryptionMode: safe
+        url: https://openapi-generator.tech
+        token: token
+        encodingAESKey: encodingAESKey
+      properties:
+        url:
+          format: uri
+          type: string
+        token:
+          type: string
+        encodingAESKey:
+          type: string
+        encryptionMode:
+          enum:
+          - safe
+          type: string
+    getWechatServerConfig_200_response:
+      example:
+        server:
+          encryptionMode: safe
+          url: https://openapi-generator.tech
+          token: token
+          encodingAESKey: encodingAESKey
+      properties:
+        server:
+          $ref: "#/components/schemas/getWechatServerConfig_200_response_server"
     getMessageAttachment_200_response:
       example:
         refreshed: true

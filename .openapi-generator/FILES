@@ -1746,6 +1746,8 @@ docs/GetWebhookLogs200Response.md
 docs/GetWebhookLogs200ResponsePagination.md
 docs/GetWebhookSettings200Response.md
 docs/GetWechatIpWhitelist200Response.md
+docs/GetWechatServerConfig200Response.md
+docs/GetWechatServerConfig200ResponseServer.md
 docs/GetWhatsAppBlockStatus200Response.md
 docs/GetWhatsAppBlockedUsers200Response.md
 docs/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.md
@@ -5632,6 +5634,8 @@ src/main/java/dev/zernio/model/GetWebhookLogs200Response.java
 src/main/java/dev/zernio/model/GetWebhookLogs200ResponsePagination.java
 src/main/java/dev/zernio/model/GetWebhookSettings200Response.java
 src/main/java/dev/zernio/model/GetWechatIpWhitelist200Response.java
+src/main/java/dev/zernio/model/GetWechatServerConfig200Response.java
+src/main/java/dev/zernio/model/GetWechatServerConfig200ResponseServer.java
 src/main/java/dev/zernio/model/GetWhatsAppBlockStatus200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppBlockedUsers200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.java
@@ -7655,3 +7659,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetWechatServerConfig200ResponseServerTest.java
+src/test/java/dev/zernio/model/GetWechatServerConfig200ResponseTest.java

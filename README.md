@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.599.1
+- API version: 1.600.0
 
-- Build date: 2026-11-12T19:06:30.105959347Z[Etc/UTC]
+- Build date: 2026-11-12T19:25:42.569883723Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.599.1</version>
+  <version>1.600.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.599.1"
+compile "dev.zernio:zernio-sdk:1.600.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.599.1.jar`
+- `target/zernio-sdk-1.600.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -159,6 +159,8 @@ Class | Method | HTTP request | Description
 *AccountSettingsApi* | [**getMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#getMessengerMenuWithHttpInfo) | **GET** /v1/accounts/{accountId}/messenger-menu | Get persistent menu
 *AccountSettingsApi* | [**getTelegramCommands**](docs/AccountSettingsApi.md#getTelegramCommands) | **GET** /v1/accounts/{accountId}/telegram-commands | Get TG bot commands
 *AccountSettingsApi* | [**getTelegramCommandsWithHttpInfo**](docs/AccountSettingsApi.md#getTelegramCommandsWithHttpInfo) | **GET** /v1/accounts/{accountId}/telegram-commands | Get TG bot commands
+*AccountSettingsApi* | [**getWechatServerConfig**](docs/AccountSettingsApi.md#getWechatServerConfig) | **GET** /v1/accounts/{accountId}/wechat-server-config | Get WeChat server config
+*AccountSettingsApi* | [**getWechatServerConfigWithHttpInfo**](docs/AccountSettingsApi.md#getWechatServerConfigWithHttpInfo) | **GET** /v1/accounts/{accountId}/wechat-server-config | Get WeChat server config
 *AccountSettingsApi* | [**setInstagramIceBreakers**](docs/AccountSettingsApi.md#setInstagramIceBreakers) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers
 *AccountSettingsApi* | [**setInstagramIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#setInstagramIceBreakersWithHttpInfo) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers
 *AccountSettingsApi* | [**setMessengerGetStarted**](docs/AccountSettingsApi.md#setMessengerGetStarted) | **PUT** /v1/accounts/{accountId}/messenger-get-started | Set FB Get Started button
@@ -4383,6 +4385,8 @@ Class | Method | HTTP request | Description
  - [GetWebhookLogs200ResponsePagination](docs/GetWebhookLogs200ResponsePagination.md)
  - [GetWebhookSettings200Response](docs/GetWebhookSettings200Response.md)
  - [GetWechatIpWhitelist200Response](docs/GetWechatIpWhitelist200Response.md)
+ - [GetWechatServerConfig200Response](docs/GetWechatServerConfig200Response.md)
+ - [GetWechatServerConfig200ResponseServer](docs/GetWechatServerConfig200ResponseServer.md)
  - [GetWhatsAppBlockStatus200Response](docs/GetWhatsAppBlockStatus200Response.md)
  - [GetWhatsAppBlockedUsers200Response](docs/GetWhatsAppBlockedUsers200Response.md)
  - [GetWhatsAppBlockedUsers200ResponseBlockedUsersInner](docs/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.md)

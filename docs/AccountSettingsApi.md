@@ -30,6 +30,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getMessengerMenuWithHttpInfo**](AccountSettingsApi.md#getMessengerMenuWithHttpInfo) | **GET** /v1/accounts/{accountId}/messenger-menu | Get persistent menu |
 | [**getTelegramCommands**](AccountSettingsApi.md#getTelegramCommands) | **GET** /v1/accounts/{accountId}/telegram-commands | Get TG bot commands |
 | [**getTelegramCommandsWithHttpInfo**](AccountSettingsApi.md#getTelegramCommandsWithHttpInfo) | **GET** /v1/accounts/{accountId}/telegram-commands | Get TG bot commands |
+| [**getWechatServerConfig**](AccountSettingsApi.md#getWechatServerConfig) | **GET** /v1/accounts/{accountId}/wechat-server-config | Get WeChat server config |
+| [**getWechatServerConfigWithHttpInfo**](AccountSettingsApi.md#getWechatServerConfigWithHttpInfo) | **GET** /v1/accounts/{accountId}/wechat-server-config | Get WeChat server config |
 | [**setInstagramIceBreakers**](AccountSettingsApi.md#setInstagramIceBreakers) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers |
 | [**setInstagramIceBreakersWithHttpInfo**](AccountSettingsApi.md#setInstagramIceBreakersWithHttpInfo) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers |
 | [**setMessengerGetStarted**](AccountSettingsApi.md#setMessengerGetStarted) | **PUT** /v1/accounts/{accountId}/messenger-get-started | Set FB Get Started button |
@@ -1985,6 +1987,158 @@ ApiResponse<[**GetTelegramCommands200Response**](GetTelegramCommands200Response.
 | **200** | Bot commands list |  -  |
 | **400** | Not a Telegram account |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
+## getWechatServerConfig
+
+> GetWechatServerConfig200Response getWechatServerConfig(accountId)
+
+Get WeChat server config
+
+Returns the Server URL, Token and EncodingAESKey of a connected WeChat Official Account: the same values the connect response carries, for pasting into Server Configuration in the Official Accounts Platform (Safe mode). The AppSecret is never returned.  Needs write access from a session or an API key: read-only team members, read-only API keys and OAuth access tokens get 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountSettingsApi apiInstance = new AccountSettingsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            GetWechatServerConfig200Response result = apiInstance.getWechatServerConfig(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountSettingsApi#getWechatServerConfig");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+[**GetWechatServerConfig200Response**](GetWechatServerConfig200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Server configuration |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Read-only team member, read-only API key or OAuth access token (code &#x60;insufficient_permissions&#x60;), or an API key without access to the account&#39;s profile. |  -  |
+| **404** | Resource not found |  -  |
+
+## getWechatServerConfigWithHttpInfo
+
+> ApiResponse<GetWechatServerConfig200Response> getWechatServerConfig getWechatServerConfigWithHttpInfo(accountId)
+
+Get WeChat server config
+
+Returns the Server URL, Token and EncodingAESKey of a connected WeChat Official Account: the same values the connect response carries, for pasting into Server Configuration in the Official Accounts Platform (Safe mode). The AppSecret is never returned.  Needs write access from a session or an API key: read-only team members, read-only API keys and OAuth access tokens get 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountSettingsApi apiInstance = new AccountSettingsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<GetWechatServerConfig200Response> response = apiInstance.getWechatServerConfigWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountSettingsApi#getWechatServerConfig");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetWechatServerConfig200Response**](GetWechatServerConfig200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Server configuration |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Read-only team member, read-only API key or OAuth access token (code &#x60;insufficient_permissions&#x60;), or an API key without access to the account&#39;s profile. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## setInstagramIceBreakers
