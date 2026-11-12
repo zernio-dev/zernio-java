@@ -171,7 +171,6 @@
 | BALANCE_LOW | &quot;balance.low&quot; |
 | BALANCE_EMPTY | &quot;balance.empty&quot; |
 | BALANCE_CHARGED | &quot;balance.charged&quot; |
-| NOTIFICATION_SENT | &quot;notification.sent&quot; |
 | API_CHANGELOG_PUBLISHED | &quot;api.changelog.published&quot; |
 
 

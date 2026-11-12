@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.577.0
+- API version: 1.578.0
 
-- Build date: 2026-11-11T23:03:05.931857475Z[Etc/UTC]
+- Build date: 2026-11-12T00:34:50.449955844Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.577.0</version>
+  <version>1.578.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.577.0"
+compile "dev.zernio:zernio-sdk:1.578.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.577.0.jar`
+- `target/zernio-sdk-1.578.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -6190,13 +6190,6 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadMessageSentMessageSender](docs/WebhookPayloadMessageSentMessageSender.md)
  - [WebhookPayloadMessageSentMetadata](docs/WebhookPayloadMessageSentMetadata.md)
  - [WebhookPayloadMessageSentMetadataLocation](docs/WebhookPayloadMessageSentMetadataLocation.md)
- - [WebhookPayloadNotificationSent](docs/WebhookPayloadNotificationSent.md)
- - [WebhookPayloadNotificationSentNotification](docs/WebhookPayloadNotificationSentNotification.md)
- - [WebhookPayloadNotificationSentNotificationActionsInner](docs/WebhookPayloadNotificationSentNotificationActionsInner.md)
- - [WebhookPayloadNotificationSentNotificationRefs](docs/WebhookPayloadNotificationSentNotificationRefs.md)
- - [WebhookPayloadNotificationSentNotificationRefsAccount](docs/WebhookPayloadNotificationSentNotificationRefsAccount.md)
- - [WebhookPayloadNotificationSentNotificationRefsPlatformsInner](docs/WebhookPayloadNotificationSentNotificationRefsPlatformsInner.md)
- - [WebhookPayloadNotificationSentNotificationRefsPost](docs/WebhookPayloadNotificationSentNotificationRefsPost.md)
  - [WebhookPayloadPhoneNumberStockAvailable](docs/WebhookPayloadPhoneNumberStockAvailable.md)
  - [WebhookPayloadPhoneNumberStockAvailableStock](docs/WebhookPayloadPhoneNumberStockAvailableStock.md)
  - [WebhookPayloadPhoneNumberStockAvailableStockTypesInner](docs/WebhookPayloadPhoneNumberStockAvailableStockTypesInner.md)
