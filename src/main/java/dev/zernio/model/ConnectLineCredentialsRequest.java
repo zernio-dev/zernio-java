@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ConnectLineCredentialsRequest.JSON_PROPERTY_STATE,
   ConnectLineCredentialsRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T17:25:14.799896838Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T17:33:20.579573347Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectLineCredentialsRequest {
   public static final String JSON_PROPERTY_CHANNEL_ID = "channelId";
   @javax.annotation.Nonnull

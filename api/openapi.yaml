@@ -112166,17 +112166,18 @@ components:
         currentFollowers: 6.027456183070403
         platformUserId: platformUserId
         accountStats:
-          videoCount: 9.301444243932576
-          pinCount: 4.145608029883936
-          likesCount: 1.2315135367772556
-          monthlyViews: 1.0246457001441578
-          boardCount: 6.84685269835264
-          postsCount: 2.027123023002322
-          tweetCount: 3.616076749251911
-          mediaCount: 7.061401241503109
-          totalViews: 7.386281948385884
+          videoCount: 3.616076749251911
+          pinCount: 7.386281948385884
+          likesCount: 1.0246457001441578
+          monthlyViews: 1.4894159098541704
+          boardCount: 7.457744773683766
+          postsCount: 4.145608029883936
+          tweetCount: 2.027123023002322
+          followsCount: 7.061401241503109
+          mediaCount: 9.301444243932576
+          totalViews: 1.2315135367772556
           followingCount: 2.3021358869347655
-          listedCount: 1.4894159098541704
+          listedCount: 6.84685269835264
         dataPoints: 5.637376656633329
         scopeAreas:
         - scopeAreas
@@ -115835,9 +115836,9 @@ components:
         stats:
           key:
           - date: 2000-01-23
-            followers: 7.457744773683766
+            followers: 1.1730742509559433
           - date: 2000-01-23
-            followers: 7.457744773683766
+            followers: 1.1730742509559433
         dateRange:
           from: 2000-01-23T04:56:07.000+00:00
           to: 2000-01-23T04:56:07.000+00:00
@@ -115857,17 +115858,18 @@ components:
           currentFollowers: 6.027456183070403
           platformUserId: platformUserId
           accountStats:
-            videoCount: 9.301444243932576
-            pinCount: 4.145608029883936
-            likesCount: 1.2315135367772556
-            monthlyViews: 1.0246457001441578
-            boardCount: 6.84685269835264
-            postsCount: 2.027123023002322
-            tweetCount: 3.616076749251911
-            mediaCount: 7.061401241503109
-            totalViews: 7.386281948385884
+            videoCount: 3.616076749251911
+            pinCount: 7.386281948385884
+            likesCount: 1.0246457001441578
+            monthlyViews: 1.4894159098541704
+            boardCount: 7.457744773683766
+            postsCount: 4.145608029883936
+            tweetCount: 2.027123023002322
+            followsCount: 7.061401241503109
+            mediaCount: 9.301444243932576
+            totalViews: 1.2315135367772556
             followingCount: 2.3021358869347655
-            listedCount: 1.4894159098541704
+            listedCount: 6.84685269835264
           dataPoints: 5.637376656633329
           scopeAreas:
           - scopeAreas
@@ -115920,17 +115922,18 @@ components:
           currentFollowers: 6.027456183070403
           platformUserId: platformUserId
           accountStats:
-            videoCount: 9.301444243932576
-            pinCount: 4.145608029883936
-            likesCount: 1.2315135367772556
-            monthlyViews: 1.0246457001441578
-            boardCount: 6.84685269835264
-            postsCount: 2.027123023002322
-            tweetCount: 3.616076749251911
-            mediaCount: 7.061401241503109
-            totalViews: 7.386281948385884
+            videoCount: 3.616076749251911
+            pinCount: 7.386281948385884
+            likesCount: 1.0246457001441578
+            monthlyViews: 1.4894159098541704
+            boardCount: 7.457744773683766
+            postsCount: 4.145608029883936
+            tweetCount: 2.027123023002322
+            followsCount: 7.061401241503109
+            mediaCount: 9.301444243932576
+            totalViews: 1.2315135367772556
             followingCount: 2.3021358869347655
-            listedCount: 1.4894159098541704
+            listedCount: 6.84685269835264
           dataPoints: 5.637376656633329
           scopeAreas:
           - scopeAreas
@@ -226503,23 +226506,27 @@ components:
       - $ref: "#/components/schemas/Profile"
     AccountWithFollowerStats_allOf_accountStats:
       description: |
-        Platform-specific account stats from the latest daily snapshot.
-        Fields vary by platform. Only present if metadata has been captured.
+        Platform-specific account counters from the latest daily snapshot.
+        Each platform reports its own subset of the keys below, and no other key is returned. Absent when the platform reports none of them.
       example:
-        videoCount: 9.301444243932576
-        pinCount: 4.145608029883936
-        likesCount: 1.2315135367772556
-        monthlyViews: 1.0246457001441578
-        boardCount: 6.84685269835264
-        postsCount: 2.027123023002322
-        tweetCount: 3.616076749251911
-        mediaCount: 7.061401241503109
-        totalViews: 7.386281948385884
+        videoCount: 3.616076749251911
+        pinCount: 7.386281948385884
+        likesCount: 1.0246457001441578
+        monthlyViews: 1.4894159098541704
+        boardCount: 7.457744773683766
+        postsCount: 4.145608029883936
+        tweetCount: 2.027123023002322
+        followsCount: 7.061401241503109
+        mediaCount: 9.301444243932576
+        totalViews: 1.2315135367772556
         followingCount: 2.3021358869347655
-        listedCount: 1.4894159098541704
+        listedCount: 6.84685269835264
       properties:
         followingCount:
-          description: Number of accounts being followed
+          description: "Number of accounts being followed (TikTok, X, Pinterest, Bluesky)"
+          type: number
+        followsCount:
+          description: Number of accounts being followed (Instagram)
           type: number
         mediaCount:
           description: Total media posts (Instagram)
@@ -226543,7 +226550,9 @@ components:
           description: Total likes received (TikTok)
           type: number
         monthlyViews:
-          description: Monthly profile views (Pinterest)
+          description: Monthly profile views (Pinterest). null when Pinterest reports
+            no window
+          nullable: true
           type: number
         listedCount:
           description: Lists the user appears on (X)
@@ -227544,7 +227553,7 @@ components:
     FollowerStatsResponse_stats_value_inner:
       example:
         date: 2000-01-23
-        followers: 7.457744773683766
+        followers: 1.1730742509559433
       properties:
         date:
           format: date

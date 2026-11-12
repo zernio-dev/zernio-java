@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UsageMeteringPeaks.JSON_PROPERTY_ACCOUNTS,
   UsageMeteringPeaks.JSON_PROPERTY_NUMBERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T17:25:14.799896838Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T17:33:20.579573347Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageMeteringPeaks {
   public static final String JSON_PROPERTY_ACCOUNTS = "accounts";
   @javax.annotation.Nullable

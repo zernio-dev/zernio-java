@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListInstagramTaggedMedia200Response.JSON_PROPERTY_DATA,
   ListInstagramTaggedMedia200Response.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T17:25:14.799896838Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T17:33:20.579573347Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInstagramTaggedMedia200Response {
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nonnull

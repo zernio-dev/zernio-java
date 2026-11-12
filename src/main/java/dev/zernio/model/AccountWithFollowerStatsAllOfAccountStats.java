@@ -26,15 +26,20 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Platform-specific account stats from the latest daily snapshot. Fields vary by platform. Only present if metadata has been captured. 
+ * Platform-specific account counters from the latest daily snapshot. Each platform reports its own subset of the keys below, and no other key is returned. Absent when the platform reports none of them. 
  */
 @JsonPropertyOrder({
   AccountWithFollowerStatsAllOfAccountStats.JSON_PROPERTY_FOLLOWING_COUNT,
+  AccountWithFollowerStatsAllOfAccountStats.JSON_PROPERTY_FOLLOWS_COUNT,
   AccountWithFollowerStatsAllOfAccountStats.JSON_PROPERTY_MEDIA_COUNT,
   AccountWithFollowerStatsAllOfAccountStats.JSON_PROPERTY_VIDEO_COUNT,
   AccountWithFollowerStatsAllOfAccountStats.JSON_PROPERTY_TWEET_COUNT,
@@ -46,11 +51,15 @@ import dev.zernio.ApiClient;
   AccountWithFollowerStatsAllOfAccountStats.JSON_PROPERTY_LISTED_COUNT,
   AccountWithFollowerStatsAllOfAccountStats.JSON_PROPERTY_BOARD_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T17:25:14.799896838Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T17:33:20.579573347Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountWithFollowerStatsAllOfAccountStats {
   public static final String JSON_PROPERTY_FOLLOWING_COUNT = "followingCount";
   @javax.annotation.Nullable
   private BigDecimal followingCount;
+
+  public static final String JSON_PROPERTY_FOLLOWS_COUNT = "followsCount";
+  @javax.annotation.Nullable
+  private BigDecimal followsCount;
 
   public static final String JSON_PROPERTY_MEDIA_COUNT = "mediaCount";
   @javax.annotation.Nullable
@@ -81,8 +90,7 @@ public class AccountWithFollowerStatsAllOfAccountStats {
   private BigDecimal likesCount;
 
   public static final String JSON_PROPERTY_MONTHLY_VIEWS = "monthlyViews";
-  @javax.annotation.Nullable
-  private BigDecimal monthlyViews;
+  private JsonNullable<BigDecimal> monthlyViews = JsonNullable.<BigDecimal>undefined();
 
   public static final String JSON_PROPERTY_LISTED_COUNT = "listedCount";
   @javax.annotation.Nullable
@@ -101,7 +109,7 @@ public class AccountWithFollowerStatsAllOfAccountStats {
   }
 
   /**
-   * Number of accounts being followed
+   * Number of accounts being followed (TikTok, X, Pinterest, Bluesky)
    * @return followingCount
    */
   @javax.annotation.Nullable
@@ -116,6 +124,30 @@ public class AccountWithFollowerStatsAllOfAccountStats {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFollowingCount(@javax.annotation.Nullable BigDecimal followingCount) {
     this.followingCount = followingCount;
+  }
+
+
+  public AccountWithFollowerStatsAllOfAccountStats followsCount(@javax.annotation.Nullable BigDecimal followsCount) {
+    this.followsCount = followsCount;
+    return this;
+  }
+
+  /**
+   * Number of accounts being followed (Instagram)
+   * @return followsCount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FOLLOWS_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getFollowsCount() {
+    return followsCount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FOLLOWS_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFollowsCount(@javax.annotation.Nullable BigDecimal followsCount) {
+    this.followsCount = followsCount;
   }
 
 
@@ -288,26 +320,34 @@ public class AccountWithFollowerStatsAllOfAccountStats {
 
 
   public AccountWithFollowerStatsAllOfAccountStats monthlyViews(@javax.annotation.Nullable BigDecimal monthlyViews) {
-    this.monthlyViews = monthlyViews;
+    this.monthlyViews = JsonNullable.<BigDecimal>of(monthlyViews);
     return this;
   }
 
   /**
-   * Monthly profile views (Pinterest)
+   * Monthly profile views (Pinterest). null when Pinterest reports no window
    * @return monthlyViews
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MONTHLY_VIEWS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public BigDecimal getMonthlyViews() {
-    return monthlyViews;
+        return monthlyViews.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MONTHLY_VIEWS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMonthlyViews(@javax.annotation.Nullable BigDecimal monthlyViews) {
+
+  public JsonNullable<BigDecimal> getMonthlyViews_JsonNullable() {
+    return monthlyViews;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MONTHLY_VIEWS)
+  public void setMonthlyViews_JsonNullable(JsonNullable<BigDecimal> monthlyViews) {
     this.monthlyViews = monthlyViews;
+  }
+
+  public void setMonthlyViews(@javax.annotation.Nullable BigDecimal monthlyViews) {
+    this.monthlyViews = JsonNullable.<BigDecimal>of(monthlyViews);
   }
 
 
@@ -372,6 +412,7 @@ public class AccountWithFollowerStatsAllOfAccountStats {
     }
     AccountWithFollowerStatsAllOfAccountStats accountWithFollowerStatsAllOfAccountStats = (AccountWithFollowerStatsAllOfAccountStats) o;
     return Objects.equals(this.followingCount, accountWithFollowerStatsAllOfAccountStats.followingCount) &&
+        Objects.equals(this.followsCount, accountWithFollowerStatsAllOfAccountStats.followsCount) &&
         Objects.equals(this.mediaCount, accountWithFollowerStatsAllOfAccountStats.mediaCount) &&
         Objects.equals(this.videoCount, accountWithFollowerStatsAllOfAccountStats.videoCount) &&
         Objects.equals(this.tweetCount, accountWithFollowerStatsAllOfAccountStats.tweetCount) &&
@@ -379,14 +420,25 @@ public class AccountWithFollowerStatsAllOfAccountStats {
         Objects.equals(this.pinCount, accountWithFollowerStatsAllOfAccountStats.pinCount) &&
         Objects.equals(this.totalViews, accountWithFollowerStatsAllOfAccountStats.totalViews) &&
         Objects.equals(this.likesCount, accountWithFollowerStatsAllOfAccountStats.likesCount) &&
-        Objects.equals(this.monthlyViews, accountWithFollowerStatsAllOfAccountStats.monthlyViews) &&
+        equalsNullable(this.monthlyViews, accountWithFollowerStatsAllOfAccountStats.monthlyViews) &&
         Objects.equals(this.listedCount, accountWithFollowerStatsAllOfAccountStats.listedCount) &&
         Objects.equals(this.boardCount, accountWithFollowerStatsAllOfAccountStats.boardCount);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(followingCount, mediaCount, videoCount, tweetCount, postsCount, pinCount, totalViews, likesCount, monthlyViews, listedCount, boardCount);
+    return Objects.hash(followingCount, followsCount, mediaCount, videoCount, tweetCount, postsCount, pinCount, totalViews, likesCount, hashCodeNullable(monthlyViews), listedCount, boardCount);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -394,6 +446,7 @@ public class AccountWithFollowerStatsAllOfAccountStats {
     StringBuilder sb = new StringBuilder();
     sb.append("class AccountWithFollowerStatsAllOfAccountStats {\n");
     sb.append("    followingCount: ").append(toIndentedString(followingCount)).append("\n");
+    sb.append("    followsCount: ").append(toIndentedString(followsCount)).append("\n");
     sb.append("    mediaCount: ").append(toIndentedString(mediaCount)).append("\n");
     sb.append("    videoCount: ").append(toIndentedString(videoCount)).append("\n");
     sb.append("    tweetCount: ").append(toIndentedString(tweetCount)).append("\n");
@@ -454,6 +507,11 @@ public class AccountWithFollowerStatsAllOfAccountStats {
     // add `followingCount` to the URL query string
     if (getFollowingCount() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sfollowingCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFollowingCount()))));
+    }
+
+    // add `followsCount` to the URL query string
+    if (getFollowsCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfollowsCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFollowsCount()))));
     }
 
     // add `mediaCount` to the URL query string

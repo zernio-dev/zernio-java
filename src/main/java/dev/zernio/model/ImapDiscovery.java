@@ -58,7 +58,7 @@ import dev.zernio.ApiClient;
   ImapDiscovery.JSON_PROPERTY_UNSUPPORTED_REASON,
   ImapDiscovery.JSON_PROPERTY_APP_PASSWORD_FALLBACK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T17:25:14.799896838Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T17:33:20.579573347Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ImapDiscovery {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable
