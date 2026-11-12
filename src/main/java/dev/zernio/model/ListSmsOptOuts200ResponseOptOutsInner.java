@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   ListSmsOptOuts200ResponseOptOutsInner.JSON_PROPERTY_KEYWORD,
   ListSmsOptOuts200ResponseOptOutsInner.JSON_PROPERTY_FROM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:41:39.890961396Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:46:08.602898730Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSmsOptOuts200ResponseOptOutsInner {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable

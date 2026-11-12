@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateAccountCallouts200Response.JSON_PROPERTY_UPDATED,
   UpdateAccountCallouts200Response.JSON_PROPERTY_CUSTOMER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:41:39.890961396Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-12T12:46:08.602898730Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAccountCallouts200Response {
   public static final String JSON_PROPERTY_UPDATED = "updated";
   @javax.annotation.Nullable
