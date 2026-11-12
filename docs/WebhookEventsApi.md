@@ -126,6 +126,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onCampaignSampleRequestedWithHttpInfo**](WebhookEventsApi.md#onCampaignSampleRequestedWithHttpInfo) | **POST** /campaign_sample.requested | Campaign sample requested event |
 | [**onCampaignSampleShipped**](WebhookEventsApi.md#onCampaignSampleShipped) | **POST** /campaign_sample.shipped | Campaign sample shipped event |
 | [**onCampaignSampleShippedWithHttpInfo**](WebhookEventsApi.md#onCampaignSampleShippedWithHttpInfo) | **POST** /campaign_sample.shipped | Campaign sample shipped event |
+| [**onCampaignStatusChanged**](WebhookEventsApi.md#onCampaignStatusChanged) | **POST** /campaign.status_changed | Campaign status changed event |
+| [**onCampaignStatusChangedWithHttpInfo**](WebhookEventsApi.md#onCampaignStatusChangedWithHttpInfo) | **POST** /campaign.status_changed | Campaign status changed event |
 | [**onCampaignSubmissionApproved**](WebhookEventsApi.md#onCampaignSubmissionApproved) | **POST** /campaign_submission.approved | Campaign submission approved event |
 | [**onCampaignSubmissionApprovedWithHttpInfo**](WebhookEventsApi.md#onCampaignSubmissionApprovedWithHttpInfo) | **POST** /campaign_submission.approved | Campaign submission approved event |
 | [**onCampaignSubmissionFlagged**](WebhookEventsApi.md#onCampaignSubmissionFlagged) | **POST** /campaign_submission.flagged | Campaign submission flagged event |
@@ -8964,6 +8966,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadCampaignSample** | [**WebhookPayloadCampaignSample**](WebhookPayloadCampaignSample.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onCampaignStatusChanged
+
+> void onCampaignStatusChanged(webhookPayloadCampaignStatusChanged)
+
+Campaign status changed event
+
+A campaign Zernio already tracked changed its platform status or, on Google, the reasons behind it.  ### When it fires  Fires when the ads sync reads a tracked campaign with a different status than it stored, up to one sync interval late. Covers every ad network.  ### Status values  On Google, &#x60;status&#x60; is the campaign&#39;s &#x60;primary_status&#x60; (&#x60;ELIGIBLE&#x60;, &#x60;LIMITED&#x60;, &#x60;NOT_ELIGIBLE&#x60;, &#x60;PAUSED&#x60;, ...) and &#x60;reasons&#x60; its sorted &#x60;primary_status_reasons&#x60;, so a campaign turning budget limited fires. Elsewhere &#x60;status&#x60; is the campaign&#39;s own platform status (Meta &#x60;effective_status&#x60;) and &#x60;reasons&#x60; is empty.  ### When it does not fire  A campaign seen for the first time, or the same change from the same previous status again within an hour (a retried sync). A change made through Zernio, such as a pause, fires on the next sync, once the sync reads it from the platform. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCampaignStatusChanged webhookPayloadCampaignStatusChanged = new WebhookPayloadCampaignStatusChanged(); // WebhookPayloadCampaignStatusChanged | 
+        try {
+            apiInstance.onCampaignStatusChanged(webhookPayloadCampaignStatusChanged);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCampaignStatusChanged");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCampaignStatusChanged** | [**WebhookPayloadCampaignStatusChanged**](WebhookPayloadCampaignStatusChanged.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onCampaignStatusChangedWithHttpInfo
+
+> ApiResponse<Void> onCampaignStatusChanged onCampaignStatusChangedWithHttpInfo(webhookPayloadCampaignStatusChanged)
+
+Campaign status changed event
+
+A campaign Zernio already tracked changed its platform status or, on Google, the reasons behind it.  ### When it fires  Fires when the ads sync reads a tracked campaign with a different status than it stored, up to one sync interval late. Covers every ad network.  ### Status values  On Google, &#x60;status&#x60; is the campaign&#39;s &#x60;primary_status&#x60; (&#x60;ELIGIBLE&#x60;, &#x60;LIMITED&#x60;, &#x60;NOT_ELIGIBLE&#x60;, &#x60;PAUSED&#x60;, ...) and &#x60;reasons&#x60; its sorted &#x60;primary_status_reasons&#x60;, so a campaign turning budget limited fires. Elsewhere &#x60;status&#x60; is the campaign&#39;s own platform status (Meta &#x60;effective_status&#x60;) and &#x60;reasons&#x60; is empty.  ### When it does not fire  A campaign seen for the first time, or the same change from the same previous status again within an hour (a retried sync). A change made through Zernio, such as a pause, fires on the next sync, once the sync reads it from the platform. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCampaignStatusChanged webhookPayloadCampaignStatusChanged = new WebhookPayloadCampaignStatusChanged(); // WebhookPayloadCampaignStatusChanged | 
+        try {
+            ApiResponse<Void> response = apiInstance.onCampaignStatusChangedWithHttpInfo(webhookPayloadCampaignStatusChanged);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCampaignStatusChanged");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCampaignStatusChanged** | [**WebhookPayloadCampaignStatusChanged**](WebhookPayloadCampaignStatusChanged.md)|  | |
 
 ### Return type
 

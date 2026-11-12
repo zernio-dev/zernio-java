@@ -3581,6 +3581,10 @@ docs/WebhookPayloadCampaignPayoutPayoutFailure.md
 docs/WebhookPayloadCampaignPayoutPayoutSettlement.md
 docs/WebhookPayloadCampaignSample.md
 docs/WebhookPayloadCampaignSampleSample.md
+docs/WebhookPayloadCampaignStatusChanged.md
+docs/WebhookPayloadCampaignStatusChangedCampaign.md
+docs/WebhookPayloadCampaignStatusChangedReasons.md
+docs/WebhookPayloadCampaignStatusChangedStatus.md
 docs/WebhookPayloadCampaignSubmission.md
 docs/WebhookPayloadCampaignSubmissionCreator.md
 docs/WebhookPayloadCampaignSubmissionParticipant.md
@@ -7418,6 +7422,10 @@ src/main/java/dev/zernio/model/WebhookPayloadCampaignPayoutPayoutFailure.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignPayoutPayoutSettlement.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignSample.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignSampleSample.java
+src/main/java/dev/zernio/model/WebhookPayloadCampaignStatusChanged.java
+src/main/java/dev/zernio/model/WebhookPayloadCampaignStatusChangedCampaign.java
+src/main/java/dev/zernio/model/WebhookPayloadCampaignStatusChangedReasons.java
+src/main/java/dev/zernio/model/WebhookPayloadCampaignStatusChangedStatus.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignSubmission.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignSubmissionCreator.java
 src/main/java/dev/zernio/model/WebhookPayloadCampaignSubmissionParticipant.java
@@ -7643,3 +7651,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookPayloadCampaignStatusChangedCampaignTest.java
+src/test/java/dev/zernio/model/WebhookPayloadCampaignStatusChangedReasonsTest.java
+src/test/java/dev/zernio/model/WebhookPayloadCampaignStatusChangedStatusTest.java
+src/test/java/dev/zernio/model/WebhookPayloadCampaignStatusChangedTest.java

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.595.1
+  version: 1.596.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -457,7 +457,7 @@ tags:
     - Messages: `message.received`, `message.sent`, `message.edited`, `message.deleted`, `message.delivered`, `message.read`, `message.played`, `message.failed`, `reaction.received`, `referral.received`, `conversation.started`, `conversation.control_changed`
     - Calls: `call.received`, `call.ended`, `call.failed`, `call.permission_request`, `call.transcript_segment`, `call.recording_ready`
     - Engagement and leads: `comment.received`, `mention.received`, `review.new`, `review.updated`, `review.deleted`, `review.restored`, `lead.received`
-    - Ads: `ad.status_changed`, `ad.created`, `ad.updated`, `campaign.created`, `campaign.updated`, `ad_set.created`, `ad_set.updated`, `ad.review.approved`, `ad.review.rejected`, `ad.delivery_issue`, `campaign.budget.depleted`, `ad_account.status_changed`, `ad.video.processed`, `ad_rule.triggered`
+    - Ads: `ad.status_changed`, `ad.created`, `ad.updated`, `campaign.created`, `campaign.updated`, `ad_set.created`, `ad_set.updated`, `ad.review.approved`, `ad.review.rejected`, `ad.delivery_issue`, `campaign.budget.depleted`, `ad_account.status_changed`, `campaign.status_changed`, `ad.video.processed`, `ad_rule.triggered`
     - WhatsApp: `whatsapp.template.status_updated`, `whatsapp.template.category_updated`, `whatsapp.account.name_status_updated`, `whatsapp.account.quality_updated`, `whatsapp.account.status_updated`, `whatsapp.account.alert_received`, `whatsapp.contact.identity_changed`, `whatsapp.automatic_event`
     - WhatsApp numbers: `whatsapp.number.activated`, `whatsapp.number.declined`, `whatsapp.number.action_required`, `whatsapp.number.verification_required`, `whatsapp.number.suspended`, `whatsapp.number.reactivated`, `whatsapp.number.released`, `whatsapp.number.kyc_submitted`
     - Telephony: `phone_number.stock_available`, `verification.approved`, `verification.failed`, `sms.registration.action_required`, `sms.registration.status_updated`, `branded_calling.identity.status_updated`, `branded_calling.identity.action_required`, `branded_calling.number.status_updated`, `rcs.agent.status_updated`
@@ -95505,6 +95505,7 @@ components:
             - ad.delivery_issue
             - campaign.budget.depleted
             - ad_account.status_changed
+            - campaign.status_changed
             - ad.video.processed
             - ad_rule.triggered
             - automation.check.completed
@@ -104227,6 +104228,94 @@ components:
       - adAccount
       - event
       - id
+      - status
+      - timestamp
+    WebhookPayloadCampaignStatusChanged:
+      description: |
+        Webhook payload for the `campaign.status_changed` event. Fires when the ads sync sees a campaign Zernio already tracked change its platform status or, on Google, its status reasons.
+
+        `status` carries the platform's own values: Google's `primary_status` (`ELIGIBLE`, `LIMITED`, `NOT_ELIGIBLE`, `PAUSED`, ...), the campaign's own status on every other network (Meta `effective_status`: `ACTIVE`, `PAUSED`, `WITH_ISSUES`, ...).
+
+        Never fires for a campaign seen for the first time. The same change (same previous and new status and reasons) fires at most once per campaign per hour. A change made through Zernio fires on the next sync.
+      example:
+        reasons:
+          current:
+          - current
+          - current
+          previous:
+          - previous
+          - previous
+        test: true
+        adAccountId: adAccountId
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        campaign:
+          platformCampaignId: platformCampaignId
+          name: name
+        id: id
+        event: campaign.status_changed
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: tiktokads
+          username: username
+        platform: platform
+        status:
+          current: current
+          previous: previous
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - campaign.status_changed
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookAdsAccount"
+        campaign:
+          $ref: "#/components/schemas/WebhookPayloadCampaignStatusChanged_campaign"
+        platform:
+          description: "The ad network, as the ads endpoints name it (`google`, `facebook`,\
+            \ `tiktok`, ...)."
+          type: string
+        adAccountId:
+          description: Platform-native ad account ID.
+          type: string
+        status:
+          $ref: "#/components/schemas/WebhookPayloadCampaignStatusChanged_status"
+        reasons:
+          $ref: "#/components/schemas/WebhookPayloadCampaignStatusChanged_reasons"
+        timestamp:
+          description: UTC time at which Zernio generated this event.
+          format: date-time
+          type: string
+      required:
+      - account
+      - adAccountId
+      - campaign
+      - event
+      - id
+      - platform
+      - reasons
       - status
       - timestamp
     WebhookPayloadAdRuleTriggered:
@@ -126049,9 +126138,9 @@ components:
 
             `usual` needs at least 3 of those weeks with a value, and takes no reach, frequency, budget or calendar metric. On an hourly window it takes `budget_used`, against today's daily budget.
 
-            `usual_deviation` makes `value` a distance instead of a ratio: how many median absolute deviations of those weeks the window sits from their median, either way.
+            `usual_deviation` makes `value` a distance instead of a ratio: how many median absolute deviations of those weeks the window sits from their median, either way. The deviation counts as at least 5% of the median, so weeks that barely vary do not turn a small move into many deviations.
 
-            `>=` 3 keeps only a move well outside the campaign's normal swing. It follows the rules of `usual`, and never matches when those weeks all read the same.
+            `>=` 3 keeps only a move well outside the campaign's normal swing. It follows the rules of `usual`, and never matches when those weeks all read 0.
 
             On an hourly window, `compareTo` is `usual` or `usual_deviation`, or for `ctr`, `cpc` and `cpm` a window of full days ending by yesterday and starting at most 35 days ago, read from the same hourly totals.
 
@@ -126360,6 +126449,7 @@ components:
           - ad.delivery_issue
           - campaign.budget.depleted
           - ad_account.status_changed
+          - campaign.status_changed
           - whatsapp.template.status_updated
           - whatsapp.account.quality_updated
           - commerce.order.created
@@ -126889,10 +126979,14 @@ components:
         trigger:
           $ref: "#/components/schemas/AutomationEventTrigger"
         steps:
+          description: "May be empty: an automation with no steps only records each\
+            \ event it matches as a check with outcome `triggered` and no action.\
+            \ `limits.cooldown` and `limits.maxChangesPerDay` count actions, so they\
+            \ do nothing for it."
           items:
             $ref: "#/components/schemas/AutomationNotifyStep"
           maxItems: 10
-          minItems: 1
+          minItems: 0
           type: array
         limits:
           $ref: "#/components/schemas/AutomationEventLimits"
@@ -126939,7 +127033,7 @@ components:
         An automation of one of three kinds, told apart by its shape:
 
         - **Ad rule**: a `schedule` trigger over campaigns, ad sets or ads, with metric `conditions` and ad `steps`.
-        - **Event**: a Zernio event in `trigger.type`, narrowed by `trigger.filter`, with notify steps.
+        - **Event**: a Zernio event in `trigger.type`, narrowed by `trigger.filter`, with notify steps, or none to only record each matching event as a check.
         - **Scheduled**: a `schedule` trigger over `subjects.each: post`, narrowed by `filter`, with notify and boost steps.
       oneOf:
       - $ref: "#/components/schemas/AdRuleAutomationDefinition"
@@ -127243,6 +127337,14 @@ components:
           type: string
         subject:
           $ref: "#/components/schemas/EventAutomationCheck_subject"
+        facts:
+          additionalProperties: true
+          description: |-
+            The event's facts as the trigger read them, keyed by fact name. Recorded only for an automation with no steps (one that only records each event).
+
+            Null for an automation with steps, whose filter results show the facts it compared, and on checks recorded before facts were kept. Content facts are null for a team that keeps no content.
+          nullable: true
+          type: object
         filter:
           items:
             $ref: "#/components/schemas/AutomationFactResult"
@@ -127262,6 +127364,7 @@ components:
       - evaluated
       - event
       - eventId
+      - facts
       - filter
       - id
       - outcome
@@ -151189,6 +151292,7 @@ components:
             - ad.delivery_issue
             - campaign.budget.depleted
             - ad_account.status_changed
+            - campaign.status_changed
             - ad.video.processed
             - ad_rule.triggered
             - automation.check.completed
@@ -151438,6 +151542,7 @@ components:
             - ad.delivery_issue
             - campaign.budget.depleted
             - ad_account.status_changed
+            - campaign.status_changed
             - ad.video.processed
             - ad_rule.triggered
             - automation.check.completed
@@ -151783,6 +151888,7 @@ components:
           - ad.delivery_issue
           - campaign.budget.depleted
           - ad_account.status_changed
+          - campaign.status_changed
           - ad.video.processed
           - ad_rule.triggered
           - automation.check.completed
@@ -222712,6 +222818,56 @@ components:
       - current
       - previous
       - raw
+    WebhookPayloadCampaignStatusChanged_campaign:
+      example:
+        platformCampaignId: platformCampaignId
+        name: name
+      properties:
+        platformCampaignId:
+          description: Platform-native campaign ID.
+          type: string
+        name:
+          nullable: true
+          type: string
+      required:
+      - name
+      - platformCampaignId
+    WebhookPayloadCampaignStatusChanged_status:
+      example:
+        current: current
+        previous: previous
+      properties:
+        previous:
+          description: The platform's status before.
+          type: string
+        current:
+          description: The platform's status now.
+          type: string
+      required:
+      - current
+      - previous
+    WebhookPayloadCampaignStatusChanged_reasons:
+      description: "Google's `primary_status_reasons` (for example `BUDGET_CONSTRAINED`),\
+        \ sorted. Always empty on other networks."
+      example:
+        current:
+        - current
+        - current
+        previous:
+        - previous
+        - previous
+      properties:
+        previous:
+          items:
+            type: string
+          type: array
+        current:
+          items:
+            type: string
+          type: array
+      required:
+      - current
+      - previous
     WebhookPayloadAdRuleTriggered_rule:
       example:
         level: campaign
@@ -234279,6 +234435,7 @@ x-documentation:
     - `ad.delivery_issue` - An ad Zernio already tracked stopped delivering for a platform reason (Meta `WITH_ISSUES`, TikTok account or balance problems). `issue.reasons` carries Meta's messages
     - `campaign.budget.depleted` - A campaign Zernio already tracked ran out of budget (TikTok, the only network that reports it on the ad)
     - `ad_account.status_changed` - An ad account Zernio already tracked became `active`, `restricted`, `disabled` or `closed` (Meta, Google, TikTok, X)
+    - `campaign.status_changed` - The sync saw a campaign Zernio already tracked change its platform status (Google `primary_status`, Meta `effective_status`) or, on Google, the reasons behind it. Values are the platform's own
     - `ad.video.processed` - Meta finished processing a video uploaded with `POST /v1/ads/videos` and `async: true`. `video.status` is `ready` (usable as `video.id`) or `error`
     - `ad_rule.triggered` - A scheduled ad rule run found campaigns, ad sets or ads meeting every condition, once per object per cooldown. `objects` lists the objects acted on
     - `automation.check.completed` - One scheduled check of an automation finished (ad rules today): its outcome, how many objects it read and how many actions it took

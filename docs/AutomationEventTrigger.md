@@ -38,6 +38,7 @@ Starts the automation when something happens in Zernio, in one profile. `GET /v1
 | AD_DELIVERY_ISSUE | &quot;ad.delivery_issue&quot; |
 | CAMPAIGN_BUDGET_DEPLETED | &quot;campaign.budget.depleted&quot; |
 | AD_ACCOUNT_STATUS_CHANGED | &quot;ad_account.status_changed&quot; |
+| CAMPAIGN_STATUS_CHANGED | &quot;campaign.status_changed&quot; |
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
 | WHATSAPP_ACCOUNT_QUALITY_UPDATED | &quot;whatsapp.account.quality_updated&quot; |
 | COMMERCE_ORDER_CREATED | &quot;commerce.order.created&quot; |

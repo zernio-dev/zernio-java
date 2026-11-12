@@ -87,6 +87,7 @@ Individual webhook configuration for receiving real-time notifications
 | AD_DELIVERY_ISSUE | &quot;ad.delivery_issue&quot; |
 | CAMPAIGN_BUDGET_DEPLETED | &quot;campaign.budget.depleted&quot; |
 | AD_ACCOUNT_STATUS_CHANGED | &quot;ad_account.status_changed&quot; |
+| CAMPAIGN_STATUS_CHANGED | &quot;campaign.status_changed&quot; |
 | AD_VIDEO_PROCESSED | &quot;ad.video.processed&quot; |
 | AD_RULE_TRIGGERED | &quot;ad_rule.triggered&quot; |
 | AUTOMATION_CHECK_COMPLETED | &quot;automation.check.completed&quot; |

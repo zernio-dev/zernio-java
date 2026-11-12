@@ -10,7 +10,7 @@
 |**name** | **String** |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**trigger** | [**AutomationEventTrigger**](AutomationEventTrigger.md) |  |  |
-|**steps** | [**List&lt;AutomationNotifyStep&gt;**](AutomationNotifyStep.md) |  |  |
+|**steps** | [**List&lt;AutomationNotifyStep&gt;**](AutomationNotifyStep.md) | May be empty: an automation with no steps only records each event it matches as a check with outcome &#x60;triggered&#x60; and no action. &#x60;limits.cooldown&#x60; and &#x60;limits.maxChangesPerDay&#x60; count actions, so they do nothing for it. |  |
 |**limits** | [**AutomationEventLimits**](AutomationEventLimits.md) |  |  [optional] |
 |**id** | **String** |  |  |
 |**kind** | [**KindEnum**](#KindEnum) |  |  |

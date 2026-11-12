@@ -16,6 +16,7 @@ One event that reached an event automation.
 |**event** | **String** |  |  |
 |**eventId** | **String** |  |  |
 |**subject** | [**EventAutomationCheckSubject**](EventAutomationCheckSubject.md) |  |  |
+|**facts** | **Map&lt;String, Object&gt;** | The event&#39;s facts as the trigger read them, keyed by fact name. Recorded only for an automation with no steps (one that only records each event).  Null for an automation with steps, whose filter results show the facts it compared, and on checks recorded before facts were kept. Content facts are null for a team that keeps no content. |  |
 |**filter** | [**List&lt;AutomationFactResult&gt;**](AutomationFactResult.md) |  |  |
 |**actions** | [**List&lt;AutomationRunResult&gt;**](AutomationRunResult.md) |  |  |
 |**error** | **String** |  |  |
