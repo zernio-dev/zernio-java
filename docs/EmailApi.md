@@ -919,7 +919,7 @@ public class Example {
 | **201** | The mailbox was connected |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **422** | A check failed. code names the stage (imap_auth_failed, app_password_required, use_oauth, imap_disabled, imap_unreachable, tls_hostname_mismatch, tls_untrusted, smtp_unreachable, smtp_auth_failed, provider_unsupported, discovery_failed); details.stages says which checks passed. |  -  |
+| **422** | A check failed. code names the stage (imap_auth_failed, app_password_required, use_oauth, imap_disabled, imap_unreachable, tls_hostname_mismatch, tls_untrusted, smtp_unreachable, smtp_auth_failed, provider_unsupported, discovery_failed); details.stages says which checks passed. For imap_auth_failed, smtp_auth_failed and app_password_required, details.guidance holds the provider fix (providerId, providerName, summary, steps, helpUrl, appPassword, preflight) when Zernio knows one for that stage; null otherwise. |  -  |
 | **429** | too_many_attempts: the provider is refusing sign-ins; wait before retrying. |  -  |
 
 ## createImapAccountWithHttpInfo
@@ -997,7 +997,7 @@ ApiResponse<[**ImapConnectResult**](ImapConnectResult.md)>
 | **201** | The mailbox was connected |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **422** | A check failed. code names the stage (imap_auth_failed, app_password_required, use_oauth, imap_disabled, imap_unreachable, tls_hostname_mismatch, tls_untrusted, smtp_unreachable, smtp_auth_failed, provider_unsupported, discovery_failed); details.stages says which checks passed. |  -  |
+| **422** | A check failed. code names the stage (imap_auth_failed, app_password_required, use_oauth, imap_disabled, imap_unreachable, tls_hostname_mismatch, tls_untrusted, smtp_unreachable, smtp_auth_failed, provider_unsupported, discovery_failed); details.stages says which checks passed. For imap_auth_failed, smtp_auth_failed and app_password_required, details.guidance holds the provider fix (providerId, providerName, summary, steps, helpUrl, appPassword, preflight) when Zernio knows one for that stage; null otherwise. |  -  |
 | **429** | too_many_attempts: the provider is refusing sign-ins; wait before retrying. |  -  |
 
 
