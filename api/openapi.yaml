@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.601.0
+  version: 1.602.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15223,7 +15223,7 @@ paths:
   /v1/connect/stripe:
     get:
       description: |
-        Initiates Stripe Connect OAuth for the customer's own Stripe account, with read-only access. Stripe is a connect-only sales source: each paid charge becomes a `Purchase` event in `GET /v1/events` (source `stripe`), and refunds lower or retract it.
+        Initiates Stripe Connect OAuth for the customer's own Stripe account. Zernio only reads its payments. Stripe is a connect-only sales source: each paid charge becomes a `Purchase` event in `GET /v1/events` (source `stripe`), and refunds lower or retract it.
 
         One Stripe account can be connected per profile. Connecting a different account to a profile that already has one redirects with `error=stripe_profile_has_account`.
 
