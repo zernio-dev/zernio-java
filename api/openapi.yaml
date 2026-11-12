@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.595.0
+  version: 1.595.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -139966,6 +139966,7 @@ components:
         disconnectReason: disconnectReason
         canPost: true
         disconnectionType: intentional
+        analyticsSupported: true
         profileId: profileId
         ownerUserId: ownerUserId
         inboundActivity: ""
@@ -139996,6 +139997,12 @@ components:
         canPost:
           type: boolean
         canFetchAnalytics:
+          type: boolean
+        analyticsSupported:
+          description: Whether analytics is in scope for this account at all (the
+            platform offers analytics and it was requested at connect). False means
+            canFetchAnalytics is not a problem to fix; true with canFetchAnalytics
+            false means analytics needs a reconnect.
           type: boolean
         scopeAreas:
           additionalProperties:
@@ -140092,6 +140099,7 @@ components:
           disconnectReason: disconnectReason
           canPost: true
           disconnectionType: intentional
+          analyticsSupported: true
           profileId: profileId
           ownerUserId: ownerUserId
           inboundActivity: ""
@@ -140123,6 +140131,7 @@ components:
           disconnectReason: disconnectReason
           canPost: true
           disconnectionType: intentional
+          analyticsSupported: true
           profileId: profileId
           ownerUserId: ownerUserId
           inboundActivity: ""
@@ -140268,6 +140277,7 @@ components:
         scopeAreas:
           key: granted
         canPost: true
+        analyticsSupported: true
         missingRequired:
         - missingRequired
         - missingRequired
@@ -140305,6 +140315,12 @@ components:
             \ and the overall `status`."
           type: boolean
         canFetchAnalytics:
+          type: boolean
+        analyticsSupported:
+          description: Whether analytics is in scope for this account at all (the
+            platform offers analytics and it was requested at connect). False means
+            canFetchAnalytics is not a problem to fix; true with canFetchAnalytics
+            false means analytics needs a reconnect.
           type: boolean
         missingRequired:
           items:
@@ -140465,6 +140481,7 @@ components:
           scopeAreas:
             key: granted
           canPost: true
+          analyticsSupported: true
           missingRequired:
           - missingRequired
           - missingRequired

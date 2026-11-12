@@ -15,6 +15,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**canPost** | **Boolean** |  |  [optional] |
 |**canFetchAnalytics** | **Boolean** |  |  [optional] |
+|**analyticsSupported** | **Boolean** | Whether analytics is in scope for this account at all (the platform offers analytics and it was requested at connect). False means canFetchAnalytics is not a problem to fix; true with canFetchAnalytics false means analytics needs a reconnect. |  [optional] |
 |**scopeAreas** | [**Map&lt;String, InnerEnum&gt;**](#Map&lt;String, InnerEnum&gt;) | Present when the account connected with &#x60;scopes&#x60; or through your own OAuth app: each permission area the platform splits, as granted, missing or not_requested. An area never requested does not make the account unhealthy. |  [optional] |
 |**tokenValid** | **Boolean** |  |  [optional] |
 |**tokenExpiresAt** | **OffsetDateTime** |  |  [optional] |
