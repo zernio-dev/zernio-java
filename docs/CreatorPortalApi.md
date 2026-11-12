@@ -37,7 +37,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## createCreatorPayoutLogin
 
-> StartCreatorPayouts200Response createCreatorPayoutLogin(token)
+> CreateCreatorPayoutLogin200Response createCreatorPayoutLogin(token)
 
 Open the creator&#39;s Stripe dashboard
 
@@ -61,7 +61,7 @@ public class Example {
         CreatorPortalApi apiInstance = new CreatorPortalApi(defaultClient);
         String token = "token_example"; // String | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
         try {
-            StartCreatorPayouts200Response result = apiInstance.createCreatorPayoutLogin(token);
+            CreateCreatorPayoutLogin200Response result = apiInstance.createCreatorPayoutLogin(token);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CreatorPortalApi#createCreatorPayoutLogin");
@@ -83,7 +83,7 @@ public class Example {
 
 ### Return type
 
-[**StartCreatorPayouts200Response**](StartCreatorPayouts200Response.md)
+[**CreateCreatorPayoutLogin200Response**](CreateCreatorPayoutLogin200Response.md)
 
 
 ### Authorization
@@ -105,7 +105,7 @@ No authorization required
 
 ## createCreatorPayoutLoginWithHttpInfo
 
-> ApiResponse<StartCreatorPayouts200Response> createCreatorPayoutLogin createCreatorPayoutLoginWithHttpInfo(token)
+> ApiResponse<CreateCreatorPayoutLogin200Response> createCreatorPayoutLogin createCreatorPayoutLoginWithHttpInfo(token)
 
 Open the creator&#39;s Stripe dashboard
 
@@ -130,7 +130,7 @@ public class Example {
         CreatorPortalApi apiInstance = new CreatorPortalApi(defaultClient);
         String token = "token_example"; // String | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
         try {
-            ApiResponse<StartCreatorPayouts200Response> response = apiInstance.createCreatorPayoutLoginWithHttpInfo(token);
+            ApiResponse<CreateCreatorPayoutLogin200Response> response = apiInstance.createCreatorPayoutLoginWithHttpInfo(token);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -154,7 +154,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**StartCreatorPayouts200Response**](StartCreatorPayouts200Response.md)>
+ApiResponse<[**CreateCreatorPayoutLogin200Response**](CreateCreatorPayoutLogin200Response.md)>
 
 
 ### Authorization

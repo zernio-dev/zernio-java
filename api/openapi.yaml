@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.598.0
+  version: 1.599.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -5878,7 +5878,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/startCreatorPayouts_200_response"
+                $ref: "#/components/schemas/createCreatorPayoutLogin_200_response"
           description: Stripe login link.
         "404":
           $ref: "#/components/responses/CreatorPortalLinkNotFound"
@@ -136937,6 +136937,24 @@ components:
       required:
       - action
     startCreatorPayouts_200_response:
+      example:
+        clientSecret: clientSecret
+        url: https://openapi-generator.tech
+      properties:
+        url:
+          description: "Stripe-hosted onboarding page. Send the creator here; Stripe\
+            \ returns them to their Zernio creator page when done. Expires after a\
+            \ few minutes, so request it when the creator clicks."
+          format: uri
+          type: string
+        clientSecret:
+          description: Account session secret for Stripe's embedded onboarding component.
+            Only usable on Zernio's own creator page; integrations use `url`.
+          type: string
+      required:
+      - clientSecret
+      - url
+    createCreatorPayoutLogin_200_response:
       example:
         url: https://openapi-generator.tech
       properties:

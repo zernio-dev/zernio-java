@@ -827,6 +827,7 @@ docs/CreateConversionActionRequest.md
 docs/CreateConversionDestinationRequest.md
 docs/CreateCreatorCampaign201Response.md
 docs/CreateCreatorCampaignRequest.md
+docs/CreateCreatorPayoutLogin200Response.md
 docs/CreateCustomConversionGoalRequest.md
 docs/CreateCustomConversionRequest.md
 docs/CreateCustomField200Response.md
@@ -4719,6 +4720,7 @@ src/main/java/dev/zernio/model/CreateConversionActionRequest.java
 src/main/java/dev/zernio/model/CreateConversionDestinationRequest.java
 src/main/java/dev/zernio/model/CreateCreatorCampaign201Response.java
 src/main/java/dev/zernio/model/CreateCreatorCampaignRequest.java
+src/main/java/dev/zernio/model/CreateCreatorPayoutLogin200Response.java
 src/main/java/dev/zernio/model/CreateCustomConversionGoalRequest.java
 src/main/java/dev/zernio/model/CreateCustomConversionRequest.java
 src/main/java/dev/zernio/model/CreateCustomField200Response.java
@@ -7653,3 +7655,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateCreatorPayoutLogin200ResponseTest.java

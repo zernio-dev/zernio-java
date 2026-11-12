@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.598.0
+- API version: 1.599.0
 
-- Build date: 2026-11-12T18:52:09.856048806Z[Etc/UTC]
+- Build date: 2026-11-12T18:58:01.901033339Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.598.0</version>
+  <version>1.599.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.598.0"
+compile "dev.zernio:zernio-sdk:1.599.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.598.0.jar`
+- `target/zernio-sdk-1.599.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3471,6 +3471,7 @@ Class | Method | HTTP request | Description
  - [CreateConversionDestinationRequest](docs/CreateConversionDestinationRequest.md)
  - [CreateCreatorCampaign201Response](docs/CreateCreatorCampaign201Response.md)
  - [CreateCreatorCampaignRequest](docs/CreateCreatorCampaignRequest.md)
+ - [CreateCreatorPayoutLogin200Response](docs/CreateCreatorPayoutLogin200Response.md)
  - [CreateCustomConversionGoalRequest](docs/CreateCustomConversionGoalRequest.md)
  - [CreateCustomConversionRequest](docs/CreateCustomConversionRequest.md)
  - [CreateCustomField200Response](docs/CreateCustomField200Response.md)
