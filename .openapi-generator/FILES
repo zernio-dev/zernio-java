@@ -254,6 +254,7 @@ docs/AutomationAdFilterOneOf1.md
 docs/AutomationAdFilterOneOf2.md
 docs/AutomationAdFilterOneOf3.md
 docs/AutomationAdFilterOneOf4.md
+docs/AutomationAdFilterOneOf5.md
 docs/AutomationAlert.md
 docs/AutomationApproval.md
 docs/AutomationApprovalChange.md
@@ -539,6 +540,7 @@ docs/ChangelogApi.md
 docs/ChannelPicker.md
 docs/ChannelPickerChannelsInner.md
 docs/ChannelPickerTeam.md
+docs/ChannelType.md
 docs/CheckPhoneNumberAvailability200Response.md
 docs/CheckPhoneNumberAvailability200ResponseAreaAvailability.md
 docs/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInner.md
@@ -4142,6 +4144,7 @@ src/main/java/dev/zernio/model/AutomationAdFilterOneOf1.java
 src/main/java/dev/zernio/model/AutomationAdFilterOneOf2.java
 src/main/java/dev/zernio/model/AutomationAdFilterOneOf3.java
 src/main/java/dev/zernio/model/AutomationAdFilterOneOf4.java
+src/main/java/dev/zernio/model/AutomationAdFilterOneOf5.java
 src/main/java/dev/zernio/model/AutomationAlert.java
 src/main/java/dev/zernio/model/AutomationApproval.java
 src/main/java/dev/zernio/model/AutomationApprovalChange.java
@@ -4419,6 +4422,7 @@ src/main/java/dev/zernio/model/ChangeCommerceProductTagsRequest.java
 src/main/java/dev/zernio/model/ChannelPicker.java
 src/main/java/dev/zernio/model/ChannelPickerChannelsInner.java
 src/main/java/dev/zernio/model/ChannelPickerTeam.java
+src/main/java/dev/zernio/model/ChannelType.java
 src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200Response.java
 src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaAvailability.java
 src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInner.java
@@ -7613,3 +7617,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AutomationAdFilterOneOf5Test.java
+src/test/java/dev/zernio/model/ChannelTypeTest.java

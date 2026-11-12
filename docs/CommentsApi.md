@@ -363,7 +363,7 @@ ApiResponse<[**EditInboxComment200Response**](EditInboxComment200Response.md)>
 
 ## getInboxPostComments
 
-> GetInboxPostComments200Response getInboxPostComments(postId, accountId, subreddit, limit, cursor, commentId)
+> GetInboxPostComments200Response getInboxPostComments(postId, accountId, subreddit, limit, cursor, commentId, view)
 
 Get post comments
 
@@ -396,8 +396,9 @@ public class Example {
         Integer limit = 25; // Integer | Maximum number of comments to return
         String cursor = "cursor_example"; // String | Pagination cursor, returned by a previous call as `pagination.cursor`. This is the platform's own opaque paging value passed through verbatim: never construct, decode or validate it client-side.
         String commentId = "commentId_example"; // String | (Facebook, Instagram, Reddit and TikTok) Get replies to a specific comment. On Facebook and Instagram, the requested comment is returned in the top-level `comment` field and comments[] holds its replies.
+        String view = "full"; // String | `full` returns every comment as before. `summary` is a lighter page for agents and large polls:  - Each comment leaves out `from.picture`, `url`, `platform` and every flag that is false. - At most 3 nested replies per comment. A comment with more replies than it carries has `repliesHasMore: true`: fetch the rest with `commentId` (Facebook, Instagram, Reddit, TikTok) or with view=full. - `post` leaves out `thumbnailUrl` and `mediaUrl`. 
         try {
-            GetInboxPostComments200Response result = apiInstance.getInboxPostComments(postId, accountId, subreddit, limit, cursor, commentId);
+            GetInboxPostComments200Response result = apiInstance.getInboxPostComments(postId, accountId, subreddit, limit, cursor, commentId, view);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CommentsApi#getInboxPostComments");
@@ -421,6 +422,7 @@ public class Example {
 | **limit** | **Integer**| Maximum number of comments to return | [optional] [default to 25] |
 | **cursor** | **String**| Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. | [optional] |
 | **commentId** | **String**| (Facebook, Instagram, Reddit and TikTok) Get replies to a specific comment. On Facebook and Instagram, the requested comment is returned in the top-level &#x60;comment&#x60; field and comments[] holds its replies. | [optional] |
+| **view** | **String**| &#x60;full&#x60; returns every comment as before. &#x60;summary&#x60; is a lighter page for agents and large polls:  - Each comment leaves out &#x60;from.picture&#x60;, &#x60;url&#x60;, &#x60;platform&#x60; and every flag that is false. - At most 3 nested replies per comment. A comment with more replies than it carries has &#x60;repliesHasMore: true&#x60;: fetch the rest with &#x60;commentId&#x60; (Facebook, Instagram, Reddit, TikTok) or with view&#x3D;full. - &#x60;post&#x60; leaves out &#x60;thumbnailUrl&#x60; and &#x60;mediaUrl&#x60;.  | [optional] [default to full] [enum: full, summary] |
 
 ### Return type
 
@@ -448,7 +450,7 @@ public class Example {
 
 ## getInboxPostCommentsWithHttpInfo
 
-> ApiResponse<GetInboxPostComments200Response> getInboxPostComments getInboxPostCommentsWithHttpInfo(postId, accountId, subreddit, limit, cursor, commentId)
+> ApiResponse<GetInboxPostComments200Response> getInboxPostComments getInboxPostCommentsWithHttpInfo(postId, accountId, subreddit, limit, cursor, commentId, view)
 
 Get post comments
 
@@ -482,8 +484,9 @@ public class Example {
         Integer limit = 25; // Integer | Maximum number of comments to return
         String cursor = "cursor_example"; // String | Pagination cursor, returned by a previous call as `pagination.cursor`. This is the platform's own opaque paging value passed through verbatim: never construct, decode or validate it client-side.
         String commentId = "commentId_example"; // String | (Facebook, Instagram, Reddit and TikTok) Get replies to a specific comment. On Facebook and Instagram, the requested comment is returned in the top-level `comment` field and comments[] holds its replies.
+        String view = "full"; // String | `full` returns every comment as before. `summary` is a lighter page for agents and large polls:  - Each comment leaves out `from.picture`, `url`, `platform` and every flag that is false. - At most 3 nested replies per comment. A comment with more replies than it carries has `repliesHasMore: true`: fetch the rest with `commentId` (Facebook, Instagram, Reddit, TikTok) or with view=full. - `post` leaves out `thumbnailUrl` and `mediaUrl`. 
         try {
-            ApiResponse<GetInboxPostComments200Response> response = apiInstance.getInboxPostCommentsWithHttpInfo(postId, accountId, subreddit, limit, cursor, commentId);
+            ApiResponse<GetInboxPostComments200Response> response = apiInstance.getInboxPostCommentsWithHttpInfo(postId, accountId, subreddit, limit, cursor, commentId, view);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -509,6 +512,7 @@ public class Example {
 | **limit** | **Integer**| Maximum number of comments to return | [optional] [default to 25] |
 | **cursor** | **String**| Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. | [optional] |
 | **commentId** | **String**| (Facebook, Instagram, Reddit and TikTok) Get replies to a specific comment. On Facebook and Instagram, the requested comment is returned in the top-level &#x60;comment&#x60; field and comments[] holds its replies. | [optional] |
+| **view** | **String**| &#x60;full&#x60; returns every comment as before. &#x60;summary&#x60; is a lighter page for agents and large polls:  - Each comment leaves out &#x60;from.picture&#x60;, &#x60;url&#x60;, &#x60;platform&#x60; and every flag that is false. - At most 3 nested replies per comment. A comment with more replies than it carries has &#x60;repliesHasMore: true&#x60;: fetch the rest with &#x60;commentId&#x60; (Facebook, Instagram, Reddit, TikTok) or with view&#x3D;full. - &#x60;post&#x60; leaves out &#x60;thumbnailUrl&#x60; and &#x60;mediaUrl&#x60;.  | [optional] [default to full] [enum: full, summary] |
 
 ### Return type
 
@@ -1013,7 +1017,7 @@ ApiResponse<[**LikePost200Response**](LikePost200Response.md)>
 
 ## listInboxComments
 
-> ListInboxComments200Response listInboxComments(profileId, platform, minComments, since, sortBy, sortOrder, limit, cursor, accountId)
+> ListInboxComments200Response listInboxComments(profileId, platform, minComments, since, sortBy, sortOrder, limit, view, cursor, accountId)
 
 List commented posts
 
@@ -1047,10 +1051,11 @@ public class Example {
         String sortBy = "date"; // String | Sort field
         String sortOrder = "asc"; // String | Sort order
         Integer limit = 50; // Integer | 
+        String view = "full"; // String | full returns every post as before. summary leaves out `picture` and cuts `content` to 280 characters, marking a cut caption with `contentTruncated: true`.
         String cursor = "cursor_example"; // String | 
         String accountId = "accountId_example"; // String | Filter by specific account ID.  With `platform=metaads` it takes the Meta Ads account ID, or the Facebook or Instagram account ID the Meta Ads connection belongs to, which returns that connection's ad rows.  A Facebook or Instagram account with no Meta Ads connection returns no rows. An account on any other platform returns 400. 
         try {
-            ListInboxComments200Response result = apiInstance.listInboxComments(profileId, platform, minComments, since, sortBy, sortOrder, limit, cursor, accountId);
+            ListInboxComments200Response result = apiInstance.listInboxComments(profileId, platform, minComments, since, sortBy, sortOrder, limit, view, cursor, accountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CommentsApi#listInboxComments");
@@ -1075,6 +1080,7 @@ public class Example {
 | **sortBy** | **String**| Sort field | [optional] [default to date] [enum: date, comments] |
 | **sortOrder** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
+| **view** | **String**| full returns every post as before. summary leaves out &#x60;picture&#x60; and cuts &#x60;content&#x60; to 280 characters, marking a cut caption with &#x60;contentTruncated: true&#x60;. | [optional] [default to full] [enum: full, summary] |
 | **cursor** | **String**|  | [optional] |
 | **accountId** | **String**| Filter by specific account ID.  With &#x60;platform&#x3D;metaads&#x60; it takes the Meta Ads account ID, or the Facebook or Instagram account ID the Meta Ads connection belongs to, which returns that connection&#39;s ad rows.  A Facebook or Instagram account with no Meta Ads connection returns no rows. An account on any other platform returns 400.  | [optional] |
 
@@ -1102,7 +1108,7 @@ public class Example {
 
 ## listInboxCommentsWithHttpInfo
 
-> ApiResponse<ListInboxComments200Response> listInboxComments listInboxCommentsWithHttpInfo(profileId, platform, minComments, since, sortBy, sortOrder, limit, cursor, accountId)
+> ApiResponse<ListInboxComments200Response> listInboxComments listInboxCommentsWithHttpInfo(profileId, platform, minComments, since, sortBy, sortOrder, limit, view, cursor, accountId)
 
 List commented posts
 
@@ -1137,10 +1143,11 @@ public class Example {
         String sortBy = "date"; // String | Sort field
         String sortOrder = "asc"; // String | Sort order
         Integer limit = 50; // Integer | 
+        String view = "full"; // String | full returns every post as before. summary leaves out `picture` and cuts `content` to 280 characters, marking a cut caption with `contentTruncated: true`.
         String cursor = "cursor_example"; // String | 
         String accountId = "accountId_example"; // String | Filter by specific account ID.  With `platform=metaads` it takes the Meta Ads account ID, or the Facebook or Instagram account ID the Meta Ads connection belongs to, which returns that connection's ad rows.  A Facebook or Instagram account with no Meta Ads connection returns no rows. An account on any other platform returns 400. 
         try {
-            ApiResponse<ListInboxComments200Response> response = apiInstance.listInboxCommentsWithHttpInfo(profileId, platform, minComments, since, sortBy, sortOrder, limit, cursor, accountId);
+            ApiResponse<ListInboxComments200Response> response = apiInstance.listInboxCommentsWithHttpInfo(profileId, platform, minComments, since, sortBy, sortOrder, limit, view, cursor, accountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1167,6 +1174,7 @@ public class Example {
 | **sortBy** | **String**| Sort field | [optional] [default to date] [enum: date, comments] |
 | **sortOrder** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
+| **view** | **String**| full returns every post as before. summary leaves out &#x60;picture&#x60; and cuts &#x60;content&#x60; to 280 characters, marking a cut caption with &#x60;contentTruncated: true&#x60;. | [optional] [default to full] [enum: full, summary] |
 | **cursor** | **String**|  | [optional] |
 | **accountId** | **String**| Filter by specific account ID.  With &#x60;platform&#x3D;metaads&#x60; it takes the Meta Ads account ID, or the Facebook or Instagram account ID the Meta Ads connection belongs to, which returns that connection&#39;s ad rows.  A Facebook or Instagram account with no Meta Ads connection returns no rows. An account on any other platform returns 400.  | [optional] |
 

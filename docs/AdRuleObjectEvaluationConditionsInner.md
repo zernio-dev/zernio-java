@@ -37,6 +37,9 @@
 | BUDGET_USED | &quot;budget_used&quot; |
 | DAY_OF_MONTH | &quot;day_of_month&quot; |
 | WORKING_DAY_OF_MONTH | &quot;working_day_of_month&quot; |
+| SEARCH_IMPRESSION_SHARE | &quot;search_impression_share&quot; |
+| SEARCH_BUDGET_LOST_IMPRESSION_SHARE | &quot;search_budget_lost_impression_share&quot; |
+| SEARCH_RANK_LOST_IMPRESSION_SHARE | &quot;search_rank_lost_impression_share&quot; |
 
 
 

@@ -10,6 +10,7 @@ Narrows the ad objects checked, before any metric is read. `GET /v1/automations/
 * [AutomationAdFilterOneOf2](AutomationAdFilterOneOf2.md)
 * [AutomationAdFilterOneOf3](AutomationAdFilterOneOf3.md)
 * [AutomationAdFilterOneOf4](AutomationAdFilterOneOf4.md)
+* [AutomationAdFilterOneOf5](AutomationAdFilterOneOf5.md)
 
 ## Example
 ```java
@@ -20,6 +21,7 @@ import dev.zernio.model.AutomationAdFilterOneOf1;
 import dev.zernio.model.AutomationAdFilterOneOf2;
 import dev.zernio.model.AutomationAdFilterOneOf3;
 import dev.zernio.model.AutomationAdFilterOneOf4;
+import dev.zernio.model.AutomationAdFilterOneOf5;
 
 public class Example {
     public static void main(String[] args) {
@@ -59,6 +61,13 @@ public class Example {
         exampleAutomationAdFilter.setActualInstance(exampleAutomationAdFilterOneOf4);
         // to get back the AutomationAdFilterOneOf4 set earlier
         AutomationAdFilterOneOf4 testAutomationAdFilterOneOf4 = (AutomationAdFilterOneOf4) exampleAutomationAdFilter.getActualInstance();
+
+        // create a new AutomationAdFilterOneOf5
+        AutomationAdFilterOneOf5 exampleAutomationAdFilterOneOf5 = new AutomationAdFilterOneOf5();
+        // set AutomationAdFilter to AutomationAdFilterOneOf5
+        exampleAutomationAdFilter.setActualInstance(exampleAutomationAdFilterOneOf5);
+        // to get back the AutomationAdFilterOneOf5 set earlier
+        AutomationAdFilterOneOf5 testAutomationAdFilterOneOf5 = (AutomationAdFilterOneOf5) exampleAutomationAdFilter.getActualInstance();
     }
 }
 ```

@@ -4,6 +4,7 @@
 
 ## oneOf schemas
 * [BudgetLevel](BudgetLevel.md)
+* [ChannelType](ChannelType.md)
 * [DaysLive](DaysLive.md)
 * [DaysSinceChange](DaysSinceChange.md)
 * [Ids](Ids.md)
@@ -14,6 +15,7 @@
 // Import classes:
 import dev.zernio.model.AdRuleFiltersInner;
 import dev.zernio.model.BudgetLevel;
+import dev.zernio.model.ChannelType;
 import dev.zernio.model.DaysLive;
 import dev.zernio.model.DaysSinceChange;
 import dev.zernio.model.Ids;
@@ -29,6 +31,13 @@ public class Example {
         exampleAdRuleFiltersInner.setActualInstance(exampleBudgetLevel);
         // to get back the BudgetLevel set earlier
         BudgetLevel testBudgetLevel = (BudgetLevel) exampleAdRuleFiltersInner.getActualInstance();
+
+        // create a new ChannelType
+        ChannelType exampleChannelType = new ChannelType();
+        // set AdRuleFiltersInner to ChannelType
+        exampleAdRuleFiltersInner.setActualInstance(exampleChannelType);
+        // to get back the ChannelType set earlier
+        ChannelType testChannelType = (ChannelType) exampleAdRuleFiltersInner.getActualInstance();
 
         // create a new DaysLive
         DaysLive exampleDaysLive = new DaysLive();

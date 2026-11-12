@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.589.0
+- API version: 1.590.0
 
-- Build date: 2026-11-12T12:24:22.408325523Z[Etc/UTC]
+- Build date: 2026-11-12T12:31:20.764223525Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.589.0</version>
+  <version>1.590.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.589.0"
+compile "dev.zernio:zernio-sdk:1.590.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.589.0.jar`
+- `target/zernio-sdk-1.590.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2908,6 +2908,7 @@ Class | Method | HTTP request | Description
  - [AutomationAdFilterOneOf2](docs/AutomationAdFilterOneOf2.md)
  - [AutomationAdFilterOneOf3](docs/AutomationAdFilterOneOf3.md)
  - [AutomationAdFilterOneOf4](docs/AutomationAdFilterOneOf4.md)
+ - [AutomationAdFilterOneOf5](docs/AutomationAdFilterOneOf5.md)
  - [AutomationAlert](docs/AutomationAlert.md)
  - [AutomationApproval](docs/AutomationApproval.md)
  - [AutomationApprovalChange](docs/AutomationApprovalChange.md)
@@ -3185,6 +3186,7 @@ Class | Method | HTTP request | Description
  - [ChannelPicker](docs/ChannelPicker.md)
  - [ChannelPickerChannelsInner](docs/ChannelPickerChannelsInner.md)
  - [ChannelPickerTeam](docs/ChannelPickerTeam.md)
+ - [ChannelType](docs/ChannelType.md)
  - [CheckPhoneNumberAvailability200Response](docs/CheckPhoneNumberAvailability200Response.md)
  - [CheckPhoneNumberAvailability200ResponseAreaAvailability](docs/CheckPhoneNumberAvailability200ResponseAreaAvailability.md)
  - [CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInner](docs/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInner.md)

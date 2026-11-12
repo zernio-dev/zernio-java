@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.589.0
+  version: 1.590.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -9138,6 +9138,25 @@ paths:
         name: fields
         required: false
         schema:
+          type: string
+        style: form
+      - description: |
+          `full` returns the whole post. `summary` returns only what an agent needs to read a page of posts:
+
+          - Post: `_id`, `title`, `content`, `status`, `scheduledFor`, `timezone`, `tags`, `createdAt`, `updatedAt`, and `contentNotRetained` when set.
+          - Each platform: `platform`, `status`, `accountId` (the id), `username`, `scheduledFor`, `publishedAt`, `platformPostId`, `platformPostUrl`, `errorMessage`, `errorCategory`.
+          - Left out: the author (`userId`), `mediaItems`, `metadata`, `recycling`, and each platform's custom content, custom media and `platformSpecificData`. Null values are left out too.
+
+          Works with both sources. Send either `fields` or `view=summary`: both together return 400.
+        explode: true
+        in: query
+        name: view
+        required: false
+        schema:
+          default: full
+          enum:
+          - full
+          - summary
           type: string
         style: form
       - description: |
@@ -32484,6 +32503,20 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - description: "full returns every post as before. summary leaves out `picture`\
+          \ and cuts `content` to 280 characters, marking a cut caption with `contentTruncated:\
+          \ true`."
+        explode: true
+        in: query
+        name: view
+        required: false
+        schema:
+          default: full
+          enum:
+          - full
+          - summary
+          type: string
+        style: form
       - explode: true
         in: query
         name: cursor
@@ -32695,6 +32728,23 @@ paths:
         name: commentId
         required: false
         schema:
+          type: string
+        style: form
+      - description: |
+          `full` returns every comment as before. `summary` is a lighter page for agents and large polls:
+
+          - Each comment leaves out `from.picture`, `url`, `platform` and every flag that is false.
+          - At most 3 nested replies per comment. A comment with more replies than it carries has `repliesHasMore: true`: fetch the rest with `commentId` (Facebook, Instagram, Reddit, TikTok) or with view=full.
+          - `post` leaves out `thumbnailUrl` and `mediaUrl`.
+        explode: true
+        in: query
+        name: view
+        required: false
+        schema:
+          default: full
+          enum:
+          - full
+          - summary
           type: string
         style: form
       responses:
@@ -125672,6 +125722,9 @@ components:
           - budget_used
           - day_of_month
           - working_day_of_month
+          - search_impression_share
+          - search_budget_lost_impression_share
+          - search_rank_lost_impression_share
           nullable: true
           type: string
         window:
@@ -125832,9 +125885,9 @@ components:
       type: array
     AdRuleFilters:
       description: "Narrows the objects the rule checks. Every filter must hold. A\
-        \ campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`\
-        \ and `budget_level`; an ad set rule all but `days_since_change`, plus `campaign_name`\
-        \ and `adset_id`; an ad rule also `adset_name` and `ad_id`."
+        \ campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`,\
+        \ `budget_level` and `channel_type`; an ad set rule all but `days_since_change`,\
+        \ plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`."
       items:
         $ref: "#/components/schemas/AdRuleFilters_inner"
       maxItems: 10
@@ -126125,6 +126178,7 @@ components:
       - $ref: "#/components/schemas/AutomationAdFilter_oneOf_2"
       - $ref: "#/components/schemas/AutomationAdFilter_oneOf_3"
       - $ref: "#/components/schemas/AutomationAdFilter_oneOf_4"
+      - $ref: "#/components/schemas/AutomationAdFilter_oneOf_5"
     AutomationSubjects:
       additionalProperties: {}
       description: "What an ad rule checks, and where."
@@ -128936,9 +128990,10 @@ components:
           type: array
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`\
-            \ and `budget_level`; an ad set rule all but `days_since_change`, plus\
-            \ `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`."
+            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`,\
+            \ `budget_level` and `channel_type`; an ad set rule all but `days_since_change`,\
+            \ plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and\
+            \ `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -157812,6 +157867,7 @@ components:
           type: boolean
     listInboxComments_200_response_data_inner:
       example:
+        contentTruncated: true
         likeCount: 6
         platform: platform
         content: content
@@ -157845,6 +157901,10 @@ components:
           description: Post media thumbnail. On ad rows this is the ad creative thumbnail.
           nullable: true
           type: string
+        contentTruncated:
+          description: "Only with view=summary, and only when `content` was cut to\
+            \ 280 characters."
+          type: boolean
         permalink:
           description: "Public URL of the post. On ad rows: the Facebook dark-post\
             \ URL (facebook placement) or the IG media permalink (instagram placement);\
@@ -157956,7 +158016,8 @@ components:
           nextCursor: nextCursor
           hasMore: true
         data:
-        - likeCount: 6
+        - contentTruncated: true
+          likeCount: 6
           platform: platform
           content: content
           picture: picture
@@ -157971,7 +158032,8 @@ components:
           permalink: permalink
           isAd: true
           cid: cid
-        - likeCount: 6
+        - contentTruncated: true
+          likeCount: 6
           platform: platform
           content: content
           picture: picture
@@ -158112,7 +158174,7 @@ components:
 
             Fetch the rest by passing the comment id as the `commentId` query parameter to GET /v1/inbox/comments/{postId} (or, for backwards compatibility, as `postId`).
 
-            Absent (not false) on every other platform, including Instagram, which has no equivalent signal.
+            Absent (not false) on every other platform, including Instagram, which has no equivalent signal, except with view=summary, where it is also true on any comment whose `replyCount` is higher than the replies it carries (nested replies are cut to 3 there).
           type: boolean
         canReply:
           description: Whether this comment can be replied to. Always present.
@@ -179646,9 +179708,10 @@ components:
           type: array
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`\
-            \ and `budget_level`; an ad set rule all but `days_since_change`, plus\
-            \ `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`."
+            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`,\
+            \ `budget_level` and `channel_type`; an ad set rule all but `days_since_change`,\
+            \ plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and\
+            \ `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -180291,9 +180354,10 @@ components:
           type: array
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`\
-            \ and `budget_level`; an ad set rule all but `days_since_change`, plus\
-            \ `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`."
+            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`,\
+            \ `budget_level` and `channel_type`; an ad set rule all but `days_since_change`,\
+            \ plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and\
+            \ `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -229589,7 +229653,7 @@ components:
           type: string
         metric:
           description: |-
-            What objects are ranked by: any condition metric except `day_of_month` and `working_day_of_month`, or a result metric (`result:<key>`) on campaign rules.
+            What objects are ranked by: any condition metric except `day_of_month`, `working_day_of_month` and the Google impression shares, or a result metric (`result:<key>`) on campaign rules.
 
             Objects without a value are not ranked, except one that spent with no result on a metric where lower is best (a CPA with no conversions): it ranks worst and only gives.
           type: string
@@ -229769,9 +229833,10 @@ components:
           type: string
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`\
-            \ and `budget_level`; an ad set rule all but `days_since_change`, plus\
-            \ `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`."
+            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`,\
+            \ `budget_level` and `channel_type`; an ad set rule all but `days_since_change`,\
+            \ plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and\
+            \ `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -229862,6 +229927,43 @@ components:
       - op
       - value
       title: Budget level
+    Channel_type:
+      description: Picks (`in`) or leaves out (`not_in`) objects by their Google campaign
+        type. Google rules only.
+      properties:
+        field:
+          enum:
+          - channel_type
+          type: string
+        op:
+          enum:
+          - in
+          - not_in
+          type: string
+        values:
+          items:
+            enum:
+            - SEARCH
+            - DISPLAY
+            - SHOPPING
+            - HOTEL
+            - VIDEO
+            - MULTI_CHANNEL
+            - LOCAL
+            - SMART
+            - PERFORMANCE_MAX
+            - LOCAL_SERVICES
+            - TRAVEL
+            - DEMAND_GEN
+            type: string
+          maxItems: 12
+          minItems: 1
+          type: array
+      required:
+      - field
+      - op
+      - values
+      title: Channel type
     Days_live:
       description: Days since the object's first ad was created on the platform. An
         object without that date never passes.
@@ -229923,6 +230025,7 @@ components:
       - $ref: "#/components/schemas/Name_or_goal"
       - $ref: "#/components/schemas/Ids"
       - $ref: "#/components/schemas/Budget_level"
+      - $ref: "#/components/schemas/Channel_type"
       - $ref: "#/components/schemas/Days_live"
       - $ref: "#/components/schemas/Days_since_change"
     AdRuleSchedule_times_inner:
@@ -230220,6 +230323,43 @@ components:
       - field
       - op
       - value
+    AutomationAdFilter_oneOf_5:
+      additionalProperties: false
+      description: Picks or leaves out objects by their Google campaign type. Google
+        ad accounts only.
+      properties:
+        field:
+          enum:
+          - channel_type
+          type: string
+        op:
+          enum:
+          - in
+          - not_in
+          type: string
+        values:
+          items:
+            enum:
+            - SEARCH
+            - DISPLAY
+            - SHOPPING
+            - HOTEL
+            - VIDEO
+            - MULTI_CHANNEL
+            - LOCAL
+            - SMART
+            - PERFORMANCE_MAX
+            - LOCAL_SERVICES
+            - TRAVEL
+            - DEMAND_GEN
+            type: string
+          maxItems: 12
+          minItems: 1
+          type: array
+      required:
+      - field
+      - op
+      - values
     AutomationSubjects_adAccounts_inner:
       additionalProperties: false
       example:
