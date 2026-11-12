@@ -329,7 +329,7 @@ ApiResponse<[**GetCampaignResultsUpload200Response**](GetCampaignResultsUpload20
 
 List your result metrics
 
-The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
 
 ### Example
 
@@ -396,7 +396,7 @@ This endpoint does not need any parameter.
 
 List your result metrics
 
-The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
 
 ### Example
 
