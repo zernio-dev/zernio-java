@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.607.0
+  version: 1.607.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -348,7 +348,7 @@ tags:
 
     **Status model.** Every level keeps its own on/off switch, as in each platform's own UI: Meta `configured_status`, TikTok `operation_status`, Google `status`, LinkedIn `status`, Pinterest `status`, X `entity_status`, ChatGPT (OpenAI) `status`, Reddit `configured_status`.
 
-    - **Own switch** is what you set. Ads return it as `configuredStatus`, ad sets as `platformAdSetStatus`, campaigns as `platformCampaignStatus`. Meta and Reddit ad sets return their `effective_status` in `platformAdSetStatus` instead (e.g. `CAMPAIGN_PAUSED`).
+    - **Own switch** is what you set. Ads return it as `configuredStatus`, ad sets as `platformAdSetStatus`, campaigns as `platformCampaignStatus`. Meta ad sets return their `effective_status` in `platformAdSetStatus` instead (e.g. `CAMPAIGN_PAUSED`).
     - **Delivery status** (`status`, and the raw `platformStatus` on ads) is derived: an object delivers only when its own switch AND every switch above it are on. An ad switched on under a paused campaign reads `configuredStatus: ACTIVE` with `status: paused`.
     - **No cascade.** Pausing or resuming a campaign or ad set writes that object's switch only. Children keep their own switches, so a resume never re-enables an ad or ad set you paused individually. Resume each paused level you want live.
     - No cascade is native platform behavior (Google: "Resuming a campaign only enables the campaign level"; Meta reports the inherited pause as CAMPAIGN_PAUSED / ADSET_PAUSED on the child).
@@ -54814,7 +54814,7 @@ paths:
 
         A stored switch never skips a write, and when the platform cannot be read the write always goes out.
 
-        On Meta and Reddit the check reads the ad set's own switch (`status` / `configured_status`). So a repeated request skips even while `platformAdSetStatus` reads `CAMPAIGN_PAUSED`, `WITH_ISSUES` or `IN_PROCESS`.
+        On Meta the check reads the ad set's own switch (`status`). So a repeated request skips even while `platformAdSetStatus` reads `CAMPAIGN_PAUSED`, `WITH_ISSUES` or `IN_PROCESS`. On Reddit `platformAdSetStatus` is the ad group's own switch (`configured_status`), so a skipped request returns it as already in the requested state.
       operationId: updateAdSetStatus
       parameters:
       - description: Platform ad set ID
@@ -183765,7 +183765,8 @@ components:
         platformAdSetStatus:
           description: "Raw platform ad set status. On TikTok the ad group's own switch\
             \ `operation_status` (ENABLE / DISABLE), independent of its campaign.\
-            \ On Meta and Reddit the ad set's `effective_status` (e.g. CAMPAIGN_PAUSED)."
+            \ On Meta the ad set's `effective_status` (e.g. CAMPAIGN_PAUSED). On Reddit\
+            \ the ad group's own switch `configured_status` (ACTIVE / PAUSED / ARCHIVED)."
           nullable: true
           type: string
         platformCampaignId:
@@ -184647,8 +184648,9 @@ components:
           type: string
         platformAdSetStatus:
           description: "The ad set's status read back from the platform, as in PUT\
-            \ /v1/ads/ad-sets/{adSetId}/status (Meta and Reddit return the ad set's\
-            \ effective_status); null when it could not be read."
+            \ /v1/ads/ad-sets/{adSetId}/status (Meta returns the ad set's effective_status,\
+            \ Reddit the ad group's configured_status); null when it could not be\
+            \ read."
           nullable: true
           type: string
         platformCampaignStatus:
@@ -184765,7 +184767,7 @@ components:
             - Google: ENABLED / PAUSED.
             - LinkedIn and Pinterest: ACTIVE / PAUSED.
             - ChatGPT (OpenAI): status.
-            - Reddit: effective_status, such as CAMPAIGN_PAUSED.
+            - Reddit: configured_status (ACTIVE / PAUSED / ARCHIVED).
           nullable: true
           type: string
         platformCampaignStatus:

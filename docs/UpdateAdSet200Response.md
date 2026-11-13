@@ -10,7 +10,7 @@
 |**budget** | [**AdBudget**](AdBudget.md) |  |  [optional] |
 |**budgetLevel** | [**BudgetLevelEnum**](#BudgetLevelEnum) |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | As in PUT /v1/ads/ad-sets/{adSetId}/status: delivery derived from the switches read back. |  [optional] |
-|**platformAdSetStatus** | **String** | The ad set&#39;s status read back from the platform, as in PUT /v1/ads/ad-sets/{adSetId}/status (Meta and Reddit return the ad set&#39;s effective_status); null when it could not be read. |  [optional] |
+|**platformAdSetStatus** | **String** | The ad set&#39;s status read back from the platform, as in PUT /v1/ads/ad-sets/{adSetId}/status (Meta returns the ad set&#39;s effective_status, Reddit the ad group&#39;s configured_status); null when it could not be read. |  [optional] |
 |**platformCampaignStatus** | **String** |  |  [optional] |
 |**statusReadAt** | **OffsetDateTime** |  |  [optional] |
 |**statusUpdated** | [**StatusUpdatedEnum**](#StatusUpdatedEnum) | 1 when the ad set&#39;s switch was written. |  [optional] |
