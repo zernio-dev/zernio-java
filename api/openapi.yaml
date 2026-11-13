@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.603.1
+  version: 1.604.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -27911,9 +27911,10 @@ paths:
       - application/json
   /v1/email/folders:
     get:
-      description: "On Google, folders are Gmail labels (system labels carry `wellKnown`;\
-        \ `unreadCount` and `totalCount` are present only where Gmail reports them).\
-        \ There is no archive folder on Google; archived mail is listed with `folder=archive`."
+      description: |
+        On Google, folders are Gmail labels (system labels carry `wellKnown`; `unreadCount` and `totalCount` are present only where Gmail reports them). There is no archive folder on Google; archived mail is listed with `folder=archive`.
+
+        When the provider does not answer, the last list read for the same account within the past 24 hours is returned with `stale: true`, `asOf` and an `X-Zernio-Stale-As-Of` header instead of a 502.
       operationId: listEmailFolders
       parameters:
       - $ref: "#/components/parameters/EmailAccountId"
@@ -27924,6 +27925,14 @@ paths:
               schema:
                 $ref: "#/components/schemas/listEmailFolders_200_response"
           description: "Folders, with `wellKnown` set on the provider's system folders"
+          headers:
+            X-Zernio-Stale-As-Of:
+              description: Same time as `asOf`. Present only on a stale list.
+              explode: false
+              schema:
+                format: date-time
+                type: string
+              style: simple
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -153362,6 +153371,7 @@ components:
       - accountId
     listEmailFolders_200_response:
       example:
+        stale: true
         data:
         - accountId: accountId
           wellKnown: inbox
@@ -153377,11 +153387,23 @@ components:
           unreadCount: 0
           id: id
           totalCount: 6
+        asOf: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           items:
             $ref: "#/components/schemas/EmailFolder"
           type: array
+        stale:
+          description: Always true when present. Present only when the provider did
+            not answer and `data` is the last folder list Zernio read for the same
+            account within the past 24 hours (`unreadCount` and `totalCount` may be
+            out of date).
+          type: boolean
+        asOf:
+          description: When a stale list was read from the provider. Present only
+            with `stale`.
+          format: date-time
+          type: string
     discoverImapSettings_request:
       properties:
         email:
