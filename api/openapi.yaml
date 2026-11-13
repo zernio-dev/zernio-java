@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.602.1
+  version: 1.603.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -28594,11 +28594,12 @@ paths:
       - application/json
   /v1/calendar/events:
     get:
-      description: "Recurring series are expanded into their occurrences inside the\
-        \ window by default (`expandRecurring=false` lists the masters instead, including\
-        \ series that started before `from` and still recur in the window). Events\
-        \ that overlap the window edges are included. `title` and `location` are substring\
-        \ matches applied to the fetched page."
+      description: |
+        Recurring series are expanded into their occurrences inside the window by default. `expandRecurring=false` lists the masters instead, including series that started before `from` and still recur in the window.
+
+        Events that overlap the window edges are included. `title` and `location` are substring matches applied to the fetched page.
+
+        When the provider does not answer, the last list read for the same account and query within the past hour is returned with `stale: true`, `asOf` and an `X-Zernio-Stale-As-Of` header instead of a 502.
       operationId: listCalendarEvents
       parameters:
       - $ref: "#/components/parameters/EmailAccountId"
@@ -28710,6 +28711,14 @@ paths:
               schema:
                 $ref: "#/components/schemas/listCalendarEvents_200_response"
           description: Events
+          headers:
+            X-Zernio-Stale-As-Of:
+              description: Same time as `asOf`. Present only on a stale list.
+              explode: false
+              schema:
+                format: date-time
+                type: string
+              style: simple
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -153833,6 +153842,7 @@ components:
         pagination:
           nextCursor: nextCursor
           hasMore: true
+        stale: true
         data:
         - reminders:
             useDefault: true
@@ -153940,6 +153950,7 @@ components:
             provider: google_meet
             url: https://openapi-generator.tech
           status: confirmed
+        asOf: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           items:
@@ -153947,6 +153958,16 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/CursorPagination"
+        stale:
+          description: Always true when present. Present only when the provider did
+            not answer and this is the last list Zernio read for the same account
+            and query within the past hour.
+          type: boolean
+        asOf:
+          description: When a stale list was read from the provider. Present only
+            with `stale`.
+          format: date-time
+          type: string
     createCalendarEvent_201_response:
       example:
         data:
