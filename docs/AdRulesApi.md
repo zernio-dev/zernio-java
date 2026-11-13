@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteAdRuleWithHttpInfo**](AdRulesApi.md#deleteAdRuleWithHttpInfo) | **DELETE** /v1/ads/rules/{ruleId} | Delete an ad rule |
 | [**getAdRule**](AdRulesApi.md#getAdRule) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule |
 | [**getAdRuleWithHttpInfo**](AdRulesApi.md#getAdRuleWithHttpInfo) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule |
+| [**getAdRuleHourlyWindows**](AdRulesApi.md#getAdRuleHourlyWindows) | **GET** /v1/ads/rules/hourly-windows | Check whether an ad account has hourly windows |
+| [**getAdRuleHourlyWindowsWithHttpInfo**](AdRulesApi.md#getAdRuleHourlyWindowsWithHttpInfo) | **GET** /v1/ads/rules/hourly-windows | Check whether an ad account has hourly windows |
 | [**listAdRuleActivity**](AdRulesApi.md#listAdRuleActivity) | **GET** /v1/ads/rules/activity | List every change ad rules made |
 | [**listAdRuleActivityWithHttpInfo**](AdRulesApi.md#listAdRuleActivityWithHttpInfo) | **GET** /v1/ads/rules/activity | List every change ad rules made |
 | [**listAdRuleAlerts**](AdRulesApi.md#listAdRuleAlerts) | **GET** /v1/ads/rules/{ruleId}/alerts | List a rule&#39;s alerts |
@@ -484,6 +486,160 @@ ApiResponse<[**CreateAdRule201Response**](CreateAdRule201Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## getAdRuleHourlyWindows
+
+> GetAdRuleHourlyWindows200Response getAdRuleHourlyWindows(accountId, adAccountId)
+
+Check whether an ad account has hourly windows
+
+Hourly windows (&#x60;last_complete_hour&#x60;, &#x60;last_3h&#x60;, &#x60;today_so_far&#x60;) read campaign totals hour by hour, which Zernio syncs only for some Meta and Google ad accounts.  On an ad account without them, an hourly condition always reads as unknown and never matches. &#x60;hourlyWindows&#x60; says which case applies. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdRulesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdRulesApi apiInstance = new AdRulesApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ads connection.
+        String adAccountId = "adAccountId_example"; // String | The ad account on that connection.
+        try {
+            GetAdRuleHourlyWindows200Response result = apiInstance.getAdRuleHourlyWindows(accountId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdRulesApi#getAdRuleHourlyWindows");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ads connection. | |
+| **adAccountId** | **String**| The ad account on that connection. | |
+
+### Return type
+
+[**GetAdRuleHourlyWindows200Response**](GetAdRuleHourlyWindows200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Whether hourly windows read data on the ad account. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## getAdRuleHourlyWindowsWithHttpInfo
+
+> ApiResponse<GetAdRuleHourlyWindows200Response> getAdRuleHourlyWindows getAdRuleHourlyWindowsWithHttpInfo(accountId, adAccountId)
+
+Check whether an ad account has hourly windows
+
+Hourly windows (&#x60;last_complete_hour&#x60;, &#x60;last_3h&#x60;, &#x60;today_so_far&#x60;) read campaign totals hour by hour, which Zernio syncs only for some Meta and Google ad accounts.  On an ad account without them, an hourly condition always reads as unknown and never matches. &#x60;hourlyWindows&#x60; says which case applies. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdRulesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdRulesApi apiInstance = new AdRulesApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ads connection.
+        String adAccountId = "adAccountId_example"; // String | The ad account on that connection.
+        try {
+            ApiResponse<GetAdRuleHourlyWindows200Response> response = apiInstance.getAdRuleHourlyWindowsWithHttpInfo(accountId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdRulesApi#getAdRuleHourlyWindows");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ads connection. | |
+| **adAccountId** | **String**| The ad account on that connection. | |
+
+### Return type
+
+ApiResponse<[**GetAdRuleHourlyWindows200Response**](GetAdRuleHourlyWindows200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Whether hourly windows read data on the ad account. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 

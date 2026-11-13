@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.607.1
+  version: 1.608.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -51410,6 +51410,54 @@ paths:
       - pinterest
       - x
       - reddit
+      x-accepts:
+      - application/json
+  /v1/ads/rules/hourly-windows:
+    get:
+      description: |
+        Hourly windows (`last_complete_hour`, `last_3h`, `today_so_far`) read campaign totals hour by hour, which Zernio syncs only for some Meta and Google ad accounts.
+
+        On an ad account without them, an hourly condition always reads as unknown and never matches. `hourlyWindows` says which case applies.
+      operationId: getAdRuleHourlyWindows
+      parameters:
+      - description: The ads connection.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The ad account on that connection.
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdRuleHourlyWindows_200_response"
+          description: Whether hourly windows read data on the ad account.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Check whether an ad account has hourly windows
+      tags:
+      - Ad Rules
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
       x-accepts:
       - application/json
   /v1/ads/rules/activity:
@@ -181167,6 +181215,14 @@ components:
           type: array
       required:
       - templates
+    getAdRuleHourlyWindows_200_response:
+      example:
+        hourlyWindows: true
+      properties:
+        hourlyWindows:
+          type: boolean
+      required:
+      - hourlyWindows
     listAdRuleActivity_200_response:
       example:
         nextCursor: nextCursor

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.607.1
+- API version: 1.608.0
 
-- Build date: 2026-11-13T15:49:31.504457412Z[Etc/UTC]
+- Build date: 2026-11-13T16:22:51.116167107Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.607.1</version>
+  <version>1.608.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.607.1"
+compile "dev.zernio:zernio-sdk:1.608.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.607.1.jar`
+- `target/zernio-sdk-1.608.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -597,6 +597,8 @@ Class | Method | HTTP request | Description
 *AdRulesApi* | [**deleteAdRuleWithHttpInfo**](docs/AdRulesApi.md#deleteAdRuleWithHttpInfo) | **DELETE** /v1/ads/rules/{ruleId} | Delete an ad rule
 *AdRulesApi* | [**getAdRule**](docs/AdRulesApi.md#getAdRule) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule
 *AdRulesApi* | [**getAdRuleWithHttpInfo**](docs/AdRulesApi.md#getAdRuleWithHttpInfo) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule
+*AdRulesApi* | [**getAdRuleHourlyWindows**](docs/AdRulesApi.md#getAdRuleHourlyWindows) | **GET** /v1/ads/rules/hourly-windows | Check whether an ad account has hourly windows
+*AdRulesApi* | [**getAdRuleHourlyWindowsWithHttpInfo**](docs/AdRulesApi.md#getAdRuleHourlyWindowsWithHttpInfo) | **GET** /v1/ads/rules/hourly-windows | Check whether an ad account has hourly windows
 *AdRulesApi* | [**listAdRuleActivity**](docs/AdRulesApi.md#listAdRuleActivity) | **GET** /v1/ads/rules/activity | List every change ad rules made
 *AdRulesApi* | [**listAdRuleActivityWithHttpInfo**](docs/AdRulesApi.md#listAdRuleActivityWithHttpInfo) | **GET** /v1/ads/rules/activity | List every change ad rules made
 *AdRulesApi* | [**listAdRuleAlerts**](docs/AdRulesApi.md#listAdRuleAlerts) | **GET** /v1/ads/rules/{ruleId}/alerts | List a rule&#39;s alerts
@@ -4020,6 +4022,7 @@ Class | Method | HTTP request | Description
  - [GetAdReview200ResponseReviewRejectionsInner](docs/GetAdReview200ResponseReviewRejectionsInner.md)
  - [GetAdReview200ResponseReviewRejectionsInnerContent](docs/GetAdReview200ResponseReviewRejectionsInnerContent.md)
  - [GetAdReview200ResponseReviewReviewFeedback](docs/GetAdReview200ResponseReviewReviewFeedback.md)
+ - [GetAdRuleHourlyWindows200Response](docs/GetAdRuleHourlyWindows200Response.md)
  - [GetAdSetDetails200Response](docs/GetAdSetDetails200Response.md)
  - [GetAdSetTargeting200Response](docs/GetAdSetTargeting200Response.md)
  - [GetAdTrackingTags200Response](docs/GetAdTrackingTags200Response.md)
