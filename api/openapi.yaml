@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.605.0
+  version: 1.606.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -28762,10 +28762,32 @@ paths:
         ### Recurrence
 
         `recurrence` takes one RRULE line with FREQ, INTERVAL, COUNT, UNTIL, BYDAY and BYSETPOS. Other parts are rejected with 400 (`param: recurrence`).
+
+        ### Reminders
+
+        Each `reminders.overrides` entry is `{ method, minutes }`, with `method` `popup` (default) or `email`.
+
+        - Google takes up to 5 overrides of either method.
+        - Outlook keeps one popup reminder, the first override. An `email` override answers 400 `reminder_method_unsupported`.
       operationId: createCalendarEvent
       requestBody:
         content:
           application/json:
+            examples:
+              emailAndPopupReminders:
+                summary: "Email reminder a day before, popup 10 minutes before"
+                value:
+                  accountId: 66b2e19d8c3f5a7e9d0b1c2d
+                  title: Contract review
+                  start: 2026-11-18T16:00:00+01:00
+                  end: 2026-11-18T17:00:00+01:00
+                  reminders:
+                    useDefault: false
+                    overrides:
+                    - method: email
+                      minutes: 1440
+                    - method: popup
+                      minutes: 10
             schema:
               $ref: "#/components/schemas/CreateCalendarEventRequest"
         required: true
@@ -110562,11 +110584,16 @@ components:
         reminders:
           useDefault: true
           overrides:
-          - minutes: 0
-          - minutes: 0
-          - minutes: 0
-          - minutes: 0
-          - minutes: 0
+          - method: popup
+            minutes: 3228
+          - method: popup
+            minutes: 3228
+          - method: popup
+            minutes: 3228
+          - method: popup
+            minutes: 3228
+          - method: popup
+            minutes: 3228
         metadata:
           key: metadata
         visibility: default
@@ -110614,8 +110641,10 @@ components:
         reminders:
           useDefault: true
           overrides:
-          - minutes: 0
-          - minutes: 0
+          - method: popup
+            minutes: 0
+          - method: popup
+            minutes: 0
         metadata:
           key: metadata
         timezone: timezone
@@ -153910,8 +153939,10 @@ components:
         - reminders:
             useDefault: true
             overrides:
-            - minutes: 0
-            - minutes: 0
+            - method: popup
+              minutes: 0
+            - method: popup
+              minutes: 0
           metadata:
             key: metadata
           timezone: timezone
@@ -153963,8 +153994,10 @@ components:
         - reminders:
             useDefault: true
             overrides:
-            - minutes: 0
-            - minutes: 0
+            - method: popup
+              minutes: 0
+            - method: popup
+              minutes: 0
           metadata:
             key: metadata
           timezone: timezone
@@ -154037,8 +154070,10 @@ components:
           reminders:
             useDefault: true
             overrides:
-            - minutes: 0
-            - minutes: 0
+            - method: popup
+              minutes: 0
+            - method: popup
+              minutes: 0
           metadata:
             key: metadata
           timezone: timezone
@@ -154121,8 +154156,10 @@ components:
         - reminders:
             useDefault: true
             overrides:
-            - minutes: 0
-            - minutes: 0
+            - method: popup
+              minutes: 0
+            - method: popup
+              minutes: 0
           metadata:
             key: metadata
           timezone: timezone
@@ -154174,8 +154211,10 @@ components:
         - reminders:
             useDefault: true
             overrides:
-            - minutes: 0
-            - minutes: 0
+            - method: popup
+              minutes: 0
+            - method: popup
+              minutes: 0
           metadata:
             key: metadata
           timezone: timezone
@@ -226087,23 +226126,47 @@ components:
         email: email
     CalendarEventFields_reminders_overrides_inner:
       example:
-        minutes: 0
+        method: popup
+        minutes: 3228
       properties:
+        method:
+          default: popup
+          description: '`popup` shows a notification in the calendar app. `email`
+            mails the calendar owner (Google only).'
+          enum:
+          - popup
+          - email
+          type: string
         minutes:
+          description: Minutes before the start.
+          maximum: 40320
+          minimum: 0
           type: integer
+      required:
+      - minutes
     CalendarEventFields_reminders:
       example:
         useDefault: true
         overrides:
-        - minutes: 0
-        - minutes: 0
-        - minutes: 0
-        - minutes: 0
-        - minutes: 0
+        - method: popup
+          minutes: 3228
+        - method: popup
+          minutes: 3228
+        - method: popup
+          minutes: 3228
+        - method: popup
+          minutes: 3228
+        - method: popup
+          minutes: 3228
       properties:
         useDefault:
+          description: Use the calendar's default reminders. Ignored when `overrides`
+            has entries.
           type: boolean
         overrides:
+          description: "Google takes up to 5 overrides, `popup` or `email`. Outlook\
+            \ keeps one popup reminder (the first override), and an `email` override\
+            \ answers 400 `reminder_method_unsupported` on a Microsoft account."
           items:
             $ref: "#/components/schemas/CalendarEventFields_reminders_overrides_inner"
           maxItems: 5
@@ -226142,18 +226205,33 @@ components:
         optional: true
         email: email
         status: accepted
+    CalendarEvent_reminders_overrides_inner:
+      example:
+        method: popup
+        minutes: 0
+      properties:
+        method:
+          description: Outlook reminders always read as `popup`.
+          enum:
+          - popup
+          - email
+          type: string
+        minutes:
+          type: integer
     CalendarEvent_reminders:
       example:
         useDefault: true
         overrides:
-        - minutes: 0
-        - minutes: 0
+        - method: popup
+          minutes: 0
+        - method: popup
+          minutes: 0
       properties:
         useDefault:
           type: boolean
         overrides:
           items:
-            $ref: "#/components/schemas/CalendarEventFields_reminders_overrides_inner"
+            $ref: "#/components/schemas/CalendarEvent_reminders_overrides_inner"
           type: array
     CalendarEvent_conferencing:
       example:

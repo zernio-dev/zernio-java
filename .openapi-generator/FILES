@@ -466,6 +466,7 @@ docs/CalendarEventFieldsReminders.md
 docs/CalendarEventFieldsRemindersOverridesInner.md
 docs/CalendarEventParticipantsInner.md
 docs/CalendarEventReminders.md
+docs/CalendarEventRemindersOverridesInner.md
 docs/CalendarFreeBusy200Response.md
 docs/CalendarFreeBusy200ResponseDataInner.md
 docs/CalendarFreeBusy200ResponseDataInnerCalendarsInner.md
@@ -4372,6 +4373,7 @@ src/main/java/dev/zernio/model/CalendarEventFieldsReminders.java
 src/main/java/dev/zernio/model/CalendarEventFieldsRemindersOverridesInner.java
 src/main/java/dev/zernio/model/CalendarEventParticipantsInner.java
 src/main/java/dev/zernio/model/CalendarEventReminders.java
+src/main/java/dev/zernio/model/CalendarEventRemindersOverridesInner.java
 src/main/java/dev/zernio/model/CalendarFreeBusy200Response.java
 src/main/java/dev/zernio/model/CalendarFreeBusy200ResponseDataInner.java
 src/main/java/dev/zernio/model/CalendarFreeBusy200ResponseDataInnerCalendarsInner.java
@@ -7661,4 +7663,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/EmailCapabilitiesSentItemsTest.java
+src/test/java/dev/zernio/model/CalendarEventRemindersOverridesInnerTest.java
