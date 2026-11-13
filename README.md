@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.604.0
+- API version: 1.605.0
 
-- Build date: 2026-11-13T03:53:24.506744554Z[Etc/UTC]
+- Build date: 2026-11-13T07:15:59.059990297Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.604.0</version>
+  <version>1.605.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.604.0"
+compile "dev.zernio:zernio-sdk:1.605.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.604.0.jar`
+- `target/zernio-sdk-1.605.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3858,6 +3858,7 @@ Class | Method | HTTP request | Description
  - [EmailCapabilitiesLabels](docs/EmailCapabilitiesLabels.md)
  - [EmailCapabilitiesScheduledSend](docs/EmailCapabilitiesScheduledSend.md)
  - [EmailCapabilitiesSendAs](docs/EmailCapabilitiesSendAs.md)
+ - [EmailCapabilitiesSentItems](docs/EmailCapabilitiesSentItems.md)
  - [EmailCapabilitiesSignatures](docs/EmailCapabilitiesSignatures.md)
  - [EmailCapabilitiesSync](docs/EmailCapabilitiesSync.md)
  - [EmailClean](docs/EmailClean.md)

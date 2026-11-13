@@ -1217,6 +1217,7 @@ docs/EmailCapabilitiesForward.md
 docs/EmailCapabilitiesLabels.md
 docs/EmailCapabilitiesScheduledSend.md
 docs/EmailCapabilitiesSendAs.md
+docs/EmailCapabilitiesSentItems.md
 docs/EmailCapabilitiesSignatures.md
 docs/EmailCapabilitiesSync.md
 docs/EmailClean.md
@@ -5107,6 +5108,7 @@ src/main/java/dev/zernio/model/EmailCapabilitiesForward.java
 src/main/java/dev/zernio/model/EmailCapabilitiesLabels.java
 src/main/java/dev/zernio/model/EmailCapabilitiesScheduledSend.java
 src/main/java/dev/zernio/model/EmailCapabilitiesSendAs.java
+src/main/java/dev/zernio/model/EmailCapabilitiesSentItems.java
 src/main/java/dev/zernio/model/EmailCapabilitiesSignatures.java
 src/main/java/dev/zernio/model/EmailCapabilitiesSync.java
 src/main/java/dev/zernio/model/EmailClean.java
@@ -7659,3 +7661,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/EmailCapabilitiesSentItemsTest.java

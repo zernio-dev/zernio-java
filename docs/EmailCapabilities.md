@@ -9,6 +9,7 @@ On Google, Microsoft and IMAP accounts with email access: what this mailbox prov
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**sync** | [**EmailCapabilitiesSync**](EmailCapabilitiesSync.md) |  |  [optional] |
+|**sentItems** | [**EmailCapabilitiesSentItems**](EmailCapabilitiesSentItems.md) |  |  [optional] |
 |**drafts** | [**EmailCapabilitiesDrafts**](EmailCapabilitiesDrafts.md) |  |  [optional] |
 |**forward** | [**EmailCapabilitiesForward**](EmailCapabilitiesForward.md) |  |  [optional] |
 |**sendAs** | [**EmailCapabilitiesSendAs**](EmailCapabilitiesSendAs.md) |  |  [optional] |

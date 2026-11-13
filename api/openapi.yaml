@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.604.0
+  version: 1.605.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -108794,10 +108794,10 @@ components:
           type: string
     Pagination:
       example:
-        total: 5
-        pages: 2
+        total: 2
+        pages: 7
         limit: 5
-        page: 1
+        page: 5
       properties:
         page:
           type: integer
@@ -109144,6 +109144,9 @@ components:
         forward:
           asAttachment: true
           native: true
+        sentItems:
+          mode: push
+          typicalDelaySeconds: 6
         drafts:
           versioned: true
           clientEditsVisible: true
@@ -109167,6 +109170,8 @@ components:
       properties:
         sync:
           $ref: "#/components/schemas/EmailCapabilities_sync"
+        sentItems:
+          $ref: "#/components/schemas/EmailCapabilities_sentItems"
         drafts:
           $ref: "#/components/schemas/EmailCapabilities_drafts"
         forward:
@@ -111978,6 +111983,9 @@ components:
           forward:
             asAttachment: true
             native: true
+          sentItems:
+            mode: push
+            typicalDelaySeconds: 6
           drafts:
             versioned: true
             clientEditsVisible: true
@@ -112274,6 +112282,9 @@ components:
           forward:
             asAttachment: true
             native: true
+          sentItems:
+            mode: push
+            typicalDelaySeconds: 6
           drafts:
             versioned: true
             clientEditsVisible: true
@@ -115735,6 +115746,9 @@ components:
           forward:
             asAttachment: true
             native: true
+          sentItems:
+            mode: push
+            typicalDelaySeconds: 6
           drafts:
             versioned: true
             clientEditsVisible: true
@@ -115771,21 +115785,21 @@ components:
         tiktokAccountType: business
         inboundActivity: ""
         _id: _id
-        followersCount: 6.027456183070403
+        followersCount: 1.4658129805029452
         username: username
     AccountsListResponse:
       example:
         hasAnalyticsAccess: true
         profileTotals:
-          key: 7
+          key: 9
         pagination:
-          total: 5
-          pages: 2
+          total: 2
+          pages: 7
           limit: 5
-          page: 1
+          page: 5
         statusCounts:
-          all: 9
-          disconnected: 3
+          all: 3
+          disconnected: 2
         warning: warning
         accounts:
         - profileUrl: profileUrl
@@ -115797,6 +115811,9 @@ components:
             forward:
               asAttachment: true
               native: true
+            sentItems:
+              mode: push
+              typicalDelaySeconds: 6
             drafts:
               versioned: true
               clientEditsVisible: true
@@ -115833,7 +115850,7 @@ components:
           tiktokAccountType: business
           inboundActivity: ""
           _id: _id
-          followersCount: 6.027456183070403
+          followersCount: 1.4658129805029452
           username: username
         - profileUrl: profileUrl
           scopeAreas:
@@ -115844,6 +115861,9 @@ components:
             forward:
               asAttachment: true
               native: true
+            sentItems:
+              mode: push
+              typicalDelaySeconds: 6
             drafts:
               versioned: true
               clientEditsVisible: true
@@ -115880,7 +115900,7 @@ components:
           tiktokAccountType: business
           inboundActivity: ""
           _id: _id
-          followersCount: 6.027456183070403
+          followersCount: 1.4658129805029452
           username: username
       properties:
         accounts:
@@ -115966,6 +115986,9 @@ components:
             forward:
               asAttachment: true
               native: true
+            sentItems:
+              mode: push
+              typicalDelaySeconds: 6
             drafts:
               versioned: true
               clientEditsVisible: true
@@ -116030,6 +116053,9 @@ components:
             forward:
               asAttachment: true
               native: true
+            sentItems:
+              mode: push
+              typicalDelaySeconds: 6
             drafts:
               versioned: true
               clientEditsVisible: true
@@ -116624,10 +116650,10 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         pagination:
-          total: 5
-          pages: 2
+          total: 2
+          pages: 7
           limit: 5
-          page: 1
+          page: 5
         backfillPending: true
       properties:
         ads:
@@ -116727,10 +116753,10 @@ components:
           label: Qualified leads
           key: qualified_leads
         pagination:
-          total: 5
-          pages: 2
+          total: 2
+          pages: 7
           limit: 5
-          page: 1
+          page: 5
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -140729,6 +140755,7 @@ components:
             required: true
             granted: true
           canFetchAnalytics: true
+        sentItemsSync: push
         ownerUserId: ownerUserId
         inboundActivity: ""
         integrationLane: business
@@ -140771,6 +140798,15 @@ components:
           - pending
           - failed
           - not_applicable
+          type: string
+        sentItemsSync:
+          description: "Microsoft only: how mail sent from the user's own mail client\
+            \ reaches `message.sent`. `poll` while Microsoft will not give Zernio\
+            \ a working Sent Items subscription for this mailbox (read every 5 minutes),\
+            \ `push` otherwise."
+          enum:
+          - push
+          - poll
           type: string
         username:
           type: string
@@ -146992,6 +147028,9 @@ components:
             forward:
               asAttachment: true
               native: true
+            sentItems:
+              mode: push
+              typicalDelaySeconds: 6
             drafts:
               versioned: true
               clientEditsVisible: true
@@ -176780,10 +176819,10 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         pagination:
-          total: 5
-          pages: 2
+          total: 2
+          pages: 7
           limit: 5
-          page: 1
+          page: 5
         backfillPending: true
     getAdsSearchTerms_200_response_data_inner:
       example:
@@ -177550,10 +177589,10 @@ components:
     listAdKeywords_200_response:
       example:
         pagination:
-          total: 5
-          pages: 2
+          total: 2
+          pages: 7
           limit: 5
-          page: 1
+          page: 5
         keywords:
         - adSetName: adSetName
           adAccountId: adAccountId
@@ -181808,10 +181847,10 @@ components:
     listAdCampaigns_200_response:
       example:
         pagination:
-          total: 5
-          pages: 2
+          total: 2
+          pages: 7
           limit: 5
-          page: 1
+          page: 5
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -183767,10 +183806,10 @@ components:
     listAdSets_200_response:
       example:
         pagination:
-          total: 5
-          pages: 2
+          total: 2
+          pages: 7
           limit: 5
-          page: 1
+          page: 5
         adSets:
         - bidStrategy: bidStrategy
           adSetName: adSetName
@@ -184720,10 +184759,10 @@ components:
           label: Qualified leads
           key: qualified_leads
         pagination:
-          total: 5
-          pages: 2
+          total: 2
+          pages: 7
           limit: 5
-          page: 1
+          page: 5
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -225878,6 +225917,21 @@ components:
           type: string
         typicalDelaySeconds:
           type: integer
+    EmailCapabilities_sentItems:
+      description: "Outlook only: how mail sent from the user's own mail client reaches\
+        \ you (`message.sent`). `poll` while Microsoft will not give Zernio a Sent\
+        \ Items subscription for this mailbox; it switches back to `push` by itself."
+      example:
+        mode: push
+        typicalDelaySeconds: 6
+      properties:
+        mode:
+          enum:
+          - push
+          - poll
+          type: string
+        typicalDelaySeconds:
+          type: integer
     EmailCapabilities_drafts:
       example:
         versioned: true
@@ -227720,8 +227774,8 @@ components:
       description: Only with includeStatusCounts=true. Counts over every filter of
         the request except status.
       example:
-        all: 9
-        disconnected: 3
+        all: 3
+        disconnected: 2
       properties:
         all:
           description: Accounts matching the filters in any status.
