@@ -596,7 +596,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Hosted KYC link created. |  -  |
-| **400** | Country does not require KYC (not a regulated country). |  -  |
+| **400** | Country does not require KYC (not a regulated country), or &#x60;areaCode&#x60; has no stock for the chosen &#x60;numberType&#x60;. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty, or it cannot hold an order&#39;s fees billed later plus those still owed by orders awaiting approval, while auto top-up cannot refill it (off, no card, or past its monthly limit). - The message says how much to add; &#x60;required_cents&#x60; is what the balance must hold. Later fees: a number&#39;s first month, an RCS agent&#39;s fees up to launch, an iMessage sender&#39;s or caller identity&#39;s first month, 10DLC fees. - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there. - On a call start, &#x60;insufficient_balance&#x60; also means the balance, plus what auto top-up can still add this month, cannot fund one minute of the call; &#x60;required_cents&#x60; is what the balance must hold.  &#x60;funding_url&#x60; opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
 
@@ -672,7 +672,7 @@ ApiResponse<[**CreatePhoneNumberKycLink200Response**](CreatePhoneNumberKycLink20
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Hosted KYC link created. |  -  |
-| **400** | Country does not require KYC (not a regulated country). |  -  |
+| **400** | Country does not require KYC (not a regulated country), or &#x60;areaCode&#x60; has no stock for the chosen &#x60;numberType&#x60;. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty, or it cannot hold an order&#39;s fees billed later plus those still owed by orders awaiting approval, while auto top-up cannot refill it (off, no card, or past its monthly limit). - The message says how much to add; &#x60;required_cents&#x60; is what the balance must hold. Later fees: a number&#39;s first month, an RCS agent&#39;s fees up to launch, an iMessage sender&#39;s or caller identity&#39;s first month, 10DLC fees. - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there. - On a call start, &#x60;insufficient_balance&#x60; also means the balance, plus what auto top-up can still add this month, cannot fund one minute of the call; &#x60;required_cents&#x60; is what the balance must hold.  &#x60;funding_url&#x60; opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
 

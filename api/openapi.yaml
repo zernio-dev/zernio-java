@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.603.0
+  version: 1.603.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -42014,7 +42014,8 @@ paths:
                 $ref: "#/components/schemas/createPhoneNumberKycLink_200_response"
           description: Hosted KYC link created.
         "400":
-          description: Country does not require KYC (not a regulated country).
+          description: "Country does not require KYC (not a regulated country), or\
+            \ `areaCode` has no stock for the chosen `numberType`."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
@@ -42866,7 +42867,8 @@ paths:
                 $ref: "#/components/schemas/createPhoneNumberKycLink_200_response"
           description: Hosted KYC link created.
         "400":
-          description: Country does not require KYC (not a regulated country).
+          description: "Country does not require KYC (not a regulated country), or\
+            \ `areaCode` has no stock for the chosen `numberType`."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
