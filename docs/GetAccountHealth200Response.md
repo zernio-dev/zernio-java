@@ -28,6 +28,7 @@
 |**inboundActivity** | [**InboundActivity**](InboundActivity.md) |  |  [optional] |
 |**messagingRestriction** | [**GetAccountHealth200ResponseMessagingRestriction**](GetAccountHealth200ResponseMessagingRestriction.md) |  |  [optional] |
 |**platformConnection** | [**GetAccountHealth200ResponsePlatformConnection**](GetAccountHealth200ResponsePlatformConnection.md) |  |  [optional] |
+|**lineWebhook** | [**GetAccountHealth200ResponseLineWebhook**](GetAccountHealth200ResponseLineWebhook.md) |  |  [optional] |
 
 
 

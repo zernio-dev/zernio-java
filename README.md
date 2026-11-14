@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.610.0
+- API version: 1.611.0
 
-- Build date: 2026-11-14T02:37:47.021518870Z[Etc/UTC]
+- Build date: 2026-11-14T04:31:02.609093021Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.610.0</version>
+  <version>1.611.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.610.0"
+compile "dev.zernio:zernio-sdk:1.611.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.610.0.jar`
+- `target/zernio-sdk-1.611.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3960,6 +3960,7 @@ Class | Method | HTTP request | Description
  - [GenerateKeywordIdeasRequest](docs/GenerateKeywordIdeasRequest.md)
  - [GeoRestriction](docs/GeoRestriction.md)
  - [GetAccountHealth200Response](docs/GetAccountHealth200Response.md)
+ - [GetAccountHealth200ResponseLineWebhook](docs/GetAccountHealth200ResponseLineWebhook.md)
  - [GetAccountHealth200ResponseMessagingRestriction](docs/GetAccountHealth200ResponseMessagingRestriction.md)
  - [GetAccountHealth200ResponsePermissions](docs/GetAccountHealth200ResponsePermissions.md)
  - [GetAccountHealth200ResponsePermissionsPostingInner](docs/GetAccountHealth200ResponsePermissionsPostingInner.md)
