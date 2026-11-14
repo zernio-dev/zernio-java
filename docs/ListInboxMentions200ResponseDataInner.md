@@ -15,12 +15,12 @@
 |**commentId** | **String** | Instagram and Facebook: ID of the comment that mentioned the account. Null for caption and post mentions and for LinkedIn. |  [optional] |
 |**accountId** | **String** |  |  [optional] |
 |**accountUsername** | **String** |  |  [optional] |
-|**content** | **String** | Text that mentioned you: the post text on LinkedIn, the caption or comment text on Instagram, the post or comment text on Facebook. Empty until it has been read. |  [optional] |
+|**content** | **String** | Text that mentioned you: the post text on LinkedIn, the caption or comment text on Instagram, the post or comment text on Facebook. Empty until it has been read. Stays empty when Meta refuses to serve the source, for example a comment on media Meta does not treat as organic. |  [optional] |
 |**contentNotRetained** | **Boolean** | True when this team does not retain content, so the content fields of this row are null. Identifiers and metadata stay. |  [optional] |
 |**permalink** | **String** | URL to the source post on LinkedIn. Null on Instagram and Facebook. |  [optional] |
-|**authorUrn** | **String** | LinkedIn URN of the person who mentioned you, the Instagram-scoped ID of the commenter on an Instagram comment mention, or the ID of the Facebook user or Page that mentioned your Page when Meta sends it. |  [optional] |
+|**authorUrn** | **String** | LinkedIn URN of the person who mentioned you, or the ID of the Facebook user or Page that mentioned your Page when Meta sends it. Always null on Instagram: comment mentions carry no commenter, and caption mentions expose the media owner only through authorUsername. |  [optional] |
 |**authorName** | **String** | Display name of the author, resolved from authorUrn on LinkedIn (null when LinkedIn does not allow resolving the profile) and taken from the webhook on Facebook. |  [optional] |
-|**authorUsername** | **String** | LinkedIn vanity name of the author (the slug in their profile URL), or the Instagram username of the commenter or media owner. |  [optional] |
+|**authorUsername** | **String** | LinkedIn vanity name of the author (the slug in their profile URL), or the Instagram username of the media owner on a caption mention once its caption has been read. Null on Instagram comment mentions. |  [optional] |
 |**authorPicture** | **String** | Profile picture URL of the author. LinkedIn CDN URLs expire after some time, so fetch promptly rather than storing long-term. |  [optional] |
 |**organizationalEntity** | **String** | URN of the LinkedIn organization that was mentioned, the Instagram user ID of the mentioned account, or the ID of the mentioned Facebook Page. |  [optional] |
 |**publishedAt** | **OffsetDateTime** |  |  [optional] |

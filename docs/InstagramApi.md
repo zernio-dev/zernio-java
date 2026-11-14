@@ -421,7 +421,7 @@ public class Example {
 | **400** | Invalid accountId or commentId, an account on another platform (&#x60;platform_not_supported&#x60;), an account connected with Instagram Login (&#x60;instagram_mentions_require_facebook_login&#x60;), or a Meta rejection (&#x60;platform_api_error&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
-| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the comment does not exist or does not mention the account (&#x60;resource_not_found&#x60;). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the comment does not exist or does not mention the account, or Meta does not serve it as organic media (&#x60;resource_not_found&#x60;). |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 ## getInstagramMentionedCommentWithHttpInfo
@@ -501,7 +501,7 @@ ApiResponse<[**InstagramMentionedComment**](InstagramMentionedComment.md)>
 | **400** | Invalid accountId or commentId, an account on another platform (&#x60;platform_not_supported&#x60;), an account connected with Instagram Login (&#x60;instagram_mentions_require_facebook_login&#x60;), or a Meta rejection (&#x60;platform_api_error&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
-| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the comment does not exist or does not mention the account (&#x60;resource_not_found&#x60;). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the comment does not exist or does not mention the account, or Meta does not serve it as organic media (&#x60;resource_not_found&#x60;). |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 
@@ -579,7 +579,7 @@ public class Example {
 | **400** | Invalid accountId or mediaId, an account on another platform (&#x60;platform_not_supported&#x60;), an account connected with Instagram Login (&#x60;instagram_mentions_require_facebook_login&#x60;), or a Meta rejection (&#x60;platform_api_error&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
-| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the media does not exist or does not mention the account in its caption (&#x60;resource_not_found&#x60;). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the media does not exist or does not mention the account in its caption, or Meta does not serve it as organic media (&#x60;resource_not_found&#x60;). |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 ## getInstagramMentionedMediaWithHttpInfo
@@ -659,7 +659,7 @@ ApiResponse<[**InstagramMentionedMedia**](InstagramMentionedMedia.md)>
 | **400** | Invalid accountId or mediaId, an account on another platform (&#x60;platform_not_supported&#x60;), an account connected with Instagram Login (&#x60;instagram_mentions_require_facebook_login&#x60;), or a Meta rejection (&#x60;platform_api_error&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
-| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the media does not exist or does not mention the account in its caption (&#x60;resource_not_found&#x60;). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the media does not exist or does not mention the account in its caption, or Meta does not serve it as organic media (&#x60;resource_not_found&#x60;). |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 

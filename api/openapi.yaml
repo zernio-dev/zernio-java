@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.611.0
+  version: 1.611.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -22281,8 +22281,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: "The account is not reachable by the caller (`account_not_found`),\
-            \ or the media does not exist or does not mention the account in its caption\
-            \ (`resource_not_found`)."
+            \ or the media does not exist or does not mention the account in its caption,\
+            \ or Meta does not serve it as organic media (`resource_not_found`)."
           x-summary: "The account is not reachable by the caller, or the media does\
             \ not exist or lacks a mention: check both IDs."
         "409":
@@ -22359,7 +22359,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: "The account is not reachable by the caller (`account_not_found`),\
-            \ or the comment does not exist or does not mention the account (`resource_not_found`)."
+            \ or the comment does not exist or does not mention the account, or Meta\
+            \ does not serve it as organic media (`resource_not_found`)."
           x-summary: "The account is not reachable by the caller, or the comment does\
             \ not exist or does not mention it: check both IDs."
         "409":
@@ -34612,7 +34613,7 @@ paths:
 
         - Only accounts connected through Facebook Login receive them.
         - Comments on the account's own posts are never listed, even when they contain its @handle.
-        - Their text is read from Instagram in the background after the first request, so `content` can be empty on the first read.
+        - Their text is read from Instagram in the background after the first request, so `content` can be empty on the first read, and stays empty when Meta refuses to serve the source (for example media Meta does not treat as organic).
         - Pass `mediaId` and `commentId` to `POST /v1/inbox/mentions/reply` to answer one.
 
         ### Facebook
@@ -160496,7 +160497,8 @@ components:
         content:
           description: "Text that mentioned you: the post text on LinkedIn, the caption\
             \ or comment text on Instagram, the post or comment text on Facebook.\
-            \ Empty until it has been read."
+            \ Empty until it has been read. Stays empty when Meta refuses to serve\
+            \ the source, for example a comment on media Meta does not treat as organic."
           nullable: true
           type: string
         contentNotRetained:
@@ -160508,9 +160510,10 @@ components:
           nullable: true
           type: string
         authorUrn:
-          description: "LinkedIn URN of the person who mentioned you, the Instagram-scoped\
-            \ ID of the commenter on an Instagram comment mention, or the ID of the\
-            \ Facebook user or Page that mentioned your Page when Meta sends it."
+          description: "LinkedIn URN of the person who mentioned you, or the ID of\
+            \ the Facebook user or Page that mentioned your Page when Meta sends it.\
+            \ Always null on Instagram: comment mentions carry no commenter, and caption\
+            \ mentions expose the media owner only through authorUsername."
           nullable: true
           type: string
         authorName:
@@ -160521,7 +160524,8 @@ components:
           type: string
         authorUsername:
           description: "LinkedIn vanity name of the author (the slug in their profile\
-            \ URL), or the Instagram username of the commenter or media owner."
+            \ URL), or the Instagram username of the media owner on a caption mention\
+            \ once its caption has been read. Null on Instagram comment mentions."
           nullable: true
           type: string
         authorPicture:
