@@ -887,6 +887,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
+| **409** | This is a Zernio number that is not active yet or was released, so SMS cannot be enabled on it yet (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so SMS can&#39;t be enabled on it. |  -  |
 
 ## enableSmsOnNumberWithHttpInfo
@@ -964,6 +965,7 @@ ApiResponse<[**EnableSmsOnNumber200Response**](EnableSmsOnNumber200Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
+| **409** | This is a Zernio number that is not active yet or was released, so SMS cannot be enabled on it yet (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so SMS can&#39;t be enabled on it. |  -  |
 
 

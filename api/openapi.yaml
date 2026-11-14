@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.611.1
+  version: 1.611.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -43187,8 +43187,9 @@ paths:
         "404":
           description: Number not found
         "409":
-          description: This number is attached to a SIP trunk; detach it first (code
-            invalid_resource_state).
+          description: "This number is attached to a SIP trunk (detach it first),\
+            \ or it is a Zernio number that is not active yet or was released (code\
+            \ invalid_resource_state)."
         "422":
           description: "This number is hosted by your own carrier (brought via WhatsApp\
             \ embedded signup), so calls can't be enabled on it."
@@ -43675,6 +43676,9 @@ paths:
             number.
         "404":
           description: Number not found
+        "409":
+          description: "This is a Zernio number that is not active yet or was released,\
+            \ so SMS cannot be enabled on it yet (code invalid_resource_state)."
         "422":
           description: "This number is hosted by your own carrier (brought via WhatsApp\
             \ embedded signup), so SMS can't be enabled on it."
