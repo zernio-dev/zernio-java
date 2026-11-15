@@ -66,6 +66,7 @@ A number you bought or ported. Null fields are omitted, except `socialAccountId`
 |**forwardCallerId** | [**ForwardCallerIdEnum**](#ForwardCallerIdEnum) |  |  [optional] |
 |**pstnVoiceEnabled** | **Boolean** | Whether Calls (PSTN voice) is on. |  [optional] |
 |**pstnForwardTo** | **String** |  |  [optional] |
+|**ringInBrowser** | **Boolean** | Inbound calls ring the owner&#39;s open dashboard tabs first, then take the forward or voicemail. |  [optional] |
 |**voicemailEnabled** | **Boolean** |  |  [optional] |
 |**voicemailGreeting** | **String** |  |  [optional] |
 |**businessHoursEnabled** | **Boolean** |  |  [optional] |

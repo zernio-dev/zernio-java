@@ -10,6 +10,7 @@
 |**enabled** | **Boolean** |  |  [optional] |
 |**phoneNumber** | **String** |  |  [optional] |
 |**pstnForwardTo** | **String** |  |  [optional] |
+|**ringInBrowser** | **Boolean** |  |  [optional] |
 |**recordingEnabled** | **Boolean** |  |  [optional] |
 |**transcriptionEnabled** | **Boolean** |  |  [optional] |
 |**transcriptionLanguage** | [**TranscriptionLanguageEnum**](#TranscriptionLanguageEnum) |  |  [optional] |

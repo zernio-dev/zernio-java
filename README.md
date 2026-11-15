@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.614.0
+- API version: 1.615.0
 
-- Build date: 2026-11-15T22:34:38.815765824Z[Etc/UTC]
+- Build date: 2026-11-15T23:30:39.258026967Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.614.0</version>
+  <version>1.615.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.614.0"
+compile "dev.zernio:zernio-sdk:1.615.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.614.0.jar`
+- `target/zernio-sdk-1.615.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2409,6 +2409,8 @@ Class | Method | HTTP request | Description
 *VoiceApi* | [**createSipTrunkWithHttpInfo**](docs/VoiceApi.md#createSipTrunkWithHttpInfo) | **POST** /v1/phone-numbers/sip-trunks | Create a SIP trunk
 *VoiceApi* | [**createVoiceCall**](docs/VoiceApi.md#createVoiceCall) | **POST** /v1/voice/calls | Place an outbound phone call
 *VoiceApi* | [**createVoiceCallWithHttpInfo**](docs/VoiceApi.md#createVoiceCallWithHttpInfo) | **POST** /v1/voice/calls | Place an outbound phone call
+*VoiceApi* | [**createVoiceWebInboundSession**](docs/VoiceApi.md#createVoiceWebInboundSession) | **POST** /v1/voice/calls/web/inbound | Register a browser to receive calls
+*VoiceApi* | [**createVoiceWebInboundSessionWithHttpInfo**](docs/VoiceApi.md#createVoiceWebInboundSessionWithHttpInfo) | **POST** /v1/voice/calls/web/inbound | Register a browser to receive calls
 *VoiceApi* | [**createVoiceWebSession**](docs/VoiceApi.md#createVoiceWebSession) | **POST** /v1/voice/calls/web | Mint a browser softphone session
 *VoiceApi* | [**createVoiceWebSessionWithHttpInfo**](docs/VoiceApi.md#createVoiceWebSessionWithHttpInfo) | **POST** /v1/voice/calls/web | Mint a browser softphone session
 *VoiceApi* | [**deleteSipTrunk**](docs/VoiceApi.md#deleteSipTrunk) | **DELETE** /v1/phone-numbers/sip-trunks/{id} | Delete a SIP trunk
@@ -3671,6 +3673,7 @@ Class | Method | HTTP request | Description
  - [CreateVerificationRequest](docs/CreateVerificationRequest.md)
  - [CreateVoiceCall200Response](docs/CreateVoiceCall200Response.md)
  - [CreateVoiceCallRequest](docs/CreateVoiceCallRequest.md)
+ - [CreateVoiceWebInboundSession200Response](docs/CreateVoiceWebInboundSession200Response.md)
  - [CreateVoiceWebSession200Response](docs/CreateVoiceWebSession200Response.md)
  - [CreateWebhookSettingsRequest](docs/CreateWebhookSettingsRequest.md)
  - [CreateWhatsAppDataset200Response](docs/CreateWhatsAppDataset200Response.md)

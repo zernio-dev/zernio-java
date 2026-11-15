@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**forwardTo** | **String** | tel:+E164, sip:..., or wss://... destination for inbound calls. Empty string clears the forward (outbound-only); omitted preserves the current one. |  [optional] |
+|**ringInBrowser** | **Boolean** | Ring the owner&#39;s open Zernio dashboard tabs first (registered via POST /v1/voice/calls/web/inbound). Unanswered after 20 seconds, declined, or with no tab open, the call takes the forward destination, else voicemail. Superseded by an active IVR. |  [optional] |
 |**recordingEnabled** | **Boolean** |  |  [optional] |
 |**transcriptionEnabled** | **Boolean** |  |  [optional] |
 |**transcriptionLanguage** | [**TranscriptionLanguageEnum**](#TranscriptionLanguageEnum) |  |  [optional] |

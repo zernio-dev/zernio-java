@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createSipTrunkWithHttpInfo**](VoiceApi.md#createSipTrunkWithHttpInfo) | **POST** /v1/phone-numbers/sip-trunks | Create a SIP trunk |
 | [**createVoiceCall**](VoiceApi.md#createVoiceCall) | **POST** /v1/voice/calls | Place an outbound phone call |
 | [**createVoiceCallWithHttpInfo**](VoiceApi.md#createVoiceCallWithHttpInfo) | **POST** /v1/voice/calls | Place an outbound phone call |
+| [**createVoiceWebInboundSession**](VoiceApi.md#createVoiceWebInboundSession) | **POST** /v1/voice/calls/web/inbound | Register a browser to receive calls |
+| [**createVoiceWebInboundSessionWithHttpInfo**](VoiceApi.md#createVoiceWebInboundSessionWithHttpInfo) | **POST** /v1/voice/calls/web/inbound | Register a browser to receive calls |
 | [**createVoiceWebSession**](VoiceApi.md#createVoiceWebSession) | **POST** /v1/voice/calls/web | Mint a browser softphone session |
 | [**createVoiceWebSessionWithHttpInfo**](VoiceApi.md#createVoiceWebSessionWithHttpInfo) | **POST** /v1/voice/calls/web | Mint a browser softphone session |
 | [**deleteSipTrunk**](VoiceApi.md#deleteSipTrunk) | **DELETE** /v1/phone-numbers/sip-trunks/{id} | Delete a SIP trunk |
@@ -519,6 +521,148 @@ ApiResponse<[**CreateVoiceCall200Response**](CreateVoiceCall200Response.md)>
 | **422** | No voice-enabled number matches &#x60;fromNumber&#x60;, or no forward destination configured (set the number&#39;s forward or pass &#x60;forwardTo&#x60;). |  -  |
 | **429** | Outbound call limit reached (per rolling hour). |  -  |
 | **502** | Carrier-side originate failed; the call has been marked failed. |  -  |
+
+
+## createVoiceWebInboundSession
+
+> CreateVoiceWebInboundSession200Response createVoiceWebInboundSession()
+
+Register a browser to receive calls
+
+Mints a login token for the &#x60;@telnyx/webrtc&#x60; SDK so a browser can receive inbound calls to numbers with &#x60;ringInBrowser&#x60; on.  The token belongs to one long-lived credential per number owner, so every registered tab (including teammates&#39; with calls access) rings together. Tokens last about 24 hours; request a new one to re-register.  Dashboard sessions only: API keys and connector tokens get &#x60;403&#x60;. Returns &#x60;{ enabled: false }&#x60; when none of the owner&#39;s numbers ring in the browser. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        try {
+            CreateVoiceWebInboundSession200Response result = apiInstance.createVoiceWebInboundSession();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#createVoiceWebInboundSession");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CreateVoiceWebInboundSession200Response**](CreateVoiceWebInboundSession200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Token minted, or browser ringing is off. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Not a dashboard session, or calls are turned off for this team member |  -  |
+| **502** | Failed to mint the WebRTC token |  -  |
+
+## createVoiceWebInboundSessionWithHttpInfo
+
+> ApiResponse<CreateVoiceWebInboundSession200Response> createVoiceWebInboundSession createVoiceWebInboundSessionWithHttpInfo()
+
+Register a browser to receive calls
+
+Mints a login token for the &#x60;@telnyx/webrtc&#x60; SDK so a browser can receive inbound calls to numbers with &#x60;ringInBrowser&#x60; on.  The token belongs to one long-lived credential per number owner, so every registered tab (including teammates&#39; with calls access) rings together. Tokens last about 24 hours; request a new one to re-register.  Dashboard sessions only: API keys and connector tokens get &#x60;403&#x60;. Returns &#x60;{ enabled: false }&#x60; when none of the owner&#39;s numbers ring in the browser. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.VoiceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        VoiceApi apiInstance = new VoiceApi(defaultClient);
+        try {
+            ApiResponse<CreateVoiceWebInboundSession200Response> response = apiInstance.createVoiceWebInboundSessionWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VoiceApi#createVoiceWebInboundSession");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**CreateVoiceWebInboundSession200Response**](CreateVoiceWebInboundSession200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Token minted, or browser ringing is off. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Not a dashboard session, or calls are turned off for this team member |  -  |
+| **502** | Failed to mint the WebRTC token |  -  |
 
 
 ## createVoiceWebSession

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.614.0
+  version: 1.615.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -36725,6 +36725,37 @@ paths:
       security:
       - bearerAuth: []
       summary: Mint a browser softphone session
+      tags:
+      - Voice
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+  /v1/voice/calls/web/inbound:
+    post:
+      description: |
+        Mints a login token for the `@telnyx/webrtc` SDK so a browser can receive inbound calls to numbers with `ringInBrowser` on.
+
+        The token belongs to one long-lived credential per number owner, so every registered tab (including teammates' with calls access) rings together. Tokens last about 24 hours; request a new one to re-register.
+
+        Dashboard sessions only: API keys and connector tokens get `403`. Returns `{ enabled: false }` when none of the owner's numbers ring in the browser.
+      operationId: createVoiceWebInboundSession
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createVoiceWebInboundSession_200_response"
+          description: "Token minted, or browser ringing is off."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Not a dashboard session, or calls are turned off for this\
+            \ team member"
+        "502":
+          description: Failed to mint the WebRTC token
+      security:
+      - bearerAuth: []
+      summary: Register a browser to receive calls
       tags:
       - Voice
       x-resource-group: messages
@@ -96516,6 +96547,7 @@ components:
         monthlyCents: 0
         signupErrorStep: signupErrorStep
         hostedByZernio: true
+        ringInBrowser: true
         smsCapable: true
         smsBrandName: smsBrandName
         mmsCapable: true
@@ -96738,6 +96770,10 @@ components:
           type: boolean
         pstnForwardTo:
           type: string
+        ringInBrowser:
+          description: "Inbound calls ring the owner's open dashboard tabs first,\
+            \ then take the forward or voicemail."
+          type: boolean
         voicemailEnabled:
           type: boolean
         voicemailGreeting:
@@ -162713,6 +162749,20 @@ components:
         sdk:
           example: '@telnyx/webrtc'
           type: string
+    createVoiceWebInboundSession_200_response:
+      example:
+        sdk: '@telnyx/webrtc'
+        enabled: true
+        token: token
+      properties:
+        enabled:
+          type: boolean
+        token:
+          description: Login token for the browser WebRTC SDK. Present when enabled.
+          type: string
+        sdk:
+          example: '@telnyx/webrtc'
+          type: string
     dialVoiceWebCall_request:
       properties:
         to:
@@ -166545,6 +166595,7 @@ components:
           monthlyCents: 0
           signupErrorStep: signupErrorStep
           hostedByZernio: true
+          ringInBrowser: true
           smsCapable: true
           smsBrandName: smsBrandName
           mmsCapable: true
@@ -166633,6 +166684,7 @@ components:
           monthlyCents: 0
           signupErrorStep: signupErrorStep
           hostedByZernio: true
+          ringInBrowser: true
           smsCapable: true
           smsBrandName: smsBrandName
           mmsCapable: true
@@ -169839,6 +169891,12 @@ components:
             \ Empty string clears the forward (outbound-only); omitted preserves the\
             \ current one."
           type: string
+        ringInBrowser:
+          description: "Ring the owner's open Zernio dashboard tabs first (registered\
+            \ via POST /v1/voice/calls/web/inbound). Unanswered after 20 seconds,\
+            \ declined, or with no tab open, the call takes the forward destination,\
+            \ else voicemail. Superseded by an active IVR."
+          type: boolean
         recordingEnabled:
           type: boolean
         transcriptionEnabled:
@@ -169940,6 +169998,7 @@ components:
         ivrPrompt: ivrPrompt
         enabled: true
         businessHoursEnabled: true
+        ringInBrowser: true
         phoneNumber: phoneNumber
         ivrOptions:
         - forwardTo: forwardTo
@@ -169959,6 +170018,8 @@ components:
         pstnForwardTo:
           nullable: true
           type: string
+        ringInBrowser:
+          type: boolean
         recordingEnabled:
           type: boolean
         transcriptionEnabled:

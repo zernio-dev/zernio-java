@@ -1017,6 +1017,7 @@ docs/CreateValueRuleSetRequest.md
 docs/CreateVerificationRequest.md
 docs/CreateVoiceCall200Response.md
 docs/CreateVoiceCallRequest.md
+docs/CreateVoiceWebInboundSession200Response.md
 docs/CreateVoiceWebSession200Response.md
 docs/CreateWebhookSettingsRequest.md
 docs/CreateWhatsAppDataset200Response.md
@@ -4921,6 +4922,7 @@ src/main/java/dev/zernio/model/CreateValueRuleSetRequest.java
 src/main/java/dev/zernio/model/CreateVerificationRequest.java
 src/main/java/dev/zernio/model/CreateVoiceCall200Response.java
 src/main/java/dev/zernio/model/CreateVoiceCallRequest.java
+src/main/java/dev/zernio/model/CreateVoiceWebInboundSession200Response.java
 src/main/java/dev/zernio/model/CreateVoiceWebSession200Response.java
 src/main/java/dev/zernio/model/CreateWebhookSettingsRequest.java
 src/main/java/dev/zernio/model/CreateWhatsAppDataset200Response.java
@@ -7677,6 +7679,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateSmsOptOut200ResponseTest.java
-src/test/java/dev/zernio/model/DeleteSmsOptOut200ResponseTest.java
-src/test/java/dev/zernio/model/SmsOptOutRequestTest.java
+src/test/java/dev/zernio/model/CreateVoiceWebInboundSession200ResponseTest.java
