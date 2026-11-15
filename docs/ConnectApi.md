@@ -10589,7 +10589,7 @@ ApiResponse<[**ListOrgConnectionUsers200Response**](ListOrgConnectionUsers200Res
 
 List organization connections
 
-The Google Workspace and Microsoft 365 organization connections on a profile, newest first.
+The Google Workspace and Microsoft 365 organization connections, newest first. Pass &#x60;profileId&#x60; to list one profile; omit it to list every profile the API key can access (a profile-restricted key or team member only sees its own profiles).
 
 ### Example
 
@@ -10612,7 +10612,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
-        String profileId = "profileId_example"; // String | 
+        String profileId = "profileId_example"; // String | Limit the list to one profile. Omit to list across every accessible profile.
         try {
             ListOrgConnections200Response result = apiInstance.listOrgConnections(profileId);
             System.out.println(result);
@@ -10632,7 +10632,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**|  | |
+| **profileId** | **String**| Limit the list to one profile. Omit to list across every accessible profile. | [optional] |
 
 ### Return type
 
@@ -10661,7 +10661,7 @@ public class Example {
 
 List organization connections
 
-The Google Workspace and Microsoft 365 organization connections on a profile, newest first.
+The Google Workspace and Microsoft 365 organization connections, newest first. Pass &#x60;profileId&#x60; to list one profile; omit it to list every profile the API key can access (a profile-restricted key or team member only sees its own profiles).
 
 ### Example
 
@@ -10685,7 +10685,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
-        String profileId = "profileId_example"; // String | 
+        String profileId = "profileId_example"; // String | Limit the list to one profile. Omit to list across every accessible profile.
         try {
             ApiResponse<ListOrgConnections200Response> response = apiInstance.listOrgConnectionsWithHttpInfo(profileId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -10707,7 +10707,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**|  | |
+| **profileId** | **String**| Limit the list to one profile. Omit to list across every accessible profile. | [optional] |
 
 ### Return type
 
