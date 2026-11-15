@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.612.2
+  version: 1.613.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -70805,17 +70805,20 @@ paths:
   /v1/events:
     get:
       description: |
-        Lists the conversion events stored for a profile by `POST /v1/events`, newest first. Personal data is never
-        returned: `hasEmail`, `hasPhone` and `hasExternalId` only say whether the event carried that identifier.
+        Lists the conversion events stored by `POST /v1/events`, newest first: for one profile, or for every profile you can
+        access when `profileId` is omitted.
+
+        Personal data is never returned: `hasEmail`, `hasPhone` and `hasExternalId` only say whether the event carried that identifier.
         Events sent with `testCode` are not stored, so they never appear here.
 
         Paginate with `cursor`: pass the `nextCursor` of the previous page until it comes back `null`.
       operationId: listEvents
       parameters:
-      - explode: true
+      - description: The profile to list. Omit to cover every profile you can access.
+        explode: true
         in: query
         name: profileId
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -71010,13 +71013,16 @@ paths:
       description: |
         How a profile's conversion tracking is doing today (UTC day): events stored, how many reached the ad platforms,
         each forwarding rule's destination, each event source and, when the profile has a tracking site, the site's funnel.
-        Requires the Ads add-on.
+
+        Without `profileId` it covers every profile you can access, summed across them. Requires the Ads add-on.
       operationId: getEventsOverview
       parameters:
-      - explode: true
+      - description: "The profile to read. Omit to cover every profile you can access,\
+          \ summed across them."
+        explode: true
         in: query
         name: profileId
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -87967,6 +87973,7 @@ components:
           content: content
         sourceUrl: sourceUrl
         hasEmail: true
+        profileId: profileId
         zrn: zrn
         clickIds:
           gclid: gclid
@@ -87979,6 +87986,9 @@ components:
         destinationsSent: 6
       properties:
         eventId:
+          type: string
+        profileId:
+          description: The profile the event was stored under.
           type: string
         source:
           description: "Where the event came from: `api`, `relay`, `web`, `shopify`,\
@@ -203974,6 +203984,7 @@ components:
           status: sent
         sourceUrl: sourceUrl
         hasEmail: true
+        profileId: profileId
         zrn: zrn
         clickIds:
           gclid: gclid
@@ -204012,6 +204023,7 @@ components:
             status: sent
           sourceUrl: sourceUrl
           hasEmail: true
+          profileId: profileId
           zrn: zrn
           clickIds:
             gclid: gclid
@@ -204046,6 +204058,7 @@ components:
             status: sent
           sourceUrl: sourceUrl
           hasEmail: true
+          profileId: profileId
           zrn: zrn
           clickIds:
             gclid: gclid
@@ -204345,6 +204358,7 @@ components:
         lastError: lastError
         accountName: accountName
         failedToday: 7
+        profileId: profileId
         destinationName: destinationName
         lastEventName: lastEventName
         fixUrl: fixUrl
@@ -204353,6 +204367,9 @@ components:
         platform: platform
         sentToday: 2
       properties:
+        profileId:
+          description: The profile the forwarding rule belongs to.
+          type: string
         accountId:
           type: string
         platform:
@@ -204433,8 +204450,8 @@ components:
         count:
           type: integer
     getEventsOverview_200_response_website:
-      description: '`null` when the profile has no tracking site. Hit counts are approximate
-        distinct counts.'
+      description: '`null` when no profile covered has a tracking site. Hit counts
+        are approximate distinct counts.'
       example:
         serverPlatforms:
         - serverPlatforms
@@ -204482,10 +204499,14 @@ components:
     getEventsOverview_200_response_sites_inner:
       example:
         lastActiveOn: 2000-01-23
+        profileId: profileId
         siteId: siteId
         hitsToday: 1
       properties:
         siteId:
+          type: string
+        profileId:
+          description: The profile the site belongs to.
           type: string
         hitsToday:
           description: Hits today.
@@ -204533,9 +204554,11 @@ components:
           sent: 1
         sites:
         - lastActiveOn: 2000-01-23
+          profileId: profileId
           siteId: siteId
           hitsToday: 1
         - lastActiveOn: 2000-01-23
+          profileId: profileId
           siteId: siteId
           hitsToday: 1
         platforms:
@@ -204543,6 +204566,7 @@ components:
           lastError: lastError
           accountName: accountName
           failedToday: 7
+          profileId: profileId
           destinationName: destinationName
           lastEventName: lastEventName
           fixUrl: fixUrl
@@ -204554,6 +204578,7 @@ components:
           lastError: lastError
           accountName: accountName
           failedToday: 7
+          profileId: profileId
           destinationName: destinationName
           lastEventName: lastEventName
           fixUrl: fixUrl
@@ -204565,7 +204590,7 @@ components:
         today:
           $ref: "#/components/schemas/getEventsOverview_200_response_today"
         platforms:
-          description: One entry per forwarding rule of the profile.
+          description: One entry per forwarding rule of the profiles covered.
           items:
             $ref: "#/components/schemas/getEventsOverview_200_response_platforms_inner"
           type: array
@@ -204578,8 +204603,8 @@ components:
         website:
           $ref: "#/components/schemas/getEventsOverview_200_response_website"
         sites:
-          description: Each tracking site of the profile with its activity. Hit counts
-            are approximate distinct counts without bots.
+          description: "Each tracking site of the profiles covered, with its activity.\
+            \ Hit counts are approximate distinct counts without bots."
           items:
             $ref: "#/components/schemas/getEventsOverview_200_response_sites_inner"
           type: array
@@ -204650,6 +204675,7 @@ components:
             content: content
           sourceUrl: sourceUrl
           hasEmail: true
+          profileId: profileId
           zrn: zrn
           clickIds:
             gclid: gclid

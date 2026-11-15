@@ -3313,7 +3313,7 @@ ApiResponse<[**GetEvent200Response**](GetEvent200Response.md)>
 
 Get today&#39;s tracking overview
 
-How a profile&#39;s conversion tracking is doing today (UTC day): events stored, how many reached the ad platforms, each forwarding rule&#39;s destination, each event source and, when the profile has a tracking site, the site&#39;s funnel. Requires the Ads add-on. 
+How a profile&#39;s conversion tracking is doing today (UTC day): events stored, how many reached the ad platforms, each forwarding rule&#39;s destination, each event source and, when the profile has a tracking site, the site&#39;s funnel.  Without &#x60;profileId&#x60; it covers every profile you can access, summed across them. Requires the Ads add-on. 
 
 ### Example
 
@@ -3336,7 +3336,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
-        String profileId = "profileId_example"; // String | 
+        String profileId = "profileId_example"; // String | The profile to read. Omit to cover every profile you can access, summed across them.
         try {
             GetEventsOverview200Response result = apiInstance.getEventsOverview(profileId);
             System.out.println(result);
@@ -3356,7 +3356,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**|  | |
+| **profileId** | **String**| The profile to read. Omit to cover every profile you can access, summed across them. | [optional] |
 
 ### Return type
 
@@ -3386,7 +3386,7 @@ public class Example {
 
 Get today&#39;s tracking overview
 
-How a profile&#39;s conversion tracking is doing today (UTC day): events stored, how many reached the ad platforms, each forwarding rule&#39;s destination, each event source and, when the profile has a tracking site, the site&#39;s funnel. Requires the Ads add-on. 
+How a profile&#39;s conversion tracking is doing today (UTC day): events stored, how many reached the ad platforms, each forwarding rule&#39;s destination, each event source and, when the profile has a tracking site, the site&#39;s funnel.  Without &#x60;profileId&#x60; it covers every profile you can access, summed across them. Requires the Ads add-on. 
 
 ### Example
 
@@ -3410,7 +3410,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
-        String profileId = "profileId_example"; // String | 
+        String profileId = "profileId_example"; // String | The profile to read. Omit to cover every profile you can access, summed across them.
         try {
             ApiResponse<GetEventsOverview200Response> response = apiInstance.getEventsOverviewWithHttpInfo(profileId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -3432,7 +3432,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**|  | |
+| **profileId** | **String**| The profile to read. Omit to cover every profile you can access, summed across them. | [optional] |
 
 ### Return type
 
@@ -4913,7 +4913,7 @@ ApiResponse<[**ListEventDestinations200Response**](ListEventDestinations200Respo
 
 List stored events
 
-Lists the conversion events stored for a profile by &#x60;POST /v1/events&#x60;, newest first. Personal data is never returned: &#x60;hasEmail&#x60;, &#x60;hasPhone&#x60; and &#x60;hasExternalId&#x60; only say whether the event carried that identifier. Events sent with &#x60;testCode&#x60; are not stored, so they never appear here.  Paginate with &#x60;cursor&#x60;: pass the &#x60;nextCursor&#x60; of the previous page until it comes back &#x60;null&#x60;. 
+Lists the conversion events stored by &#x60;POST /v1/events&#x60;, newest first: for one profile, or for every profile you can access when &#x60;profileId&#x60; is omitted.  Personal data is never returned: &#x60;hasEmail&#x60;, &#x60;hasPhone&#x60; and &#x60;hasExternalId&#x60; only say whether the event carried that identifier. Events sent with &#x60;testCode&#x60; are not stored, so they never appear here.  Paginate with &#x60;cursor&#x60;: pass the &#x60;nextCursor&#x60; of the previous page until it comes back &#x60;null&#x60;. 
 
 ### Example
 
@@ -4936,7 +4936,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
-        String profileId = "profileId_example"; // String | 
+        String profileId = "profileId_example"; // String | The profile to list. Omit to cover every profile you can access.
         Integer limit = 50; // Integer | 
         OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Only events at or after this time (ISO 8601, on the event time).
         OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Only events before this time (ISO 8601, on the event time).
@@ -4964,7 +4964,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**|  | |
+| **profileId** | **String**| The profile to list. Omit to cover every profile you can access. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **from** | **OffsetDateTime**| Only events at or after this time (ISO 8601, on the event time). | [optional] |
 | **to** | **OffsetDateTime**| Only events before this time (ISO 8601, on the event time). | [optional] |
@@ -5002,7 +5002,7 @@ public class Example {
 
 List stored events
 
-Lists the conversion events stored for a profile by &#x60;POST /v1/events&#x60;, newest first. Personal data is never returned: &#x60;hasEmail&#x60;, &#x60;hasPhone&#x60; and &#x60;hasExternalId&#x60; only say whether the event carried that identifier. Events sent with &#x60;testCode&#x60; are not stored, so they never appear here.  Paginate with &#x60;cursor&#x60;: pass the &#x60;nextCursor&#x60; of the previous page until it comes back &#x60;null&#x60;. 
+Lists the conversion events stored by &#x60;POST /v1/events&#x60;, newest first: for one profile, or for every profile you can access when &#x60;profileId&#x60; is omitted.  Personal data is never returned: &#x60;hasEmail&#x60;, &#x60;hasPhone&#x60; and &#x60;hasExternalId&#x60; only say whether the event carried that identifier. Events sent with &#x60;testCode&#x60; are not stored, so they never appear here.  Paginate with &#x60;cursor&#x60;: pass the &#x60;nextCursor&#x60; of the previous page until it comes back &#x60;null&#x60;. 
 
 ### Example
 
@@ -5026,7 +5026,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
-        String profileId = "profileId_example"; // String | 
+        String profileId = "profileId_example"; // String | The profile to list. Omit to cover every profile you can access.
         Integer limit = 50; // Integer | 
         OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Only events at or after this time (ISO 8601, on the event time).
         OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Only events before this time (ISO 8601, on the event time).
@@ -5056,7 +5056,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**|  | |
+| **profileId** | **String**| The profile to list. Omit to cover every profile you can access. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **from** | **OffsetDateTime**| Only events at or after this time (ISO 8601, on the event time). | [optional] |
 | **to** | **OffsetDateTime**| Only events before this time (ISO 8601, on the event time). | [optional] |

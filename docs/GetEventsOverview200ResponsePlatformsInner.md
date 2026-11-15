@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**profileId** | **String** | The profile the forwarding rule belongs to. |  [optional] |
 |**accountId** | **String** |  |  [optional] |
 |**platform** | **String** | Ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. |  [optional] |
 |**accountName** | **String** |  |  [optional] |
