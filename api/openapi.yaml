@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.611.3
+  version: 1.612.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -78947,6 +78947,17 @@ paths:
         schema:
           type: string
         style: form
+      - description: "The order number a buyer quotes, with or without the \"#\" (`number`\
+          \ on an order). Shopify only; on WooCommerce the number is the order id,\
+          \ so read GET /v1/commerce/orders/{orderId} (this filter answers 400 platform_not_supported)."
+        explode: true
+        in: query
+        name: number
+        required: false
+        schema:
+          example: "1234"
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -79035,6 +79046,71 @@ paths:
       x-platforms:
       - shopify
       - woocommerce
+      x-accepts:
+      - application/json
+    patch:
+      description: |
+        Replaces the order's shipping address, for a buyer who asks to fix it before the order ships. Needs orders.update. Items and quantities change through POST /v1/commerce/orders/{orderId}/edits.
+
+        The whole address is replaced: send every line, not only the one that changes. Fulfillments already shipped keep the address they were sent to.
+      operationId: updateCommerceOrder
+      parameters:
+      - description: Platform-native order id.
+        explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 6a1f0c2b9d4e8a7f3c2b1a09
+              shippingAddress:
+                firstName: Ana
+                lastName: Ruiz
+                line1: 742 Evergreen Terrace
+                city: Springfield
+                region: OR
+                postalCode: "97403"
+                countryCode: US
+            schema:
+              $ref: "#/components/schemas/updateCommerceOrder_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCommerceOrder_200_response"
+          description: The order with its new shipping address
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The store has not granted orders.update (code insufficient_permissions).
+            GET /v1/commerce/store returns grantPermissionsUrl for the store owner
+            to approve it.
+          x-summary: "The store has not granted the permission: have the store owner\
+            \ approve it using `grantPermissionsUrl` from the store endpoint."
+        "404":
+          description: Account not found (code account_not_found) or order not found
+            (code resource_not_found).
+        "429":
+          description: "Rate limited, either by Zernio or by the platform. Retry later."
+          x-summary: "Zernio or the platform rate limited the request: retry later."
+      security:
+      - bearerAuth: []
+      summary: Update an order's shipping address
+      tags:
+      - Commerce
+      x-resource-group: commerce
+      x-platforms:
+      - shopify
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/commerce/orders/{orderId}/refunds:
@@ -81840,7 +81916,9 @@ paths:
       - application/json
     post:
       description: |
-        Creates a code discount (buyers enter a code) or an automatic one (applied at checkout), as a percentage, a fixed amount or free shipping. It applies to every product unless productIds or collectionIds narrow it, and to every buyer.
+        Creates a code discount (buyers enter a code) or an automatic one (applied at checkout), as a percentage, a fixed amount or free shipping. It applies to every product unless productIds or collectionIds narrow it.
+
+        It applies to every buyer unless customerIds limits a code discount to chosen customers, for example a goodwill code only one shopper can use.
       operationId: createCommerceDiscount
       requestBody:
         content:
@@ -131969,10 +132047,22 @@ components:
         fulfillments:
         - carrierName: carrierName
           trackingUrl: trackingUrl
+          id: id
+          inTransitAt: 2000-01-23T04:56:07.000+00:00
           trackingNumber: trackingNumber
+          estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+          deliveryStatus: pending
+          platformDeliveryStatus: platformDeliveryStatus
+          deliveredAt: 2000-01-23T04:56:07.000+00:00
         - carrierName: carrierName
           trackingUrl: trackingUrl
+          id: id
+          inTransitAt: 2000-01-23T04:56:07.000+00:00
           trackingNumber: trackingNumber
+          estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+          deliveryStatus: pending
+          platformDeliveryStatus: platformDeliveryStatus
+          deliveredAt: 2000-01-23T04:56:07.000+00:00
         total:
           amount: "19.90"
           currency: USD
@@ -132227,6 +132317,9 @@ components:
             $ref: "#/components/schemas/CommerceOrderRefund"
           type: array
         fulfillments:
+          description: "One entry per tracking number. A shipment without tracking\
+            \ still has one entry, with the tracking fields null. Always empty on\
+            \ WooCommerce."
           items:
             $ref: "#/components/schemas/CommerceOrder_fulfillments_inner"
           type: array
@@ -132258,6 +132351,7 @@ components:
           - collectionIds
           - collectionIds
           type: all
+        limitedToCustomers: true
         platformStatus: platformStatus
         title: title
         type: percentage
@@ -132319,6 +132413,10 @@ components:
           nullable: true
           type: integer
         oncePerCustomer:
+          type: boolean
+        limitedToCustomers:
+          description: True when only the customers chosen at creation (customerIds)
+            can use the code.
           type: boolean
         usageCount:
           type: integer
@@ -208273,10 +208371,22 @@ components:
           fulfillments:
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           total:
             amount: "19.90"
             currency: USD
@@ -208494,10 +208604,22 @@ components:
           fulfillments:
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           total:
             amount: "19.90"
             currency: USD
@@ -208726,10 +208848,22 @@ components:
           fulfillments:
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           total:
             amount: "19.90"
             currency: USD
@@ -208863,6 +208997,51 @@ components:
       properties:
         order:
           $ref: "#/components/schemas/CommerceOrder"
+    updateCommerceOrder_request_shippingAddress:
+      properties:
+        firstName:
+          nullable: true
+          type: string
+        lastName:
+          nullable: true
+          type: string
+        company:
+          nullable: true
+          type: string
+        phone:
+          nullable: true
+          type: string
+        line1:
+          nullable: true
+          type: string
+        line2:
+          nullable: true
+          type: string
+        city:
+          nullable: true
+          type: string
+        region:
+          description: "State or province code, e.g. \"CA\"."
+          nullable: true
+          type: string
+        postalCode:
+          nullable: true
+          type: string
+        countryCode:
+          description: "ISO 3166 code, e.g. \"US\"."
+          type: string
+      required:
+      - countryCode
+    updateCommerceOrder_request:
+      properties:
+        accountId:
+          description: Connected store SocialAccount id.
+          type: string
+        shippingAddress:
+          $ref: "#/components/schemas/updateCommerceOrder_request_shippingAddress"
+      required:
+      - accountId
+      - shippingAddress
     createCommerceRefund_request:
       allOf:
       - $ref: "#/components/schemas/CommerceRefundRequest"
@@ -209030,10 +209209,22 @@ components:
           fulfillments:
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           total:
             amount: "19.90"
             currency: USD
@@ -209337,10 +209528,22 @@ components:
           fulfillments:
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           total:
             amount: "19.90"
             currency: USD
@@ -209601,10 +209804,22 @@ components:
           fulfillments:
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           total:
             amount: "19.90"
             currency: USD
@@ -209832,10 +210047,22 @@ components:
           fulfillments:
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           - carrierName: carrierName
             trackingUrl: trackingUrl
+            id: id
+            inTransitAt: 2000-01-23T04:56:07.000+00:00
             trackingNumber: trackingNumber
+            estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+            deliveryStatus: pending
+            platformDeliveryStatus: platformDeliveryStatus
+            deliveredAt: 2000-01-23T04:56:07.000+00:00
           total:
             amount: "19.90"
             currency: USD
@@ -211372,6 +211599,7 @@ components:
             - collectionIds
             - collectionIds
             type: all
+          limitedToCustomers: true
           platformStatus: platformStatus
           title: title
           type: percentage
@@ -211412,6 +211640,7 @@ components:
             - collectionIds
             - collectionIds
             type: all
+          limitedToCustomers: true
           platformStatus: platformStatus
           title: title
           type: percentage
@@ -211505,6 +211734,14 @@ components:
             type: string
           maxItems: 100
           type: array
+        customerIds:
+          description: "Only these customers can use the code (`customer.id` on an\
+            \ order, or `id` from the customers endpoints). Code discounts on Shopify\
+            \ only; WooCommerce answers 400."
+          items:
+            type: string
+          maxItems: 100
+          type: array
       required:
       - accountId
       - method
@@ -211534,6 +211771,7 @@ components:
             - collectionIds
             - collectionIds
             type: all
+          limitedToCustomers: true
           platformStatus: platformStatus
           title: title
           type: percentage
@@ -234176,8 +234414,18 @@ components:
       example:
         carrierName: carrierName
         trackingUrl: trackingUrl
+        id: id
+        inTransitAt: 2000-01-23T04:56:07.000+00:00
         trackingNumber: trackingNumber
+        estimatedDeliveryAt: 2000-01-23T04:56:07.000+00:00
+        deliveryStatus: pending
+        platformDeliveryStatus: platformDeliveryStatus
+        deliveredAt: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          description: The shipment (fulfillment) id. Entries of one shipment with
+            several tracking numbers share it.
+          type: string
         carrierName:
           nullable: true
           type: string
@@ -234185,6 +234433,39 @@ components:
           nullable: true
           type: string
         trackingUrl:
+          nullable: true
+          type: string
+        deliveryStatus:
+          description: Where the shipment is. pending means no carrier scan yet. Null
+            when the platform has no delivery tracking for it. Shopify only knows
+            it when the carrier sends tracking events.
+          enum:
+          - pending
+          - in_transit
+          - delayed
+          - out_for_delivery
+          - ready_for_pickup
+          - attempted_delivery
+          - delivered
+          - failed
+          - cancelled
+          - null
+          nullable: true
+          type: string
+        platformDeliveryStatus:
+          description: "The platform's raw value, e.g. Shopify ATTEMPTED_DELIVERY."
+          nullable: true
+          type: string
+        estimatedDeliveryAt:
+          format: date-time
+          nullable: true
+          type: string
+        inTransitAt:
+          format: date-time
+          nullable: true
+          type: string
+        deliveredAt:
+          format: date-time
           nullable: true
           type: string
     CommerceDiscount_value_oneOf:

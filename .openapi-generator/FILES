@@ -3243,6 +3243,8 @@ docs/UpdateCommerceCollectionRequest.md
 docs/UpdateCommerceDiscountRequest.md
 docs/UpdateCommerceMenuRequest.md
 docs/UpdateCommerceMetaobjectRequest.md
+docs/UpdateCommerceOrderRequest.md
+docs/UpdateCommerceOrderRequestShippingAddress.md
 docs/UpdateCommercePageRequest.md
 docs/UpdateCommerceProductPricesRequest.md
 docs/UpdateCommerceProductPricesRequestVariantsInner.md
@@ -7098,6 +7100,8 @@ src/main/java/dev/zernio/model/UpdateCommerceCollectionRequest.java
 src/main/java/dev/zernio/model/UpdateCommerceDiscountRequest.java
 src/main/java/dev/zernio/model/UpdateCommerceMenuRequest.java
 src/main/java/dev/zernio/model/UpdateCommerceMetaobjectRequest.java
+src/main/java/dev/zernio/model/UpdateCommerceOrderRequest.java
+src/main/java/dev/zernio/model/UpdateCommerceOrderRequestShippingAddress.java
 src/main/java/dev/zernio/model/UpdateCommercePageRequest.java
 src/main/java/dev/zernio/model/UpdateCommerceProductPricesRequest.java
 src/main/java/dev/zernio/model/UpdateCommerceProductPricesRequestVariantsInner.java
@@ -7667,3 +7671,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/UpdateCommerceOrderRequestShippingAddressTest.java
+src/test/java/dev/zernio/model/UpdateCommerceOrderRequestTest.java

@@ -162,6 +162,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateCommerceMenuWithHttpInfo**](CommerceApi.md#updateCommerceMenuWithHttpInfo) | **PUT** /v1/commerce/menus/{menuId} | Replace a navigation menu |
 | [**updateCommerceMetaobject**](CommerceApi.md#updateCommerceMetaobject) | **PATCH** /v1/commerce/metaobjects/{metaobjectId} | Update a metaobject |
 | [**updateCommerceMetaobjectWithHttpInfo**](CommerceApi.md#updateCommerceMetaobjectWithHttpInfo) | **PATCH** /v1/commerce/metaobjects/{metaobjectId} | Update a metaobject |
+| [**updateCommerceOrder**](CommerceApi.md#updateCommerceOrder) | **PATCH** /v1/commerce/orders/{orderId} | Update an order&#39;s shipping address |
+| [**updateCommerceOrderWithHttpInfo**](CommerceApi.md#updateCommerceOrderWithHttpInfo) | **PATCH** /v1/commerce/orders/{orderId} | Update an order&#39;s shipping address |
 | [**updateCommercePage**](CommerceApi.md#updateCommercePage) | **PATCH** /v1/commerce/pages/{pageId} | Update a page |
 | [**updateCommercePageWithHttpInfo**](CommerceApi.md#updateCommercePageWithHttpInfo) | **PATCH** /v1/commerce/pages/{pageId} | Update a page |
 | [**updateCommerceProduct**](CommerceApi.md#updateCommerceProduct) | **PATCH** /v1/commerce/products/{productId} | Update a product |
@@ -2061,7 +2063,7 @@ ApiResponse<[**CreateCommerceCollection201Response**](CreateCommerceCollection20
 
 Create a discount
 
-Creates a code discount (buyers enter a code) or an automatic one (applied at checkout), as a percentage, a fixed amount or free shipping. It applies to every product unless productIds or collectionIds narrow it, and to every buyer. 
+Creates a code discount (buyers enter a code) or an automatic one (applied at checkout), as a percentage, a fixed amount or free shipping. It applies to every product unless productIds or collectionIds narrow it.  It applies to every buyer unless customerIds limits a code discount to chosen customers, for example a goodwill code only one shopper can use. 
 
 ### Example
 
@@ -2136,7 +2138,7 @@ public class Example {
 
 Create a discount
 
-Creates a code discount (buyers enter a code) or an automatic one (applied at checkout), as a percentage, a fixed amount or free shipping. It applies to every product unless productIds or collectionIds narrow it, and to every buyer. 
+Creates a code discount (buyers enter a code) or an automatic one (applied at checkout), as a percentage, a fixed amount or free shipping. It applies to every product unless productIds or collectionIds narrow it.  It applies to every buyer unless customerIds limits a code discount to chosen customers, for example a goodwill code only one shopper can use. 
 
 ### Example
 
@@ -9637,7 +9639,7 @@ ApiResponse<[**ListCommerceMetaobjects200Response**](ListCommerceMetaobjects200R
 
 ## listCommerceOrders
 
-> ListCommerceOrders200Response listCommerceOrders(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter, customerId, email)
+> ListCommerceOrders200Response listCommerceOrders(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter, customerId, email, number)
 
 List orders
 
@@ -9672,8 +9674,9 @@ public class Example {
         OffsetDateTime updatedAfter = OffsetDateTime.now(); // OffsetDateTime | Only orders changed after this time, oldest change first.
         String customerId = "customerId_example"; // String | Only this customer's orders (`customer.id` on an order, or `id` from the customers endpoints).
         String email = "email_example"; // String | Only orders placed with this email. Shopify only; WooCommerce answers 400 platform_not_supported.
+        String number = "1234"; // String | The order number a buyer quotes, with or without the \"#\" (`number` on an order). Shopify only; on WooCommerce the number is the order id, so read GET /v1/commerce/orders/{orderId} (this filter answers 400 platform_not_supported).
         try {
-            ListCommerceOrders200Response result = apiInstance.listCommerceOrders(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter, customerId, email);
+            ListCommerceOrders200Response result = apiInstance.listCommerceOrders(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter, customerId, email, number);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CommerceApi#listCommerceOrders");
@@ -9699,6 +9702,7 @@ public class Example {
 | **updatedAfter** | **OffsetDateTime**| Only orders changed after this time, oldest change first. | [optional] |
 | **customerId** | **String**| Only this customer&#39;s orders (&#x60;customer.id&#x60; on an order, or &#x60;id&#x60; from the customers endpoints). | [optional] |
 | **email** | **String**| Only orders placed with this email. Shopify only; WooCommerce answers 400 platform_not_supported. | [optional] |
+| **number** | **String**| The order number a buyer quotes, with or without the \&quot;#\&quot; (&#x60;number&#x60; on an order). Shopify only; on WooCommerce the number is the order id, so read GET /v1/commerce/orders/{orderId} (this filter answers 400 platform_not_supported). | [optional] |
 
 ### Return type
 
@@ -9726,7 +9730,7 @@ public class Example {
 
 ## listCommerceOrdersWithHttpInfo
 
-> ApiResponse<ListCommerceOrders200Response> listCommerceOrders listCommerceOrdersWithHttpInfo(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter, customerId, email)
+> ApiResponse<ListCommerceOrders200Response> listCommerceOrders listCommerceOrdersWithHttpInfo(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter, customerId, email, number)
 
 List orders
 
@@ -9762,8 +9766,9 @@ public class Example {
         OffsetDateTime updatedAfter = OffsetDateTime.now(); // OffsetDateTime | Only orders changed after this time, oldest change first.
         String customerId = "customerId_example"; // String | Only this customer's orders (`customer.id` on an order, or `id` from the customers endpoints).
         String email = "email_example"; // String | Only orders placed with this email. Shopify only; WooCommerce answers 400 platform_not_supported.
+        String number = "1234"; // String | The order number a buyer quotes, with or without the \"#\" (`number` on an order). Shopify only; on WooCommerce the number is the order id, so read GET /v1/commerce/orders/{orderId} (this filter answers 400 platform_not_supported).
         try {
-            ApiResponse<ListCommerceOrders200Response> response = apiInstance.listCommerceOrdersWithHttpInfo(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter, customerId, email);
+            ApiResponse<ListCommerceOrders200Response> response = apiInstance.listCommerceOrdersWithHttpInfo(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter, customerId, email, number);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -9791,6 +9796,7 @@ public class Example {
 | **updatedAfter** | **OffsetDateTime**| Only orders changed after this time, oldest change first. | [optional] |
 | **customerId** | **String**| Only this customer&#39;s orders (&#x60;customer.id&#x60; on an order, or &#x60;id&#x60; from the customers endpoints). | [optional] |
 | **email** | **String**| Only orders placed with this email. Shopify only; WooCommerce answers 400 platform_not_supported. | [optional] |
+| **number** | **String**| The order number a buyer quotes, with or without the \&quot;#\&quot; (&#x60;number&#x60; on an order). Shopify only; on WooCommerce the number is the order id, so read GET /v1/commerce/orders/{orderId} (this filter answers 400 platform_not_supported). | [optional] |
 
 ### Return type
 
@@ -12684,6 +12690,164 @@ ApiResponse<[**CreateCommerceMetaobject201Response**](CreateCommerceMetaobject20
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
+## updateCommerceOrder
+
+> GetCommerceOrder200Response updateCommerceOrder(orderId, updateCommerceOrderRequest)
+
+Update an order&#39;s shipping address
+
+Replaces the order&#39;s shipping address, for a buyer who asks to fix it before the order ships. Needs orders.update. Items and quantities change through POST /v1/commerce/orders/{orderId}/edits.  The whole address is replaced: send every line, not only the one that changes. Fulfillments already shipped keep the address they were sent to. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String orderId = "orderId_example"; // String | Platform-native order id.
+        UpdateCommerceOrderRequest updateCommerceOrderRequest = new UpdateCommerceOrderRequest(); // UpdateCommerceOrderRequest | 
+        try {
+            GetCommerceOrder200Response result = apiInstance.updateCommerceOrder(orderId, updateCommerceOrderRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#updateCommerceOrder");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderId** | **String**| Platform-native order id. | |
+| **updateCommerceOrderRequest** | [**UpdateCommerceOrderRequest**](UpdateCommerceOrderRequest.md)|  | |
+
+### Return type
+
+[**GetCommerceOrder200Response**](GetCommerceOrder200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The order with its new shipping address |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted orders.update (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or order not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## updateCommerceOrderWithHttpInfo
+
+> ApiResponse<GetCommerceOrder200Response> updateCommerceOrder updateCommerceOrderWithHttpInfo(orderId, updateCommerceOrderRequest)
+
+Update an order&#39;s shipping address
+
+Replaces the order&#39;s shipping address, for a buyer who asks to fix it before the order ships. Needs orders.update. Items and quantities change through POST /v1/commerce/orders/{orderId}/edits.  The whole address is replaced: send every line, not only the one that changes. Fulfillments already shipped keep the address they were sent to. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String orderId = "orderId_example"; // String | Platform-native order id.
+        UpdateCommerceOrderRequest updateCommerceOrderRequest = new UpdateCommerceOrderRequest(); // UpdateCommerceOrderRequest | 
+        try {
+            ApiResponse<GetCommerceOrder200Response> response = apiInstance.updateCommerceOrderWithHttpInfo(orderId, updateCommerceOrderRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#updateCommerceOrder");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **orderId** | **String**| Platform-native order id. | |
+| **updateCommerceOrderRequest** | [**UpdateCommerceOrderRequest**](UpdateCommerceOrderRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**GetCommerceOrder200Response**](GetCommerceOrder200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The order with its new shipping address |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted orders.update (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or order not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 

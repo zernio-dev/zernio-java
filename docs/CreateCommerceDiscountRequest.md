@@ -23,6 +23,7 @@
 |**endsAt** | **OffsetDateTime** |  |  [optional] |
 |**productIds** | **List&lt;String&gt;** |  |  [optional] |
 |**collectionIds** | **List&lt;String&gt;** |  |  [optional] |
+|**customerIds** | **List&lt;String&gt;** | Only these customers can use the code (&#x60;customer.id&#x60; on an order, or &#x60;id&#x60; from the customers endpoints). Code discounts on Shopify only; WooCommerce answers 400. |  [optional] |
 
 
 

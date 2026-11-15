@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.611.3
+- API version: 1.612.0
 
-- Build date: 2026-11-15T10:33:33.254017018Z[Etc/UTC]
+- Build date: 2026-11-15T10:51:54.252858911Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.611.3</version>
+  <version>1.612.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.611.3"
+compile "dev.zernio:zernio-sdk:1.612.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.611.3.jar`
+- `target/zernio-sdk-1.612.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1197,6 +1197,8 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**updateCommerceMenuWithHttpInfo**](docs/CommerceApi.md#updateCommerceMenuWithHttpInfo) | **PUT** /v1/commerce/menus/{menuId} | Replace a navigation menu
 *CommerceApi* | [**updateCommerceMetaobject**](docs/CommerceApi.md#updateCommerceMetaobject) | **PATCH** /v1/commerce/metaobjects/{metaobjectId} | Update a metaobject
 *CommerceApi* | [**updateCommerceMetaobjectWithHttpInfo**](docs/CommerceApi.md#updateCommerceMetaobjectWithHttpInfo) | **PATCH** /v1/commerce/metaobjects/{metaobjectId} | Update a metaobject
+*CommerceApi* | [**updateCommerceOrder**](docs/CommerceApi.md#updateCommerceOrder) | **PATCH** /v1/commerce/orders/{orderId} | Update an order&#39;s shipping address
+*CommerceApi* | [**updateCommerceOrderWithHttpInfo**](docs/CommerceApi.md#updateCommerceOrderWithHttpInfo) | **PATCH** /v1/commerce/orders/{orderId} | Update an order&#39;s shipping address
 *CommerceApi* | [**updateCommercePage**](docs/CommerceApi.md#updateCommercePage) | **PATCH** /v1/commerce/pages/{pageId} | Update a page
 *CommerceApi* | [**updateCommercePageWithHttpInfo**](docs/CommerceApi.md#updateCommercePageWithHttpInfo) | **PATCH** /v1/commerce/pages/{pageId} | Update a page
 *CommerceApi* | [**updateCommerceProduct**](docs/CommerceApi.md#updateCommerceProduct) | **PATCH** /v1/commerce/products/{productId} | Update a product
@@ -5847,6 +5849,8 @@ Class | Method | HTTP request | Description
  - [UpdateCommerceDiscountRequest](docs/UpdateCommerceDiscountRequest.md)
  - [UpdateCommerceMenuRequest](docs/UpdateCommerceMenuRequest.md)
  - [UpdateCommerceMetaobjectRequest](docs/UpdateCommerceMetaobjectRequest.md)
+ - [UpdateCommerceOrderRequest](docs/UpdateCommerceOrderRequest.md)
+ - [UpdateCommerceOrderRequestShippingAddress](docs/UpdateCommerceOrderRequestShippingAddress.md)
  - [UpdateCommercePageRequest](docs/UpdateCommercePageRequest.md)
  - [UpdateCommerceProductPricesRequest](docs/UpdateCommerceProductPricesRequest.md)
  - [UpdateCommerceProductPricesRequestVariantsInner](docs/UpdateCommerceProductPricesRequestVariantsInner.md)

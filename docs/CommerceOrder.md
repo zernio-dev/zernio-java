@@ -41,7 +41,7 @@ An order with what an invoice needs. Every amount is in `currency`, the store cu
 |**feeLines** | [**List&lt;CommerceOrderChargeLine&gt;**](CommerceOrderChargeLine.md) | WooCommerce fees. Always empty on Shopify. |  [optional] |
 |**taxLines** | [**List&lt;CommerceTaxLine&gt;**](CommerceTaxLine.md) | Order tax by rate, line items and shipping together. |  [optional] |
 |**refunds** | [**List&lt;CommerceOrderRefund&gt;**](CommerceOrderRefund.md) |  |  [optional] |
-|**fulfillments** | [**List&lt;CommerceOrderFulfillmentsInner&gt;**](CommerceOrderFulfillmentsInner.md) |  |  [optional] |
+|**fulfillments** | [**List&lt;CommerceOrderFulfillmentsInner&gt;**](CommerceOrderFulfillmentsInner.md) | One entry per tracking number. A shipment without tracking still has one entry, with the tracking fields null. Always empty on WooCommerce. |  [optional] |
 |**platformData** | **Map&lt;String, Object&gt;** | Platform-only fields. Null when the platform has none. |  [optional] |
 
 

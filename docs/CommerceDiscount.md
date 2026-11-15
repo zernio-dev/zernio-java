@@ -20,6 +20,7 @@
 |**minimum** | [**CommerceDiscountMinimum**](CommerceDiscountMinimum.md) |  |  [optional] |
 |**usageLimit** | **Integer** |  |  [optional] |
 |**oncePerCustomer** | **Boolean** |  |  [optional] |
+|**limitedToCustomers** | **Boolean** | True when only the customers chosen at creation (customerIds) can use the code. |  [optional] |
 |**usageCount** | **Integer** |  |  [optional] |
 |**startsAt** | **OffsetDateTime** |  |  [optional] |
 |**endsAt** | **OffsetDateTime** |  |  [optional] |
