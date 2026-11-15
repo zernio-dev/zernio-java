@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.613.0
+- API version: 1.614.0
 
-- Build date: 2026-11-15T22:04:39.609995337Z[Etc/UTC]
+- Build date: 2026-11-15T22:34:38.815765824Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.613.0</version>
+  <version>1.614.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.613.0"
+compile "dev.zernio:zernio-sdk:1.614.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.613.0.jar`
+- `target/zernio-sdk-1.614.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2223,10 +2223,14 @@ Class | Method | HTTP request | Description
 *SlackApi* | [**listSlackMembersWithHttpInfo**](docs/SlackApi.md#listSlackMembersWithHttpInfo) | **GET** /v1/accounts/{accountId}/slack-members | List Slack workspace members
 *SmsApi* | [**appealSmsRegistration**](docs/SmsApi.md#appealSmsRegistration) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign
 *SmsApi* | [**appealSmsRegistrationWithHttpInfo**](docs/SmsApi.md#appealSmsRegistrationWithHttpInfo) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign
+*SmsApi* | [**createSmsOptOut**](docs/SmsApi.md#createSmsOptOut) | **POST** /v1/sms/opt-outs | Record an SMS opt-out
+*SmsApi* | [**createSmsOptOutWithHttpInfo**](docs/SmsApi.md#createSmsOptOutWithHttpInfo) | **POST** /v1/sms/opt-outs | Record an SMS opt-out
 *SmsApi* | [**createSmsSenderId**](docs/SmsApi.md#createSmsSenderId) | **POST** /v1/sms/sender-ids | Create an alphanumeric sender ID
 *SmsApi* | [**createSmsSenderIdWithHttpInfo**](docs/SmsApi.md#createSmsSenderIdWithHttpInfo) | **POST** /v1/sms/sender-ids | Create an alphanumeric sender ID
 *SmsApi* | [**deactivateSmsRegistration**](docs/SmsApi.md#deactivateSmsRegistration) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration
 *SmsApi* | [**deactivateSmsRegistrationWithHttpInfo**](docs/SmsApi.md#deactivateSmsRegistrationWithHttpInfo) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration
+*SmsApi* | [**deleteSmsOptOut**](docs/SmsApi.md#deleteSmsOptOut) | **DELETE** /v1/sms/opt-outs | Remove an SMS opt-out
+*SmsApi* | [**deleteSmsOptOutWithHttpInfo**](docs/SmsApi.md#deleteSmsOptOutWithHttpInfo) | **DELETE** /v1/sms/opt-outs | Remove an SMS opt-out
 *SmsApi* | [**deleteSmsSenderId**](docs/SmsApi.md#deleteSmsSenderId) | **DELETE** /v1/sms/sender-ids/{id} | Delete an alphanumeric sender ID
 *SmsApi* | [**deleteSmsSenderIdWithHttpInfo**](docs/SmsApi.md#deleteSmsSenderIdWithHttpInfo) | **DELETE** /v1/sms/sender-ids/{id} | Delete an alphanumeric sender ID
 *SmsApi* | [**disableSmsOnNumber**](docs/SmsApi.md#disableSmsOnNumber) | **DELETE** /v1/phone-numbers/{id}/sms | Disable SMS on a number
@@ -3618,6 +3622,7 @@ Class | Method | HTTP request | Description
  - [CreateSipTrunk201Response](docs/CreateSipTrunk201Response.md)
  - [CreateSipTrunk201ResponseTermination](docs/CreateSipTrunk201ResponseTermination.md)
  - [CreateSipTrunkRequest](docs/CreateSipTrunkRequest.md)
+ - [CreateSmsOptOut200Response](docs/CreateSmsOptOut200Response.md)
  - [CreateSmsSenderId200Response](docs/CreateSmsSenderId200Response.md)
  - [CreateSmsSenderIdRequest](docs/CreateSmsSenderIdRequest.md)
  - [CreateStandaloneAd200Response](docs/CreateStandaloneAd200Response.md)
@@ -3796,6 +3801,7 @@ Class | Method | HTTP request | Description
  - [DeleteOAuthApp200Response](docs/DeleteOAuthApp200Response.md)
  - [DeleteOrgConnection200Response](docs/DeleteOrgConnection200Response.md)
  - [DeleteOrgConnection200ResponseData](docs/DeleteOrgConnection200ResponseData.md)
+ - [DeleteSmsOptOut200Response](docs/DeleteSmsOptOut200Response.md)
  - [DeleteSmsSenderId200Response](docs/DeleteSmsSenderId200Response.md)
  - [DeleteTestLead200Response](docs/DeleteTestLead200Response.md)
  - [DeleteTrackingTagEvent200Response](docs/DeleteTrackingTagEvent200Response.md)
@@ -5615,6 +5621,7 @@ Class | Method | HTTP request | Description
  - [SharedAdAccount](docs/SharedAdAccount.md)
  - [ShipCampaignSampleRequest](docs/ShipCampaignSampleRequest.md)
  - [SlackPlatformData](docs/SlackPlatformData.md)
+ - [SmsOptOutRequest](docs/SmsOptOutRequest.md)
  - [SmsRegistrationReviewRequest](docs/SmsRegistrationReviewRequest.md)
  - [SmsRegistrationReviewRequestPointsInner](docs/SmsRegistrationReviewRequestPointsInner.md)
  - [SnapchatPlatformData](docs/SnapchatPlatformData.md)

@@ -6,10 +6,14 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**appealSmsRegistration**](SmsApi.md#appealSmsRegistration) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign |
 | [**appealSmsRegistrationWithHttpInfo**](SmsApi.md#appealSmsRegistrationWithHttpInfo) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign |
+| [**createSmsOptOut**](SmsApi.md#createSmsOptOut) | **POST** /v1/sms/opt-outs | Record an SMS opt-out |
+| [**createSmsOptOutWithHttpInfo**](SmsApi.md#createSmsOptOutWithHttpInfo) | **POST** /v1/sms/opt-outs | Record an SMS opt-out |
 | [**createSmsSenderId**](SmsApi.md#createSmsSenderId) | **POST** /v1/sms/sender-ids | Create an alphanumeric sender ID |
 | [**createSmsSenderIdWithHttpInfo**](SmsApi.md#createSmsSenderIdWithHttpInfo) | **POST** /v1/sms/sender-ids | Create an alphanumeric sender ID |
 | [**deactivateSmsRegistration**](SmsApi.md#deactivateSmsRegistration) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration |
 | [**deactivateSmsRegistrationWithHttpInfo**](SmsApi.md#deactivateSmsRegistrationWithHttpInfo) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration |
+| [**deleteSmsOptOut**](SmsApi.md#deleteSmsOptOut) | **DELETE** /v1/sms/opt-outs | Remove an SMS opt-out |
+| [**deleteSmsOptOutWithHttpInfo**](SmsApi.md#deleteSmsOptOutWithHttpInfo) | **DELETE** /v1/sms/opt-outs | Remove an SMS opt-out |
 | [**deleteSmsSenderId**](SmsApi.md#deleteSmsSenderId) | **DELETE** /v1/sms/sender-ids/{id} | Delete an alphanumeric sender ID |
 | [**deleteSmsSenderIdWithHttpInfo**](SmsApi.md#deleteSmsSenderIdWithHttpInfo) | **DELETE** /v1/sms/sender-ids/{id} | Delete an alphanumeric sender ID |
 | [**disableSmsOnNumber**](SmsApi.md#disableSmsOnNumber) | **DELETE** /v1/phone-numbers/{id}/sms | Disable SMS on a number |
@@ -205,6 +209,156 @@ ApiResponse<[**AppealSmsRegistration200Response**](AppealSmsRegistration200Respo
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
+
+
+## createSmsOptOut
+
+> CreateSmsOptOut200Response createSmsOptOut(smsOptOutRequest)
+
+Record an SMS opt-out
+
+Marks a recipient as opted out on one of your SMS numbers. Use it for opt-outs you collect yourself (for example keywords like UNSUB or REVOKE, which the carrier does not recognize). Sends from that number to the recipient are then refused with &#x60;409 recipient_opted_out&#x60;.  Idempotent. If the recipient is already opted out, the call succeeds and &#x60;source&#x60; keeps the original value (&#x60;inbound_stop&#x60; when they texted STOP). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        SmsOptOutRequest smsOptOutRequest = new SmsOptOutRequest(); // SmsOptOutRequest | 
+        try {
+            CreateSmsOptOut200Response result = apiInstance.createSmsOptOut(smsOptOutRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#createSmsOptOut");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **smsOptOutRequest** | [**SmsOptOutRequest**](SmsOptOutRequest.md)|  | |
+
+### Return type
+
+[**CreateSmsOptOut200Response**](CreateSmsOptOut200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Recipient is opted out |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## createSmsOptOutWithHttpInfo
+
+> ApiResponse<CreateSmsOptOut200Response> createSmsOptOut createSmsOptOutWithHttpInfo(smsOptOutRequest)
+
+Record an SMS opt-out
+
+Marks a recipient as opted out on one of your SMS numbers. Use it for opt-outs you collect yourself (for example keywords like UNSUB or REVOKE, which the carrier does not recognize). Sends from that number to the recipient are then refused with &#x60;409 recipient_opted_out&#x60;.  Idempotent. If the recipient is already opted out, the call succeeds and &#x60;source&#x60; keeps the original value (&#x60;inbound_stop&#x60; when they texted STOP). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        SmsOptOutRequest smsOptOutRequest = new SmsOptOutRequest(); // SmsOptOutRequest | 
+        try {
+            ApiResponse<CreateSmsOptOut200Response> response = apiInstance.createSmsOptOutWithHttpInfo(smsOptOutRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#createSmsOptOut");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **smsOptOutRequest** | [**SmsOptOutRequest**](SmsOptOutRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateSmsOptOut200Response**](CreateSmsOptOut200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Recipient is opted out |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## createSmsSenderId
@@ -513,6 +667,158 @@ ApiResponse<[**DeactivateSmsRegistration200Response**](DeactivateSmsRegistration
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
+
+
+## deleteSmsOptOut
+
+> DeleteSmsOptOut200Response deleteSmsOptOut(smsOptOutRequest)
+
+Remove an SMS opt-out
+
+Re-subscribes a recipient you opted out with &#x60;POST /v1/sms/opt-outs&#x60;. Succeeds as a no-op when the recipient is not opted out.  An opt-out the recipient made themselves (texting STOP) cannot be removed here: the carrier keeps blocking the number until they text START, so this returns &#x60;409 recipient_opted_out&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        SmsOptOutRequest smsOptOutRequest = new SmsOptOutRequest(); // SmsOptOutRequest | 
+        try {
+            DeleteSmsOptOut200Response result = apiInstance.deleteSmsOptOut(smsOptOutRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#deleteSmsOptOut");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **smsOptOutRequest** | [**SmsOptOutRequest**](SmsOptOutRequest.md)|  | |
+
+### Return type
+
+[**DeleteSmsOptOut200Response**](DeleteSmsOptOut200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Recipient is subscribed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The recipient opted out by texting STOP. Only they can re-subscribe, by texting START. |  -  |
+
+## deleteSmsOptOutWithHttpInfo
+
+> ApiResponse<DeleteSmsOptOut200Response> deleteSmsOptOut deleteSmsOptOutWithHttpInfo(smsOptOutRequest)
+
+Remove an SMS opt-out
+
+Re-subscribes a recipient you opted out with &#x60;POST /v1/sms/opt-outs&#x60;. Succeeds as a no-op when the recipient is not opted out.  An opt-out the recipient made themselves (texting STOP) cannot be removed here: the carrier keeps blocking the number until they text START, so this returns &#x60;409 recipient_opted_out&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        SmsOptOutRequest smsOptOutRequest = new SmsOptOutRequest(); // SmsOptOutRequest | 
+        try {
+            ApiResponse<DeleteSmsOptOut200Response> response = apiInstance.deleteSmsOptOutWithHttpInfo(smsOptOutRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#deleteSmsOptOut");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **smsOptOutRequest** | [**SmsOptOutRequest**](SmsOptOutRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**DeleteSmsOptOut200Response**](DeleteSmsOptOut200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Recipient is subscribed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The recipient opted out by texting STOP. Only they can re-subscribe, by texting START. |  -  |
 
 
 ## deleteSmsSenderId
@@ -1127,7 +1433,7 @@ ApiResponse<[**GetSmsRegistration200Response**](GetSmsRegistration200Response.md
 
 List SMS opt-outs
 
-The recipients who opted out of SMS (replied STOP) across your numbers, most recent first. Compliance surface: you must be able to see and export your opt-out list. Read-only: a recipient is re-subscribed only by replying START. Pass &#x60;format&#x3D;csv&#x60; to download a CSV instead of JSON. 
+The recipients who opted out of SMS across your numbers, most recent first: those who replied STOP and those you recorded with &#x60;POST /v1/sms/opt-outs&#x60;. &#x60;source&#x60; says which. Compliance surface: you must be able to see and export your opt-out list. Pass &#x60;format&#x3D;csv&#x60; to download a CSV instead of JSON. 
 
 ### Example
 
@@ -1200,7 +1506,7 @@ public class Example {
 
 List SMS opt-outs
 
-The recipients who opted out of SMS (replied STOP) across your numbers, most recent first. Compliance surface: you must be able to see and export your opt-out list. Read-only: a recipient is re-subscribed only by replying START. Pass &#x60;format&#x3D;csv&#x60; to download a CSV instead of JSON. 
+The recipients who opted out of SMS across your numbers, most recent first: those who replied STOP and those you recorded with &#x60;POST /v1/sms/opt-outs&#x60;. &#x60;source&#x60; says which. Compliance surface: you must be able to see and export your opt-out list. Pass &#x60;format&#x3D;csv&#x60; to download a CSV instead of JSON. 
 
 ### Example
 

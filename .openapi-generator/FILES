@@ -968,6 +968,7 @@ docs/CreateSharedBudgetRequest.md
 docs/CreateSipTrunk201Response.md
 docs/CreateSipTrunk201ResponseTermination.md
 docs/CreateSipTrunkRequest.md
+docs/CreateSmsOptOut200Response.md
 docs/CreateSmsSenderId200Response.md
 docs/CreateSmsSenderIdRequest.md
 docs/CreateStandaloneAd200Response.md
@@ -1149,6 +1150,7 @@ docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteOAuthApp200Response.md
 docs/DeleteOrgConnection200Response.md
 docs/DeleteOrgConnection200ResponseData.md
+docs/DeleteSmsOptOut200Response.md
 docs/DeleteSmsSenderId200Response.md
 docs/DeleteTestLead200Response.md
 docs/DeleteTrackingTagEvent200Response.md
@@ -3005,6 +3007,7 @@ docs/ShipCampaignSampleRequest.md
 docs/SlackApi.md
 docs/SlackPlatformData.md
 docs/SmsApi.md
+docs/SmsOptOutRequest.md
 docs/SmsRegistrationReviewRequest.md
 docs/SmsRegistrationReviewRequestPointsInner.md
 docs/SnapchatPlatformData.md
@@ -4869,6 +4872,7 @@ src/main/java/dev/zernio/model/CreateSharedBudgetRequest.java
 src/main/java/dev/zernio/model/CreateSipTrunk201Response.java
 src/main/java/dev/zernio/model/CreateSipTrunk201ResponseTermination.java
 src/main/java/dev/zernio/model/CreateSipTrunkRequest.java
+src/main/java/dev/zernio/model/CreateSmsOptOut200Response.java
 src/main/java/dev/zernio/model/CreateSmsSenderId200Response.java
 src/main/java/dev/zernio/model/CreateSmsSenderIdRequest.java
 src/main/java/dev/zernio/model/CreateStandaloneAd200Response.java
@@ -5047,6 +5051,7 @@ src/main/java/dev/zernio/model/DeleteInboxReviewReplyRequest.java
 src/main/java/dev/zernio/model/DeleteOAuthApp200Response.java
 src/main/java/dev/zernio/model/DeleteOrgConnection200Response.java
 src/main/java/dev/zernio/model/DeleteOrgConnection200ResponseData.java
+src/main/java/dev/zernio/model/DeleteSmsOptOut200Response.java
 src/main/java/dev/zernio/model/DeleteSmsSenderId200Response.java
 src/main/java/dev/zernio/model/DeleteTestLead200Response.java
 src/main/java/dev/zernio/model/DeleteTrackingTagEvent200Response.java
@@ -6866,6 +6871,7 @@ src/main/java/dev/zernio/model/ShareSmsRegistrationRequest.java
 src/main/java/dev/zernio/model/SharedAdAccount.java
 src/main/java/dev/zernio/model/ShipCampaignSampleRequest.java
 src/main/java/dev/zernio/model/SlackPlatformData.java
+src/main/java/dev/zernio/model/SmsOptOutRequest.java
 src/main/java/dev/zernio/model/SmsRegistrationReviewRequest.java
 src/main/java/dev/zernio/model/SmsRegistrationReviewRequestPointsInner.java
 src/main/java/dev/zernio/model/SnapchatPlatformData.java
@@ -7671,3 +7677,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateSmsOptOut200ResponseTest.java
+src/test/java/dev/zernio/model/DeleteSmsOptOut200ResponseTest.java
+src/test/java/dev/zernio/model/SmsOptOutRequestTest.java
