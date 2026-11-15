@@ -84,6 +84,8 @@
 | MICROSOFTADS | &quot;microsoftads&quot; |
 | LINE | &quot;line&quot; |
 | WECHAT | &quot;wechat&quot; |
+| GOOGLETAGMANAGER | &quot;googletagmanager&quot; |
+| STRIPE | &quot;stripe&quot; |
 
 
 
