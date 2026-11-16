@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   BusinessAgentSettingsFollowup.JSON_PROPERTY_FOLLOWUP_INTERVAL_IN_SECONDS,
   BusinessAgentSettingsFollowup.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:23:34.144544913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:47:36.498988101Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentSettingsFollowup {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable

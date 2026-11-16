@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ListWhatsAppAccountEvents200Response.JSON_PROPERTY_EVENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:23:34.144544913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:47:36.498988101Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppAccountEvents200Response {
   public static final String JSON_PROPERTY_EVENTS = "events";
   @javax.annotation.Nullable

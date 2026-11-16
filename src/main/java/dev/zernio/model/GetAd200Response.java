@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   GetAd200Response.JSON_PROPERTY_STATUS_READ_AT,
   GetAd200Response.JSON_PROPERTY_DARK_POST
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:23:34.144544913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:47:36.498988101Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAd200Response {
   public static final String JSON_PROPERTY_AD = "ad";
   @javax.annotation.Nullable

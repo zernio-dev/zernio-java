@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   PreviewCampaignPayoutBatchRequest.JSON_PROPERTY_PARTICIPANT_IDS,
   PreviewCampaignPayoutBatchRequest.JSON_PROPERTY_EXCLUDE_PARTICIPANT_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:23:34.144544913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:47:36.498988101Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PreviewCampaignPayoutBatchRequest {
   public static final String JSON_PROPERTY_PARTICIPANT_IDS = "participantIds";
   @javax.annotation.Nullable

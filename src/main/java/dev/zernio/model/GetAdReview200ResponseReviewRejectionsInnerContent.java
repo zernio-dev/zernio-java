@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GetAdReview200ResponseReviewRejectionsInnerContent.JSON_PROPERTY_VIDEO_ID,
   GetAdReview200ResponseReviewRejectionsInnerContent.JSON_PROPERTY_MUSIC_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:23:34.144544913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:47:36.498988101Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdReview200ResponseReviewRejectionsInnerContent {
   public static final String JSON_PROPERTY_TYPE = "type";
   private JsonNullable<String> type = JsonNullable.<String>undefined();

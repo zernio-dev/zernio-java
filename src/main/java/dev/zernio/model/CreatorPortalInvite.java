@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreatorPortalInvite.JSON_PROPERTY_KIND,
   CreatorPortalInvite.JSON_PROPERTY_CAMPAIGN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:23:34.144544913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:47:36.498988101Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatorPortalInvite {
   /**
    * Gets or Sets kind

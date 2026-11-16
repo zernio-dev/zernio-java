@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   InstallAutomationTemplate400Response.JSON_PROPERTY_DOCS_URL,
   InstallAutomationTemplate400Response.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:23:34.144544913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:47:36.498988101Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstallAutomationTemplate400Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable

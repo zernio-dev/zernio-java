@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   AdRuleRunEvaluationNotification.JSON_PROPERTY_STATUS,
   AdRuleRunEvaluationNotification.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:23:34.144544913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:47:36.498988101Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleRunEvaluationNotification {
   /**
    * Gets or Sets status

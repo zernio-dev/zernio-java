@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   AttachBrandedCallingNumbersRequestSignature.JSON_PROPERTY_IMAGE_BASE64,
   AttachBrandedCallingNumbersRequestSignature.JSON_PROPERTY_SIGNER_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:23:34.144544913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T07:47:36.498988101Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AttachBrandedCallingNumbersRequestSignature {
   public static final String JSON_PROPERTY_IMAGE_BASE64 = "imageBase64";
   @javax.annotation.Nonnull
