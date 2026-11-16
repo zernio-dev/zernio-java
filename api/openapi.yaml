@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.622.0
+  version: 1.623.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -27149,13 +27149,16 @@ paths:
       description: |
         Sends from the connected mailbox and returns the stored sent copy.
 
-        The message is mirrored into the inbox (`message.sent` fires once) and counted against the mailbox's daily cap. The cap is reported in the `X-Zernio-Send-Limit`, `X-Zernio-Send-Remaining` and `X-Zernio-Send-Reset` response headers.
+        The message is mirrored into the inbox (`message.sent` fires once) and counted against the mailbox's daily cap. The cap is reported in the `X-Zernio-Send-Limit`, `X-Zernio-Send-Remaining` and `X-Zernio-Send-Reset` response headers, plus `X-Zernio-Send-Doubles-At` while the cap can still double.
 
         ### Sending limits
 
         These mailboxes are for one-to-one mail, not bulk sends. Protection on every mailbox:
 
-        - Daily cap: Microsoft 1,000; Google Workspace 500; Gmail consumer 200. Reaching it answers 429 `email_send_cap_reached` with `details.cap`.
+        - Daily cap: Microsoft 1,000; Google Workspace 500; Gmail consumer 200; IMAP 200. Reaching it answers 429 `email_send_cap_reached` with `details.cap`.
+        - The cap of a Microsoft, Google Workspace or Gmail mailbox doubles once (2,000, 1,000 and 400) after 14 days with a successful send, counted since its last spam signal and never past the provider's own limit. Days need not be consecutive.
+        - A spam signal starts the count over and returns the cap to its base. Signals: a same-body burst, a send refused over the mailbox's sending quota, a spam or blocklist bounce, or 10 hard bounces within an hour. Without one, a doubled cap stays doubled.
+        - Higher limits are available on request for established senders.
         - The same body reaching more than 50 distinct recipients within an hour pauses the mailbox with an escalating cooldown (429 `rate_limited`, `account.rate_limited` webhook).
 
         ### Scheduling
@@ -27204,6 +27207,15 @@ paths:
               style: simple
             X-Zernio-Send-Reset:
               description: When the daily window resets (midnight UTC).
+              explode: false
+              schema:
+                format: date-time
+                type: string
+              style: simple
+            X-Zernio-Send-Doubles-At:
+              description: "When the cap doubles if the mailbox sends every day from\
+                \ now on and raises no spam signal. Absent once the cap has doubled,\
+                \ with a manual limit, and on IMAP."
               explode: false
               schema:
                 format: date-time
@@ -87888,7 +87900,7 @@ components:
       description: |
         The send was refused before reaching the provider.
 
-        - `email_send_cap_reached`: today's cap for the mailbox is spent. `details.cap` names the limit and `resetsAt`; `retryAfterSeconds` counts to midnight UTC.
+        - `email_send_cap_reached`: today's cap for the mailbox is spent. `details.cap` names the `limit`, the `baseLimit`, whether it is `doubled`, `doublesAt` (when it doubles, or null) and `resetsAt`; `retryAfterSeconds` counts to midnight UTC.
         - `rate_limited`: the mailbox is in a sending cooldown, either from a same-body burst to more than 50 recipients in an hour (`details.cap.kind: recipient_burst`) or an earlier trigger. `retryAfterSeconds` says when it lifts, and `account.rate_limited` fired when it started.
       x-summary: "The email was refused because the mailbox hit its daily cap or a\
         \ sending cooldown: wait until `retryAfterSeconds` passes and retry."
@@ -141433,12 +141445,29 @@ components:
       description: "Google and Microsoft only: today's outbound mail allowance for\
         \ the mailbox."
       example:
+        baseLimit: 6
+        doubled: true
+        doublesAt: 2000-01-23T04:56:07.000+00:00
         limit: 0
         resetsAt: 2000-01-23T04:56:07.000+00:00
-        used: 6
+        used: 1
       properties:
         limit:
+          description: "Today's cap: the base cap, doubled after 14 days of sending\
+            \ with no spam signal."
           type: integer
+        baseLimit:
+          description: The cap before doubling.
+          type: integer
+        doubled:
+          type: boolean
+        doublesAt:
+          description: "When the cap doubles if the mailbox sends every day from now\
+            \ on and raises no spam signal. Null once doubled, with a manual limit,\
+            \ and on IMAP."
+          format: date-time
+          nullable: true
+          type: string
         used:
           type: integer
         resetsAt:
@@ -141583,7 +141612,7 @@ components:
         After subcode 1893063 (Meta refusing the Page's messages), comment automation DMs are held and one is retried at `pausedUntil`: 30 minutes, doubling per refused retry up to 4 hours. Held DMs stay pending and are sent once Meta accepts again, within the 7-day private-reply window.
       example:
         lastSeenAt: 2000-01-23T04:56:07.000+00:00
-        code: 1
+        code: 5
         subcode: 5
         pausedUntil: 2000-01-23T04:56:07.000+00:00
         message: message
@@ -141615,8 +141644,8 @@ components:
     getAccountHealth_200_response_platformConnection_metaError:
       description: Set only when status is `disconnected`
       example:
-        code: 5
-        subcode: 2
+        code: 2
+        subcode: 7
         message: message
       properties:
         code:
@@ -141634,8 +141663,8 @@ components:
         checkedAt: 2000-01-23T04:56:07.000+00:00
         inboundWebhookSubscribed: true
         metaError:
-          code: 5
-          subcode: 2
+          code: 2
+          subcode: 7
           message: message
         phoneStatus: phoneStatus
         status: connected
@@ -141727,12 +141756,15 @@ components:
         displayName: displayName
         unhealthySince: 2000-01-23T04:56:07.000+00:00
         sendCap:
+          baseLimit: 6
+          doubled: true
+          doublesAt: 2000-01-23T04:56:07.000+00:00
           limit: 0
           resetsAt: 2000-01-23T04:56:07.000+00:00
-          used: 6
+          used: 1
         messagingRestriction:
           lastSeenAt: 2000-01-23T04:56:07.000+00:00
-          code: 1
+          code: 5
           subcode: 5
           pausedUntil: 2000-01-23T04:56:07.000+00:00
           message: message
@@ -141796,8 +141828,8 @@ components:
           checkedAt: 2000-01-23T04:56:07.000+00:00
           inboundWebhookSubscribed: true
           metaError:
-            code: 5
-            subcode: 2
+            code: 2
+            subcode: 7
             message: message
           phoneStatus: phoneStatus
           status: connected
