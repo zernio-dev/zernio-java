@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.617.0
+  version: 1.618.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -65924,6 +65924,7 @@ paths:
         - PMax rejects ACTIVE creation, portfolio bidding, bid caps, legacy creative fields and attach shapes.
         - Geo and language targeting are supported; omitted geo targets all locations.
         - PMax does not require top-level goal, headline, body or linkUrl.
+        - `merchantCenter` links the campaign to a Merchant Center feed and adds one all-products listing group to the asset group. Google rejects the whole create (nothing is created) when the ad account is not linked to that Merchant Center.
 
         Supported bidding:
 
@@ -198973,6 +198974,31 @@ components:
       - description
       - headline
       - locale
+    createStandaloneAd_request_merchantCenter:
+      additionalProperties: {}
+      description: "Google Performance Max only; any other campaign type returns 400.\
+        \ Links the new campaign to a Merchant Center account. Google rejects the\
+        \ create, and nothing is created, when the ad account is not linked to that\
+        \ Merchant Center."
+      properties:
+        merchantId:
+          description: Numeric Merchant Center id.
+          pattern: ^\d+$
+          type: string
+        feedLabel:
+          description: "Feed label to use. Omitted, every feed of the Merchant Center\
+            \ is used."
+          pattern: "^[A-Z0-9_-]{1,20}$"
+          type: string
+        listingType:
+          description: "Set to `vehicles` for vehicle listings. Omitted, the campaign\
+            \ is a retail Performance Max campaign. Vehicle ads require Google to\
+            \ allowlist the ad account; otherwise Google rejects the create."
+          enum:
+          - vehicles
+          type: string
+      required:
+      - merchantId
     createStandaloneAd_request_additionalHeadlines_inner:
       oneOf:
       - maxLength: 30
@@ -200145,6 +200171,8 @@ components:
             \ locations."
         assetGroup:
           $ref: "#/components/schemas/GooglePmaxAssetGroupInput"
+        merchantCenter:
+          $ref: "#/components/schemas/createStandaloneAd_request_merchantCenter"
         demandGen:
           $ref: "#/components/schemas/GoogleDemandGenInput"
         keywords:

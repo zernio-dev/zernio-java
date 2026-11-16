@@ -992,6 +992,7 @@ docs/CreateStandaloneAdRequestCreativesInnerVideo.md
 docs/CreateStandaloneAdRequestCustomLocationsInner.md
 docs/CreateStandaloneAdRequestDynamicCreative.md
 docs/CreateStandaloneAdRequestImages.md
+docs/CreateStandaloneAdRequestMerchantCenter.md
 docs/CreateStandaloneAdRequestPlacements.md
 docs/CreateStandaloneAdRequestPlatformSpecificData.md
 docs/CreateStandaloneAdRequestRegionsInner.md
@@ -4912,6 +4913,7 @@ src/main/java/dev/zernio/model/CreateStandaloneAdRequestCreativesInnerVideo.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestCustomLocationsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestDynamicCreative.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestImages.java
+src/main/java/dev/zernio/model/CreateStandaloneAdRequestMerchantCenter.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacements.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInner.java
@@ -7709,3 +7711,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateStandaloneAdRequestMerchantCenterTest.java
