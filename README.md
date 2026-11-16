@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.628.0
+- API version: 1.629.0
 
-- Build date: 2026-11-16T19:13:08.826502574Z[Etc/UTC]
+- Build date: 2026-11-16T19:24:53.561349522Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.628.0</version>
+  <version>1.629.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.628.0"
+compile "dev.zernio:zernio-sdk:1.629.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.628.0.jar`
+- `target/zernio-sdk-1.629.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2153,6 +2153,8 @@ Class | Method | HTTP request | Description
 *ProfilesApi* | [**deleteProfileWithHttpInfo**](docs/ProfilesApi.md#deleteProfileWithHttpInfo) | **DELETE** /v1/profiles/{profileId} | Delete profile
 *ProfilesApi* | [**getProfile**](docs/ProfilesApi.md#getProfile) | **GET** /v1/profiles/{profileId} | Get profile
 *ProfilesApi* | [**getProfileWithHttpInfo**](docs/ProfilesApi.md#getProfileWithHttpInfo) | **GET** /v1/profiles/{profileId} | Get profile
+*ProfilesApi* | [**getProfileLimits**](docs/ProfilesApi.md#getProfileLimits) | **GET** /v1/profiles/{profileId}/limits | Get profile call limits
+*ProfilesApi* | [**getProfileLimitsWithHttpInfo**](docs/ProfilesApi.md#getProfileLimitsWithHttpInfo) | **GET** /v1/profiles/{profileId}/limits | Get profile call limits
 *ProfilesApi* | [**listProfiles**](docs/ProfilesApi.md#listProfiles) | **GET** /v1/profiles | List profiles
 *ProfilesApi* | [**listProfilesWithHttpInfo**](docs/ProfilesApi.md#listProfilesWithHttpInfo) | **GET** /v1/profiles | List profiles
 *ProfilesApi* | [**updateProfile**](docs/ProfilesApi.md#updateProfile) | **PUT** /v1/profiles/{profileId} | Update profile
@@ -5251,6 +5253,10 @@ Class | Method | HTTP request | Description
  - [ProductSeo](docs/ProductSeo.md)
  - [ProductVariant](docs/ProductVariant.md)
  - [Profile](docs/Profile.md)
+ - [ProfileCallLimit](docs/ProfileCallLimit.md)
+ - [ProfileCallLimitsResponse](docs/ProfileCallLimitsResponse.md)
+ - [ProfileCallLimitsResponseProfile](docs/ProfileCallLimitsResponseProfile.md)
+ - [ProfileCallLimitsResponseTeam](docs/ProfileCallLimitsResponseTeam.md)
  - [ProfileCreateResponse](docs/ProfileCreateResponse.md)
  - [ProfileDeleteResponse](docs/ProfileDeleteResponse.md)
  - [ProfileGetResponse](docs/ProfileGetResponse.md)

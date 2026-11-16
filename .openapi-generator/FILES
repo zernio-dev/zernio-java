@@ -2610,6 +2610,10 @@ docs/ProductSeo.md
 docs/ProductVariant.md
 docs/ProductsApi.md
 docs/Profile.md
+docs/ProfileCallLimit.md
+docs/ProfileCallLimitsResponse.md
+docs/ProfileCallLimitsResponseProfile.md
+docs/ProfileCallLimitsResponseTeam.md
 docs/ProfileCreateResponse.md
 docs/ProfileDeleteResponse.md
 docs/ProfileGetResponse.md
@@ -6513,6 +6517,10 @@ src/main/java/dev/zernio/model/ProductOptionsInner.java
 src/main/java/dev/zernio/model/ProductSeo.java
 src/main/java/dev/zernio/model/ProductVariant.java
 src/main/java/dev/zernio/model/Profile.java
+src/main/java/dev/zernio/model/ProfileCallLimit.java
+src/main/java/dev/zernio/model/ProfileCallLimitsResponse.java
+src/main/java/dev/zernio/model/ProfileCallLimitsResponseProfile.java
+src/main/java/dev/zernio/model/ProfileCallLimitsResponseTeam.java
 src/main/java/dev/zernio/model/ProfileCreateResponse.java
 src/main/java/dev/zernio/model/ProfileDeleteResponse.java
 src/main/java/dev/zernio/model/ProfileGetResponse.java
@@ -7737,3 +7745,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ProfileCallLimitTest.java
+src/test/java/dev/zernio/model/ProfileCallLimitsResponseProfileTest.java
+src/test/java/dev/zernio/model/ProfileCallLimitsResponseTeamTest.java
+src/test/java/dev/zernio/model/ProfileCallLimitsResponseTest.java

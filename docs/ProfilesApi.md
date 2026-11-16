@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteProfileWithHttpInfo**](ProfilesApi.md#deleteProfileWithHttpInfo) | **DELETE** /v1/profiles/{profileId} | Delete profile |
 | [**getProfile**](ProfilesApi.md#getProfile) | **GET** /v1/profiles/{profileId} | Get profile |
 | [**getProfileWithHttpInfo**](ProfilesApi.md#getProfileWithHttpInfo) | **GET** /v1/profiles/{profileId} | Get profile |
+| [**getProfileLimits**](ProfilesApi.md#getProfileLimits) | **GET** /v1/profiles/{profileId}/limits | Get profile call limits |
+| [**getProfileLimitsWithHttpInfo**](ProfilesApi.md#getProfileLimitsWithHttpInfo) | **GET** /v1/profiles/{profileId}/limits | Get profile call limits |
 | [**listProfiles**](ProfilesApi.md#listProfiles) | **GET** /v1/profiles | List profiles |
 | [**listProfilesWithHttpInfo**](ProfilesApi.md#listProfilesWithHttpInfo) | **GET** /v1/profiles | List profiles |
 | [**updateProfile**](ProfilesApi.md#updateProfile) | **PUT** /v1/profiles/{profileId} | Update profile |
@@ -477,6 +479,158 @@ ApiResponse<[**ProfileGetResponse**](ProfileGetResponse.md)>
 | **404** | Resource not found |  -  |
 
 
+## getProfileLimits
+
+> ProfileCallLimitsResponse getProfileLimits(profileId)
+
+Get profile call limits
+
+Returns every voice call limit that applies to calls on this profile&#39;s numbers: the profile&#39;s own limits (set with &#x60;maxOutboundCallsPerHour&#x60;, &#x60;maxDailyCallSpendUsd&#x60; and &#x60;maxForwardedMinutesPerDay&#x60; on the profile) and the team limits they sit inside.  Each entry has the limit, what is used in its window and what remains. Spend entries are in billed USD, the unit &#x60;maxDailyCallSpendUsd&#x60; uses.  A null &#x60;limit&#x60; (and &#x60;remaining&#x60;) means the profile sets no limit there; only the team limits apply. Past any limit an outbound call returns 429 &#x60;call_limit_reached&#x60; and a forward to a phone goes to voicemail. A profile-scoped API key can read its own profile. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ProfilesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ProfilesApi apiInstance = new ProfilesApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        try {
+            ProfileCallLimitsResponse result = apiInstance.getProfileLimits(profileId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ProfilesApi#getProfileLimits");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | |
+
+### Return type
+
+[**ProfileCallLimitsResponse**](ProfileCallLimitsResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Limits and usage |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key or user cannot access this profile. |  -  |
+| **404** | Resource not found |  -  |
+
+## getProfileLimitsWithHttpInfo
+
+> ApiResponse<ProfileCallLimitsResponse> getProfileLimits getProfileLimitsWithHttpInfo(profileId)
+
+Get profile call limits
+
+Returns every voice call limit that applies to calls on this profile&#39;s numbers: the profile&#39;s own limits (set with &#x60;maxOutboundCallsPerHour&#x60;, &#x60;maxDailyCallSpendUsd&#x60; and &#x60;maxForwardedMinutesPerDay&#x60; on the profile) and the team limits they sit inside.  Each entry has the limit, what is used in its window and what remains. Spend entries are in billed USD, the unit &#x60;maxDailyCallSpendUsd&#x60; uses.  A null &#x60;limit&#x60; (and &#x60;remaining&#x60;) means the profile sets no limit there; only the team limits apply. Past any limit an outbound call returns 429 &#x60;call_limit_reached&#x60; and a forward to a phone goes to voicemail. A profile-scoped API key can read its own profile. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ProfilesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ProfilesApi apiInstance = new ProfilesApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        try {
+            ApiResponse<ProfileCallLimitsResponse> response = apiInstance.getProfileLimitsWithHttpInfo(profileId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ProfilesApi#getProfileLimits");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**ProfileCallLimitsResponse**](ProfileCallLimitsResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Limits and usage |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key or user cannot access this profile. |  -  |
+| **404** | Resource not found |  -  |
+
+
 ## listProfiles
 
 > ProfilesListResponse listProfiles(includeOverLimit, name, externalId, limit, skip)
@@ -647,7 +801,7 @@ ApiResponse<[**ProfilesListResponse**](ProfilesListResponse.md)>
 
 Update profile
 
-Updates a profile&#39;s name, description, color, default timezone, externalId, default status, or zero content retention.
+Updates a profile&#39;s name, description, color, default timezone, externalId, default status, zero content retention, or call limits.
 
 ### Example
 
@@ -724,7 +878,7 @@ public class Example {
 
 Update profile
 
-Updates a profile&#39;s name, description, color, default timezone, externalId, default status, or zero content retention.
+Updates a profile&#39;s name, description, color, default timezone, externalId, default status, zero content retention, or call limits.
 
 ### Example
 

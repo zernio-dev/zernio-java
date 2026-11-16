@@ -16,6 +16,9 @@
 |**externalId** | **String** | Your own identifier for this profile, set on create or update. Null when none is set. |  [optional] |
 |**contentRetention** | [**ContentRetentionEnum**](#ContentRetentionEnum) | This profile&#39;s own zero content retention setting. &#x60;none&#x60; stores identifiers and metadata only for this profile. Change it with &#x60;contentRetention&#x60; on update; only the team owner can. |  [optional] |
 |**effectiveContentRetention** | [**EffectiveContentRetentionEnum**](#EffectiveContentRetentionEnum) | The mode that applies to this profile: &#x60;none&#x60; when the profile or the whole team uses zero content retention. |  [optional] |
+|**maxOutboundCallsPerHour** | **Integer** | Most outbound calls placed from this profile&#39;s numbers in any rolling hour. Null means only the team limits apply. |  [optional] |
+|**maxDailyCallSpendUsd** | **BigDecimal** | Most billed spend, in USD, on outbound calls and calls forwarded to a phone from this profile&#39;s numbers in any rolling 24 hours. Null means only the team limits apply. |  [optional] |
+|**maxForwardedMinutesPerDay** | **Integer** | Most minutes of inbound calls forwarded to a phone from this profile&#39;s numbers in any rolling 24 hours. Null means only the team limits apply. |  [optional] |
 |**isDefault** | **Boolean** |  |  [optional] |
 |**isOverLimit** | **Boolean** | Only present when includeOverLimit&#x3D;true. Indicates if this profile exceeds the plan limit. |  [optional] |
 |**accountCount** | **Integer** | In the profile list. Connected accounts on the profile, including ones that need reconnecting; phone and SMS number internals and posting accounts hidden by an ads connect are not counted. |  [optional] |
