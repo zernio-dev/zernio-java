@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.618.0
+  version: 1.619.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -53876,6 +53876,7 @@ paths:
         - **Meta** copies one level at a time with Meta's `/copies` endpoint. See below.
         - **TikTok** has no native copy primitive. See below.
         - **LinkedIn** has no native copy primitive. See below.
+        - **Google** copies Performance Max campaigns in one atomic request. See below.
         - Other platforms return 501 Not Implemented.
 
         ### Meta
@@ -53901,6 +53902,21 @@ paths:
         `statusOption: INHERITED_FROM_SOURCE` is evaluated **per entity**: any Group / Campaign / Creative whose source is `ACTIVE` gets its clone activated too.
 
         Duplicating an ACTIVE campaign with `INHERITED_FROM_SOURCE` starts a second front of spend the moment the clone activates. The safe default is `PAUSED`.
+
+        ### Google
+
+        Performance Max campaigns only; any other Google campaign type returns 501 naming its channel. Zernio reads the campaign and recreates it in one atomic Google request, so a copy either exists whole or not at all.
+
+        - The copy is always created paused. `statusOption` other than `PAUSED` and `deepCopy: false` return 400.
+        - The name is `renamePrefix` + the source name + `renameSuffix`. With neither sent, the suffix defaults to ` (Copy)`. `NO_RENAME` returns 400 because Google campaign names are unique per account. Asset groups are renamed only under `DEEP_RENAME`.
+        - `startTime` and `endTime` are whole days in the customer's timezone. Without `startTime` the copy starts when created. Without `endTime` the source's end date is kept.
+        - Copied budget: a shared budget is reused, so the copy shares its spend; a daily budget is recreated.
+        - Copied bidding: a portfolio strategy, Maximize conversions with its target CPA, or Maximize conversion value with its target ROAS.
+        - Copied campaign settings: Merchant Center feed and vehicle listings, location, language, proximity and ad schedule criteria, negative keywords, negative keyword lists, sitelinks and other campaign assets, tracking template and URL parameters, geo target type and automated asset settings.
+        - Copied asset groups: every asset group with its assets, listing tree, search themes and audience signals.
+        - Assets Google created automatically are not copied; Google regenerates them.
+        - Anything else returns 422 naming each setting that cannot be copied, and nothing is created: other bidding strategies or budget types, other campaign criteria or shared set types, brand guidelines, conversion goals set on the campaign, audiences scoped to an asset group, and listing trees that are not Shopping trees.
+        - `adSetIdMap` and `adIdMap` both map each source asset group id to its copy.
 
         ### Sync
 
@@ -53964,8 +53980,12 @@ paths:
             \ is not selected: add a card or select it."
         "404":
           description: Source campaign not found
+        "422":
+          description: "Google only: the campaign has settings a copy cannot carry,\
+            \ listed in the message. Nothing is created."
         "501":
-          description: Operation not supported on this platform
+          description: "Operation not supported on this platform, or a Google campaign\
+            \ that is not Performance Max"
       security:
       - bearerAuth: []
       summary: Duplicate a campaign
@@ -53976,6 +53996,7 @@ paths:
       - meta
       - tiktok
       - linkedin
+      - google
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -123104,12 +123125,14 @@ components:
         - youtubeVideoId: youtubeVideoId
           imageUrl: https://openapi-generator.tech
           resourceName: resourceName
+          source: source
           text: text
           fieldType: fieldType
           status: status
         - youtubeVideoId: youtubeVideoId
           imageUrl: https://openapi-generator.tech
           resourceName: resourceName
+          source: source
           text: text
           fieldType: fieldType
           status: status
@@ -123224,12 +123247,14 @@ components:
         - youtubeVideoId: youtubeVideoId
           imageUrl: https://openapi-generator.tech
           resourceName: resourceName
+          source: source
           text: text
           fieldType: fieldType
           status: status
         - youtubeVideoId: youtubeVideoId
           imageUrl: https://openapi-generator.tech
           resourceName: resourceName
+          source: source
           text: text
           fieldType: fieldType
           status: status
@@ -183968,6 +183993,7 @@ components:
           - instagram
           - tiktok
           - linkedin
+          - google
           type: string
         deepCopy:
           default: true
@@ -183976,7 +184002,7 @@ components:
         statusOption:
           default: PAUSED
           description: |
-            ACTIVE = launch the clone immediately (spends the moment LinkedIn approves it). PAUSED = clone stays DRAFT, safe default. INHERITED_FROM_SOURCE = mirror each entity's source status per-entity. Duplicating an ACTIVE campaign this way starts a second front of spend.
+            ACTIVE = launch the clone immediately (spends the moment LinkedIn approves it). PAUSED = clone stays DRAFT, safe default. Google only accepts PAUSED. INHERITED_FROM_SOURCE = mirror each entity's source status per-entity. Duplicating an ACTIVE campaign this way starts a second front of spend.
           enum:
           - ACTIVE
           - PAUSED
@@ -183988,6 +184014,7 @@ components:
 
             - Meta and TikTok: a value without an offset (`YYYY-MM-DD`, `YYYY-MM-DD HH:MM:SS` or `YYYY-MM-DDTHH:MM:SS`) is read in the ad account timezone.
             - LinkedIn: ad accounts carry no timezone, so it is read as UTC.
+            - Google: the date is used as a whole day in the customer timezone.
           format: date-time
           type: string
         endTime:
@@ -184001,7 +184028,7 @@ components:
 
             - `DEEP_RENAME`: renames the copied campaign and every copied child (ad sets, ads) with `renamePrefix` / `renameSuffix`.
             - `ONLY_TOP_LEVEL_RENAME`: renames only the copied campaign; children keep their source names.
-            - `NO_RENAME`: keeps every source name.
+            - `NO_RENAME`: keeps every source name. Google returns 400, since its campaign names are unique per account.
 
             With no rename option at all, Meta appends its own ` - Copy` suffix; LinkedIn defaults to `DEEP_RENAME` (its campaign group and campaigns are renamed). Ignored on TikTok, where `renamePrefix` / `renameSuffix` apply to every copied object.
           enum:
@@ -184013,8 +184040,8 @@ components:
           description: Text prepended to each renamed object's name.
           type: string
         renameSuffix:
-          description: Text appended to each renamed object's name. On LinkedIn an
-            omitted suffix defaults to ` (Copy)`.
+          description: Text appended to each renamed object's name. On LinkedIn and
+            Google an omitted suffix defaults to ` (Copy)` when no prefix is sent.
           type: string
         syncAfter:
           default: true
@@ -184039,13 +184066,14 @@ components:
         adSetIdMap:
           additionalProperties:
             type: string
-          description: "Meta only: source ad set ID to copied ad set ID. Empty when\
-            \ `deepCopy` is false."
+          description: "Meta: source ad set ID to copied ad set ID. Empty when `deepCopy`\
+            \ is false. Google: source asset group ID to copied asset group ID."
         adIdMap:
           additionalProperties:
             type: string
-          description: "Meta only: source ad ID to copied ad ID, across every copied\
-            \ ad set. Empty when `deepCopy` is false."
+          description: "Meta: source ad ID to copied ad ID, across every copied ad\
+            \ set. Empty when `deepCopy` is false. Google: the same map as `adSetIdMap`,\
+            \ since a Performance Max asset group is its ad."
         discovery:
           description: |-
             The copy exists on the platform in all three cases.
@@ -197939,12 +197967,14 @@ components:
           - youtubeVideoId: youtubeVideoId
             imageUrl: https://openapi-generator.tech
             resourceName: resourceName
+            source: source
             text: text
             fieldType: fieldType
             status: status
           - youtubeVideoId: youtubeVideoId
             imageUrl: https://openapi-generator.tech
             resourceName: resourceName
+            source: source
             text: text
             fieldType: fieldType
             status: status
@@ -197970,12 +198000,14 @@ components:
           - youtubeVideoId: youtubeVideoId
             imageUrl: https://openapi-generator.tech
             resourceName: resourceName
+            source: source
             text: text
             fieldType: fieldType
             status: status
           - youtubeVideoId: youtubeVideoId
             imageUrl: https://openapi-generator.tech
             resourceName: resourceName
+            source: source
             text: text
             fieldType: fieldType
             status: status
@@ -198116,12 +198148,14 @@ components:
           - youtubeVideoId: youtubeVideoId
             imageUrl: https://openapi-generator.tech
             resourceName: resourceName
+            source: source
             text: text
             fieldType: fieldType
             status: status
           - youtubeVideoId: youtubeVideoId
             imageUrl: https://openapi-generator.tech
             resourceName: resourceName
+            source: source
             text: text
             fieldType: fieldType
             status: status
@@ -230853,6 +230887,7 @@ components:
         youtubeVideoId: youtubeVideoId
         imageUrl: https://openapi-generator.tech
         resourceName: resourceName
+        source: source
         text: text
         fieldType: fieldType
         status: status
@@ -230863,6 +230898,10 @@ components:
           description: "Google asset role, such as HEADLINE or LOGO."
           type: string
         status:
+          type: string
+        source:
+          description: "Who added the asset: ADVERTISER, or AUTOMATICALLY_CREATED\
+            \ when Google generated it. Empty when Google does not say."
           type: string
         text:
           type: string
