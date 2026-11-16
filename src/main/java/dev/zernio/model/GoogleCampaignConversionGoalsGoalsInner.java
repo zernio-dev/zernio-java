@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GoogleCampaignConversionGoalsGoalsInner.JSON_PROPERTY_BIDDABLE,
   GoogleCampaignConversionGoalsGoalsInner.JSON_PROPERTY_RESOURCE_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T10:16:34.099749535Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T10:22:26.448695117Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleCampaignConversionGoalsGoalsInner {
   public static final String JSON_PROPERTY_CATEGORY = "category";
   @javax.annotation.Nullable

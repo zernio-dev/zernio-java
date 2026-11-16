@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   AdBudget.JSON_PROPERTY_LIFETIME,
   AdBudget.JSON_PROPERTY_PACING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T10:16:34.099749535Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T10:22:26.448695117Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdBudget {
   public static final String JSON_PROPERTY_AMOUNT = "amount";
   @javax.annotation.Nullable
