@@ -3531,6 +3531,10 @@ docs/WebhookPayloadAccountDisconnected.md
 docs/WebhookPayloadAccountDisconnectedAccount.md
 docs/WebhookPayloadAccountPermissionsChanged.md
 docs/WebhookPayloadAccountPermissionsChangedAccount.md
+docs/WebhookPayloadAccountPrivacyRequest.md
+docs/WebhookPayloadAccountPrivacyRequestAccount.md
+docs/WebhookPayloadAccountPrivacyRequestPrivacyRequest.md
+docs/WebhookPayloadAccountPrivacyRequestPrivacyRequestCustomer.md
 docs/WebhookPayloadAccountRateLimited.md
 docs/WebhookPayloadAccountRateLimitedAccount.md
 docs/WebhookPayloadAdAccountStatusChanged.md
@@ -7409,6 +7413,10 @@ src/main/java/dev/zernio/model/WebhookPayloadAccountDisconnected.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountDisconnectedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountPermissionsChanged.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountPermissionsChangedAccount.java
+src/main/java/dev/zernio/model/WebhookPayloadAccountPrivacyRequest.java
+src/main/java/dev/zernio/model/WebhookPayloadAccountPrivacyRequestAccount.java
+src/main/java/dev/zernio/model/WebhookPayloadAccountPrivacyRequestPrivacyRequest.java
+src/main/java/dev/zernio/model/WebhookPayloadAccountPrivacyRequestPrivacyRequestCustomer.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountRateLimited.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountRateLimitedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAdAccountStatusChanged.java
@@ -7725,3 +7733,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookPayloadAccountPrivacyRequestAccountTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAccountPrivacyRequestPrivacyRequestCustomerTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAccountPrivacyRequestPrivacyRequestTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAccountPrivacyRequestTest.java

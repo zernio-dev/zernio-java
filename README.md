@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.620.1
+- API version: 1.621.0
 
-- Build date: 2026-11-16T10:22:26.448695117Z[Etc/UTC]
+- Build date: 2026-11-16T10:31:21.110687916Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.620.1</version>
+  <version>1.621.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.620.1"
+compile "dev.zernio:zernio-sdk:1.621.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.620.1.jar`
+- `target/zernio-sdk-1.621.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -6153,6 +6153,10 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAccountDisconnectedAccount](docs/WebhookPayloadAccountDisconnectedAccount.md)
  - [WebhookPayloadAccountPermissionsChanged](docs/WebhookPayloadAccountPermissionsChanged.md)
  - [WebhookPayloadAccountPermissionsChangedAccount](docs/WebhookPayloadAccountPermissionsChangedAccount.md)
+ - [WebhookPayloadAccountPrivacyRequest](docs/WebhookPayloadAccountPrivacyRequest.md)
+ - [WebhookPayloadAccountPrivacyRequestAccount](docs/WebhookPayloadAccountPrivacyRequestAccount.md)
+ - [WebhookPayloadAccountPrivacyRequestPrivacyRequest](docs/WebhookPayloadAccountPrivacyRequestPrivacyRequest.md)
+ - [WebhookPayloadAccountPrivacyRequestPrivacyRequestCustomer](docs/WebhookPayloadAccountPrivacyRequestPrivacyRequestCustomer.md)
  - [WebhookPayloadAccountRateLimited](docs/WebhookPayloadAccountRateLimited.md)
  - [WebhookPayloadAccountRateLimitedAccount](docs/WebhookPayloadAccountRateLimitedAccount.md)
  - [WebhookPayloadAdAccountStatusChanged](docs/WebhookPayloadAdAccountStatusChanged.md)

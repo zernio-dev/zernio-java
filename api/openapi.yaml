@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.620.1
+  version: 1.621.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -453,7 +453,7 @@ tags:
     **Events:**
 
     - Posts: `post.scheduled`, `post.published`, `post.failed`, `post.partial`, `post.cancelled`, `post.recycled`, `post.platform.published`, `post.platform.failed`, `post.platform.deleted`, `post.tiktok.url_resolved`, `post.external.created`, `post.external.updated`, `post.external.deleted`, `post.tracking_completed`, `post.authenticity_changed`
-    - Accounts and analytics: `account.connected`, `account.disconnected`, `account.permissions_changed`, `account.ads.initial_sync_completed`, `account.ads.sync_failed`, `account.ads.sync_recovered`, `account.rate_limited`, `analytics.synced`
+    - Accounts and analytics: `account.connected`, `account.disconnected`, `account.permissions_changed`, `account.ads.initial_sync_completed`, `account.ads.sync_failed`, `account.ads.sync_recovered`, `account.rate_limited`, `account.privacy_request`, `analytics.synced`
     - Messages: `message.received`, `message.sent`, `message.edited`, `message.deleted`, `message.delivered`, `message.read`, `message.played`, `message.failed`, `reaction.received`, `referral.received`, `conversation.started`, `conversation.control_changed`
     - Calls: `call.received`, `call.ended`, `call.failed`, `call.permission_request`, `call.transcript_segment`, `call.recording_ready`
     - Engagement and leads: `comment.received`, `mention.received`, `review.new`, `review.updated`, `review.deleted`, `review.restored`, `lead.received`
@@ -96418,6 +96418,7 @@ components:
             - campaign_participant.suspended
             - campaign_participant.removed
             - account.rate_limited
+            - account.privacy_request
             - calendar.event.created
             - calendar.event.updated
             - calendar.event.deleted
@@ -111543,6 +111544,70 @@ components:
       items:
         $ref: "#/components/schemas/OpenHours_inner"
       type: array
+    WebhookPayloadAccountPrivacyRequest:
+      description: "Webhook payload for account.privacy_request: a Shopify merchant\
+        \ asked to export or erase a customer's data, or the shop's data 48 hours\
+        \ after an uninstall."
+      example:
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: account.privacy_request
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        privacyRequest:
+          dataRequestId: dataRequestId
+          shopDomain: sample-brand.myshopify.com
+          shopId: shopId
+          orderIds:
+          - orderIds
+          - orderIds
+          type: customer_data_request
+          customer:
+            phone: phone
+            id: id
+            email: email
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - account.privacy_request
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadAccountPrivacyRequest_account"
+        privacyRequest:
+          $ref: "#/components/schemas/WebhookPayloadAccountPrivacyRequest_privacyRequest"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - privacyRequest
+      - timestamp
     WebhookPayloadAccountRateLimited:
       description: "Webhook payload for account.rate_limited: a mailbox entered a\
         \ sending cooldown."
@@ -152906,6 +152971,7 @@ components:
           - account.ads.sync_failed
           - account.ads.sync_recovered
           - account.rate_limited
+          - account.privacy_request
           - calendar.event.created
           - calendar.event.updated
           - calendar.event.deleted
@@ -220392,14 +220458,16 @@ components:
           description: Human-readable reason for the disconnection
           type: string
         reasonCode:
-          description: "IMAP mailboxes only: why polling stopped, or replaced when\
-            \ a Google or Microsoft account took over the mailbox."
+          description: "IMAP mailboxes: why polling stopped, or replaced when a Google\
+            \ or Microsoft account took over the mailbox. Shopify stores: app_uninstalled\
+            \ when the merchant uninstalled the Zernio app."
           enum:
           - auth_failed
           - imap_disabled
           - tls_error
           - unreachable
           - replaced
+          - app_uninstalled
           type: string
         reconnectUrl:
           description: "IMAP mailboxes only: a hosted link, valid seven days, that\
@@ -227927,6 +227995,96 @@ components:
       - end
       - start
       - timezone
+    WebhookPayloadAccountPrivacyRequest_account:
+      example:
+        accountId: accountId
+        profileId: profileId
+        displayName: displayName
+        platform: platform
+        username: username
+      properties:
+        accountId:
+          type: string
+        profileId:
+          type: string
+        platform:
+          type: string
+        username:
+          type: string
+        displayName:
+          nullable: true
+          type: string
+      required:
+      - accountId
+      - platform
+      - profileId
+      - username
+    WebhookPayloadAccountPrivacyRequest_privacyRequest_customer:
+      description: Who the request is about. Null for shop_redact.
+      example:
+        phone: phone
+        id: id
+        email: email
+      properties:
+        id:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        phone:
+          nullable: true
+          type: string
+    WebhookPayloadAccountPrivacyRequest_privacyRequest:
+      example:
+        dataRequestId: dataRequestId
+        shopDomain: sample-brand.myshopify.com
+        shopId: shopId
+        orderIds:
+        - orderIds
+        - orderIds
+        type: customer_data_request
+        customer:
+          phone: phone
+          id: id
+          email: email
+      properties:
+        type:
+          description: |-
+            customer_data_request: the merchant asked for the data you hold about `customer`. Send it to the merchant.
+
+            customer_redact: erase the data you hold about `customer` and the orders in `orderIds`.
+
+            shop_redact: erase the data you hold about the whole shop. Sent 48 hours after the merchant uninstalled the app.
+          enum:
+          - customer_data_request
+          - customer_redact
+          - shop_redact
+          type: string
+        shopDomain:
+          example: sample-brand.myshopify.com
+          type: string
+        shopId:
+          nullable: true
+          type: string
+        customer:
+          $ref: "#/components/schemas/WebhookPayloadAccountPrivacyRequest_privacyRequest_customer"
+        orderIds:
+          description: The Shopify order ids the request covers. Empty for shop_redact.
+          items:
+            type: string
+          type: array
+        dataRequestId:
+          description: Shopify's id for a customer_data_request.
+          nullable: true
+          type: string
+      required:
+      - customer
+      - dataRequestId
+      - orderIds
+      - shopDomain
+      - shopId
+      - type
     WebhookPayloadAccountRateLimited_account:
       example:
         accountId: accountId
@@ -236546,6 +236704,7 @@ x-documentation:
     - `account.disconnected` - Account disconnected: deactivated after its token was revoked or rejected (or the platform refused it, e.g. a Facebook Page left out of a later authorization), or flagged as needing reconnection. Not sent again while the account stays deactivated
     - `account.permissions_changed` - An account connected with `scopes` or through your own OAuth app lost a permission area (for example posting) while staying connected
     - `account.rate_limited` - A Google or Microsoft mailbox entered a sending cooldown; sends answer 429 until `account.resetsAt`
+    - `account.privacy_request` - A Shopify merchant asked to export or erase a customer's data, or the shop's data after an uninstall. Erase or export your own copy
     - `account.ads.initial_sync_completed` - Initial ads sync (discovery + 90-day backfill) completed for an ads-enabled account
     - `account.ads.sync_failed` - An ad account's ads stopped syncing (no successful sync for 24 hours, or every live ad at the retry cap). Fires once until it recovers
     - `account.ads.sync_recovered` - An ad account reported by `account.ads.sync_failed` is syncing again

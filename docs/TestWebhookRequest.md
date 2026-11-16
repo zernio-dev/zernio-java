@@ -36,6 +36,7 @@
 | ACCOUNT_ADS_SYNC_FAILED | &quot;account.ads.sync_failed&quot; |
 | ACCOUNT_ADS_SYNC_RECOVERED | &quot;account.ads.sync_recovered&quot; |
 | ACCOUNT_RATE_LIMITED | &quot;account.rate_limited&quot; |
+| ACCOUNT_PRIVACY_REQUEST | &quot;account.privacy_request&quot; |
 | CALENDAR_EVENT_CREATED | &quot;calendar.event.created&quot; |
 | CALENDAR_EVENT_UPDATED | &quot;calendar.event.updated&quot; |
 | CALENDAR_EVENT_DELETED | &quot;calendar.event.deleted&quot; |

@@ -16,6 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onAccountDisconnectedWithHttpInfo**](WebhookEventsApi.md#onAccountDisconnectedWithHttpInfo) | **POST** /account.disconnected | Account disconnected event |
 | [**onAccountPermissionsChanged**](WebhookEventsApi.md#onAccountPermissionsChanged) | **POST** /account.permissions_changed | Account permissions changed event |
 | [**onAccountPermissionsChangedWithHttpInfo**](WebhookEventsApi.md#onAccountPermissionsChangedWithHttpInfo) | **POST** /account.permissions_changed | Account permissions changed event |
+| [**onAccountPrivacyRequest**](WebhookEventsApi.md#onAccountPrivacyRequest) | **POST** /account.privacy_request | Store privacy request |
+| [**onAccountPrivacyRequestWithHttpInfo**](WebhookEventsApi.md#onAccountPrivacyRequestWithHttpInfo) | **POST** /account.privacy_request | Store privacy request |
 | [**onAccountRateLimited**](WebhookEventsApi.md#onAccountRateLimited) | **POST** /account.rate_limited | Mailbox sending cooldown started |
 | [**onAccountRateLimitedWithHttpInfo**](WebhookEventsApi.md#onAccountRateLimitedWithHttpInfo) | **POST** /account.rate_limited | Mailbox sending cooldown started |
 | [**onAdAccountStatusChanged**](WebhookEventsApi.md#onAdAccountStatusChanged) | **POST** /ad_account.status_changed | Ad account status changed event |
@@ -1156,6 +1158,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadAccountPermissionsChanged** | [**WebhookPayloadAccountPermissionsChanged**](WebhookPayloadAccountPermissionsChanged.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onAccountPrivacyRequest
+
+> void onAccountPrivacyRequest(webhookPayloadAccountPrivacyRequest)
+
+Store privacy request
+
+A Shopify merchant asked to export or erase customer data, or the shop&#39;s data after uninstalling the app. Shopify sends these to the installed app, which is Zernio&#39;s, so we pass them on to you.  ### What to do  &#x60;privacyRequest.type&#x60; says which request it is. Export or erase your own copy of the data. Zernio handles its own copy.  ### Who receives it  A customer request goes to every account connected to the shop when it arrives. &#x60;shop_redact&#x60; arrives 48 hours after the uninstall, when the account is already disconnected, and goes to the accounts that were connected to the shop. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAccountPrivacyRequest webhookPayloadAccountPrivacyRequest = new WebhookPayloadAccountPrivacyRequest(); // WebhookPayloadAccountPrivacyRequest | 
+        try {
+            apiInstance.onAccountPrivacyRequest(webhookPayloadAccountPrivacyRequest);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAccountPrivacyRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAccountPrivacyRequest** | [**WebhookPayloadAccountPrivacyRequest**](WebhookPayloadAccountPrivacyRequest.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onAccountPrivacyRequestWithHttpInfo
+
+> ApiResponse<Void> onAccountPrivacyRequest onAccountPrivacyRequestWithHttpInfo(webhookPayloadAccountPrivacyRequest)
+
+Store privacy request
+
+A Shopify merchant asked to export or erase customer data, or the shop&#39;s data after uninstalling the app. Shopify sends these to the installed app, which is Zernio&#39;s, so we pass them on to you.  ### What to do  &#x60;privacyRequest.type&#x60; says which request it is. Export or erase your own copy of the data. Zernio handles its own copy.  ### Who receives it  A customer request goes to every account connected to the shop when it arrives. &#x60;shop_redact&#x60; arrives 48 hours after the uninstall, when the account is already disconnected, and goes to the accounts that were connected to the shop. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAccountPrivacyRequest webhookPayloadAccountPrivacyRequest = new WebhookPayloadAccountPrivacyRequest(); // WebhookPayloadAccountPrivacyRequest | 
+        try {
+            ApiResponse<Void> response = apiInstance.onAccountPrivacyRequestWithHttpInfo(webhookPayloadAccountPrivacyRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAccountPrivacyRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAccountPrivacyRequest** | [**WebhookPayloadAccountPrivacyRequest**](WebhookPayloadAccountPrivacyRequest.md)|  | |
 
 ### Return type
 
