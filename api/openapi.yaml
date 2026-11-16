@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.621.0
+  version: 1.622.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -13766,6 +13766,7 @@ paths:
           - A LinkedIn connect through an app saves the member's own profile: organization pages, and mention lookups, stay on Zernio's app.
           - The connect requests the app's `scopeAreas`. `scopes` may narrow them but not add an area the app does not enable (400).
           - If the user does not grant every requested area, the account still connects and the redirect carries `missing_permissions=<areas>` (the headless POST returns `missingPermissions`).
+          - A Microsoft login that connected with `email` or `calendar` but has no Exchange Online mailbox still connects (files work), and the redirect carries `mailboxNotice=mailbox_not_available`. Mail and calendar requests then answer 412 `mailbox_not_available`.
           - If the platform refuses a permission your app is not approved for, the redirect carries `error=oauth_app_scope_not_allowed`.
 
           The account remembers the app, and token refresh, publishing and inbox run on it. Reconnecting through another app, or without one, moves the account to that app.
@@ -87871,12 +87872,14 @@ components:
           schema:
             $ref: "#/components/schemas/ErrorResponse"
       description: |
-        The connected account cannot serve this request until something outside the request changes. Two codes:
+        The connected account cannot serve this request until something outside the request changes. Three codes:
 
         - `account_scope_missing`: the account was connected without the area this endpoint needs (`details.grantedAreas`, `details.missingArea`), or Google reports the grant lacks a permission. Reconnect with a wider `scopes=`.
         - `admin_consent_required` (Microsoft): the tenant requires an administrator's approval. `details.adminConsentUrl` is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. `GET /v1/connect/microsoft/admin-consent` mints a fresh one.
-      x-summary: "The account lacks a needed scope or admin approval: reconnect with\
-        \ wider scopes, or send an administrator the consent link."
+        - `mailbox_not_available` (Microsoft): the login has no Exchange Online mailbox (no Exchange license, inactive, soft-deleted or on-premises), so every mail and calendar request fails. Assign an Exchange license or connect a user that has a mailbox. `GET /v1/accounts/{accountId}/health` reports it as `mailbox.reason: no_mailbox`.
+      x-summary: "The account lacks a needed scope, admin approval or Exchange mailbox:\
+        \ reconnect with wider scopes, send an administrator the consent link, or\
+        \ license the user."
     EmailSendRefused:
       content:
         application/json:
@@ -141441,6 +141444,32 @@ components:
         resetsAt:
           format: date-time
           type: string
+    getAccountHealth_200_response_mailbox:
+      description: "Microsoft only: present while the login has no Exchange Online\
+        \ mailbox (no Exchange license, inactive, soft-deleted or on-premises). Mail\
+        \ and calendar requests then answer 412 `mailbox_not_available`; files are\
+        \ not affected. Absent when the mailbox works. `status` is also `warning`,\
+        \ with the reason in `issues`."
+      example:
+        reason: no_mailbox
+        detectedAt: 2000-01-23T04:56:07.000+00:00
+        message: message
+        status: unavailable
+      properties:
+        status:
+          enum:
+          - unavailable
+          type: string
+        reason:
+          enum:
+          - no_mailbox
+          type: string
+        message:
+          type: string
+        detectedAt:
+          description: When Microsoft last answered that the login has no mailbox.
+          format: date-time
+          type: string
     getAccountHealth_200_response_tokenStatus:
       example:
         valid: true
@@ -141718,6 +141747,11 @@ components:
         push: active
         accountId: accountId
         disconnectReason: disconnectReason
+        mailbox:
+          reason: no_mailbox
+          detectedAt: 2000-01-23T04:56:07.000+00:00
+          message: message
+          status: unavailable
         disconnectionType: intentional
         permissions:
           analytics:
@@ -141793,6 +141827,8 @@ components:
           - failed
           - not_applicable
           type: string
+        mailbox:
+          $ref: "#/components/schemas/getAccountHealth_200_response_mailbox"
         sentItemsSync:
           description: "Microsoft only: how mail sent from the user's own mail client\
             \ reaches `message.sent`. `poll` while Microsoft will not give Zernio\

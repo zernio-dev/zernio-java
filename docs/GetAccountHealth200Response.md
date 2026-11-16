@@ -12,6 +12,7 @@
 |**integrationLane** | [**IntegrationLaneEnum**](#IntegrationLaneEnum) | TikTok only. The TikTok integration the account is connected through: business (TikTok for Business, Accounts API) or developer (the original integration). Absent on other platforms. |  [optional] |
 |**sendCap** | [**GetAccountHealth200ResponseSendCap**](GetAccountHealth200ResponseSendCap.md) |  |  [optional] |
 |**push** | [**PushEnum**](#PushEnum) | Google and Microsoft only: state of the provider change-notification subscriptions behind &#x60;message.received&#x60; and &#x60;calendar.event.*&#x60;. &#x60;pending&#x60; means a granted area has no live subscription yet (retried every 6 hours), &#x60;failed&#x60; that renewals keep failing (reconnect the account). |  [optional] |
+|**mailbox** | [**GetAccountHealth200ResponseMailbox**](GetAccountHealth200ResponseMailbox.md) |  |  [optional] |
 |**sentItemsSync** | [**SentItemsSyncEnum**](#SentItemsSyncEnum) | Microsoft only: how mail sent from the user&#39;s own mail client reaches &#x60;message.sent&#x60;. &#x60;poll&#x60; while Microsoft will not give Zernio a working Sent Items subscription for this mailbox (read every 5 minutes), &#x60;push&#x60; otherwise. |  [optional] |
 |**username** | **String** |  |  [optional] |
 |**displayName** | **String** |  |  [optional] |
