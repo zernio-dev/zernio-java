@@ -369,7 +369,7 @@ ApiResponse<[**CreateSipTrunk201Response**](CreateSipTrunk201Response.md)>
 
 Place an outbound phone call
 
-Dials &#x60;to&#x60; FROM one of your voice-enabled numbers and, on answer, bridges the callee to the number&#39;s stored forward destination, or to the per-call &#x60;forwardTo&#x60; override.  Destinations can be your own AI voice agent (Vapi/Retell), a phone, or a SIP endpoint. An optional &#x60;greeting&#x60; is spoken to the callee before the bridge.  ### Response and limits  The 200 response means the call is dialing. The lifecycle continues asynchronously: track it via &#x60;GET /v1/voice/calls/{id}&#x60; or the &#x60;call.*&#x60; webhooks.  Outbound calls are capped per rolling hour (429 when hit).  ### Balance time limit  On balance billing a call runs only as long as the balance, plus what auto top-up can still add this month, funds at its per-minute price, minus calls already in progress. Then it ends with &#x60;hangup_cause: time_limit&#x60;. Under one minute is refused with 402.  ### Idempotency  Send an &#x60;Idempotency-Key&#x60; header to make retries safe. Same key + same body replays the original response instead of dialing (and billing) a second call. 
+Dials &#x60;to&#x60; FROM one of your voice-enabled numbers and, on answer, bridges the callee to the number&#39;s stored forward destination, or to the per-call &#x60;forwardTo&#x60; override.  Destinations can be your own AI voice agent (Vapi/Retell), a phone, or a SIP endpoint. An optional &#x60;greeting&#x60; is spoken to the callee before the bridge.  ### Response and limits  The 200 response means the call is dialing. The lifecycle continues asynchronously: track it via &#x60;GET /v1/voice/calls/{id}&#x60; or the &#x60;call.*&#x60; webhooks.  Calls are not capped by count. Each team runs at most 10 calls at once (outbound calls plus calls forwarded to a phone) and has a daily safety limit on calling spend over the last 24 hours.  Past a limit the call is refused with 429 &#x60;call_limit_reached&#x60;, and &#x60;details.limit&#x60; names it.  ### Balance time limit  On balance billing a call runs only as long as the balance, plus what auto top-up can still add this month, funds at its per-minute price, minus calls already in progress. Then it ends with &#x60;hangup_cause: time_limit&#x60;. Under one minute is refused with 402.  ### Idempotency  Send an &#x60;Idempotency-Key&#x60; header to make retries safe. Same key + same body replays the original response instead of dialing (and billing) a second call. 
 
 ### Example
 
@@ -438,7 +438,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | No voice-enabled number matches &#x60;fromNumber&#x60;, or no forward destination configured (set the number&#39;s forward or pass &#x60;forwardTo&#x60;). |  -  |
-| **429** | Outbound call limit reached (per rolling hour). |  -  |
+| **429** | A team call limit was reached (&#x60;call_limit_reached&#x60;). &#x60;details.limit&#x60; names it: &#x60;team_concurrent_calls&#x60;, &#x60;team_daily_cost&#x60;, or &#x60;outbound_paused&#x60;. |  -  |
 | **502** | Carrier-side originate failed; the call has been marked failed. |  -  |
 
 ## createVoiceCallWithHttpInfo
@@ -447,7 +447,7 @@ public class Example {
 
 Place an outbound phone call
 
-Dials &#x60;to&#x60; FROM one of your voice-enabled numbers and, on answer, bridges the callee to the number&#39;s stored forward destination, or to the per-call &#x60;forwardTo&#x60; override.  Destinations can be your own AI voice agent (Vapi/Retell), a phone, or a SIP endpoint. An optional &#x60;greeting&#x60; is spoken to the callee before the bridge.  ### Response and limits  The 200 response means the call is dialing. The lifecycle continues asynchronously: track it via &#x60;GET /v1/voice/calls/{id}&#x60; or the &#x60;call.*&#x60; webhooks.  Outbound calls are capped per rolling hour (429 when hit).  ### Balance time limit  On balance billing a call runs only as long as the balance, plus what auto top-up can still add this month, funds at its per-minute price, minus calls already in progress. Then it ends with &#x60;hangup_cause: time_limit&#x60;. Under one minute is refused with 402.  ### Idempotency  Send an &#x60;Idempotency-Key&#x60; header to make retries safe. Same key + same body replays the original response instead of dialing (and billing) a second call. 
+Dials &#x60;to&#x60; FROM one of your voice-enabled numbers and, on answer, bridges the callee to the number&#39;s stored forward destination, or to the per-call &#x60;forwardTo&#x60; override.  Destinations can be your own AI voice agent (Vapi/Retell), a phone, or a SIP endpoint. An optional &#x60;greeting&#x60; is spoken to the callee before the bridge.  ### Response and limits  The 200 response means the call is dialing. The lifecycle continues asynchronously: track it via &#x60;GET /v1/voice/calls/{id}&#x60; or the &#x60;call.*&#x60; webhooks.  Calls are not capped by count. Each team runs at most 10 calls at once (outbound calls plus calls forwarded to a phone) and has a daily safety limit on calling spend over the last 24 hours.  Past a limit the call is refused with 429 &#x60;call_limit_reached&#x60;, and &#x60;details.limit&#x60; names it.  ### Balance time limit  On balance billing a call runs only as long as the balance, plus what auto top-up can still add this month, funds at its per-minute price, minus calls already in progress. Then it ends with &#x60;hangup_cause: time_limit&#x60;. Under one minute is refused with 402.  ### Idempotency  Send an &#x60;Idempotency-Key&#x60; header to make retries safe. Same key + same body replays the original response instead of dialing (and billing) a second call. 
 
 ### Example
 
@@ -519,7 +519,7 @@ ApiResponse<[**CreateVoiceCall200Response**](CreateVoiceCall200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | No voice-enabled number matches &#x60;fromNumber&#x60;, or no forward destination configured (set the number&#39;s forward or pass &#x60;forwardTo&#x60;). |  -  |
-| **429** | Outbound call limit reached (per rolling hour). |  -  |
+| **429** | A team call limit was reached (&#x60;call_limit_reached&#x60;). &#x60;details.limit&#x60; names it: &#x60;team_concurrent_calls&#x60;, &#x60;team_daily_cost&#x60;, or &#x60;outbound_paused&#x60;. |  -  |
 | **502** | Carrier-side originate failed; the call has been marked failed. |  -  |
 
 
@@ -1182,7 +1182,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | Invalid or unknown WebRTC credential, or no voice-enabled number matches &#x60;fromNumber&#x60; |  -  |
-| **429** | Outbound call limit reached (per rolling hour). |  -  |
+| **429** | A team call limit was reached (&#x60;call_limit_reached&#x60;). &#x60;details.limit&#x60; names it: &#x60;team_concurrent_calls&#x60;, &#x60;team_daily_cost&#x60;, or &#x60;outbound_paused&#x60;. |  -  |
 | **502** | Carrier-side originate failed |  -  |
 
 ## dialVoiceWebCallWithHttpInfo
@@ -1261,7 +1261,7 @@ ApiResponse<[**DialVoiceWebCall200Response**](DialVoiceWebCall200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | Invalid or unknown WebRTC credential, or no voice-enabled number matches &#x60;fromNumber&#x60; |  -  |
-| **429** | Outbound call limit reached (per rolling hour). |  -  |
+| **429** | A team call limit was reached (&#x60;call_limit_reached&#x60;). &#x60;details.limit&#x60; names it: &#x60;team_concurrent_calls&#x60;, &#x60;team_daily_cost&#x60;, or &#x60;outbound_paused&#x60;. |  -  |
 | **502** | Carrier-side originate failed |  -  |
 
 
