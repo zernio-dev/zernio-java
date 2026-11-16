@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.624.0
+  version: 1.625.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -51584,7 +51584,7 @@ paths:
       description: |
         Hourly windows (`last_complete_hour`, `last_3h`, `today_so_far`) read campaign totals hour by hour, which Zernio syncs only for some Meta and Google ad accounts.
 
-        On an ad account without them, an hourly condition always reads as unknown and never matches. `hourlyWindows` says which case applies.
+        A rule with an hourly condition is saved only on an ad account that has them: on any other, creating or editing it returns 400. `hourlyWindows` says which case applies.
       operationId: getAdRuleHourlyWindows
       parameters:
       - description: The ads connection.
@@ -59178,7 +59178,7 @@ paths:
 
         Reads the customer's `change_event` history, newest first. `adAccountId` is the numeric customer id.
 
-        Google keeps 30 days of it, so `since` defaults to 29 days ago and an older `since` returns 400. `until` defaults to today.
+        Google keeps 30 days of it, counted to the hour, so `since` defaults to 28 days ago on the account's clock, the oldest whole day always inside them, and an older `since` returns 400. `until` defaults to today.
 
         Each change is mapped onto the Meta row shape:
 
@@ -59222,7 +59222,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Start of range (YYYY-MM-DD). Google: at most 29 days ago, the\
+      - description: "Start of range (YYYY-MM-DD). Google: at most 28 days ago, the\
           \ default."
         explode: true
         in: query
@@ -127075,6 +127075,8 @@ components:
             `<from>_to_<to>_days_ago` is any range of full days, both ends included, such as `8_to_2_days_ago` to skip the 2 most recent days while their conversions still arrive. `from` is at least `to` and at most 90.
 
             `last_complete_hour`, `last_3h` and `today_so_far` read campaign totals hour by hour, on campaign rules for Meta and Google, and end at the latest hour whose numbers have settled, not at now. They take `spend`, `impressions`, `clicks`, `ctr`, `cpc`, `cpm` and `budget_used` (against today's daily budget), and no `top` or `bottom`.
+
+            They are saved only on an ad account the hourly sync covers (`GET /v1/ads/rules/hourly-windows`); on any other the rule is refused with a 400.
           enum:
           - today
           - yesterday
@@ -127609,6 +127611,7 @@ components:
           description: Only these platform campaigns or their ad sets and ads. Leave
             out to check the whole ad account.
           items:
+            maxLength: 64
             type: string
           maxItems: 100
           minItems: 1
@@ -182450,6 +182453,7 @@ components:
       example:
         severity: warning
         resolvedAt: 2000-01-23T04:56:07.000+00:00
+        lastEvaluatedAt: 2000-01-23T04:56:07.000+00:00
         id: id
         state: pending
         consecutiveMatches: 0
@@ -182485,6 +182489,11 @@ components:
         lastMatchedAt:
           format: date-time
           type: string
+        lastEvaluatedAt:
+          description: When a run last evaluated the object of this alert. Older than
+            the latest run means that run did not evaluate it.
+          format: date-time
+          type: string
         resolvedAt:
           format: date-time
           nullable: true
@@ -182502,6 +182511,7 @@ components:
       required:
       - consecutiveMatches
       - id
+      - lastEvaluatedAt
       - lastMatchedAt
       - objectId
       - openedAt
@@ -182514,6 +182524,7 @@ components:
         alerts:
         - severity: warning
           resolvedAt: 2000-01-23T04:56:07.000+00:00
+          lastEvaluatedAt: 2000-01-23T04:56:07.000+00:00
           id: id
           state: pending
           consecutiveMatches: 0
@@ -182523,6 +182534,7 @@ components:
           resolvedReason: condition_cleared
         - severity: warning
           resolvedAt: 2000-01-23T04:56:07.000+00:00
+          lastEvaluatedAt: 2000-01-23T04:56:07.000+00:00
           id: id
           state: pending
           consecutiveMatches: 0
@@ -232355,6 +232367,7 @@ components:
         channelId:
           description: The Slack channel to post in. Defaults to the channel the account
             was connected with; the bot joins public channels on its own.
+          maxLength: 64
           type: string
       required:
       - accountId
@@ -232868,6 +232881,7 @@ components:
           type: string
         values:
           items:
+            maxLength: 64
             minLength: 1
             type: string
           maxItems: 100
@@ -232985,7 +232999,7 @@ components:
           - <
           type: string
         value:
-          maximum: 28
+          maximum: 27
           minimum: 1
           type: integer
       required:
@@ -233214,6 +233228,7 @@ components:
           type: string
         values:
           items:
+            maxLength: 64
             type: string
           maxItems: 100
           minItems: 1
@@ -233267,7 +233282,7 @@ components:
           - <
           type: string
         value:
-          maximum: 28
+          maximum: 27
           minimum: 1
           type: integer
       required:
@@ -233386,6 +233401,7 @@ components:
           type: string
         channelId:
           description: A channel of a connected Slack account.
+          maxLength: 64
           type: string
       required:
       - accountId

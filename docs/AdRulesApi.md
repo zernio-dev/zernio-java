@@ -495,7 +495,7 @@ ApiResponse<[**CreateAdRule201Response**](CreateAdRule201Response.md)>
 
 Check whether an ad account has hourly windows
 
-Hourly windows (&#x60;last_complete_hour&#x60;, &#x60;last_3h&#x60;, &#x60;today_so_far&#x60;) read campaign totals hour by hour, which Zernio syncs only for some Meta and Google ad accounts.  On an ad account without them, an hourly condition always reads as unknown and never matches. &#x60;hourlyWindows&#x60; says which case applies. 
+Hourly windows (&#x60;last_complete_hour&#x60;, &#x60;last_3h&#x60;, &#x60;today_so_far&#x60;) read campaign totals hour by hour, which Zernio syncs only for some Meta and Google ad accounts.  A rule with an hourly condition is saved only on an ad account that has them: on any other, creating or editing it returns 400. &#x60;hourlyWindows&#x60; says which case applies. 
 
 ### Example
 
@@ -570,7 +570,7 @@ public class Example {
 
 Check whether an ad account has hourly windows
 
-Hourly windows (&#x60;last_complete_hour&#x60;, &#x60;last_3h&#x60;, &#x60;today_so_far&#x60;) read campaign totals hour by hour, which Zernio syncs only for some Meta and Google ad accounts.  On an ad account without them, an hourly condition always reads as unknown and never matches. &#x60;hourlyWindows&#x60; says which case applies. 
+Hourly windows (&#x60;last_complete_hour&#x60;, &#x60;last_3h&#x60;, &#x60;today_so_far&#x60;) read campaign totals hour by hour, which Zernio syncs only for some Meta and Google ad accounts.  A rule with an hourly condition is saved only on an ad account that has them: on any other, creating or editing it returns 400. &#x60;hourlyWindows&#x60; says which case applies. 
 
 ### Example
 

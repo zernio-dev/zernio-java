@@ -14,6 +14,7 @@
 |**consecutiveMatches** | **Integer** |  |  |
 |**openedAt** | **OffsetDateTime** |  |  |
 |**lastMatchedAt** | **OffsetDateTime** |  |  |
+|**lastEvaluatedAt** | **OffsetDateTime** | When a run last evaluated the object of this alert. Older than the latest run means that run did not evaluate it. |  |
 |**resolvedAt** | **OffsetDateTime** |  |  |
 |**resolvedReason** | [**ResolvedReasonEnum**](#ResolvedReasonEnum) |  |  |
 
