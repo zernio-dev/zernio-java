@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.620.0
+- API version: 1.620.1
 
-- Build date: 2026-11-16T09:58:26.234901430Z[Etc/UTC]
+- Build date: 2026-11-16T10:16:34.099749535Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.620.0</version>
+  <version>1.620.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.620.0"
+compile "dev.zernio:zernio-sdk:1.620.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.620.0.jar`
+- `target/zernio-sdk-1.620.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1509,8 +1509,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**retractEventWithHttpInfo**](docs/ConversionsApi.md#retractEventWithHttpInfo) | **DELETE** /v1/events/{eventId} | Retract a stored event
 *ConversionsApi* | [**rotateTrackingSiteKey**](docs/ConversionsApi.md#rotateTrackingSiteKey) | **POST** /v1/tracking-sites/{siteId}/rotate-key | Rotate a tracking site&#39;s key
 *ConversionsApi* | [**rotateTrackingSiteKeyWithHttpInfo**](docs/ConversionsApi.md#rotateTrackingSiteKeyWithHttpInfo) | **POST** /v1/tracking-sites/{siteId}/rotate-key | Rotate a tracking site&#39;s key
-*ConversionsApi* | [**sendConversions**](docs/ConversionsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events
-*ConversionsApi* | [**sendConversionsWithHttpInfo**](docs/ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events
+*ConversionsApi* | [**sendConversions**](docs/ConversionsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events to one destination (legacy)
+*ConversionsApi* | [**sendConversionsWithHttpInfo**](docs/ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events to one destination (legacy)
 *ConversionsApi* | [**sendEvents**](docs/ConversionsApi.md#sendEvents) | **POST** /v1/events | Send events to every destination
 *ConversionsApi* | [**sendEventsWithHttpInfo**](docs/ConversionsApi.md#sendEventsWithHttpInfo) | **POST** /v1/events | Send events to every destination
 *ConversionsApi* | [**updateAdConversionDestination**](docs/ConversionsApi.md#updateAdConversionDestination) | **PATCH** /v1/ads/conversions/destinations/{destinationId} | Update a conversion destination
