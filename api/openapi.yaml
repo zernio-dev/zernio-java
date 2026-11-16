@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.626.0
+  version: 1.627.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -130451,6 +130451,13 @@ components:
       - updatedAt
     AdRuleObjectEvaluation:
       example:
+        readings:
+        - actual: 5.962133916683182
+          metric: metric
+          window: window
+        - actual: 5.962133916683182
+          metric: metric
+          window: window
         campaignId: campaignId
         name: name
         matched: true
@@ -130493,6 +130500,14 @@ components:
           items:
             $ref: "#/components/schemas/AdRuleObjectEvaluation_conditions_inner"
           type: array
+        readings:
+          description: "On a matched object: spend, impressions and clicks over each\
+            \ window its conditions read, and the other search impression shares when\
+            \ a condition reads one. Left out where a condition already reads the\
+            \ value."
+          items:
+            $ref: "#/components/schemas/AdRuleObjectEvaluation_readings_inner"
+          type: array
       required:
       - campaignId
       - conditions
@@ -130505,7 +130520,14 @@ components:
         timezone: timezone
         today: 2000-01-23
         objects:
-        - campaignId: campaignId
+        - readings:
+          - actual: 5.962133916683182
+            metric: metric
+            window: window
+          - actual: 5.962133916683182
+            metric: metric
+            window: window
+          campaignId: campaignId
           name: name
           matched: true
           id: id
@@ -130527,7 +130549,14 @@ components:
             value: 0.6027456183070403
             met: true
           group: group
-        - campaignId: campaignId
+        - readings:
+          - actual: 5.962133916683182
+            metric: metric
+            window: window
+          - actual: 5.962133916683182
+            metric: metric
+            window: window
+          campaignId: campaignId
           name: name
           matched: true
           id: id
@@ -130637,7 +130666,14 @@ components:
           timezoneAssumed: true
           currency: currency
           matched:
-          - campaignId: campaignId
+          - readings:
+            - actual: 5.962133916683182
+              metric: metric
+              window: window
+            - actual: 5.962133916683182
+              metric: metric
+              window: window
+            campaignId: campaignId
             name: name
             matched: true
             id: id
@@ -130659,7 +130695,14 @@ components:
               value: 0.6027456183070403
               met: true
             group: group
-          - campaignId: campaignId
+          - readings:
+            - actual: 5.962133916683182
+              metric: metric
+              window: window
+            - actual: 5.962133916683182
+              metric: metric
+              window: window
+            campaignId: campaignId
             name: name
             matched: true
             id: id
@@ -182583,7 +182626,14 @@ components:
             timezoneAssumed: true
             currency: currency
             matched:
-            - campaignId: campaignId
+            - readings:
+              - actual: 5.962133916683182
+                metric: metric
+                window: window
+              - actual: 5.962133916683182
+                metric: metric
+                window: window
+              campaignId: campaignId
               name: name
               matched: true
               id: id
@@ -182605,7 +182655,14 @@ components:
                 value: 0.6027456183070403
                 met: true
               group: group
-            - campaignId: campaignId
+            - readings:
+              - actual: 5.962133916683182
+                metric: metric
+                window: window
+              - actual: 5.962133916683182
+                metric: metric
+                window: window
+              campaignId: campaignId
               name: name
               matched: true
               id: id
@@ -182679,7 +182736,14 @@ components:
             timezoneAssumed: true
             currency: currency
             matched:
-            - campaignId: campaignId
+            - readings:
+              - actual: 5.962133916683182
+                metric: metric
+                window: window
+              - actual: 5.962133916683182
+                metric: metric
+                window: window
+              campaignId: campaignId
               name: name
               matched: true
               id: id
@@ -182701,7 +182765,14 @@ components:
                 value: 0.6027456183070403
                 met: true
               group: group
-            - campaignId: campaignId
+            - readings:
+              - actual: 5.962133916683182
+                metric: metric
+                window: window
+              - actual: 5.962133916683182
+                metric: metric
+                window: window
+              campaignId: campaignId
               name: name
               matched: true
               id: id
@@ -234965,6 +235036,23 @@ components:
         compareTo: previous_period
         value: 0.6027456183070403
         met: true
+    AdRuleObjectEvaluation_readings_inner:
+      example:
+        actual: 5.962133916683182
+        metric: metric
+        window: window
+      properties:
+        metric:
+          type: string
+        window:
+          type: string
+        actual:
+          nullable: true
+          type: number
+      required:
+      - actual
+      - metric
+      - window
     AdRuleEvaluation_groups_inner:
       example:
         name: name
@@ -235125,7 +235213,14 @@ components:
         timezoneAssumed: true
         currency: currency
         matched:
-        - campaignId: campaignId
+        - readings:
+          - actual: 5.962133916683182
+            metric: metric
+            window: window
+          - actual: 5.962133916683182
+            metric: metric
+            window: window
+          campaignId: campaignId
           name: name
           matched: true
           id: id
@@ -235147,7 +235242,14 @@ components:
             value: 0.6027456183070403
             met: true
           group: group
-        - campaignId: campaignId
+        - readings:
+          - actual: 5.962133916683182
+            metric: metric
+            window: window
+          - actual: 5.962133916683182
+            metric: metric
+            window: window
+          campaignId: campaignId
           name: name
           matched: true
           id: id

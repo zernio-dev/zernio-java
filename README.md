@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.626.0
+- API version: 1.627.0
 
-- Build date: 2026-11-16T17:22:53.265058388Z[Etc/UTC]
+- Build date: 2026-11-16T18:25:47.360496719Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.626.0</version>
+  <version>1.627.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.626.0"
+compile "dev.zernio:zernio-sdk:1.627.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.626.0.jar`
+- `target/zernio-sdk-1.627.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2787,6 +2787,7 @@ Class | Method | HTTP request | Description
  - [AdRuleLifecycle](docs/AdRuleLifecycle.md)
  - [AdRuleObjectEvaluation](docs/AdRuleObjectEvaluation.md)
  - [AdRuleObjectEvaluationConditionsInner](docs/AdRuleObjectEvaluationConditionsInner.md)
+ - [AdRuleObjectEvaluationReadingsInner](docs/AdRuleObjectEvaluationReadingsInner.md)
  - [AdRuleRun](docs/AdRuleRun.md)
  - [AdRuleRunEvaluation](docs/AdRuleRunEvaluation.md)
  - [AdRuleRunEvaluationActionsInner](docs/AdRuleRunEvaluationActionsInner.md)
