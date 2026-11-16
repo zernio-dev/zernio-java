@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.616.0
+- API version: 1.617.0
 
-- Build date: 2026-11-16T07:47:36.498988101Z[Etc/UTC]
+- Build date: 2026-11-16T08:48:59.966894425Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.616.0</version>
+  <version>1.617.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.616.0"
+compile "dev.zernio:zernio-sdk:1.617.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.616.0.jar`
+- `target/zernio-sdk-1.617.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1441,6 +1441,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**createEventDestinationWithHttpInfo**](docs/ConversionsApi.md#createEventDestinationWithHttpInfo) | **POST** /v1/events/destinations | Add an event destination
 *ConversionsApi* | [**createForwardingRule**](docs/ConversionsApi.md#createForwardingRule) | **POST** /v1/events/forwarding-rules | Add a forwarding rule
 *ConversionsApi* | [**createForwardingRuleWithHttpInfo**](docs/ConversionsApi.md#createForwardingRuleWithHttpInfo) | **POST** /v1/events/forwarding-rules | Add a forwarding rule
+*ConversionsApi* | [**createTrackingSite**](docs/ConversionsApi.md#createTrackingSite) | **POST** /v1/tracking-sites | Turn on server-side tracking for a website
+*ConversionsApi* | [**createTrackingSiteWithHttpInfo**](docs/ConversionsApi.md#createTrackingSiteWithHttpInfo) | **POST** /v1/tracking-sites | Turn on server-side tracking for a website
 *ConversionsApi* | [**deleteAdConversionDestination**](docs/ConversionsApi.md#deleteAdConversionDestination) | **DELETE** /v1/ads/conversions/destinations/{destinationId} | Delete a conversion destination
 *ConversionsApi* | [**deleteAdConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#deleteAdConversionDestinationWithHttpInfo) | **DELETE** /v1/ads/conversions/destinations/{destinationId} | Delete a conversion destination
 *ConversionsApi* | [**deleteConversionDestination**](docs/ConversionsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
@@ -1449,6 +1451,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**deleteEventDestinationWithHttpInfo**](docs/ConversionsApi.md#deleteEventDestinationWithHttpInfo) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination
 *ConversionsApi* | [**deleteForwardingRule**](docs/ConversionsApi.md#deleteForwardingRule) | **DELETE** /v1/events/forwarding-rules/{ruleId} | Remove a forwarding rule
 *ConversionsApi* | [**deleteForwardingRuleWithHttpInfo**](docs/ConversionsApi.md#deleteForwardingRuleWithHttpInfo) | **DELETE** /v1/events/forwarding-rules/{ruleId} | Remove a forwarding rule
+*ConversionsApi* | [**deleteTrackingSite**](docs/ConversionsApi.md#deleteTrackingSite) | **DELETE** /v1/tracking-sites/{siteId} | Delete a tracking site
+*ConversionsApi* | [**deleteTrackingSiteWithHttpInfo**](docs/ConversionsApi.md#deleteTrackingSiteWithHttpInfo) | **DELETE** /v1/tracking-sites/{siteId} | Delete a tracking site
 *ConversionsApi* | [**getAdConversionDestination**](docs/ConversionsApi.md#getAdConversionDestination) | **GET** /v1/ads/conversions/destinations/{destinationId} | Get a conversion destination
 *ConversionsApi* | [**getAdConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#getAdConversionDestinationWithHttpInfo) | **GET** /v1/ads/conversions/destinations/{destinationId} | Get a conversion destination
 *ConversionsApi* | [**getAdConversionMetrics**](docs/ConversionsApi.md#getAdConversionMetrics) | **GET** /v1/ads/conversions/destinations/{destinationId}/metrics | Get attribution metrics
@@ -1463,6 +1467,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**getEventWithHttpInfo**](docs/ConversionsApi.md#getEventWithHttpInfo) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries
 *ConversionsApi* | [**getEventsOverview**](docs/ConversionsApi.md#getEventsOverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview
 *ConversionsApi* | [**getEventsOverviewWithHttpInfo**](docs/ConversionsApi.md#getEventsOverviewWithHttpInfo) | **GET** /v1/events/overview | Get today&#39;s tracking overview
+*ConversionsApi* | [**getTrackingSite**](docs/ConversionsApi.md#getTrackingSite) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site
+*ConversionsApi* | [**getTrackingSiteWithHttpInfo**](docs/ConversionsApi.md#getTrackingSiteWithHttpInfo) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site
 *ConversionsApi* | [**listAdConversionAssociations**](docs/ConversionsApi.md#listAdConversionAssociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns
 *ConversionsApi* | [**listAdConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#listAdConversionAssociationsWithHttpInfo) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns
 *ConversionsApi* | [**listAdConversionDestinations**](docs/ConversionsApi.md#listAdConversionDestinations) | **GET** /v1/ads/conversions/destinations | List conversion destinations
@@ -1485,6 +1491,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**listEventsWithHttpInfo**](docs/ConversionsApi.md#listEventsWithHttpInfo) | **GET** /v1/events | List stored events
 *ConversionsApi* | [**listForwardingRules**](docs/ConversionsApi.md#listForwardingRules) | **GET** /v1/events/forwarding-rules | List forwarding rules
 *ConversionsApi* | [**listForwardingRulesWithHttpInfo**](docs/ConversionsApi.md#listForwardingRulesWithHttpInfo) | **GET** /v1/events/forwarding-rules | List forwarding rules
+*ConversionsApi* | [**listTrackingSites**](docs/ConversionsApi.md#listTrackingSites) | **GET** /v1/tracking-sites | List tracking sites
+*ConversionsApi* | [**listTrackingSitesWithHttpInfo**](docs/ConversionsApi.md#listTrackingSitesWithHttpInfo) | **GET** /v1/tracking-sites | List tracking sites
 *ConversionsApi* | [**removeAdConversionAssociations**](docs/ConversionsApi.md#removeAdConversionAssociations) | **DELETE** /v1/ads/conversions/destinations/{destinationId}/associations | Remove associated campaigns
 *ConversionsApi* | [**removeAdConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#removeAdConversionAssociationsWithHttpInfo) | **DELETE** /v1/ads/conversions/destinations/{destinationId}/associations | Remove associated campaigns
 *ConversionsApi* | [**removeConversionAssociations**](docs/ConversionsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
@@ -1495,6 +1503,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**restateEventWithHttpInfo**](docs/ConversionsApi.md#restateEventWithHttpInfo) | **PATCH** /v1/events/{eventId} | Change a stored event&#39;s value
 *ConversionsApi* | [**retractEvent**](docs/ConversionsApi.md#retractEvent) | **DELETE** /v1/events/{eventId} | Retract a stored event
 *ConversionsApi* | [**retractEventWithHttpInfo**](docs/ConversionsApi.md#retractEventWithHttpInfo) | **DELETE** /v1/events/{eventId} | Retract a stored event
+*ConversionsApi* | [**rotateTrackingSiteKey**](docs/ConversionsApi.md#rotateTrackingSiteKey) | **POST** /v1/tracking-sites/{siteId}/rotate-key | Rotate a tracking site&#39;s key
+*ConversionsApi* | [**rotateTrackingSiteKeyWithHttpInfo**](docs/ConversionsApi.md#rotateTrackingSiteKeyWithHttpInfo) | **POST** /v1/tracking-sites/{siteId}/rotate-key | Rotate a tracking site&#39;s key
 *ConversionsApi* | [**sendConversions**](docs/ConversionsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events
 *ConversionsApi* | [**sendConversionsWithHttpInfo**](docs/ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events
 *ConversionsApi* | [**sendEvents**](docs/ConversionsApi.md#sendEvents) | **POST** /v1/events | Send events to every destination
@@ -1511,6 +1521,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**updateCustomConversionGoalWithHttpInfo**](docs/ConversionsApi.md#updateCustomConversionGoalWithHttpInfo) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal
 *ConversionsApi* | [**updateForwardingRule**](docs/ConversionsApi.md#updateForwardingRule) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret
 *ConversionsApi* | [**updateForwardingRuleWithHttpInfo**](docs/ConversionsApi.md#updateForwardingRuleWithHttpInfo) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret
+*ConversionsApi* | [**updateTrackingSite**](docs/ConversionsApi.md#updateTrackingSite) | **PATCH** /v1/tracking-sites/{siteId} | Update a tracking site
+*ConversionsApi* | [**updateTrackingSiteWithHttpInfo**](docs/ConversionsApi.md#updateTrackingSiteWithHttpInfo) | **PATCH** /v1/tracking-sites/{siteId} | Update a tracking site
 *CreatorCampaignsApi* | [**activateCreatorCampaign**](docs/CreatorCampaignsApi.md#activateCreatorCampaign) | **POST** /v1/creator-campaigns/{campaignId}/activate | Activate creator campaign
 *CreatorCampaignsApi* | [**activateCreatorCampaignWithHttpInfo**](docs/CreatorCampaignsApi.md#activateCreatorCampaignWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/activate | Activate creator campaign
 *CreatorCampaignsApi* | [**approveCampaignDraft**](docs/CreatorCampaignsApi.md#approveCampaignDraft) | **POST** /v1/creator-campaigns/{campaignId}/drafts/{draftId}/approve | Approve campaign draft
@@ -2870,6 +2882,7 @@ Class | Method | HTTP request | Description
  - [AnalyticsOverviewDataStaleness](docs/AnalyticsOverviewDataStaleness.md)
  - [AnalyticsSinglePostResponse](docs/AnalyticsSinglePostResponse.md)
  - [AnalyticsSinglePostResponseMediaItemsInner](docs/AnalyticsSinglePostResponseMediaItemsInner.md)
+ - [AnyWebsite](docs/AnyWebsite.md)
  - [ApiChangelogEntry](docs/ApiChangelogEntry.md)
  - [ApiChangelogEntryChanges](docs/ApiChangelogEntryChanges.md)
  - [ApiChangelogEntryChangesEndpoints](docs/ApiChangelogEntryChangesEndpoints.md)
@@ -3340,6 +3353,7 @@ Class | Method | HTTP request | Description
  - [ConnectedAccount](docs/ConnectedAccount.md)
  - [ConnectedApp](docs/ConnectedApp.md)
  - [ConnectedMessagingAccount](docs/ConnectedMessagingAccount.md)
+ - [ConnectedStore](docs/ConnectedStore.md)
  - [ContentRetentionResponse](docs/ContentRetentionResponse.md)
  - [ConversationAdAttribution](docs/ConversationAdAttribution.md)
  - [ConversionAction](docs/ConversionAction.md)
@@ -3662,6 +3676,8 @@ Class | Method | HTTP request | Description
  - [CreateTestLeadRequestFieldDataInner](docs/CreateTestLeadRequestFieldDataInner.md)
  - [CreateTopup201Response](docs/CreateTopup201Response.md)
  - [CreateTopupRequest](docs/CreateTopupRequest.md)
+ - [CreateTrackingSite201Response](docs/CreateTrackingSite201Response.md)
+ - [CreateTrackingSiteRequest](docs/CreateTrackingSiteRequest.md)
  - [CreateTrackingTag201Response](docs/CreateTrackingTag201Response.md)
  - [CreateTrackingTagEvent201Response](docs/CreateTrackingTagEvent201Response.md)
  - [CreateTrackingTagEventRequest](docs/CreateTrackingTagEventRequest.md)
@@ -5015,6 +5031,8 @@ Class | Method | HTTP request | Description
  - [ListTikTokSmartPlusReviews200ResponseListingError](docs/ListTikTokSmartPlusReviews200ResponseListingError.md)
  - [ListTikTokSmartPlusReviews200ResponseReviewError](docs/ListTikTokSmartPlusReviews200ResponseReviewError.md)
  - [ListTopups200Response](docs/ListTopups200Response.md)
+ - [ListTrackingSites200Response](docs/ListTrackingSites200Response.md)
+ - [ListTrackingSites200ResponsePagination](docs/ListTrackingSites200ResponsePagination.md)
  - [ListTrackingTagEvents200Response](docs/ListTrackingTagEvents200Response.md)
  - [ListTrackingTagPartners200Response](docs/ListTrackingTagPartners200Response.md)
  - [ListTrackingTagSharedAccounts200Response](docs/ListTrackingTagSharedAccounts200Response.md)
@@ -5698,6 +5716,13 @@ Class | Method | HTTP request | Description
  - [TikTokSmartPlusAdLevelReview](docs/TikTokSmartPlusAdLevelReview.md)
  - [TikTokSmartPlusMaterialReview](docs/TikTokSmartPlusMaterialReview.md)
  - [TikTokSmartPlusReviewStatus](docs/TikTokSmartPlusReviewStatus.md)
+ - [TrackingSite](docs/TrackingSite.md)
+ - [TrackingSiteChecksInner](docs/TrackingSiteChecksInner.md)
+ - [TrackingSiteConsentMode](docs/TrackingSiteConsentMode.md)
+ - [TrackingSiteCustomHostname](docs/TrackingSiteCustomHostname.md)
+ - [TrackingSiteCustomHostnameDnsRecord](docs/TrackingSiteCustomHostnameDnsRecord.md)
+ - [TrackingSiteInstall](docs/TrackingSiteInstall.md)
+ - [TrackingSiteSetup](docs/TrackingSiteSetup.md)
  - [TrackingTag](docs/TrackingTag.md)
  - [TrackingTagDiagnostic](docs/TrackingTagDiagnostic.md)
  - [TrackingTagEvent](docs/TrackingTagEvent.md)
@@ -5972,6 +5997,7 @@ Class | Method | HTTP request | Description
  - [UpdateSlackSettingsRequest](docs/UpdateSlackSettingsRequest.md)
  - [UpdateStripeSettings200Response](docs/UpdateStripeSettings200Response.md)
  - [UpdateStripeSettingsRequest](docs/UpdateStripeSettingsRequest.md)
+ - [UpdateTrackingSiteRequest](docs/UpdateTrackingSiteRequest.md)
  - [UpdateTrackingTagRequest](docs/UpdateTrackingTagRequest.md)
  - [UpdateValueRuleSet200Response](docs/UpdateValueRuleSet200Response.md)
  - [UpdateValueRuleSetRequest](docs/UpdateValueRuleSetRequest.md)

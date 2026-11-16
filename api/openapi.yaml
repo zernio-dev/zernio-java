@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.616.0
+  version: 1.617.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -71554,6 +71554,286 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/tracking-sites:
+    get:
+      description: "The websites whose visits and conversions Zernio collects, newest\
+        \ first. Pass `profileId` to list one profile's sites."
+      operationId: listTrackingSites
+      parameters:
+      - explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: '`pagination.nextCursor` from the previous page.'
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listTrackingSites_200_response"
+          description: One page of sites.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List tracking sites
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Creates a tracking site. With `storeAccountId`, Zernio installs its tag on the connected Shopify, WordPress (WooCommerce), Wix or Webflow store. With only `url`, paste the returned `install.snippet` into the site.
+
+        The ad accounts you picked for each connection get a forwarding rule, so website conversions reach them at once. `checks` shows each step; `setup.status` turns `ready` when all have passed.
+      operationId: createTrackingSite
+      parameters:
+      - description: "A unique key per site you create, such as a UUID. A retry with\
+          \ the same key and body returns the same site."
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: true
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createTrackingSite_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createTrackingSite_201_response"
+          description: Site created.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid body, an unsupported store (code `store_not_supported`)\
+            \ or a store with no known address (code `store_url_unknown`)."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The store already has a site (code `store_already_tracked`,\
+            \ with `details.siteId`) or is disconnected (code `reconnect_required`)."
+      security:
+      - bearerAuth: []
+      summary: Turn on server-side tracking for a website
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/tracking-sites/{siteId}:
+    delete:
+      description: "Stops collecting at once, removes the tag from the connected store\
+        \ and releases the custom subdomain. Events already stored are kept."
+      operationId: deleteTrackingSite
+      parameters:
+      - explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Site deleted.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete a tracking site
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+    get:
+      description: "One site, with its snippet, its custom subdomain and the latest\
+        \ result of each setup check."
+      operationId: getTrackingSite
+      parameters:
+      - explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createTrackingSite_201_response"
+          description: The site.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: No site with this id in your workspace (code `tracking_site_not_found`).
+      security:
+      - bearerAuth: []
+      summary: Get a tracking site
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+    parameters:
+    - explode: false
+      in: path
+      name: siteId
+      required: true
+      schema:
+        type: string
+      style: simple
+    patch:
+      description: |
+        Changes the site's name, domains, consent mode or custom subdomain. Send at least one field.
+
+        `customHostname` sets a subdomain of the site, such as `t.brand.com`; create the CNAME in `customHostname.dnsRecord`. The snippet switches to it once its status is `active`. `null` removes it.
+      operationId: updateTrackingSite
+      parameters:
+      - explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateTrackingSite_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createTrackingSite_201_response"
+          description: The updated site.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Another site already uses this subdomain (code `custom_hostname_taken`).
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The subdomain could not be registered for now (code `provider_unavailable`).
+            Try again.
+      security:
+      - bearerAuth: []
+      summary: Update a tracking site
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/tracking-sites/{siteId}/rotate-key:
+    post:
+      description: "Issues a new `siteKey`. The old key keeps working for 7 days,\
+        \ so update the snippet on your site within that time."
+      operationId: rotateTrackingSiteKey
+      parameters:
+      - explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "A unique key per rotation, such as a UUID."
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: true
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createTrackingSite_201_response"
+          description: The site with its new key and snippet.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Rotate a tracking site's key
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-accepts:
+      - application/json
   /v1/ads/campaigns/{campaignId}/conversion-goals:
     get:
       description: |-
@@ -130614,6 +130894,95 @@ components:
             \ right."
           type: boolean
         createdAt:
+          format: date-time
+          type: string
+    TrackingSiteConsentMode:
+      description: "How a visitor with no consent signal is treated. `eu_opt_in` (default):\
+        \ no consent in the EU, UK and other countries that require it, consent elsewhere.\
+        \ `opt_in`: no consent anywhere. `opt_out`: consent everywhere."
+      enum:
+      - eu_opt_in
+      - opt_in
+      - opt_out
+      type: string
+    TrackingSite:
+      example:
+        customHostname:
+          hostname: hostname
+          dnsRecord:
+            name: name
+            type: CNAME
+            target: target
+          status: pending
+        storeOrders: true
+        domains:
+        - domains
+        - domains
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        siteKey: siteKey
+        checks:
+        - checkedAt: 2000-01-23T04:56:07.000+00:00
+          detail: detail
+          key: key
+          status: pending
+        - checkedAt: 2000-01-23T04:56:07.000+00:00
+          detail: detail
+          key: key
+          status: pending
+        consentMode: eu_opt_in
+        install:
+          snippet: snippet
+          storeAccountId: storeAccountId
+          method: shopify
+        profileId: profileId
+        name: name
+        setup:
+          status: pending
+        id: id
+        status: active
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        profileId:
+          type: string
+        name:
+          type: string
+        status:
+          enum:
+          - active
+          - paused
+          - removing
+          type: string
+        install:
+          $ref: "#/components/schemas/TrackingSite_install"
+        storeOrders:
+          description: "True when the store's orders reach Zernio from the store itself,\
+            \ so website purchases are forwarded but not counted twice."
+          type: boolean
+        siteKey:
+          description: "Public key that names the site in the snippet, such as `zs_...`."
+          type: string
+        domains:
+          items:
+            type: string
+          type: array
+        customHostname:
+          $ref: "#/components/schemas/TrackingSite_customHostname"
+        consentMode:
+          $ref: "#/components/schemas/TrackingSiteConsentMode"
+        checks:
+          description: "One per setup step: `script` for the install, then one per\
+            \ ad account the site sends to, keyed by its platform and ids."
+          items:
+            $ref: "#/components/schemas/TrackingSite_checks_inner"
+          type: array
+        setup:
+          $ref: "#/components/schemas/TrackingSite_setup"
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
           format: date-time
           type: string
     EventCorrection:
@@ -205150,6 +205519,194 @@ components:
           writeOnly: true
       required:
       - apiSecret
+    listTrackingSites_200_response_pagination:
+      example:
+        nextCursor: nextCursor
+      properties:
+        nextCursor:
+          description: Pass as `cursor` for the next page; null on the last page.
+          nullable: true
+          type: string
+    listTrackingSites_200_response:
+      example:
+        pagination:
+          nextCursor: nextCursor
+        sites:
+        - customHostname:
+            hostname: hostname
+            dnsRecord:
+              name: name
+              type: CNAME
+              target: target
+            status: pending
+          storeOrders: true
+          domains:
+          - domains
+          - domains
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          siteKey: siteKey
+          checks:
+          - checkedAt: 2000-01-23T04:56:07.000+00:00
+            detail: detail
+            key: key
+            status: pending
+          - checkedAt: 2000-01-23T04:56:07.000+00:00
+            detail: detail
+            key: key
+            status: pending
+          consentMode: eu_opt_in
+          install:
+            snippet: snippet
+            storeAccountId: storeAccountId
+            method: shopify
+          profileId: profileId
+          name: name
+          setup:
+            status: pending
+          id: id
+          status: active
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - customHostname:
+            hostname: hostname
+            dnsRecord:
+              name: name
+              type: CNAME
+              target: target
+            status: pending
+          storeOrders: true
+          domains:
+          - domains
+          - domains
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          siteKey: siteKey
+          checks:
+          - checkedAt: 2000-01-23T04:56:07.000+00:00
+            detail: detail
+            key: key
+            status: pending
+          - checkedAt: 2000-01-23T04:56:07.000+00:00
+            detail: detail
+            key: key
+            status: pending
+          consentMode: eu_opt_in
+          install:
+            snippet: snippet
+            storeAccountId: storeAccountId
+            method: shopify
+          profileId: profileId
+          name: name
+          setup:
+            status: pending
+          id: id
+          status: active
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        sites:
+          items:
+            $ref: "#/components/schemas/TrackingSite"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listTrackingSites_200_response_pagination"
+    Connected_store:
+      additionalProperties: {}
+      properties:
+        profileId:
+          type: string
+        storeAccountId:
+          description: "A Shopify, WordPress, Wix or Webflow account connected to\
+            \ the profile."
+          type: string
+        url:
+          description: "The store's public address, when it differs from the one the\
+            \ store reports."
+          format: uri
+          type: string
+      required:
+      - profileId
+      - storeAccountId
+      title: Connected store
+    Any_website:
+      additionalProperties: {}
+      properties:
+        profileId:
+          type: string
+        url:
+          description: "The website, such as `https://brand.com`. A bare domain also\
+            \ allows its `www.` host."
+          format: uri
+          type: string
+      required:
+      - profileId
+      - url
+      title: Any website
+    createTrackingSite_request:
+      oneOf:
+      - $ref: "#/components/schemas/Connected_store"
+      - $ref: "#/components/schemas/Any_website"
+    createTrackingSite_201_response:
+      example:
+        site:
+          customHostname:
+            hostname: hostname
+            dnsRecord:
+              name: name
+              type: CNAME
+              target: target
+            status: pending
+          storeOrders: true
+          domains:
+          - domains
+          - domains
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          siteKey: siteKey
+          checks:
+          - checkedAt: 2000-01-23T04:56:07.000+00:00
+            detail: detail
+            key: key
+            status: pending
+          - checkedAt: 2000-01-23T04:56:07.000+00:00
+            detail: detail
+            key: key
+            status: pending
+          consentMode: eu_opt_in
+          install:
+            snippet: snippet
+            storeAccountId: storeAccountId
+            method: shopify
+          profileId: profileId
+          name: name
+          setup:
+            status: pending
+          id: id
+          status: active
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        site:
+          $ref: "#/components/schemas/TrackingSite"
+    updateTrackingSite_request:
+      additionalProperties: {}
+      minProperties: 1
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+        domains:
+          description: "Hosts allowed to send events, such as `brand.com`. Events\
+            \ from any other origin are dropped."
+          items:
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        consentMode:
+          $ref: "#/components/schemas/TrackingSiteConsentMode"
+        customHostname:
+          description: "A subdomain of one of the site's domains, never the domain\
+            \ itself. `null` removes it."
+          maxLength: 253
+          nullable: true
+          type: string
     getCampaignConversionGoals_200_response:
       allOf:
       - $ref: "#/components/schemas/GoogleCampaignConversionGoals"
@@ -234101,6 +234658,95 @@ components:
           type: string
       required:
       - text
+    TrackingSite_install:
+      example:
+        snippet: snippet
+        storeAccountId: storeAccountId
+        method: shopify
+      properties:
+        method:
+          description: How the tag is installed. `snippet` means you paste it.
+          enum:
+          - shopify
+          - wordpress
+          - wix
+          - webflow
+          - snippet
+          type: string
+        storeAccountId:
+          nullable: true
+          type: string
+        snippet:
+          description: "The script tag to paste, already pointing at the custom subdomain\
+            \ once it is active."
+          type: string
+    TrackingSite_customHostname_dnsRecord:
+      example:
+        name: name
+        type: CNAME
+        target: target
+      properties:
+        type:
+          enum:
+          - CNAME
+          type: string
+        name:
+          description: "The record name relative to your domain, such as `t`."
+          type: string
+        target:
+          type: string
+    TrackingSite_customHostname:
+      example:
+        hostname: hostname
+        dnsRecord:
+          name: name
+          type: CNAME
+          target: target
+        status: pending
+      properties:
+        hostname:
+          type: string
+        status:
+          enum:
+          - pending
+          - active
+          - failed
+          type: string
+        dnsRecord:
+          $ref: "#/components/schemas/TrackingSite_customHostname_dnsRecord"
+    TrackingSite_checks_inner:
+      example:
+        checkedAt: 2000-01-23T04:56:07.000+00:00
+        detail: detail
+        key: key
+        status: pending
+      properties:
+        key:
+          type: string
+        status:
+          enum:
+          - pending
+          - passed
+          - failed
+          type: string
+        detail:
+          description: What to do when the check has not passed.
+          nullable: true
+          type: string
+        checkedAt:
+          format: date-time
+          type: string
+    TrackingSite_setup:
+      example:
+        status: pending
+      properties:
+        status:
+          description: "`failed` when any check failed, `ready` when all passed."
+          enum:
+          - pending
+          - ready
+          - failed
+          type: string
     ConversionEvent_user_clickIds:
       description: Platform click identifiers captured from the originating ad click.
       properties:

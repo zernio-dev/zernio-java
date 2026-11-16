@@ -24,6 +24,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createEventDestinationWithHttpInfo**](ConversionsApi.md#createEventDestinationWithHttpInfo) | **POST** /v1/events/destinations | Add an event destination |
 | [**createForwardingRule**](ConversionsApi.md#createForwardingRule) | **POST** /v1/events/forwarding-rules | Add a forwarding rule |
 | [**createForwardingRuleWithHttpInfo**](ConversionsApi.md#createForwardingRuleWithHttpInfo) | **POST** /v1/events/forwarding-rules | Add a forwarding rule |
+| [**createTrackingSite**](ConversionsApi.md#createTrackingSite) | **POST** /v1/tracking-sites | Turn on server-side tracking for a website |
+| [**createTrackingSiteWithHttpInfo**](ConversionsApi.md#createTrackingSiteWithHttpInfo) | **POST** /v1/tracking-sites | Turn on server-side tracking for a website |
 | [**deleteAdConversionDestination**](ConversionsApi.md#deleteAdConversionDestination) | **DELETE** /v1/ads/conversions/destinations/{destinationId} | Delete a conversion destination |
 | [**deleteAdConversionDestinationWithHttpInfo**](ConversionsApi.md#deleteAdConversionDestinationWithHttpInfo) | **DELETE** /v1/ads/conversions/destinations/{destinationId} | Delete a conversion destination |
 | [**deleteConversionDestination**](ConversionsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
@@ -32,6 +34,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteEventDestinationWithHttpInfo**](ConversionsApi.md#deleteEventDestinationWithHttpInfo) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination |
 | [**deleteForwardingRule**](ConversionsApi.md#deleteForwardingRule) | **DELETE** /v1/events/forwarding-rules/{ruleId} | Remove a forwarding rule |
 | [**deleteForwardingRuleWithHttpInfo**](ConversionsApi.md#deleteForwardingRuleWithHttpInfo) | **DELETE** /v1/events/forwarding-rules/{ruleId} | Remove a forwarding rule |
+| [**deleteTrackingSite**](ConversionsApi.md#deleteTrackingSite) | **DELETE** /v1/tracking-sites/{siteId} | Delete a tracking site |
+| [**deleteTrackingSiteWithHttpInfo**](ConversionsApi.md#deleteTrackingSiteWithHttpInfo) | **DELETE** /v1/tracking-sites/{siteId} | Delete a tracking site |
 | [**getAdConversionDestination**](ConversionsApi.md#getAdConversionDestination) | **GET** /v1/ads/conversions/destinations/{destinationId} | Get a conversion destination |
 | [**getAdConversionDestinationWithHttpInfo**](ConversionsApi.md#getAdConversionDestinationWithHttpInfo) | **GET** /v1/ads/conversions/destinations/{destinationId} | Get a conversion destination |
 | [**getAdConversionMetrics**](ConversionsApi.md#getAdConversionMetrics) | **GET** /v1/ads/conversions/destinations/{destinationId}/metrics | Get attribution metrics |
@@ -46,6 +50,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getEventWithHttpInfo**](ConversionsApi.md#getEventWithHttpInfo) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
 | [**getEventsOverview**](ConversionsApi.md#getEventsOverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
 | [**getEventsOverviewWithHttpInfo**](ConversionsApi.md#getEventsOverviewWithHttpInfo) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
+| [**getTrackingSite**](ConversionsApi.md#getTrackingSite) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site |
+| [**getTrackingSiteWithHttpInfo**](ConversionsApi.md#getTrackingSiteWithHttpInfo) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site |
 | [**listAdConversionAssociations**](ConversionsApi.md#listAdConversionAssociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns |
 | [**listAdConversionAssociationsWithHttpInfo**](ConversionsApi.md#listAdConversionAssociationsWithHttpInfo) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns |
 | [**listAdConversionDestinations**](ConversionsApi.md#listAdConversionDestinations) | **GET** /v1/ads/conversions/destinations | List conversion destinations |
@@ -68,6 +74,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listEventsWithHttpInfo**](ConversionsApi.md#listEventsWithHttpInfo) | **GET** /v1/events | List stored events |
 | [**listForwardingRules**](ConversionsApi.md#listForwardingRules) | **GET** /v1/events/forwarding-rules | List forwarding rules |
 | [**listForwardingRulesWithHttpInfo**](ConversionsApi.md#listForwardingRulesWithHttpInfo) | **GET** /v1/events/forwarding-rules | List forwarding rules |
+| [**listTrackingSites**](ConversionsApi.md#listTrackingSites) | **GET** /v1/tracking-sites | List tracking sites |
+| [**listTrackingSitesWithHttpInfo**](ConversionsApi.md#listTrackingSitesWithHttpInfo) | **GET** /v1/tracking-sites | List tracking sites |
 | [**removeAdConversionAssociations**](ConversionsApi.md#removeAdConversionAssociations) | **DELETE** /v1/ads/conversions/destinations/{destinationId}/associations | Remove associated campaigns |
 | [**removeAdConversionAssociationsWithHttpInfo**](ConversionsApi.md#removeAdConversionAssociationsWithHttpInfo) | **DELETE** /v1/ads/conversions/destinations/{destinationId}/associations | Remove associated campaigns |
 | [**removeConversionAssociations**](ConversionsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
@@ -78,6 +86,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**restateEventWithHttpInfo**](ConversionsApi.md#restateEventWithHttpInfo) | **PATCH** /v1/events/{eventId} | Change a stored event&#39;s value |
 | [**retractEvent**](ConversionsApi.md#retractEvent) | **DELETE** /v1/events/{eventId} | Retract a stored event |
 | [**retractEventWithHttpInfo**](ConversionsApi.md#retractEventWithHttpInfo) | **DELETE** /v1/events/{eventId} | Retract a stored event |
+| [**rotateTrackingSiteKey**](ConversionsApi.md#rotateTrackingSiteKey) | **POST** /v1/tracking-sites/{siteId}/rotate-key | Rotate a tracking site&#39;s key |
+| [**rotateTrackingSiteKeyWithHttpInfo**](ConversionsApi.md#rotateTrackingSiteKeyWithHttpInfo) | **POST** /v1/tracking-sites/{siteId}/rotate-key | Rotate a tracking site&#39;s key |
 | [**sendConversions**](ConversionsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events |
 | [**sendConversionsWithHttpInfo**](ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events |
 | [**sendEvents**](ConversionsApi.md#sendEvents) | **POST** /v1/events | Send events to every destination |
@@ -94,6 +104,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateCustomConversionGoalWithHttpInfo**](ConversionsApi.md#updateCustomConversionGoalWithHttpInfo) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal |
 | [**updateForwardingRule**](ConversionsApi.md#updateForwardingRule) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret |
 | [**updateForwardingRuleWithHttpInfo**](ConversionsApi.md#updateForwardingRuleWithHttpInfo) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret |
+| [**updateTrackingSite**](ConversionsApi.md#updateTrackingSite) | **PATCH** /v1/tracking-sites/{siteId} | Update a tracking site |
+| [**updateTrackingSiteWithHttpInfo**](ConversionsApi.md#updateTrackingSiteWithHttpInfo) | **PATCH** /v1/tracking-sites/{siteId} | Update a tracking site |
 
 
 
@@ -1681,6 +1693,162 @@ ApiResponse<[**CreateForwardingRule201Response**](CreateForwardingRule201Respons
 | **409** | The profile already forwards events to this destination (code &#x60;invalid_resource_state&#x60;). |  -  |
 
 
+## createTrackingSite
+
+> CreateTrackingSite201Response createTrackingSite(idempotencyKey, createTrackingSiteRequest)
+
+Turn on server-side tracking for a website
+
+Creates a tracking site. With &#x60;storeAccountId&#x60;, Zernio installs its tag on the connected Shopify, WordPress (WooCommerce), Wix or Webflow store. With only &#x60;url&#x60;, paste the returned &#x60;install.snippet&#x60; into the site.  The ad accounts you picked for each connection get a forwarding rule, so website conversions reach them at once. &#x60;checks&#x60; shows each step; &#x60;setup.status&#x60; turns &#x60;ready&#x60; when all have passed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String idempotencyKey = "idempotencyKey_example"; // String | A unique key per site you create, such as a UUID. A retry with the same key and body returns the same site.
+        CreateTrackingSiteRequest createTrackingSiteRequest = new CreateTrackingSiteRequest(); // CreateTrackingSiteRequest | 
+        try {
+            CreateTrackingSite201Response result = apiInstance.createTrackingSite(idempotencyKey, createTrackingSiteRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#createTrackingSite");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **idempotencyKey** | **String**| A unique key per site you create, such as a UUID. A retry with the same key and body returns the same site. | |
+| **createTrackingSiteRequest** | [**CreateTrackingSiteRequest**](CreateTrackingSiteRequest.md)|  | |
+
+### Return type
+
+[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Site created. |  -  |
+| **400** | Invalid body, an unsupported store (code &#x60;store_not_supported&#x60;) or a store with no known address (code &#x60;store_url_unknown&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The store already has a site (code &#x60;store_already_tracked&#x60;, with &#x60;details.siteId&#x60;) or is disconnected (code &#x60;reconnect_required&#x60;). |  -  |
+
+## createTrackingSiteWithHttpInfo
+
+> ApiResponse<CreateTrackingSite201Response> createTrackingSite createTrackingSiteWithHttpInfo(idempotencyKey, createTrackingSiteRequest)
+
+Turn on server-side tracking for a website
+
+Creates a tracking site. With &#x60;storeAccountId&#x60;, Zernio installs its tag on the connected Shopify, WordPress (WooCommerce), Wix or Webflow store. With only &#x60;url&#x60;, paste the returned &#x60;install.snippet&#x60; into the site.  The ad accounts you picked for each connection get a forwarding rule, so website conversions reach them at once. &#x60;checks&#x60; shows each step; &#x60;setup.status&#x60; turns &#x60;ready&#x60; when all have passed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String idempotencyKey = "idempotencyKey_example"; // String | A unique key per site you create, such as a UUID. A retry with the same key and body returns the same site.
+        CreateTrackingSiteRequest createTrackingSiteRequest = new CreateTrackingSiteRequest(); // CreateTrackingSiteRequest | 
+        try {
+            ApiResponse<CreateTrackingSite201Response> response = apiInstance.createTrackingSiteWithHttpInfo(idempotencyKey, createTrackingSiteRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#createTrackingSite");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **idempotencyKey** | **String**| A unique key per site you create, such as a UUID. A retry with the same key and body returns the same site. | |
+| **createTrackingSiteRequest** | [**CreateTrackingSiteRequest**](CreateTrackingSiteRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Site created. |  -  |
+| **400** | Invalid body, an unsupported store (code &#x60;store_not_supported&#x60;) or a store with no known address (code &#x60;store_url_unknown&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The store already has a site (code &#x60;store_already_tracked&#x60;, with &#x60;details.siteId&#x60;) or is disconnected (code &#x60;reconnect_required&#x60;). |  -  |
+
+
 ## deleteAdConversionDestination
 
 > void deleteAdConversionDestination(accountId, destinationId, adAccountId)
@@ -2304,6 +2472,154 @@ ApiResponse<[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Rule removed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## deleteTrackingSite
+
+> void deleteTrackingSite(siteId)
+
+Delete a tracking site
+
+Stops collecting at once, removes the tag from the connected store and releases the custom subdomain. Events already stored are kept.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String siteId = "siteId_example"; // String | 
+        try {
+            apiInstance.deleteTrackingSite(siteId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#deleteTrackingSite");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Site deleted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## deleteTrackingSiteWithHttpInfo
+
+> ApiResponse<Void> deleteTrackingSite deleteTrackingSiteWithHttpInfo(siteId)
+
+Delete a tracking site
+
+Stops collecting at once, removes the tag from the connected store and releases the custom subdomain. Events already stored are kept.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String siteId = "siteId_example"; // String | 
+        try {
+            ApiResponse<Void> response = apiInstance.deleteTrackingSiteWithHttpInfo(siteId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#deleteTrackingSite");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Site deleted. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
@@ -3455,6 +3771,156 @@ ApiResponse<[**GetEventsOverview200Response**](GetEventsOverview200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+
+## getTrackingSite
+
+> CreateTrackingSite201Response getTrackingSite(siteId)
+
+Get a tracking site
+
+One site, with its snippet, its custom subdomain and the latest result of each setup check.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String siteId = "siteId_example"; // String | 
+        try {
+            CreateTrackingSite201Response result = apiInstance.getTrackingSite(siteId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getTrackingSite");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**|  | |
+
+### Return type
+
+[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The site. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | No site with this id in your workspace (code &#x60;tracking_site_not_found&#x60;). |  -  |
+
+## getTrackingSiteWithHttpInfo
+
+> ApiResponse<CreateTrackingSite201Response> getTrackingSite getTrackingSiteWithHttpInfo(siteId)
+
+Get a tracking site
+
+One site, with its snippet, its custom subdomain and the latest result of each setup check.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String siteId = "siteId_example"; // String | 
+        try {
+            ApiResponse<CreateTrackingSite201Response> response = apiInstance.getTrackingSiteWithHttpInfo(siteId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getTrackingSite");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The site. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | No site with this id in your workspace (code &#x60;tracking_site_not_found&#x60;). |  -  |
 
 
 ## listAdConversionAssociations
@@ -5239,6 +5705,162 @@ ApiResponse<[**ListForwardingRules200Response**](ListForwardingRules200Response.
 | **404** | Resource not found |  -  |
 
 
+## listTrackingSites
+
+> ListTrackingSites200Response listTrackingSites(profileId, limit, cursor)
+
+List tracking sites
+
+The websites whose visits and conversions Zernio collects, newest first. Pass &#x60;profileId&#x60; to list one profile&#39;s sites.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        Integer limit = 50; // Integer | 
+        String cursor = "cursor_example"; // String | `pagination.nextCursor` from the previous page.
+        try {
+            ListTrackingSites200Response result = apiInstance.listTrackingSites(profileId, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listTrackingSites");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **cursor** | **String**| &#x60;pagination.nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+[**ListTrackingSites200Response**](ListTrackingSites200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of sites. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## listTrackingSitesWithHttpInfo
+
+> ApiResponse<ListTrackingSites200Response> listTrackingSites listTrackingSitesWithHttpInfo(profileId, limit, cursor)
+
+List tracking sites
+
+The websites whose visits and conversions Zernio collects, newest first. Pass &#x60;profileId&#x60; to list one profile&#39;s sites.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        Integer limit = 50; // Integer | 
+        String cursor = "cursor_example"; // String | `pagination.nextCursor` from the previous page.
+        try {
+            ApiResponse<ListTrackingSites200Response> response = apiInstance.listTrackingSitesWithHttpInfo(profileId, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listTrackingSites");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **cursor** | **String**| &#x60;pagination.nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListTrackingSites200Response**](ListTrackingSites200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of sites. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
 ## removeAdConversionAssociations
 
 > RemoveAdConversionAssociations200Response removeAdConversionAssociations(accountId, destinationId, adAccountId, campaignIds)
@@ -6050,6 +6672,160 @@ ApiResponse<[**RetractEvent200Response**](RetractEvent200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The event was retracted. Check each destination. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## rotateTrackingSiteKey
+
+> CreateTrackingSite201Response rotateTrackingSiteKey(siteId, idempotencyKey)
+
+Rotate a tracking site&#39;s key
+
+Issues a new &#x60;siteKey&#x60;. The old key keeps working for 7 days, so update the snippet on your site within that time.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String siteId = "siteId_example"; // String | 
+        String idempotencyKey = "idempotencyKey_example"; // String | A unique key per rotation, such as a UUID.
+        try {
+            CreateTrackingSite201Response result = apiInstance.rotateTrackingSiteKey(siteId, idempotencyKey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#rotateTrackingSiteKey");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**|  | |
+| **idempotencyKey** | **String**| A unique key per rotation, such as a UUID. | |
+
+### Return type
+
+[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The site with its new key and snippet. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## rotateTrackingSiteKeyWithHttpInfo
+
+> ApiResponse<CreateTrackingSite201Response> rotateTrackingSiteKey rotateTrackingSiteKeyWithHttpInfo(siteId, idempotencyKey)
+
+Rotate a tracking site&#39;s key
+
+Issues a new &#x60;siteKey&#x60;. The old key keeps working for 7 days, so update the snippet on your site within that time.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String siteId = "siteId_example"; // String | 
+        String idempotencyKey = "idempotencyKey_example"; // String | A unique key per rotation, such as a UUID.
+        try {
+            ApiResponse<CreateTrackingSite201Response> response = apiInstance.rotateTrackingSiteKeyWithHttpInfo(siteId, idempotencyKey);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#rotateTrackingSiteKey");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**|  | |
+| **idempotencyKey** | **String**| A unique key per rotation, such as a UUID. | |
+
+### Return type
+
+ApiResponse<[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The site with its new key and snippet. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
@@ -7329,4 +8105,162 @@ ApiResponse<[**CreateForwardingRule201Response**](CreateForwardingRule201Respons
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+
+## updateTrackingSite
+
+> CreateTrackingSite201Response updateTrackingSite(siteId, updateTrackingSiteRequest)
+
+Update a tracking site
+
+Changes the site&#39;s name, domains, consent mode or custom subdomain. Send at least one field.  &#x60;customHostname&#x60; sets a subdomain of the site, such as &#x60;t.brand.com&#x60;; create the CNAME in &#x60;customHostname.dnsRecord&#x60;. The snippet switches to it once its status is &#x60;active&#x60;. &#x60;null&#x60; removes it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String siteId = "siteId_example"; // String | 
+        UpdateTrackingSiteRequest updateTrackingSiteRequest = new UpdateTrackingSiteRequest(); // UpdateTrackingSiteRequest | 
+        try {
+            CreateTrackingSite201Response result = apiInstance.updateTrackingSite(siteId, updateTrackingSiteRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#updateTrackingSite");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**|  | |
+| **updateTrackingSiteRequest** | [**UpdateTrackingSiteRequest**](UpdateTrackingSiteRequest.md)|  | |
+
+### Return type
+
+[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated site. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | Another site already uses this subdomain (code &#x60;custom_hostname_taken&#x60;). |  -  |
+| **502** | The subdomain could not be registered for now (code &#x60;provider_unavailable&#x60;). Try again. |  -  |
+
+## updateTrackingSiteWithHttpInfo
+
+> ApiResponse<CreateTrackingSite201Response> updateTrackingSite updateTrackingSiteWithHttpInfo(siteId, updateTrackingSiteRequest)
+
+Update a tracking site
+
+Changes the site&#39;s name, domains, consent mode or custom subdomain. Send at least one field.  &#x60;customHostname&#x60; sets a subdomain of the site, such as &#x60;t.brand.com&#x60;; create the CNAME in &#x60;customHostname.dnsRecord&#x60;. The snippet switches to it once its status is &#x60;active&#x60;. &#x60;null&#x60; removes it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String siteId = "siteId_example"; // String | 
+        UpdateTrackingSiteRequest updateTrackingSiteRequest = new UpdateTrackingSiteRequest(); // UpdateTrackingSiteRequest | 
+        try {
+            ApiResponse<CreateTrackingSite201Response> response = apiInstance.updateTrackingSiteWithHttpInfo(siteId, updateTrackingSiteRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#updateTrackingSite");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**|  | |
+| **updateTrackingSiteRequest** | [**UpdateTrackingSiteRequest**](UpdateTrackingSiteRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated site. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | Another site already uses this subdomain (code &#x60;custom_hostname_taken&#x60;). |  -  |
+| **502** | The subdomain could not be registered for now (code &#x60;provider_unavailable&#x60;). Try again. |  -  |
 
