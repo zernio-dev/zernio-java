@@ -50,6 +50,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getEventWithHttpInfo**](ConversionsApi.md#getEventWithHttpInfo) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
 | [**getEventsOverview**](ConversionsApi.md#getEventsOverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
 | [**getEventsOverviewWithHttpInfo**](ConversionsApi.md#getEventsOverviewWithHttpInfo) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
+| [**getEventsOverviewDaily**](ConversionsApi.md#getEventsOverviewDaily) | **GET** /v1/events/overview/daily | Get daily tracking figures |
+| [**getEventsOverviewDailyWithHttpInfo**](ConversionsApi.md#getEventsOverviewDailyWithHttpInfo) | **GET** /v1/events/overview/daily | Get daily tracking figures |
 | [**getTrackingSite**](ConversionsApi.md#getTrackingSite) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site |
 | [**getTrackingSiteWithHttpInfo**](ConversionsApi.md#getTrackingSiteWithHttpInfo) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site |
 | [**listAdConversionAssociations**](ConversionsApi.md#listAdConversionAssociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns |
@@ -70,6 +72,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listCustomConversionGoalsWithHttpInfo**](ConversionsApi.md#listCustomConversionGoalsWithHttpInfo) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals |
 | [**listEventDestinations**](ConversionsApi.md#listEventDestinations) | **GET** /v1/events/destinations | List event destinations |
 | [**listEventDestinationsWithHttpInfo**](ConversionsApi.md#listEventDestinationsWithHttpInfo) | **GET** /v1/events/destinations | List event destinations |
+| [**listEventNames**](ConversionsApi.md#listEventNames) | **GET** /v1/events/names | List stored event names |
+| [**listEventNamesWithHttpInfo**](ConversionsApi.md#listEventNamesWithHttpInfo) | **GET** /v1/events/names | List stored event names |
 | [**listEvents**](ConversionsApi.md#listEvents) | **GET** /v1/events | List stored events |
 | [**listEventsWithHttpInfo**](ConversionsApi.md#listEventsWithHttpInfo) | **GET** /v1/events | List stored events |
 | [**listForwardingRules**](ConversionsApi.md#listForwardingRules) | **GET** /v1/events/forwarding-rules | List forwarding rules |
@@ -3773,6 +3777,160 @@ ApiResponse<[**GetEventsOverview200Response**](GetEventsOverview200Response.md)>
 | **404** | Resource not found |  -  |
 
 
+## getEventsOverviewDaily
+
+> GetEventsOverviewDaily200Response getEventsOverviewDaily(profileId, period)
+
+Get daily tracking figures
+
+The tracking figures of a period, day by day (UTC): events stored, events sent to the ad platforms and how many they accepted, plus the period&#39;s totals in the same shape as the overview&#39;s &#x60;today&#x60;.  An event sent to a destination counts once, on the day of its first send, by its latest outcome. Without &#x60;profileId&#x60; it covers every profile you can access. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | The profile to read. Omit to cover every profile you can access, summed across them.
+        String period = "today"; // String | The days to cover, each ending today (UTC): `today`, the last 7 days or the last 30 days.
+        try {
+            GetEventsOverviewDaily200Response result = apiInstance.getEventsOverviewDaily(profileId, period);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getEventsOverviewDaily");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| The profile to read. Omit to cover every profile you can access, summed across them. | [optional] |
+| **period** | **String**| The days to cover, each ending today (UTC): &#x60;today&#x60;, the last 7 days or the last 30 days. | [optional] [default to 7d] [enum: today, 7d, 30d] |
+
+### Return type
+
+[**GetEventsOverviewDaily200Response**](GetEventsOverviewDaily200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The period&#39;s daily figures. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## getEventsOverviewDailyWithHttpInfo
+
+> ApiResponse<GetEventsOverviewDaily200Response> getEventsOverviewDaily getEventsOverviewDailyWithHttpInfo(profileId, period)
+
+Get daily tracking figures
+
+The tracking figures of a period, day by day (UTC): events stored, events sent to the ad platforms and how many they accepted, plus the period&#39;s totals in the same shape as the overview&#39;s &#x60;today&#x60;.  An event sent to a destination counts once, on the day of its first send, by its latest outcome. Without &#x60;profileId&#x60; it covers every profile you can access. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | The profile to read. Omit to cover every profile you can access, summed across them.
+        String period = "today"; // String | The days to cover, each ending today (UTC): `today`, the last 7 days or the last 30 days.
+        try {
+            ApiResponse<GetEventsOverviewDaily200Response> response = apiInstance.getEventsOverviewDailyWithHttpInfo(profileId, period);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getEventsOverviewDaily");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| The profile to read. Omit to cover every profile you can access, summed across them. | [optional] |
+| **period** | **String**| The days to cover, each ending today (UTC): &#x60;today&#x60;, the last 7 days or the last 30 days. | [optional] [default to 7d] [enum: today, 7d, 30d] |
+
+### Return type
+
+ApiResponse<[**GetEventsOverviewDaily200Response**](GetEventsOverviewDaily200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The period&#39;s daily figures. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
 ## getTrackingSite
 
 > CreateTrackingSite201Response getTrackingSite(siteId)
@@ -5368,6 +5526,156 @@ ApiResponse<[**ListEventDestinations200Response**](ListEventDestinations200Respo
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event destinations. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## listEventNames
+
+> ListEventNames200Response listEventNames(profileId)
+
+List stored event names
+
+The event names stored for a profile in the last 30 days, with how many events carry each, most used first. It includes custom names, such as a site&#39;s own events, so you can filter &#x60;GET /v1/events&#x60; by &#x60;eventName&#x60;.  Without &#x60;profileId&#x60; it covers every profile you can access. Retracted events are left out. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | The profile to read. Omit to cover every profile you can access.
+        try {
+            ListEventNames200Response result = apiInstance.listEventNames(profileId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listEventNames");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| The profile to read. Omit to cover every profile you can access. | [optional] |
+
+### Return type
+
+[**ListEventNames200Response**](ListEventNames200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event names, up to 200. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## listEventNamesWithHttpInfo
+
+> ApiResponse<ListEventNames200Response> listEventNames listEventNamesWithHttpInfo(profileId)
+
+List stored event names
+
+The event names stored for a profile in the last 30 days, with how many events carry each, most used first. It includes custom names, such as a site&#39;s own events, so you can filter &#x60;GET /v1/events&#x60; by &#x60;eventName&#x60;.  Without &#x60;profileId&#x60; it covers every profile you can access. Retracted events are left out. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | The profile to read. Omit to cover every profile you can access.
+        try {
+            ApiResponse<ListEventNames200Response> response = apiInstance.listEventNamesWithHttpInfo(profileId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listEventNames");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| The profile to read. Omit to cover every profile you can access. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListEventNames200Response**](ListEventNames200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event names, up to 200. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |

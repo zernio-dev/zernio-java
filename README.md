@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.619.0
+- API version: 1.620.0
 
-- Build date: 2026-11-16T09:29:11.471401192Z[Etc/UTC]
+- Build date: 2026-11-16T09:58:26.234901430Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.619.0</version>
+  <version>1.620.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.619.0"
+compile "dev.zernio:zernio-sdk:1.620.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.619.0.jar`
+- `target/zernio-sdk-1.620.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1467,6 +1467,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**getEventWithHttpInfo**](docs/ConversionsApi.md#getEventWithHttpInfo) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries
 *ConversionsApi* | [**getEventsOverview**](docs/ConversionsApi.md#getEventsOverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview
 *ConversionsApi* | [**getEventsOverviewWithHttpInfo**](docs/ConversionsApi.md#getEventsOverviewWithHttpInfo) | **GET** /v1/events/overview | Get today&#39;s tracking overview
+*ConversionsApi* | [**getEventsOverviewDaily**](docs/ConversionsApi.md#getEventsOverviewDaily) | **GET** /v1/events/overview/daily | Get daily tracking figures
+*ConversionsApi* | [**getEventsOverviewDailyWithHttpInfo**](docs/ConversionsApi.md#getEventsOverviewDailyWithHttpInfo) | **GET** /v1/events/overview/daily | Get daily tracking figures
 *ConversionsApi* | [**getTrackingSite**](docs/ConversionsApi.md#getTrackingSite) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site
 *ConversionsApi* | [**getTrackingSiteWithHttpInfo**](docs/ConversionsApi.md#getTrackingSiteWithHttpInfo) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site
 *ConversionsApi* | [**listAdConversionAssociations**](docs/ConversionsApi.md#listAdConversionAssociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns
@@ -1487,6 +1489,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**listCustomConversionGoalsWithHttpInfo**](docs/ConversionsApi.md#listCustomConversionGoalsWithHttpInfo) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals
 *ConversionsApi* | [**listEventDestinations**](docs/ConversionsApi.md#listEventDestinations) | **GET** /v1/events/destinations | List event destinations
 *ConversionsApi* | [**listEventDestinationsWithHttpInfo**](docs/ConversionsApi.md#listEventDestinationsWithHttpInfo) | **GET** /v1/events/destinations | List event destinations
+*ConversionsApi* | [**listEventNames**](docs/ConversionsApi.md#listEventNames) | **GET** /v1/events/names | List stored event names
+*ConversionsApi* | [**listEventNamesWithHttpInfo**](docs/ConversionsApi.md#listEventNamesWithHttpInfo) | **GET** /v1/events/names | List stored event names
 *ConversionsApi* | [**listEvents**](docs/ConversionsApi.md#listEvents) | **GET** /v1/events | List stored events
 *ConversionsApi* | [**listEventsWithHttpInfo**](docs/ConversionsApi.md#listEventsWithHttpInfo) | **GET** /v1/events | List stored events
 *ConversionsApi* | [**listForwardingRules**](docs/ConversionsApi.md#listForwardingRules) | **GET** /v1/events/forwarding-rules | List forwarding rules
@@ -4163,10 +4167,14 @@ Class | Method | HTTP request | Description
  - [GetEventsOverview200Response](docs/GetEventsOverview200Response.md)
  - [GetEventsOverview200ResponsePlatformsInner](docs/GetEventsOverview200ResponsePlatformsInner.md)
  - [GetEventsOverview200ResponseSitesInner](docs/GetEventsOverview200ResponseSitesInner.md)
+ - [GetEventsOverview200ResponseSitesInnerTotals](docs/GetEventsOverview200ResponseSitesInnerTotals.md)
  - [GetEventsOverview200ResponseSourcesInner](docs/GetEventsOverview200ResponseSourcesInner.md)
  - [GetEventsOverview200ResponseToday](docs/GetEventsOverview200ResponseToday.md)
  - [GetEventsOverview200ResponseWebsite](docs/GetEventsOverview200ResponseWebsite.md)
  - [GetEventsOverview200ResponseWebsiteStepsInner](docs/GetEventsOverview200ResponseWebsiteStepsInner.md)
+ - [GetEventsOverviewDaily200Response](docs/GetEventsOverviewDaily200Response.md)
+ - [GetEventsOverviewDaily200ResponseDaysInner](docs/GetEventsOverviewDaily200ResponseDaysInner.md)
+ - [GetEventsOverviewDaily200ResponseTotals](docs/GetEventsOverviewDaily200ResponseTotals.md)
  - [GetFacebookDemographics200Response](docs/GetFacebookDemographics200Response.md)
  - [GetFacebookDemographics200ResponseDemographics](docs/GetFacebookDemographics200ResponseDemographics.md)
  - [GetFacebookDemographics200ResponseDemographicsCountryInner](docs/GetFacebookDemographics200ResponseDemographicsCountryInner.md)
@@ -4876,6 +4884,8 @@ Class | Method | HTTP request | Description
  - [ListEmailSignatures200Response](docs/ListEmailSignatures200Response.md)
  - [ListEmailThreads200Response](docs/ListEmailThreads200Response.md)
  - [ListEventDestinations200Response](docs/ListEventDestinations200Response.md)
+ - [ListEventNames200Response](docs/ListEventNames200Response.md)
+ - [ListEventNames200ResponseNamesInner](docs/ListEventNames200ResponseNamesInner.md)
  - [ListEvents200Response](docs/ListEvents200Response.md)
  - [ListEvents200ResponseEventsInner](docs/ListEvents200ResponseEventsInner.md)
  - [ListEvents200ResponseEventsInnerAllOfDeliveriesInner](docs/ListEvents200ResponseEventsInnerAllOfDeliveriesInner.md)
@@ -5723,6 +5733,7 @@ Class | Method | HTTP request | Description
  - [TrackingSiteCustomHostname](docs/TrackingSiteCustomHostname.md)
  - [TrackingSiteCustomHostnameDnsRecord](docs/TrackingSiteCustomHostnameDnsRecord.md)
  - [TrackingSiteInstall](docs/TrackingSiteInstall.md)
+ - [TrackingSitePeriodTotals](docs/TrackingSitePeriodTotals.md)
  - [TrackingSiteSetup](docs/TrackingSiteSetup.md)
  - [TrackingTag](docs/TrackingTag.md)
  - [TrackingTagDiagnostic](docs/TrackingTagDiagnostic.md)
