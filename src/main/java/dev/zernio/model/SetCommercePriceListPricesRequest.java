@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   SetCommercePriceListPricesRequest.JSON_PROPERTY_ACCOUNT_ID,
   SetCommercePriceListPricesRequest.JSON_PROPERTY_PRICES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T15:04:19.066134889Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T15:09:59.057562860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetCommercePriceListPricesRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

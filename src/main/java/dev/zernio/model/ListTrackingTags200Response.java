@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListTrackingTags200Response.JSON_PROPERTY_PLATFORM,
   ListTrackingTags200Response.JSON_PROPERTY_TAGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T15:04:19.066134889Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T15:09:59.057562860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListTrackingTags200Response {
   /**
    * Gets or Sets platform

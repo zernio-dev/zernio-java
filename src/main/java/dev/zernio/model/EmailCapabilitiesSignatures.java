@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   EmailCapabilitiesSignatures.JSON_PROPERTY_PROVIDER,
   EmailCapabilitiesSignatures.JSON_PROPERTY_ZERNIO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T15:04:19.066134889Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T15:09:59.057562860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EmailCapabilitiesSignatures {
   /**
    * &#x60;read&#x60;: &#x60;appendSignature&#x60; falls back to the provider signature when no Zernio default exists.

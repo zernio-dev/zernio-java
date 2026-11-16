@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CommerceMetaobjectDefinition.JSON_PROPERTY_NAME,
   CommerceMetaobjectDefinition.JSON_PROPERTY_FIELDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T15:04:19.066134889Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T15:09:59.057562860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceMetaobjectDefinition {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

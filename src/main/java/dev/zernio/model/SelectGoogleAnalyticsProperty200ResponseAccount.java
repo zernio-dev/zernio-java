@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SelectGoogleAnalyticsProperty200ResponseAccount.JSON_PROPERTY_USERNAME,
   SelectGoogleAnalyticsProperty200ResponseAccount.JSON_PROPERTY_DISPLAY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T15:04:19.066134889Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T15:09:59.057562860Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectGoogleAnalyticsProperty200ResponseAccount {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
