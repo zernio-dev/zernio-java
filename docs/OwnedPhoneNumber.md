@@ -10,6 +10,7 @@ A number you bought or ported. Null fields are omitted, except `socialAccountId`
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
 |**phoneNumber** | **String** |  |  [optional] |
+|**requestedPhoneNumber** | **String** | The specific number you asked for at purchase (&#x60;phoneNumber&#x60; in the purchase body). Absent when you did not pick one. When it differs from &#x60;phoneNumber&#x60;, WhatsApp refused the picked number (it was likely registered on WhatsApp before), so a different number was issued. |  [optional] |
 |**country** | **String** |  |  [optional] |
 |**numberType** | **String** | For example local, mobile, national or toll_free. |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |

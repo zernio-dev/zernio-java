@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.625.0
+  version: 1.626.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -96972,6 +96972,7 @@ components:
         ownerAccountId: ownerAccountId
         forwardCallerId: business
         businessHoursTimezone: businessHoursTimezone
+        requestedPhoneNumber: requestedPhoneNumber
         verifyUrl: verifyUrl
         metaVerificationExpiresAt: 2000-01-23T04:56:07.000+00:00
         callerIdVerifiedAt: 2000-01-23T04:56:07.000+00:00
@@ -97000,6 +97001,12 @@ components:
         _id:
           type: string
         phoneNumber:
+          type: string
+        requestedPhoneNumber:
+          description: "The specific number you asked for at purchase (`phoneNumber`\
+            \ in the purchase body). Absent when you did not pick one. When it differs\
+            \ from `phoneNumber`, WhatsApp refused the picked number (it was likely\
+            \ registered on WhatsApp before), so a different number was issued."
           type: string
         country:
           type: string
@@ -167241,6 +167248,7 @@ components:
           ownerAccountId: ownerAccountId
           forwardCallerId: business
           businessHoursTimezone: businessHoursTimezone
+          requestedPhoneNumber: requestedPhoneNumber
           verifyUrl: verifyUrl
           metaVerificationExpiresAt: 2000-01-23T04:56:07.000+00:00
           callerIdVerifiedAt: 2000-01-23T04:56:07.000+00:00
@@ -167330,6 +167338,7 @@ components:
           ownerAccountId: ownerAccountId
           forwardCallerId: business
           businessHoursTimezone: businessHoursTimezone
+          requestedPhoneNumber: requestedPhoneNumber
           verifyUrl: verifyUrl
           metaVerificationExpiresAt: 2000-01-23T04:56:07.000+00:00
           callerIdVerifiedAt: 2000-01-23T04:56:07.000+00:00
