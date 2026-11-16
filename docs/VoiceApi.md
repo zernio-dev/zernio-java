@@ -2475,11 +2475,11 @@ ApiResponse<[**ListSipTrunks200Response**](ListSipTrunks200Response.md)>
 
 ## listVoiceCalls
 
-> ListVoiceCalls200Response listVoiceCalls(status, direction, number, before, limit)
+> ListVoiceCalls200Response listVoiceCalls(status, direction, number, before, limit, profileId, externalId)
 
 List phone calls
 
-Your PSTN voice calls (inbound + outbound), newest first. Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; for the next page. For a history that also includes WhatsApp calls, use &#x60;GET /v1/calls&#x60;. 
+Your PSTN voice calls (inbound + outbound), newest first. Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; for the next page. For a history that also includes WhatsApp calls, use &#x60;GET /v1/calls&#x60;.  &#x60;profileId&#x60; or &#x60;externalId&#x60; lists one profile&#39;s calls: a call belongs to the profile of the account (number) it was placed on.  A profile-scoped API key or member only ever lists its own profiles&#39; calls, with or without a filter (since 1.630.0). Full-access keys and sessions list the whole team&#39;s. 
 
 ### Example
 
@@ -2507,8 +2507,10 @@ public class Example {
         String number = "number_example"; // String | Exact filter: calls involving this number (typically one of your DIDs). E.164, leading + optional.
         OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | 
         Integer limit = 50; // Integer | 
+        String profileId = "profileId_example"; // String | Only calls of this profile. Mutually exclusive with `externalId`. 404 when the profile is not in your team or outside a scoped key's profiles.
+        String externalId = "externalId_example"; // String | Same as `profileId`, naming the profile by the `externalId` you set on it. 404 when none of your visible profiles carries it; 400 when two of them do.
         try {
-            ListVoiceCalls200Response result = apiInstance.listVoiceCalls(status, direction, number, before, limit);
+            ListVoiceCalls200Response result = apiInstance.listVoiceCalls(status, direction, number, before, limit, profileId, externalId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling VoiceApi#listVoiceCalls");
@@ -2531,6 +2533,8 @@ public class Example {
 | **number** | **String**| Exact filter: calls involving this number (typically one of your DIDs). E.164, leading + optional. | [optional] |
 | **before** | **OffsetDateTime**|  | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
+| **profileId** | **String**| Only calls of this profile. Mutually exclusive with &#x60;externalId&#x60;. 404 when the profile is not in your team or outside a scoped key&#39;s profiles. | [optional] |
+| **externalId** | **String**| Same as &#x60;profileId&#x60;, naming the profile by the &#x60;externalId&#x60; you set on it. 404 when none of your visible profiles carries it; 400 when two of them do. | [optional] |
 
 ### Return type
 
@@ -2550,15 +2554,17 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calls, newest first |  -  |
+| **400** | Invalid query parameter, &#x60;profileId&#x60; together with &#x60;externalId&#x60;, or an &#x60;externalId&#x60; shared by two of your profiles. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The profile named by &#x60;profileId&#x60; / &#x60;externalId&#x60; is not visible to the caller. |  -  |
 
 ## listVoiceCallsWithHttpInfo
 
-> ApiResponse<ListVoiceCalls200Response> listVoiceCalls listVoiceCallsWithHttpInfo(status, direction, number, before, limit)
+> ApiResponse<ListVoiceCalls200Response> listVoiceCalls listVoiceCallsWithHttpInfo(status, direction, number, before, limit, profileId, externalId)
 
 List phone calls
 
-Your PSTN voice calls (inbound + outbound), newest first. Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; for the next page. For a history that also includes WhatsApp calls, use &#x60;GET /v1/calls&#x60;. 
+Your PSTN voice calls (inbound + outbound), newest first. Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; for the next page. For a history that also includes WhatsApp calls, use &#x60;GET /v1/calls&#x60;.  &#x60;profileId&#x60; or &#x60;externalId&#x60; lists one profile&#39;s calls: a call belongs to the profile of the account (number) it was placed on.  A profile-scoped API key or member only ever lists its own profiles&#39; calls, with or without a filter (since 1.630.0). Full-access keys and sessions list the whole team&#39;s. 
 
 ### Example
 
@@ -2587,8 +2593,10 @@ public class Example {
         String number = "number_example"; // String | Exact filter: calls involving this number (typically one of your DIDs). E.164, leading + optional.
         OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | 
         Integer limit = 50; // Integer | 
+        String profileId = "profileId_example"; // String | Only calls of this profile. Mutually exclusive with `externalId`. 404 when the profile is not in your team or outside a scoped key's profiles.
+        String externalId = "externalId_example"; // String | Same as `profileId`, naming the profile by the `externalId` you set on it. 404 when none of your visible profiles carries it; 400 when two of them do.
         try {
-            ApiResponse<ListVoiceCalls200Response> response = apiInstance.listVoiceCallsWithHttpInfo(status, direction, number, before, limit);
+            ApiResponse<ListVoiceCalls200Response> response = apiInstance.listVoiceCallsWithHttpInfo(status, direction, number, before, limit, profileId, externalId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2613,6 +2621,8 @@ public class Example {
 | **number** | **String**| Exact filter: calls involving this number (typically one of your DIDs). E.164, leading + optional. | [optional] |
 | **before** | **OffsetDateTime**|  | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
+| **profileId** | **String**| Only calls of this profile. Mutually exclusive with &#x60;externalId&#x60;. 404 when the profile is not in your team or outside a scoped key&#39;s profiles. | [optional] |
+| **externalId** | **String**| Same as &#x60;profileId&#x60;, naming the profile by the &#x60;externalId&#x60; you set on it. 404 when none of your visible profiles carries it; 400 when two of them do. | [optional] |
 
 ### Return type
 
@@ -2632,7 +2642,9 @@ ApiResponse<[**ListVoiceCalls200Response**](ListVoiceCalls200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calls, newest first |  -  |
+| **400** | Invalid query parameter, &#x60;profileId&#x60; together with &#x60;externalId&#x60;, or an &#x60;externalId&#x60; shared by two of your profiles. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The profile named by &#x60;profileId&#x60; / &#x60;externalId&#x60; is not visible to the caller. |  -  |
 
 
 ## rotateSipTrunkCredentials

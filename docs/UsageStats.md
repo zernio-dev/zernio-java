@@ -19,6 +19,8 @@ Plan and usage stats. The response shape depends on `billingSystem`:  - Stripe u
 |**autoUpgradeEnabled** | **Boolean** | Stripe-only. Always false for accounts on usage-based billing. |  [optional] |
 |**limits** | [**UsageStatsLimits**](UsageStatsLimits.md) |  |  [optional] |
 |**usage** | [**UsageStatsUsage**](UsageStatsUsage.md) |  |  [optional] |
+|**profiles** | [**List&lt;UsageStatsProfilesInner&gt;**](UsageStatsProfilesInner.md) | Profile-scoped API keys and members only, without a filter: one block per profile the caller can see, shaped like &#x60;profile&#x60;. |  [optional] |
+|**profile** | [**UsageStatsProfile**](UsageStatsProfile.md) |  |  [optional] |
 |**spend** | [**UsageStatsSpend**](UsageStatsSpend.md) |  |  [optional] |
 
 

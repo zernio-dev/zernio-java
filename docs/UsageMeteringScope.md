@@ -2,18 +2,18 @@
 
 # UsageMeteringScope
 
-Present with `profileId` / `accountId`: echoes the group the payload was projected onto.
+Present with `profileId` / `externalId` / `accountId`: echoes the group the payload was projected onto. A profile scope carries both ids.
 
 ## oneOf schemas
 * [DeleteInboxReviewReplyRequest](DeleteInboxReviewReplyRequest.md)
-* [UsageMeteringScopeOneOf](UsageMeteringScopeOneOf.md)
+* [UsageProfileRef](UsageProfileRef.md)
 
 ## Example
 ```java
 // Import classes:
 import dev.zernio.model.UsageMeteringScope;
 import dev.zernio.model.DeleteInboxReviewReplyRequest;
-import dev.zernio.model.UsageMeteringScopeOneOf;
+import dev.zernio.model.UsageProfileRef;
 
 public class Example {
     public static void main(String[] args) {
@@ -26,12 +26,12 @@ public class Example {
         // to get back the DeleteInboxReviewReplyRequest set earlier
         DeleteInboxReviewReplyRequest testDeleteInboxReviewReplyRequest = (DeleteInboxReviewReplyRequest) exampleUsageMeteringScope.getActualInstance();
 
-        // create a new UsageMeteringScopeOneOf
-        UsageMeteringScopeOneOf exampleUsageMeteringScopeOneOf = new UsageMeteringScopeOneOf();
-        // set UsageMeteringScope to UsageMeteringScopeOneOf
-        exampleUsageMeteringScope.setActualInstance(exampleUsageMeteringScopeOneOf);
-        // to get back the UsageMeteringScopeOneOf set earlier
-        UsageMeteringScopeOneOf testUsageMeteringScopeOneOf = (UsageMeteringScopeOneOf) exampleUsageMeteringScope.getActualInstance();
+        // create a new UsageProfileRef
+        UsageProfileRef exampleUsageProfileRef = new UsageProfileRef();
+        // set UsageMeteringScope to UsageProfileRef
+        exampleUsageMeteringScope.setActualInstance(exampleUsageProfileRef);
+        // to get back the UsageProfileRef set earlier
+        UsageProfileRef testUsageProfileRef = (UsageProfileRef) exampleUsageMeteringScope.getActualInstance();
     }
 }
 ```

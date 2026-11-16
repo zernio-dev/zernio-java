@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.629.0
+- API version: 1.630.0
 
-- Build date: 2026-11-16T19:24:53.561349522Z[Etc/UTC]
+- Build date: 2026-11-16T19:38:58.659544445Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.629.0</version>
+  <version>1.630.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.629.0"
+compile "dev.zernio:zernio-sdk:1.630.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.629.0.jar`
+- `target/zernio-sdk-1.630.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -6096,11 +6096,15 @@ Class | Method | HTTP request | Description
  - [UsageMeteringPeaks](docs/UsageMeteringPeaks.md)
  - [UsageMeteringPeriod](docs/UsageMeteringPeriod.md)
  - [UsageMeteringScope](docs/UsageMeteringScope.md)
- - [UsageMeteringScopeOneOf](docs/UsageMeteringScopeOneOf.md)
  - [UsageMeteringTax](docs/UsageMeteringTax.md)
  - [UsageMeteringTotals](docs/UsageMeteringTotals.md)
+ - [UsageProfileRef](docs/UsageProfileRef.md)
  - [UsageStats](docs/UsageStats.md)
  - [UsageStatsLimits](docs/UsageStatsLimits.md)
+ - [UsageStatsProfile](docs/UsageStatsProfile.md)
+ - [UsageStatsProfileAllOfUsage](docs/UsageStatsProfileAllOfUsage.md)
+ - [UsageStatsProfilesInner](docs/UsageStatsProfilesInner.md)
+ - [UsageStatsProfilesInnerAllOfUsage](docs/UsageStatsProfilesInnerAllOfUsage.md)
  - [UsageStatsSpend](docs/UsageStatsSpend.md)
  - [UsageStatsUsage](docs/UsageStatsUsage.md)
  - [UsageStatsUsageXApiCalls](docs/UsageStatsUsageXApiCalls.md)
