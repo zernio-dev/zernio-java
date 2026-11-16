@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadBalanceLowBalance.JSON_PROPERTY_SPENDABLE_CENTS,
   WebhookPayloadBalanceLowBalance.JSON_PROPERTY_ALERT_BELOW_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadBalanceLowBalance {
   public static final String JSON_PROPERTY_SPENDABLE_CENTS = "spendableCents";
   @javax.annotation.Nonnull

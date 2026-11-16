@@ -119,6 +119,7 @@ import dev.zernio.model.UpdateAdSet200Response;
 import dev.zernio.model.UpdateAdSetRequest;
 import dev.zernio.model.UpdateAdSetStatus200Response;
 import dev.zernio.model.UpdateAdStatus200Response;
+import dev.zernio.model.UpdateAdStatusRequest;
 import dev.zernio.model.UpdateBidStrategy200Response;
 import dev.zernio.model.UpdateBidStrategyRequest;
 import dev.zernio.model.UpdateCampaignAdSchedule200Response;
@@ -157,7 +158,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -8905,8 +8906,8 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Pause or enable a Search keyword
-   * Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+   * Update a Search keyword
+   * Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
    * @param keywordId Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. (required)
    * @param updateAdKeywordRequest  (required)
    * @return UpdateAdKeyword200Response
@@ -8917,8 +8918,8 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Pause or enable a Search keyword
-   * Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+   * Update a Search keyword
+   * Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
    * @param keywordId Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. (required)
    * @param updateAdKeywordRequest  (required)
    * @param headers Optional headers to include in the request
@@ -8931,8 +8932,8 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Pause or enable a Search keyword
-   * Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+   * Update a Search keyword
+   * Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
    * @param keywordId Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. (required)
    * @param updateAdKeywordRequest  (required)
    * @return ApiResponse&lt;UpdateAdKeyword200Response&gt;
@@ -8943,8 +8944,8 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Pause or enable a Search keyword
-   * Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+   * Update a Search keyword
+   * Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
    * @param keywordId Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. (required)
    * @param updateAdKeywordRequest  (required)
    * @param headers Optional headers to include in the request
@@ -9304,25 +9305,25 @@ public class AdCampaignsApi {
    * Pause or resume a single ad
    * Pauses or resumes a single ad without touching its ad set, campaign or sibling ads.  ### What it flips  Ad-scoped pause/resume flips ONLY this ad&#39;s own switch, never its parent ad set or campaign, so sibling ads keep running:  - Meta &#x60;configured_status&#x60; - TikTok &#x60;operation_status&#x60; - Google ad group ad status - LinkedIn creative - Pinterest ad - Reddit ad &#x60;configured_status&#x60;  X is the exception: its smallest switch is the line item.  It is a thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  ### Own switch vs delivery status  The ad&#39;s own switch is independent of its delivery status.  - An ad paused only because its campaign or ad set is off (&#x60;status: paused&#x60;, &#x60;configuredStatus: ACTIVE&#x60;) can still be switched off here. - Switching an ad on under a paused campaign leaves it &#x60;paused&#x60; until the campaign is resumed.  After the write the switch is read back from the platform and returned as &#x60;configuredStatus&#x60;, together with the resulting delivery &#x60;status&#x60;.  ### Identifiers  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId}: Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs.  &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body.  ### Skips  These requests are skipped:  - Ads in terminal statuses (rejected, completed, cancelled). - A request whose target already matches the ad&#39;s own switch as read LIVE from the platform. A stored value is never trusted alone, since the switch may have been changed in the platform&#39;s own UI.  A skip also returns that live read. The rolled-up &#x60;status&#x60; never decides a skip. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. (required)
-   * @param updateAdKeywordRequest  (required)
+   * @param updateAdStatusRequest  (required)
    * @return UpdateAdStatus200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateAdStatus200Response updateAdStatus(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest) throws ApiException {
-    return updateAdStatus(adId, updateAdKeywordRequest, null);
+  public UpdateAdStatus200Response updateAdStatus(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest) throws ApiException {
+    return updateAdStatus(adId, updateAdStatusRequest, null);
   }
 
   /**
    * Pause or resume a single ad
    * Pauses or resumes a single ad without touching its ad set, campaign or sibling ads.  ### What it flips  Ad-scoped pause/resume flips ONLY this ad&#39;s own switch, never its parent ad set or campaign, so sibling ads keep running:  - Meta &#x60;configured_status&#x60; - TikTok &#x60;operation_status&#x60; - Google ad group ad status - LinkedIn creative - Pinterest ad - Reddit ad &#x60;configured_status&#x60;  X is the exception: its smallest switch is the line item.  It is a thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  ### Own switch vs delivery status  The ad&#39;s own switch is independent of its delivery status.  - An ad paused only because its campaign or ad set is off (&#x60;status: paused&#x60;, &#x60;configuredStatus: ACTIVE&#x60;) can still be switched off here. - Switching an ad on under a paused campaign leaves it &#x60;paused&#x60; until the campaign is resumed.  After the write the switch is read back from the platform and returned as &#x60;configuredStatus&#x60;, together with the resulting delivery &#x60;status&#x60;.  ### Identifiers  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId}: Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs.  &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body.  ### Skips  These requests are skipped:  - Ads in terminal statuses (rejected, completed, cancelled). - A request whose target already matches the ad&#39;s own switch as read LIVE from the platform. A stored value is never trusted alone, since the switch may have been changed in the platform&#39;s own UI.  A skip also returns that live read. The rolled-up &#x60;status&#x60; never decides a skip. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. (required)
-   * @param updateAdKeywordRequest  (required)
+   * @param updateAdStatusRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UpdateAdStatus200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateAdStatus200Response updateAdStatus(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateAdStatus200Response> localVarResponse = updateAdStatusWithHttpInfo(adId, updateAdKeywordRequest, headers);
+  public UpdateAdStatus200Response updateAdStatus(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAdStatus200Response> localVarResponse = updateAdStatusWithHttpInfo(adId, updateAdStatusRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -9330,25 +9331,25 @@ public class AdCampaignsApi {
    * Pause or resume a single ad
    * Pauses or resumes a single ad without touching its ad set, campaign or sibling ads.  ### What it flips  Ad-scoped pause/resume flips ONLY this ad&#39;s own switch, never its parent ad set or campaign, so sibling ads keep running:  - Meta &#x60;configured_status&#x60; - TikTok &#x60;operation_status&#x60; - Google ad group ad status - LinkedIn creative - Pinterest ad - Reddit ad &#x60;configured_status&#x60;  X is the exception: its smallest switch is the line item.  It is a thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  ### Own switch vs delivery status  The ad&#39;s own switch is independent of its delivery status.  - An ad paused only because its campaign or ad set is off (&#x60;status: paused&#x60;, &#x60;configuredStatus: ACTIVE&#x60;) can still be switched off here. - Switching an ad on under a paused campaign leaves it &#x60;paused&#x60; until the campaign is resumed.  After the write the switch is read back from the platform and returned as &#x60;configuredStatus&#x60;, together with the resulting delivery &#x60;status&#x60;.  ### Identifiers  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId}: Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs.  &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body.  ### Skips  These requests are skipped:  - Ads in terminal statuses (rejected, completed, cancelled). - A request whose target already matches the ad&#39;s own switch as read LIVE from the platform. A stored value is never trusted alone, since the switch may have been changed in the platform&#39;s own UI.  A skip also returns that live read. The rolled-up &#x60;status&#x60; never decides a skip. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. (required)
-   * @param updateAdKeywordRequest  (required)
+   * @param updateAdStatusRequest  (required)
    * @return ApiResponse&lt;UpdateAdStatus200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateAdStatus200Response> updateAdStatusWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest) throws ApiException {
-    return updateAdStatusWithHttpInfo(adId, updateAdKeywordRequest, null);
+  public ApiResponse<UpdateAdStatus200Response> updateAdStatusWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest) throws ApiException {
+    return updateAdStatusWithHttpInfo(adId, updateAdStatusRequest, null);
   }
 
   /**
    * Pause or resume a single ad
    * Pauses or resumes a single ad without touching its ad set, campaign or sibling ads.  ### What it flips  Ad-scoped pause/resume flips ONLY this ad&#39;s own switch, never its parent ad set or campaign, so sibling ads keep running:  - Meta &#x60;configured_status&#x60; - TikTok &#x60;operation_status&#x60; - Google ad group ad status - LinkedIn creative - Pinterest ad - Reddit ad &#x60;configured_status&#x60;  X is the exception: its smallest switch is the line item.  It is a thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  ### Own switch vs delivery status  The ad&#39;s own switch is independent of its delivery status.  - An ad paused only because its campaign or ad set is off (&#x60;status: paused&#x60;, &#x60;configuredStatus: ACTIVE&#x60;) can still be switched off here. - Switching an ad on under a paused campaign leaves it &#x60;paused&#x60; until the campaign is resumed.  After the write the switch is read back from the platform and returned as &#x60;configuredStatus&#x60;, together with the resulting delivery &#x60;status&#x60;.  ### Identifiers  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId}: Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs.  &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body.  ### Skips  These requests are skipped:  - Ads in terminal statuses (rejected, completed, cancelled). - A request whose target already matches the ad&#39;s own switch as read LIVE from the platform. A stored value is never trusted alone, since the switch may have been changed in the platform&#39;s own UI.  A skip also returns that live read. The rolled-up &#x60;status&#x60; never decides a skip. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. (required)
-   * @param updateAdKeywordRequest  (required)
+   * @param updateAdStatusRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateAdStatus200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateAdStatus200Response> updateAdStatusWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateAdStatusRequestBuilder(adId, updateAdKeywordRequest, headers);
+  public ApiResponse<UpdateAdStatus200Response> updateAdStatusWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAdStatusRequestBuilder(adId, updateAdStatusRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -9395,14 +9396,14 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder updateAdStatusRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdKeywordRequest updateAdKeywordRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateAdStatusRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'adId' is set
     if (adId == null) {
       throw new ApiException(400, "Missing the required parameter 'adId' when calling updateAdStatus");
     }
-    // verify the required parameter 'updateAdKeywordRequest' is set
-    if (updateAdKeywordRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'updateAdKeywordRequest' when calling updateAdStatus");
+    // verify the required parameter 'updateAdStatusRequest' is set
+    if (updateAdStatusRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAdStatusRequest' when calling updateAdStatus");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -9416,7 +9417,7 @@ public class AdCampaignsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdKeywordRequest);
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdStatusRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

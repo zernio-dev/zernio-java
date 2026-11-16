@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadPhoneNumberStockAvailableStock.JSON_PROPERTY_AREA_CODE,
   WebhookPayloadPhoneNumberStockAvailableStock.JSON_PROPERTY_AREA_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadPhoneNumberStockAvailableStock {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull

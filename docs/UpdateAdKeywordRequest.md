@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**status** | [**StatusEnum**](#StatusEnum) |  |  |
+|**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
+|**cpcBid** | **BigDecimal** | Max CPC bid for this keyword, in the ad account currency. Takes effect only under Manual CPC bidding. |  [optional] |
 
 
 

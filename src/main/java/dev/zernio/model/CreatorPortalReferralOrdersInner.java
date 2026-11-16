@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   CreatorPortalReferralOrdersInner.JSON_PROPERTY_STATUS,
   CreatorPortalReferralOrdersInner.JSON_PROPERTY_CONFIRMS_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatorPortalReferralOrdersInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

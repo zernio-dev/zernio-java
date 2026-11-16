@@ -3205,6 +3205,7 @@ docs/UpdateAdSetRequestRegionalRegulationIdentitiesValue.md
 docs/UpdateAdSetRequestSmartTargeting.md
 docs/UpdateAdSetStatus200Response.md
 docs/UpdateAdStatus200Response.md
+docs/UpdateAdStatusRequest.md
 docs/UpdateAdTrackingTags200Response.md
 docs/UpdateAdTrackingTagsRequest.md
 docs/UpdateAdTrackingTagsRequestCreative.md
@@ -7080,6 +7081,7 @@ src/main/java/dev/zernio/model/UpdateAdSetRequestRegionalRegulationIdentitiesVal
 src/main/java/dev/zernio/model/UpdateAdSetRequestSmartTargeting.java
 src/main/java/dev/zernio/model/UpdateAdSetStatus200Response.java
 src/main/java/dev/zernio/model/UpdateAdStatus200Response.java
+src/main/java/dev/zernio/model/UpdateAdStatusRequest.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTags200Response.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequest.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequestCreative.java
@@ -7707,17 +7709,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AnyWebsiteTest.java
-src/test/java/dev/zernio/model/ConnectedStoreTest.java
-src/test/java/dev/zernio/model/CreateTrackingSite201ResponseTest.java
-src/test/java/dev/zernio/model/CreateTrackingSiteRequestTest.java
-src/test/java/dev/zernio/model/ListTrackingSites200ResponsePaginationTest.java
-src/test/java/dev/zernio/model/ListTrackingSites200ResponseTest.java
-src/test/java/dev/zernio/model/TrackingSiteChecksInnerTest.java
-src/test/java/dev/zernio/model/TrackingSiteConsentModeTest.java
-src/test/java/dev/zernio/model/TrackingSiteCustomHostnameDnsRecordTest.java
-src/test/java/dev/zernio/model/TrackingSiteCustomHostnameTest.java
-src/test/java/dev/zernio/model/TrackingSiteInstallTest.java
-src/test/java/dev/zernio/model/TrackingSiteSetupTest.java
-src/test/java/dev/zernio/model/TrackingSiteTest.java
-src/test/java/dev/zernio/model/UpdateTrackingSiteRequestTest.java

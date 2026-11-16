@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetAccountHealth200ResponseLineWebhook.JSON_PROPERTY_DESTINATION,
   GetAccountHealth200ResponseLineWebhook.JSON_PROPERTY_CHECKED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAccountHealth200ResponseLineWebhook {
   public static final String JSON_PROPERTY_ACTIVE = "active";
   private JsonNullable<Boolean> active = JsonNullable.<Boolean>undefined();

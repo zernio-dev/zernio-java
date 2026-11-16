@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   ListInboxReviews200Response.JSON_PROPERTY_META,
   ListInboxReviews200Response.JSON_PROPERTY_SUMMARY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxReviews200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable

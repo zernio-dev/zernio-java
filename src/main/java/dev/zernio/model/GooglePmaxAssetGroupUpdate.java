@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   GooglePmaxAssetGroupUpdate.JSON_PROPERTY_IMAGES,
   GooglePmaxAssetGroupUpdate.JSON_PROPERTY_YOUTUBE_VIDEO_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GooglePmaxAssetGroupUpdate {
   public static final String JSON_PROPERTY_FINAL_URL = "finalUrl";
   @javax.annotation.Nullable

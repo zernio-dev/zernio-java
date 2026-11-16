@@ -124,8 +124,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateAdCampaignStatusWithHttpInfo**](AdCampaignsApi.md#updateAdCampaignStatusWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign |
 | [**updateAdGroupAssets**](AdCampaignsApi.md#updateAdGroupAssets) | **PUT** /v1/ads/ad-sets/{adSetId}/assets | Update ad-group assets |
 | [**updateAdGroupAssetsWithHttpInfo**](AdCampaignsApi.md#updateAdGroupAssetsWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId}/assets | Update ad-group assets |
-| [**updateAdKeyword**](AdCampaignsApi.md#updateAdKeyword) | **PATCH** /v1/ads/keywords/{keywordId} | Pause or enable a Search keyword |
-| [**updateAdKeywordWithHttpInfo**](AdCampaignsApi.md#updateAdKeywordWithHttpInfo) | **PATCH** /v1/ads/keywords/{keywordId} | Pause or enable a Search keyword |
+| [**updateAdKeyword**](AdCampaignsApi.md#updateAdKeyword) | **PATCH** /v1/ads/keywords/{keywordId} | Update a Search keyword |
+| [**updateAdKeywordWithHttpInfo**](AdCampaignsApi.md#updateAdKeywordWithHttpInfo) | **PATCH** /v1/ads/keywords/{keywordId} | Update a Search keyword |
 | [**updateAdSet**](AdCampaignsApi.md#updateAdSet) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set |
 | [**updateAdSetWithHttpInfo**](AdCampaignsApi.md#updateAdSetWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set |
 | [**updateAdSetStatus**](AdCampaignsApi.md#updateAdSetStatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set |
@@ -10177,9 +10177,9 @@ ApiResponse<[**UpdateCampaignAssets200Response**](UpdateCampaignAssets200Respons
 
 > UpdateAdKeyword200Response updateAdKeyword(keywordId, updateAdKeywordRequest)
 
-Pause or enable a Search keyword
+Update a Search keyword
 
-Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
 
 ### Example
 
@@ -10249,15 +10249,15 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **422** | Negative keywords have no status on Google; they cannot be paused or enabled. |  -  |
+| **422** | Negative keywords have no status or bid on Google; they cannot be paused, enabled or given a bid. |  -  |
 
 ## updateAdKeywordWithHttpInfo
 
 > ApiResponse<UpdateAdKeyword200Response> updateAdKeyword updateAdKeywordWithHttpInfo(keywordId, updateAdKeywordRequest)
 
-Pause or enable a Search keyword
+Update a Search keyword
 
-Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
 
 ### Example
 
@@ -10330,7 +10330,7 @@ ApiResponse<[**UpdateAdKeyword200Response**](UpdateAdKeyword200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **422** | Negative keywords have no status on Google; they cannot be paused or enabled. |  -  |
+| **422** | Negative keywords have no status or bid on Google; they cannot be paused, enabled or given a bid. |  -  |
 
 
 ## updateAdSet
@@ -10657,7 +10657,7 @@ ApiResponse<[**UpdateAdSetStatus200Response**](UpdateAdSetStatus200Response.md)>
 
 ## updateAdStatus
 
-> UpdateAdStatus200Response updateAdStatus(adId, updateAdKeywordRequest)
+> UpdateAdStatus200Response updateAdStatus(adId, updateAdStatusRequest)
 
 Pause or resume a single ad
 
@@ -10685,9 +10685,9 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adId = "adId_example"; // String | Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of the creative's effective story/media IDs.
-        UpdateAdKeywordRequest updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
+        UpdateAdStatusRequest updateAdStatusRequest = new UpdateAdStatusRequest(); // UpdateAdStatusRequest | 
         try {
-            UpdateAdStatus200Response result = apiInstance.updateAdStatus(adId, updateAdKeywordRequest);
+            UpdateAdStatus200Response result = apiInstance.updateAdStatus(adId, updateAdStatusRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#updateAdStatus");
@@ -10706,7 +10706,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. | |
-| **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md)|  | |
+| **updateAdStatusRequest** | [**UpdateAdStatusRequest**](UpdateAdStatusRequest.md)|  | |
 
 ### Return type
 
@@ -10733,7 +10733,7 @@ public class Example {
 
 ## updateAdStatusWithHttpInfo
 
-> ApiResponse<UpdateAdStatus200Response> updateAdStatus updateAdStatusWithHttpInfo(adId, updateAdKeywordRequest)
+> ApiResponse<UpdateAdStatus200Response> updateAdStatus updateAdStatusWithHttpInfo(adId, updateAdStatusRequest)
 
 Pause or resume a single ad
 
@@ -10762,9 +10762,9 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adId = "adId_example"; // String | Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of the creative's effective story/media IDs.
-        UpdateAdKeywordRequest updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
+        UpdateAdStatusRequest updateAdStatusRequest = new UpdateAdStatusRequest(); // UpdateAdStatusRequest | 
         try {
-            ApiResponse<UpdateAdStatus200Response> response = apiInstance.updateAdStatusWithHttpInfo(adId, updateAdKeywordRequest);
+            ApiResponse<UpdateAdStatus200Response> response = apiInstance.updateAdStatusWithHttpInfo(adId, updateAdStatusRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -10785,7 +10785,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. | |
-| **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md)|  | |
+| **updateAdStatusRequest** | [**UpdateAdStatusRequest**](UpdateAdStatusRequest.md)|  | |
 
 ### Return type
 

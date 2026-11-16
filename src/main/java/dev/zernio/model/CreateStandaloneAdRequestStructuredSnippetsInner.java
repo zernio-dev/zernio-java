@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestStructuredSnippetsInner.JSON_PROPERTY_HEADER,
   CreateStandaloneAdRequestStructuredSnippetsInner.JSON_PROPERTY_VALUES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestStructuredSnippetsInner {
   /**
    * One of Google&#39;s 13 predefined snippet headers.

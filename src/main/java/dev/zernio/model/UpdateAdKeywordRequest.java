@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -33,9 +34,10 @@ import dev.zernio.ApiClient;
  * UpdateAdKeywordRequest
  */
 @JsonPropertyOrder({
-  UpdateAdKeywordRequest.JSON_PROPERTY_STATUS
+  UpdateAdKeywordRequest.JSON_PROPERTY_STATUS,
+  UpdateAdKeywordRequest.JSON_PROPERTY_CPC_BID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdKeywordRequest {
   /**
    * Gets or Sets status
@@ -73,13 +75,17 @@ public class UpdateAdKeywordRequest {
   }
 
   public static final String JSON_PROPERTY_STATUS = "status";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private StatusEnum status;
+
+  public static final String JSON_PROPERTY_CPC_BID = "cpcBid";
+  @javax.annotation.Nullable
+  private BigDecimal cpcBid;
 
   public UpdateAdKeywordRequest() { 
   }
 
-  public UpdateAdKeywordRequest status(@javax.annotation.Nonnull StatusEnum status) {
+  public UpdateAdKeywordRequest status(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -88,18 +94,42 @@ public class UpdateAdKeywordRequest {
    * Get status
    * @return status
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public StatusEnum getStatus() {
     return status;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatus(@javax.annotation.Nonnull StatusEnum status) {
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
+  }
+
+
+  public UpdateAdKeywordRequest cpcBid(@javax.annotation.Nullable BigDecimal cpcBid) {
+    this.cpcBid = cpcBid;
+    return this;
+  }
+
+  /**
+   * Max CPC bid for this keyword, in the ad account currency. Takes effect only under Manual CPC bidding.
+   * @return cpcBid
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CPC_BID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getCpcBid() {
+    return cpcBid;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CPC_BID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCpcBid(@javax.annotation.Nullable BigDecimal cpcBid) {
+    this.cpcBid = cpcBid;
   }
 
 
@@ -115,12 +145,13 @@ public class UpdateAdKeywordRequest {
       return false;
     }
     UpdateAdKeywordRequest updateAdKeywordRequest = (UpdateAdKeywordRequest) o;
-    return Objects.equals(this.status, updateAdKeywordRequest.status);
+    return Objects.equals(this.status, updateAdKeywordRequest.status) &&
+        Objects.equals(this.cpcBid, updateAdKeywordRequest.cpcBid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status);
+    return Objects.hash(status, cpcBid);
   }
 
   @Override
@@ -128,6 +159,7 @@ public class UpdateAdKeywordRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateAdKeywordRequest {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    cpcBid: ").append(toIndentedString(cpcBid)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -178,6 +210,11 @@ public class UpdateAdKeywordRequest {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `cpcBid` to the URL query string
+    if (getCpcBid() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scpcBid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCpcBid()))));
     }
 
     return joiner.toString();

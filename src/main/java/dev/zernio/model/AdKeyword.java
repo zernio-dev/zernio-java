@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.AdKeywordMetrics;
 import dev.zernio.model.AdKeywordQuality;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -57,12 +58,13 @@ import dev.zernio.ApiClient;
   AdKeyword.JSON_PROPERTY_MATCH_TYPE,
   AdKeyword.JSON_PROPERTY_STATUS,
   AdKeyword.JSON_PROPERTY_NEGATIVE,
+  AdKeyword.JSON_PROPERTY_CPC_BID,
   AdKeyword.JSON_PROPERTY_QUALITY_SCORE,
   AdKeyword.JSON_PROPERTY_QUALITY,
   AdKeyword.JSON_PROPERTY_SYNCED_AT,
   AdKeyword.JSON_PROPERTY_METRICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdKeyword {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -234,6 +236,9 @@ public class AdKeyword {
   public static final String JSON_PROPERTY_NEGATIVE = "negative";
   @javax.annotation.Nullable
   private Boolean negative;
+
+  public static final String JSON_PROPERTY_CPC_BID = "cpcBid";
+  private JsonNullable<BigDecimal> cpcBid = JsonNullable.<BigDecimal>undefined();
 
   public static final String JSON_PROPERTY_QUALITY_SCORE = "qualityScore";
   private JsonNullable<Integer> qualityScore = JsonNullable.<Integer>undefined();
@@ -692,6 +697,38 @@ public class AdKeyword {
   }
 
 
+  public AdKeyword cpcBid(@javax.annotation.Nullable BigDecimal cpcBid) {
+    this.cpcBid = JsonNullable.<BigDecimal>of(cpcBid);
+    return this;
+  }
+
+  /**
+   * Max CPC bid set on this keyword, in the ad account currency. Null when the keyword uses its ad group bid. Takes effect only under Manual CPC bidding.
+   * @return cpcBid
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public BigDecimal getCpcBid() {
+        return cpcBid.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CPC_BID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<BigDecimal> getCpcBid_JsonNullable() {
+    return cpcBid;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CPC_BID)
+  public void setCpcBid_JsonNullable(JsonNullable<BigDecimal> cpcBid) {
+    this.cpcBid = cpcBid;
+  }
+
+  public void setCpcBid(@javax.annotation.Nullable BigDecimal cpcBid) {
+    this.cpcBid = JsonNullable.<BigDecimal>of(cpcBid);
+  }
+
+
   public AdKeyword qualityScore(@javax.annotation.Nullable Integer qualityScore) {
     this.qualityScore = JsonNullable.<Integer>of(qualityScore);
     return this;
@@ -833,6 +870,7 @@ public class AdKeyword {
         Objects.equals(this.matchType, adKeyword.matchType) &&
         Objects.equals(this.status, adKeyword.status) &&
         Objects.equals(this.negative, adKeyword.negative) &&
+        equalsNullable(this.cpcBid, adKeyword.cpcBid) &&
         equalsNullable(this.qualityScore, adKeyword.qualityScore) &&
         Objects.equals(this.quality, adKeyword.quality) &&
         equalsNullable(this.syncedAt, adKeyword.syncedAt) &&
@@ -845,7 +883,7 @@ public class AdKeyword {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platformCriterionId, resourceName, accountId, profileId, platform, adAccountId, campaignId, hashCodeNullable(campaignName), hashCodeNullable(campaignStatus), adSetId, hashCodeNullable(adSetName), hashCodeNullable(adSetStatus), keyword, matchType, status, negative, hashCodeNullable(qualityScore), quality, hashCodeNullable(syncedAt), metrics);
+    return Objects.hash(id, platformCriterionId, resourceName, accountId, profileId, platform, adAccountId, campaignId, hashCodeNullable(campaignName), hashCodeNullable(campaignStatus), adSetId, hashCodeNullable(adSetName), hashCodeNullable(adSetStatus), keyword, matchType, status, negative, hashCodeNullable(cpcBid), hashCodeNullable(qualityScore), quality, hashCodeNullable(syncedAt), metrics);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -876,6 +914,7 @@ public class AdKeyword {
     sb.append("    matchType: ").append(toIndentedString(matchType)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    negative: ").append(toIndentedString(negative)).append("\n");
+    sb.append("    cpcBid: ").append(toIndentedString(cpcBid)).append("\n");
     sb.append("    qualityScore: ").append(toIndentedString(qualityScore)).append("\n");
     sb.append("    quality: ").append(toIndentedString(quality)).append("\n");
     sb.append("    syncedAt: ").append(toIndentedString(syncedAt)).append("\n");
@@ -1010,6 +1049,11 @@ public class AdKeyword {
     // add `negative` to the URL query string
     if (getNegative() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%snegative%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNegative()))));
+    }
+
+    // add `cpcBid` to the URL query string
+    if (getCpcBid() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scpcBid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCpcBid()))));
     }
 
     // add `qualityScore` to the URL query string

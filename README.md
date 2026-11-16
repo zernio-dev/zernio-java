@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.617.0
 
-- Build date: 2026-11-16T08:48:59.966894425Z[Etc/UTC]
+- Build date: 2026-11-16T08:55:41.470237512Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -511,8 +511,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**updateAdCampaignStatusWithHttpInfo**](docs/AdCampaignsApi.md#updateAdCampaignStatusWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign
 *AdCampaignsApi* | [**updateAdGroupAssets**](docs/AdCampaignsApi.md#updateAdGroupAssets) | **PUT** /v1/ads/ad-sets/{adSetId}/assets | Update ad-group assets
 *AdCampaignsApi* | [**updateAdGroupAssetsWithHttpInfo**](docs/AdCampaignsApi.md#updateAdGroupAssetsWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId}/assets | Update ad-group assets
-*AdCampaignsApi* | [**updateAdKeyword**](docs/AdCampaignsApi.md#updateAdKeyword) | **PATCH** /v1/ads/keywords/{keywordId} | Pause or enable a Search keyword
-*AdCampaignsApi* | [**updateAdKeywordWithHttpInfo**](docs/AdCampaignsApi.md#updateAdKeywordWithHttpInfo) | **PATCH** /v1/ads/keywords/{keywordId} | Pause or enable a Search keyword
+*AdCampaignsApi* | [**updateAdKeyword**](docs/AdCampaignsApi.md#updateAdKeyword) | **PATCH** /v1/ads/keywords/{keywordId} | Update a Search keyword
+*AdCampaignsApi* | [**updateAdKeywordWithHttpInfo**](docs/AdCampaignsApi.md#updateAdKeywordWithHttpInfo) | **PATCH** /v1/ads/keywords/{keywordId} | Update a Search keyword
 *AdCampaignsApi* | [**updateAdSet**](docs/AdCampaignsApi.md#updateAdSet) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set
 *AdCampaignsApi* | [**updateAdSetWithHttpInfo**](docs/AdCampaignsApi.md#updateAdSetWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set
 *AdCampaignsApi* | [**updateAdSetStatus**](docs/AdCampaignsApi.md#updateAdSetStatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set
@@ -5829,6 +5829,7 @@ Class | Method | HTTP request | Description
  - [UpdateAdSetRequestSmartTargeting](docs/UpdateAdSetRequestSmartTargeting.md)
  - [UpdateAdSetStatus200Response](docs/UpdateAdSetStatus200Response.md)
  - [UpdateAdStatus200Response](docs/UpdateAdStatus200Response.md)
+ - [UpdateAdStatusRequest](docs/UpdateAdStatusRequest.md)
  - [UpdateAdTrackingTags200Response](docs/UpdateAdTrackingTags200Response.md)
  - [UpdateAdTrackingTagsRequest](docs/UpdateAdTrackingTagsRequest.md)
  - [UpdateAdTrackingTagsRequestCreative](docs/UpdateAdTrackingTagsRequestCreative.md)

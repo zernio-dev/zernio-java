@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ConnectWechatCredentials200ResponseServer.JSON_PROPERTY_ENCODING_A_E_S_KEY,
   ConnectWechatCredentials200ResponseServer.JSON_PROPERTY_ENCRYPTION_MODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectWechatCredentials200ResponseServer {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nullable

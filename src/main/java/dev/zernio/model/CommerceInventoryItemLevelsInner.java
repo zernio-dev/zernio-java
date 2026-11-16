@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   CommerceInventoryItemLevelsInner.JSON_PROPERTY_COMMITTED,
   CommerceInventoryItemLevelsInner.JSON_PROPERTY_INCOMING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceInventoryItemLevelsInner {
   public static final String JSON_PROPERTY_LOCATION_ID = "locationId";
   @javax.annotation.Nullable

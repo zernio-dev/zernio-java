@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   GoogleDemandGenUpdate.JSON_PROPERTY_AUDIENCE,
   GoogleDemandGenUpdate.JSON_PROPERTY_AUDIENCE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleDemandGenUpdate {
   public static final String JSON_PROPERTY_FINAL_URL = "finalUrl";
   @javax.annotation.Nullable

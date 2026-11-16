@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   LinkedInAdsPlatformDataSpotlight.JSON_PROPERTY_SHOW_MEMBER_PROFILE_PHOTO,
   LinkedInAdsPlatformDataSpotlight.JSON_PROPERTY_BACKGROUND_IMAGE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAdsPlatformDataSpotlight {
   public static final String JSON_PROPERTY_HEADLINE = "headline";
   @javax.annotation.Nonnull

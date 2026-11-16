@@ -49610,10 +49610,13 @@ paths:
       - application/json
     patch:
       description: |
-        Pauses or re-enables a single Google Search keyword.
+        Pauses, re-enables or sets the bid of a single Google Search keyword. Send `status`, `cpcBid` or both.
 
-        Changes `ad_group_criterion.status` for one keyword criterion (M.140).
-        Negative keywords have no status on Google and cannot be paused or enabled.
+        Changes `ad_group_criterion.status` (M.140) and `ad_group_criterion.cpc_bid_micros` for one keyword criterion.
+
+        `cpcBid` is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back `cpcBid: null` and uses its ad group bid.
+
+        Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid.
       operationId: updateAdKeyword
       parameters:
       - description: "Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}`\
@@ -49650,11 +49653,11 @@ paths:
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "422":
-          description: Negative keywords have no status on Google; they cannot be
-            paused or enabled.
+          description: "Negative keywords have no status or bid on Google; they cannot\
+            \ be paused, enabled or given a bid."
       security:
       - bearerAuth: []
-      summary: Pause or enable a Search keyword
+      summary: Update a Search keyword
       tags:
       - Ad Campaigns
       x-resource-group: ads
@@ -56259,7 +56262,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/updateAdKeyword_request"
+              $ref: "#/components/schemas/updateAdStatus_request"
         required: true
       responses:
         "200":
@@ -130669,8 +130672,9 @@ components:
         platformCriterionId: platformCriterionId
         resourceName: resourceName
         platform: google
+        cpcBid: 0.8008281904610115
         quality:
-          score: 6
+          score: 1
           adRelevance: BELOW_AVERAGE
           expectedCtr: BELOW_AVERAGE
           landingPageExperience: BELOW_AVERAGE
@@ -130680,16 +130684,16 @@ components:
         profileId: profileId
         campaignStatus: campaignStatus
         adSetId: adSetId
-        qualityScore: 0
+        qualityScore: 6
         id: id
         metrics:
-          conversions: 7.061401241503109
-          cost: 2.3021358869347655
-          firstPageCpc: 9.301444243932576
+          conversions: 9.301444243932576
+          cost: 7.061401241503109
+          firstPageCpc: 3.616076749251911
           clicks: 5
-          windowDays: 1
-          impressions: 5
-          firstPositionCpc: 3.616076749251911
+          windowDays: 5
+          impressions: 2
+          firstPositionCpc: 2.027123023002322
         keyword: keyword
         campaignName: campaignName
         syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -130755,6 +130759,12 @@ components:
           type: string
         negative:
           type: boolean
+        cpcBid:
+          description: "Max CPC bid set on this keyword, in the ad account currency.\
+            \ Null when the keyword uses its ad group bid. Takes effect only under\
+            \ Manual CPC bidding."
+          nullable: true
+          type: number
         qualityScore:
           description: "Deprecated, use `quality.score`. Google Quality Score, 1-10.\
             \ Null when unrated."
@@ -178492,8 +178502,9 @@ components:
           platformCriterionId: platformCriterionId
           resourceName: resourceName
           platform: google
+          cpcBid: 0.8008281904610115
           quality:
-            score: 6
+            score: 1
             adRelevance: BELOW_AVERAGE
             expectedCtr: BELOW_AVERAGE
             landingPageExperience: BELOW_AVERAGE
@@ -178503,16 +178514,16 @@ components:
           profileId: profileId
           campaignStatus: campaignStatus
           adSetId: adSetId
-          qualityScore: 0
+          qualityScore: 6
           id: id
           metrics:
-            conversions: 7.061401241503109
-            cost: 2.3021358869347655
-            firstPageCpc: 9.301444243932576
+            conversions: 9.301444243932576
+            cost: 7.061401241503109
+            firstPageCpc: 3.616076749251911
             clicks: 5
-            windowDays: 1
-            impressions: 5
-            firstPositionCpc: 3.616076749251911
+            windowDays: 5
+            impressions: 2
+            firstPositionCpc: 2.027123023002322
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -178524,8 +178535,9 @@ components:
           platformCriterionId: platformCriterionId
           resourceName: resourceName
           platform: google
+          cpcBid: 0.8008281904610115
           quality:
-            score: 6
+            score: 1
             adRelevance: BELOW_AVERAGE
             expectedCtr: BELOW_AVERAGE
             landingPageExperience: BELOW_AVERAGE
@@ -178535,16 +178547,16 @@ components:
           profileId: profileId
           campaignStatus: campaignStatus
           adSetId: adSetId
-          qualityScore: 0
+          qualityScore: 6
           id: id
           metrics:
-            conversions: 7.061401241503109
-            cost: 2.3021358869347655
-            firstPageCpc: 9.301444243932576
+            conversions: 9.301444243932576
+            cost: 7.061401241503109
+            firstPageCpc: 3.616076749251911
             clicks: 5
-            windowDays: 1
-            impressions: 5
-            firstPositionCpc: 3.616076749251911
+            windowDays: 5
+            impressions: 2
+            firstPositionCpc: 2.027123023002322
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -178607,8 +178619,9 @@ components:
           platformCriterionId: platformCriterionId
           resourceName: resourceName
           platform: google
+          cpcBid: 0.8008281904610115
           quality:
-            score: 6
+            score: 1
             adRelevance: BELOW_AVERAGE
             expectedCtr: BELOW_AVERAGE
             landingPageExperience: BELOW_AVERAGE
@@ -178618,16 +178631,16 @@ components:
           profileId: profileId
           campaignStatus: campaignStatus
           adSetId: adSetId
-          qualityScore: 0
+          qualityScore: 6
           id: id
           metrics:
-            conversions: 7.061401241503109
-            cost: 2.3021358869347655
-            firstPageCpc: 9.301444243932576
+            conversions: 9.301444243932576
+            cost: 7.061401241503109
+            firstPageCpc: 3.616076749251911
             clicks: 5
-            windowDays: 1
-            impressions: 5
-            firstPositionCpc: 3.616076749251911
+            windowDays: 5
+            impressions: 2
+            firstPositionCpc: 2.027123023002322
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -178639,8 +178652,9 @@ components:
           platformCriterionId: platformCriterionId
           resourceName: resourceName
           platform: google
+          cpcBid: 0.8008281904610115
           quality:
-            score: 6
+            score: 1
             adRelevance: BELOW_AVERAGE
             expectedCtr: BELOW_AVERAGE
             landingPageExperience: BELOW_AVERAGE
@@ -178650,16 +178664,16 @@ components:
           profileId: profileId
           campaignStatus: campaignStatus
           adSetId: adSetId
-          qualityScore: 0
+          qualityScore: 6
           id: id
           metrics:
-            conversions: 7.061401241503109
-            cost: 2.3021358869347655
-            firstPageCpc: 9.301444243932576
+            conversions: 9.301444243932576
+            cost: 7.061401241503109
+            firstPageCpc: 3.616076749251911
             clicks: 5
-            windowDays: 1
-            impressions: 5
-            firstPositionCpc: 3.616076749251911
+            windowDays: 5
+            impressions: 2
+            firstPositionCpc: 2.027123023002322
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -178697,14 +178711,17 @@ components:
           description: Google ad group ID
           type: string
     updateAdKeyword_request:
+      minProperties: 1
       properties:
         status:
           enum:
           - active
           - paused
           type: string
-      required:
-      - status
+        cpcBid:
+          description: "Max CPC bid for this keyword, in the ad account currency.\
+            \ Takes effect only under Manual CPC bidding."
+          type: number
     updateAdKeyword_200_response:
       example:
         keyword:
@@ -178715,8 +178732,9 @@ components:
           platformCriterionId: platformCriterionId
           resourceName: resourceName
           platform: google
+          cpcBid: 0.8008281904610115
           quality:
-            score: 6
+            score: 1
             adRelevance: BELOW_AVERAGE
             expectedCtr: BELOW_AVERAGE
             landingPageExperience: BELOW_AVERAGE
@@ -178726,16 +178744,16 @@ components:
           profileId: profileId
           campaignStatus: campaignStatus
           adSetId: adSetId
-          qualityScore: 0
+          qualityScore: 6
           id: id
           metrics:
-            conversions: 7.061401241503109
-            cost: 2.3021358869347655
-            firstPageCpc: 9.301444243932576
+            conversions: 9.301444243932576
+            cost: 7.061401241503109
+            firstPageCpc: 3.616076749251911
             clicks: 5
-            windowDays: 1
-            impressions: 5
-            firstPositionCpc: 3.616076749251911
+            windowDays: 5
+            impressions: 2
+            firstPositionCpc: 2.027123023002322
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -189348,6 +189366,15 @@ components:
           $ref: "#/components/schemas/Ad"
         message:
           type: string
+    updateAdStatus_request:
+      properties:
+        status:
+          enum:
+          - active
+          - paused
+          type: string
+      required:
+      - status
     updateAdStatus_200_response:
       example:
         configuredStatus: configuredStatus
@@ -234573,7 +234600,7 @@ components:
         Google's own UNKNOWN / UNSPECIFIED buckets are reported as null so "unrated" has a
         single representation.
       example:
-        score: 6
+        score: 1
         adRelevance: BELOW_AVERAGE
         expectedCtr: BELOW_AVERAGE
         landingPageExperience: BELOW_AVERAGE
@@ -234615,13 +234642,13 @@ components:
       description: Trailing 30-day window. Null on rows synced before the metrics
         columns existed (re-synced on the keyword's next daily sweep).
       example:
-        conversions: 7.061401241503109
-        cost: 2.3021358869347655
-        firstPageCpc: 9.301444243932576
+        conversions: 9.301444243932576
+        cost: 7.061401241503109
+        firstPageCpc: 3.616076749251911
         clicks: 5
-        windowDays: 1
-        impressions: 5
-        firstPositionCpc: 3.616076749251911
+        windowDays: 5
+        impressions: 2
+        firstPositionCpc: 2.027123023002322
       properties:
         windowDays:
           type: integer

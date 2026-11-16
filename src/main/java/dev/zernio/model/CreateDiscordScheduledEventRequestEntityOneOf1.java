@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateDiscordScheduledEventRequestEntityOneOf1.JSON_PROPERTY_CHANNEL_ID,
   CreateDiscordScheduledEventRequestEntityOneOf1.JSON_PROPERTY_ENDS_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:48:59.966894425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-16T08:55:41.470237512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateDiscordScheduledEventRequestEntityOneOf1 {
   /**
    * Gets or Sets type
