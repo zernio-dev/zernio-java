@@ -11,6 +11,9 @@ Narrows the ad objects checked, before any metric is read. `GET /v1/automations/
 * [AutomationAdFilterOneOf3](AutomationAdFilterOneOf3.md)
 * [AutomationAdFilterOneOf4](AutomationAdFilterOneOf4.md)
 * [AutomationAdFilterOneOf5](AutomationAdFilterOneOf5.md)
+* [AutomationAdFilterOneOf6](AutomationAdFilterOneOf6.md)
+* [AutomationAdFilterOneOf7](AutomationAdFilterOneOf7.md)
+* [AutomationAdFilterOneOf8](AutomationAdFilterOneOf8.md)
 
 ## Example
 ```java
@@ -22,6 +25,9 @@ import dev.zernio.model.AutomationAdFilterOneOf2;
 import dev.zernio.model.AutomationAdFilterOneOf3;
 import dev.zernio.model.AutomationAdFilterOneOf4;
 import dev.zernio.model.AutomationAdFilterOneOf5;
+import dev.zernio.model.AutomationAdFilterOneOf6;
+import dev.zernio.model.AutomationAdFilterOneOf7;
+import dev.zernio.model.AutomationAdFilterOneOf8;
 
 public class Example {
     public static void main(String[] args) {
@@ -68,6 +74,27 @@ public class Example {
         exampleAutomationAdFilter.setActualInstance(exampleAutomationAdFilterOneOf5);
         // to get back the AutomationAdFilterOneOf5 set earlier
         AutomationAdFilterOneOf5 testAutomationAdFilterOneOf5 = (AutomationAdFilterOneOf5) exampleAutomationAdFilter.getActualInstance();
+
+        // create a new AutomationAdFilterOneOf6
+        AutomationAdFilterOneOf6 exampleAutomationAdFilterOneOf6 = new AutomationAdFilterOneOf6();
+        // set AutomationAdFilter to AutomationAdFilterOneOf6
+        exampleAutomationAdFilter.setActualInstance(exampleAutomationAdFilterOneOf6);
+        // to get back the AutomationAdFilterOneOf6 set earlier
+        AutomationAdFilterOneOf6 testAutomationAdFilterOneOf6 = (AutomationAdFilterOneOf6) exampleAutomationAdFilter.getActualInstance();
+
+        // create a new AutomationAdFilterOneOf7
+        AutomationAdFilterOneOf7 exampleAutomationAdFilterOneOf7 = new AutomationAdFilterOneOf7();
+        // set AutomationAdFilter to AutomationAdFilterOneOf7
+        exampleAutomationAdFilter.setActualInstance(exampleAutomationAdFilterOneOf7);
+        // to get back the AutomationAdFilterOneOf7 set earlier
+        AutomationAdFilterOneOf7 testAutomationAdFilterOneOf7 = (AutomationAdFilterOneOf7) exampleAutomationAdFilter.getActualInstance();
+
+        // create a new AutomationAdFilterOneOf8
+        AutomationAdFilterOneOf8 exampleAutomationAdFilterOneOf8 = new AutomationAdFilterOneOf8();
+        // set AutomationAdFilter to AutomationAdFilterOneOf8
+        exampleAutomationAdFilter.setActualInstance(exampleAutomationAdFilterOneOf8);
+        // to get back the AutomationAdFilterOneOf8 set earlier
+        AutomationAdFilterOneOf8 testAutomationAdFilterOneOf8 = (AutomationAdFilterOneOf8) exampleAutomationAdFilter.getActualInstance();
     }
 }
 ```

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.633.0
+- API version: 1.634.0
 
-- Build date: 2026-11-17T09:27:46.495373807Z[Etc/UTC]
+- Build date: 2026-11-17T09:45:51.107176305Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.633.0</version>
+  <version>1.634.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.633.0"
+compile "dev.zernio:zernio-sdk:1.634.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.633.0.jar`
+- `target/zernio-sdk-1.634.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2947,6 +2947,9 @@ Class | Method | HTTP request | Description
  - [AutomationAdFilterOneOf3](docs/AutomationAdFilterOneOf3.md)
  - [AutomationAdFilterOneOf4](docs/AutomationAdFilterOneOf4.md)
  - [AutomationAdFilterOneOf5](docs/AutomationAdFilterOneOf5.md)
+ - [AutomationAdFilterOneOf6](docs/AutomationAdFilterOneOf6.md)
+ - [AutomationAdFilterOneOf7](docs/AutomationAdFilterOneOf7.md)
+ - [AutomationAdFilterOneOf8](docs/AutomationAdFilterOneOf8.md)
  - [AutomationAlert](docs/AutomationAlert.md)
  - [AutomationApproval](docs/AutomationApproval.md)
  - [AutomationApprovalChange](docs/AutomationApprovalChange.md)
@@ -3051,6 +3054,7 @@ Class | Method | HTTP request | Description
  - [BlockWhatsAppUsers200ResponseBlockedInner](docs/BlockWhatsAppUsers200ResponseBlockedInner.md)
  - [BlockWhatsAppUsers200ResponseFailedInner](docs/BlockWhatsAppUsers200ResponseFailedInner.md)
  - [BlockWhatsAppUsersRequest](docs/BlockWhatsAppUsersRequest.md)
+ - [BlockedByANegative](docs/BlockedByANegative.md)
  - [Blog](docs/Blog.md)
  - [BlogArticle](docs/BlogArticle.md)
  - [BlogArticleImage](docs/BlogArticleImage.md)
@@ -5097,6 +5101,7 @@ Class | Method | HTTP request | Description
  - [ListedAccount](docs/ListedAccount.md)
  - [LookupSmsNumber200Response](docs/LookupSmsNumber200Response.md)
  - [MarkConversationRead200Response](docs/MarkConversationRead200Response.md)
+ - [MatchType](docs/MatchType.md)
  - [MediaContentType](docs/MediaContentType.md)
  - [MediaItem](docs/MediaItem.md)
  - [MediaSubtitle](docs/MediaSubtitle.md)
@@ -5476,6 +5481,7 @@ Class | Method | HTTP request | Description
  - [SearchInboxConversations200ResponseMetaFailedAccountsInner](docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [SearchInstagramAudio200Response](docs/SearchInstagramAudio200Response.md)
  - [SearchReddit200Response](docs/SearchReddit200Response.md)
+ - [SearchTermStatus](docs/SearchTermStatus.md)
  - [SearchTikTokLocations200Response](docs/SearchTikTokLocations200Response.md)
  - [SearchTikTokLocations200ResponseLocationsInner](docs/SearchTikTokLocations200ResponseLocationsInner.md)
  - [SearchTweets200Response](docs/SearchTweets200Response.md)

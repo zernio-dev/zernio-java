@@ -21,6 +21,8 @@
 | CAMPAIGN | &quot;campaign&quot; |
 | ADSET | &quot;adset&quot; |
 | AD | &quot;ad&quot; |
+| KEYWORD | &quot;keyword&quot; |
+| SEARCH_TERM | &quot;search_term&quot; |
 
 
 

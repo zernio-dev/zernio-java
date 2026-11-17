@@ -11,5 +11,9 @@
 
 * `AD` (value: `"ad"`)
 
+* `KEYWORD` (value: `"keyword"`)
+
+* `SEARCH_TERM` (value: `"search_term"`)
+
 
 

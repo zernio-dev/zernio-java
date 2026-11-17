@@ -257,6 +257,9 @@ docs/AutomationAdFilterOneOf2.md
 docs/AutomationAdFilterOneOf3.md
 docs/AutomationAdFilterOneOf4.md
 docs/AutomationAdFilterOneOf5.md
+docs/AutomationAdFilterOneOf6.md
+docs/AutomationAdFilterOneOf7.md
+docs/AutomationAdFilterOneOf8.md
 docs/AutomationAlert.md
 docs/AutomationApproval.md
 docs/AutomationApprovalChange.md
@@ -362,6 +365,7 @@ docs/BlockWhatsAppUsers200Response.md
 docs/BlockWhatsAppUsers200ResponseBlockedInner.md
 docs/BlockWhatsAppUsers200ResponseFailedInner.md
 docs/BlockWhatsAppUsersRequest.md
+docs/BlockedByANegative.md
 docs/Blog.md
 docs/BlogArticle.md
 docs/BlogArticleImage.md
@@ -2446,6 +2450,7 @@ docs/ListedAccount.md
 docs/LogsApi.md
 docs/LookupSmsNumber200Response.md
 docs/MarkConversationRead200Response.md
+docs/MatchType.md
 docs/MediaApi.md
 docs/MediaContentType.md
 docs/MediaItem.md
@@ -2839,6 +2844,7 @@ docs/SearchInboxConversations200ResponseMeta.md
 docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md
 docs/SearchInstagramAudio200Response.md
 docs/SearchReddit200Response.md
+docs/SearchTermStatus.md
 docs/SearchTikTokLocations200Response.md
 docs/SearchTikTokLocations200ResponseLocationsInner.md
 docs/SearchTweets200Response.md
@@ -4215,6 +4221,9 @@ src/main/java/dev/zernio/model/AutomationAdFilterOneOf2.java
 src/main/java/dev/zernio/model/AutomationAdFilterOneOf3.java
 src/main/java/dev/zernio/model/AutomationAdFilterOneOf4.java
 src/main/java/dev/zernio/model/AutomationAdFilterOneOf5.java
+src/main/java/dev/zernio/model/AutomationAdFilterOneOf6.java
+src/main/java/dev/zernio/model/AutomationAdFilterOneOf7.java
+src/main/java/dev/zernio/model/AutomationAdFilterOneOf8.java
 src/main/java/dev/zernio/model/AutomationAlert.java
 src/main/java/dev/zernio/model/AutomationApproval.java
 src/main/java/dev/zernio/model/AutomationApprovalChange.java
@@ -4319,6 +4328,7 @@ src/main/java/dev/zernio/model/BlockWhatsAppUsers200Response.java
 src/main/java/dev/zernio/model/BlockWhatsAppUsers200ResponseBlockedInner.java
 src/main/java/dev/zernio/model/BlockWhatsAppUsers200ResponseFailedInner.java
 src/main/java/dev/zernio/model/BlockWhatsAppUsersRequest.java
+src/main/java/dev/zernio/model/BlockedByANegative.java
 src/main/java/dev/zernio/model/Blog.java
 src/main/java/dev/zernio/model/BlogArticle.java
 src/main/java/dev/zernio/model/BlogArticleImage.java
@@ -6365,6 +6375,7 @@ src/main/java/dev/zernio/model/ListWorkflows200ResponseWorkflowsInner.java
 src/main/java/dev/zernio/model/ListedAccount.java
 src/main/java/dev/zernio/model/LookupSmsNumber200Response.java
 src/main/java/dev/zernio/model/MarkConversationRead200Response.java
+src/main/java/dev/zernio/model/MatchType.java
 src/main/java/dev/zernio/model/MediaContentType.java
 src/main/java/dev/zernio/model/MediaItem.java
 src/main/java/dev/zernio/model/MediaSubtitle.java
@@ -6744,6 +6755,7 @@ src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMeta.java
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMetaFailedAccountsInner.java
 src/main/java/dev/zernio/model/SearchInstagramAudio200Response.java
 src/main/java/dev/zernio/model/SearchReddit200Response.java
+src/main/java/dev/zernio/model/SearchTermStatus.java
 src/main/java/dev/zernio/model/SearchTikTokLocations200Response.java
 src/main/java/dev/zernio/model/SearchTikTokLocations200ResponseLocationsInner.java
 src/main/java/dev/zernio/model/SearchTweets200Response.java
@@ -7753,3 +7765,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AutomationAdFilterOneOf6Test.java
+src/test/java/dev/zernio/model/AutomationAdFilterOneOf7Test.java
+src/test/java/dev/zernio/model/AutomationAdFilterOneOf8Test.java
+src/test/java/dev/zernio/model/BlockedByANegativeTest.java
+src/test/java/dev/zernio/model/MatchTypeTest.java
+src/test/java/dev/zernio/model/SearchTermStatusTest.java

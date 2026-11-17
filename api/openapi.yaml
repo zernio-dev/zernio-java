@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.633.0
+  version: 1.634.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -51734,13 +51734,13 @@ paths:
       - application/json
     post:
       description: |
-        Creates a rule that checks the campaigns or ad sets of one ad account on a schedule and acts on each one that meets every condition.
+        Creates a rule that checks the campaigns, ad sets, ads, keywords or search terms of one ad account on a schedule and acts on each one that meets every condition.
 
-        Rules support Meta, Google, TikTok, LinkedIn, Pinterest, X and Reddit ads connections. Use `POST /v1/ads/rules/{ruleId}/preview` to see what a rule would match before enabling it.
+        Rules support Meta, Google, TikTok, LinkedIn, Pinterest, X and Reddit ads connections. Keyword and search term rules are Google only. Use `POST /v1/ads/rules/{ruleId}/preview` to see what a rule would match before enabling it.
 
         ### Evaluation
 
-        Each campaign or ad set is evaluated on its own, over the ad account's calendar days, from the metrics Zernio syncs.
+        Each object is evaluated on its own, over the ad account's calendar days. Campaigns, ad sets and ads read the metrics Zernio syncs; keywords and search terms are summed from the daily history Zernio keeps of them.
 
         ### Actions
 
@@ -51749,6 +51749,8 @@ paths:
         - `pause`
         - `activate`
         - `adjust_budget`
+
+        A keyword rule can notify and pause; a search term rule only notifies.
 
         ### Cooldown
 
@@ -127455,12 +127457,24 @@ components:
       - kind
       - label
     AdRuleLevel:
-      description: "Whether the rule checks campaigns, ad sets or single ads. Each\
-        \ one is evaluated on its own."
+      description: |
+        Whether the rule checks campaigns, ad sets, single ads, Google keywords or Google search terms. Each one is evaluated on its own.
+
+        `keyword` and `search_term` read Google Search, on Google Ads accounts only. A keyword's id is `<adGroupId>~<criterionId>`, as `PATCH /v1/ads/keywords/{keywordId}` takes it. A search term is one per ad group, its id `<adGroupId>~<term>`.
+
+        - They read a daily history Zernio fetches from Google. A day keeps its 50,000 rows that spent most.
+        - Every daily window works, `today` included: today is refreshed at most once an hour.
+        - A new rule's first runs load its days a few at a time, and fail until all are in.
+        - Paused keywords are not judged.
+        - Google lists only what showed at least once, so `impressions` takes `>` or `>=`, never `<` or `<=`.
+
+        They take `spend`, `impressions`, `clicks`, `conversions`, `ctr`, `cpc`, `cpm`, `cpa` and `roas` over whole days, no `usual`, `of`, `top` or `bottom`, and `compareTo` only as `campaign`. A keyword rule can `notify` or `pause`; a search term rule only notifies.
       enum:
       - campaign
       - adset
       - ad
+      - keyword
+      - search_term
       type: string
     AdRuleCondition:
       properties:
@@ -127546,6 +127560,8 @@ components:
             On an hourly window, `compareTo` is `usual` or `usual_deviation`, or for `ctr`, `cpc` and `cpm` a window of full days ending by yesterday and starting at most 35 days ago, read from the same hourly totals.
 
             For example, `cpc` over `last_complete_hour` `>=` 5 against `last_30d` means the last hour's clicks cost 5 times their 30-day price.
+
+            `campaign`, on `keyword` and `search_term` rules only, divides by the object's campaign over the same window, from the synced campaign totals. `cpc` `>=` 5 against `campaign` means a click costs 5 times the campaign's average; `spend` `>=` 0.2 means a fifth of the campaign's spend.
           example: previous_period
           type: string
         of:
@@ -127649,10 +127665,10 @@ components:
       nullable: true
       type: array
     AdRuleFilters:
-      description: "Narrows the objects the rule checks. Every filter must hold. A\
-        \ campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`,\
-        \ `budget_level` and `channel_type`; an ad set rule all but `days_since_change`,\
-        \ plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`."
+      description: |
+        Narrows the objects the rule checks. Every filter must hold. A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`, `budget_level` and `channel_type`; an ad set rule all but `days_since_change`, plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`.
+
+        A keyword rule reads `name` (the keyword text), `campaign_name`, `adset_name`, `campaign_id`, `adset_id` and `match_type`. A search term rule reads those (`name` is the term) plus `search_term_status` and `blocked_by_negative`.
       items:
         $ref: "#/components/schemas/AdRuleFilters_inner"
       maxItems: 10
@@ -127945,6 +127961,9 @@ components:
       - $ref: "#/components/schemas/AutomationAdFilter_oneOf_3"
       - $ref: "#/components/schemas/AutomationAdFilter_oneOf_4"
       - $ref: "#/components/schemas/AutomationAdFilter_oneOf_5"
+      - $ref: "#/components/schemas/AutomationAdFilter_oneOf_6"
+      - $ref: "#/components/schemas/AutomationAdFilter_oneOf_7"
+      - $ref: "#/components/schemas/AutomationAdFilter_oneOf_8"
     AutomationSubjects:
       additionalProperties: {}
       description: "What an ad rule checks, and where."
@@ -128018,6 +128037,8 @@ components:
           - campaign
           - adset
           - ad
+          - keyword
+          - search_term
           type: string
         adAccounts:
           description: "The ad account to check. One per ad rule, and an edit cannot\
@@ -130777,11 +130798,10 @@ components:
           nullable: true
           type: array
         filters:
-          description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`,\
-            \ `budget_level` and `channel_type`; an ad set rule all but `days_since_change`,\
-            \ plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and\
-            \ `ad_id`."
+          description: |
+            Narrows the objects the rule checks. Every filter must hold. A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`, `budget_level` and `channel_type`; an ad set rule all but `days_since_change`, plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`.
+
+            A keyword rule reads `name` (the keyword text), `campaign_name`, `adset_name`, `campaign_id`, `adset_id` and `match_type`. A search term rule reads those (`name` is the term) plus `search_term_status` and `blocked_by_negative`.
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -130894,14 +130914,21 @@ components:
           compareTo: previous_period
           value: 0.6027456183070403
           met: true
+        campaignName: campaignName
         group: group
       properties:
         id:
-          description: Platform ID of the campaign or ad set.
+          description: "Platform ID of the campaign, ad set or ad. A keyword is `{adGroupId}~{criterionId}`,\
+            \ a search term `{adGroupId}~{term}`."
           type: string
         name:
+          description: "The object's name: the keyword text or the search term."
           type: string
         campaignId:
+          nullable: true
+          type: string
+        campaignName:
+          description: Absent on runs recorded before November 2026.
           nullable: true
           type: string
         matched:
@@ -130963,6 +130990,7 @@ components:
             compareTo: previous_period
             value: 0.6027456183070403
             met: true
+          campaignName: campaignName
           group: group
         - readings:
           - actual: 5.962133916683182
@@ -130992,6 +131020,7 @@ components:
             compareTo: previous_period
             value: 0.6027456183070403
             met: true
+          campaignName: campaignName
           group: group
         groups:
         - name: name
@@ -131065,6 +131094,7 @@ components:
     AdRuleRun:
       example:
         evaluation:
+          matchedTotal: 6
           notification:
             reason: reason
             status: done
@@ -131109,6 +131139,7 @@ components:
               compareTo: previous_period
               value: 0.6027456183070403
               met: true
+            campaignName: campaignName
             group: group
           - readings:
             - actual: 5.962133916683182
@@ -131138,31 +131169,32 @@ components:
               compareTo: previous_period
               value: 0.6027456183070403
               met: true
+            campaignName: campaignName
             group: group
           actions:
           - reason: reason
             previousName: previousName
-            previousDailyBudget: 6.027456183070403
+            previousDailyBudget: 1.4658129805029452
             type: pause
-            previousTarget: 2.3021358869347655
+            previousTarget: 7.061401241503109
             newName: newName
-            newBidAmount: 5.637376656633329
-            previousBidAmount: 5.962133916683182
-            newTarget: 7.061401241503109
-            newDailyBudget: 1.4658129805029452
+            newBidAmount: 2.3021358869347655
+            previousBidAmount: 5.637376656633329
+            newTarget: 9.301444243932576
+            newDailyBudget: 5.962133916683182
             targetMetric: cpa
             objectId: objectId
             status: done
           - reason: reason
             previousName: previousName
-            previousDailyBudget: 6.027456183070403
+            previousDailyBudget: 1.4658129805029452
             type: pause
-            previousTarget: 2.3021358869347655
+            previousTarget: 7.061401241503109
             newName: newName
-            newBidAmount: 5.637376656633329
-            previousBidAmount: 5.962133916683182
-            newTarget: 7.061401241503109
-            newDailyBudget: 1.4658129805029452
+            newBidAmount: 2.3021358869347655
+            previousBidAmount: 5.637376656633329
+            newTarget: 9.301444243932576
+            newDailyBudget: 5.962133916683182
             targetMetric: cpa
             objectId: objectId
             status: done
@@ -180340,6 +180372,8 @@ components:
           - campaign
           - adset
           - ad
+          - keyword
+          - search_term
           type: string
         platforms:
           items:
@@ -182316,7 +182350,7 @@ components:
         level:
           $ref: "#/components/schemas/AdRuleLevel"
         campaignIds:
-          description: Only check these platform campaign IDs (or their ad sets).
+          description: Only check these platform campaign IDs (or what sits in them).
             Leave out to check the whole ad account.
           items:
             type: string
@@ -182324,11 +182358,10 @@ components:
           minItems: 1
           type: array
         filters:
-          description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`,\
-            \ `budget_level` and `channel_type`; an ad set rule all but `days_since_change`,\
-            \ plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and\
-            \ `ad_id`."
+          description: |
+            Narrows the objects the rule checks. Every filter must hold. A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`, `budget_level` and `channel_type`; an ad set rule all but `days_since_change`, plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`.
+
+            A keyword rule reads `name` (the keyword text), `campaign_name`, `adset_name`, `campaign_id`, `adset_id` and `match_type`. A search term rule reads those (`name` is the term) plus `search_term_status` and `blocked_by_negative`.
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -182978,11 +183011,10 @@ components:
           nullable: true
           type: array
         filters:
-          description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`,\
-            \ `budget_level` and `channel_type`; an ad set rule all but `days_since_change`,\
-            \ plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and\
-            \ `ad_id`."
+          description: |
+            Narrows the objects the rule checks. Every filter must hold. A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`, `budget_level` and `channel_type`; an ad set rule all but `days_since_change`, plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`.
+
+            A keyword rule reads `name` (the keyword text), `campaign_name`, `adset_name`, `campaign_id`, `adset_id` and `match_type`. A search term rule reads those (`name` is the term) plus `search_term_status` and `blocked_by_negative`.
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -183123,6 +183155,7 @@ components:
       example:
         runs:
         - evaluation:
+            matchedTotal: 6
             notification:
               reason: reason
               status: done
@@ -183167,6 +183200,7 @@ components:
                 compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
+              campaignName: campaignName
               group: group
             - readings:
               - actual: 5.962133916683182
@@ -183196,31 +183230,32 @@ components:
                 compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
+              campaignName: campaignName
               group: group
             actions:
             - reason: reason
               previousName: previousName
-              previousDailyBudget: 6.027456183070403
+              previousDailyBudget: 1.4658129805029452
               type: pause
-              previousTarget: 2.3021358869347655
+              previousTarget: 7.061401241503109
               newName: newName
-              newBidAmount: 5.637376656633329
-              previousBidAmount: 5.962133916683182
-              newTarget: 7.061401241503109
-              newDailyBudget: 1.4658129805029452
+              newBidAmount: 2.3021358869347655
+              previousBidAmount: 5.637376656633329
+              newTarget: 9.301444243932576
+              newDailyBudget: 5.962133916683182
               targetMetric: cpa
               objectId: objectId
               status: done
             - reason: reason
               previousName: previousName
-              previousDailyBudget: 6.027456183070403
+              previousDailyBudget: 1.4658129805029452
               type: pause
-              previousTarget: 2.3021358869347655
+              previousTarget: 7.061401241503109
               newName: newName
-              newBidAmount: 5.637376656633329
-              previousBidAmount: 5.962133916683182
-              newTarget: 7.061401241503109
-              newDailyBudget: 1.4658129805029452
+              newBidAmount: 2.3021358869347655
+              previousBidAmount: 5.637376656633329
+              newTarget: 9.301444243932576
+              newDailyBudget: 5.962133916683182
               targetMetric: cpa
               objectId: objectId
               status: done
@@ -183233,6 +183268,7 @@ components:
           - actedObjectIds
           - actedObjectIds
         - evaluation:
+            matchedTotal: 6
             notification:
               reason: reason
               status: done
@@ -183277,6 +183313,7 @@ components:
                 compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
+              campaignName: campaignName
               group: group
             - readings:
               - actual: 5.962133916683182
@@ -183306,31 +183343,32 @@ components:
                 compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
+              campaignName: campaignName
               group: group
             actions:
             - reason: reason
               previousName: previousName
-              previousDailyBudget: 6.027456183070403
+              previousDailyBudget: 1.4658129805029452
               type: pause
-              previousTarget: 2.3021358869347655
+              previousTarget: 7.061401241503109
               newName: newName
-              newBidAmount: 5.637376656633329
-              previousBidAmount: 5.962133916683182
-              newTarget: 7.061401241503109
-              newDailyBudget: 1.4658129805029452
+              newBidAmount: 2.3021358869347655
+              previousBidAmount: 5.637376656633329
+              newTarget: 9.301444243932576
+              newDailyBudget: 5.962133916683182
               targetMetric: cpa
               objectId: objectId
               status: done
             - reason: reason
               previousName: previousName
-              previousDailyBudget: 6.027456183070403
+              previousDailyBudget: 1.4658129805029452
               type: pause
-              previousTarget: 2.3021358869347655
+              previousTarget: 7.061401241503109
               newName: newName
-              newBidAmount: 5.637376656633329
-              previousBidAmount: 5.962133916683182
-              newTarget: 7.061401241503109
-              newDailyBudget: 1.4658129805029452
+              newBidAmount: 2.3021358869347655
+              previousBidAmount: 5.637376656633329
+              newTarget: 9.301444243932576
+              newDailyBudget: 5.962133916683182
               targetMetric: cpa
               objectId: objectId
               status: done
@@ -222656,6 +222694,7 @@ components:
 
             - Instagram and Facebook realtime webhooks: populated (Meta re-delivers the account's own replies as comments events).
             - TikTok: inferred. Comments created through this API are always flagged, and once the account's own author identifier is known (from one of those or from a comments listing), every author is compared against it.
+            - LinkedIn: populated when author.id is present; true when it equals the actor URN Zernio comments as for this account (organization URN for a page, urn:li:person URN for a member).
           type: boolean
         instagramProfile:
           $ref: "#/components/schemas/WebhookPayloadComment_comment_author_instagramProfile"
@@ -225545,11 +225584,14 @@ components:
         name:
           type: string
         level:
-          description: "Whether the rule evaluates campaigns, ad sets or ads."
+          description: "Whether the rule evaluates campaigns, ad sets, ads, Google\
+            \ keywords or Google search terms."
           enum:
           - campaign
           - adset
           - ad
+          - keyword
+          - search_term
           type: string
         platformAdAccountId:
           description: Platform-native ad account ID the rule watches.
@@ -233502,11 +233544,10 @@ components:
           minLength: 1
           type: string
         filters:
-          description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`,\
-            \ `budget_level` and `channel_type`; an ad set rule all but `days_since_change`,\
-            \ plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and\
-            \ `ad_id`."
+          description: |
+            Narrows the objects the rule checks. Every filter must hold. A campaign rule reads `name`, `campaign_id`, `goal`, `days_live`, `days_since_change`, `budget_level` and `channel_type`; an ad set rule all but `days_since_change`, plus `campaign_name` and `adset_id`; an ad rule also `adset_name` and `ad_id`.
+
+            A keyword rule reads `name` (the keyword text), `campaign_name`, `adset_name`, `campaign_id`, `adset_id` and `match_type`. A search term rule reads those (`name` is the term) plus `search_term_status` and `blocked_by_negative`.
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -233691,6 +233732,85 @@ components:
       - op
       - value
       title: Days since change
+    Match_type:
+      description: "Picks (`in`) or leaves out (`not_in`) keywords by match type,\
+        \ or search terms by the match type of the keyword that matched them. Keyword\
+        \ and search term rules only."
+      properties:
+        field:
+          enum:
+          - match_type
+          type: string
+        op:
+          enum:
+          - in
+          - not_in
+          type: string
+        values:
+          items:
+            enum:
+            - EXACT
+            - PHRASE
+            - BROAD
+            type: string
+          maxItems: 3
+          minItems: 1
+          type: array
+      required:
+      - field
+      - op
+      - values
+      title: Match type
+    Search_term_status:
+      description: "Picks (`in`) or leaves out (`not_in`) search terms by Google's\
+        \ status: added as a keyword, excluded as a negative, both, or neither. Search\
+        \ term rules only."
+      properties:
+        field:
+          enum:
+          - search_term_status
+          type: string
+        op:
+          enum:
+          - in
+          - not_in
+          type: string
+        values:
+          items:
+            enum:
+            - ADDED
+            - EXCLUDED
+            - ADDED_EXCLUDED
+            - NONE
+            type: string
+          maxItems: 4
+          minItems: 1
+          type: array
+      required:
+      - field
+      - op
+      - values
+      title: Search term status
+    Blocked_by_a_negative:
+      description: "Whether a negative keyword of the account now stops the search\
+        \ term: on its ad group, its campaign, or a shared list applied to its campaign.\
+        \ `false` leaves out terms you already excluded. Search term rules only."
+      properties:
+        field:
+          enum:
+          - blocked_by_negative
+          type: string
+        op:
+          enum:
+          - equals
+          type: string
+        value:
+          type: boolean
+      required:
+      - field
+      - op
+      - value
+      title: Blocked by a negative
     AdRuleFilters_inner:
       oneOf:
       - $ref: "#/components/schemas/Name_or_goal"
@@ -233699,6 +233819,9 @@ components:
       - $ref: "#/components/schemas/Channel_type"
       - $ref: "#/components/schemas/Days_live"
       - $ref: "#/components/schemas/Days_since_change"
+      - $ref: "#/components/schemas/Match_type"
+      - $ref: "#/components/schemas/Search_term_status"
+      - $ref: "#/components/schemas/Blocked_by_a_negative"
     AdRuleSchedule_times_inner:
       example:
         at: 09:00
@@ -234032,6 +234155,85 @@ components:
       - field
       - op
       - values
+    AutomationAdFilter_oneOf_6:
+      additionalProperties: false
+      description: "Picks or leaves out keywords by match type, or search terms by\
+        \ the match type of the keyword that matched them. Keyword and search term\
+        \ subjects only."
+      properties:
+        field:
+          enum:
+          - match_type
+          type: string
+        op:
+          enum:
+          - in
+          - not_in
+          type: string
+        values:
+          items:
+            enum:
+            - EXACT
+            - PHRASE
+            - BROAD
+            type: string
+          maxItems: 3
+          minItems: 1
+          type: array
+      required:
+      - field
+      - op
+      - values
+    AutomationAdFilter_oneOf_7:
+      additionalProperties: false
+      description: "Picks or leaves out search terms by Google's status: added as\
+        \ a keyword, excluded as a negative, both, or neither. Search term subjects\
+        \ only."
+      properties:
+        field:
+          enum:
+          - search_term_status
+          type: string
+        op:
+          enum:
+          - in
+          - not_in
+          type: string
+        values:
+          items:
+            enum:
+            - ADDED
+            - EXCLUDED
+            - ADDED_EXCLUDED
+            - NONE
+            type: string
+          maxItems: 4
+          minItems: 1
+          type: array
+      required:
+      - field
+      - op
+      - values
+    AutomationAdFilter_oneOf_8:
+      additionalProperties: false
+      description: "Whether a negative keyword on the ad group, the campaign or a\
+        \ shared list applied to it now stops the search term. Search term subjects\
+        \ only."
+      properties:
+        field:
+          enum:
+          - blocked_by_negative
+          type: string
+        op:
+          enum:
+          - equals
+          type: string
+        value:
+          type: boolean
+      required:
+      - field
+      - op
+      - value
     AutomationSubjects_adAccounts_inner:
       additionalProperties: false
       example:
@@ -234741,6 +234943,8 @@ components:
           - campaign
           - adset
           - ad
+          - keyword
+          - search_term
           type: string
         id:
           type: string
@@ -234768,6 +234972,8 @@ components:
           - campaign
           - adset
           - ad
+          - keyword
+          - search_term
           type: string
         id:
           description: Platform ID.
@@ -235406,6 +235612,8 @@ components:
           - campaign
           - adset
           - ad
+          - keyword
+          - search_term
           type: string
         id:
           type: string
@@ -235546,6 +235754,8 @@ components:
           - campaign
           - adset
           - ad
+          - keyword
+          - search_term
           type: string
         id:
           type: string
@@ -235712,19 +235922,22 @@ components:
           enum:
           - campaign
           - adset
+          - ad
+          - keyword
+          - search_term
           type: string
     AdRuleRun_evaluation_actions_inner:
       example:
         reason: reason
         previousName: previousName
-        previousDailyBudget: 6.027456183070403
+        previousDailyBudget: 1.4658129805029452
         type: pause
-        previousTarget: 2.3021358869347655
+        previousTarget: 7.061401241503109
         newName: newName
-        newBidAmount: 5.637376656633329
-        previousBidAmount: 5.962133916683182
-        newTarget: 7.061401241503109
-        newDailyBudget: 1.4658129805029452
+        newBidAmount: 2.3021358869347655
+        previousBidAmount: 5.637376656633329
+        newTarget: 9.301444243932576
+        newDailyBudget: 5.962133916683182
         targetMetric: cpa
         objectId: objectId
         status: done
@@ -235800,6 +236013,7 @@ components:
       description: "The matched objects with their condition values, and what each\
         \ action did."
       example:
+        matchedTotal: 6
         notification:
           reason: reason
           status: done
@@ -235844,6 +236058,7 @@ components:
             compareTo: previous_period
             value: 0.6027456183070403
             met: true
+          campaignName: campaignName
           group: group
         - readings:
           - actual: 5.962133916683182
@@ -235873,31 +236088,32 @@ components:
             compareTo: previous_period
             value: 0.6027456183070403
             met: true
+          campaignName: campaignName
           group: group
         actions:
         - reason: reason
           previousName: previousName
-          previousDailyBudget: 6.027456183070403
+          previousDailyBudget: 1.4658129805029452
           type: pause
-          previousTarget: 2.3021358869347655
+          previousTarget: 7.061401241503109
           newName: newName
-          newBidAmount: 5.637376656633329
-          previousBidAmount: 5.962133916683182
-          newTarget: 7.061401241503109
-          newDailyBudget: 1.4658129805029452
+          newBidAmount: 2.3021358869347655
+          previousBidAmount: 5.637376656633329
+          newTarget: 9.301444243932576
+          newDailyBudget: 5.962133916683182
           targetMetric: cpa
           objectId: objectId
           status: done
         - reason: reason
           previousName: previousName
-          previousDailyBudget: 6.027456183070403
+          previousDailyBudget: 1.4658129805029452
           type: pause
-          previousTarget: 2.3021358869347655
+          previousTarget: 7.061401241503109
           newName: newName
-          newBidAmount: 5.637376656633329
-          previousBidAmount: 5.962133916683182
-          newTarget: 7.061401241503109
-          newDailyBudget: 1.4658129805029452
+          newBidAmount: 2.3021358869347655
+          previousBidAmount: 5.637376656633329
+          newTarget: 9.301444243932576
+          newDailyBudget: 5.962133916683182
           targetMetric: cpa
           objectId: objectId
           status: done
@@ -235921,9 +236137,15 @@ components:
           nullable: true
           type: string
         matched:
+          description: "The matched objects, at most 200. `matchedTotal` has the full\
+            \ count."
           items:
             $ref: "#/components/schemas/AdRuleObjectEvaluation"
           type: array
+        matchedTotal:
+          description: "How many objects matched, including those past the 200 recorded.\
+            \ Absent on runs recorded before November 2026."
+          type: integer
         actions:
           items:
             $ref: "#/components/schemas/AdRuleRun_evaluation_actions_inner"
