@@ -2068,6 +2068,8 @@ docs/ListAccountSitelinks200Response.md
 docs/ListAccountSitelinks200ResponseSitelinksInner.md
 docs/ListAccountStructuredSnippets200Response.md
 docs/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.md
+docs/ListAdAccountRuleAlerts200Response.md
+docs/ListAdAccountRuleAlerts200ResponseAlertsInner.md
 docs/ListAdAccountUserInvitationApprovals200Response.md
 docs/ListAdAccountUserInvitations200Response.md
 docs/ListAdAccountUsers200Response.md
@@ -5995,6 +5997,8 @@ src/main/java/dev/zernio/model/ListAccountSitelinks200Response.java
 src/main/java/dev/zernio/model/ListAccountSitelinks200ResponseSitelinksInner.java
 src/main/java/dev/zernio/model/ListAccountStructuredSnippets200Response.java
 src/main/java/dev/zernio/model/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.java
+src/main/java/dev/zernio/model/ListAdAccountRuleAlerts200Response.java
+src/main/java/dev/zernio/model/ListAdAccountRuleAlerts200ResponseAlertsInner.java
 src/main/java/dev/zernio/model/ListAdAccountUserInvitationApprovals200Response.java
 src/main/java/dev/zernio/model/ListAdAccountUserInvitations200Response.java
 src/main/java/dev/zernio/model/ListAdAccountUsers200Response.java
@@ -7767,3 +7771,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListAdAccountRuleAlerts200ResponseAlertsInnerTest.java
+src/test/java/dev/zernio/model/ListAdAccountRuleAlerts200ResponseTest.java

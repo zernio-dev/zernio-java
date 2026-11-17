@@ -12,6 +12,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdRuleWithHttpInfo**](AdRulesApi.md#getAdRuleWithHttpInfo) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule |
 | [**getAdRuleHourlyWindows**](AdRulesApi.md#getAdRuleHourlyWindows) | **GET** /v1/ads/rules/hourly-windows | Check whether an ad account has hourly windows |
 | [**getAdRuleHourlyWindowsWithHttpInfo**](AdRulesApi.md#getAdRuleHourlyWindowsWithHttpInfo) | **GET** /v1/ads/rules/hourly-windows | Check whether an ad account has hourly windows |
+| [**listAdAccountRuleAlerts**](AdRulesApi.md#listAdAccountRuleAlerts) | **GET** /v1/ads/rules/alerts | List an ad account&#39;s open alerts |
+| [**listAdAccountRuleAlertsWithHttpInfo**](AdRulesApi.md#listAdAccountRuleAlertsWithHttpInfo) | **GET** /v1/ads/rules/alerts | List an ad account&#39;s open alerts |
 | [**listAdRuleActivity**](AdRulesApi.md#listAdRuleActivity) | **GET** /v1/ads/rules/activity | List every change ad rules made |
 | [**listAdRuleActivityWithHttpInfo**](AdRulesApi.md#listAdRuleActivityWithHttpInfo) | **GET** /v1/ads/rules/activity | List every change ad rules made |
 | [**listAdRuleAlerts**](AdRulesApi.md#listAdRuleAlerts) | **GET** /v1/ads/rules/{ruleId}/alerts | List a rule&#39;s alerts |
@@ -37,7 +39,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create an ad rule
 
-Creates a rule that checks the campaigns, ad sets, ads, keywords or search terms of one ad account on a schedule and acts on each one that meets every condition.  Rules support Meta, Google, TikTok, LinkedIn, Pinterest, X and Reddit ads connections. Keyword and search term rules are Google only. Use &#x60;POST /v1/ads/rules/{ruleId}/preview&#x60; to see what a rule would match before enabling it.  ### Evaluation  Each object is evaluated on its own, over the ad account&#39;s calendar days. Campaigns, ad sets and ads read the metrics Zernio syncs; keywords and search terms are summed from the daily history Zernio keeps of them.  ### Actions  A rule can notify (the &#x60;ad_rule.triggered&#x60; webhook), and take at most one of:  - &#x60;pause&#x60; - &#x60;activate&#x60; - &#x60;adjust_budget&#x60;  A keyword rule can notify and pause; a search term rule only notifies.  ### Cooldown  After acting on an object, the rule leaves that object alone for &#x60;cooldownMinutes&#x60;. A rule that pauses, activates or adjusts budgets needs a cooldown at least as long as its schedule.  ### How &#x60;activate&#x60; works  &#x60;activate&#x60; only reactivates objects a rule paused, never ones you paused yourself, and only once the cooldown has passed since that pause.  If you reactivate and pause such an object yourself between two runs of a rule, Zernio cannot tell your pause from the rule&#39;s, and an &#x60;activate&#x60; rule may reactivate it. 
+Creates a rule that checks the campaigns, ad sets, ads, keywords or search terms of one ad account on a schedule and acts on each one that meets every condition.  Rules support Meta, Google, TikTok, LinkedIn, Pinterest, X and Reddit ads connections. Keyword and search term rules are Google only. Use &#x60;POST /v1/ads/rules/{ruleId}/preview&#x60; to see what a rule would match before enabling it.  ### Evaluation  Each object is evaluated on its own, over the ad account&#39;s calendar days. Campaigns, ad sets and ads read the metrics Zernio syncs; keywords and search terms are summed from the daily history Zernio keeps of them.  ### Actions  A rule can notify (the &#x60;ad_rule.triggered&#x60; webhook), and take at most one of:  - &#x60;pause&#x60; - &#x60;activate&#x60; - &#x60;adjust_budget&#x60; - &#x60;adjust_bid&#x60; - &#x60;adjust_target&#x60; - &#x60;reallocate_budget&#x60; - &#x60;duplicate&#x60; - &#x60;edit_name&#x60;  A keyword rule can notify and pause; a search term rule only notifies.  ### Cooldown  After acting on an object, the rule leaves that object alone for &#x60;cooldownMinutes&#x60;. A rule that changes ads (any action but &#x60;notify&#x60;) needs a cooldown at least as long as its schedule.  ### How &#x60;activate&#x60; works  &#x60;activate&#x60; only reactivates objects a rule paused, never ones you paused yourself (unless &#x60;includeManuallyPaused&#x60; is true), and only once the cooldown has passed since that pause.  A rule on set times (&#x60;schedule.times&#x60;) does not wait for the cooldown: it restarts only what a rule on set times paused, such as a morning restart after a night pause.  If you reactivate and pause such an object yourself between two runs of a rule, Zernio cannot tell your pause from the rule&#39;s, and an &#x60;activate&#x60; rule may reactivate it. 
 
 ### Example
 
@@ -112,7 +114,7 @@ public class Example {
 
 Create an ad rule
 
-Creates a rule that checks the campaigns, ad sets, ads, keywords or search terms of one ad account on a schedule and acts on each one that meets every condition.  Rules support Meta, Google, TikTok, LinkedIn, Pinterest, X and Reddit ads connections. Keyword and search term rules are Google only. Use &#x60;POST /v1/ads/rules/{ruleId}/preview&#x60; to see what a rule would match before enabling it.  ### Evaluation  Each object is evaluated on its own, over the ad account&#39;s calendar days. Campaigns, ad sets and ads read the metrics Zernio syncs; keywords and search terms are summed from the daily history Zernio keeps of them.  ### Actions  A rule can notify (the &#x60;ad_rule.triggered&#x60; webhook), and take at most one of:  - &#x60;pause&#x60; - &#x60;activate&#x60; - &#x60;adjust_budget&#x60;  A keyword rule can notify and pause; a search term rule only notifies.  ### Cooldown  After acting on an object, the rule leaves that object alone for &#x60;cooldownMinutes&#x60;. A rule that pauses, activates or adjusts budgets needs a cooldown at least as long as its schedule.  ### How &#x60;activate&#x60; works  &#x60;activate&#x60; only reactivates objects a rule paused, never ones you paused yourself, and only once the cooldown has passed since that pause.  If you reactivate and pause such an object yourself between two runs of a rule, Zernio cannot tell your pause from the rule&#39;s, and an &#x60;activate&#x60; rule may reactivate it. 
+Creates a rule that checks the campaigns, ad sets, ads, keywords or search terms of one ad account on a schedule and acts on each one that meets every condition.  Rules support Meta, Google, TikTok, LinkedIn, Pinterest, X and Reddit ads connections. Keyword and search term rules are Google only. Use &#x60;POST /v1/ads/rules/{ruleId}/preview&#x60; to see what a rule would match before enabling it.  ### Evaluation  Each object is evaluated on its own, over the ad account&#39;s calendar days. Campaigns, ad sets and ads read the metrics Zernio syncs; keywords and search terms are summed from the daily history Zernio keeps of them.  ### Actions  A rule can notify (the &#x60;ad_rule.triggered&#x60; webhook), and take at most one of:  - &#x60;pause&#x60; - &#x60;activate&#x60; - &#x60;adjust_budget&#x60; - &#x60;adjust_bid&#x60; - &#x60;adjust_target&#x60; - &#x60;reallocate_budget&#x60; - &#x60;duplicate&#x60; - &#x60;edit_name&#x60;  A keyword rule can notify and pause; a search term rule only notifies.  ### Cooldown  After acting on an object, the rule leaves that object alone for &#x60;cooldownMinutes&#x60;. A rule that changes ads (any action but &#x60;notify&#x60;) needs a cooldown at least as long as its schedule.  ### How &#x60;activate&#x60; works  &#x60;activate&#x60; only reactivates objects a rule paused, never ones you paused yourself (unless &#x60;includeManuallyPaused&#x60; is true), and only once the cooldown has passed since that pause.  A rule on set times (&#x60;schedule.times&#x60;) does not wait for the cooldown: it restarts only what a rule on set times paused, such as a morning restart after a night pause.  If you reactivate and pause such an object yourself between two runs of a rule, Zernio cannot tell your pause from the rule&#39;s, and an &#x60;activate&#x60; rule may reactivate it. 
 
 ### Example
 
@@ -643,13 +645,173 @@ ApiResponse<[**GetAdRuleHourlyWindows200Response**](GetAdRuleHourlyWindows200Res
 | **404** | Resource not found |  -  |
 
 
+## listAdAccountRuleAlerts
+
+> ListAdAccountRuleAlerts200Response listAdAccountRuleAlerts(accountId, adAccountId, limit, cursor)
+
+List an ad account&#39;s open alerts
+
+The open alerts of every rule of one ad account, newest first, in one call: each alert names its rule in &#x60;ruleId&#x60;. Only &#x60;open&#x60; alerts are listed. For one rule&#39;s pending and resolved alerts, use &#x60;GET /v1/ads/rules/{ruleId}/alerts&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdRulesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdRulesApi apiInstance = new AdRulesApi(defaultClient);
+        String accountId = "accountId_example"; // String | The connected ads account the rules run on.
+        String adAccountId = "adAccountId_example"; // String | The platform ad account ID.
+        Integer limit = 50; // Integer | 
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
+        try {
+            ListAdAccountRuleAlerts200Response result = apiInstance.listAdAccountRuleAlerts(accountId, adAccountId, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdRulesApi#listAdAccountRuleAlerts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The connected ads account the rules run on. | |
+| **adAccountId** | **String**| The platform ad account ID. | |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+[**ListAdAccountRuleAlerts200Response**](ListAdAccountRuleAlerts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Open alerts, newest first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## listAdAccountRuleAlertsWithHttpInfo
+
+> ApiResponse<ListAdAccountRuleAlerts200Response> listAdAccountRuleAlerts listAdAccountRuleAlertsWithHttpInfo(accountId, adAccountId, limit, cursor)
+
+List an ad account&#39;s open alerts
+
+The open alerts of every rule of one ad account, newest first, in one call: each alert names its rule in &#x60;ruleId&#x60;. Only &#x60;open&#x60; alerts are listed. For one rule&#39;s pending and resolved alerts, use &#x60;GET /v1/ads/rules/{ruleId}/alerts&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdRulesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdRulesApi apiInstance = new AdRulesApi(defaultClient);
+        String accountId = "accountId_example"; // String | The connected ads account the rules run on.
+        String adAccountId = "adAccountId_example"; // String | The platform ad account ID.
+        Integer limit = 50; // Integer | 
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
+        try {
+            ApiResponse<ListAdAccountRuleAlerts200Response> response = apiInstance.listAdAccountRuleAlertsWithHttpInfo(accountId, adAccountId, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdRulesApi#listAdAccountRuleAlerts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The connected ads account the rules run on. | |
+| **adAccountId** | **String**| The platform ad account ID. | |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListAdAccountRuleAlerts200Response**](ListAdAccountRuleAlerts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Open alerts, newest first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
 ## listAdRuleActivity
 
 > ListAdRuleActivity200Response listAdRuleActivity(ruleId, accountId, type, from, to, limit, cursor)
 
 List every change ad rules made
 
-The permanent record of what your rules did: one entry per pause, reactivation or budget change (including skipped and failed attempts), newest first, across all rules of the profiles the key can reach. Entries stay after a rule is renamed or deleted; &#x60;ruleName&#x60; is the rule&#39;s name when it acted. 
+What your rules did over the last 31 days, newest first, across all rules of the profiles the key can reach.  There is one entry per change a rule made or tried: pause, reactivation, budget, bid or target change, copy or name tag. Skipped and failed attempts are included.  Entries stay for those 31 days after a rule is renamed or deleted; &#x60;ruleName&#x60; is the rule&#39;s name when it acted. 
 
 ### Example
 
@@ -734,7 +896,7 @@ public class Example {
 
 List every change ad rules made
 
-The permanent record of what your rules did: one entry per pause, reactivation or budget change (including skipped and failed attempts), newest first, across all rules of the profiles the key can reach. Entries stay after a rule is renamed or deleted; &#x60;ruleName&#x60; is the rule&#39;s name when it acted. 
+What your rules did over the last 31 days, newest first, across all rules of the profiles the key can reach.  There is one entry per change a rule made or tried: pause, reactivation, budget, bid or target change, copy or name tag. Skipped and failed attempts are included.  Entries stay for those 31 days after a rule is renamed or deleted; &#x60;ruleName&#x60; is the rule&#39;s name when it acted. 
 
 ### Example
 
@@ -985,7 +1147,7 @@ ApiResponse<[**ListAdRuleAlerts200Response**](ListAdRuleAlerts200Response.md)>
 
 List an ad rule&#39;s runs
 
-Lists a rule&#39;s scheduled runs, newest first: what each run evaluated, matched and did. Runs that changed something (or tried to) are kept permanently, also after the rule is deleted; runs that changed nothing are dropped after about 31 days. For every change across all rules, use &#x60;GET /v1/ads/rules/activity&#x60;. 
+Lists a rule&#39;s scheduled runs, newest first: what each run evaluated, matched and did. A run that matched nothing or did not happen (&#x60;no_match&#x60;, &#x60;paused&#x60;) is kept 7 days, any other run 31 days. For every change across all rules, use &#x60;GET /v1/ads/rules/activity&#x60;. 
 
 ### Example
 
@@ -1063,7 +1225,7 @@ public class Example {
 
 List an ad rule&#39;s runs
 
-Lists a rule&#39;s scheduled runs, newest first: what each run evaluated, matched and did. Runs that changed something (or tried to) are kept permanently, also after the rule is deleted; runs that changed nothing are dropped after about 31 days. For every change across all rules, use &#x60;GET /v1/ads/rules/activity&#x60;. 
+Lists a rule&#39;s scheduled runs, newest first: what each run evaluated, matched and did. A run that matched nothing or did not happen (&#x60;no_match&#x60;, &#x60;paused&#x60;) is kept 7 days, any other run 31 days. For every change across all rules, use &#x60;GET /v1/ads/rules/activity&#x60;. 
 
 ### Example
 
@@ -1512,7 +1674,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | A keyword or search term rule is still loading its daily history from Google, a few days per run (&#x60;history_loading&#x60;). The message says how many days are in. Try again later. |  -  |
+| **409** | A keyword or search term rule is still loading its daily history from Google (&#x60;history_loading&#x60;). Loading starts when the rule is saved and a 30-day window takes about two minutes. The message says how many days are loaded. Try again shortly. |  -  |
 
 ## previewAdRuleWithHttpInfo
 
@@ -1590,7 +1752,7 @@ ApiResponse<[**AdRuleEvaluation**](AdRuleEvaluation.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | A keyword or search term rule is still loading its daily history from Google, a few days per run (&#x60;history_loading&#x60;). The message says how many days are in. Try again later. |  -  |
+| **409** | A keyword or search term rule is still loading its daily history from Google (&#x60;history_loading&#x60;). Loading starts when the rule is saved and a 30-day window takes about two minutes. The message says how many days are loaded. Try again shortly. |  -  |
 
 
 ## undoAdRuleActivity

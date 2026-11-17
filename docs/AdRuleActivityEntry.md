@@ -15,7 +15,7 @@
 |**accountId** | **String** | The ads connection the rule runs on. |  |
 |**adAccountId** | **String** |  |  |
 |**level** | [**LevelEnum**](#LevelEnum) |  |  |
-|**objectId** | **String** | Platform ID of the campaign or ad set. |  |
+|**objectId** | **String** | Platform ID of the campaign, ad set or ad. A keyword is &#x60;{adGroupId}~{criterionId}&#x60;. |  |
 |**objectName** | **String** | Its name when the rule acted. |  |
 |**type** | [**TypeEnum**](#TypeEnum) |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
@@ -39,6 +39,9 @@
 |---- | -----|
 | CAMPAIGN | &quot;campaign&quot; |
 | ADSET | &quot;adset&quot; |
+| AD | &quot;ad&quot; |
+| KEYWORD | &quot;keyword&quot; |
+| SEARCH_TERM | &quot;search_term&quot; |
 
 
 

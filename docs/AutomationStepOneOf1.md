@@ -2,7 +2,7 @@
 
 # AutomationStepOneOf1
 
-Turns objects back on once their cooldown has passed.
+Turns objects back on once their cooldown has passed. A rule on set `times` does not wait: it restarts only what a rule on set times paused.
 
 ## Properties
 

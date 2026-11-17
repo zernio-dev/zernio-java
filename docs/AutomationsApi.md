@@ -699,7 +699,7 @@ ApiResponse<[**AutomationBacktest**](AutomationBacktest.md)>
 
 Create an automation
 
-Creates an automation. Its shape picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets or ads, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
+Creates an automation. Its shape picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
 
 ### Example
 
@@ -776,7 +776,7 @@ public class Example {
 
 Create an automation
 
-Creates an automation. Its shape picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets or ads, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
+Creates an automation. Its shape picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
 
 ### Example
 
@@ -3860,6 +3860,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ad rules only: your account has no ads access (code &#x60;ads_addon_required&#x60;). Ads are included on usage-based plans. Event and scheduled automations never get this 403: a boost step without ads access is refused with a 400 at its path. |  -  |
 | **404** | Resource not found |  -  |
+| **409** | A keyword or search term rule is still loading its daily history from Google (&#x60;history_loading&#x60;). Loading starts when the rule is saved and a 30-day window takes about two minutes. The message says how many days are loaded. Try again shortly. |  -  |
 
 ## previewAutomationWithHttpInfo
 
@@ -3939,6 +3940,7 @@ ApiResponse<[**AutomationPreview**](AutomationPreview.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ad rules only: your account has no ads access (code &#x60;ads_addon_required&#x60;). Ads are included on usage-based plans. Event and scheduled automations never get this 403: a boost step without ads access is refused with a 400 at its path. |  -  |
 | **404** | Resource not found |  -  |
+| **409** | A keyword or search term rule is still loading its daily history from Google (&#x60;history_loading&#x60;). Loading starts when the rule is saved and a 30-day window takes about two minutes. The message says how many days are loaded. Try again shortly. |  -  |
 
 
 ## previewAutomationDraft
@@ -4015,6 +4017,7 @@ public class Example {
 | **400** | The automation is invalid, or holds something its kind cannot: &#x60;details.problems&#x60; lists each problem with its JSON path. A few ad rule checks (an unsupported platform, step or metric, a cooldown shorter than the schedule, approvers not on the team) answer with &#x60;param&#x60; instead. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ad rules only: your account has no ads access (code &#x60;ads_addon_required&#x60;). Ads are included on usage-based plans. Event and scheduled automations never get this 403: a boost step without ads access is refused with a 400 at its path. |  -  |
+| **409** | A keyword or search term rule is still loading its daily history from Google (&#x60;history_loading&#x60;). Loading starts when the rule is saved and a 30-day window takes about two minutes. The message says how many days are loaded. Try again shortly. |  -  |
 
 ## previewAutomationDraftWithHttpInfo
 
@@ -4093,6 +4096,7 @@ ApiResponse<[**AutomationPreview**](AutomationPreview.md)>
 | **400** | The automation is invalid, or holds something its kind cannot: &#x60;details.problems&#x60; lists each problem with its JSON path. A few ad rule checks (an unsupported platform, step or metric, a cooldown shorter than the schedule, approvers not on the team) answer with &#x60;param&#x60; instead. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ad rules only: your account has no ads access (code &#x60;ads_addon_required&#x60;). Ads are included on usage-based plans. Event and scheduled automations never get this 403: a boost step without ads access is refused with a 400 at its path. |  -  |
+| **409** | A keyword or search term rule is still loading its daily history from Google (&#x60;history_loading&#x60;). Loading starts when the rule is saved and a 30-day window takes about two minutes. The message says how many days are loaded. Try again shortly. |  -  |
 
 
 ## rejectAutomationApproval

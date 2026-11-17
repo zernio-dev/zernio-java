@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Platform ID of the campaign, ad set or ad. A keyword is &#x60;{adGroupId}~{criterionId}&#x60;, a search term &#x60;{adGroupId}~{term}&#x60;. |  |
+|**id** | **String** | Platform ID of the campaign, ad set or ad. A keyword is &#x60;{adGroupId}~{criterionId}&#x60;, a search term &#x60;{campaignId}~{term}&#x60;. |  |
 |**name** | **String** | The object&#39;s name: the keyword text or the search term. |  |
 |**campaignId** | **String** |  |  |
 |**campaignName** | **String** | Absent on runs recorded before November 2026. |  [optional] |

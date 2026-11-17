@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | [**TypeEnum**](#TypeEnum) | Reactivate a campaign, ad set or ad a rule paused, once &#x60;cooldownMinutes&#x60; has passed since the pause. Objects you paused yourself are left alone unless &#x60;includeManuallyPaused&#x60; is true. |  |
+|**type** | [**TypeEnum**](#TypeEnum) | Reactivate a campaign, ad set or ad a rule paused, once &#x60;cooldownMinutes&#x60; has passed since the pause. A rule on set times (&#x60;schedule.times&#x60;) does not wait: it restarts only what a rule on set times paused. Objects you paused yourself are left alone unless &#x60;includeManuallyPaused&#x60; is true. |  |
 |**includeManuallyPaused** | **Boolean** | Also reactivate paused objects that no rule paused, as soon as they match. |  [optional] |
 |**maxChangesPerDay** | **Integer** | At most this many objects changed in any 24 hours, across runs. Matches over the limit are skipped with &#x60;daily_limit_reached&#x60; and tried again later. |  [optional] |
 |**maxChangesPerObject** | **Integer** | At most this many changes to one object by this rule, counted over the last 400 days. An object at the limit is left alone like one in cooldown. |  [optional] |

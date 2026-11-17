@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  |
-|**objectId** | **String** | Platform campaign, ad set or ad ID. |  |
+|**objectId** | **String** | Platform campaign, ad set or ad ID, or the id of the keyword or search term. |  |
 |**state** | [**StateEnum**](#StateEnum) |  |  |
 |**severity** | [**SeverityEnum**](#SeverityEnum) |  |  |
 |**consecutiveMatches** | **Integer** |  |  |
