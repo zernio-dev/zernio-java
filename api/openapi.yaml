@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.634.0
+  version: 1.635.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -131094,7 +131094,7 @@ components:
     AdRuleRun:
       example:
         evaluation:
-          matchedTotal: 6
+          matchedTotal: 1
           notification:
             reason: reason
             status: done
@@ -131171,30 +131171,31 @@ components:
               met: true
             campaignName: campaignName
             group: group
+          unreadObjects: 6
           actions:
           - reason: reason
             previousName: previousName
-            previousDailyBudget: 1.4658129805029452
+            previousDailyBudget: 5.962133916683182
             type: pause
-            previousTarget: 7.061401241503109
+            previousTarget: 9.301444243932576
             newName: newName
-            newBidAmount: 2.3021358869347655
-            previousBidAmount: 5.637376656633329
-            newTarget: 9.301444243932576
-            newDailyBudget: 5.962133916683182
+            newBidAmount: 7.061401241503109
+            previousBidAmount: 2.3021358869347655
+            newTarget: 3.616076749251911
+            newDailyBudget: 5.637376656633329
             targetMetric: cpa
             objectId: objectId
             status: done
           - reason: reason
             previousName: previousName
-            previousDailyBudget: 1.4658129805029452
+            previousDailyBudget: 5.962133916683182
             type: pause
-            previousTarget: 7.061401241503109
+            previousTarget: 9.301444243932576
             newName: newName
-            newBidAmount: 2.3021358869347655
-            previousBidAmount: 5.637376656633329
-            newTarget: 9.301444243932576
-            newDailyBudget: 5.962133916683182
+            newBidAmount: 7.061401241503109
+            previousBidAmount: 2.3021358869347655
+            newTarget: 3.616076749251911
+            newDailyBudget: 5.637376656633329
             targetMetric: cpa
             objectId: objectId
             status: done
@@ -131231,6 +131232,8 @@ components:
           - paused
           type: string
         objectsEvaluated:
+          description: Objects the rule judged. 0 means its campaigns and filters
+            matched nothing that is running.
           type: integer
         actedObjectIds:
           items:
@@ -183155,7 +183158,7 @@ components:
       example:
         runs:
         - evaluation:
-            matchedTotal: 6
+            matchedTotal: 1
             notification:
               reason: reason
               status: done
@@ -183232,30 +183235,31 @@ components:
                 met: true
               campaignName: campaignName
               group: group
+            unreadObjects: 6
             actions:
             - reason: reason
               previousName: previousName
-              previousDailyBudget: 1.4658129805029452
+              previousDailyBudget: 5.962133916683182
               type: pause
-              previousTarget: 7.061401241503109
+              previousTarget: 9.301444243932576
               newName: newName
-              newBidAmount: 2.3021358869347655
-              previousBidAmount: 5.637376656633329
-              newTarget: 9.301444243932576
-              newDailyBudget: 5.962133916683182
+              newBidAmount: 7.061401241503109
+              previousBidAmount: 2.3021358869347655
+              newTarget: 3.616076749251911
+              newDailyBudget: 5.637376656633329
               targetMetric: cpa
               objectId: objectId
               status: done
             - reason: reason
               previousName: previousName
-              previousDailyBudget: 1.4658129805029452
+              previousDailyBudget: 5.962133916683182
               type: pause
-              previousTarget: 7.061401241503109
+              previousTarget: 9.301444243932576
               newName: newName
-              newBidAmount: 2.3021358869347655
-              previousBidAmount: 5.637376656633329
-              newTarget: 9.301444243932576
-              newDailyBudget: 5.962133916683182
+              newBidAmount: 7.061401241503109
+              previousBidAmount: 2.3021358869347655
+              newTarget: 3.616076749251911
+              newDailyBudget: 5.637376656633329
               targetMetric: cpa
               objectId: objectId
               status: done
@@ -183268,7 +183272,7 @@ components:
           - actedObjectIds
           - actedObjectIds
         - evaluation:
-            matchedTotal: 6
+            matchedTotal: 1
             notification:
               reason: reason
               status: done
@@ -183345,30 +183349,31 @@ components:
                 met: true
               campaignName: campaignName
               group: group
+            unreadObjects: 6
             actions:
             - reason: reason
               previousName: previousName
-              previousDailyBudget: 1.4658129805029452
+              previousDailyBudget: 5.962133916683182
               type: pause
-              previousTarget: 7.061401241503109
+              previousTarget: 9.301444243932576
               newName: newName
-              newBidAmount: 2.3021358869347655
-              previousBidAmount: 5.637376656633329
-              newTarget: 9.301444243932576
-              newDailyBudget: 5.962133916683182
+              newBidAmount: 7.061401241503109
+              previousBidAmount: 2.3021358869347655
+              newTarget: 3.616076749251911
+              newDailyBudget: 5.637376656633329
               targetMetric: cpa
               objectId: objectId
               status: done
             - reason: reason
               previousName: previousName
-              previousDailyBudget: 1.4658129805029452
+              previousDailyBudget: 5.962133916683182
               type: pause
-              previousTarget: 7.061401241503109
+              previousTarget: 9.301444243932576
               newName: newName
-              newBidAmount: 2.3021358869347655
-              previousBidAmount: 5.637376656633329
-              newTarget: 9.301444243932576
-              newDailyBudget: 5.962133916683182
+              newBidAmount: 7.061401241503109
+              previousBidAmount: 2.3021358869347655
+              newTarget: 3.616076749251911
+              newDailyBudget: 5.637376656633329
               targetMetric: cpa
               objectId: objectId
               status: done
@@ -235930,14 +235935,14 @@ components:
       example:
         reason: reason
         previousName: previousName
-        previousDailyBudget: 1.4658129805029452
+        previousDailyBudget: 5.962133916683182
         type: pause
-        previousTarget: 7.061401241503109
+        previousTarget: 9.301444243932576
         newName: newName
-        newBidAmount: 2.3021358869347655
-        previousBidAmount: 5.637376656633329
-        newTarget: 9.301444243932576
-        newDailyBudget: 5.962133916683182
+        newBidAmount: 7.061401241503109
+        previousBidAmount: 2.3021358869347655
+        newTarget: 3.616076749251911
+        newDailyBudget: 5.637376656633329
         targetMetric: cpa
         objectId: objectId
         status: done
@@ -236011,9 +236016,10 @@ components:
       - status
     AdRuleRun_evaluation:
       description: "The matched objects with their condition values, and what each\
-        \ action did."
+        \ action did. Null on a run that matched nothing, unless some objects could\
+        \ not be read."
       example:
-        matchedTotal: 6
+        matchedTotal: 1
         notification:
           reason: reason
           status: done
@@ -236090,34 +236096,40 @@ components:
             met: true
           campaignName: campaignName
           group: group
+        unreadObjects: 6
         actions:
         - reason: reason
           previousName: previousName
-          previousDailyBudget: 1.4658129805029452
+          previousDailyBudget: 5.962133916683182
           type: pause
-          previousTarget: 7.061401241503109
+          previousTarget: 9.301444243932576
           newName: newName
-          newBidAmount: 2.3021358869347655
-          previousBidAmount: 5.637376656633329
-          newTarget: 9.301444243932576
-          newDailyBudget: 5.962133916683182
+          newBidAmount: 7.061401241503109
+          previousBidAmount: 2.3021358869347655
+          newTarget: 3.616076749251911
+          newDailyBudget: 5.637376656633329
           targetMetric: cpa
           objectId: objectId
           status: done
         - reason: reason
           previousName: previousName
-          previousDailyBudget: 1.4658129805029452
+          previousDailyBudget: 5.962133916683182
           type: pause
-          previousTarget: 7.061401241503109
+          previousTarget: 9.301444243932576
           newName: newName
-          newBidAmount: 2.3021358869347655
-          previousBidAmount: 5.637376656633329
-          newTarget: 9.301444243932576
-          newDailyBudget: 5.962133916683182
+          newBidAmount: 7.061401241503109
+          previousBidAmount: 2.3021358869347655
+          newTarget: 3.616076749251911
+          newDailyBudget: 5.637376656633329
           targetMetric: cpa
           objectId: objectId
           status: done
       properties:
+        unreadObjects:
+          description: "On a run that matched nothing: how many objects had a condition\
+            \ whose value could not be read, so they could not match. A campaign with\
+            \ under 3 of the 4 previous weeks of data has no `usual` yet."
+          type: integer
         rule:
           $ref: "#/components/schemas/AdRuleRun_evaluation_rule"
         today:
