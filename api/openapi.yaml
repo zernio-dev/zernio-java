@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.647.0
+  version: 1.647.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15447,6 +15447,8 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - hubspot
       x-accepts:
       - application/json
   /v1/connect/salesforce:
@@ -15529,6 +15531,8 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - salesforce
       x-accepts:
       - application/json
   /v1/connect/stripe:
@@ -24240,6 +24244,8 @@ paths:
       tags:
       - Accounts
       x-resource-group: accounts
+      x-platforms:
+      - hubspot
       x-accepts:
       - application/json
     patch:
@@ -24278,6 +24284,8 @@ paths:
       tags:
       - Accounts
       x-resource-group: accounts
+      x-platforms:
+      - hubspot
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -24310,6 +24318,8 @@ paths:
       tags:
       - Accounts
       x-resource-group: accounts
+      x-platforms:
+      - salesforce
       x-accepts:
       - application/json
     patch:
@@ -24349,6 +24359,8 @@ paths:
       tags:
       - Accounts
       x-resource-group: accounts
+      x-platforms:
+      - salesforce
       x-content-type: application/json
       x-accepts:
       - application/json
