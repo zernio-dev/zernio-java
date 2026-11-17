@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.632.0
+  version: 1.633.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -128645,8 +128645,10 @@ components:
           enum:
           - triggered
           - cooldown
+          - daily_limit
           - no_match
           - failed
+          - paused
           type: string
         evaluated:
           description: Objects judged.
@@ -131184,13 +131186,17 @@ components:
 
             - `triggered`: the rule acted on at least one object (`error` is set if the webhook could not be sent afterwards).
             - `cooldown`: objects matched but all were in cooldown.
+            - `daily_limit`: objects matched but the rule had used its `maxChangesPerDay`.
+            - `paused`: the run did not happen: the team used its free automation runs with no payment method on file (see `error`).
             - `no_match`: nothing matched.
             - `failed`: the metrics could not be read, every action failed, or the webhook of a notify-only rule could not be sent (see `error`).
           enum:
           - triggered
           - cooldown
+          - daily_limit
           - no_match
           - failed
+          - paused
           type: string
         objectsEvaluated:
           type: integer

@@ -26,8 +26,10 @@ One check of an ad rule.
 |---- | -----|
 | TRIGGERED | &quot;triggered&quot; |
 | COOLDOWN | &quot;cooldown&quot; |
+| DAILY_LIMIT | &quot;daily_limit&quot; |
 | NO_MATCH | &quot;no_match&quot; |
 | FAILED | &quot;failed&quot; |
+| PAUSED | &quot;paused&quot; |
 
 
 
