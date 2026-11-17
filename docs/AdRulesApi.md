@@ -1512,6 +1512,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
+| **409** | A keyword or search term rule is still loading its daily history from Google, a few days per run (&#x60;history_loading&#x60;). The message says how many days are in. Try again later. |  -  |
 
 ## previewAdRuleWithHttpInfo
 
@@ -1589,6 +1590,7 @@ ApiResponse<[**AdRuleEvaluation**](AdRuleEvaluation.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
+| **409** | A keyword or search term rule is still loading its daily history from Google, a few days per run (&#x60;history_loading&#x60;). The message says how many days are in. Try again later. |  -  |
 
 
 ## undoAdRuleActivity
