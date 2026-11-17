@@ -3715,6 +3715,7 @@ public class Example {
 | **400** | accountId is required or WABA ID not found |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
+| **429** | Meta is rate-limiting this WhatsApp Business Account (#80008), even though Meta itself answers HTTP 400. Retry after the &#x60;Retry-After&#x60; delay. |  * Retry-After - Seconds until card payments are tried again. <br>  |
 
 ## getWhatsAppTemplatesWithHttpInfo
 
@@ -3797,6 +3798,7 @@ ApiResponse<[**GetWhatsAppTemplates200Response**](GetWhatsAppTemplates200Respons
 | **400** | accountId is required or WABA ID not found |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
+| **429** | Meta is rate-limiting this WhatsApp Business Account (#80008), even though Meta itself answers HTTP 400. Retry after the &#x60;Retry-After&#x60; delay. |  * Retry-After - Seconds until card payments are tried again. <br>  |
 
 
 ## getWhatsappBusinessUsername

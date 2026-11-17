@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.630.4
+  version: 1.631.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -35302,6 +35302,22 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: WhatsApp account not found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Meta is rate-limiting this WhatsApp Business Account (#80008),\
+            \ even though Meta itself answers HTTP 400. Retry after the `Retry-After`\
+            \ delay."
+          headers:
+            Retry-After:
+              description: Seconds until Meta accepts template reads for this account
+                again.
+              explode: false
+              schema:
+                type: integer
+              style: simple
       security:
       - bearerAuth: []
       summary: List templates
