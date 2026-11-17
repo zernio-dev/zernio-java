@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.638.0
+  version: 1.638.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -79043,7 +79043,7 @@ paths:
 
         ### Wix
 
-        Wix stores rich content. `bodyHtml` is converted on write (each top-level HTML element must fit 30,000 characters), and images in the body are imported into the site's Media Manager.
+        Wix stores rich content. `bodyHtml` is converted on write (each top-level HTML element must fit 30,000 characters), and images in the body are imported into the site's Media Manager. On Wix, `<figure>` width (px or %) and float, and `<figcaption>`, are kept.
 
         ### Idempotency
 
