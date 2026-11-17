@@ -59,7 +59,7 @@ import dev.zernio.ApiClient;
   InstagramPlatformData.JSON_PROPERTY_COMMENTS_ENABLED,
   InstagramPlatformData.JSON_PROPERTY_LOCATION_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T12:04:07.076650902Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T12:08:42.879420663Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramPlatformData {
   /**
    * Set to &#39;story&#39; to publish as a Story. Default posts become Reels or feed depending on media.

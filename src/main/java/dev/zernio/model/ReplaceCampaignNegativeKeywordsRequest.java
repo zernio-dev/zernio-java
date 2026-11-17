@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ReplaceCampaignNegativeKeywordsRequest.JSON_PROPERTY_PLATFORM,
   ReplaceCampaignNegativeKeywordsRequest.JSON_PROPERTY_KEYWORDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T12:04:07.076650902Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T12:08:42.879420663Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReplaceCampaignNegativeKeywordsRequest {
   /**
    * Optional and NOT authoritative: the resolved campaign&#39;s own platform decides 200 vs 501, never this hint.

@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessLocationDetails200ResponseSpecialHoursSpecialHourPeriodsInner.JSON_PROPERTY_CLOSE_TIME,
   GetGoogleBusinessLocationDetails200ResponseSpecialHoursSpecialHourPeriodsInner.JSON_PROPERTY_CLOSED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T12:04:07.076650902Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T12:08:42.879420663Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessLocationDetails200ResponseSpecialHoursSpecialHourPeriodsInner {
   public static final String JSON_PROPERTY_START_DATE = "startDate";
   @javax.annotation.Nullable

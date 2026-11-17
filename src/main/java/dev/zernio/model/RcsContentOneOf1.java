@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   RcsContentOneOf1.JSON_PROPERTY_MEDIA,
   RcsContentOneOf1.JSON_PROPERTY_SUGGESTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T12:04:07.076650902Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T12:08:42.879420663Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RcsContentOneOf1 {
   /**
    * Gets or Sets type

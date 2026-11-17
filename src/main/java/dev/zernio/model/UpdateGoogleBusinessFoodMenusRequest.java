@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessFoodMenusRequest.JSON_PROPERTY_MENUS,
   UpdateGoogleBusinessFoodMenusRequest.JSON_PROPERTY_UPDATE_MASK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T12:04:07.076650902Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T12:08:42.879420663Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessFoodMenusRequest {
   public static final String JSON_PROPERTY_MENUS = "menus";
   @javax.annotation.Nonnull

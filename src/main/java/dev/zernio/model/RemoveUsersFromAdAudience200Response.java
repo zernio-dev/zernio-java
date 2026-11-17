@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   RemoveUsersFromAdAudience200Response.JSON_PROPERTY_NUM_INVALID,
   RemoveUsersFromAdAudience200Response.JSON_PROPERTY_INVALID_ENTRY_SAMPLES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T12:04:07.076650902Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T12:08:42.879420663Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RemoveUsersFromAdAudience200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
