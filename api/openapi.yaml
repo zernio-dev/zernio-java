@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.638.1
+  version: 1.639.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -19784,12 +19784,32 @@ paths:
         schema:
           type: string
         style: form
-      - description: The temporary access token from the headless redirect
+      - description: The temporary access token from the headless redirect. Required
+          unless sent in the X-Temp-Token header.
         explode: true
         in: query
         name: tempToken
-        required: true
+        required: false
         schema:
+          type: string
+        style: form
+      - description: "The OAuth user token, in place of the tempToken query parameter.\
+          \ Prefer it: a query string is written to request logs along the way."
+        explode: false
+        in: header
+        name: X-Temp-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: "Set by the Zernio-hosted picker, whose user token stays in an\
+          \ httpOnly cookie. Integrators send tempToken instead."
+        explode: true
+        in: query
+        name: connectFlow
+        required: false
+        schema:
+          pattern: "^[a-f0-9]{32}$"
           type: string
         style: form
       - description: Alternative auth for API users' end customers (used when the
@@ -19823,7 +19843,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: Missing profileId or tempToken
+          description: "Missing profileId, or none of tempToken, the X-Temp-Token\
+            \ header or connectFlow"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "500":
@@ -19850,6 +19871,15 @@ paths:
         explode: false
         in: header
         name: X-Connect-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: "The OAuth user token, in place of the tempToken query parameter.\
+          \ Prefer it: a query string is written to request logs along the way."
+        explode: false
+        in: header
+        name: X-Temp-Token
         required: false
         schema:
           type: string
@@ -19886,8 +19916,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: "Missing required fields (profileId, phoneNumberId, wabaId,\
-            \ or tempToken)"
+          description: "Missing required fields (profileId, phoneNumberId, wabaId),\
+            \ or none of tempToken, the X-Temp-Token header or connectFlow"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -148987,7 +149017,13 @@ components:
           description: The WABA ID containing the selected phone
           type: string
         tempToken:
-          description: The temporary access token from the headless redirect
+          description: The temporary access token from the headless redirect. Required
+            unless sent in the X-Temp-Token header.
+          type: string
+        connectFlow:
+          description: "Set by the Zernio-hosted picker, whose user token stays in\
+            \ an httpOnly cookie. Integrators send tempToken instead."
+          pattern: "^[a-f0-9]{32}$"
           type: string
         userProfile:
           description: Optional user profile data (passthrough)
@@ -148998,7 +149034,6 @@ components:
       required:
       - phoneNumberId
       - profileId
-      - tempToken
       - wabaId
     completeWhatsAppPhoneSelection_200_response_account:
       example:

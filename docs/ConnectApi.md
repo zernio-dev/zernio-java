@@ -815,7 +815,7 @@ ApiResponse<[**CompleteTelegramConnect200Response**](CompleteTelegramConnect200R
 
 ## completeWhatsAppPhoneSelection
 
-> CompleteWhatsAppPhoneSelection200Response completeWhatsAppPhoneSelection(completeWhatsAppPhoneSelectionRequest, xConnectToken)
+> CompleteWhatsAppPhoneSelection200Response completeWhatsAppPhoneSelection(completeWhatsAppPhoneSelectionRequest, xConnectToken, xTempToken)
 
 Complete number selection
 
@@ -844,8 +844,9 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         CompleteWhatsAppPhoneSelectionRequest completeWhatsAppPhoneSelectionRequest = new CompleteWhatsAppPhoneSelectionRequest(); // CompleteWhatsAppPhoneSelectionRequest | 
         String xConnectToken = "xConnectToken_example"; // String | Alternative auth for API users' end customers
+        String xTempToken = "xTempToken_example"; // String | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way.
         try {
-            CompleteWhatsAppPhoneSelection200Response result = apiInstance.completeWhatsAppPhoneSelection(completeWhatsAppPhoneSelectionRequest, xConnectToken);
+            CompleteWhatsAppPhoneSelection200Response result = apiInstance.completeWhatsAppPhoneSelection(completeWhatsAppPhoneSelectionRequest, xConnectToken, xTempToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#completeWhatsAppPhoneSelection");
@@ -865,6 +866,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **completeWhatsAppPhoneSelectionRequest** | [**CompleteWhatsAppPhoneSelectionRequest**](CompleteWhatsAppPhoneSelectionRequest.md)|  | |
 | **xConnectToken** | **String**| Alternative auth for API users&#39; end customers | [optional] |
+| **xTempToken** | **String**| The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional] |
 
 ### Return type
 
@@ -884,7 +886,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Phone number connected successfully |  -  |
-| **400** | Missing required fields (profileId, phoneNumberId, wabaId, or tempToken) |  -  |
+| **400** | Missing required fields (profileId, phoneNumberId, wabaId), or none of tempToken, the X-Temp-Token header or connectFlow |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Profile limit exceeded for the user&#39;s plan (PROFILE_LIMIT_EXCEEDED) |  -  |
 | **404** | Selected phone number not found in the specified WABA |  -  |
@@ -893,7 +895,7 @@ public class Example {
 
 ## completeWhatsAppPhoneSelectionWithHttpInfo
 
-> ApiResponse<CompleteWhatsAppPhoneSelection200Response> completeWhatsAppPhoneSelection completeWhatsAppPhoneSelectionWithHttpInfo(completeWhatsAppPhoneSelectionRequest, xConnectToken)
+> ApiResponse<CompleteWhatsAppPhoneSelection200Response> completeWhatsAppPhoneSelection completeWhatsAppPhoneSelectionWithHttpInfo(completeWhatsAppPhoneSelectionRequest, xConnectToken, xTempToken)
 
 Complete number selection
 
@@ -923,8 +925,9 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         CompleteWhatsAppPhoneSelectionRequest completeWhatsAppPhoneSelectionRequest = new CompleteWhatsAppPhoneSelectionRequest(); // CompleteWhatsAppPhoneSelectionRequest | 
         String xConnectToken = "xConnectToken_example"; // String | Alternative auth for API users' end customers
+        String xTempToken = "xTempToken_example"; // String | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way.
         try {
-            ApiResponse<CompleteWhatsAppPhoneSelection200Response> response = apiInstance.completeWhatsAppPhoneSelectionWithHttpInfo(completeWhatsAppPhoneSelectionRequest, xConnectToken);
+            ApiResponse<CompleteWhatsAppPhoneSelection200Response> response = apiInstance.completeWhatsAppPhoneSelectionWithHttpInfo(completeWhatsAppPhoneSelectionRequest, xConnectToken, xTempToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -946,6 +949,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **completeWhatsAppPhoneSelectionRequest** | [**CompleteWhatsAppPhoneSelectionRequest**](CompleteWhatsAppPhoneSelectionRequest.md)|  | |
 | **xConnectToken** | **String**| Alternative auth for API users&#39; end customers | [optional] |
+| **xTempToken** | **String**| The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional] |
 
 ### Return type
 
@@ -965,7 +969,7 @@ ApiResponse<[**CompleteWhatsAppPhoneSelection200Response**](CompleteWhatsAppPhon
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Phone number connected successfully |  -  |
-| **400** | Missing required fields (profileId, phoneNumberId, wabaId, or tempToken) |  -  |
+| **400** | Missing required fields (profileId, phoneNumberId, wabaId), or none of tempToken, the X-Temp-Token header or connectFlow |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Profile limit exceeded for the user&#39;s plan (PROFILE_LIMIT_EXCEEDED) |  -  |
 | **404** | Selected phone number not found in the specified WABA |  -  |
@@ -11229,7 +11233,7 @@ ApiResponse<[**ListSnapchatProfiles200Response**](ListSnapchatProfiles200Respons
 
 ## listWhatsAppPhoneNumbers
 
-> ListWhatsAppPhoneNumbers200Response listWhatsAppPhoneNumbers(profileId, tempToken, xConnectToken)
+> ListWhatsAppPhoneNumbers200Response listWhatsAppPhoneNumbers(profileId, tempToken, xTempToken, connectFlow, xConnectToken)
 
 List numbers for selection
 
@@ -11257,10 +11261,12 @@ public class Example {
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | The Zernio profile ID from the headless redirect
-        String tempToken = "tempToken_example"; // String | The temporary access token from the headless redirect
+        String tempToken = "tempToken_example"; // String | The temporary access token from the headless redirect. Required unless sent in the X-Temp-Token header.
+        String xTempToken = "xTempToken_example"; // String | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way.
+        String connectFlow = "connectFlow_example"; // String | Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead.
         String xConnectToken = "xConnectToken_example"; // String | Alternative auth for API users' end customers (used when the bearer token is scoped to a different user)
         try {
-            ListWhatsAppPhoneNumbers200Response result = apiInstance.listWhatsAppPhoneNumbers(profileId, tempToken, xConnectToken);
+            ListWhatsAppPhoneNumbers200Response result = apiInstance.listWhatsAppPhoneNumbers(profileId, tempToken, xTempToken, connectFlow, xConnectToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#listWhatsAppPhoneNumbers");
@@ -11279,7 +11285,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| The Zernio profile ID from the headless redirect | |
-| **tempToken** | **String**| The temporary access token from the headless redirect | |
+| **tempToken** | **String**| The temporary access token from the headless redirect. Required unless sent in the X-Temp-Token header. | [optional] |
+| **xTempToken** | **String**| The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional] |
+| **connectFlow** | **String**| Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead. | [optional] |
 | **xConnectToken** | **String**| Alternative auth for API users&#39; end customers (used when the bearer token is scoped to a different user) | [optional] |
 
 ### Return type
@@ -11300,13 +11308,13 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Phone numbers fetched successfully |  -  |
-| **400** | Missing profileId or tempToken |  -  |
+| **400** | Missing profileId, or none of tempToken, the X-Temp-Token header or connectFlow |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Failed to fetch phone numbers (Meta API error, expired token, or insufficient permissions) |  -  |
 
 ## listWhatsAppPhoneNumbersWithHttpInfo
 
-> ApiResponse<ListWhatsAppPhoneNumbers200Response> listWhatsAppPhoneNumbers listWhatsAppPhoneNumbersWithHttpInfo(profileId, tempToken, xConnectToken)
+> ApiResponse<ListWhatsAppPhoneNumbers200Response> listWhatsAppPhoneNumbers listWhatsAppPhoneNumbersWithHttpInfo(profileId, tempToken, xTempToken, connectFlow, xConnectToken)
 
 List numbers for selection
 
@@ -11335,10 +11343,12 @@ public class Example {
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | The Zernio profile ID from the headless redirect
-        String tempToken = "tempToken_example"; // String | The temporary access token from the headless redirect
+        String tempToken = "tempToken_example"; // String | The temporary access token from the headless redirect. Required unless sent in the X-Temp-Token header.
+        String xTempToken = "xTempToken_example"; // String | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way.
+        String connectFlow = "connectFlow_example"; // String | Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead.
         String xConnectToken = "xConnectToken_example"; // String | Alternative auth for API users' end customers (used when the bearer token is scoped to a different user)
         try {
-            ApiResponse<ListWhatsAppPhoneNumbers200Response> response = apiInstance.listWhatsAppPhoneNumbersWithHttpInfo(profileId, tempToken, xConnectToken);
+            ApiResponse<ListWhatsAppPhoneNumbers200Response> response = apiInstance.listWhatsAppPhoneNumbersWithHttpInfo(profileId, tempToken, xTempToken, connectFlow, xConnectToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -11359,7 +11369,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| The Zernio profile ID from the headless redirect | |
-| **tempToken** | **String**| The temporary access token from the headless redirect | |
+| **tempToken** | **String**| The temporary access token from the headless redirect. Required unless sent in the X-Temp-Token header. | [optional] |
+| **xTempToken** | **String**| The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional] |
+| **connectFlow** | **String**| Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead. | [optional] |
 | **xConnectToken** | **String**| Alternative auth for API users&#39; end customers (used when the bearer token is scoped to a different user) | [optional] |
 
 ### Return type
@@ -11380,7 +11392,7 @@ ApiResponse<[**ListWhatsAppPhoneNumbers200Response**](ListWhatsAppPhoneNumbers20
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Phone numbers fetched successfully |  -  |
-| **400** | Missing profileId or tempToken |  -  |
+| **400** | Missing profileId, or none of tempToken, the X-Temp-Token header or connectFlow |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Failed to fetch phone numbers (Meta API error, expired token, or insufficient permissions) |  -  |
 
