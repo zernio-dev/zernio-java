@@ -648,6 +648,8 @@ docs/ConnectAds200Response.md
 docs/ConnectAds200ResponseOneOf.md
 docs/ConnectAds200ResponseOneOf1.md
 docs/ConnectApi.md
+docs/ConnectAppLovinAdsCredentials200Response.md
+docs/ConnectAppLovinAdsCredentialsRequest.md
 docs/ConnectBlueskyCredentials200Response.md
 docs/ConnectBlueskyCredentialsRequest.md
 docs/ConnectDiscordChannelRequest.md
@@ -4610,6 +4612,8 @@ src/main/java/dev/zernio/model/ConfirmBrandedCallingAuthorizerEmailRequest.java
 src/main/java/dev/zernio/model/ConnectAds200Response.java
 src/main/java/dev/zernio/model/ConnectAds200ResponseOneOf.java
 src/main/java/dev/zernio/model/ConnectAds200ResponseOneOf1.java
+src/main/java/dev/zernio/model/ConnectAppLovinAdsCredentials200Response.java
+src/main/java/dev/zernio/model/ConnectAppLovinAdsCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectBlueskyCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectBlueskyCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectDiscordChannelRequest.java
@@ -7785,3 +7789,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ConnectAppLovinAdsCredentials200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectAppLovinAdsCredentialsRequestTest.java

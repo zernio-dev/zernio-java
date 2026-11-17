@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.648.0
+- API version: 1.649.0
 
-- Build date: 2026-11-17T18:30:45.882229624Z[Etc/UTC]
+- Build date: 2026-11-17T22:57:11.379684425Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.648.0</version>
+  <version>1.649.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.648.0"
+compile "dev.zernio:zernio-sdk:1.649.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.648.0.jar`
+- `target/zernio-sdk-1.649.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1229,6 +1229,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**configureTikTokAdsBrandIdentityWithHttpInfo**](docs/ConnectApi.md#configureTikTokAdsBrandIdentityWithHttpInfo) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity
 *ConnectApi* | [**connectAds**](docs/ConnectApi.md#connectAds) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
 *ConnectApi* | [**connectAdsWithHttpInfo**](docs/ConnectApi.md#connectAdsWithHttpInfo) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
+*ConnectApi* | [**connectAppLovinAdsCredentials**](docs/ConnectApi.md#connectAppLovinAdsCredentials) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin Axon account
+*ConnectApi* | [**connectAppLovinAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectAppLovinAdsCredentialsWithHttpInfo) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin Axon account
 *ConnectApi* | [**connectBlueskyCredentials**](docs/ConnectApi.md#connectBlueskyCredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**connectBlueskyCredentialsWithHttpInfo**](docs/ConnectApi.md#connectBlueskyCredentialsWithHttpInfo) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**connectDiscordChannel**](docs/ConnectApi.md#connectDiscordChannel) | **POST** /v1/connect/discord | Connect a Discord channel
@@ -3334,6 +3336,8 @@ Class | Method | HTTP request | Description
  - [ConnectAds200Response](docs/ConnectAds200Response.md)
  - [ConnectAds200ResponseOneOf](docs/ConnectAds200ResponseOneOf.md)
  - [ConnectAds200ResponseOneOf1](docs/ConnectAds200ResponseOneOf1.md)
+ - [ConnectAppLovinAdsCredentials200Response](docs/ConnectAppLovinAdsCredentials200Response.md)
+ - [ConnectAppLovinAdsCredentialsRequest](docs/ConnectAppLovinAdsCredentialsRequest.md)
  - [ConnectBlueskyCredentials200Response](docs/ConnectBlueskyCredentials200Response.md)
  - [ConnectBlueskyCredentialsRequest](docs/ConnectBlueskyCredentialsRequest.md)
  - [ConnectDiscordChannelRequest](docs/ConnectDiscordChannelRequest.md)

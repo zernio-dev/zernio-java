@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.648.0
+  version: 1.649.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -11137,6 +11137,19 @@ paths:
       tags:
       - Posts
       x-resource-group: publishing
+      x-platforms:
+      - facebook
+      - youtube
+      - linkedin
+      - twitter
+      - threads
+      - googlebusiness
+      - pinterest
+      - reddit
+      - telegram
+      - bluesky
+      - discord
+      - slack
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -11207,6 +11220,8 @@ paths:
       tags:
       - Posts
       x-resource-group: publishing
+      x-platforms:
+      - facebook
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -11277,6 +11292,8 @@ paths:
       tags:
       - Posts
       x-resource-group: publishing
+      x-platforms:
+      - facebook
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -11414,6 +11431,17 @@ paths:
       tags:
       - Posts
       x-resource-group: publishing
+      x-platforms:
+      - twitter
+      - discord
+      - facebook
+      - reddit
+      - linkedin
+      - telegram
+      - pinterest
+      - googlebusiness
+      - youtube
+      - slack
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -11545,6 +11573,9 @@ paths:
       tags:
       - Posts
       x-resource-group: publishing
+      x-platforms:
+      - youtube
+      - facebook
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -14427,6 +14458,25 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - facebook
+      - instagram
+      - linkedin
+      - twitter
+      - tiktok
+      - youtube
+      - threads
+      - reddit
+      - pinterest
+      - bluesky
+      - googlebusiness
+      - telegram
+      - snapchat
+      - discord
+      - slack
+      - whatsapp
+      - google
+      - microsoft
       x-accepts:
       - application/json
     post:
@@ -14493,6 +14543,17 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - instagram
+      - twitter
+      - threads
+      - linkedin
+      - youtube
+      - tiktok
+      - reddit
+      - pinterest
+      - google
+      - microsoft
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -15927,6 +15988,10 @@ paths:
       summary: Get a hosted link to connect any mailbox
       tags:
       - Connect
+      x-platforms:
+      - google
+      - microsoft
+      - imap
       x-accepts:
       - application/json
   /v1/connect/wordpress/token:
@@ -19708,6 +19773,55 @@ paths:
         "403":
           description: Ads add-on required.
       summary: Connect an OpenAI Ads account
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/applovin-ads/credentials:
+    post:
+      description: |
+        Connect AppLovin Axon with the Conversion API key and Event Key from the Keys page of Axon Ads Manager.
+
+        Zernio checks both keys with Axon before saving them. The account then receives the conversion events you forward to it (`POST /v1/events`, forwarding rules), and its Event Key works as a site tag on tracking sites.
+
+        Requires the Ads add-on.
+      operationId: connectAppLovinAdsCredentials
+      requestBody:
+        content:
+          application/json:
+            example:
+              apiKey: axon-conversion-api-key
+              eventKey: abc123def456
+              profileId: 6507a1b2c3d4e5f6a7b8c9d0
+            schema:
+              $ref: "#/components/schemas/connectAppLovinAdsCredentials_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                accountId: 6507a1b2c3d4e5f6a7b8c9d0
+                eventKey: abc123def456
+                accountName: Axon abc123
+              schema:
+                $ref: "#/components/schemas/connectAppLovinAdsCredentials_200_response"
+          description: AppLovin Axon connected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: "Unauthorized, or Axon did not accept the Conversion API key\
+            \ and Event Key (code invalid_credentials)."
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: Ads add-on required.
+        "502":
+          description: "Axon could not confirm the keys right now, so nothing was\
+            \ saved (code platform_api_error). Retry in a minute."
+      summary: Connect an AppLovin Axon account
       tags:
       - Connect
       x-resource-group: accounts
@@ -30194,6 +30308,9 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - google
+      - microsoft
       x-accepts:
       - application/json
   /v1/org-connections/{orgConnectionId}:
@@ -30228,6 +30345,9 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - google
+      - microsoft
       x-accepts:
       - application/json
     get:
@@ -30258,6 +30378,9 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - google
+      - microsoft
       x-accepts:
       - application/json
     parameters:
@@ -30307,6 +30430,9 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - google
+      - microsoft
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -30353,6 +30479,9 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - google
+      - microsoft
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -30397,6 +30526,9 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - google
+      - microsoft
       x-accepts:
       - application/json
   /v1/org-connections/{orgConnectionId}/mailboxes:
@@ -30441,6 +30573,9 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - google
+      - microsoft
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -30823,6 +30958,17 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - sms
+      - slack
+      - imessage
+      - google
+      - microsoft
+      - imap
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -31574,6 +31720,12 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - imessage
       x-accepts:
       - application/json
     patch:
@@ -31626,6 +31778,9 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - telegram
+      - imessage
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -31685,6 +31840,12 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - facebook
+      - instagram
+      - telegram
+      - whatsapp
+      - imessage
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -31763,6 +31924,10 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - whatsapp
+      - facebook
+      - instagram
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -31834,6 +31999,9 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - facebook
+      - instagram
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -31885,6 +32053,8 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - facebook
       x-accepts:
       - application/json
     post:
@@ -31934,6 +32104,8 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - facebook
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -31997,6 +32169,8 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - facebook
       x-accepts:
       - application/json
   /v1/inbox/conversations/{conversationId}/labels:
@@ -32055,6 +32229,8 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - facebook
       x-accepts:
       - application/json
     post:
@@ -32114,6 +32290,8 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - facebook
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -32183,6 +32361,8 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - facebook
       x-accepts:
       - application/json
   /v1/inbox/conversations/{conversationId}/read:
@@ -32309,6 +32489,13 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - telegram
+      - whatsapp
+      - instagram
+      - facebook
+      - slack
+      - imessage
       x-accepts:
       - application/json
     post:
@@ -32374,6 +32561,13 @@ paths:
       tags:
       - Messages
       x-resource-group: messages
+      x-platforms:
+      - telegram
+      - whatsapp
+      - instagram
+      - facebook
+      - slack
+      - imessage
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -33776,6 +33970,8 @@ paths:
       tags:
       - Comments
       x-resource-group: engagement
+      x-platforms:
+      - reddit
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -33848,6 +34044,8 @@ paths:
       tags:
       - Comments
       x-resource-group: engagement
+      x-platforms:
+      - youtube
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -33903,6 +34101,12 @@ paths:
       tags:
       - Comments
       x-resource-group: engagement
+      x-platforms:
+      - facebook
+      - instagram
+      - threads
+      - twitter
+      - tiktok
       x-accepts:
       - application/json
     post:
@@ -33960,6 +34164,12 @@ paths:
       tags:
       - Comments
       x-resource-group: engagement
+      x-platforms:
+      - facebook
+      - instagram
+      - threads
+      - twitter
+      - tiktok
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -34010,6 +34220,8 @@ paths:
       tags:
       - Comments
       x-resource-group: engagement
+      x-platforms:
+      - tiktok
       x-accepts:
       - application/json
     post:
@@ -34057,6 +34269,8 @@ paths:
       tags:
       - Comments
       x-resource-group: engagement
+      x-platforms:
+      - tiktok
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -34118,6 +34332,13 @@ paths:
       tags:
       - Comments
       x-resource-group: engagement
+      x-platforms:
+      - facebook
+      - twitter
+      - bluesky
+      - reddit
+      - linkedin
+      - instagram
       x-accepts:
       - application/json
     post:
@@ -34192,6 +34413,13 @@ paths:
       tags:
       - Comments
       x-resource-group: engagement
+      x-platforms:
+      - facebook
+      - twitter
+      - bluesky
+      - reddit
+      - linkedin
+      - instagram
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -34253,6 +34481,13 @@ paths:
       tags:
       - Comments
       x-resource-group: messages
+      x-platforms:
+      - linkedin
+      - twitter
+      - facebook
+      - youtube
+      - bluesky
+      - instagram
       x-accepts:
       - application/json
     post:
@@ -34332,6 +34567,13 @@ paths:
       tags:
       - Comments
       x-resource-group: messages
+      x-platforms:
+      - linkedin
+      - twitter
+      - facebook
+      - youtube
+      - bluesky
+      - instagram
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -34571,6 +34813,9 @@ paths:
       tags:
       - Comments
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -35183,6 +35428,8 @@ paths:
       tags:
       - Mentions
       x-resource-group: engagement
+      x-platforms:
+      - instagram
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -35358,6 +35605,8 @@ paths:
       tags:
       - Reviews
       x-resource-group: engagement
+      x-platforms:
+      - googlebusiness
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -46848,6 +47097,18 @@ paths:
       tags:
       - Broadcasts
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - sms
+      - slack
+      - imessage
+      - line
       x-accepts:
       - application/json
     post:
@@ -46875,6 +47136,18 @@ paths:
       tags:
       - Broadcasts
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - sms
+      - slack
+      - imessage
+      - line
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -46901,6 +47174,18 @@ paths:
       tags:
       - Broadcasts
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - sms
+      - slack
+      - imessage
+      - line
       x-accepts:
       - application/json
     get:
@@ -46929,6 +47214,18 @@ paths:
       tags:
       - Broadcasts
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - sms
+      - slack
+      - imessage
+      - line
       x-accepts:
       - application/json
     patch:
@@ -46963,6 +47260,18 @@ paths:
       tags:
       - Broadcasts
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - sms
+      - slack
+      - imessage
+      - line
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -46995,6 +47304,18 @@ paths:
       tags:
       - Broadcasts
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - sms
+      - slack
+      - imessage
+      - line
       x-accepts:
       - application/json
   /v1/broadcasts/{broadcastId}/schedule:
@@ -47033,6 +47354,18 @@ paths:
       tags:
       - Broadcasts
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - sms
+      - slack
+      - imessage
+      - line
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -47066,6 +47399,18 @@ paths:
       tags:
       - Broadcasts
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - sms
+      - slack
+      - imessage
+      - line
       x-accepts:
       - application/json
   /v1/broadcasts/{broadcastId}/recipients:
@@ -47127,6 +47472,18 @@ paths:
       tags:
       - Broadcasts
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - sms
+      - slack
+      - imessage
+      - line
       x-accepts:
       - application/json
     post:
@@ -47164,6 +47521,18 @@ paths:
       tags:
       - Broadcasts
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - sms
+      - slack
+      - imessage
+      - line
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -48088,6 +48457,18 @@ paths:
       tags:
       - Sequences
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - slack
+      - imessage
+      - line
+      - wechat
       x-accepts:
       - application/json
     post:
@@ -48115,6 +48496,18 @@ paths:
       tags:
       - Sequences
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - slack
+      - imessage
+      - line
+      - wechat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -48143,6 +48536,18 @@ paths:
       tags:
       - Sequences
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - slack
+      - imessage
+      - line
+      - wechat
       x-accepts:
       - application/json
     get:
@@ -48173,6 +48578,18 @@ paths:
       tags:
       - Sequences
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - slack
+      - imessage
+      - line
+      - wechat
       x-accepts:
       - application/json
     patch:
@@ -48209,6 +48626,18 @@ paths:
       tags:
       - Sequences
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - slack
+      - imessage
+      - line
+      - wechat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -48242,6 +48671,18 @@ paths:
       tags:
       - Sequences
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - slack
+      - imessage
+      - line
+      - wechat
       x-accepts:
       - application/json
   /v1/sequences/{sequenceId}/pause:
@@ -48274,6 +48715,18 @@ paths:
       tags:
       - Sequences
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - slack
+      - imessage
+      - line
+      - wechat
       x-accepts:
       - application/json
   /v1/sequences/{sequenceId}/enroll:
@@ -48316,6 +48769,18 @@ paths:
       tags:
       - Sequences
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - slack
+      - imessage
+      - line
+      - wechat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -48352,6 +48817,18 @@ paths:
       tags:
       - Sequences
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - slack
+      - imessage
+      - line
+      - wechat
       x-accepts:
       - application/json
   /v1/sequences/{sequenceId}/enrollments:
@@ -48412,6 +48889,18 @@ paths:
       tags:
       - Sequences
       x-resource-group: messages
+      x-platforms:
+      - instagram
+      - facebook
+      - telegram
+      - twitter
+      - bluesky
+      - reddit
+      - whatsapp
+      - slack
+      - imessage
+      - line
+      - wechat
       x-accepts:
       - application/json
   /v1/comment-automations:
@@ -71664,6 +72153,17 @@ paths:
       tags:
       - Conversions
       x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - reddit
+      - openai
+      - applovinads
+      - googleanalytics
+      - stripe
       x-accepts:
       - application/json
     post:
@@ -71742,6 +72242,9 @@ paths:
       - linkedin
       - pinterest
       - reddit
+      - openai
+      - applovinads
+      - googleanalytics
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -149223,6 +149726,48 @@ components:
         accountId:
           type: string
         adAccountName:
+          type: string
+        redirectUrl:
+          type: string
+    connectAppLovinAdsCredentials_request:
+      properties:
+        apiKey:
+          description: Conversion API key from the Keys page of Axon Ads Manager.
+          type: string
+        eventKey:
+          description: "Event Key from the Keys page of Axon Ads Manager: 8 to 128\
+            \ letters, digits, dots, dashes or underscores."
+          type: string
+        name:
+          description: Optional display name for the account.
+          maxLength: 100
+          type: string
+        profileId:
+          description: Your Zernio profile ID
+          type: string
+        state:
+          description: Optional state passthrough for the connect flow.
+          type: string
+        redirect_url:
+          description: "Optional URL to redirect to after a successful connection,\
+            \ echoed back as redirectUrl."
+          type: string
+      required:
+      - apiKey
+      - eventKey
+      - profileId
+    connectAppLovinAdsCredentials_200_response:
+      example:
+        accountId: accountId
+        redirectUrl: redirectUrl
+        accountName: accountName
+        eventKey: eventKey
+      properties:
+        accountId:
+          type: string
+        eventKey:
+          type: string
+        accountName:
           type: string
         redirectUrl:
           type: string
