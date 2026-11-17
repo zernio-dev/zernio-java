@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetAutomationCatalog200ResponseSubjectsInnerMetricsInner.JSON_PROPERTY_METRIC,
   GetAutomationCatalog200ResponseSubjectsInnerMetricsInner.JSON_PROPERTY_PLATFORMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:10:31.356159915Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAutomationCatalog200ResponseSubjectsInnerMetricsInner {
   public static final String JSON_PROPERTY_METRIC = "metric";
   @javax.annotation.Nullable

@@ -55,7 +55,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:10:31.356159915Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = CreateTrackingSiteRequest.CreateTrackingSiteRequestDeserializer.class)
 @JsonSerialize(using = CreateTrackingSiteRequest.CreateTrackingSiteRequestSerializer.class)
 public class CreateTrackingSiteRequest extends AbstractOpenApiSchema {

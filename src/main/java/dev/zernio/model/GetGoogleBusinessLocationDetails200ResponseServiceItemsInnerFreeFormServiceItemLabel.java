@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerFreeFormServiceItemLabel.JSON_PROPERTY_DISPLAY_NAME,
   GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerFreeFormServiceItemLabel.JSON_PROPERTY_LANGUAGE_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:10:31.356159915Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerFreeFormServiceItemLabel {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nullable
