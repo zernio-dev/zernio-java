@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.640.0
+  version: 1.641.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -88872,6 +88872,7 @@ components:
         hasPhone: true
         eventName: eventName
         currency: currency
+        pairedEventId: pairedEventId
         value: 0.8008281904610115
         destinationsSent: 6
       properties:
@@ -88924,6 +88925,13 @@ components:
           type: boolean
         hasExternalId:
           type: boolean
+        pairedEventId:
+          description: "In a `GET /v1/events` page: the other copy of the same conversion,\
+            \ when a website tag (`web`) and a server send both stored it under different\
+            \ event ids (same event name, a shared identifier, at most 30 minutes\
+            \ apart). `null` otherwise, and always `null` from `GET /v1/events/{eventId}`."
+          nullable: true
+          type: string
         ad:
           $ref: "#/components/schemas/StoredEvent_ad"
     ConnectedMessagingAccount:
@@ -205623,6 +205631,7 @@ components:
         hasPhone: true
         eventName: eventName
         currency: currency
+        pairedEventId: pairedEventId
         value: 0.8008281904610115
         destinationsSent: 6
     listEvents_200_response:
@@ -205662,6 +205671,7 @@ components:
           hasPhone: true
           eventName: eventName
           currency: currency
+          pairedEventId: pairedEventId
           value: 0.8008281904610115
           destinationsSent: 6
         - eventId: eventId
@@ -205697,6 +205707,7 @@ components:
           hasPhone: true
           eventName: eventName
           currency: currency
+          pairedEventId: pairedEventId
           value: 0.8008281904610115
           destinationsSent: 6
       properties:
@@ -206511,6 +206522,7 @@ components:
           hasPhone: true
           eventName: eventName
           currency: currency
+          pairedEventId: pairedEventId
           value: 0.8008281904610115
           destinationsSent: 6
         deliveries:
