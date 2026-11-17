@@ -92,6 +92,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getRedditFlairsWithHttpInfo**](ConnectApi.md#getRedditFlairsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-flairs | List subreddit flairs |
 | [**getRedditSubreddits**](ConnectApi.md#getRedditSubreddits) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits |
 | [**getRedditSubredditsWithHttpInfo**](ConnectApi.md#getRedditSubredditsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits |
+| [**getSalesforceConnectUrl**](ConnectApi.md#getSalesforceConnectUrl) | **GET** /v1/connect/salesforce | Get Salesforce OAuth connect URL |
+| [**getSalesforceConnectUrlWithHttpInfo**](ConnectApi.md#getSalesforceConnectUrlWithHttpInfo) | **GET** /v1/connect/salesforce | Get Salesforce OAuth connect URL |
 | [**getShopifyConnectUrl**](ConnectApi.md#getShopifyConnectUrl) | **GET** /v1/connect/shopify | Get Shopify OAuth connect URL |
 | [**getShopifyConnectUrlWithHttpInfo**](ConnectApi.md#getShopifyConnectUrlWithHttpInfo) | **GET** /v1/connect/shopify | Get Shopify OAuth connect URL |
 | [**getStripeConnectUrl**](ConnectApi.md#getStripeConnectUrl) | **GET** /v1/connect/stripe | Get Stripe connect URL |
@@ -7167,6 +7169,182 @@ ApiResponse<[**GetRedditSubreddits200Response**](GetRedditSubreddits200Response.
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
+
+
+## getSalesforceConnectUrl
+
+> GetSalesforceConnectUrl200Response getSalesforceConnectUrl(profileId, environment, redirectUrl)
+
+Get Salesforce OAuth connect URL
+
+Initiates OAuth (authorization code with PKCE) for a Salesforce org. Salesforce is a connect-only CRM platform: inbox contacts are matched to Contacts and Leads, and each day of conversation is logged as a Task.  The org must have the Zernio Salesforce package installed first: it carries the app Salesforce authorizes. Production orgs install it from &#x60;https://login.salesforce.com/packaging/installPackage.apexp?p0&#x3D;04tfj000000llzZAAQ&#x60;, sandboxes from the same path on &#x60;test.salesforce.com&#x60;. Without it the redirect carries &#x60;error&#x3D;salesforce_package_not_installed&#x60;.  One Salesforce org can be connected per profile. Connecting a different org to a profile that already has one redirects with &#x60;error&#x3D;salesforce_profile_has_org&#x60;.  ### Flow  1. Redirect the user to &#x60;authUrl&#x60;. 2. After authorization, Salesforce returns the browser to Zernio&#39;s internal callback. 3. Zernio redirects to &#x60;redirect_url&#x60; (or the dashboard when omitted).  On success the redirect carries &#x60;connected&#x3D;salesforce&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60;. On failure it carries &#x60;error&#x60;, &#x60;platform&#x3D;salesforce&#x60; and &#x60;error_message&#x60;.  Reconnecting the same org and profile updates the stored connection in place and keeps its settings.  Requested scopes: &#x60;api&#x60;, &#x60;refresh_token&#x60;, &#x60;id&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
+        String environment = "production"; // String | Sign in at login.salesforce.com (`production`, also Developer Edition orgs) or test.salesforce.com (`sandbox`).
+        String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        try {
+            GetSalesforceConnectUrl200Response result = apiInstance.getSalesforceConnectUrl(profileId, environment, redirectUrl);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getSalesforceConnectUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
+| **environment** | **String**| Sign in at login.salesforce.com (&#x60;production&#x60;, also Developer Edition orgs) or test.salesforce.com (&#x60;sandbox&#x60;). | [optional] [default to production] [enum: production, sandbox] |
+| **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+
+### Return type
+
+[**GetSalesforceConnectUrl200Response**](GetSalesforceConnectUrl200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Salesforce OAuth is not configured. |  -  |
+
+## getSalesforceConnectUrlWithHttpInfo
+
+> ApiResponse<GetSalesforceConnectUrl200Response> getSalesforceConnectUrl getSalesforceConnectUrlWithHttpInfo(profileId, environment, redirectUrl)
+
+Get Salesforce OAuth connect URL
+
+Initiates OAuth (authorization code with PKCE) for a Salesforce org. Salesforce is a connect-only CRM platform: inbox contacts are matched to Contacts and Leads, and each day of conversation is logged as a Task.  The org must have the Zernio Salesforce package installed first: it carries the app Salesforce authorizes. Production orgs install it from &#x60;https://login.salesforce.com/packaging/installPackage.apexp?p0&#x3D;04tfj000000llzZAAQ&#x60;, sandboxes from the same path on &#x60;test.salesforce.com&#x60;. Without it the redirect carries &#x60;error&#x3D;salesforce_package_not_installed&#x60;.  One Salesforce org can be connected per profile. Connecting a different org to a profile that already has one redirects with &#x60;error&#x3D;salesforce_profile_has_org&#x60;.  ### Flow  1. Redirect the user to &#x60;authUrl&#x60;. 2. After authorization, Salesforce returns the browser to Zernio&#39;s internal callback. 3. Zernio redirects to &#x60;redirect_url&#x60; (or the dashboard when omitted).  On success the redirect carries &#x60;connected&#x3D;salesforce&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60;. On failure it carries &#x60;error&#x60;, &#x60;platform&#x3D;salesforce&#x60; and &#x60;error_message&#x60;.  Reconnecting the same org and profile updates the stored connection in place and keeps its settings.  Requested scopes: &#x60;api&#x60;, &#x60;refresh_token&#x60;, &#x60;id&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
+        String environment = "production"; // String | Sign in at login.salesforce.com (`production`, also Developer Edition orgs) or test.salesforce.com (`sandbox`).
+        String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        try {
+            ApiResponse<GetSalesforceConnectUrl200Response> response = apiInstance.getSalesforceConnectUrlWithHttpInfo(profileId, environment, redirectUrl);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getSalesforceConnectUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
+| **environment** | **String**| Sign in at login.salesforce.com (&#x60;production&#x60;, also Developer Edition orgs) or test.salesforce.com (&#x60;sandbox&#x60;). | [optional] [default to production] [enum: production, sandbox] |
+| **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetSalesforceConnectUrl200Response**](GetSalesforceConnectUrl200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Salesforce OAuth is not configured. |  -  |
 
 
 ## getShopifyConnectUrl

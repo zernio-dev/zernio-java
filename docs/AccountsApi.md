@@ -20,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getHubSpotSettingsWithHttpInfo**](AccountsApi.md#getHubSpotSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/hubspot-settings | Get HubSpot account settings |
 | [**getInstagramFollowStatus**](AccountsApi.md#getInstagramFollowStatus) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account |
 | [**getInstagramFollowStatusWithHttpInfo**](AccountsApi.md#getInstagramFollowStatusWithHttpInfo) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account |
+| [**getSalesforceSettings**](AccountsApi.md#getSalesforceSettings) | **GET** /v1/accounts/{accountId}/salesforce-settings | Get Salesforce account settings |
+| [**getSalesforceSettingsWithHttpInfo**](AccountsApi.md#getSalesforceSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/salesforce-settings | Get Salesforce account settings |
 | [**getSlackSettings**](AccountsApi.md#getSlackSettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings |
 | [**getSlackSettingsWithHttpInfo**](AccountsApi.md#getSlackSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings |
 | [**getStripeSettings**](AccountsApi.md#getStripeSettings) | **GET** /v1/accounts/{accountId}/stripe-settings | Get Stripe account settings |
@@ -46,6 +48,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateBlueskySettingsWithHttpInfo**](AccountsApi.md#updateBlueskySettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings |
 | [**updateHubSpotSettings**](AccountsApi.md#updateHubSpotSettings) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings |
 | [**updateHubSpotSettingsWithHttpInfo**](AccountsApi.md#updateHubSpotSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings |
+| [**updateSalesforceSettings**](AccountsApi.md#updateSalesforceSettings) | **PATCH** /v1/accounts/{accountId}/salesforce-settings | Update Salesforce account settings |
+| [**updateSalesforceSettingsWithHttpInfo**](AccountsApi.md#updateSalesforceSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/salesforce-settings | Update Salesforce account settings |
 | [**updateSlackSettings**](AccountsApi.md#updateSlackSettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings |
 | [**updateSlackSettingsWithHttpInfo**](AccountsApi.md#updateSlackSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings |
 | [**updateStripeSettings**](AccountsApi.md#updateStripeSettings) | **PATCH** /v1/accounts/{accountId}/stripe-settings | Update Stripe account settings |
@@ -1295,6 +1299,156 @@ ApiResponse<[**GetInstagramFollowStatus200Response**](GetInstagramFollowStatus20
 | **404** | Resource not found |  -  |
 
 
+## getSalesforceSettings
+
+> GetSalesforceSettings200Response getSalesforceSettings(accountId)
+
+Get Salesforce account settings
+
+Read a connected Salesforce org and what Zernio syncs to it.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            GetSalesforceSettings200Response result = apiInstance.getSalesforceSettings(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#getSalesforceSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+[**GetSalesforceSettings200Response**](GetSalesforceSettings200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Salesforce settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+## getSalesforceSettingsWithHttpInfo
+
+> ApiResponse<GetSalesforceSettings200Response> getSalesforceSettings getSalesforceSettingsWithHttpInfo(accountId)
+
+Get Salesforce account settings
+
+Read a connected Salesforce org and what Zernio syncs to it.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<GetSalesforceSettings200Response> response = apiInstance.getSalesforceSettingsWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#getSalesforceSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetSalesforceSettings200Response**](GetSalesforceSettings200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Salesforce settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+
 ## getSlackSettings
 
 > GetSlackSettings200Response getSlackSettings(accountId)
@@ -1946,7 +2100,7 @@ public class Example {
         String platform = "platform_example"; // String | Filter accounts by platform (e.g. \"instagram\", \"twitter\").
         String status = "connected"; // String | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set. 
         String search = "search_example"; // String | Case-insensitive match on the account username, display name or platform user id. A 24-character hexadecimal value is read as an account id and matches only that exact account. Combine with page/limit to paginate the matches.
-        String category = "social"; // String | Only accounts of this kind. ads = ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit, Microsoft), communication = WhatsApp, Telegram, Discord, Slack, iMessage, LINE and WeChat, blogs = Shopify and WordPress, crm = HubSpot, analytics = Google Analytics, social = every other platform.
+        String category = "social"; // String | Only accounts of this kind. ads = ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit, Microsoft), communication = WhatsApp, Telegram, Discord, Slack, iMessage, LINE and WeChat, blogs = Shopify and WordPress, crm = HubSpot and Salesforce, analytics = Google Analytics, social = every other platform.
         String sort = "account"; // String | Sort an offset-paginated listing (page and limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first.
         String order = "asc"; // String | Direction for `sort`.
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
@@ -1984,7 +2138,7 @@ public class Example {
 | **platform** | **String**| Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional] |
 | **status** | **String**| Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional] [enum: connected, disconnected] |
 | **search** | **String**| Case-insensitive match on the account username, display name or platform user id. A 24-character hexadecimal value is read as an account id and matches only that exact account. Combine with page/limit to paginate the matches. | [optional] |
-| **category** | **String**| Only accounts of this kind. ads &#x3D; ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit, Microsoft), communication &#x3D; WhatsApp, Telegram, Discord, Slack, iMessage, LINE and WeChat, blogs &#x3D; Shopify and WordPress, crm &#x3D; HubSpot, analytics &#x3D; Google Analytics, social &#x3D; every other platform. | [optional] [enum: social, ads, communication, blogs, crm, analytics] |
+| **category** | **String**| Only accounts of this kind. ads &#x3D; ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit, Microsoft), communication &#x3D; WhatsApp, Telegram, Discord, Slack, iMessage, LINE and WeChat, blogs &#x3D; Shopify and WordPress, crm &#x3D; HubSpot and Salesforce, analytics &#x3D; Google Analytics, social &#x3D; every other platform. | [optional] [enum: social, ads, communication, blogs, crm, analytics] |
 | **sort** | **String**| Sort an offset-paginated listing (page and limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. | [optional] [enum: account, platform, profile, status, connected] |
 | **order** | **String**| Direction for &#x60;sort&#x60;. | [optional] [default to asc] [enum: asc, desc] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
@@ -2056,7 +2210,7 @@ public class Example {
         String platform = "platform_example"; // String | Filter accounts by platform (e.g. \"instagram\", \"twitter\").
         String status = "connected"; // String | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set. 
         String search = "search_example"; // String | Case-insensitive match on the account username, display name or platform user id. A 24-character hexadecimal value is read as an account id and matches only that exact account. Combine with page/limit to paginate the matches.
-        String category = "social"; // String | Only accounts of this kind. ads = ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit, Microsoft), communication = WhatsApp, Telegram, Discord, Slack, iMessage, LINE and WeChat, blogs = Shopify and WordPress, crm = HubSpot, analytics = Google Analytics, social = every other platform.
+        String category = "social"; // String | Only accounts of this kind. ads = ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit, Microsoft), communication = WhatsApp, Telegram, Discord, Slack, iMessage, LINE and WeChat, blogs = Shopify and WordPress, crm = HubSpot and Salesforce, analytics = Google Analytics, social = every other platform.
         String sort = "account"; // String | Sort an offset-paginated listing (page and limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first.
         String order = "asc"; // String | Direction for `sort`.
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
@@ -2096,7 +2250,7 @@ public class Example {
 | **platform** | **String**| Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional] |
 | **status** | **String**| Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional] [enum: connected, disconnected] |
 | **search** | **String**| Case-insensitive match on the account username, display name or platform user id. A 24-character hexadecimal value is read as an account id and matches only that exact account. Combine with page/limit to paginate the matches. | [optional] |
-| **category** | **String**| Only accounts of this kind. ads &#x3D; ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit, Microsoft), communication &#x3D; WhatsApp, Telegram, Discord, Slack, iMessage, LINE and WeChat, blogs &#x3D; Shopify and WordPress, crm &#x3D; HubSpot, analytics &#x3D; Google Analytics, social &#x3D; every other platform. | [optional] [enum: social, ads, communication, blogs, crm, analytics] |
+| **category** | **String**| Only accounts of this kind. ads &#x3D; ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit, Microsoft), communication &#x3D; WhatsApp, Telegram, Discord, Slack, iMessage, LINE and WeChat, blogs &#x3D; Shopify and WordPress, crm &#x3D; HubSpot and Salesforce, analytics &#x3D; Google Analytics, social &#x3D; every other platform. | [optional] [enum: social, ads, communication, blogs, crm, analytics] |
 | **sort** | **String**| Sort an offset-paginated listing (page and limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. | [optional] [enum: account, platform, profile, status, connected] |
 | **order** | **String**| Direction for &#x60;sort&#x60;. | [optional] [default to asc] [enum: asc, desc] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
@@ -3353,6 +3507,160 @@ public class Example {
 ### Return type
 
 ApiResponse<[**UpdateHubSpotSettings200Response**](UpdateHubSpotSettings200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+
+## updateSalesforceSettings
+
+> UpdateSalesforceSettings200Response updateSalesforceSettings(accountId, updateSalesforceSettingsRequest)
+
+Update Salesforce account settings
+
+Turn person creation, conversation logging or delivery marks on or off for a connected Salesforce org, or choose whether new people become Leads or Contacts. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same org.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        UpdateSalesforceSettingsRequest updateSalesforceSettingsRequest = new UpdateSalesforceSettingsRequest(); // UpdateSalesforceSettingsRequest | 
+        try {
+            UpdateSalesforceSettings200Response result = apiInstance.updateSalesforceSettings(accountId, updateSalesforceSettingsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#updateSalesforceSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **updateSalesforceSettingsRequest** | [**UpdateSalesforceSettingsRequest**](UpdateSalesforceSettingsRequest.md)|  | |
+
+### Return type
+
+[**UpdateSalesforceSettings200Response**](UpdateSalesforceSettings200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+## updateSalesforceSettingsWithHttpInfo
+
+> ApiResponse<UpdateSalesforceSettings200Response> updateSalesforceSettings updateSalesforceSettingsWithHttpInfo(accountId, updateSalesforceSettingsRequest)
+
+Update Salesforce account settings
+
+Turn person creation, conversation logging or delivery marks on or off for a connected Salesforce org, or choose whether new people become Leads or Contacts. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same org.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        UpdateSalesforceSettingsRequest updateSalesforceSettingsRequest = new UpdateSalesforceSettingsRequest(); // UpdateSalesforceSettingsRequest | 
+        try {
+            ApiResponse<UpdateSalesforceSettings200Response> response = apiInstance.updateSalesforceSettingsWithHttpInfo(accountId, updateSalesforceSettingsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#updateSalesforceSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **updateSalesforceSettingsRequest** | [**UpdateSalesforceSettingsRequest**](UpdateSalesforceSettingsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateSalesforceSettings200Response**](UpdateSalesforceSettings200Response.md)>
 
 
 ### Authorization

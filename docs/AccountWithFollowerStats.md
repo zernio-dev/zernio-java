@@ -77,6 +77,7 @@
 | MICROSOFT | &quot;microsoft&quot; |
 | IMAP | &quot;imap&quot; |
 | HUBSPOT | &quot;hubspot&quot; |
+| SALESFORCE | &quot;salesforce&quot; |
 | WEBFLOW | &quot;webflow&quot; |
 | GOOGLEANALYTICS | &quot;googleanalytics&quot; |
 | IMESSAGE | &quot;imessage&quot; |

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.644.0
+- API version: 1.645.0
 
-- Build date: 2026-11-17T16:52:15.004041552Z[Etc/UTC]
+- Build date: 2026-11-17T17:01:46.069621752Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.644.0</version>
+  <version>1.645.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.644.0"
+compile "dev.zernio:zernio-sdk:1.645.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.644.0.jar`
+- `target/zernio-sdk-1.645.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -191,6 +191,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getHubSpotSettingsWithHttpInfo**](docs/AccountsApi.md#getHubSpotSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/hubspot-settings | Get HubSpot account settings
 *AccountsApi* | [**getInstagramFollowStatus**](docs/AccountsApi.md#getInstagramFollowStatus) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account
 *AccountsApi* | [**getInstagramFollowStatusWithHttpInfo**](docs/AccountsApi.md#getInstagramFollowStatusWithHttpInfo) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account
+*AccountsApi* | [**getSalesforceSettings**](docs/AccountsApi.md#getSalesforceSettings) | **GET** /v1/accounts/{accountId}/salesforce-settings | Get Salesforce account settings
+*AccountsApi* | [**getSalesforceSettingsWithHttpInfo**](docs/AccountsApi.md#getSalesforceSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/salesforce-settings | Get Salesforce account settings
 *AccountsApi* | [**getSlackSettings**](docs/AccountsApi.md#getSlackSettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
 *AccountsApi* | [**getSlackSettingsWithHttpInfo**](docs/AccountsApi.md#getSlackSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
 *AccountsApi* | [**getStripeSettings**](docs/AccountsApi.md#getStripeSettings) | **GET** /v1/accounts/{accountId}/stripe-settings | Get Stripe account settings
@@ -217,6 +219,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**updateBlueskySettingsWithHttpInfo**](docs/AccountsApi.md#updateBlueskySettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings
 *AccountsApi* | [**updateHubSpotSettings**](docs/AccountsApi.md#updateHubSpotSettings) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings
 *AccountsApi* | [**updateHubSpotSettingsWithHttpInfo**](docs/AccountsApi.md#updateHubSpotSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings
+*AccountsApi* | [**updateSalesforceSettings**](docs/AccountsApi.md#updateSalesforceSettings) | **PATCH** /v1/accounts/{accountId}/salesforce-settings | Update Salesforce account settings
+*AccountsApi* | [**updateSalesforceSettingsWithHttpInfo**](docs/AccountsApi.md#updateSalesforceSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/salesforce-settings | Update Salesforce account settings
 *AccountsApi* | [**updateSlackSettings**](docs/AccountsApi.md#updateSlackSettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
 *AccountsApi* | [**updateSlackSettingsWithHttpInfo**](docs/AccountsApi.md#updateSlackSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
 *AccountsApi* | [**updateStripeSettings**](docs/AccountsApi.md#updateStripeSettings) | **PATCH** /v1/accounts/{accountId}/stripe-settings | Update Stripe account settings
@@ -1299,6 +1303,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getRedditFlairsWithHttpInfo**](docs/ConnectApi.md#getRedditFlairsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-flairs | List subreddit flairs
 *ConnectApi* | [**getRedditSubreddits**](docs/ConnectApi.md#getRedditSubreddits) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits
 *ConnectApi* | [**getRedditSubredditsWithHttpInfo**](docs/ConnectApi.md#getRedditSubredditsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits
+*ConnectApi* | [**getSalesforceConnectUrl**](docs/ConnectApi.md#getSalesforceConnectUrl) | **GET** /v1/connect/salesforce | Get Salesforce OAuth connect URL
+*ConnectApi* | [**getSalesforceConnectUrlWithHttpInfo**](docs/ConnectApi.md#getSalesforceConnectUrlWithHttpInfo) | **GET** /v1/connect/salesforce | Get Salesforce OAuth connect URL
 *ConnectApi* | [**getShopifyConnectUrl**](docs/ConnectApi.md#getShopifyConnectUrl) | **GET** /v1/connect/shopify | Get Shopify OAuth connect URL
 *ConnectApi* | [**getShopifyConnectUrlWithHttpInfo**](docs/ConnectApi.md#getShopifyConnectUrlWithHttpInfo) | **GET** /v1/connect/shopify | Get Shopify OAuth connect URL
 *ConnectApi* | [**getStripeConnectUrl**](docs/ConnectApi.md#getStripeConnectUrl) | **GET** /v1/connect/stripe | Get Stripe connect URL
@@ -4376,6 +4382,8 @@ Class | Method | HTTP request | Description
  - [GetRedditPostComments200Response](docs/GetRedditPostComments200Response.md)
  - [GetRedditSubreddits200Response](docs/GetRedditSubreddits200Response.md)
  - [GetRedditSubreddits200ResponseSubredditsInner](docs/GetRedditSubreddits200ResponseSubredditsInner.md)
+ - [GetSalesforceConnectUrl200Response](docs/GetSalesforceConnectUrl200Response.md)
+ - [GetSalesforceSettings200Response](docs/GetSalesforceSettings200Response.md)
  - [GetSequence200Response](docs/GetSequence200Response.md)
  - [GetSequence200ResponseSequence](docs/GetSequence200ResponseSequence.md)
  - [GetSequence200ResponseSequenceStepsInner](docs/GetSequence200ResponseSequenceStepsInner.md)
@@ -5452,6 +5460,8 @@ Class | Method | HTTP request | Description
  - [RunGoogleAnalyticsRealtimeReportRequestAllOfMinuteRangesInner](docs/RunGoogleAnalyticsRealtimeReportRequestAllOfMinuteRangesInner.md)
  - [RunGoogleAnalyticsReportRequest](docs/RunGoogleAnalyticsReportRequest.md)
  - [RunGoogleAnalyticsReportRequestAllOfDateRangesInner](docs/RunGoogleAnalyticsReportRequestAllOfDateRangesInner.md)
+ - [SalesforceSettings](docs/SalesforceSettings.md)
+ - [SalesforceSettingsSyncIssue](docs/SalesforceSettingsSyncIssue.md)
  - [SavedTargetingAudience](docs/SavedTargetingAudience.md)
  - [ScheduleBroadcast200Response](docs/ScheduleBroadcast200Response.md)
  - [ScheduleBroadcast200ResponseBroadcast](docs/ScheduleBroadcast200ResponseBroadcast.md)
@@ -6021,6 +6031,8 @@ Class | Method | HTTP request | Description
  - [UpdateQueueSlotRequest](docs/UpdateQueueSlotRequest.md)
  - [UpdateRcsAgentRequest](docs/UpdateRcsAgentRequest.md)
  - [UpdateRedditSubredditsRequest](docs/UpdateRedditSubredditsRequest.md)
+ - [UpdateSalesforceSettings200Response](docs/UpdateSalesforceSettings200Response.md)
+ - [UpdateSalesforceSettingsRequest](docs/UpdateSalesforceSettingsRequest.md)
  - [UpdateSequence200Response](docs/UpdateSequence200Response.md)
  - [UpdateSequence200ResponseSequence](docs/UpdateSequence200ResponseSequence.md)
  - [UpdateSequenceRequest](docs/UpdateSequenceRequest.md)

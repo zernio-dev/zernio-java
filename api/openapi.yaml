@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.644.0
+  version: 1.645.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -12061,8 +12061,8 @@ paths:
       - description: "Only accounts of this kind. ads = ad accounts (Meta, Google,\
           \ LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit, Microsoft), communication\
           \ = WhatsApp, Telegram, Discord, Slack, iMessage, LINE and WeChat, blogs\
-          \ = Shopify and WordPress, crm = HubSpot, analytics = Google Analytics,\
-          \ social = every other platform."
+          \ = Shopify and WordPress, crm = HubSpot and Salesforce, analytics = Google\
+          \ Analytics, social = every other platform."
         explode: true
         in: query
         name: category
@@ -15444,6 +15444,88 @@ paths:
       - bearerAuth: []
       - connectToken: []
       summary: Get HubSpot OAuth connect URL
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+  /v1/connect/salesforce:
+    get:
+      description: |
+        Initiates OAuth (authorization code with PKCE) for a Salesforce org. Salesforce is a connect-only CRM platform: inbox contacts are matched to Contacts and Leads, and each day of conversation is logged as a Task.
+
+        The org must have the Zernio Salesforce package installed first: it carries the app Salesforce authorizes. Production orgs install it from `https://login.salesforce.com/packaging/installPackage.apexp?p0=04tfj000000llzZAAQ`, sandboxes from the same path on `test.salesforce.com`. Without it the redirect carries `error=salesforce_package_not_installed`.
+
+        One Salesforce org can be connected per profile. Connecting a different org to a profile that already has one redirects with `error=salesforce_profile_has_org`.
+
+        ### Flow
+
+        1. Redirect the user to `authUrl`.
+        2. After authorization, Salesforce returns the browser to Zernio's internal callback.
+        3. Zernio redirects to `redirect_url` (or the dashboard when omitted).
+
+        On success the redirect carries `connected=salesforce`, `profileId`, `accountId` and `username`. On failure it carries `error`, `platform=salesforce` and `error_message`.
+
+        Reconnecting the same org and profile updates the stored connection in place and keeps its settings.
+
+        Requested scopes: `api`, `refresh_token`, `id`.
+      operationId: getSalesforceConnectUrl
+      parameters:
+      - description: Your Zernio profile ID (get from /v1/profiles).
+        explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Sign in at login.salesforce.com (`production`, also Developer\
+          \ Edition orgs) or test.salesforce.com (`sandbox`)."
+        explode: true
+        in: query
+        name: environment
+        required: false
+        schema:
+          default: production
+          enum:
+          - production
+          - sandbox
+          type: string
+        style: form
+      - description: Custom redirect after connection. Must be an absolute http(s)
+          URL or custom app scheme such as `myapp://callback`; relative and unsafe
+          URLs return 400.
+        explode: true
+        in: query
+        name: redirect_url
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getSalesforceConnectUrl_200_response"
+          description: OAuth authorization URL and authenticated state
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: "API key does not have access to this profile, or the key is\
+            \ read-only."
+        "404":
+          description: Profile not found or access denied.
+        "503":
+          description: Salesforce OAuth is not configured.
+      security:
+      - bearerAuth: []
+      - connectToken: []
+      summary: Get Salesforce OAuth connect URL
       tags:
       - Connect
       x-resource-group: accounts
@@ -24193,6 +24275,77 @@ paths:
         "404":
           description: Account not found
       summary: Update HubSpot account settings
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/salesforce-settings:
+    get:
+      description: Read a connected Salesforce org and what Zernio syncs to it.
+      operationId: getSalesforceSettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getSalesforceSettings_200_response"
+          description: Salesforce settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Get Salesforce account settings
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    patch:
+      description: "Turn person creation, conversation logging or delivery marks on\
+        \ or off for a connected Salesforce org, or choose whether new people become\
+        \ Leads or Contacts. Send at least one field; omitted fields keep their value.\
+        \ Settings survive reconnecting the same org."
+      operationId: updateSalesforceSettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateSalesforceSettings_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateSalesforceSettings_200_response"
+          description: Updated settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Update Salesforce account settings
       tags:
       - Accounts
       x-resource-group: accounts
@@ -113234,6 +113387,89 @@ components:
       - scopes
       - syncContacts
       - useDealsAsResults
+    SalesforceSettings:
+      example:
+        environment: production
+        orgName: orgName
+        logDeliveryStatus: true
+        installedBy: installedBy
+        syncIssue:
+          code: code
+          at: 2000-01-23T04:56:07.000+00:00
+          message: message
+        _id: _id
+        logMessages: true
+        syncContacts: true
+        platform: salesforce
+        orgId: orgId
+        instanceUrl: https://openapi-generator.tech
+        createAs: lead
+      properties:
+        _id:
+          description: Zernio account ID of the Salesforce connection.
+          type: string
+        platform:
+          enum:
+          - salesforce
+          type: string
+        orgId:
+          description: 18-character Salesforce organization ID.
+          type: string
+        orgName:
+          description: "The org's name, when the connected user can read it."
+          nullable: true
+          type: string
+        environment:
+          description: Whether the org was connected through login.salesforce.com
+            or test.salesforce.com.
+          enum:
+          - production
+          - sandbox
+          type: string
+        instanceUrl:
+          description: "The org's API host, for example `https://acme.my.salesforce.com`."
+          format: uri
+          type: string
+        installedBy:
+          description: Email or username of the Salesforce user who connected the
+            org.
+          nullable: true
+          type: string
+        syncContacts:
+          description: Whether Zernio creates a Lead or Contact (per `createAs`) for
+            an inbox contact that matches nobody by phone or email.
+          type: boolean
+        logMessages:
+          description: "Whether Zernio logs inbox messages. Each person, channel and\
+            \ UTC day gets one completed Task (subject `WhatsApp conversation · 2026-11-17`)\
+            \ whose Description holds the transcript; a day past 32,000 characters\
+            \ continues in a Task marked \"(part 2)\"."
+          type: boolean
+        createAs:
+          description: What a person new to Salesforce is created as.
+          enum:
+          - lead
+          - contact
+          type: string
+        logDeliveryStatus:
+          description: "Whether sent messages in the transcript are marked delivered,\
+            \ read or failed."
+          type: boolean
+        syncIssue:
+          $ref: "#/components/schemas/SalesforceSettings_syncIssue"
+      required:
+      - _id
+      - createAs
+      - environment
+      - installedBy
+      - instanceUrl
+      - logDeliveryStatus
+      - logMessages
+      - orgId
+      - orgName
+      - platform
+      - syncContacts
+      - syncIssue
     GoogleAnalyticsReport:
       description: "Google Analytics Data API report, passed through as Google returns\
         \ it. Every value in `rows` is a string; read `metricHeaders[].type` to parse\
@@ -113443,6 +113679,7 @@ components:
           - microsoft
           - imap
           - hubspot
+          - salesforce
           - webflow
           - googleanalytics
           - imessage
@@ -143948,6 +144185,21 @@ components:
       required:
       - authUrl
       - state
+    getSalesforceConnectUrl_200_response:
+      example:
+        authUrl: https://openapi-generator.tech
+        state: state
+      properties:
+        authUrl:
+          description: Salesforce URL to open in the user agent.
+          format: uri
+          type: string
+        state:
+          description: "Authenticated, expiring OAuth state handled by the callback."
+          type: string
+      required:
+      - authUrl
+      - state
     getStripeConnectUrl_200_response:
       example:
         authUrl: https://openapi-generator.tech
@@ -152061,6 +152313,73 @@ components:
           type: string
         account:
           $ref: "#/components/schemas/HubSpotSettings"
+    getSalesforceSettings_200_response:
+      example:
+        account:
+          environment: production
+          orgName: orgName
+          logDeliveryStatus: true
+          installedBy: installedBy
+          syncIssue:
+            code: code
+            at: 2000-01-23T04:56:07.000+00:00
+            message: message
+          _id: _id
+          logMessages: true
+          syncContacts: true
+          platform: salesforce
+          orgId: orgId
+          instanceUrl: https://openapi-generator.tech
+          createAs: lead
+      properties:
+        account:
+          $ref: "#/components/schemas/SalesforceSettings"
+    updateSalesforceSettings_request:
+      properties:
+        syncContacts:
+          description: Create a Lead or Contact for an inbox contact that matches
+            nobody by phone (any phone field) or email. A match is linked as it is
+            and never updated.
+          type: boolean
+        logMessages:
+          description: "Log inbound and outbound inbox messages as one conversation\
+            \ Task per person, channel and day."
+          type: boolean
+        createAs:
+          description: "What a person new to Salesforce is created as. Leads get Company\
+            \ `[not provided]`."
+          enum:
+          - lead
+          - contact
+          type: string
+        logDeliveryStatus:
+          description: "Mark sent messages in the transcript as delivered, read or\
+            \ failed."
+          type: boolean
+    updateSalesforceSettings_200_response:
+      example:
+        message: message
+        account:
+          environment: production
+          orgName: orgName
+          logDeliveryStatus: true
+          installedBy: installedBy
+          syncIssue:
+            code: code
+            at: 2000-01-23T04:56:07.000+00:00
+            message: message
+          _id: _id
+          logMessages: true
+          syncContacts: true
+          platform: salesforce
+          orgId: orgId
+          instanceUrl: https://openapi-generator.tech
+          createAs: lead
+      properties:
+        message:
+          type: string
+        account:
+          $ref: "#/components/schemas/SalesforceSettings"
     getStripeSettings_200_response:
       example:
         account:
@@ -229685,6 +230004,27 @@ components:
           - updated
           - deleted
           type: string
+    SalesforceSettings_syncIssue:
+      description: "Set while the org refuses Zernio's writes for a reason only its\
+        \ admin can fix (field-level security, a validation rule, a duplicate rule);\
+        \ cleared by the next accepted write. The account's health shows it too."
+      example:
+        code: code
+        at: 2000-01-23T04:56:07.000+00:00
+        message: message
+      properties:
+        code:
+          description: "The Salesforce error code, such as `FIELD_CUSTOM_VALIDATION_EXCEPTION`."
+          type: string
+        message:
+          type: string
+        at:
+          format: date-time
+          type: string
+      required:
+      - at
+      - code
+      - message
     GoogleAnalyticsReport_dimensionHeaders_inner:
       example:
         name: name

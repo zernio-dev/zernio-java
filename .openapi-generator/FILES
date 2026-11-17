@@ -1707,6 +1707,8 @@ docs/GetRedditFlairs200ResponseFlairsInner.md
 docs/GetRedditPostComments200Response.md
 docs/GetRedditSubreddits200Response.md
 docs/GetRedditSubreddits200ResponseSubredditsInner.md
+docs/GetSalesforceConnectUrl200Response.md
+docs/GetSalesforceSettings200Response.md
 docs/GetSequence200Response.md
 docs/GetSequence200ResponseSequence.md
 docs/GetSequence200ResponseSequenceStepsInner.md
@@ -2813,6 +2815,8 @@ docs/RunGoogleAnalyticsRealtimeReportRequest.md
 docs/RunGoogleAnalyticsRealtimeReportRequestAllOfMinuteRangesInner.md
 docs/RunGoogleAnalyticsReportRequest.md
 docs/RunGoogleAnalyticsReportRequestAllOfDateRangesInner.md
+docs/SalesforceSettings.md
+docs/SalesforceSettingsSyncIssue.md
 docs/SavedTargetingAudience.md
 docs/ScheduleBroadcast200Response.md
 docs/ScheduleBroadcast200ResponseBroadcast.md
@@ -3389,6 +3393,8 @@ docs/UpdateProfileRequest.md
 docs/UpdateQueueSlotRequest.md
 docs/UpdateRcsAgentRequest.md
 docs/UpdateRedditSubredditsRequest.md
+docs/UpdateSalesforceSettings200Response.md
+docs/UpdateSalesforceSettingsRequest.md
 docs/UpdateSequence200Response.md
 docs/UpdateSequence200ResponseSequence.md
 docs/UpdateSequenceRequest.md
@@ -5651,6 +5657,8 @@ src/main/java/dev/zernio/model/GetRedditFlairs200ResponseFlairsInner.java
 src/main/java/dev/zernio/model/GetRedditPostComments200Response.java
 src/main/java/dev/zernio/model/GetRedditSubreddits200Response.java
 src/main/java/dev/zernio/model/GetRedditSubreddits200ResponseSubredditsInner.java
+src/main/java/dev/zernio/model/GetSalesforceConnectUrl200Response.java
+src/main/java/dev/zernio/model/GetSalesforceSettings200Response.java
 src/main/java/dev/zernio/model/GetSequence200Response.java
 src/main/java/dev/zernio/model/GetSequence200ResponseSequence.java
 src/main/java/dev/zernio/model/GetSequence200ResponseSequenceStepsInner.java
@@ -6727,6 +6735,8 @@ src/main/java/dev/zernio/model/RunGoogleAnalyticsRealtimeReportRequest.java
 src/main/java/dev/zernio/model/RunGoogleAnalyticsRealtimeReportRequestAllOfMinuteRangesInner.java
 src/main/java/dev/zernio/model/RunGoogleAnalyticsReportRequest.java
 src/main/java/dev/zernio/model/RunGoogleAnalyticsReportRequestAllOfDateRangesInner.java
+src/main/java/dev/zernio/model/SalesforceSettings.java
+src/main/java/dev/zernio/model/SalesforceSettingsSyncIssue.java
 src/main/java/dev/zernio/model/SavedTargetingAudience.java
 src/main/java/dev/zernio/model/ScheduleBroadcast200Response.java
 src/main/java/dev/zernio/model/ScheduleBroadcast200ResponseBroadcast.java
@@ -7296,6 +7306,8 @@ src/main/java/dev/zernio/model/UpdateProfileRequest.java
 src/main/java/dev/zernio/model/UpdateQueueSlotRequest.java
 src/main/java/dev/zernio/model/UpdateRcsAgentRequest.java
 src/main/java/dev/zernio/model/UpdateRedditSubredditsRequest.java
+src/main/java/dev/zernio/model/UpdateSalesforceSettings200Response.java
+src/main/java/dev/zernio/model/UpdateSalesforceSettingsRequest.java
 src/main/java/dev/zernio/model/UpdateSequence200Response.java
 src/main/java/dev/zernio/model/UpdateSequence200ResponseSequence.java
 src/main/java/dev/zernio/model/UpdateSequenceRequest.java
@@ -7771,3 +7783,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetSalesforceConnectUrl200ResponseTest.java
+src/test/java/dev/zernio/model/GetSalesforceSettings200ResponseTest.java
+src/test/java/dev/zernio/model/SalesforceSettingsSyncIssueTest.java
+src/test/java/dev/zernio/model/SalesforceSettingsTest.java
+src/test/java/dev/zernio/model/UpdateSalesforceSettings200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateSalesforceSettingsRequestTest.java
