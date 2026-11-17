@@ -5168,7 +5168,7 @@ public class Example {
         URI redirectUrl = new URI(); // URI | Where the page sends the user afterwards, with status, accountId, platform and email (or status=error and error).
         String email = "email_example"; // String | Prefills the address and skips the first screen.
         String name = "name_example"; // String | Display name for sent mail; the page asks for it when absent.
-        String reconnectAccountId = "reconnectAccountId_example"; // String | Opens the reconnect variant for an IMAP account: only the new password is asked for, and the accountId stays the same.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | An IMAP, Google or Microsoft account on this profile to reconnect; its accountId stays the same. IMAP asks only for the new password. Google and Microsoft open that provider's sign-in with the address as the hint and the held areas asked again. Other platforms answer 400, unknown ids 404.
         try {
             GetEmailConnectUrl200Response result = apiInstance.getEmailConnectUrl(profileId, redirectUrl, email, name, reconnectAccountId);
             System.out.println(result);
@@ -5192,7 +5192,7 @@ public class Example {
 | **redirectUrl** | **URI**| Where the page sends the user afterwards, with status, accountId, platform and email (or status&#x3D;error and error). | [optional] |
 | **email** | **String**| Prefills the address and skips the first screen. | [optional] |
 | **name** | **String**| Display name for sent mail; the page asks for it when absent. | [optional] |
-| **reconnectAccountId** | **String**| Opens the reconnect variant for an IMAP account: only the new password is asked for, and the accountId stays the same. | [optional] |
+| **reconnectAccountId** | **String**| An IMAP, Google or Microsoft account on this profile to reconnect; its accountId stays the same. IMAP asks only for the new password. Google and Microsoft open that provider&#39;s sign-in with the address as the hint and the held areas asked again. Other platforms answer 400, unknown ids 404. | [optional] |
 
 ### Return type
 
@@ -5249,7 +5249,7 @@ public class Example {
         URI redirectUrl = new URI(); // URI | Where the page sends the user afterwards, with status, accountId, platform and email (or status=error and error).
         String email = "email_example"; // String | Prefills the address and skips the first screen.
         String name = "name_example"; // String | Display name for sent mail; the page asks for it when absent.
-        String reconnectAccountId = "reconnectAccountId_example"; // String | Opens the reconnect variant for an IMAP account: only the new password is asked for, and the accountId stays the same.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | An IMAP, Google or Microsoft account on this profile to reconnect; its accountId stays the same. IMAP asks only for the new password. Google and Microsoft open that provider's sign-in with the address as the hint and the held areas asked again. Other platforms answer 400, unknown ids 404.
         try {
             ApiResponse<GetEmailConnectUrl200Response> response = apiInstance.getEmailConnectUrlWithHttpInfo(profileId, redirectUrl, email, name, reconnectAccountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -5275,7 +5275,7 @@ public class Example {
 | **redirectUrl** | **URI**| Where the page sends the user afterwards, with status, accountId, platform and email (or status&#x3D;error and error). | [optional] |
 | **email** | **String**| Prefills the address and skips the first screen. | [optional] |
 | **name** | **String**| Display name for sent mail; the page asks for it when absent. | [optional] |
-| **reconnectAccountId** | **String**| Opens the reconnect variant for an IMAP account: only the new password is asked for, and the accountId stays the same. | [optional] |
+| **reconnectAccountId** | **String**| An IMAP, Google or Microsoft account on this profile to reconnect; its accountId stays the same. IMAP asks only for the new password. Google and Microsoft open that provider&#39;s sign-in with the address as the hint and the held areas asked again. Other platforms answer 400, unknown ids 404. | [optional] |
 
 ### Return type
 

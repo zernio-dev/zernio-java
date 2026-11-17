@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.630.3
+  version: 1.630.4
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15811,8 +15811,11 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Opens the reconnect variant for an IMAP account: only the new\
-          \ password is asked for, and the accountId stays the same."
+      - description: "An IMAP, Google or Microsoft account on this profile to reconnect;\
+          \ its accountId stays the same. IMAP asks only for the new password. Google\
+          \ and Microsoft open that provider's sign-in with the address as the hint\
+          \ and the held areas asked again. Other platforms answer 400, unknown ids\
+          \ 404."
         explode: true
         in: query
         name: reconnectAccountId
