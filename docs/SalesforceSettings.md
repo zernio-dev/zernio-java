@@ -19,6 +19,8 @@
 |**createAs** | [**CreateAsEnum**](#CreateAsEnum) | What a person new to Salesforce is created as. |  |
 |**logDeliveryStatus** | **Boolean** | Whether sent messages in the transcript are marked delivered, read or failed. |  |
 |**syncIssue** | [**SalesforceSettingsSyncIssue**](SalesforceSettingsSyncIssue.md) |  |  |
+|**useOpportunitiesInResults** | **Boolean** | Whether closed-won Opportunities count as sales (Amount, in the Opportunity&#39;s or the org&#39;s currency) on the ad campaign named by their Primary Campaign Source, in campaign results and ad rules. Lost or reopened Opportunities stop counting. |  |
+|**reportOpportunitiesToAds** | **Boolean** | Whether Zernio sends newly closed-won Opportunities as Purchase events (source &#x60;salesforce&#x60;) to the profile&#39;s event destinations. |  |
 
 
 

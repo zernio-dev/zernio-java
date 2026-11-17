@@ -3533,7 +3533,7 @@ ApiResponse<[**UpdateHubSpotSettings200Response**](UpdateHubSpotSettings200Respo
 
 Update Salesforce account settings
 
-Turn person creation, conversation logging or delivery marks on or off for a connected Salesforce org, or choose whether new people become Leads or Contacts. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same org.
+Turn person creation, conversation logging, delivery marks or closed-won Opportunities (in ad results, to ad platforms) on or off for a connected Salesforce org, or choose whether new people become Leads or Contacts. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same org.
 
 ### Example
 
@@ -3608,7 +3608,7 @@ public class Example {
 
 Update Salesforce account settings
 
-Turn person creation, conversation logging or delivery marks on or off for a connected Salesforce org, or choose whether new people become Leads or Contacts. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same org.
+Turn person creation, conversation logging, delivery marks or closed-won Opportunities (in ad results, to ad platforms) on or off for a connected Salesforce org, or choose whether new people become Leads or Contacts. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same org.
 
 ### Example
 

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.649.0
+  version: 1.650.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -24449,10 +24449,11 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: "Turn person creation, conversation logging or delivery marks on\
-        \ or off for a connected Salesforce org, or choose whether new people become\
-        \ Leads or Contacts. Send at least one field; omitted fields keep their value.\
-        \ Settings survive reconnecting the same org."
+      description: "Turn person creation, conversation logging, delivery marks or\
+        \ closed-won Opportunities (in ad results, to ad platforms) on or off for\
+        \ a connected Salesforce org, or choose whether new people become Leads or\
+        \ Contacts. Send at least one field; omitted fields keep their value. Settings\
+        \ survive reconnecting the same org."
       operationId: updateSalesforceSettings
       parameters:
       - explode: false
@@ -47896,6 +47897,9 @@ paths:
       tags:
       - Workflows
       x-resource-group: accounts
+      x-platforms:
+      - hubspot
+      - salesforce
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -48005,6 +48009,9 @@ paths:
       tags:
       - Workflows
       x-resource-group: accounts
+      x-platforms:
+      - hubspot
+      - salesforce
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -72115,6 +72122,7 @@ paths:
           - woocommerce
           - stripe
           - web
+          - salesforce
           type: string
         style: form
       - description: "Only events sent to this ad platform, such as `metaads` or `googleads`."
@@ -72176,6 +72184,8 @@ paths:
       - applovinads
       - googleanalytics
       - stripe
+      - hubspot
+      - salesforce
       x-accepts:
       - application/json
     post:
@@ -72699,6 +72709,18 @@ paths:
       tags:
       - Conversions
       x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - reddit
+      - openai
+      - applovinads
+      - googleanalytics
+      - hubspot
+      - salesforce
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -89664,8 +89686,8 @@ components:
           type: string
         source:
           description: "Where the event came from: `api`, `relay`, `web`, `shopify`,\
-            \ `woocommerce`, `hubspot`, `meta_leads`, `google_leads`, `linkedin_leads`\
-            \ or `tiktok_leads`."
+            \ `woocommerce`, `stripe`, `hubspot`, `salesforce`, `meta_leads`, `google_leads`,\
+            \ `linkedin_leads` or `tiktok_leads`."
           type: string
         eventName:
           type: string
@@ -94318,11 +94340,11 @@ components:
           type: string
         type:
           description: |
-            Node kind. The 17 supported types break into four groups:
+            Node kind. The 18 supported types break into four groups:
               messaging (send_message),
               control flow (trigger, condition, delay, wait_for_reply, a_b_split, end),
               data ops (set_variable, set_field, add_tag, remove_tag, enroll_sequence),
-              integrations (webhook, hubspot_upsert_contact, ai, handoff, start_call).
+              integrations (webhook, hubspot_upsert_contact, salesforce_upsert_contact, ai, handoff, start_call).
           enum:
           - trigger
           - send_message
@@ -94332,6 +94354,7 @@ components:
           - delay
           - webhook
           - hubspot_upsert_contact
+          - salesforce_upsert_contact
           - ai
           - handoff
           - start_call
@@ -94431,6 +94454,16 @@ components:
             - Saves `{ id, created }` (or `{ error }`) to `vars[saveAs]` (default `hubspotContact`).
             - Edges: `'success'` | `'error'` (HubSpot not connected, or HubSpot refused the write).
 
+            **salesforce_upsert_contact**: `{ email, phone, firstName, lastName, properties, createAs, saveAs }`. Creates or updates the run contact as a Lead or Contact in the profile's connected Salesforce org.
+
+            - Updates the record already linked by inbox sync, else one matching by email, then phone (any phone field; Contacts before open Leads); otherwise creates one.
+            - An existing record gets only the fields the node sets (a value that resolves to an empty string is skipped).
+            - A new one also takes the Zernio contact's name, email and phone for anything left out. A missing LastName falls back to the email or phone, and a new Lead gets Company `[not provided]` unless `properties` sets it.
+            - `phone` is written to `MobilePhone`. `properties` maps Salesforce field API names (`LeadSource`, `Title`, `Custom__c`) to values (at most 50).
+            - `createAs`: `lead` | `contact`, what a person new to Salesforce becomes (default: the connection's `createAs` setting).
+            - Saves `{ id, type, created }` (`type` is `Lead` or `Contact`), or `{ error }`, to `vars[saveAs]` (default `salesforceContact`).
+            - Edges: `'success'` | `'error'` (Salesforce not connected, or Salesforce refused the write, such as a validation rule or a required field).
+
             **ai**: `{ provider: anthropic|openai|google|mistral|groq|openrouter, model, preset: smart|tools|cheap, systemPrompt, userPromptTemplate, saveAs, temperature, maxTokens, outputType: text|json, tools:[{ name, description, parameters }] }`. Set `provider` + `model` for BYOK (uses your stored API key); omit `provider` for the legacy Telnyx path. Edges: `'success'`, `'tool:<name>'` (model picked a tool), `'error'`.
 
             **handoff**: `{ note, assignTo }`. Terminates the run as `exited` and flags the conversation for a human operator.
@@ -94483,6 +94516,7 @@ components:
             - **wait_for_reply**: `'reply'` (contact replied) | `'timeout'` (no reply in window)
             - **webhook**: `'success'` (2xx) | `'error'` (non-2xx / fetch failed)
             - **hubspot_upsert_contact**: `'success'` | `'error'` (not connected / HubSpot refused)
+            - **salesforce_upsert_contact**: `'success'` | `'error'` (not connected / Salesforce refused)
             - **ai**: `'success'` (text/JSON response) | `'tool:<toolName>'` (model invoked that tool) | `'error'` (upstream failure / non-JSON in JSON mode)
             - **start_call**: `'success'` | `'permission_required'` | `'failed'`
             - **a_b_split**: `'a'` | `'b'`
@@ -113940,21 +113974,23 @@ components:
       - useDealsAsResults
     SalesforceSettings:
       example:
-        environment: production
         orgName: orgName
         logDeliveryStatus: true
+        useOpportunitiesInResults: true
+        platform: salesforce
+        orgId: orgId
+        instanceUrl: https://openapi-generator.tech
+        createAs: lead
+        environment: production
         installedBy: installedBy
         syncIssue:
           code: code
           at: 2000-01-23T04:56:07.000+00:00
           message: message
+        reportOpportunitiesToAds: true
         _id: _id
         logMessages: true
         syncContacts: true
-        platform: salesforce
-        orgId: orgId
-        instanceUrl: https://openapi-generator.tech
-        createAs: lead
       properties:
         _id:
           description: Zernio account ID of the Salesforce connection.
@@ -114008,6 +114044,16 @@ components:
           type: boolean
         syncIssue:
           $ref: "#/components/schemas/SalesforceSettings_syncIssue"
+        useOpportunitiesInResults:
+          description: "Whether closed-won Opportunities count as sales (Amount, in\
+            \ the Opportunity's or the org's currency) on the ad campaign named by\
+            \ their Primary Campaign Source, in campaign results and ad rules. Lost\
+            \ or reopened Opportunities stop counting."
+          type: boolean
+        reportOpportunitiesToAds:
+          description: Whether Zernio sends newly closed-won Opportunities as Purchase
+            events (source `salesforce`) to the profile's event destinations.
+          type: boolean
       required:
       - _id
       - createAs
@@ -114019,8 +114065,10 @@ components:
       - orgId
       - orgName
       - platform
+      - reportOpportunitiesToAds
       - syncContacts
       - syncIssue
+      - useOpportunitiesInResults
     GoogleAnalyticsReport:
       description: "Google Analytics Data API report, passed through as Google returns\
         \ it. Every value in `rows` is a string; read `metricHeaders[].type` to parse\
@@ -132589,6 +132637,7 @@ components:
             - woocommerce
             - stripe
             - web
+            - salesforce
             type: string
           nullable: true
           type: array
@@ -152938,21 +152987,23 @@ components:
     getSalesforceSettings_200_response:
       example:
         account:
-          environment: production
           orgName: orgName
           logDeliveryStatus: true
+          useOpportunitiesInResults: true
+          platform: salesforce
+          orgId: orgId
+          instanceUrl: https://openapi-generator.tech
+          createAs: lead
+          environment: production
           installedBy: installedBy
           syncIssue:
             code: code
             at: 2000-01-23T04:56:07.000+00:00
             message: message
+          reportOpportunitiesToAds: true
           _id: _id
           logMessages: true
           syncContacts: true
-          platform: salesforce
-          orgId: orgId
-          instanceUrl: https://openapi-generator.tech
-          createAs: lead
       properties:
         account:
           $ref: "#/components/schemas/SalesforceSettings"
@@ -152978,25 +153029,40 @@ components:
           description: "Mark sent messages in the transcript as delivered, read or\
             \ failed."
           type: boolean
+        useOpportunitiesInResults:
+          description: "Count closed-won Opportunities as sales on the ad campaign\
+            \ named by their Primary Campaign Source, in campaign results and ad rules.\
+            \ Turning it on also fills in the Opportunities won in the last 90 days.\
+            \ Lost or reopened Opportunities stop counting."
+          type: boolean
+        reportOpportunitiesToAds:
+          description: "Send each newly closed-won Opportunity once as a Purchase\
+            \ event (source `salesforce`, event id `salesforce_opp_{orgId}_{opportunityId}`)\
+            \ to the profile's event destinations, with the email and phone of its\
+            \ primary contact role, else the first Contact of its Account. Opportunities\
+            \ won before it was turned on are not sent."
+          type: boolean
     updateSalesforceSettings_200_response:
       example:
         message: message
         account:
-          environment: production
           orgName: orgName
           logDeliveryStatus: true
+          useOpportunitiesInResults: true
+          platform: salesforce
+          orgId: orgId
+          instanceUrl: https://openapi-generator.tech
+          createAs: lead
+          environment: production
           installedBy: installedBy
           syncIssue:
             code: code
             at: 2000-01-23T04:56:07.000+00:00
             message: message
+          reportOpportunitiesToAds: true
           _id: _id
           logMessages: true
           syncContacts: true
-          platform: salesforce
-          orgId: orgId
-          instanceUrl: https://openapi-generator.tech
-          createAs: lead
       properties:
         message:
           type: string
@@ -207912,6 +207978,7 @@ components:
             - woocommerce
             - stripe
             - web
+            - salesforce
             type: string
           minItems: 1
           type: array
@@ -224208,7 +224275,7 @@ components:
         source:
           description: "Who sent it: `api`, `relay`, a lead form (`meta_leads`, `google_leads`,\
             \ `linkedin_leads`, `tiktok_leads`), a store (`shopify`, `woocommerce`),\
-            \ `stripe` or `hubspot`."
+            \ `stripe`, `hubspot` or `salesforce`."
           type: string
         actionSource:
           nullable: true

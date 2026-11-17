@@ -31,6 +31,7 @@
 | WOOCOMMERCE | &quot;woocommerce&quot; |
 | STRIPE | &quot;stripe&quot; |
 | WEB | &quot;web&quot; |
+| SALESFORCE | &quot;salesforce&quot; |
 
 
 
