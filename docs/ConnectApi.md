@@ -10127,7 +10127,7 @@ ApiResponse<[**ListInstagramPages200Response**](ListInstagramPages200Response.md
 
 ## listLinkedInOrganizations
 
-> ListLinkedInOrganizations200Response listLinkedInOrganizations(tempToken, orgIds)
+> ListLinkedInOrganizations200Response listLinkedInOrganizations(orgIds, tempToken, xTempToken)
 
 List LinkedIn orgs
 
@@ -10154,10 +10154,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
-        String tempToken = "tempToken_example"; // String | The temporary LinkedIn access token from the OAuth redirect
         String orgIds = "12345678,87654321,11111111"; // String | Comma-separated list of organization IDs to fetch details for (max 100)
+        String tempToken = "tempToken_example"; // String | The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header.
+        String xTempToken = "xTempToken_example"; // String | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way.
         try {
-            ListLinkedInOrganizations200Response result = apiInstance.listLinkedInOrganizations(tempToken, orgIds);
+            ListLinkedInOrganizations200Response result = apiInstance.listLinkedInOrganizations(orgIds, tempToken, xTempToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#listLinkedInOrganizations");
@@ -10175,8 +10176,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **tempToken** | **String**| The temporary LinkedIn access token from the OAuth redirect | |
 | **orgIds** | **String**| Comma-separated list of organization IDs to fetch details for (max 100) | |
+| **tempToken** | **String**| The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. | [optional] |
+| **xTempToken** | **String**| The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional] |
 
 ### Return type
 
@@ -10201,7 +10203,7 @@ public class Example {
 
 ## listLinkedInOrganizationsWithHttpInfo
 
-> ApiResponse<ListLinkedInOrganizations200Response> listLinkedInOrganizations listLinkedInOrganizationsWithHttpInfo(tempToken, orgIds)
+> ApiResponse<ListLinkedInOrganizations200Response> listLinkedInOrganizations listLinkedInOrganizationsWithHttpInfo(orgIds, tempToken, xTempToken)
 
 List LinkedIn orgs
 
@@ -10229,10 +10231,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
-        String tempToken = "tempToken_example"; // String | The temporary LinkedIn access token from the OAuth redirect
         String orgIds = "12345678,87654321,11111111"; // String | Comma-separated list of organization IDs to fetch details for (max 100)
+        String tempToken = "tempToken_example"; // String | The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header.
+        String xTempToken = "xTempToken_example"; // String | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way.
         try {
-            ApiResponse<ListLinkedInOrganizations200Response> response = apiInstance.listLinkedInOrganizationsWithHttpInfo(tempToken, orgIds);
+            ApiResponse<ListLinkedInOrganizations200Response> response = apiInstance.listLinkedInOrganizationsWithHttpInfo(orgIds, tempToken, xTempToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -10252,8 +10255,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **tempToken** | **String**| The temporary LinkedIn access token from the OAuth redirect | |
 | **orgIds** | **String**| Comma-separated list of organization IDs to fetch details for (max 100) | |
+| **tempToken** | **String**| The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. | [optional] |
+| **xTempToken** | **String**| The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional] |
 
 ### Return type
 

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   DismissGoogleRecommendationsRequest.JSON_PROPERTY_AD_ACCOUNT_ID,
   DismissGoogleRecommendationsRequest.JSON_PROPERTY_RESOURCE_NAMES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:55:19.357227643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DismissGoogleRecommendationsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

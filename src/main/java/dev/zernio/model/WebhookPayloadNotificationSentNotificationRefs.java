@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadNotificationSentNotificationRefs.JSON_PROPERTY_ACCOUNT,
   WebhookPayloadNotificationSentNotificationRefs.JSON_PROPERTY_API_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:55:19.357227643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadNotificationSentNotificationRefs {
   public static final String JSON_PROPERTY_POST = "post";
   @javax.annotation.Nullable

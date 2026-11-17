@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   GetBalance200Response.JSON_PROPERTY_RECENT_TOPUPS,
   GetBalance200Response.JSON_PROPERTY_RECENT_CREDIT_RECHARGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:55:19.357227643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetBalance200Response {
   public static final String JSON_PROPERTY_AVAILABLE_CENTS = "availableCents";
   @javax.annotation.Nullable

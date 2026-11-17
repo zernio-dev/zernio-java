@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner.JSON_PROPERTY_FREE_FORM_SERVICE_ITEM,
   UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner.JSON_PROPERTY_PRICE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:55:19.357227643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner {
   public static final String JSON_PROPERTY_STRUCTURED_SERVICE_ITEM = "structuredServiceItem";
   @javax.annotation.Nullable

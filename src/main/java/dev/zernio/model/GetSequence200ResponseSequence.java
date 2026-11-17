@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   GetSequence200ResponseSequence.JSON_PROPERTY_CREATED_AT,
   GetSequence200ResponseSequence.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:55:19.357227643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetSequence200ResponseSequence {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

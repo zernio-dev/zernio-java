@@ -19066,14 +19066,24 @@ paths:
         \ from OAuth."
       operationId: listLinkedInOrganizations
       parameters:
-      - description: The temporary LinkedIn access token from the OAuth redirect
+      - description: The temporary LinkedIn access token from the OAuth redirect.
+          Required unless sent in the X-Temp-Token header.
         explode: true
         in: query
         name: tempToken
-        required: true
+        required: false
         schema:
           type: string
         style: form
+      - description: "The OAuth user token, in place of the tempToken query parameter.\
+          \ Prefer it: a query string is written to request logs along the way."
+        explode: false
+        in: header
+        name: X-Temp-Token
+        required: false
+        schema:
+          type: string
+        style: simple
       - description: Comma-separated list of organization IDs to fetch details for
           (max 100)
         example: "12345678,87654321,11111111"

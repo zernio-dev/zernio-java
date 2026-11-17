@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   CommentAutomationStats.JSON_PROPERTY_FOLLOW_GATE_PASSED,
   CommentAutomationStats.JSON_PROPERTY_FOLLOW_GATE_FAILED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:55:19.357227643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationStats {
   public static final String JSON_PROPERTY_TRIGGERED = "triggered";
   @javax.annotation.Nullable

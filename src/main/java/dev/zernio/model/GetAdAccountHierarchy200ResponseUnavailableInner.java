@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetAdAccountHierarchy200ResponseUnavailableInner.JSON_PROPERTY_CUSTOMER_ID,
   GetAdAccountHierarchy200ResponseUnavailableInner.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:55:19.357227643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAccountHierarchy200ResponseUnavailableInner {
   public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
   @javax.annotation.Nullable

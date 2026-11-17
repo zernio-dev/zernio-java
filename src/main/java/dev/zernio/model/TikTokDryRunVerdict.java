@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   TikTokDryRunVerdict.JSON_PROPERTY_CAN_PUBLISH,
   TikTokDryRunVerdict.JSON_PROPERTY_TIKTOK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:55:19.357227643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TikTokDryRunVerdict {
   public static final String JSON_PROPERTY_DRY_RUN = "dryRun";
   @javax.annotation.Nonnull

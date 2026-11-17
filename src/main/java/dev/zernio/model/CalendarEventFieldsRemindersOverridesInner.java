@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CalendarEventFieldsRemindersOverridesInner.JSON_PROPERTY_METHOD,
   CalendarEventFieldsRemindersOverridesInner.JSON_PROPERTY_MINUTES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:55:19.357227643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CalendarEventFieldsRemindersOverridesInner {
   /**
    * &#x60;popup&#x60; shows a notification in the calendar app. &#x60;email&#x60; mails the calendar owner (Google only).

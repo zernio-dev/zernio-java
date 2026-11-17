@@ -173,7 +173,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:55:19.357227643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -8572,52 +8572,56 @@ public class ConnectApi {
   /**
    * List LinkedIn orgs
    * Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
-   * @param tempToken The temporary LinkedIn access token from the OAuth redirect (required)
    * @param orgIds Comma-separated list of organization IDs to fetch details for (max 100) (required)
+   * @param tempToken The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional)
+   * @param xTempToken The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional)
    * @return ListLinkedInOrganizations200Response
    * @throws ApiException if fails to make API call
    */
-  public ListLinkedInOrganizations200Response listLinkedInOrganizations(@javax.annotation.Nonnull String tempToken, @javax.annotation.Nonnull String orgIds) throws ApiException {
-    return listLinkedInOrganizations(tempToken, orgIds, null);
+  public ListLinkedInOrganizations200Response listLinkedInOrganizations(@javax.annotation.Nonnull String orgIds, @javax.annotation.Nullable String tempToken, @javax.annotation.Nullable String xTempToken) throws ApiException {
+    return listLinkedInOrganizations(orgIds, tempToken, xTempToken, null);
   }
 
   /**
    * List LinkedIn orgs
    * Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
-   * @param tempToken The temporary LinkedIn access token from the OAuth redirect (required)
    * @param orgIds Comma-separated list of organization IDs to fetch details for (max 100) (required)
+   * @param tempToken The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional)
+   * @param xTempToken The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional)
    * @param headers Optional headers to include in the request
    * @return ListLinkedInOrganizations200Response
    * @throws ApiException if fails to make API call
    */
-  public ListLinkedInOrganizations200Response listLinkedInOrganizations(@javax.annotation.Nonnull String tempToken, @javax.annotation.Nonnull String orgIds, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListLinkedInOrganizations200Response> localVarResponse = listLinkedInOrganizationsWithHttpInfo(tempToken, orgIds, headers);
+  public ListLinkedInOrganizations200Response listLinkedInOrganizations(@javax.annotation.Nonnull String orgIds, @javax.annotation.Nullable String tempToken, @javax.annotation.Nullable String xTempToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListLinkedInOrganizations200Response> localVarResponse = listLinkedInOrganizationsWithHttpInfo(orgIds, tempToken, xTempToken, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List LinkedIn orgs
    * Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
-   * @param tempToken The temporary LinkedIn access token from the OAuth redirect (required)
    * @param orgIds Comma-separated list of organization IDs to fetch details for (max 100) (required)
+   * @param tempToken The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional)
+   * @param xTempToken The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional)
    * @return ApiResponse&lt;ListLinkedInOrganizations200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListLinkedInOrganizations200Response> listLinkedInOrganizationsWithHttpInfo(@javax.annotation.Nonnull String tempToken, @javax.annotation.Nonnull String orgIds) throws ApiException {
-    return listLinkedInOrganizationsWithHttpInfo(tempToken, orgIds, null);
+  public ApiResponse<ListLinkedInOrganizations200Response> listLinkedInOrganizationsWithHttpInfo(@javax.annotation.Nonnull String orgIds, @javax.annotation.Nullable String tempToken, @javax.annotation.Nullable String xTempToken) throws ApiException {
+    return listLinkedInOrganizationsWithHttpInfo(orgIds, tempToken, xTempToken, null);
   }
 
   /**
    * List LinkedIn orgs
    * Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
-   * @param tempToken The temporary LinkedIn access token from the OAuth redirect (required)
    * @param orgIds Comma-separated list of organization IDs to fetch details for (max 100) (required)
+   * @param tempToken The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional)
+   * @param xTempToken The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListLinkedInOrganizations200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListLinkedInOrganizations200Response> listLinkedInOrganizationsWithHttpInfo(@javax.annotation.Nonnull String tempToken, @javax.annotation.Nonnull String orgIds, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listLinkedInOrganizationsRequestBuilder(tempToken, orgIds, headers);
+  public ApiResponse<ListLinkedInOrganizations200Response> listLinkedInOrganizationsWithHttpInfo(@javax.annotation.Nonnull String orgIds, @javax.annotation.Nullable String tempToken, @javax.annotation.Nullable String xTempToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listLinkedInOrganizationsRequestBuilder(orgIds, tempToken, xTempToken, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -8664,11 +8668,7 @@ public class ConnectApi {
     }
   }
 
-  private HttpRequest.Builder listLinkedInOrganizationsRequestBuilder(@javax.annotation.Nonnull String tempToken, @javax.annotation.Nonnull String orgIds, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'tempToken' is set
-    if (tempToken == null) {
-      throw new ApiException(400, "Missing the required parameter 'tempToken' when calling listLinkedInOrganizations");
-    }
+  private HttpRequest.Builder listLinkedInOrganizationsRequestBuilder(@javax.annotation.Nonnull String orgIds, @javax.annotation.Nullable String tempToken, @javax.annotation.Nullable String xTempToken, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'orgIds' is set
     if (orgIds == null) {
       throw new ApiException(400, "Missing the required parameter 'orgIds' when calling listLinkedInOrganizations");
@@ -8697,6 +8697,9 @@ public class ConnectApi {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
 
+    if (xTempToken != null) {
+      localVarRequestBuilder.header("X-Temp-Token", xTempToken.toString());
+    }
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());

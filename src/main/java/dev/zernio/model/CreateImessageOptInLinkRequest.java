@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CreateImessageOptInLinkRequest.JSON_PROPERTY_PARAMETERS,
   CreateImessageOptInLinkRequest.JSON_PROPERTY_OPT_IN_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:55:19.357227643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateImessageOptInLinkRequest {
   public static final String JSON_PROPERTY_BODY = "body";
   @javax.annotation.Nonnull

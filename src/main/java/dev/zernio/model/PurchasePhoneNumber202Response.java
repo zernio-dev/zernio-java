@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   PurchasePhoneNumber202Response.JSON_PROPERTY_NUMBER_TYPE,
   PurchasePhoneNumber202Response.JSON_PROPERTY_KYC_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T10:55:19.357227643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T11:04:10.059063258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchasePhoneNumber202Response {
   /**
    * Gets or Sets status
