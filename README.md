@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.639.0
+- API version: 1.640.0
 
-- Build date: 2026-11-17T14:25:55.245034925Z[Etc/UTC]
+- Build date: 2026-11-17T15:29:14.566643928Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.639.0</version>
+  <version>1.640.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.639.0"
+compile "dev.zernio:zernio-sdk:1.640.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.639.0.jar`
+- `target/zernio-sdk-1.640.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -5748,6 +5748,7 @@ Class | Method | HTTP request | Description
  - [TrackingSiteCustomHostnameDnsRecord](docs/TrackingSiteCustomHostnameDnsRecord.md)
  - [TrackingSiteInstall](docs/TrackingSiteInstall.md)
  - [TrackingSitePeriodTotals](docs/TrackingSitePeriodTotals.md)
+ - [TrackingSiteProxy](docs/TrackingSiteProxy.md)
  - [TrackingSiteSetup](docs/TrackingSiteSetup.md)
  - [TrackingTag](docs/TrackingTag.md)
  - [TrackingTagDiagnostic](docs/TrackingTagDiagnostic.md)

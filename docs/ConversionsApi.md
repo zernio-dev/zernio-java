@@ -8421,7 +8421,7 @@ ApiResponse<[**CreateForwardingRule201Response**](CreateForwardingRule201Respons
 
 Update a tracking site
 
-Changes the site&#39;s name, domains, consent mode or custom subdomain. Send at least one field.  &#x60;customHostname&#x60; sets a subdomain of the site, such as &#x60;t.brand.com&#x60;; create the CNAME in &#x60;customHostname.dnsRecord&#x60;. The snippet switches to it once its status is &#x60;active&#x60;. &#x60;null&#x60; removes it. 
+Changes the site&#39;s name, domains, consent mode, custom subdomain or own-domain path. Send at least one field.  &#x60;customHostname&#x60; sets a subdomain of the site, such as &#x60;t.brand.com&#x60;; create the CNAME in &#x60;customHostname.dnsRecord&#x60;. The snippet switches to it once its status is &#x60;active&#x60;. &#x60;null&#x60; removes it.  &#x60;proxyPath&#x60; serves the tag from a path of the site itself, such as &#x60;brand.com/zt&#x60;, through a proxy on your server. The response&#39;s &#x60;proxy.secret&#x60; signs what the proxy forwards. &#x60;null&#x60; removes it. 
 
 ### Example
 
@@ -8498,7 +8498,7 @@ public class Example {
 
 Update a tracking site
 
-Changes the site&#39;s name, domains, consent mode or custom subdomain. Send at least one field.  &#x60;customHostname&#x60; sets a subdomain of the site, such as &#x60;t.brand.com&#x60;; create the CNAME in &#x60;customHostname.dnsRecord&#x60;. The snippet switches to it once its status is &#x60;active&#x60;. &#x60;null&#x60; removes it. 
+Changes the site&#39;s name, domains, consent mode, custom subdomain or own-domain path. Send at least one field.  &#x60;customHostname&#x60; sets a subdomain of the site, such as &#x60;t.brand.com&#x60;; create the CNAME in &#x60;customHostname.dnsRecord&#x60;. The snippet switches to it once its status is &#x60;active&#x60;. &#x60;null&#x60; removes it.  &#x60;proxyPath&#x60; serves the tag from a path of the site itself, such as &#x60;brand.com/zt&#x60;, through a proxy on your server. The response&#39;s &#x60;proxy.secret&#x60; signs what the proxy forwards. &#x60;null&#x60; removes it. 
 
 ### Example
 

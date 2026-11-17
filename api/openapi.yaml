@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.639.0
+  version: 1.640.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -72185,9 +72185,11 @@ paths:
       style: simple
     patch:
       description: |
-        Changes the site's name, domains, consent mode or custom subdomain. Send at least one field.
+        Changes the site's name, domains, consent mode, custom subdomain or own-domain path. Send at least one field.
 
         `customHostname` sets a subdomain of the site, such as `t.brand.com`; create the CNAME in `customHostname.dnsRecord`. The snippet switches to it once its status is `active`. `null` removes it.
+
+        `proxyPath` serves the tag from a path of the site itself, such as `brand.com/zt`, through a proxy on your server. The response's `proxy.secret` signs what the proxy forwards. `null` removes it.
       operationId: updateTrackingSite
       parameters:
       - explode: false
@@ -131711,6 +131713,9 @@ components:
         domains:
         - domains
         - domains
+        proxy:
+          path: path
+          secret: secret
         createdAt: 2000-01-23T04:56:07.000+00:00
         siteKey: siteKey
         checks:
@@ -131762,6 +131767,8 @@ components:
           type: array
         customHostname:
           $ref: "#/components/schemas/TrackingSite_customHostname"
+        proxy:
+          $ref: "#/components/schemas/TrackingSite_proxy"
         consentMode:
           $ref: "#/components/schemas/TrackingSiteConsentMode"
         checks:
@@ -206786,6 +206793,9 @@ components:
           domains:
           - domains
           - domains
+          proxy:
+            path: path
+            secret: secret
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
           checks:
@@ -206820,6 +206830,9 @@ components:
           domains:
           - domains
           - domains
+          proxy:
+            path: path
+            secret: secret
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
           checks:
@@ -206900,6 +206913,9 @@ components:
           domains:
           - domains
           - domains
+          proxy:
+            path: path
+            secret: secret
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
           checks:
@@ -206949,6 +206965,12 @@ components:
             \ itself. `null` removes it."
           maxLength: 253
           nullable: true
+          type: string
+        proxyPath:
+          description: "The path your server forwards to the collector, such as `/zt`.\
+            \ `null` removes it."
+          nullable: true
+          pattern: "^/[A-Za-z0-9_-]{1,32}$"
           type: string
     getCampaignConversionGoals_200_response:
       allOf:
@@ -236371,6 +236393,21 @@ components:
           type: string
         dnsRecord:
           $ref: "#/components/schemas/TrackingSite_customHostname_dnsRecord"
+    TrackingSite_proxy:
+      description: "The path your server forwards to the collector, so the tag runs\
+        \ from the site's own domain. Null when it has none."
+      example:
+        path: path
+        secret: secret
+      properties:
+        path:
+          description: "Such as `/zt`: the snippet loads `https://<first domain>/zt/z.js`."
+          type: string
+        secret:
+          description: Signs the visitor's IP and country your proxy forwards. Only
+            on reading or updating one site.
+          nullable: true
+          type: string
     TrackingSite_checks_inner:
       example:
         checkedAt: 2000-01-23T04:56:07.000+00:00
