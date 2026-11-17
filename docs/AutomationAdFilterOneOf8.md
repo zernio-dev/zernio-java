@@ -2,7 +2,7 @@
 
 # AutomationAdFilterOneOf8
 
-Whether a negative keyword on the ad group, the campaign or a shared list applied to it now stops the search term. Search term subjects only.
+Whether a negative keyword on the ad group, the campaign or a shared list applied to it now stops the keyword or search term. Keyword and search term subjects only.
 
 ## Properties
 
