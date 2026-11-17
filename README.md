@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.645.0
+- API version: 1.646.0
 
-- Build date: 2026-11-17T17:01:46.069621752Z[Etc/UTC]
+- Build date: 2026-11-17T17:49:38.171548264Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.645.0</version>
+  <version>1.646.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.645.0"
+compile "dev.zernio:zernio-sdk:1.646.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.645.0.jar`
+- `target/zernio-sdk-1.646.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4597,6 +4597,7 @@ Class | Method | HTTP request | Description
  - [HideInboxComment200Response](docs/HideInboxComment200Response.md)
  - [HideInboxCommentRequest](docs/HideInboxCommentRequest.md)
  - [HubSpotSettings](docs/HubSpotSettings.md)
+ - [HubSpotSettingsSyncIssue](docs/HubSpotSettingsSyncIssue.md)
  - [Ids](docs/Ids.md)
  - [ImapConnectResult](docs/ImapConnectResult.md)
  - [ImapConnectResultAccount](docs/ImapConnectResultAccount.md)

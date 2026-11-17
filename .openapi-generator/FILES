@@ -1930,6 +1930,7 @@ docs/HideAdCommentRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
 docs/HubSpotSettings.md
+docs/HubSpotSettingsSyncIssue.md
 docs/IMessageApi.md
 docs/Ids.md
 docs/ImapConnectResult.md
@@ -5872,6 +5873,7 @@ src/main/java/dev/zernio/model/HideAdCommentRequest.java
 src/main/java/dev/zernio/model/HideInboxComment200Response.java
 src/main/java/dev/zernio/model/HideInboxCommentRequest.java
 src/main/java/dev/zernio/model/HubSpotSettings.java
+src/main/java/dev/zernio/model/HubSpotSettingsSyncIssue.java
 src/main/java/dev/zernio/model/Ids.java
 src/main/java/dev/zernio/model/ImapConnectResult.java
 src/main/java/dev/zernio/model/ImapConnectResultAccount.java
@@ -7783,9 +7785,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetSalesforceConnectUrl200ResponseTest.java
-src/test/java/dev/zernio/model/GetSalesforceSettings200ResponseTest.java
-src/test/java/dev/zernio/model/SalesforceSettingsSyncIssueTest.java
-src/test/java/dev/zernio/model/SalesforceSettingsTest.java
-src/test/java/dev/zernio/model/UpdateSalesforceSettings200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateSalesforceSettingsRequestTest.java
+src/test/java/dev/zernio/model/HubSpotSettingsSyncIssueTest.java

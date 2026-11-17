@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.645.0
+  version: 1.646.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -113324,8 +113324,17 @@ components:
     HubSpotSettings:
       example:
         hubId: hubId
+        contactDefaults:
+          key: contactDefaults
         logDeliveryStatus: true
         reportDeals: true
+        syncIssue:
+          code: REQUIRED_CONTACT_PROPERTIES
+          at: 2000-01-23T04:56:07.000+00:00
+          message: message
+          properties:
+          - properties
+          - properties
         _id: _id
         hubDomain: hubDomain
         scopes:
@@ -113368,6 +113377,15 @@ components:
             \ HubSpot timeline entries. Only applies while `logMessages` is on. Defaults\
             \ to `true`."
           type: boolean
+        contactDefaults:
+          additionalProperties:
+            type: string
+          description: "Values Zernio sets on contacts it creates, keyed by HubSpot\
+            \ internal property name, for properties the portal requires on create\
+            \ (for example `lifecyclestage: lead`). The contact's own name, email\
+            \ and phone win. Empty object when none."
+        syncIssue:
+          $ref: "#/components/schemas/HubSpotSettings_syncIssue"
         reportDeals:
           description: Whether Zernio sends closed-won deals as Purchase events to
             the profile's event destinations.
@@ -113378,6 +113396,7 @@ components:
           type: boolean
       required:
       - _id
+      - contactDefaults
       - hubDomain
       - hubId
       - logDeliveryStatus
@@ -113386,6 +113405,7 @@ components:
       - reportDeals
       - scopes
       - syncContacts
+      - syncIssue
       - useDealsAsResults
     SalesforceSettings:
       example:
@@ -152250,8 +152270,17 @@ components:
       example:
         account:
           hubId: hubId
+          contactDefaults:
+            key: contactDefaults
           logDeliveryStatus: true
           reportDeals: true
+          syncIssue:
+            code: REQUIRED_CONTACT_PROPERTIES
+            at: 2000-01-23T04:56:07.000+00:00
+            message: message
+            properties:
+            - properties
+            - properties
           _id: _id
           hubDomain: hubDomain
           scopes:
@@ -152280,6 +152309,17 @@ components:
             \ read or fails. A failure shows the reason and its code. Only applies\
             \ while `logMessages` is on."
           type: boolean
+        contactDefaults:
+          additionalProperties:
+            maxLength: 500
+            minLength: 1
+            type: string
+          description: "Values for contact properties your portal requires on create,\
+            \ keyed by HubSpot internal name (lowercase letters, digits, underscores),\
+            \ for example `{\"lifecyclestage\": \"lead\"}`. Replaces the whole map;\
+            \ send `{}` to clear it. Clears `syncIssue` until the next contact create\
+            \ tells whether the portal accepts them."
+          maxProperties: 20
         reportDeals:
           description: "Send each deal that becomes closed won as a Purchase to the\
             \ profile's event destinations, about once an hour. Requires the portal\
@@ -152297,8 +152337,17 @@ components:
         message: message
         account:
           hubId: hubId
+          contactDefaults:
+            key: contactDefaults
           logDeliveryStatus: true
           reportDeals: true
+          syncIssue:
+            code: REQUIRED_CONTACT_PROPERTIES
+            at: 2000-01-23T04:56:07.000+00:00
+            message: message
+            properties:
+            - properties
+            - properties
           _id: _id
           hubDomain: hubDomain
           scopes:
@@ -230004,6 +230053,38 @@ components:
           - updated
           - deleted
           type: string
+    HubSpotSettings_syncIssue:
+      description: Set while the portal refuses to create contacts because it requires
+        properties Zernio does not fill. People already in HubSpot are still matched
+        and their messages logged. Cleared by the next created contact or a change
+        to `contactDefaults`. The account's health shows it too.
+      example:
+        code: REQUIRED_CONTACT_PROPERTIES
+        at: 2000-01-23T04:56:07.000+00:00
+        message: message
+        properties:
+        - properties
+        - properties
+      properties:
+        code:
+          enum:
+          - REQUIRED_CONTACT_PROPERTIES
+          type: string
+        properties:
+          description: The required contact properties HubSpot named.
+          items:
+            type: string
+          type: array
+        message:
+          type: string
+        at:
+          format: date-time
+          type: string
+      required:
+      - at
+      - code
+      - message
+      - properties
     SalesforceSettings_syncIssue:
       description: "Set while the org refuses Zernio's writes for a reason only its\
         \ admin can fix (field-level security, a validation rule, a duplicate rule);\
