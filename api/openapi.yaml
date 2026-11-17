@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.647.1
+  version: 1.648.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -89044,8 +89044,12 @@ components:
           nullable: true
           type: string
         unsupportedReason:
+          description: "proton_requires_bridge: Proton Mail only works through its\
+            \ local bridge. forwarding_only: the domain forwards mail (Cloudflare\
+            \ Email Routing) and stores none, so connect the mailbox it forwards to."
           enum:
           - proton_requires_bridge
+          - forwarding_only
           - null
           nullable: true
           type: string
