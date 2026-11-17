@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.643.0
+  version: 1.644.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -113171,6 +113171,7 @@ components:
     HubSpotSettings:
       example:
         hubId: hubId
+        logDeliveryStatus: true
         reportDeals: true
         _id: _id
         hubDomain: hubDomain
@@ -113208,6 +113209,12 @@ components:
         logMessages:
           description: Whether Zernio logs inbox messages on HubSpot contact timelines.
           type: boolean
+        logDeliveryStatus:
+          description: "Whether Zernio keeps the delivery status (sent, delivered,\
+            \ read, played, failed) of logged outgoing messages up to date on their\
+            \ HubSpot timeline entries. Only applies while `logMessages` is on. Defaults\
+            \ to `true`."
+          type: boolean
         reportDeals:
           description: Whether Zernio sends closed-won deals as Purchase events to
             the profile's event destinations.
@@ -113220,6 +113227,7 @@ components:
       - _id
       - hubDomain
       - hubId
+      - logDeliveryStatus
       - logMessages
       - platform
       - reportDeals
@@ -151990,6 +151998,7 @@ components:
       example:
         account:
           hubId: hubId
+          logDeliveryStatus: true
           reportDeals: true
           _id: _id
           hubDomain: hubDomain
@@ -152013,6 +152022,12 @@ components:
           description: Log inbound and outbound inbox messages on the contact's HubSpot
             timeline.
           type: boolean
+        logDeliveryStatus:
+          description: "Add the delivery status of each outgoing WhatsApp, SMS or\
+            \ RCS message to its timeline entry and update it as the message is delivered,\
+            \ read or fails. A failure shows the reason and its code. Only applies\
+            \ while `logMessages` is on."
+          type: boolean
         reportDeals:
           description: "Send each deal that becomes closed won as a Purchase to the\
             \ profile's event destinations, about once an hour. Requires the portal\
@@ -152030,6 +152045,7 @@ components:
         message: message
         account:
           hubId: hubId
+          logDeliveryStatus: true
           reportDeals: true
           _id: _id
           hubDomain: hubDomain
