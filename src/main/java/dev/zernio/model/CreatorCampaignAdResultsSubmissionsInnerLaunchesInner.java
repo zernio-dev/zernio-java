@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CreatorCampaignAdResultsSubmissionsInnerLaunchesInner.JSON_PROPERTY_ERROR,
   CreatorCampaignAdResultsSubmissionsInnerLaunchesInner.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T22:57:11.379684425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T23:11:00.909186254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatorCampaignAdResultsSubmissionsInnerLaunchesInner {
   public static final String JSON_PROPERTY_PLACEMENT_KEY = "placementKey";
   @javax.annotation.Nonnull

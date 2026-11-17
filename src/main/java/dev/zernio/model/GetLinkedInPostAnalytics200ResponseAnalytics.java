@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   GetLinkedInPostAnalytics200ResponseAnalytics.JSON_PROPERTY_VIEWS,
   GetLinkedInPostAnalytics200ResponseAnalytics.JSON_PROPERTY_ENGAGEMENT_RATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T22:57:11.379684425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T23:11:00.909186254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInPostAnalytics200ResponseAnalytics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nullable

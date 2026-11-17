@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   ListCommerceOrders200Response.JSON_PROPERTY_ORDERS,
   ListCommerceOrders200Response.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T22:57:11.379684425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T23:11:00.909186254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCommerceOrders200Response {
   public static final String JSON_PROPERTY_ORDERS = "orders";
   @javax.annotation.Nullable

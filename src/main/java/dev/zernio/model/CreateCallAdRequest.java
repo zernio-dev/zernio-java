@@ -131,7 +131,7 @@ import dev.zernio.ApiClient;
   CreateCallAdRequest.JSON_PROPERTY_PHONE_NUMBER,
   CreateCallAdRequest.JSON_PROPERTY_LINK_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T22:57:11.379684425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T23:11:00.909186254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCallAdRequest {
   public static final String JSON_PROPERTY_RETRY_ON_SERVER_ERROR = "retryOnServerError";
   @javax.annotation.Nullable

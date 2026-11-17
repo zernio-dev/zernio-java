@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   RotateSipTrunkCredentials200Response.JSON_PROPERTY_TERMINATION,
   RotateSipTrunkCredentials200Response.JSON_PROPERTY_DIGEST_PASSWORD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T22:57:11.379684425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T23:11:00.909186254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RotateSipTrunkCredentials200Response {
   public static final String JSON_PROPERTY_TERMINATION = "termination";
   @javax.annotation.Nullable

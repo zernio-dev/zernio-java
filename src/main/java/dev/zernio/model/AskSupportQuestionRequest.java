@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   AskSupportQuestionRequest.JSON_PROPERTY_CONTEXT,
   AskSupportQuestionRequest.JSON_PROPERTY_MAX_COST_USD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T22:57:11.379684425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T23:11:00.909186254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AskSupportQuestionRequest {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nonnull

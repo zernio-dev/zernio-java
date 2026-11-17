@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ConnectOpenAIAdsCredentials200Response.JSON_PROPERTY_AD_ACCOUNT_NAME,
   ConnectOpenAIAdsCredentials200Response.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T22:57:11.379684425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T23:11:00.909186254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectOpenAIAdsCredentials200Response {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable

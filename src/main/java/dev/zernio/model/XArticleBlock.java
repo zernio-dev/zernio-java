@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   XArticleBlock.JSON_PROPERTY_INLINE_STYLE_RANGES,
   XArticleBlock.JSON_PROPERTY_ENTITY_RANGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T22:57:11.379684425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T23:11:00.909186254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XArticleBlock {
   /**
    * Gets or Sets type
