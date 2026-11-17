@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ConversionEventMessaging.JSON_PROPERTY_PAGE_SCOPED_USER_ID,
   ConversionEventMessaging.JSON_PROPERTY_INSTAGRAM_SCOPED_USER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T09:45:51.107176305Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T09:51:20.531665740Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEventMessaging {
   /**
    * Gets or Sets channel

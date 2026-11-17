@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   UploadFileRequest.JSON_PROPERTY_URL,
   UploadFileRequest.JSON_PROPERTY_CONVERT_TO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T09:45:51.107176305Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T09:51:20.531665740Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadFileRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

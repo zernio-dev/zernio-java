@@ -7765,9 +7765,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AutomationAdFilterOneOf6Test.java
-src/test/java/dev/zernio/model/AutomationAdFilterOneOf7Test.java
-src/test/java/dev/zernio/model/AutomationAdFilterOneOf8Test.java
-src/test/java/dev/zernio/model/BlockedByANegativeTest.java
-src/test/java/dev/zernio/model/MatchTypeTest.java
-src/test/java/dev/zernio/model/SearchTermStatusTest.java

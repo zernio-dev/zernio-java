@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CreateCommerceOrderEdit200Response.JSON_PROPERTY_ORDER,
   CreateCommerceOrderEdit200Response.JSON_PROPERTY_EDIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T09:45:51.107176305Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-17T09:51:20.531665740Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCommerceOrderEdit200Response {
   public static final String JSON_PROPERTY_VALIDATE_ONLY = "validateOnly";
   @javax.annotation.Nullable
