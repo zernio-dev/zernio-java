@@ -20,6 +20,7 @@
 |**follows** | **Integer** |  |  |
 |**reposts** | **Integer** |  |  |
 |**totalInteractions** | **Integer** |  |  |
+|**linkClicks** | **Integer** | Taps on links in the story (the link sticker). Facebook Login accounts only; always 0 for Instagram Login accounts. Taps on other stickers (mentions, hashtags, locations) are not reported by Meta. |  |
 
 
 

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.631.0
+  version: 1.632.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -150371,6 +150371,7 @@ components:
         shares: 5
         lastUpdated: 2000-01-23T04:56:07.000+00:00
         replies: 1
+        linkClicks: 7
         reach: 6
         follows: 5
         views: 0
@@ -150388,6 +150389,11 @@ components:
           type: integer
         profileVisits:
           type: integer
+        linkClicks:
+          description: "Taps on links in the story (the link sticker). Facebook Login\
+            \ accounts only; always 0 for Instagram Login accounts. Taps on other\
+            \ stickers (mentions, hashtags, locations) are not reported by Meta."
+          type: integer
         lastUpdated:
           format: date-time
           nullable: true
@@ -150403,6 +150409,7 @@ components:
           shares: 5
           lastUpdated: 2000-01-23T04:56:07.000+00:00
           replies: 1
+          linkClicks: 7
           reach: 6
           follows: 5
           views: 0
@@ -150461,6 +150468,7 @@ components:
             shares: 5
             lastUpdated: 2000-01-23T04:56:07.000+00:00
             replies: 1
+            linkClicks: 7
             reach: 6
             follows: 5
             views: 0
@@ -150477,6 +150485,7 @@ components:
             shares: 5
             lastUpdated: 2000-01-23T04:56:07.000+00:00
             replies: 1
+            linkClicks: 7
             reach: 6
             follows: 5
             views: 0
@@ -150641,6 +150650,7 @@ components:
     getInstagramStoryInsights_200_response_data_metrics:
       example:
         tapsBack: 7
+        linkClicks: 1
         reach: 6
         follows: 4
         totalInteractions: 1
@@ -150689,9 +150699,15 @@ components:
           type: integer
         totalInteractions:
           type: integer
+        linkClicks:
+          description: "Taps on links in the story (the link sticker). Facebook Login\
+            \ accounts only; always 0 for Instagram Login accounts. Taps on other\
+            \ stickers (mentions, hashtags, locations) are not reported by Meta."
+          type: integer
       required:
       - exits
       - follows
+      - linkClicks
       - navigation
       - profileVisits
       - reach
@@ -150708,6 +150724,7 @@ components:
         source: live
         metrics:
           tapsBack: 7
+          linkClicks: 1
           reach: 6
           follows: 4
           totalInteractions: 1
@@ -150739,6 +150756,7 @@ components:
           source: live
           metrics:
             tapsBack: 7
+            linkClicks: 1
             reach: 6
             follows: 4
             totalInteractions: 1
