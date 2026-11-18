@@ -838,6 +838,10 @@ docs/CreateConversionDestinationRequest.md
 docs/CreateCreatorCampaign201Response.md
 docs/CreateCreatorCampaignRequest.md
 docs/CreateCreatorPayoutLogin200Response.md
+docs/CreateCrmActivity201Response.md
+docs/CreateCrmActivityRequest.md
+docs/CreateCrmContact201Response.md
+docs/CreateCrmContactRequest.md
 docs/CreateCustomConversionGoalRequest.md
 docs/CreateCustomConversionRequest.md
 docs/CreateCustomField200Response.md
@@ -1100,6 +1104,13 @@ docs/CreatorPortalReferralOrdersInner.md
 docs/CreatorPortalReferralTotals.md
 docs/CreatorPortalSample.md
 docs/CreatorPortalSubmission.md
+docs/CrmActivity.md
+docs/CrmApi.md
+docs/CrmContact.md
+docs/CrmContactInput.md
+docs/CrmDeal.md
+docs/CrmNativePropertiesValue.md
+docs/CrmOwner.md
 docs/CrosspostDiscordMessage200Response.md
 docs/CtwaAdRequestBody.md
 docs/CtwaAdRequestBodyCitiesInner.md
@@ -1489,6 +1500,7 @@ docs/GetConversionsQuality200ResponseRowsInner.md
 docs/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.md
 docs/GetCreatorPayouts200Response.md
 docs/GetCreatorPortal200Response.md
+docs/GetCrmDeal200Response.md
 docs/GetDailyMetrics200Response.md
 docs/GetDailyMetrics200ResponseDailyDataInner.md
 docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md
@@ -2227,6 +2239,8 @@ docs/ListContacts200ResponseFilters.md
 docs/ListContacts200ResponsePagination.md
 docs/ListConversionActions200Response.md
 docs/ListCreatorCampaigns200Response.md
+docs/ListCrmDeals200Response.md
+docs/ListCrmOwners200Response.md
 docs/ListCustomConversionGoals200Response.md
 docs/ListCustomFields200Response.md
 docs/ListCustomFields200ResponseFieldsInner.md
@@ -2840,6 +2854,7 @@ docs/SearchAvailablePhoneNumbers200Response.md
 docs/SearchAvailablePhoneNumbers200ResponseNumbersInner.md
 docs/SearchAvailableWhatsAppNumbers200Response.md
 docs/SearchAvailableWhatsAppNumbers200ResponseNumbersInner.md
+docs/SearchCrmContacts200Response.md
 docs/SearchDiscordGuildMembers200Response.md
 docs/SearchGoogleBusinessLocations200Response.md
 docs/SearchGoogleBusinessLocations200ResponseGoogleLocationsInner.md
@@ -3309,6 +3324,7 @@ docs/UpdateConversionAction200ResponseAction.md
 docs/UpdateConversionActionRequest.md
 docs/UpdateConversionDestinationRequest.md
 docs/UpdateCreatorCampaignRequest.md
+docs/UpdateCrmDealRequest.md
 docs/UpdateCustomConversionGoal200Response.md
 docs/UpdateCustomConversionGoalRequest.md
 docs/UpdateCustomField200Response.md
@@ -3938,6 +3954,7 @@ src/main/java/dev/zernio/api/ContentRetentionApi.java
 src/main/java/dev/zernio/api/ConversionsApi.java
 src/main/java/dev/zernio/api/CreatorCampaignsApi.java
 src/main/java/dev/zernio/api/CreatorPortalApi.java
+src/main/java/dev/zernio/api/CrmApi.java
 src/main/java/dev/zernio/api/CustomFieldsApi.java
 src/main/java/dev/zernio/api/DiscordApi.java
 src/main/java/dev/zernio/api/EmailApi.java
@@ -4798,6 +4815,10 @@ src/main/java/dev/zernio/model/CreateConversionDestinationRequest.java
 src/main/java/dev/zernio/model/CreateCreatorCampaign201Response.java
 src/main/java/dev/zernio/model/CreateCreatorCampaignRequest.java
 src/main/java/dev/zernio/model/CreateCreatorPayoutLogin200Response.java
+src/main/java/dev/zernio/model/CreateCrmActivity201Response.java
+src/main/java/dev/zernio/model/CreateCrmActivityRequest.java
+src/main/java/dev/zernio/model/CreateCrmContact201Response.java
+src/main/java/dev/zernio/model/CreateCrmContactRequest.java
 src/main/java/dev/zernio/model/CreateCustomConversionGoalRequest.java
 src/main/java/dev/zernio/model/CreateCustomConversionRequest.java
 src/main/java/dev/zernio/model/CreateCustomField200Response.java
@@ -5058,6 +5079,12 @@ src/main/java/dev/zernio/model/CreatorPortalReferralOrdersInner.java
 src/main/java/dev/zernio/model/CreatorPortalReferralTotals.java
 src/main/java/dev/zernio/model/CreatorPortalSample.java
 src/main/java/dev/zernio/model/CreatorPortalSubmission.java
+src/main/java/dev/zernio/model/CrmActivity.java
+src/main/java/dev/zernio/model/CrmContact.java
+src/main/java/dev/zernio/model/CrmContactInput.java
+src/main/java/dev/zernio/model/CrmDeal.java
+src/main/java/dev/zernio/model/CrmNativePropertiesValue.java
+src/main/java/dev/zernio/model/CrmOwner.java
 src/main/java/dev/zernio/model/CrosspostDiscordMessage200Response.java
 src/main/java/dev/zernio/model/CtwaAdRequestBody.java
 src/main/java/dev/zernio/model/CtwaAdRequestBodyCitiesInner.java
@@ -5442,6 +5469,7 @@ src/main/java/dev/zernio/model/GetConversionsQuality200ResponseRowsInner.java
 src/main/java/dev/zernio/model/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.java
 src/main/java/dev/zernio/model/GetCreatorPayouts200Response.java
 src/main/java/dev/zernio/model/GetCreatorPortal200Response.java
+src/main/java/dev/zernio/model/GetCrmDeal200Response.java
 src/main/java/dev/zernio/model/GetDailyMetrics200Response.java
 src/main/java/dev/zernio/model/GetDailyMetrics200ResponseDailyDataInner.java
 src/main/java/dev/zernio/model/GetDailyMetrics200ResponseDailyDataInnerMetrics.java
@@ -6165,6 +6193,8 @@ src/main/java/dev/zernio/model/ListContacts200ResponseFilters.java
 src/main/java/dev/zernio/model/ListContacts200ResponsePagination.java
 src/main/java/dev/zernio/model/ListConversionActions200Response.java
 src/main/java/dev/zernio/model/ListCreatorCampaigns200Response.java
+src/main/java/dev/zernio/model/ListCrmDeals200Response.java
+src/main/java/dev/zernio/model/ListCrmOwners200Response.java
 src/main/java/dev/zernio/model/ListCustomConversionGoals200Response.java
 src/main/java/dev/zernio/model/ListCustomFields200Response.java
 src/main/java/dev/zernio/model/ListCustomFields200ResponseFieldsInner.java
@@ -6763,6 +6793,7 @@ src/main/java/dev/zernio/model/SearchAvailablePhoneNumbers200Response.java
 src/main/java/dev/zernio/model/SearchAvailablePhoneNumbers200ResponseNumbersInner.java
 src/main/java/dev/zernio/model/SearchAvailableWhatsAppNumbers200Response.java
 src/main/java/dev/zernio/model/SearchAvailableWhatsAppNumbers200ResponseNumbersInner.java
+src/main/java/dev/zernio/model/SearchCrmContacts200Response.java
 src/main/java/dev/zernio/model/SearchDiscordGuildMembers200Response.java
 src/main/java/dev/zernio/model/SearchGoogleBusinessLocations200Response.java
 src/main/java/dev/zernio/model/SearchGoogleBusinessLocations200ResponseGoogleLocationsInner.java
@@ -7225,6 +7256,7 @@ src/main/java/dev/zernio/model/UpdateConversionAction200ResponseAction.java
 src/main/java/dev/zernio/model/UpdateConversionActionRequest.java
 src/main/java/dev/zernio/model/UpdateConversionDestinationRequest.java
 src/main/java/dev/zernio/model/UpdateCreatorCampaignRequest.java
+src/main/java/dev/zernio/model/UpdateCrmDealRequest.java
 src/main/java/dev/zernio/model/UpdateCustomConversionGoal200Response.java
 src/main/java/dev/zernio/model/UpdateCustomConversionGoalRequest.java
 src/main/java/dev/zernio/model/UpdateCustomField200Response.java
@@ -7789,3 +7821,19 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/api/CrmApiTest.java
+src/test/java/dev/zernio/model/CreateCrmActivity201ResponseTest.java
+src/test/java/dev/zernio/model/CreateCrmActivityRequestTest.java
+src/test/java/dev/zernio/model/CreateCrmContact201ResponseTest.java
+src/test/java/dev/zernio/model/CreateCrmContactRequestTest.java
+src/test/java/dev/zernio/model/CrmActivityTest.java
+src/test/java/dev/zernio/model/CrmContactInputTest.java
+src/test/java/dev/zernio/model/CrmContactTest.java
+src/test/java/dev/zernio/model/CrmDealTest.java
+src/test/java/dev/zernio/model/CrmNativePropertiesValueTest.java
+src/test/java/dev/zernio/model/CrmOwnerTest.java
+src/test/java/dev/zernio/model/GetCrmDeal200ResponseTest.java
+src/test/java/dev/zernio/model/ListCrmDeals200ResponseTest.java
+src/test/java/dev/zernio/model/ListCrmOwners200ResponseTest.java
+src/test/java/dev/zernio/model/SearchCrmContacts200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateCrmDealRequestTest.java

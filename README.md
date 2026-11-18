@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.651.0
+- API version: 1.652.0
 
-- Build date: 2026-11-17T23:43:23.866348741Z[Etc/UTC]
+- Build date: 2026-11-18T00:01:37.709602214Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.651.0</version>
+  <version>1.652.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.651.0"
+compile "dev.zernio:zernio-sdk:1.652.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.651.0.jar`
+- `target/zernio-sdk-1.652.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1653,6 +1653,24 @@ Class | Method | HTTP request | Description
 *CreatorPortalApi* | [**submitCreatorDraftWithHttpInfo**](docs/CreatorPortalApi.md#submitCreatorDraftWithHttpInfo) | **POST** /public/creator-campaigns/{token}/drafts | Submit a draft for review
 *CreatorPortalApi* | [**submitCreatorPost**](docs/CreatorPortalApi.md#submitCreatorPost) | **POST** /public/creator-campaigns/{token}/submissions | Submit a post
 *CreatorPortalApi* | [**submitCreatorPostWithHttpInfo**](docs/CreatorPortalApi.md#submitCreatorPostWithHttpInfo) | **POST** /public/creator-campaigns/{token}/submissions | Submit a post
+*CrmApi* | [**createCrmActivity**](docs/CrmApi.md#createCrmActivity) | **POST** /v1/crm/{accountId}/contacts/{contactId}/activities | Log a CRM activity
+*CrmApi* | [**createCrmActivityWithHttpInfo**](docs/CrmApi.md#createCrmActivityWithHttpInfo) | **POST** /v1/crm/{accountId}/contacts/{contactId}/activities | Log a CRM activity
+*CrmApi* | [**createCrmContact**](docs/CrmApi.md#createCrmContact) | **POST** /v1/crm/{accountId}/contacts | Create a CRM contact
+*CrmApi* | [**createCrmContactWithHttpInfo**](docs/CrmApi.md#createCrmContactWithHttpInfo) | **POST** /v1/crm/{accountId}/contacts | Create a CRM contact
+*CrmApi* | [**getCrmContact**](docs/CrmApi.md#getCrmContact) | **GET** /v1/crm/{accountId}/contacts/{contactId} | Get a CRM contact
+*CrmApi* | [**getCrmContactWithHttpInfo**](docs/CrmApi.md#getCrmContactWithHttpInfo) | **GET** /v1/crm/{accountId}/contacts/{contactId} | Get a CRM contact
+*CrmApi* | [**getCrmDeal**](docs/CrmApi.md#getCrmDeal) | **GET** /v1/crm/{accountId}/deals/{dealId} | Get a CRM deal
+*CrmApi* | [**getCrmDealWithHttpInfo**](docs/CrmApi.md#getCrmDealWithHttpInfo) | **GET** /v1/crm/{accountId}/deals/{dealId} | Get a CRM deal
+*CrmApi* | [**listCrmDeals**](docs/CrmApi.md#listCrmDeals) | **GET** /v1/crm/{accountId}/deals | List CRM deals
+*CrmApi* | [**listCrmDealsWithHttpInfo**](docs/CrmApi.md#listCrmDealsWithHttpInfo) | **GET** /v1/crm/{accountId}/deals | List CRM deals
+*CrmApi* | [**listCrmOwners**](docs/CrmApi.md#listCrmOwners) | **GET** /v1/crm/{accountId}/owners | List CRM owners
+*CrmApi* | [**listCrmOwnersWithHttpInfo**](docs/CrmApi.md#listCrmOwnersWithHttpInfo) | **GET** /v1/crm/{accountId}/owners | List CRM owners
+*CrmApi* | [**searchCrmContacts**](docs/CrmApi.md#searchCrmContacts) | **GET** /v1/crm/{accountId}/contacts/search | Search CRM contacts
+*CrmApi* | [**searchCrmContactsWithHttpInfo**](docs/CrmApi.md#searchCrmContactsWithHttpInfo) | **GET** /v1/crm/{accountId}/contacts/search | Search CRM contacts
+*CrmApi* | [**updateCrmContact**](docs/CrmApi.md#updateCrmContact) | **PATCH** /v1/crm/{accountId}/contacts/{contactId} | Update a CRM contact
+*CrmApi* | [**updateCrmContactWithHttpInfo**](docs/CrmApi.md#updateCrmContactWithHttpInfo) | **PATCH** /v1/crm/{accountId}/contacts/{contactId} | Update a CRM contact
+*CrmApi* | [**updateCrmDeal**](docs/CrmApi.md#updateCrmDeal) | **PATCH** /v1/crm/{accountId}/deals/{dealId} | Update a CRM deal
+*CrmApi* | [**updateCrmDealWithHttpInfo**](docs/CrmApi.md#updateCrmDealWithHttpInfo) | **PATCH** /v1/crm/{accountId}/deals/{dealId} | Update a CRM deal
 *CustomFieldsApi* | [**clearContactFieldValue**](docs/CustomFieldsApi.md#clearContactFieldValue) | **DELETE** /v1/contacts/{contactId}/fields/{slug} | Clear custom field value
 *CustomFieldsApi* | [**clearContactFieldValueWithHttpInfo**](docs/CustomFieldsApi.md#clearContactFieldValueWithHttpInfo) | **DELETE** /v1/contacts/{contactId}/fields/{slug} | Clear custom field value
 *CustomFieldsApi* | [**createCustomField**](docs/CustomFieldsApi.md#createCustomField) | **POST** /v1/custom-fields | Create custom field
@@ -3522,6 +3540,10 @@ Class | Method | HTTP request | Description
  - [CreateCreatorCampaign201Response](docs/CreateCreatorCampaign201Response.md)
  - [CreateCreatorCampaignRequest](docs/CreateCreatorCampaignRequest.md)
  - [CreateCreatorPayoutLogin200Response](docs/CreateCreatorPayoutLogin200Response.md)
+ - [CreateCrmActivity201Response](docs/CreateCrmActivity201Response.md)
+ - [CreateCrmActivityRequest](docs/CreateCrmActivityRequest.md)
+ - [CreateCrmContact201Response](docs/CreateCrmContact201Response.md)
+ - [CreateCrmContactRequest](docs/CreateCrmContactRequest.md)
  - [CreateCustomConversionGoalRequest](docs/CreateCustomConversionGoalRequest.md)
  - [CreateCustomConversionRequest](docs/CreateCustomConversionRequest.md)
  - [CreateCustomField200Response](docs/CreateCustomField200Response.md)
@@ -3782,6 +3804,12 @@ Class | Method | HTTP request | Description
  - [CreatorPortalReferralTotals](docs/CreatorPortalReferralTotals.md)
  - [CreatorPortalSample](docs/CreatorPortalSample.md)
  - [CreatorPortalSubmission](docs/CreatorPortalSubmission.md)
+ - [CrmActivity](docs/CrmActivity.md)
+ - [CrmContact](docs/CrmContact.md)
+ - [CrmContactInput](docs/CrmContactInput.md)
+ - [CrmDeal](docs/CrmDeal.md)
+ - [CrmNativePropertiesValue](docs/CrmNativePropertiesValue.md)
+ - [CrmOwner](docs/CrmOwner.md)
  - [CrosspostDiscordMessage200Response](docs/CrosspostDiscordMessage200Response.md)
  - [CtwaAdRequestBody](docs/CtwaAdRequestBody.md)
  - [CtwaAdRequestBodyCitiesInner](docs/CtwaAdRequestBodyCitiesInner.md)
@@ -4166,6 +4194,7 @@ Class | Method | HTTP request | Description
  - [GetConversionsQuality200ResponseRowsInnerMatchKeysInner](docs/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.md)
  - [GetCreatorPayouts200Response](docs/GetCreatorPayouts200Response.md)
  - [GetCreatorPortal200Response](docs/GetCreatorPortal200Response.md)
+ - [GetCrmDeal200Response](docs/GetCrmDeal200Response.md)
  - [GetDailyMetrics200Response](docs/GetDailyMetrics200Response.md)
  - [GetDailyMetrics200ResponseDailyDataInner](docs/GetDailyMetrics200ResponseDailyDataInner.md)
  - [GetDailyMetrics200ResponseDailyDataInnerMetrics](docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md)
@@ -4889,6 +4918,8 @@ Class | Method | HTTP request | Description
  - [ListContacts200ResponsePagination](docs/ListContacts200ResponsePagination.md)
  - [ListConversionActions200Response](docs/ListConversionActions200Response.md)
  - [ListCreatorCampaigns200Response](docs/ListCreatorCampaigns200Response.md)
+ - [ListCrmDeals200Response](docs/ListCrmDeals200Response.md)
+ - [ListCrmOwners200Response](docs/ListCrmOwners200Response.md)
  - [ListCustomConversionGoals200Response](docs/ListCustomConversionGoals200Response.md)
  - [ListCustomFields200Response](docs/ListCustomFields200Response.md)
  - [ListCustomFields200ResponseFieldsInner](docs/ListCustomFields200ResponseFieldsInner.md)
@@ -5487,6 +5518,7 @@ Class | Method | HTTP request | Description
  - [SearchAvailablePhoneNumbers200ResponseNumbersInner](docs/SearchAvailablePhoneNumbers200ResponseNumbersInner.md)
  - [SearchAvailableWhatsAppNumbers200Response](docs/SearchAvailableWhatsAppNumbers200Response.md)
  - [SearchAvailableWhatsAppNumbers200ResponseNumbersInner](docs/SearchAvailableWhatsAppNumbers200ResponseNumbersInner.md)
+ - [SearchCrmContacts200Response](docs/SearchCrmContacts200Response.md)
  - [SearchDiscordGuildMembers200Response](docs/SearchDiscordGuildMembers200Response.md)
  - [SearchGoogleBusinessLocations200Response](docs/SearchGoogleBusinessLocations200Response.md)
  - [SearchGoogleBusinessLocations200ResponseGoogleLocationsInner](docs/SearchGoogleBusinessLocations200ResponseGoogleLocationsInner.md)
@@ -5949,6 +5981,7 @@ Class | Method | HTTP request | Description
  - [UpdateConversionActionRequest](docs/UpdateConversionActionRequest.md)
  - [UpdateConversionDestinationRequest](docs/UpdateConversionDestinationRequest.md)
  - [UpdateCreatorCampaignRequest](docs/UpdateCreatorCampaignRequest.md)
+ - [UpdateCrmDealRequest](docs/UpdateCrmDealRequest.md)
  - [UpdateCustomConversionGoal200Response](docs/UpdateCustomConversionGoal200Response.md)
  - [UpdateCustomConversionGoalRequest](docs/UpdateCustomConversionGoalRequest.md)
  - [UpdateCustomField200Response](docs/UpdateCustomField200Response.md)
