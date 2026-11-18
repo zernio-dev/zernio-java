@@ -2679,6 +2679,7 @@ docs/QueryGoogleSearchConsoleSearchAnalytics200ResponseMeta.md
 docs/QueryGoogleSearchConsoleSearchAnalytics200ResponsePagination.md
 docs/QueryGoogleSearchConsoleSearchAnalyticsRequest.md
 docs/QueryGoogleSearchConsoleSearchAnalyticsRequestDimensionFilterGroupsInner.md
+docs/QueryGoogleSearchConsoleSearchAnalyticsRequestDimensionFilterGroupsInnerFilterListsInner.md
 docs/QueryGoogleSearchConsoleSearchAnalyticsRequestDimensionFilterGroupsInnerFiltersInner.md
 docs/QueueApi.md
 docs/QueueDeleteResponse.md
@@ -6642,6 +6643,7 @@ src/main/java/dev/zernio/model/QueryGoogleSearchConsoleSearchAnalytics200Respons
 src/main/java/dev/zernio/model/QueryGoogleSearchConsoleSearchAnalytics200ResponsePagination.java
 src/main/java/dev/zernio/model/QueryGoogleSearchConsoleSearchAnalyticsRequest.java
 src/main/java/dev/zernio/model/QueryGoogleSearchConsoleSearchAnalyticsRequestDimensionFilterGroupsInner.java
+src/main/java/dev/zernio/model/QueryGoogleSearchConsoleSearchAnalyticsRequestDimensionFilterGroupsInnerFilterListsInner.java
 src/main/java/dev/zernio/model/QueryGoogleSearchConsoleSearchAnalyticsRequestDimensionFilterGroupsInnerFiltersInner.java
 src/main/java/dev/zernio/model/QueueDeleteResponse.java
 src/main/java/dev/zernio/model/QueueNextSlotResponse.java
@@ -7859,3 +7861,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/QueryGoogleSearchConsoleSearchAnalyticsRequestDimensionFilterGroupsInnerFilterListsInnerTest.java

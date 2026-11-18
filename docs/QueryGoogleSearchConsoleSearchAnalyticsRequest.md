@@ -11,9 +11,9 @@
 |**fromDate** | **LocalDate** |  |  [optional] |
 |**toDate** | **LocalDate** |  |  [optional] |
 |**dimensions** | [**List&lt;DimensionsEnum&gt;**](#List&lt;DimensionsEnum&gt;) |  |  [optional] |
-|**type** | [**TypeEnum**](#TypeEnum) | Which Google surface to read. Defaults to &#x60;web&#x60;. |  [optional] |
+|**type** | [**TypeEnum**](#TypeEnum) | Which Google surface to read. Defaults to &#x60;web&#x60;. &#x60;webMultimodal&#x60; is Google Lens, Circle to Search and image uploads. |  [optional] |
 |**dimensionFilterGroups** | [**List&lt;QueryGoogleSearchConsoleSearchAnalyticsRequestDimensionFilterGroupsInner&gt;**](QueryGoogleSearchConsoleSearchAnalyticsRequestDimensionFilterGroupsInner.md) |  |  [optional] |
-|**aggregationType** | [**AggregationTypeEnum**](#AggregationTypeEnum) |  |  [optional] |
+|**aggregationType** | [**AggregationTypeEnum**](#AggregationTypeEnum) | byNewsShowcasePanel needs a NEWS_SHOWCASE searchAppearance filter and type discover or googleNews. |  [optional] |
 |**rowLimit** | **Integer** | Defaults to 1000. |  [optional] |
 |**startRow** | **Integer** | Row offset for paging past &#x60;rowLimit&#x60;. |  [optional] |
 |**dataState** | [**DataStateEnum**](#DataStateEnum) | &#x60;final&#x60; (default) leaves out the last two or three days; &#x60;all&#x60; includes them while Google is still filling them in; &#x60;hourly_all&#x60; is required with the &#x60;hour&#x60; dimension. |  [optional] |
@@ -31,6 +31,7 @@
 | COUNTRY | &quot;country&quot; |
 | DEVICE | &quot;device&quot; |
 | SEARCH_APPEARANCE | &quot;searchAppearance&quot; |
+| BRANDED_CLASSIFICATION | &quot;brandedClassification&quot; |
 
 
 
@@ -44,6 +45,7 @@
 | NEWS | &quot;news&quot; |
 | DISCOVER | &quot;discover&quot; |
 | GOOGLE_NEWS | &quot;googleNews&quot; |
+| WEB_MULTIMODAL | &quot;webMultimodal&quot; |
 
 
 
@@ -54,6 +56,7 @@
 | AUTO | &quot;auto&quot; |
 | BY_PAGE | &quot;byPage&quot; |
 | BY_PROPERTY | &quot;byProperty&quot; |
+| BY_NEWS_SHOWCASE_PANEL | &quot;byNewsShowcasePanel&quot; |
 
 
 

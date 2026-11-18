@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.654.0
+  version: 1.655.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -6436,7 +6436,11 @@ paths:
       description: |
         Clicks, impressions, CTR and average position from Google Search for a connected Search Console site, through Google's `searchAnalytics.query`.
 
-        Group by any of `date`, `hour`, `query`, `page`, `country`, `device` and `searchAppearance`, and filter with Google's own filter groups. With no dimensions you get one row with the site's totals.
+        Group by any of `date`, `hour`, `query`, `page`, `country`, `device`, `searchAppearance` and `brandedClassification`, and filter with Google's own filter groups. With no dimensions you get one row with the site's totals.
+
+        ### Branded queries
+
+        `brandedClassification` splits searches into `BRANDED` and `NON_BRANDED`. Google has it from February 21, 2026, and only for sites with enough search volume. As a filter it takes `equals` only and cannot be combined with a `query` filter.
 
         ### Dates
 
@@ -141331,13 +141335,14 @@ components:
     queryGoogleSearchConsoleSearchAnalytics_request_dimensionFilterGroups_inner_filters_inner:
       properties:
         dimension:
-          description: Narrow dates with startDate and endDate instead.
+          description: Narrow dates with fromDate and toDate instead.
           enum:
           - query
           - page
           - country
           - device
           - searchAppearance
+          - brandedClassification
           type: string
         operator:
           description: Defaults to `equals`.
@@ -141351,12 +141356,34 @@ components:
           type: string
         expression:
           description: "The value to match. Countries are ISO 3166-1 alpha-3 codes\
-            \ (`usa`), devices `DESKTOP`, `MOBILE` or `TABLET`."
+            \ (`usa`), devices `DESKTOP`, `MOBILE` or `TABLET`, brandedClassification\
+            \ `BRANDED` or `NON_BRANDED`."
           type: string
       required:
       - dimension
       - expression
+    queryGoogleSearchConsoleSearchAnalytics_request_dimensionFilterGroups_inner_filterLists_inner:
+      additionalProperties: {}
+      properties:
+        dimension:
+          enum:
+          - country
+          - device
+          type: string
+        expressions:
+          example:
+          - usa
+          - gbr
+          - can
+          items:
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - dimension
+      - expressions
     queryGoogleSearchConsoleSearchAnalytics_request_dimensionFilterGroups_inner:
+      description: "Needs filters, filterLists or both. Every group must match."
       properties:
         groupType:
           enum:
@@ -141366,8 +141393,13 @@ components:
           items:
             $ref: "#/components/schemas/queryGoogleSearchConsoleSearchAnalytics_request_dimensionFilterGroups_inner_filters_inner"
           type: array
-      required:
-      - filters
+        filterLists:
+          description: "Matches a row whose value is any of the expressions. A dimension\
+            \ goes in filters or in filterLists, not both."
+          items:
+            $ref: "#/components/schemas/queryGoogleSearchConsoleSearchAnalytics_request_dimensionFilterGroups_inner_filterLists_inner"
+          maxItems: 2
+          type: array
     queryGoogleSearchConsoleSearchAnalytics_request:
       additionalProperties: {}
       properties:
@@ -141392,10 +141424,12 @@ components:
             - country
             - device
             - searchAppearance
+            - brandedClassification
             type: string
           type: array
         type:
-          description: Which Google surface to read. Defaults to `web`.
+          description: "Which Google surface to read. Defaults to `web`. `webMultimodal`\
+            \ is Google Lens, Circle to Search and image uploads."
           enum:
           - web
           - image
@@ -141403,6 +141437,7 @@ components:
           - news
           - discover
           - googleNews
+          - webMultimodal
           type: string
         dimensionFilterGroups:
           items:
@@ -141410,10 +141445,13 @@ components:
           maxItems: 5
           type: array
         aggregationType:
+          description: byNewsShowcasePanel needs a NEWS_SHOWCASE searchAppearance
+            filter and type discover or googleNews.
           enum:
           - auto
           - byPage
           - byProperty
+          - byNewsShowcasePanel
           type: string
         rowLimit:
           description: Defaults to 1000.
@@ -141486,6 +141524,8 @@ components:
         aggregationType: byProperty
         siteUrl: sc-domain:acme.com
         toDate: 2000-01-23
+        firstIncompleteHour: firstIncompleteHour
+        firstIncompleteDate: 2000-01-23
       properties:
         accountId:
           type: string
@@ -141500,6 +141540,17 @@ components:
           type: string
         aggregationType:
           example: byProperty
+          nullable: true
+          type: string
+        firstIncompleteDate:
+          description: From this Pacific day on the numbers can still change. Sent
+            with dataState all when grouped by date.
+          format: date
+          nullable: true
+          type: string
+        firstIncompleteHour:
+          description: "The same for hours, with dataState hourly_all when grouped\
+            \ by hour."
           nullable: true
           type: string
     queryGoogleSearchConsoleSearchAnalytics_200_response:
@@ -141526,6 +141577,8 @@ components:
           aggregationType: byProperty
           siteUrl: sc-domain:acme.com
           toDate: 2000-01-23
+          firstIncompleteHour: firstIncompleteHour
+          firstIncompleteDate: 2000-01-23
       properties:
         data:
           items:
