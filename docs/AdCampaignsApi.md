@@ -4321,7 +4321,7 @@ ApiResponse<[**GetAdSetTargeting200Response**](GetAdSetTargeting200Response.md)>
 
 ## getAdTree
 
-> AdTreeResponse getAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, depth)
+> AdTreeResponse getAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, model, depth)
 
 Get campaign tree
 
@@ -4369,9 +4369,10 @@ public class Example {
         String dailyLevel = "campaign"; // String | Which tree levels get the `daily[]` series when `timeIncrement=1`. Ignored when `timeIncrement` is unset.  - `campaign` (default): on campaign nodes only. The common per-campaign-trend case, and the smallest payload. - `adset`: on ad sets too. - `ad`: on every ad in `ads[]` as well. Heaviest (a long range × up to 100 ads per ad set); scope with `campaignId` to keep responses small.
         String compare = "previous"; // String | Set to `previous` to also read the period of the same length that ends the day before `fromDate`. Every campaign, ad set and ad gains `previousMetrics` (same fields as `metrics`) and the response gains `previousRange`, so a table can show the change against the previous period in one call.
         Boolean results = true; // Boolean | Set to `true` to add your own results (see [Campaign results](/guides/campaign-results)): every campaign gains `results`, the values you sent for the range plus each formula they allow, and the response gains `resultMetrics` to label them.
+        String model = "last_click"; // String | With `results=true`: the attribution model your stored sales and leads count under in `results`. Uploaded values are the same under every model.
         String depth = "campaign"; // String | How deep the tree goes. Metrics always roll up over every ad, whatever the depth.  - `ad` (default): campaigns, their ad sets and each ad set's ads. - `adset`: campaigns and ad sets; every `ads[]` is empty and `adCount` still counts the ads. - `campaign`: campaigns only; every `adSets[]` is empty and `adSetCount` / `adCount` still count them.
         try {
-            AdTreeResponse result = apiInstance.getAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, depth);
+            AdTreeResponse result = apiInstance.getAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, model, depth);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#getAdTree");
@@ -4410,6 +4411,7 @@ public class Example {
 | **dailyLevel** | **String**| Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. Ignored when &#x60;timeIncrement&#x60; is unset.  - &#x60;campaign&#x60; (default): on campaign nodes only. The common per-campaign-trend case, and the smallest payload. - &#x60;adset&#x60;: on ad sets too. - &#x60;ad&#x60;: on every ad in &#x60;ads[]&#x60; as well. Heaviest (a long range × up to 100 ads per ad set); scope with &#x60;campaignId&#x60; to keep responses small. | [optional] [default to campaign] [enum: campaign, adset, ad] |
 | **compare** | **String**| Set to &#x60;previous&#x60; to also read the period of the same length that ends the day before &#x60;fromDate&#x60;. Every campaign, ad set and ad gains &#x60;previousMetrics&#x60; (same fields as &#x60;metrics&#x60;) and the response gains &#x60;previousRange&#x60;, so a table can show the change against the previous period in one call. | [optional] [enum: previous] |
 | **results** | **Boolean**| Set to &#x60;true&#x60; to add your own results (see [Campaign results](/guides/campaign-results)): every campaign gains &#x60;results&#x60;, the values you sent for the range plus each formula they allow, and the response gains &#x60;resultMetrics&#x60; to label them. | [optional] |
+| **model** | **String**| With &#x60;results&#x3D;true&#x60;: the attribution model your stored sales and leads count under in &#x60;results&#x60;. Uploaded values are the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay] |
 | **depth** | **String**| How deep the tree goes. Metrics always roll up over every ad, whatever the depth.  - &#x60;ad&#x60; (default): campaigns, their ad sets and each ad set&#39;s ads. - &#x60;adset&#x60;: campaigns and ad sets; every &#x60;ads[]&#x60; is empty and &#x60;adCount&#x60; still counts the ads. - &#x60;campaign&#x60;: campaigns only; every &#x60;adSets[]&#x60; is empty and &#x60;adSetCount&#x60; / &#x60;adCount&#x60; still count them. | [optional] [default to ad] [enum: campaign, adset, ad] |
 
 ### Return type
@@ -4437,7 +4439,7 @@ public class Example {
 
 ## getAdTreeWithHttpInfo
 
-> ApiResponse<AdTreeResponse> getAdTree getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, depth)
+> ApiResponse<AdTreeResponse> getAdTree getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, model, depth)
 
 Get campaign tree
 
@@ -4486,9 +4488,10 @@ public class Example {
         String dailyLevel = "campaign"; // String | Which tree levels get the `daily[]` series when `timeIncrement=1`. Ignored when `timeIncrement` is unset.  - `campaign` (default): on campaign nodes only. The common per-campaign-trend case, and the smallest payload. - `adset`: on ad sets too. - `ad`: on every ad in `ads[]` as well. Heaviest (a long range × up to 100 ads per ad set); scope with `campaignId` to keep responses small.
         String compare = "previous"; // String | Set to `previous` to also read the period of the same length that ends the day before `fromDate`. Every campaign, ad set and ad gains `previousMetrics` (same fields as `metrics`) and the response gains `previousRange`, so a table can show the change against the previous period in one call.
         Boolean results = true; // Boolean | Set to `true` to add your own results (see [Campaign results](/guides/campaign-results)): every campaign gains `results`, the values you sent for the range plus each formula they allow, and the response gains `resultMetrics` to label them.
+        String model = "last_click"; // String | With `results=true`: the attribution model your stored sales and leads count under in `results`. Uploaded values are the same under every model.
         String depth = "campaign"; // String | How deep the tree goes. Metrics always roll up over every ad, whatever the depth.  - `ad` (default): campaigns, their ad sets and each ad set's ads. - `adset`: campaigns and ad sets; every `ads[]` is empty and `adCount` still counts the ads. - `campaign`: campaigns only; every `adSets[]` is empty and `adSetCount` / `adCount` still count them.
         try {
-            ApiResponse<AdTreeResponse> response = apiInstance.getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, depth);
+            ApiResponse<AdTreeResponse> response = apiInstance.getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, model, depth);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4529,6 +4532,7 @@ public class Example {
 | **dailyLevel** | **String**| Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. Ignored when &#x60;timeIncrement&#x60; is unset.  - &#x60;campaign&#x60; (default): on campaign nodes only. The common per-campaign-trend case, and the smallest payload. - &#x60;adset&#x60;: on ad sets too. - &#x60;ad&#x60;: on every ad in &#x60;ads[]&#x60; as well. Heaviest (a long range × up to 100 ads per ad set); scope with &#x60;campaignId&#x60; to keep responses small. | [optional] [default to campaign] [enum: campaign, adset, ad] |
 | **compare** | **String**| Set to &#x60;previous&#x60; to also read the period of the same length that ends the day before &#x60;fromDate&#x60;. Every campaign, ad set and ad gains &#x60;previousMetrics&#x60; (same fields as &#x60;metrics&#x60;) and the response gains &#x60;previousRange&#x60;, so a table can show the change against the previous period in one call. | [optional] [enum: previous] |
 | **results** | **Boolean**| Set to &#x60;true&#x60; to add your own results (see [Campaign results](/guides/campaign-results)): every campaign gains &#x60;results&#x60;, the values you sent for the range plus each formula they allow, and the response gains &#x60;resultMetrics&#x60; to label them. | [optional] |
+| **model** | **String**| With &#x60;results&#x3D;true&#x60;: the attribution model your stored sales and leads count under in &#x60;results&#x60;. Uploaded values are the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay] |
 | **depth** | **String**| How deep the tree goes. Metrics always roll up over every ad, whatever the depth.  - &#x60;ad&#x60; (default): campaigns, their ad sets and each ad set&#39;s ads. - &#x60;adset&#x60;: campaigns and ad sets; every &#x60;ads[]&#x60; is empty and &#x60;adCount&#x60; still counts the ads. - &#x60;campaign&#x60;: campaigns only; every &#x60;adSets[]&#x60; is empty and &#x60;adSetCount&#x60; / &#x60;adCount&#x60; still count them. | [optional] [default to ad] [enum: campaign, adset, ad] |
 
 ### Return type

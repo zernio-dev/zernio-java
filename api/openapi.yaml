@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.671.0
+  version: 1.672.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -57597,6 +57597,24 @@ paths:
         required: false
         schema:
           type: boolean
+        style: form
+      - description: "With `results=true`: the attribution model your stored sales\
+          \ and leads count under in `results`. Uploaded values are the same under\
+          \ every model."
+        explode: true
+        in: query
+        name: model
+        required: false
+        schema:
+          default: last_click
+          enum:
+          - last_click
+          - first_touch
+          - last_non_direct
+          - linear
+          - position_based
+          - time_decay
+          type: string
         style: form
       - description: |-
           How deep the tree goes. Metrics always roll up over every ad, whatever the depth.
