@@ -76,6 +76,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getGmbLocationsWithHttpInfo**](ConnectApi.md#getGmbLocationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations |
 | [**getGoogleAnalyticsConnectUrl**](ConnectApi.md#getGoogleAnalyticsConnectUrl) | **GET** /v1/connect/googleanalytics | Get Google Analytics OAuth connect URL |
 | [**getGoogleAnalyticsConnectUrlWithHttpInfo**](ConnectApi.md#getGoogleAnalyticsConnectUrlWithHttpInfo) | **GET** /v1/connect/googleanalytics | Get Google Analytics OAuth connect URL |
+| [**getGoogleSearchConsoleConnectUrl**](ConnectApi.md#getGoogleSearchConsoleConnectUrl) | **GET** /v1/connect/googlesearchconsole | Get Google Search Console OAuth connect URL |
+| [**getGoogleSearchConsoleConnectUrlWithHttpInfo**](ConnectApi.md#getGoogleSearchConsoleConnectUrlWithHttpInfo) | **GET** /v1/connect/googlesearchconsole | Get Google Search Console OAuth connect URL |
 | [**getHubSpotConnectUrl**](ConnectApi.md#getHubSpotConnectUrl) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL |
 | [**getHubSpotConnectUrlWithHttpInfo**](ConnectApi.md#getHubSpotConnectUrlWithHttpInfo) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL |
 | [**getLinkedInOrganizations**](ConnectApi.md#getLinkedInOrganizations) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs |
@@ -130,6 +132,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listGoogleBusinessCategoriesWithHttpInfo**](ConnectApi.md#listGoogleBusinessCategoriesWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-categories | List Google Business Profile categories |
 | [**listGoogleBusinessLocations**](ConnectApi.md#listGoogleBusinessLocations) | **GET** /v1/connect/googlebusiness/locations | List Google Business Profile locations |
 | [**listGoogleBusinessLocationsWithHttpInfo**](ConnectApi.md#listGoogleBusinessLocationsWithHttpInfo) | **GET** /v1/connect/googlebusiness/locations | List Google Business Profile locations |
+| [**listGoogleSearchConsoleSites**](ConnectApi.md#listGoogleSearchConsoleSites) | **GET** /v1/connect/googlesearchconsole/sites | List Search Console sites for a pending connect |
+| [**listGoogleSearchConsoleSitesWithHttpInfo**](ConnectApi.md#listGoogleSearchConsoleSitesWithHttpInfo) | **GET** /v1/connect/googlesearchconsole/sites | List Search Console sites for a pending connect |
 | [**listInstagramPages**](ConnectApi.md#listInstagramPages) | **GET** /v1/connect/instagram/select-account | List Pages with a linked Instagram account |
 | [**listInstagramPagesWithHttpInfo**](ConnectApi.md#listInstagramPagesWithHttpInfo) | **GET** /v1/connect/instagram/select-account | List Pages with a linked Instagram account |
 | [**listLinkedInOrganizations**](ConnectApi.md#listLinkedInOrganizations) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs |
@@ -158,6 +162,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**selectGoogleAnalyticsPropertyWithHttpInfo**](ConnectApi.md#selectGoogleAnalyticsPropertyWithHttpInfo) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property |
 | [**selectGoogleBusinessLocation**](ConnectApi.md#selectGoogleBusinessLocation) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location |
 | [**selectGoogleBusinessLocationWithHttpInfo**](ConnectApi.md#selectGoogleBusinessLocationWithHttpInfo) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location |
+| [**selectGoogleSearchConsoleSite**](ConnectApi.md#selectGoogleSearchConsoleSite) | **POST** /v1/connect/googlesearchconsole/select-site | Connect the chosen Search Console site |
+| [**selectGoogleSearchConsoleSiteWithHttpInfo**](ConnectApi.md#selectGoogleSearchConsoleSiteWithHttpInfo) | **POST** /v1/connect/googlesearchconsole/select-site | Connect the chosen Search Console site |
 | [**selectInstagramAccount**](ConnectApi.md#selectInstagramAccount) | **POST** /v1/connect/instagram/select-account | Select the Page whose Instagram account to connect |
 | [**selectInstagramAccountWithHttpInfo**](ConnectApi.md#selectInstagramAccountWithHttpInfo) | **POST** /v1/connect/instagram/select-account | Select the Page whose Instagram account to connect |
 | [**selectLinkedInOrganization**](ConnectApi.md#selectLinkedInOrganization) | **POST** /v1/connect/linkedin/select-organization | Select LinkedIn org |
@@ -5957,6 +5963,182 @@ ApiResponse<[**GetGoogleAnalyticsConnectUrl200Response**](GetGoogleAnalyticsConn
 | **503** | Google Analytics OAuth is not configured. |  -  |
 
 
+## getGoogleSearchConsoleConnectUrl
+
+> GetGoogleAnalyticsConnectUrl200Response getGoogleSearchConsoleConnectUrl(profileId, redirectUrl, reconnectAccountId)
+
+Get Google Search Console OAuth connect URL
+
+Starts OAuth for Google Search Console. Each connected site becomes its own account with platform &#x60;googlesearchconsole&#x60;; it reads Google Search data and does not post.  Requested scope: &#x60;https://www.googleapis.com/auth/webmasters.readonly&#x60;.  ### Flow  Redirect the user to &#x60;authUrl&#x60;.  - **One verified site:** Zernio connects it and redirects to &#x60;redirect_url&#x60; (or the dashboard) with &#x60;connected&#x3D;googlesearchconsole&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60; (the site, such as &#x60;acme.com&#x60;). - **Several sites:** the user first picks one on a Zernio-hosted page, which then redirects the same way.  ### Your own site picker  Add &#x60;headless&#x3D;true&#x60; to &#x60;redirect_url&#x60;. Zernio then redirects there with &#x60;step&#x3D;select_site&#x60;, &#x60;profileId&#x60;, &#x60;platform&#x3D;googlesearchconsole&#x60; and a &#x60;pendingDataToken&#x60; for &#x60;GET /v1/connect/googlesearchconsole/sites&#x60; and &#x60;POST /v1/connect/googlesearchconsole/select-site&#x60;.  ### Errors  On failure the redirect carries &#x60;error&#x60;, &#x60;platform&#x3D;googlesearchconsole&#x60; and &#x60;error_message&#x60;. Errors include:  - &#x60;googlesearchconsole_scope_missing&#x60;: the user unticked Search Console access. - &#x60;googlesearchconsole_no_sites&#x60;: the Google account has no verified Search Console site. - &#x60;googlesearchconsole_no_refresh_token&#x60;: Google returned no refresh token; connect again. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
+        String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | Zernio account ID of the Google Search Console account being reconnected. Picking a different site then fails instead of adding a second account.
+        try {
+            GetGoogleAnalyticsConnectUrl200Response result = apiInstance.getGoogleSearchConsoleConnectUrl(profileId, redirectUrl, reconnectAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getGoogleSearchConsoleConnectUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
+| **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| Zernio account ID of the Google Search Console account being reconnected. Picking a different site then fails instead of adding a second account. | [optional] |
+
+### Return type
+
+[**GetGoogleAnalyticsConnectUrl200Response**](GetGoogleAnalyticsConnectUrl200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Google Search Console OAuth is not configured. |  -  |
+
+## getGoogleSearchConsoleConnectUrlWithHttpInfo
+
+> ApiResponse<GetGoogleAnalyticsConnectUrl200Response> getGoogleSearchConsoleConnectUrl getGoogleSearchConsoleConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId)
+
+Get Google Search Console OAuth connect URL
+
+Starts OAuth for Google Search Console. Each connected site becomes its own account with platform &#x60;googlesearchconsole&#x60;; it reads Google Search data and does not post.  Requested scope: &#x60;https://www.googleapis.com/auth/webmasters.readonly&#x60;.  ### Flow  Redirect the user to &#x60;authUrl&#x60;.  - **One verified site:** Zernio connects it and redirects to &#x60;redirect_url&#x60; (or the dashboard) with &#x60;connected&#x3D;googlesearchconsole&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60; (the site, such as &#x60;acme.com&#x60;). - **Several sites:** the user first picks one on a Zernio-hosted page, which then redirects the same way.  ### Your own site picker  Add &#x60;headless&#x3D;true&#x60; to &#x60;redirect_url&#x60;. Zernio then redirects there with &#x60;step&#x3D;select_site&#x60;, &#x60;profileId&#x60;, &#x60;platform&#x3D;googlesearchconsole&#x60; and a &#x60;pendingDataToken&#x60; for &#x60;GET /v1/connect/googlesearchconsole/sites&#x60; and &#x60;POST /v1/connect/googlesearchconsole/select-site&#x60;.  ### Errors  On failure the redirect carries &#x60;error&#x60;, &#x60;platform&#x3D;googlesearchconsole&#x60; and &#x60;error_message&#x60;. Errors include:  - &#x60;googlesearchconsole_scope_missing&#x60;: the user unticked Search Console access. - &#x60;googlesearchconsole_no_sites&#x60;: the Google account has no verified Search Console site. - &#x60;googlesearchconsole_no_refresh_token&#x60;: Google returned no refresh token; connect again. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
+        String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | Zernio account ID of the Google Search Console account being reconnected. Picking a different site then fails instead of adding a second account.
+        try {
+            ApiResponse<GetGoogleAnalyticsConnectUrl200Response> response = apiInstance.getGoogleSearchConsoleConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getGoogleSearchConsoleConnectUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
+| **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| Zernio account ID of the Google Search Console account being reconnected. Picking a different site then fails instead of adding a second account. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetGoogleAnalyticsConnectUrl200Response**](GetGoogleAnalyticsConnectUrl200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Google Search Console OAuth is not configured. |  -  |
+
+
 ## getHubSpotConnectUrl
 
 > GetHubSpotConnectUrl200Response getHubSpotConnectUrl(profileId, redirectUrl)
@@ -10291,6 +10473,170 @@ ApiResponse<[**ListGoogleBusinessLocations200Response**](ListGoogleBusinessLocat
 | **500** | Failed to fetch locations (e.g., invalid token, insufficient permissions) |  -  |
 
 
+## listGoogleSearchConsoleSites
+
+> ListGoogleSearchConsoleSites200Response listGoogleSearchConsoleSites(pendingDataToken)
+
+List Search Console sites for a pending connect
+
+For headless flows: lists the verified Search Console sites of a pending connect, so you can show your own picker.  ### Flow  1. The connect started with &#x60;redirect_url&#x3D;...?headless&#x3D;true&#x60;, and the Google account has several verified sites. 2. Zernio redirects to your &#x60;redirect_url&#x60; with &#x60;step&#x3D;select_site&#x60;, &#x60;profileId&#x60;, &#x60;platform&#x3D;googlesearchconsole&#x60; and a &#x60;pendingDataToken&#x60;. 3. Call this to list the sites and show your own picker. 4. Call &#x60;POST /v1/connect/googlesearchconsole/select-site&#x60;.  ### Token  - Listing does not consume the token. - A headless token passes through your own URLs, so it is honored only together with your API key (or connect token) for the same profile. - It expires after one hour. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String pendingDataToken = "pendingDataToken_example"; // String | Token from the headless redirect.
+        try {
+            ListGoogleSearchConsoleSites200Response result = apiInstance.listGoogleSearchConsoleSites(pendingDataToken);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listGoogleSearchConsoleSites");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pendingDataToken** | **String**| Token from the headless redirect. | |
+
+### Return type
+
+[**ListGoogleSearchConsoleSites200Response**](ListGoogleSearchConsoleSites200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sites the Google account can read |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+
+## listGoogleSearchConsoleSitesWithHttpInfo
+
+> ApiResponse<ListGoogleSearchConsoleSites200Response> listGoogleSearchConsoleSites listGoogleSearchConsoleSitesWithHttpInfo(pendingDataToken)
+
+List Search Console sites for a pending connect
+
+For headless flows: lists the verified Search Console sites of a pending connect, so you can show your own picker.  ### Flow  1. The connect started with &#x60;redirect_url&#x3D;...?headless&#x3D;true&#x60;, and the Google account has several verified sites. 2. Zernio redirects to your &#x60;redirect_url&#x60; with &#x60;step&#x3D;select_site&#x60;, &#x60;profileId&#x60;, &#x60;platform&#x3D;googlesearchconsole&#x60; and a &#x60;pendingDataToken&#x60;. 3. Call this to list the sites and show your own picker. 4. Call &#x60;POST /v1/connect/googlesearchconsole/select-site&#x60;.  ### Token  - Listing does not consume the token. - A headless token passes through your own URLs, so it is honored only together with your API key (or connect token) for the same profile. - It expires after one hour. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String pendingDataToken = "pendingDataToken_example"; // String | Token from the headless redirect.
+        try {
+            ApiResponse<ListGoogleSearchConsoleSites200Response> response = apiInstance.listGoogleSearchConsoleSitesWithHttpInfo(pendingDataToken);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listGoogleSearchConsoleSites");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pendingDataToken** | **String**| Token from the headless redirect. | |
+
+### Return type
+
+ApiResponse<[**ListGoogleSearchConsoleSites200Response**](ListGoogleSearchConsoleSites200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sites the Google account can read |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+
+
 ## listInstagramPages
 
 > ListInstagramPages200Response listInstagramPages(profileId, tempToken, xTempToken, connectFlow)
@@ -12545,6 +12891,170 @@ ApiResponse<[**SelectGoogleBusinessLocation200Response**](SelectGoogleBusinessLo
 | **404** | Selected location not found in available locations |  -  |
 | **422** | locations only. None of the locations could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 | **500** | Failed to save Google Business Profile connection |  -  |
+
+
+## selectGoogleSearchConsoleSite
+
+> SelectGoogleSearchConsoleSite200Response selectGoogleSearchConsoleSite(selectGoogleSearchConsoleSiteRequest)
+
+Connect the chosen Search Console site
+
+For headless flows. Connects the site the user picked as a &#x60;googlesearchconsole&#x60; account and returns where to send the user next.  - On success: your &#x60;redirect_url&#x60; with &#x60;connected&#x3D;googlesearchconsole&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60;. - When the connect was refused (for example a billing block): an &#x60;error&#x60;.  Consumes the &#x60;pendingDataToken&#x60;; a refused or failed attempt leaves it usable for a retry.  Send your API key (or connect token) for the same profile with a headless token. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        SelectGoogleSearchConsoleSiteRequest selectGoogleSearchConsoleSiteRequest = new SelectGoogleSearchConsoleSiteRequest(); // SelectGoogleSearchConsoleSiteRequest | 
+        try {
+            SelectGoogleSearchConsoleSite200Response result = apiInstance.selectGoogleSearchConsoleSite(selectGoogleSearchConsoleSiteRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#selectGoogleSearchConsoleSite");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **selectGoogleSearchConsoleSiteRequest** | [**SelectGoogleSearchConsoleSiteRequest**](SelectGoogleSearchConsoleSiteRequest.md)|  | |
+
+### Return type
+
+[**SelectGoogleSearchConsoleSite200Response**](SelectGoogleSearchConsoleSite200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The site is connected, or the connect was refused with a reason in redirect_url |  -  |
+| **400** | Invalid request |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+| **500** | Google or Zernio failed while saving. The pendingDataToken stays usable; retry. |  -  |
+
+## selectGoogleSearchConsoleSiteWithHttpInfo
+
+> ApiResponse<SelectGoogleSearchConsoleSite200Response> selectGoogleSearchConsoleSite selectGoogleSearchConsoleSiteWithHttpInfo(selectGoogleSearchConsoleSiteRequest)
+
+Connect the chosen Search Console site
+
+For headless flows. Connects the site the user picked as a &#x60;googlesearchconsole&#x60; account and returns where to send the user next.  - On success: your &#x60;redirect_url&#x60; with &#x60;connected&#x3D;googlesearchconsole&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60;. - When the connect was refused (for example a billing block): an &#x60;error&#x60;.  Consumes the &#x60;pendingDataToken&#x60;; a refused or failed attempt leaves it usable for a retry.  Send your API key (or connect token) for the same profile with a headless token. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        SelectGoogleSearchConsoleSiteRequest selectGoogleSearchConsoleSiteRequest = new SelectGoogleSearchConsoleSiteRequest(); // SelectGoogleSearchConsoleSiteRequest | 
+        try {
+            ApiResponse<SelectGoogleSearchConsoleSite200Response> response = apiInstance.selectGoogleSearchConsoleSiteWithHttpInfo(selectGoogleSearchConsoleSiteRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#selectGoogleSearchConsoleSite");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **selectGoogleSearchConsoleSiteRequest** | [**SelectGoogleSearchConsoleSiteRequest**](SelectGoogleSearchConsoleSiteRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**SelectGoogleSearchConsoleSite200Response**](SelectGoogleSearchConsoleSite200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The site is connected, or the connect was refused with a reason in redirect_url |  -  |
+| **400** | Invalid request |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+| **500** | Google or Zernio failed while saving. The pendingDataToken stays usable; retry. |  -  |
 
 
 ## selectInstagramAccount
