@@ -1682,6 +1682,9 @@ docs/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInner.md
 docs/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRange.md
 docs/GetLinkedInSupplyForecastRequest.md
 docs/GetLinkedInSupplyForecastRequestCompetingBid.md
+docs/GetLtvCohorts200Response.md
+docs/GetLtvCohorts200ResponseCohortsInner.md
+docs/GetLtvCohorts200ResponseCohortsInnerRevenue.md
 docs/GetMediaPresignedUrl200Response.md
 docs/GetMediaPresignedUrlRequest.md
 docs/GetMessageAttachment200Response.md
@@ -5681,6 +5684,9 @@ src/main/java/dev/zernio/model/GetLinkedInSupplyForecast200ResponseForecastInner
 src/main/java/dev/zernio/model/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRange.java
 src/main/java/dev/zernio/model/GetLinkedInSupplyForecastRequest.java
 src/main/java/dev/zernio/model/GetLinkedInSupplyForecastRequestCompetingBid.java
+src/main/java/dev/zernio/model/GetLtvCohorts200Response.java
+src/main/java/dev/zernio/model/GetLtvCohorts200ResponseCohortsInner.java
+src/main/java/dev/zernio/model/GetLtvCohorts200ResponseCohortsInnerRevenue.java
 src/main/java/dev/zernio/model/GetMediaPresignedUrl200Response.java
 src/main/java/dev/zernio/model/GetMediaPresignedUrlRequest.java
 src/main/java/dev/zernio/model/GetMessageAttachment200Response.java
@@ -7881,3 +7887,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetLtvCohorts200ResponseCohortsInnerRevenueTest.java
+src/test/java/dev/zernio/model/GetLtvCohorts200ResponseCohortsInnerTest.java
+src/test/java/dev/zernio/model/GetLtvCohorts200ResponseTest.java

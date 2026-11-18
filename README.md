@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.672.0
+- API version: 1.673.0
 
-- Build date: 2026-11-18T22:12:02.738069255Z[Etc/UTC]
+- Build date: 2026-11-18T22:22:08.922563006Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.672.0</version>
+  <version>1.673.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.672.0"
+compile "dev.zernio:zernio-sdk:1.673.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.672.0.jar`
+- `target/zernio-sdk-1.673.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1497,6 +1497,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**getEventsOverviewWithHttpInfo**](docs/ConversionsApi.md#getEventsOverviewWithHttpInfo) | **GET** /v1/events/overview | Get today&#39;s tracking overview
 *ConversionsApi* | [**getEventsOverviewDaily**](docs/ConversionsApi.md#getEventsOverviewDaily) | **GET** /v1/events/overview/daily | Get daily tracking figures
 *ConversionsApi* | [**getEventsOverviewDailyWithHttpInfo**](docs/ConversionsApi.md#getEventsOverviewDailyWithHttpInfo) | **GET** /v1/events/overview/daily | Get daily tracking figures
+*ConversionsApi* | [**getLtvCohorts**](docs/ConversionsApi.md#getLtvCohorts) | **GET** /v1/events/ltv | Get buyer cohorts by first purchase month and first channel
+*ConversionsApi* | [**getLtvCohortsWithHttpInfo**](docs/ConversionsApi.md#getLtvCohortsWithHttpInfo) | **GET** /v1/events/ltv | Get buyer cohorts by first purchase month and first channel
 *ConversionsApi* | [**getTrackingSite**](docs/ConversionsApi.md#getTrackingSite) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site
 *ConversionsApi* | [**getTrackingSiteWithHttpInfo**](docs/ConversionsApi.md#getTrackingSiteWithHttpInfo) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site
 *ConversionsApi* | [**listAdConversionAssociations**](docs/ConversionsApi.md#listAdConversionAssociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns
@@ -4394,6 +4396,9 @@ Class | Method | HTTP request | Description
  - [GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRange](docs/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRange.md)
  - [GetLinkedInSupplyForecastRequest](docs/GetLinkedInSupplyForecastRequest.md)
  - [GetLinkedInSupplyForecastRequestCompetingBid](docs/GetLinkedInSupplyForecastRequestCompetingBid.md)
+ - [GetLtvCohorts200Response](docs/GetLtvCohorts200Response.md)
+ - [GetLtvCohorts200ResponseCohortsInner](docs/GetLtvCohorts200ResponseCohortsInner.md)
+ - [GetLtvCohorts200ResponseCohortsInnerRevenue](docs/GetLtvCohorts200ResponseCohortsInnerRevenue.md)
  - [GetMediaPresignedUrl200Response](docs/GetMediaPresignedUrl200Response.md)
  - [GetMediaPresignedUrlRequest](docs/GetMediaPresignedUrlRequest.md)
  - [GetMessageAttachment200Response](docs/GetMessageAttachment200Response.md)

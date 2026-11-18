@@ -54,6 +54,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getEventsOverviewWithHttpInfo**](ConversionsApi.md#getEventsOverviewWithHttpInfo) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
 | [**getEventsOverviewDaily**](ConversionsApi.md#getEventsOverviewDaily) | **GET** /v1/events/overview/daily | Get daily tracking figures |
 | [**getEventsOverviewDailyWithHttpInfo**](ConversionsApi.md#getEventsOverviewDailyWithHttpInfo) | **GET** /v1/events/overview/daily | Get daily tracking figures |
+| [**getLtvCohorts**](ConversionsApi.md#getLtvCohorts) | **GET** /v1/events/ltv | Get buyer cohorts by first purchase month and first channel |
+| [**getLtvCohortsWithHttpInfo**](ConversionsApi.md#getLtvCohortsWithHttpInfo) | **GET** /v1/events/ltv | Get buyer cohorts by first purchase month and first channel |
 | [**getTrackingSite**](ConversionsApi.md#getTrackingSite) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site |
 | [**getTrackingSiteWithHttpInfo**](ConversionsApi.md#getTrackingSiteWithHttpInfo) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site |
 | [**listAdConversionAssociations**](ConversionsApi.md#listAdConversionAssociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns |
@@ -4103,6 +4105,162 @@ ApiResponse<[**GetEventsOverviewDaily200Response**](GetEventsOverviewDaily200Res
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+
+## getLtvCohorts
+
+> GetLtvCohorts200Response getLtvCohorts(fromMonth, toMonth, profileId)
+
+Get buyer cohorts by first purchase month and first channel
+
+Buyers grouped by the month of their first purchase and the platform that first brought them, with their purchases added up over the year after (months 0, 1, 3, 6 and 12).  A buyer is a hashed email, else external id, else phone. The first channel is the first touch&#39;s platform, else the first purchase&#39;s own campaign, else &#x60;none&#x60;. Values stay in each purchase&#39;s currency, one row per currency. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String fromMonth = "2026-01"; // String | 
+        String toMonth = "2026-11"; // String | 
+        String profileId = "profileId_example"; // String | The profile to read. Omit for every profile you can access.
+        try {
+            GetLtvCohorts200Response result = apiInstance.getLtvCohorts(fromMonth, toMonth, profileId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getLtvCohorts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **fromMonth** | **String**|  | |
+| **toMonth** | **String**|  | |
+| **profileId** | **String**| The profile to read. Omit for every profile you can access. | [optional] |
+
+### Return type
+
+[**GetLtvCohorts200Response**](GetLtvCohorts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The cohorts, newest first. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## getLtvCohortsWithHttpInfo
+
+> ApiResponse<GetLtvCohorts200Response> getLtvCohorts getLtvCohortsWithHttpInfo(fromMonth, toMonth, profileId)
+
+Get buyer cohorts by first purchase month and first channel
+
+Buyers grouped by the month of their first purchase and the platform that first brought them, with their purchases added up over the year after (months 0, 1, 3, 6 and 12).  A buyer is a hashed email, else external id, else phone. The first channel is the first touch&#39;s platform, else the first purchase&#39;s own campaign, else &#x60;none&#x60;. Values stay in each purchase&#39;s currency, one row per currency. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String fromMonth = "2026-01"; // String | 
+        String toMonth = "2026-11"; // String | 
+        String profileId = "profileId_example"; // String | The profile to read. Omit for every profile you can access.
+        try {
+            ApiResponse<GetLtvCohorts200Response> response = apiInstance.getLtvCohortsWithHttpInfo(fromMonth, toMonth, profileId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getLtvCohorts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **fromMonth** | **String**|  | |
+| **toMonth** | **String**|  | |
+| **profileId** | **String**| The profile to read. Omit for every profile you can access. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetLtvCohorts200Response**](GetLtvCohorts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The cohorts, newest first. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getTrackingSite
