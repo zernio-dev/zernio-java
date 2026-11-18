@@ -1756,6 +1756,7 @@ docs/GetStripeConnectUrl200Response.md
 docs/GetStripeSettings200Response.md
 docs/GetSubredditRules200Response.md
 docs/GetSubredditRules200ResponseRulesInner.md
+docs/GetTagNewAds200Response.md
 docs/GetTelegramCommands200Response.md
 docs/GetTelegramCommands200ResponseDataInner.md
 docs/GetTelegramConnectStatus200Response.md
@@ -1969,6 +1970,7 @@ docs/ImapConnectResultSettings.md
 docs/ImapConnectResultStages.md
 docs/ImapDiscovery.md
 docs/ImapDiscoveryAuth.md
+docs/ImapDiscoveryHostReplacementsInner.md
 docs/ImapDiscoveryImap.md
 docs/ImapDiscoveryPreflightInner.md
 docs/ImapDiscoveryProvider.md
@@ -3076,6 +3078,8 @@ docs/SetMessengerMenuRequest.md
 docs/SetPartnershipAdPermission200Response.md
 docs/SetPartnershipAdPermissionRequest.md
 docs/SetRedditPostFlairRequest.md
+docs/SetTagNewAds200Response.md
+docs/SetTagNewAdsRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
 docs/SetUpAdAccountBilling200Response.md
@@ -3325,7 +3329,6 @@ docs/UpdateBroadcastRequestTemplateVariableMappingValue.md
 docs/UpdateBusinessAgentSettingsRequest.md
 docs/UpdateBusinessAgentSettingsRequestFollowup.md
 docs/UpdateBusinessAgentSettingsRequestHandoff.md
-docs/UpdateBusinessAgentSettingsRequestRollout.md
 docs/UpdateCalendarEventRequest.md
 docs/UpdateCampaignAdSchedule200Response.md
 docs/UpdateCampaignAdScheduleRequest.md
@@ -5771,6 +5774,7 @@ src/main/java/dev/zernio/model/GetStripeConnectUrl200Response.java
 src/main/java/dev/zernio/model/GetStripeSettings200Response.java
 src/main/java/dev/zernio/model/GetSubredditRules200Response.java
 src/main/java/dev/zernio/model/GetSubredditRules200ResponseRulesInner.java
+src/main/java/dev/zernio/model/GetTagNewAds200Response.java
 src/main/java/dev/zernio/model/GetTelegramCommands200Response.java
 src/main/java/dev/zernio/model/GetTelegramCommands200ResponseDataInner.java
 src/main/java/dev/zernio/model/GetTelegramConnectStatus200Response.java
@@ -5975,6 +5979,7 @@ src/main/java/dev/zernio/model/ImapConnectResultSettings.java
 src/main/java/dev/zernio/model/ImapConnectResultStages.java
 src/main/java/dev/zernio/model/ImapDiscovery.java
 src/main/java/dev/zernio/model/ImapDiscoveryAuth.java
+src/main/java/dev/zernio/model/ImapDiscoveryHostReplacementsInner.java
 src/main/java/dev/zernio/model/ImapDiscoveryImap.java
 src/main/java/dev/zernio/model/ImapDiscoveryPreflightInner.java
 src/main/java/dev/zernio/model/ImapDiscoveryProvider.java
@@ -7060,6 +7065,8 @@ src/main/java/dev/zernio/model/SetMessengerMenuRequest.java
 src/main/java/dev/zernio/model/SetPartnershipAdPermission200Response.java
 src/main/java/dev/zernio/model/SetPartnershipAdPermissionRequest.java
 src/main/java/dev/zernio/model/SetRedditPostFlairRequest.java
+src/main/java/dev/zernio/model/SetTagNewAds200Response.java
+src/main/java/dev/zernio/model/SetTagNewAdsRequest.java
 src/main/java/dev/zernio/model/SetTelegramCommandsRequest.java
 src/main/java/dev/zernio/model/SetTelegramCommandsRequestCommandsInner.java
 src/main/java/dev/zernio/model/SetUpAdAccountBilling200Response.java
@@ -7302,7 +7309,6 @@ src/main/java/dev/zernio/model/UpdateBroadcastRequestTemplateVariableMappingValu
 src/main/java/dev/zernio/model/UpdateBusinessAgentSettingsRequest.java
 src/main/java/dev/zernio/model/UpdateBusinessAgentSettingsRequestFollowup.java
 src/main/java/dev/zernio/model/UpdateBusinessAgentSettingsRequestHandoff.java
-src/main/java/dev/zernio/model/UpdateBusinessAgentSettingsRequestRollout.java
 src/main/java/dev/zernio/model/UpdateCalendarEventRequest.java
 src/main/java/dev/zernio/model/UpdateCampaignAdSchedule200Response.java
 src/main/java/dev/zernio/model/UpdateCampaignAdScheduleRequest.java
@@ -7911,11 +7917,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/TrackingLinksApiTest.java
-src/test/java/dev/zernio/model/CreateTrackingLink201ResponseTest.java
-src/test/java/dev/zernio/model/CreateTrackingLinkRequestTest.java
-src/test/java/dev/zernio/model/ListTrackingLinks200ResponseTest.java
-src/test/java/dev/zernio/model/TrackingLinkCampaignTest.java
-src/test/java/dev/zernio/model/TrackingLinkDestinationTest.java
-src/test/java/dev/zernio/model/TrackingLinkTest.java
-src/test/java/dev/zernio/model/UpdateTrackingLinkRequestTest.java
+src/test/java/dev/zernio/model/GetTagNewAds200ResponseTest.java
+src/test/java/dev/zernio/model/ImapDiscoveryHostReplacementsInnerTest.java
+src/test/java/dev/zernio/model/SetTagNewAds200ResponseTest.java
+src/test/java/dev/zernio/model/SetTagNewAdsRequestTest.java

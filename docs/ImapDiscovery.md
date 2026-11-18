@@ -16,6 +16,7 @@
 |**smtp** | [**ImapDiscoverySmtp**](ImapDiscoverySmtp.md) |  |  [optional] |
 |**auth** | [**ImapDiscoveryAuth**](ImapDiscoveryAuth.md) |  |  [optional] |
 |**preflight** | [**List&lt;ImapDiscoveryPreflightInner&gt;**](ImapDiscoveryPreflightInner.md) | What to switch on at the provider first, such as IMAP access on GMX or Yandex. |  [optional] |
+|**hostReplacements** | [**List&lt;ImapDiscoveryHostReplacementsInner&gt;**](ImapDiscoveryHostReplacementsInner.md) | Server names discovery swapped for the name the server certificate is issued for, as on shared hosting where mail.&lt;domain&gt; has no certificate of its own. Present on the imap route. |  [optional] |
 |**reconnectCause** | **String** |  |  [optional] |
 |**reason** | **String** |  |  [optional] |
 |**unsupportedReason** | [**UnsupportedReasonEnum**](#UnsupportedReasonEnum) | Why an &#x60;unsupported&#x60; route cannot connect:  - &#x60;proton_requires_bridge&#x60;: Proton Mail only works through its local bridge. - &#x60;forwarding_only&#x60;: the domain forwards mail (Cloudflare Email Routing) and stores none, so connect the mailbox it forwards to. - &#x60;domain_typo&#x60;: the domain takes no mail and looks like a mistyped consumer domain. &#x60;suggestedEmail&#x60; has the likely address. - &#x60;no_mail_domain&#x60;: the domain has no MX and no address, so it cannot receive email.  |  [optional] |

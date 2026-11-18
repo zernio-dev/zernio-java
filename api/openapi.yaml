@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.675.0
+  version: 1.676.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -54683,6 +54683,66 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/ads/campaign-results/tag-new-ads:
+    get:
+      description: |
+        Whether new Meta and Google ads created through Zernio carry the Zernio ad tag (`zrn=<platform ad id>` on the landing URL) when the create request does not set `tracking.zernioTag`. Off until you turn it on.
+      operationId: getTagNewAds
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getTagNewAds_200_response"
+          description: The setting.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Get the Tag new ads setting
+      tags:
+      - Ad Campaign Results
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      x-accepts:
+      - application/json
+    put:
+      description: |
+        With `enabled: true`, every new Meta and Google ad created through `POST /v1/ads/create` carries `zrn=<platform ad id>` on its landing URL, so the conversions it brings are tied to its campaign. A request that sets `tracking.zernioTag` keeps its own choice.
+
+        The same rules as `tracking.zernioTag` apply: lead forms, call ads, existing creatives and app promotion are skipped, and a Google ad is tagged only when it inherits no final URL suffix. Existing ads are never changed.
+      operationId: setTagNewAds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/setTagNewAds_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/setTagNewAds_200_response"
+          description: The setting now in force.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Turn Tag new ads on or off
+      tags:
+      - Ad Campaign Results
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/campaign-results/metrics:
     get:
       description: |
@@ -91610,6 +91670,13 @@ components:
           port: 0
           host: host
           username: username
+        hostReplacements:
+        - server: imap
+          from: mail.example.com
+          to: example-com.mailhost.example.net
+        - server: imap
+          from: mail.example.com
+          to: example-com.mailhost.example.net
         smtp:
           security: tls
           port: 6
@@ -91681,6 +91748,13 @@ components:
             \ on GMX or Yandex."
           items:
             $ref: "#/components/schemas/ImapDiscovery_preflight_inner"
+          type: array
+        hostReplacements:
+          description: "Server names discovery swapped for the name the server certificate\
+            \ is issued for, as on shared hosting where mail.<domain> has no certificate\
+            \ of its own. Present on the imap route."
+          items:
+            $ref: "#/components/schemas/ImapDiscovery_hostReplacements_inner"
           type: array
         reconnectCause:
           nullable: true
@@ -94896,7 +94970,7 @@ components:
           key: key
         - value: value
           key: key
-        zernioTag: false
+        zernioTag: true
       properties:
         pixelId:
           description: "Meta Pixel ID to attach for offsite-conversion measurement,\
@@ -94912,15 +94986,14 @@ components:
             $ref: "#/components/schemas/updateAdTrackingTags_request_urlTags_inner"
           type: array
         zernioTag:
-          default: false
           description: |
-            POST /v1/ads/create on Meta and Google only. Opt-in: set `true` and the ad carries `zrn=<platform ad id>` on its landing URL, so orders and events tied to the landing URL map back to the ad.
+            POST /v1/ads/create on Meta and Google only. Set `true` and the ad carries `zrn=<platform ad id>` on its landing URL, so orders and events tied to the landing URL map back to the ad. Omitted: follows your team's Tag new ads setting (`PUT /v1/ads/campaign-results/tag-new-ads`, off by default).
 
             - **Meta:** `{ key: zrn, value: '{{ad.id}}' }` is appended after your `urlTags`, which are sent unchanged; a `zrn` key you send yourself is kept. Skipped for lead forms, call ads, `existingCreativeId` and app promotion.
             - **Google (Display and Search):** the ad's `final_url_suffix` is set to `zrn={creative}` only when the ad inherits no suffix from its ad group, campaign or account. Otherwise the ad is left untouched (your suffix keeps applying) and attribution uses the click's `gclid`.
             - If the inherited suffix cannot be read or Google rejects the tag, the ad is created untagged.
 
-            Existing ads are never changed. Omitted or `false` creates the ad with no Zernio tag.
+            Existing ads are never changed. `false` creates the ad with no Zernio tag, whatever the setting.
           type: boolean
     MetaLeadForm:
       description: |
@@ -95716,7 +95789,7 @@ components:
             key: key
           - value: value
             key: key
-          zernioTag: false
+          zernioTag: true
         incomeTier: top_5
         objective: OUTCOME_ENGAGEMENT
         adSetId: adSetId
@@ -159441,6 +159514,13 @@ components:
             port: 0
             host: host
             username: username
+          hostReplacements:
+          - server: imap
+            from: mail.example.com
+            to: example-com.mailhost.example.net
+          - server: imap
+            from: mail.example.com
+            to: example-com.mailhost.example.net
           smtp:
             security: tls
             port: 6
@@ -188094,6 +188174,30 @@ components:
           type: array
       required:
       - eventNames
+    getTagNewAds_200_response:
+      example:
+        enabled: false
+      properties:
+        enabled:
+          example: false
+          type: boolean
+      required:
+      - enabled
+    setTagNewAds_request:
+      properties:
+        enabled:
+          example: true
+          type: boolean
+      required:
+      - enabled
+    setTagNewAds_200_response:
+      example:
+        enabled: true
+      properties:
+        enabled:
+          type: boolean
+      required:
+      - enabled
     listCampaignResultMetrics_200_response:
       example:
         metrics:
@@ -213164,12 +213268,6 @@ components:
           type: array
       required:
       - settings
-    updateBusinessAgentSettings_request_rollout:
-      properties:
-        enabled:
-          type: boolean
-      required:
-      - enabled
     updateBusinessAgentSettings_request_handoff:
       properties:
         enabled:
@@ -213208,7 +213306,7 @@ components:
     updateBusinessAgentSettings_request:
       properties:
         rollout:
-          $ref: "#/components/schemas/updateBusinessAgentSettings_request_rollout"
+          $ref: "#/components/schemas/setTagNewAds_200_response"
         handoff:
           $ref: "#/components/schemas/updateBusinessAgentSettings_request_handoff"
         followup:
@@ -223018,6 +223116,23 @@ components:
           type: string
         url:
           format: uri
+          type: string
+    ImapDiscovery_hostReplacements_inner:
+      example:
+        server: imap
+        from: mail.example.com
+        to: example-com.mailhost.example.net
+      properties:
+        server:
+          enum:
+          - imap
+          - smtp
+          type: string
+        from:
+          example: mail.example.com
+          type: string
+        to:
+          example: example-com.mailhost.example.net
           type: string
     ImapConnectResult_account:
       example:

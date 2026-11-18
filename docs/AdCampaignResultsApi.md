@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getCampaignResultsTotalsWithHttpInfo**](AdCampaignResultsApi.md#getCampaignResultsTotalsWithHttpInfo) | **GET** /v1/ads/campaign-results/totals | Get your results totals |
 | [**getCampaignResultsUpload**](AdCampaignResultsApi.md#getCampaignResultsUpload) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload |
 | [**getCampaignResultsUploadWithHttpInfo**](AdCampaignResultsApi.md#getCampaignResultsUploadWithHttpInfo) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload |
+| [**getTagNewAds**](AdCampaignResultsApi.md#getTagNewAds) | **GET** /v1/ads/campaign-results/tag-new-ads | Get the Tag new ads setting |
+| [**getTagNewAdsWithHttpInfo**](AdCampaignResultsApi.md#getTagNewAdsWithHttpInfo) | **GET** /v1/ads/campaign-results/tag-new-ads | Get the Tag new ads setting |
 | [**listCampaignResultMetrics**](AdCampaignResultsApi.md#listCampaignResultMetrics) | **GET** /v1/ads/campaign-results/metrics | List your result metrics |
 | [**listCampaignResultMetricsWithHttpInfo**](AdCampaignResultsApi.md#listCampaignResultMetricsWithHttpInfo) | **GET** /v1/ads/campaign-results/metrics | List your result metrics |
 | [**listCampaignResults**](AdCampaignResultsApi.md#listCampaignResults) | **GET** /v1/ads/campaign-results | List your results per campaign |
@@ -18,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**setCampaignResultEventsWithHttpInfo**](AdCampaignResultsApi.md#setCampaignResultEventsWithHttpInfo) | **PUT** /v1/ads/campaign-results/events | Choose the events that count as campaign results |
 | [**setCampaignResultMetric**](AdCampaignResultsApi.md#setCampaignResultMetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula |
 | [**setCampaignResultMetricWithHttpInfo**](AdCampaignResultsApi.md#setCampaignResultMetricWithHttpInfo) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula |
+| [**setTagNewAds**](AdCampaignResultsApi.md#setTagNewAds) | **PUT** /v1/ads/campaign-results/tag-new-ads | Turn Tag new ads on or off |
+| [**setTagNewAdsWithHttpInfo**](AdCampaignResultsApi.md#setTagNewAdsWithHttpInfo) | **PUT** /v1/ads/campaign-results/tag-new-ads | Turn Tag new ads on or off |
 | [**uploadCampaignResults**](AdCampaignResultsApi.md#uploadCampaignResults) | **POST** /v1/ads/campaign-results | Upload your results per campaign |
 | [**uploadCampaignResultsWithHttpInfo**](AdCampaignResultsApi.md#uploadCampaignResultsWithHttpInfo) | **POST** /v1/ads/campaign-results | Upload your results per campaign |
 
@@ -467,6 +471,144 @@ ApiResponse<[**GetCampaignResultsUpload200Response**](GetCampaignResultsUpload20
 | **200** | The upload&#39;s outcome. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+
+## getTagNewAds
+
+> GetTagNewAds200Response getTagNewAds()
+
+Get the Tag new ads setting
+
+Whether new Meta and Google ads created through Zernio carry the Zernio ad tag (&#x60;zrn&#x3D;&lt;platform ad id&gt;&#x60; on the landing URL) when the create request does not set &#x60;tracking.zernioTag&#x60;. Off until you turn it on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        try {
+            GetTagNewAds200Response result = apiInstance.getTagNewAds();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#getTagNewAds");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetTagNewAds200Response**](GetTagNewAds200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The setting. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## getTagNewAdsWithHttpInfo
+
+> ApiResponse<GetTagNewAds200Response> getTagNewAds getTagNewAdsWithHttpInfo()
+
+Get the Tag new ads setting
+
+Whether new Meta and Google ads created through Zernio carry the Zernio ad tag (&#x60;zrn&#x3D;&lt;platform ad id&gt;&#x60; on the landing URL) when the create request does not set &#x60;tracking.zernioTag&#x60;. Off until you turn it on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        try {
+            ApiResponse<GetTagNewAds200Response> response = apiInstance.getTagNewAdsWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#getTagNewAds");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**GetTagNewAds200Response**](GetTagNewAds200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The setting. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## listCampaignResultMetrics
@@ -1071,6 +1213,154 @@ ApiResponse<[**SetCampaignResultMetric200Response**](SetCampaignResultMetric200R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The metric. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
+## setTagNewAds
+
+> SetTagNewAds200Response setTagNewAds(setTagNewAdsRequest)
+
+Turn Tag new ads on or off
+
+With &#x60;enabled: true&#x60;, every new Meta and Google ad created through &#x60;POST /v1/ads/create&#x60; carries &#x60;zrn&#x3D;&lt;platform ad id&gt;&#x60; on its landing URL, so the conversions it brings are tied to its campaign. A request that sets &#x60;tracking.zernioTag&#x60; keeps its own choice.  The same rules as &#x60;tracking.zernioTag&#x60; apply: lead forms, call ads, existing creatives and app promotion are skipped, and a Google ad is tagged only when it inherits no final URL suffix. Existing ads are never changed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        SetTagNewAdsRequest setTagNewAdsRequest = new SetTagNewAdsRequest(); // SetTagNewAdsRequest | 
+        try {
+            SetTagNewAds200Response result = apiInstance.setTagNewAds(setTagNewAdsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#setTagNewAds");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setTagNewAdsRequest** | [**SetTagNewAdsRequest**](SetTagNewAdsRequest.md)|  | |
+
+### Return type
+
+[**SetTagNewAds200Response**](SetTagNewAds200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The setting now in force. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## setTagNewAdsWithHttpInfo
+
+> ApiResponse<SetTagNewAds200Response> setTagNewAds setTagNewAdsWithHttpInfo(setTagNewAdsRequest)
+
+Turn Tag new ads on or off
+
+With &#x60;enabled: true&#x60;, every new Meta and Google ad created through &#x60;POST /v1/ads/create&#x60; carries &#x60;zrn&#x3D;&lt;platform ad id&gt;&#x60; on its landing URL, so the conversions it brings are tied to its campaign. A request that sets &#x60;tracking.zernioTag&#x60; keeps its own choice.  The same rules as &#x60;tracking.zernioTag&#x60; apply: lead forms, call ads, existing creatives and app promotion are skipped, and a Google ad is tagged only when it inherits no final URL suffix. Existing ads are never changed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        SetTagNewAdsRequest setTagNewAdsRequest = new SetTagNewAdsRequest(); // SetTagNewAdsRequest | 
+        try {
+            ApiResponse<SetTagNewAds200Response> response = apiInstance.setTagNewAdsWithHttpInfo(setTagNewAdsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#setTagNewAds");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setTagNewAdsRequest** | [**SetTagNewAdsRequest**](SetTagNewAdsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**SetTagNewAds200Response**](SetTagNewAds200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The setting now in force. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 

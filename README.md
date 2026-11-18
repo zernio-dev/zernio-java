@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.675.0
+- API version: 1.676.0
 
-- Build date: 2026-11-18T22:53:11.809277238Z[Etc/UTC]
+- Build date: 2026-11-18T23:05:21.786118926Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.675.0</version>
+  <version>1.676.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.675.0"
+compile "dev.zernio:zernio-sdk:1.676.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.675.0.jar`
+- `target/zernio-sdk-1.676.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -389,6 +389,8 @@ Class | Method | HTTP request | Description
 *AdCampaignResultsApi* | [**getCampaignResultsTotalsWithHttpInfo**](docs/AdCampaignResultsApi.md#getCampaignResultsTotalsWithHttpInfo) | **GET** /v1/ads/campaign-results/totals | Get your results totals
 *AdCampaignResultsApi* | [**getCampaignResultsUpload**](docs/AdCampaignResultsApi.md#getCampaignResultsUpload) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload
 *AdCampaignResultsApi* | [**getCampaignResultsUploadWithHttpInfo**](docs/AdCampaignResultsApi.md#getCampaignResultsUploadWithHttpInfo) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload
+*AdCampaignResultsApi* | [**getTagNewAds**](docs/AdCampaignResultsApi.md#getTagNewAds) | **GET** /v1/ads/campaign-results/tag-new-ads | Get the Tag new ads setting
+*AdCampaignResultsApi* | [**getTagNewAdsWithHttpInfo**](docs/AdCampaignResultsApi.md#getTagNewAdsWithHttpInfo) | **GET** /v1/ads/campaign-results/tag-new-ads | Get the Tag new ads setting
 *AdCampaignResultsApi* | [**listCampaignResultMetrics**](docs/AdCampaignResultsApi.md#listCampaignResultMetrics) | **GET** /v1/ads/campaign-results/metrics | List your result metrics
 *AdCampaignResultsApi* | [**listCampaignResultMetricsWithHttpInfo**](docs/AdCampaignResultsApi.md#listCampaignResultMetricsWithHttpInfo) | **GET** /v1/ads/campaign-results/metrics | List your result metrics
 *AdCampaignResultsApi* | [**listCampaignResults**](docs/AdCampaignResultsApi.md#listCampaignResults) | **GET** /v1/ads/campaign-results | List your results per campaign
@@ -397,6 +399,8 @@ Class | Method | HTTP request | Description
 *AdCampaignResultsApi* | [**setCampaignResultEventsWithHttpInfo**](docs/AdCampaignResultsApi.md#setCampaignResultEventsWithHttpInfo) | **PUT** /v1/ads/campaign-results/events | Choose the events that count as campaign results
 *AdCampaignResultsApi* | [**setCampaignResultMetric**](docs/AdCampaignResultsApi.md#setCampaignResultMetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula
 *AdCampaignResultsApi* | [**setCampaignResultMetricWithHttpInfo**](docs/AdCampaignResultsApi.md#setCampaignResultMetricWithHttpInfo) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula
+*AdCampaignResultsApi* | [**setTagNewAds**](docs/AdCampaignResultsApi.md#setTagNewAds) | **PUT** /v1/ads/campaign-results/tag-new-ads | Turn Tag new ads on or off
+*AdCampaignResultsApi* | [**setTagNewAdsWithHttpInfo**](docs/AdCampaignResultsApi.md#setTagNewAdsWithHttpInfo) | **PUT** /v1/ads/campaign-results/tag-new-ads | Turn Tag new ads on or off
 *AdCampaignResultsApi* | [**uploadCampaignResults**](docs/AdCampaignResultsApi.md#uploadCampaignResults) | **POST** /v1/ads/campaign-results | Upload your results per campaign
 *AdCampaignResultsApi* | [**uploadCampaignResultsWithHttpInfo**](docs/AdCampaignResultsApi.md#uploadCampaignResultsWithHttpInfo) | **POST** /v1/ads/campaign-results | Upload your results per campaign
 *AdCampaignsApi* | [**addAdKeywords**](docs/AdCampaignsApi.md#addAdKeywords) | **POST** /v1/ads/keywords | Add Search ad-group keywords
@@ -4484,6 +4488,7 @@ Class | Method | HTTP request | Description
  - [GetStripeSettings200Response](docs/GetStripeSettings200Response.md)
  - [GetSubredditRules200Response](docs/GetSubredditRules200Response.md)
  - [GetSubredditRules200ResponseRulesInner](docs/GetSubredditRules200ResponseRulesInner.md)
+ - [GetTagNewAds200Response](docs/GetTagNewAds200Response.md)
  - [GetTelegramCommands200Response](docs/GetTelegramCommands200Response.md)
  - [GetTelegramCommands200ResponseDataInner](docs/GetTelegramCommands200ResponseDataInner.md)
  - [GetTelegramConnectStatus200Response](docs/GetTelegramConnectStatus200Response.md)
@@ -4688,6 +4693,7 @@ Class | Method | HTTP request | Description
  - [ImapConnectResultStages](docs/ImapConnectResultStages.md)
  - [ImapDiscovery](docs/ImapDiscovery.md)
  - [ImapDiscoveryAuth](docs/ImapDiscoveryAuth.md)
+ - [ImapDiscoveryHostReplacementsInner](docs/ImapDiscoveryHostReplacementsInner.md)
  - [ImapDiscoveryImap](docs/ImapDiscoveryImap.md)
  - [ImapDiscoveryPreflightInner](docs/ImapDiscoveryPreflightInner.md)
  - [ImapDiscoveryProvider](docs/ImapDiscoveryProvider.md)
@@ -5773,6 +5779,8 @@ Class | Method | HTTP request | Description
  - [SetPartnershipAdPermission200Response](docs/SetPartnershipAdPermission200Response.md)
  - [SetPartnershipAdPermissionRequest](docs/SetPartnershipAdPermissionRequest.md)
  - [SetRedditPostFlairRequest](docs/SetRedditPostFlairRequest.md)
+ - [SetTagNewAds200Response](docs/SetTagNewAds200Response.md)
+ - [SetTagNewAdsRequest](docs/SetTagNewAdsRequest.md)
  - [SetTelegramCommandsRequest](docs/SetTelegramCommandsRequest.md)
  - [SetTelegramCommandsRequestCommandsInner](docs/SetTelegramCommandsRequestCommandsInner.md)
  - [SetUpAdAccountBilling200Response](docs/SetUpAdAccountBilling200Response.md)
@@ -6015,7 +6023,6 @@ Class | Method | HTTP request | Description
  - [UpdateBusinessAgentSettingsRequest](docs/UpdateBusinessAgentSettingsRequest.md)
  - [UpdateBusinessAgentSettingsRequestFollowup](docs/UpdateBusinessAgentSettingsRequestFollowup.md)
  - [UpdateBusinessAgentSettingsRequestHandoff](docs/UpdateBusinessAgentSettingsRequestHandoff.md)
- - [UpdateBusinessAgentSettingsRequestRollout](docs/UpdateBusinessAgentSettingsRequestRollout.md)
  - [UpdateCalendarEventRequest](docs/UpdateCalendarEventRequest.md)
  - [UpdateCampaignAdSchedule200Response](docs/UpdateCampaignAdSchedule200Response.md)
  - [UpdateCampaignAdScheduleRequest](docs/UpdateCampaignAdScheduleRequest.md)
