@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   UploadAdVideoRequest.JSON_PROPERTY_NAME,
   UploadAdVideoRequest.JSON_PROPERTY_ASYNC
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:48:12.797954526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:53:21.672116280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadAdVideoRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

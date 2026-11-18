@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetCampaignDraft200Response.JSON_PROPERTY_DRAFT,
   GetCampaignDraft200Response.JSON_PROPERTY_VERSIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:48:12.797954526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:53:21.672116280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCampaignDraft200Response {
   public static final String JSON_PROPERTY_DRAFT = "draft";
   @javax.annotation.Nonnull

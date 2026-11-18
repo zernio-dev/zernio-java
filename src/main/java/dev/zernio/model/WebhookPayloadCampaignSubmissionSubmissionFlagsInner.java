@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCampaignSubmissionSubmissionFlagsInner.JSON_PROPERTY_CODE,
   WebhookPayloadCampaignSubmissionSubmissionFlagsInner.JSON_PROPERTY_DETAIL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:48:12.797954526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:53:21.672116280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCampaignSubmissionSubmissionFlagsInner {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nonnull

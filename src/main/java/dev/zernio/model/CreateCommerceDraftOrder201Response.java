@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CreateCommerceDraftOrder201Response.JSON_PROPERTY_DRAFT_ORDER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:48:12.797954526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:53:21.672116280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCommerceDraftOrder201Response {
   public static final String JSON_PROPERTY_DRAFT_ORDER = "draftOrder";
   @javax.annotation.Nullable

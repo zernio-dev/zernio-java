@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetEventsOverview200ResponseWebsite.JSON_PROPERTY_BOTS,
   GetEventsOverview200ResponseWebsite.JSON_PROPERTY_SERVER_PLATFORMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:48:12.797954526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:53:21.672116280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEventsOverview200ResponseWebsite {
   public static final String JSON_PROPERTY_STEPS = "steps";
   @javax.annotation.Nullable

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetPostTimeline200Response.JSON_PROPERTY_POST_ID,
   GetPostTimeline200Response.JSON_PROPERTY_TIMELINE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:48:12.797954526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:53:21.672116280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPostTimeline200Response {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable

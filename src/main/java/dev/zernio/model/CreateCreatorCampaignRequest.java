@@ -68,7 +68,7 @@ import dev.zernio.ApiClient;
   CreateCreatorCampaignRequest.JSON_PROPERTY_SAMPLE_PRODUCT_IDS,
   CreateCreatorCampaignRequest.JSON_PROPERTY_SAMPLE_CONTENT_DUE_DAYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:48:12.797954526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:53:21.672116280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCreatorCampaignRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

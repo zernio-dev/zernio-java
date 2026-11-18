@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CommerceRefundPreviewLineItemsInner.JSON_PROPERTY_RESTOCK,
   CommerceRefundPreviewLineItemsInner.JSON_PROPERTY_AMOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:48:12.797954526Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T00:53:21.672116280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceRefundPreviewLineItemsInner {
   public static final String JSON_PROPERTY_LINE_ITEM_ID = "lineItemId";
   @javax.annotation.Nullable
