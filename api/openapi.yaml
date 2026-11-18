@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.664.0
+  version: 1.665.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -210306,8 +210306,75 @@ components:
         sentAt:
           format: date-time
           type: string
+    getEvent_200_response_touches_inner:
+      example:
+        at: 2000-01-23T04:56:07.000+00:00
+        kind: ad_click
+        adAccountId: adAccountId
+        campaignId: campaignId
+        credit:
+          linear: 0.5
+          first_touch: 1
+          time_decay: 0.35
+        platform: platform
+      properties:
+        at:
+          format: date-time
+          type: string
+        kind:
+          enum:
+          - ad_click
+          - paid
+          - email
+          - social
+          - campaign
+          - organic_search
+          - ai_assistant
+          - referral
+          - lead_form
+          - event
+          type: string
+        platform:
+          nullable: true
+          type: string
+        adAccountId:
+          nullable: true
+          type: string
+        campaignId:
+          description: "The campaign the touch resolved to; null for a touch that\
+            \ named none (search, referral)."
+          nullable: true
+          type: string
+        credit:
+          additionalProperties:
+            type: number
+          description: "The share of the event (0 to 1) this touch gets per model:\
+            \ first_touch, last_non_direct, linear, position_based, time_decay."
+          example:
+            linear: 0.5
+            first_touch: 1
+            time_decay: 0.35
     getEvent_200_response:
       example:
+        touches:
+        - at: 2000-01-23T04:56:07.000+00:00
+          kind: ad_click
+          adAccountId: adAccountId
+          campaignId: campaignId
+          credit:
+            linear: 0.5
+            first_touch: 1
+            time_decay: 0.35
+          platform: platform
+        - at: 2000-01-23T04:56:07.000+00:00
+          kind: ad_click
+          adAccountId: adAccountId
+          campaignId: campaignId
+          credit:
+            linear: 0.5
+            first_touch: 1
+            time_decay: 0.35
+          platform: platform
         event:
           eventId: eventId
           ad:
@@ -210363,6 +210430,14 @@ components:
         deliveries:
           items:
             $ref: "#/components/schemas/getEvent_200_response_deliveries_inner"
+          type: array
+        touches:
+          description: "The touches of the person before the event that its credit\
+            \ is split across, oldest first: website visits from somewhere (an ad\
+            \ click, search, a tagged link) and earlier lead forms or sales. Empty\
+            \ when the event counts whole for its own campaign under every model."
+          items:
+            $ref: "#/components/schemas/getEvent_200_response_touches_inner"
           type: array
     retractEvent_200_response:
       example:
