@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.668.0
+  version: 1.674.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -68272,7 +68272,7 @@ paths:
         - Single image or video also needs `linkUrl`, unless the goal is `lead_generation` or `page_visits` or `leadGenFormId` is set.
         - `bodies[]` / `headlines[]` text variations: `body`, one list with 2+ items, `callToAction`, `imageUrl` or `video`, and `linkUrl` unless the goal is `lead_generation` or `leadGenFormId` is set. `headline` is not required.
         - `placementAssets`: `headline`, `body`, `callToAction`, and `linkUrl` with the same exemptions as the single shape; the media comes from `placementAssets`.
-        - `carouselCards`: `body`, `callToAction`, and `linkUrl` unless the goal is `lead_generation` or `leadGenFormId` is set. `headline` is not required.
+        - `carouselCards`, also with `adSetId`: `body`, `callToAction`, and `linkUrl` unless the goal is `lead_generation` or `leadGenFormId` is set. `headline` is not required. Each card takes `imageUrl` or `video`.
         - `creatives[]`: per entry `headline`, `body`, `callToAction`, `imageUrl` or `video`, and `linkUrl` unless the goal is `lead_generation`. Top-level `body` is not required.
         - `dynamicCreative`: `imageUrls` or `videoUrls`, `callToActionTypes`, and `linkUrls` unless the goal is `lead_generation`. Top-level `body` is not required.
         - `existingCreativeId`: no creative fields.
@@ -68319,7 +68319,7 @@ paths:
         - `imageUrl`: an image ad.
         - None of them: a text ad, which cannot link out (`linkUrl` is a 400 there; `body` is required).
 
-        Only the legacy single-creative shape is available: `creatives[]`, `adSetId`, `existingCampaignId` and `validateOnly` are refused.
+        `creatives[]` and `validateOnly` are refused. `adSetId` adds the ad, in any of these formats, to an existing ad group, and `existingCampaignId` creates a new ad group in an existing campaign.
 
         Reddit throttling surfaces as 429 `rate_limited` with `platform: reddit`; retry after a delay. To promote an existing Reddit post, use POST /v1/ads/boost.
 
@@ -95227,19 +95227,26 @@ components:
           type: string
     MessagingCarouselCard:
       description: "One card of a messaging ad carousel (Meta link_data.child_attachments).\
-        \ Every card opens the same conversation, so a card has no link of its own."
+        \ Every card opens the same conversation, so a card has no link of its own.\
+        \ Exactly one of `imageUrl` or `video` (a 400 otherwise)."
       example:
         imageUrl: https://openapi-generator.tech
         linkUrl: linkUrl
         description: description
+        video:
+          id: id
+          url: https://openapi-generator.tech
+          thumbnailUrl: https://openapi-generator.tech
         headline: headline
         callToAction: callToAction
       properties:
         imageUrl:
-          description: Card image. Uploaded to the ad account and sent as the card
+          description: Image card. Uploaded to the ad account and sent as the card
             image_hash (by URL on validateOnly).
           format: uri
           type: string
+        video:
+          $ref: "#/components/schemas/MessagingCarouselCard_video"
         headline:
           description: Card title (Meta name).
           maxLength: 255
@@ -95259,14 +95266,12 @@ components:
           description: "Not accepted: a 400. The card tap opens the conversation,\
             \ not a website."
           type: string
-      required:
-      - imageUrl
     CtwaAdRequestBody:
       description: |
         Besides the `required` list, the request must use EXACTLY ONE of these shapes:
 
         - Single-creative: `headline`, `body`, and one of `imageUrl` / `video`, OR `platformPostId` / `objectStoryId` to reuse an organic post. On POST /v1/ads/messaging, `placementAssets` can replace `imageUrl` / `video`.
-        - Carousel (messaging and CTWA): `body` and `carouselCards` (2-10 image cards) instead of `imageUrl` / `video`, top level or per `creatives[]` entry.
+        - Carousel (messaging and CTWA): `body` and `carouselCards` (2-10 image or video cards) instead of `imageUrl` / `video`, top level or per `creatives[]` entry.
         - Multi-creative: a non-empty `creatives[]` array. Top-level creative fields must NOT be set on this shape.
 
         **Existing post references** work on messaging and CTWA only (not call ads). They cannot be combined with each other or with headline, body, imageUrl or video. `welcomeMessage` works on them (it lives on the ad, not the post).
@@ -95295,26 +95300,46 @@ components:
           - imageUrl: https://openapi-generator.tech
             linkUrl: linkUrl
             description: description
+            video:
+              id: id
+              url: https://openapi-generator.tech
+              thumbnailUrl: https://openapi-generator.tech
             headline: headline
             callToAction: callToAction
           - imageUrl: https://openapi-generator.tech
             linkUrl: linkUrl
             description: description
+            video:
+              id: id
+              url: https://openapi-generator.tech
+              thumbnailUrl: https://openapi-generator.tech
             headline: headline
             callToAction: callToAction
           - imageUrl: https://openapi-generator.tech
             linkUrl: linkUrl
             description: description
+            video:
+              id: id
+              url: https://openapi-generator.tech
+              thumbnailUrl: https://openapi-generator.tech
             headline: headline
             callToAction: callToAction
           - imageUrl: https://openapi-generator.tech
             linkUrl: linkUrl
             description: description
+            video:
+              id: id
+              url: https://openapi-generator.tech
+              thumbnailUrl: https://openapi-generator.tech
             headline: headline
             callToAction: callToAction
           - imageUrl: https://openapi-generator.tech
             linkUrl: linkUrl
             description: description
+            video:
+              id: id
+              url: https://openapi-generator.tech
+              thumbnailUrl: https://openapi-generator.tech
             headline: headline
             callToAction: callToAction
           imageUrl: https://openapi-generator.tech
@@ -95346,26 +95371,46 @@ components:
           - imageUrl: https://openapi-generator.tech
             linkUrl: linkUrl
             description: description
+            video:
+              id: id
+              url: https://openapi-generator.tech
+              thumbnailUrl: https://openapi-generator.tech
             headline: headline
             callToAction: callToAction
           - imageUrl: https://openapi-generator.tech
             linkUrl: linkUrl
             description: description
+            video:
+              id: id
+              url: https://openapi-generator.tech
+              thumbnailUrl: https://openapi-generator.tech
             headline: headline
             callToAction: callToAction
           - imageUrl: https://openapi-generator.tech
             linkUrl: linkUrl
             description: description
+            video:
+              id: id
+              url: https://openapi-generator.tech
+              thumbnailUrl: https://openapi-generator.tech
             headline: headline
             callToAction: callToAction
           - imageUrl: https://openapi-generator.tech
             linkUrl: linkUrl
             description: description
+            video:
+              id: id
+              url: https://openapi-generator.tech
+              thumbnailUrl: https://openapi-generator.tech
             headline: headline
             callToAction: callToAction
           - imageUrl: https://openapi-generator.tech
             linkUrl: linkUrl
             description: description
+            video:
+              id: id
+              url: https://openapi-generator.tech
+              thumbnailUrl: https://openapi-generator.tech
             headline: headline
             callToAction: callToAction
           imageUrl: https://openapi-generator.tech
@@ -95556,26 +95601,46 @@ components:
         - imageUrl: https://openapi-generator.tech
           linkUrl: linkUrl
           description: description
+          video:
+            id: id
+            url: https://openapi-generator.tech
+            thumbnailUrl: https://openapi-generator.tech
           headline: headline
           callToAction: callToAction
         - imageUrl: https://openapi-generator.tech
           linkUrl: linkUrl
           description: description
+          video:
+            id: id
+            url: https://openapi-generator.tech
+            thumbnailUrl: https://openapi-generator.tech
           headline: headline
           callToAction: callToAction
         - imageUrl: https://openapi-generator.tech
           linkUrl: linkUrl
           description: description
+          video:
+            id: id
+            url: https://openapi-generator.tech
+            thumbnailUrl: https://openapi-generator.tech
           headline: headline
           callToAction: callToAction
         - imageUrl: https://openapi-generator.tech
           linkUrl: linkUrl
           description: description
+          video:
+            id: id
+            url: https://openapi-generator.tech
+            thumbnailUrl: https://openapi-generator.tech
           headline: headline
           callToAction: callToAction
         - imageUrl: https://openapi-generator.tech
           linkUrl: linkUrl
           description: description
+          video:
+            id: id
+            url: https://openapi-generator.tech
+            thumbnailUrl: https://openapi-generator.tech
           headline: headline
           callToAction: callToAction
         budgetAmount: 0.8008281904610115
@@ -95722,7 +95787,7 @@ components:
           $ref: "#/components/schemas/CtwaAdRequestBody_welcomeMessage"
         carouselCards:
           description: |
-            Messaging and CTWA only (a 400 on POST /v1/ads/call). A hand-built carousel of 2-10 image cards, sent to Meta in the given order as `link_data.child_attachments`.
+            Messaging and CTWA only (a 400 on POST /v1/ads/call). A hand-built carousel of 2-10 image or video cards, sent to Meta in the given order as `link_data.child_attachments`.
 
             - Meta may reorder cards for performance, since `multi_share_optimized` defaults to true; `optimizeCardOrder: false` keeps your order.
             - Every card (and the carousel) carries the destination's messaging call to action (WHATSAPP_MESSAGE, MESSAGE_PAGE or INSTAGRAM_MESSAGE), so a tap on any card opens the conversation.
@@ -203872,12 +203937,33 @@ components:
           - CAROUSEL_IMAGE
           - SINGLE_VIDEO
           type: string
-    createStandaloneAd_request_carouselCards_inner:
+    createStandaloneAd_request_carouselCards_inner_video:
+      description: "Meta only (a 400 on Reddit, whose carousels are images only).\
+        \ Video card, sent as the card's `video_id`. Needs `url` or `id`."
       properties:
-        imageUrl:
-          description: Card image; uploaded to the ad account and referenced by hash.
+        url:
+          description: Video file uploaded to the ad account.
           format: uri
           type: string
+        id:
+          description: A video already on the ad account (the videoId of an earlier
+            upload). Reused without re-uploading.
+          type: string
+        thumbnailUrl:
+          description: The card's poster. Defaults to Meta's auto-generated thumbnail
+            of the video.
+          format: uri
+          type: string
+    createStandaloneAd_request_carouselCards_inner:
+      description: Exactly one of `imageUrl` or `video` (a 400 otherwise).
+      properties:
+        imageUrl:
+          description: "Image card: the card image, uploaded to the ad account and\
+            \ referenced by hash."
+          format: uri
+          type: string
+        video:
+          $ref: "#/components/schemas/createStandaloneAd_request_carouselCards_inner_video"
         linkUrl:
           description: "Card destination URL. Defaults to the top-level linkUrl, or\
             \ Meta's lead-form link when leadGenFormId is set and neither is provided."
@@ -203895,8 +203981,6 @@ components:
           description: Card CTA override. Defaults to the top-level callToAction;
             same enum.
           type: string
-      required:
-      - imageUrl
     createStandaloneAd_request_translations_inner:
       properties:
         locale:
@@ -204277,7 +204361,8 @@ components:
             Before the dry run, Meta validateOnly runs the account status and payment checks of GET /v1/ads/accounts/health: an ad account that is not ready answers its blocker `code` (`ad_account_unusable`, `ad_account_payment_required`) with `details.hint` and `details.fix`, and Meta is not called.
 
             - Supported: a single image or existing video.id (each also with bodies[] / headlines[] Multiple Text Options), all-image placementAssets with per-rule copy and text pools, placementAssets with an existing video id in every slot and no thumbnails, or existingCreativeId.
-            - Return 400: dynamicCreative, translations, carouselCards, placement videos by URL or with thumbnails, new video uploads, creatives[], adSetId, RESERVED buying.
+            - Also supported: carouselCards whose cards are images or existing video.id videos, sent by URL with nothing uploaded.
+            - Return 400: dynamicCreative, translations, carousel cards with video.url, placement videos by URL or with thumbnails, new video uploads, creatives[], adSetId, RESERVED buying.
             - Placement validation uses existing Instagram identities only. Existing campaign or creative nodes are marked skipped.
             - When Meta cannot dry-run the nested tree, the campaign and creative are validated alone and the adSet and ad nodes return unverified with the reason. This covers code 2, and two errors Meta returns but then creates normally (below).
             - Code 1 (unknown error) on an OFFSITE_CONVERSIONS ad set nested in a new campaign (some website-conversion ad sets).
@@ -204616,7 +204701,7 @@ components:
             Lead Gen form ID to attach to the ad's creative. REQUIRED when `goal` is `lead_generation`. Create one via POST /v1/ads/lead-forms.
 
             - Meta (facebook/instagram): the leadgen_forms ID. The ad set's promoted_object.page_id, LEAD_GENERATION optimization and destination_type ON_AD are derived automatically from the goal.
-            - Meta: also required on every ATTACH (`adSetId`) call targeting a lead ad set (the form attaches per-ad; Meta rejects a formless ad in a lead ad set).
+            - Meta: also required on every ATTACH (`adSetId`) call targeting an Instant Form lead ad set (the form attaches per-ad; Meta rejects a formless ad in a lead ad set, so Zernio returns a 400 naming `leadGenFormId` before uploading anything). This includes a carousel attached with `carouselCards`.
             - Meta: `placementAssets`, `dynamicCreative` and `carouselCards` (multi-card Instant-Form lead ad) ARE supported on instant-form lead ads. `linkUrl` and per-card `linkUrl` are optional, forwarded as real destinations when sent, else falling back to Meta's lead-form link.
             - LinkedIn: the adForm ID. The creative's `leadgenCallToAction.destination` is set to `urn:li:adForm:{id}` and the campaign objective to MAX_LEAD. Forms must be owned by the sponsoredAccount (not the organization) for the URN to resolve.
             - Reddit: rejected with 400 on every goal (Reddit retired its native lead forms).
@@ -205050,8 +205135,12 @@ components:
 
             - Meta may still reorder cards for performance (`multi_share_optimized` defaults to true); send `optimizeCardOrder: false` to keep your order.
             - Requires top-level `body` and `callToAction`; `linkUrl` too UNLESS `leadGenFormId` is set. These become the ad's Destination and button (`link_data.link` / `link_data.call_to_action`) and the per-card fallback.
-            - Mutually exclusive with `imageUrl`/`video`, `creatives[]`, `dynamicCreative`, `placementAssets`, `existingCreativeId`, `adSetId` and goal `catalog_sales`.
+            - Each card is an image card (`imageUrl`) or a video card (`video`), never both. Image and video cards can be mixed.
             - With `leadGenFormId` it builds a carousel Instant-Form lead ad: `linkUrl` and per-card `linkUrl` become OPTIONAL, forwarded as real destinations when sent; when omitted, the destination falls back to Meta's lead-form link.
+            - With `adSetId` it adds one carousel ad to that existing ad set, which keeps its budget, schedule, targeting and optimization. An Instant Form ad set (destination ON_AD, LEAD_GENERATION or QUALITY_LEAD optimization) needs `leadGenFormId` on every ad: without it the request is a 400 naming `leadGenFormId`.
+            - Also works with `existingCampaignId` and `optimizeCardOrder`.
+            - Mutually exclusive with `imageUrl`/`video`, `creatives[]`, `dynamicCreative`, `placementAssets`, `existingCreativeId`, `bodies`/`headlines`, `translations` and catalog template creatives (goal `catalog_sales`, or `promotedObject.productSetId`). The 400 names the conflicting field.
+            - `validateOnly` dry-runs image cards and `video.id` cards without uploading; a card with `video.url` is a 400 there.
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_carouselCards_inner"
           maxItems: 10
@@ -212440,7 +212529,7 @@ components:
             description: |
               Dry-runs the ad on Meta with execution_options validate_only, as ONE inline campaign + ad set + creative + ad (or creative + ad on the existing ad set with `adSetId`). Nothing is uploaded, created or stored; media is checked by URL.
 
-              - **Supported:** one creative with `imageUrl`, image `placementAssets`, `carouselCards`, an existing `video.id`, or an existing post.
+              - **Supported:** one creative with `imageUrl`, image `placementAssets`, `carouselCards` (image cards or existing `video.id` cards), an existing `video.id`, or an existing post.
               - **Returns 400:** several creatives, a new `video.url` and video `placementAssets` (they need uploads first).
 
               Success returns 200 with per-node results; a Meta rejection returns the Meta error.
@@ -223889,6 +223978,25 @@ components:
         parameters:
           additionalProperties: true
           type: object
+    MessagingCarouselCard_video:
+      description: "Video card, sent as the card's `video_id`. Needs `url` or `id`.\
+        \ On validateOnly only `id` works, since `url` needs an upload first."
+      example:
+        id: id
+        url: https://openapi-generator.tech
+        thumbnailUrl: https://openapi-generator.tech
+      properties:
+        url:
+          description: Video file uploaded to the ad account.
+          format: uri
+          type: string
+        id:
+          description: A video already on the ad account.
+          type: string
+        thumbnailUrl:
+          description: The card's poster. Defaults to Meta's auto-generated thumbnail.
+          format: uri
+          type: string
     CtwaAdRequestBody_video:
       description: |
         Video creative for single-creative shape. Mutually
@@ -224060,26 +224168,46 @@ components:
         - imageUrl: https://openapi-generator.tech
           linkUrl: linkUrl
           description: description
+          video:
+            id: id
+            url: https://openapi-generator.tech
+            thumbnailUrl: https://openapi-generator.tech
           headline: headline
           callToAction: callToAction
         - imageUrl: https://openapi-generator.tech
           linkUrl: linkUrl
           description: description
+          video:
+            id: id
+            url: https://openapi-generator.tech
+            thumbnailUrl: https://openapi-generator.tech
           headline: headline
           callToAction: callToAction
         - imageUrl: https://openapi-generator.tech
           linkUrl: linkUrl
           description: description
+          video:
+            id: id
+            url: https://openapi-generator.tech
+            thumbnailUrl: https://openapi-generator.tech
           headline: headline
           callToAction: callToAction
         - imageUrl: https://openapi-generator.tech
           linkUrl: linkUrl
           description: description
+          video:
+            id: id
+            url: https://openapi-generator.tech
+            thumbnailUrl: https://openapi-generator.tech
           headline: headline
           callToAction: callToAction
         - imageUrl: https://openapi-generator.tech
           linkUrl: linkUrl
           description: description
+          video:
+            id: id
+            url: https://openapi-generator.tech
+            thumbnailUrl: https://openapi-generator.tech
           headline: headline
           callToAction: callToAction
         imageUrl: https://openapi-generator.tech

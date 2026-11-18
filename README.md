@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.668.0
+- API version: 1.674.0
 
-- Build date: 2026-11-18T22:31:08.006596816Z[Etc/UTC]
+- Build date: 2026-11-18T22:40:52.546613207Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.668.0</version>
+  <version>1.674.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.668.0"
+compile "dev.zernio:zernio-sdk:1.674.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.668.0.jar`
+- `target/zernio-sdk-1.674.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3721,6 +3721,7 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestBehaviorsInner](docs/CreateStandaloneAdRequestBehaviorsInner.md)
  - [CreateStandaloneAdRequestBrandIdentity](docs/CreateStandaloneAdRequestBrandIdentity.md)
  - [CreateStandaloneAdRequestCarouselCardsInner](docs/CreateStandaloneAdRequestCarouselCardsInner.md)
+ - [CreateStandaloneAdRequestCarouselCardsInnerVideo](docs/CreateStandaloneAdRequestCarouselCardsInnerVideo.md)
  - [CreateStandaloneAdRequestCatalogIntroCardsInner](docs/CreateStandaloneAdRequestCatalogIntroCardsInner.md)
  - [CreateStandaloneAdRequestCitiesInner](docs/CreateStandaloneAdRequestCitiesInner.md)
  - [CreateStandaloneAdRequestCitiesInnerOneOf](docs/CreateStandaloneAdRequestCitiesInnerOneOf.md)
@@ -5198,6 +5199,7 @@ Class | Method | HTTP request | Description
  - [MediaSubtitle](docs/MediaSubtitle.md)
  - [MediaUploadResponse](docs/MediaUploadResponse.md)
  - [MessagingCarouselCard](docs/MessagingCarouselCard.md)
+ - [MessagingCarouselCardVideo](docs/MessagingCarouselCardVideo.md)
  - [MessengerGreeting](docs/MessengerGreeting.md)
  - [MessengerIceBreakerLocale](docs/MessengerIceBreakerLocale.md)
  - [MessengerIceBreakerLocaleCallToActionsInner](docs/MessengerIceBreakerLocaleCallToActionsInner.md)
