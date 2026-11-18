@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetTrackingTagStoreInstall200ResponseInstallAllOfPreflight.JSON_PROPERTY_REASON,
   GetTrackingTagStoreInstall200ResponseInstallAllOfPreflight.JSON_PROPERTY_SIDEBARS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:29:28.601825912Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:35:10.642029735Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTrackingTagStoreInstall200ResponseInstallAllOfPreflight {
   public static final String JSON_PROPERTY_READY = "ready";
   @javax.annotation.Nullable

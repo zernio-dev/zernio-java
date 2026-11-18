@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   FromYourAutomations.JSON_PROPERTY_AUTOMATION_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:29:28.601825912Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:35:10.642029735Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FromYourAutomations {
   public static final String JSON_PROPERTY_AUTOMATION_IDS = "automationIds";
   @javax.annotation.Nonnull

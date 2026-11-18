@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   AutomationApprovalStep.JSON_PROPERTY_TO,
   AutomationApprovalStep.JSON_PROPERTY_EXPIRES_IN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:29:28.601825912Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:35:10.642029735Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationApprovalStep {
   /**
    * Gets or Sets id

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   PinPostResponse.JSON_PROPERTY_PLATFORM_POST_ID,
   PinPostResponse.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:29:28.601825912Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:35:10.642029735Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PinPostResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
