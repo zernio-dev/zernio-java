@@ -666,6 +666,8 @@ docs/ConnectShopifyWithToken200Response.md
 docs/ConnectShopifyWithToken200ResponseAccount.md
 docs/ConnectShopifyWithTokenRequest.md
 docs/ConnectSlackChannelRequest.md
+docs/ConnectSnapchatAdsCredentials200Response.md
+docs/ConnectSnapchatAdsCredentialsRequest.md
 docs/ConnectWebflowWithSiteToken200Response.md
 docs/ConnectWebflowWithSiteToken200ResponseAccount.md
 docs/ConnectWebflowWithSiteTokenRequest.md
@@ -4680,6 +4682,8 @@ src/main/java/dev/zernio/model/ConnectShopifyWithToken200Response.java
 src/main/java/dev/zernio/model/ConnectShopifyWithToken200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectShopifyWithTokenRequest.java
 src/main/java/dev/zernio/model/ConnectSlackChannelRequest.java
+src/main/java/dev/zernio/model/ConnectSnapchatAdsCredentials200Response.java
+src/main/java/dev/zernio/model/ConnectSnapchatAdsCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteToken200Response.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteToken200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteTokenRequest.java
@@ -7887,6 +7891,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetLtvCohorts200ResponseCohortsInnerRevenueTest.java
-src/test/java/dev/zernio/model/GetLtvCohorts200ResponseCohortsInnerTest.java
-src/test/java/dev/zernio/model/GetLtvCohorts200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectSnapchatAdsCredentials200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectSnapchatAdsCredentialsRequestTest.java

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.673.0
+- API version: 1.668.0
 
-- Build date: 2026-11-18T22:22:08.922563006Z[Etc/UTC]
+- Build date: 2026-11-18T22:31:08.006596816Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.673.0</version>
+  <version>1.668.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.673.0"
+compile "dev.zernio:zernio-sdk:1.668.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.673.0.jar`
+- `target/zernio-sdk-1.668.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1253,6 +1253,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectShopifyWithTokenWithHttpInfo**](docs/ConnectApi.md#connectShopifyWithTokenWithHttpInfo) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token
 *ConnectApi* | [**connectSlackChannel**](docs/ConnectApi.md#connectSlackChannel) | **POST** /v1/connect/slack | Connect a Slack channel
 *ConnectApi* | [**connectSlackChannelWithHttpInfo**](docs/ConnectApi.md#connectSlackChannelWithHttpInfo) | **POST** /v1/connect/slack | Connect a Slack channel
+*ConnectApi* | [**connectSnapchatAdsCredentials**](docs/ConnectApi.md#connectSnapchatAdsCredentials) | **POST** /v1/connect/snapchat-ads/credentials | Connect a Snapchat Ads pixel
+*ConnectApi* | [**connectSnapchatAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectSnapchatAdsCredentialsWithHttpInfo) | **POST** /v1/connect/snapchat-ads/credentials | Connect a Snapchat Ads pixel
 *ConnectApi* | [**connectWebflowWithSiteToken**](docs/ConnectApi.md#connectWebflowWithSiteToken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token
 *ConnectApi* | [**connectWebflowWithSiteTokenWithHttpInfo**](docs/ConnectApi.md#connectWebflowWithSiteTokenWithHttpInfo) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token
 *ConnectApi* | [**connectWechatCredentials**](docs/ConnectApi.md#connectWechatCredentials) | **POST** /v1/connect/wechat/credentials | Connect WeChat Official Account
@@ -3392,6 +3394,8 @@ Class | Method | HTTP request | Description
  - [ConnectShopifyWithToken200ResponseAccount](docs/ConnectShopifyWithToken200ResponseAccount.md)
  - [ConnectShopifyWithTokenRequest](docs/ConnectShopifyWithTokenRequest.md)
  - [ConnectSlackChannelRequest](docs/ConnectSlackChannelRequest.md)
+ - [ConnectSnapchatAdsCredentials200Response](docs/ConnectSnapchatAdsCredentials200Response.md)
+ - [ConnectSnapchatAdsCredentialsRequest](docs/ConnectSnapchatAdsCredentialsRequest.md)
  - [ConnectWebflowWithSiteToken200Response](docs/ConnectWebflowWithSiteToken200Response.md)
  - [ConnectWebflowWithSiteToken200ResponseAccount](docs/ConnectWebflowWithSiteToken200ResponseAccount.md)
  - [ConnectWebflowWithSiteTokenRequest](docs/ConnectWebflowWithSiteTokenRequest.md)

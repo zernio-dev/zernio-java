@@ -73,6 +73,7 @@
 | RCS | &quot;rcs&quot; |
 | WHOPADS | &quot;whopads&quot; |
 | APPLOVINADS | &quot;applovinads&quot; |
+| SNAPCHATADS | &quot;snapchatads&quot; |
 | GOOGLE | &quot;google&quot; |
 | MICROSOFT | &quot;microsoft&quot; |
 | IMAP | &quot;imap&quot; |
