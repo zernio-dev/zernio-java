@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetAdCreative200Response.JSON_PROPERTY_CREATIVE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:05:21.786118926Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:09:51.730412704Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdCreative200Response {
   public static final String JSON_PROPERTY_CREATIVE = "creative";
   @javax.annotation.Nullable

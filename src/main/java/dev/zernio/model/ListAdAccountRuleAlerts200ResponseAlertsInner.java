@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   ListAdAccountRuleAlerts200ResponseAlertsInner.JSON_PROPERTY_RESOLVED_AT,
   ListAdAccountRuleAlerts200ResponseAlertsInner.JSON_PROPERTY_RESOLVED_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:05:21.786118926Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:09:51.730412704Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAccountRuleAlerts200ResponseAlertsInner {
   public static final String JSON_PROPERTY_RULE_ID = "ruleId";
   @javax.annotation.Nonnull

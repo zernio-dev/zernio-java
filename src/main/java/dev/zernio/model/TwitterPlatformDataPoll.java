@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   TwitterPlatformDataPoll.JSON_PROPERTY_OPTIONS,
   TwitterPlatformDataPoll.JSON_PROPERTY_DURATION_MINUTES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:05:21.786118926Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:09:51.730412704Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterPlatformDataPoll {
   public static final String JSON_PROPERTY_OPTIONS = "options";
   @javax.annotation.Nonnull
