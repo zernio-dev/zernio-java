@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.655.0
+  version: 1.656.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -90880,6 +90880,7 @@ components:
           security: tls
           port: 6
           host: host
+        suggestedEmail: suggestedEmail
         auth:
           note: note
           kind: password
@@ -90954,13 +90955,25 @@ components:
           nullable: true
           type: string
         unsupportedReason:
-          description: "proton_requires_bridge: Proton Mail only works through its\
-            \ local bridge. forwarding_only: the domain forwards mail (Cloudflare\
-            \ Email Routing) and stores none, so connect the mailbox it forwards to."
+          description: |
+            Why an `unsupported` route cannot connect:
+
+            - `proton_requires_bridge`: Proton Mail only works through its local bridge.
+            - `forwarding_only`: the domain forwards mail (Cloudflare Email Routing) and stores none, so connect the mailbox it forwards to.
+            - `domain_typo`: the domain takes no mail and looks like a mistyped consumer domain. `suggestedEmail` has the likely address.
+            - `no_mail_domain`: the domain has no MX and no address, so it cannot receive email.
           enum:
           - proton_requires_bridge
           - forwarding_only
+          - domain_typo
+          - no_mail_domain
           - null
+          nullable: true
+          type: string
+        suggestedEmail:
+          description: "With unsupportedReason domain_typo: the address the user most\
+            \ likely meant, such as ana7275@gmail.com for ana@7275gmail.com. Run discovery\
+            \ again with it once the user confirms."
           nullable: true
           type: string
         appPasswordFallback:
@@ -158464,6 +158477,7 @@ components:
             security: tls
             port: 6
             host: host
+          suggestedEmail: suggestedEmail
           auth:
             note: note
             kind: password
