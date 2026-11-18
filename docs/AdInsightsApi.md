@@ -1875,6 +1875,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **422** | Meta: &#x60;query_too_large&#x60; when Meta refuses the query as too much data (code 1). Narrow the date range, level, breakdowns or limit, or run it with POST /v1/ads/insights/reports. |  -  |
 | **200** | Insight rows (raw platform shape) |  -  |
 | **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -2005,6 +2006,7 @@ ApiResponse<[**QueryAdInsights200Response**](QueryAdInsights200Response.md)>
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **422** | Meta: &#x60;query_too_large&#x60; when Meta refuses the query as too much data (code 1). Narrow the date range, level, breakdowns or limit, or run it with POST /v1/ads/insights/reports. |  -  |
 | **200** | Insight rows (raw platform shape) |  -  |
 | **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |

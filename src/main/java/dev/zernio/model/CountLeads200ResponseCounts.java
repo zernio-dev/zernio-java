@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CountLeads200ResponseCounts.JSON_PROPERTY_CONVERTED,
   CountLeads200ResponseCounts.JSON_PROPERTY_DISQUALIFIED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:18:48.504374077Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:24:04.428177274Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CountLeads200ResponseCounts {
   public static final String JSON_PROPERTY_NEW = "new";
   @javax.annotation.Nullable

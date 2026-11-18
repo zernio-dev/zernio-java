@@ -60317,6 +60317,12 @@ paths:
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "422":
+          description: "Meta: `query_too_large` when Meta refuses the query as too\
+            \ much data (code 1). Narrow the date range, level, breakdowns or limit,\
+            \ or run it with POST /v1/ads/insights/reports."
+          x-summary: "Meta refused the query as too large: narrow it or run it as\
+            \ an async report."
         "200":
           content:
             application/json:

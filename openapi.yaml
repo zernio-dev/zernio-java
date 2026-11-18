@@ -88219,6 +88219,7 @@ paths:
       responses:
         '409': { $ref: '#/components/responses/AccountConnectionRequired' }
         '404': { $ref: '#/components/responses/AccountUnavailable' }
+        '422': { x-summary: "Meta refused the query as too large: narrow it or run it as an async report.", description: "Meta: `query_too_large` when Meta refuses the query as too much data (code 1). Narrow the date range, level, breakdowns or limit, or run it with POST /v1/ads/insights/reports." }
         '200':
           description: Insight rows (raw platform shape)
           content:

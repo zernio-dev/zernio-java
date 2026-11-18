@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   AdCreativeCatalogFormatTransformationSpecInner.JSON_PROPERTY_FORMAT,
   AdCreativeCatalogFormatTransformationSpecInner.JSON_PROPERTY_DATA_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:18:48.504374077Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:24:04.428177274Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreativeCatalogFormatTransformationSpecInner {
   public static final String JSON_PROPERTY_FORMAT = "format";
   @javax.annotation.Nullable

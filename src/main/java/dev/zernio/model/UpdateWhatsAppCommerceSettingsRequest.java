@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UpdateWhatsAppCommerceSettingsRequest.JSON_PROPERTY_IS_CART_ENABLED,
   UpdateWhatsAppCommerceSettingsRequest.JSON_PROPERTY_IS_CATALOG_VISIBLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:18:48.504374077Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:24:04.428177274Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppCommerceSettingsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
