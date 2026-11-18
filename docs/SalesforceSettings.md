@@ -17,7 +17,7 @@
 |**syncContacts** | **Boolean** | Whether Zernio creates a Lead or Contact (per &#x60;createAs&#x60;) for an inbox contact that matches nobody by phone or email. |  |
 |**logMessages** | **Boolean** | Whether Zernio logs inbox messages. Each person, channel and UTC day gets one completed Task (subject &#x60;WhatsApp conversation · 2026-11-17&#x60;) whose Description holds the transcript; a day past 32,000 characters continues in a Task marked \&quot;(part 2)\&quot;. |  |
 |**createAs** | [**CreateAsEnum**](#CreateAsEnum) | What a person new to Salesforce is created as. |  |
-|**logDeliveryStatus** | **Boolean** | Whether sent messages in the transcript are marked delivered, read or failed. |  |
+|**logDeliveryStatus** | **Boolean** | Whether sent WhatsApp, SMS and RCS messages in the transcript are marked sent, delivered, read, played or failed. |  |
 |**syncIssue** | [**SalesforceSettingsSyncIssue**](SalesforceSettingsSyncIssue.md) |  |  |
 |**useOpportunitiesInResults** | **Boolean** | Whether closed-won Opportunities count as sales (Amount, in the Opportunity&#39;s or the org&#39;s currency) on the ad campaign named by their Primary Campaign Source, in campaign results and ad rules. Lost or reopened Opportunities stop counting. |  |
 |**reportOpportunitiesToAds** | **Boolean** | Whether Zernio sends newly closed-won Opportunities as Purchase events (source &#x60;salesforce&#x60;) to the profile&#39;s event destinations. |  |

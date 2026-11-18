@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.653.0
+  version: 1.653.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -24398,8 +24398,9 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: "Turn contact sync, message logging or deal reporting on or off\
-        \ for a connected HubSpot portal. Send at least one field; omitted fields\
+      description: "Turn contact sync, message logging, delivery status or deal reporting\
+        \ on or off for a connected HubSpot portal, or set defaults for the contact\
+        \ properties the portal requires. Send at least one field; omitted fields\
         \ keep their value. Settings survive reconnecting the same portal."
       operationId: updateHubSpotSettings
       parameters:
@@ -115050,8 +115051,8 @@ components:
           - contact
           type: string
         logDeliveryStatus:
-          description: "Whether sent messages in the transcript are marked delivered,\
-            \ read or failed."
+          description: "Whether sent WhatsApp, SMS and RCS messages in the transcript\
+            \ are marked sent, delivered, read, played or failed."
           type: boolean
         syncIssue:
           $ref: "#/components/schemas/SalesforceSettings_syncIssue"
@@ -154039,14 +154040,15 @@ components:
           - contact
           type: string
         logDeliveryStatus:
-          description: "Mark sent messages in the transcript as delivered, read or\
-            \ failed."
+          description: "Mark sent WhatsApp, SMS and RCS messages in the transcript\
+            \ as sent, delivered, read, played or failed."
           type: boolean
         useOpportunitiesInResults:
           description: "Count closed-won Opportunities as sales on the ad campaign\
             \ named by their Primary Campaign Source, in campaign results and ad rules.\
-            \ Turning it on also fills in the Opportunities won in the last 90 days.\
-            \ Lost or reopened Opportunities stop counting."
+            \ Turning it on also fills in the Opportunities won in the last 90 days,\
+            \ never sent to the ad platforms. Lost or reopened Opportunities stop\
+            \ counting."
           type: boolean
         reportOpportunitiesToAds:
           description: "Send each newly closed-won Opportunity once as a Purchase\
