@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.666.1
+  version: 1.666.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -9589,7 +9589,8 @@ paths:
           default: false
           type: boolean
         style: form
-      - description: Search posts by text content.
+      - description: Search posts by text content. Not available with `source=external`
+          (400).
         explode: true
         in: query
         name: search
