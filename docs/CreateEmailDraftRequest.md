@@ -20,7 +20,7 @@
 |**text** | **String** |  |  [optional] |
 |**html** | **String** |  |  [optional] |
 |**attachments** | [**List&lt;EmailAttachmentInput&gt;**](EmailAttachmentInput.md) |  |  [optional] |
-|**headers** | **Map&lt;String, String&gt;** | Custom &#x60;X-&#x60; headers only. |  [optional] |
+|**headers** | **Map&lt;String, String&gt;** | Same headers as on &#x60;POST /v1/email/messages&#x60;: &#x60;X-&#x60; names plus &#x60;List-Unsubscribe&#x60;, &#x60;List-Unsubscribe-Post&#x60;, &#x60;List-Id&#x60;, &#x60;Precedence&#x60; and &#x60;Auto-Submitted&#x60;. Outlook drafts leave out all but &#x60;X-&#x60; headers. |  [optional] |
 |**metadata** | **Map&lt;String, String&gt;** | Kept with the draft and returned on the sent message and its email.* webhooks. |  [optional] |
 |**inReplyTo** | **String** | Makes a reply draft in that message&#39;s thread, addressed and threaded like a reply. Not with &#x60;forwardOf&#x60;. |  [optional] |
 |**replyAll** | **Boolean** | With &#x60;inReplyTo&#x60;: address every recipient of the original. Leave out &#x60;to&#x60;, &#x60;cc&#x60; and &#x60;bcc&#x60;. |  [optional] |

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.660.0
+  version: 1.661.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -113152,7 +113152,8 @@ components:
         - name: name
           email: email
         headers:
-          key: headers
+          List-Unsubscribe: "<https://example.com/unsubscribe?u=123>, <mailto:unsubscribe@example.com>"
+          List-Unsubscribe-Post: List-Unsubscribe=One-Click
         trackOpens: true
         metadata:
           key: metadata
@@ -113285,9 +113286,17 @@ components:
           type: array
         headers:
           additionalProperties:
+            maxLength: 996
             type: string
-          description: Custom `X-` headers only. `List-Unsubscribe` is dropped on
-            Microsoft and reported in `metadata.droppedHeaders`.
+          description: |-
+            Custom headers: `X-` names, plus `List-Unsubscribe`, `List-Unsubscribe-Post`, `List-Id`, `Precedence` and `Auto-Submitted`. Other names, values with line breaks and header lines over 998 characters answer 400.
+
+            `List-Unsubscribe` takes one or more `<https://...>` or `<mailto:...>` URIs separated by commas. `List-Unsubscribe-Post` must be exactly `List-Unsubscribe=One-Click` and needs an https URI in `List-Unsubscribe` (RFC 8058).
+
+            Gmail and IMAP send them all. Outlook sends only `X-` headers: the others are left out and named in `metadata.droppedHeaders` on the sent message.
+          example:
+            List-Unsubscribe: "<https://example.com/unsubscribe?u=123>, <mailto:unsubscribe@example.com>"
+            List-Unsubscribe-Post: List-Unsubscribe=One-Click
         metadata:
           additionalProperties:
             type: string
@@ -113623,7 +113632,9 @@ components:
         headers:
           additionalProperties:
             type: string
-          description: Custom `X-` headers only.
+          description: "Same headers as on `POST /v1/email/messages`: `X-` names plus\
+            \ `List-Unsubscribe`, `List-Unsubscribe-Post`, `List-Id`, `Precedence`\
+            \ and `Auto-Submitted`. Outlook drafts leave out all but `X-` headers."
         metadata:
           additionalProperties:
             type: string
