@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.658.0
+  version: 1.660.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15508,6 +15508,62 @@ paths:
         schema:
           type: string
         style: form
+      - description: |
+          When `true`, `authUrl` opens on the Zernio-hosted welcome screen with your brand, as on GET /v1/connect/{platform}, naming Google Analytics.
+
+          - With no `redirect_url`, the flow ends on the branded result page instead of the Zernio dashboard.
+          - When left out, the screen shows if the workspace saved it as on by default (`PUT /v1/connect/welcome-screen`). Pass `false` to skip it.
+          - Cannot be combined with `headless=true` in `redirect_url` (400 `INVALID_FIELD_VALUE`).
+        explode: true
+        in: query
+        name: welcome
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "Welcome screen only: your product name in its heading. Same\
+          \ rules as on GET /v1/connect/{platform}."
+        explode: true
+        in: query
+        name: brandName
+        required: false
+        schema:
+          maxLength: 60
+          minLength: 1
+          type: string
+        style: form
+      - description: "Welcome screen only: https URL of your square logo. Rejected\
+          \ with 400 `INVALID_FIELD_VALUE` when the welcome screen is not shown."
+        explode: true
+        in: query
+        name: logoUrl
+        required: false
+        schema:
+          format: uri
+          maxLength: 2048
+          type: string
+        style: form
+      - description: "Welcome screen only: hex colour (`#RRGGBB`) of its button."
+        explode: true
+        in: query
+        name: primaryColor
+        required: false
+        schema:
+          pattern: "^#[0-9a-fA-F]{6}$"
+          type: string
+        style: form
+      - description: "Welcome screen only: a URL-encoded JSON object restyling and\
+          \ rewording the welcome screen and the result page, with the keys documented\
+          \ on GET /v1/connect/{platform}. Rejected when the welcome screen is not\
+          \ shown."
+        explode: true
+        in: query
+        name: welcomeTheme
+        required: false
+        schema:
+          maxLength: 4000
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -15696,6 +15752,62 @@ paths:
         name: reconnectAccountId
         required: false
         schema:
+          type: string
+        style: form
+      - description: |
+          When `true`, `authUrl` opens on the Zernio-hosted welcome screen with your brand, as on GET /v1/connect/{platform}, naming Google Search Console.
+
+          - With no `redirect_url`, the flow ends on the branded result page instead of the Zernio dashboard.
+          - When left out, the screen shows if the workspace saved it as on by default (`PUT /v1/connect/welcome-screen`). Pass `false` to skip it.
+          - Cannot be combined with `headless=true` in `redirect_url` (400 `INVALID_FIELD_VALUE`).
+        explode: true
+        in: query
+        name: welcome
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "Welcome screen only: your product name in its heading. Same\
+          \ rules as on GET /v1/connect/{platform}."
+        explode: true
+        in: query
+        name: brandName
+        required: false
+        schema:
+          maxLength: 60
+          minLength: 1
+          type: string
+        style: form
+      - description: "Welcome screen only: https URL of your square logo. Rejected\
+          \ with 400 `INVALID_FIELD_VALUE` when the welcome screen is not shown."
+        explode: true
+        in: query
+        name: logoUrl
+        required: false
+        schema:
+          format: uri
+          maxLength: 2048
+          type: string
+        style: form
+      - description: "Welcome screen only: hex colour (`#RRGGBB`) of its button."
+        explode: true
+        in: query
+        name: primaryColor
+        required: false
+        schema:
+          pattern: "^#[0-9a-fA-F]{6}$"
+          type: string
+        style: form
+      - description: "Welcome screen only: a URL-encoded JSON object restyling and\
+          \ rewording the welcome screen and the result page, with the keys documented\
+          \ on GET /v1/connect/{platform}. Rejected when the welcome screen is not\
+          \ shown."
+        explode: true
+        in: query
+        name: welcomeTheme
+        required: false
+        schema:
+          maxLength: 4000
           type: string
         style: form
       responses:
@@ -72081,6 +72193,8 @@ paths:
         - OpenAI Ads (`openaiads`) via its Conversions API (a separate host, `bzr.openai.com`)
         - Pinterest (`pinterestads`) via `POST /v5/ad_accounts/{id}/events`
         - Reddit (`redditads`) via the Reddit Conversions API (`POST /api/v3/pixels/{pixelId}/conversion_events`)
+        - Microsoft Advertising (`microsoftads`) via offline conversion uploads (`ApplyOfflineConversions`)
+        - X Ads (`xads`) via the X Conversion API (`POST /12/measurement/conversions/{pixelId}`)
 
         ### `destinationId` per platform
 
@@ -72091,6 +72205,8 @@ paths:
         - OpenAI Ads: pixel wire id (numeric `pixel_id`, distinct from the internal pixel id), as returned by `GET /v1/ads/conversions/destinations`
         - Pinterest: numeric ad account id, e.g. `549755885175` (Pinterest attributes to the ad account, not to a tag)
         - Reddit: pixel id, e.g. `a2_abc123`, as returned by `GET /v1/ads/conversions/destinations` (any other shape returns 400)
+        - Microsoft Advertising: offline conversion goal, e.g. `accounts/123456789/conversionGoals/987654`. Each event needs `clickIds.msclkid`, an `email` or a `phone`; the goal decides the event type.
+        - X Ads: X Pixel event id, e.g. `tw-rbhhj-rcfms`. Each event needs `clickIds.twclid`, an `email`, a `phone`, or `ipAddress` plus `userAgent`; the event decides the type and `eventId` is sent as `conversion_id`.
 
         Callers can list valid destinations via `GET /v1/ads/conversions/destinations`.
 
@@ -73056,6 +73172,8 @@ paths:
       - google
       - tiktok
       - linkedin
+      - microsoft
+      - x
       - pinterest
       - reddit
       - openai
@@ -73140,6 +73258,8 @@ paths:
       - google
       - tiktok
       - linkedin
+      - microsoft
+      - x
       - pinterest
       - reddit
       - openai
@@ -73592,6 +73712,8 @@ paths:
       - google
       - tiktok
       - linkedin
+      - microsoft
+      - x
       - pinterest
       - reddit
       - openai
@@ -210534,7 +210656,9 @@ components:
             Destination identifier. Meta: pixel ID. Google:
             conversion action resource name. LinkedIn:
             numeric conversion rule ID. OpenAI Ads: pixel wire
-            id. Reddit: pixel id (`a2_...`).
+            id. Reddit: pixel id (`a2_...`). Microsoft
+            Advertising: `accounts/{id}/conversionGoals/{id}`.
+            X Ads: pixel event id (`tw-...`).
           type: string
         name:
           type: string
@@ -240020,6 +240144,14 @@ components:
         axwrt:
           description: "Axon Pixel browser id (the `_axwrt` cookie). Sent to Axon\
             \ as `user_data.axwrt`, not hashed."
+          type: string
+        twclid:
+          description: "X click ID (the `twclid` URL param X adds to ad clicks). Sent\
+            \ to X as a `twclid` identifier, not hashed."
+          type: string
+        msclkid:
+          description: "Microsoft Advertising click ID (the `msclkid` URL param Microsoft\
+            \ adds to ad clicks). Sent to Microsoft as `MicrosoftClickId`, not hashed."
           type: string
     ConversionEvent_user:
       description: User identity fields. More signals mean higher match rates.
