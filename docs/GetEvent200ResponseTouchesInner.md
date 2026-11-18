@@ -12,7 +12,7 @@
 |**platform** | **String** |  |  [optional] |
 |**adAccountId** | **String** |  |  [optional] |
 |**campaignId** | **String** | The campaign the touch resolved to; null for a touch that named none (search, referral). |  [optional] |
-|**credit** | **Map&lt;String, BigDecimal&gt;** | The share of the event (0 to 1) this touch gets per model: first_touch, last_non_direct, linear, position_based, time_decay. |  [optional] |
+|**credit** | **Map&lt;String, BigDecimal&gt;** | The share of the event (0 to 1) this touch gets per model: first_touch, last_non_direct, linear, position_based, time_decay, w_shaped. |  [optional] |
 
 
 

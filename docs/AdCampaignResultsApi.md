@@ -219,7 +219,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **fromDate** | **LocalDate**|  | |
 | **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
-| **model** | **String**| Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay] |
+| **model** | **String**| Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay, w_shaped] |
 | **adAccountIds** | **String**| Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see. | [optional] |
 
 ### Return type
@@ -300,7 +300,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **fromDate** | **LocalDate**|  | |
 | **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
-| **model** | **String**| Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay] |
+| **model** | **String**| Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay, w_shaped] |
 | **adAccountIds** | **String**| Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see. | [optional] |
 
 ### Return type
@@ -805,7 +805,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **fromDate** | **LocalDate**|  | |
 | **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
-| **model** | **String**| Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay] |
+| **model** | **String**| Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay, w_shaped] |
 | **campaignIds** | **String**| Comma-separated platform campaign ids, at most 500. Omit for all campaigns. | [optional] |
 | **limit** | **Integer**| Campaigns per page. | [optional] [default to 100] |
 | **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
@@ -890,7 +890,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **fromDate** | **LocalDate**|  | |
 | **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
-| **model** | **String**| Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay] |
+| **model** | **String**| Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay, w_shaped] |
 | **campaignIds** | **String**| Comma-separated platform campaign ids, at most 500. Omit for all campaigns. | [optional] |
 | **limit** | **Integer**| Campaigns per page. | [optional] [default to 100] |
 | **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |

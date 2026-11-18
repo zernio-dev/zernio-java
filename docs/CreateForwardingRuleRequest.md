@@ -32,6 +32,7 @@
 | STRIPE | &quot;stripe&quot; |
 | WEB | &quot;web&quot; |
 | SALESFORCE | &quot;salesforce&quot; |
+| POSTBACK | &quot;postback&quot; |
 
 
 
