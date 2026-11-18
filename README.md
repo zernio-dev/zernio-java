@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.662.0
+- API version: 1.663.0
 
-- Build date: 2026-11-18T17:47:49.828649628Z[Etc/UTC]
+- Build date: 2026-11-18T17:56:44.184307079Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.662.0</version>
+  <version>1.663.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.662.0"
+compile "dev.zernio:zernio-sdk:1.663.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.662.0.jar`
+- `target/zernio-sdk-1.663.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4240,6 +4240,9 @@ Class | Method | HTTP request | Description
  - [GetEventsOverview200ResponseWebsiteStepsInner](docs/GetEventsOverview200ResponseWebsiteStepsInner.md)
  - [GetEventsOverviewDaily200Response](docs/GetEventsOverviewDaily200Response.md)
  - [GetEventsOverviewDaily200ResponseDaysInner](docs/GetEventsOverviewDaily200ResponseDaysInner.md)
+ - [GetEventsOverviewDaily200ResponsePixelMissedInner](docs/GetEventsOverviewDaily200ResponsePixelMissedInner.md)
+ - [GetEventsOverviewDaily200ResponsePlatformsInner](docs/GetEventsOverviewDaily200ResponsePlatformsInner.md)
+ - [GetEventsOverviewDaily200ResponsePlatformsInnerDaysInner](docs/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInner.md)
  - [GetEventsOverviewDaily200ResponseTotals](docs/GetEventsOverviewDaily200ResponseTotals.md)
  - [GetFacebookDemographics200Response](docs/GetFacebookDemographics200Response.md)
  - [GetFacebookDemographics200ResponseDemographics](docs/GetFacebookDemographics200ResponseDemographics.md)

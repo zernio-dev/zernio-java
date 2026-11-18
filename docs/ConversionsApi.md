@@ -3779,11 +3779,11 @@ ApiResponse<[**GetEventsOverview200Response**](GetEventsOverview200Response.md)>
 
 ## getEventsOverviewDaily
 
-> GetEventsOverviewDaily200Response getEventsOverviewDaily(profileId, period)
+> GetEventsOverviewDaily200Response getEventsOverviewDaily(profileId, period, eventName, sources, platform)
 
 Get daily tracking figures
 
-The tracking figures of a period, day by day (UTC): events stored, events sent to the ad platforms and how many they accepted, plus the period&#39;s totals in the same shape as the overview&#39;s &#x60;today&#x60;.  An event sent to a destination counts once, on the day of its first send, by its latest outcome. Without &#x60;profileId&#x60; it covers every profile you can access. Requires the Ads add-on. 
+The tracking figures of a period, day by day (UTC): events stored per event name, events sent to each ad platform and how many it accepted, the period&#39;s totals in the same shape as the overview&#39;s &#x60;today&#x60;, and how many website conversions each platform&#39;s browser pixel missed.  An event sent to a destination counts once, on the day of its first send, by its latest outcome. Without &#x60;profileId&#x60; it covers every profile you can access. &#x60;eventName&#x60;, &#x60;sources&#x60; and &#x60;platform&#x60; narrow every figure. Requires the Ads add-on. 
 
 ### Example
 
@@ -3807,9 +3807,12 @@ public class Example {
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
         String profileId = "profileId_example"; // String | The profile to read. Omit to cover every profile you can access, summed across them.
-        String period = "today"; // String | The days to cover, each ending today (UTC): `today`, the last 7 days or the last 30 days.
+        String period = "today"; // String | The days to cover, each ending today (UTC): `today`, the last 7, 30 or 90 days.
+        String eventName = "eventName_example"; // String | Only events of this name, such as `Purchase`.
+        String sources = "sources_example"; // String | Comma-separated sources (`web`, `shopify`, `stripe`, `api`...). Only events from them.
+        String platform = "platform_example"; // String | Only sends to this platform (`metaads`, `googleads`...), and only the events sent to it.
         try {
-            GetEventsOverviewDaily200Response result = apiInstance.getEventsOverviewDaily(profileId, period);
+            GetEventsOverviewDaily200Response result = apiInstance.getEventsOverviewDaily(profileId, period, eventName, sources, platform);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConversionsApi#getEventsOverviewDaily");
@@ -3828,7 +3831,10 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| The profile to read. Omit to cover every profile you can access, summed across them. | [optional] |
-| **period** | **String**| The days to cover, each ending today (UTC): &#x60;today&#x60;, the last 7 days or the last 30 days. | [optional] [default to 7d] [enum: today, 7d, 30d] |
+| **period** | **String**| The days to cover, each ending today (UTC): &#x60;today&#x60;, the last 7, 30 or 90 days. | [optional] [default to 7d] [enum: today, 7d, 30d, 90d] |
+| **eventName** | **String**| Only events of this name, such as &#x60;Purchase&#x60;. | [optional] |
+| **sources** | **String**| Comma-separated sources (&#x60;web&#x60;, &#x60;shopify&#x60;, &#x60;stripe&#x60;, &#x60;api&#x60;...). Only events from them. | [optional] |
+| **platform** | **String**| Only sends to this platform (&#x60;metaads&#x60;, &#x60;googleads&#x60;...), and only the events sent to it. | [optional] |
 
 ### Return type
 
@@ -3854,11 +3860,11 @@ public class Example {
 
 ## getEventsOverviewDailyWithHttpInfo
 
-> ApiResponse<GetEventsOverviewDaily200Response> getEventsOverviewDaily getEventsOverviewDailyWithHttpInfo(profileId, period)
+> ApiResponse<GetEventsOverviewDaily200Response> getEventsOverviewDaily getEventsOverviewDailyWithHttpInfo(profileId, period, eventName, sources, platform)
 
 Get daily tracking figures
 
-The tracking figures of a period, day by day (UTC): events stored, events sent to the ad platforms and how many they accepted, plus the period&#39;s totals in the same shape as the overview&#39;s &#x60;today&#x60;.  An event sent to a destination counts once, on the day of its first send, by its latest outcome. Without &#x60;profileId&#x60; it covers every profile you can access. Requires the Ads add-on. 
+The tracking figures of a period, day by day (UTC): events stored per event name, events sent to each ad platform and how many it accepted, the period&#39;s totals in the same shape as the overview&#39;s &#x60;today&#x60;, and how many website conversions each platform&#39;s browser pixel missed.  An event sent to a destination counts once, on the day of its first send, by its latest outcome. Without &#x60;profileId&#x60; it covers every profile you can access. &#x60;eventName&#x60;, &#x60;sources&#x60; and &#x60;platform&#x60; narrow every figure. Requires the Ads add-on. 
 
 ### Example
 
@@ -3883,9 +3889,12 @@ public class Example {
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
         String profileId = "profileId_example"; // String | The profile to read. Omit to cover every profile you can access, summed across them.
-        String period = "today"; // String | The days to cover, each ending today (UTC): `today`, the last 7 days or the last 30 days.
+        String period = "today"; // String | The days to cover, each ending today (UTC): `today`, the last 7, 30 or 90 days.
+        String eventName = "eventName_example"; // String | Only events of this name, such as `Purchase`.
+        String sources = "sources_example"; // String | Comma-separated sources (`web`, `shopify`, `stripe`, `api`...). Only events from them.
+        String platform = "platform_example"; // String | Only sends to this platform (`metaads`, `googleads`...), and only the events sent to it.
         try {
-            ApiResponse<GetEventsOverviewDaily200Response> response = apiInstance.getEventsOverviewDailyWithHttpInfo(profileId, period);
+            ApiResponse<GetEventsOverviewDaily200Response> response = apiInstance.getEventsOverviewDailyWithHttpInfo(profileId, period, eventName, sources, platform);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3906,7 +3915,10 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| The profile to read. Omit to cover every profile you can access, summed across them. | [optional] |
-| **period** | **String**| The days to cover, each ending today (UTC): &#x60;today&#x60;, the last 7 days or the last 30 days. | [optional] [default to 7d] [enum: today, 7d, 30d] |
+| **period** | **String**| The days to cover, each ending today (UTC): &#x60;today&#x60;, the last 7, 30 or 90 days. | [optional] [default to 7d] [enum: today, 7d, 30d, 90d] |
+| **eventName** | **String**| Only events of this name, such as &#x60;Purchase&#x60;. | [optional] |
+| **sources** | **String**| Comma-separated sources (&#x60;web&#x60;, &#x60;shopify&#x60;, &#x60;stripe&#x60;, &#x60;api&#x60;...). Only events from them. | [optional] |
+| **platform** | **String**| Only sends to this platform (&#x60;metaads&#x60;, &#x60;googleads&#x60;...), and only the events sent to it. | [optional] |
 
 ### Return type
 

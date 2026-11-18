@@ -1530,6 +1530,9 @@ docs/GetEventsOverview200ResponseWebsite.md
 docs/GetEventsOverview200ResponseWebsiteStepsInner.md
 docs/GetEventsOverviewDaily200Response.md
 docs/GetEventsOverviewDaily200ResponseDaysInner.md
+docs/GetEventsOverviewDaily200ResponsePixelMissedInner.md
+docs/GetEventsOverviewDaily200ResponsePlatformsInner.md
+docs/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInner.md
 docs/GetEventsOverviewDaily200ResponseTotals.md
 docs/GetFacebookDemographics200Response.md
 docs/GetFacebookDemographics200ResponseDemographics.md
@@ -5523,6 +5526,9 @@ src/main/java/dev/zernio/model/GetEventsOverview200ResponseWebsite.java
 src/main/java/dev/zernio/model/GetEventsOverview200ResponseWebsiteStepsInner.java
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200Response.java
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponseDaysInner.java
+src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePixelMissedInner.java
+src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePlatformsInner.java
+src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInner.java
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponseTotals.java
 src/main/java/dev/zernio/model/GetFacebookDemographics200Response.java
 src/main/java/dev/zernio/model/GetFacebookDemographics200ResponseDemographics.java
@@ -7869,6 +7875,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetCampaignResultEvents200ResponseTest.java
-src/test/java/dev/zernio/model/SetCampaignResultEvents200ResponseTest.java
-src/test/java/dev/zernio/model/SetCampaignResultEventsRequestTest.java
+src/test/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePixelMissedInnerTest.java
+src/test/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInnerTest.java
+src/test/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePlatformsInnerTest.java
