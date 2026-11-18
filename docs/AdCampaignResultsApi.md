@@ -4,6 +4,8 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**getCampaignResultEvents**](AdCampaignResultsApi.md#getCampaignResultEvents) | **GET** /v1/ads/campaign-results/events | List the events that count as campaign results |
+| [**getCampaignResultEventsWithHttpInfo**](AdCampaignResultsApi.md#getCampaignResultEventsWithHttpInfo) | **GET** /v1/ads/campaign-results/events | List the events that count as campaign results |
 | [**getCampaignResultsTotals**](AdCampaignResultsApi.md#getCampaignResultsTotals) | **GET** /v1/ads/campaign-results/totals | Get your results totals |
 | [**getCampaignResultsTotalsWithHttpInfo**](AdCampaignResultsApi.md#getCampaignResultsTotalsWithHttpInfo) | **GET** /v1/ads/campaign-results/totals | Get your results totals |
 | [**getCampaignResultsUpload**](AdCampaignResultsApi.md#getCampaignResultsUpload) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload |
@@ -12,11 +14,151 @@ All URIs are relative to *https://zernio.com/api*
 | [**listCampaignResultMetricsWithHttpInfo**](AdCampaignResultsApi.md#listCampaignResultMetricsWithHttpInfo) | **GET** /v1/ads/campaign-results/metrics | List your result metrics |
 | [**listCampaignResults**](AdCampaignResultsApi.md#listCampaignResults) | **GET** /v1/ads/campaign-results | List your results per campaign |
 | [**listCampaignResultsWithHttpInfo**](AdCampaignResultsApi.md#listCampaignResultsWithHttpInfo) | **GET** /v1/ads/campaign-results | List your results per campaign |
+| [**setCampaignResultEvents**](AdCampaignResultsApi.md#setCampaignResultEvents) | **PUT** /v1/ads/campaign-results/events | Choose the events that count as campaign results |
+| [**setCampaignResultEventsWithHttpInfo**](AdCampaignResultsApi.md#setCampaignResultEventsWithHttpInfo) | **PUT** /v1/ads/campaign-results/events | Choose the events that count as campaign results |
 | [**setCampaignResultMetric**](AdCampaignResultsApi.md#setCampaignResultMetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula |
 | [**setCampaignResultMetricWithHttpInfo**](AdCampaignResultsApi.md#setCampaignResultMetricWithHttpInfo) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula |
 | [**uploadCampaignResults**](AdCampaignResultsApi.md#uploadCampaignResults) | **POST** /v1/ads/campaign-results | Upload your results per campaign |
 | [**uploadCampaignResultsWithHttpInfo**](AdCampaignResultsApi.md#uploadCampaignResultsWithHttpInfo) | **POST** /v1/ads/campaign-results | Upload your results per campaign |
 
+
+
+## getCampaignResultEvents
+
+> GetCampaignResultEvents200Response getCampaignResultEvents()
+
+List the events that count as campaign results
+
+The names of the events sent to &#x60;POST /v1/events&#x60; that your team counts as campaign results. Only these are tied to a campaign when they arrive. Until you choose, they are &#x60;Purchase&#x60;, &#x60;Lead&#x60; and &#x60;QualifiedLead&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        try {
+            GetCampaignResultEvents200Response result = apiInstance.getCampaignResultEvents();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#getCampaignResultEvents");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetCampaignResultEvents200Response**](GetCampaignResultEvents200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event names. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## getCampaignResultEventsWithHttpInfo
+
+> ApiResponse<GetCampaignResultEvents200Response> getCampaignResultEvents getCampaignResultEventsWithHttpInfo()
+
+List the events that count as campaign results
+
+The names of the events sent to &#x60;POST /v1/events&#x60; that your team counts as campaign results. Only these are tied to a campaign when they arrive. Until you choose, they are &#x60;Purchase&#x60;, &#x60;Lead&#x60; and &#x60;QualifiedLead&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        try {
+            ApiResponse<GetCampaignResultEvents200Response> response = apiInstance.getCampaignResultEventsWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#getCampaignResultEvents");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**GetCampaignResultEvents200Response**](GetCampaignResultEvents200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event names. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getCampaignResultsTotals
@@ -621,6 +763,154 @@ ApiResponse<[**ListCampaignResults200Response**](ListCampaignResults200Response.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | One page of campaigns. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
+## setCampaignResultEvents
+
+> SetCampaignResultEvents200Response setCampaignResultEvents(setCampaignResultEventsRequest)
+
+Choose the events that count as campaign results
+
+Sets which stored events are tied to a campaign when they arrive and add to its results.  &#x60;Purchase&#x60; adds &#x60;sales&#x60; and &#x60;revenue&#x60;, &#x60;Lead&#x60; adds &#x60;leads&#x60; and &#x60;QualifiedLead&#x60; adds &#x60;qualified_leads&#x60;. Any other event adds 1 per event to a metric keyed &#x60;event_&#x60; plus its name in lowercase, e.g. &#x60;event_completeregistration&#x60;, which formulas and rules can read.  Events stored before the change keep how they were counted. Send &#x60;null&#x60; to go back to &#x60;Purchase&#x60;, &#x60;Lead&#x60; and &#x60;QualifiedLead&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        SetCampaignResultEventsRequest setCampaignResultEventsRequest = new SetCampaignResultEventsRequest(); // SetCampaignResultEventsRequest | 
+        try {
+            SetCampaignResultEvents200Response result = apiInstance.setCampaignResultEvents(setCampaignResultEventsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#setCampaignResultEvents");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setCampaignResultEventsRequest** | [**SetCampaignResultEventsRequest**](SetCampaignResultEventsRequest.md)|  | |
+
+### Return type
+
+[**SetCampaignResultEvents200Response**](SetCampaignResultEvents200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event names now counted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## setCampaignResultEventsWithHttpInfo
+
+> ApiResponse<SetCampaignResultEvents200Response> setCampaignResultEvents setCampaignResultEventsWithHttpInfo(setCampaignResultEventsRequest)
+
+Choose the events that count as campaign results
+
+Sets which stored events are tied to a campaign when they arrive and add to its results.  &#x60;Purchase&#x60; adds &#x60;sales&#x60; and &#x60;revenue&#x60;, &#x60;Lead&#x60; adds &#x60;leads&#x60; and &#x60;QualifiedLead&#x60; adds &#x60;qualified_leads&#x60;. Any other event adds 1 per event to a metric keyed &#x60;event_&#x60; plus its name in lowercase, e.g. &#x60;event_completeregistration&#x60;, which formulas and rules can read.  Events stored before the change keep how they were counted. Send &#x60;null&#x60; to go back to &#x60;Purchase&#x60;, &#x60;Lead&#x60; and &#x60;QualifiedLead&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        SetCampaignResultEventsRequest setCampaignResultEventsRequest = new SetCampaignResultEventsRequest(); // SetCampaignResultEventsRequest | 
+        try {
+            ApiResponse<SetCampaignResultEvents200Response> response = apiInstance.setCampaignResultEventsWithHttpInfo(setCampaignResultEventsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#setCampaignResultEvents");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setCampaignResultEventsRequest** | [**SetCampaignResultEventsRequest**](SetCampaignResultEventsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**SetCampaignResultEvents200Response**](SetCampaignResultEvents200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event names now counted. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 

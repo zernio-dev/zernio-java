@@ -14,6 +14,7 @@ The period's figures, shaped like the overview's `today`.
 |**sent** | **Integer** | Events first sent to a destination in the period, one per event and destination. |  [optional] |
 |**accepted** | **Integer** | Those whose latest send the platform accepted. |  [optional] |
 |**matched** | **Integer** | The period&#39;s events matched to an ad campaign. |  [optional] |
+|**counted** | **Integer** | The period&#39;s events that count as campaign results, the ones looked up for a campaign. |  [optional] |
 
 
 

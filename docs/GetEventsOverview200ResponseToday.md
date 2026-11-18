@@ -13,6 +13,7 @@
 |**sent** | **Integer** | Event sends to a destination today, one per event and destination. |  [optional] |
 |**accepted** | **Integer** | Those whose latest send the platform accepted. |  [optional] |
 |**matched** | **Integer** | Today&#39;s events matched to an ad campaign. |  [optional] |
+|**counted** | **Integer** | Today&#39;s events that count as campaign results (see &#x60;GET /v1/ads/campaign-results/events&#x60;), the ones looked up for a campaign. |  [optional] |
 
 
 

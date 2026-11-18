@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.661.0
+  version: 1.662.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -54517,6 +54517,78 @@ paths:
       - reddit
       x-accepts:
       - application/json
+  /v1/ads/campaign-results/events:
+    get:
+      description: |
+        The names of the events sent to `POST /v1/events` that your team counts as campaign results. Only these are tied to a campaign when they arrive. Until you choose, they are `Purchase`, `Lead` and `QualifiedLead`.
+      operationId: getCampaignResultEvents
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCampaignResultEvents_200_response"
+          description: The event names.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List the events that count as campaign results
+      tags:
+      - Ad Campaign Results
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-accepts:
+      - application/json
+    put:
+      description: |
+        Sets which stored events are tied to a campaign when they arrive and add to its results.
+
+        `Purchase` adds `sales` and `revenue`, `Lead` adds `leads` and `QualifiedLead` adds `qualified_leads`. Any other event adds 1 per event to a metric keyed `event_` plus its name in lowercase, e.g. `event_completeregistration`, which formulas and rules can read.
+
+        Events stored before the change keep how they were counted. Send `null` to go back to `Purchase`, `Lead` and `QualifiedLead`.
+      operationId: setCampaignResultEvents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/setCampaignResultEvents_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/setCampaignResultEvents_200_response"
+          description: The event names now counted.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Choose the events that count as campaign results
+      tags:
+      - Ad Campaign Results
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/campaign-results/metrics:
     get:
       description: |
@@ -90868,11 +90940,11 @@ components:
       description: "A tracking site's page views over a period, as approximate distinct\
         \ counts."
       example:
-        visits: 6
-        bots: 7
-        recovered: 5
-        purchases: 4
-        consented: 1
+        visits: 7
+        bots: 1
+        recovered: 9
+        purchases: 5
+        consented: 4
       properties:
         visits:
           description: Page views without bots.
@@ -187223,6 +187295,51 @@ components:
       - fromDate
       - toDate
       - totals
+    getCampaignResultEvents_200_response:
+      example:
+        eventNames:
+        - Purchase
+        - Lead
+        - CompleteRegistration
+      properties:
+        eventNames:
+          example:
+          - Purchase
+          - Lead
+          - CompleteRegistration
+          items:
+            type: string
+          type: array
+      required:
+      - eventNames
+    setCampaignResultEvents_request:
+      properties:
+        eventNames:
+          example:
+          - Purchase
+          - Lead
+          - CompleteRegistration
+          items:
+            maxLength: 100
+            minLength: 1
+            type: string
+          maxItems: 50
+          nullable: true
+          type: array
+      required:
+      - eventNames
+    setCampaignResultEvents_200_response:
+      example:
+        eventNames:
+        - eventNames
+        - eventNames
+      properties:
+        eventNames:
+          items:
+            type: string
+          type: array
+      required:
+      - eventNames
     listCampaignResultMetrics_200_response:
       example:
         metrics:
@@ -209497,6 +209614,7 @@ components:
       example:
         conversions: 0
         accepted: 5
+        counted: 2
         currency: currency
         matched: 5
         value: 6.027456183070403
@@ -209523,12 +209641,16 @@ components:
         matched:
           description: Today's events matched to an ad campaign.
           type: integer
+        counted:
+          description: "Today's events that count as campaign results (see `GET /v1/ads/campaign-results/events`),\
+            \ the ones looked up for a campaign."
+          type: integer
     getEventsOverview_200_response_platforms_inner:
       example:
         accountId: accountId
         lastError: lastError
         accountName: accountName
-        failedToday: 7
+        failedToday: 9
         profileId: profileId
         destinationName: destinationName
         lastEventName: lastEventName
@@ -209536,7 +209658,7 @@ components:
         lastSentAt: 2000-01-23T04:56:07.000+00:00
         destinationId: destinationId
         platform: platform
-        sentToday: 2
+        sentToday: 7
       properties:
         profileId:
           description: The profile the forwarding rule belongs to.
@@ -209582,7 +209704,7 @@ components:
     getEventsOverview_200_response_sources_inner:
       example:
         lastSeenAt: 2000-01-23T04:56:07.000+00:00
-        eventsToday: 9
+        eventsToday: 3
         source: source
         label: label
         state: "on"
@@ -209610,7 +209732,7 @@ components:
     getEventsOverview_200_response_website_steps_inner:
       example:
         name: name
-        count: 3
+        count: 2
         label: label
       properties:
         name:
@@ -209628,17 +209750,17 @@ components:
         - serverPlatforms
         - serverPlatforms
         visits: 1
-        recovered: 2
-        conversions: 4
+        recovered: 4
+        conversions: 7
         bots: 1
         steps:
         - name: name
-          count: 3
+          count: 2
           label: label
         - name: name
-          count: 3
+          count: 2
           label: label
-        consented: 7
+        consented: 1
       properties:
         steps:
           description: "The funnel: page views, product views, add to cart, checkouts\
@@ -209672,23 +209794,23 @@ components:
         \ ending today (UTC)."
       example:
         today:
-          visits: 6
-          bots: 7
-          recovered: 5
-          purchases: 4
-          consented: 1
+          visits: 7
+          bots: 1
+          recovered: 9
+          purchases: 5
+          consented: 4
         "30d":
-          visits: 6
-          bots: 7
-          recovered: 5
-          purchases: 4
-          consented: 1
+          visits: 7
+          bots: 1
+          recovered: 9
+          purchases: 5
+          consented: 4
         "7d":
-          visits: 6
-          bots: 7
-          recovered: 5
-          purchases: 4
-          consented: 1
+          visits: 7
+          bots: 1
+          recovered: 9
+          purchases: 5
+          consented: 4
       properties:
         today:
           $ref: "#/components/schemas/TrackingSitePeriodTotals"
@@ -209703,24 +209825,24 @@ components:
         siteId: siteId
         totals:
           today:
-            visits: 6
-            bots: 7
-            recovered: 5
-            purchases: 4
-            consented: 1
+            visits: 7
+            bots: 1
+            recovered: 9
+            purchases: 5
+            consented: 4
           "30d":
-            visits: 6
-            bots: 7
-            recovered: 5
-            purchases: 4
-            consented: 1
+            visits: 7
+            bots: 1
+            recovered: 9
+            purchases: 5
+            consented: 4
           "7d":
-            visits: 6
-            bots: 7
-            recovered: 5
-            purchases: 4
-            consented: 1
-        hitsToday: 1
+            visits: 7
+            bots: 1
+            recovered: 9
+            purchases: 5
+            consented: 4
+        hitsToday: 6
       properties:
         siteId:
           type: string
@@ -209744,31 +209866,32 @@ components:
           - serverPlatforms
           - serverPlatforms
           visits: 1
-          recovered: 2
-          conversions: 4
+          recovered: 4
+          conversions: 7
           bots: 1
           steps:
           - name: name
-            count: 3
+            count: 2
             label: label
           - name: name
-            count: 3
+            count: 2
             label: label
-          consented: 7
+          consented: 1
         sources:
         - lastSeenAt: 2000-01-23T04:56:07.000+00:00
-          eventsToday: 9
+          eventsToday: 3
           source: source
           label: label
           state: "on"
         - lastSeenAt: 2000-01-23T04:56:07.000+00:00
-          eventsToday: 9
+          eventsToday: 3
           source: source
           label: label
           state: "on"
         today:
           conversions: 0
           accepted: 5
+          counted: 2
           currency: currency
           matched: 5
           value: 6.027456183070403
@@ -209779,52 +209902,52 @@ components:
           siteId: siteId
           totals:
             today:
-              visits: 6
-              bots: 7
-              recovered: 5
-              purchases: 4
-              consented: 1
+              visits: 7
+              bots: 1
+              recovered: 9
+              purchases: 5
+              consented: 4
             "30d":
-              visits: 6
-              bots: 7
-              recovered: 5
-              purchases: 4
-              consented: 1
+              visits: 7
+              bots: 1
+              recovered: 9
+              purchases: 5
+              consented: 4
             "7d":
-              visits: 6
-              bots: 7
-              recovered: 5
-              purchases: 4
-              consented: 1
-          hitsToday: 1
+              visits: 7
+              bots: 1
+              recovered: 9
+              purchases: 5
+              consented: 4
+          hitsToday: 6
         - lastActiveOn: 2000-01-23
           profileId: profileId
           siteId: siteId
           totals:
             today:
-              visits: 6
-              bots: 7
-              recovered: 5
-              purchases: 4
-              consented: 1
+              visits: 7
+              bots: 1
+              recovered: 9
+              purchases: 5
+              consented: 4
             "30d":
-              visits: 6
-              bots: 7
-              recovered: 5
-              purchases: 4
-              consented: 1
+              visits: 7
+              bots: 1
+              recovered: 9
+              purchases: 5
+              consented: 4
             "7d":
-              visits: 6
-              bots: 7
-              recovered: 5
-              purchases: 4
-              consented: 1
-          hitsToday: 1
+              visits: 7
+              bots: 1
+              recovered: 9
+              purchases: 5
+              consented: 4
+          hitsToday: 6
         platforms:
         - accountId: accountId
           lastError: lastError
           accountName: accountName
-          failedToday: 7
+          failedToday: 9
           profileId: profileId
           destinationName: destinationName
           lastEventName: lastEventName
@@ -209832,11 +209955,11 @@ components:
           lastSentAt: 2000-01-23T04:56:07.000+00:00
           destinationId: destinationId
           platform: platform
-          sentToday: 2
+          sentToday: 7
         - accountId: accountId
           lastError: lastError
           accountName: accountName
-          failedToday: 7
+          failedToday: 9
           profileId: profileId
           destinationName: destinationName
           lastEventName: lastEventName
@@ -209844,7 +209967,7 @@ components:
           lastSentAt: 2000-01-23T04:56:07.000+00:00
           destinationId: destinationId
           platform: platform
-          sentToday: 2
+          sentToday: 7
       properties:
         today:
           $ref: "#/components/schemas/getEventsOverview_200_response_today"
@@ -209872,6 +209995,7 @@ components:
       example:
         conversions: 0
         accepted: 5
+        counted: 2
         currency: currency
         matched: 5
         value: 6.027456183070403
@@ -209900,12 +210024,16 @@ components:
         matched:
           description: The period's events matched to an ad campaign.
           type: integer
+        counted:
+          description: "The period's events that count as campaign results, the ones\
+            \ looked up for a campaign."
+          type: integer
     getEventsOverviewDaily_200_response_days_inner:
       example:
-        conversions: 2
-        accepted: 9
+        conversions: 7
+        accepted: 3
         day: 2000-01-23
-        sent: 7
+        sent: 9
       properties:
         day:
           format: date
@@ -209923,17 +210051,18 @@ components:
       example:
         period: today
         days:
-        - conversions: 2
-          accepted: 9
+        - conversions: 7
+          accepted: 3
           day: 2000-01-23
-          sent: 7
-        - conversions: 2
-          accepted: 9
+          sent: 9
+        - conversions: 7
+          accepted: 3
           day: 2000-01-23
-          sent: 7
+          sent: 9
         totals:
           conversions: 0
           accepted: 5
+          counted: 2
           currency: currency
           matched: 5
           value: 6.027456183070403

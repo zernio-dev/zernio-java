@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.661.0
+- API version: 1.662.0
 
-- Build date: 2026-11-18T17:36:25.973159696Z[Etc/UTC]
+- Build date: 2026-11-18T17:47:49.828649628Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.661.0</version>
+  <version>1.662.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.661.0"
+compile "dev.zernio:zernio-sdk:1.662.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.661.0.jar`
+- `target/zernio-sdk-1.662.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -383,6 +383,8 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**replaceAdAudienceCompaniesWithHttpInfo**](docs/AdAudiencesApi.md#replaceAdAudienceCompaniesWithHttpInfo) | **POST** /v1/ads/audiences/{audienceId}/companies | Replace audience companies
 *AdAudiencesApi* | [**updateAdAudience**](docs/AdAudiencesApi.md#updateAdAudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
 *AdAudiencesApi* | [**updateAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
+*AdCampaignResultsApi* | [**getCampaignResultEvents**](docs/AdCampaignResultsApi.md#getCampaignResultEvents) | **GET** /v1/ads/campaign-results/events | List the events that count as campaign results
+*AdCampaignResultsApi* | [**getCampaignResultEventsWithHttpInfo**](docs/AdCampaignResultsApi.md#getCampaignResultEventsWithHttpInfo) | **GET** /v1/ads/campaign-results/events | List the events that count as campaign results
 *AdCampaignResultsApi* | [**getCampaignResultsTotals**](docs/AdCampaignResultsApi.md#getCampaignResultsTotals) | **GET** /v1/ads/campaign-results/totals | Get your results totals
 *AdCampaignResultsApi* | [**getCampaignResultsTotalsWithHttpInfo**](docs/AdCampaignResultsApi.md#getCampaignResultsTotalsWithHttpInfo) | **GET** /v1/ads/campaign-results/totals | Get your results totals
 *AdCampaignResultsApi* | [**getCampaignResultsUpload**](docs/AdCampaignResultsApi.md#getCampaignResultsUpload) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload
@@ -391,6 +393,8 @@ Class | Method | HTTP request | Description
 *AdCampaignResultsApi* | [**listCampaignResultMetricsWithHttpInfo**](docs/AdCampaignResultsApi.md#listCampaignResultMetricsWithHttpInfo) | **GET** /v1/ads/campaign-results/metrics | List your result metrics
 *AdCampaignResultsApi* | [**listCampaignResults**](docs/AdCampaignResultsApi.md#listCampaignResults) | **GET** /v1/ads/campaign-results | List your results per campaign
 *AdCampaignResultsApi* | [**listCampaignResultsWithHttpInfo**](docs/AdCampaignResultsApi.md#listCampaignResultsWithHttpInfo) | **GET** /v1/ads/campaign-results | List your results per campaign
+*AdCampaignResultsApi* | [**setCampaignResultEvents**](docs/AdCampaignResultsApi.md#setCampaignResultEvents) | **PUT** /v1/ads/campaign-results/events | Choose the events that count as campaign results
+*AdCampaignResultsApi* | [**setCampaignResultEventsWithHttpInfo**](docs/AdCampaignResultsApi.md#setCampaignResultEventsWithHttpInfo) | **PUT** /v1/ads/campaign-results/events | Choose the events that count as campaign results
 *AdCampaignResultsApi* | [**setCampaignResultMetric**](docs/AdCampaignResultsApi.md#setCampaignResultMetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula
 *AdCampaignResultsApi* | [**setCampaignResultMetricWithHttpInfo**](docs/AdCampaignResultsApi.md#setCampaignResultMetricWithHttpInfo) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula
 *AdCampaignResultsApi* | [**uploadCampaignResults**](docs/AdCampaignResultsApi.md#uploadCampaignResults) | **POST** /v1/ads/campaign-results | Upload your results per campaign
@@ -4179,6 +4183,7 @@ Class | Method | HTTP request | Description
  - [GetCampaignDraft200Response](docs/GetCampaignDraft200Response.md)
  - [GetCampaignParticipant200Response](docs/GetCampaignParticipant200Response.md)
  - [GetCampaignReport200Response](docs/GetCampaignReport200Response.md)
+ - [GetCampaignResultEvents200Response](docs/GetCampaignResultEvents200Response.md)
  - [GetCampaignResultsTotals200Response](docs/GetCampaignResultsTotals200Response.md)
  - [GetCampaignResultsUpload200Response](docs/GetCampaignResultsUpload200Response.md)
  - [GetCampaignResultsUpload200ResponseUnmatchedInner](docs/GetCampaignResultsUpload200ResponseUnmatchedInner.md)
@@ -5706,6 +5711,8 @@ Class | Method | HTTP request | Description
  - [SetBusinessAgentConnectorCredentialsRequestOneOf](docs/SetBusinessAgentConnectorCredentialsRequestOneOf.md)
  - [SetBusinessAgentConnectorCredentialsRequestOneOf1](docs/SetBusinessAgentConnectorCredentialsRequestOneOf1.md)
  - [SetBusinessAgentConnectorCredentialsRequestOneOf2](docs/SetBusinessAgentConnectorCredentialsRequestOneOf2.md)
+ - [SetCampaignResultEvents200Response](docs/SetCampaignResultEvents200Response.md)
+ - [SetCampaignResultEventsRequest](docs/SetCampaignResultEventsRequest.md)
  - [SetCampaignResultMetric200Response](docs/SetCampaignResultMetric200Response.md)
  - [SetCampaignResultMetricRequest](docs/SetCampaignResultMetricRequest.md)
  - [SetCommentModerationRequest](docs/SetCommentModerationRequest.md)
