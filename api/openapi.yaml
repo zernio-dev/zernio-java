@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.657.0
+  version: 1.658.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -73867,6 +73867,8 @@ paths:
         `customHostname` sets a subdomain of the site, such as `t.brand.com`; create the CNAME in `customHostname.dnsRecord`. The snippet switches to it once its status is `active`. `null` removes it.
 
         `proxyPath` serves the tag from a path of the site itself, such as `brand.com/zt`, through a proxy on your server. The response's `proxy.secret` signs what the proxy forwards. `null` removes it.
+
+        `googleTagIds` lists the site's own Google tags that the same proxy relays to Google's tag gateway. Load each from its `proxy.googleTags[].src` instead of googletagmanager.com. `null` or an empty list removes them.
       operationId: updateTrackingSite
       parameters:
       - explode: false
@@ -134052,6 +134054,9 @@ components:
       type: string
     TrackingSite:
       example:
+        googleTagIds:
+        - googleTagIds
+        - googleTagIds
         customHostname:
           hostname: hostname
           dnsRecord:
@@ -134066,6 +134071,11 @@ components:
         proxy:
           path: path
           secret: secret
+          googleTags:
+          - src: src
+            id: id
+          - src: src
+            id: id
         createdAt: 2000-01-23T04:56:07.000+00:00
         siteKey: siteKey
         checks:
@@ -134119,6 +134129,13 @@ components:
           $ref: "#/components/schemas/TrackingSite_customHostname"
         proxy:
           $ref: "#/components/schemas/TrackingSite_proxy"
+        googleTagIds:
+          description: "The site's own Google tags (Tag Manager, GA4, Google Ads)\
+            \ its own-domain path relays to Google, so they load and measure from\
+            \ the site's domain."
+          items:
+            type: string
+          type: array
         consentMode:
           $ref: "#/components/schemas/TrackingSiteConsentMode"
         checks:
@@ -210175,7 +210192,10 @@ components:
         pagination:
           nextCursor: nextCursor
         sites:
-        - customHostname:
+        - googleTagIds:
+          - googleTagIds
+          - googleTagIds
+          customHostname:
             hostname: hostname
             dnsRecord:
               name: name
@@ -210189,6 +210209,11 @@ components:
           proxy:
             path: path
             secret: secret
+            googleTags:
+            - src: src
+              id: id
+            - src: src
+              id: id
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
           checks:
@@ -210212,7 +210237,10 @@ components:
           id: id
           status: active
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        - customHostname:
+        - googleTagIds:
+          - googleTagIds
+          - googleTagIds
+          customHostname:
             hostname: hostname
             dnsRecord:
               name: name
@@ -210226,6 +210254,11 @@ components:
           proxy:
             path: path
             secret: secret
+            googleTags:
+            - src: src
+              id: id
+            - src: src
+              id: id
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
           checks:
@@ -210295,6 +210328,9 @@ components:
     createTrackingSite_201_response:
       example:
         site:
+          googleTagIds:
+          - googleTagIds
+          - googleTagIds
           customHostname:
             hostname: hostname
             dnsRecord:
@@ -210309,6 +210345,11 @@ components:
           proxy:
             path: path
             secret: secret
+            googleTags:
+            - src: src
+              id: id
+            - src: src
+              id: id
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
           checks:
@@ -210365,6 +210406,15 @@ components:
           nullable: true
           pattern: "^/[A-Za-z0-9_-]{1,32}$"
           type: string
+        googleTagIds:
+          description: "Google tag ids such as `GTM-XXXXXXX`, `G-XXXXXXXXXX` or `AW-XXXXXXXXXX`,\
+            \ up to 10. `null` or `[]` removes them."
+          items:
+            pattern: "^(GTM|GT|G|AW|DC)-[A-Z0-9]{4,20}$"
+            type: string
+          maxItems: 10
+          nullable: true
+          type: array
     getCampaignConversionGoals_200_response:
       allOf:
       - $ref: "#/components/schemas/GoogleCampaignConversionGoals"
@@ -239849,12 +239899,28 @@ components:
           type: string
         dnsRecord:
           $ref: "#/components/schemas/TrackingSite_customHostname_dnsRecord"
+    TrackingSite_proxy_googleTags_inner:
+      example:
+        src: src
+        id: id
+      properties:
+        id:
+          description: "The Google tag id, such as `GTM-XXXXXXX` or `G-XXXXXXXXXX`."
+          type: string
+        src:
+          description: Such as `https://brand.com/zt/gtg/<hex>/?id=GTM-XXXXXXX`.
+          type: string
     TrackingSite_proxy:
       description: "The path your server forwards to the collector, so the tag runs\
         \ from the site's own domain. Null when it has none."
       example:
         path: path
         secret: secret
+        googleTags:
+        - src: src
+          id: id
+        - src: src
+          id: id
       properties:
         path:
           description: "Such as `/zt`: the snippet loads `https://<first domain>/zt/z.js`."
@@ -239864,6 +239930,12 @@ components:
             on reading or updating one site.
           nullable: true
           type: string
+        googleTags:
+          description: The loader of each of `googleTagIds` on the site's own domain.
+            Use `src` in place of the tag's googletagmanager.com address.
+          items:
+            $ref: "#/components/schemas/TrackingSite_proxy_googleTags_inner"
+          type: array
     TrackingSite_checks_inner:
       example:
         checkedAt: 2000-01-23T04:56:07.000+00:00

@@ -3160,6 +3160,7 @@ docs/TrackingSiteCustomHostnameDnsRecord.md
 docs/TrackingSiteInstall.md
 docs/TrackingSitePeriodTotals.md
 docs/TrackingSiteProxy.md
+docs/TrackingSiteProxyGoogleTagsInner.md
 docs/TrackingSiteSetup.md
 docs/TrackingTag.md
 docs/TrackingTagDiagnostic.md
@@ -7115,6 +7116,7 @@ src/main/java/dev/zernio/model/TrackingSiteCustomHostnameDnsRecord.java
 src/main/java/dev/zernio/model/TrackingSiteInstall.java
 src/main/java/dev/zernio/model/TrackingSitePeriodTotals.java
 src/main/java/dev/zernio/model/TrackingSiteProxy.java
+src/main/java/dev/zernio/model/TrackingSiteProxyGoogleTagsInner.java
 src/main/java/dev/zernio/model/TrackingSiteSetup.java
 src/main/java/dev/zernio/model/TrackingTag.java
 src/main/java/dev/zernio/model/TrackingTagDiagnostic.java
@@ -7861,3 +7863,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/TrackingSiteProxyGoogleTagsInnerTest.java

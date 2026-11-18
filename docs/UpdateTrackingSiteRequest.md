@@ -12,6 +12,7 @@
 |**consentMode** | **TrackingSiteConsentMode** |  |  [optional] |
 |**customHostname** | **String** | A subdomain of one of the site&#39;s domains, never the domain itself. &#x60;null&#x60; removes it. |  [optional] |
 |**proxyPath** | **String** | The path your server forwards to the collector, such as &#x60;/zt&#x60;. &#x60;null&#x60; removes it. |  [optional] |
+|**googleTagIds** | **List&lt;String&gt;** | Google tag ids such as &#x60;GTM-XXXXXXX&#x60;, &#x60;G-XXXXXXXXXX&#x60; or &#x60;AW-XXXXXXXXXX&#x60;, up to 10. &#x60;null&#x60; or &#x60;[]&#x60; removes them. |  [optional] |
 
 
 

@@ -17,6 +17,7 @@
 |**domains** | **List&lt;String&gt;** |  |  [optional] |
 |**customHostname** | [**TrackingSiteCustomHostname**](TrackingSiteCustomHostname.md) |  |  [optional] |
 |**proxy** | [**TrackingSiteProxy**](TrackingSiteProxy.md) |  |  [optional] |
+|**googleTagIds** | **List&lt;String&gt;** | The site&#39;s own Google tags (Tag Manager, GA4, Google Ads) its own-domain path relays to Google, so they load and measure from the site&#39;s domain. |  [optional] |
 |**consentMode** | **TrackingSiteConsentMode** |  |  [optional] |
 |**checks** | [**List&lt;TrackingSiteChecksInner&gt;**](TrackingSiteChecksInner.md) | One per setup step: &#x60;script&#x60; for the install, then one per ad account the site sends to, keyed by its platform and ids. |  [optional] |
 |**setup** | [**TrackingSiteSetup**](TrackingSiteSetup.md) |  |  [optional] |
