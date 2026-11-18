@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.666.2
+- API version: 1.667.0
 
-- Build date: 2026-11-18T21:35:38.437621495Z[Etc/UTC]
+- Build date: 2026-11-18T21:49:06.633452858Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.666.2</version>
+  <version>1.667.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.666.2"
+compile "dev.zernio:zernio-sdk:1.667.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.666.2.jar`
+- `target/zernio-sdk-1.667.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1487,6 +1487,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**getConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
 *ConversionsApi* | [**getConversionMetrics**](docs/ConversionsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
 *ConversionsApi* | [**getConversionMetricsWithHttpInfo**](docs/ConversionsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
+*ConversionsApi* | [**getConversionPaths**](docs/ConversionsApi.md#getConversionPaths) | **GET** /v1/events/paths | List the touch paths that lead to conversions
+*ConversionsApi* | [**getConversionPathsWithHttpInfo**](docs/ConversionsApi.md#getConversionPathsWithHttpInfo) | **GET** /v1/events/paths | List the touch paths that lead to conversions
 *ConversionsApi* | [**getConversionsQuality**](docs/ConversionsApi.md#getConversionsQuality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
 *ConversionsApi* | [**getConversionsQualityWithHttpInfo**](docs/ConversionsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
 *ConversionsApi* | [**getEvent**](docs/ConversionsApi.md#getEvent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries
@@ -4206,6 +4208,8 @@ Class | Method | HTTP request | Description
  - [GetContactChannels200ResponseChannelsInner](docs/GetContactChannels200ResponseChannelsInner.md)
  - [GetContentDecay200Response](docs/GetContentDecay200Response.md)
  - [GetContentDecay200ResponseBucketsInner](docs/GetContentDecay200ResponseBucketsInner.md)
+ - [GetConversionPaths200Response](docs/GetConversionPaths200Response.md)
+ - [GetConversionPaths200ResponsePathsInner](docs/GetConversionPaths200ResponsePathsInner.md)
  - [GetConversionsQuality200Response](docs/GetConversionsQuality200Response.md)
  - [GetConversionsQuality200ResponseRowsInner](docs/GetConversionsQuality200ResponseRowsInner.md)
  - [GetConversionsQuality200ResponseRowsInnerMatchKeysInner](docs/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.md)

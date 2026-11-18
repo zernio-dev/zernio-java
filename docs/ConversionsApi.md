@@ -44,6 +44,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getConversionDestinationWithHttpInfo**](ConversionsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
 | [**getConversionMetrics**](ConversionsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
 | [**getConversionMetricsWithHttpInfo**](ConversionsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
+| [**getConversionPaths**](ConversionsApi.md#getConversionPaths) | **GET** /v1/events/paths | List the touch paths that lead to conversions |
+| [**getConversionPathsWithHttpInfo**](ConversionsApi.md#getConversionPathsWithHttpInfo) | **GET** /v1/events/paths | List the touch paths that lead to conversions |
 | [**getConversionsQuality**](ConversionsApi.md#getConversionsQuality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
 | [**getConversionsQualityWithHttpInfo**](ConversionsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
 | [**getEvent**](ConversionsApi.md#getEvent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
@@ -3315,6 +3317,166 @@ ApiResponse<[**GetAdConversionMetrics200Response**](GetAdConversionMetrics200Res
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **405** | Platform does not support metrics readback. |  -  |
 | **429** | LinkedIn analytics rate limit hit. |  -  |
+
+
+## getConversionPaths
+
+> GetConversionPaths200Response getConversionPaths(fromDate, toDate, profileId, limit)
+
+List the touch paths that lead to conversions
+
+The most frequent sequences of touches people made before a conversion (sale, lead or another counted event) whose time falls in the range: ad clicks, tagged visits, search, referrals and earlier lead forms, oldest first.  Only conversions with more than one touch have a path. Without &#x60;profileId&#x60; it covers every profile you can access. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        LocalDate fromDate = LocalDate.now(); // LocalDate | 
+        LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive. At most 400 days after `fromDate`.
+        String profileId = "profileId_example"; // String | The profile to read. Omit for every profile you can access.
+        Integer limit = 10; // Integer | 
+        try {
+            GetConversionPaths200Response result = apiInstance.getConversionPaths(fromDate, toDate, profileId, limit);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getConversionPaths");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **fromDate** | **LocalDate**|  | |
+| **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
+| **profileId** | **String**| The profile to read. Omit for every profile you can access. | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 10] |
+
+### Return type
+
+[**GetConversionPaths200Response**](GetConversionPaths200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The paths, most frequent first. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## getConversionPathsWithHttpInfo
+
+> ApiResponse<GetConversionPaths200Response> getConversionPaths getConversionPathsWithHttpInfo(fromDate, toDate, profileId, limit)
+
+List the touch paths that lead to conversions
+
+The most frequent sequences of touches people made before a conversion (sale, lead or another counted event) whose time falls in the range: ad clicks, tagged visits, search, referrals and earlier lead forms, oldest first.  Only conversions with more than one touch have a path. Without &#x60;profileId&#x60; it covers every profile you can access. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        LocalDate fromDate = LocalDate.now(); // LocalDate | 
+        LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive. At most 400 days after `fromDate`.
+        String profileId = "profileId_example"; // String | The profile to read. Omit for every profile you can access.
+        Integer limit = 10; // Integer | 
+        try {
+            ApiResponse<GetConversionPaths200Response> response = apiInstance.getConversionPathsWithHttpInfo(fromDate, toDate, profileId, limit);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getConversionPaths");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **fromDate** | **LocalDate**|  | |
+| **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
+| **profileId** | **String**| The profile to read. Omit for every profile you can access. | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 10] |
+
+### Return type
+
+ApiResponse<[**GetConversionPaths200Response**](GetConversionPaths200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The paths, most frequent first. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getConversionsQuality

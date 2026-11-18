@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.666.2
+  version: 1.667.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -73339,6 +73339,68 @@ paths:
       - applovinads
       - googleanalytics
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/events/paths:
+    get:
+      description: |
+        The most frequent sequences of touches people made before a conversion (sale, lead or another counted event) whose time falls in the range: ad clicks, tagged visits, search, referrals and earlier lead forms, oldest first.
+
+        Only conversions with more than one touch have a path. Without `profileId` it covers every profile you can access. Requires the Ads add-on.
+      operationId: getConversionPaths
+      parameters:
+      - description: The profile to read. Omit for every profile you can access.
+        explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: Inclusive. At most 400 days after `fromDate`.
+        explode: true
+        in: query
+        name: toDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 10
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getConversionPaths_200_response"
+          description: "The paths, most frequent first."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List the touch paths that lead to conversions
+      tags:
+      - Conversions
+      x-resource-group: ads
       x-accepts:
       - application/json
   /v1/events/overview:
@@ -209652,6 +209714,74 @@ components:
             \ 200."
           nullable: true
           type: string
+    getConversionPaths_200_response_paths_inner:
+      example:
+        conversions: 0
+        revenue: 1.4658129805029452
+        steps:
+        - ad_click:facebook
+        - organic_search
+        - lead_form:facebook
+        avgDays: 5.962133916683182
+        sales: 6
+      properties:
+        steps:
+          description: "Each touch as its kind, or `kind:platform` when it named a\
+            \ campaign."
+          example:
+          - ad_click:facebook
+          - organic_search
+          - lead_form:facebook
+          items:
+            type: string
+          type: array
+        conversions:
+          type: integer
+        sales:
+          description: How many were purchases.
+          type: integer
+        revenue:
+          description: "The value of the purchases, as sent."
+          type: number
+        avgDays:
+          description: Average days from the first touch to the conversion.
+          type: number
+    getConversionPaths_200_response:
+      example:
+        fromDate: 2000-01-23
+        paths:
+        - conversions: 0
+          revenue: 1.4658129805029452
+          steps:
+          - ad_click:facebook
+          - organic_search
+          - lead_form:facebook
+          avgDays: 5.962133916683182
+          sales: 6
+        - conversions: 0
+          revenue: 1.4658129805029452
+          steps:
+          - ad_click:facebook
+          - organic_search
+          - lead_form:facebook
+          avgDays: 5.962133916683182
+          sales: 6
+        toDate: 2000-01-23
+      properties:
+        fromDate:
+          format: date
+          type: string
+        toDate:
+          format: date
+          type: string
+        paths:
+          items:
+            $ref: "#/components/schemas/getConversionPaths_200_response_paths_inner"
+          type: array
+      required:
+      - fromDate
+      - paths
+      - toDate
     getEventsOverview_200_response_today:
       example:
         conversions: 0
