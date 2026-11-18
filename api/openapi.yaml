@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.667.0
+  version: 1.671.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -54284,6 +54284,25 @@ paths:
           format: date
           type: string
         style: form
+      - description: "Attribution model your stored sales and leads count under. `last_click`\
+          \ (default) counts each event whole for the campaign it matched. The others\
+          \ split it across the campaigns of its earlier touches, so counts and revenue\
+          \ can be fractional. Uploads read the same under every model."
+        explode: true
+        in: query
+        name: model
+        required: false
+        schema:
+          default: last_click
+          enum:
+          - last_click
+          - first_touch
+          - last_non_direct
+          - linear
+          - position_based
+          - time_decay
+          type: string
+        style: form
       - description: "Comma-separated platform campaign ids, at most 500. Omit for\
           \ all campaigns."
         explode: true
@@ -54480,6 +54499,25 @@ paths:
         required: true
         schema:
           format: date
+          type: string
+        style: form
+      - description: "Attribution model your stored sales and leads count under. `last_click`\
+          \ (default) counts each event whole for the campaign it matched. The others\
+          \ split it across the campaigns of its earlier touches, so counts and revenue\
+          \ can be fractional. Uploads read the same under every model."
+        explode: true
+        in: query
+        name: model
+        required: false
+        schema:
+          default: last_click
+          enum:
+          - last_click
+          - first_touch
+          - last_non_direct
+          - linear
+          - position_based
+          - time_decay
           type: string
         style: form
       - description: "Comma-separated platform ad account ids, at most 100. Omit for\
@@ -187206,12 +187244,16 @@ components:
             key: 0.8008281904610115
           platform: platform
         toDate: 2000-01-23
+        model: model
       properties:
         fromDate:
           format: date
           type: string
         toDate:
           format: date
+          type: string
+        model:
+          description: The attribution model the results are counted under.
           type: string
         campaigns:
           items:
@@ -187223,6 +187265,7 @@ components:
       required:
       - campaigns
       - fromDate
+      - model
       - nextCursor
       - toDate
     uploadCampaignResults_request_rows_inner:
@@ -187377,6 +187420,7 @@ components:
       example:
         fromDate: 2000-01-23
         toDate: 2000-01-23
+        model: model
         totals:
           qualified_leads: 140
           sales: 23
@@ -187388,6 +187432,9 @@ components:
         toDate:
           format: date
           type: string
+        model:
+          description: The attribution model the results are counted under.
+          type: string
         totals:
           additionalProperties:
             type: number
@@ -187397,6 +187444,7 @@ components:
             revenue: 41200
       required:
       - fromDate
+      - model
       - toDate
       - totals
     getCampaignResultEvents_200_response:

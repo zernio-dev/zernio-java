@@ -163,7 +163,7 @@ ApiResponse<[**GetCampaignResultEvents200Response**](GetCampaignResultEvents200R
 
 ## getCampaignResultsTotals
 
-> GetCampaignResultsTotals200Response getCampaignResultsTotals(fromDate, toDate, adAccountIds)
+> GetCampaignResultsTotals200Response getCampaignResultsTotals(fromDate, toDate, model, adAccountIds)
 
 Get your results totals
 
@@ -192,9 +192,10 @@ public class Example {
         AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
         LocalDate fromDate = LocalDate.now(); // LocalDate | 
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive. At most 400 days after `fromDate`.
+        String model = "last_click"; // String | Attribution model your stored sales and leads count under. `last_click` (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model.
         String adAccountIds = "adAccountIds_example"; // String | Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see.
         try {
-            GetCampaignResultsTotals200Response result = apiInstance.getCampaignResultsTotals(fromDate, toDate, adAccountIds);
+            GetCampaignResultsTotals200Response result = apiInstance.getCampaignResultsTotals(fromDate, toDate, model, adAccountIds);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignResultsApi#getCampaignResultsTotals");
@@ -214,6 +215,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **fromDate** | **LocalDate**|  | |
 | **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
+| **model** | **String**| Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay] |
 | **adAccountIds** | **String**| Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see. | [optional] |
 
 ### Return type
@@ -239,7 +241,7 @@ public class Example {
 
 ## getCampaignResultsTotalsWithHttpInfo
 
-> ApiResponse<GetCampaignResultsTotals200Response> getCampaignResultsTotals getCampaignResultsTotalsWithHttpInfo(fromDate, toDate, adAccountIds)
+> ApiResponse<GetCampaignResultsTotals200Response> getCampaignResultsTotals getCampaignResultsTotalsWithHttpInfo(fromDate, toDate, model, adAccountIds)
 
 Get your results totals
 
@@ -269,9 +271,10 @@ public class Example {
         AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
         LocalDate fromDate = LocalDate.now(); // LocalDate | 
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive. At most 400 days after `fromDate`.
+        String model = "last_click"; // String | Attribution model your stored sales and leads count under. `last_click` (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model.
         String adAccountIds = "adAccountIds_example"; // String | Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see.
         try {
-            ApiResponse<GetCampaignResultsTotals200Response> response = apiInstance.getCampaignResultsTotalsWithHttpInfo(fromDate, toDate, adAccountIds);
+            ApiResponse<GetCampaignResultsTotals200Response> response = apiInstance.getCampaignResultsTotalsWithHttpInfo(fromDate, toDate, model, adAccountIds);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -293,6 +296,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **fromDate** | **LocalDate**|  | |
 | **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
+| **model** | **String**| Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay] |
 | **adAccountIds** | **String**| Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see. | [optional] |
 
 ### Return type
@@ -605,7 +609,7 @@ ApiResponse<[**ListCampaignResultMetrics200Response**](ListCampaignResultMetrics
 
 ## listCampaignResults
 
-> ListCampaignResults200Response listCampaignResults(fromDate, toDate, campaignIds, limit, cursor)
+> ListCampaignResults200Response listCampaignResults(fromDate, toDate, model, campaignIds, limit, cursor)
 
 List your results per campaign
 
@@ -634,11 +638,12 @@ public class Example {
         AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
         LocalDate fromDate = LocalDate.now(); // LocalDate | 
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive. At most 400 days after `fromDate`.
+        String model = "last_click"; // String | Attribution model your stored sales and leads count under. `last_click` (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model.
         String campaignIds = "campaignIds_example"; // String | Comma-separated platform campaign ids, at most 500. Omit for all campaigns.
         Integer limit = 100; // Integer | Campaigns per page.
         String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
         try {
-            ListCampaignResults200Response result = apiInstance.listCampaignResults(fromDate, toDate, campaignIds, limit, cursor);
+            ListCampaignResults200Response result = apiInstance.listCampaignResults(fromDate, toDate, model, campaignIds, limit, cursor);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignResultsApi#listCampaignResults");
@@ -658,6 +663,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **fromDate** | **LocalDate**|  | |
 | **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
+| **model** | **String**| Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay] |
 | **campaignIds** | **String**| Comma-separated platform campaign ids, at most 500. Omit for all campaigns. | [optional] |
 | **limit** | **Integer**| Campaigns per page. | [optional] [default to 100] |
 | **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
@@ -685,7 +691,7 @@ public class Example {
 
 ## listCampaignResultsWithHttpInfo
 
-> ApiResponse<ListCampaignResults200Response> listCampaignResults listCampaignResultsWithHttpInfo(fromDate, toDate, campaignIds, limit, cursor)
+> ApiResponse<ListCampaignResults200Response> listCampaignResults listCampaignResultsWithHttpInfo(fromDate, toDate, model, campaignIds, limit, cursor)
 
 List your results per campaign
 
@@ -715,11 +721,12 @@ public class Example {
         AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
         LocalDate fromDate = LocalDate.now(); // LocalDate | 
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive. At most 400 days after `fromDate`.
+        String model = "last_click"; // String | Attribution model your stored sales and leads count under. `last_click` (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model.
         String campaignIds = "campaignIds_example"; // String | Comma-separated platform campaign ids, at most 500. Omit for all campaigns.
         Integer limit = 100; // Integer | Campaigns per page.
         String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
         try {
-            ApiResponse<ListCampaignResults200Response> response = apiInstance.listCampaignResultsWithHttpInfo(fromDate, toDate, campaignIds, limit, cursor);
+            ApiResponse<ListCampaignResults200Response> response = apiInstance.listCampaignResultsWithHttpInfo(fromDate, toDate, model, campaignIds, limit, cursor);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -741,6 +748,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **fromDate** | **LocalDate**|  | |
 | **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
+| **model** | **String**| Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] [enum: last_click, first_touch, last_non_direct, linear, position_based, time_decay] |
 | **campaignIds** | **String**| Comma-separated platform campaign ids, at most 500. Omit for all campaigns. | [optional] |
 | **limit** | **Integer**| Campaigns per page. | [optional] [default to 100] |
 | **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
