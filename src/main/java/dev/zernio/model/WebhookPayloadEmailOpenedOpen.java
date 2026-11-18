@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadEmailOpenedOpen.JSON_PROPERTY_FIRST_OPENED_AT,
   WebhookPayloadEmailOpenedOpen.JSON_PROPERTY_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T10:46:08.558600548Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T10:50:27.345967220Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadEmailOpenedOpen {
   public static final String JSON_PROPERTY_OPENED_AT = "openedAt";
   @javax.annotation.Nullable

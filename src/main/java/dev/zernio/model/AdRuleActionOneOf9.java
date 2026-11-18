@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   AdRuleActionOneOf9.JSON_PROPERTY_MAX_CHANGES_PER_DAY,
   AdRuleActionOneOf9.JSON_PROPERTY_MAX_CHANGES_PER_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T10:46:08.558600548Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T10:50:27.345967220Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleActionOneOf9 {
   /**
    * Change the daily budget. Not on ad-level rules (an ad has no budget), and on Google it needs a campaign-level rule (ad groups have no budget of their own).

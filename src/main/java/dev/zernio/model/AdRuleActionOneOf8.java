@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   AdRuleActionOneOf8.JSON_PROPERTY_MAX_CHANGES_PER_DAY,
   AdRuleActionOneOf8.JSON_PROPERTY_MAX_CHANGES_PER_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T10:46:08.558600548Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T10:50:27.345967220Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleActionOneOf8 {
   /**
    * Set the daily budget to an exact amount, such as a reset every midnight. Same level rules as the percent change.

@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   CreateMetaAdAccountRequest.JSON_PROPERTY_FUNDING_ID,
   CreateMetaAdAccountRequest.JSON_PROPERTY_AD_ACCOUNT_CREATED_FROM_BM_FLAG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T10:46:08.558600548Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T10:50:27.345967220Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateMetaAdAccountRequest {
   /**
    * Optional. Omit it or send meta for a Meta ad account.
