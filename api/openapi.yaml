@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.674.0
+  version: 1.675.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -403,6 +403,11 @@ tags:
     (badges show per operation).
     Requires the Ads add-on.
   name: Conversions
+- description: |
+    Short links on a tracking site that send each click to one of up to 10 landing pages, split by weight, and
+    carry a postback URL that affiliate and ad networks call server to server when a click converts.
+    Requires the Ads add-on.
+  name: Tracking links
 - description: |
     Click-to-message and click-to-call destination ads: WhatsApp (CTWA), Messenger, Instagram Direct,
     and Call ads. Meta only.
@@ -74412,6 +74417,269 @@ paths:
       x-resource-group: ads
       x-accepts:
       - application/json
+  /v1/tracking-links:
+    get:
+      description: The tracking links of your workspace in creation order. Pass `profileId`
+        or `siteId` to list one profile's or one site's links.
+      operationId: listTrackingLinks
+      parameters:
+      - explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: siteId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: '`pagination.nextCursor` from the previous page.'
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listTrackingLinks_200_response"
+          description: One page of links.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: List tracking links
+      tags:
+      - Tracking links
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Creates a short link on a tracking site. Each click goes to one of `destinations`, picked by weight, so the link also split-tests landing pages. Put `url` in your ads and give `postbackUrl` to the network that reports conversions server to server.
+      operationId: createTrackingLink
+      parameters:
+      - description: "A unique key per link you create, such as a UUID. A retry with\
+          \ the same key and body returns the same link."
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: true
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createTrackingLink_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createTrackingLink_201_response"
+          description: Link created.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: No site with this id in your workspace (code `tracking_site_not_found`).
+      security:
+      - bearerAuth: []
+      summary: Create a tracking link
+      tags:
+      - Tracking links
+      x-resource-group: ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/tracking-links/{linkId}:
+    delete:
+      description: The link and its postback URL stop working at once. Conversions
+        already stored are kept.
+      operationId: deleteTrackingLink
+      parameters:
+      - explode: false
+        in: path
+        name: linkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Link deleted.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete a tracking link
+      tags:
+      - Tracking links
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+    get:
+      description: "One link, with its URL and postback URL."
+      operationId: getTrackingLink
+      parameters:
+      - explode: false
+        in: path
+        name: linkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createTrackingLink_201_response"
+          description: The link.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: No link with this id in your workspace (code `tracking_link_not_found`).
+      security:
+      - bearerAuth: []
+      summary: Get a tracking link
+      tags:
+      - Tracking links
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+    parameters:
+    - explode: false
+      in: path
+      name: linkId
+      required: true
+      schema:
+        type: string
+      style: simple
+    patch:
+      description: |
+        Changes the link's name, destinations, campaign hints or status. Send at least one field. `status: paused` turns the link off until it is set back to `active`. `campaign: null` removes the hints. The code and URL never change.
+      operationId: updateTrackingLink
+      parameters:
+      - explode: false
+        in: path
+        name: linkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateTrackingLink_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createTrackingLink_201_response"
+          description: The updated link.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Update a tracking link
+      tags:
+      - Tracking links
+      x-resource-group: ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/tracking-links/{linkId}/rotate-postback-token:
+    post:
+      description: "Issues a new `postbackUrl`. The old one stops working at once,\
+        \ so update it at the network right after."
+      operationId: rotateTrackingLinkPostbackToken
+      parameters:
+      - explode: false
+        in: path
+        name: linkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "A unique key per rotation, such as a UUID."
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: true
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createTrackingLink_201_response"
+          description: The link with its new postback URL.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Rotate a tracking link's postback URL
+      tags:
+      - Tracking links
+      x-resource-group: ads
+      x-accepts:
+      - application/json
   /v1/ads/campaigns/{campaignId}/conversion-goals:
     get:
       description: |-
@@ -134683,6 +134951,107 @@ components:
           type: array
         setup:
           $ref: "#/components/schemas/TrackingSite_setup"
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+    TrackingLinkDestination:
+      additionalProperties: false
+      example:
+        weight: 8
+        url: https://openapi-generator.tech
+      properties:
+        url:
+          description: An https landing page.
+          format: uri
+          maxLength: 2048
+          type: string
+        weight:
+          description: "This page's share of clicks, relative to the other destinations'\
+            \ weights."
+          maximum: 100
+          minimum: 1
+          type: integer
+      required:
+      - url
+      - weight
+    TrackingLinkCampaign:
+      additionalProperties: false
+      description: Hints that conversions from this link use to match a campaign.
+        Every field is optional.
+      properties:
+        platform:
+          description: "The ad platform, such as `metaads` or `googleads`."
+          maxLength: 32
+          minLength: 1
+          type: string
+        campaignId:
+          description: The platform's campaign id.
+          maxLength: 200
+          minLength: 1
+          type: string
+        utmCampaign:
+          description: The `utm_campaign` value the campaign uses.
+          maxLength: 200
+          minLength: 1
+          type: string
+    TrackingLink:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        postbackUrl: postbackUrl
+        code: code
+        profileId: profileId
+        destinations:
+        - weight: 8
+          url: https://openapi-generator.tech
+        - weight: 8
+          url: https://openapi-generator.tech
+        name: name
+        siteId: siteId
+        campaign: ""
+        id: id
+        url: url
+        status: active
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          description: "The short code in `url`, such as `aB3dE5fG`. Unique across\
+            \ Zernio."
+          type: string
+        siteId:
+          description: The tracking site the link belongs to.
+          type: string
+        profileId:
+          type: string
+        status:
+          enum:
+          - active
+          - paused
+          type: string
+        destinations:
+          items:
+            $ref: "#/components/schemas/TrackingLinkDestination"
+          type: array
+        campaign:
+          allOf:
+          - $ref: "#/components/schemas/TrackingLinkCampaign"
+          nullable: true
+        url:
+          description: "The link to put in ads, such as `https://t.brand.com/r/aB3dE5fG`.\
+            \ It uses the site's custom subdomain once that is active."
+          type: string
+        postbackUrl:
+          description: "The server-to-server postback URL to give the network. Replace\
+            \ `{clickid}`, `{payout}` and `{txid}` with the network's own macros.\
+            \ It holds a secret: rotate it with `POST /v1/tracking-links/{linkId}/rotate-postback-token`\
+            \ if it leaks."
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -211439,6 +211808,117 @@ components:
           maxItems: 10
           nullable: true
           type: array
+    listTrackingLinks_200_response:
+      example:
+        pagination:
+          nextCursor: nextCursor
+        links:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          postbackUrl: postbackUrl
+          code: code
+          profileId: profileId
+          destinations:
+          - weight: 8
+            url: https://openapi-generator.tech
+          - weight: 8
+            url: https://openapi-generator.tech
+          name: name
+          siteId: siteId
+          campaign: ""
+          id: id
+          url: url
+          status: active
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          postbackUrl: postbackUrl
+          code: code
+          profileId: profileId
+          destinations:
+          - weight: 8
+            url: https://openapi-generator.tech
+          - weight: 8
+            url: https://openapi-generator.tech
+          name: name
+          siteId: siteId
+          campaign: ""
+          id: id
+          url: url
+          status: active
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        links:
+          items:
+            $ref: "#/components/schemas/TrackingLink"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listTrackingSites_200_response_pagination"
+    createTrackingLink_request:
+      additionalProperties: {}
+      properties:
+        siteId:
+          description: The tracking site the link belongs to. The link takes its profile.
+          type: string
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+        destinations:
+          items:
+            $ref: "#/components/schemas/TrackingLinkDestination"
+          maxItems: 10
+          minItems: 1
+          type: array
+        campaign:
+          $ref: "#/components/schemas/TrackingLinkCampaign"
+      required:
+      - destinations
+      - name
+      - siteId
+    createTrackingLink_201_response:
+      example:
+        link:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          postbackUrl: postbackUrl
+          code: code
+          profileId: profileId
+          destinations:
+          - weight: 8
+            url: https://openapi-generator.tech
+          - weight: 8
+            url: https://openapi-generator.tech
+          name: name
+          siteId: siteId
+          campaign: ""
+          id: id
+          url: url
+          status: active
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        link:
+          $ref: "#/components/schemas/TrackingLink"
+    updateTrackingLink_request:
+      additionalProperties: {}
+      minProperties: 1
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+        destinations:
+          items:
+            $ref: "#/components/schemas/TrackingLinkDestination"
+          maxItems: 10
+          minItems: 1
+          type: array
+        campaign:
+          allOf:
+          - $ref: "#/components/schemas/TrackingLinkCampaign"
+          nullable: true
+        status:
+          enum:
+          - active
+          - paused
+          type: string
     getCampaignConversionGoals_200_response:
       allOf:
       - $ref: "#/components/schemas/GoogleCampaignConversionGoals"

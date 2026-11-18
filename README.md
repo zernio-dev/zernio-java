@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.674.0
+- API version: 1.675.0
 
-- Build date: 2026-11-18T22:40:52.546613207Z[Etc/UTC]
+- Build date: 2026-11-18T22:53:11.809277238Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.674.0</version>
+  <version>1.675.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.674.0"
+compile "dev.zernio:zernio-sdk:1.675.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.674.0.jar`
+- `target/zernio-sdk-1.675.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2343,6 +2343,18 @@ Class | Method | HTTP request | Description
 *SupportAssistantApi* | [**getSupportAnswerWithHttpInfo**](docs/SupportAssistantApi.md#getSupportAnswerWithHttpInfo) | **GET** /v1/support/runs/{runId} | Get a support answer
 *SupportAssistantApi* | [**listSupportAnswers**](docs/SupportAssistantApi.md#listSupportAnswers) | **GET** /v1/support/runs | List a thread&#39;s support answers
 *SupportAssistantApi* | [**listSupportAnswersWithHttpInfo**](docs/SupportAssistantApi.md#listSupportAnswersWithHttpInfo) | **GET** /v1/support/runs | List a thread&#39;s support answers
+*TrackingLinksApi* | [**createTrackingLink**](docs/TrackingLinksApi.md#createTrackingLink) | **POST** /v1/tracking-links | Create a tracking link
+*TrackingLinksApi* | [**createTrackingLinkWithHttpInfo**](docs/TrackingLinksApi.md#createTrackingLinkWithHttpInfo) | **POST** /v1/tracking-links | Create a tracking link
+*TrackingLinksApi* | [**deleteTrackingLink**](docs/TrackingLinksApi.md#deleteTrackingLink) | **DELETE** /v1/tracking-links/{linkId} | Delete a tracking link
+*TrackingLinksApi* | [**deleteTrackingLinkWithHttpInfo**](docs/TrackingLinksApi.md#deleteTrackingLinkWithHttpInfo) | **DELETE** /v1/tracking-links/{linkId} | Delete a tracking link
+*TrackingLinksApi* | [**getTrackingLink**](docs/TrackingLinksApi.md#getTrackingLink) | **GET** /v1/tracking-links/{linkId} | Get a tracking link
+*TrackingLinksApi* | [**getTrackingLinkWithHttpInfo**](docs/TrackingLinksApi.md#getTrackingLinkWithHttpInfo) | **GET** /v1/tracking-links/{linkId} | Get a tracking link
+*TrackingLinksApi* | [**listTrackingLinks**](docs/TrackingLinksApi.md#listTrackingLinks) | **GET** /v1/tracking-links | List tracking links
+*TrackingLinksApi* | [**listTrackingLinksWithHttpInfo**](docs/TrackingLinksApi.md#listTrackingLinksWithHttpInfo) | **GET** /v1/tracking-links | List tracking links
+*TrackingLinksApi* | [**rotateTrackingLinkPostbackToken**](docs/TrackingLinksApi.md#rotateTrackingLinkPostbackToken) | **POST** /v1/tracking-links/{linkId}/rotate-postback-token | Rotate a tracking link&#39;s postback URL
+*TrackingLinksApi* | [**rotateTrackingLinkPostbackTokenWithHttpInfo**](docs/TrackingLinksApi.md#rotateTrackingLinkPostbackTokenWithHttpInfo) | **POST** /v1/tracking-links/{linkId}/rotate-postback-token | Rotate a tracking link&#39;s postback URL
+*TrackingLinksApi* | [**updateTrackingLink**](docs/TrackingLinksApi.md#updateTrackingLink) | **PATCH** /v1/tracking-links/{linkId} | Update a tracking link
+*TrackingLinksApi* | [**updateTrackingLinkWithHttpInfo**](docs/TrackingLinksApi.md#updateTrackingLinkWithHttpInfo) | **PATCH** /v1/tracking-links/{linkId} | Update a tracking link
 *TrackingTagsApi* | [**addTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addTrackingTagSharedAccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
 *TrackingTagsApi* | [**addTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#addTrackingTagSharedAccountWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
 *TrackingTagsApi* | [**assignTrackingTagUser**](docs/TrackingTagsApi.md#assignTrackingTagUser) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | Assign a user to a tag
@@ -3747,6 +3759,8 @@ Class | Method | HTTP request | Description
  - [CreateTestLeadRequestFieldDataInner](docs/CreateTestLeadRequestFieldDataInner.md)
  - [CreateTopup201Response](docs/CreateTopup201Response.md)
  - [CreateTopupRequest](docs/CreateTopupRequest.md)
+ - [CreateTrackingLink201Response](docs/CreateTrackingLink201Response.md)
+ - [CreateTrackingLinkRequest](docs/CreateTrackingLinkRequest.md)
  - [CreateTrackingSite201Response](docs/CreateTrackingSite201Response.md)
  - [CreateTrackingSiteRequest](docs/CreateTrackingSiteRequest.md)
  - [CreateTrackingTag201Response](docs/CreateTrackingTag201Response.md)
@@ -5142,6 +5156,7 @@ Class | Method | HTTP request | Description
  - [ListTikTokSmartPlusReviews200ResponseListingError](docs/ListTikTokSmartPlusReviews200ResponseListingError.md)
  - [ListTikTokSmartPlusReviews200ResponseReviewError](docs/ListTikTokSmartPlusReviews200ResponseReviewError.md)
  - [ListTopups200Response](docs/ListTopups200Response.md)
+ - [ListTrackingLinks200Response](docs/ListTrackingLinks200Response.md)
  - [ListTrackingSites200Response](docs/ListTrackingSites200Response.md)
  - [ListTrackingSites200ResponsePagination](docs/ListTrackingSites200ResponsePagination.md)
  - [ListTrackingTagEvents200Response](docs/ListTrackingTagEvents200Response.md)
@@ -5850,6 +5865,9 @@ Class | Method | HTTP request | Description
  - [TikTokSmartPlusAdLevelReview](docs/TikTokSmartPlusAdLevelReview.md)
  - [TikTokSmartPlusMaterialReview](docs/TikTokSmartPlusMaterialReview.md)
  - [TikTokSmartPlusReviewStatus](docs/TikTokSmartPlusReviewStatus.md)
+ - [TrackingLink](docs/TrackingLink.md)
+ - [TrackingLinkCampaign](docs/TrackingLinkCampaign.md)
+ - [TrackingLinkDestination](docs/TrackingLinkDestination.md)
  - [TrackingSite](docs/TrackingSite.md)
  - [TrackingSiteChecksInner](docs/TrackingSiteChecksInner.md)
  - [TrackingSiteConsentMode](docs/TrackingSiteConsentMode.md)
@@ -6138,6 +6156,7 @@ Class | Method | HTTP request | Description
  - [UpdateSlackSettingsRequest](docs/UpdateSlackSettingsRequest.md)
  - [UpdateStripeSettings200Response](docs/UpdateStripeSettings200Response.md)
  - [UpdateStripeSettingsRequest](docs/UpdateStripeSettingsRequest.md)
+ - [UpdateTrackingLinkRequest](docs/UpdateTrackingLinkRequest.md)
  - [UpdateTrackingSiteRequest](docs/UpdateTrackingSiteRequest.md)
  - [UpdateTrackingTagRequest](docs/UpdateTrackingTagRequest.md)
  - [UpdateValueRuleSet200Response](docs/UpdateValueRuleSet200Response.md)
