@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListLeads200ResponseMeta.JSON_PROPERTY_LAST_UPDATED,
   ListLeads200ResponseMeta.JSON_PROPERTY_CONTENT_NOT_RETAINED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:09:56.030422473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:15:31.103024291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListLeads200ResponseMeta {
   public static final String JSON_PROPERTY_LAST_CHECKED_AT = "lastCheckedAt";
   private JsonNullable<OffsetDateTime> lastCheckedAt = JsonNullable.<OffsetDateTime>undefined();

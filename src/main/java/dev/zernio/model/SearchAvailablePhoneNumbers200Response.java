@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   SearchAvailablePhoneNumbers200Response.JSON_PROPERTY_CLAIM_ID,
   SearchAvailablePhoneNumbers200Response.JSON_PROPERTY_CLAIM_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:09:56.030422473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:15:31.103024291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAvailablePhoneNumbers200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable

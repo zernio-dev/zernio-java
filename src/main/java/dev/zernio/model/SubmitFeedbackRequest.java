@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   SubmitFeedbackRequest.JSON_PROPERTY_ACTUAL,
   SubmitFeedbackRequest.JSON_PROPERTY_AGENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:09:56.030422473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:15:31.103024291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitFeedbackRequest {
   /**
    * What kind of feedback this is.

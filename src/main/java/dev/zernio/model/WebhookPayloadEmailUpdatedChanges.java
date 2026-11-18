@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadEmailUpdatedChanges.JSON_PROPERTY_LABELS_ADDED,
   WebhookPayloadEmailUpdatedChanges.JSON_PROPERTY_LABELS_REMOVED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:09:56.030422473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:15:31.103024291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadEmailUpdatedChanges {
   public static final String JSON_PROPERTY_UNREAD = "unread";
   @javax.annotation.Nullable

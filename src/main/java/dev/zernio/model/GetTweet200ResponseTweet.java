@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   GetTweet200ResponseTweet.JSON_PROPERTY_QUOTE_COUNT,
   GetTweet200ResponseTweet.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:09:56.030422473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:15:31.103024291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTweet200ResponseTweet {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

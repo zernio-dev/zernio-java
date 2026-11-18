@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAccountPermissionsChangedAccount.JSON_PROPERTY_MISSING_SCOPE_AREAS,
   WebhookPayloadAccountPermissionsChangedAccount.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:09:56.030422473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:15:31.103024291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAccountPermissionsChangedAccount {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

@@ -65,7 +65,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_ROOT_URI,
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_ROOT_CID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:09:56.030422473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:15:31.103024291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseCommentsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -390,7 +390,7 @@ public class GetInboxPostComments200ResponseCommentsInner {
   }
 
   /**
-   * Facebook only. True when replies[] (capped at 10) does not hold the comment&#39;s full reply thread.  Fetch the rest by passing the comment id as the &#x60;commentId&#x60; query parameter to GET /v1/inbox/comments/{postId} (or, for backwards compatibility, as &#x60;postId&#x60;).  Absent (not false) on every other platform, including Instagram, which has no equivalent signal, except with view&#x3D;summary, where it is also true on any comment whose &#x60;replyCount&#x60; is higher than the replies it carries (nested replies are cut to 3 there). 
+   * Facebook and Instagram. True when replies[] does not hold the comment&#39;s full reply thread: Facebook caps it at 10, Instagram at the first page Meta returns (25).  Fetch the rest by passing the comment id as the &#x60;commentId&#x60; query parameter to GET /v1/inbox/comments/{postId} (or, for backwards compatibility, as &#x60;postId&#x60;).  On Instagram, &#x60;replyCount&#x60; counts only the replies carried in replies[], so read this flag (not &#x60;replyCount&#x60;) to know whether the thread is complete.  Absent (not false) on every other platform, except with view&#x3D;summary, where it is also true on any comment whose &#x60;replyCount&#x60; is higher than the replies it carries (nested replies are cut to 3 there). 
    * @return repliesHasMore
    */
   @javax.annotation.Nullable

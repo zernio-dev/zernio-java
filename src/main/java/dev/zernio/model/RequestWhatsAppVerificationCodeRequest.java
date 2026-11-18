@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   RequestWhatsAppVerificationCodeRequest.JSON_PROPERTY_METHOD,
   RequestWhatsAppVerificationCodeRequest.JSON_PROPERTY_LANGUAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:09:56.030422473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:15:31.103024291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RequestWhatsAppVerificationCodeRequest {
   /**
    * Gets or Sets method

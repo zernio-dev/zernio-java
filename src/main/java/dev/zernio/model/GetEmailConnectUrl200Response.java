@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetEmailConnectUrl200Response.JSON_PROPERTY_AUTH_URL,
   GetEmailConnectUrl200Response.JSON_PROPERTY_EXPIRES_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:09:56.030422473Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T21:15:31.103024291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEmailConnectUrl200Response {
   public static final String JSON_PROPERTY_AUTH_URL = "authUrl";
   @javax.annotation.Nullable
