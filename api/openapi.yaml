@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.665.0
+  version: 1.666.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -86962,6 +86962,16 @@ paths:
         explode: true
         in: query
         name: before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Same as `before`, for clients that send `nextCursor` back as\
+          \ `cursor`. `before` wins when both are set."
+        explode: true
+        in: query
+        name: cursor
         required: false
         schema:
           format: date-time
