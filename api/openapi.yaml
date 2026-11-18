@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.663.0
+  version: 1.664.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -210024,6 +210024,7 @@ components:
       example:
         conversions: 0
         valueSent: 1.4658129805029452
+        fromAds: 9
         accepted: 5
         counted: 7
         currency: currency
@@ -210061,14 +210062,20 @@ components:
           description: "The period's events that count as campaign results, the ones\
             \ looked up for a campaign."
           type: integer
+        fromAds:
+          description: "Of the counted events, those that came from an ad: they named\
+            \ a campaign or carried a UTM campaign, a Google click id or a Zernio\
+            \ ad id (`zrn`), their own or the website visit's behind them. `matched`\
+            \ over `fromAds` is the share tied to a campaign."
+          type: integer
     getEventsOverviewDaily_200_response_days_inner:
       example:
-        conversions: 9
+        conversions: 3
         byEvent:
-          key: 4
-        accepted: 2
+          key: 7
+        accepted: 4
         day: 2000-01-23
-        sent: 3
+        sent: 2
       properties:
         day:
           format: date
@@ -210088,7 +210095,7 @@ components:
           description: The day's stored events per event name.
     getEventsOverviewDaily_200_response_platforms_inner_days_inner:
       example:
-        accepted: 1
+        accepted: 6
         day: 2000-01-23
         sent: 1
       properties:
@@ -210103,13 +210110,13 @@ components:
       example:
         accepted: 1
         days:
-        - accepted: 1
+        - accepted: 6
           day: 2000-01-23
           sent: 1
-        - accepted: 1
+        - accepted: 6
           day: 2000-01-23
           sent: 1
-        sent: 7
+        sent: 1
         platform: platform
       properties:
         platform:
@@ -210128,8 +210135,8 @@ components:
           type: array
     getEventsOverviewDaily_200_response_pixelMissed_inner:
       example:
-        conversions: 6
-        missed: 7
+        conversions: 7
+        missed: 1
         platform: platform
       properties:
         platform:
@@ -210142,24 +210149,25 @@ components:
       example:
         period: today
         days:
-        - conversions: 9
+        - conversions: 3
           byEvent:
-            key: 4
-          accepted: 2
+            key: 7
+          accepted: 4
           day: 2000-01-23
-          sent: 3
-        - conversions: 9
+          sent: 2
+        - conversions: 3
           byEvent:
-            key: 4
-          accepted: 2
+            key: 7
+          accepted: 4
           day: 2000-01-23
-          sent: 3
+          sent: 2
         eventNames:
         - eventNames
         - eventNames
         totals:
           conversions: 0
           valueSent: 1.4658129805029452
+          fromAds: 9
           accepted: 5
           counted: 7
           currency: currency
@@ -210167,32 +210175,32 @@ components:
           value: 6.027456183070403
           sent: 5
         pixelMissed:
-        - conversions: 6
-          missed: 7
+        - conversions: 7
+          missed: 1
           platform: platform
-        - conversions: 6
-          missed: 7
+        - conversions: 7
+          missed: 1
           platform: platform
         platforms:
         - accepted: 1
           days:
-          - accepted: 1
+          - accepted: 6
             day: 2000-01-23
             sent: 1
-          - accepted: 1
+          - accepted: 6
             day: 2000-01-23
             sent: 1
-          sent: 7
+          sent: 1
           platform: platform
         - accepted: 1
           days:
-          - accepted: 1
+          - accepted: 6
             day: 2000-01-23
             sent: 1
-          - accepted: 1
+          - accepted: 6
             day: 2000-01-23
             sent: 1
-          sent: 7
+          sent: 1
           platform: platform
       properties:
         period:

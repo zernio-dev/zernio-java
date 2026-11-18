@@ -16,6 +16,7 @@ The period's figures, shaped like the overview's `today`.
 |**accepted** | **Integer** | Those whose latest send the platform accepted. |  [optional] |
 |**matched** | **Integer** | The period&#39;s events matched to an ad campaign. |  [optional] |
 |**counted** | **Integer** | The period&#39;s events that count as campaign results, the ones looked up for a campaign. |  [optional] |
+|**fromAds** | **Integer** | Of the counted events, those that came from an ad: they named a campaign or carried a UTM campaign, a Google click id or a Zernio ad id (&#x60;zrn&#x60;), their own or the website visit&#39;s behind them. &#x60;matched&#x60; over &#x60;fromAds&#x60; is the share tied to a campaign. |  [optional] |
 
 
 
