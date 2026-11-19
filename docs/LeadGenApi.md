@@ -8,6 +8,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**archiveLeadFormWithHttpInfo**](LeadGenApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form |
 | [**countLeads**](LeadGenApi.md#countLeads) | **GET** /v1/ads/leads/counts | Count leads by status |
 | [**countLeadsWithHttpInfo**](LeadGenApi.md#countLeadsWithHttpInfo) | **GET** /v1/ads/leads/counts | Count leads by status |
+| [**createLead**](LeadGenApi.md#createLead) | **POST** /v1/leads | Create a lead from your own form |
+| [**createLeadWithHttpInfo**](LeadGenApi.md#createLeadWithHttpInfo) | **POST** /v1/leads | Create a lead from your own form |
 | [**createLeadForm**](LeadGenApi.md#createLeadForm) | **POST** /v1/ads/lead-forms | Create a lead form |
 | [**createLeadFormWithHttpInfo**](LeadGenApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a lead form |
 | [**createTestLead**](LeadGenApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead |
@@ -337,6 +339,160 @@ ApiResponse<[**CountLeads200Response**](CountLeads200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads add-on required. |  -  |
+
+
+## createLead
+
+> CreateLead200Response createLead(createLeadRequest)
+
+Create a lead from your own form
+
+Stores a lead from a form on your own site or app, posted by your backend. It joins the leads from ad networks: it is listed on &#x60;GET /v1/ads/leads&#x60; (&#x60;platform: web&#x60;), fires &#x60;lead.received&#x60;, starts lead workflows, and moves through statuses with &#x60;PATCH /v1/ads/leads/{id}&#x60;.  - **Lead event.** A &#x60;Lead&#x60; event is stored and sent through the profile&#39;s forwarding rules that take the &#x60;form_leads&#x60; source, like an event sent to &#x60;POST /v1/events&#x60;. - **Attribution.** Pass the ad click ids from the landing URL in &#x60;clickIds&#x60; (a raw &#x60;fbclid&#x60; becomes Meta&#39;s &#x60;fbc&#x60;) and the Zernio tag&#39;s visitor id (&#x60;_zid&#x60; cookie) in &#x60;visitorId&#x60;. - **Earlier visits.** Zernio adds the click ids it saw on that visitor&#39;s, email&#39;s or phone&#39;s earlier website visits. Qualifying or converting the lead later sends those ids with the stage event. - **Idempotent by &#x60;leadId&#x60;.** Posting the same &#x60;leadId&#x60; again returns the stored lead with &#x60;created: false&#x60; and sends nothing twice. Without &#x60;leadId&#x60;, every call creates a lead.  A tracked website can capture form leads without any code: turn on lead capture for the site. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.LeadGenApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        LeadGenApi apiInstance = new LeadGenApi(defaultClient);
+        CreateLeadRequest createLeadRequest = new CreateLeadRequest(); // CreateLeadRequest | 
+        try {
+            CreateLead200Response result = apiInstance.createLead(createLeadRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LeadGenApi#createLead");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createLeadRequest** | [**CreateLeadRequest**](CreateLeadRequest.md)|  | |
+
+### Return type
+
+[**CreateLead200Response**](CreateLead200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The lead was created. |  -  |
+| **200** | A lead with this &#x60;leadId&#x60; was already stored: it is returned unchanged. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads add-on required. |  -  |
+| **404** | The profile is not reachable with this key (&#x60;profile_not_found&#x60;). |  -  |
+
+## createLeadWithHttpInfo
+
+> ApiResponse<CreateLead200Response> createLead createLeadWithHttpInfo(createLeadRequest)
+
+Create a lead from your own form
+
+Stores a lead from a form on your own site or app, posted by your backend. It joins the leads from ad networks: it is listed on &#x60;GET /v1/ads/leads&#x60; (&#x60;platform: web&#x60;), fires &#x60;lead.received&#x60;, starts lead workflows, and moves through statuses with &#x60;PATCH /v1/ads/leads/{id}&#x60;.  - **Lead event.** A &#x60;Lead&#x60; event is stored and sent through the profile&#39;s forwarding rules that take the &#x60;form_leads&#x60; source, like an event sent to &#x60;POST /v1/events&#x60;. - **Attribution.** Pass the ad click ids from the landing URL in &#x60;clickIds&#x60; (a raw &#x60;fbclid&#x60; becomes Meta&#39;s &#x60;fbc&#x60;) and the Zernio tag&#39;s visitor id (&#x60;_zid&#x60; cookie) in &#x60;visitorId&#x60;. - **Earlier visits.** Zernio adds the click ids it saw on that visitor&#39;s, email&#39;s or phone&#39;s earlier website visits. Qualifying or converting the lead later sends those ids with the stage event. - **Idempotent by &#x60;leadId&#x60;.** Posting the same &#x60;leadId&#x60; again returns the stored lead with &#x60;created: false&#x60; and sends nothing twice. Without &#x60;leadId&#x60;, every call creates a lead.  A tracked website can capture form leads without any code: turn on lead capture for the site. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.LeadGenApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        LeadGenApi apiInstance = new LeadGenApi(defaultClient);
+        CreateLeadRequest createLeadRequest = new CreateLeadRequest(); // CreateLeadRequest | 
+        try {
+            ApiResponse<CreateLead200Response> response = apiInstance.createLeadWithHttpInfo(createLeadRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LeadGenApi#createLead");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createLeadRequest** | [**CreateLeadRequest**](CreateLeadRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateLead200Response**](CreateLead200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The lead was created. |  -  |
+| **200** | A lead with this &#x60;leadId&#x60; was already stored: it is returned unchanged. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads add-on required. |  -  |
+| **404** | The profile is not reachable with this key (&#x60;profile_not_found&#x60;). |  -  |
 
 
 ## createLeadForm
@@ -1333,7 +1489,7 @@ public class Example {
         String accountIds = "accountIds_example"; // String | Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed.
         String status = "new,contacted"; // String | Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified.
         String campaignId = "campaignId_example"; // String | Meta only. The platform campaign id the lead came from.
-        String platform = "meta"; // String | Only leads of this network. meta and google list stored leads of that network (no LinkedIn live fetch); linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch.
+        String platform = "meta"; // String | Only leads of this network.  - `web`: your own website and API forms. - `meta` and `google` list stored leads of that network (no LinkedIn live fetch). - `linkedin` requires accountId to be a LinkedIn ads connection (400 otherwise).  Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch.
         String q = "q_example"; // String | Meta only. Case-insensitive text search over the lead's answers and the form name.
         String adAccountId = "adAccountId_example"; // String | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder).
         Integer limit = 25; // Integer | 
@@ -1363,7 +1519,7 @@ public class Example {
 | **accountIds** | **String**| Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed. | [optional] |
 | **status** | **String**| Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified. | [optional] |
 | **campaignId** | **String**| Meta only. The platform campaign id the lead came from. | [optional] |
-| **platform** | **String**| Only leads of this network. meta and google list stored leads of that network (no LinkedIn live fetch); linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch. | [optional] [enum: meta, google, linkedin] |
+| **platform** | **String**| Only leads of this network.  - &#x60;web&#x60;: your own website and API forms. - &#x60;meta&#x60; and &#x60;google&#x60; list stored leads of that network (no LinkedIn live fetch). - &#x60;linkedin&#x60; requires accountId to be a LinkedIn ads connection (400 otherwise).  Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch. | [optional] [enum: meta, google, linkedin, web] |
 | **q** | **String**| Meta only. Case-insensitive text search over the lead&#39;s answers and the form name. | [optional] |
 | **adAccountId** | **String**| LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
@@ -1429,7 +1585,7 @@ public class Example {
         String accountIds = "accountIds_example"; // String | Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed.
         String status = "new,contacted"; // String | Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified.
         String campaignId = "campaignId_example"; // String | Meta only. The platform campaign id the lead came from.
-        String platform = "meta"; // String | Only leads of this network. meta and google list stored leads of that network (no LinkedIn live fetch); linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch.
+        String platform = "meta"; // String | Only leads of this network.  - `web`: your own website and API forms. - `meta` and `google` list stored leads of that network (no LinkedIn live fetch). - `linkedin` requires accountId to be a LinkedIn ads connection (400 otherwise).  Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch.
         String q = "q_example"; // String | Meta only. Case-insensitive text search over the lead's answers and the form name.
         String adAccountId = "adAccountId_example"; // String | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder).
         Integer limit = 25; // Integer | 
@@ -1461,7 +1617,7 @@ public class Example {
 | **accountIds** | **String**| Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed. | [optional] |
 | **status** | **String**| Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified. | [optional] |
 | **campaignId** | **String**| Meta only. The platform campaign id the lead came from. | [optional] |
-| **platform** | **String**| Only leads of this network. meta and google list stored leads of that network (no LinkedIn live fetch); linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch. | [optional] [enum: meta, google, linkedin] |
+| **platform** | **String**| Only leads of this network.  - &#x60;web&#x60;: your own website and API forms. - &#x60;meta&#x60; and &#x60;google&#x60; list stored leads of that network (no LinkedIn live fetch). - &#x60;linkedin&#x60; requires accountId to be a LinkedIn ads connection (400 otherwise).  Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch. | [optional] [enum: meta, google, linkedin, web] |
 | **q** | **String**| Meta only. Case-insensitive text search over the lead&#39;s answers and the form name. | [optional] |
 | **adAccountId** | **String**| LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
@@ -1499,7 +1655,7 @@ ApiResponse<[**ListLeads200Response**](ListLeads200Response.md)>
 
 Update a lead&#39;s status
 
-Sets the status of a Meta lead (and optionally its value) so you can track it from lead to sale.  &#x60;{id}&#x60; is the Zernio lead id (&#x60;id&#x60; on &#x60;GET /v1/ads/leads&#x60;, &#x60;leadId&#x60; on &#x60;GET /v1/ads/lead-forms/{formId}/leads&#x60;) or the Meta &#x60;leadgenId&#x60; together with &#x60;accountId&#x60; in the body. Requires the Ads add-on. 
+Sets the status of a lead (and optionally its value) so you can track it from lead to sale.  Moving a lead to &#x60;qualified&#x60; stores a &#x60;QualifiedLead&#x60; event, and to &#x60;converted&#x60; a &#x60;Purchase&#x60; with the lead&#39;s value. Moving away from a stage retracts its event.  Each stage event is also sent to the ad platforms, but only through the forwarding rules that list that event name in &#x60;eventNames&#x60;. A rule taking every event name never gets them, so a won lead is never counted as a second sale next to your store&#39;s or Stripe&#39;s own.  Meta leads are matched by their lead id. Website and API form leads (&#x60;platform: web&#x60;) are matched by the email, phone and ad click ids they arrived with, and are sent under the &#x60;form_leads&#x60; source.  &#x60;{id}&#x60; is the Zernio lead id (&#x60;id&#x60; on &#x60;GET /v1/ads/leads&#x60;, &#x60;leadId&#x60; on &#x60;GET /v1/ads/lead-forms/{formId}/leads&#x60;) or the Meta &#x60;leadgenId&#x60; together with &#x60;accountId&#x60; in the body. Requires the Ads add-on. 
 
 ### Example
 
@@ -1575,7 +1731,7 @@ public class Example {
 
 Update a lead&#39;s status
 
-Sets the status of a Meta lead (and optionally its value) so you can track it from lead to sale.  &#x60;{id}&#x60; is the Zernio lead id (&#x60;id&#x60; on &#x60;GET /v1/ads/leads&#x60;, &#x60;leadId&#x60; on &#x60;GET /v1/ads/lead-forms/{formId}/leads&#x60;) or the Meta &#x60;leadgenId&#x60; together with &#x60;accountId&#x60; in the body. Requires the Ads add-on. 
+Sets the status of a lead (and optionally its value) so you can track it from lead to sale.  Moving a lead to &#x60;qualified&#x60; stores a &#x60;QualifiedLead&#x60; event, and to &#x60;converted&#x60; a &#x60;Purchase&#x60; with the lead&#39;s value. Moving away from a stage retracts its event.  Each stage event is also sent to the ad platforms, but only through the forwarding rules that list that event name in &#x60;eventNames&#x60;. A rule taking every event name never gets them, so a won lead is never counted as a second sale next to your store&#39;s or Stripe&#39;s own.  Meta leads are matched by their lead id. Website and API form leads (&#x60;platform: web&#x60;) are matched by the email, phone and ad click ids they arrived with, and are sent under the &#x60;form_leads&#x60; source.  &#x60;{id}&#x60; is the Zernio lead id (&#x60;id&#x60; on &#x60;GET /v1/ads/leads&#x60;, &#x60;leadId&#x60; on &#x60;GET /v1/ads/lead-forms/{formId}/leads&#x60;) or the Meta &#x60;leadgenId&#x60; together with &#x60;accountId&#x60; in the body. Requires the Ads add-on. 
 
 ### Example
 

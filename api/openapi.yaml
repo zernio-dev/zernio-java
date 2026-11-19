@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.702.1
+  version: 1.703.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -71110,11 +71110,14 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Only leads of this network. meta and google list stored leads\
-          \ of that network (no LinkedIn live fetch); linkedin requires accountId\
-          \ to be a LinkedIn ads connection (400 otherwise). Without it, every stored\
-          \ network is listed, and an accountId that is a LinkedIn ads connection\
-          \ switches to the live fetch."
+      - description: |-
+          Only leads of this network.
+
+          - `web`: your own website and API forms.
+          - `meta` and `google` list stored leads of that network (no LinkedIn live fetch).
+          - `linkedin` requires accountId to be a LinkedIn ads connection (400 otherwise).
+
+          Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch.
         explode: true
         in: query
         name: platform
@@ -71124,6 +71127,7 @@ paths:
           - meta
           - google
           - linkedin
+          - web
           type: string
         style: form
       - description: Meta only. Case-insensitive text search over the lead's answers
@@ -71251,7 +71255,13 @@ paths:
   /v1/ads/leads/{id}:
     patch:
       description: |
-        Sets the status of a Meta lead (and optionally its value) so you can track it from lead to sale.
+        Sets the status of a lead (and optionally its value) so you can track it from lead to sale.
+
+        Moving a lead to `qualified` stores a `QualifiedLead` event, and to `converted` a `Purchase` with the lead's value. Moving away from a stage retracts its event.
+
+        Each stage event is also sent to the ad platforms, but only through the forwarding rules that list that event name in `eventNames`. A rule taking every event name never gets them, so a won lead is never counted as a second sale next to your store's or Stripe's own.
+
+        Meta leads are matched by their lead id. Website and API form leads (`platform: web`) are matched by the email, phone and ad click ids they arrived with, and are sent under the `form_leads` source.
 
         `{id}` is the Zernio lead id (`id` on `GET /v1/ads/leads`, `leadId` on `GET /v1/ads/lead-forms/{formId}/leads`) or the Meta `leadgenId` together with `accountId` in the body. Requires the Ads add-on.
       operationId: updateLead
@@ -71291,6 +71301,69 @@ paths:
       x-resource-group: contacts
       x-platforms:
       - meta
+      - google
+      - linkedin
+      - tiktok
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/leads:
+    post:
+      description: |
+        Stores a lead from a form on your own site or app, posted by your backend. It joins the leads from ad networks: it is listed on `GET /v1/ads/leads` (`platform: web`), fires `lead.received`, starts lead workflows, and moves through statuses with `PATCH /v1/ads/leads/{id}`.
+
+        - **Lead event.** A `Lead` event is stored and sent through the profile's forwarding rules that take the `form_leads` source, like an event sent to `POST /v1/events`.
+        - **Attribution.** Pass the ad click ids from the landing URL in `clickIds` (a raw `fbclid` becomes Meta's `fbc`) and the Zernio tag's visitor id (`_zid` cookie) in `visitorId`.
+        - **Earlier visits.** Zernio adds the click ids it saw on that visitor's, email's or phone's earlier website visits. Qualifying or converting the lead later sends those ids with the stage event.
+        - **Idempotent by `leadId`.** Posting the same `leadId` again returns the stored lead with `created: false` and sends nothing twice. Without `leadId`, every call creates a lead.
+
+        A tracked website can capture form leads without any code: turn on lead capture for the site. Requires the Ads add-on.
+      operationId: createLead
+      requestBody:
+        content:
+          application/json:
+            example:
+              profileId: 6a0000000000000000000001
+              email: ana@example.com
+              fields:
+                full_name: Ana Garcia
+                company: Acme
+              formName: Demo request
+              leadId: crm_4821
+              sourceUrl: https://example.com/demo?utm_source=facebook
+              clickIds:
+                fbclid: IwAR2xyz
+            schema:
+              $ref: "#/components/schemas/createLead_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createLead_201_response"
+          description: The lead was created.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createLead_200_response"
+          description: "A lead with this `leadId` was already stored: it is returned\
+            \ unchanged."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads add-on required.
+        "404":
+          description: The profile is not reachable with this key (`profile_not_found`).
+      security:
+      - bearerAuth: []
+      summary: Create a lead from your own form
+      tags:
+      - Lead Gen
+      x-resource-group: contacts
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -75653,6 +75726,7 @@ paths:
           - web
           - salesforce
           - postback
+          - form_leads
           type: string
         style: form
       - description: "Only events sent to this ad platform, such as `metaads` or `googleads`."
@@ -97700,6 +97774,14 @@ components:
           isChecked: true
         - checkboxKey: checkboxKey
           isChecked: true
+        attribution:
+          sourceUrl: sourceUrl
+          clickIds:
+            key: clickIds
+          siteId: siteId
+          utm:
+            key: utm
+          visitorId: visitorId
         createdTime: createdTime
         currency: currency
         id: id
@@ -97715,12 +97797,14 @@ components:
           description: Zernio lead id.
           type: string
         platform:
-          description: The ad network the lead came from.
+          description: "The ad network the lead came from. `web` is a lead from your\
+            \ own form: a tracked website with lead capture on, or `POST /v1/leads`."
           enum:
           - meta
           - google
           - linkedin
           - tiktok
+          - web
           - null
           nullable: true
           type: string
@@ -97821,6 +97905,8 @@ components:
           format: date-time
           nullable: true
           type: string
+        attribution:
+          $ref: "#/components/schemas/AdLead_attribution"
     ConnectHandoffLink:
       description: "Only with `handoff=true`: the link to show as a QR code."
       example:
@@ -140129,6 +140215,7 @@ components:
             - web
             - salesforce
             - postback
+            - form_leads
             type: string
           nullable: true
           type: array
@@ -212349,6 +212436,14 @@ components:
             isChecked: true
           - checkboxKey: checkboxKey
             isChecked: true
+          attribution:
+            sourceUrl: sourceUrl
+            clickIds:
+              key: clickIds
+            siteId: siteId
+            utm:
+              key: utm
+            visitorId: visitorId
           createdTime: createdTime
           currency: currency
           id: id
@@ -212379,6 +212474,14 @@ components:
             isChecked: true
           - checkboxKey: checkboxKey
             isChecked: true
+          attribution:
+            sourceUrl: sourceUrl
+            clickIds:
+              key: clickIds
+            siteId: siteId
+            utm:
+              key: utm
+            visitorId: visitorId
           createdTime: createdTime
           currency: currency
           id: id
@@ -212494,6 +212597,14 @@ components:
             isChecked: true
           - checkboxKey: checkboxKey
             isChecked: true
+          attribution:
+            sourceUrl: sourceUrl
+            clickIds:
+              key: clickIds
+            siteId: siteId
+            utm:
+              key: utm
+            visitorId: visitorId
           createdTime: createdTime
           currency: currency
           id: id
@@ -212511,6 +212622,154 @@ components:
           type: string
         lead:
           $ref: "#/components/schemas/AdLead"
+    createLead_request:
+      properties:
+        profileId:
+          description: The profile the lead belongs to.
+          type: string
+        email:
+          description: Required unless phone is given.
+          format: email
+          type: string
+        phone:
+          description: Required unless email is given. E.164 is best.
+          type: string
+        fields:
+          additionalProperties:
+            type: string
+          description: "Other answers, field name to value (`full_name`, `company`,\
+            \ ...). Stored on the lead, never sent to an ad platform."
+          maxProperties: 50
+        formId:
+          description: Your id for the form. Defaults to `api`.
+          maxLength: 200
+          type: string
+        formName:
+          maxLength: 200
+          type: string
+        leadId:
+          description: "Your id for this lead (a CRM id, a submission id). Makes the\
+            \ call idempotent."
+          maxLength: 128
+          type: string
+        submittedAt:
+          description: When the form was submitted. Defaults to now.
+          format: date-time
+          type: string
+        sourceUrl:
+          description: "The page the form was submitted on, with its query string."
+          format: uri
+          type: string
+        visitorId:
+          description: "The Zernio tag visitor id, from the `_zid` cookie."
+          type: string
+        clickIds:
+          additionalProperties:
+            type: string
+          description: "Ad click and browser ids: `fbclid` or `fbc`, `fbp`, `gclid`,\
+            \ `gbraid`, `wbraid`, `ttclid`, `msclkid`, `li_fat_id`, ..."
+        utm:
+          additionalProperties:
+            type: string
+          description: "`utm_source`, `utm_campaign`, ..."
+      required:
+      - profileId
+    createLead_201_response:
+      example:
+        created: true
+        lead:
+          formId: formId
+          fieldData:
+          - "{}"
+          - "{}"
+          contactId: contactId
+          campaignId: campaignId
+          conversationId: conversationId
+          isOrganic: true
+          webhookDeliveredAt: 2000-01-23T04:56:07.000+00:00
+          platform: meta
+          contentNotRetained: true
+          accountId: accountId
+          statusChangedAt: 2000-01-23T04:56:07.000+00:00
+          adId: adId
+          formName: formName
+          consents:
+          - checkboxKey: checkboxKey
+            isChecked: true
+          - checkboxKey: checkboxKey
+            isChecked: true
+          attribution:
+            sourceUrl: sourceUrl
+            clickIds:
+              key: clickIds
+            siteId: siteId
+            utm:
+              key: utm
+            visitorId: visitorId
+          createdTime: createdTime
+          currency: currency
+          id: id
+          fields:
+            key: fields
+          value: 0.8008281904610115
+          leadgenId: leadgenId
+          firstContactedAt: 2000-01-23T04:56:07.000+00:00
+          adsetId: adsetId
+          status: new
+      properties:
+        lead:
+          $ref: "#/components/schemas/AdLead"
+        created:
+          description: Always true here.
+          type: boolean
+    createLead_200_response:
+      example:
+        created: true
+        lead:
+          formId: formId
+          fieldData:
+          - "{}"
+          - "{}"
+          contactId: contactId
+          campaignId: campaignId
+          conversationId: conversationId
+          isOrganic: true
+          webhookDeliveredAt: 2000-01-23T04:56:07.000+00:00
+          platform: meta
+          contentNotRetained: true
+          accountId: accountId
+          statusChangedAt: 2000-01-23T04:56:07.000+00:00
+          adId: adId
+          formName: formName
+          consents:
+          - checkboxKey: checkboxKey
+            isChecked: true
+          - checkboxKey: checkboxKey
+            isChecked: true
+          attribution:
+            sourceUrl: sourceUrl
+            clickIds:
+              key: clickIds
+            siteId: siteId
+            utm:
+              key: utm
+            visitorId: visitorId
+          createdTime: createdTime
+          currency: currency
+          id: id
+          fields:
+            key: fields
+          value: 0.8008281904610115
+          leadgenId: leadgenId
+          firstContactedAt: 2000-01-23T04:56:07.000+00:00
+          adsetId: adsetId
+          status: new
+      properties:
+        lead:
+          $ref: "#/components/schemas/AdLead"
+        created:
+          description: Always false here.
+          type: boolean
     listLeadForms_200_response:
       example:
         pagination:
@@ -218264,6 +218523,7 @@ components:
             - web
             - salesforce
             - postback
+            - form_leads
             type: string
           minItems: 1
           type: array
@@ -231145,6 +231405,36 @@ components:
           description: "What the transfer paid for, when Zernio knows it: the campaign\
             \ name for a creator campaign payout; null otherwise"
           nullable: true
+          type: string
+    AdLead_attribution:
+      description: "`web` leads only: where the lead came from. Its stage events (`QualifiedLead`,\
+        \ `Purchase`) carry these so the ad platforms can match them. Null for ad\
+        \ network leads."
+      example:
+        sourceUrl: sourceUrl
+        clickIds:
+          key: clickIds
+        siteId: siteId
+        utm:
+          key: utm
+        visitorId: visitorId
+      properties:
+        clickIds:
+          additionalProperties:
+            type: string
+          description: "Ad click and browser ids of the visit (`fbc`, `fbp`, `gclid`,\
+            \ `ttclid`, ...)."
+        utm:
+          additionalProperties:
+            type: string
+        visitorId:
+          description: The Zernio tag visitor id (`_zid`).
+          type: string
+        sourceUrl:
+          description: The page the form was submitted on.
+          type: string
+        siteId:
+          description: "The tracked website, for a website form lead."
           type: string
     ConnectHandoff_accounts_inner:
       example:

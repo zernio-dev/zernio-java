@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.702.1
+- API version: 1.703.0
 
-- Build date: 2026-11-19T22:56:47.059691287Z[Etc/UTC]
+- Build date: 2026-11-19T23:15:12.853799055Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.702.1</version>
+  <version>1.703.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.702.1"
+compile "dev.zernio:zernio-sdk:1.703.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.702.1.jar`
+- `target/zernio-sdk-1.703.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1995,6 +1995,8 @@ Class | Method | HTTP request | Description
 *LeadGenApi* | [**archiveLeadFormWithHttpInfo**](docs/LeadGenApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
 *LeadGenApi* | [**countLeads**](docs/LeadGenApi.md#countLeads) | **GET** /v1/ads/leads/counts | Count leads by status
 *LeadGenApi* | [**countLeadsWithHttpInfo**](docs/LeadGenApi.md#countLeadsWithHttpInfo) | **GET** /v1/ads/leads/counts | Count leads by status
+*LeadGenApi* | [**createLead**](docs/LeadGenApi.md#createLead) | **POST** /v1/leads | Create a lead from your own form
+*LeadGenApi* | [**createLeadWithHttpInfo**](docs/LeadGenApi.md#createLeadWithHttpInfo) | **POST** /v1/leads | Create a lead from your own form
 *LeadGenApi* | [**createLeadForm**](docs/LeadGenApi.md#createLeadForm) | **POST** /v1/ads/lead-forms | Create a lead form
 *LeadGenApi* | [**createLeadFormWithHttpInfo**](docs/LeadGenApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a lead form
 *LeadGenApi* | [**createTestLead**](docs/LeadGenApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
@@ -2846,6 +2848,7 @@ Class | Method | HTTP request | Description
  - [AdKeywordMetrics](docs/AdKeywordMetrics.md)
  - [AdKeywordQuality](docs/AdKeywordQuality.md)
  - [AdLead](docs/AdLead.md)
+ - [AdLeadAttribution](docs/AdLeadAttribution.md)
  - [AdLeadConsent](docs/AdLeadConsent.md)
  - [AdMetricRow](docs/AdMetricRow.md)
  - [AdMetricRowDailyInner](docs/AdMetricRowDailyInner.md)
@@ -3707,10 +3710,13 @@ Class | Method | HTTP request | Description
  - [CreateInboxLabelRequest](docs/CreateInboxLabelRequest.md)
  - [CreateInviteToken201Response](docs/CreateInviteToken201Response.md)
  - [CreateInviteTokenRequest](docs/CreateInviteTokenRequest.md)
+ - [CreateLead200Response](docs/CreateLead200Response.md)
+ - [CreateLead201Response](docs/CreateLead201Response.md)
  - [CreateLeadForm200Response](docs/CreateLeadForm200Response.md)
  - [CreateLeadFormRequest](docs/CreateLeadFormRequest.md)
  - [CreateLeadFormRequestPlatformSpecificData](docs/CreateLeadFormRequestPlatformSpecificData.md)
  - [CreateLeadFormRequestQuestionsInner](docs/CreateLeadFormRequestQuestionsInner.md)
+ - [CreateLeadRequest](docs/CreateLeadRequest.md)
  - [CreateMessagingAd200Response](docs/CreateMessagingAd200Response.md)
  - [CreateMessagingAd200ResponseResultsInner](docs/CreateMessagingAd200ResponseResultsInner.md)
  - [CreateMessagingAd201Response](docs/CreateMessagingAd201Response.md)
