@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CalendarEventRemindersOverridesInner.JSON_PROPERTY_METHOD,
   CalendarEventRemindersOverridesInner.JSON_PROPERTY_MINUTES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T11:04:54.623320602Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T11:09:30.465412232Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CalendarEventRemindersOverridesInner {
   /**
    * Outlook reminders always read as &#x60;popup&#x60;.
