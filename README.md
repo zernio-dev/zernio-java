@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.679.2
+- API version: 1.680.0
 
-- Build date: 2026-11-19T01:15:15.246188972Z[Etc/UTC]
+- Build date: 2026-11-19T08:33:33.202078948Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.679.2</version>
+  <version>1.680.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.679.2"
+compile "dev.zernio:zernio-sdk:1.680.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.679.2.jar`
+- `target/zernio-sdk-1.680.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4144,7 +4144,8 @@ Class | Method | HTTP request | Description
  - [GetAdPreviews200Response](docs/GetAdPreviews200Response.md)
  - [GetAdReview200Response](docs/GetAdReview200Response.md)
  - [GetAdReview200ResponseReview](docs/GetAdReview200ResponseReview.md)
- - [GetAdReview200ResponseReviewPolicyTopicsInner](docs/GetAdReview200ResponseReviewPolicyTopicsInner.md)
+ - [GetAdReview200ResponseReviewAssetGroup](docs/GetAdReview200ResponseReviewAssetGroup.md)
+ - [GetAdReview200ResponseReviewAssetGroupAssetsInner](docs/GetAdReview200ResponseReviewAssetGroupAssetsInner.md)
  - [GetAdReview200ResponseReviewRejectionsInner](docs/GetAdReview200ResponseReviewRejectionsInner.md)
  - [GetAdReview200ResponseReviewRejectionsInnerContent](docs/GetAdReview200ResponseReviewRejectionsInnerContent.md)
  - [GetAdReview200ResponseReviewReviewFeedback](docs/GetAdReview200ResponseReviewReviewFeedback.md)
@@ -4661,11 +4662,13 @@ Class | Method | HTTP request | Description
  - [GoogleNetworkSettings](docs/GoogleNetworkSettings.md)
  - [GooglePmaxAssetGroup](docs/GooglePmaxAssetGroup.md)
  - [GooglePmaxAssetGroupAssetsInner](docs/GooglePmaxAssetGroupAssetsInner.md)
+ - [GooglePmaxAssetGroupAssetsInnerPolicySummary](docs/GooglePmaxAssetGroupAssetsInnerPolicySummary.md)
  - [GooglePmaxAssetGroupDetail](docs/GooglePmaxAssetGroupDetail.md)
  - [GooglePmaxAssetGroupInput](docs/GooglePmaxAssetGroupInput.md)
  - [GooglePmaxAssetGroupInputImages](docs/GooglePmaxAssetGroupInputImages.md)
  - [GooglePmaxAssetGroupUpdate](docs/GooglePmaxAssetGroupUpdate.md)
  - [GooglePmaxAssetGroupUpdateImages](docs/GooglePmaxAssetGroupUpdateImages.md)
+ - [GooglePolicyTopicEntry](docs/GooglePolicyTopicEntry.md)
  - [GoogleRecommendation](docs/GoogleRecommendation.md)
  - [GoogleRecommendationImpact](docs/GoogleRecommendationImpact.md)
  - [GoogleRecommendationMetrics](docs/GoogleRecommendationMetrics.md)

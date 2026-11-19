@@ -1,0 +1,17 @@
+
+
+# GooglePolicyTopicEntry
+
+One Google PolicyTopicEntry: the policy a finding is about and its effect on serving.
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**topic** | **String** |  |  [optional] |
+|**type** | **String** | PROHIBITED, LIMITED, FULLY_LIMITED, DESCRIPTIVE, BROADENING, AREA_OF_INTEREST_ONLY. |  [optional] |
+|**evidences** | **List&lt;Object&gt;** | Google&#39;s PolicyTopicEvidence objects, verbatim. |  [optional] |
+|**constraints** | **List&lt;Object&gt;** | Google&#39;s PolicyTopicConstraint objects, verbatim. |  [optional] |
+
+
+

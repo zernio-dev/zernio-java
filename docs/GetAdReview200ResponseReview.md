@@ -14,8 +14,9 @@
 |**forbiddenLocations** | **List&lt;String&gt;** |  |  [optional] |
 |**forbiddenOperatingSystems** | **List&lt;String&gt;** |  |  [optional] |
 |**rejections** | [**List&lt;GetAdReview200ResponseReviewRejectionsInner&gt;**](GetAdReview200ResponseReviewRejectionsInner.md) | One entry per rejected piece of content (TikTok &#x60;reject_info&#x60;). Empty when the ad was approved. |  [optional] |
-|**approvalStatus** | **String** | Google only. ad_group_ad.policy_summary.approval_status, verbatim. |  [optional] |
-|**policyTopics** | [**List&lt;GetAdReview200ResponseReviewPolicyTopicsInner&gt;**](GetAdReview200ResponseReviewPolicyTopicsInner.md) | Google only. ad_group_ad.policy_summary.policy_topic_entries. |  [optional] |
+|**approvalStatus** | **String** | Google only. ad_group_ad.policy_summary.approval_status, verbatim. Performance Max: derived from the asset group&#39;s primary status (see the description). |  [optional] |
+|**policyTopics** | [**List&lt;GooglePolicyTopicEntry&gt;**](GooglePolicyTopicEntry.md) | Google only. ad_group_ad.policy_summary.policy_topic_entries. Performance Max: the entries of every linked asset. |  [optional] |
+|**assetGroup** | [**GetAdReview200ResponseReviewAssetGroup**](GetAdReview200ResponseReviewAssetGroup.md) |  |  [optional] |
 |**reviewFeedback** | [**GetAdReview200ResponseReviewReviewFeedback**](GetAdReview200ResponseReviewReviewFeedback.md) |  |  [optional] |
 |**issues** | **List&lt;Object&gt;** | Meta only. The Ad&#39;s &#x60;issues_info&#x60; objects (&#x60;error_code&#x60;, &#x60;error_message&#x60;, &#x60;error_summary&#x60;, &#x60;error_type&#x60;, &#x60;level&#x60;), verbatim. |  [optional] |
 |**readAt** | **OffsetDateTime** | When the verdict was read from the platform. |  [optional] |

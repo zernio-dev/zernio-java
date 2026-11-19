@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.679.2
+  version: 1.680.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -59656,6 +59656,15 @@ paths:
 
         The `forbidden*` arrays are TikTok-only and always empty on Google.
 
+        ### Google Performance Max
+
+        A Performance Max "ad" is an asset group, which has no `policy_summary` of its own. Google reports the group's review through `asset_group.primary_status` and `primary_status_reasons`, and reviews each linked asset separately (`asset_group_asset.policy_summary`). The response maps both onto the same fields as other Google ads:
+
+        - `approvalStatus`: DISAPPROVED when the reasons include ASSET_GROUP_DISAPPROVED, UNDER_REVIEW for ASSET_GROUP_UNDER_REVIEW or a PENDING group, APPROVED_LIMITED for ASSET_GROUP_LIMITED or a LIMITED group, APPROVED for an ELIGIBLE group, null otherwise (for example a group that is not serving only because its campaign is paused or ended).
+        - `reviewStatus`: REVIEW_IN_PROGRESS while the group or any linked asset is still in review, otherwise the least settled asset review status (UNDER_APPEAL, ELIGIBLE_MAY_SERVE, REVIEWED).
+        - `policyTopics`: the policy topic entries of every linked asset. Each PROHIBITED topic is also listed in `rejections`. A disapproved group whose assets name no PROHIBITED topic gets one rejection with reason ASSET_GROUP_DISAPPROVED.
+        - `assetGroup`: the group's `primaryStatus` and `primaryStatusReasons` verbatim, and each linked asset's own `approvalStatus`, `reviewStatus` and `policyTopics`. Removed asset links are left out.
+
         ### Meta (Facebook and Instagram ads)
 
         Reads the Ad's `ad_review_feedback`, `effective_status` and `issues_info` live.
@@ -67792,6 +67801,8 @@ paths:
       description: |
         Lists a Performance Max campaign's asset groups with their linked text, image and YouTube assets.
 
+        Each asset carries Google's policy review of it in that group (`policySummary`), and each group its `primaryStatus` and `primaryStatusReasons`, so a disapproved asset or group shows here without a separate call. `GET /v1/ads/{adId}/review` reads the same verdict live for one asset group.
+
         campaignId is the platform campaign id returned by creation or the campaign list. The campaign must be visible to the caller.
 
         ### Caching
@@ -67830,6 +67841,10 @@ paths:
                     fieldType: HEADLINE
                     status: ENABLED
                     text: Schedule posts
+                    policySummary:
+                      approvalStatus: APPROVED
+                      reviewStatus: REVIEWED
+                      policyTopics: []
                 cachedAt: 2026-09-10T09:00:00Z
                 stale: false
               schema:
@@ -108294,6 +108309,8 @@ components:
 
         On the other networks the review shows only in the delivery status, so an ad that leaves review paused sends no `approved` event.
 
+        On Google Performance Max the reviewed object is the asset group (the ad Zernio syncs for PMax): it fires when the group's primary status reports ASSET_GROUP_DISAPPROVED (`rejected`) or leaves ASSET_GROUP_UNDER_REVIEW for an eligible state (`approved`).
+
         Detected by Zernio's own ad sync (and, for Meta, the review poll), so it arrives within one sync cycle of the platform's decision, not instantly. Each outcome is delivered at most once per ad per 24 hours.
       example:
         test: true
@@ -127091,6 +127108,26 @@ components:
           resourceName: resourceName
           source: source
           text: text
+          policySummary:
+            approvalStatus: approvalStatus
+            reviewStatus: reviewStatus
+            policyTopics:
+            - topic: topic
+              type: type
+              evidences:
+              - "{}"
+              - "{}"
+              constraints:
+              - "{}"
+              - "{}"
+            - topic: topic
+              type: type
+              evidences:
+              - "{}"
+              - "{}"
+              constraints:
+              - "{}"
+              - "{}"
           fieldType: fieldType
           status: status
         - youtubeVideoId: youtubeVideoId
@@ -127098,6 +127135,26 @@ components:
           resourceName: resourceName
           source: source
           text: text
+          policySummary:
+            approvalStatus: approvalStatus
+            reviewStatus: reviewStatus
+            policyTopics:
+            - topic: topic
+              type: type
+              evidences:
+              - "{}"
+              - "{}"
+              constraints:
+              - "{}"
+              - "{}"
+            - topic: topic
+              type: type
+              evidences:
+              - "{}"
+              - "{}"
+              constraints:
+              - "{}"
+              - "{}"
           fieldType: fieldType
           status: status
         path1: path1
@@ -127177,6 +127234,37 @@ components:
       - primaryStatusReasons
       - resourceName
       - status
+    GooglePolicyTopicEntry:
+      description: "One Google PolicyTopicEntry: the policy a finding is about and\
+        \ its effect on serving."
+      example:
+        topic: topic
+        type: type
+        evidences:
+        - "{}"
+        - "{}"
+        constraints:
+        - "{}"
+        - "{}"
+      properties:
+        topic:
+          nullable: true
+          type: string
+        type:
+          description: "PROHIBITED, LIMITED, FULLY_LIMITED, DESCRIPTIVE, BROADENING,\
+            \ AREA_OF_INTEREST_ONLY."
+          nullable: true
+          type: string
+        evidences:
+          description: "Google's PolicyTopicEvidence objects, verbatim."
+          items:
+            type: object
+          type: array
+        constraints:
+          description: "Google's PolicyTopicConstraint objects, verbatim."
+          items:
+            type: object
+          type: array
     GooglePmaxAssetGroupDetail:
       allOf:
       - $ref: "#/components/schemas/GooglePmaxAssetGroup"
@@ -127213,6 +127301,26 @@ components:
           resourceName: resourceName
           source: source
           text: text
+          policySummary:
+            approvalStatus: approvalStatus
+            reviewStatus: reviewStatus
+            policyTopics:
+            - topic: topic
+              type: type
+              evidences:
+              - "{}"
+              - "{}"
+              constraints:
+              - "{}"
+              - "{}"
+            - topic: topic
+              type: type
+              evidences:
+              - "{}"
+              - "{}"
+              constraints:
+              - "{}"
+              - "{}"
           fieldType: fieldType
           status: status
         - youtubeVideoId: youtubeVideoId
@@ -127220,6 +127328,26 @@ components:
           resourceName: resourceName
           source: source
           text: text
+          policySummary:
+            approvalStatus: approvalStatus
+            reviewStatus: reviewStatus
+            policyTopics:
+            - topic: topic
+              type: type
+              evidences:
+              - "{}"
+              - "{}"
+              constraints:
+              - "{}"
+              - "{}"
+            - topic: topic
+              type: type
+              evidences:
+              - "{}"
+              - "{}"
+              constraints:
+              - "{}"
+              - "{}"
           fieldType: fieldType
           status: status
         path1: path1
@@ -127772,7 +127900,9 @@ components:
           - $ref: "#/components/schemas/AdReviewStatus"
           description: "Platform review state of this ad, independent of delivery\
             \ `status` / `configuredStatus`. Absent when the platform reports no review\
-            \ signal."
+            \ signal. Google: from `ad_group_ad.policy_summary.approval_status`, and\
+            \ for a Performance Max asset group from its primary status (DISAPPROVED\
+            \ -> `rejected`, under review -> `in_review`, ELIGIBLE or LIMITED -> `approved`)."
         adType:
           enum:
           - boost
@@ -195905,35 +196035,127 @@ components:
           type: array
         content:
           $ref: "#/components/schemas/getAdReview_200_response_review_rejections_inner_content"
-    getAdReview_200_response_review_policyTopics_inner:
+    getAdReview_200_response_review_assetGroup_assets_inner:
       example:
-        topic: topic
-        type: type
-        evidences:
-        - "{}"
-        - "{}"
-        constraints:
-        - "{}"
-        - "{}"
+        approvalStatus: approvalStatus
+        assetResourceName: assetResourceName
+        reviewStatus: reviewStatus
+        policyTopics:
+        - topic: topic
+          type: type
+          evidences:
+          - "{}"
+          - "{}"
+          constraints:
+          - "{}"
+          - "{}"
+        - topic: topic
+          type: type
+          evidences:
+          - "{}"
+          - "{}"
+          constraints:
+          - "{}"
+          - "{}"
+        fieldType: fieldType
       properties:
-        topic:
+        assetResourceName:
+          description: "customers/{customerId}/assets/{assetId}"
+          type: string
+        fieldType:
+          description: "The asset's role in the group, such as HEADLINE or MARKETING_IMAGE."
           nullable: true
           type: string
-        type:
-          description: "PROHIBITED, LIMITED, FULLY_LIMITED, DESCRIPTIVE, BROADENING,\
-            \ AREA_OF_INTEREST_ONLY."
+        approvalStatus:
+          description: "asset_group_asset.policy_summary.approval_status, verbatim."
           nullable: true
           type: string
-        evidences:
-          description: "Google's PolicyTopicEvidence objects, verbatim."
+        reviewStatus:
+          description: "asset_group_asset.policy_summary.review_status, verbatim."
+          nullable: true
+          type: string
+        policyTopics:
           items:
-            type: object
+            $ref: "#/components/schemas/GooglePolicyTopicEntry"
           type: array
-        constraints:
-          description: "Google's PolicyTopicConstraint objects, verbatim."
+      required:
+      - approvalStatus
+      - assetResourceName
+      - fieldType
+      - policyTopics
+      - reviewStatus
+    getAdReview_200_response_review_assetGroup:
+      description: Google Performance Max only. The asset group's serving status and
+        each linked asset's policy review.
+      example:
+        assets:
+        - approvalStatus: approvalStatus
+          assetResourceName: assetResourceName
+          reviewStatus: reviewStatus
+          policyTopics:
+          - topic: topic
+            type: type
+            evidences:
+            - "{}"
+            - "{}"
+            constraints:
+            - "{}"
+            - "{}"
+          - topic: topic
+            type: type
+            evidences:
+            - "{}"
+            - "{}"
+            constraints:
+            - "{}"
+            - "{}"
+          fieldType: fieldType
+        - approvalStatus: approvalStatus
+          assetResourceName: assetResourceName
+          reviewStatus: reviewStatus
+          policyTopics:
+          - topic: topic
+            type: type
+            evidences:
+            - "{}"
+            - "{}"
+            constraints:
+            - "{}"
+            - "{}"
+          - topic: topic
+            type: type
+            evidences:
+            - "{}"
+            - "{}"
+            constraints:
+            - "{}"
+            - "{}"
+          fieldType: fieldType
+        primaryStatusReasons:
+        - primaryStatusReasons
+        - primaryStatusReasons
+        primaryStatus: primaryStatus
+      properties:
+        primaryStatus:
+          description: "asset_group.primary_status, verbatim: ELIGIBLE, LIMITED, NOT_ELIGIBLE,\
+            \ PAUSED, PENDING, REMOVED."
+          nullable: true
+          type: string
+        primaryStatusReasons:
+          description: "asset_group.primary_status_reasons, verbatim, such as ASSET_GROUP_DISAPPROVED,\
+            \ ASSET_GROUP_UNDER_REVIEW, ASSET_GROUP_LIMITED, CAMPAIGN_PAUSED. Empty\
+            \ when the group serves without issues."
           items:
-            type: object
+            type: string
           type: array
+        assets:
+          items:
+            $ref: "#/components/schemas/getAdReview_200_response_review_assetGroup_assets_inner"
+          type: array
+      required:
+      - assets
+      - primaryStatus
+      - primaryStatusReasons
     getAdReview_200_response_review_reviewFeedback:
       description: "Meta only. The Ad's `ad_review_feedback`, verbatim. Both maps\
         \ are empty when Meta returned no feedback (approved or in-review ad)."
@@ -195963,7 +196185,6 @@ components:
         - forbiddenLocations
         - forbiddenLocations
         approvalStatus: approvalStatus
-        approved: true
         rejections:
         - forbiddenAges:
           - forbiddenAges
@@ -196015,7 +196236,6 @@ components:
         forbiddenPlacements:
         - forbiddenPlacements
         - forbiddenPlacements
-        reviewStatus: reviewStatus
         policyTopics:
         - topic: topic
           type: type
@@ -196037,6 +196257,56 @@ components:
         issues:
         - "{}"
         - "{}"
+        assetGroup:
+          assets:
+          - approvalStatus: approvalStatus
+            assetResourceName: assetResourceName
+            reviewStatus: reviewStatus
+            policyTopics:
+            - topic: topic
+              type: type
+              evidences:
+              - "{}"
+              - "{}"
+              constraints:
+              - "{}"
+              - "{}"
+            - topic: topic
+              type: type
+              evidences:
+              - "{}"
+              - "{}"
+              constraints:
+              - "{}"
+              - "{}"
+            fieldType: fieldType
+          - approvalStatus: approvalStatus
+            assetResourceName: assetResourceName
+            reviewStatus: reviewStatus
+            policyTopics:
+            - topic: topic
+              type: type
+              evidences:
+              - "{}"
+              - "{}"
+              constraints:
+              - "{}"
+              - "{}"
+            - topic: topic
+              type: type
+              evidences:
+              - "{}"
+              - "{}"
+              constraints:
+              - "{}"
+              - "{}"
+            fieldType: fieldType
+          primaryStatusReasons:
+          - primaryStatusReasons
+          - primaryStatusReasons
+          primaryStatus: primaryStatus
+        approved: true
+        reviewStatus: reviewStatus
       properties:
         approved:
           description: "TikTok `is_approved`. Google and Meta: derived from the platform\
@@ -196072,14 +196342,19 @@ components:
             $ref: "#/components/schemas/getAdReview_200_response_review_rejections_inner"
           type: array
         approvalStatus:
-          description: "Google only. ad_group_ad.policy_summary.approval_status, verbatim."
+          description: "Google only. ad_group_ad.policy_summary.approval_status, verbatim.\
+            \ Performance Max: derived from the asset group's primary status (see\
+            \ the description)."
           nullable: true
           type: string
         policyTopics:
-          description: Google only. ad_group_ad.policy_summary.policy_topic_entries.
+          description: "Google only. ad_group_ad.policy_summary.policy_topic_entries.\
+            \ Performance Max: the entries of every linked asset."
           items:
-            $ref: "#/components/schemas/getAdReview_200_response_review_policyTopics_inner"
+            $ref: "#/components/schemas/GooglePolicyTopicEntry"
           type: array
+        assetGroup:
+          $ref: "#/components/schemas/getAdReview_200_response_review_assetGroup"
         reviewFeedback:
           $ref: "#/components/schemas/getAdReview_200_response_review_reviewFeedback"
         issues:
@@ -196104,7 +196379,6 @@ components:
           - forbiddenLocations
           - forbiddenLocations
           approvalStatus: approvalStatus
-          approved: true
           rejections:
           - forbiddenAges:
             - forbiddenAges
@@ -196156,7 +196430,6 @@ components:
           forbiddenPlacements:
           - forbiddenPlacements
           - forbiddenPlacements
-          reviewStatus: reviewStatus
           policyTopics:
           - topic: topic
             type: type
@@ -196178,6 +196451,56 @@ components:
           issues:
           - "{}"
           - "{}"
+          assetGroup:
+            assets:
+            - approvalStatus: approvalStatus
+              assetResourceName: assetResourceName
+              reviewStatus: reviewStatus
+              policyTopics:
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
+              fieldType: fieldType
+            - approvalStatus: approvalStatus
+              assetResourceName: assetResourceName
+              reviewStatus: reviewStatus
+              policyTopics:
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
+              fieldType: fieldType
+            primaryStatusReasons:
+            - primaryStatusReasons
+            - primaryStatusReasons
+            primaryStatus: primaryStatus
+          approved: true
+          reviewStatus: reviewStatus
         platformAdId: platformAdId
         platform: platform
       properties:
@@ -203583,6 +203906,26 @@ components:
             resourceName: resourceName
             source: source
             text: text
+            policySummary:
+              approvalStatus: approvalStatus
+              reviewStatus: reviewStatus
+              policyTopics:
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
             fieldType: fieldType
             status: status
           - youtubeVideoId: youtubeVideoId
@@ -203590,6 +203933,26 @@ components:
             resourceName: resourceName
             source: source
             text: text
+            policySummary:
+              approvalStatus: approvalStatus
+              reviewStatus: reviewStatus
+              policyTopics:
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
             fieldType: fieldType
             status: status
           path1: path1
@@ -203616,6 +203979,26 @@ components:
             resourceName: resourceName
             source: source
             text: text
+            policySummary:
+              approvalStatus: approvalStatus
+              reviewStatus: reviewStatus
+              policyTopics:
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
             fieldType: fieldType
             status: status
           - youtubeVideoId: youtubeVideoId
@@ -203623,6 +204006,26 @@ components:
             resourceName: resourceName
             source: source
             text: text
+            policySummary:
+              approvalStatus: approvalStatus
+              reviewStatus: reviewStatus
+              policyTopics:
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
             fieldType: fieldType
             status: status
           path1: path1
@@ -203764,6 +204167,26 @@ components:
             resourceName: resourceName
             source: source
             text: text
+            policySummary:
+              approvalStatus: approvalStatus
+              reviewStatus: reviewStatus
+              policyTopics:
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
             fieldType: fieldType
             status: status
           - youtubeVideoId: youtubeVideoId
@@ -203771,6 +204194,26 @@ components:
             resourceName: resourceName
             source: source
             text: text
+            policySummary:
+              approvalStatus: approvalStatus
+              reviewStatus: reviewStatus
+              policyTopics:
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
+              - topic: topic
+                type: type
+                evidences:
+                - "{}"
+                - "{}"
+                constraints:
+                - "{}"
+                - "{}"
             fieldType: fieldType
             status: status
           path1: path1
@@ -237549,6 +237992,48 @@ components:
           maxItems: 5
           minItems: 1
           type: array
+    GooglePmaxAssetGroup_assets_inner_policySummary:
+      description: Google's policy review of this asset in this group (asset_group_asset.policy_summary).
+        Fields are null and policyTopics empty when Google has not reviewed it.
+      example:
+        approvalStatus: approvalStatus
+        reviewStatus: reviewStatus
+        policyTopics:
+        - topic: topic
+          type: type
+          evidences:
+          - "{}"
+          - "{}"
+          constraints:
+          - "{}"
+          - "{}"
+        - topic: topic
+          type: type
+          evidences:
+          - "{}"
+          - "{}"
+          constraints:
+          - "{}"
+          - "{}"
+      properties:
+        approvalStatus:
+          description: "APPROVED, APPROVED_LIMITED, AREA_OF_INTEREST_ONLY, DISAPPROVED\
+            \ or UNKNOWN, verbatim."
+          nullable: true
+          type: string
+        reviewStatus:
+          description: "REVIEW_IN_PROGRESS, REVIEWED, UNDER_APPEAL or ELIGIBLE_MAY_SERVE,\
+            \ verbatim."
+          nullable: true
+          type: string
+        policyTopics:
+          items:
+            $ref: "#/components/schemas/GooglePolicyTopicEntry"
+          type: array
+      required:
+      - approvalStatus
+      - policyTopics
+      - reviewStatus
     GooglePmaxAssetGroup_assets_inner:
       example:
         youtubeVideoId: youtubeVideoId
@@ -237556,6 +238041,26 @@ components:
         resourceName: resourceName
         source: source
         text: text
+        policySummary:
+          approvalStatus: approvalStatus
+          reviewStatus: reviewStatus
+          policyTopics:
+          - topic: topic
+            type: type
+            evidences:
+            - "{}"
+            - "{}"
+            constraints:
+            - "{}"
+            - "{}"
+          - topic: topic
+            type: type
+            evidences:
+            - "{}"
+            - "{}"
+            constraints:
+            - "{}"
+            - "{}"
         fieldType: fieldType
         status: status
       properties:
@@ -237570,6 +238075,8 @@ components:
           description: "Who added the asset: ADVERTISER, or AUTOMATICALLY_CREATED\
             \ when Google generated it. Empty when Google does not say."
           type: string
+        policySummary:
+          $ref: "#/components/schemas/GooglePmaxAssetGroup_assets_inner_policySummary"
         text:
           type: string
         imageUrl:
@@ -237579,6 +238086,7 @@ components:
           type: string
       required:
       - fieldType
+      - policySummary
       - resourceName
       - status
     GoogleListingGroupDimension_productCategory:
@@ -243189,7 +243697,7 @@ x-documentation:
 
     Reads that integrations tend to poll have an extra cap of 1,800 requests per hour per team, on a sliding window, counted separately for each group: inbox comments (`GET /v1/inbox/comments` and `GET /v1/inbox/comments/{postId}`), ad comments (`GET /v1/ads/{adId}/comments`) and Google Business reviews (`GET /v1/accounts/{accountId}/gmb-reviews` and `POST /v1/accounts/{accountId}/gmb-reviews/batch`). Past it the API answers 429 with `details.scope` naming the group. Subscribe to the `comment.received`, `review.new` and `review.updated` webhooks instead of polling these routes.
 
-    Analytics reads made with an API key have a cap per team on a 30-second sliding window, on top of the limits above and counted separately for each group: 120 requests for campaign analytics (`GET /v1/ads/campaigns/{campaignId}/analytics`), 300 for ad analytics (`GET /v1/ads/{adId}/analytics`), 150 for ads listings (`GET /v1/ads`, `/v1/ads/tree`, `/v1/ads/timeline`, `/v1/ads/campaigns`, `/v1/ads/performance` and `/v1/ads/alerts`) and 300 for post and inbox analytics (the `/v1/analytics` routes that read stored metrics; the live platform routes such as `/v1/analytics/instagram/*` are not included). Past a cap the API answers 429 with `Retry-After`, `details.scope` naming the group and `details.window`. Read many ads or campaigns in one request with `GET /v1/ads/tree` instead of one request each. Requests from the Zernio dashboard do not count.
+    Analytics reads made with an API key have a cap of 300 requests per team on a 30-second sliding window, on top of the limits above and counted separately for each group: campaign analytics (`GET /v1/ads/campaigns/{campaignId}/analytics`), ad analytics (`GET /v1/ads/{adId}/analytics`), ads listings (`GET /v1/ads`, `/v1/ads/tree`, `/v1/ads/timeline`, `/v1/ads/campaigns`, `/v1/ads/performance` and `/v1/ads/alerts`), post and inbox analytics (the `/v1/analytics` routes that read stored metrics) and account insights (the live platform routes such as `/v1/analytics/instagram/*`). On account-level endpoints (the account insights routes, `/v1/analytics/daily-metrics`, `/v1/metrics/accounts`, `/v1/analytics/dashboard`, `/v1/analytics/best-time`, `/v1/analytics/content-decay`, `/v1/analytics/posting-frequency` and `/v1/analytics/format-breakdown`), a request about one account also counts against that account on that endpoint: 120 requests per hour, answered with `details.scope` `account_route`. Past a cap the API answers 429 with `Retry-After`, `details.scope` naming the group and `details.window`. Read many ads or campaigns in one request with `GET /v1/ads/tree` instead of one request each. Requests from the Zernio dashboard do not count.
 
     Posts themselves are unlimited on every connected account; the rate limit applies only to API request throughput. Zernio also applies per-account daily publish caps as an anti-abuse safeguard (Instagram 100/day, Facebook 100/day, Google Business 100/day, Threads 250/day, X 50/day plus 200 replies for unverified accounts and 2,400 posts a day for verified X accounts, Pinterest 25/day, 50/day for every other platform), plus a 25-posts-per-hour per-account velocity cap.
 
