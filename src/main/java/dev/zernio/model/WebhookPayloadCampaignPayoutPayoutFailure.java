@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCampaignPayoutPayoutFailure.JSON_PROPERTY_AMOUNT_CENTS,
   WebhookPayloadCampaignPayoutPayoutFailure.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T20:43:53.948398977Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T20:49:25.075439735Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCampaignPayoutPayoutFailure {
   public static final String JSON_PROPERTY_TRANSFER_ID = "transferId";
   @javax.annotation.Nonnull

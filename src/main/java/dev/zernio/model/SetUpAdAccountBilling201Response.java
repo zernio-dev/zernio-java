@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   SetUpAdAccountBilling201Response.JSON_PROPERTY_VALIDATE_ONLY,
   SetUpAdAccountBilling201Response.JSON_PROPERTY_NEXT_STEPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T20:43:53.948398977Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T20:49:25.075439735Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetUpAdAccountBilling201Response {
   public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
   @javax.annotation.Nullable

@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   ConversionEventUser.JSON_PROPERTY_VISITOR_ID,
   ConversionEventUser.JSON_PROPERTY_CLICK_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T20:43:53.948398977Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T20:49:25.075439735Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEventUser {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable

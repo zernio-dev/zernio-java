@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CampaignReportSpend.JSON_PROPERTY_CONSUMED_CENTS,
   CampaignReportSpend.JSON_PROPERTY_SETTLED_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T20:43:53.948398977Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T20:49:25.075439735Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignReportSpend {
   public static final String JSON_PROPERTY_BUDGET_CENTS = "budgetCents";
   @javax.annotation.Nonnull
