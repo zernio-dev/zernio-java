@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.689.0
+  version: 1.690.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -175245,6 +175245,7 @@ components:
       example:
         field: administrative_area
         label: State / Province
+        source: regional_street
         value: Dublin
       properties:
         field:
@@ -175256,14 +175257,24 @@ components:
         value:
           example: Dublin
           type: string
+        source:
+          description: "Present when the correction is a Spanish regional street-name\
+            \ form (e.g. 'Artazagane Kalea 5' for 'Calle Artazagane 5') that the carrier\
+            \ validates, rather than the carrier's own correction. Show it for the\
+            \ customer to confirm, never apply it automatically."
+          enum:
+          - regional_street
+          type: string
     validatePhoneNumberKycAddress_400_response_details:
       example:
         addressSuggestions:
         - field: administrative_area
           label: State / Province
+          source: regional_street
           value: Dublin
         - field: administrative_area
           label: State / Province
+          source: regional_street
           value: Dublin
       properties:
         addressSuggestions:
@@ -175278,9 +175289,11 @@ components:
           addressSuggestions:
           - field: administrative_area
             label: State / Province
+            source: regional_street
             value: Dublin
           - field: administrative_area
             label: State / Province
+            source: regional_street
             value: Dublin
         error: error
         type: type

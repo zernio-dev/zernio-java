@@ -7981,8 +7981,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetVoiceCallEstimate200ResponseBillingIncrementSecondsTest.java
-src/test/java/dev/zernio/model/GetVoiceCallEstimate200ResponseRatesTest.java
-src/test/java/dev/zernio/model/GetVoiceCallEstimate200ResponseTrunkTest.java
-src/test/java/dev/zernio/model/VoiceCallLineRatesNetworksInnerTest.java
-src/test/java/dev/zernio/model/VoiceCallLineRatesTest.java
