@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.692.0
+  version: 1.692.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -213203,16 +213203,55 @@ components:
         sentAt:
           format: date-time
           type: string
+    getEvent_200_response_touches_inner_detail:
+      description: Where the touch came from. Each field is present only when known;
+        empty for an event credited before Zernio kept it.
+      example:
+        referrer: referrer
+        utmSource: utmSource
+        answer: answer
+        eventName: eventName
+        utmMedium: utmMedium
+        page: page
+        utmCampaign: utmCampaign
+      properties:
+        referrer:
+          description: "The referring site, such as `google.com`."
+          type: string
+        page:
+          description: The landing page's path.
+          type: string
+        utmSource:
+          type: string
+        utmMedium:
+          type: string
+        utmCampaign:
+          type: string
+        eventName:
+          description: "The earlier event, for a `lead_form` or `event` touch."
+          type: string
+        answer:
+          description: "The buyer's answer, for a `survey` touch."
+          type: string
     getEvent_200_response_touches_inner:
       example:
         at: 2000-01-23T04:56:07.000+00:00
         kind: ad_click
         adAccountId: adAccountId
         campaignId: campaignId
+        detail:
+          referrer: referrer
+          utmSource: utmSource
+          answer: answer
+          eventName: eventName
+          utmMedium: utmMedium
+          page: page
+          utmCampaign: utmCampaign
         credit:
           linear: 0.5
           first_touch: 1
           time_decay: 0.35
+        campaignName: campaignName
         platform: platform
       properties:
         at:
@@ -213233,8 +213272,9 @@ components:
           - survey
           type: string
         platform:
-          description: "The ad platform of the campaign, or the one a survey answer\
-            \ names (Instagram reads as facebook)."
+          description: "The ad platform of the campaign, the one an ad click's click\
+            \ id names (gclid reads as googleads), or the one a survey answer names\
+            \ (Instagram reads as facebook)."
           nullable: true
           type: string
         adAccountId:
@@ -213245,6 +213285,12 @@ components:
             \ named none (search, referral)."
           nullable: true
           type: string
+        campaignName:
+          description: "The campaign's name in the ad account, when Zernio holds it."
+          nullable: true
+          type: string
+        detail:
+          $ref: "#/components/schemas/getEvent_200_response_touches_inner_detail"
         credit:
           additionalProperties:
             type: number
@@ -213261,19 +213307,37 @@ components:
           kind: ad_click
           adAccountId: adAccountId
           campaignId: campaignId
+          detail:
+            referrer: referrer
+            utmSource: utmSource
+            answer: answer
+            eventName: eventName
+            utmMedium: utmMedium
+            page: page
+            utmCampaign: utmCampaign
           credit:
             linear: 0.5
             first_touch: 1
             time_decay: 0.35
+          campaignName: campaignName
           platform: platform
         - at: 2000-01-23T04:56:07.000+00:00
           kind: ad_click
           adAccountId: adAccountId
           campaignId: campaignId
+          detail:
+            referrer: referrer
+            utmSource: utmSource
+            answer: answer
+            eventName: eventName
+            utmMedium: utmMedium
+            page: page
+            utmCampaign: utmCampaign
           credit:
             linear: 0.5
             first_touch: 1
             time_decay: 0.35
+          campaignName: campaignName
           platform: platform
         event:
           eventId: eventId

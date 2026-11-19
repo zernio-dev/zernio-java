@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.692.0
+- API version: 1.692.1
 
-- Build date: 2026-11-19T16:38:05.716880011Z[Etc/UTC]
+- Build date: 2026-11-19T16:57:09.231033118Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.692.0</version>
+  <version>1.692.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.692.0"
+compile "dev.zernio:zernio-sdk:1.692.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.692.0.jar`
+- `target/zernio-sdk-1.692.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4274,6 +4274,7 @@ Class | Method | HTTP request | Description
  - [GetEvent200Response](docs/GetEvent200Response.md)
  - [GetEvent200ResponseDeliveriesInner](docs/GetEvent200ResponseDeliveriesInner.md)
  - [GetEvent200ResponseTouchesInner](docs/GetEvent200ResponseTouchesInner.md)
+ - [GetEvent200ResponseTouchesInnerDetail](docs/GetEvent200ResponseTouchesInnerDetail.md)
  - [GetEventsAccuracy200Response](docs/GetEventsAccuracy200Response.md)
  - [GetEventsAccuracy200ResponseDestinationsInner](docs/GetEventsAccuracy200ResponseDestinationsInner.md)
  - [GetEventsAccuracy200ResponseDestinationsInnerDeliveries](docs/GetEventsAccuracy200ResponseDestinationsInnerDeliveries.md)
