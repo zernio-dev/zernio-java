@@ -6015,7 +6015,7 @@ ApiResponse<[**ListEventNames200Response**](ListEventNames200Response.md)>
 
 ## listEvents
 
-> ListEvents200Response listEvents(profileId, limit, from, to, eventName, source, platform, deliveryStatus, cursor)
+> ListEvents200Response listEvents(profileId, limit, from, to, eventName, source, platform, deliveryStatus, fromAd, campaignId, cursor)
 
 List stored events
 
@@ -6050,9 +6050,11 @@ public class Example {
         String source = "api"; // String | Only events from this source, such as `stripe` for the payments of a connected Stripe account.
         String platform = "platform_example"; // String | Only events sent to this ad platform, such as `metaads` or `googleads`.
         String deliveryStatus = "sent"; // String | Only events whose latest send to a destination (of `platform`, when given) was accepted (`sent`) or was not (`failed`: failed or still retrying).
+        Boolean fromAd = true; // Boolean | `true`: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a `zrn`, or a matched campaign). `false`: only the others.
+        String campaignId = "campaignId_example"; // String | Only events of this ad platform campaign id: matched to it, or behind a Google click of it.
         String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
         try {
-            ListEvents200Response result = apiInstance.listEvents(profileId, limit, from, to, eventName, source, platform, deliveryStatus, cursor);
+            ListEvents200Response result = apiInstance.listEvents(profileId, limit, from, to, eventName, source, platform, deliveryStatus, fromAd, campaignId, cursor);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConversionsApi#listEvents");
@@ -6078,6 +6080,8 @@ public class Example {
 | **source** | **String**| Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. | [optional] [enum: api, relay, hubspot, meta_leads, google_leads, linkedin_leads, tiktok_leads, shopify, woocommerce, stripe, web, salesforce, postback] |
 | **platform** | **String**| Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. | [optional] |
 | **deliveryStatus** | **String**| Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). | [optional] [enum: sent, failed] |
+| **fromAd** | **Boolean**| &#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. | [optional] |
+| **campaignId** | **String**| Only events of this ad platform campaign id: matched to it, or behind a Google click of it. | [optional] |
 | **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
 
 ### Return type
@@ -6104,7 +6108,7 @@ public class Example {
 
 ## listEventsWithHttpInfo
 
-> ApiResponse<ListEvents200Response> listEvents listEventsWithHttpInfo(profileId, limit, from, to, eventName, source, platform, deliveryStatus, cursor)
+> ApiResponse<ListEvents200Response> listEvents listEventsWithHttpInfo(profileId, limit, from, to, eventName, source, platform, deliveryStatus, fromAd, campaignId, cursor)
 
 List stored events
 
@@ -6140,9 +6144,11 @@ public class Example {
         String source = "api"; // String | Only events from this source, such as `stripe` for the payments of a connected Stripe account.
         String platform = "platform_example"; // String | Only events sent to this ad platform, such as `metaads` or `googleads`.
         String deliveryStatus = "sent"; // String | Only events whose latest send to a destination (of `platform`, when given) was accepted (`sent`) or was not (`failed`: failed or still retrying).
+        Boolean fromAd = true; // Boolean | `true`: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a `zrn`, or a matched campaign). `false`: only the others.
+        String campaignId = "campaignId_example"; // String | Only events of this ad platform campaign id: matched to it, or behind a Google click of it.
         String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
         try {
-            ApiResponse<ListEvents200Response> response = apiInstance.listEventsWithHttpInfo(profileId, limit, from, to, eventName, source, platform, deliveryStatus, cursor);
+            ApiResponse<ListEvents200Response> response = apiInstance.listEventsWithHttpInfo(profileId, limit, from, to, eventName, source, platform, deliveryStatus, fromAd, campaignId, cursor);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -6170,6 +6176,8 @@ public class Example {
 | **source** | **String**| Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. | [optional] [enum: api, relay, hubspot, meta_leads, google_leads, linkedin_leads, tiktok_leads, shopify, woocommerce, stripe, web, salesforce, postback] |
 | **platform** | **String**| Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. | [optional] |
 | **deliveryStatus** | **String**| Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). | [optional] [enum: sent, failed] |
+| **fromAd** | **Boolean**| &#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. | [optional] |
+| **campaignId** | **String**| Only events of this ad platform campaign id: matched to it, or behind a Google click of it. | [optional] |
 | **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
 
 ### Return type

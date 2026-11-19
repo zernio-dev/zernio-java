@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.680.1
+- API version: 1.681.0
 
-- Build date: 2026-11-19T09:06:43.685050472Z[Etc/UTC]
+- Build date: 2026-11-19T09:43:23.553331696Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.680.1</version>
+  <version>1.681.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.680.1"
+compile "dev.zernio:zernio-sdk:1.681.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.680.1.jar`
+- `target/zernio-sdk-1.681.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -205,6 +205,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**listAccountsWithHttpInfo**](docs/AccountsApi.md#listAccountsWithHttpInfo) | **GET** /v1/accounts | List accounts
 *AccountsApi* | [**listBusinessPartners**](docs/AccountsApi.md#listBusinessPartners) | **GET** /v1/accounts/{accountId}/business-partners | List partner businesses of the Page
 *AccountsApi* | [**listBusinessPartnersWithHttpInfo**](docs/AccountsApi.md#listBusinessPartnersWithHttpInfo) | **GET** /v1/accounts/{accountId}/business-partners | List partner businesses of the Page
+*AccountsApi* | [**listHubSpotContactProperties**](docs/AccountsApi.md#listHubSpotContactProperties) | **GET** /v1/accounts/{accountId}/hubspot-settings/contact-properties | List HubSpot contact properties
+*AccountsApi* | [**listHubSpotContactPropertiesWithHttpInfo**](docs/AccountsApi.md#listHubSpotContactPropertiesWithHttpInfo) | **GET** /v1/accounts/{accountId}/hubspot-settings/contact-properties | List HubSpot contact properties
 *AccountsApi* | [**listTikTokCommercialMusic**](docs/AccountsApi.md#listTikTokCommercialMusic) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music
 *AccountsApi* | [**listTikTokCommercialMusicWithHttpInfo**](docs/AccountsApi.md#listTikTokCommercialMusicWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music
 *AccountsApi* | [**moveAccountToProfile**](docs/AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
@@ -4688,6 +4690,9 @@ Class | Method | HTTP request | Description
  - [HideAdCommentRequest](docs/HideAdCommentRequest.md)
  - [HideInboxComment200Response](docs/HideInboxComment200Response.md)
  - [HideInboxCommentRequest](docs/HideInboxCommentRequest.md)
+ - [HubSpotContactProperty](docs/HubSpotContactProperty.md)
+ - [HubSpotContactPropertyOptionsInner](docs/HubSpotContactPropertyOptionsInner.md)
+ - [HubSpotQualifiedLeads](docs/HubSpotQualifiedLeads.md)
  - [HubSpotSettings](docs/HubSpotSettings.md)
  - [HubSpotSettingsSyncIssue](docs/HubSpotSettingsSyncIssue.md)
  - [Ids](docs/Ids.md)
@@ -5037,6 +5042,7 @@ Class | Method | HTTP request | Description
  - [ListGoogleSearchConsoleSites200Response](docs/ListGoogleSearchConsoleSites200Response.md)
  - [ListGoogleSearchConsoleSites200ResponseSitesInner](docs/ListGoogleSearchConsoleSites200ResponseSitesInner.md)
  - [ListHighDemandPeriods200Response](docs/ListHighDemandPeriods200Response.md)
+ - [ListHubSpotContactProperties200Response](docs/ListHubSpotContactProperties200Response.md)
  - [ListImessageAudience200Response](docs/ListImessageAudience200Response.md)
  - [ListImessageAvailableNumbers200Response](docs/ListImessageAvailableNumbers200Response.md)
  - [ListImessageAvailableNumbers200ResponseNumbersInner](docs/ListImessageAvailableNumbers200ResponseNumbersInner.md)
@@ -5833,6 +5839,7 @@ Class | Method | HTTP request | Description
  - [StorePixelInstallTagsInner](docs/StorePixelInstallTagsInner.md)
  - [StoredEvent](docs/StoredEvent.md)
  - [StoredEventAd](docs/StoredEventAd.md)
+ - [StoredEventCampaign](docs/StoredEventCampaign.md)
  - [StoredEventClickIds](docs/StoredEventClickIds.md)
  - [StoredEventUtm](docs/StoredEventUtm.md)
  - [StripeSettings](docs/StripeSettings.md)
@@ -6134,6 +6141,7 @@ Class | Method | HTTP request | Description
  - [UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem](docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.md)
  - [UpdateHubSpotSettings200Response](docs/UpdateHubSpotSettings200Response.md)
  - [UpdateHubSpotSettingsRequest](docs/UpdateHubSpotSettingsRequest.md)
+ - [UpdateHubSpotSettingsRequestQualifiedLeads](docs/UpdateHubSpotSettingsRequestQualifiedLeads.md)
  - [UpdateImessageGroup200Response](docs/UpdateImessageGroup200Response.md)
  - [UpdateImessageGroupRequest](docs/UpdateImessageGroupRequest.md)
  - [UpdateImessageSenderRequest](docs/UpdateImessageSenderRequest.md)

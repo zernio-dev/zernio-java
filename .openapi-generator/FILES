@@ -1962,6 +1962,9 @@ docs/HideAdComment200Response.md
 docs/HideAdCommentRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
+docs/HubSpotContactProperty.md
+docs/HubSpotContactPropertyOptionsInner.md
+docs/HubSpotQualifiedLeads.md
 docs/HubSpotSettings.md
 docs/HubSpotSettingsSyncIssue.md
 docs/IMessageApi.md
@@ -2318,6 +2321,7 @@ docs/ListGoogleSearchConsoleSitemaps200ResponseMeta.md
 docs/ListGoogleSearchConsoleSites200Response.md
 docs/ListGoogleSearchConsoleSites200ResponseSitesInner.md
 docs/ListHighDemandPeriods200Response.md
+docs/ListHubSpotContactProperties200Response.md
 docs/ListImessageAudience200Response.md
 docs/ListImessageAvailableNumbers200Response.md
 docs/ListImessageAvailableNumbers200ResponseNumbersInner.md
@@ -3132,6 +3136,7 @@ docs/StorePixelInstall.md
 docs/StorePixelInstallTagsInner.md
 docs/StoredEvent.md
 docs/StoredEventAd.md
+docs/StoredEventCampaign.md
 docs/StoredEventClickIds.md
 docs/StoredEventUtm.md
 docs/StripeSettings.md
@@ -3438,6 +3443,7 @@ docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.md
 docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.md
 docs/UpdateHubSpotSettings200Response.md
 docs/UpdateHubSpotSettingsRequest.md
+docs/UpdateHubSpotSettingsRequestQualifiedLeads.md
 docs/UpdateImessageGroup200Response.md
 docs/UpdateImessageGroupRequest.md
 docs/UpdateImessageSenderRequest.md
@@ -5978,6 +5984,9 @@ src/main/java/dev/zernio/model/HideAdComment200Response.java
 src/main/java/dev/zernio/model/HideAdCommentRequest.java
 src/main/java/dev/zernio/model/HideInboxComment200Response.java
 src/main/java/dev/zernio/model/HideInboxCommentRequest.java
+src/main/java/dev/zernio/model/HubSpotContactProperty.java
+src/main/java/dev/zernio/model/HubSpotContactPropertyOptionsInner.java
+src/main/java/dev/zernio/model/HubSpotQualifiedLeads.java
 src/main/java/dev/zernio/model/HubSpotSettings.java
 src/main/java/dev/zernio/model/HubSpotSettingsSyncIssue.java
 src/main/java/dev/zernio/model/Ids.java
@@ -6327,6 +6336,7 @@ src/main/java/dev/zernio/model/ListGoogleSearchConsoleSitemaps200ResponseMeta.ja
 src/main/java/dev/zernio/model/ListGoogleSearchConsoleSites200Response.java
 src/main/java/dev/zernio/model/ListGoogleSearchConsoleSites200ResponseSitesInner.java
 src/main/java/dev/zernio/model/ListHighDemandPeriods200Response.java
+src/main/java/dev/zernio/model/ListHubSpotContactProperties200Response.java
 src/main/java/dev/zernio/model/ListImessageAudience200Response.java
 src/main/java/dev/zernio/model/ListImessageAvailableNumbers200Response.java
 src/main/java/dev/zernio/model/ListImessageAvailableNumbers200ResponseNumbersInner.java
@@ -7123,6 +7133,7 @@ src/main/java/dev/zernio/model/StorePixelInstall.java
 src/main/java/dev/zernio/model/StorePixelInstallTagsInner.java
 src/main/java/dev/zernio/model/StoredEvent.java
 src/main/java/dev/zernio/model/StoredEventAd.java
+src/main/java/dev/zernio/model/StoredEventCampaign.java
 src/main/java/dev/zernio/model/StoredEventClickIds.java
 src/main/java/dev/zernio/model/StoredEventUtm.java
 src/main/java/dev/zernio/model/StripeSettings.java
@@ -7424,6 +7435,7 @@ src/main/java/dev/zernio/model/UpdateGoogleBusinessServicesRequestServiceItemsIn
 src/main/java/dev/zernio/model/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.java
 src/main/java/dev/zernio/model/UpdateHubSpotSettings200Response.java
 src/main/java/dev/zernio/model/UpdateHubSpotSettingsRequest.java
+src/main/java/dev/zernio/model/UpdateHubSpotSettingsRequestQualifiedLeads.java
 src/main/java/dev/zernio/model/UpdateImessageGroup200Response.java
 src/main/java/dev/zernio/model/UpdateImessageGroupRequest.java
 src/main/java/dev/zernio/model/UpdateImessageSenderRequest.java
@@ -7929,3 +7941,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/HubSpotContactPropertyOptionsInnerTest.java
+src/test/java/dev/zernio/model/HubSpotContactPropertyTest.java
+src/test/java/dev/zernio/model/HubSpotQualifiedLeadsTest.java
+src/test/java/dev/zernio/model/ListHubSpotContactProperties200ResponseTest.java
+src/test/java/dev/zernio/model/StoredEventCampaignTest.java
+src/test/java/dev/zernio/model/UpdateHubSpotSettingsRequestQualifiedLeadsTest.java
