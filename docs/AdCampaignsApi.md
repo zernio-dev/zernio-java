@@ -6861,7 +6861,7 @@ ApiResponse<[**ListAdsAlerts200Response**](ListAdsAlerts200Response.md)>
 
 Rank ads by performance
 
-Returns an ads account&#39;s ads ranked by spend, impressions, clicks, results or ROAS over a date range, each with its creative (type, thumbnail, headline, body, link) and campaign.  Use it to see which creatives perform best. &#x60;accountId&#x60; is sibling-expanded like &#x60;/v1/ads/timeline&#x60;.  Money is ranked by its raw amount, so pass &#x60;adAccountId&#x60; when the connection&#39;s ad accounts bill in different currencies.  A Meta range older than the imported history answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part; repeat the request until it returns 200. 
+Returns an ads account&#39;s ads ranked by spend, impressions, clicks, results or ROAS over a date range, each with its creative (type, thumbnail, headline, body, link) and campaign.  Use it to see which creatives perform best, and from &#x60;frequency&#x60; which ones the same people keep seeing. &#x60;accountId&#x60; is sibling-expanded like &#x60;/v1/ads/timeline&#x60;.  Money is ranked by its raw amount, so pass &#x60;adAccountId&#x60; when the connection&#39;s ad accounts bill in different currencies.  A Meta range older than the imported history answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part; repeat the request until it returns 200. 
 
 ### Example
 
@@ -6949,7 +6949,7 @@ public class Example {
 
 Rank ads by performance
 
-Returns an ads account&#39;s ads ranked by spend, impressions, clicks, results or ROAS over a date range, each with its creative (type, thumbnail, headline, body, link) and campaign.  Use it to see which creatives perform best. &#x60;accountId&#x60; is sibling-expanded like &#x60;/v1/ads/timeline&#x60;.  Money is ranked by its raw amount, so pass &#x60;adAccountId&#x60; when the connection&#39;s ad accounts bill in different currencies.  A Meta range older than the imported history answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part; repeat the request until it returns 200. 
+Returns an ads account&#39;s ads ranked by spend, impressions, clicks, results or ROAS over a date range, each with its creative (type, thumbnail, headline, body, link) and campaign.  Use it to see which creatives perform best, and from &#x60;frequency&#x60; which ones the same people keep seeing. &#x60;accountId&#x60; is sibling-expanded like &#x60;/v1/ads/timeline&#x60;.  Money is ranked by its raw amount, so pass &#x60;adAccountId&#x60; when the connection&#39;s ad accounts bill in different currencies.  A Meta range older than the imported history answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part; repeat the request until it returns 200. 
 
 ### Example
 

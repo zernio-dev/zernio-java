@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.691.0
+  version: 1.692.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -57984,7 +57984,7 @@ paths:
       description: |
         Returns an ads account's ads ranked by spend, impressions, clicks, results or ROAS over a date range, each with its creative (type, thumbnail, headline, body, link) and campaign.
 
-        Use it to see which creatives perform best. `accountId` is sibling-expanded like `/v1/ads/timeline`.
+        Use it to see which creatives perform best, and from `frequency` which ones the same people keep seeing. `accountId` is sibling-expanded like `/v1/ads/timeline`.
 
         Money is ranked by its raw amount, so pass `adAccountId` when the connection's ad accounts bill in different currencies.
 
@@ -124658,16 +124658,18 @@ components:
           name: name
           currency: currency
           metrics:
-            ctr: 5.962133916683182
-            purchaseValue: 7.061401241503109
-            conversions: 5.637376656633329
+            ctr: 2.3021358869347655
+            purchaseValue: 3.616076749251911
+            conversions: 7.061401241503109
+            reach: 1
             spend: 0.8008281904610115
             conversionsByType:
-              key: 3.616076749251911
-            clicks: 1
-            roas: 9.301444243932576
+              key: 4.145608029883936
+            clicks: 5
+            roas: 2.027123023002322
             impressions: 6
-            costPerConversion: 2.3021358869347655
+            costPerConversion: 9.301444243932576
+            frequency: 5.962133916683182
           platformAdId: platformAdId
           campaignName: campaignName
           platform: platform
@@ -124683,16 +124685,18 @@ components:
           name: name
           currency: currency
           metrics:
-            ctr: 5.962133916683182
-            purchaseValue: 7.061401241503109
-            conversions: 5.637376656633329
+            ctr: 2.3021358869347655
+            purchaseValue: 3.616076749251911
+            conversions: 7.061401241503109
+            reach: 1
             spend: 0.8008281904610115
             conversionsByType:
-              key: 3.616076749251911
-            clicks: 1
-            roas: 9.301444243932576
+              key: 4.145608029883936
+            clicks: 5
+            roas: 2.027123023002322
             impressions: 6
-            costPerConversion: 2.3021358869347655
+            costPerConversion: 9.301444243932576
+            frequency: 5.962133916683182
           platformAdId: platformAdId
           campaignName: campaignName
           platform: platform
@@ -195041,16 +195045,18 @@ components:
           name: name
           currency: currency
           metrics:
-            ctr: 5.962133916683182
-            purchaseValue: 7.061401241503109
-            conversions: 5.637376656633329
+            ctr: 2.3021358869347655
+            purchaseValue: 3.616076749251911
+            conversions: 7.061401241503109
+            reach: 1
             spend: 0.8008281904610115
             conversionsByType:
-              key: 3.616076749251911
-            clicks: 1
-            roas: 9.301444243932576
+              key: 4.145608029883936
+            clicks: 5
+            roas: 2.027123023002322
             impressions: 6
-            costPerConversion: 2.3021358869347655
+            costPerConversion: 9.301444243932576
+            frequency: 5.962133916683182
           platformAdId: platformAdId
           campaignName: campaignName
           platform: platform
@@ -195066,16 +195072,18 @@ components:
           name: name
           currency: currency
           metrics:
-            ctr: 5.962133916683182
-            purchaseValue: 7.061401241503109
-            conversions: 5.637376656633329
+            ctr: 2.3021358869347655
+            purchaseValue: 3.616076749251911
+            conversions: 7.061401241503109
+            reach: 1
             spend: 0.8008281904610115
             conversionsByType:
-              key: 3.616076749251911
-            clicks: 1
-            roas: 9.301444243932576
+              key: 4.145608029883936
+            clicks: 5
+            roas: 2.027123023002322
             impressions: 6
-            costPerConversion: 2.3021358869347655
+            costPerConversion: 9.301444243932576
+            frequency: 5.962133916683182
           platformAdId: platformAdId
           campaignName: campaignName
           platform: platform
@@ -234021,7 +234029,9 @@ components:
           enum:
           - post_failed
           - account_disconnected
+          - conversions_failing
           - api_key_handed_over
+          - whatsapp_inbound_lost
           type: string
         subject:
           description: The email subject.
@@ -237785,22 +237795,33 @@ components:
           type: string
     AdsPerformanceResponse_ads_inner_metrics:
       example:
-        ctr: 5.962133916683182
-        purchaseValue: 7.061401241503109
-        conversions: 5.637376656633329
+        ctr: 2.3021358869347655
+        purchaseValue: 3.616076749251911
+        conversions: 7.061401241503109
+        reach: 1
         spend: 0.8008281904610115
         conversionsByType:
-          key: 3.616076749251911
-        clicks: 1
-        roas: 9.301444243932576
+          key: 4.145608029883936
+        clicks: 5
+        roas: 2.027123023002322
         impressions: 6
-        costPerConversion: 2.3021358869347655
+        costPerConversion: 9.301444243932576
+        frequency: 5.962133916683182
       properties:
         spend:
           description: In the ad's currency.
           type: number
         impressions:
           type: integer
+        reach:
+          description: "People who saw the ad. De-duplicated over the range on Meta\
+            \ and TikTok when the platform returns it; elsewhere the sum of each day's\
+            \ reach, which counts a person once per day."
+          type: integer
+        frequency:
+          description: "Average times each person saw the ad: `impressions / reach`.\
+            \ 0 when the platform reports no reach."
+          type: number
         clicks:
           type: integer
         ctr:
@@ -237827,16 +237848,18 @@ components:
         name: name
         currency: currency
         metrics:
-          ctr: 5.962133916683182
-          purchaseValue: 7.061401241503109
-          conversions: 5.637376656633329
+          ctr: 2.3021358869347655
+          purchaseValue: 3.616076749251911
+          conversions: 7.061401241503109
+          reach: 1
           spend: 0.8008281904610115
           conversionsByType:
-            key: 3.616076749251911
-          clicks: 1
-          roas: 9.301444243932576
+            key: 4.145608029883936
+          clicks: 5
+          roas: 2.027123023002322
           impressions: 6
-          costPerConversion: 2.3021358869347655
+          costPerConversion: 9.301444243932576
+          frequency: 5.962133916683182
         platformAdId: platformAdId
         campaignName: campaignName
         platform: platform

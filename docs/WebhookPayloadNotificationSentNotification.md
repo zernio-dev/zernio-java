@@ -34,7 +34,9 @@
 |---- | -----|
 | POST_FAILED | &quot;post_failed&quot; |
 | ACCOUNT_DISCONNECTED | &quot;account_disconnected&quot; |
+| CONVERSIONS_FAILING | &quot;conversions_failing&quot; |
 | API_KEY_HANDED_OVER | &quot;api_key_handed_over&quot; |
+| WHATSAPP_INBOUND_LOST | &quot;whatsapp_inbound_lost&quot; |
 
 
 
