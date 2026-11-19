@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   GetTrackingTagStoreInstall200ResponseInstall.JSON_PROPERTY_SIDEBAR_ID,
   GetTrackingTagStoreInstall200ResponseInstall.JSON_PROPERTY_PREFLIGHT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:59:16.704359217Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T00:04:04.047902227Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTrackingTagStoreInstall200ResponseInstall {
   public static final String JSON_PROPERTY_STORE_ACCOUNT_ID = "storeAccountId";
   @javax.annotation.Nullable

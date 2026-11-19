@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   ListGoogleBusinessMedia200Response.JSON_PROPERTY_NEXT_PAGE_TOKEN,
   ListGoogleBusinessMedia200Response.JSON_PROPERTY_TOTAL_MEDIA_ITEMS_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:59:16.704359217Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T00:04:04.047902227Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListGoogleBusinessMedia200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

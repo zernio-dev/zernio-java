@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   GetSipTrunk200Response.JSON_PROPERTY_CREATED_AT,
   GetSipTrunk200Response.JSON_PROPERTY_NUMBERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:59:16.704359217Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T00:04:04.047902227Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetSipTrunk200Response {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAccountAdsSyncRecoveredSync.JSON_PROPERTY_LAST_SUCCESSFUL_SYNC_AT,
   WebhookPayloadAccountAdsSyncRecoveredSync.JSON_PROPERTY_FAILING_SINCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-18T23:59:16.704359217Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T00:04:04.047902227Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAccountAdsSyncRecoveredSync {
   public static final String JSON_PROPERTY_LAST_SUCCESSFUL_SYNC_AT = "lastSuccessfulSyncAt";
   @javax.annotation.Nonnull
