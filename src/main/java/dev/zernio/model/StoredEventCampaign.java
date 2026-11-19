@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   StoredEventCampaign.JSON_PROPERTY_AD_GROUP_NAME,
   StoredEventCampaign.JSON_PROPERTY_AD_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T16:57:09.231033118Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T17:12:18.118938132Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StoredEventCampaign {
   /**
    * &#x60;google_click&#x60;: the click behind &#x60;clickIds.gclid&#x60;. &#x60;zernio_tag&#x60;: the &#x60;zrn&#x60; ad. &#x60;matched&#x60;: the campaign Zernio matched the event to. &#x60;utm&#x60;: only its &#x60;utm_campaign&#x60;, as &#x60;name&#x60;.

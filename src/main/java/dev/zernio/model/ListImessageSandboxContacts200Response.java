@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ListImessageSandboxContacts200Response.JSON_PROPERTY_SANDBOX,
   ListImessageSandboxContacts200Response.JSON_PROPERTY_CONTACTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T16:57:09.231033118Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T17:12:18.118938132Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListImessageSandboxContacts200Response {
   public static final String JSON_PROPERTY_SANDBOX = "sandbox";
   @javax.annotation.Nullable

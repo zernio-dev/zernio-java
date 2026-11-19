@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner.JSON_PROPERTY_CONVERSIONS,
   GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner.JSON_PROPERTY_MISSED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T16:57:09.231033118Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T17:12:18.118938132Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner {
   public static final String JSON_PROPERTY_DAY = "day";
   @javax.annotation.Nullable
