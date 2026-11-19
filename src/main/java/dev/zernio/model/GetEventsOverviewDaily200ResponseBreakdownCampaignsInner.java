@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GetEventsOverviewDaily200ResponseBreakdownCampaignsInner.JSON_PROPERTY_REASON,
   GetEventsOverviewDaily200ResponseBreakdownCampaignsInner.JSON_PROPERTY_CONVERSIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T11:16:03.762441916Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T11:21:32.592172145Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEventsOverviewDaily200ResponseBreakdownCampaignsInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   private JsonNullable<String> platform = JsonNullable.<String>undefined();

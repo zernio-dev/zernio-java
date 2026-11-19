@@ -18,6 +18,7 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.CampaignResultProfit;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetCampaignResultEvents200Response;
 import dev.zernio.model.GetCampaignResultsTotals200Response;
@@ -31,6 +32,7 @@ import dev.zernio.model.SetCampaignResultEvents200Response;
 import dev.zernio.model.SetCampaignResultEventsRequest;
 import dev.zernio.model.SetCampaignResultMetric200Response;
 import dev.zernio.model.SetCampaignResultMetricRequest;
+import dev.zernio.model.SetCampaignResultProfitRequest;
 import dev.zernio.model.SetTagNewAds200Response;
 import dev.zernio.model.SetTagNewAdsRequest;
 import dev.zernio.model.UploadCampaignResults202Response;
@@ -61,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T11:16:03.762441916Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T11:21:32.592172145Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignResultsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -270,6 +272,115 @@ public class AdCampaignResultsApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/v1/ads/campaign-results/events";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get your profit setting
+   * The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+   * @return CampaignResultProfit
+   * @throws ApiException if fails to make API call
+   */
+  public CampaignResultProfit getCampaignResultProfit() throws ApiException {
+    return getCampaignResultProfit(null);
+  }
+
+  /**
+   * Get your profit setting
+   * The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+   * @param headers Optional headers to include in the request
+   * @return CampaignResultProfit
+   * @throws ApiException if fails to make API call
+   */
+  public CampaignResultProfit getCampaignResultProfit(Map<String, String> headers) throws ApiException {
+    ApiResponse<CampaignResultProfit> localVarResponse = getCampaignResultProfitWithHttpInfo(headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get your profit setting
+   * The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+   * @return ApiResponse&lt;CampaignResultProfit&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CampaignResultProfit> getCampaignResultProfitWithHttpInfo() throws ApiException {
+    return getCampaignResultProfitWithHttpInfo(null);
+  }
+
+  /**
+   * Get your profit setting
+   * The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CampaignResultProfit&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CampaignResultProfit> getCampaignResultProfitWithHttpInfo(Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getCampaignResultProfitRequestBuilder(headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getCampaignResultProfit", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CampaignResultProfit>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CampaignResultProfit responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CampaignResultProfit>() {});
+        
+
+        return new ApiResponse<CampaignResultProfit>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getCampaignResultProfitRequestBuilder(Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaign-results/profit";
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -670,7 +781,7 @@ public class AdCampaignResultsApi {
 
   /**
    * List your result metrics
-   * The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+   * The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
    * @return ListCampaignResultMetrics200Response
    * @throws ApiException if fails to make API call
    */
@@ -680,7 +791,7 @@ public class AdCampaignResultsApi {
 
   /**
    * List your result metrics
-   * The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+   * The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
    * @param headers Optional headers to include in the request
    * @return ListCampaignResultMetrics200Response
    * @throws ApiException if fails to make API call
@@ -692,7 +803,7 @@ public class AdCampaignResultsApi {
 
   /**
    * List your result metrics
-   * The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+   * The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
    * @return ApiResponse&lt;ListCampaignResultMetrics200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -702,7 +813,7 @@ public class AdCampaignResultsApi {
 
   /**
    * List your result metrics
-   * The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+   * The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListCampaignResultMetrics200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1183,6 +1294,129 @@ public class AdCampaignResultsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(setCampaignResultMetricRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Set your margin and cost per order
+   * With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+   * @param setCampaignResultProfitRequest  (required)
+   * @return CampaignResultProfit
+   * @throws ApiException if fails to make API call
+   */
+  public CampaignResultProfit setCampaignResultProfit(@javax.annotation.Nonnull SetCampaignResultProfitRequest setCampaignResultProfitRequest) throws ApiException {
+    return setCampaignResultProfit(setCampaignResultProfitRequest, null);
+  }
+
+  /**
+   * Set your margin and cost per order
+   * With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+   * @param setCampaignResultProfitRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CampaignResultProfit
+   * @throws ApiException if fails to make API call
+   */
+  public CampaignResultProfit setCampaignResultProfit(@javax.annotation.Nonnull SetCampaignResultProfitRequest setCampaignResultProfitRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CampaignResultProfit> localVarResponse = setCampaignResultProfitWithHttpInfo(setCampaignResultProfitRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Set your margin and cost per order
+   * With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+   * @param setCampaignResultProfitRequest  (required)
+   * @return ApiResponse&lt;CampaignResultProfit&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CampaignResultProfit> setCampaignResultProfitWithHttpInfo(@javax.annotation.Nonnull SetCampaignResultProfitRequest setCampaignResultProfitRequest) throws ApiException {
+    return setCampaignResultProfitWithHttpInfo(setCampaignResultProfitRequest, null);
+  }
+
+  /**
+   * Set your margin and cost per order
+   * With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+   * @param setCampaignResultProfitRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CampaignResultProfit&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CampaignResultProfit> setCampaignResultProfitWithHttpInfo(@javax.annotation.Nonnull SetCampaignResultProfitRequest setCampaignResultProfitRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = setCampaignResultProfitRequestBuilder(setCampaignResultProfitRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("setCampaignResultProfit", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CampaignResultProfit>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CampaignResultProfit responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CampaignResultProfit>() {});
+        
+
+        return new ApiResponse<CampaignResultProfit>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder setCampaignResultProfitRequestBuilder(@javax.annotation.Nonnull SetCampaignResultProfitRequest setCampaignResultProfitRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'setCampaignResultProfitRequest' is set
+    if (setCampaignResultProfitRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'setCampaignResultProfitRequest' when calling setCampaignResultProfit");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaign-results/profit";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(setCampaignResultProfitRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

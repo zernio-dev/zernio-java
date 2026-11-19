@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.685.0
 
-- Build date: 2026-11-19T11:16:03.762441916Z[Etc/UTC]
+- Build date: 2026-11-19T11:21:32.592172145Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -387,6 +387,8 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**updateAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
 *AdCampaignResultsApi* | [**getCampaignResultEvents**](docs/AdCampaignResultsApi.md#getCampaignResultEvents) | **GET** /v1/ads/campaign-results/events | List the events that count as campaign results
 *AdCampaignResultsApi* | [**getCampaignResultEventsWithHttpInfo**](docs/AdCampaignResultsApi.md#getCampaignResultEventsWithHttpInfo) | **GET** /v1/ads/campaign-results/events | List the events that count as campaign results
+*AdCampaignResultsApi* | [**getCampaignResultProfit**](docs/AdCampaignResultsApi.md#getCampaignResultProfit) | **GET** /v1/ads/campaign-results/profit | Get your profit setting
+*AdCampaignResultsApi* | [**getCampaignResultProfitWithHttpInfo**](docs/AdCampaignResultsApi.md#getCampaignResultProfitWithHttpInfo) | **GET** /v1/ads/campaign-results/profit | Get your profit setting
 *AdCampaignResultsApi* | [**getCampaignResultsTotals**](docs/AdCampaignResultsApi.md#getCampaignResultsTotals) | **GET** /v1/ads/campaign-results/totals | Get your results totals
 *AdCampaignResultsApi* | [**getCampaignResultsTotalsWithHttpInfo**](docs/AdCampaignResultsApi.md#getCampaignResultsTotalsWithHttpInfo) | **GET** /v1/ads/campaign-results/totals | Get your results totals
 *AdCampaignResultsApi* | [**getCampaignResultsUpload**](docs/AdCampaignResultsApi.md#getCampaignResultsUpload) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload
@@ -401,6 +403,8 @@ Class | Method | HTTP request | Description
 *AdCampaignResultsApi* | [**setCampaignResultEventsWithHttpInfo**](docs/AdCampaignResultsApi.md#setCampaignResultEventsWithHttpInfo) | **PUT** /v1/ads/campaign-results/events | Choose the events that count as campaign results
 *AdCampaignResultsApi* | [**setCampaignResultMetric**](docs/AdCampaignResultsApi.md#setCampaignResultMetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula
 *AdCampaignResultsApi* | [**setCampaignResultMetricWithHttpInfo**](docs/AdCampaignResultsApi.md#setCampaignResultMetricWithHttpInfo) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula
+*AdCampaignResultsApi* | [**setCampaignResultProfit**](docs/AdCampaignResultsApi.md#setCampaignResultProfit) | **PUT** /v1/ads/campaign-results/profit | Set your margin and cost per order
+*AdCampaignResultsApi* | [**setCampaignResultProfitWithHttpInfo**](docs/AdCampaignResultsApi.md#setCampaignResultProfitWithHttpInfo) | **PUT** /v1/ads/campaign-results/profit | Set your margin and cost per order
 *AdCampaignResultsApi* | [**setTagNewAds**](docs/AdCampaignResultsApi.md#setTagNewAds) | **PUT** /v1/ads/campaign-results/tag-new-ads | Turn Tag new ads on or off
 *AdCampaignResultsApi* | [**setTagNewAdsWithHttpInfo**](docs/AdCampaignResultsApi.md#setTagNewAdsWithHttpInfo) | **PUT** /v1/ads/campaign-results/tag-new-ads | Turn Tag new ads on or off
 *AdCampaignResultsApi* | [**uploadCampaignResults**](docs/AdCampaignResultsApi.md#uploadCampaignResults) | **POST** /v1/ads/campaign-results | Upload your results per campaign
@@ -3270,6 +3274,7 @@ Class | Method | HTTP request | Description
  - [CampaignReportSpend](docs/CampaignReportSpend.md)
  - [CampaignReportViews](docs/CampaignReportViews.md)
  - [CampaignResultMetric](docs/CampaignResultMetric.md)
+ - [CampaignResultProfit](docs/CampaignResultProfit.md)
  - [CampaignSample](docs/CampaignSample.md)
  - [CampaignSampleCounts](docs/CampaignSampleCounts.md)
  - [CampaignSampleShippingAddress](docs/CampaignSampleShippingAddress.md)
@@ -5783,6 +5788,7 @@ Class | Method | HTTP request | Description
  - [SetCampaignResultEventsRequest](docs/SetCampaignResultEventsRequest.md)
  - [SetCampaignResultMetric200Response](docs/SetCampaignResultMetric200Response.md)
  - [SetCampaignResultMetricRequest](docs/SetCampaignResultMetricRequest.md)
+ - [SetCampaignResultProfitRequest](docs/SetCampaignResultProfitRequest.md)
  - [SetCommentModerationRequest](docs/SetCommentModerationRequest.md)
  - [SetCommerceDiscountActiveRequest](docs/SetCommerceDiscountActiveRequest.md)
  - [SetCommercePriceListPrices200Response](docs/SetCommercePriceListPrices200Response.md)

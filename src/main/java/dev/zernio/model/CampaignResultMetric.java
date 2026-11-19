@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CampaignResultMetric.JSON_PROPERTY_FORMULA,
   CampaignResultMetric.JSON_PROPERTY_BUILT_IN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T11:16:03.762441916Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T11:21:32.592172145Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignResultMetric {
   public static final String JSON_PROPERTY_KEY = "key";
   @javax.annotation.Nonnull
@@ -234,7 +234,7 @@ public class CampaignResultMetric {
   }
 
   /**
-   * One of the formulas every team has (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). Setting the same key replaces it for your team.
+   * One of the formulas every team has (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;, plus &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60; once a margin is set). Setting the same key replaces it for your team.
    * @return builtIn
    */
   @javax.annotation.Nonnull

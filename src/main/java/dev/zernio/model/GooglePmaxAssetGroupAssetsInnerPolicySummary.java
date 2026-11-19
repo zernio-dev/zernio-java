@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GooglePmaxAssetGroupAssetsInnerPolicySummary.JSON_PROPERTY_REVIEW_STATUS,
   GooglePmaxAssetGroupAssetsInnerPolicySummary.JSON_PROPERTY_POLICY_TOPICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T11:16:03.762441916Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T11:21:32.592172145Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GooglePmaxAssetGroupAssetsInnerPolicySummary {
   public static final String JSON_PROPERTY_APPROVAL_STATUS = "approvalStatus";
   @javax.annotation.Nullable

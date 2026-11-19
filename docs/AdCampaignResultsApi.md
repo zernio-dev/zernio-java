@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**getCampaignResultEvents**](AdCampaignResultsApi.md#getCampaignResultEvents) | **GET** /v1/ads/campaign-results/events | List the events that count as campaign results |
 | [**getCampaignResultEventsWithHttpInfo**](AdCampaignResultsApi.md#getCampaignResultEventsWithHttpInfo) | **GET** /v1/ads/campaign-results/events | List the events that count as campaign results |
+| [**getCampaignResultProfit**](AdCampaignResultsApi.md#getCampaignResultProfit) | **GET** /v1/ads/campaign-results/profit | Get your profit setting |
+| [**getCampaignResultProfitWithHttpInfo**](AdCampaignResultsApi.md#getCampaignResultProfitWithHttpInfo) | **GET** /v1/ads/campaign-results/profit | Get your profit setting |
 | [**getCampaignResultsTotals**](AdCampaignResultsApi.md#getCampaignResultsTotals) | **GET** /v1/ads/campaign-results/totals | Get your results totals |
 | [**getCampaignResultsTotalsWithHttpInfo**](AdCampaignResultsApi.md#getCampaignResultsTotalsWithHttpInfo) | **GET** /v1/ads/campaign-results/totals | Get your results totals |
 | [**getCampaignResultsUpload**](AdCampaignResultsApi.md#getCampaignResultsUpload) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload |
@@ -20,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**setCampaignResultEventsWithHttpInfo**](AdCampaignResultsApi.md#setCampaignResultEventsWithHttpInfo) | **PUT** /v1/ads/campaign-results/events | Choose the events that count as campaign results |
 | [**setCampaignResultMetric**](AdCampaignResultsApi.md#setCampaignResultMetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula |
 | [**setCampaignResultMetricWithHttpInfo**](AdCampaignResultsApi.md#setCampaignResultMetricWithHttpInfo) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula |
+| [**setCampaignResultProfit**](AdCampaignResultsApi.md#setCampaignResultProfit) | **PUT** /v1/ads/campaign-results/profit | Set your margin and cost per order |
+| [**setCampaignResultProfitWithHttpInfo**](AdCampaignResultsApi.md#setCampaignResultProfitWithHttpInfo) | **PUT** /v1/ads/campaign-results/profit | Set your margin and cost per order |
 | [**setTagNewAds**](AdCampaignResultsApi.md#setTagNewAds) | **PUT** /v1/ads/campaign-results/tag-new-ads | Turn Tag new ads on or off |
 | [**setTagNewAdsWithHttpInfo**](AdCampaignResultsApi.md#setTagNewAdsWithHttpInfo) | **PUT** /v1/ads/campaign-results/tag-new-ads | Turn Tag new ads on or off |
 | [**uploadCampaignResults**](AdCampaignResultsApi.md#uploadCampaignResults) | **POST** /v1/ads/campaign-results | Upload your results per campaign |
@@ -162,6 +166,144 @@ ApiResponse<[**GetCampaignResultEvents200Response**](GetCampaignResultEvents200R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The event names. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
+## getCampaignResultProfit
+
+> CampaignResultProfit getCampaignResultProfit()
+
+Get your profit setting
+
+The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        try {
+            CampaignResultProfit result = apiInstance.getCampaignResultProfit();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#getCampaignResultProfit");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CampaignResultProfit**](CampaignResultProfit.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The setting. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## getCampaignResultProfitWithHttpInfo
+
+> ApiResponse<CampaignResultProfit> getCampaignResultProfit getCampaignResultProfitWithHttpInfo()
+
+Get your profit setting
+
+The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        try {
+            ApiResponse<CampaignResultProfit> response = apiInstance.getCampaignResultProfitWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#getCampaignResultProfit");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**CampaignResultProfit**](CampaignResultProfit.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The setting. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
@@ -617,7 +759,7 @@ ApiResponse<[**GetTagNewAds200Response**](GetTagNewAds200Response.md)>
 
 List your result metrics
 
-The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
 
 ### Example
 
@@ -684,7 +826,7 @@ This endpoint does not need any parameter.
 
 List your result metrics
 
-The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
 
 ### Example
 
@@ -1213,6 +1355,154 @@ ApiResponse<[**SetCampaignResultMetric200Response**](SetCampaignResultMetric200R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The metric. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
+## setCampaignResultProfit
+
+> CampaignResultProfit setCampaignResultProfit(setCampaignResultProfitRequest)
+
+Set your margin and cost per order
+
+With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        SetCampaignResultProfitRequest setCampaignResultProfitRequest = new SetCampaignResultProfitRequest(); // SetCampaignResultProfitRequest | 
+        try {
+            CampaignResultProfit result = apiInstance.setCampaignResultProfit(setCampaignResultProfitRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#setCampaignResultProfit");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setCampaignResultProfitRequest** | [**SetCampaignResultProfitRequest**](SetCampaignResultProfitRequest.md)|  | |
+
+### Return type
+
+[**CampaignResultProfit**](CampaignResultProfit.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The setting now in force. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## setCampaignResultProfitWithHttpInfo
+
+> ApiResponse<CampaignResultProfit> setCampaignResultProfit setCampaignResultProfitWithHttpInfo(setCampaignResultProfitRequest)
+
+Set your margin and cost per order
+
+With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        SetCampaignResultProfitRequest setCampaignResultProfitRequest = new SetCampaignResultProfitRequest(); // SetCampaignResultProfitRequest | 
+        try {
+            ApiResponse<CampaignResultProfit> response = apiInstance.setCampaignResultProfitWithHttpInfo(setCampaignResultProfitRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#setCampaignResultProfit");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setCampaignResultProfitRequest** | [**SetCampaignResultProfitRequest**](SetCampaignResultProfitRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CampaignResultProfit**](CampaignResultProfit.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The setting now in force. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
