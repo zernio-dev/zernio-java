@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   GetEventsOverviewDaily200Response.JSON_PROPERTY_PLATFORMS,
   GetEventsOverviewDaily200Response.JSON_PROPERTY_PIXEL_MISSED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T10:35:00.369607884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T10:39:56.611225648Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEventsOverviewDaily200Response {
   /**
    * Gets or Sets period

@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   Retainer.JSON_PROPERTY_REQUIRED_APPROVED_POSTS,
   Retainer.JSON_PROPERTY_COMMISSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T10:35:00.369607884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T10:39:56.611225648Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Retainer {
   /**
    * Gets or Sets type

@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   CreatorCampaignEconomicsCpm.JSON_PROPERTY_MAX_PAYOUT_PER_CLIP_CENTS,
   CreatorCampaignEconomicsCpm.JSON_PROPERTY_BUDGET_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T10:35:00.369607884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T10:39:56.611225648Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatorCampaignEconomicsCpm {
   /**
    * Gets or Sets type

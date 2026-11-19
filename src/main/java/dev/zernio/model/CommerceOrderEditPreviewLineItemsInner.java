@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   CommerceOrderEditPreviewLineItemsInner.JSON_PROPERTY_QUANTITY,
   CommerceOrderEditPreviewLineItemsInner.JSON_PROPERTY_UNIT_PRICE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T10:35:00.369607884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T10:39:56.611225648Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceOrderEditPreviewLineItemsInner {
   public static final String JSON_PROPERTY_LINE_ITEM_ID = "lineItemId";
   private JsonNullable<String> lineItemId = JsonNullable.<String>undefined();

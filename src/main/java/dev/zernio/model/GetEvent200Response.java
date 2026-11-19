@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetEvent200Response.JSON_PROPERTY_DELIVERIES,
   GetEvent200Response.JSON_PROPERTY_TOUCHES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T10:35:00.369607884Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T10:39:56.611225648Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEvent200Response {
   public static final String JSON_PROPERTY_EVENT = "event";
   @javax.annotation.Nullable
