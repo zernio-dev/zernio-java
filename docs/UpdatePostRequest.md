@@ -22,6 +22,7 @@
 |**mentions** | **List&lt;String&gt;** |  |  [optional] |
 |**crosspostingEnabled** | **Boolean** |  |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**externalId** | **String** | Your own identifier for this post (see &#x60;externalId&#x60; on create). Send &#x60;null&#x60; to clear it. Also accepted on published posts. |  [optional] |
 |**queuedFromProfile** | **String** | Profile ID to schedule via queue. |  [optional] |
 |**queueId** | **String** | Specific queue ID to use when scheduling via queue. |  [optional] |
 |**tiktokSettings** | [**TikTokPlatformData**](TikTokPlatformData.md) | Root-level TikTok settings applied to the TikTok platforms sent in the same request. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence. Returns 400 if sent without a platforms array. |  [optional] |

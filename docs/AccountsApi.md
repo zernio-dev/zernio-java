@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**deleteAccount**](AccountsApi.md#deleteAccount) | **DELETE** /v1/accounts/{accountId} | Disconnect account |
 | [**deleteAccountWithHttpInfo**](AccountsApi.md#deleteAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId} | Disconnect account |
+| [**getAccount**](AccountsApi.md#getAccount) | **GET** /v1/accounts/{accountId} | Get account |
+| [**getAccountWithHttpInfo**](AccountsApi.md#getAccountWithHttpInfo) | **GET** /v1/accounts/{accountId} | Get account |
 | [**getAccountHealth**](AccountsApi.md#getAccountHealth) | **GET** /v1/accounts/{accountId}/health | Check account health |
 | [**getAccountHealthWithHttpInfo**](AccountsApi.md#getAccountHealthWithHttpInfo) | **GET** /v1/accounts/{accountId}/health | Check account health |
 | [**getAccountPosts**](AccountsApi.md#getAccountPosts) | **GET** /v1/accounts/{accountId}/posts | List posts published on the platform |
@@ -207,6 +209,158 @@ ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md
 | **404** | Resource not found |  -  |
 
 
+## getAccount
+
+> GetAccount200Response getAccount(accountId)
+
+Get account
+
+Returns one connected account, in the same shape as an item of &#x60;GET /v1/accounts&#x60;.  The same access rules apply: a key or a team member limited to some profiles gets a 404 for an account outside them.  An account the list leaves out by default is still returned when you name it:  - one over the plan&#39;s profile limit - one on a creator profile - an ad account listed behind its ads login  A malformed &#x60;accountId&#x60; returns 400; an unknown account, or one you cannot access, returns 404. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            GetAccount200Response result = apiInstance.getAccount(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#getAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+[**GetAccount200Response**](GetAccount200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The account |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+## getAccountWithHttpInfo
+
+> ApiResponse<GetAccount200Response> getAccount getAccountWithHttpInfo(accountId)
+
+Get account
+
+Returns one connected account, in the same shape as an item of &#x60;GET /v1/accounts&#x60;.  The same access rules apply: a key or a team member limited to some profiles gets a 404 for an account outside them.  An account the list leaves out by default is still returned when you name it:  - one over the plan&#39;s profile limit - one on a creator profile - an ad account listed behind its ads login  A malformed &#x60;accountId&#x60; returns 400; an unknown account, or one you cannot access, returns 404. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<GetAccount200Response> response = apiInstance.getAccountWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#getAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetAccount200Response**](GetAccount200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The account |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+
 ## getAccountHealth
 
 > GetAccountHealth200Response getAccountHealth(accountId)
@@ -359,11 +513,11 @@ ApiResponse<[**GetAccountHealth200Response**](GetAccountHealth200Response.md)>
 
 ## getAccountPosts
 
-> GetAccountPosts200Response getAccountPosts(accountId)
+> GetAccountPosts200Response getAccountPosts(accountId, limit, cursor)
 
 List posts published on the platform
 
-Returns the 25 most recent posts that exist on the platform for a connected account, read live from the platform API. This covers everything on the account, including posts that were never created through Zernio.  Use it to obtain the platform&#39;s own post id, which the analytics endpoints take as input. On YouTube the returned &#x60;id&#x60; is the video ID that &#x60;GET /v1/analytics/youtube/daily-views&#x60;, &#x60;/video-retention&#x60; and &#x60;/demographics&#x60; expect as &#x60;videoId&#x60;, so this endpoint is what backs a video picker in your own UI.  ### Platform-specific fields  Not every field applies to every platform. Absent fields are omitted from the response.  - &#x60;reactionCount&#x60;: Facebook and LinkedIn. - &#x60;shareCount&#x60;: platform dependent. - &#x60;cid&#x60;: the Bluesky content id needed to reply. - &#x60;subreddit&#x60;: Reddit only. - &#x60;title&#x60;, &#x60;description&#x60;, &#x60;link&#x60;, &#x60;boardId&#x60; and &#x60;boardOwnerUsername&#x60;: Pinterest only (the native Pin values; &#x60;message&#x60; keeps title and description joined). - &#x60;isOwner&#x60;: Pinterest and Facebook. On Pinterest, true for a Pin the account created and false for a Pin it saved from another user, so keep &#x60;isOwner: true&#x60; to import only its own Pins. On Facebook, false marks a collab post by another Page.  ### Expired tokens  The account&#39;s token is refreshed before the call when it has expired. When the refresh cannot recover it, the response is a 401 with code &#x60;TOKEN_EXPIRED&#x60; and the account has to be reconnected. 
+Returns the most recent posts that exist on the platform for a connected account, newest first, read live from the platform API. This covers everything on the account, including posts that were never created through Zernio.  ### Pagination  Returns &#x60;limit&#x60; posts (25 by default, up to 100). When &#x60;pagination.hasMore&#x60; is true, send &#x60;pagination.nextCursor&#x60; back as &#x60;cursor&#x60; for the next, older page, until &#x60;nextCursor&#x60; is null.  On X and TikTok only the newest page is available for now: &#x60;pagination.hasMore&#x60; is always false there.  Use it to obtain the platform&#39;s own post id, which the analytics endpoints take as input. On YouTube the returned &#x60;id&#x60; is the video ID that &#x60;GET /v1/analytics/youtube/daily-views&#x60;, &#x60;/video-retention&#x60; and &#x60;/demographics&#x60; expect as &#x60;videoId&#x60;, so this endpoint is what backs a video picker in your own UI.  ### Platform-specific fields  Not every field applies to every platform. Absent fields are omitted from the response.  - &#x60;reactionCount&#x60;: Facebook and LinkedIn. - &#x60;shareCount&#x60;: platform dependent. - &#x60;cid&#x60;: the Bluesky content id needed to reply. - &#x60;subreddit&#x60;: Reddit only. - &#x60;title&#x60;, &#x60;description&#x60;, &#x60;link&#x60;, &#x60;boardId&#x60; and &#x60;boardOwnerUsername&#x60;: Pinterest only (the native Pin values; &#x60;message&#x60; keeps title and description joined). - &#x60;isOwner&#x60;: Pinterest and Facebook. On Pinterest, true for a Pin the account created and false for a Pin it saved from another user, so keep &#x60;isOwner: true&#x60; to import only its own Pins. On Facebook, false marks a collab post by another Page.  ### Expired tokens  The account&#39;s token is refreshed before the call when it has expired. When the refresh cannot recover it, the response is a 401 with code &#x60;TOKEN_EXPIRED&#x60; and the account has to be reconnected. 
 
 ### Example
 
@@ -387,8 +541,10 @@ public class Example {
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        Integer limit = 25; // Integer | Page size. Values above the maximum return 400 rather than being clamped.
+        String cursor = "cursor_example"; // String | `pagination.nextCursor` of the previous page, sent back unchanged. An unreadable cursor returns 400.
         try {
-            GetAccountPosts200Response result = apiInstance.getAccountPosts(accountId);
+            GetAccountPosts200Response result = apiInstance.getAccountPosts(accountId, limit, cursor);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#getAccountPosts");
@@ -407,6 +563,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **limit** | **Integer**| Page size. Values above the maximum return 400 rather than being clamped. | [optional] [default to 25] |
+| **cursor** | **String**| &#x60;pagination.nextCursor&#x60; of the previous page, sent back unchanged. An unreadable cursor returns 400. | [optional] |
 
 ### Return type
 
@@ -426,7 +584,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Posts list |  -  |
-| **400** | Invalid accountId, platform does not support posts listing, or the account has no access token |  -  |
+| **400** | Invalid accountId, limit or cursor, platform does not support posts listing, or the account has no access token |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED) |  -  |
 | **404** | Resource not found |  -  |
@@ -435,11 +593,11 @@ public class Example {
 
 ## getAccountPostsWithHttpInfo
 
-> ApiResponse<GetAccountPosts200Response> getAccountPosts getAccountPostsWithHttpInfo(accountId)
+> ApiResponse<GetAccountPosts200Response> getAccountPosts getAccountPostsWithHttpInfo(accountId, limit, cursor)
 
 List posts published on the platform
 
-Returns the 25 most recent posts that exist on the platform for a connected account, read live from the platform API. This covers everything on the account, including posts that were never created through Zernio.  Use it to obtain the platform&#39;s own post id, which the analytics endpoints take as input. On YouTube the returned &#x60;id&#x60; is the video ID that &#x60;GET /v1/analytics/youtube/daily-views&#x60;, &#x60;/video-retention&#x60; and &#x60;/demographics&#x60; expect as &#x60;videoId&#x60;, so this endpoint is what backs a video picker in your own UI.  ### Platform-specific fields  Not every field applies to every platform. Absent fields are omitted from the response.  - &#x60;reactionCount&#x60;: Facebook and LinkedIn. - &#x60;shareCount&#x60;: platform dependent. - &#x60;cid&#x60;: the Bluesky content id needed to reply. - &#x60;subreddit&#x60;: Reddit only. - &#x60;title&#x60;, &#x60;description&#x60;, &#x60;link&#x60;, &#x60;boardId&#x60; and &#x60;boardOwnerUsername&#x60;: Pinterest only (the native Pin values; &#x60;message&#x60; keeps title and description joined). - &#x60;isOwner&#x60;: Pinterest and Facebook. On Pinterest, true for a Pin the account created and false for a Pin it saved from another user, so keep &#x60;isOwner: true&#x60; to import only its own Pins. On Facebook, false marks a collab post by another Page.  ### Expired tokens  The account&#39;s token is refreshed before the call when it has expired. When the refresh cannot recover it, the response is a 401 with code &#x60;TOKEN_EXPIRED&#x60; and the account has to be reconnected. 
+Returns the most recent posts that exist on the platform for a connected account, newest first, read live from the platform API. This covers everything on the account, including posts that were never created through Zernio.  ### Pagination  Returns &#x60;limit&#x60; posts (25 by default, up to 100). When &#x60;pagination.hasMore&#x60; is true, send &#x60;pagination.nextCursor&#x60; back as &#x60;cursor&#x60; for the next, older page, until &#x60;nextCursor&#x60; is null.  On X and TikTok only the newest page is available for now: &#x60;pagination.hasMore&#x60; is always false there.  Use it to obtain the platform&#39;s own post id, which the analytics endpoints take as input. On YouTube the returned &#x60;id&#x60; is the video ID that &#x60;GET /v1/analytics/youtube/daily-views&#x60;, &#x60;/video-retention&#x60; and &#x60;/demographics&#x60; expect as &#x60;videoId&#x60;, so this endpoint is what backs a video picker in your own UI.  ### Platform-specific fields  Not every field applies to every platform. Absent fields are omitted from the response.  - &#x60;reactionCount&#x60;: Facebook and LinkedIn. - &#x60;shareCount&#x60;: platform dependent. - &#x60;cid&#x60;: the Bluesky content id needed to reply. - &#x60;subreddit&#x60;: Reddit only. - &#x60;title&#x60;, &#x60;description&#x60;, &#x60;link&#x60;, &#x60;boardId&#x60; and &#x60;boardOwnerUsername&#x60;: Pinterest only (the native Pin values; &#x60;message&#x60; keeps title and description joined). - &#x60;isOwner&#x60;: Pinterest and Facebook. On Pinterest, true for a Pin the account created and false for a Pin it saved from another user, so keep &#x60;isOwner: true&#x60; to import only its own Pins. On Facebook, false marks a collab post by another Page.  ### Expired tokens  The account&#39;s token is refreshed before the call when it has expired. When the refresh cannot recover it, the response is a 401 with code &#x60;TOKEN_EXPIRED&#x60; and the account has to be reconnected. 
 
 ### Example
 
@@ -464,8 +622,10 @@ public class Example {
 
         AccountsApi apiInstance = new AccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        Integer limit = 25; // Integer | Page size. Values above the maximum return 400 rather than being clamped.
+        String cursor = "cursor_example"; // String | `pagination.nextCursor` of the previous page, sent back unchanged. An unreadable cursor returns 400.
         try {
-            ApiResponse<GetAccountPosts200Response> response = apiInstance.getAccountPostsWithHttpInfo(accountId);
+            ApiResponse<GetAccountPosts200Response> response = apiInstance.getAccountPostsWithHttpInfo(accountId, limit, cursor);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -486,6 +646,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **limit** | **Integer**| Page size. Values above the maximum return 400 rather than being clamped. | [optional] [default to 25] |
+| **cursor** | **String**| &#x60;pagination.nextCursor&#x60; of the previous page, sent back unchanged. An unreadable cursor returns 400. | [optional] |
 
 ### Return type
 
@@ -505,7 +667,7 @@ ApiResponse<[**GetAccountPosts200Response**](GetAccountPosts200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Posts list |  -  |
-| **400** | Invalid accountId, platform does not support posts listing, or the account has no access token |  -  |
+| **400** | Invalid accountId, limit or cursor, platform does not support posts listing, or the account has no access token |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED) |  -  |
 | **404** | Resource not found |  -  |

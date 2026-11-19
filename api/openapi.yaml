@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.700.0
+  version: 1.702.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -477,7 +477,7 @@ tags:
     **Events:**
 
     - Posts: `post.scheduled`, `post.published`, `post.failed`, `post.partial`, `post.cancelled`, `post.recycled`, `post.platform.published`, `post.platform.failed`, `post.platform.deleted`, `post.tiktok.url_resolved`, `post.external.created`, `post.external.updated`, `post.external.deleted`, `post.tracking_completed`, `post.authenticity_changed`
-    - Accounts and analytics: `account.connected`, `account.disconnected`, `account.permissions_changed`, `account.ads.initial_sync_completed`, `account.ads.sync_failed`, `account.ads.sync_recovered`, `account.rate_limited`, `account.privacy_request`, `analytics.synced`
+    - Accounts and analytics: `account.connected`, `account.disconnected`, `account.permissions_changed`, `account.ads.initial_sync_completed`, `account.ads.sync_failed`, `account.ads.sync_recovered`, `account.rate_limited`, `account.restricted`, `account.recovered`, `account.privacy_request`, `analytics.synced`
     - Messages: `message.received`, `message.sent`, `message.edited`, `message.deleted`, `message.delivered`, `message.read`, `message.played`, `message.failed`, `reaction.received`, `referral.received`, `conversation.started`, `conversation.control_changed`
     - Calls: `call.received`, `call.ended`, `call.failed`, `call.permission_request`, `call.transcript_segment`, `call.recording_ready`
     - Engagement and leads: `comment.received`, `mention.received`, `review.new`, `review.updated`, `review.deleted`, `review.restored`, `lead.received`
@@ -490,7 +490,7 @@ tags:
     - Creator campaigns: `campaign_submission.received`, `campaign_submission.flagged`, `campaign_submission.pending_review`, `campaign_submission.approved`, `campaign_submission.rejected`, `creator_campaign.budget_exhausted`, `creator_campaign.closed`, `campaign_payout.payable`, `campaign_payout.settled`, `campaign_payout.failed`, `campaign_participant.joined`, `campaign_participant.pending`, `campaign_participant.approved`, `campaign_participant.denied`, `campaign_participant.suspended`, `campaign_participant.removed`, `campaign_draft.submitted`, `campaign_draft.approved`, `campaign_draft.revision_requested`, `campaign_draft.rejected`, `campaign_sample.requested`, `campaign_sample.approved`, `campaign_sample.shipped`, `campaign_sample.declined`
     - Calendar and files: `calendar.event.created`, `calendar.event.updated`, `calendar.event.deleted`, `file.created`, `file.updated`, `file.deleted`, `file.picked`
     - Email: `email.sent`, `email.opened`, `email.link_clicked`, `email.thread_replied`, `email.send_failed`, `email.bounced`, `email.updated`, `email.deleted`
-    - Billing: `balance.low`, `balance.empty`, `balance.charged`
+    - Billing: `balance.low`, `balance.empty`, `balance.charged`, `billing.publishing_blocked`, `billing.publishing_unblocked`
     - Notifications: `notification.sent`
     - Other: `api.changelog.published`, `webhook.test`
 
@@ -11337,7 +11337,7 @@ paths:
       - description: |
           Comma-separated list of post fields to return. Each post then carries `_id` plus only these fields, which makes large pages much cheaper: leave out `platforms`, `content`, `mediaItems` or `metadata` when you do not need them.
 
-          Accepted: `userId`, `title`, `content`, `mediaItems`, `platforms`, `scheduledFor`, `timezone`, `status`, `tags`, `hashtags`, `mentions`, `visibility`, `metadata`, `recycling`, `recycledFromPostId`, `queuedFromProfile`, `queueId`, `createdAt`, `updatedAt`.
+          Accepted: `userId`, `title`, `content`, `mediaItems`, `platforms`, `scheduledFor`, `timezone`, `status`, `tags`, `hashtags`, `mentions`, `visibility`, `metadata`, `externalId`, `recycling`, `recycledFromPostId`, `queuedFromProfile`, `queueId`, `createdAt`, `updatedAt`.
 
           An unknown field returns 400 naming it. `fields=_id` returns ids only. Omit it (or send it empty) for the full post. Not available with `source=external`.
         example: "status,scheduledFor,platforms"
@@ -11351,7 +11351,7 @@ paths:
       - description: |
           `full` returns the whole post. `summary` returns only what an agent needs to read a page of posts:
 
-          - Post: `_id`, `title`, `content`, `status`, `scheduledFor`, `timezone`, `tags`, `createdAt`, `updatedAt`, and `contentNotRetained` when set.
+          - Post: `_id`, `title`, `content`, `externalId`, `status`, `scheduledFor`, `timezone`, `tags`, `createdAt`, `updatedAt`, and `contentNotRetained` when set.
           - Each platform: `platform`, `status`, `accountId` (the id), `username`, `scheduledFor`, `publishedAt`, `platformPostId`, `platformPostUrl`, `errorMessage`, `errorCategory`.
           - Left out: the author (`userId`), `mediaItems`, `metadata`, `recycling`, and each platform's custom content, custom media and `platformSpecificData`. Null values are left out too.
 
@@ -11370,7 +11370,9 @@ paths:
       - description: |
           Only posts whose `updatedAt` is at or after this ISO 8601 timestamp (an offset or `Z` required).
 
-          `updatedAt` moves when the post or any of its platforms changes (an edit, a status change, a platform publishing or failing). To keep a copy in sync, send the time of your previous sync instead of reading every page again.
+          `updatedAt` moves when the post or any of its platforms changes (an edit, a status change, a platform publishing or failing). To keep a copy in sync, send the time your previous sync started instead of reading every page again.
+
+          For a stable walk, pair it with `sortBy=created-asc` and follow `pagination.nextCursor` until it is null: the cursor is keyed on (`createdAt`, `_id`), which never change, so a post edited during the walk is neither skipped nor repeated, and it comes back on the next sync.
 
           Combines with the other filters and with `cursor`. Deleted posts are not returned. Not available with `source=external`.
         example: 2026-10-27T18:00:00Z
@@ -11380,6 +11382,22 @@ paths:
         required: false
         schema:
           format: date-time
+          type: string
+        style: form
+      - description: |
+          Only posts whose `externalId` equals this value exactly (case-sensitive). Returns every matching post, since `externalId` is not unique.
+
+          Combines with the other filters. Not available with `source=external`.
+
+          Values stored in `metadata` cannot be filtered: set `externalId` on create or update to look a post up by your own id.
+        example: cms-article-8812
+        explode: true
+        in: query
+        name: externalId
+        required: false
+        schema:
+          maxLength: 255
+          minLength: 1
           type: string
         style: form
       - description: Which collection to read. `zernio` (default) returns posts authored
@@ -12249,13 +12267,28 @@ paths:
             \ is still processing: change the content or retry later."
         "503":
           $ref: "#/components/responses/TemporarilyUnavailable"
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createPost_422_response"
+          description: |
+            `code: account_restricted`: a target account failed its last three publishes with the same account-level error (suspended, restricted, an identity or security check, or an expired login), and this post publishes now. Nothing was created. `details` names the account, `reason` and last failure; `account.restricted` reported it.
+
+            Scheduled posts to the account are still accepted. Reconnecting the account, or the next successful publish, lifts the check; 24 hours after the last failure one publish-now is let through again.
+          x-summary: "A target account failed its last publishes with the same account-level\
+            \ error, so publishing now would fail too: fix and reconnect it, or schedule\
+            \ the post."
         "429":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/createPost_429_response"
           description: "Rate limit exceeded. Possible causes: API rate limit, account\
-            \ cooldown, or daily platform limits."
+            \ cooldown, or daily platform limits. During an account cooldown (for\
+            \ example an Instagram or TikTok 24-hour publishing limit) `error` says\
+            \ when posting resumes and `details.rateLimitedUntil` carries the time;\
+            \ a post scheduled after it is accepted."
           headers:
             Retry-After:
               description: Seconds until the rate limit resets (for API rate limits)
@@ -12358,6 +12391,7 @@ paths:
             fields:
             - title
             - profileId
+            - externalId
             - tags
             - hashtags
             - mentions
@@ -12727,7 +12761,7 @@ paths:
       - application/json
     put:
       description: |
-        Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated: to change the text of a live post, use `POST /v1/posts/{postId}/edit`.
+        Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config and `externalId` updated: to change the text of a live post, use `POST /v1/posts/{postId}/edit`.
 
         To promote a draft to scheduled, send `isDraft: false` together with `scheduledFor` (or `publishNow: true`, or `queuedFromProfile`). If `isDraft` is omitted the post keeps its current draft status, so sending only `scheduledFor` to a draft returns 200 but the post remains a draft.
 
@@ -14644,6 +14678,61 @@ paths:
       x-resource-group: accounts
       x-accepts:
       - application/json
+    get:
+      description: |
+        Returns one connected account, in the same shape as an item of `GET /v1/accounts`.
+
+        The same access rules apply: a key or a team member limited to some profiles gets a 404 for an account outside them.
+
+        An account the list leaves out by default is still returned when you name it:
+
+        - one over the plan's profile limit
+        - one on a creator profile
+        - an ad account listed behind its ads login
+
+        A malformed `accountId` returns 400; an unknown account, or one you cannot access, returns 404.
+      operationId: getAccount
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                account:
+                  _id: 64e1...
+                  platform: twitter
+                  profileId:
+                    _id: 64f0...
+                    name: My Brand
+                    slug: my-brand
+                  username: '@acme'
+                  displayName: Acme
+                  profileUrl: https://x.com/acme
+                  isActive: true
+              schema:
+                $ref: "#/components/schemas/getAccount_200_response"
+          description: The account
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+      summary: Get account
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
     patch:
       description: |
         Moves a connected account to a different profile owned by the same
@@ -15177,7 +15266,13 @@ paths:
   /v1/accounts/{accountId}/posts:
     get:
       description: |
-        Returns the 25 most recent posts that exist on the platform for a connected account, read live from the platform API. This covers everything on the account, including posts that were never created through Zernio.
+        Returns the most recent posts that exist on the platform for a connected account, newest first, read live from the platform API. This covers everything on the account, including posts that were never created through Zernio.
+
+        ### Pagination
+
+        Returns `limit` posts (25 by default, up to 100). When `pagination.hasMore` is true, send `pagination.nextCursor` back as `cursor` for the next, older page, until `nextCursor` is null.
+
+        On X and TikTok only the newest page is available for now: `pagination.hasMore` is always false there.
 
         Use it to obtain the platform's own post id, which the analytics endpoints take as input. On YouTube the returned `id` is the video ID that `GET /v1/analytics/youtube/daily-views`, `/video-retention` and `/demographics` expect as `videoId`, so this endpoint is what backs a video picker in your own UI.
 
@@ -15204,6 +15299,27 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Page size. Values above the maximum return 400 rather than being
+          clamped.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: "`pagination.nextCursor` of the previous page, sent back unchanged.\
+          \ An unreadable cursor returns 400."
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -15223,13 +15339,16 @@ paths:
                   mediaType: video
                   commentCount: 12
                   likeCount: 340
+                pagination:
+                  hasMore: true
+                  nextCursor: 2026-08-21T09:14:03.000Z_64e1f0a2b3c4d5e6f7a8b9c0_dQw4w9WgXcQ
                 lastUpdated: 2026-08-28T11:02:44.512Z
               schema:
                 $ref: "#/components/schemas/getAccountPosts_200_response"
           description: Posts list
         "400":
-          description: "Invalid accountId, platform does not support posts listing,\
-            \ or the account has no access token"
+          description: "Invalid accountId, limit or cursor, platform does not support\
+            \ posts listing, or the account has no access token"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -104196,6 +104315,8 @@ components:
             - account.ads.initial_sync_completed
             - account.ads.sync_failed
             - account.ads.sync_recovered
+            - account.restricted
+            - account.recovered
             - analytics.synced
             - post.tracking_completed
             - post.authenticity_changed
@@ -104325,6 +104446,8 @@ components:
             - balance.low
             - balance.empty
             - balance.charged
+            - billing.publishing_blocked
+            - billing.publishing_unblocked
             - campaign_participant.pending
             - campaign_participant.approved
             - campaign_participant.denied
@@ -114593,6 +114716,78 @@ components:
       - fundingUrl
       - id
       - timestamp
+    WebhookPayloadBillingPublishingBlocked:
+      example:
+        test: true
+        id: id
+        event: billing.publishing_blocked
+        billingUrl: https://openapi-generator.tech
+        billing:
+          reason: payment_failed
+          blockedAt: 2000-01-23T04:56:07.000+00:00
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - billing.publishing_blocked
+          type: string
+        billing:
+          $ref: "#/components/schemas/WebhookPayloadBillingPublishingBlocked_billing"
+        billingUrl:
+          description: Dashboard page where the owner pays or replaces the card.
+          format: uri
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - billing
+      - billingUrl
+      - event
+      - id
+      - timestamp
+    WebhookPayloadBillingPublishingUnblocked:
+      example:
+        test: true
+        id: id
+        event: billing.publishing_unblocked
+        billing:
+          blockedAt: 2000-01-23T04:56:07.000+00:00
+          unblockedAt: 2000-01-23T04:56:07.000+00:00
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - billing.publishing_unblocked
+          type: string
+        billing:
+          $ref: "#/components/schemas/WebhookPayloadBillingPublishingUnblocked_billing"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - billing
+      - event
+      - id
+      - timestamp
     WebhookPayloadBalanceCharged:
       example:
         test: true
@@ -115299,6 +115494,7 @@ components:
         - hashtags
         visibility: public
         timezone: timezone
+        externalId: externalId
         recycling:
           recycleCount: 3
           gap: 2
@@ -115598,6 +115794,10 @@ components:
         metadata:
           additionalProperties: true
           type: object
+        externalId:
+          description: "Your own identifier for this post, as set on create or update.\
+            \ Absent when unset. Not unique: filter with `GET /v1/posts?externalId=`."
+          type: string
         recycling:
           $ref: "#/components/schemas/RecyclingState"
         recycledFromPostId:
@@ -119763,6 +119963,123 @@ components:
       - event
       - id
       - timestamp
+    WebhookPayloadAccountRestricted:
+      description: "Webhook payload for account.restricted: the account failed its\
+        \ last three publishes with the same account-level error."
+      example:
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        restriction:
+          reason: restricted
+          platformError:
+            code: 0
+            subcode: 6
+            message: message
+          consecutiveFailures: 1
+          postId: postId
+          message: message
+          since: 2000-01-23T04:56:07.000+00:00
+        id: id
+        event: account.restricted
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - account.restricted
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadAccountPrivacyRequest_account"
+        restriction:
+          $ref: "#/components/schemas/WebhookPayloadAccountRestricted_restriction"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - restriction
+      - timestamp
+    WebhookPayloadAccountRecovered:
+      description: "Webhook payload for account.recovered: a publish succeeded on\
+        \ an account account.restricted reported."
+      example:
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        recovery:
+          reason: restricted
+          postId: postId
+          restrictedSince: 2000-01-23T04:56:07.000+00:00
+          recoveredAt: 2000-01-23T04:56:07.000+00:00
+        event: account.recovered
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - account.recovered
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadAccountPrivacyRequest_account"
+        recovery:
+          $ref: "#/components/schemas/WebhookPayloadAccountRecovered_recovery"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - recovery
+      - timestamp
     WebhookPayloadCalendarEvent:
       description: "Webhook payload for calendar.event.created, calendar.event.updated\
         \ and calendar.event.deleted. Carries the provider event id and the change\
@@ -122784,6 +123101,7 @@ components:
           - hashtags
           visibility: public
           timezone: timezone
+          externalId: externalId
           recycling:
             recycleCount: 3
             gap: 2
@@ -123010,6 +123328,7 @@ components:
           - hashtags
           visibility: public
           timezone: timezone
+          externalId: externalId
           recycling:
             recycleCount: 3
             gap: 2
@@ -123246,6 +123565,7 @@ components:
           - hashtags
           visibility: public
           timezone: timezone
+          externalId: externalId
           recycling:
             recycleCount: 3
             gap: 2
@@ -123751,6 +124071,7 @@ components:
           - hashtags
           visibility: public
           timezone: timezone
+          externalId: externalId
           recycling:
             recycleCount: 3
             gap: 2
@@ -123997,6 +124318,7 @@ components:
           - hashtags
           visibility: public
           timezone: timezone
+          externalId: externalId
           recycling:
             recycleCount: 3
             gap: 2
@@ -124242,6 +124564,7 @@ components:
           - hashtags
           visibility: public
           timezone: timezone
+          externalId: externalId
           recycling:
             recycleCount: 3
             gap: 2
@@ -124589,6 +124912,7 @@ components:
           - hashtags
           visibility: public
           timezone: timezone
+          externalId: externalId
           recycling:
             recycleCount: 3
             gap: 2
@@ -149372,10 +149696,20 @@ components:
           type: boolean
         metadata:
           additionalProperties: {}
-          description: "Free-form key/value pairs of your own, stored on the post\
-            \ and returned on reads and in webhook payloads. Zernio also writes the\
-            \ bookkeeping keys `usageCounted`, `usageRefunded` and `hidden` into this\
-            \ object; do not set them, and they are stripped from webhook payloads."
+          description: |
+            Free-form key/value pairs of your own, stored on the post and returned on reads and in webhook payloads.
+
+            Zernio also writes the bookkeeping keys `usageCounted`, `usageRefunded` and `hidden` into this object; do not set them, and they are stripped from webhook payloads. To look posts up by one of your ids, use `externalId` instead: metadata cannot be filtered.
+        externalId:
+          description: |
+            Your own identifier for this post (a CMS id, a job id, a campaign item). Returned on every read and filterable with `GET /v1/posts?externalId=`. Leading and trailing spaces are trimmed.
+
+            Not unique: several posts can share one value (for example the same article posted twice), and the filter returns all of them. To avoid creating a post twice on retries, send an `Idempotency-Key` header instead.
+          example: cms-article-8812
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
         tiktokSettings:
           allOf:
           - $ref: "#/components/schemas/TikTokPlatformData"
@@ -149514,6 +149848,50 @@ components:
           type: string
         details:
           $ref: "#/components/schemas/createPost_409_response_details"
+    createPost_422_response_details:
+      example:
+        lastFailedAt: 2000-01-23T04:56:07.000+00:00
+        accountId: accountId
+        reason: restricted
+        platform: platform
+        since: 2000-01-23T04:56:07.000+00:00
+      properties:
+        accountId:
+          type: string
+        platform:
+          type: string
+        reason:
+          enum:
+          - restricted
+          - suspended
+          - verification_required
+          - auth_expired
+          type: string
+        since:
+          format: date-time
+          type: string
+        lastFailedAt:
+          format: date-time
+          type: string
+    createPost_422_response:
+      example:
+        code: account_restricted
+        details:
+          lastFailedAt: 2000-01-23T04:56:07.000+00:00
+          accountId: accountId
+          reason: restricted
+          platform: platform
+          since: 2000-01-23T04:56:07.000+00:00
+        error: error
+      properties:
+        error:
+          type: string
+        code:
+          enum:
+          - account_restricted
+          type: string
+        details:
+          $ref: "#/components/schemas/createPost_422_response_details"
     createPost_429_response:
       example:
         details: "{}"
@@ -149737,6 +150115,13 @@ components:
         metadata:
           additionalProperties: true
           type: object
+        externalId:
+          description: Your own identifier for this post (see `externalId` on create).
+            Send `null` to clear it. Also accepted on published posts.
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
         queuedFromProfile:
           description: Profile ID to schedule via queue.
           type: string
@@ -150181,6 +150566,64 @@ components:
         requiresAddon:
           example: true
           type: boolean
+    getAccount_200_response:
+      example:
+        account:
+          profileUrl: profileUrl
+          scopeAreas:
+          - scopeAreas
+          - scopeAreas
+          metadata: "{}"
+          capabilities:
+            forward:
+              asAttachment: true
+              native: true
+            sentItems:
+              mode: push
+              typicalDelaySeconds: 6
+            drafts:
+              versioned: true
+              clientEditsVisible: true
+              supported: true
+            sendAs:
+              list: provider
+              sharedMailboxes: true
+            bounces:
+              detection: true
+            sync:
+              mode: push
+              typicalDelaySeconds: 0
+            scheduledSend:
+              holdAsDraft: true
+            tracking: true
+            signatures:
+              provider: read
+              zernio: true
+            labels:
+              model: labels
+          followersLastUpdated: 2000-01-23T04:56:07.000+00:00
+          displayName: displayName
+          oauthAppId: oauthAppId
+          rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
+          isActive: true
+          platform: tiktok
+          enabled: true
+          parentAccountId: parentAccountId
+          profilePicture: profilePicture
+          needsReconnection: true
+          metaAdsSyncEnabled: true
+          platformUserId: platformUserId
+          profileId: SocialAccount_profileId
+          tiktokAccountType: business
+          inboundActivity: ""
+          _id: _id
+          followersCount: 1.4658129805029452
+          username: username
+      properties:
+        account:
+          $ref: "#/components/schemas/ListedAccount"
+      required:
+      - account
     updateAccount_request_xCapabilities:
       description: |
         X only. Per-account opt-in toggles for background API
@@ -151284,9 +151727,27 @@ components:
             \ it saved it from another user. Facebook: false for a collab post by\
             \ another Page. Absent when the platform does not report it."
           type: boolean
+    getAccountPosts_200_response_pagination:
+      example:
+        nextCursor: nextCursor
+        hasMore: true
+      properties:
+        hasMore:
+          description: True when older posts remain.
+          type: boolean
+        nextCursor:
+          description: Send back as `cursor` for the next page; null on the last page.
+          nullable: true
+          type: string
+      required:
+      - hasMore
+      - nextCursor
     getAccountPosts_200_response:
       example:
         lastUpdated: 2000-01-23T04:56:07.000+00:00
+        pagination:
+          nextCursor: nextCursor
+          hasMore: true
         posts:
         - link: link
           description: description
@@ -151336,6 +151797,8 @@ components:
           items:
             $ref: "#/components/schemas/getAccountPosts_200_response_posts_inner"
           type: array
+        pagination:
+          $ref: "#/components/schemas/getAccountPosts_200_response_pagination"
         lastUpdated:
           format: date-time
           type: string
@@ -162395,6 +162858,8 @@ components:
             - account.ads.initial_sync_completed
             - account.ads.sync_failed
             - account.ads.sync_recovered
+            - account.restricted
+            - account.recovered
             - analytics.synced
             - post.tracking_completed
             - post.authenticity_changed
@@ -162505,6 +162970,8 @@ components:
             - balance.low
             - balance.empty
             - balance.charged
+            - billing.publishing_blocked
+            - billing.publishing_unblocked
             - campaign_participant.pending
             - campaign_participant.approved
             - campaign_participant.denied
@@ -162646,6 +163113,8 @@ components:
             - account.ads.initial_sync_completed
             - account.ads.sync_failed
             - account.ads.sync_recovered
+            - account.restricted
+            - account.recovered
             - analytics.synced
             - post.tracking_completed
             - post.authenticity_changed
@@ -162756,6 +163225,8 @@ components:
             - balance.low
             - balance.empty
             - balance.charged
+            - billing.publishing_blocked
+            - billing.publishing_unblocked
             - campaign_participant.pending
             - campaign_participant.approved
             - campaign_participant.denied
@@ -162944,6 +163415,8 @@ components:
           - account.ads.sync_failed
           - account.ads.sync_recovered
           - account.rate_limited
+          - account.restricted
+          - account.recovered
           - account.privacy_request
           - calendar.event.created
           - calendar.event.updated
@@ -163082,6 +163555,8 @@ components:
           - balance.low
           - balance.empty
           - balance.charged
+          - billing.publishing_blocked
+          - billing.publishing_unblocked
           - notification.sent
           - api.changelog.published
           type: string
@@ -238873,6 +239348,38 @@ components:
           type: integer
       required:
       - spendableCents
+    WebhookPayloadBillingPublishingBlocked_billing:
+      example:
+        reason: payment_failed
+        blockedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        reason:
+          enum:
+          - payment_failed
+          - no_payment_method
+          - invalid_billing_address
+          type: string
+        blockedAt:
+          format: date-time
+          type: string
+      required:
+      - blockedAt
+      - reason
+    WebhookPayloadBillingPublishingUnblocked_billing:
+      example:
+        blockedAt: 2000-01-23T04:56:07.000+00:00
+        unblockedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        blockedAt:
+          format: date-time
+          nullable: true
+          type: string
+        unblockedAt:
+          format: date-time
+          type: string
+      required:
+      - blockedAt
+      - unblockedAt
     WebhookPayloadBalanceCharged_topup_card:
       example:
         last4: last4
@@ -241141,6 +241648,95 @@ components:
       - reason
       - resetsAt
       - username
+    WebhookPayloadAccountRestricted_restriction_platformError:
+      description: "Meta's error code and subcode, for Instagram and Facebook."
+      example:
+        code: 0
+        subcode: 6
+        message: message
+      properties:
+        code:
+          type: integer
+        subcode:
+          type: integer
+        message:
+          type: string
+    WebhookPayloadAccountRestricted_restriction:
+      example:
+        reason: restricted
+        platformError:
+          code: 0
+          subcode: 6
+          message: message
+        consecutiveFailures: 1
+        postId: postId
+        message: message
+        since: 2000-01-23T04:56:07.000+00:00
+      properties:
+        reason:
+          description: "`suspended`: banned or suspended by the platform. `restricted`:\
+            \ locked, restricted or blocked from posting. `verification_required`:\
+            \ the platform asks for an identity or security check. `auth_expired`:\
+            \ the login stopped working; reconnect."
+          enum:
+          - restricted
+          - suspended
+          - verification_required
+          - auth_expired
+          type: string
+        message:
+          description: The error the last failed post carries.
+          type: string
+        platformError:
+          $ref: "#/components/schemas/WebhookPayloadAccountRestricted_restriction_platformError"
+        consecutiveFailures:
+          description: Identical failures in a row that restricted the account.
+          type: integer
+        since:
+          format: date-time
+          type: string
+        postId:
+          description: The post whose failure restricted the account.
+          type: string
+      required:
+      - consecutiveFailures
+      - message
+      - platformError
+      - postId
+      - reason
+      - since
+    WebhookPayloadAccountRecovered_recovery:
+      example:
+        reason: restricted
+        postId: postId
+        restrictedSince: 2000-01-23T04:56:07.000+00:00
+        recoveredAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        reason:
+          description: "`suspended`: banned or suspended by the platform. `restricted`:\
+            \ locked, restricted or blocked from posting. `verification_required`:\
+            \ the platform asks for an identity or security check. `auth_expired`:\
+            \ the login stopped working; reconnect."
+          enum:
+          - restricted
+          - suspended
+          - verification_required
+          - auth_expired
+          type: string
+        restrictedSince:
+          format: date-time
+          type: string
+        recoveredAt:
+          format: date-time
+          type: string
+        postId:
+          description: The post that published.
+          type: string
+      required:
+      - postId
+      - reason
+      - recoveredAt
+      - restrictedSince
     WebhookPayloadCalendarEvent_account:
       example:
         accountId: accountId
@@ -250283,6 +250879,8 @@ x-documentation:
     - `account.disconnected` - Account disconnected: deactivated after its token was revoked or rejected (or the platform refused it, e.g. a Facebook Page left out of a later authorization), or flagged as needing reconnection. Not sent again while the account stays deactivated
     - `account.permissions_changed` - An account connected with `scopes` or through your own OAuth app lost a permission area (for example posting) while staying connected
     - `account.rate_limited` - A Google or Microsoft mailbox entered a sending cooldown; sends answer 429 until `account.resetsAt`
+    - `account.restricted` - A social account failed its last three publishes with the same account-level error (suspended, restricted, an identity or security check, or an expired login). Fires once per restriction with `restriction.reason` and the platform's error; publish-now posts to it answer 422 `account_restricted` until a publish succeeds or it is reconnected
+    - `account.recovered` - A publish succeeded on an account `account.restricted` reported
     - `account.privacy_request` - A Shopify merchant asked to export or erase a customer's data, or the shop's data after an uninstall. Erase or export your own copy
     - `account.ads.initial_sync_completed` - Initial ads sync (discovery + 90-day backfill) completed for an ads-enabled account
     - `account.ads.sync_failed` - An ad account's ads stopped syncing (no successful sync for 24 hours, or every live ad at the retry cap). Fires once until it recovers
@@ -250412,6 +251010,8 @@ x-documentation:
     - `balance.low` - Balance billing: the balance dropped below the low-balance alert set on auto top-up (`alertBelowCents`), once per drop, unless an auto top-up is already covering it
     - `balance.empty` - Balance billing: the balance reached $0 and no auto top-up covered it, so pay-per-use calls answer 402 until it is funded. Carries that 402 `code` and `fundingUrl`
     - `balance.charged` - Balance billing: funds were added to the balance by card, by you or by auto top-up (`topup.trigger`), with the amount, the VAT and the card charge
+    - `billing.publishing_blocked` - A failed payment paused the billing owner's account: the API answers 402 and scheduled posts fail until it is paid. Fires once per pause
+    - `billing.publishing_unblocked` - The paused account was paid and publishing resumed
     - `notification.sent` - Built for agents: one event for every notification we would email (a scheduled post failed to publish, or a connected account was disconnected), with the email's `subject` and `text`, references to the post or account, and the `actions` that resolve it. Fires regardless of the user's email toggles, and whether or not an email can be sent. The user's notification channel (Slack or Telegram) follows the toggles instead. To keep post and account state in sync, use `post.platform.failed`, `post.failed` and `account.disconnected`
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 

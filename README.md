@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.700.0
+- API version: 1.702.0
 
-- Build date: 2026-11-19T22:12:44.875562994Z[Etc/UTC]
+- Build date: 2026-11-19T22:34:25.322994539Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.700.0</version>
+  <version>1.702.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.700.0"
+compile "dev.zernio:zernio-sdk:1.702.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.700.0.jar`
+- `target/zernio-sdk-1.702.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -177,6 +177,8 @@ Class | Method | HTTP request | Description
 *AccountSettingsApi* | [**updateFacebookPageInfoWithHttpInfo**](docs/AccountSettingsApi.md#updateFacebookPageInfoWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/facebook-page-info | Update a Facebook Page&#39;s public info
 *AccountsApi* | [**deleteAccount**](docs/AccountsApi.md#deleteAccount) | **DELETE** /v1/accounts/{accountId} | Disconnect account
 *AccountsApi* | [**deleteAccountWithHttpInfo**](docs/AccountsApi.md#deleteAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId} | Disconnect account
+*AccountsApi* | [**getAccount**](docs/AccountsApi.md#getAccount) | **GET** /v1/accounts/{accountId} | Get account
+*AccountsApi* | [**getAccountWithHttpInfo**](docs/AccountsApi.md#getAccountWithHttpInfo) | **GET** /v1/accounts/{accountId} | Get account
 *AccountsApi* | [**getAccountHealth**](docs/AccountsApi.md#getAccountHealth) | **GET** /v1/accounts/{accountId}/health | Check account health
 *AccountsApi* | [**getAccountHealthWithHttpInfo**](docs/AccountsApi.md#getAccountHealthWithHttpInfo) | **GET** /v1/accounts/{accountId}/health | Check account health
 *AccountsApi* | [**getAccountPosts**](docs/AccountsApi.md#getAccountPosts) | **GET** /v1/accounts/{accountId}/posts | List posts published on the platform
@@ -3742,6 +3744,8 @@ Class | Method | HTTP request | Description
  - [CreatePost404Response](docs/CreatePost404Response.md)
  - [CreatePost409Response](docs/CreatePost409Response.md)
  - [CreatePost409ResponseDetails](docs/CreatePost409ResponseDetails.md)
+ - [CreatePost422Response](docs/CreatePost422Response.md)
+ - [CreatePost422ResponseDetails](docs/CreatePost422ResponseDetails.md)
  - [CreatePost429Response](docs/CreatePost429Response.md)
  - [CreatePostRequest](docs/CreatePostRequest.md)
  - [CreatePostRequestPlatformsInner](docs/CreatePostRequestPlatformsInner.md)
@@ -4123,6 +4127,7 @@ Class | Method | HTTP request | Description
  - [GenerateKeywordIdeas200ResponsePaging](docs/GenerateKeywordIdeas200ResponsePaging.md)
  - [GenerateKeywordIdeasRequest](docs/GenerateKeywordIdeasRequest.md)
  - [GeoRestriction](docs/GeoRestriction.md)
+ - [GetAccount200Response](docs/GetAccount200Response.md)
  - [GetAccountHealth200Response](docs/GetAccountHealth200Response.md)
  - [GetAccountHealth200ResponseLineWebhook](docs/GetAccountHealth200ResponseLineWebhook.md)
  - [GetAccountHealth200ResponseMailbox](docs/GetAccountHealth200ResponseMailbox.md)
@@ -4135,6 +4140,7 @@ Class | Method | HTTP request | Description
  - [GetAccountHealth200ResponseSendCap](docs/GetAccountHealth200ResponseSendCap.md)
  - [GetAccountHealth200ResponseTokenStatus](docs/GetAccountHealth200ResponseTokenStatus.md)
  - [GetAccountPosts200Response](docs/GetAccountPosts200Response.md)
+ - [GetAccountPosts200ResponsePagination](docs/GetAccountPosts200ResponsePagination.md)
  - [GetAccountPosts200ResponsePostsInner](docs/GetAccountPosts200ResponsePostsInner.md)
  - [GetAd200Response](docs/GetAd200Response.md)
  - [GetAd200ResponseDarkPost](docs/GetAd200ResponseDarkPost.md)
@@ -6436,6 +6442,11 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAccountPrivacyRequestPrivacyRequestCustomer](docs/WebhookPayloadAccountPrivacyRequestPrivacyRequestCustomer.md)
  - [WebhookPayloadAccountRateLimited](docs/WebhookPayloadAccountRateLimited.md)
  - [WebhookPayloadAccountRateLimitedAccount](docs/WebhookPayloadAccountRateLimitedAccount.md)
+ - [WebhookPayloadAccountRecovered](docs/WebhookPayloadAccountRecovered.md)
+ - [WebhookPayloadAccountRecoveredRecovery](docs/WebhookPayloadAccountRecoveredRecovery.md)
+ - [WebhookPayloadAccountRestricted](docs/WebhookPayloadAccountRestricted.md)
+ - [WebhookPayloadAccountRestrictedRestriction](docs/WebhookPayloadAccountRestrictedRestriction.md)
+ - [WebhookPayloadAccountRestrictedRestrictionPlatformError](docs/WebhookPayloadAccountRestrictedRestrictionPlatformError.md)
  - [WebhookPayloadAdAccountStatusChanged](docs/WebhookPayloadAdAccountStatusChanged.md)
  - [WebhookPayloadAdAccountStatusChangedAdAccount](docs/WebhookPayloadAdAccountStatusChangedAdAccount.md)
  - [WebhookPayloadAdAccountStatusChangedStatus](docs/WebhookPayloadAdAccountStatusChangedStatus.md)
@@ -6486,6 +6497,10 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadBalanceEmptyBalance](docs/WebhookPayloadBalanceEmptyBalance.md)
  - [WebhookPayloadBalanceLow](docs/WebhookPayloadBalanceLow.md)
  - [WebhookPayloadBalanceLowBalance](docs/WebhookPayloadBalanceLowBalance.md)
+ - [WebhookPayloadBillingPublishingBlocked](docs/WebhookPayloadBillingPublishingBlocked.md)
+ - [WebhookPayloadBillingPublishingBlockedBilling](docs/WebhookPayloadBillingPublishingBlockedBilling.md)
+ - [WebhookPayloadBillingPublishingUnblocked](docs/WebhookPayloadBillingPublishingUnblocked.md)
+ - [WebhookPayloadBillingPublishingUnblockedBilling](docs/WebhookPayloadBillingPublishingUnblockedBilling.md)
  - [WebhookPayloadCalendarEvent](docs/WebhookPayloadCalendarEvent.md)
  - [WebhookPayloadCalendarEventAccount](docs/WebhookPayloadCalendarEventAccount.md)
  - [WebhookPayloadCalendarEventCalendarEvent](docs/WebhookPayloadCalendarEventCalendarEvent.md)

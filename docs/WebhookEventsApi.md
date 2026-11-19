@@ -20,6 +20,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**onAccountPrivacyRequestWithHttpInfo**](WebhookEventsApi.md#onAccountPrivacyRequestWithHttpInfo) | **POST** /account.privacy_request | Store privacy request |
 | [**onAccountRateLimited**](WebhookEventsApi.md#onAccountRateLimited) | **POST** /account.rate_limited | Mailbox sending cooldown started |
 | [**onAccountRateLimitedWithHttpInfo**](WebhookEventsApi.md#onAccountRateLimitedWithHttpInfo) | **POST** /account.rate_limited | Mailbox sending cooldown started |
+| [**onAccountRecovered**](WebhookEventsApi.md#onAccountRecovered) | **POST** /account.recovered | Account publishing again |
+| [**onAccountRecoveredWithHttpInfo**](WebhookEventsApi.md#onAccountRecoveredWithHttpInfo) | **POST** /account.recovered | Account publishing again |
+| [**onAccountRestricted**](WebhookEventsApi.md#onAccountRestricted) | **POST** /account.restricted | Account restricted from publishing |
+| [**onAccountRestrictedWithHttpInfo**](WebhookEventsApi.md#onAccountRestrictedWithHttpInfo) | **POST** /account.restricted | Account restricted from publishing |
 | [**onAdAccountStatusChanged**](WebhookEventsApi.md#onAdAccountStatusChanged) | **POST** /ad_account.status_changed | Ad account status changed event |
 | [**onAdAccountStatusChangedWithHttpInfo**](WebhookEventsApi.md#onAdAccountStatusChangedWithHttpInfo) | **POST** /ad_account.status_changed | Ad account status changed event |
 | [**onAdCreated**](WebhookEventsApi.md#onAdCreated) | **POST** /ad.created | Ad created event |
@@ -66,6 +70,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**onBalanceEmptyWithHttpInfo**](WebhookEventsApi.md#onBalanceEmptyWithHttpInfo) | **POST** /balance.empty | Balance empty event |
 | [**onBalanceLow**](WebhookEventsApi.md#onBalanceLow) | **POST** /balance.low | Balance low event |
 | [**onBalanceLowWithHttpInfo**](WebhookEventsApi.md#onBalanceLowWithHttpInfo) | **POST** /balance.low | Balance low event |
+| [**onBillingPublishingBlocked**](WebhookEventsApi.md#onBillingPublishingBlocked) | **POST** /billing.publishing_blocked | Publishing paused for a failed payment |
+| [**onBillingPublishingBlockedWithHttpInfo**](WebhookEventsApi.md#onBillingPublishingBlockedWithHttpInfo) | **POST** /billing.publishing_blocked | Publishing paused for a failed payment |
+| [**onBillingPublishingUnblocked**](WebhookEventsApi.md#onBillingPublishingUnblocked) | **POST** /billing.publishing_unblocked | Publishing resumed after payment |
+| [**onBillingPublishingUnblockedWithHttpInfo**](WebhookEventsApi.md#onBillingPublishingUnblockedWithHttpInfo) | **POST** /billing.publishing_unblocked | Publishing resumed after payment |
 | [**onBrandedCallingIdentityActionRequired**](WebhookEventsApi.md#onBrandedCallingIdentityActionRequired) | **POST** /branded_calling.identity.action_required | Caller identity action required event |
 | [**onBrandedCallingIdentityActionRequiredWithHttpInfo**](WebhookEventsApi.md#onBrandedCallingIdentityActionRequiredWithHttpInfo) | **POST** /branded_calling.identity.action_required | Caller identity action required event |
 | [**onBrandedCallingIdentityStatusUpdated**](WebhookEventsApi.md#onBrandedCallingIdentityStatusUpdated) | **POST** /branded_calling.identity.status_updated | Caller identity status updated event |
@@ -1444,6 +1452,290 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadAccountRateLimited** | [**WebhookPayloadAccountRateLimited**](WebhookPayloadAccountRateLimited.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onAccountRecovered
+
+> void onAccountRecovered(webhookPayloadAccountRecovered)
+
+Account publishing again
+
+A publish succeeded on an account that &#x60;account.restricted&#x60; reported, so the restriction is lifted and publish-now posts to it are accepted again. A reconnect also lifts it; that sends &#x60;account.connected&#x60; instead. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAccountRecovered webhookPayloadAccountRecovered = new WebhookPayloadAccountRecovered(); // WebhookPayloadAccountRecovered | 
+        try {
+            apiInstance.onAccountRecovered(webhookPayloadAccountRecovered);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAccountRecovered");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAccountRecovered** | [**WebhookPayloadAccountRecovered**](WebhookPayloadAccountRecovered.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onAccountRecoveredWithHttpInfo
+
+> ApiResponse<Void> onAccountRecovered onAccountRecoveredWithHttpInfo(webhookPayloadAccountRecovered)
+
+Account publishing again
+
+A publish succeeded on an account that &#x60;account.restricted&#x60; reported, so the restriction is lifted and publish-now posts to it are accepted again. A reconnect also lifts it; that sends &#x60;account.connected&#x60; instead. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAccountRecovered webhookPayloadAccountRecovered = new WebhookPayloadAccountRecovered(); // WebhookPayloadAccountRecovered | 
+        try {
+            ApiResponse<Void> response = apiInstance.onAccountRecoveredWithHttpInfo(webhookPayloadAccountRecovered);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAccountRecovered");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAccountRecovered** | [**WebhookPayloadAccountRecovered**](WebhookPayloadAccountRecovered.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onAccountRestricted
+
+> void onAccountRestricted(webhookPayloadAccountRestricted)
+
+Account restricted from publishing
+
+A social account failed its last three publishes with the same account-level error: the platform suspended or banned it, restricted or locked it, asks for an identity or security check, or stopped accepting its login.  ### When it fires  Once per restriction, on the third identical failure in a row. Further failures do not fire it again.  ### What changes  &#x60;POST /v1/posts&#x60; with &#x60;publishNow&#x60; (or a time already past) to this account answers 422 &#x60;account_restricted&#x60;, because it would fail the same way. Scheduled posts are still accepted.  Fix the account on the platform, then reconnect it to lift the check at once; otherwise the next successful publish lifts it (&#x60;account.recovered&#x60;). 24 hours after the last failure one publish-now is let through again. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAccountRestricted webhookPayloadAccountRestricted = new WebhookPayloadAccountRestricted(); // WebhookPayloadAccountRestricted | 
+        try {
+            apiInstance.onAccountRestricted(webhookPayloadAccountRestricted);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAccountRestricted");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAccountRestricted** | [**WebhookPayloadAccountRestricted**](WebhookPayloadAccountRestricted.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onAccountRestrictedWithHttpInfo
+
+> ApiResponse<Void> onAccountRestricted onAccountRestrictedWithHttpInfo(webhookPayloadAccountRestricted)
+
+Account restricted from publishing
+
+A social account failed its last three publishes with the same account-level error: the platform suspended or banned it, restricted or locked it, asks for an identity or security check, or stopped accepting its login.  ### When it fires  Once per restriction, on the third identical failure in a row. Further failures do not fire it again.  ### What changes  &#x60;POST /v1/posts&#x60; with &#x60;publishNow&#x60; (or a time already past) to this account answers 422 &#x60;account_restricted&#x60;, because it would fail the same way. Scheduled posts are still accepted.  Fix the account on the platform, then reconnect it to lift the check at once; otherwise the next successful publish lifts it (&#x60;account.recovered&#x60;). 24 hours after the last failure one publish-now is let through again. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAccountRestricted webhookPayloadAccountRestricted = new WebhookPayloadAccountRestricted(); // WebhookPayloadAccountRestricted | 
+        try {
+            ApiResponse<Void> response = apiInstance.onAccountRestrictedWithHttpInfo(webhookPayloadAccountRestricted);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAccountRestricted");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAccountRestricted** | [**WebhookPayloadAccountRestricted**](WebhookPayloadAccountRestricted.md)|  | |
 
 ### Return type
 
@@ -4710,6 +5002,290 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadBalanceLow** | [**WebhookPayloadBalanceLow**](WebhookPayloadBalanceLow.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onBillingPublishingBlocked
+
+> void onBillingPublishingBlocked(webhookPayloadBillingPublishingBlocked)
+
+Publishing paused for a failed payment
+
+A failed payment paused the billing owner&#39;s account. Until it is paid, every API call answers 402 &#x60;PAYMENT_REQUIRED&#x60; and posts that come due fail with \&quot;Publishing blocked: payment failed\&quot;.  ### When it fires  Once per pause. &#x60;billing.reason&#x60; says why: the card was declined (&#x60;payment_failed&#x60;), there is no card (&#x60;no_payment_method&#x60;), or the billing address was refused (&#x60;invalid_billing_address&#x60;). Pay or replace the card at &#x60;billingUrl&#x60;.  ### Who receives it  The billing owner&#39;s endpoints. Restricted keys need the &#x60;money&#x60; resource group. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadBillingPublishingBlocked webhookPayloadBillingPublishingBlocked = new WebhookPayloadBillingPublishingBlocked(); // WebhookPayloadBillingPublishingBlocked | 
+        try {
+            apiInstance.onBillingPublishingBlocked(webhookPayloadBillingPublishingBlocked);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onBillingPublishingBlocked");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadBillingPublishingBlocked** | [**WebhookPayloadBillingPublishingBlocked**](WebhookPayloadBillingPublishingBlocked.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onBillingPublishingBlockedWithHttpInfo
+
+> ApiResponse<Void> onBillingPublishingBlocked onBillingPublishingBlockedWithHttpInfo(webhookPayloadBillingPublishingBlocked)
+
+Publishing paused for a failed payment
+
+A failed payment paused the billing owner&#39;s account. Until it is paid, every API call answers 402 &#x60;PAYMENT_REQUIRED&#x60; and posts that come due fail with \&quot;Publishing blocked: payment failed\&quot;.  ### When it fires  Once per pause. &#x60;billing.reason&#x60; says why: the card was declined (&#x60;payment_failed&#x60;), there is no card (&#x60;no_payment_method&#x60;), or the billing address was refused (&#x60;invalid_billing_address&#x60;). Pay or replace the card at &#x60;billingUrl&#x60;.  ### Who receives it  The billing owner&#39;s endpoints. Restricted keys need the &#x60;money&#x60; resource group. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadBillingPublishingBlocked webhookPayloadBillingPublishingBlocked = new WebhookPayloadBillingPublishingBlocked(); // WebhookPayloadBillingPublishingBlocked | 
+        try {
+            ApiResponse<Void> response = apiInstance.onBillingPublishingBlockedWithHttpInfo(webhookPayloadBillingPublishingBlocked);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onBillingPublishingBlocked");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadBillingPublishingBlocked** | [**WebhookPayloadBillingPublishingBlocked**](WebhookPayloadBillingPublishingBlocked.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onBillingPublishingUnblocked
+
+> void onBillingPublishingUnblocked(webhookPayloadBillingPublishingUnblocked)
+
+Publishing resumed after payment
+
+The account paused by &#x60;billing.publishing_blocked&#x60; was paid: the API accepts calls again and scheduled posts publish. Posts that failed during the pause stay failed; retry them with &#x60;POST /v1/posts/{postId}/retry&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadBillingPublishingUnblocked webhookPayloadBillingPublishingUnblocked = new WebhookPayloadBillingPublishingUnblocked(); // WebhookPayloadBillingPublishingUnblocked | 
+        try {
+            apiInstance.onBillingPublishingUnblocked(webhookPayloadBillingPublishingUnblocked);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onBillingPublishingUnblocked");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadBillingPublishingUnblocked** | [**WebhookPayloadBillingPublishingUnblocked**](WebhookPayloadBillingPublishingUnblocked.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onBillingPublishingUnblockedWithHttpInfo
+
+> ApiResponse<Void> onBillingPublishingUnblocked onBillingPublishingUnblockedWithHttpInfo(webhookPayloadBillingPublishingUnblocked)
+
+Publishing resumed after payment
+
+The account paused by &#x60;billing.publishing_blocked&#x60; was paid: the API accepts calls again and scheduled posts publish. Posts that failed during the pause stay failed; retry them with &#x60;POST /v1/posts/{postId}/retry&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadBillingPublishingUnblocked webhookPayloadBillingPublishingUnblocked = new WebhookPayloadBillingPublishingUnblocked(); // WebhookPayloadBillingPublishingUnblocked | 
+        try {
+            ApiResponse<Void> response = apiInstance.onBillingPublishingUnblockedWithHttpInfo(webhookPayloadBillingPublishingUnblocked);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onBillingPublishingUnblocked");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadBillingPublishingUnblocked** | [**WebhookPayloadBillingPublishingUnblocked**](WebhookPayloadBillingPublishingUnblocked.md)|  | |
 
 ### Return type
 

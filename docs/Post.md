@@ -22,6 +22,7 @@
 |**mentions** | **List&lt;String&gt;** | Stored for reference only. Publishing does not create mentions from this field. |  [optional] |
 |**visibility** | [**VisibilityEnum**](#VisibilityEnum) |  |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**externalId** | **String** | Your own identifier for this post, as set on create or update. Absent when unset. Not unique: filter with &#x60;GET /v1/posts?externalId&#x3D;&#x60;. |  [optional] |
 |**recycling** | [**RecyclingState**](RecyclingState.md) |  |  [optional] |
 |**recycledFromPostId** | **String** | ID of the original post if this post was created via recycling |  [optional] |
 |**queuedFromProfile** | **String** | Profile ID if the post was scheduled via the queue |  [optional] |

@@ -36,6 +36,8 @@
 | ACCOUNT_ADS_SYNC_FAILED | &quot;account.ads.sync_failed&quot; |
 | ACCOUNT_ADS_SYNC_RECOVERED | &quot;account.ads.sync_recovered&quot; |
 | ACCOUNT_RATE_LIMITED | &quot;account.rate_limited&quot; |
+| ACCOUNT_RESTRICTED | &quot;account.restricted&quot; |
+| ACCOUNT_RECOVERED | &quot;account.recovered&quot; |
 | ACCOUNT_PRIVACY_REQUEST | &quot;account.privacy_request&quot; |
 | CALENDAR_EVENT_CREATED | &quot;calendar.event.created&quot; |
 | CALENDAR_EVENT_UPDATED | &quot;calendar.event.updated&quot; |
@@ -174,6 +176,8 @@
 | BALANCE_LOW | &quot;balance.low&quot; |
 | BALANCE_EMPTY | &quot;balance.empty&quot; |
 | BALANCE_CHARGED | &quot;balance.charged&quot; |
+| BILLING_PUBLISHING_BLOCKED | &quot;billing.publishing_blocked&quot; |
+| BILLING_PUBLISHING_UNBLOCKED | &quot;billing.publishing_unblocked&quot; |
 | NOTIFICATION_SENT | &quot;notification.sent&quot; |
 | API_CHANGELOG_PUBLISHED | &quot;api.changelog.published&quot; |
 
