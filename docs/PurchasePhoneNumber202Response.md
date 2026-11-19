@@ -10,6 +10,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**country** | **String** |  |  [optional] |
 |**numberType** | **String** | The type that will be ordered after KYC approval. |  [optional] |
+|**purchaseIntentId** | **String** | Echo of the purchaseIntentId you sent. Pass it to the KYC submission (or the KYC share link) so the resulting numbers and their whatsapp.number.* webhooks carry it. |  [optional] |
 |**kycUrl** | **String** |  |  [optional] |
 
 

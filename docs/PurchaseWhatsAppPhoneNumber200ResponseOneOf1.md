@@ -2,7 +2,7 @@
 
 # PurchaseWhatsAppPhoneNumber200ResponseOneOf1
 
-A number was already purchased under the supplied purchaseIntentId; no new number was provisioned. 
+A number was already purchased under the supplied purchaseIntentId; no new number was provisioned. The number can still be in regulatory review or declined (phoneNumber can be \"pending\"): GET it for its status, and use a new purchaseIntentId to buy a replacement. 
 
 ## Properties
 

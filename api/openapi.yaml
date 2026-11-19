@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.698.0
+  version: 1.700.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -104825,6 +104825,7 @@ components:
         transcriptionEnabled: true
         provisionedAt: 2000-01-23T04:56:07.000+00:00
         activatedAt: 2000-01-23T04:56:07.000+00:00
+        purchaseIntentId: purchaseIntentId
         regulatoryReviewComment: regulatoryReviewComment
         socialAccountId: socialAccountId
         ivrPrompt: ivrPrompt
@@ -104878,6 +104879,10 @@ components:
             \ in the purchase body). Absent when you did not pick one. When it differs\
             \ from `phoneNumber`, WhatsApp refused the picked number (it was likely\
             \ registered on WhatsApp before), so a different number was issued."
+          type: string
+        purchaseIntentId:
+          description: The purchaseIntentId the number was bought or KYC-submitted
+            with. Absent when none was sent.
           type: string
         country:
           type: string
@@ -169184,7 +169189,9 @@ components:
           description: Meta error type (e.g. OAuthException)
           type: string
         message:
-          description: TikTok error message
+          description: "TikTok error message. On WhatsApp, Meta's own error text,\
+            \ set only when error carries Zernio's explanation instead (code 10, subcode\
+            \ 2593184)."
           type: string
         request_id:
           description: "TikTok request_id, quote this in a TikTok support ticket"
@@ -177318,6 +177325,7 @@ components:
           transcriptionEnabled: true
           provisionedAt: 2000-01-23T04:56:07.000+00:00
           activatedAt: 2000-01-23T04:56:07.000+00:00
+          purchaseIntentId: purchaseIntentId
           regulatoryReviewComment: regulatoryReviewComment
           socialAccountId: socialAccountId
           ivrPrompt: ivrPrompt
@@ -177408,6 +177416,7 @@ components:
           transcriptionEnabled: true
           provisionedAt: 2000-01-23T04:56:07.000+00:00
           activatedAt: 2000-01-23T04:56:07.000+00:00
+          purchaseIntentId: purchaseIntentId
           regulatoryReviewComment: regulatoryReviewComment
           socialAccountId: socialAccountId
           ivrPrompt: ivrPrompt
@@ -177740,7 +177749,7 @@ components:
           $ref: "#/components/schemas/purchasePhoneNumber_200_response_oneOf_1_phoneNumber"
     purchasePhoneNumber_200_response_oneOf_2:
       description: |
-        A number was already purchased under the supplied purchaseIntentId; no new number was provisioned.
+        A number was already purchased under the supplied purchaseIntentId; no new number was provisioned. The number can still be in regulatory review or declined (phoneNumber can be "pending"): GET it for its status, and use a new purchaseIntentId to buy a replacement.
       properties:
         status:
           enum:
@@ -177812,6 +177821,7 @@ components:
         country: country
         numberType: numberType
         kycUrl: kycUrl
+        purchaseIntentId: purchaseIntentId
         status: kyc_required
       properties:
         status:
@@ -177822,6 +177832,11 @@ components:
           type: string
         numberType:
           description: The type that will be ordered after KYC approval.
+          type: string
+        purchaseIntentId:
+          description: Echo of the purchaseIntentId you sent. Pass it to the KYC submission
+            (or the KYC share link) so the resulting numbers and their whatsapp.number.*
+            webhooks carry it.
           type: string
         kycUrl:
           type: string
@@ -178589,7 +178604,7 @@ components:
           $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_200_response_oneOf_phoneNumber"
     purchaseWhatsAppPhoneNumber_200_response_oneOf_1:
       description: |
-        A number was already purchased under the supplied purchaseIntentId; no new number was provisioned.
+        A number was already purchased under the supplied purchaseIntentId; no new number was provisioned. The number can still be in regulatory review or declined (phoneNumber can be "pending"): GET it for its status, and use a new purchaseIntentId to buy a replacement.
       properties:
         status:
           enum:
@@ -179202,6 +179217,13 @@ components:
             Options come from GET /v1/phone-numbers/availability (areaOptions). The purchase 202 kycUrl echoes the areaCode picked at purchase time so it can be passed here.
           pattern: "^\\d{1,4}$"
           type: string
+        purchaseIntentId:
+          description: "Correlation label copied onto every number this submission\
+            \ creates (a batch shares it) and onto their webhooks. Not an idempotency\
+            \ key: use submissionId for safe retries. Max 100 characters; longer values\
+            \ are truncated."
+          maxLength: 100
+          type: string
         phoneNumber:
           description: "Exact number to order, in E.164, taken from GET /v1/phone-numbers/available.\
             \ It is ordered as is or the request fails with 409 code phone_number_unavailable;\
@@ -179463,6 +179485,12 @@ components:
             carried by the link; the end customer filling the form makes no area choice.
             Options come from GET /v1/phone-numbers/availability (areaOptions).
           pattern: "^\\d{1,4}$"
+          type: string
+        purchaseIntentId:
+          description: "Correlation label stamped on the numbers when the end customer\
+            \ submits the hosted form, and copied onto their webhooks. Max 100 characters;\
+            \ longer values are truncated."
+          maxLength: 100
           type: string
         language:
           description: |
@@ -180499,6 +180527,13 @@ components:
             Options come from GET /v1/phone-numbers/availability (areaOptions). The purchase 202 kycUrl echoes the areaCode picked at purchase time so it can be passed here.
           pattern: "^\\d{1,4}$"
           type: string
+        purchaseIntentId:
+          description: "Correlation label copied onto every number this submission\
+            \ creates (a batch shares it) and onto their webhooks. Not an idempotency\
+            \ key: use submissionId for safe retries. Max 100 characters; longer values\
+            \ are truncated."
+          maxLength: 100
+          type: string
         phoneNumber:
           description: "Exact number to order, in E.164, taken from GET /v1/whatsapp/phone-numbers/available.\
             \ It is ordered as is or the request fails with 409 code phone_number_unavailable;\
@@ -180554,6 +180589,12 @@ components:
             carried by the link; the end customer filling the form makes no area choice.
             Options come from GET /v1/phone-numbers/availability (areaOptions).
           pattern: "^\\d{1,4}$"
+          type: string
+        purchaseIntentId:
+          description: "Correlation label stamped on the numbers when the end customer\
+            \ submits the hosted form, and copied onto their webhooks. Max 100 characters;\
+            \ longer values are truncated."
+          maxLength: 100
           type: string
         language:
           description: |
@@ -228409,6 +228450,9 @@ components:
           type: string
         profileId:
           type: string
+        purchaseIntentId:
+          description: Echo of the purchaseIntentId the number was bought or KYC-submitted
+            with. Absent when none was sent.
     onWhatsAppNumberActivated_request:
       properties:
         test:
@@ -228446,6 +228490,9 @@ components:
         phoneNumber: {}
         country: {}
         profileId: {}
+        purchaseIntentId:
+          description: Echo of the purchaseIntentId the number was bought or KYC-submitted
+            with. Absent when none was sent.
     onWhatsAppNumberDeclined_request:
       properties:
         test:
