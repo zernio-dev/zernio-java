@@ -1543,6 +1543,10 @@ docs/GetEventsOverview200ResponseToday.md
 docs/GetEventsOverview200ResponseWebsite.md
 docs/GetEventsOverview200ResponseWebsiteStepsInner.md
 docs/GetEventsOverviewDaily200Response.md
+docs/GetEventsOverviewDaily200ResponseBreakdown.md
+docs/GetEventsOverviewDaily200ResponseBreakdownCampaignsInner.md
+docs/GetEventsOverviewDaily200ResponseBreakdownEventsInner.md
+docs/GetEventsOverviewDaily200ResponseBreakdownSourcesInner.md
 docs/GetEventsOverviewDaily200ResponseDaysInner.md
 docs/GetEventsOverviewDaily200ResponsePixelMissedInner.md
 docs/GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner.md
@@ -5582,6 +5586,10 @@ src/main/java/dev/zernio/model/GetEventsOverview200ResponseToday.java
 src/main/java/dev/zernio/model/GetEventsOverview200ResponseWebsite.java
 src/main/java/dev/zernio/model/GetEventsOverview200ResponseWebsiteStepsInner.java
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200Response.java
+src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponseBreakdown.java
+src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponseBreakdownCampaignsInner.java
+src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponseBreakdownEventsInner.java
+src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponseBreakdownSourcesInner.java
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponseDaysInner.java
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePixelMissedInner.java
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner.java
@@ -7959,3 +7967,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetEventsOverviewDaily200ResponseBreakdownCampaignsInnerTest.java
+src/test/java/dev/zernio/model/GetEventsOverviewDaily200ResponseBreakdownEventsInnerTest.java
+src/test/java/dev/zernio/model/GetEventsOverviewDaily200ResponseBreakdownSourcesInnerTest.java
+src/test/java/dev/zernio/model/GetEventsOverviewDaily200ResponseBreakdownTest.java

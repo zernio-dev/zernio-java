@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.684.0
+  version: 1.685.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -212412,6 +212412,94 @@ components:
           items:
             $ref: "#/components/schemas/getEventsOverviewDaily_200_response_pixelMissed_inner_days_inner"
           type: array
+    getEventsOverviewDaily_200_response_breakdown_events_inner:
+      example:
+        conversions: 9
+        eventName: eventName
+      properties:
+        eventName:
+          type: string
+        conversions:
+          type: integer
+    getEventsOverviewDaily_200_response_breakdown_sources_inner:
+      example:
+        conversions: 6
+        source: source
+      properties:
+        source:
+          type: string
+        conversions:
+          type: integer
+    getEventsOverviewDaily_200_response_breakdown_campaigns_inner:
+      example:
+        reason: not_from_an_ad
+        conversions: 3
+        campaignId: campaignId
+        name: name
+        platform: platform
+      properties:
+        platform:
+          nullable: true
+          type: string
+        campaignId:
+          nullable: true
+          type: string
+        name:
+          description: "The campaign's name in the ad account, when Zernio holds it."
+          nullable: true
+          type: string
+        reason:
+          enum:
+          - not_from_an_ad
+          - campaign_not_found
+          - null
+          nullable: true
+          type: string
+        conversions:
+          type: integer
+    getEventsOverviewDaily_200_response_breakdown:
+      description: Where the period's conversions came from.
+      example:
+        sources:
+        - conversions: 6
+          source: source
+        - conversions: 6
+          source: source
+        campaigns:
+        - reason: not_from_an_ad
+          conversions: 3
+          campaignId: campaignId
+          name: name
+          platform: platform
+        - reason: not_from_an_ad
+          conversions: 3
+          campaignId: campaignId
+          name: name
+          platform: platform
+        events:
+        - conversions: 9
+          eventName: eventName
+        - conversions: 9
+          eventName: eventName
+      properties:
+        events:
+          description: "Conversions per event name, most first."
+          items:
+            $ref: "#/components/schemas/getEventsOverviewDaily_200_response_breakdown_events_inner"
+          type: array
+        sources:
+          description: "Conversions per source (`web`, `api`, `stripe`...), most first."
+          items:
+            $ref: "#/components/schemas/getEventsOverviewDaily_200_response_breakdown_sources_inner"
+          type: array
+        campaigns:
+          description: "The counted conversions (the events that count as campaign\
+            \ results) per matched campaign, most first. Those not tied to one are\
+            \ rows with a `reason`: `not_from_an_ad`, or `campaign_not_found` for\
+            \ an ad Zernio could not match."
+          items:
+            $ref: "#/components/schemas/getEventsOverviewDaily_200_response_breakdown_campaigns_inner"
+          type: array
     getEventsOverviewDaily_200_response_previous:
       description: "The same figures for the period of the same length just before\
         \ it, to show each figure's change."
@@ -212449,6 +212537,28 @@ components:
           pixelMissed:
           - "{}"
           - "{}"
+        breakdown:
+          sources:
+          - conversions: 6
+            source: source
+          - conversions: 6
+            source: source
+          campaigns:
+          - reason: not_from_an_ad
+            conversions: 3
+            campaignId: campaignId
+            name: name
+            platform: platform
+          - reason: not_from_an_ad
+            conversions: 3
+            campaignId: campaignId
+            name: name
+            platform: platform
+          events:
+          - conversions: 9
+            eventName: eventName
+          - conversions: 9
+            eventName: eventName
         days:
         - conversions: 3
           valueSent: 1.2315135367772556
@@ -212561,6 +212671,8 @@ components:
             $ref: "#/components/schemas/getEventsOverviewDaily_200_response_pixelMissed_inner"
           nullable: true
           type: array
+        breakdown:
+          $ref: "#/components/schemas/getEventsOverviewDaily_200_response_breakdown"
         previous:
           $ref: "#/components/schemas/getEventsOverviewDaily_200_response_previous"
     listEventNames_200_response_names_inner:

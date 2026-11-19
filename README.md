@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.684.0
+- API version: 1.685.0
 
-- Build date: 2026-11-19T11:09:30.465412232Z[Etc/UTC]
+- Build date: 2026-11-19T11:16:03.762441916Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.684.0</version>
+  <version>1.685.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.684.0"
+compile "dev.zernio:zernio-sdk:1.685.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.684.0.jar`
+- `target/zernio-sdk-1.685.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4283,6 +4283,10 @@ Class | Method | HTTP request | Description
  - [GetEventsOverview200ResponseWebsite](docs/GetEventsOverview200ResponseWebsite.md)
  - [GetEventsOverview200ResponseWebsiteStepsInner](docs/GetEventsOverview200ResponseWebsiteStepsInner.md)
  - [GetEventsOverviewDaily200Response](docs/GetEventsOverviewDaily200Response.md)
+ - [GetEventsOverviewDaily200ResponseBreakdown](docs/GetEventsOverviewDaily200ResponseBreakdown.md)
+ - [GetEventsOverviewDaily200ResponseBreakdownCampaignsInner](docs/GetEventsOverviewDaily200ResponseBreakdownCampaignsInner.md)
+ - [GetEventsOverviewDaily200ResponseBreakdownEventsInner](docs/GetEventsOverviewDaily200ResponseBreakdownEventsInner.md)
+ - [GetEventsOverviewDaily200ResponseBreakdownSourcesInner](docs/GetEventsOverviewDaily200ResponseBreakdownSourcesInner.md)
  - [GetEventsOverviewDaily200ResponseDaysInner](docs/GetEventsOverviewDaily200ResponseDaysInner.md)
  - [GetEventsOverviewDaily200ResponsePixelMissedInner](docs/GetEventsOverviewDaily200ResponsePixelMissedInner.md)
  - [GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner](docs/GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner.md)
