@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.682.0
+  version: 1.682.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -135439,7 +135439,9 @@ components:
         url: https://openapi-generator.tech
       properties:
         url:
-          description: An https landing page.
+          description: "An https landing page. Each click adds its click id as `zcid`,\
+            \ and fills any parameter set to `{zcid}`, such as `sub1={zcid}` on an\
+            \ affiliate network's offer link."
           format: uri
           maxLength: 2048
           type: string
