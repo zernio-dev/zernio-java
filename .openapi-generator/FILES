@@ -3178,6 +3178,9 @@ docs/TikTokSmartPlusReviewStatus.md
 docs/TrackingLink.md
 docs/TrackingLinkCampaign.md
 docs/TrackingLinkDestination.md
+docs/TrackingLinkStats.md
+docs/TrackingLinkStatsDestinationsInner.md
+docs/TrackingLinkStatsRevenueInner.md
 docs/TrackingLinksApi.md
 docs/TrackingSite.md
 docs/TrackingSiteChecksInner.md
@@ -7162,6 +7165,9 @@ src/main/java/dev/zernio/model/TikTokSmartPlusReviewStatus.java
 src/main/java/dev/zernio/model/TrackingLink.java
 src/main/java/dev/zernio/model/TrackingLinkCampaign.java
 src/main/java/dev/zernio/model/TrackingLinkDestination.java
+src/main/java/dev/zernio/model/TrackingLinkStats.java
+src/main/java/dev/zernio/model/TrackingLinkStatsDestinationsInner.java
+src/main/java/dev/zernio/model/TrackingLinkStatsRevenueInner.java
 src/main/java/dev/zernio/model/TrackingSite.java
 src/main/java/dev/zernio/model/TrackingSiteChecksInner.java
 src/main/java/dev/zernio/model/TrackingSiteConsentMode.java
@@ -7917,3 +7923,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/TrackingLinkStatsDestinationsInnerTest.java
+src/test/java/dev/zernio/model/TrackingLinkStatsRevenueInnerTest.java
+src/test/java/dev/zernio/model/TrackingLinkStatsTest.java

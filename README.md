@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.678.0
+- API version: 1.679.0
 
-- Build date: 2026-11-18T23:35:10.642029735Z[Etc/UTC]
+- Build date: 2026-11-18T23:59:16.704359217Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.678.0</version>
+  <version>1.679.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.678.0"
+compile "dev.zernio:zernio-sdk:1.679.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.678.0.jar`
+- `target/zernio-sdk-1.679.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2353,6 +2353,8 @@ Class | Method | HTTP request | Description
 *TrackingLinksApi* | [**deleteTrackingLinkWithHttpInfo**](docs/TrackingLinksApi.md#deleteTrackingLinkWithHttpInfo) | **DELETE** /v1/tracking-links/{linkId} | Delete a tracking link
 *TrackingLinksApi* | [**getTrackingLink**](docs/TrackingLinksApi.md#getTrackingLink) | **GET** /v1/tracking-links/{linkId} | Get a tracking link
 *TrackingLinksApi* | [**getTrackingLinkWithHttpInfo**](docs/TrackingLinksApi.md#getTrackingLinkWithHttpInfo) | **GET** /v1/tracking-links/{linkId} | Get a tracking link
+*TrackingLinksApi* | [**getTrackingLinkStats**](docs/TrackingLinksApi.md#getTrackingLinkStats) | **GET** /v1/tracking-links/{linkId}/stats | Get a tracking link&#39;s results
+*TrackingLinksApi* | [**getTrackingLinkStatsWithHttpInfo**](docs/TrackingLinksApi.md#getTrackingLinkStatsWithHttpInfo) | **GET** /v1/tracking-links/{linkId}/stats | Get a tracking link&#39;s results
 *TrackingLinksApi* | [**listTrackingLinks**](docs/TrackingLinksApi.md#listTrackingLinks) | **GET** /v1/tracking-links | List tracking links
 *TrackingLinksApi* | [**listTrackingLinksWithHttpInfo**](docs/TrackingLinksApi.md#listTrackingLinksWithHttpInfo) | **GET** /v1/tracking-links | List tracking links
 *TrackingLinksApi* | [**rotateTrackingLinkPostbackToken**](docs/TrackingLinksApi.md#rotateTrackingLinkPostbackToken) | **POST** /v1/tracking-links/{linkId}/rotate-postback-token | Rotate a tracking link&#39;s postback URL
@@ -5876,6 +5878,9 @@ Class | Method | HTTP request | Description
  - [TrackingLink](docs/TrackingLink.md)
  - [TrackingLinkCampaign](docs/TrackingLinkCampaign.md)
  - [TrackingLinkDestination](docs/TrackingLinkDestination.md)
+ - [TrackingLinkStats](docs/TrackingLinkStats.md)
+ - [TrackingLinkStatsDestinationsInner](docs/TrackingLinkStatsDestinationsInner.md)
+ - [TrackingLinkStatsRevenueInner](docs/TrackingLinkStatsRevenueInner.md)
  - [TrackingSite](docs/TrackingSite.md)
  - [TrackingSiteChecksInner](docs/TrackingSiteChecksInner.md)
  - [TrackingSiteConsentMode](docs/TrackingSiteConsentMode.md)

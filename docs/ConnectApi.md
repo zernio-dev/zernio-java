@@ -1369,7 +1369,7 @@ ApiResponse<[**ConnectAds200Response**](ConnectAds200Response.md)>
 
 Connect an AppLovin Axon account
 
-Connect AppLovin Axon with the Conversion API key and Event Key from the Keys page of Axon Ads Manager.  Zernio checks both keys with Axon before saving them. The account then receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules), and its Event Key works as a site tag on tracking sites.  Requires the Ads add-on. 
+Connect AppLovin Axon with the Conversion API key and Event Key from the Keys page of Axon Ads Manager.  Zernio checks both keys with Axon before saving them. The account then receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules), and its Event Key works as a site tag on tracking sites.  Add the optional Report Key to sync AppLovin spend. Every few hours Zernio reads spend, impressions and clicks per campaign and creative set for the last 7 days, so AppLovin campaigns show in the ads campaign listings and in campaign results.  Zernio checks the Report Key with AppLovin before saving it. Connecting again without a Report Key keeps the one already saved.  Requires the Ads add-on. 
 
 ### Example
 
@@ -1433,10 +1433,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | AppLovin Axon connected |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized, or Axon did not accept the Conversion API key and Event Key (code invalid_credentials). |  -  |
+| **401** | Unauthorized, or Axon did not accept the Conversion API key and Event Key, or AppLovin did not accept the Report Key (code invalid_credentials). |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | Ads add-on required. |  -  |
-| **502** | Axon could not confirm the keys right now, so nothing was saved (code platform_api_error). Retry in a minute. |  -  |
+| **502** | Axon or AppLovin could not confirm the keys right now, so nothing was saved (code platform_api_error). Retry in a minute. |  -  |
 
 ## connectAppLovinAdsCredentialsWithHttpInfo
 
@@ -1444,7 +1444,7 @@ public class Example {
 
 Connect an AppLovin Axon account
 
-Connect AppLovin Axon with the Conversion API key and Event Key from the Keys page of Axon Ads Manager.  Zernio checks both keys with Axon before saving them. The account then receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules), and its Event Key works as a site tag on tracking sites.  Requires the Ads add-on. 
+Connect AppLovin Axon with the Conversion API key and Event Key from the Keys page of Axon Ads Manager.  Zernio checks both keys with Axon before saving them. The account then receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules), and its Event Key works as a site tag on tracking sites.  Add the optional Report Key to sync AppLovin spend. Every few hours Zernio reads spend, impressions and clicks per campaign and creative set for the last 7 days, so AppLovin campaigns show in the ads campaign listings and in campaign results.  Zernio checks the Report Key with AppLovin before saving it. Connecting again without a Report Key keeps the one already saved.  Requires the Ads add-on. 
 
 ### Example
 
@@ -1511,10 +1511,10 @@ ApiResponse<[**ConnectAppLovinAdsCredentials200Response**](ConnectAppLovinAdsCre
 |-------------|-------------|------------------|
 | **200** | AppLovin Axon connected |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized, or Axon did not accept the Conversion API key and Event Key (code invalid_credentials). |  -  |
+| **401** | Unauthorized, or Axon did not accept the Conversion API key and Event Key, or AppLovin did not accept the Report Key (code invalid_credentials). |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | Ads add-on required. |  -  |
-| **502** | Axon could not confirm the keys right now, so nothing was saved (code platform_api_error). Retry in a minute. |  -  |
+| **502** | Axon or AppLovin could not confirm the keys right now, so nothing was saved (code platform_api_error). Retry in a minute. |  -  |
 
 
 ## connectBlueskyCredentials

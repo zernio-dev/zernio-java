@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.678.0
+  version: 1.679.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -20301,6 +20301,10 @@ paths:
 
         Zernio checks both keys with Axon before saving them. The account then receives the conversion events you forward to it (`POST /v1/events`, forwarding rules), and its Event Key works as a site tag on tracking sites.
 
+        Add the optional Report Key to sync AppLovin spend. Every few hours Zernio reads spend, impressions and clicks per campaign and creative set for the last 7 days, so AppLovin campaigns show in the ads campaign listings and in campaign results.
+
+        Zernio checks the Report Key with AppLovin before saving it. Connecting again without a Report Key keeps the one already saved.
+
         Requires the Ads add-on.
       operationId: connectAppLovinAdsCredentials
       requestBody:
@@ -20328,14 +20332,14 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           description: "Unauthorized, or Axon did not accept the Conversion API key\
-            \ and Event Key (code invalid_credentials)."
+            \ and Event Key, or AppLovin did not accept the Report Key (code invalid_credentials)."
         "402":
           $ref: "#/components/responses/PaymentRequired"
         "403":
           description: Ads add-on required.
         "502":
-          description: "Axon could not confirm the keys right now, so nothing was\
-            \ saved (code platform_api_error). Retry in a minute."
+          description: "Axon or AppLovin could not confirm the keys right now, so\
+            \ nothing was saved (code platform_api_error). Retry in a minute."
       summary: Connect an AppLovin Axon account
       tags:
       - Connect
@@ -74744,6 +74748,60 @@ paths:
       security:
       - bearerAuth: []
       summary: Rotate a tracking link's postback URL
+      tags:
+      - Tracking links
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+  /v1/tracking-links/{linkId}/stats:
+    get:
+      description: |
+        Clicks, conversions and revenue of one link over a range of days (UTC), and its clicks per destination, the result of a split test. Clicks leave out bots.
+
+        Conversions are the link's postbacks plus website conversions carrying the click id of one of its clicks, less any retracted. The range is at most 90 days, the time clicks are kept.
+      operationId: getTrackingLinkStats
+      parameters:
+      - explode: false
+        in: path
+        name: linkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "First day of the range, `YYYY-MM-DD`."
+        explode: true
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: "Last day of the range, `YYYY-MM-DD`."
+        explode: true
+        in: query
+        name: toDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrackingLinkStats"
+          description: The link's results.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a tracking link's results
       tags:
       - Tracking links
       x-resource-group: ads
@@ -135131,10 +135189,11 @@ components:
             \ It uses the site's custom subdomain once that is active."
           type: string
         postbackUrl:
-          description: "The server-to-server postback URL to give the network. Replace\
-            \ `{clickid}`, `{payout}` and `{txid}` with the network's own macros.\
-            \ It holds a secret: rotate it with `POST /v1/tracking-links/{linkId}/rotate-postback-token`\
-            \ if it leaks."
+          description: "The server-to-server postback URL for the network, with its\
+            \ own macros in place of `{clickid}`, `{payout}` and `{txid}`. A `status`\
+            \ of `rejected`, `declined`, `refunded`, `reversed` or `chargeback` retracts\
+            \ the conversion; `pending` is ignored. It holds a secret: rotate it with\
+            \ `POST /v1/tracking-links/{linkId}/rotate-postback-token` if it leaks."
           type: string
         createdAt:
           format: date-time
@@ -135142,6 +135201,70 @@ components:
         updatedAt:
           format: date-time
           type: string
+    TrackingLinkStats:
+      example:
+        fromDate: 2000-01-23
+        conversions: 6
+        revenue:
+        - amount: 5.962133916683182
+          conversions: 5
+          currency: currency
+        - amount: 5.962133916683182
+          conversions: 5
+          currency: currency
+        formerDestinationClicks: 9
+        toDate: 2000-01-23
+        destinations:
+        - weight: 23
+          clicks: 7
+          url: https://openapi-generator.tech
+        - weight: 23
+          clicks: 7
+          url: https://openapi-generator.tech
+        clicks: 0
+        conversionRate: 1.4658129805029452
+      properties:
+        fromDate:
+          format: date
+          type: string
+        toDate:
+          format: date
+          type: string
+        clicks:
+          description: Human clicks in the range.
+          type: integer
+        conversions:
+          description: Conversions still counted whose time falls in the range.
+          type: integer
+        conversionRate:
+          description: Conversions per click. Null without clicks.
+          nullable: true
+          type: number
+        revenue:
+          description: "The conversions' value summed per currency, most conversions\
+            \ first."
+          items:
+            $ref: "#/components/schemas/TrackingLinkStats_revenue_inner"
+          type: array
+        destinations:
+          description: "The link's current destinations, each with its clicks in the\
+            \ range."
+          items:
+            $ref: "#/components/schemas/TrackingLinkStats_destinations_inner"
+          type: array
+        formerDestinationClicks:
+          description: Clicks on destinations the link no longer has (an edited or
+            removed URL).
+          type: integer
+      required:
+      - clicks
+      - conversionRate
+      - conversions
+      - destinations
+      - formerDestinationClicks
+      - fromDate
+      - revenue
+      - toDate
     EventCorrection:
       description: What happened to a correction at one destination the event was
         forwarded to.
@@ -152677,6 +152800,10 @@ components:
         eventKey:
           description: "Event Key from the Keys page of Axon Ads Manager: 8 to 128\
             \ letters, digits, dots, dashes or underscores."
+          type: string
+        reportKey:
+          description: "Optional Report Key from the Keys page of your AppLovin account.\
+            \ With it, Zernio syncs AppLovin spend per campaign."
           type: string
         name:
           description: Optional display name for the account.
@@ -241643,6 +241770,35 @@ components:
           - ready
           - failed
           type: string
+    TrackingLinkStats_revenue_inner:
+      example:
+        amount: 5.962133916683182
+        conversions: 5
+        currency: currency
+      properties:
+        currency:
+          description: "ISO 4217 code, empty for conversions sent without a value."
+          type: string
+        amount:
+          type: number
+        conversions:
+          type: integer
+      required:
+      - amount
+      - conversions
+      - currency
+    TrackingLinkStats_destinations_inner:
+      allOf:
+      - $ref: "#/components/schemas/TrackingLinkDestination"
+      - properties:
+          clicks:
+            type: integer
+        required:
+        - clicks
+      example:
+        weight: 23
+        clicks: 7
+        url: https://openapi-generator.tech
     ConversionEvent_user_clickIds:
       description: Platform click identifiers captured from the originating ad click.
       properties:

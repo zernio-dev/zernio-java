@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteTrackingLinkWithHttpInfo**](TrackingLinksApi.md#deleteTrackingLinkWithHttpInfo) | **DELETE** /v1/tracking-links/{linkId} | Delete a tracking link |
 | [**getTrackingLink**](TrackingLinksApi.md#getTrackingLink) | **GET** /v1/tracking-links/{linkId} | Get a tracking link |
 | [**getTrackingLinkWithHttpInfo**](TrackingLinksApi.md#getTrackingLinkWithHttpInfo) | **GET** /v1/tracking-links/{linkId} | Get a tracking link |
+| [**getTrackingLinkStats**](TrackingLinksApi.md#getTrackingLinkStats) | **GET** /v1/tracking-links/{linkId}/stats | Get a tracking link&#39;s results |
+| [**getTrackingLinkStatsWithHttpInfo**](TrackingLinksApi.md#getTrackingLinkStatsWithHttpInfo) | **GET** /v1/tracking-links/{linkId}/stats | Get a tracking link&#39;s results |
 | [**listTrackingLinks**](TrackingLinksApi.md#listTrackingLinks) | **GET** /v1/tracking-links | List tracking links |
 | [**listTrackingLinksWithHttpInfo**](TrackingLinksApi.md#listTrackingLinksWithHttpInfo) | **GET** /v1/tracking-links | List tracking links |
 | [**rotateTrackingLinkPostbackToken**](TrackingLinksApi.md#rotateTrackingLinkPostbackToken) | **POST** /v1/tracking-links/{linkId}/rotate-postback-token | Rotate a tracking link&#39;s postback URL |
@@ -469,6 +471,164 @@ ApiResponse<[**CreateTrackingLink201Response**](CreateTrackingLink201Response.md
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No link with this id in your workspace (code &#x60;tracking_link_not_found&#x60;). |  -  |
+
+
+## getTrackingLinkStats
+
+> TrackingLinkStats getTrackingLinkStats(linkId, fromDate, toDate)
+
+Get a tracking link&#39;s results
+
+Clicks, conversions and revenue of one link over a range of days (UTC), and its clicks per destination, the result of a split test. Clicks leave out bots.  Conversions are the link&#39;s postbacks plus website conversions carrying the click id of one of its clicks, less any retracted. The range is at most 90 days, the time clicks are kept. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingLinksApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingLinksApi apiInstance = new TrackingLinksApi(defaultClient);
+        String linkId = "linkId_example"; // String | 
+        LocalDate fromDate = LocalDate.now(); // LocalDate | First day of the range, `YYYY-MM-DD`.
+        LocalDate toDate = LocalDate.now(); // LocalDate | Last day of the range, `YYYY-MM-DD`.
+        try {
+            TrackingLinkStats result = apiInstance.getTrackingLinkStats(linkId, fromDate, toDate);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingLinksApi#getTrackingLinkStats");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **linkId** | **String**|  | |
+| **fromDate** | **LocalDate**| First day of the range, &#x60;YYYY-MM-DD&#x60;. | |
+| **toDate** | **LocalDate**| Last day of the range, &#x60;YYYY-MM-DD&#x60;. | |
+
+### Return type
+
+[**TrackingLinkStats**](TrackingLinkStats.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The link&#39;s results. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## getTrackingLinkStatsWithHttpInfo
+
+> ApiResponse<TrackingLinkStats> getTrackingLinkStats getTrackingLinkStatsWithHttpInfo(linkId, fromDate, toDate)
+
+Get a tracking link&#39;s results
+
+Clicks, conversions and revenue of one link over a range of days (UTC), and its clicks per destination, the result of a split test. Clicks leave out bots.  Conversions are the link&#39;s postbacks plus website conversions carrying the click id of one of its clicks, less any retracted. The range is at most 90 days, the time clicks are kept. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingLinksApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingLinksApi apiInstance = new TrackingLinksApi(defaultClient);
+        String linkId = "linkId_example"; // String | 
+        LocalDate fromDate = LocalDate.now(); // LocalDate | First day of the range, `YYYY-MM-DD`.
+        LocalDate toDate = LocalDate.now(); // LocalDate | Last day of the range, `YYYY-MM-DD`.
+        try {
+            ApiResponse<TrackingLinkStats> response = apiInstance.getTrackingLinkStatsWithHttpInfo(linkId, fromDate, toDate);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingLinksApi#getTrackingLinkStats");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **linkId** | **String**|  | |
+| **fromDate** | **LocalDate**| First day of the range, &#x60;YYYY-MM-DD&#x60;. | |
+| **toDate** | **LocalDate**| Last day of the range, &#x60;YYYY-MM-DD&#x60;. | |
+
+### Return type
+
+ApiResponse<[**TrackingLinkStats**](TrackingLinkStats.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The link&#39;s results. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## listTrackingLinks
