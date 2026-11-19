@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.688.0
+  version: 1.689.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -38472,15 +38472,21 @@ paths:
   /v1/voice/calls/estimate:
     get:
       description: |
-        Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.
+        Pre-call cost estimate for an outbound phone call, placed through the Voice API or through a [SIP trunk](/platforms/voice/integrations/elevenlabs).
 
-        The per-minute figure is the most a minute can cost to that destination, so the final charge can be lower.
+        Rates come from the carrier's live price list. The carrier prices a route by the caller ID, so pass the number you will call from (`from` or `fromNumberId`).
 
-        The carrier figure follows the carrier's per-destination rate card: a call dialed from a number in the destination country uses the local mobile rate, and a `tel:` forward destination is quoted as a second carrier leg billed from the same number.
+        - **Caller-ID rates.** A caller in the destination country gets local rates. EEA callers get cheaper rates to EEA destinations, and some caller prefixes pay a surcharge. `rates.*.origination` names the band used.
+        - **Mobile and landline.** `rates.mobile` and `rates.landline` are quoted separately, with every network the carrier lists. `lineType` says which one `to` is, and `perMinuteUsd` follows it.
+        - **Trunk or Voice API.** Trunk calls bill twice the carrier rate. Voice API calls add a $0.002/min call-control fee before the markup, plus optional forward, recording and transcription legs.
 
-        The real cost comes from the settled carrier record after the call.
+        `via` defaults to `trunk` when the caller number is attached to a SIP trunk (or `trunkId` is passed), and to `voice` otherwise. For trunk calls, `trunk` reports whether the trunk's limits would refuse the call.
 
-        Parity endpoint of `GET /v1/whatsapp/calls/estimate`, minus the Meta line. PSTN calls have no separate Meta bill, so `totalCostUSD` equals `billableCostUSD`.
+        `trunk.maxDestinationRateUsd` is compared with the carrier's rate for the route, which is half the billed rate. Isle of Man, Jersey and Guernsey numbers on +44 count as their own countries for the whitelist.
+
+        The dialed network cannot be known from the number, so the invoice can differ within the `minPerMinuteUsd` to `maxPerMinuteUsd` range. The real cost comes from the settled carrier record after the call.
+
+        PSTN calls have no separate Meta bill, so `totalCostUSD` equals `billableCostUSD`.
       operationId: getVoiceCallEstimate
       parameters:
       - description: "Destination number, E.164 (leading + optional)."
@@ -38491,9 +38497,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: "The number the call would dial from, E.164. When it is verified\
-          \ on a Branded Calling identity and `to` is a US number, the estimate includes\
-          \ the per-call Branded Calling surcharge."
+      - description: "Caller ID the call would present, E.164. Picks the carrier's\
+          \ caller-ID rates, and prices a trunk call when the number is attached to\
+          \ a SIP trunk. A verified Branded Calling number calling the US adds the\
+          \ per-call surcharge."
         explode: true
         in: query
         name: from
@@ -38501,9 +38508,41 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Destination the call bridges to: `tel:+E164`, `sip:...` or `wss://...`.\
-          \ Defaults to the dialing number's configured forward. A `tel:` destination\
-          \ adds a second carrier leg to the quote. Encode the `+` as `%2B`."
+      - description: "Id of one of your numbers to use as the caller ID, instead of\
+          \ `from`."
+        explode: true
+        in: query
+        name: fromNumberId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "SIP trunk the call goes through. Prices it as a trunk call and\
+          \ checks that trunk's limits. Without `from`, a number attached to the trunk\
+          \ is the caller ID."
+        explode: true
+        in: query
+        name: trunkId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Force trunk or Voice API pricing. Defaults from the caller number,\
+          \ see above. `trunk` without a caller ID quotes the dearest caller band."
+        explode: true
+        in: query
+        name: via
+        required: false
+        schema:
+          enum:
+          - trunk
+          - voice
+          type: string
+        style: form
+      - description: "Voice API only. Destination the call bridges to: `tel:+E164`,\
+          \ `sip:...` or `wss://...`. Defaults to the dialing number's configured\
+          \ forward. A `tel:` destination adds a second carrier leg to the quote.\
+          \ Encode the `+` as `%2B`."
         explode: true
         in: query
         name: forwardTo
@@ -38521,14 +38560,16 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - explode: true
+      - description: Voice API only.
+        explode: true
         in: query
         name: recording
         required: false
         schema:
           type: boolean
         style: form
-      - explode: true
+      - description: Voice API only.
+        explode: true
         in: query
         name: transcription
         required: false
@@ -38542,8 +38583,14 @@ paths:
               schema:
                 $ref: "#/components/schemas/getVoiceCallEstimate_200_response"
           description: Estimate
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "503":
+          description: The carrier price list is unavailable. Retry shortly.
       security:
       - bearerAuth: []
       summary: Estimate call cost
@@ -91544,6 +91591,44 @@ components:
       x-summary: "Billing blocked the request: redirect the user to `dashboard_url`\
         \ to add or verify a card or use the enterprise form."
   schemas:
+    VoiceCallLineRates:
+      example:
+        maxPerMinuteUsd: 7.061401241503109
+        origination: local
+        perMinuteUsd: 5.637376656633329
+        networks:
+        - name: name
+          aboveRateCap: true
+          perMinuteUsd: 9.301444243932576
+        - name: name
+          aboveRateCap: true
+          perMinuteUsd: 9.301444243932576
+        minPerMinuteUsd: 2.3021358869347655
+      properties:
+        origination:
+          description: Caller-ID band the carrier rates this call with. `unknown_caller`
+            (no caller ID) shows the dearest band.
+          enum:
+          - local
+          - from_eea
+          - non_surcharged
+          - low_surcharged
+          - high_surcharged
+          - surcharged
+          - default
+          - unknown_caller
+          type: string
+        perMinuteUsd:
+          description: The rate most of this line type's networks share.
+          type: number
+        minPerMinuteUsd:
+          type: number
+        maxPerMinuteUsd:
+          type: number
+        networks:
+          items:
+            $ref: "#/components/schemas/VoiceCallLineRates_networks_inner"
+          type: array
     CrmNativeProperties:
       additionalProperties:
         $ref: "#/components/schemas/CrmNativeProperties_value"
@@ -169041,16 +169126,127 @@ components:
           type: string
         transferredTo:
           type: string
+    getVoiceCallEstimate_200_response_billingIncrementSeconds:
+      description: "Billing increments of the route: 60/60 means billed per started\
+        \ minute."
+      example:
+        next: 5
+        first: 1
+      properties:
+        first:
+          type: integer
+        next:
+          type: integer
+    getVoiceCallEstimate_200_response_rates:
+      description: Billed per-minute rates for each line type at this destination.
+        Null where the carrier publishes none.
+      example:
+        mobile:
+          maxPerMinuteUsd: 7.061401241503109
+          origination: local
+          perMinuteUsd: 5.637376656633329
+          networks:
+          - name: name
+            aboveRateCap: true
+            perMinuteUsd: 9.301444243932576
+          - name: name
+            aboveRateCap: true
+            perMinuteUsd: 9.301444243932576
+          minPerMinuteUsd: 2.3021358869347655
+        landline:
+          maxPerMinuteUsd: 7.061401241503109
+          origination: local
+          perMinuteUsd: 5.637376656633329
+          networks:
+          - name: name
+            aboveRateCap: true
+            perMinuteUsd: 9.301444243932576
+          - name: name
+            aboveRateCap: true
+            perMinuteUsd: 9.301444243932576
+          minPerMinuteUsd: 2.3021358869347655
+      properties:
+        mobile:
+          $ref: "#/components/schemas/VoiceCallLineRates"
+        landline:
+          $ref: "#/components/schemas/VoiceCallLineRates"
+    getVoiceCallEstimate_200_response_trunk:
+      description: Trunk calls only. Whether the trunk's limits would refuse this
+        call.
+      example:
+        rateCheck: under
+        outboundEnabled: true
+        limitsSource: trunk
+        id: id
+        wouldBlock: true
+        maxDestinationRateUsd: 3.616076749251911
+        blockReasons:
+        - destination_not_whitelisted
+        - destination_not_whitelisted
+        destinationWhitelisted: true
+      properties:
+        id:
+          description: Trunk the limits were read from. Null when none was resolved
+            and the defaults apply.
+          nullable: true
+          type: string
+        limitsSource:
+          enum:
+          - trunk
+          - default
+          type: string
+        maxDestinationRateUsd:
+          description: "Per-minute cap, compared with the carrier's rate for the route\
+            \ (half the billed rate). Default 0.30, null when the trunk has no cap."
+          nullable: true
+          type: number
+        destinationWhitelisted:
+          description: Whether destinationCountry is on the trunk's whitelist. The
+            default whitelist is every country Zernio sells numbers in.
+          type: boolean
+        rateCheck:
+          description: '`partial` means some of the destination''s networks are above
+            the cap and calls to them are refused.'
+          enum:
+          - under
+          - partial
+          - over
+          type: string
+        outboundEnabled:
+          description: False while outbound is paused for an unfunded balance. Null
+            with default limits.
+          nullable: true
+          type: boolean
+        wouldBlock:
+          type: boolean
+        blockReasons:
+          items:
+            enum:
+            - destination_not_whitelisted
+            - rate_above_cap
+            - outbound_paused
+            type: string
+          type: array
     getVoiceCallEstimate_200_response_breakdown:
       example:
-        transcriptionCostUSD: 5.637376656633329
-        brandedCallUSD: 2.3021358869347655
-        billableCostUSD: 7.061401241503109
-        totalCostUSD: 9.301444243932576
-        recordingCostUSD: 5.962133916683182
-        telnyxCostUSD: 1.4658129805029452
+        transcriptionCostUSD: 1.0246457001441578
+        callControlCostUSD: 7.386281948385884
+        brandedCallUSD: 1.4894159098541704
+        billableCostUSD: 6.84685269835264
+        totalCostUSD: 7.457744773683766
+        carrierCostUSD: 4.145608029883936
+        recordingCostUSD: 1.2315135367772556
+        telnyxCostUSD: 2.027123023002322
       properties:
         telnyxCostUSD:
+          description: "Raw Telnyx cost: carrierCostUSD plus callControlCostUSD."
+          type: number
+        carrierCostUSD:
+          description: "Raw carrier cost of the legs, without call control."
+          type: number
+        callControlCostUSD:
+          description: "Voice API call-control fee, part of telnyxCostUSD. 0 on trunk\
+            \ calls."
           type: number
         recordingCostUSD:
           type: number
@@ -169069,25 +169265,101 @@ components:
           type: number
     getVoiceCallEstimate_200_response:
       example:
+        callerCountry: callerCountry
         minutes: 0
+        lineType: mobile
+        rates:
+          mobile:
+            maxPerMinuteUsd: 7.061401241503109
+            origination: local
+            perMinuteUsd: 5.637376656633329
+            networks:
+            - name: name
+              aboveRateCap: true
+              perMinuteUsd: 9.301444243932576
+            - name: name
+              aboveRateCap: true
+              perMinuteUsd: 9.301444243932576
+            minPerMinuteUsd: 2.3021358869347655
+          landline:
+            maxPerMinuteUsd: 7.061401241503109
+            origination: local
+            perMinuteUsd: 5.637376656633329
+            networks:
+            - name: name
+              aboveRateCap: true
+              perMinuteUsd: 9.301444243932576
+            - name: name
+              aboveRateCap: true
+              perMinuteUsd: 9.301444243932576
+            minPerMinuteUsd: 2.3021358869347655
         breakdown:
-          transcriptionCostUSD: 5.637376656633329
-          brandedCallUSD: 2.3021358869347655
-          billableCostUSD: 7.061401241503109
-          totalCostUSD: 9.301444243932576
-          recordingCostUSD: 5.962133916683182
-          telnyxCostUSD: 1.4658129805029452
+          transcriptionCostUSD: 1.0246457001441578
+          callControlCostUSD: 7.386281948385884
+          brandedCallUSD: 1.4894159098541704
+          billableCostUSD: 6.84685269835264
+          totalCostUSD: 7.457744773683766
+          carrierCostUSD: 4.145608029883936
+          recordingCostUSD: 1.2315135367772556
+          telnyxCostUSD: 2.027123023002322
+        billingIncrementSeconds:
+          next: 5
+          first: 1
+        callerId: callerId
         perMinuteUsd: 6.027456183070403
+        trunk:
+          rateCheck: under
+          outboundEnabled: true
+          limitsSource: trunk
+          id: id
+          wouldBlock: true
+          maxDestinationRateUsd: 3.616076749251911
+          blockReasons:
+          - destination_not_whitelisted
+          - destination_not_whitelisted
+          destinationWhitelisted: true
         destinationCountry: destinationCountry
+        via: trunk
       properties:
+        via:
+          enum:
+          - trunk
+          - voice
+          type: string
         destinationCountry:
+          description: "ISO country of `to`. Isle of Man, Jersey and Guernsey numbers\
+            \ return IM, JE and GG."
+          type: string
+        lineType:
+          description: "Line type of `to`. Where it is not `mobile` or `landline`,\
+            \ `perMinuteUsd` takes the dearer of the two."
+          enum:
+          - mobile
+          - landline
+          - fixed_line_or_mobile
+          - other
+          - unknown
+          type: string
+        callerId:
+          description: Caller ID the rates were picked for. Voice API estimates without
+            `from` use your first calling number.
+          nullable: true
+          type: string
+        callerCountry:
           nullable: true
           type: string
         minutes:
           type: integer
         perMinuteUsd:
-          description: Billable cost per minute for the requested options.
+          description: Billable cost per minute for `to`'s line type and the requested
+            options.
           type: number
+        billingIncrementSeconds:
+          $ref: "#/components/schemas/getVoiceCallEstimate_200_response_billingIncrementSeconds"
+        rates:
+          $ref: "#/components/schemas/getVoiceCallEstimate_200_response_rates"
+        trunk:
+          $ref: "#/components/schemas/getVoiceCallEstimate_200_response_trunk"
         breakdown:
           $ref: "#/components/schemas/getVoiceCallEstimate_200_response_breakdown"
     createVoiceWebSession_200_response:
@@ -224534,6 +224806,21 @@ components:
         reason:
           description: "Our review note on changes_requested, the reason on rejected,\
             \ or why a launch filing bounced back to testing."
+    VoiceCallLineRates_networks_inner:
+      example:
+        name: name
+        aboveRateCap: true
+        perMinuteUsd: 9.301444243932576
+      properties:
+        name:
+          description: "Carrier's network label, for example `Mobile EE`."
+          type: string
+        perMinuteUsd:
+          type: number
+        aboveRateCap:
+          description: Trunk calls only. True when the trunk's cap refuses calls to
+            this network.
+          type: boolean
     CrmNativeProperties_value:
       anyOf:
       - type: string

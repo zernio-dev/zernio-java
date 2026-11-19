@@ -1809,7 +1809,10 @@ docs/GetUser200ResponseUser.md
 docs/GetValueRuleSet200Response.md
 docs/GetVoiceCall200Response.md
 docs/GetVoiceCallEstimate200Response.md
+docs/GetVoiceCallEstimate200ResponseBillingIncrementSeconds.md
 docs/GetVoiceCallEstimate200ResponseBreakdown.md
+docs/GetVoiceCallEstimate200ResponseRates.md
+docs/GetVoiceCallEstimate200ResponseTrunk.md
 docs/GetWebflowConnectUrl200Response.md
 docs/GetWebhookLogs200Response.md
 docs/GetWebhookLogs200ResponsePagination.md
@@ -3628,6 +3631,8 @@ docs/VerifyWhatsAppCallerIdRequest.md
 docs/VerifyWhatsAppNumber200Response.md
 docs/VerifyWhatsAppNumberRequest.md
 docs/VoiceApi.md
+docs/VoiceCallLineRates.md
+docs/VoiceCallLineRatesNetworksInner.md
 docs/VoteRedditThingRequest.md
 docs/Webhook.md
 docs/WebhookAdsAccount.md
@@ -5854,7 +5859,10 @@ src/main/java/dev/zernio/model/GetUser200ResponseUser.java
 src/main/java/dev/zernio/model/GetValueRuleSet200Response.java
 src/main/java/dev/zernio/model/GetVoiceCall200Response.java
 src/main/java/dev/zernio/model/GetVoiceCallEstimate200Response.java
+src/main/java/dev/zernio/model/GetVoiceCallEstimate200ResponseBillingIncrementSeconds.java
 src/main/java/dev/zernio/model/GetVoiceCallEstimate200ResponseBreakdown.java
+src/main/java/dev/zernio/model/GetVoiceCallEstimate200ResponseRates.java
+src/main/java/dev/zernio/model/GetVoiceCallEstimate200ResponseTrunk.java
 src/main/java/dev/zernio/model/GetWebflowConnectUrl200Response.java
 src/main/java/dev/zernio/model/GetWebhookLogs200Response.java
 src/main/java/dev/zernio/model/GetWebhookLogs200ResponsePagination.java
@@ -7630,6 +7638,8 @@ src/main/java/dev/zernio/model/VerifySmsRegistrationOtpRequest.java
 src/main/java/dev/zernio/model/VerifyWhatsAppCallerIdRequest.java
 src/main/java/dev/zernio/model/VerifyWhatsAppNumber200Response.java
 src/main/java/dev/zernio/model/VerifyWhatsAppNumberRequest.java
+src/main/java/dev/zernio/model/VoiceCallLineRates.java
+src/main/java/dev/zernio/model/VoiceCallLineRatesNetworksInner.java
 src/main/java/dev/zernio/model/VoteRedditThingRequest.java
 src/main/java/dev/zernio/model/Webhook.java
 src/main/java/dev/zernio/model/WebhookAdsAccount.java
@@ -7971,3 +7981,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetVoiceCallEstimate200ResponseBillingIncrementSecondsTest.java
+src/test/java/dev/zernio/model/GetVoiceCallEstimate200ResponseRatesTest.java
+src/test/java/dev/zernio/model/GetVoiceCallEstimate200ResponseTrunkTest.java
+src/test/java/dev/zernio/model/VoiceCallLineRatesNetworksInnerTest.java
+src/test/java/dev/zernio/model/VoiceCallLineRatesTest.java

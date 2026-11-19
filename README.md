@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.688.0
+- API version: 1.689.0
 
-- Build date: 2026-11-19T12:29:03.509419215Z[Etc/UTC]
+- Build date: 2026-11-19T14:13:26.220040802Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.688.0</version>
+  <version>1.689.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.688.0"
+compile "dev.zernio:zernio-sdk:1.689.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.688.0.jar`
+- `target/zernio-sdk-1.689.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4553,7 +4553,10 @@ Class | Method | HTTP request | Description
  - [GetValueRuleSet200Response](docs/GetValueRuleSet200Response.md)
  - [GetVoiceCall200Response](docs/GetVoiceCall200Response.md)
  - [GetVoiceCallEstimate200Response](docs/GetVoiceCallEstimate200Response.md)
+ - [GetVoiceCallEstimate200ResponseBillingIncrementSeconds](docs/GetVoiceCallEstimate200ResponseBillingIncrementSeconds.md)
  - [GetVoiceCallEstimate200ResponseBreakdown](docs/GetVoiceCallEstimate200ResponseBreakdown.md)
+ - [GetVoiceCallEstimate200ResponseRates](docs/GetVoiceCallEstimate200ResponseRates.md)
+ - [GetVoiceCallEstimate200ResponseTrunk](docs/GetVoiceCallEstimate200ResponseTrunk.md)
  - [GetWebflowConnectUrl200Response](docs/GetWebflowConnectUrl200Response.md)
  - [GetWebhookLogs200Response](docs/GetWebhookLogs200Response.md)
  - [GetWebhookLogs200ResponsePagination](docs/GetWebhookLogs200ResponsePagination.md)
@@ -6329,6 +6332,8 @@ Class | Method | HTTP request | Description
  - [VerifyWhatsAppCallerIdRequest](docs/VerifyWhatsAppCallerIdRequest.md)
  - [VerifyWhatsAppNumber200Response](docs/VerifyWhatsAppNumber200Response.md)
  - [VerifyWhatsAppNumberRequest](docs/VerifyWhatsAppNumberRequest.md)
+ - [VoiceCallLineRates](docs/VoiceCallLineRates.md)
+ - [VoiceCallLineRatesNetworksInner](docs/VoiceCallLineRatesNetworksInner.md)
  - [VoteRedditThingRequest](docs/VoteRedditThingRequest.md)
  - [Webhook](docs/Webhook.md)
  - [WebhookAdsAccount](docs/WebhookAdsAccount.md)

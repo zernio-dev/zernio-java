@@ -2019,11 +2019,11 @@ ApiResponse<[**GetVoiceCall200Response**](GetVoiceCall200Response.md)>
 
 ## getVoiceCallEstimate
 
-> GetVoiceCallEstimate200Response getVoiceCallEstimate(to, from, forwardTo, minutes, recording, transcription)
+> GetVoiceCallEstimate200Response getVoiceCallEstimate(to, from, fromNumberId, trunkId, via, forwardTo, minutes, recording, transcription)
 
 Estimate call cost
 
-Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.  The per-minute figure is the most a minute can cost to that destination, so the final charge can be lower.  The carrier figure follows the carrier&#39;s per-destination rate card: a call dialed from a number in the destination country uses the local mobile rate, and a &#x60;tel:&#x60; forward destination is quoted as a second carrier leg billed from the same number.  The real cost comes from the settled carrier record after the call.  Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line. PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
+Pre-call cost estimate for an outbound phone call, placed through the Voice API or through a [SIP trunk](/platforms/voice/integrations/elevenlabs).  Rates come from the carrier&#39;s live price list. The carrier prices a route by the caller ID, so pass the number you will call from (&#x60;from&#x60; or &#x60;fromNumberId&#x60;).  - **Caller-ID rates.** A caller in the destination country gets local rates. EEA callers get cheaper rates to EEA destinations, and some caller prefixes pay a surcharge. &#x60;rates.*.origination&#x60; names the band used. - **Mobile and landline.** &#x60;rates.mobile&#x60; and &#x60;rates.landline&#x60; are quoted separately, with every network the carrier lists. &#x60;lineType&#x60; says which one &#x60;to&#x60; is, and &#x60;perMinuteUsd&#x60; follows it. - **Trunk or Voice API.** Trunk calls bill twice the carrier rate. Voice API calls add a $0.002/min call-control fee before the markup, plus optional forward, recording and transcription legs.  &#x60;via&#x60; defaults to &#x60;trunk&#x60; when the caller number is attached to a SIP trunk (or &#x60;trunkId&#x60; is passed), and to &#x60;voice&#x60; otherwise. For trunk calls, &#x60;trunk&#x60; reports whether the trunk&#39;s limits would refuse the call.  &#x60;trunk.maxDestinationRateUsd&#x60; is compared with the carrier&#39;s rate for the route, which is half the billed rate. Isle of Man, Jersey and Guernsey numbers on +44 count as their own countries for the whitelist.  The dialed network cannot be known from the number, so the invoice can differ within the &#x60;minPerMinuteUsd&#x60; to &#x60;maxPerMinuteUsd&#x60; range. The real cost comes from the settled carrier record after the call.  PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
 
 ### Example
 
@@ -2047,13 +2047,16 @@ public class Example {
 
         VoiceApi apiInstance = new VoiceApi(defaultClient);
         String to = "to_example"; // String | Destination number, E.164 (leading + optional).
-        String from = "from_example"; // String | The number the call would dial from, E.164. When it is verified on a Branded Calling identity and `to` is a US number, the estimate includes the per-call Branded Calling surcharge.
-        String forwardTo = "forwardTo_example"; // String | Destination the call bridges to: `tel:+E164`, `sip:...` or `wss://...`. Defaults to the dialing number's configured forward. A `tel:` destination adds a second carrier leg to the quote. Encode the `+` as `%2B`.
+        String from = "from_example"; // String | Caller ID the call would present, E.164. Picks the carrier's caller-ID rates, and prices a trunk call when the number is attached to a SIP trunk. A verified Branded Calling number calling the US adds the per-call surcharge.
+        String fromNumberId = "fromNumberId_example"; // String | Id of one of your numbers to use as the caller ID, instead of `from`.
+        String trunkId = "trunkId_example"; // String | SIP trunk the call goes through. Prices it as a trunk call and checks that trunk's limits. Without `from`, a number attached to the trunk is the caller ID.
+        String via = "trunk"; // String | Force trunk or Voice API pricing. Defaults from the caller number, see above. `trunk` without a caller ID quotes the dearest caller band.
+        String forwardTo = "forwardTo_example"; // String | Voice API only. Destination the call bridges to: `tel:+E164`, `sip:...` or `wss://...`. Defaults to the dialing number's configured forward. A `tel:` destination adds a second carrier leg to the quote. Encode the `+` as `%2B`.
         Integer minutes = 1; // Integer | 
-        Boolean recording = true; // Boolean | 
-        Boolean transcription = true; // Boolean | 
+        Boolean recording = true; // Boolean | Voice API only.
+        Boolean transcription = true; // Boolean | Voice API only.
         try {
-            GetVoiceCallEstimate200Response result = apiInstance.getVoiceCallEstimate(to, from, forwardTo, minutes, recording, transcription);
+            GetVoiceCallEstimate200Response result = apiInstance.getVoiceCallEstimate(to, from, fromNumberId, trunkId, via, forwardTo, minutes, recording, transcription);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling VoiceApi#getVoiceCallEstimate");
@@ -2072,11 +2075,14 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **to** | **String**| Destination number, E.164 (leading + optional). | |
-| **from** | **String**| The number the call would dial from, E.164. When it is verified on a Branded Calling identity and &#x60;to&#x60; is a US number, the estimate includes the per-call Branded Calling surcharge. | [optional] |
-| **forwardTo** | **String**| Destination the call bridges to: &#x60;tel:+E164&#x60;, &#x60;sip:...&#x60; or &#x60;wss://...&#x60;. Defaults to the dialing number&#39;s configured forward. A &#x60;tel:&#x60; destination adds a second carrier leg to the quote. Encode the &#x60;+&#x60; as &#x60;%2B&#x60;. | [optional] |
+| **from** | **String**| Caller ID the call would present, E.164. Picks the carrier&#39;s caller-ID rates, and prices a trunk call when the number is attached to a SIP trunk. A verified Branded Calling number calling the US adds the per-call surcharge. | [optional] |
+| **fromNumberId** | **String**| Id of one of your numbers to use as the caller ID, instead of &#x60;from&#x60;. | [optional] |
+| **trunkId** | **String**| SIP trunk the call goes through. Prices it as a trunk call and checks that trunk&#39;s limits. Without &#x60;from&#x60;, a number attached to the trunk is the caller ID. | [optional] |
+| **via** | **String**| Force trunk or Voice API pricing. Defaults from the caller number, see above. &#x60;trunk&#x60; without a caller ID quotes the dearest caller band. | [optional] [enum: trunk, voice] |
+| **forwardTo** | **String**| Voice API only. Destination the call bridges to: &#x60;tel:+E164&#x60;, &#x60;sip:...&#x60; or &#x60;wss://...&#x60;. Defaults to the dialing number&#39;s configured forward. A &#x60;tel:&#x60; destination adds a second carrier leg to the quote. Encode the &#x60;+&#x60; as &#x60;%2B&#x60;. | [optional] |
 | **minutes** | **Integer**|  | [optional] [default to 1] |
-| **recording** | **Boolean**|  | [optional] |
-| **transcription** | **Boolean**|  | [optional] |
+| **recording** | **Boolean**| Voice API only. | [optional] |
+| **transcription** | **Boolean**| Voice API only. | [optional] |
 
 ### Return type
 
@@ -2096,15 +2102,18 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Estimate |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **503** | The carrier price list is unavailable. Retry shortly. |  -  |
 
 ## getVoiceCallEstimateWithHttpInfo
 
-> ApiResponse<GetVoiceCallEstimate200Response> getVoiceCallEstimate getVoiceCallEstimateWithHttpInfo(to, from, forwardTo, minutes, recording, transcription)
+> ApiResponse<GetVoiceCallEstimate200Response> getVoiceCallEstimate getVoiceCallEstimateWithHttpInfo(to, from, fromNumberId, trunkId, via, forwardTo, minutes, recording, transcription)
 
 Estimate call cost
 
-Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.  The per-minute figure is the most a minute can cost to that destination, so the final charge can be lower.  The carrier figure follows the carrier&#39;s per-destination rate card: a call dialed from a number in the destination country uses the local mobile rate, and a &#x60;tel:&#x60; forward destination is quoted as a second carrier leg billed from the same number.  The real cost comes from the settled carrier record after the call.  Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line. PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
+Pre-call cost estimate for an outbound phone call, placed through the Voice API or through a [SIP trunk](/platforms/voice/integrations/elevenlabs).  Rates come from the carrier&#39;s live price list. The carrier prices a route by the caller ID, so pass the number you will call from (&#x60;from&#x60; or &#x60;fromNumberId&#x60;).  - **Caller-ID rates.** A caller in the destination country gets local rates. EEA callers get cheaper rates to EEA destinations, and some caller prefixes pay a surcharge. &#x60;rates.*.origination&#x60; names the band used. - **Mobile and landline.** &#x60;rates.mobile&#x60; and &#x60;rates.landline&#x60; are quoted separately, with every network the carrier lists. &#x60;lineType&#x60; says which one &#x60;to&#x60; is, and &#x60;perMinuteUsd&#x60; follows it. - **Trunk or Voice API.** Trunk calls bill twice the carrier rate. Voice API calls add a $0.002/min call-control fee before the markup, plus optional forward, recording and transcription legs.  &#x60;via&#x60; defaults to &#x60;trunk&#x60; when the caller number is attached to a SIP trunk (or &#x60;trunkId&#x60; is passed), and to &#x60;voice&#x60; otherwise. For trunk calls, &#x60;trunk&#x60; reports whether the trunk&#39;s limits would refuse the call.  &#x60;trunk.maxDestinationRateUsd&#x60; is compared with the carrier&#39;s rate for the route, which is half the billed rate. Isle of Man, Jersey and Guernsey numbers on +44 count as their own countries for the whitelist.  The dialed network cannot be known from the number, so the invoice can differ within the &#x60;minPerMinuteUsd&#x60; to &#x60;maxPerMinuteUsd&#x60; range. The real cost comes from the settled carrier record after the call.  PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
 
 ### Example
 
@@ -2129,13 +2138,16 @@ public class Example {
 
         VoiceApi apiInstance = new VoiceApi(defaultClient);
         String to = "to_example"; // String | Destination number, E.164 (leading + optional).
-        String from = "from_example"; // String | The number the call would dial from, E.164. When it is verified on a Branded Calling identity and `to` is a US number, the estimate includes the per-call Branded Calling surcharge.
-        String forwardTo = "forwardTo_example"; // String | Destination the call bridges to: `tel:+E164`, `sip:...` or `wss://...`. Defaults to the dialing number's configured forward. A `tel:` destination adds a second carrier leg to the quote. Encode the `+` as `%2B`.
+        String from = "from_example"; // String | Caller ID the call would present, E.164. Picks the carrier's caller-ID rates, and prices a trunk call when the number is attached to a SIP trunk. A verified Branded Calling number calling the US adds the per-call surcharge.
+        String fromNumberId = "fromNumberId_example"; // String | Id of one of your numbers to use as the caller ID, instead of `from`.
+        String trunkId = "trunkId_example"; // String | SIP trunk the call goes through. Prices it as a trunk call and checks that trunk's limits. Without `from`, a number attached to the trunk is the caller ID.
+        String via = "trunk"; // String | Force trunk or Voice API pricing. Defaults from the caller number, see above. `trunk` without a caller ID quotes the dearest caller band.
+        String forwardTo = "forwardTo_example"; // String | Voice API only. Destination the call bridges to: `tel:+E164`, `sip:...` or `wss://...`. Defaults to the dialing number's configured forward. A `tel:` destination adds a second carrier leg to the quote. Encode the `+` as `%2B`.
         Integer minutes = 1; // Integer | 
-        Boolean recording = true; // Boolean | 
-        Boolean transcription = true; // Boolean | 
+        Boolean recording = true; // Boolean | Voice API only.
+        Boolean transcription = true; // Boolean | Voice API only.
         try {
-            ApiResponse<GetVoiceCallEstimate200Response> response = apiInstance.getVoiceCallEstimateWithHttpInfo(to, from, forwardTo, minutes, recording, transcription);
+            ApiResponse<GetVoiceCallEstimate200Response> response = apiInstance.getVoiceCallEstimateWithHttpInfo(to, from, fromNumberId, trunkId, via, forwardTo, minutes, recording, transcription);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2156,11 +2168,14 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **to** | **String**| Destination number, E.164 (leading + optional). | |
-| **from** | **String**| The number the call would dial from, E.164. When it is verified on a Branded Calling identity and &#x60;to&#x60; is a US number, the estimate includes the per-call Branded Calling surcharge. | [optional] |
-| **forwardTo** | **String**| Destination the call bridges to: &#x60;tel:+E164&#x60;, &#x60;sip:...&#x60; or &#x60;wss://...&#x60;. Defaults to the dialing number&#39;s configured forward. A &#x60;tel:&#x60; destination adds a second carrier leg to the quote. Encode the &#x60;+&#x60; as &#x60;%2B&#x60;. | [optional] |
+| **from** | **String**| Caller ID the call would present, E.164. Picks the carrier&#39;s caller-ID rates, and prices a trunk call when the number is attached to a SIP trunk. A verified Branded Calling number calling the US adds the per-call surcharge. | [optional] |
+| **fromNumberId** | **String**| Id of one of your numbers to use as the caller ID, instead of &#x60;from&#x60;. | [optional] |
+| **trunkId** | **String**| SIP trunk the call goes through. Prices it as a trunk call and checks that trunk&#39;s limits. Without &#x60;from&#x60;, a number attached to the trunk is the caller ID. | [optional] |
+| **via** | **String**| Force trunk or Voice API pricing. Defaults from the caller number, see above. &#x60;trunk&#x60; without a caller ID quotes the dearest caller band. | [optional] [enum: trunk, voice] |
+| **forwardTo** | **String**| Voice API only. Destination the call bridges to: &#x60;tel:+E164&#x60;, &#x60;sip:...&#x60; or &#x60;wss://...&#x60;. Defaults to the dialing number&#39;s configured forward. A &#x60;tel:&#x60; destination adds a second carrier leg to the quote. Encode the &#x60;+&#x60; as &#x60;%2B&#x60;. | [optional] |
 | **minutes** | **Integer**|  | [optional] [default to 1] |
-| **recording** | **Boolean**|  | [optional] |
-| **transcription** | **Boolean**|  | [optional] |
+| **recording** | **Boolean**| Voice API only. | [optional] |
+| **transcription** | **Boolean**| Voice API only. | [optional] |
 
 ### Return type
 
@@ -2180,7 +2195,10 @@ ApiResponse<[**GetVoiceCallEstimate200Response**](GetVoiceCallEstimate200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Estimate |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **503** | The carrier price list is unavailable. Retry shortly. |  -  |
 
 
 ## getVoiceCallRecording
