@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   AutomationApproval.JSON_PROPERTY_CAN_DECIDE,
   AutomationApproval.JSON_PROPERTY_CHANGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T09:43:23.553331696Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T09:48:51.393129684Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationApproval {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

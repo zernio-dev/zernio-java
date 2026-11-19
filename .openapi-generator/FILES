@@ -7941,9 +7941,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/HubSpotContactPropertyOptionsInnerTest.java
-src/test/java/dev/zernio/model/HubSpotContactPropertyTest.java
-src/test/java/dev/zernio/model/HubSpotQualifiedLeadsTest.java
-src/test/java/dev/zernio/model/ListHubSpotContactProperties200ResponseTest.java
-src/test/java/dev/zernio/model/StoredEventCampaignTest.java
-src/test/java/dev/zernio/model/UpdateHubSpotSettingsRequestQualifiedLeadsTest.java
