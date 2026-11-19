@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.703.0
+- API version: 1.704.0
 
-- Build date: 2026-11-19T23:15:12.853799055Z[Etc/UTC]
+- Build date: 2026-11-19T23:27:16.074795645Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.703.0</version>
+  <version>1.704.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.703.0"
+compile "dev.zernio:zernio-sdk:1.704.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.703.0.jar`
+- `target/zernio-sdk-1.704.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4219,6 +4219,7 @@ Class | Method | HTTP request | Description
  - [GetAllAccountsHealth200ResponseAccountsInner](docs/GetAllAccountsHealth200ResponseAccountsInner.md)
  - [GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync](docs/GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync.md)
  - [GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction](docs/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md)
+ - [GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction](docs/GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction.md)
  - [GetAllAccountsHealth200ResponseSummary](docs/GetAllAccountsHealth200ResponseSummary.md)
  - [GetAnalytics200Response](docs/GetAnalytics200Response.md)
  - [GetAnalytics400Response](docs/GetAnalytics400Response.md)

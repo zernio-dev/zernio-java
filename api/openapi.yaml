@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.703.0
+  version: 1.704.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -150858,6 +150858,39 @@ components:
           format: date-time
           nullable: true
           type: string
+    getAllAccountsHealth_200_response_accounts_inner_publishingRestriction:
+      description: "Set when the last 3 finished publishes failed with the same account-level\
+        \ error (suspended, restricted, a verification check, an expired login). The\
+        \ next successful publish or a reconnect clears it. While set, status is at\
+        \ least `warning`. Null when the account publishes normally."
+      example:
+        lastFailedAt: 2000-01-23T04:56:07.000+00:00
+        reason: restricted
+        blocksPublishNow: true
+        message: message
+        since: 2000-01-23T04:56:07.000+00:00
+      properties:
+        reason:
+          enum:
+          - restricted
+          - suspended
+          - verification_required
+          - auth_expired
+          type: string
+        message:
+          description: The stored error message of the last failed publish.
+          type: string
+        since:
+          format: date-time
+          type: string
+        lastFailedAt:
+          format: date-time
+          type: string
+        blocksPublishNow:
+          description: True while POST /v1/posts refuses publish-now posts to this
+            account with 422 `account_restricted` (24 hours after the last failure).
+            Scheduled posts are always accepted.
+          type: boolean
     getAllAccountsHealth_200_response_accounts_inner_messagingRestriction:
       description: |
         Observed from Meta's own errors on our sends, not a live probe. It lags reality by one message in each direction.
@@ -150901,6 +150934,12 @@ components:
       example:
         scopeAreas:
           key: granted
+        publishingRestriction:
+          lastFailedAt: 2000-01-23T04:56:07.000+00:00
+          reason: restricted
+          blocksPublishNow: true
+          message: message
+          since: 2000-01-23T04:56:07.000+00:00
         needsReconnect: true
         displayName: displayName
         tokenValid: true
@@ -151021,6 +151060,8 @@ components:
           allOf:
           - $ref: "#/components/schemas/InboundActivity"
           nullable: true
+        publishingRestriction:
+          $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_publishingRestriction"
         messagingRestriction:
           $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_messagingRestriction"
     getAllAccountsHealth_200_response:
@@ -151034,6 +151075,12 @@ components:
         accounts:
         - scopeAreas:
             key: granted
+          publishingRestriction:
+            lastFailedAt: 2000-01-23T04:56:07.000+00:00
+            reason: restricted
+            blocksPublishNow: true
+            message: message
+            since: 2000-01-23T04:56:07.000+00:00
           needsReconnect: true
           displayName: displayName
           tokenValid: true
@@ -151066,6 +151113,12 @@ components:
           canFetchAnalytics: true
         - scopeAreas:
             key: granted
+          publishingRestriction:
+            lastFailedAt: 2000-01-23T04:56:07.000+00:00
+            reason: restricted
+            blocksPublishNow: true
+            message: message
+            since: 2000-01-23T04:56:07.000+00:00
           needsReconnect: true
           displayName: displayName
           tokenValid: true
@@ -151534,6 +151587,12 @@ components:
           expiresIn: expiresIn
           needsRefresh: true
           expiresAt: 2000-01-23T04:56:07.000+00:00
+        publishingRestriction:
+          lastFailedAt: 2000-01-23T04:56:07.000+00:00
+          reason: restricted
+          blocksPublishNow: true
+          message: message
+          since: 2000-01-23T04:56:07.000+00:00
         lineWebhook:
           checkedAt: 2000-01-23T04:56:07.000+00:00
           destination: zernio
@@ -151730,6 +151789,8 @@ components:
           allOf:
           - $ref: "#/components/schemas/InboundActivity"
           nullable: true
+        publishingRestriction:
+          $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_publishingRestriction"
         messagingRestriction:
           $ref: "#/components/schemas/getAccountHealth_200_response_messagingRestriction"
         platformConnection:
