@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.683.0
+- API version: 1.684.0
 
-- Build date: 2026-11-19T10:39:56.611225648Z[Etc/UTC]
+- Build date: 2026-11-19T11:04:54.623320602Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.683.0</version>
+  <version>1.684.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.683.0"
+compile "dev.zernio:zernio-sdk:1.684.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.683.0.jar`
+- `target/zernio-sdk-1.684.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1509,6 +1509,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**getEventsOverviewDailyWithHttpInfo**](docs/ConversionsApi.md#getEventsOverviewDailyWithHttpInfo) | **GET** /v1/events/overview/daily | Get daily tracking figures
 *ConversionsApi* | [**getLtvCohorts**](docs/ConversionsApi.md#getLtvCohorts) | **GET** /v1/events/ltv | Get buyer cohorts by first purchase month and first channel
 *ConversionsApi* | [**getLtvCohortsWithHttpInfo**](docs/ConversionsApi.md#getLtvCohortsWithHttpInfo) | **GET** /v1/events/ltv | Get buyer cohorts by first purchase month and first channel
+*ConversionsApi* | [**getSurveyAnswers**](docs/ConversionsApi.md#getSurveyAnswers) | **GET** /v1/events/survey | Get post-purchase survey answers
+*ConversionsApi* | [**getSurveyAnswersWithHttpInfo**](docs/ConversionsApi.md#getSurveyAnswersWithHttpInfo) | **GET** /v1/events/survey | Get post-purchase survey answers
 *ConversionsApi* | [**getTrackingSite**](docs/ConversionsApi.md#getTrackingSite) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site
 *ConversionsApi* | [**getTrackingSiteWithHttpInfo**](docs/ConversionsApi.md#getTrackingSiteWithHttpInfo) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site
 *ConversionsApi* | [**listAdConversionAssociations**](docs/ConversionsApi.md#listAdConversionAssociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns
@@ -4283,8 +4285,10 @@ Class | Method | HTTP request | Description
  - [GetEventsOverviewDaily200Response](docs/GetEventsOverviewDaily200Response.md)
  - [GetEventsOverviewDaily200ResponseDaysInner](docs/GetEventsOverviewDaily200ResponseDaysInner.md)
  - [GetEventsOverviewDaily200ResponsePixelMissedInner](docs/GetEventsOverviewDaily200ResponsePixelMissedInner.md)
+ - [GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner](docs/GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner.md)
  - [GetEventsOverviewDaily200ResponsePlatformsInner](docs/GetEventsOverviewDaily200ResponsePlatformsInner.md)
  - [GetEventsOverviewDaily200ResponsePlatformsInnerDaysInner](docs/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInner.md)
+ - [GetEventsOverviewDaily200ResponsePrevious](docs/GetEventsOverviewDaily200ResponsePrevious.md)
  - [GetEventsOverviewDaily200ResponseTotals](docs/GetEventsOverviewDaily200ResponseTotals.md)
  - [GetFacebookDemographics200Response](docs/GetFacebookDemographics200Response.md)
  - [GetFacebookDemographics200ResponseDemographics](docs/GetFacebookDemographics200ResponseDemographics.md)
@@ -4500,6 +4504,8 @@ Class | Method | HTTP request | Description
  - [GetStripeSettings200Response](docs/GetStripeSettings200Response.md)
  - [GetSubredditRules200Response](docs/GetSubredditRules200Response.md)
  - [GetSubredditRules200ResponseRulesInner](docs/GetSubredditRules200ResponseRulesInner.md)
+ - [GetSurveyAnswers200Response](docs/GetSurveyAnswers200Response.md)
+ - [GetSurveyAnswers200ResponseAnswersInner](docs/GetSurveyAnswers200ResponseAnswersInner.md)
  - [GetTagNewAds200Response](docs/GetTagNewAds200Response.md)
  - [GetTelegramCommands200Response](docs/GetTelegramCommands200Response.md)
  - [GetTelegramCommands200ResponseDataInner](docs/GetTelegramCommands200ResponseDataInner.md)

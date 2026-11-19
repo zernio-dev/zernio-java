@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**at** | **OffsetDateTime** |  |  [optional] |
 |**kind** | [**KindEnum**](#KindEnum) |  |  [optional] |
-|**platform** | **String** |  |  [optional] |
+|**platform** | **String** | The ad platform of the campaign, or the one a survey answer names (Instagram reads as facebook). |  [optional] |
 |**adAccountId** | **String** |  |  [optional] |
 |**campaignId** | **String** | The campaign the touch resolved to; null for a touch that named none (search, referral). |  [optional] |
 |**credit** | **Map&lt;String, BigDecimal&gt;** | The share of the event (0 to 1) this touch gets per model: first_touch, last_non_direct, linear, position_based, time_decay, w_shaped. |  [optional] |
@@ -30,6 +30,7 @@
 | REFERRAL | &quot;referral&quot; |
 | LEAD_FORM | &quot;lead_form&quot; |
 | EVENT | &quot;event&quot; |
+| SURVEY | &quot;survey&quot; |
 
 
 

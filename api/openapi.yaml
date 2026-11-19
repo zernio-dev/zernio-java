@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.683.0
+  version: 1.684.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -73671,6 +73671,59 @@ paths:
       security:
       - bearerAuth: []
       summary: List the touch paths that lead to conversions
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+  /v1/events/survey:
+    get:
+      description: |
+        How buyers said they heard about the store, from the "How did you hear about us?" block on the Shopify thank-you page. Each answer comes with its orders and their revenue.
+
+        Revenue is what the orders are worth now (refunds taken off), summed across currencies as sent. Without `profileId` it covers every profile you can access. Requires the Ads add-on.
+      operationId: getSurveyAnswers
+      parameters:
+      - description: The profile to read. Omit for every profile you can access.
+        explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: First day an answer was given.
+        explode: true
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: Inclusive. At most 400 days after `fromDate`.
+        explode: true
+        in: query
+        name: toDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getSurveyAnswers_200_response"
+          description: "The answers, most given first."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Get post-purchase survey answers
       tags:
       - Conversions
       x-resource-group: ads
@@ -205680,6 +205733,14 @@ components:
           - OPT_IN
           - OPT_OUT
           type: string
+        websiteOnly:
+          description: |
+            Meta only. Sets the creative's applink_treatment to web_only, so Ads Manager shows Website as the only destination instead of App with a website backup.
+
+            - Omitted or false: keeps Meta's default.
+            - Applies to new creatives (single, creatives[] and adSetId attach); rejected with existingCreativeId.
+            - Meta rejects it when the campaign uses Website and App conversion locations.
+          type: boolean
         retryOnServerError:
           description: |
             Meta only (a 400 elsewhere). When Meta answers a create with a 5xx and reading the parent back by name finds no such object, Zernio sends the create again (at most 3 POSTs per object, never for an object created ACTIVE) and reports it in `recoveredWrites`.
@@ -211444,6 +211505,52 @@ components:
       - fromDate
       - paths
       - toDate
+    getSurveyAnswers_200_response_answers_inner:
+      example:
+        revenue: 6.027456183070403
+        answer: Podcast
+        orders: 0
+      properties:
+        answer:
+          description: The answer as the buyer picked it.
+          example: Podcast
+          type: string
+        orders:
+          description: How many orders gave this answer.
+          type: integer
+        revenue:
+          description: "What those orders are worth now, as sent."
+          type: number
+      required:
+      - answer
+      - orders
+      - revenue
+    getSurveyAnswers_200_response:
+      example:
+        fromDate: 2000-01-23
+        toDate: 2000-01-23
+        answers:
+        - revenue: 6.027456183070403
+          answer: Podcast
+          orders: 0
+        - revenue: 6.027456183070403
+          answer: Podcast
+          orders: 0
+      properties:
+        fromDate:
+          format: date
+          type: string
+        toDate:
+          format: date
+          type: string
+        answers:
+          items:
+            $ref: "#/components/schemas/getSurveyAnswers_200_response_answers_inner"
+          type: array
+      required:
+      - answers
+      - fromDate
+      - toDate
     getLtvCohorts_200_response_cohorts_inner_revenue:
       description: "Revenue from the cohort up to N months after its first purchase\
         \ month, cumulative."
@@ -212190,11 +212297,15 @@ components:
     getEventsOverviewDaily_200_response_days_inner:
       example:
         conversions: 3
+        valueSent: 1.2315135367772556
         byEvent:
-          key: 7
+          key: 6
+        fromAds: 1
         accepted: 4
+        matched: 1
         day: 2000-01-23
         sent: 2
+        value: 7.386281948385884
       properties:
         day:
           format: date
@@ -212208,15 +212319,27 @@ components:
         accepted:
           description: Those the platform accepted.
           type: integer
+        value:
+          description: "The day's value, in the period's `totals.currency`."
+          type: number
+        valueSent:
+          description: "Of that value, the conversions a platform accepted."
+          type: number
+        fromAds:
+          description: "Counted events that came from an ad, as in `totals.fromAds`."
+          type: integer
+        matched:
+          description: Events matched to an ad campaign.
+          type: integer
         byEvent:
           additionalProperties:
             type: integer
           description: The day's stored events per event name.
     getEventsOverviewDaily_200_response_platforms_inner_days_inner:
       example:
-        accepted: 6
+        accepted: 5
         day: 2000-01-23
-        sent: 1
+        sent: 4
       properties:
         day:
           format: date
@@ -212229,13 +212352,13 @@ components:
       example:
         accepted: 1
         days:
-        - accepted: 6
+        - accepted: 5
           day: 2000-01-23
-          sent: 1
-        - accepted: 6
+          sent: 4
+        - accepted: 5
           day: 2000-01-23
-          sent: 1
-        sent: 1
+          sent: 4
+        sent: 7
         platform: platform
       properties:
         platform:
@@ -212252,10 +212375,30 @@ components:
           items:
             $ref: "#/components/schemas/getEventsOverviewDaily_200_response_platforms_inner_days_inner"
           type: array
+    getEventsOverviewDaily_200_response_pixelMissed_inner_days_inner:
+      example:
+        conversions: 6
+        missed: 8
+        day: 2000-01-23
+      properties:
+        day:
+          format: date
+          type: string
+        conversions:
+          type: integer
+        missed:
+          type: integer
     getEventsOverviewDaily_200_response_pixelMissed_inner:
       example:
-        conversions: 7
-        missed: 1
+        conversions: 9
+        missed: 9
+        days:
+        - conversions: 6
+          missed: 8
+          day: 2000-01-23
+        - conversions: 6
+          missed: 8
+          day: 2000-01-23
         platform: platform
       properties:
         platform:
@@ -212264,22 +212407,69 @@ components:
           type: integer
         missed:
           type: integer
+        days:
+          description: "Every day of the period, oldest first."
+          items:
+            $ref: "#/components/schemas/getEventsOverviewDaily_200_response_pixelMissed_inner_days_inner"
+          type: array
+    getEventsOverviewDaily_200_response_previous:
+      description: "The same figures for the period of the same length just before\
+        \ it, to show each figure's change."
+      example:
+        days:
+        - "{}"
+        - "{}"
+        totals: "{}"
+        pixelMissed:
+        - "{}"
+        - "{}"
+      properties:
+        totals:
+          description: Shaped like `totals`.
+          type: object
+        days:
+          description: Shaped like `days`.
+          items:
+            type: object
+          type: array
+        pixelMissed:
+          description: Shaped like `pixelMissed`.
+          items:
+            type: object
+          nullable: true
+          type: array
     getEventsOverviewDaily_200_response:
       example:
         period: today
+        previous:
+          days:
+          - "{}"
+          - "{}"
+          totals: "{}"
+          pixelMissed:
+          - "{}"
+          - "{}"
         days:
         - conversions: 3
+          valueSent: 1.2315135367772556
           byEvent:
-            key: 7
+            key: 6
+          fromAds: 1
           accepted: 4
+          matched: 1
           day: 2000-01-23
           sent: 2
+          value: 7.386281948385884
         - conversions: 3
+          valueSent: 1.2315135367772556
           byEvent:
-            key: 7
+            key: 6
+          fromAds: 1
           accepted: 4
+          matched: 1
           day: 2000-01-23
           sent: 2
+          value: 7.386281948385884
         eventNames:
         - eventNames
         - eventNames
@@ -212294,32 +212484,46 @@ components:
           value: 6.027456183070403
           sent: 5
         pixelMissed:
-        - conversions: 7
-          missed: 1
+        - conversions: 9
+          missed: 9
+          days:
+          - conversions: 6
+            missed: 8
+            day: 2000-01-23
+          - conversions: 6
+            missed: 8
+            day: 2000-01-23
           platform: platform
-        - conversions: 7
-          missed: 1
+        - conversions: 9
+          missed: 9
+          days:
+          - conversions: 6
+            missed: 8
+            day: 2000-01-23
+          - conversions: 6
+            missed: 8
+            day: 2000-01-23
           platform: platform
         platforms:
         - accepted: 1
           days:
-          - accepted: 6
+          - accepted: 5
             day: 2000-01-23
-            sent: 1
-          - accepted: 6
+            sent: 4
+          - accepted: 5
             day: 2000-01-23
-            sent: 1
-          sent: 1
+            sent: 4
+          sent: 7
           platform: platform
         - accepted: 1
           days:
-          - accepted: 6
+          - accepted: 5
             day: 2000-01-23
-            sent: 1
-          - accepted: 6
+            sent: 4
+          - accepted: 5
             day: 2000-01-23
-            sent: 1
-          sent: 1
+            sent: 4
+          sent: 7
           platform: platform
       properties:
         period:
@@ -212357,6 +212561,8 @@ components:
             $ref: "#/components/schemas/getEventsOverviewDaily_200_response_pixelMissed_inner"
           nullable: true
           type: array
+        previous:
+          $ref: "#/components/schemas/getEventsOverviewDaily_200_response_previous"
     listEventNames_200_response_names_inner:
       example:
         name: name
@@ -212452,8 +212658,11 @@ components:
           - referral
           - lead_form
           - event
+          - survey
           type: string
         platform:
+          description: "The ad platform of the campaign, or the one a survey answer\
+            \ names (Instagram reads as facebook)."
           nullable: true
           type: string
         adAccountId:
@@ -212560,8 +212769,9 @@ components:
         touches:
           description: "The touches the event is split across, oldest first: website\
             \ visits (an ad click, search, a tagged link), the first and latest visits\
-            \ HubSpot recorded for a deal, and earlier lead forms or sales. Empty\
-            \ when the event counts whole for its own campaign."
+            \ HubSpot recorded for a deal, earlier lead forms or sales, and a Shopify\
+            \ buyer's post-purchase survey answer. Empty when the event counts whole\
+            \ for its own campaign."
           items:
             $ref: "#/components/schemas/getEvent_200_response_touches_inner"
           type: array

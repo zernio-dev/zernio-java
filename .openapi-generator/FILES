@@ -1545,8 +1545,10 @@ docs/GetEventsOverview200ResponseWebsiteStepsInner.md
 docs/GetEventsOverviewDaily200Response.md
 docs/GetEventsOverviewDaily200ResponseDaysInner.md
 docs/GetEventsOverviewDaily200ResponsePixelMissedInner.md
+docs/GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner.md
 docs/GetEventsOverviewDaily200ResponsePlatformsInner.md
 docs/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInner.md
+docs/GetEventsOverviewDaily200ResponsePrevious.md
 docs/GetEventsOverviewDaily200ResponseTotals.md
 docs/GetFacebookDemographics200Response.md
 docs/GetFacebookDemographics200ResponseDemographics.md
@@ -1762,6 +1764,8 @@ docs/GetStripeConnectUrl200Response.md
 docs/GetStripeSettings200Response.md
 docs/GetSubredditRules200Response.md
 docs/GetSubredditRules200ResponseRulesInner.md
+docs/GetSurveyAnswers200Response.md
+docs/GetSurveyAnswers200ResponseAnswersInner.md
 docs/GetTagNewAds200Response.md
 docs/GetTelegramCommands200Response.md
 docs/GetTelegramCommands200ResponseDataInner.md
@@ -5580,8 +5584,10 @@ src/main/java/dev/zernio/model/GetEventsOverview200ResponseWebsiteStepsInner.jav
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200Response.java
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponseDaysInner.java
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePixelMissedInner.java
+src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner.java
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePlatformsInner.java
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInner.java
+src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePrevious.java
 src/main/java/dev/zernio/model/GetEventsOverviewDaily200ResponseTotals.java
 src/main/java/dev/zernio/model/GetFacebookDemographics200Response.java
 src/main/java/dev/zernio/model/GetFacebookDemographics200ResponseDemographics.java
@@ -5797,6 +5803,8 @@ src/main/java/dev/zernio/model/GetStripeConnectUrl200Response.java
 src/main/java/dev/zernio/model/GetStripeSettings200Response.java
 src/main/java/dev/zernio/model/GetSubredditRules200Response.java
 src/main/java/dev/zernio/model/GetSubredditRules200ResponseRulesInner.java
+src/main/java/dev/zernio/model/GetSurveyAnswers200Response.java
+src/main/java/dev/zernio/model/GetSurveyAnswers200ResponseAnswersInner.java
 src/main/java/dev/zernio/model/GetTagNewAds200Response.java
 src/main/java/dev/zernio/model/GetTelegramCommands200Response.java
 src/main/java/dev/zernio/model/GetTelegramCommands200ResponseDataInner.java
@@ -7951,3 +7959,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInnerTest.java
+src/test/java/dev/zernio/model/GetEventsOverviewDaily200ResponsePreviousTest.java
+src/test/java/dev/zernio/model/GetSurveyAnswers200ResponseAnswersInnerTest.java
+src/test/java/dev/zernio/model/GetSurveyAnswers200ResponseTest.java

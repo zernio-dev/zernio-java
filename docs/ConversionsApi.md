@@ -58,6 +58,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getEventsOverviewDailyWithHttpInfo**](ConversionsApi.md#getEventsOverviewDailyWithHttpInfo) | **GET** /v1/events/overview/daily | Get daily tracking figures |
 | [**getLtvCohorts**](ConversionsApi.md#getLtvCohorts) | **GET** /v1/events/ltv | Get buyer cohorts by first purchase month and first channel |
 | [**getLtvCohortsWithHttpInfo**](ConversionsApi.md#getLtvCohortsWithHttpInfo) | **GET** /v1/events/ltv | Get buyer cohorts by first purchase month and first channel |
+| [**getSurveyAnswers**](ConversionsApi.md#getSurveyAnswers) | **GET** /v1/events/survey | Get post-purchase survey answers |
+| [**getSurveyAnswersWithHttpInfo**](ConversionsApi.md#getSurveyAnswersWithHttpInfo) | **GET** /v1/events/survey | Get post-purchase survey answers |
 | [**getTrackingSite**](ConversionsApi.md#getTrackingSite) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site |
 | [**getTrackingSiteWithHttpInfo**](ConversionsApi.md#getTrackingSiteWithHttpInfo) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site |
 | [**listAdConversionAssociations**](ConversionsApi.md#listAdConversionAssociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns |
@@ -4415,6 +4417,162 @@ ApiResponse<[**GetLtvCohorts200Response**](GetLtvCohorts200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The cohorts, newest first. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
+## getSurveyAnswers
+
+> GetSurveyAnswers200Response getSurveyAnswers(fromDate, toDate, profileId)
+
+Get post-purchase survey answers
+
+How buyers said they heard about the store, from the \&quot;How did you hear about us?\&quot; block on the Shopify thank-you page. Each answer comes with its orders and their revenue.  Revenue is what the orders are worth now (refunds taken off), summed across currencies as sent. Without &#x60;profileId&#x60; it covers every profile you can access. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        LocalDate fromDate = LocalDate.now(); // LocalDate | First day an answer was given.
+        LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive. At most 400 days after `fromDate`.
+        String profileId = "profileId_example"; // String | The profile to read. Omit for every profile you can access.
+        try {
+            GetSurveyAnswers200Response result = apiInstance.getSurveyAnswers(fromDate, toDate, profileId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getSurveyAnswers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **fromDate** | **LocalDate**| First day an answer was given. | |
+| **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
+| **profileId** | **String**| The profile to read. Omit for every profile you can access. | [optional] |
+
+### Return type
+
+[**GetSurveyAnswers200Response**](GetSurveyAnswers200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The answers, most given first. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## getSurveyAnswersWithHttpInfo
+
+> ApiResponse<GetSurveyAnswers200Response> getSurveyAnswers getSurveyAnswersWithHttpInfo(fromDate, toDate, profileId)
+
+Get post-purchase survey answers
+
+How buyers said they heard about the store, from the \&quot;How did you hear about us?\&quot; block on the Shopify thank-you page. Each answer comes with its orders and their revenue.  Revenue is what the orders are worth now (refunds taken off), summed across currencies as sent. Without &#x60;profileId&#x60; it covers every profile you can access. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        LocalDate fromDate = LocalDate.now(); // LocalDate | First day an answer was given.
+        LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive. At most 400 days after `fromDate`.
+        String profileId = "profileId_example"; // String | The profile to read. Omit for every profile you can access.
+        try {
+            ApiResponse<GetSurveyAnswers200Response> response = apiInstance.getSurveyAnswersWithHttpInfo(fromDate, toDate, profileId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getSurveyAnswers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **fromDate** | **LocalDate**| First day an answer was given. | |
+| **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
+| **profileId** | **String**| The profile to read. Omit for every profile you can access. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetSurveyAnswers200Response**](GetSurveyAnswers200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The answers, most given first. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
