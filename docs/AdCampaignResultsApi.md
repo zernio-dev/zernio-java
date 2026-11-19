@@ -313,7 +313,7 @@ ApiResponse<[**CampaignResultProfit**](CampaignResultProfit.md)>
 
 Get your results totals
 
-Each metric you send summed over a date range across every campaign of the ad accounts your key can see, or of the ones you name. Each day counts its newest uploaded value only, plus the events sent to &#x60;POST /v1/events&#x60; that are tied to a campaign.  An event counts here up to 15 minutes after it arrives.  Formulas are not computed here, since they also read the platform&#39;s numbers: apply one to these totals and the account&#39;s spend for the same range, or read it per campaign from &#x60;GET /v1/ads/tree?results&#x3D;true&#x60;. 
+Each metric you send summed over a date range across every campaign of the ad accounts your key can see, or of the ones you name. Each day counts its newest uploaded value only, plus the events sent to &#x60;POST /v1/events&#x60; that are tied to a campaign.  An event counts here up to 15 minutes after it arrives.  Formulas are not computed here, since they also read the platform&#39;s numbers: apply one to these totals and the account&#39;s spend for the same range, or read it per campaign from &#x60;GET /v1/ads/tree?results&#x3D;true&#x60;.  The newer way to read this is &#x60;GET /v1/metrics/ad-accounts&#x60;. 
 
 ### Example
 
@@ -391,7 +391,7 @@ public class Example {
 
 Get your results totals
 
-Each metric you send summed over a date range across every campaign of the ad accounts your key can see, or of the ones you name. Each day counts its newest uploaded value only, plus the events sent to &#x60;POST /v1/events&#x60; that are tied to a campaign.  An event counts here up to 15 minutes after it arrives.  Formulas are not computed here, since they also read the platform&#39;s numbers: apply one to these totals and the account&#39;s spend for the same range, or read it per campaign from &#x60;GET /v1/ads/tree?results&#x3D;true&#x60;. 
+Each metric you send summed over a date range across every campaign of the ad accounts your key can see, or of the ones you name. Each day counts its newest uploaded value only, plus the events sent to &#x60;POST /v1/events&#x60; that are tied to a campaign.  An event counts here up to 15 minutes after it arrives.  Formulas are not computed here, since they also read the platform&#39;s numbers: apply one to these totals and the account&#39;s spend for the same range, or read it per campaign from &#x60;GET /v1/ads/tree?results&#x3D;true&#x60;.  The newer way to read this is &#x60;GET /v1/metrics/ad-accounts&#x60;. 
 
 ### Example
 
@@ -897,7 +897,7 @@ ApiResponse<[**ListCampaignResultMetrics200Response**](ListCampaignResultMetrics
 
 List your results per campaign
 
-Your results summed per campaign over a date range, one entry per campaign with every metric it has, for the ad accounts your key can see. Each day counts its newest uploaded value only, plus the events sent to &#x60;POST /v1/events&#x60; that are tied to the campaign (&#x60;sales&#x60;, &#x60;revenue&#x60;, &#x60;leads&#x60;, &#x60;qualified_leads&#x60;).  An event counts here up to 15 minutes after it arrives.  Paginated by campaign: pass &#x60;nextCursor&#x60; back as &#x60;cursor&#x60; until it is null. 
+Your results summed per campaign over a date range, one entry per campaign with every metric it has, for the ad accounts your key can see. Each day counts its newest uploaded value only, plus the events sent to &#x60;POST /v1/events&#x60; that are tied to the campaign (&#x60;sales&#x60;, &#x60;revenue&#x60;, &#x60;leads&#x60;, &#x60;qualified_leads&#x60;).  An event counts here up to 15 minutes after it arrives.  Paginated by campaign: pass &#x60;nextCursor&#x60; back as &#x60;cursor&#x60; until it is null.  The newer way to read this is &#x60;GET /v1/metrics/campaigns&#x60;. 
 
 ### Example
 
@@ -979,7 +979,7 @@ public class Example {
 
 List your results per campaign
 
-Your results summed per campaign over a date range, one entry per campaign with every metric it has, for the ad accounts your key can see. Each day counts its newest uploaded value only, plus the events sent to &#x60;POST /v1/events&#x60; that are tied to the campaign (&#x60;sales&#x60;, &#x60;revenue&#x60;, &#x60;leads&#x60;, &#x60;qualified_leads&#x60;).  An event counts here up to 15 minutes after it arrives.  Paginated by campaign: pass &#x60;nextCursor&#x60; back as &#x60;cursor&#x60; until it is null. 
+Your results summed per campaign over a date range, one entry per campaign with every metric it has, for the ad accounts your key can see. Each day counts its newest uploaded value only, plus the events sent to &#x60;POST /v1/events&#x60; that are tied to the campaign (&#x60;sales&#x60;, &#x60;revenue&#x60;, &#x60;leads&#x60;, &#x60;qualified_leads&#x60;).  An event counts here up to 15 minutes after it arrives.  Paginated by campaign: pass &#x60;nextCursor&#x60; back as &#x60;cursor&#x60; until it is null.  The newer way to read this is &#x60;GET /v1/metrics/campaigns&#x60;. 
 
 ### Example
 

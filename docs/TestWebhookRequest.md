@@ -139,6 +139,7 @@
 | AUTOMATION_ALERT_RESOLVED | &quot;automation.alert.resolved&quot; |
 | LEAD_RECEIVED | &quot;lead.received&quot; |
 | CONVERSION_RECEIVED | &quot;conversion.received&quot; |
+| TRACKING_SITE_READY | &quot;tracking_site.ready&quot; |
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
 | WHATSAPP_TEMPLATE_CATEGORY_UPDATED | &quot;whatsapp.template.category_updated&quot; |
 | WHATSAPP_ACCOUNT_NAME_STATUS_UPDATED | &quot;whatsapp.account.name_status_updated&quot; |

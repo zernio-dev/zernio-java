@@ -22,6 +22,7 @@
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 |**succeededAt** | **OffsetDateTime** |  |  [optional] |
 |**hasInvoice** | **Boolean** | The paid payment has an invoice (getTopupInvoice): every balance top-up paid since 2026-11-05 (unless charged without one for a Stripe credit balance), and Checkout payments before 2026-10-29. Every paid payment has a card receipt (getTopupReceipt). |  [optional] |
+|**bonusCents** | **Integer** | Bonus credit added with this payment and not taken back, in cents. Null when there is none. |  [optional] |
 
 
 

@@ -1219,7 +1219,7 @@ ApiResponse<[**BusinessAgentUiSkill**](BusinessAgentUiSkill.md)>
 
 ## deleteBusinessAgentConnector
 
-> InlineObject deleteBusinessAgentConnector(accountId, connectorId)
+> InlineObject1 deleteBusinessAgentConnector(accountId, connectorId)
 
 Delete a connector
 
@@ -1247,7 +1247,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String connectorId = "connectorId_example"; // String | 
         try {
-            InlineObject result = apiInstance.deleteBusinessAgentConnector(accountId, connectorId);
+            InlineObject1 result = apiInstance.deleteBusinessAgentConnector(accountId, connectorId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BusinessAgentApi#deleteBusinessAgentConnector");
@@ -1270,7 +1270,7 @@ public class Example {
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 
 ### Authorization
@@ -1293,7 +1293,7 @@ public class Example {
 
 ## deleteBusinessAgentConnectorWithHttpInfo
 
-> ApiResponse<InlineObject> deleteBusinessAgentConnector deleteBusinessAgentConnectorWithHttpInfo(accountId, connectorId)
+> ApiResponse<InlineObject1> deleteBusinessAgentConnector deleteBusinessAgentConnectorWithHttpInfo(accountId, connectorId)
 
 Delete a connector
 
@@ -1322,7 +1322,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String connectorId = "connectorId_example"; // String | 
         try {
-            ApiResponse<InlineObject> response = apiInstance.deleteBusinessAgentConnectorWithHttpInfo(accountId, connectorId);
+            ApiResponse<InlineObject1> response = apiInstance.deleteBusinessAgentConnectorWithHttpInfo(accountId, connectorId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1347,7 +1347,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**InlineObject**](InlineObject.md)>
+ApiResponse<[**InlineObject1**](InlineObject1.md)>
 
 
 ### Authorization
@@ -1371,7 +1371,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 
 ## deleteBusinessAgentConnectorTool
 
-> InlineObject deleteBusinessAgentConnectorTool(accountId, connectorId, toolId)
+> InlineObject1 deleteBusinessAgentConnectorTool(accountId, connectorId, toolId)
 
 Delete a connector tool
 
@@ -1400,7 +1400,7 @@ public class Example {
         String connectorId = "connectorId_example"; // String | 
         String toolId = "toolId_example"; // String | 
         try {
-            InlineObject result = apiInstance.deleteBusinessAgentConnectorTool(accountId, connectorId, toolId);
+            InlineObject1 result = apiInstance.deleteBusinessAgentConnectorTool(accountId, connectorId, toolId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BusinessAgentApi#deleteBusinessAgentConnectorTool");
@@ -1424,7 +1424,7 @@ public class Example {
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 
 ### Authorization
@@ -1447,7 +1447,7 @@ public class Example {
 
 ## deleteBusinessAgentConnectorToolWithHttpInfo
 
-> ApiResponse<InlineObject> deleteBusinessAgentConnectorTool deleteBusinessAgentConnectorToolWithHttpInfo(accountId, connectorId, toolId)
+> ApiResponse<InlineObject1> deleteBusinessAgentConnectorTool deleteBusinessAgentConnectorToolWithHttpInfo(accountId, connectorId, toolId)
 
 Delete a connector tool
 
@@ -1477,7 +1477,7 @@ public class Example {
         String connectorId = "connectorId_example"; // String | 
         String toolId = "toolId_example"; // String | 
         try {
-            ApiResponse<InlineObject> response = apiInstance.deleteBusinessAgentConnectorToolWithHttpInfo(accountId, connectorId, toolId);
+            ApiResponse<InlineObject1> response = apiInstance.deleteBusinessAgentConnectorToolWithHttpInfo(accountId, connectorId, toolId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1503,7 +1503,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**InlineObject**](InlineObject.md)>
+ApiResponse<[**InlineObject1**](InlineObject1.md)>
 
 
 ### Authorization
@@ -1527,7 +1527,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 
 ## deleteBusinessAgentFaq
 
-> InlineObject deleteBusinessAgentFaq(accountId, faqId)
+> InlineObject1 deleteBusinessAgentFaq(accountId, faqId)
 
 Delete a FAQ
 
@@ -1555,7 +1555,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String faqId = "faqId_example"; // String | 
         try {
-            InlineObject result = apiInstance.deleteBusinessAgentFaq(accountId, faqId);
+            InlineObject1 result = apiInstance.deleteBusinessAgentFaq(accountId, faqId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BusinessAgentApi#deleteBusinessAgentFaq");
@@ -1578,7 +1578,7 @@ public class Example {
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 
 ### Authorization
@@ -1601,7 +1601,7 @@ public class Example {
 
 ## deleteBusinessAgentFaqWithHttpInfo
 
-> ApiResponse<InlineObject> deleteBusinessAgentFaq deleteBusinessAgentFaqWithHttpInfo(accountId, faqId)
+> ApiResponse<InlineObject1> deleteBusinessAgentFaq deleteBusinessAgentFaqWithHttpInfo(accountId, faqId)
 
 Delete a FAQ
 
@@ -1630,7 +1630,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String faqId = "faqId_example"; // String | 
         try {
-            ApiResponse<InlineObject> response = apiInstance.deleteBusinessAgentFaqWithHttpInfo(accountId, faqId);
+            ApiResponse<InlineObject1> response = apiInstance.deleteBusinessAgentFaqWithHttpInfo(accountId, faqId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1655,7 +1655,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**InlineObject**](InlineObject.md)>
+ApiResponse<[**InlineObject1**](InlineObject1.md)>
 
 
 ### Authorization
@@ -1679,7 +1679,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 
 ## deleteBusinessAgentFile
 
-> InlineObject deleteBusinessAgentFile(accountId, fileId)
+> InlineObject1 deleteBusinessAgentFile(accountId, fileId)
 
 Delete a knowledge file
 
@@ -1707,7 +1707,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String fileId = "fileId_example"; // String | 
         try {
-            InlineObject result = apiInstance.deleteBusinessAgentFile(accountId, fileId);
+            InlineObject1 result = apiInstance.deleteBusinessAgentFile(accountId, fileId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BusinessAgentApi#deleteBusinessAgentFile");
@@ -1730,7 +1730,7 @@ public class Example {
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 
 ### Authorization
@@ -1753,7 +1753,7 @@ public class Example {
 
 ## deleteBusinessAgentFileWithHttpInfo
 
-> ApiResponse<InlineObject> deleteBusinessAgentFile deleteBusinessAgentFileWithHttpInfo(accountId, fileId)
+> ApiResponse<InlineObject1> deleteBusinessAgentFile deleteBusinessAgentFileWithHttpInfo(accountId, fileId)
 
 Delete a knowledge file
 
@@ -1782,7 +1782,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String fileId = "fileId_example"; // String | 
         try {
-            ApiResponse<InlineObject> response = apiInstance.deleteBusinessAgentFileWithHttpInfo(accountId, fileId);
+            ApiResponse<InlineObject1> response = apiInstance.deleteBusinessAgentFileWithHttpInfo(accountId, fileId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1807,7 +1807,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**InlineObject**](InlineObject.md)>
+ApiResponse<[**InlineObject1**](InlineObject1.md)>
 
 
 ### Authorization
@@ -1831,7 +1831,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 
 ## deleteBusinessAgentSkill
 
-> InlineObject deleteBusinessAgentSkill(accountId, skillId)
+> InlineObject1 deleteBusinessAgentSkill(accountId, skillId)
 
 Delete a skill
 
@@ -1859,7 +1859,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String skillId = "skillId_example"; // String | 
         try {
-            InlineObject result = apiInstance.deleteBusinessAgentSkill(accountId, skillId);
+            InlineObject1 result = apiInstance.deleteBusinessAgentSkill(accountId, skillId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BusinessAgentApi#deleteBusinessAgentSkill");
@@ -1882,7 +1882,7 @@ public class Example {
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 
 ### Authorization
@@ -1905,7 +1905,7 @@ public class Example {
 
 ## deleteBusinessAgentSkillWithHttpInfo
 
-> ApiResponse<InlineObject> deleteBusinessAgentSkill deleteBusinessAgentSkillWithHttpInfo(accountId, skillId)
+> ApiResponse<InlineObject1> deleteBusinessAgentSkill deleteBusinessAgentSkillWithHttpInfo(accountId, skillId)
 
 Delete a skill
 
@@ -1934,7 +1934,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String skillId = "skillId_example"; // String | 
         try {
-            ApiResponse<InlineObject> response = apiInstance.deleteBusinessAgentSkillWithHttpInfo(accountId, skillId);
+            ApiResponse<InlineObject1> response = apiInstance.deleteBusinessAgentSkillWithHttpInfo(accountId, skillId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1959,7 +1959,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**InlineObject**](InlineObject.md)>
+ApiResponse<[**InlineObject1**](InlineObject1.md)>
 
 
 ### Authorization
@@ -1983,7 +1983,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 
 ## deleteBusinessAgentUiSkill
 
-> InlineObject deleteBusinessAgentUiSkill(accountId, uiSkillId)
+> InlineObject1 deleteBusinessAgentUiSkill(accountId, uiSkillId)
 
 Delete a UI skill
 
@@ -2011,7 +2011,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String uiSkillId = "uiSkillId_example"; // String | 
         try {
-            InlineObject result = apiInstance.deleteBusinessAgentUiSkill(accountId, uiSkillId);
+            InlineObject1 result = apiInstance.deleteBusinessAgentUiSkill(accountId, uiSkillId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BusinessAgentApi#deleteBusinessAgentUiSkill");
@@ -2034,7 +2034,7 @@ public class Example {
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 
 ### Authorization
@@ -2057,7 +2057,7 @@ public class Example {
 
 ## deleteBusinessAgentUiSkillWithHttpInfo
 
-> ApiResponse<InlineObject> deleteBusinessAgentUiSkill deleteBusinessAgentUiSkillWithHttpInfo(accountId, uiSkillId)
+> ApiResponse<InlineObject1> deleteBusinessAgentUiSkill deleteBusinessAgentUiSkillWithHttpInfo(accountId, uiSkillId)
 
 Delete a UI skill
 
@@ -2086,7 +2086,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String uiSkillId = "uiSkillId_example"; // String | 
         try {
-            ApiResponse<InlineObject> response = apiInstance.deleteBusinessAgentUiSkillWithHttpInfo(accountId, uiSkillId);
+            ApiResponse<InlineObject1> response = apiInstance.deleteBusinessAgentUiSkillWithHttpInfo(accountId, uiSkillId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2111,7 +2111,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**InlineObject**](InlineObject.md)>
+ApiResponse<[**InlineObject1**](InlineObject1.md)>
 
 
 ### Authorization
@@ -2135,7 +2135,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 
 ## deleteBusinessAgentWebsite
 
-> InlineObject deleteBusinessAgentWebsite(accountId, websiteId)
+> InlineObject1 deleteBusinessAgentWebsite(accountId, websiteId)
 
 Remove a crawled website
 
@@ -2163,7 +2163,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String websiteId = "websiteId_example"; // String | 
         try {
-            InlineObject result = apiInstance.deleteBusinessAgentWebsite(accountId, websiteId);
+            InlineObject1 result = apiInstance.deleteBusinessAgentWebsite(accountId, websiteId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BusinessAgentApi#deleteBusinessAgentWebsite");
@@ -2186,7 +2186,7 @@ public class Example {
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 
 ### Authorization
@@ -2209,7 +2209,7 @@ public class Example {
 
 ## deleteBusinessAgentWebsiteWithHttpInfo
 
-> ApiResponse<InlineObject> deleteBusinessAgentWebsite deleteBusinessAgentWebsiteWithHttpInfo(accountId, websiteId)
+> ApiResponse<InlineObject1> deleteBusinessAgentWebsite deleteBusinessAgentWebsiteWithHttpInfo(accountId, websiteId)
 
 Remove a crawled website
 
@@ -2238,7 +2238,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String websiteId = "websiteId_example"; // String | 
         try {
-            ApiResponse<InlineObject> response = apiInstance.deleteBusinessAgentWebsiteWithHttpInfo(accountId, websiteId);
+            ApiResponse<InlineObject1> response = apiInstance.deleteBusinessAgentWebsiteWithHttpInfo(accountId, websiteId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2263,7 +2263,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**InlineObject**](InlineObject.md)>
+ApiResponse<[**InlineObject1**](InlineObject1.md)>
 
 
 ### Authorization
@@ -5989,7 +5989,7 @@ ApiResponse<[**BusinessAgentConnector**](BusinessAgentConnector.md)>
 
 ## removeBusinessAgentAllowlistEntry
 
-> InlineObject removeBusinessAgentAllowlistEntry(accountId, entryId)
+> InlineObject1 removeBusinessAgentAllowlistEntry(accountId, entryId)
 
 Remove an allowlisted consumer
 
@@ -6017,7 +6017,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String entryId = "entryId_example"; // String | 
         try {
-            InlineObject result = apiInstance.removeBusinessAgentAllowlistEntry(accountId, entryId);
+            InlineObject1 result = apiInstance.removeBusinessAgentAllowlistEntry(accountId, entryId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BusinessAgentApi#removeBusinessAgentAllowlistEntry");
@@ -6040,7 +6040,7 @@ public class Example {
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 
 ### Authorization
@@ -6063,7 +6063,7 @@ public class Example {
 
 ## removeBusinessAgentAllowlistEntryWithHttpInfo
 
-> ApiResponse<InlineObject> removeBusinessAgentAllowlistEntry removeBusinessAgentAllowlistEntryWithHttpInfo(accountId, entryId)
+> ApiResponse<InlineObject1> removeBusinessAgentAllowlistEntry removeBusinessAgentAllowlistEntryWithHttpInfo(accountId, entryId)
 
 Remove an allowlisted consumer
 
@@ -6092,7 +6092,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         String entryId = "entryId_example"; // String | 
         try {
-            ApiResponse<InlineObject> response = apiInstance.removeBusinessAgentAllowlistEntryWithHttpInfo(accountId, entryId);
+            ApiResponse<InlineObject1> response = apiInstance.removeBusinessAgentAllowlistEntryWithHttpInfo(accountId, entryId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -6117,7 +6117,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**InlineObject**](InlineObject.md)>
+ApiResponse<[**InlineObject1**](InlineObject1.md)>
 
 
 ### Authorization
@@ -6453,7 +6453,7 @@ ApiResponse<[**BusinessAgentBusinessInformation**](BusinessAgentBusinessInformat
 
 ## resetBusinessAgentBusinessInformation
 
-> InlineObject resetBusinessAgentBusinessInformation(accountId)
+> InlineObject1 resetBusinessAgentBusinessInformation(accountId)
 
 Reset business information
 
@@ -6480,7 +6480,7 @@ public class Example {
         BusinessAgentApi apiInstance = new BusinessAgentApi(defaultClient);
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         try {
-            InlineObject result = apiInstance.resetBusinessAgentBusinessInformation(accountId);
+            InlineObject1 result = apiInstance.resetBusinessAgentBusinessInformation(accountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BusinessAgentApi#resetBusinessAgentBusinessInformation");
@@ -6502,7 +6502,7 @@ public class Example {
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 
 ### Authorization
@@ -6525,7 +6525,7 @@ public class Example {
 
 ## resetBusinessAgentBusinessInformationWithHttpInfo
 
-> ApiResponse<InlineObject> resetBusinessAgentBusinessInformation resetBusinessAgentBusinessInformationWithHttpInfo(accountId)
+> ApiResponse<InlineObject1> resetBusinessAgentBusinessInformation resetBusinessAgentBusinessInformationWithHttpInfo(accountId)
 
 Reset business information
 
@@ -6553,7 +6553,7 @@ public class Example {
         BusinessAgentApi apiInstance = new BusinessAgentApi(defaultClient);
         String accountId = "accountId_example"; // String | WhatsApp social account id (the number must be managed through the Cloud API).
         try {
-            ApiResponse<InlineObject> response = apiInstance.resetBusinessAgentBusinessInformationWithHttpInfo(accountId);
+            ApiResponse<InlineObject1> response = apiInstance.resetBusinessAgentBusinessInformationWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -6577,7 +6577,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**InlineObject**](InlineObject.md)>
+ApiResponse<[**InlineObject1**](InlineObject1.md)>
 
 
 ### Authorization

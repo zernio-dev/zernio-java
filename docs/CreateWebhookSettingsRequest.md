@@ -71,6 +71,7 @@
 | REVIEW_RESTORED | &quot;review.restored&quot; |
 | LEAD_RECEIVED | &quot;lead.received&quot; |
 | CONVERSION_RECEIVED | &quot;conversion.received&quot; |
+| TRACKING_SITE_READY | &quot;tracking_site.ready&quot; |
 | AD_STATUS_CHANGED | &quot;ad.status_changed&quot; |
 | AD_CREATED | &quot;ad.created&quot; |
 | AD_UPDATED | &quot;ad.updated&quot; |

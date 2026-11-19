@@ -280,6 +280,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onSupportRunCompletedWithHttpInfo**](WebhookEventsApi.md#onSupportRunCompletedWithHttpInfo) | **POST** /support.run.completed | Support Assistant finished event |
 | [**onSupportRunFailed**](WebhookEventsApi.md#onSupportRunFailed) | **POST** /support.run.failed | Support Assistant failed event |
 | [**onSupportRunFailedWithHttpInfo**](WebhookEventsApi.md#onSupportRunFailedWithHttpInfo) | **POST** /support.run.failed | Support Assistant failed event |
+| [**onTrackingSiteReady**](WebhookEventsApi.md#onTrackingSiteReady) | **POST** /tracking_site.ready | Tracking site ready event |
+| [**onTrackingSiteReadyWithHttpInfo**](WebhookEventsApi.md#onTrackingSiteReadyWithHttpInfo) | **POST** /tracking_site.ready | Tracking site ready event |
 | [**onVerificationApproved**](WebhookEventsApi.md#onVerificationApproved) | **POST** /verification.approved | Verification approved event |
 | [**onVerificationApprovedWithHttpInfo**](WebhookEventsApi.md#onVerificationApprovedWithHttpInfo) | **POST** /verification.approved | Verification approved event |
 | [**onVerificationFailed**](WebhookEventsApi.md#onVerificationFailed) | **POST** /verification.failed | Verification failed event |
@@ -19902,6 +19904,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadSupportRun** | [**WebhookPayloadSupportRun**](WebhookPayloadSupportRun.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onTrackingSiteReady
+
+> void onTrackingSiteReady(webhookPayloadTrackingSite)
+
+Tracking site ready event
+
+A tracked website&#39;s tag is confirmed on it, so its &#x60;setup.status&#x60; turned &#x60;ready&#x60;.  ### When it fires  Once the store app or Tag Manager install put the tag on the site, or, for a pasted line (or a Webflow site waiting on its next publish), with the site&#39;s first visit that is not a bot. A visit after that fires nothing.  &#x60;trackingSite&#x60; is the site as &#x60;GET /v1/tracking-sites/{siteId}&#x60; returns it, without &#x60;proxy.secret&#x60;.  ### Deduplication  The event &#x60;id&#x60; follows the site and the moment its tag was confirmed. Deduplicate on it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadTrackingSite webhookPayloadTrackingSite = new WebhookPayloadTrackingSite(); // WebhookPayloadTrackingSite | 
+        try {
+            apiInstance.onTrackingSiteReady(webhookPayloadTrackingSite);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onTrackingSiteReady");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadTrackingSite** | [**WebhookPayloadTrackingSite**](WebhookPayloadTrackingSite.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onTrackingSiteReadyWithHttpInfo
+
+> ApiResponse<Void> onTrackingSiteReady onTrackingSiteReadyWithHttpInfo(webhookPayloadTrackingSite)
+
+Tracking site ready event
+
+A tracked website&#39;s tag is confirmed on it, so its &#x60;setup.status&#x60; turned &#x60;ready&#x60;.  ### When it fires  Once the store app or Tag Manager install put the tag on the site, or, for a pasted line (or a Webflow site waiting on its next publish), with the site&#39;s first visit that is not a bot. A visit after that fires nothing.  &#x60;trackingSite&#x60; is the site as &#x60;GET /v1/tracking-sites/{siteId}&#x60; returns it, without &#x60;proxy.secret&#x60;.  ### Deduplication  The event &#x60;id&#x60; follows the site and the moment its tag was confirmed. Deduplicate on it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadTrackingSite webhookPayloadTrackingSite = new WebhookPayloadTrackingSite(); // WebhookPayloadTrackingSite | 
+        try {
+            ApiResponse<Void> response = apiInstance.onTrackingSiteReadyWithHttpInfo(webhookPayloadTrackingSite);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onTrackingSiteReady");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadTrackingSite** | [**WebhookPayloadTrackingSite**](WebhookPayloadTrackingSite.md)|  | |
 
 ### Return type
 

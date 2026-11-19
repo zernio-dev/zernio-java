@@ -207,7 +207,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## addOrgConnectionMailbox
 
-> InlineObject1 addOrgConnectionMailbox(orgConnectionId, addOrgConnectionMailboxRequest)
+> InlineObject2 addOrgConnectionMailbox(orgConnectionId, addOrgConnectionMailboxRequest)
 
 Add a mailbox from an organization connection
 
@@ -237,7 +237,7 @@ public class Example {
         String orgConnectionId = "orgConnectionId_example"; // String | 
         AddOrgConnectionMailboxRequest addOrgConnectionMailboxRequest = new AddOrgConnectionMailboxRequest(); // AddOrgConnectionMailboxRequest | 
         try {
-            InlineObject1 result = apiInstance.addOrgConnectionMailbox(orgConnectionId, addOrgConnectionMailboxRequest);
+            InlineObject2 result = apiInstance.addOrgConnectionMailbox(orgConnectionId, addOrgConnectionMailboxRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#addOrgConnectionMailbox");
@@ -260,7 +260,7 @@ public class Example {
 
 ### Return type
 
-[**InlineObject1**](InlineObject1.md)
+[**InlineObject2**](InlineObject2.md)
 
 
 ### Authorization
@@ -285,7 +285,7 @@ public class Example {
 
 ## addOrgConnectionMailboxWithHttpInfo
 
-> ApiResponse<InlineObject1> addOrgConnectionMailbox addOrgConnectionMailboxWithHttpInfo(orgConnectionId, addOrgConnectionMailboxRequest)
+> ApiResponse<InlineObject2> addOrgConnectionMailbox addOrgConnectionMailboxWithHttpInfo(orgConnectionId, addOrgConnectionMailboxRequest)
 
 Add a mailbox from an organization connection
 
@@ -316,7 +316,7 @@ public class Example {
         String orgConnectionId = "orgConnectionId_example"; // String | 
         AddOrgConnectionMailboxRequest addOrgConnectionMailboxRequest = new AddOrgConnectionMailboxRequest(); // AddOrgConnectionMailboxRequest | 
         try {
-            ApiResponse<InlineObject1> response = apiInstance.addOrgConnectionMailboxWithHttpInfo(orgConnectionId, addOrgConnectionMailboxRequest);
+            ApiResponse<InlineObject2> response = apiInstance.addOrgConnectionMailboxWithHttpInfo(orgConnectionId, addOrgConnectionMailboxRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -341,7 +341,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**InlineObject1**](InlineObject1.md)>
+ApiResponse<[**InlineObject2**](InlineObject2.md)>
 
 
 ### Authorization

@@ -272,8 +272,9 @@ public class Example {
 | **402** | Balance billing only: X calls are paid from the balance ($0.015 per post, $0.20 with a link). The post publishes to X now and the balance is at $0 after auto top-up tried the saved card (&#x60;insufficient_balance&#x60; or &#x60;usage_limit_reached&#x60;). Nothing was created. Add funds at &#x60;funding_url&#x60;, then retry. |  -  |
 | **400** | Validation error. &#x60;code: ACCOUNT_NOTIFICATION_ONLY&#x60; means a target account is connected for notifications only (&#x60;purpose&#x3D;notifications&#x60;) and cannot publish; reconnect it without the purpose to publish with it. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Forbidden. Distinguish by the &#x60;code&#x60; field:  - &#x60;ACCOUNT_DISCONNECTED&#x60;: a target account&#39;s platform connection is no longer active (token expired or revoked, or disconnected). Reconnect it, then refresh account IDs from &#x60;GET /v1/accounts&#x60; (connection state is in &#x60;isActive&#x60;). The disconnect is also emitted as the &#x60;account.disconnected&#x60; webhook event. - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60;: a target account was connected for ads only (&#x60;enabled: false&#x60;). Connect it as a posting account (it then counts as a connected account), then refresh account IDs from &#x60;GET /v1/accounts&#x60;. - &#x60;PROFILE_OVER_LIMIT&#x60;: a target account belongs to a profile beyond the plan&#39;s profile limit. - No &#x60;code&#x60;: a target &#x60;accountId&#x60; does not belong to the authenticated user (or is outside the API key&#39;s profile scope).  |  -  |
-| **409** | Duplicate content detected. Returned when the requested post matches an existing one on &#x60;(platform, accountId, content-hash)&#x60; within the last 24 hours, AND the request was NOT an &#x60;x-request-id&#x60; retry. Distinct from same-&#x60;x-request-id&#x60; retries (which return HTTP 200 with the original post; see operation description for the idempotency contract).  Also returned with &#x60;code: idempotency_conflict&#x60; and a &#x60;Retry-After&#x60; header when a request with the same &#x60;Idempotency-Key&#x60; is still being processed. Retry after the delay to get the original post.  Body fields: - &#x60;error&#x60;: human-readable message - &#x60;details.accountId&#x60;: the account that already has this content - &#x60;details.platform&#x60;: the platform that already has this content - &#x60;details.existingPostId&#x60;: Zernio &#x60;_id&#x60; of the original post  To intentionally re-post identical content within 24h, vary the content fingerprint (change the caption, swap a media item, or use a different account). To avoid 409s caused by retry loops, set a unique &#x60;x-request-id&#x60; per logical request. See &#x60;parameters.x-request-id&#x60; above.  |  -  |
+| **403** | Forbidden. Distinguish by the &#x60;code&#x60; field:  - &#x60;ACCOUNT_DISCONNECTED&#x60;: a target account&#39;s platform connection is no longer active (token expired or revoked, or disconnected). Reconnect it, then refresh account IDs from &#x60;GET /v1/accounts&#x60; (connection state is in &#x60;isActive&#x60;). The disconnect is also emitted as the &#x60;account.disconnected&#x60; webhook event. - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60;: a target account was connected for ads only (&#x60;enabled: false&#x60;). Connect it as a posting account (it then counts as a connected account), then refresh account IDs from &#x60;GET /v1/accounts&#x60;. - &#x60;PROFILE_OVER_LIMIT&#x60;: a target account belongs to a profile beyond the plan&#39;s profile limit. - No &#x60;code&#x60;: a target &#x60;accountId&#x60; exists but does not belong to the authenticated user (or is outside the API key&#39;s profile scope). A nonexistent &#x60;accountId&#x60; returns 404 instead.  |  -  |
+| **404** | &#x60;code: account_not_found&#x60;. A target &#x60;accountId&#x60; does not exist, usually because the account was deleted or reconnected under a new ID. Retrying with the same ID never succeeds: refresh account IDs from &#x60;GET /v1/accounts&#x60; and drop the stale one.  |  -  |
+| **409** | Duplicate content detected (&#x60;code: duplicate_content&#x60;). Returned when the requested post matches an existing one on &#x60;(platform, accountId, content-hash)&#x60; within the last 24 hours, AND the request was NOT an &#x60;x-request-id&#x60; retry. Distinct from same-&#x60;x-request-id&#x60; retries (which return HTTP 200 with the original post; see operation description for the idempotency contract).  Also returned with &#x60;code: idempotency_conflict&#x60; and a &#x60;Retry-After&#x60; header when a request with the same &#x60;Idempotency-Key&#x60; is still being processed. Retry after the delay to get the original post.  Body fields: - &#x60;error&#x60;: human-readable message - &#x60;code&#x60;: &#x60;duplicate_content&#x60;, or &#x60;idempotency_conflict&#x60; for the &#x60;Idempotency-Key&#x60; case above - &#x60;details.accountId&#x60;: the account that already has this content - &#x60;details.platform&#x60;: the platform that already has this content - &#x60;details.existingPostId&#x60;: Zernio &#x60;_id&#x60; of the original post  To intentionally re-post identical content within 24h, vary the content fingerprint (change the caption, swap a media item, or use a different account). To avoid 409s caused by retry loops, set a unique &#x60;x-request-id&#x60; per logical request. See &#x60;parameters.x-request-id&#x60; above.  |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit, account cooldown, or daily platform limits. |  * Retry-After - Seconds until card payments are tried again. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
@@ -359,8 +360,9 @@ ApiResponse<[**CreatePost200Response**](CreatePost200Response.md)>
 | **402** | Balance billing only: X calls are paid from the balance ($0.015 per post, $0.20 with a link). The post publishes to X now and the balance is at $0 after auto top-up tried the saved card (&#x60;insufficient_balance&#x60; or &#x60;usage_limit_reached&#x60;). Nothing was created. Add funds at &#x60;funding_url&#x60;, then retry. |  -  |
 | **400** | Validation error. &#x60;code: ACCOUNT_NOTIFICATION_ONLY&#x60; means a target account is connected for notifications only (&#x60;purpose&#x3D;notifications&#x60;) and cannot publish; reconnect it without the purpose to publish with it. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Forbidden. Distinguish by the &#x60;code&#x60; field:  - &#x60;ACCOUNT_DISCONNECTED&#x60;: a target account&#39;s platform connection is no longer active (token expired or revoked, or disconnected). Reconnect it, then refresh account IDs from &#x60;GET /v1/accounts&#x60; (connection state is in &#x60;isActive&#x60;). The disconnect is also emitted as the &#x60;account.disconnected&#x60; webhook event. - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60;: a target account was connected for ads only (&#x60;enabled: false&#x60;). Connect it as a posting account (it then counts as a connected account), then refresh account IDs from &#x60;GET /v1/accounts&#x60;. - &#x60;PROFILE_OVER_LIMIT&#x60;: a target account belongs to a profile beyond the plan&#39;s profile limit. - No &#x60;code&#x60;: a target &#x60;accountId&#x60; does not belong to the authenticated user (or is outside the API key&#39;s profile scope).  |  -  |
-| **409** | Duplicate content detected. Returned when the requested post matches an existing one on &#x60;(platform, accountId, content-hash)&#x60; within the last 24 hours, AND the request was NOT an &#x60;x-request-id&#x60; retry. Distinct from same-&#x60;x-request-id&#x60; retries (which return HTTP 200 with the original post; see operation description for the idempotency contract).  Also returned with &#x60;code: idempotency_conflict&#x60; and a &#x60;Retry-After&#x60; header when a request with the same &#x60;Idempotency-Key&#x60; is still being processed. Retry after the delay to get the original post.  Body fields: - &#x60;error&#x60;: human-readable message - &#x60;details.accountId&#x60;: the account that already has this content - &#x60;details.platform&#x60;: the platform that already has this content - &#x60;details.existingPostId&#x60;: Zernio &#x60;_id&#x60; of the original post  To intentionally re-post identical content within 24h, vary the content fingerprint (change the caption, swap a media item, or use a different account). To avoid 409s caused by retry loops, set a unique &#x60;x-request-id&#x60; per logical request. See &#x60;parameters.x-request-id&#x60; above.  |  -  |
+| **403** | Forbidden. Distinguish by the &#x60;code&#x60; field:  - &#x60;ACCOUNT_DISCONNECTED&#x60;: a target account&#39;s platform connection is no longer active (token expired or revoked, or disconnected). Reconnect it, then refresh account IDs from &#x60;GET /v1/accounts&#x60; (connection state is in &#x60;isActive&#x60;). The disconnect is also emitted as the &#x60;account.disconnected&#x60; webhook event. - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60;: a target account was connected for ads only (&#x60;enabled: false&#x60;). Connect it as a posting account (it then counts as a connected account), then refresh account IDs from &#x60;GET /v1/accounts&#x60;. - &#x60;PROFILE_OVER_LIMIT&#x60;: a target account belongs to a profile beyond the plan&#39;s profile limit. - No &#x60;code&#x60;: a target &#x60;accountId&#x60; exists but does not belong to the authenticated user (or is outside the API key&#39;s profile scope). A nonexistent &#x60;accountId&#x60; returns 404 instead.  |  -  |
+| **404** | &#x60;code: account_not_found&#x60;. A target &#x60;accountId&#x60; does not exist, usually because the account was deleted or reconnected under a new ID. Retrying with the same ID never succeeds: refresh account IDs from &#x60;GET /v1/accounts&#x60; and drop the stale one.  |  -  |
+| **409** | Duplicate content detected (&#x60;code: duplicate_content&#x60;). Returned when the requested post matches an existing one on &#x60;(platform, accountId, content-hash)&#x60; within the last 24 hours, AND the request was NOT an &#x60;x-request-id&#x60; retry. Distinct from same-&#x60;x-request-id&#x60; retries (which return HTTP 200 with the original post; see operation description for the idempotency contract).  Also returned with &#x60;code: idempotency_conflict&#x60; and a &#x60;Retry-After&#x60; header when a request with the same &#x60;Idempotency-Key&#x60; is still being processed. Retry after the delay to get the original post.  Body fields: - &#x60;error&#x60;: human-readable message - &#x60;code&#x60;: &#x60;duplicate_content&#x60;, or &#x60;idempotency_conflict&#x60; for the &#x60;Idempotency-Key&#x60; case above - &#x60;details.accountId&#x60;: the account that already has this content - &#x60;details.platform&#x60;: the platform that already has this content - &#x60;details.existingPostId&#x60;: Zernio &#x60;_id&#x60; of the original post  To intentionally re-post identical content within 24h, vary the content fingerprint (change the caption, swap a media item, or use a different account). To avoid 409s caused by retry loops, set a unique &#x60;x-request-id&#x60; per logical request. See &#x60;parameters.x-request-id&#x60; above.  |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit, account cooldown, or daily platform limits. |  * Retry-After - Seconds until card payments are tried again. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
@@ -434,7 +436,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
-| **400** | Cannot delete published posts |  -  |
+| **400** | Cannot delete published posts (&#x60;code: invalid_resource_state&#x60;). Use &#x60;POST /v1/posts/{postId}/unpublish&#x60; to delete it from the platforms. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
@@ -511,7 +513,7 @@ ApiResponse<[**PostDeleteResponse**](PostDeleteResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
-| **400** | Cannot delete published posts |  -  |
+| **400** | Cannot delete published posts (&#x60;code: invalid_resource_state&#x60;). Use &#x60;POST /v1/posts/{postId}/unpublish&#x60; to delete it from the platforms. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
@@ -683,7 +685,7 @@ ApiResponse<[**EditPost200Response**](EditPost200Response.md)>
 
 Get post
 
-Fetch a single post by ID. For published posts, this returns platformPostUrl for each platform. 
+Fetch a single post by ID. For published posts, this returns platformPostUrl for each platform.  To wait for a post to publish, subscribe to the &#x60;post.published&#x60;, &#x60;post.failed&#x60; and &#x60;post.partial&#x60; webhooks instead of polling this endpoint. Each event carries the post, so no follow-up read is needed. 
 
 ### Example
 
@@ -757,7 +759,7 @@ public class Example {
 
 Get post
 
-Fetch a single post by ID. For published posts, this returns platformPostUrl for each platform. 
+Fetch a single post by ID. For published posts, this returns platformPostUrl for each platform.  To wait for a post to publish, subscribe to the &#x60;post.published&#x60;, &#x60;post.failed&#x60; and &#x60;post.partial&#x60; webhooks instead of polling this endpoint. Each event carries the post, so no follow-up read is needed. 
 
 ### Example
 
@@ -835,7 +837,7 @@ ApiResponse<[**PostGetResponse**](PostGetResponse.md)>
 
 List posts
 
-Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform. A query parameter that is not listed here returns 400 naming it and the accepted parameters, so a misspelled filter never silently returns the unfiltered list.
+Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform. A query parameter that is not listed here returns 400 naming it and the accepted parameters, so a misspelled filter never silently returns the unfiltered list.  To learn when posts publish or fail, subscribe to the &#x60;post.published&#x60;, &#x60;post.failed&#x60; and &#x60;post.partial&#x60; webhooks instead of re-reading this list. 
 
 ### Example
 
@@ -947,7 +949,7 @@ public class Example {
 
 List posts
 
-Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform. A query parameter that is not listed here returns 400 naming it and the accepted parameters, so a misspelled filter never silently returns the unfiltered list.
+Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform. A query parameter that is not listed here returns 400 naming it and the accepted parameters, so a misspelled filter never silently returns the unfiltered list.  To learn when posts publish or fail, subscribe to the &#x60;post.published&#x60;, &#x60;post.failed&#x60; and &#x60;post.partial&#x60; webhooks instead of re-reading this list. 
 
 ### Example
 
@@ -1219,11 +1221,11 @@ ApiResponse<[**PinPostResponse**](PinPostResponse.md)>
 
 ## retryPost
 
-> PostRetryResponse retryPost(postId)
+> PostRetryResponse retryPost(postId, postRetryRequest)
 
 Retry failed post
 
-Immediately retries publishing a failed post. Returns the updated post with its new status.
+Immediately retries publishing a failed or partial post and returns the updated post with a per-platform result.  - Without a body, every failed or pending platform is retried. - Pass &#x60;platforms&#x60; to retry only some of them, for example the one platform that failed on a partial post. Platforms not listed are left alone. - Prefer this over creating the post again, which posts a second time to the platforms that already published.  A retry never collides with its own post in the 24-hour duplicate-content check. It still answers 409 when another post with identical content published, or is about to publish, to the same account. 
 
 ### Example
 
@@ -1247,8 +1249,9 @@ public class Example {
 
         PostsApi apiInstance = new PostsApi(defaultClient);
         String postId = "postId_example"; // String | 
+        PostRetryRequest postRetryRequest = new PostRetryRequest(); // PostRetryRequest | 
         try {
-            PostRetryResponse result = apiInstance.retryPost(postId);
+            PostRetryResponse result = apiInstance.retryPost(postId, postRetryRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PostsApi#retryPost");
@@ -1267,6 +1270,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **postId** | **String**|  | |
+| **postRetryRequest** | [**PostRetryRequest**](PostRetryRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1279,31 +1283,31 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Retry successful |  -  |
-| **207** | The retry ran, but publishing did not fully succeed. Covers both a partial publish and a retry in which no platform published.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  This response carries no &#x60;platformResults&#x60;. Read &#x60;post.status&#x60; (&#x60;partial&#x60;, &#x60;failed&#x60;, or &#x60;scheduled&#x60; when transient errors will be retried automatically) and &#x60;post.platforms[]&#x60; for per-platform detail.  |  -  |
+| **207** | The retry ran, but publishing did not fully succeed. Covers both a partial publish and a retry in which no platform published.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  &#x60;platformResults&#x60; says, per platform, whether this request retried it and how it ended (&#x60;status&#x60;, &#x60;error&#x60;, &#x60;errorCategory&#x60;). &#x60;post.status&#x60; is &#x60;partial&#x60;, &#x60;failed&#x60;, or &#x60;scheduled&#x60; when transient errors will be retried automatically.  |  -  |
 | **202** | Balance billing only. The post was saved, but its X platform found the balance at $0 even after auto top-up.  - The X platform is waiting (&#x60;post.platforms[].status: pending&#x60;, &#x60;errorMessage&#x60; says why) instead of publishing. - It publishes within minutes of the balance being funded. - It fails with \&quot;Your balance was $0\&quot; if the balance is still $0 after 24 hours. - Other platforms in &#x60;platformResults&#x60; published or failed as usual.  This is not \&quot;publishing in progress\&quot;: send the user to Billing to add funds. Usually the request is refused with 402 &#x60;insufficient_balance&#x60; before anything is saved; 202 covers a balance that reached $0 during the publish.  |  -  |
-| **400** | Invalid state. &#x60;code: ACCOUNT_NOTIFICATION_ONLY&#x60; means the account of a leg is connected for notifications only (&#x60;purpose&#x3D;notifications&#x60;) and cannot publish; reconnect it without the purpose, then retry. |  -  |
+| **400** | Invalid request or state. Distinguish by the &#x60;code&#x60; field:  - &#x60;ACCOUNT_NOTIFICATION_ONLY&#x60;: the account of a platform is connected for notifications only (&#x60;purpose&#x3D;notifications&#x60;) and cannot publish. Reconnect it without the purpose, then retry. - &#x60;invalid_field_value&#x60;: the post has no platform matching an entry of &#x60;platforms&#x60;. - &#x60;invalid_resource_state&#x60;: the matching platform is not failed or pending (for example it already published).  |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment required, and the post was not changed. Either the account owner has a failed payment, or (balance billing) the post retries to X and the balance is at $0 after auto top-up tried the saved card: code &#x60;insufficient_balance&#x60; or &#x60;usage_limit_reached&#x60;, add funds at &#x60;funding_url&#x60;, then retry. |  -  |
 | **403** | Forbidden. Distinguish by the &#x60;code&#x60; field:  - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60;: a target account was connected for ads only (&#x60;enabled: false&#x60;) and cannot be posted to. Connect it as a posting account, then retry. - &#x60;PROFILE_OVER_LIMIT&#x60;: a target account belongs to a profile beyond the plan&#39;s profile limit. - &#x60;insufficient_permissions&#x60;: the post is not accessible to the caller.  |  -  |
 | **404** | Resource not found |  -  |
-| **409** | Post is currently publishing |  -  |
+| **409** | The post is currently publishing, or another post with identical content is already active for the account within 24 hours (&#x60;details&#x60; carries &#x60;platform&#x60;, &#x60;accountId&#x60; and &#x60;existingPostId&#x60;). The post was not changed. |  -  |
 | **422** | Invalid resource state (&#x60;invalid_resource_state&#x60;): this team does not retain content and the post text was cleared once publishing finished, so the post cannot be changed or published again. Create a new post instead. |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute) or account cooldown (temporarily rate-limited due to repeated errors).  |  -  |
 
 ## retryPostWithHttpInfo
 
-> ApiResponse<PostRetryResponse> retryPost retryPostWithHttpInfo(postId)
+> ApiResponse<PostRetryResponse> retryPost retryPostWithHttpInfo(postId, postRetryRequest)
 
 Retry failed post
 
-Immediately retries publishing a failed post. Returns the updated post with its new status.
+Immediately retries publishing a failed or partial post and returns the updated post with a per-platform result.  - Without a body, every failed or pending platform is retried. - Pass &#x60;platforms&#x60; to retry only some of them, for example the one platform that failed on a partial post. Platforms not listed are left alone. - Prefer this over creating the post again, which posts a second time to the platforms that already published.  A retry never collides with its own post in the 24-hour duplicate-content check. It still answers 409 when another post with identical content published, or is about to publish, to the same account. 
 
 ### Example
 
@@ -1328,8 +1332,9 @@ public class Example {
 
         PostsApi apiInstance = new PostsApi(defaultClient);
         String postId = "postId_example"; // String | 
+        PostRetryRequest postRetryRequest = new PostRetryRequest(); // PostRetryRequest | 
         try {
-            ApiResponse<PostRetryResponse> response = apiInstance.retryPostWithHttpInfo(postId);
+            ApiResponse<PostRetryResponse> response = apiInstance.retryPostWithHttpInfo(postId, postRetryRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1350,6 +1355,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **postId** | **String**|  | |
+| **postRetryRequest** | [**PostRetryRequest**](PostRetryRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1362,21 +1368,21 @@ ApiResponse<[**PostRetryResponse**](PostRetryResponse.md)>
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Retry successful |  -  |
-| **207** | The retry ran, but publishing did not fully succeed. Covers both a partial publish and a retry in which no platform published.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  This response carries no &#x60;platformResults&#x60;. Read &#x60;post.status&#x60; (&#x60;partial&#x60;, &#x60;failed&#x60;, or &#x60;scheduled&#x60; when transient errors will be retried automatically) and &#x60;post.platforms[]&#x60; for per-platform detail.  |  -  |
+| **207** | The retry ran, but publishing did not fully succeed. Covers both a partial publish and a retry in which no platform published.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  &#x60;platformResults&#x60; says, per platform, whether this request retried it and how it ended (&#x60;status&#x60;, &#x60;error&#x60;, &#x60;errorCategory&#x60;). &#x60;post.status&#x60; is &#x60;partial&#x60;, &#x60;failed&#x60;, or &#x60;scheduled&#x60; when transient errors will be retried automatically.  |  -  |
 | **202** | Balance billing only. The post was saved, but its X platform found the balance at $0 even after auto top-up.  - The X platform is waiting (&#x60;post.platforms[].status: pending&#x60;, &#x60;errorMessage&#x60; says why) instead of publishing. - It publishes within minutes of the balance being funded. - It fails with \&quot;Your balance was $0\&quot; if the balance is still $0 after 24 hours. - Other platforms in &#x60;platformResults&#x60; published or failed as usual.  This is not \&quot;publishing in progress\&quot;: send the user to Billing to add funds. Usually the request is refused with 402 &#x60;insufficient_balance&#x60; before anything is saved; 202 covers a balance that reached $0 during the publish.  |  -  |
-| **400** | Invalid state. &#x60;code: ACCOUNT_NOTIFICATION_ONLY&#x60; means the account of a leg is connected for notifications only (&#x60;purpose&#x3D;notifications&#x60;) and cannot publish; reconnect it without the purpose, then retry. |  -  |
+| **400** | Invalid request or state. Distinguish by the &#x60;code&#x60; field:  - &#x60;ACCOUNT_NOTIFICATION_ONLY&#x60;: the account of a platform is connected for notifications only (&#x60;purpose&#x3D;notifications&#x60;) and cannot publish. Reconnect it without the purpose, then retry. - &#x60;invalid_field_value&#x60;: the post has no platform matching an entry of &#x60;platforms&#x60;. - &#x60;invalid_resource_state&#x60;: the matching platform is not failed or pending (for example it already published).  |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment required, and the post was not changed. Either the account owner has a failed payment, or (balance billing) the post retries to X and the balance is at $0 after auto top-up tried the saved card: code &#x60;insufficient_balance&#x60; or &#x60;usage_limit_reached&#x60;, add funds at &#x60;funding_url&#x60;, then retry. |  -  |
 | **403** | Forbidden. Distinguish by the &#x60;code&#x60; field:  - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60;: a target account was connected for ads only (&#x60;enabled: false&#x60;) and cannot be posted to. Connect it as a posting account, then retry. - &#x60;PROFILE_OVER_LIMIT&#x60;: a target account belongs to a profile beyond the plan&#39;s profile limit. - &#x60;insufficient_permissions&#x60;: the post is not accessible to the caller.  |  -  |
 | **404** | Resource not found |  -  |
-| **409** | Post is currently publishing |  -  |
+| **409** | The post is currently publishing, or another post with identical content is already active for the account within 24 hours (&#x60;details&#x60; carries &#x60;platform&#x60;, &#x60;accountId&#x60; and &#x60;existingPostId&#x60;). The post was not changed. |  -  |
 | **422** | Invalid resource state (&#x60;invalid_resource_state&#x60;): this team does not retain content and the post text was cleared once publishing finished, so the post cannot be changed or published again. Create a new post instead. |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute) or account cooldown (temporarily rate-limited due to repeated errors).  |  -  |
 
@@ -1865,7 +1871,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 
 Update post
 
-Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft.  Non-draft updates run the same per-platform validation as post creation (media requirements, platform-specific field rules, etc.) against the resulting platforms, returning 400 on failure. 
+Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated: to change the text of a live post, use &#x60;POST /v1/posts/{postId}/edit&#x60;.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft.  Non-draft updates run the same per-platform validation as post creation (media requirements, platform-specific field rules, etc.) against the resulting platforms, returning 400 on failure. 
 
 ### Example
 
@@ -1935,8 +1941,8 @@ public class Example {
 | **402** | Balance billing only. &#x60;publishNow: true&#x60; targets X, and the balance is at $0 after auto top-up tried the saved card (code &#x60;insufficient_balance&#x60; or &#x60;usage_limit_reached&#x60;). The post was not changed. Add funds at &#x60;funding_url&#x60;, then send the request again. |  -  |
 | **400** | Invalid request. &#x60;code: ACCOUNT_NOTIFICATION_ONLY&#x60; means a target account is connected for notifications only (&#x60;purpose&#x3D;notifications&#x60;) and cannot publish; reconnect it without the purpose to publish with it. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Resource not found |  -  |
+| **403** | Forbidden. A target &#x60;accountId&#x60; exists but does not belong to the authenticated user, or is disconnected (&#x60;code: ACCOUNT_DISCONNECTED&#x60;). |  -  |
+| **404** | The post does not exist, or a target &#x60;accountId&#x60; does not exist (&#x60;code: account_not_found&#x60;: the account was deleted or reconnected under a new ID, so refresh account IDs from &#x60;GET /v1/accounts&#x60;). |  -  |
 | **429** | The connected account&#39;s upstream platform quota is exhausted. Behavior per platform:  - **Reddit:** rate-limits per connected Reddit user (1000 requests per 10-minute window), shared by every operation on that account. Retry after the window resets; repeated calls while exhausted do not succeed and keep the budget spent. - **Google Ads:** writes and reports run on one developer token shared by every Google Ads account on Zernio. It holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. - **Google Ads envelope:** &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed. - **YouTube Analytics:** reads (channel-insights, demographics, daily-views, video-retention) use the \&quot;Queries per day\&quot; quota of the Google Cloud project the account is connected through, shared with other Zernio customers, so a 429 is not your own volume. Resets at midnight Pacific Time. - **YouTube Analytics envelope:** &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaExhausted: true&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60;, &#x60;details.resetsAt&#x60; and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed. - **Meta ads:** every Meta throttle (codes 4, 17, 32, 613 and business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when sent, else Meta&#39;s 60-second minimum (30 seconds for the one-write-per-30-seconds limit on one object). - **Pinterest ads:** limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when sent, otherwise 60 seconds. - **TikTok ads:** limits per app and per endpoint (per second, minute and day), answering overage with code 40100 or code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (e.g. one ad at a time per advertiser) instead of retrying at once.  **TikTok Smart+ review read** (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has its own stricter TikTok quota. After an overage, Zernio answers 429 for that advertiser and connection without calling TikTok for about 60 seconds, then 120, up to 240 while TikTok keeps refusing, each with up to 10% random jitter.  A successful call holds nothing back; the next overage pauses about 60 seconds again. &#x60;Retry-After&#x60; is the time left. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;retryAfterSeconds&#x60; and &#x60;refreshState&#x60; instead. Keep one request in flight per advertiser there.  |  * Retry-After - Seconds until card payments are tried again. <br>  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **409** | Conflict. One of:  - &#x60;queue_slot_conflict&#x60;: the requested scheduledFor collides with another post already in that slot of the same queue. Choose a different time, omit scheduledFor to let the queue assign the next open slot, or send queueId: null to schedule outside the queue. - &#x60;invalid_resource_state&#x60;: requiresApproval was sent on a post that is not a draft.  |  -  |
@@ -1948,7 +1954,7 @@ public class Example {
 
 Update post
 
-Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft.  Non-draft updates run the same per-platform validation as post creation (media requirements, platform-specific field rules, etc.) against the resulting platforms, returning 400 on failure. 
+Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated: to change the text of a live post, use &#x60;POST /v1/posts/{postId}/edit&#x60;.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft.  Non-draft updates run the same per-platform validation as post creation (media requirements, platform-specific field rules, etc.) against the resulting platforms, returning 400 on failure. 
 
 ### Example
 
@@ -2021,8 +2027,8 @@ ApiResponse<[**PostUpdateResponse**](PostUpdateResponse.md)>
 | **402** | Balance billing only. &#x60;publishNow: true&#x60; targets X, and the balance is at $0 after auto top-up tried the saved card (code &#x60;insufficient_balance&#x60; or &#x60;usage_limit_reached&#x60;). The post was not changed. Add funds at &#x60;funding_url&#x60;, then send the request again. |  -  |
 | **400** | Invalid request. &#x60;code: ACCOUNT_NOTIFICATION_ONLY&#x60; means a target account is connected for notifications only (&#x60;purpose&#x3D;notifications&#x60;) and cannot publish; reconnect it without the purpose to publish with it. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Resource not found |  -  |
+| **403** | Forbidden. A target &#x60;accountId&#x60; exists but does not belong to the authenticated user, or is disconnected (&#x60;code: ACCOUNT_DISCONNECTED&#x60;). |  -  |
+| **404** | The post does not exist, or a target &#x60;accountId&#x60; does not exist (&#x60;code: account_not_found&#x60;: the account was deleted or reconnected under a new ID, so refresh account IDs from &#x60;GET /v1/accounts&#x60;). |  -  |
 | **429** | The connected account&#39;s upstream platform quota is exhausted. Behavior per platform:  - **Reddit:** rate-limits per connected Reddit user (1000 requests per 10-minute window), shared by every operation on that account. Retry after the window resets; repeated calls while exhausted do not succeed and keep the budget spent. - **Google Ads:** writes and reports run on one developer token shared by every Google Ads account on Zernio. It holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. - **Google Ads envelope:** &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed. - **YouTube Analytics:** reads (channel-insights, demographics, daily-views, video-retention) use the \&quot;Queries per day\&quot; quota of the Google Cloud project the account is connected through, shared with other Zernio customers, so a 429 is not your own volume. Resets at midnight Pacific Time. - **YouTube Analytics envelope:** &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaExhausted: true&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60;, &#x60;details.resetsAt&#x60; and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed. - **Meta ads:** every Meta throttle (codes 4, 17, 32, 613 and business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when sent, else Meta&#39;s 60-second minimum (30 seconds for the one-write-per-30-seconds limit on one object). - **Pinterest ads:** limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when sent, otherwise 60 seconds. - **TikTok ads:** limits per app and per endpoint (per second, minute and day), answering overage with code 40100 or code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (e.g. one ad at a time per advertiser) instead of retrying at once.  **TikTok Smart+ review read** (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has its own stricter TikTok quota. After an overage, Zernio answers 429 for that advertiser and connection without calling TikTok for about 60 seconds, then 120, up to 240 while TikTok keeps refusing, each with up to 10% random jitter.  A successful call holds nothing back; the next overage pauses about 60 seconds again. &#x60;Retry-After&#x60; is the time left. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;retryAfterSeconds&#x60; and &#x60;refreshState&#x60; instead. Keep one request in flight per advertiser there.  |  * Retry-After - Seconds until card payments are tried again. <br>  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **409** | Conflict. One of:  - &#x60;queue_slot_conflict&#x60;: the requested scheduledFor collides with another post already in that slot of the same queue. Choose a different time, omit scheduledFor to let the queue assign the next open slot, or send queueId: null to schedule outside the queue. - &#x60;invalid_resource_state&#x60;: requiresApproval was sent on a post that is not a draft.  |  -  |
