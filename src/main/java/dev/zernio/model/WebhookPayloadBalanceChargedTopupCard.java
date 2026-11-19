@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadBalanceChargedTopupCard.JSON_PROPERTY_BRAND,
   WebhookPayloadBalanceChargedTopupCard.JSON_PROPERTY_LAST4
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T21:16:17.829367129Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T21:53:40.937877207Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadBalanceChargedTopupCard {
   public static final String JSON_PROPERTY_BRAND = "brand";
   @javax.annotation.Nonnull

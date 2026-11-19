@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ImapDiscoveryPreflightInner.JSON_PROPERTY_TEXT,
   ImapDiscoveryPreflightInner.JSON_PROPERTY_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T21:16:17.829367129Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T21:53:40.937877207Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ImapDiscoveryPreflightInner {
   /**
    * Gets or Sets id

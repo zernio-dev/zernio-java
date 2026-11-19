@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ContentRetentionResponse.JSON_PROPERTY_MODE,
   ContentRetentionResponse.JSON_PROPERTY_PROFILE_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T21:16:17.829367129Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T21:53:40.937877207Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ContentRetentionResponse {
   /**
    * &#x60;standard&#x60; stores content. &#x60;none&#x60; is zero content retention: identifiers and metadata only.

@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   HubSpotSettingsSyncIssue.JSON_PROPERTY_MESSAGE,
   HubSpotSettingsSyncIssue.JSON_PROPERTY_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T21:16:17.829367129Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-19T21:53:40.937877207Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class HubSpotSettingsSyncIssue {
   /**
    * Gets or Sets code
