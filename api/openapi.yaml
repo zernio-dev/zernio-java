@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.690.0
+  version: 1.690.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -212860,6 +212860,7 @@ components:
         conversions: 3
         campaignId: campaignId
         name: name
+        value: 6.965117697638846
         platform: platform
       properties:
         platform:
@@ -212881,6 +212882,9 @@ components:
           type: string
         conversions:
           type: integer
+        value:
+          description: The value of those conversions in the currency of `totals`.
+          type: number
     getEventsOverviewDaily_200_response_breakdown:
       description: Where the period's conversions came from.
       example:
@@ -212894,11 +212898,13 @@ components:
           conversions: 3
           campaignId: campaignId
           name: name
+          value: 6.965117697638846
           platform: platform
         - reason: not_from_an_ad
           conversions: 3
           campaignId: campaignId
           name: name
+          value: 6.965117697638846
           platform: platform
         events:
         - conversions: 9
@@ -212972,11 +212978,13 @@ components:
             conversions: 3
             campaignId: campaignId
             name: name
+            value: 6.965117697638846
             platform: platform
           - reason: not_from_an_ad
             conversions: 3
             campaignId: campaignId
             name: name
+            value: 6.965117697638846
             platform: platform
           events:
           - conversions: 9

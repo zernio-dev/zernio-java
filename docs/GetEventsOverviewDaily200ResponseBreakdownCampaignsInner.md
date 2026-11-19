@@ -12,6 +12,7 @@
 |**name** | **String** | The campaign&#39;s name in the ad account, when Zernio holds it. |  [optional] |
 |**reason** | [**ReasonEnum**](#ReasonEnum) |  |  [optional] |
 |**conversions** | **Integer** |  |  [optional] |
+|**value** | **BigDecimal** | The value of those conversions in the currency of &#x60;totals&#x60;. |  [optional] |
 
 
 
