@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.687.0
+  version: 1.688.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -93084,6 +93084,7 @@ components:
         nextRetryAt: 2000-01-23T04:56:07.000+00:00
         monthRechargedCents: 2
         retryCount: 5
+        disabledCause: billing_address
         belowCents: 0
         toCents: 6
         enabled: true
@@ -93114,11 +93115,20 @@ components:
         disabledReason:
           description: "`payment_failed` once a declined charge is not retried, or\
             \ its one retry fails; updating the card clears it. `charge_error` after\
-            \ 24 charges in a row failed on our side (not the card); turning auto\
-            \ top-up back on (`enabled: true`) clears it."
+            \ 24 charges in a row failed for a reason other than a decline; turning\
+            \ auto top-up back on (`enabled: true`) clears it."
           enum:
           - payment_failed
           - charge_error
+          - null
+          nullable: true
+          type: string
+        disabledCause:
+          description: "With `charge_error`: `billing_address` when the last failure\
+            \ was a billing address that tax cannot be worked out from (fix it, then\
+            \ turn auto top-up back on). Null otherwise."
+          enum:
+          - billing_address
           - null
           nullable: true
           type: string
@@ -93138,6 +93148,7 @@ components:
       required:
       - alertBelowCents
       - belowCents
+      - disabledCause
       - disabledReason
       - enabled
       - monthRechargedCents
