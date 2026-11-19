@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.681.0
+- API version: 1.682.0
 
-- Build date: 2026-11-19T09:48:51.393129684Z[Etc/UTC]
+- Build date: 2026-11-19T09:59:27.088503459Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.681.0</version>
+  <version>1.682.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.681.0"
+compile "dev.zernio:zernio-sdk:1.682.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.681.0.jar`
+- `target/zernio-sdk-1.682.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1501,6 +1501,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**getConversionsQualityWithHttpInfo**](docs/ConversionsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
 *ConversionsApi* | [**getEvent**](docs/ConversionsApi.md#getEvent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries
 *ConversionsApi* | [**getEventWithHttpInfo**](docs/ConversionsApi.md#getEventWithHttpInfo) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries
+*ConversionsApi* | [**getEventsAccuracy**](docs/ConversionsApi.md#getEventsAccuracy) | **GET** /v1/events/accuracy | Get delivery accuracy per destination
+*ConversionsApi* | [**getEventsAccuracyWithHttpInfo**](docs/ConversionsApi.md#getEventsAccuracyWithHttpInfo) | **GET** /v1/events/accuracy | Get delivery accuracy per destination
 *ConversionsApi* | [**getEventsOverview**](docs/ConversionsApi.md#getEventsOverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview
 *ConversionsApi* | [**getEventsOverviewWithHttpInfo**](docs/ConversionsApi.md#getEventsOverviewWithHttpInfo) | **GET** /v1/events/overview | Get today&#39;s tracking overview
 *ConversionsApi* | [**getEventsOverviewDaily**](docs/ConversionsApi.md#getEventsOverviewDaily) | **GET** /v1/events/overview/daily | Get daily tracking figures
@@ -4265,7 +4267,12 @@ Class | Method | HTTP request | Description
  - [GetEvent200Response](docs/GetEvent200Response.md)
  - [GetEvent200ResponseDeliveriesInner](docs/GetEvent200ResponseDeliveriesInner.md)
  - [GetEvent200ResponseTouchesInner](docs/GetEvent200ResponseTouchesInner.md)
+ - [GetEventsAccuracy200Response](docs/GetEventsAccuracy200Response.md)
+ - [GetEventsAccuracy200ResponseDestinationsInner](docs/GetEventsAccuracy200ResponseDestinationsInner.md)
+ - [GetEventsAccuracy200ResponseDestinationsInnerDeliveries](docs/GetEventsAccuracy200ResponseDestinationsInnerDeliveries.md)
+ - [GetEventsAccuracy200ResponseDestinationsInnerMatch](docs/GetEventsAccuracy200ResponseDestinationsInnerMatch.md)
  - [GetEventsOverview200Response](docs/GetEventsOverview200Response.md)
+ - [GetEventsOverview200ResponseEventNamesInner](docs/GetEventsOverview200ResponseEventNamesInner.md)
  - [GetEventsOverview200ResponsePlatformsInner](docs/GetEventsOverview200ResponsePlatformsInner.md)
  - [GetEventsOverview200ResponseSitesInner](docs/GetEventsOverview200ResponseSitesInner.md)
  - [GetEventsOverview200ResponseSitesInnerTotals](docs/GetEventsOverview200ResponseSitesInnerTotals.md)

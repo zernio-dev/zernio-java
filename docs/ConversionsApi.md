@@ -50,6 +50,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getConversionsQualityWithHttpInfo**](ConversionsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
 | [**getEvent**](ConversionsApi.md#getEvent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
 | [**getEventWithHttpInfo**](ConversionsApi.md#getEventWithHttpInfo) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
+| [**getEventsAccuracy**](ConversionsApi.md#getEventsAccuracy) | **GET** /v1/events/accuracy | Get delivery accuracy per destination |
+| [**getEventsAccuracyWithHttpInfo**](ConversionsApi.md#getEventsAccuracyWithHttpInfo) | **GET** /v1/events/accuracy | Get delivery accuracy per destination |
 | [**getEventsOverview**](ConversionsApi.md#getEventsOverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
 | [**getEventsOverviewWithHttpInfo**](ConversionsApi.md#getEventsOverviewWithHttpInfo) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
 | [**getEventsOverviewDaily**](ConversionsApi.md#getEventsOverviewDaily) | **GET** /v1/events/overview/daily | Get daily tracking figures |
@@ -3789,6 +3791,160 @@ ApiResponse<[**GetEvent200Response**](GetEvent200Response.md)>
 | **200** | The event and its deliveries. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+
+## getEventsAccuracy
+
+> GetEventsAccuracy200Response getEventsAccuracy(profileId, period)
+
+Get delivery accuracy per destination
+
+For each forwarding rule of a profile: what its destination received over a period, and how many of the profile&#39;s real sales reached it.  &#x60;deliveries&#x60; counts every event sent to the destination in the period, whatever its source, by the latest outcome of each. &#x60;accuracy&#x60; compares only sales: Shopify and WooCommerce orders and Stripe payments, as Elevar&#39;s Channel Accuracy does. Sales a rule leaves out by choice do not count against it.  Without &#x60;profileId&#x60; it covers every profile you can access. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | The profile to read. Omit to cover every profile you can access.
+        String period = "today"; // String | The window, ending now: `today` (since 00:00 UTC), or the last 7, 30 or 90 days.
+        try {
+            GetEventsAccuracy200Response result = apiInstance.getEventsAccuracy(profileId, period);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getEventsAccuracy");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| The profile to read. Omit to cover every profile you can access. | [optional] |
+| **period** | **String**| The window, ending now: &#x60;today&#x60; (since 00:00 UTC), or the last 7, 30 or 90 days. | [optional] [default to 7d] [enum: today, 7d, 30d, 90d] |
+
+### Return type
+
+[**GetEventsAccuracy200Response**](GetEventsAccuracy200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One entry per forwarding rule. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | No ads access on the account (&#x60;ads_addon_required&#x60;). |  -  |
+
+## getEventsAccuracyWithHttpInfo
+
+> ApiResponse<GetEventsAccuracy200Response> getEventsAccuracy getEventsAccuracyWithHttpInfo(profileId, period)
+
+Get delivery accuracy per destination
+
+For each forwarding rule of a profile: what its destination received over a period, and how many of the profile&#39;s real sales reached it.  &#x60;deliveries&#x60; counts every event sent to the destination in the period, whatever its source, by the latest outcome of each. &#x60;accuracy&#x60; compares only sales: Shopify and WooCommerce orders and Stripe payments, as Elevar&#39;s Channel Accuracy does. Sales a rule leaves out by choice do not count against it.  Without &#x60;profileId&#x60; it covers every profile you can access. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | The profile to read. Omit to cover every profile you can access.
+        String period = "today"; // String | The window, ending now: `today` (since 00:00 UTC), or the last 7, 30 or 90 days.
+        try {
+            ApiResponse<GetEventsAccuracy200Response> response = apiInstance.getEventsAccuracyWithHttpInfo(profileId, period);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#getEventsAccuracy");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| The profile to read. Omit to cover every profile you can access. | [optional] |
+| **period** | **String**| The window, ending now: &#x60;today&#x60; (since 00:00 UTC), or the last 7, 30 or 90 days. | [optional] [default to 7d] [enum: today, 7d, 30d, 90d] |
+
+### Return type
+
+ApiResponse<[**GetEventsAccuracy200Response**](GetEventsAccuracy200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One entry per forwarding rule. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | No ads access on the account (&#x60;ads_addon_required&#x60;). |  -  |
 
 
 ## getEventsOverview
@@ -7643,7 +7799,7 @@ ApiResponse<[**SendConversions200Response**](SendConversions200Response.md)>
 
 Send events to every destination
 
-The recommended way to send conversions. Sends conversion events once and forwards them to every ad platform destination saved for the profile (see &#x60;POST /v1/events/destinations&#x60;), or to the &#x60;destinations&#x60; given in the request. Requires the Ads add-on.  ### Forwarding  - Each destination receives the events exactly as &#x60;POST /v1/ads/conversions&#x60; would send them, so the per-platform notes there (hashing, batching, &#x60;eventName&#x60; semantics, dedup on &#x60;eventId&#x60;) apply here too. - A destination saved with &#x60;eventNames&#x60; only receives events with those names. - One destination failing never blocks the others: each one reports its own result.  ### Storage  Zernio also stores each event for the profile&#39;s reporting.  - Email, phone and &#x60;externalId&#x60; are stored only as SHA-256 hashes. - &#x60;sourceUrl&#x60; keeps only its origin, path and attribution parameters (&#x60;utm_*&#x60;, &#x60;gclid&#x60;, &#x60;fbclid&#x60;, &#x60;ttclid&#x60;, &#x60;li_fat_id&#x60;, &#x60;epik&#x60;, &#x60;rdt_cid&#x60;, &#x60;gbraid&#x60;, &#x60;wbraid&#x60;). - Events sent with &#x60;testCode&#x60; are forwarded but not stored. - Sending an event again with the same &#x60;eventId&#x60; replaces the stored one. - A stored &#x60;Purchase&#x60;, &#x60;Lead&#x60; or &#x60;QualifiedLead&#x60; tied to one of your campaigns (see &#x60;campaign&#x60; on each event) counts in &#x60;GET /v1/ads/campaign-results&#x60; and in ad rules as &#x60;sales&#x60; and &#x60;revenue&#x60;, &#x60;leads&#x60; or &#x60;qualified_leads&#x60;. 
+The recommended way to send conversions. Sends conversion events once and forwards them to every ad platform destination saved for the profile (see &#x60;POST /v1/events/destinations&#x60;), or to the &#x60;destinations&#x60; given in the request. Requires the Ads add-on.  ### Forwarding  - Each destination receives the events exactly as &#x60;POST /v1/ads/conversions&#x60; would send them, so the per-platform notes there (hashing, batching, &#x60;eventName&#x60; semantics, dedup on &#x60;eventId&#x60;) apply here too. - A destination saved with &#x60;eventNames&#x60; only receives events with those names. - One destination failing never blocks the others: each one reports its own result.  ### Storage  Zernio also stores each event for the profile&#39;s reporting.  - Email, phone and &#x60;externalId&#x60; are stored only as SHA-256 hashes. - &#x60;sourceUrl&#x60; keeps only its origin, path and attribution parameters (&#x60;utm_*&#x60;, &#x60;zrn&#x60;, &#x60;zcid&#x60;, &#x60;gclid&#x60;, &#x60;gbraid&#x60;, &#x60;wbraid&#x60;, &#x60;fbclid&#x60;, &#x60;ttclid&#x60;, &#x60;twclid&#x60;, &#x60;msclkid&#x60;, &#x60;li_fat_id&#x60;, &#x60;epik&#x60;, &#x60;rdt_cid&#x60;, &#x60;oppref&#x60;, &#x60;aleid&#x60;, &#x60;alart&#x60;), each also under a &#x60;z&#x60;-prefixed copy such as &#x60;zgclid&#x60;. - Events sent with &#x60;testCode&#x60; are forwarded but not stored. - Sending an event again with the same &#x60;eventId&#x60; replaces the stored one. - A stored &#x60;Purchase&#x60;, &#x60;Lead&#x60; or &#x60;QualifiedLead&#x60; tied to one of your campaigns (see &#x60;campaign&#x60; on each event) counts in &#x60;GET /v1/ads/campaign-results&#x60; and in ad rules as &#x60;sales&#x60; and &#x60;revenue&#x60;, &#x60;leads&#x60; or &#x60;qualified_leads&#x60;. 
 
 ### Example
 
@@ -7721,7 +7877,7 @@ public class Example {
 
 Send events to every destination
 
-The recommended way to send conversions. Sends conversion events once and forwards them to every ad platform destination saved for the profile (see &#x60;POST /v1/events/destinations&#x60;), or to the &#x60;destinations&#x60; given in the request. Requires the Ads add-on.  ### Forwarding  - Each destination receives the events exactly as &#x60;POST /v1/ads/conversions&#x60; would send them, so the per-platform notes there (hashing, batching, &#x60;eventName&#x60; semantics, dedup on &#x60;eventId&#x60;) apply here too. - A destination saved with &#x60;eventNames&#x60; only receives events with those names. - One destination failing never blocks the others: each one reports its own result.  ### Storage  Zernio also stores each event for the profile&#39;s reporting.  - Email, phone and &#x60;externalId&#x60; are stored only as SHA-256 hashes. - &#x60;sourceUrl&#x60; keeps only its origin, path and attribution parameters (&#x60;utm_*&#x60;, &#x60;gclid&#x60;, &#x60;fbclid&#x60;, &#x60;ttclid&#x60;, &#x60;li_fat_id&#x60;, &#x60;epik&#x60;, &#x60;rdt_cid&#x60;, &#x60;gbraid&#x60;, &#x60;wbraid&#x60;). - Events sent with &#x60;testCode&#x60; are forwarded but not stored. - Sending an event again with the same &#x60;eventId&#x60; replaces the stored one. - A stored &#x60;Purchase&#x60;, &#x60;Lead&#x60; or &#x60;QualifiedLead&#x60; tied to one of your campaigns (see &#x60;campaign&#x60; on each event) counts in &#x60;GET /v1/ads/campaign-results&#x60; and in ad rules as &#x60;sales&#x60; and &#x60;revenue&#x60;, &#x60;leads&#x60; or &#x60;qualified_leads&#x60;. 
+The recommended way to send conversions. Sends conversion events once and forwards them to every ad platform destination saved for the profile (see &#x60;POST /v1/events/destinations&#x60;), or to the &#x60;destinations&#x60; given in the request. Requires the Ads add-on.  ### Forwarding  - Each destination receives the events exactly as &#x60;POST /v1/ads/conversions&#x60; would send them, so the per-platform notes there (hashing, batching, &#x60;eventName&#x60; semantics, dedup on &#x60;eventId&#x60;) apply here too. - A destination saved with &#x60;eventNames&#x60; only receives events with those names. - One destination failing never blocks the others: each one reports its own result.  ### Storage  Zernio also stores each event for the profile&#39;s reporting.  - Email, phone and &#x60;externalId&#x60; are stored only as SHA-256 hashes. - &#x60;sourceUrl&#x60; keeps only its origin, path and attribution parameters (&#x60;utm_*&#x60;, &#x60;zrn&#x60;, &#x60;zcid&#x60;, &#x60;gclid&#x60;, &#x60;gbraid&#x60;, &#x60;wbraid&#x60;, &#x60;fbclid&#x60;, &#x60;ttclid&#x60;, &#x60;twclid&#x60;, &#x60;msclkid&#x60;, &#x60;li_fat_id&#x60;, &#x60;epik&#x60;, &#x60;rdt_cid&#x60;, &#x60;oppref&#x60;, &#x60;aleid&#x60;, &#x60;alart&#x60;), each also under a &#x60;z&#x60;-prefixed copy such as &#x60;zgclid&#x60;. - Events sent with &#x60;testCode&#x60; are forwarded but not stored. - Sending an event again with the same &#x60;eventId&#x60; replaces the stored one. - A stored &#x60;Purchase&#x60;, &#x60;Lead&#x60; or &#x60;QualifiedLead&#x60; tied to one of your campaigns (see &#x60;campaign&#x60; on each event) counts in &#x60;GET /v1/ads/campaign-results&#x60; and in ad rules as &#x60;sales&#x60; and &#x60;revenue&#x60;, &#x60;leads&#x60; or &#x60;qualified_leads&#x60;. 
 
 ### Example
 

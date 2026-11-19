@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.681.0
+  version: 1.682.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -73536,7 +73536,7 @@ paths:
         Zernio also stores each event for the profile's reporting.
 
         - Email, phone and `externalId` are stored only as SHA-256 hashes.
-        - `sourceUrl` keeps only its origin, path and attribution parameters (`utm_*`, `gclid`, `fbclid`, `ttclid`, `li_fat_id`, `epik`, `rdt_cid`, `gbraid`, `wbraid`).
+        - `sourceUrl` keeps only its origin, path and attribution parameters (`utm_*`, `zrn`, `zcid`, `gclid`, `gbraid`, `wbraid`, `fbclid`, `ttclid`, `twclid`, `msclkid`, `li_fat_id`, `epik`, `rdt_cid`, `oppref`, `aleid`, `alart`), each also under a `z`-prefixed copy such as `zgclid`.
         - Events sent with `testCode` are forwarded but not stored.
         - Sending an event again with the same `eventId` replaces the stored one.
         - A stored `Purchase`, `Lead` or `QualifiedLead` tied to one of your campaigns (see `campaign` on each event) counts in `GET /v1/ads/campaign-results` and in ad rules as `sales` and `revenue`, `leads` or `qualified_leads`.
@@ -73716,6 +73716,60 @@ paths:
       security:
       - bearerAuth: []
       summary: Get buyer cohorts by first purchase month and first channel
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+  /v1/events/accuracy:
+    get:
+      description: |
+        For each forwarding rule of a profile: what its destination received over a period, and how many of the profile's real sales reached it.
+
+        `deliveries` counts every event sent to the destination in the period, whatever its source, by the latest outcome of each. `accuracy` compares only sales: Shopify and WooCommerce orders and Stripe payments, as Elevar's Channel Accuracy does. Sales a rule leaves out by choice do not count against it.
+
+        Without `profileId` it covers every profile you can access. Requires the Ads add-on.
+      operationId: getEventsAccuracy
+      parameters:
+      - description: The profile to read. Omit to cover every profile you can access.
+        explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The window, ending now: `today` (since 00:00 UTC), or the last\
+          \ 7, 30 or 90 days."
+        explode: true
+        in: query
+        name: period
+        required: false
+        schema:
+          default: 7d
+          enum:
+          - today
+          - 7d
+          - 30d
+          - 90d
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getEventsAccuracy_200_response"
+          description: One entry per forwarding rule.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: No ads access on the account (`ads_addon_required`).
+      security:
+      - bearerAuth: []
+      summary: Get delivery accuracy per destination
       tags:
       - Conversions
       x-resource-group: ads
@@ -131140,6 +131194,19 @@ components:
         value:
           minimum: 0
           type: number
+        model:
+          description: "With a `result:` metric, the attribution model your stored\
+            \ sales and leads count under (see `model` on `GET /v1/ads/campaign-results`).\
+            \ Last click when absent. Other metrics ignore it."
+          enum:
+          - last_click
+          - first_touch
+          - last_non_direct
+          - linear
+          - position_based
+          - time_decay
+          - w_shaped
+          type: string
         compareTo:
           description: |
             Makes the condition relative: `value` becomes a ratio of the metric over `window` to the same metric over this window, such as `30_to_2_days_ago`.
@@ -134505,6 +134572,7 @@ components:
           actual: 1.4658129805029452
           metric: spend
           of: usual
+          model: last_click
           window: last_7d
           compareTo: previous_period
           value: 0.6027456183070403
@@ -134513,6 +134581,7 @@ components:
           actual: 1.4658129805029452
           metric: spend
           of: usual
+          model: last_click
           window: last_7d
           compareTo: previous_period
           value: 0.6027456183070403
@@ -134581,6 +134650,7 @@ components:
             actual: 1.4658129805029452
             metric: spend
             of: usual
+            model: last_click
             window: last_7d
             compareTo: previous_period
             value: 0.6027456183070403
@@ -134589,6 +134659,7 @@ components:
             actual: 1.4658129805029452
             metric: spend
             of: usual
+            model: last_click
             window: last_7d
             compareTo: previous_period
             value: 0.6027456183070403
@@ -134611,6 +134682,7 @@ components:
             actual: 1.4658129805029452
             metric: spend
             of: usual
+            model: last_click
             window: last_7d
             compareTo: previous_period
             value: 0.6027456183070403
@@ -134619,6 +134691,7 @@ components:
             actual: 1.4658129805029452
             metric: spend
             of: usual
+            model: last_click
             window: last_7d
             compareTo: previous_period
             value: 0.6027456183070403
@@ -134731,6 +134804,7 @@ components:
               actual: 1.4658129805029452
               metric: spend
               of: usual
+              model: last_click
               window: last_7d
               compareTo: previous_period
               value: 0.6027456183070403
@@ -134739,6 +134813,7 @@ components:
               actual: 1.4658129805029452
               metric: spend
               of: usual
+              model: last_click
               window: last_7d
               compareTo: previous_period
               value: 0.6027456183070403
@@ -134761,6 +134836,7 @@ components:
               actual: 1.4658129805029452
               metric: spend
               of: usual
+              model: last_click
               window: last_7d
               compareTo: previous_period
               value: 0.6027456183070403
@@ -134769,6 +134845,7 @@ components:
               actual: 1.4658129805029452
               metric: spend
               of: usual
+              model: last_click
               window: last_7d
               compareTo: previous_period
               value: 0.6027456183070403
@@ -188135,6 +188212,7 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 of: usual
+                model: last_click
                 window: last_7d
                 compareTo: previous_period
                 value: 0.6027456183070403
@@ -188143,6 +188221,7 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 of: usual
+                model: last_click
                 window: last_7d
                 compareTo: previous_period
                 value: 0.6027456183070403
@@ -188165,6 +188244,7 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 of: usual
+                model: last_click
                 window: last_7d
                 compareTo: previous_period
                 value: 0.6027456183070403
@@ -188173,6 +188253,7 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 of: usual
+                model: last_click
                 window: last_7d
                 compareTo: previous_period
                 value: 0.6027456183070403
@@ -188249,6 +188330,7 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 of: usual
+                model: last_click
                 window: last_7d
                 compareTo: previous_period
                 value: 0.6027456183070403
@@ -188257,6 +188339,7 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 of: usual
+                model: last_click
                 window: last_7d
                 compareTo: previous_period
                 value: 0.6027456183070403
@@ -188279,6 +188362,7 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 of: usual
+                model: last_click
                 window: last_7d
                 compareTo: previous_period
                 value: 0.6027456183070403
@@ -188287,6 +188371,7 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 of: usual
+                model: last_click
                 window: last_7d
                 compareTo: previous_period
                 value: 0.6027456183070403
@@ -211422,6 +211507,187 @@ components:
       - cohorts
       - fromMonth
       - toMonth
+    getEventsAccuracy_200_response_destinations_inner_deliveries:
+      description: "Every event of any source the rule takes that had a send in the\
+        \ period, by the latest outcome of each."
+      example:
+        retrying: 4
+        accepted: 3
+        failed: 2
+        events: 9
+      properties:
+        events:
+          type: integer
+        accepted:
+          type: integer
+        failed:
+          type: integer
+        retrying:
+          type: integer
+    getEventsAccuracy_200_response_destinations_inner_match:
+      description: "The same events, and how many carried each identifier the platform\
+        \ matches people on."
+      example:
+        identified: 1
+        phone: 1
+        externalId: 6
+        clickId: 7
+        events: 7
+        email: 1
+      properties:
+        events:
+          type: integer
+        identified:
+          description: Events with at least one of the identifiers below.
+          type: integer
+        email:
+          type: integer
+        phone:
+          type: integer
+        externalId:
+          type: integer
+        clickId:
+          type: integer
+    getEventsAccuracy_200_response_destinations_inner:
+      example:
+        accountName: accountName
+        match:
+          identified: 1
+          phone: 1
+          externalId: 6
+          clickId: 7
+          events: 7
+          email: 1
+        accepted: 1
+        accuracy: 7.061401241503109
+        notSent: 2
+        failed: 5
+        destinationId: destinationId
+        sent: 6
+        platform: platform
+        sales: 0
+        deliveries:
+          retrying: 4
+          accepted: 3
+          failed: 2
+          events: 9
+        accountId: accountId
+        profileId: profileId
+        retrying: 5
+        ruleId: ruleId
+        matchRate: 1.1730742509559433
+      properties:
+        ruleId:
+          description: The forwarding rule.
+          type: string
+        profileId:
+          type: string
+        accountId:
+          type: string
+        platform:
+          description: "Ad platform, such as `metaads` or `googleads`."
+          type: string
+        accountName:
+          type: string
+        destinationId:
+          type: string
+        sales:
+          description: Real sales in the period from the sources the rule takes.
+          type: integer
+        sent:
+          description: Sales a send was tried for.
+          type: integer
+        accepted:
+          description: "Sales the platform accepted, by the latest attempt."
+          type: integer
+        failed:
+          type: integer
+        retrying:
+          type: integer
+        notSent:
+          description: "Sales never sent: no ad consent, no identifier the platform\
+            \ matches on, or left out by the rule's event names."
+          type: integer
+        accuracy:
+          description: "`accepted / sent`, from 0 to 1. `null` with no sale sent."
+          nullable: true
+          type: number
+        deliveries:
+          $ref: "#/components/schemas/getEventsAccuracy_200_response_destinations_inner_deliveries"
+        match:
+          $ref: "#/components/schemas/getEventsAccuracy_200_response_destinations_inner_match"
+        matchRate:
+          description: '`match.identified / match.events`. `null` with nothing sent.'
+          nullable: true
+          type: number
+    getEventsAccuracy_200_response:
+      example:
+        period: today
+        destinations:
+        - accountName: accountName
+          match:
+            identified: 1
+            phone: 1
+            externalId: 6
+            clickId: 7
+            events: 7
+            email: 1
+          accepted: 1
+          accuracy: 7.061401241503109
+          notSent: 2
+          failed: 5
+          destinationId: destinationId
+          sent: 6
+          platform: platform
+          sales: 0
+          deliveries:
+            retrying: 4
+            accepted: 3
+            failed: 2
+            events: 9
+          accountId: accountId
+          profileId: profileId
+          retrying: 5
+          ruleId: ruleId
+          matchRate: 1.1730742509559433
+        - accountName: accountName
+          match:
+            identified: 1
+            phone: 1
+            externalId: 6
+            clickId: 7
+            events: 7
+            email: 1
+          accepted: 1
+          accuracy: 7.061401241503109
+          notSent: 2
+          failed: 5
+          destinationId: destinationId
+          sent: 6
+          platform: platform
+          sales: 0
+          deliveries:
+            retrying: 4
+            accepted: 3
+            failed: 2
+            events: 9
+          accountId: accountId
+          profileId: profileId
+          retrying: 5
+          ruleId: ruleId
+          matchRate: 1.1730742509559433
+      properties:
+        period:
+          enum:
+          - today
+          - 7d
+          - 30d
+          - 90d
+          type: string
+        destinations:
+          items:
+            $ref: "#/components/schemas/getEventsAccuracy_200_response_destinations_inner"
+          type: array
     getEventsOverview_200_response_today:
       example:
         conversions: 0
@@ -211671,6 +211937,33 @@ components:
           type: string
         totals:
           $ref: "#/components/schemas/getEventsOverview_200_response_sites_inner_totals"
+    getEventsOverview_200_response_eventNames_inner:
+      example:
+        websiteToday: 9
+        fromWebsite: true
+        serverToday: 6
+        eventName: eventName
+        serverSources:
+        - serverSources
+        - serverSources
+      properties:
+        eventName:
+          type: string
+        serverSources:
+          description: "The server sources that reported it (api, stripe, shopify...).\
+            \ Empty when only the website did."
+          items:
+            type: string
+          type: array
+        fromWebsite:
+          description: The website tag reported it.
+          type: boolean
+        websiteToday:
+          description: Website copies today.
+          type: integer
+        serverToday:
+          description: Server copies today.
+          type: integer
     getEventsOverview_200_response:
       example:
         website:
@@ -211755,6 +212048,21 @@ components:
               purchases: 5
               consented: 4
           hitsToday: 6
+        eventNames:
+        - websiteToday: 9
+          fromWebsite: true
+          serverToday: 6
+          eventName: eventName
+          serverSources:
+          - serverSources
+          - serverSources
+        - websiteToday: 9
+          fromWebsite: true
+          serverToday: 6
+          eventName: eventName
+          serverSources:
+          - serverSources
+          - serverSources
         platforms:
         - accountId: accountId
           lastError: lastError
@@ -211801,6 +212109,14 @@ components:
             \ Hit counts are approximate distinct counts without bots."
           items:
             $ref: "#/components/schemas/getEventsOverview_200_response_sites_inner"
+          type: array
+        eventNames:
+          description: "Each event name stored in the 30 days before today and where\
+            \ it comes from. When a name comes from both the website tag and a server\
+            \ source, only the server copies count (in this overview, the daily overview\
+            \ and campaign results)."
+          items:
+            $ref: "#/components/schemas/getEventsOverview_200_response_eventNames_inner"
           type: array
     getEventsOverviewDaily_200_response_totals:
       description: "The period's figures, shaped like the overview's `today`."
@@ -241997,6 +242313,7 @@ components:
         actual: 1.4658129805029452
         metric: spend
         of: usual
+        model: last_click
         window: last_7d
         compareTo: previous_period
         value: 0.6027456183070403
@@ -242199,6 +242516,7 @@ components:
             actual: 1.4658129805029452
             metric: spend
             of: usual
+            model: last_click
             window: last_7d
             compareTo: previous_period
             value: 0.6027456183070403
@@ -242207,6 +242525,7 @@ components:
             actual: 1.4658129805029452
             metric: spend
             of: usual
+            model: last_click
             window: last_7d
             compareTo: previous_period
             value: 0.6027456183070403
@@ -242229,6 +242548,7 @@ components:
             actual: 1.4658129805029452
             metric: spend
             of: usual
+            model: last_click
             window: last_7d
             compareTo: previous_period
             value: 0.6027456183070403
@@ -242237,6 +242557,7 @@ components:
             actual: 1.4658129805029452
             metric: spend
             of: usual
+            model: last_click
             window: last_7d
             compareTo: previous_period
             value: 0.6027456183070403
