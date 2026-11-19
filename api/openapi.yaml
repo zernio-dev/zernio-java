@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.686.0
+  version: 1.687.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -4652,6 +4652,9 @@ paths:
 
         - 400: a field is out of range, `toCents` is not at least $4 above `belowCents`, or, while auto top-up is on, `monthlyLimitCents` is lower than the back-to amount `toCents` (one top-up from $0 would pass it, so it could never charge). Omitted fields are checked with their stored values.
         - 409 `balance_billing_required`: the account is not on the prepaid balance, nor moved onto it at a date still ahead. An account moved onto it can read and change its rule before that date; nothing is charged until it.
+        - 409 `payment_method_required`: the change turns auto top-up on, or changes its amounts while on, and there is no saved card.
+
+        A change that turns auto top-up on (or back on), or changes its amounts while on, is recorded as the billing owner's consent: the card it charges and the auto top-up line, `consentWording` as your app showed it, or our own line for those amounts when you send none.
 
         Needs an owner, admin or billing admin, signed in or through a full-access key they created.
       operationId: updateAutoRecharge
@@ -4674,7 +4677,8 @@ paths:
           $ref: "#/components/responses/ResourceGroupForbidden"
         "409":
           description: "Code `balance_billing_required`: the account is not on the\
-            \ prepaid balance."
+            \ prepaid balance. Code `payment_method_required`: turning auto top-up\
+            \ on needs a saved card."
       summary: Update auto top-up settings
       tags:
       - Treasury
@@ -93108,10 +93112,13 @@ components:
           nullable: true
           type: integer
         disabledReason:
-          description: "`payment_failed` once a failed charge is not retried, or its\
-            \ one retry fails. Updating the card clears it."
+          description: "`payment_failed` once a declined charge is not retried, or\
+            \ its one retry fails; updating the card clears it. `charge_error` after\
+            \ 24 charges in a row failed on our side (not the card); turning auto\
+            \ top-up back on (`enabled: true`) clears it."
           enum:
           - payment_failed
+          - charge_error
           - null
           nullable: true
           type: string
@@ -141852,6 +141859,13 @@ components:
           minimum: 0
           nullable: true
           type: integer
+        consentWording:
+          description: "The auto top-up line you showed the user, recorded as their\
+            \ consent: our line for the saved amounts (see getAutoRecharge), with\
+            \ or without VAT. Omit it to record our own line."
+          maxLength: 600
+          minLength: 1
+          type: string
     listTopups_200_response:
       example:
         topups:
