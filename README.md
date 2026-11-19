@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.697.1
+- API version: 1.698.0
 
-- Build date: 2026-11-19T20:49:25.075439735Z[Etc/UTC]
+- Build date: 2026-11-19T21:16:17.829367129Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.697.1</version>
+  <version>1.698.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.697.1"
+compile "dev.zernio:zernio-sdk:1.698.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.697.1.jar`
+- `target/zernio-sdk-1.698.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4130,6 +4130,7 @@ Class | Method | HTTP request | Description
  - [GetAccountHealth200ResponsePermissions](docs/GetAccountHealth200ResponsePermissions.md)
  - [GetAccountHealth200ResponsePermissionsPostingInner](docs/GetAccountHealth200ResponsePermissionsPostingInner.md)
  - [GetAccountHealth200ResponsePlatformConnection](docs/GetAccountHealth200ResponsePlatformConnection.md)
+ - [GetAccountHealth200ResponsePlatformConnectionMessagingBlockersInner](docs/GetAccountHealth200ResponsePlatformConnectionMessagingBlockersInner.md)
  - [GetAccountHealth200ResponsePlatformConnectionMetaError](docs/GetAccountHealth200ResponsePlatformConnectionMetaError.md)
  - [GetAccountHealth200ResponseSendCap](docs/GetAccountHealth200ResponseSendCap.md)
  - [GetAccountHealth200ResponseTokenStatus](docs/GetAccountHealth200ResponseTokenStatus.md)

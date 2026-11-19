@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.697.1
+  version: 1.698.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15095,6 +15095,7 @@ paths:
         - When the Meta link is dead, `platformConnection.status` is `disconnected` and the overall `status` is `error`.
         - When Meta reports that the number's inbound message webhook does not reach Zernio, or subscribing the number's WhatsApp Business Account to Zernio's webhooks failed at connect, `platformConnection.inboundWebhookSubscribed` is `false`, an entry is added to `issues`, and the overall `status` is at least `warning`.
         - When `platformConnection.phoneStatus` is anything other than `CONNECTED`, an entry is added to `issues` and the overall `status` is at least `warning`; `BANNED` makes it `error`. `disconnectReason` stays null, since reconnecting does not lift a Meta status.
+        - When Meta reports `platformConnection.canSendMessage` as `BLOCKED` (for example a payment-method error on the WhatsApp Business Account), an entry is added to `issues` with Meta's own reason, the recommendation is Meta's suggested fix, and the overall `status` is at least `warning`. `LIMITED` does not change `status`. Reconnecting does not lift it.
 
         ### LINE
 
@@ -150852,10 +150853,37 @@ components:
           type: integer
         message:
           type: string
+    getAccountHealth_200_response_platformConnection_messagingBlockers_inner:
+      example:
+        canSendMessage: canSendMessage
+        code: 9
+        possibleSolution: possibleSolution
+        entityType: entityType
+        description: description
+      properties:
+        entityType:
+          description: "Meta entity the error is on (for example WABA, BUSINESS)"
+          nullable: true
+          type: string
+        canSendMessage:
+          description: That entity's state (LIMITED or BLOCKED)
+          type: string
+        code:
+          description: Meta error code
+          nullable: true
+          type: integer
+        description:
+          description: Meta's error description
+          type: string
+        possibleSolution:
+          description: "Meta's suggested fix, when it gives one"
+          nullable: true
+          type: string
     getAccountHealth_200_response_platformConnection:
       description: "WhatsApp accounts only. Live probe of the Meta link behind the\
         \ channel, performed at request time (the same read as GET /v1/whatsapp/number-info)."
       example:
+        canSendMessage: canSendMessage
         checkedAt: 2000-01-23T04:56:07.000+00:00
         inboundWebhookSubscribed: true
         metaError:
@@ -150863,6 +150891,17 @@ components:
           subcode: 7
           message: message
         phoneStatus: phoneStatus
+        messagingBlockers:
+        - canSendMessage: canSendMessage
+          code: 9
+          possibleSolution: possibleSolution
+          entityType: entityType
+          description: description
+        - canSendMessage: canSendMessage
+          code: 9
+          possibleSolution: possibleSolution
+          entityType: entityType
+          description: description
         status: connected
       properties:
         status:
@@ -150900,6 +150939,21 @@ components:
             - `null`: Meta did not report it (read failed or no health_status); not evidence either way.
           nullable: true
           type: boolean
+        canSendMessage:
+          description: "Top-level `can_send_message` from the phone number's Meta\
+            \ health_status: `AVAILABLE`, `LIMITED` or `BLOCKED`. `BLOCKED` adds an\
+            \ issue and raises `status` to at least `warning`. `null` when Meta did\
+            \ not report it."
+          nullable: true
+          type: string
+        messagingBlockers:
+          description: "The health_status entities that are not `AVAILABLE`, one item\
+            \ per Meta error, with calling-only signals (138024, 138025) removed.\
+            \ `null` when the read failed."
+          items:
+            $ref: "#/components/schemas/getAccountHealth_200_response_platformConnection_messagingBlockers_inner"
+          nullable: true
+          type: array
     getAccountHealth_200_response_lineWebhook:
       description: "LINE accounts only. Live read of the channel's webhook settings\
         \ at LINE, performed at request time. Absent while the account is inactive\
@@ -151021,6 +151075,7 @@ components:
         username: username
         status: healthy
         platformConnection:
+          canSendMessage: canSendMessage
           checkedAt: 2000-01-23T04:56:07.000+00:00
           inboundWebhookSubscribed: true
           metaError:
@@ -151028,6 +151083,17 @@ components:
             subcode: 7
             message: message
           phoneStatus: phoneStatus
+          messagingBlockers:
+          - canSendMessage: canSendMessage
+            code: 9
+            possibleSolution: possibleSolution
+            entityType: entityType
+            description: description
+          - canSendMessage: canSendMessage
+            code: 9
+            possibleSolution: possibleSolution
+            entityType: entityType
+            description: description
           status: connected
       properties:
         accountId:

@@ -1370,6 +1370,7 @@ docs/GetAccountHealth200ResponseMessagingRestriction.md
 docs/GetAccountHealth200ResponsePermissions.md
 docs/GetAccountHealth200ResponsePermissionsPostingInner.md
 docs/GetAccountHealth200ResponsePlatformConnection.md
+docs/GetAccountHealth200ResponsePlatformConnectionMessagingBlockersInner.md
 docs/GetAccountHealth200ResponsePlatformConnectionMetaError.md
 docs/GetAccountHealth200ResponseSendCap.md
 docs/GetAccountHealth200ResponseTokenStatus.md
@@ -5481,6 +5482,7 @@ src/main/java/dev/zernio/model/GetAccountHealth200ResponseMessagingRestriction.j
 src/main/java/dev/zernio/model/GetAccountHealth200ResponsePermissions.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponsePermissionsPostingInner.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponsePlatformConnection.java
+src/main/java/dev/zernio/model/GetAccountHealth200ResponsePlatformConnectionMessagingBlockersInner.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponsePlatformConnectionMetaError.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponseSendCap.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponseTokenStatus.java
@@ -8101,3 +8103,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetAccountHealth200ResponsePlatformConnectionMessagingBlockersInnerTest.java
