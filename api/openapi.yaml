@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.707.0
+  version: 1.709.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -33783,6 +33783,18 @@ paths:
         - Replayed history emits no webhooks and is stored as already read, so it never affects unread counts.
         - Threads that Meta refuses to serve are skipped.
         - An account whose Instagram "connected tools" message access is turned off is not replayed at all.
+
+        ### Incremental sync (recommended over polling the full list)
+
+        Subscribe to the `message.received` webhook for real-time delivery, and use `updatedSince` to reconcile instead of re-reading every conversation:
+
+        1. Call with `updatedSince` set to the last time you synced. Only conversations written at or after it are returned (a new message, a status change, participant details), oldest change first, each with its `updatedAt`.
+        2. While `pagination.hasMore` is true, call again with the same `updatedSince` plus `cursor` set to `pagination.nextCursor`.
+        3. On the last page, store `sync.nextUpdatedSince` and pass it as `updatedSince` next time.
+
+        `sync.nextUpdatedSince` trails the read by one minute, so a conversation can be returned again on the next call. Upsert by `id` and refresh the latest messages of every returned conversation (`GET /v1/inbox/conversations/{conversationId}/messages?sortOrder=desc&limit=N`). Nothing is missed at page or call boundaries, including conversations written at the same instant.
+
+        With `updatedSince`, `sortOrder` is ignored. Conversations are read only from Zernio's store, never live from a platform, and `folder=requests` cannot be combined with it. When `meta.accountsFailed` is above zero, re-run the same window for each failed account with `accountId`.
       operationId: listInboxConversations
       parameters:
       - description: Filter by profile ID
@@ -33811,6 +33823,18 @@ paths:
           - sms
           - line
           - wechat
+          type: string
+        style: form
+      - description: "ISO 8601 date-time with a timezone (e.g. `2026-11-19T10:00:00Z`).\
+          \ Turns the list into a change feed: only conversations written at or after\
+          \ this instant, ordered by `updatedAt` ascending. Feed `sync.nextUpdatedSince`\
+          \ from the last page back here. See Incremental sync above."
+        explode: true
+        in: query
+        name: updatedSince
+        required: false
+        schema:
+          format: date-time
           type: string
         style: form
       - description: Filter by conversation status
@@ -34453,6 +34477,10 @@ paths:
         ### Read state
 
         This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call `POST /v1/inbox/conversations/{conversationId}/read`.
+
+        ### Staying in sync
+
+        Do not poll every conversation on a timer. Subscribe to the `message.received` webhook, and reconcile with `GET /v1/inbox/conversations?updatedSince=...`, which returns only the conversations that changed. Then fetch the newest messages of those conversations here with `sortOrder=desc&limit=N`.
       operationId: getInboxConversationMessages
       parameters:
       - description: "Opaque conversation identifier, accepted verbatim from the list\
@@ -34465,11 +34493,14 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Account ID
+      - description: "Account ID. Optional: the account is taken from the conversation.\
+          \ Pass it when the conversation id is an Instagram thread id, or when the\
+          \ call answers 400 `missing_required_field` because the id matches conversations\
+          \ on more than one of your accounts."
         explode: true
         in: query
         name: accountId
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -34524,6 +34555,13 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: Inbox addon required
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Account not found, or (without `accountId`) no conversation\
+            \ with this id on an account you can access."
         "503":
           $ref: "#/components/responses/TemporarilyUnavailable"
         "502":
@@ -110645,15 +110683,20 @@ components:
           standby: true
           flowResponseJson: flowResponseJson
           contactsOrigin: contact_request
+          channel: channel
           postbackPayload: postbackPayload
           frequentlyForwarded: true
           interactiveType: button_reply
+          threadId: threadId
           unsupported:
             code: 2
             details: details
             title: title
             type: type
+          transcript: transcript
+          messageType: messageType
           isStoryMention: true
+          markdownText: markdownText
           referredProduct:
             catalog_id: catalog_id
             product_retailer_id: product_retailer_id
@@ -110677,6 +110720,7 @@ components:
             storyUrl: storyUrl
           ad: ""
           noRenderableContent: true
+          languageCode: languageCode
           forwarded: true
           quotedMessage:
             messageId: messageId
@@ -166900,6 +166944,7 @@ components:
         isGroup: true
         businessScopedUserId: businessScopedUserId
         threadControl: app
+        updatedAt: 2000-01-23T04:56:07.000+00:00
         status: active
       properties:
         id:
@@ -166956,6 +167001,12 @@ components:
         updatedTime:
           format: date-time
           type: string
+        updatedAt:
+          description: "When Zernio last wrote this conversation (a new message, a\
+            \ status change, participant details). The key `updatedSince` filters\
+            \ and orders on. Absent on a conversation read live from the platform."
+          format: date-time
+          type: string
         status:
           enum:
           - active
@@ -166999,6 +167050,17 @@ components:
           $ref: "#/components/schemas/InboxConversationAdMetadata"
         adAttribution:
           $ref: "#/components/schemas/ConversationAdAttribution"
+    listInboxConversations_200_response_sync:
+      description: Present only when `updatedSince` was passed.
+      example:
+        nextUpdatedSince: 2000-01-23T04:56:07.000+00:00
+      properties:
+        nextUpdatedSince:
+          description: "Pass as `updatedSince` on your next sync. Null while `pagination.hasMore`\
+            \ is true: page with `cursor` first."
+          format: date-time
+          nullable: true
+          type: string
     listInboxConversations_200_response_meta_failedAccounts_inner:
       example:
         accountId: accountId
@@ -167141,6 +167203,7 @@ components:
           isGroup: true
           businessScopedUserId: businessScopedUserId
           threadControl: app
+          updatedAt: 2000-01-23T04:56:07.000+00:00
           status: active
         - updatedTime: 2000-01-23T04:56:07.000+00:00
           metadata:
@@ -167202,6 +167265,7 @@ components:
           isGroup: true
           businessScopedUserId: businessScopedUserId
           threadControl: app
+          updatedAt: 2000-01-23T04:56:07.000+00:00
           status: active
         meta:
           lastUpdated: 2000-01-23T04:56:07.000+00:00
@@ -167225,6 +167289,8 @@ components:
           - accountId: accountId
             platform: platform
           accountsQueried: 1
+        sync:
+          nextUpdatedSince: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           items:
@@ -167232,6 +167298,8 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/listCalendarEventInstances_200_response_pagination"
+        sync:
+          $ref: "#/components/schemas/listInboxConversations_200_response_sync"
         meta:
           $ref: "#/components/schemas/listInboxConversations_200_response_meta"
     createInboxConversation_request_templateButtonParams_inner:
@@ -236921,9 +236989,10 @@ components:
           type: string
     WebhookPayloadMessage_metadata_location:
       description: |
-        WhatsApp only. The location pin the user shared, forwarded
-        verbatim from Meta. The message `text` is only the emoji preview
-        (`📍 <name>`); the coordinates live here.
+        WhatsApp and iMessage. The location pin the user shared. On WhatsApp it is forwarded
+        verbatim from Meta and the message `text` is only the emoji preview
+        (`📍 <name>`); the coordinates live here. On iMessage it is parsed from a Maps link
+        in `text`, which stays as sent.
       example:
         address: address
         latitude: 5.962133916683182
@@ -237130,15 +237199,20 @@ components:
         standby: true
         flowResponseJson: flowResponseJson
         contactsOrigin: contact_request
+        channel: channel
         postbackPayload: postbackPayload
         frequentlyForwarded: true
         interactiveType: button_reply
+        threadId: threadId
         unsupported:
           code: 2
           details: details
           title: title
           type: type
+        transcript: transcript
+        messageType: messageType
         isStoryMention: true
+        markdownText: markdownText
         referredProduct:
           catalog_id: catalog_id
           product_retailer_id: product_retailer_id
@@ -237162,6 +237236,7 @@ components:
           storyUrl: storyUrl
         ad: ""
         noRenderableContent: true
+        languageCode: languageCode
         forwarded: true
         quotedMessage:
           messageId: messageId
@@ -237354,6 +237429,27 @@ components:
 
             - share_post: type share, with the embed url and payload.videoId.
             - sticker/emoji: type sticker, url signed and expiring.
+          type: string
+        channel:
+          description: "iMessage only. Delivery channel the message arrived on (imessage,\
+            \ sms, rcs or whatsapp)."
+          type: string
+        messageType:
+          description: "iMessage only. Provider message type (for example text, audio,\
+            \ sticker)."
+          type: string
+        threadId:
+          description: iMessage only. Id of the reply thread the message belongs to.
+          type: string
+        languageCode:
+          description: iMessage only. Language detected by the provider.
+          type: string
+        transcript:
+          description: iMessage only. Provider transcription of a voice message.
+          type: string
+        markdownText:
+          description: iMessage only. Rich-text markup rendered to markdown; `text`
+            stays plain.
           type: string
     WebhookPayloadMessageSent_message_attachments_inner:
       example:

@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**data** | [**List&lt;ListInboxConversations200ResponseDataInner&gt;**](ListInboxConversations200ResponseDataInner.md) |  |  [optional] |
 |**pagination** | [**ListCalendarEventInstances200ResponsePagination**](ListCalendarEventInstances200ResponsePagination.md) |  |  [optional] |
+|**sync** | [**ListInboxConversations200ResponseSync**](ListInboxConversations200ResponseSync.md) |  |  [optional] |
 |**meta** | [**ListInboxConversations200ResponseMeta**](ListInboxConversations200ResponseMeta.md) |  |  [optional] |
 
 
