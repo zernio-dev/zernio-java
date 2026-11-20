@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.712.0
+  version: 1.713.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -50926,6 +50926,8 @@ paths:
           description: Invalid status or no recipients
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "404":
           $ref: "#/components/responses/NotFound"
       summary: Send broadcast now
@@ -112698,16 +112700,18 @@ components:
         `call.direction` to tell them apart.
       example:
         call:
-          accountId: accountId
+          telnyxCallSessionId: telnyxCallSessionId
           contactId: contactId
-          metaCallId: metaCallId
           conversationId: conversationId
           startedAt: 2000-01-23T04:56:07.000+00:00
-          from: from
           forwardTo: forwardTo
+          phoneNumberId: phoneNumberId
+          accountId: accountId
+          telnyxCallControlId: telnyxCallControlId
+          metaCallId: metaCallId
+          from: from
           id: id
           to: to
-          phoneNumberId: phoneNumberId
           direction: inbound
         test: true
         profiles:
@@ -238926,16 +238930,18 @@ components:
           type: string
     WebhookPayloadCallReceived_call:
       example:
-        accountId: accountId
+        telnyxCallSessionId: telnyxCallSessionId
         contactId: contactId
-        metaCallId: metaCallId
         conversationId: conversationId
         startedAt: 2000-01-23T04:56:07.000+00:00
-        from: from
         forwardTo: forwardTo
+        phoneNumberId: phoneNumberId
+        accountId: accountId
+        telnyxCallControlId: telnyxCallControlId
+        metaCallId: metaCallId
+        from: from
         id: id
         to: to
-        phoneNumberId: phoneNumberId
         direction: inbound
       properties:
         id:
@@ -238963,6 +238969,14 @@ components:
           type: string
         forwardTo:
           description: Destination snapshot at routing time
+          type: string
+        telnyxCallControlId:
+          description: Carrier call_control_id of this call leg. Equals start.call_control_id
+            of the media stream a wss:// forwardTo receives.
+          type: string
+        telnyxCallSessionId:
+          description: Carrier call_session_id of this call. Equals start.call_session_id
+            of the media stream a wss:// forwardTo receives.
           type: string
         contactId:
           type: string

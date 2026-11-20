@@ -15,6 +15,8 @@
 |**from** | **String** | Consumer wa_id / E.164 |  [optional] |
 |**to** | **String** | Business number (E.164) |  [optional] |
 |**forwardTo** | **String** | Destination snapshot at routing time |  [optional] |
+|**telnyxCallControlId** | **String** | Carrier call_control_id of this call leg. Equals start.call_control_id of the media stream a wss:// forwardTo receives. |  [optional] |
+|**telnyxCallSessionId** | **String** | Carrier call_session_id of this call. Equals start.call_session_id of the media stream a wss:// forwardTo receives. |  [optional] |
 |**contactId** | **String** |  |  [optional] |
 |**conversationId** | **String** |  |  [optional] |
 |**startedAt** | **OffsetDateTime** |  |  [optional] |
