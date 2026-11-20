@@ -8203,16 +8203,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/WorkspacesApiTest.java
-src/test/java/dev/zernio/model/CreateWorkspace201ResponseTest.java
-src/test/java/dev/zernio/model/CreateWorkspaceApiKey201ResponseTest.java
-src/test/java/dev/zernio/model/CreateWorkspaceApiKeyRequestTest.java
-src/test/java/dev/zernio/model/CreateWorkspaceRequestApiKeyTest.java
-src/test/java/dev/zernio/model/CreateWorkspaceRequestTest.java
-src/test/java/dev/zernio/model/GetWorkspace200ResponseTest.java
-src/test/java/dev/zernio/model/ListWorkspaces200ResponsePaginationTest.java
-src/test/java/dev/zernio/model/ListWorkspaces200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateWorkspaceRequestTest.java
-src/test/java/dev/zernio/model/WorkspaceTest.java
-src/test/java/dev/zernio/model/WorkspaceWithBillingAllOfBillingTest.java
-src/test/java/dev/zernio/model/WorkspaceWithBillingTest.java
