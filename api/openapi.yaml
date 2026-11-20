@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.714.0
+  version: 1.715.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -122775,6 +122775,7 @@ components:
         username: username
     ApiKey:
       example:
+        deletedProfileCount: 0
         createdAt: 2000-01-23T04:56:07.000+00:00
         createdBy:
           id: id
@@ -122826,6 +122827,12 @@ components:
           items:
             $ref: "#/components/schemas/ApiKey_profileIds_inner"
           type: array
+        deletedProfileCount:
+          description: "Listed keys only. How many of the profiles this key is limited\
+            \ to were deleted: they are left out of profileIds but still limit the\
+            \ key, so a key with scope 'profiles' and an empty profileIds reaches\
+            \ no profile."
+          type: integer
         permission:
           default: read-write
           description: "'read-write' allows all operations, 'read' restricts to GET\
@@ -153506,7 +153513,8 @@ components:
     listApiKeys_200_response:
       example:
         apiKeys:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
+        - deletedProfileCount: 0
+          createdAt: 2000-01-23T04:56:07.000+00:00
           createdBy:
             id: id
             email: email
@@ -153527,7 +153535,8 @@ components:
           id: id
           expiresAt: 2000-01-23T04:56:07.000+00:00
           key: key
-        - createdAt: 2000-01-23T04:56:07.000+00:00
+        - deletedProfileCount: 0
+          createdAt: 2000-01-23T04:56:07.000+00:00
           createdBy:
             id: id
             email: email
@@ -153618,6 +153627,7 @@ components:
     createApiKey_201_response:
       example:
         apiKey:
+          deletedProfileCount: 0
           createdAt: 2000-01-23T04:56:07.000+00:00
           createdBy:
             id: id
