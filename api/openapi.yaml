@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.706.0
+  version: 1.706.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -192542,11 +192542,12 @@ components:
           $ref: "#/components/schemas/AdRuleLevel"
         campaignIds:
           description: Only check these platform campaign IDs (or what sits in them).
-            Leave out to check the whole ad account.
+            Leave out or send null to check the whole ad account.
           items:
             type: string
           maxItems: 100
           minItems: 1
+          nullable: true
           type: array
         filters:
           description: |
