@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.709.0
+- API version: 1.710.0
 
-- Build date: 2026-11-20T10:03:42.137961073Z[Etc/UTC]
+- Build date: 2026-11-20T11:21:27.334217257Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.709.0</version>
+  <version>1.710.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.709.0"
+compile "dev.zernio:zernio-sdk:1.710.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.709.0.jar`
+- `target/zernio-sdk-1.710.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2099,6 +2099,14 @@ Class | Method | HTTP request | Description
 *MetricsApi* | [**getMetricsCatalogWithHttpInfo**](docs/MetricsApi.md#getMetricsCatalogWithHttpInfo) | **GET** /v1/metrics/catalog | List the metrics, groupings and limits of each metrics endpoint
 *MetricsApi* | [**getPostMetrics**](docs/MetricsApi.md#getPostMetrics) | **GET** /v1/metrics/posts | Read post metrics by id, day by day, as a list, or grouped
 *MetricsApi* | [**getPostMetricsWithHttpInfo**](docs/MetricsApi.md#getPostMetricsWithHttpInfo) | **GET** /v1/metrics/posts | Read post metrics by id, day by day, as a list, or grouped
+*MetricsApi* | [**queryGoogleAds**](docs/MetricsApi.md#queryGoogleAds) | **POST** /v1/metrics/platform-queries/google-ads | Run a Google Ads Query Language search on one customer
+*MetricsApi* | [**queryGoogleAdsWithHttpInfo**](docs/MetricsApi.md#queryGoogleAdsWithHttpInfo) | **POST** /v1/metrics/platform-queries/google-ads | Run a Google Ads Query Language search on one customer
+*MetricsApi* | [**queryGoogleAnalytics**](docs/MetricsApi.md#queryGoogleAnalytics) | **POST** /v1/metrics/platform-queries/google-analytics | Run a GA4 standard or realtime report on one property
+*MetricsApi* | [**queryGoogleAnalyticsWithHttpInfo**](docs/MetricsApi.md#queryGoogleAnalyticsWithHttpInfo) | **POST** /v1/metrics/platform-queries/google-analytics | Run a GA4 standard or realtime report on one property
+*MetricsApi* | [**queryMetaAds**](docs/MetricsApi.md#queryMetaAds) | **POST** /v1/metrics/platform-queries/meta-ads | Run a Meta Marketing API insights query on one ad account
+*MetricsApi* | [**queryMetaAdsWithHttpInfo**](docs/MetricsApi.md#queryMetaAdsWithHttpInfo) | **POST** /v1/metrics/platform-queries/meta-ads | Run a Meta Marketing API insights query on one ad account
+*MetricsApi* | [**queryTikTokAds**](docs/MetricsApi.md#queryTikTokAds) | **POST** /v1/metrics/platform-queries/tiktok-ads | Run a TikTok Marketing API report on one advertiser
+*MetricsApi* | [**queryTikTokAdsWithHttpInfo**](docs/MetricsApi.md#queryTikTokAdsWithHttpInfo) | **POST** /v1/metrics/platform-queries/tiktok-ads | Run a TikTok Marketing API report on one advertiser
 *PhoneNumbersApi* | [**cancelPhoneNumberPortIn**](docs/PhoneNumbersApi.md#cancelPhoneNumberPortIn) | **DELETE** /v1/phone-numbers/port-in/{id} | Cancel a port-in
 *PhoneNumbersApi* | [**cancelPhoneNumberPortInWithHttpInfo**](docs/PhoneNumbersApi.md#cancelPhoneNumberPortInWithHttpInfo) | **DELETE** /v1/phone-numbers/port-in/{id} | Cancel a port-in
 *PhoneNumbersApi* | [**checkPhoneNumberAvailability**](docs/PhoneNumbersApi.md#checkPhoneNumberAvailability) | **GET** /v1/phone-numbers/availability | Check country availability
@@ -4683,9 +4691,15 @@ Class | Method | HTTP request | Description
  - [GoogleAdsAccessRole](docs/GoogleAdsAccessRole.md)
  - [GoogleAdsHierarchyClient](docs/GoogleAdsHierarchyClient.md)
  - [GoogleAdsManagerLink](docs/GoogleAdsManagerLink.md)
+ - [GoogleAdsPlatformQueryBody](docs/GoogleAdsPlatformQueryBody.md)
  - [GoogleAdsUserAccessInvitation](docs/GoogleAdsUserAccessInvitation.md)
  - [GoogleAdsUserAccessInvitationResult](docs/GoogleAdsUserAccessInvitationResult.md)
  - [GoogleAdsUserInvitationApproval](docs/GoogleAdsUserInvitationApproval.md)
+ - [GoogleAnalyticsPlatformQueryBody](docs/GoogleAnalyticsPlatformQueryBody.md)
+ - [GoogleAnalyticsPlatformQueryBodyOneOf](docs/GoogleAnalyticsPlatformQueryBodyOneOf.md)
+ - [GoogleAnalyticsPlatformQueryBodyOneOf1](docs/GoogleAnalyticsPlatformQueryBodyOneOf1.md)
+ - [GoogleAnalyticsPlatformQueryBodyOneOf1MinuteRangesInner](docs/GoogleAnalyticsPlatformQueryBodyOneOf1MinuteRangesInner.md)
+ - [GoogleAnalyticsPlatformQueryBodyOneOfDateRangesInner](docs/GoogleAnalyticsPlatformQueryBodyOneOfDateRangesInner.md)
  - [GoogleAnalyticsReport](docs/GoogleAnalyticsReport.md)
  - [GoogleAnalyticsReportDimensionHeadersInner](docs/GoogleAnalyticsReportDimensionHeadersInner.md)
  - [GoogleAnalyticsReportFields](docs/GoogleAnalyticsReportFields.md)
@@ -5323,6 +5337,9 @@ Class | Method | HTTP request | Description
  - [MessengerIceBreakerLocaleCallToActionsInner](docs/MessengerIceBreakerLocaleCallToActionsInner.md)
  - [MetaAdScheduleInner](docs/MetaAdScheduleInner.md)
  - [MetaAdsPlatformData](docs/MetaAdsPlatformData.md)
+ - [MetaAdsPlatformQueryBody](docs/MetaAdsPlatformQueryBody.md)
+ - [MetaAdsPlatformQueryBodyFilteringInner](docs/MetaAdsPlatformQueryBodyFilteringInner.md)
+ - [MetaAdsPlatformQueryBodyTimeIncrement](docs/MetaAdsPlatformQueryBodyTimeIncrement.md)
  - [MetaAssignedUser](docs/MetaAssignedUser.md)
  - [MetaBusinessUser](docs/MetaBusinessUser.md)
  - [MetaCatalogProduct](docs/MetaCatalogProduct.md)
@@ -5435,6 +5452,9 @@ Class | Method | HTTP request | Description
  - [PinPostResponse](docs/PinPostResponse.md)
  - [PinterestPlatformData](docs/PinterestPlatformData.md)
  - [PlatformAnalytics](docs/PlatformAnalytics.md)
+ - [PlatformQueryPage](docs/PlatformQueryPage.md)
+ - [PlatformQueryPageMeta](docs/PlatformQueryPageMeta.md)
+ - [PlatformQueryPagePagination](docs/PlatformQueryPagePagination.md)
  - [PlatformTarget](docs/PlatformTarget.md)
  - [PlatformTargetAccountId](docs/PlatformTargetAccountId.md)
  - [Pool](docs/Pool.md)
@@ -5991,6 +6011,7 @@ Class | Method | HTTP request | Description
  - [TelegramPlatformData](docs/TelegramPlatformData.md)
  - [TestWebhookRequest](docs/TestWebhookRequest.md)
  - [ThreadsPlatformData](docs/ThreadsPlatformData.md)
+ - [TikTokAdsPlatformQueryBody](docs/TikTokAdsPlatformQueryBody.md)
  - [TikTokDryRunVerdict](docs/TikTokDryRunVerdict.md)
  - [TikTokDryRunVerdictTiktokInner](docs/TikTokDryRunVerdictTiktokInner.md)
  - [TikTokPlatformData](docs/TikTokPlatformData.md)
