@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.713.0
+- API version: 1.714.0
 
-- Build date: 2026-11-20T13:36:38.227409563Z[Etc/UTC]
+- Build date: 2026-11-20T14:28:31.641306351Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.713.0</version>
+  <version>1.714.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.713.0"
+compile "dev.zernio:zernio-sdk:1.714.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.713.0.jar`
+- `target/zernio-sdk-1.714.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -805,6 +805,8 @@ Class | Method | HTTP request | Description
 *AutomationsApi* | [**previewAutomationDraftWithHttpInfo**](docs/AutomationsApi.md#previewAutomationDraftWithHttpInfo) | **POST** /v1/automations/preview | Preview an unsaved automation
 *AutomationsApi* | [**rejectAutomationApproval**](docs/AutomationsApi.md#rejectAutomationApproval) | **POST** /v1/automations/{automationId}/approvals/{approvalId}/reject | Reject an approval request
 *AutomationsApi* | [**rejectAutomationApprovalWithHttpInfo**](docs/AutomationsApi.md#rejectAutomationApprovalWithHttpInfo) | **POST** /v1/automations/{automationId}/approvals/{approvalId}/reject | Reject an approval request
+*AutomationsApi* | [**takeOverAutomation**](docs/AutomationsApi.md#takeOverAutomation) | **POST** /v1/automations/{automationId}/take-over | Take over an automation
+*AutomationsApi* | [**takeOverAutomationWithHttpInfo**](docs/AutomationsApi.md#takeOverAutomationWithHttpInfo) | **POST** /v1/automations/{automationId}/take-over | Take over an automation
 *AutomationsApi* | [**updateAutomation**](docs/AutomationsApi.md#updateAutomation) | **PATCH** /v1/automations/{automationId} | Edit an automation
 *AutomationsApi* | [**updateAutomationWithHttpInfo**](docs/AutomationsApi.md#updateAutomationWithHttpInfo) | **PATCH** /v1/automations/{automationId} | Edit an automation
 *AutomationsApi* | [**updateAutomationAdAccountControls**](docs/AutomationsApi.md#updateAutomationAdAccountControls) | **PATCH** /v1/automations/controls/ad-accounts | Update one ad account&#39;s controls
@@ -2509,10 +2511,14 @@ Class | Method | HTTP request | Description
 *UsageApi* | [**getUsageStatsWithHttpInfo**](docs/UsageApi.md#getUsageStatsWithHttpInfo) | **GET** /v1/usage-stats | Get plan and usage snapshot (plan, limits, payment status)
 *UsageApi* | [**getXApiPricing**](docs/UsageApi.md#getXApiPricing) | **GET** /v1/billing/x-pricing | Get X API pricing table
 *UsageApi* | [**getXApiPricingWithHttpInfo**](docs/UsageApi.md#getXApiPricingWithHttpInfo) | **GET** /v1/billing/x-pricing | Get X API pricing table
+*UsersApi* | [**getCurrentUser**](docs/UsersApi.md#getCurrentUser) | **GET** /v1/users/me | Get the current user
+*UsersApi* | [**getCurrentUserWithHttpInfo**](docs/UsersApi.md#getCurrentUserWithHttpInfo) | **GET** /v1/users/me | Get the current user
 *UsersApi* | [**getUser**](docs/UsersApi.md#getUser) | **GET** /v1/users/{userId} | Get user
 *UsersApi* | [**getUserWithHttpInfo**](docs/UsersApi.md#getUserWithHttpInfo) | **GET** /v1/users/{userId} | Get user
 *UsersApi* | [**listUsers**](docs/UsersApi.md#listUsers) | **GET** /v1/users | List users
 *UsersApi* | [**listUsersWithHttpInfo**](docs/UsersApi.md#listUsersWithHttpInfo) | **GET** /v1/users | List users
+*UsersApi* | [**removeUser**](docs/UsersApi.md#removeUser) | **DELETE** /v1/users/{userId} | Remove member
+*UsersApi* | [**removeUserWithHttpInfo**](docs/UsersApi.md#removeUserWithHttpInfo) | **DELETE** /v1/users/{userId} | Remove member
 *ValidateApi* | [**validateMedia**](docs/ValidateApi.md#validateMedia) | **POST** /v1/tools/validate/media | Validate media URL
 *ValidateApi* | [**validateMediaWithHttpInfo**](docs/ValidateApi.md#validateMediaWithHttpInfo) | **POST** /v1/tools/validate/media | Validate media URL
 *ValidateApi* | [**validatePost**](docs/ValidateApi.md#validatePost) | **POST** /v1/tools/validate/post | Validate post content
@@ -2805,6 +2811,8 @@ Class | Method | HTTP request | Description
 *WorkflowsApi* | [**pauseWorkflowWithHttpInfo**](docs/WorkflowsApi.md#pauseWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/pause | Pause workflow
 *WorkflowsApi* | [**restoreWorkflowVersion**](docs/WorkflowsApi.md#restoreWorkflowVersion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version
 *WorkflowsApi* | [**restoreWorkflowVersionWithHttpInfo**](docs/WorkflowsApi.md#restoreWorkflowVersionWithHttpInfo) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version
+*WorkflowsApi* | [**takeOverWorkflow**](docs/WorkflowsApi.md#takeOverWorkflow) | **POST** /v1/workflows/{workflowId}/take-over | Take over a workflow
+*WorkflowsApi* | [**takeOverWorkflowWithHttpInfo**](docs/WorkflowsApi.md#takeOverWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/take-over | Take over a workflow
 *WorkflowsApi* | [**triggerApiCallWorkflow**](docs/WorkflowsApi.md#triggerApiCallWorkflow) | **POST** /v1/workflows/{workflowId}/trigger | Start an API-triggered workflow
 *WorkflowsApi* | [**triggerApiCallWorkflowWithHttpInfo**](docs/WorkflowsApi.md#triggerApiCallWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/trigger | Start an API-triggered workflow
 *WorkflowsApi* | [**triggerWorkflow**](docs/WorkflowsApi.md#triggerWorkflow) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run
@@ -4306,6 +4314,7 @@ Class | Method | HTTP request | Description
  - [GetCreatorPayouts200Response](docs/GetCreatorPayouts200Response.md)
  - [GetCreatorPortal200Response](docs/GetCreatorPortal200Response.md)
  - [GetCrmDeal200Response](docs/GetCrmDeal200Response.md)
+ - [GetCurrentUser200Response](docs/GetCurrentUser200Response.md)
  - [GetDailyMetrics200Response](docs/GetDailyMetrics200Response.md)
  - [GetDailyMetrics200ResponseDailyDataInner](docs/GetDailyMetrics200ResponseDailyDataInner.md)
  - [GetDailyMetrics200ResponseDailyDataInnerMetrics](docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md)
@@ -4471,7 +4480,6 @@ Class | Method | HTTP request | Description
  - [GetLedgerBalances200Response](docs/GetLedgerBalances200Response.md)
  - [GetLinkedInAggregateAnalytics200Response](docs/GetLinkedInAggregateAnalytics200Response.md)
  - [GetLinkedInAggregateAnalytics400Response](docs/GetLinkedInAggregateAnalytics400Response.md)
- - [GetLinkedInAggregateAnalytics402Response](docs/GetLinkedInAggregateAnalytics402Response.md)
  - [GetLinkedInAggregateAnalytics403Response](docs/GetLinkedInAggregateAnalytics403Response.md)
  - [GetLinkedInBidPricing200Response](docs/GetLinkedInBidPricing200Response.md)
  - [GetLinkedInBidPricing200ResponsePricing](docs/GetLinkedInBidPricing200ResponsePricing.md)
@@ -5628,6 +5636,9 @@ Class | Method | HTTP request | Description
  - [RemoveTrackingTagFromStore200Response](docs/RemoveTrackingTagFromStore200Response.md)
  - [RemoveTrackingTagFromStore200ResponseInstall](docs/RemoveTrackingTagFromStore200ResponseInstall.md)
  - [RemoveTrackingTagUser200Response](docs/RemoveTrackingTagUser200Response.md)
+ - [RemoveUser200Response](docs/RemoveUser200Response.md)
+ - [RemoveUser200ResponseRemovedUser](docs/RemoveUser200ResponseRemovedUser.md)
+ - [RemoveUser403Response](docs/RemoveUser403Response.md)
  - [RemoveUsersFromAdAudience200Response](docs/RemoveUsersFromAdAudience200Response.md)
  - [RemoveUsersFromAdAudienceRequest](docs/RemoveUsersFromAdAudienceRequest.md)
  - [RemoveWhatsAppGroupParticipantsRequest](docs/RemoveWhatsAppGroupParticipantsRequest.md)
@@ -6002,6 +6013,9 @@ Class | Method | HTTP request | Description
  - [SyncExternalPosts200Response](docs/SyncExternalPosts200Response.md)
  - [SyncExternalPosts200ResponseSynced](docs/SyncExternalPosts200ResponseSynced.md)
  - [SyncExternalPostsRequest](docs/SyncExternalPostsRequest.md)
+ - [TakeOverAutomation200Response](docs/TakeOverAutomation200Response.md)
+ - [TakeOverWorkflow200Response](docs/TakeOverWorkflow200Response.md)
+ - [TakeOverWorkflow200ResponseWorkflow](docs/TakeOverWorkflow200ResponseWorkflow.md)
  - [TargetingSpec](docs/TargetingSpec.md)
  - [TargetingSpecCitiesInner](docs/TargetingSpecCitiesInner.md)
  - [TargetingSpecCitiesInnerOneOf](docs/TargetingSpecCitiesInnerOneOf.md)

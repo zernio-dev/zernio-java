@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.713.0
+  version: 1.714.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -14126,7 +14126,102 @@ paths:
       x-resource-group: accounts
       x-accepts:
       - application/json
+  /v1/users/me:
+    get:
+      description: "Returns the user the credential belongs to, in the same shape\
+        \ as one element of `users` in GET /v1/users, plus the workspace the credential\
+        \ acts in. Use it to check who an API key belongs to without listing every\
+        \ user."
+      operationId: getCurrentUser
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                _id: 6507a1b2c3d4e5f6a7b8c9d0
+                name: John Doe
+                image: null
+                role: owner
+                isRoot: true
+                invitedBy: null
+                createdAt: 2024-01-15T10:30:00Z
+                lastLoginAt: 2024-06-02T09:12:00Z
+                workspaceId: 6911a1b2c3d4e5f6a7b8c9d0
+                workspaceName: Acme
+              schema:
+                $ref: "#/components/schemas/getCurrentUser_200_response"
+          description: Current user
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Get the current user
+      tags:
+      - Users
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
   /v1/users/{userId}:
+    delete:
+      description: |-
+        Removes a member from your team. The member keeps their own login and what they had before joining.
+        What they added as a member passes to the team owner.
+
+        API keys the member used in the last 7 days pass to the owner and expire within 24 hours, and their
+        other keys in the team are revoked.
+
+        Requires the owner or an admin, and a key that is not restricted. You cannot remove yourself.
+      operationId: removeUser
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                message: User removed from team successfully
+                removedUser:
+                  id: 6507a1b2c3d4e5f6a7b8c9d0
+                  name: John Doe
+                  email: john@example.com
+              schema:
+                $ref: "#/components/schemas/removeUser_200_response"
+          description: Member removed
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              example:
+                error: Only the workspace owner can change or remove an admin.
+                code: only_owner_acts_on_admins
+              schema:
+                $ref: "#/components/schemas/removeUser_403_response"
+          description: |-
+            Forbidden. The caller is not the owner or an admin, is removing themselves, or uses a restricted key.
+
+            With code `only_owner_acts_on_admins`, an admin tried to remove another admin, which only the owner can do.
+            That code is returned to callers who have the workspaces preview. The dashboard routes that change a
+            member's role and access return the same code.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "503":
+          description: The member's data could not be moved yet. Nothing was changed.
+            Retry in a minute.
+      summary: Remove member
+      tags:
+      - Users
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
     get:
       description: "Returns a single user's details by ID, including name, email,\
         \ and role."
@@ -16423,6 +16518,9 @@ paths:
 
         Returns 403 when a requested profile is not found or not owned, or when
         called with a restricted (zrk_) API key: invite management is admin-plane.
+
+        Returns 409 for a key of a Personal workspace: the first teammate is invited from the
+        dashboard, which turns that workspace into a team workspace (same ID, accounts and keys).
       operationId: createInviteToken
       requestBody:
         content:
@@ -16458,6 +16556,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/ResourceGroupForbidden"
+        "409":
+          description: "The key belongs to a Personal workspace. Invite the first\
+            \ teammate from the dashboard, which turns it into a team workspace."
       summary: Create invite token
       tags:
       - Invites
@@ -24618,7 +24719,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getLinkedInAggregateAnalytics_402_response"
+                $ref: "#/components/schemas/removeUser_403_response"
           description: Analytics access required. Legacy plans need the Analytics
             add-on; included by default on usage-based plans.
           x-summary: "Analytics access is required: add the Analytics add-on on a\
@@ -24737,7 +24838,7 @@ paths:
                     code: post_not_found
                     postUrn: urn:li:share:123
               schema:
-                $ref: "#/components/schemas/getLinkedInAggregateAnalytics_402_response"
+                $ref: "#/components/schemas/removeUser_403_response"
           description: Account or post not found
         "503":
           $ref: "#/components/responses/TemporarilyUnavailable"
@@ -51696,6 +51797,42 @@ paths:
       x-resource-group: accounts
       x-accepts:
       - application/json
+  /v1/workflows/{workflowId}/take-over:
+    post:
+      description: |
+        Makes the caller the workflow's owner, so its AI steps use the caller's own AI key. Only the owner or an admin of the active workspace can take over, from the dashboard.
+
+        When the member who made a workflow leaves the workspace, its AI steps pause (they take the error edge with "{Name} left this workspace. Add a workspace AI key or take over this automation.") and every other step keeps running; taking it over starts the AI steps again.
+      operationId: takeOverWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/takeOverWorkflow_200_response"
+          description: Workflow taken over
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Not the owner or an admin of the active workspace (insufficient_permissions).
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Take over a workflow
+      tags:
+      - Workflows
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
   /v1/workflows/{workflowId}/executions:
     get:
       description: "Returns recent executions (runs) with their status, current node,\
@@ -54893,6 +55030,44 @@ paths:
       security:
       - bearerAuth: []
       summary: Turn an automation off
+      tags:
+      - Automations
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+  /v1/automations/{automationId}/take-over:
+    post:
+      description: |
+        Makes the caller the automation's owner, so its AI steps use the caller's own AI key. Only the owner or an admin of the active workspace can take over, from the dashboard.
+
+        When the member who made an automation leaves the workspace, its AI steps pause until it is taken over; every other step keeps running.
+      operationId: takeOverAutomation
+      parameters:
+      - explode: false
+        in: path
+        name: automationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/takeOverAutomation_200_response"
+          description: Automation taken over
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Not the owner or an admin of the active workspace (insufficient_permissions).
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Take over an automation
       tags:
       - Automations
       x-resource-group: ads
@@ -122704,6 +122879,11 @@ components:
         scopes:
         - scopes
         - scopes
+        workspaces:
+        - name: name
+          id: id
+        - name: name
+          id: id
         redirectHost: redirectHost
       properties:
         clientId:
@@ -122735,6 +122915,13 @@ components:
           description: Live tokens held by the client (an active session is typically
             one access plus one refresh token).
           type: integer
+        workspaces:
+          description: The workspaces chosen when the app was authorized. Present
+            only for accounts with workspaces enabled; empty for an app authorized
+            before the choice existed.
+          items:
+            $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+          type: array
     BillingSnapshot:
       description: |
         Account billing state: plan, cycle, balance, spend caps, and payment /
@@ -151251,6 +151438,85 @@ components:
           items:
             $ref: "#/components/schemas/listUsers_200_response_users_inner"
           type: array
+    getCurrentUser_200_response:
+      example:
+        image: image
+        invitedToProfiles:
+        - invitedToProfiles
+        - invitedToProfiles
+        role: role
+        invitedBy: invitedBy
+        isRoot: true
+        invitedToProfile: invitedToProfile
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        lastLoginAt: 2000-01-23T04:56:07.000+00:00
+        disabledResourceGroups:
+        - disabledResourceGroups
+        - disabledResourceGroups
+        name: name
+        workspaceName: workspaceName
+        _id: _id
+        email: email
+        workspaceId: workspaceId
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        email:
+          description: Only returned to a dashboard session. Omitted for API keys.
+          type: string
+        image:
+          nullable: true
+          type: string
+        role:
+          description: "One of owner, admin, billing_admin, member or viewer. Always\
+            \ owner when isRoot is true."
+          nullable: true
+          type: string
+        isRoot:
+          description: "True when the user owns the account, false when they were\
+            \ invited to it."
+          type: boolean
+        invitedBy:
+          description: Id of the user who invited this user. Null when isRoot is true.
+          nullable: true
+          type: string
+        invitedToProfile:
+          description: Only present when isRoot is false.
+          nullable: true
+          type: string
+        invitedToProfiles:
+          description: Ids of the profiles an invited user is limited to. Empty means
+            every profile. Only present when isRoot is false.
+          items:
+            type: string
+          type: array
+        disabledResourceGroups:
+          description: Resource groups turned off for an invited user. Null or empty
+            means none. Only present when isRoot is false.
+          items:
+            type: string
+          nullable: true
+          type: array
+        createdAt:
+          format: date-time
+          type: string
+        lastLoginAt:
+          description: "Last sign-in, stamped at most once an hour. Null when no sign-in\
+            \ has been recorded."
+          format: date-time
+          nullable: true
+          type: string
+        workspaceId:
+          description: Id of the workspace the credential acts in. Null when the user
+            has no workspace yet.
+          nullable: true
+          type: string
+        workspaceName:
+          description: Name of that workspace. Null when workspaceId is null.
+          nullable: true
+          type: string
     getUser_200_response_user:
       example:
         profileAccess:
@@ -151290,6 +151556,40 @@ components:
       properties:
         user:
           $ref: "#/components/schemas/getUser_200_response_user"
+    removeUser_200_response_removedUser:
+      example:
+        name: name
+        id: id
+        email: email
+      properties:
+        id:
+          type: string
+        name:
+          nullable: true
+          type: string
+        email:
+          type: string
+    removeUser_200_response:
+      example:
+        removedUser:
+          name: name
+          id: id
+          email: email
+        message: message
+      properties:
+        message:
+          type: string
+        removedUser:
+          $ref: "#/components/schemas/removeUser_200_response_removedUser"
+    removeUser_403_response:
+      example:
+        code: code
+        error: error
+      properties:
+        error:
+          type: string
+        code:
+          type: string
     createProfile_request:
       properties:
         name:
@@ -153366,6 +153666,11 @@ components:
           scopes:
           - scopes
           - scopes
+          workspaces:
+          - name: name
+            id: id
+          - name: name
+            id: id
           redirectHost: redirectHost
         - clientId: clientId
           clientName: clientName
@@ -153375,6 +153680,11 @@ components:
           scopes:
           - scopes
           - scopes
+          workspaces:
+          - name: name
+            id: id
+          - name: name
+            id: id
           redirectHost: redirectHost
       properties:
         connectedApps:
@@ -153457,6 +153767,7 @@ components:
       - scope
     createInviteToken_201_response:
       example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
         inviteUrl: https://openapi-generator.tech
         scope: scope
         disabledResourceGroups:
@@ -153481,6 +153792,9 @@ components:
             type: string
           type: array
         expiresAt:
+          format: date-time
+          type: string
+        createdAt:
           format: date-time
           type: string
         inviteUrl:
@@ -160305,15 +160619,6 @@ components:
           description: The query parameter at fault on a validation failure
           type: string
         type:
-          type: string
-    getLinkedInAggregateAnalytics_402_response:
-      example:
-        code: code
-        error: error
-      properties:
-        error:
-          type: string
-        code:
           type: string
     getLinkedInAggregateAnalytics_403_response:
       example:
@@ -186014,6 +186319,27 @@ components:
           type: boolean
         workflow:
           $ref: "#/components/schemas/remediatePhoneNumber_200_response_phoneNumber"
+    takeOverWorkflow_200_response_workflow:
+      example:
+        id: id
+        userId: userId
+      properties:
+        id:
+          type: string
+        userId:
+          description: "The new owner: the caller."
+          type: string
+    takeOverWorkflow_200_response:
+      example:
+        workflow:
+          id: id
+          userId: userId
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/takeOverWorkflow_200_response_workflow"
     listWorkflowExecutions_200_response_executions_inner_waitingFor:
       example:
         kind: timer
@@ -191767,6 +192093,16 @@ components:
           type: array
         limits:
           $ref: "#/components/schemas/updateAutomation_request_limits"
+    takeOverAutomation_200_response:
+      example:
+        automation:
+          id: id
+          userId: userId
+      properties:
+        automation:
+          $ref: "#/components/schemas/takeOverWorkflow_200_response_workflow"
+      required:
+      - automation
     listAutomationTemplates_200_response:
       example:
         templates:

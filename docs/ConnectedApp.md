@@ -15,6 +15,7 @@ An OAuth client (AI assistant / MCP connector) authorized by the user and still 
 |**authorizedAt** | **OffsetDateTime** |  |  [optional] |
 |**lastUsedAt** | **OffsetDateTime** | Last time any of the client&#39;s live tokens authenticated a request. |  [optional] |
 |**tokenCount** | **Integer** | Live tokens held by the client (an active session is typically one access plus one refresh token). |  [optional] |
+|**workspaces** | [**List&lt;UpdateFacebookPage200ResponseSelectedPage&gt;**](UpdateFacebookPage200ResponseSelectedPage.md) | The workspaces chosen when the app was authorized. Present only for accounts with workspaces enabled; empty for an app authorized before the choice existed. |  [optional] |
 
 
 

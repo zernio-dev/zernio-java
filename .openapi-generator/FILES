@@ -1534,6 +1534,7 @@ docs/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.md
 docs/GetCreatorPayouts200Response.md
 docs/GetCreatorPortal200Response.md
 docs/GetCrmDeal200Response.md
+docs/GetCurrentUser200Response.md
 docs/GetDailyMetrics200Response.md
 docs/GetDailyMetrics200ResponseDailyDataInner.md
 docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md
@@ -1699,7 +1700,6 @@ docs/GetLeadForm200ResponseForm.md
 docs/GetLedgerBalances200Response.md
 docs/GetLinkedInAggregateAnalytics200Response.md
 docs/GetLinkedInAggregateAnalytics400Response.md
-docs/GetLinkedInAggregateAnalytics402Response.md
 docs/GetLinkedInAggregateAnalytics403Response.md
 docs/GetLinkedInBidPricing200Response.md
 docs/GetLinkedInBidPricing200ResponsePricing.md
@@ -2886,6 +2886,9 @@ docs/RemovePageUser200Response.md
 docs/RemoveTrackingTagFromStore200Response.md
 docs/RemoveTrackingTagFromStore200ResponseInstall.md
 docs/RemoveTrackingTagUser200Response.md
+docs/RemoveUser200Response.md
+docs/RemoveUser200ResponseRemovedUser.md
+docs/RemoveUser403Response.md
 docs/RemoveUsersFromAdAudience200Response.md
 docs/RemoveUsersFromAdAudienceRequest.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
@@ -3265,6 +3268,9 @@ docs/SupportRunUsage.md
 docs/SyncExternalPosts200Response.md
 docs/SyncExternalPosts200ResponseSynced.md
 docs/SyncExternalPostsRequest.md
+docs/TakeOverAutomation200Response.md
+docs/TakeOverWorkflow200Response.md
+docs/TakeOverWorkflow200ResponseWorkflow.md
 docs/TargetingSpec.md
 docs/TargetingSpecCitiesInner.md
 docs/TargetingSpecCitiesInnerOneOf.md
@@ -5678,6 +5684,7 @@ src/main/java/dev/zernio/model/GetConversionsQuality200ResponseRowsInnerMatchKey
 src/main/java/dev/zernio/model/GetCreatorPayouts200Response.java
 src/main/java/dev/zernio/model/GetCreatorPortal200Response.java
 src/main/java/dev/zernio/model/GetCrmDeal200Response.java
+src/main/java/dev/zernio/model/GetCurrentUser200Response.java
 src/main/java/dev/zernio/model/GetDailyMetrics200Response.java
 src/main/java/dev/zernio/model/GetDailyMetrics200ResponseDailyDataInner.java
 src/main/java/dev/zernio/model/GetDailyMetrics200ResponseDailyDataInnerMetrics.java
@@ -5843,7 +5850,6 @@ src/main/java/dev/zernio/model/GetLeadForm200ResponseForm.java
 src/main/java/dev/zernio/model/GetLedgerBalances200Response.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics200Response.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics400Response.java
-src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics402Response.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics403Response.java
 src/main/java/dev/zernio/model/GetLinkedInBidPricing200Response.java
 src/main/java/dev/zernio/model/GetLinkedInBidPricing200ResponsePricing.java
@@ -7000,6 +7006,9 @@ src/main/java/dev/zernio/model/RemovePageUser200Response.java
 src/main/java/dev/zernio/model/RemoveTrackingTagFromStore200Response.java
 src/main/java/dev/zernio/model/RemoveTrackingTagFromStore200ResponseInstall.java
 src/main/java/dev/zernio/model/RemoveTrackingTagUser200Response.java
+src/main/java/dev/zernio/model/RemoveUser200Response.java
+src/main/java/dev/zernio/model/RemoveUser200ResponseRemovedUser.java
+src/main/java/dev/zernio/model/RemoveUser403Response.java
 src/main/java/dev/zernio/model/RemoveUsersFromAdAudience200Response.java
 src/main/java/dev/zernio/model/RemoveUsersFromAdAudienceRequest.java
 src/main/java/dev/zernio/model/RemoveWhatsAppGroupParticipantsRequest.java
@@ -7374,6 +7383,9 @@ src/main/java/dev/zernio/model/SupportRunUsage.java
 src/main/java/dev/zernio/model/SyncExternalPosts200Response.java
 src/main/java/dev/zernio/model/SyncExternalPosts200ResponseSynced.java
 src/main/java/dev/zernio/model/SyncExternalPostsRequest.java
+src/main/java/dev/zernio/model/TakeOverAutomation200Response.java
+src/main/java/dev/zernio/model/TakeOverWorkflow200Response.java
+src/main/java/dev/zernio/model/TakeOverWorkflow200ResponseWorkflow.java
 src/main/java/dev/zernio/model/TargetingSpec.java
 src/main/java/dev/zernio/model/TargetingSpecCitiesInner.java
 src/main/java/dev/zernio/model/TargetingSpecCitiesInnerOneOf.java
@@ -8167,3 +8179,10 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetCurrentUser200ResponseTest.java
+src/test/java/dev/zernio/model/RemoveUser200ResponseRemovedUserTest.java
+src/test/java/dev/zernio/model/RemoveUser200ResponseTest.java
+src/test/java/dev/zernio/model/RemoveUser403ResponseTest.java
+src/test/java/dev/zernio/model/TakeOverAutomation200ResponseTest.java
+src/test/java/dev/zernio/model/TakeOverWorkflow200ResponseTest.java
+src/test/java/dev/zernio/model/TakeOverWorkflow200ResponseWorkflowTest.java

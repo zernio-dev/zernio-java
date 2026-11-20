@@ -28,6 +28,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**pauseWorkflowWithHttpInfo**](WorkflowsApi.md#pauseWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/pause | Pause workflow |
 | [**restoreWorkflowVersion**](WorkflowsApi.md#restoreWorkflowVersion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version |
 | [**restoreWorkflowVersionWithHttpInfo**](WorkflowsApi.md#restoreWorkflowVersionWithHttpInfo) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version |
+| [**takeOverWorkflow**](WorkflowsApi.md#takeOverWorkflow) | **POST** /v1/workflows/{workflowId}/take-over | Take over a workflow |
+| [**takeOverWorkflowWithHttpInfo**](WorkflowsApi.md#takeOverWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/take-over | Take over a workflow |
 | [**triggerApiCallWorkflow**](WorkflowsApi.md#triggerApiCallWorkflow) | **POST** /v1/workflows/{workflowId}/trigger | Start an API-triggered workflow |
 | [**triggerApiCallWorkflowWithHttpInfo**](WorkflowsApi.md#triggerApiCallWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/trigger | Start an API-triggered workflow |
 | [**triggerWorkflow**](WorkflowsApi.md#triggerWorkflow) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run |
@@ -1858,6 +1860,158 @@ ApiResponse<[**RestoreWorkflowVersion200Response**](RestoreWorkflowVersion200Res
 | **200** | Workflow restored to the named version |  -  |
 | **400** | Workflow is active, or the named version&#39;s graph is invalid for the current platform |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## takeOverWorkflow
+
+> TakeOverWorkflow200Response takeOverWorkflow(workflowId)
+
+Take over a workflow
+
+Makes the caller the workflow&#39;s owner, so its AI steps use the caller&#39;s own AI key. Only the owner or an admin of the active workspace can take over, from the dashboard.  When the member who made a workflow leaves the workspace, its AI steps pause (they take the error edge with \&quot;{Name} left this workspace. Add a workspace AI key or take over this automation.\&quot;) and every other step keeps running; taking it over starts the AI steps again. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WorkflowsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WorkflowsApi apiInstance = new WorkflowsApi(defaultClient);
+        String workflowId = "workflowId_example"; // String | 
+        try {
+            TakeOverWorkflow200Response result = apiInstance.takeOverWorkflow(workflowId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WorkflowsApi#takeOverWorkflow");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **workflowId** | **String**|  | |
+
+### Return type
+
+[**TakeOverWorkflow200Response**](TakeOverWorkflow200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Workflow taken over |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Not the owner or an admin of the active workspace (insufficient_permissions). |  -  |
+| **404** | Resource not found |  -  |
+
+## takeOverWorkflowWithHttpInfo
+
+> ApiResponse<TakeOverWorkflow200Response> takeOverWorkflow takeOverWorkflowWithHttpInfo(workflowId)
+
+Take over a workflow
+
+Makes the caller the workflow&#39;s owner, so its AI steps use the caller&#39;s own AI key. Only the owner or an admin of the active workspace can take over, from the dashboard.  When the member who made a workflow leaves the workspace, its AI steps pause (they take the error edge with \&quot;{Name} left this workspace. Add a workspace AI key or take over this automation.\&quot;) and every other step keeps running; taking it over starts the AI steps again. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WorkflowsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WorkflowsApi apiInstance = new WorkflowsApi(defaultClient);
+        String workflowId = "workflowId_example"; // String | 
+        try {
+            ApiResponse<TakeOverWorkflow200Response> response = apiInstance.takeOverWorkflowWithHttpInfo(workflowId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WorkflowsApi#takeOverWorkflow");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **workflowId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**TakeOverWorkflow200Response**](TakeOverWorkflow200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Workflow taken over |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Not the owner or an admin of the active workspace (insufficient_permissions). |  -  |
 | **404** | Resource not found |  -  |
 
 

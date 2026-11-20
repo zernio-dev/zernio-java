@@ -15,7 +15,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create invite token
 
-Generate a secure invite link to grant team members access to your profiles. Invites expire after 7 days and are single-use.  Returns 403 when a requested profile is not found or not owned, or when called with a restricted (zrk_) API key: invite management is admin-plane. 
+Generate a secure invite link to grant team members access to your profiles. Invites expire after 7 days and are single-use.  Returns 403 when a requested profile is not found or not owned, or when called with a restricted (zrk_) API key: invite management is admin-plane.  Returns 409 for a key of a Personal workspace: the first teammate is invited from the dashboard, which turns that workspace into a team workspace (same ID, accounts and keys). 
 
 ### Example
 
@@ -81,6 +81,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+| **409** | The key belongs to a Personal workspace. Invite the first teammate from the dashboard, which turns it into a team workspace. |  -  |
 
 ## createInviteTokenWithHttpInfo
 
@@ -88,7 +89,7 @@ public class Example {
 
 Create invite token
 
-Generate a secure invite link to grant team members access to your profiles. Invites expire after 7 days and are single-use.  Returns 403 when a requested profile is not found or not owned, or when called with a restricted (zrk_) API key: invite management is admin-plane. 
+Generate a secure invite link to grant team members access to your profiles. Invites expire after 7 days and are single-use.  Returns 403 when a requested profile is not found or not owned, or when called with a restricted (zrk_) API key: invite management is admin-plane.  Returns 409 for a key of a Personal workspace: the first teammate is invited from the dashboard, which turns that workspace into a team workspace (same ID, accounts and keys). 
 
 ### Example
 
@@ -157,4 +158,5 @@ ApiResponse<[**CreateInviteToken201Response**](CreateInviteToken201Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+| **409** | The key belongs to a Personal workspace. Invite the first teammate from the dashboard, which turns it into a team workspace. |  -  |
 
