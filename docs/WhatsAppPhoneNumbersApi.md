@@ -529,7 +529,7 @@ public class Example {
 
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
         String country = "country_example"; // String | 
-        String profileId = "profileId_example"; // String | 
+        String profileId = "profileId_example"; // String | Profile the order is for. When given, `reusable.options` only lists verifications held by numbers on this profile. A key or team member limited to some profiles must pass it to get any options.
         try {
             GetWhatsAppNumberKycForm200Response result = apiInstance.getWhatsAppNumberKycForm(country, profileId);
             System.out.println(result);
@@ -550,7 +550,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**|  | |
-| **profileId** | **String**|  | |
+| **profileId** | **String**| Profile the order is for. When given, &#x60;reusable.options&#x60; only lists verifications held by numbers on this profile. A key or team member limited to some profiles must pass it to get any options. | [optional] |
 
 ### Return type
 
@@ -570,8 +570,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The KYC form spec. |  -  |
-| **400** | Country not available |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | API key does not have access to this profile. |  -  |
+| **404** | Profile not found or access denied. |  -  |
 
 ## getWhatsAppNumberKycFormWithHttpInfo
 
@@ -604,7 +606,7 @@ public class Example {
 
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
         String country = "country_example"; // String | 
-        String profileId = "profileId_example"; // String | 
+        String profileId = "profileId_example"; // String | Profile the order is for. When given, `reusable.options` only lists verifications held by numbers on this profile. A key or team member limited to some profiles must pass it to get any options.
         try {
             ApiResponse<GetWhatsAppNumberKycForm200Response> response = apiInstance.getWhatsAppNumberKycFormWithHttpInfo(country, profileId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -627,7 +629,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**|  | |
-| **profileId** | **String**|  | |
+| **profileId** | **String**| Profile the order is for. When given, &#x60;reusable.options&#x60; only lists verifications held by numbers on this profile. A key or team member limited to some profiles must pass it to get any options. | [optional] |
 
 ### Return type
 
@@ -647,8 +649,10 @@ ApiResponse<[**GetWhatsAppNumberKycForm200Response**](GetWhatsAppNumberKycForm20
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The KYC form spec. |  -  |
-| **400** | Country not available |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | API key does not have access to this profile. |  -  |
+| **404** | Profile not found or access denied. |  -  |
 
 
 ## getWhatsAppNumberRemediation

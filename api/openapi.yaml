@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.706.1
+  version: 1.707.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -45914,6 +45914,16 @@ paths:
           - toll_free
           type: string
         style: form
+      - description: "Profile the order is for. When given, `reusable.options` only\
+          \ lists verifications held by numbers on this profile. A key or team member\
+          \ limited to some profiles must pass it to get any options."
+        explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -45922,9 +45932,13 @@ paths:
                 $ref: "#/components/schemas/getPhoneNumberKycForm_200_response"
           description: The KYC form spec.
         "400":
-          description: Country not available
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: API key does not have access to this profile.
+        "404":
+          description: Profile not found or access denied.
       security:
       - bearerAuth: []
       summary: Get KYC form spec
@@ -46785,10 +46799,13 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Profile the order is for. When given, `reusable.options` only\
+          \ lists verifications held by numbers on this profile. A key or team member\
+          \ limited to some profiles must pass it to get any options."
+        explode: true
         in: query
         name: profileId
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -46800,9 +46817,13 @@ paths:
                 $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response"
           description: The KYC form spec.
         "400":
-          description: Country not available
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: API key does not have access to this profile.
+        "404":
+          description: Profile not found or access denied.
       security:
       - bearerAuth: []
       summary: Get KYC form spec
@@ -179630,10 +179651,10 @@ components:
           type: array
     getPhoneNumberKycForm_200_response_reusable:
       description: |
-        Present when this account already has a reusable verification for the country (skip the form).
+        Present when a number on the requested profile already holds a reusable verification for the country (skip the form). Without `profileId` it covers the whole account, except for keys and team members limited to some profiles, who get none.
 
         - `fromPhoneNumber`/`details` mirror the first option.
-        - `options` lists ALL reusable verifications (agencies hold one per end client), approved-first. Pass the chosen option's `id` as `reuseOptionId` on POST.
+        - `options` lists the reusable verifications held by numbers on `profileId` (all of the account's when omitted), approved-first. Pass the chosen option's `id` as `reuseOptionId` on POST.
         - Each option's `instant` says whether it activates in minutes (group-approved) or still queues for carrier review (1-3 days).
       example:
         available: true
@@ -179829,19 +179850,19 @@ components:
           minimum: 1
           type: integer
         reuse:
-          description: Reuse a prior approved verification for this country (skips
-            document/field collection; places the order immediately).
+          description: Reuse a prior approved verification held by a number on `profileId`
+            for this country (skips document/field collection; places the order immediately).
           type: boolean
         reuseOptionId:
           description: "Which reusable verification to use (GET reusable.options[].id).\
-            \ The unambiguous selection key. Omitted = the approved default. No match\
-            \ = 409."
+            \ The unambiguous selection key. Must come from a number on `profileId`.\
+            \ Omitted = the approved default. No match on this profile = 409."
           type: string
         reuseFrom:
           description: "Legacy fallback for `reuseOptionId`: the source phone number\
             \ (GET reusable.options[].fromPhoneNumber). Ambiguous when a number labels\
-            \ two verifications, so prefer `reuseOptionId`. Omitted = the approved\
-            \ default. No match = 409."
+            \ two verifications, so prefer `reuseOptionId`. Must be a number on `profileId`.\
+            \ Omitted = the approved default. No match on this profile = 409."
           type: string
         areaCode:
           description: |-
@@ -181139,19 +181160,19 @@ components:
           minimum: 1
           type: integer
         reuse:
-          description: Reuse a prior approved verification for this country (skips
-            document/field collection; places the order immediately).
+          description: Reuse a prior approved verification held by a number on `profileId`
+            for this country (skips document/field collection; places the order immediately).
           type: boolean
         reuseOptionId:
           description: "Which reusable verification to use (GET reusable.options[].id).\
-            \ The unambiguous selection key. Omitted = the approved default. No match\
-            \ = 409."
+            \ The unambiguous selection key. Must come from a number on `profileId`.\
+            \ Omitted = the approved default. No match on this profile = 409."
           type: string
         reuseFrom:
           description: "Legacy fallback for `reuseOptionId`: the source phone number\
             \ (GET reusable.options[].fromPhoneNumber). Ambiguous when a number labels\
-            \ two verifications, so prefer `reuseOptionId`. Omitted = the approved\
-            \ default. No match = 409."
+            \ two verifications, so prefer `reuseOptionId`. Must be a number on `profileId`.\
+            \ Omitted = the approved default. No match on this profile = 409."
           type: string
         areaCode:
           description: |-

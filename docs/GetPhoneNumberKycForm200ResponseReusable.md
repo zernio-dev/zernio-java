@@ -2,7 +2,7 @@
 
 # GetPhoneNumberKycForm200ResponseReusable
 
-Present when this account already has a reusable verification for the country (skip the form).  - `fromPhoneNumber`/`details` mirror the first option. - `options` lists ALL reusable verifications (agencies hold one per end client), approved-first. Pass the chosen option's `id` as `reuseOptionId` on POST. - Each option's `instant` says whether it activates in minutes (group-approved) or still queues for carrier review (1-3 days). 
+Present when a number on the requested profile already holds a reusable verification for the country (skip the form). Without `profileId` it covers the whole account, except for keys and team members limited to some profiles, who get none.  - `fromPhoneNumber`/`details` mirror the first option. - `options` lists the reusable verifications held by numbers on `profileId` (all of the account's when omitted), approved-first. Pass the chosen option's `id` as `reuseOptionId` on POST. - Each option's `instant` says whether it activates in minutes (group-approved) or still queues for carrier review (1-3 days). 
 
 ## Properties
 

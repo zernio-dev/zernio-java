@@ -1429,7 +1429,7 @@ ApiResponse<[**GetPhoneNumberClaim200Response**](GetPhoneNumberClaim200Response.
 
 ## getPhoneNumberKycForm
 
-> GetPhoneNumberKycForm200Response getPhoneNumberKycForm(country, numberType)
+> GetPhoneNumberKycForm200Response getPhoneNumberKycForm(country, numberType, profileId)
 
 Get KYC form spec
 
@@ -1458,8 +1458,9 @@ public class Example {
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         String country = "country_example"; // String | 
         String numberType = "local"; // String | Requirements and reuse eligibility are per (country, type). Omitted = the country's default type. Pass the same value on the POST.
+        String profileId = "profileId_example"; // String | Profile the order is for. When given, `reusable.options` only lists verifications held by numbers on this profile. A key or team member limited to some profiles must pass it to get any options.
         try {
-            GetPhoneNumberKycForm200Response result = apiInstance.getPhoneNumberKycForm(country, numberType);
+            GetPhoneNumberKycForm200Response result = apiInstance.getPhoneNumberKycForm(country, numberType, profileId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PhoneNumbersApi#getPhoneNumberKycForm");
@@ -1479,6 +1480,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**|  | |
 | **numberType** | **String**| Requirements and reuse eligibility are per (country, type). Omitted &#x3D; the country&#39;s default type. Pass the same value on the POST. | [optional] [enum: local, mobile, national, toll_free] |
+| **profileId** | **String**| Profile the order is for. When given, &#x60;reusable.options&#x60; only lists verifications held by numbers on this profile. A key or team member limited to some profiles must pass it to get any options. | [optional] |
 
 ### Return type
 
@@ -1498,12 +1500,14 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The KYC form spec. |  -  |
-| **400** | Country not available |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | API key does not have access to this profile. |  -  |
+| **404** | Profile not found or access denied. |  -  |
 
 ## getPhoneNumberKycFormWithHttpInfo
 
-> ApiResponse<GetPhoneNumberKycForm200Response> getPhoneNumberKycForm getPhoneNumberKycFormWithHttpInfo(country, numberType)
+> ApiResponse<GetPhoneNumberKycForm200Response> getPhoneNumberKycForm getPhoneNumberKycFormWithHttpInfo(country, numberType, profileId)
 
 Get KYC form spec
 
@@ -1533,8 +1537,9 @@ public class Example {
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         String country = "country_example"; // String | 
         String numberType = "local"; // String | Requirements and reuse eligibility are per (country, type). Omitted = the country's default type. Pass the same value on the POST.
+        String profileId = "profileId_example"; // String | Profile the order is for. When given, `reusable.options` only lists verifications held by numbers on this profile. A key or team member limited to some profiles must pass it to get any options.
         try {
-            ApiResponse<GetPhoneNumberKycForm200Response> response = apiInstance.getPhoneNumberKycFormWithHttpInfo(country, numberType);
+            ApiResponse<GetPhoneNumberKycForm200Response> response = apiInstance.getPhoneNumberKycFormWithHttpInfo(country, numberType, profileId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1556,6 +1561,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**|  | |
 | **numberType** | **String**| Requirements and reuse eligibility are per (country, type). Omitted &#x3D; the country&#39;s default type. Pass the same value on the POST. | [optional] [enum: local, mobile, national, toll_free] |
+| **profileId** | **String**| Profile the order is for. When given, &#x60;reusable.options&#x60; only lists verifications held by numbers on this profile. A key or team member limited to some profiles must pass it to get any options. | [optional] |
 
 ### Return type
 
@@ -1575,8 +1581,10 @@ ApiResponse<[**GetPhoneNumberKycForm200Response**](GetPhoneNumberKycForm200Respo
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The KYC form spec. |  -  |
-| **400** | Country not available |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | API key does not have access to this profile. |  -  |
+| **404** | Profile not found or access denied. |  -  |
 
 
 ## getPhoneNumberPortClaim
