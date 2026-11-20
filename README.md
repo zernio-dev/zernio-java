@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.715.0
+- API version: 1.716.0
 
-- Build date: 2026-11-20T20:13:34.514769713Z[Etc/UTC]
+- Build date: 2026-11-20T22:50:23.945621757Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.715.0</version>
+  <version>1.716.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.715.0"
+compile "dev.zernio:zernio-sdk:1.716.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.715.0.jar`
+- `target/zernio-sdk-1.716.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2819,6 +2819,18 @@ Class | Method | HTTP request | Description
 *WorkflowsApi* | [**triggerWorkflowWithHttpInfo**](docs/WorkflowsApi.md#triggerWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run
 *WorkflowsApi* | [**updateWorkflow**](docs/WorkflowsApi.md#updateWorkflow) | **PATCH** /v1/workflows/{workflowId} | Update workflow
 *WorkflowsApi* | [**updateWorkflowWithHttpInfo**](docs/WorkflowsApi.md#updateWorkflowWithHttpInfo) | **PATCH** /v1/workflows/{workflowId} | Update workflow
+*WorkspacesApi* | [**createWorkspace**](docs/WorkspacesApi.md#createWorkspace) | **POST** /v1/workspaces | Create workspace
+*WorkspacesApi* | [**createWorkspaceWithHttpInfo**](docs/WorkspacesApi.md#createWorkspaceWithHttpInfo) | **POST** /v1/workspaces | Create workspace
+*WorkspacesApi* | [**createWorkspaceApiKey**](docs/WorkspacesApi.md#createWorkspaceApiKey) | **POST** /v1/workspaces/{workspaceId}/api-keys | Create workspace key
+*WorkspacesApi* | [**createWorkspaceApiKeyWithHttpInfo**](docs/WorkspacesApi.md#createWorkspaceApiKeyWithHttpInfo) | **POST** /v1/workspaces/{workspaceId}/api-keys | Create workspace key
+*WorkspacesApi* | [**deleteWorkspace**](docs/WorkspacesApi.md#deleteWorkspace) | **DELETE** /v1/workspaces/{workspaceId} | Delete workspace
+*WorkspacesApi* | [**deleteWorkspaceWithHttpInfo**](docs/WorkspacesApi.md#deleteWorkspaceWithHttpInfo) | **DELETE** /v1/workspaces/{workspaceId} | Delete workspace
+*WorkspacesApi* | [**getWorkspace**](docs/WorkspacesApi.md#getWorkspace) | **GET** /v1/workspaces/{workspaceId} | Get workspace
+*WorkspacesApi* | [**getWorkspaceWithHttpInfo**](docs/WorkspacesApi.md#getWorkspaceWithHttpInfo) | **GET** /v1/workspaces/{workspaceId} | Get workspace
+*WorkspacesApi* | [**listWorkspaces**](docs/WorkspacesApi.md#listWorkspaces) | **GET** /v1/workspaces | List workspaces
+*WorkspacesApi* | [**listWorkspacesWithHttpInfo**](docs/WorkspacesApi.md#listWorkspacesWithHttpInfo) | **GET** /v1/workspaces | List workspaces
+*WorkspacesApi* | [**updateWorkspace**](docs/WorkspacesApi.md#updateWorkspace) | **PATCH** /v1/workspaces/{workspaceId} | Rename workspace
+*WorkspacesApi* | [**updateWorkspaceWithHttpInfo**](docs/WorkspacesApi.md#updateWorkspaceWithHttpInfo) | **PATCH** /v1/workspaces/{workspaceId} | Rename workspace
 
 
 ## Documentation for Models
@@ -3868,6 +3880,11 @@ Class | Method | HTTP request | Description
  - [CreateWorkflow200Response](docs/CreateWorkflow200Response.md)
  - [CreateWorkflow200ResponseWorkflow](docs/CreateWorkflow200ResponseWorkflow.md)
  - [CreateWorkflowRequest](docs/CreateWorkflowRequest.md)
+ - [CreateWorkspace201Response](docs/CreateWorkspace201Response.md)
+ - [CreateWorkspaceApiKey201Response](docs/CreateWorkspaceApiKey201Response.md)
+ - [CreateWorkspaceApiKeyRequest](docs/CreateWorkspaceApiKeyRequest.md)
+ - [CreateWorkspaceRequest](docs/CreateWorkspaceRequest.md)
+ - [CreateWorkspaceRequestApiKey](docs/CreateWorkspaceRequestApiKey.md)
  - [CreateYoutubePlaylist201Response](docs/CreateYoutubePlaylist201Response.md)
  - [CreateYoutubePlaylist201ResponsePlaylist](docs/CreateYoutubePlaylist201ResponsePlaylist.md)
  - [CreateYoutubePlaylistRequest](docs/CreateYoutubePlaylistRequest.md)
@@ -4683,6 +4700,7 @@ Class | Method | HTTP request | Description
  - [GetWorkflow200ResponseWorkflow](docs/GetWorkflow200ResponseWorkflow.md)
  - [GetWorkflowVersion200Response](docs/GetWorkflowVersion200Response.md)
  - [GetWorkflowVersion200ResponseVersion](docs/GetWorkflowVersion200ResponseVersion.md)
+ - [GetWorkspace200Response](docs/GetWorkspace200Response.md)
  - [GetYouTubeDailyViews400Response](docs/GetYouTubeDailyViews400Response.md)
  - [GetYouTubeDailyViews403Response](docs/GetYouTubeDailyViews403Response.md)
  - [GetYouTubeDailyViews500Response](docs/GetYouTubeDailyViews500Response.md)
@@ -5090,7 +5108,6 @@ Class | Method | HTTP request | Description
  - [ListContacts200Response](docs/ListContacts200Response.md)
  - [ListContacts200ResponseContactsInner](docs/ListContacts200ResponseContactsInner.md)
  - [ListContacts200ResponseFilters](docs/ListContacts200ResponseFilters.md)
- - [ListContacts200ResponsePagination](docs/ListContacts200ResponsePagination.md)
  - [ListConversionActions200Response](docs/ListConversionActions200Response.md)
  - [ListCreatorCampaigns200Response](docs/ListCreatorCampaigns200Response.md)
  - [ListCrmDeals200Response](docs/ListCrmDeals200Response.md)
@@ -5330,6 +5347,8 @@ Class | Method | HTTP request | Description
  - [ListWorkflowVersions200ResponseVersionsInner](docs/ListWorkflowVersions200ResponseVersionsInner.md)
  - [ListWorkflows200Response](docs/ListWorkflows200Response.md)
  - [ListWorkflows200ResponseWorkflowsInner](docs/ListWorkflows200ResponseWorkflowsInner.md)
+ - [ListWorkspaces200Response](docs/ListWorkspaces200Response.md)
+ - [ListWorkspaces200ResponsePagination](docs/ListWorkspaces200ResponsePagination.md)
  - [ListedAccount](docs/ListedAccount.md)
  - [LookupSmsNumber200Response](docs/LookupSmsNumber200Response.md)
  - [MarkConversationRead200Response](docs/MarkConversationRead200Response.md)
@@ -6353,6 +6372,7 @@ Class | Method | HTTP request | Description
  - [UpdateWorkflow200Response](docs/UpdateWorkflow200Response.md)
  - [UpdateWorkflow200ResponseWorkflow](docs/UpdateWorkflow200ResponseWorkflow.md)
  - [UpdateWorkflowRequest](docs/UpdateWorkflowRequest.md)
+ - [UpdateWorkspaceRequest](docs/UpdateWorkspaceRequest.md)
  - [UpdateYoutubeDefaultPlaylist200Response](docs/UpdateYoutubeDefaultPlaylist200Response.md)
  - [UpdateYoutubeDefaultPlaylistRequest](docs/UpdateYoutubeDefaultPlaylistRequest.md)
  - [UploadAdImage201Response](docs/UploadAdImage201Response.md)
@@ -6767,6 +6787,9 @@ Class | Method | HTTP request | Description
  - [WorkflowExecutionEvent](docs/WorkflowExecutionEvent.md)
  - [WorkflowNode](docs/WorkflowNode.md)
  - [WorkflowNodePosition](docs/WorkflowNodePosition.md)
+ - [Workspace](docs/Workspace.md)
+ - [WorkspaceWithBilling](docs/WorkspaceWithBilling.md)
+ - [WorkspaceWithBillingAllOfBilling](docs/WorkspaceWithBillingAllOfBilling.md)
  - [XApiOperation](docs/XApiOperation.md)
  - [XApiOperationTriggeredByInner](docs/XApiOperationTriggeredByInner.md)
  - [XApiPricing](docs/XApiPricing.md)

@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**success** | **Boolean** |  |  [optional] |
 |**sequences** | [**List&lt;ListSequences200ResponseSequencesInner&gt;**](ListSequences200ResponseSequencesInner.md) |  |  [optional] |
-|**pagination** | [**ListContacts200ResponsePagination**](ListContacts200ResponsePagination.md) |  |  [optional] |
+|**pagination** | [**ListWorkspaces200ResponsePagination**](ListWorkspaces200ResponsePagination.md) |  |  [optional] |
 
 
 

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.715.0
+  version: 1.716.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -182,6 +182,16 @@ tags:
 - description: |
     Generate invite tokens for adding members to a team.
   name: Invites
+- description: |
+    Create and manage the workspaces you belong to, and mint an API key for each. A workspace holds its own profiles, accounts, posts, keys and billing, so a product can keep one workspace per customer: create it, then create a key that acts in it.
+
+    Every key acts in the workspace it was created for, as its creator's membership there.
+
+    - Listing and reading take any key of yours.
+    - Creating a workspace takes a full-access key. Send `apiKey` to get its first key in the same call.
+    - Renaming, deleting and minting keys take a full-access key of that same workspace and the dashboard's role (owner or admin; delete is owner only). For another workspace, use the dashboard.
+    - A new workspace has no billing: its keys can read, and writes return 402 `workspace_billing_required` until billing is set up at `billing.setupUrl`.
+  name: Workspaces
 - description: |
     OAuth and credential flows for connecting accounts, plus per-platform selection
     steps (Facebook pages, Pinterest boards, LinkedIn organizations, Google Business Profile locations, etc.).
@@ -16332,6 +16342,437 @@ paths:
       tags:
       - API Keys
       x-resource-group: admin-plane
+      x-accepts:
+      - application/json
+  /v1/workspaces:
+    get:
+      description: "Lists every workspace the key's owner belongs to, with their role\
+        \ in each: teams first by name, their Personal workspace last. Any key of\
+        \ the owner lists them all, whatever workspace that key acts in."
+      operationId: listWorkspaces
+      parameters:
+      - description: Page size.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      - description: Number of workspaces to skip.
+        explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          minimum: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                workspaces:
+                - id: 6507a1b2c3d4e5f6a7b8c9d1
+                  name: Acme Corp
+                  personal: false
+                  role: owner
+                  createdAt: 2026-11-20T10:30:00.000Z
+                  deletionScheduledAt: null
+                - id: 6507a1b2c3d4e5f6a7b8c9d0
+                  name: Personal
+                  personal: true
+                  role: owner
+                  createdAt: 2026-01-15T10:30:00.000Z
+                  deletionScheduledAt: null
+                pagination:
+                  total: 2
+                  limit: 50
+                  skip: 0
+                  hasMore: false
+              schema:
+                $ref: "#/components/schemas/listWorkspaces_200_response"
+          description: Workspaces
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
+      summary: List workspaces
+      tags:
+      - Workspaces
+      x-resource-group: admin-plane
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Creates a new, empty workspace owned by the key's owner, for example one per client of your product.
+
+        - Send `apiKey` to get the new workspace's first key in the same call. A key only manages its own workspace, so no other key can mint one there later.
+        - The workspace has no billing. Its keys can read, but writes return 402 `workspace_billing_required` until billing is set up at `billing.setupUrl`.
+        - Needs a full-access key. Creation is capped at 5 a day and 20 owned workspaces without billing (429).
+      operationId: createWorkspace
+      requestBody:
+        content:
+          application/json:
+            example:
+              name: Acme Corp
+              apiKey:
+                name: Acme Corp production
+            schema:
+              $ref: "#/components/schemas/createWorkspace_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                workspace:
+                  id: 6507a1b2c3d4e5f6a7b8c9d1
+                  name: Acme Corp
+                  personal: false
+                  role: owner
+                  createdAt: 2026-11-20T10:30:00.000Z
+                  deletionScheduledAt: null
+                  billing:
+                    setUp: false
+                    setupUrl: https://zernio.com/dashboard/billing?workspace=6507a1b2c3d4e5f6a7b8c9d1
+                apiKey:
+                  id: 6507a1b2c3d4e5f6a7b8c9e0
+                  name: Acme Corp production
+                  keyPreview: sk_12345...90abcdef
+                  key: sk_1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+                  expiresAt: null
+                  createdAt: 2026-11-20T10:30:00.000Z
+                  scope: full
+                  profileIds: []
+                  permission: read-write
+                  disabledResourceGroups: []
+              schema:
+                $ref: "#/components/schemas/createWorkspace_201_response"
+          description: Created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The calling key acts in a workspace without billing, which\
+            \ cannot make changes through the API. Error code: workspace_billing_required.\
+            \ Set billing up for that workspace in the dashboard."
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Creation cap reached. Error code: workspace_daily_limit_reached\
+            \ (5 a day) or workspace_limit_reached (20 owned without billing)."
+      summary: Create workspace
+      tags:
+      - Workspaces
+      x-resource-group: admin-plane
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/workspaces/{workspaceId}:
+    delete:
+      description: |
+        Schedules the workspace for deletion 48 hours ahead, as the dashboard does. Members keep working, publishing is paused, and the owner or an admin can cancel from the dashboard until then. Only this workspace's data is deleted, never its members' accounts.
+
+        - Owner only, with a full-access key of this workspace. A key of another workspace gets 403; delete it from the dashboard.
+        - A Personal workspace is never deleted.
+        - Refused while the workspace owes a payment or holds a phone number or carrier registration (409 `deletion_blocked`).
+        - With a balance above $0, send `moveBalanceTo` (another billed workspace you own) or `forfeitBalance=true`. Balances are never refunded. Without either the call returns 422 `deletion_balance_choice`.
+      operationId: deleteWorkspace
+      parameters:
+      - description: A billed workspace you own that receives the remaining balance.
+        explode: true
+        in: query
+        name: moveBalanceTo
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Leave the remaining balance; it is written off when the workspace
+          is deleted.
+        explode: true
+        in: query
+        name: forfeitBalance
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                workspace:
+                  id: 6507a1b2c3d4e5f6a7b8c9d1
+                  name: Acme Corp
+                  personal: false
+                  role: owner
+                  createdAt: 2026-11-20T10:30:00.000Z
+                  deletionScheduledAt: 2026-11-22T10:30:00.000Z
+                  billing:
+                    setUp: true
+                    setupUrl: null
+              schema:
+                $ref: "#/components/schemas/getWorkspace_200_response"
+          description: Deletion scheduled
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The calling key acts in a workspace without billing, which\
+            \ cannot make changes through the API. Error code: workspace_billing_required.\
+            \ Set billing up for that workspace in the dashboard."
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Only the owner can delete a workspace (workspace_forbidden),\
+            \ with a full-access key of this workspace (insufficient_permissions otherwise)."
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Refused: personal_workspace, deletion_already_scheduled, or\
+            \ deletion_blocked (a payment due, a phone number or a carrier registration;\
+            \ the message names it)."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The workspace has a balance: send moveBalanceTo or forfeitBalance.\
+            \ Error code: deletion_balance_choice."
+      summary: Delete workspace
+      tags:
+      - Workspaces
+      x-resource-group: admin-plane
+      x-accepts:
+      - application/json
+    get:
+      description: "Returns one workspace the key's owner belongs to, with their role.\
+        \ Owners, admins and billing admins also get `billing` (whether it is set\
+        \ up, and where to set it up); members and viewers do not."
+      operationId: getWorkspace
+      parameters:
+      - explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                workspace:
+                  id: 6507a1b2c3d4e5f6a7b8c9d1
+                  name: Acme Corp
+                  personal: false
+                  role: admin
+                  createdAt: 2026-11-20T10:30:00.000Z
+                  deletionScheduledAt: null
+                  billing:
+                    setUp: true
+                    setupUrl: null
+              schema:
+                $ref: "#/components/schemas/getWorkspace_200_response"
+          description: Workspace
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/ResourceGroupForbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Get workspace
+      tags:
+      - Workspaces
+      x-resource-group: admin-plane
+      x-accepts:
+      - application/json
+    parameters:
+    - explode: false
+      in: path
+      name: workspaceId
+      required: true
+      schema:
+        type: string
+      style: simple
+    patch:
+      description: "Renames a workspace. Owner or admin there, with a full-access\
+        \ key of this workspace (a key of another workspace gets 403: rename it from\
+        \ the dashboard). Only a Personal workspace can be called \"Personal\"."
+      operationId: updateWorkspace
+      parameters:
+      - explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              name: Acme Corporation
+            schema:
+              $ref: "#/components/schemas/updateWorkspace_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                workspace:
+                  id: 6507a1b2c3d4e5f6a7b8c9d1
+                  name: Acme Corporation
+                  personal: false
+                  role: owner
+                  createdAt: 2026-11-20T10:30:00.000Z
+                  deletionScheduledAt: null
+                  billing:
+                    setUp: true
+                    setupUrl: null
+              schema:
+                $ref: "#/components/schemas/getWorkspace_200_response"
+          description: Renamed
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The calling key acts in a workspace without billing, which\
+            \ cannot make changes through the API. Error code: workspace_billing_required.\
+            \ Set billing up for that workspace in the dashboard."
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The role there cannot rename it (workspace_forbidden), the\
+            \ key is not a full-access key, or the key acts in another workspace (insufficient_permissions:\
+            \ use a key of this workspace or the dashboard)."
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Rename workspace
+      tags:
+      - Workspaces
+      x-resource-group: admin-plane
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/workspaces/{workspaceId}/api-keys:
+    post:
+      description: |
+        Creates another API key that acts in this workspace as its creator. It covers every profile, and its full value is returned only once.
+
+        - The caller must be owner or admin there.
+        - The calling credential must be a full-access key of this same workspace. Profile-scoped, restricted and handed-over keys, OAuth tokens and keys of other workspaces get 403.
+        - For another workspace, use the dashboard. For a new one, send `apiKey` on `POST /v1/workspaces`.
+      operationId: createWorkspaceApiKey
+      parameters:
+      - explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              name: Acme Corp production
+              permission: read-write
+            schema:
+              $ref: "#/components/schemas/createWorkspaceApiKey_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                apiKey:
+                  id: 6507a1b2c3d4e5f6a7b8c9e0
+                  name: Acme Corp production
+                  keyPreview: sk_12345...90abcdef
+                  key: sk_1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+                  expiresAt: null
+                  createdAt: 2026-11-20T10:31:00.000Z
+                  scope: full
+                  profileIds: []
+                  permission: read-write
+                  disabledResourceGroups: []
+              schema:
+                $ref: "#/components/schemas/createWorkspaceApiKey_201_response"
+          description: Created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The calling key acts in a workspace without billing, which\
+            \ cannot make changes through the API. Error code: workspace_billing_required.\
+            \ Set billing up for that workspace in the dashboard."
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The caller is not owner or admin there (workspace_forbidden),\
+            \ or the calling credential is not a full-access key of this workspace\
+            \ (insufficient_permissions)."
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Create workspace key
+      tags:
+      - Workspaces
+      x-resource-group: admin-plane
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/content-retention:
@@ -122773,6 +123214,57 @@ components:
         followersCount: 0.8008281904610115
         growthPercentage: 5.962133916683182
         username: username
+    Workspace:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        deletionScheduledAt: 2000-01-23T04:56:07.000+00:00
+        role: owner
+        name: name
+        personal: true
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        personal:
+          description: "True for the caller's own Personal workspace, which is never\
+            \ shared, renamed or deleted."
+          type: boolean
+        role:
+          description: The caller's role in this workspace.
+          enum:
+          - owner
+          - admin
+          - billing_admin
+          - member
+          - viewer
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        deletionScheduledAt:
+          description: When a scheduled deletion runs; null when none is scheduled.
+          format: date-time
+          nullable: true
+          type: string
+    WorkspaceWithBilling:
+      allOf:
+      - $ref: "#/components/schemas/Workspace"
+      - properties:
+          billing:
+            $ref: "#/components/schemas/WorkspaceWithBilling_allOf_billing"
+      description: "A workspace, plus `billing` for owners, admins and billing admins."
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        deletionScheduledAt: 2000-01-23T04:56:07.000+00:00
+        role: owner
+        name: name
+        personal: true
+        id: id
+        billing:
+          setupUrl: setupUrl
+          setUp: true
     ApiKey:
       example:
         deletedProfileCount: 0
@@ -153655,6 +154147,229 @@ components:
           type: string
         apiKey:
           $ref: "#/components/schemas/ApiKey"
+    listWorkspaces_200_response_pagination:
+      example:
+        total: 0
+        limit: 6
+        hasMore: true
+        skip: 1
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        skip:
+          type: integer
+        hasMore:
+          type: boolean
+    listWorkspaces_200_response:
+      example:
+        pagination:
+          total: 0
+          limit: 6
+          hasMore: true
+          skip: 1
+        workspaces:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          deletionScheduledAt: 2000-01-23T04:56:07.000+00:00
+          role: owner
+          name: name
+          personal: true
+          id: id
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          deletionScheduledAt: 2000-01-23T04:56:07.000+00:00
+          role: owner
+          name: name
+          personal: true
+          id: id
+      properties:
+        workspaces:
+          items:
+            $ref: "#/components/schemas/Workspace"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listWorkspaces_200_response_pagination"
+    createWorkspace_request_apiKey:
+      description: "Mint a key that acts in the new workspace. The response then carries\
+        \ it in `apiKey`, with its full value shown only once."
+      properties:
+        name:
+          minLength: 1
+          type: string
+        permission:
+          default: read-write
+          enum:
+          - read-write
+          - read
+          type: string
+        expiresIn:
+          description: Days until expiry.
+          minimum: 1
+          type: integer
+        disabledResourceGroups:
+          items:
+            enum:
+            - publishing
+            - engagement
+            - messages
+            - contacts
+            - analytics
+            - ads
+            - telephony
+            - accounts
+            - billing
+            - webhooks
+            - commerce
+            - creator_campaigns
+            - money
+            - calendar
+            - files
+            type: string
+          type: array
+      required:
+      - name
+    createWorkspace_request:
+      properties:
+        name:
+          description: The workspace name. "Personal" is reserved (400 reserved_workspace_name).
+          maxLength: 80
+          minLength: 1
+          type: string
+        apiKey:
+          $ref: "#/components/schemas/createWorkspace_request_apiKey"
+      required:
+      - name
+    createWorkspace_201_response:
+      example:
+        workspace:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          deletionScheduledAt: 2000-01-23T04:56:07.000+00:00
+          role: owner
+          name: name
+          personal: true
+          id: id
+          billing:
+            setupUrl: setupUrl
+            setUp: true
+        apiKey:
+          deletedProfileCount: 0
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          createdBy:
+            id: id
+            email: email
+          scope: full
+          disabledResourceGroups:
+          - publishing
+          - publishing
+          name: name
+          keyPreview: keyPreview
+          profileIds:
+          - color: color
+            name: name
+            _id: _id
+          - color: color
+            name: name
+            _id: _id
+          permission: read-write
+          id: id
+          expiresAt: 2000-01-23T04:56:07.000+00:00
+          key: key
+      properties:
+        workspace:
+          $ref: "#/components/schemas/WorkspaceWithBilling"
+        apiKey:
+          $ref: "#/components/schemas/ApiKey"
+    getWorkspace_200_response:
+      example:
+        workspace:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          deletionScheduledAt: 2000-01-23T04:56:07.000+00:00
+          role: owner
+          name: name
+          personal: true
+          id: id
+          billing:
+            setupUrl: setupUrl
+            setUp: true
+      properties:
+        workspace:
+          $ref: "#/components/schemas/WorkspaceWithBilling"
+    updateWorkspace_request:
+      properties:
+        name:
+          description: The new name. "Personal" is reserved.
+          maxLength: 80
+          minLength: 1
+          type: string
+      required:
+      - name
+    createWorkspaceApiKey_request:
+      properties:
+        name:
+          minLength: 1
+          type: string
+        permission:
+          default: read-write
+          description: '''read'' restricts the key to GET requests.'
+          enum:
+          - read-write
+          - read
+          type: string
+        expiresIn:
+          description: Days until expiry. Omit for a key that never expires.
+          minimum: 1
+          type: integer
+        disabledResourceGroups:
+          description: "Resource groups the key cannot use, as on `POST /v1/api-keys`."
+          items:
+            enum:
+            - publishing
+            - engagement
+            - messages
+            - contacts
+            - analytics
+            - ads
+            - telephony
+            - accounts
+            - billing
+            - webhooks
+            - commerce
+            - creator_campaigns
+            - money
+            - calendar
+            - files
+            type: string
+          type: array
+      required:
+      - name
+    createWorkspaceApiKey_201_response:
+      example:
+        apiKey:
+          deletedProfileCount: 0
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          createdBy:
+            id: id
+            email: email
+          scope: full
+          disabledResourceGroups:
+          - publishing
+          - publishing
+          name: name
+          keyPreview: keyPreview
+          profileIds:
+          - color: color
+            name: name
+            _id: _id
+          - color: color
+            name: name
+            _id: _id
+          permission: read-write
+          id: id
+          expiresAt: 2000-01-23T04:56:07.000+00:00
+          key: key
+      properties:
+        apiKey:
+          $ref: "#/components/schemas/ApiKey"
     updateContentRetention_request:
       additionalProperties: {}
       properties:
@@ -184134,28 +184849,13 @@ components:
           items:
             type: string
           type: array
-    listContacts_200_response_pagination:
-      example:
-        total: 1
-        limit: 5
-        hasMore: true
-        skip: 5
-      properties:
-        total:
-          type: integer
-        limit:
-          type: integer
-        skip:
-          type: integer
-        hasMore:
-          type: boolean
     listContacts_200_response:
       example:
         pagination:
-          total: 1
-          limit: 5
+          total: 0
+          limit: 6
           hasMore: true
-          skip: 5
+          skip: 1
         success: true
         filters:
           tags:
@@ -184212,7 +184912,7 @@ components:
         filters:
           $ref: "#/components/schemas/listContacts_200_response_filters"
         pagination:
-          $ref: "#/components/schemas/listContacts_200_response_pagination"
+          $ref: "#/components/schemas/listWorkspaces_200_response_pagination"
     createContact_request:
       properties:
         profileId:
@@ -185122,10 +185822,10 @@ components:
     listBroadcasts_200_response:
       example:
         pagination:
-          total: 1
-          limit: 5
+          total: 0
+          limit: 6
           hasMore: true
-          skip: 5
+          skip: 1
         success: true
         broadcasts:
         - completedAt: 2000-01-23T04:56:07.000+00:00
@@ -185170,7 +185870,7 @@ components:
             $ref: "#/components/schemas/listBroadcasts_200_response_broadcasts_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/listContacts_200_response_pagination"
+          $ref: "#/components/schemas/listWorkspaces_200_response_pagination"
     createBroadcast_request_message_attachments_inner:
       properties:
         type:
@@ -185732,10 +186432,10 @@ components:
           failed: 7
           sent: 5
         pagination:
-          total: 1
-          limit: 5
+          total: 0
+          limit: 6
           hasMore: true
-          skip: 5
+          skip: 1
         success: true
         recipients:
         - errorExplanation: errorExplanation
@@ -185774,7 +186474,7 @@ components:
             $ref: "#/components/schemas/listBroadcastRecipients_200_response_recipients_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/listContacts_200_response_pagination"
+          $ref: "#/components/schemas/listWorkspaces_200_response_pagination"
         summary:
           $ref: "#/components/schemas/listBroadcastRecipients_200_response_summary"
     addBroadcastRecipients_request:
@@ -185976,10 +186676,10 @@ components:
     listWorkflows_200_response:
       example:
         pagination:
-          total: 1
-          limit: 5
+          total: 0
+          limit: 6
           hasMore: true
-          skip: 5
+          skip: 1
         success: true
         workflows:
         - accountId: accountId
@@ -186014,7 +186714,7 @@ components:
             $ref: "#/components/schemas/listWorkflows_200_response_workflows_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/listContacts_200_response_pagination"
+          $ref: "#/components/schemas/listWorkspaces_200_response_pagination"
     createWorkflow_request:
       properties:
         profileId:
@@ -186460,10 +187160,10 @@ components:
           status: running
           updatedAt: 2000-01-23T04:56:07.000+00:00
         pagination:
-          total: 1
-          limit: 5
+          total: 0
+          limit: 6
           hasMore: true
-          skip: 5
+          skip: 1
         success: true
       properties:
         success:
@@ -186473,7 +187173,7 @@ components:
             $ref: "#/components/schemas/listWorkflowExecutions_200_response_executions_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/listContacts_200_response_pagination"
+          $ref: "#/components/schemas/listWorkspaces_200_response_pagination"
     triggerWorkflow_request:
       description: Provide either `to` (WhatsApp phone) or `conversationId`.
       properties:
@@ -186955,10 +187655,10 @@ components:
     listSequences_200_response:
       example:
         pagination:
-          total: 1
-          limit: 5
+          total: 0
+          limit: 6
           hasMore: true
-          skip: 5
+          skip: 1
         success: true
         sequences:
         - exitOnUnsubscribe: true
@@ -186999,7 +187699,7 @@ components:
             $ref: "#/components/schemas/listSequences_200_response_sequences_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/listContacts_200_response_pagination"
+          $ref: "#/components/schemas/listWorkspaces_200_response_pagination"
     createSequence_request_steps_inner_template_variableMapping_value:
       properties:
         field:
@@ -187464,10 +188164,10 @@ components:
     listSequenceEnrollments_200_response:
       example:
         pagination:
-          total: 1
-          limit: 5
+          total: 0
+          limit: 6
           hasMore: true
-          skip: 5
+          skip: 1
         success: true
         enrollments:
         - nextStepAt: 2000-01-23T04:56:07.000+00:00
@@ -187502,7 +188202,7 @@ components:
             $ref: "#/components/schemas/listSequenceEnrollments_200_response_enrollments_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/listContacts_200_response_pagination"
+          $ref: "#/components/schemas/listWorkspaces_200_response_pagination"
     listCommentAutomations_200_response_automations_inner:
       example:
         template:
@@ -189484,10 +190184,10 @@ components:
     listCommentAutomationLogs_200_response:
       example:
         pagination:
-          total: 1
-          limit: 5
+          total: 0
+          limit: 6
           hasMore: true
-          skip: 5
+          skip: 1
         success: true
         misses:
           total: 0
@@ -189566,7 +190266,7 @@ components:
             $ref: "#/components/schemas/CommentAutomationLog"
           type: array
         pagination:
-          $ref: "#/components/schemas/listContacts_200_response_pagination"
+          $ref: "#/components/schemas/listWorkspaces_200_response_pagination"
         misses:
           $ref: "#/components/schemas/listCommentAutomationLogs_200_response_misses"
     listAds_202_response:
@@ -244133,6 +244833,20 @@ components:
         boardCount:
           description: Total boards (Pinterest)
           type: number
+    WorkspaceWithBilling_allOf_billing:
+      example:
+        setupUrl: setupUrl
+        setUp: true
+      properties:
+        setUp:
+          description: False until billing is set up. Until then keys of this workspace
+            can read but a write returns 402 workspace_billing_required.
+          type: boolean
+        setupUrl:
+          description: Dashboard page where a person sets billing up for this workspace;
+            null once it is set up.
+          nullable: true
+          type: string
     ApiKey_profileIds_inner:
       example:
         color: color
