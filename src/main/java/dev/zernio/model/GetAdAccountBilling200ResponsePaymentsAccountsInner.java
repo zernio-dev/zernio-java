@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GetAdAccountBilling200ResponsePaymentsAccountsInner.JSON_PROPERTY_PAYMENTS_PROFILE_ID,
   GetAdAccountBilling200ResponsePaymentsAccountsInner.JSON_PROPERTY_PAYING_MANAGER_CUSTOMER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-20T13:31:12.712820796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-20T13:36:38.227409563Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAccountBilling200ResponsePaymentsAccountsInner {
   public static final String JSON_PROPERTY_PAYMENTS_ACCOUNT_ID = "paymentsAccountId";
   @javax.annotation.Nullable

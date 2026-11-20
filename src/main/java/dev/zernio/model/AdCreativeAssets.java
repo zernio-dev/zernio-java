@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   AdCreativeAssets.JSON_PROPERTY_MARKETING_IMAGES,
   AdCreativeAssets.JSON_PROPERTY_SQUARE_MARKETING_IMAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-20T13:31:12.712820796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-20T13:36:38.227409563Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreativeAssets {
   public static final String JSON_PROPERTY_MARKETING_IMAGES = "marketingImages";
   @javax.annotation.Nullable

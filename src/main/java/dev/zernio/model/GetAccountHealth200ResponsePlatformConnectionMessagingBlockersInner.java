@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GetAccountHealth200ResponsePlatformConnectionMessagingBlockersInner.JSON_PROPERTY_DESCRIPTION,
   GetAccountHealth200ResponsePlatformConnectionMessagingBlockersInner.JSON_PROPERTY_POSSIBLE_SOLUTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-20T13:31:12.712820796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-20T13:36:38.227409563Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAccountHealth200ResponsePlatformConnectionMessagingBlockersInner {
   public static final String JSON_PROPERTY_ENTITY_TYPE = "entityType";
   private JsonNullable<String> entityType = JsonNullable.<String>undefined();
