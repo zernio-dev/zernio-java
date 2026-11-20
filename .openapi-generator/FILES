@@ -8167,16 +8167,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GoogleAdsPlatformQueryBodyTest.java
-src/test/java/dev/zernio/model/GoogleAnalyticsPlatformQueryBodyOneOf1MinuteRangesInnerTest.java
-src/test/java/dev/zernio/model/GoogleAnalyticsPlatformQueryBodyOneOf1Test.java
-src/test/java/dev/zernio/model/GoogleAnalyticsPlatformQueryBodyOneOfDateRangesInnerTest.java
-src/test/java/dev/zernio/model/GoogleAnalyticsPlatformQueryBodyOneOfTest.java
-src/test/java/dev/zernio/model/GoogleAnalyticsPlatformQueryBodyTest.java
-src/test/java/dev/zernio/model/MetaAdsPlatformQueryBodyFilteringInnerTest.java
-src/test/java/dev/zernio/model/MetaAdsPlatformQueryBodyTest.java
-src/test/java/dev/zernio/model/MetaAdsPlatformQueryBodyTimeIncrementTest.java
-src/test/java/dev/zernio/model/PlatformQueryPageMetaTest.java
-src/test/java/dev/zernio/model/PlatformQueryPagePaginationTest.java
-src/test/java/dev/zernio/model/PlatformQueryPageTest.java
-src/test/java/dev/zernio/model/TikTokAdsPlatformQueryBodyTest.java

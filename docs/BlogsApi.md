@@ -1013,11 +1013,11 @@ ApiResponse<[**CreateBlogArticle201Response**](CreateBlogArticle201Response.md)>
 
 ## listBlogArticles
 
-> ListBlogArticles200Response listBlogArticles(accountId, blogId, limit, cursor)
+> ListBlogArticles200Response listBlogArticles(accountId, blogId, limit, cursor, handle)
 
 List blog articles
 
-Lists the articles of a blog. Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;).  ### Pagination  Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;. &#x60;nextCursor&#x60; is null when there are no more pages. Treat cursors as opaque and pass them unchanged.  ### Platform differences  - WordPress and Wix results include &#x60;status&#x60;, and include &#x60;publishDate&#x60; only for scheduled (&#x60;future&#x60;) posts. - Wix lists return &#x60;bodyHtml: null&#x60;; get the article for its body. - Webflow results report &#x60;status&#x60; as &#x60;publish&#x60; or &#x60;draft&#x60; only. 
+Lists the articles of a blog. Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;).  ### Pagination  Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;. &#x60;nextCursor&#x60; is null when there are no more pages. Treat cursors as opaque and pass them unchanged.  ### Find an article by handle  Pass &#x60;handle&#x60; to get that one article in any status (published, draft or scheduled), or an empty list. WordPress and Webflow only.  Use it after a &#x60;502&#x60; on create to see whether the article exists.  ### Platform differences  - WordPress and Wix results include &#x60;status&#x60;, and include &#x60;publishDate&#x60; only for scheduled (&#x60;future&#x60;) posts. - Wix lists return &#x60;bodyHtml: null&#x60;; get the article for its body. - Webflow results report &#x60;status&#x60; as &#x60;publish&#x60; or &#x60;draft&#x60; only. 
 
 ### Example
 
@@ -1044,8 +1044,9 @@ public class Example {
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
         Integer limit = 20; // Integer | Page size (1-50).
         String cursor = "cursor_example"; // String | Opaque cursor from a previous response. Omit for the first page.
+        String handle = "handle_example"; // String | Only the article with this handle, in any status. WordPress and Webflow only.
         try {
-            ListBlogArticles200Response result = apiInstance.listBlogArticles(accountId, blogId, limit, cursor);
+            ListBlogArticles200Response result = apiInstance.listBlogArticles(accountId, blogId, limit, cursor, handle);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BlogsApi#listBlogArticles");
@@ -1067,6 +1068,7 @@ public class Example {
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
 | **limit** | **Integer**| Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **String**| Opaque cursor from a previous response. Omit for the first page. | [optional] |
+| **handle** | **String**| Only the article with this handle, in any status. WordPress and Webflow only. | [optional] |
 
 ### Return type
 
@@ -1096,11 +1098,11 @@ public class Example {
 
 ## listBlogArticlesWithHttpInfo
 
-> ApiResponse<ListBlogArticles200Response> listBlogArticles listBlogArticlesWithHttpInfo(accountId, blogId, limit, cursor)
+> ApiResponse<ListBlogArticles200Response> listBlogArticles listBlogArticlesWithHttpInfo(accountId, blogId, limit, cursor, handle)
 
 List blog articles
 
-Lists the articles of a blog. Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;).  ### Pagination  Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;. &#x60;nextCursor&#x60; is null when there are no more pages. Treat cursors as opaque and pass them unchanged.  ### Platform differences  - WordPress and Wix results include &#x60;status&#x60;, and include &#x60;publishDate&#x60; only for scheduled (&#x60;future&#x60;) posts. - Wix lists return &#x60;bodyHtml: null&#x60;; get the article for its body. - Webflow results report &#x60;status&#x60; as &#x60;publish&#x60; or &#x60;draft&#x60; only. 
+Lists the articles of a blog. Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;).  ### Pagination  Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;. &#x60;nextCursor&#x60; is null when there are no more pages. Treat cursors as opaque and pass them unchanged.  ### Find an article by handle  Pass &#x60;handle&#x60; to get that one article in any status (published, draft or scheduled), or an empty list. WordPress and Webflow only.  Use it after a &#x60;502&#x60; on create to see whether the article exists.  ### Platform differences  - WordPress and Wix results include &#x60;status&#x60;, and include &#x60;publishDate&#x60; only for scheduled (&#x60;future&#x60;) posts. - Wix lists return &#x60;bodyHtml: null&#x60;; get the article for its body. - Webflow results report &#x60;status&#x60; as &#x60;publish&#x60; or &#x60;draft&#x60; only. 
 
 ### Example
 
@@ -1128,8 +1130,9 @@ public class Example {
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
         Integer limit = 20; // Integer | Page size (1-50).
         String cursor = "cursor_example"; // String | Opaque cursor from a previous response. Omit for the first page.
+        String handle = "handle_example"; // String | Only the article with this handle, in any status. WordPress and Webflow only.
         try {
-            ApiResponse<ListBlogArticles200Response> response = apiInstance.listBlogArticlesWithHttpInfo(accountId, blogId, limit, cursor);
+            ApiResponse<ListBlogArticles200Response> response = apiInstance.listBlogArticlesWithHttpInfo(accountId, blogId, limit, cursor, handle);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1153,6 +1156,7 @@ public class Example {
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
 | **limit** | **Integer**| Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **String**| Opaque cursor from a previous response. Omit for the first page. | [optional] |
+| **handle** | **String**| Only the article with this handle, in any status. WordPress and Webflow only. | [optional] |
 
 ### Return type
 
