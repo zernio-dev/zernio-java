@@ -1081,6 +1081,7 @@ docs/CreateWorkflow200Response.md
 docs/CreateWorkflow200ResponseWorkflow.md
 docs/CreateWorkflowRequest.md
 docs/CreateWorkspace201Response.md
+docs/CreateWorkspace201ResponseApiKeyError.md
 docs/CreateWorkspaceApiKey201Response.md
 docs/CreateWorkspaceApiKeyRequest.md
 docs/CreateWorkspaceRequest.md
@@ -5252,6 +5253,7 @@ src/main/java/dev/zernio/model/CreateWorkflow200Response.java
 src/main/java/dev/zernio/model/CreateWorkflow200ResponseWorkflow.java
 src/main/java/dev/zernio/model/CreateWorkflowRequest.java
 src/main/java/dev/zernio/model/CreateWorkspace201Response.java
+src/main/java/dev/zernio/model/CreateWorkspace201ResponseApiKeyError.java
 src/main/java/dev/zernio/model/CreateWorkspaceApiKey201Response.java
 src/main/java/dev/zernio/model/CreateWorkspaceApiKeyRequest.java
 src/main/java/dev/zernio/model/CreateWorkspaceRequest.java
@@ -8203,3 +8205,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateWorkspace201ResponseApiKeyErrorTest.java

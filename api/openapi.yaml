@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.716.1
+  version: 1.717.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -154119,35 +154119,15 @@ components:
       - name
     createApiKey_201_response:
       example:
-        apiKey:
-          deletedProfileCount: 0
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          createdBy:
-            id: id
-            email: email
-          scope: full
-          disabledResourceGroups:
-          - publishing
-          - publishing
-          name: name
-          keyPreview: keyPreview
-          profileIds:
-          - color: color
-            name: name
-            _id: _id
-          - color: color
-            name: name
-            _id: _id
-          permission: read-write
-          id: id
-          expiresAt: 2000-01-23T04:56:07.000+00:00
-          key: key
+        apiKey: ""
         message: message
       properties:
         message:
           type: string
         apiKey:
-          $ref: "#/components/schemas/ApiKey"
+          allOf:
+          - $ref: "#/components/schemas/ApiKey"
+          nullable: true
     listWorkspaces_200_response_pagination:
       example:
         total: 0
@@ -154240,6 +154220,20 @@ components:
           $ref: "#/components/schemas/createWorkspace_request_apiKey"
       required:
       - name
+    createWorkspace_201_response_apiKeyError:
+      description: "Present only when `apiKey` is null. The workspace exists; create\
+        \ its key from the dashboard instead of retrying the call, which would create\
+        \ a second workspace."
+      example:
+        code: api_key_not_created
+        message: message
+      properties:
+        code:
+          enum:
+          - api_key_not_created
+          type: string
+        message:
+          type: string
     createWorkspace_201_response:
       example:
         workspace:
@@ -154252,34 +154246,19 @@ components:
           billing:
             setupUrl: setupUrl
             setUp: true
-        apiKey:
-          deletedProfileCount: 0
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          createdBy:
-            id: id
-            email: email
-          scope: full
-          disabledResourceGroups:
-          - publishing
-          - publishing
-          name: name
-          keyPreview: keyPreview
-          profileIds:
-          - color: color
-            name: name
-            _id: _id
-          - color: color
-            name: name
-            _id: _id
-          permission: read-write
-          id: id
-          expiresAt: 2000-01-23T04:56:07.000+00:00
-          key: key
+        apiKey: ""
+        apiKeyError:
+          code: api_key_not_created
+          message: message
       properties:
         workspace:
           $ref: "#/components/schemas/WorkspaceWithBilling"
         apiKey:
-          $ref: "#/components/schemas/ApiKey"
+          allOf:
+          - $ref: "#/components/schemas/ApiKey"
+          nullable: true
+        apiKeyError:
+          $ref: "#/components/schemas/createWorkspace_201_response_apiKeyError"
     getWorkspace_200_response:
       example:
         workspace:
@@ -154345,32 +154324,12 @@ components:
       - name
     createWorkspaceApiKey_201_response:
       example:
-        apiKey:
-          deletedProfileCount: 0
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          createdBy:
-            id: id
-            email: email
-          scope: full
-          disabledResourceGroups:
-          - publishing
-          - publishing
-          name: name
-          keyPreview: keyPreview
-          profileIds:
-          - color: color
-            name: name
-            _id: _id
-          - color: color
-            name: name
-            _id: _id
-          permission: read-write
-          id: id
-          expiresAt: 2000-01-23T04:56:07.000+00:00
-          key: key
+        apiKey: ""
       properties:
         apiKey:
-          $ref: "#/components/schemas/ApiKey"
+          allOf:
+          - $ref: "#/components/schemas/ApiKey"
+          nullable: true
     updateContentRetention_request:
       additionalProperties: {}
       properties:
