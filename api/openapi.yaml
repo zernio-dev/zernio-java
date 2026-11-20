@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.705.0
+  version: 1.706.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -115513,6 +115513,11 @@ components:
             The limits are the hourly posting velocity limit and, on a TikTok account connected through the TikTok for Business app, the daily cap of 15 videos and 15 photo posts.
 
             A held post keeps status pending and its scheduledFor moves to that timestamp. It is not failed.
+
+            A failed payment that paused publishing also holds the post (pending, not failed), with a notice that it publishes once the payment method is updated:
+
+            - It publishes within minutes of the payment clearing.
+            - It fails with "Publishing blocked: payment failed" when still unpaid 24 hours after its scheduled time, or when paid later than that.
           type: string
         errorCategory:
           description: |
@@ -251368,8 +251373,8 @@ x-documentation:
     - `balance.low` - Balance billing: the balance dropped below the low-balance alert set on auto top-up (`alertBelowCents`), once per drop, unless an auto top-up is already covering it
     - `balance.empty` - Balance billing: the balance reached $0 and no auto top-up covered it, so pay-per-use calls answer 402 until it is funded. Carries that 402 `code` and `fundingUrl`
     - `balance.charged` - Balance billing: funds were added to the balance by card, by you or by auto top-up (`topup.trigger`), with the amount, the VAT and the card charge
-    - `billing.publishing_blocked` - A failed payment paused the billing owner's account: the API answers 402 and scheduled posts fail until it is paid. Fires once per pause
-    - `billing.publishing_unblocked` - The paused account was paid and publishing resumed
+    - `billing.publishing_blocked` - A failed payment paused the billing owner's account: the API answers 402 and posts that come due are held (pending) until it is paid. Fires once per pause
+    - `billing.publishing_unblocked` - The paused account was paid and publishing resumed: held posts publish, except those more than 24 hours past their scheduled time, which fail
     - `notification.sent` - Built for agents: one event for every notification we would email (a scheduled post failed to publish, or a connected account was disconnected), with the email's `subject` and `text`, references to the post or account, and the `actions` that resolve it. Fires regardless of the user's email toggles, and whether or not an email can be sent. The user's notification channel (Slack or Telegram) follows the toggles instead. To keep post and account state in sync, use `post.platform.failed`, `post.failed` and `account.disconnected`
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 

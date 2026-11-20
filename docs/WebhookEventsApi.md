@@ -5029,7 +5029,7 @@ ApiResponse<Void>
 
 Publishing paused for a failed payment
 
-A failed payment paused the billing owner&#39;s account. Until it is paid, every API call answers 402 &#x60;PAYMENT_REQUIRED&#x60; and posts that come due fail with \&quot;Publishing blocked: payment failed\&quot;.  ### When it fires  Once per pause. &#x60;billing.reason&#x60; says why: the card was declined (&#x60;payment_failed&#x60;), there is no card (&#x60;no_payment_method&#x60;), or the billing address was refused (&#x60;invalid_billing_address&#x60;). Pay or replace the card at &#x60;billingUrl&#x60;.  ### Who receives it  The billing owner&#39;s endpoints. Restricted keys need the &#x60;money&#x60; resource group. 
+A failed payment paused the billing owner&#39;s account. Until it is paid, every API call answers 402 &#x60;PAYMENT_REQUIRED&#x60;.  ### Scheduled posts during the pause  Posts that come due are held, not failed: &#x60;platforms[].status&#x60; stays &#x60;pending&#x60; and &#x60;errorMessage&#x60; says the post waits for the payment. No platform is called.  - Paid within 24 hours of a post&#39;s scheduled time: the post publishes within minutes of &#x60;billing.publishing_unblocked&#x60;. - Not paid by then: the post fails with \&quot;Publishing blocked: payment failed\&quot; and &#x60;post.failed&#x60; (or &#x60;post.partial&#x60;) fires as usual. Retry it once paid. - A Terms of Service hold is not a billing pause: its posts fail at once, as before.  ### When it fires  Once per pause. &#x60;billing.reason&#x60; says why: the card was declined (&#x60;payment_failed&#x60;), there is no card (&#x60;no_payment_method&#x60;), or the billing address was refused (&#x60;invalid_billing_address&#x60;). Pay or replace the card at &#x60;billingUrl&#x60;.  ### Who receives it  The billing owner&#39;s endpoints. Restricted keys need the &#x60;money&#x60; resource group. 
 
 ### Example
 
@@ -5098,7 +5098,7 @@ null (empty response body)
 
 Publishing paused for a failed payment
 
-A failed payment paused the billing owner&#39;s account. Until it is paid, every API call answers 402 &#x60;PAYMENT_REQUIRED&#x60; and posts that come due fail with \&quot;Publishing blocked: payment failed\&quot;.  ### When it fires  Once per pause. &#x60;billing.reason&#x60; says why: the card was declined (&#x60;payment_failed&#x60;), there is no card (&#x60;no_payment_method&#x60;), or the billing address was refused (&#x60;invalid_billing_address&#x60;). Pay or replace the card at &#x60;billingUrl&#x60;.  ### Who receives it  The billing owner&#39;s endpoints. Restricted keys need the &#x60;money&#x60; resource group. 
+A failed payment paused the billing owner&#39;s account. Until it is paid, every API call answers 402 &#x60;PAYMENT_REQUIRED&#x60;.  ### Scheduled posts during the pause  Posts that come due are held, not failed: &#x60;platforms[].status&#x60; stays &#x60;pending&#x60; and &#x60;errorMessage&#x60; says the post waits for the payment. No platform is called.  - Paid within 24 hours of a post&#39;s scheduled time: the post publishes within minutes of &#x60;billing.publishing_unblocked&#x60;. - Not paid by then: the post fails with \&quot;Publishing blocked: payment failed\&quot; and &#x60;post.failed&#x60; (or &#x60;post.partial&#x60;) fires as usual. Retry it once paid. - A Terms of Service hold is not a billing pause: its posts fail at once, as before.  ### When it fires  Once per pause. &#x60;billing.reason&#x60; says why: the card was declined (&#x60;payment_failed&#x60;), there is no card (&#x60;no_payment_method&#x60;), or the billing address was refused (&#x60;invalid_billing_address&#x60;). Pay or replace the card at &#x60;billingUrl&#x60;.  ### Who receives it  The billing owner&#39;s endpoints. Restricted keys need the &#x60;money&#x60; resource group. 
 
 ### Example
 
@@ -5171,7 +5171,7 @@ ApiResponse<Void>
 
 Publishing resumed after payment
 
-The account paused by &#x60;billing.publishing_blocked&#x60; was paid: the API accepts calls again and scheduled posts publish. Posts that failed during the pause stay failed; retry them with &#x60;POST /v1/posts/{postId}/retry&#x60;. 
+The account paused by &#x60;billing.publishing_blocked&#x60; was paid: the API accepts calls again and scheduled posts publish.  Posts held during the pause publish within minutes, unless their scheduled time is more than 24 hours past: those fail with \&quot;Publishing blocked: payment failed\&quot; instead of going out late. Posts that failed stay failed; retry them with &#x60;POST /v1/posts/{postId}/retry&#x60;. 
 
 ### Example
 
@@ -5240,7 +5240,7 @@ null (empty response body)
 
 Publishing resumed after payment
 
-The account paused by &#x60;billing.publishing_blocked&#x60; was paid: the API accepts calls again and scheduled posts publish. Posts that failed during the pause stay failed; retry them with &#x60;POST /v1/posts/{postId}/retry&#x60;. 
+The account paused by &#x60;billing.publishing_blocked&#x60; was paid: the API accepts calls again and scheduled posts publish.  Posts held during the pause publish within minutes, unless their scheduled time is more than 24 hours past: those fail with \&quot;Publishing blocked: payment failed\&quot; instead of going out late. Posts that failed stay failed; retry them with &#x60;POST /v1/posts/{postId}/retry&#x60;. 
 
 ### Example
 
