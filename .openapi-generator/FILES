@@ -1255,6 +1255,10 @@ docs/DuplicateAdSetRequest.md
 docs/DuplicateCommerceProductRequest.md
 docs/DuplicateWorkflow201Response.md
 docs/DuplicateWorkflow201ResponseWorkflow.md
+docs/EditAdNegativeKeywordListKeywordsRequest.md
+docs/EditCampaignNegativeKeywordListsRequest.md
+docs/EditCampaignNegativeKeywords200Response.md
+docs/EditCampaignNegativeKeywordsRequest.md
 docs/EditDiscordGuildRoleRequest.md
 docs/EditGoogleAssetGroupAssets200Response.md
 docs/EditGoogleAssetGroupAssetsRequest.md
@@ -5430,6 +5434,10 @@ src/main/java/dev/zernio/model/DuplicateAdSetRequest.java
 src/main/java/dev/zernio/model/DuplicateCommerceProductRequest.java
 src/main/java/dev/zernio/model/DuplicateWorkflow201Response.java
 src/main/java/dev/zernio/model/DuplicateWorkflow201ResponseWorkflow.java
+src/main/java/dev/zernio/model/EditAdNegativeKeywordListKeywordsRequest.java
+src/main/java/dev/zernio/model/EditCampaignNegativeKeywordListsRequest.java
+src/main/java/dev/zernio/model/EditCampaignNegativeKeywords200Response.java
+src/main/java/dev/zernio/model/EditCampaignNegativeKeywordsRequest.java
 src/main/java/dev/zernio/model/EditDiscordGuildRoleRequest.java
 src/main/java/dev/zernio/model/EditGoogleAssetGroupAssets200Response.java
 src/main/java/dev/zernio/model/EditGoogleAssetGroupAssetsRequest.java
@@ -8221,3 +8229,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/EditAdNegativeKeywordListKeywordsRequestTest.java
+src/test/java/dev/zernio/model/EditCampaignNegativeKeywordListsRequestTest.java
+src/test/java/dev/zernio/model/EditCampaignNegativeKeywords200ResponseTest.java
+src/test/java/dev/zernio/model/EditCampaignNegativeKeywordsRequestTest.java

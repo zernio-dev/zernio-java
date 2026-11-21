@@ -36,6 +36,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteValueRuleSetWithHttpInfo**](AdAccountsApi.md#deleteValueRuleSetWithHttpInfo) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set |
 | [**detachAdLabel**](AdAccountsApi.md#detachAdLabel) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label |
 | [**detachAdLabelWithHttpInfo**](AdAccountsApi.md#detachAdLabelWithHttpInfo) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label |
+| [**editAdNegativeKeywordListKeywords**](AdAccountsApi.md#editAdNegativeKeywordListKeywords) | **PATCH** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Add or remove negative list keywords |
+| [**editAdNegativeKeywordListKeywordsWithHttpInfo**](AdAccountsApi.md#editAdNegativeKeywordListKeywordsWithHttpInfo) | **PATCH** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Add or remove negative list keywords |
 | [**getAdAccountBilling**](AdAccountsApi.md#getAdAccountBilling) | **GET** /v1/ads/accounts/billing | Get ad account billing |
 | [**getAdAccountBillingWithHttpInfo**](AdAccountsApi.md#getAdAccountBillingWithHttpInfo) | **GET** /v1/ads/accounts/billing | Get ad account billing |
 | [**getAdAccountFinance**](AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances |
@@ -2749,6 +2751,174 @@ ApiResponse<[**DetachAdLabel200Response**](DetachAdLabel200Response.md)>
 | **404** | Label not found on this customer, or account unavailable |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+
+## editAdNegativeKeywordListKeywords
+
+> ReplaceAdNegativeKeywordListKeywords200Response editAdNegativeKeywordListKeywords(listId, editAdNegativeKeywordListKeywordsRequest, idempotencyKey)
+
+Add or remove negative list keywords
+
+Adds and removes single keywords in a shared Google Ads negative keyword list without resending the full set, affecting every campaign that uses the list.  - &#x60;remove&#x60; matches by normalized text and match type, and wins over &#x60;add&#x60; for the same keyword. - Keywords already in the list are not added twice; keywords not in it are skipped on remove. - Creates and removals are applied atomically in one mutation.  ### Quota  Each create or removal consumes one daily operation; the entire batch must fit the remaining quota. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String listId = "listId_example"; // String | 
+        EditAdNegativeKeywordListKeywordsRequest editAdNegativeKeywordListKeywordsRequest = new EditAdNegativeKeywordListKeywordsRequest(); // EditAdNegativeKeywordListKeywordsRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
+        try {
+            ReplaceAdNegativeKeywordListKeywords200Response result = apiInstance.editAdNegativeKeywordListKeywords(listId, editAdNegativeKeywordListKeywordsRequest, idempotencyKey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#editAdNegativeKeywordListKeywords");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **listId** | **String**|  | |
+| **editAdNegativeKeywordListKeywordsRequest** | [**EditAdNegativeKeywordListKeywordsRequest**](EditAdNegativeKeywordListKeywordsRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
+
+### Return type
+
+[**ReplaceAdNegativeKeywordListKeywords200Response**](ReplaceAdNegativeKeywordListKeywords200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful response. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access and permission to the selected account are required.  Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the targeted ad account is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix it, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
+| **422** | Google Ads connection is missing or unavailable. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Available only on Google Ads. |  -  |
+
+## editAdNegativeKeywordListKeywordsWithHttpInfo
+
+> ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> editAdNegativeKeywordListKeywords editAdNegativeKeywordListKeywordsWithHttpInfo(listId, editAdNegativeKeywordListKeywordsRequest, idempotencyKey)
+
+Add or remove negative list keywords
+
+Adds and removes single keywords in a shared Google Ads negative keyword list without resending the full set, affecting every campaign that uses the list.  - &#x60;remove&#x60; matches by normalized text and match type, and wins over &#x60;add&#x60; for the same keyword. - Keywords already in the list are not added twice; keywords not in it are skipped on remove. - Creates and removals are applied atomically in one mutation.  ### Quota  Each create or removal consumes one daily operation; the entire batch must fit the remaining quota. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String listId = "listId_example"; // String | 
+        EditAdNegativeKeywordListKeywordsRequest editAdNegativeKeywordListKeywordsRequest = new EditAdNegativeKeywordListKeywordsRequest(); // EditAdNegativeKeywordListKeywordsRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
+        try {
+            ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> response = apiInstance.editAdNegativeKeywordListKeywordsWithHttpInfo(listId, editAdNegativeKeywordListKeywordsRequest, idempotencyKey);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#editAdNegativeKeywordListKeywords");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **listId** | **String**|  | |
+| **editAdNegativeKeywordListKeywordsRequest** | [**EditAdNegativeKeywordListKeywordsRequest**](EditAdNegativeKeywordListKeywordsRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
+
+### Return type
+
+ApiResponse<[**ReplaceAdNegativeKeywordListKeywords200Response**](ReplaceAdNegativeKeywordListKeywords200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful response. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access and permission to the selected account are required.  Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the targeted ad account is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix it, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
+| **422** | Google Ads connection is missing or unavailable. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Available only on Google Ads. |  -  |
 
 
 ## getAdAccountBilling

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.725.0
+- API version: 1.726.0
 
-- Build date: 2026-11-21T19:21:06.087179735Z[Etc/UTC]
+- Build date: 2026-11-21T19:26:27.125679338Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.725.0</version>
+  <version>1.726.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.725.0"
+compile "dev.zernio:zernio-sdk:1.726.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.725.0.jar`
+- `target/zernio-sdk-1.726.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -265,6 +265,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**deleteValueRuleSetWithHttpInfo**](docs/AdAccountsApi.md#deleteValueRuleSetWithHttpInfo) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set
 *AdAccountsApi* | [**detachAdLabel**](docs/AdAccountsApi.md#detachAdLabel) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label
 *AdAccountsApi* | [**detachAdLabelWithHttpInfo**](docs/AdAccountsApi.md#detachAdLabelWithHttpInfo) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label
+*AdAccountsApi* | [**editAdNegativeKeywordListKeywords**](docs/AdAccountsApi.md#editAdNegativeKeywordListKeywords) | **PATCH** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Add or remove negative list keywords
+*AdAccountsApi* | [**editAdNegativeKeywordListKeywordsWithHttpInfo**](docs/AdAccountsApi.md#editAdNegativeKeywordListKeywordsWithHttpInfo) | **PATCH** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Add or remove negative list keywords
 *AdAccountsApi* | [**getAdAccountBilling**](docs/AdAccountsApi.md#getAdAccountBilling) | **GET** /v1/ads/accounts/billing | Get ad account billing
 *AdAccountsApi* | [**getAdAccountBillingWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountBillingWithHttpInfo) | **GET** /v1/ads/accounts/billing | Get ad account billing
 *AdAccountsApi* | [**getAdAccountFinance**](docs/AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances
@@ -455,6 +457,10 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**duplicateAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
 *AdCampaignsApi* | [**duplicateAdSet**](docs/AdCampaignsApi.md#duplicateAdSet) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set
 *AdCampaignsApi* | [**duplicateAdSetWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdSetWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set
+*AdCampaignsApi* | [**editCampaignNegativeKeywordLists**](docs/AdCampaignsApi.md#editCampaignNegativeKeywordLists) | **PATCH** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | Attach or detach campaign negative lists
+*AdCampaignsApi* | [**editCampaignNegativeKeywordListsWithHttpInfo**](docs/AdCampaignsApi.md#editCampaignNegativeKeywordListsWithHttpInfo) | **PATCH** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | Attach or detach campaign negative lists
+*AdCampaignsApi* | [**editCampaignNegativeKeywords**](docs/AdCampaignsApi.md#editCampaignNegativeKeywords) | **PATCH** /v1/ads/campaigns/{campaignId}/negative-keywords | Add or remove campaign-level negative keywords
+*AdCampaignsApi* | [**editCampaignNegativeKeywordsWithHttpInfo**](docs/AdCampaignsApi.md#editCampaignNegativeKeywordsWithHttpInfo) | **PATCH** /v1/ads/campaigns/{campaignId}/negative-keywords | Add or remove campaign-level negative keywords
 *AdCampaignsApi* | [**editGoogleAssetGroupAssets**](docs/AdCampaignsApi.md#editGoogleAssetGroupAssets) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/assets | Link or unlink asset group assets
 *AdCampaignsApi* | [**editGoogleAssetGroupAssetsWithHttpInfo**](docs/AdCampaignsApi.md#editGoogleAssetGroupAssetsWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/assets | Link or unlink asset group assets
 *AdCampaignsApi* | [**getAd**](docs/AdCampaignsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details
@@ -4056,6 +4062,10 @@ Class | Method | HTTP request | Description
  - [DuplicateCommerceProductRequest](docs/DuplicateCommerceProductRequest.md)
  - [DuplicateWorkflow201Response](docs/DuplicateWorkflow201Response.md)
  - [DuplicateWorkflow201ResponseWorkflow](docs/DuplicateWorkflow201ResponseWorkflow.md)
+ - [EditAdNegativeKeywordListKeywordsRequest](docs/EditAdNegativeKeywordListKeywordsRequest.md)
+ - [EditCampaignNegativeKeywordListsRequest](docs/EditCampaignNegativeKeywordListsRequest.md)
+ - [EditCampaignNegativeKeywords200Response](docs/EditCampaignNegativeKeywords200Response.md)
+ - [EditCampaignNegativeKeywordsRequest](docs/EditCampaignNegativeKeywordsRequest.md)
  - [EditDiscordGuildRoleRequest](docs/EditDiscordGuildRoleRequest.md)
  - [EditGoogleAssetGroupAssets200Response](docs/EditGoogleAssetGroupAssets200Response.md)
  - [EditGoogleAssetGroupAssetsRequest](docs/EditGoogleAssetGroupAssetsRequest.md)
