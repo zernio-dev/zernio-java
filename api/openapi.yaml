@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.726.0
+  version: 1.727.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15297,10 +15297,10 @@ paths:
       - application/json
   /v1/accounts/health:
     get:
-      description: "Returns health status of all connected accounts including token\
-        \ validity, permissions, and issues needing attention. A failing or stalled\
-        \ analytics sync (see `analyticsSync`) raises a healthy account to at least\
-        \ warning."
+      description: |
+        Returns health status of all connected accounts including token validity, permissions, and issues needing attention. A failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least warning.
+
+        An account the platform has restricted or banned (for example a WhatsApp number Meta reports as BANNED) is `error`, with the platform's reason in `issues`. `needsReconnect` stays false, since reconnecting does not lift it.
       operationId: getAllAccountsHealth
       parameters:
       - description: Filter by profile ID
@@ -15610,6 +15610,8 @@ paths:
         Returns detailed health info for a specific account including token status, permissions, and recommendations.
 
         A failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least `warning`.
+
+        An account the platform has restricted or banned is `error`, with the platform's reason in `issues` and a recommendation that says reconnecting does not lift it.
 
         ### Facebook, Instagram and Threads
 
