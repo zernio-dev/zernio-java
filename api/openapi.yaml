@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.724.0
+  version: 1.725.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -54856,6 +54856,8 @@ paths:
         which replaces the set). Set `negative: true` to add ad-group-level negatives
         instead of positive keywords.
       operationId: addAdKeywords
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -54900,6 +54902,7 @@ paths:
         Removes one keyword criterion (positive or negative) from its ad group (M.140).
       operationId: removeAdKeyword
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - description: "Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}`\
           \ (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion\
           \ id is rejected because it is only unique within its ad group."
@@ -54948,6 +54951,7 @@ paths:
         Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid.
       operationId: updateAdKeyword
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - description: "Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}`\
           \ (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion\
           \ id is rejected because it is only unique within its ad group."
@@ -58645,6 +58649,7 @@ paths:
         A Meta code 190 with subcode 464 means Meta considers the Facebook user unconfirmed. It answers `400` `platform_api_error` and retrying does not clear it: the user must log in to facebook.com and complete what Meta asks (usually confirming their email or phone), then retry.
       operationId: updateAdCampaignStatus
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - description: Platform campaign ID
         explode: false
         in: path
@@ -58660,6 +58665,8 @@ paths:
               $ref: "#/components/schemas/updateAdCampaignStatus_request"
         required: true
       responses:
+        "409":
+          $ref: "#/components/responses/IdempotencyKeyInFlight"
         "200":
           content:
             application/json:
@@ -59332,6 +59339,7 @@ paths:
         - `bidStrategy` is set per ad group on Reddit (PUT /v1/ads/ad-sets/{adSetId}).
       operationId: updateAdCampaign
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - description: Platform campaign ID
         explode: false
         in: path
@@ -59491,6 +59499,7 @@ paths:
         campaign returns 501 rather than 404, whether or not `platform` was sent.
       operationId: replaceCampaignNegativeKeywords
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - description: Platform campaign ID
         explode: false
         in: path
@@ -59506,6 +59515,8 @@ paths:
               $ref: "#/components/schemas/replaceCampaignNegativeKeywords_request"
         required: true
       responses:
+        "409":
+          $ref: "#/components/responses/IdempotencyKeyInFlight"
         "200":
           content:
             application/json:
@@ -59546,6 +59557,8 @@ paths:
 
         `updated` / `skipped` count campaigns.
       operationId: bulkUpdateAdCampaignStatus
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -59560,6 +59573,8 @@ paths:
               $ref: "#/components/schemas/bulkUpdateAdCampaignStatus_request"
         required: true
       responses:
+        "409":
+          $ref: "#/components/responses/IdempotencyKeyInFlight"
         "200":
           content:
             application/json:
@@ -60590,6 +60605,7 @@ paths:
         Zernio never resends the PATCH on its own, so after a 5xx read the ad group back before retrying.
       operationId: updateAdSet
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - description: Platform ad set ID
         explode: false
         in: path
@@ -60771,6 +60787,7 @@ paths:
         On Meta the check reads the ad set's own switch (`status`). So a repeated request skips even while `platformAdSetStatus` reads `CAMPAIGN_PAUSED`, `WITH_ISSUES` or `IN_PROCESS`. On Reddit `platformAdSetStatus` is the ad group's own switch (`configured_status`), so a skipped request returns it as already in the requested state.
       operationId: updateAdSetStatus
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - description: Platform ad set ID
         explode: false
         in: path
@@ -61806,6 +61823,7 @@ paths:
         - Use `DELETE /v1/ads/keywords/{keywordId}` to remove it.
       operationId: updateAd
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - explode: false
         in: path
         name: adId
@@ -61890,6 +61908,8 @@ paths:
               $ref: "#/components/schemas/updateAd_request"
         required: true
       responses:
+        "409":
+          $ref: "#/components/responses/IdempotencyKeyInFlight"
         "200":
           content:
             application/json:
@@ -62020,6 +62040,7 @@ paths:
         A skip also returns that live read. The rolled-up `status` never decides a skip.
       operationId: updateAdStatus
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - description: "Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of\
           \ the creative's effective story/media IDs."
         explode: false
@@ -62036,6 +62057,8 @@ paths:
               $ref: "#/components/schemas/updateAdStatus_request"
         required: true
       responses:
+        "409":
+          $ref: "#/components/responses/IdempotencyKeyInFlight"
         "200":
           content:
             application/json:
@@ -67849,6 +67872,8 @@ paths:
 
         Creates one Google Ads shared negative keyword list with optional initial keywords in a single atomic mutation. Daily quota is reserved for every mutate item, so large batches may return 429 before any change. This operation is not idempotent. The list is not attached to any campaign.
       operationId: createAdNegativeKeywordList
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -67922,6 +67947,7 @@ paths:
         Detach it from all campaigns first; an in-use list is rejected. Only NEGATIVE_KEYWORDS shared sets are supported.
       operationId: deleteAdNegativeKeywordList
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - explode: false
         in: path
         name: listId
@@ -68161,6 +68187,7 @@ paths:
         Keywords and campaign associations are unchanged. Use the keywords endpoint to edit the desired keyword set.
       operationId: updateAdNegativeKeywordList
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - explode: false
         in: path
         name: listId
@@ -68244,6 +68271,7 @@ paths:
         Each create or removal consumes one daily operation; the entire batch must fit the remaining quota.
       operationId: replaceAdNegativeKeywordListKeywords
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - explode: false
         in: path
         name: listId
@@ -68414,6 +68442,7 @@ paths:
         Send listIds=[] to detach all negative keyword lists. Only campaign_shared_set links are changed; the lists and their keywords are preserved. Every list must belong to the campaign customer and have type NEGATIVE_KEYWORDS.
       operationId: replaceCampaignNegativeKeywordLists
       parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       - explode: false
         in: path
         name: campaignId

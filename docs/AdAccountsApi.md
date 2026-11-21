@@ -1425,7 +1425,7 @@ ApiResponse<[**CreateAdLabel201Response**](CreateAdLabel201Response.md)>
 
 ## createAdNegativeKeywordList
 
-> CreateAdNegativeKeywordList201Response createAdNegativeKeywordList(createAdNegativeKeywordListRequest)
+> CreateAdNegativeKeywordList201Response createAdNegativeKeywordList(createAdNegativeKeywordListRequest, idempotencyKey)
 
 Create a negative keyword list
 
@@ -1453,8 +1453,9 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest = new CreateAdNegativeKeywordListRequest(); // CreateAdNegativeKeywordListRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            CreateAdNegativeKeywordList201Response result = apiInstance.createAdNegativeKeywordList(createAdNegativeKeywordListRequest);
+            CreateAdNegativeKeywordList201Response result = apiInstance.createAdNegativeKeywordList(createAdNegativeKeywordListRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#createAdNegativeKeywordList");
@@ -1473,6 +1474,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createAdNegativeKeywordListRequest** | [**CreateAdNegativeKeywordListRequest**](CreateAdNegativeKeywordListRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -1503,7 +1505,7 @@ public class Example {
 
 ## createAdNegativeKeywordListWithHttpInfo
 
-> ApiResponse<CreateAdNegativeKeywordList201Response> createAdNegativeKeywordList createAdNegativeKeywordListWithHttpInfo(createAdNegativeKeywordListRequest)
+> ApiResponse<CreateAdNegativeKeywordList201Response> createAdNegativeKeywordList createAdNegativeKeywordListWithHttpInfo(createAdNegativeKeywordListRequest, idempotencyKey)
 
 Create a negative keyword list
 
@@ -1532,8 +1534,9 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest = new CreateAdNegativeKeywordListRequest(); // CreateAdNegativeKeywordListRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            ApiResponse<CreateAdNegativeKeywordList201Response> response = apiInstance.createAdNegativeKeywordListWithHttpInfo(createAdNegativeKeywordListRequest);
+            ApiResponse<CreateAdNegativeKeywordList201Response> response = apiInstance.createAdNegativeKeywordListWithHttpInfo(createAdNegativeKeywordListRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1554,6 +1557,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createAdNegativeKeywordListRequest** | [**CreateAdNegativeKeywordListRequest**](CreateAdNegativeKeywordListRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -2227,7 +2231,7 @@ ApiResponse<[**ReplyToAdComment200Response**](ReplyToAdComment200Response.md)>
 
 ## deleteAdNegativeKeywordList
 
-> DeleteAdNegativeKeywordList200Response deleteAdNegativeKeywordList(listId, accountId, adAccountId, customerId, platform)
+> DeleteAdNegativeKeywordList200Response deleteAdNegativeKeywordList(listId, accountId, idempotencyKey, adAccountId, customerId, platform)
 
 Delete a negative keyword list
 
@@ -2256,11 +2260,12 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String listId = "listId_example"; // String | 
         String accountId = "accountId_example"; // String | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         String platform = "facebook"; // String | 
         try {
-            DeleteAdNegativeKeywordList200Response result = apiInstance.deleteAdNegativeKeywordList(listId, accountId, adAccountId, customerId, platform);
+            DeleteAdNegativeKeywordList200Response result = apiInstance.deleteAdNegativeKeywordList(listId, accountId, idempotencyKey, adAccountId, customerId, platform);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#deleteAdNegativeKeywordList");
@@ -2280,6 +2285,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **listId** | **String**|  | |
 | **accountId** | **String**|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 | **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit] |
@@ -2313,7 +2319,7 @@ public class Example {
 
 ## deleteAdNegativeKeywordListWithHttpInfo
 
-> ApiResponse<DeleteAdNegativeKeywordList200Response> deleteAdNegativeKeywordList deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, adAccountId, customerId, platform)
+> ApiResponse<DeleteAdNegativeKeywordList200Response> deleteAdNegativeKeywordList deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, idempotencyKey, adAccountId, customerId, platform)
 
 Delete a negative keyword list
 
@@ -2343,11 +2349,12 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String listId = "listId_example"; // String | 
         String accountId = "accountId_example"; // String | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         String platform = "facebook"; // String | 
         try {
-            ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, adAccountId, customerId, platform);
+            ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, idempotencyKey, adAccountId, customerId, platform);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2369,6 +2376,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **listId** | **String**|  | |
 | **accountId** | **String**|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 | **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit] |
@@ -9717,7 +9725,7 @@ ApiResponse<[**RemovePageUser200Response**](RemovePageUser200Response.md)>
 
 ## replaceAdNegativeKeywordListKeywords
 
-> ReplaceAdNegativeKeywordListKeywords200Response replaceAdNegativeKeywordListKeywords(listId, replaceAdNegativeKeywordListKeywordsRequest)
+> ReplaceAdNegativeKeywordListKeywords200Response replaceAdNegativeKeywordListKeywords(listId, replaceAdNegativeKeywordListKeywordsRequest, idempotencyKey)
 
 Replace negative list keywords
 
@@ -9746,8 +9754,9 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String listId = "listId_example"; // String | 
         ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest = new ReplaceAdNegativeKeywordListKeywordsRequest(); // ReplaceAdNegativeKeywordListKeywordsRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            ReplaceAdNegativeKeywordListKeywords200Response result = apiInstance.replaceAdNegativeKeywordListKeywords(listId, replaceAdNegativeKeywordListKeywordsRequest);
+            ReplaceAdNegativeKeywordListKeywords200Response result = apiInstance.replaceAdNegativeKeywordListKeywords(listId, replaceAdNegativeKeywordListKeywordsRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#replaceAdNegativeKeywordListKeywords");
@@ -9767,6 +9776,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **listId** | **String**|  | |
 | **replaceAdNegativeKeywordListKeywordsRequest** | [**ReplaceAdNegativeKeywordListKeywordsRequest**](ReplaceAdNegativeKeywordListKeywordsRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -9797,7 +9807,7 @@ public class Example {
 
 ## replaceAdNegativeKeywordListKeywordsWithHttpInfo
 
-> ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> replaceAdNegativeKeywordListKeywords replaceAdNegativeKeywordListKeywordsWithHttpInfo(listId, replaceAdNegativeKeywordListKeywordsRequest)
+> ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> replaceAdNegativeKeywordListKeywords replaceAdNegativeKeywordListKeywordsWithHttpInfo(listId, replaceAdNegativeKeywordListKeywordsRequest, idempotencyKey)
 
 Replace negative list keywords
 
@@ -9827,8 +9837,9 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String listId = "listId_example"; // String | 
         ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest = new ReplaceAdNegativeKeywordListKeywordsRequest(); // ReplaceAdNegativeKeywordListKeywordsRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> response = apiInstance.replaceAdNegativeKeywordListKeywordsWithHttpInfo(listId, replaceAdNegativeKeywordListKeywordsRequest);
+            ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> response = apiInstance.replaceAdNegativeKeywordListKeywordsWithHttpInfo(listId, replaceAdNegativeKeywordListKeywordsRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -9850,6 +9861,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **listId** | **String**|  | |
 | **replaceAdNegativeKeywordListKeywordsRequest** | [**ReplaceAdNegativeKeywordListKeywordsRequest**](ReplaceAdNegativeKeywordListKeywordsRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -11331,7 +11343,7 @@ ApiResponse<[**UpdateAdLabel200Response**](UpdateAdLabel200Response.md)>
 
 ## updateAdNegativeKeywordList
 
-> UpdateAdNegativeKeywordList200Response updateAdNegativeKeywordList(listId, updateAdNegativeKeywordListRequest)
+> UpdateAdNegativeKeywordList200Response updateAdNegativeKeywordList(listId, updateAdNegativeKeywordListRequest, idempotencyKey)
 
 Rename a negative keyword list
 
@@ -11360,8 +11372,9 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String listId = "listId_example"; // String | 
         UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest = new UpdateAdNegativeKeywordListRequest(); // UpdateAdNegativeKeywordListRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            UpdateAdNegativeKeywordList200Response result = apiInstance.updateAdNegativeKeywordList(listId, updateAdNegativeKeywordListRequest);
+            UpdateAdNegativeKeywordList200Response result = apiInstance.updateAdNegativeKeywordList(listId, updateAdNegativeKeywordListRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#updateAdNegativeKeywordList");
@@ -11381,6 +11394,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **listId** | **String**|  | |
 | **updateAdNegativeKeywordListRequest** | [**UpdateAdNegativeKeywordListRequest**](UpdateAdNegativeKeywordListRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 
@@ -11411,7 +11425,7 @@ public class Example {
 
 ## updateAdNegativeKeywordListWithHttpInfo
 
-> ApiResponse<UpdateAdNegativeKeywordList200Response> updateAdNegativeKeywordList updateAdNegativeKeywordListWithHttpInfo(listId, updateAdNegativeKeywordListRequest)
+> ApiResponse<UpdateAdNegativeKeywordList200Response> updateAdNegativeKeywordList updateAdNegativeKeywordListWithHttpInfo(listId, updateAdNegativeKeywordListRequest, idempotencyKey)
 
 Rename a negative keyword list
 
@@ -11441,8 +11455,9 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String listId = "listId_example"; // String | 
         UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest = new UpdateAdNegativeKeywordListRequest(); // UpdateAdNegativeKeywordListRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            ApiResponse<UpdateAdNegativeKeywordList200Response> response = apiInstance.updateAdNegativeKeywordListWithHttpInfo(listId, updateAdNegativeKeywordListRequest);
+            ApiResponse<UpdateAdNegativeKeywordList200Response> response = apiInstance.updateAdNegativeKeywordListWithHttpInfo(listId, updateAdNegativeKeywordListRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -11464,6 +11479,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **listId** | **String**|  | |
 | **updateAdNegativeKeywordListRequest** | [**UpdateAdNegativeKeywordListRequest**](UpdateAdNegativeKeywordListRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
 

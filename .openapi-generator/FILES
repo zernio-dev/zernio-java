@@ -8221,6 +8221,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AdCreativeAssetFeedImagesInnerTest.java
-src/test/java/dev/zernio/model/AdCreativeAssetFeedTest.java
-src/test/java/dev/zernio/model/AdCreativeAssetFeedVideosInnerTest.java
