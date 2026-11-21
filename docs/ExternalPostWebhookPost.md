@@ -21,6 +21,7 @@ Native (external) post data shared by all post.external.* payloads.
 |**isAiGenerated** | **Boolean** | Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it. |  [optional] |
 |**isSharedToFeed** | **Boolean** | Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it. |  [optional] |
 |**mediaAudioType** | **String** | Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it. |  [optional] |
+|**upcomingStartAt** | **OffsetDateTime** | YouTube only. Start time of an upcoming Premiere or scheduled live stream, absent once it airs. Sent on post.external.created and on any event fired for another change; the airing itself does not fire an event. |  [optional] |
 |**source** | [**SourceEnum**](#SourceEnum) | Always \&quot;external\&quot;. Distinguishes these from Zernio-originated post.* events. |  |
 |**deletedAt** | **OffsetDateTime** | Detection time of deletion. Present on post.external.deleted; null/absent otherwise. |  [optional] |
 

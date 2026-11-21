@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.719.0
+  version: 1.720.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -111196,6 +111196,7 @@ components:
         id: id
         mediaAudioType: mediaAudioType
         thumbnailUrl: thumbnailUrl
+        upcomingStartAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           description: Platform-native post ID (NOT a Zernio post ID).
@@ -111241,6 +111242,13 @@ components:
         mediaAudioType:
           description: "Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND).\
             \ Absent when the platform did not report it."
+          type: string
+        upcomingStartAt:
+          description: "YouTube only. Start time of an upcoming Premiere or scheduled\
+            \ live stream, absent once it airs. Sent on post.external.created and\
+            \ on any event fired for another change; the airing itself does not fire\
+            \ an event."
+          format: date-time
           type: string
         source:
           description: Always "external". Distinguishes these from Zernio-originated
@@ -111300,6 +111308,7 @@ components:
           id: id
           mediaAudioType: mediaAudioType
           thumbnailUrl: thumbnailUrl
+          upcomingStartAt: 2000-01-23T04:56:07.000+00:00
         profiles:
         - externalId: tenant_42
           id: id
