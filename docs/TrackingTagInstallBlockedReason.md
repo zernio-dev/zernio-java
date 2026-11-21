@@ -15,5 +15,7 @@
 
 * `WIDGETS_API_UNAVAILABLE` (value: `"widgets_api_unavailable"`)
 
+* `JETPACK_SITE` (value: `"jetpack_site"`)
+
 
 

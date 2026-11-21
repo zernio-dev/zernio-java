@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.720.2
+  version: 1.721.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -83557,6 +83557,7 @@ paths:
         - `wordpress_com_plan`: a WordPress.com plan that strips scripts (plans without plugins).
         - `no_widget_areas`: the theme has no widget areas (block themes such as Twenty Twenty-Five).
         - `widgets_api_unavailable`: no widgets REST API (WordPress older than 5.8, or disabled).
+        - `jetpack_site`: a self-hosted site connected through Jetpack with a WordPress.com login. WordPress.com does not pass widget calls to Jetpack sites; connect the site as self-hosted with an Application Password instead.
 
         The `error` message names the manual alternative (Meta's official WordPress plugin).
 
@@ -146030,6 +146031,7 @@ components:
       - wordpress_com_plan
       - no_widget_areas
       - widgets_api_unavailable
+      - jetpack_site
       type: string
     TrackingTag:
       description: |
