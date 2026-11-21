@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.718.0
+  version: 1.719.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -60052,6 +60052,7 @@ paths:
         - `statusOption` applies to the ad set and every ad.
         - If an ad copy fails, the partial ad set copy is deleted and the request fails with Meta's error.
         - A sync discovery starts automatically and runs after the response (`syncAfter: false` to skip). The copy is readable through Zernio once it finishes, usually within a few minutes. Until then, calls that take a copied id return 404, so retry them.
+        - `websiteOnly: true` rebuilds each ad (new creative on `/adcreatives`, new ad) instead of copying it, so the creative carries `applink_treatment: web_only`.
 
         TikTok: the ad group is read and recreated under the campaign with its targeting, bidding,
         budget and schedule (start reset to now); `deepCopy: true` recreates its ads too (default
@@ -198114,6 +198115,14 @@ components:
           type: string
         syncAfter:
           default: true
+          type: boolean
+        websiteOnly:
+          description: |
+            Meta only. Rebuilds each copied ad (new creative and ad) instead of using Meta's native copy, so the creative carries applink_treatment web_only and Ads Manager shows Website as the only destination.
+
+            - Omitted or false: keeps the native copy.
+            - 400 with `deepCopy: false`, and when an ad runs an existing post (its creative cannot be rebuilt).
+            - Meta rejects it when the campaign uses Website and App conversion locations.
           type: boolean
       required:
       - platform
