@@ -8,14 +8,14 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  |
-|**objectType** | [**ObjectTypeEnum**](#ObjectTypeEnum) | HubSpot &#x60;note&#x60; or &#x60;communication&#x60; (WhatsApp, SMS); Salesforce &#x60;task&#x60;. |  |
+|**objectType** | [**ObjectTypeEnum**](#ObjectTypeEnum) | HubSpot &#x60;note&#x60; or &#x60;communication&#x60; (WhatsApp, SMS); Salesforce &#x60;task&#x60;; GoHighLevel &#x60;note&#x60;. |  |
 |**contactId** | **String** |  |  |
 |**channel** | [**ChannelEnum**](#ChannelEnum) |  |  |
 |**direction** | [**DirectionEnum**](#DirectionEnum) |  |  |
 |**subject** | **String** |  |  |
 |**body** | **String** |  |  |
 |**occurredAt** | **OffsetDateTime** |  |  |
-|**url** | **URI** | The Salesforce Task, or the HubSpot contact whose timeline shows it. |  |
+|**url** | **URI** | The Salesforce Task, or the HubSpot or GoHighLevel contact whose record shows it. |  |
 
 
 

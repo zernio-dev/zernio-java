@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**body** | **String** | The text to log. |  |
-|**subject** | **String** | Salesforce Task subject (default &#x60;&lt;Channel&gt; activity (&lt;direction&gt;)&#x60;); on HubSpot, the bold first line. |  [optional] |
+|**subject** | **String** | Salesforce Task subject (default &#x60;&lt;Channel&gt; activity (&lt;direction&gt;)&#x60;); on HubSpot, the bold first line; on GoHighLevel, the note&#39;s first line. |  [optional] |
 |**channel** | [**ChannelEnum**](#ChannelEnum) |  |  [optional] |
 |**direction** | [**DirectionEnum**](#DirectionEnum) |  |  [optional] |
 |**occurredAt** | **OffsetDateTime** | When it happened. Defaults to now. |  [optional] |

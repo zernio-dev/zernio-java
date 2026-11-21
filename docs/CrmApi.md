@@ -31,7 +31,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Log a CRM activity
 
-Log something that happened with a person on their CRM record.  - HubSpot: a Communication on the contact&#39;s timeline for &#x60;channel&#x60; &#x60;whatsapp&#x60; or &#x60;sms&#x60;, otherwise a Note. The subject and direction lead the text. - Salesforce: a completed Task on the Contact or Lead (&#x60;WhoId&#x60;), dated &#x60;occurredAt&#x60;, with &#x60;body&#x60; as its comments. &#x60;channel: call&#x60; logs a call.  To log inbox conversations automatically instead, turn on &#x60;logMessages&#x60; in the CRM settings.
+Log something that happened with a person on their CRM record.  - HubSpot: a Communication on the contact&#39;s timeline for &#x60;channel&#x60; &#x60;whatsapp&#x60; or &#x60;sms&#x60;, otherwise a Note. The subject and direction lead the text. - Salesforce: a completed Task on the Contact or Lead (&#x60;WhoId&#x60;), dated &#x60;occurredAt&#x60;, with &#x60;body&#x60; as its comments. &#x60;channel: call&#x60; logs a call. - GoHighLevel: a plain-text note on the contact. GoHighLevel dates a note when it is logged, so the subject (or channel), direction and &#x60;occurredAt&#x60; lead its text.  To log inbox conversations automatically instead, turn on &#x60;logMessages&#x60; in the CRM settings.
 
 ### Example
 
@@ -54,8 +54,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
-        String contactId = "contactId_example"; // String | The CRM's own id. HubSpot contact id, or Salesforce Contact (`003...`) or Lead (`00Q...`) id.
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
+        String contactId = "contactId_example"; // String | The CRM's own id. HubSpot contact id, Salesforce Contact (`003...`) or Lead (`00Q...`) id, or GoHighLevel contact id.
         CreateCrmActivityRequest createCrmActivityRequest = new CreateCrmActivityRequest(); // CreateCrmActivityRequest | 
         try {
             CreateCrmActivity201Response result = apiInstance.createCrmActivity(accountId, contactId, createCrmActivityRequest);
@@ -76,8 +76,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
-| **contactId** | **String**| The CRM&#39;s own id. HubSpot contact id, or Salesforce Contact (&#x60;003...&#x60;) or Lead (&#x60;00Q...&#x60;) id. | |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
+| **contactId** | **String**| The CRM&#39;s own id. HubSpot contact id, Salesforce Contact (&#x60;003...&#x60;) or Lead (&#x60;00Q...&#x60;) id, or GoHighLevel contact id. | |
 | **createCrmActivityRequest** | [**CreateCrmActivityRequest**](CreateCrmActivityRequest.md)|  | |
 
 ### Return type
@@ -100,11 +100,11 @@ public class Example {
 | **201** | The logged activity. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
 | **422** | The CRM refused the values: a validation rule, a required field, a bad picklist value or an unknown field. Code &#x60;crm_validation_failed&#x60;; &#x60;details.errors&#x60; lists the CRM&#39;s own errors, each with &#x60;code&#x60;, &#x60;message&#x60; and the &#x60;fields&#x60; at fault when the CRM names them. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 ## createCrmActivityWithHttpInfo
@@ -113,7 +113,7 @@ public class Example {
 
 Log a CRM activity
 
-Log something that happened with a person on their CRM record.  - HubSpot: a Communication on the contact&#39;s timeline for &#x60;channel&#x60; &#x60;whatsapp&#x60; or &#x60;sms&#x60;, otherwise a Note. The subject and direction lead the text. - Salesforce: a completed Task on the Contact or Lead (&#x60;WhoId&#x60;), dated &#x60;occurredAt&#x60;, with &#x60;body&#x60; as its comments. &#x60;channel: call&#x60; logs a call.  To log inbox conversations automatically instead, turn on &#x60;logMessages&#x60; in the CRM settings.
+Log something that happened with a person on their CRM record.  - HubSpot: a Communication on the contact&#39;s timeline for &#x60;channel&#x60; &#x60;whatsapp&#x60; or &#x60;sms&#x60;, otherwise a Note. The subject and direction lead the text. - Salesforce: a completed Task on the Contact or Lead (&#x60;WhoId&#x60;), dated &#x60;occurredAt&#x60;, with &#x60;body&#x60; as its comments. &#x60;channel: call&#x60; logs a call. - GoHighLevel: a plain-text note on the contact. GoHighLevel dates a note when it is logged, so the subject (or channel), direction and &#x60;occurredAt&#x60; lead its text.  To log inbox conversations automatically instead, turn on &#x60;logMessages&#x60; in the CRM settings.
 
 ### Example
 
@@ -137,8 +137,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
-        String contactId = "contactId_example"; // String | The CRM's own id. HubSpot contact id, or Salesforce Contact (`003...`) or Lead (`00Q...`) id.
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
+        String contactId = "contactId_example"; // String | The CRM's own id. HubSpot contact id, Salesforce Contact (`003...`) or Lead (`00Q...`) id, or GoHighLevel contact id.
         CreateCrmActivityRequest createCrmActivityRequest = new CreateCrmActivityRequest(); // CreateCrmActivityRequest | 
         try {
             ApiResponse<CreateCrmActivity201Response> response = apiInstance.createCrmActivityWithHttpInfo(accountId, contactId, createCrmActivityRequest);
@@ -161,8 +161,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
-| **contactId** | **String**| The CRM&#39;s own id. HubSpot contact id, or Salesforce Contact (&#x60;003...&#x60;) or Lead (&#x60;00Q...&#x60;) id. | |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
+| **contactId** | **String**| The CRM&#39;s own id. HubSpot contact id, Salesforce Contact (&#x60;003...&#x60;) or Lead (&#x60;00Q...&#x60;) id, or GoHighLevel contact id. | |
 | **createCrmActivityRequest** | [**CreateCrmActivityRequest**](CreateCrmActivityRequest.md)|  | |
 
 ### Return type
@@ -185,11 +185,11 @@ ApiResponse<[**CreateCrmActivity201Response**](CreateCrmActivity201Response.md)>
 | **201** | The logged activity. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
 | **422** | The CRM refused the values: a validation rule, a required field, a bad picklist value or an unknown field. Code &#x60;crm_validation_failed&#x60;; &#x60;details.errors&#x60; lists the CRM&#39;s own errors, each with &#x60;code&#x60;, &#x60;message&#x60; and the &#x60;fields&#x60; at fault when the CRM names them. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 
@@ -199,7 +199,7 @@ ApiResponse<[**CreateCrmActivity201Response**](CreateCrmActivity201Response.md)>
 
 Create a CRM contact
 
-Create a person in the connected CRM. HubSpot creates a contact. Salesforce creates a Lead or a Contact: &#x60;createAs&#x60;, else the connection&#39;s &#x60;createAs&#x60; setting (default &#x60;lead&#x60;).  Salesforce requires &#x60;lastName&#x60; on both, and &#x60;company&#x60; on a Lead (&#x60;[not provided]&#x60; when you send none). A Contact takes its company from its Account: set &#x60;properties.AccountId&#x60; instead.  Anything the CRM refuses (a required field, a validation rule, a duplicate rule) comes back as 422 or 409 with the CRM&#39;s own errors in &#x60;details.errors&#x60;.
+Create a person in the connected CRM. HubSpot creates a contact. Salesforce creates a Lead or a Contact: &#x60;createAs&#x60;, else the connection&#39;s &#x60;createAs&#x60; setting (default &#x60;lead&#x60;).  Salesforce requires &#x60;lastName&#x60; on both, and &#x60;company&#x60; on a Lead (&#x60;[not provided]&#x60; when you send none). A Contact takes its company from its Account: set &#x60;properties.AccountId&#x60; instead.  GoHighLevel creates a contact in the connected location. A location that does not allow duplicates answers 409 with the existing contact.  Anything the CRM refuses (a required field, a validation rule, a duplicate rule) comes back as 422 or 409 with the CRM&#39;s own errors in &#x60;details.errors&#x60;.
 
 ### Example
 
@@ -222,7 +222,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
         CreateCrmContactRequest createCrmContactRequest = new CreateCrmContactRequest(); // CreateCrmContactRequest | 
         try {
             CreateCrmContact201Response result = apiInstance.createCrmContact(accountId, createCrmContactRequest);
@@ -243,7 +243,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
 | **createCrmContactRequest** | [**CreateCrmContactRequest**](CreateCrmContactRequest.md)|  | |
 
 ### Return type
@@ -266,11 +266,11 @@ public class Example {
 | **201** | The created contact, read back from the CRM. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
-| **409** | &#x60;crm_duplicate_record&#x60;: the CRM refused a duplicate (HubSpot: the email belongs to another contact; Salesforce: a duplicate rule). &#x60;details.existingId&#x60; is the existing record when the CRM names it.  &#x60;account_disconnected&#x60;: the CRM account needs reconnecting; see AccountDisconnected. |  -  |
+| **409** | &#x60;crm_duplicate_record&#x60;: the CRM refused a duplicate (HubSpot: the email belongs to another contact; Salesforce: a duplicate rule; GoHighLevel: a location that does not allow duplicate contacts). &#x60;details.existingId&#x60; is the existing record when the CRM names it.  &#x60;account_disconnected&#x60;: the CRM account needs reconnecting; see AccountDisconnected. |  -  |
 | **422** | The CRM refused the values: a validation rule, a required field, a bad picklist value or an unknown field. Code &#x60;crm_validation_failed&#x60;; &#x60;details.errors&#x60; lists the CRM&#39;s own errors, each with &#x60;code&#x60;, &#x60;message&#x60; and the &#x60;fields&#x60; at fault when the CRM names them. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 ## createCrmContactWithHttpInfo
@@ -279,7 +279,7 @@ public class Example {
 
 Create a CRM contact
 
-Create a person in the connected CRM. HubSpot creates a contact. Salesforce creates a Lead or a Contact: &#x60;createAs&#x60;, else the connection&#39;s &#x60;createAs&#x60; setting (default &#x60;lead&#x60;).  Salesforce requires &#x60;lastName&#x60; on both, and &#x60;company&#x60; on a Lead (&#x60;[not provided]&#x60; when you send none). A Contact takes its company from its Account: set &#x60;properties.AccountId&#x60; instead.  Anything the CRM refuses (a required field, a validation rule, a duplicate rule) comes back as 422 or 409 with the CRM&#39;s own errors in &#x60;details.errors&#x60;.
+Create a person in the connected CRM. HubSpot creates a contact. Salesforce creates a Lead or a Contact: &#x60;createAs&#x60;, else the connection&#39;s &#x60;createAs&#x60; setting (default &#x60;lead&#x60;).  Salesforce requires &#x60;lastName&#x60; on both, and &#x60;company&#x60; on a Lead (&#x60;[not provided]&#x60; when you send none). A Contact takes its company from its Account: set &#x60;properties.AccountId&#x60; instead.  GoHighLevel creates a contact in the connected location. A location that does not allow duplicates answers 409 with the existing contact.  Anything the CRM refuses (a required field, a validation rule, a duplicate rule) comes back as 422 or 409 with the CRM&#39;s own errors in &#x60;details.errors&#x60;.
 
 ### Example
 
@@ -303,7 +303,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
         CreateCrmContactRequest createCrmContactRequest = new CreateCrmContactRequest(); // CreateCrmContactRequest | 
         try {
             ApiResponse<CreateCrmContact201Response> response = apiInstance.createCrmContactWithHttpInfo(accountId, createCrmContactRequest);
@@ -326,7 +326,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
 | **createCrmContactRequest** | [**CreateCrmContactRequest**](CreateCrmContactRequest.md)|  | |
 
 ### Return type
@@ -349,11 +349,11 @@ ApiResponse<[**CreateCrmContact201Response**](CreateCrmContact201Response.md)>
 | **201** | The created contact, read back from the CRM. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
-| **409** | &#x60;crm_duplicate_record&#x60;: the CRM refused a duplicate (HubSpot: the email belongs to another contact; Salesforce: a duplicate rule). &#x60;details.existingId&#x60; is the existing record when the CRM names it.  &#x60;account_disconnected&#x60;: the CRM account needs reconnecting; see AccountDisconnected. |  -  |
+| **409** | &#x60;crm_duplicate_record&#x60;: the CRM refused a duplicate (HubSpot: the email belongs to another contact; Salesforce: a duplicate rule; GoHighLevel: a location that does not allow duplicate contacts). &#x60;details.existingId&#x60; is the existing record when the CRM names it.  &#x60;account_disconnected&#x60;: the CRM account needs reconnecting; see AccountDisconnected. |  -  |
 | **422** | The CRM refused the values: a validation rule, a required field, a bad picklist value or an unknown field. Code &#x60;crm_validation_failed&#x60;; &#x60;details.errors&#x60; lists the CRM&#39;s own errors, each with &#x60;code&#x60;, &#x60;message&#x60; and the &#x60;fields&#x60; at fault when the CRM names them. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 
@@ -386,9 +386,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
-        String contactId = "contactId_example"; // String | The CRM's own id. HubSpot contact id, or Salesforce Contact (`003...`) or Lead (`00Q...`) id.
-        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`.
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
+        String contactId = "contactId_example"; // String | The CRM's own id. HubSpot contact id, Salesforce Contact (`003...`) or Lead (`00Q...`) id, or GoHighLevel contact id.
+        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`. On GoHighLevel, a field of the record (`source`, `status`), or a custom field by id or key.
         Boolean includeRaw = false; // Boolean | Also return the CRM's own record as `raw`.
         try {
             CreateCrmContact201Response result = apiInstance.getCrmContact(accountId, contactId, properties, includeRaw);
@@ -409,9 +409,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
-| **contactId** | **String**| The CRM&#39;s own id. HubSpot contact id, or Salesforce Contact (&#x60;003...&#x60;) or Lead (&#x60;00Q...&#x60;) id. | |
-| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. | [optional] |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
+| **contactId** | **String**| The CRM&#39;s own id. HubSpot contact id, Salesforce Contact (&#x60;003...&#x60;) or Lead (&#x60;00Q...&#x60;) id, or GoHighLevel contact id. | |
+| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. On GoHighLevel, a field of the record (&#x60;source&#x60;, &#x60;status&#x60;), or a custom field by id or key. | [optional] |
 | **includeRaw** | **Boolean**| Also return the CRM&#39;s own record as &#x60;raw&#x60;. | [optional] [default to false] |
 
 ### Return type
@@ -434,10 +434,10 @@ public class Example {
 | **200** | The contact. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 ## getCrmContactWithHttpInfo
@@ -470,9 +470,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
-        String contactId = "contactId_example"; // String | The CRM's own id. HubSpot contact id, or Salesforce Contact (`003...`) or Lead (`00Q...`) id.
-        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`.
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
+        String contactId = "contactId_example"; // String | The CRM's own id. HubSpot contact id, Salesforce Contact (`003...`) or Lead (`00Q...`) id, or GoHighLevel contact id.
+        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`. On GoHighLevel, a field of the record (`source`, `status`), or a custom field by id or key.
         Boolean includeRaw = false; // Boolean | Also return the CRM's own record as `raw`.
         try {
             ApiResponse<CreateCrmContact201Response> response = apiInstance.getCrmContactWithHttpInfo(accountId, contactId, properties, includeRaw);
@@ -495,9 +495,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
-| **contactId** | **String**| The CRM&#39;s own id. HubSpot contact id, or Salesforce Contact (&#x60;003...&#x60;) or Lead (&#x60;00Q...&#x60;) id. | |
-| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. | [optional] |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
+| **contactId** | **String**| The CRM&#39;s own id. HubSpot contact id, Salesforce Contact (&#x60;003...&#x60;) or Lead (&#x60;00Q...&#x60;) id, or GoHighLevel contact id. | |
+| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. On GoHighLevel, a field of the record (&#x60;source&#x60;, &#x60;status&#x60;), or a custom field by id or key. | [optional] |
 | **includeRaw** | **Boolean**| Also return the CRM&#39;s own record as &#x60;raw&#x60;. | [optional] [default to false] |
 
 ### Return type
@@ -520,10 +520,10 @@ ApiResponse<[**CreateCrmContact201Response**](CreateCrmContact201Response.md)>
 | **200** | The contact. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 
@@ -533,7 +533,7 @@ ApiResponse<[**CreateCrmContact201Response**](CreateCrmContact201Response.md)>
 
 Get a CRM deal
 
-Read one deal (HubSpot) or Opportunity (Salesforce) with its contacts.
+Read one deal (HubSpot), Opportunity (Salesforce) or opportunity (GoHighLevel) with its contacts.
 
 ### Example
 
@@ -556,9 +556,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
-        String dealId = "dealId_example"; // String | HubSpot deal id or Salesforce Opportunity id (`006...`).
-        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`.
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
+        String dealId = "dealId_example"; // String | HubSpot deal id, Salesforce Opportunity id (`006...`) or GoHighLevel opportunity id.
+        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`. On GoHighLevel, a field of the record (`source`, `status`), or a custom field by id or key.
         Boolean includeRaw = false; // Boolean | Also return the CRM's own record as `raw`.
         try {
             GetCrmDeal200Response result = apiInstance.getCrmDeal(accountId, dealId, properties, includeRaw);
@@ -579,9 +579,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
-| **dealId** | **String**| HubSpot deal id or Salesforce Opportunity id (&#x60;006...&#x60;). | |
-| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. | [optional] |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
+| **dealId** | **String**| HubSpot deal id, Salesforce Opportunity id (&#x60;006...&#x60;) or GoHighLevel opportunity id. | |
+| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. On GoHighLevel, a field of the record (&#x60;source&#x60;, &#x60;status&#x60;), or a custom field by id or key. | [optional] |
 | **includeRaw** | **Boolean**| Also return the CRM&#39;s own record as &#x60;raw&#x60;. | [optional] [default to false] |
 
 ### Return type
@@ -604,10 +604,10 @@ public class Example {
 | **200** | The deal. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 ## getCrmDealWithHttpInfo
@@ -616,7 +616,7 @@ public class Example {
 
 Get a CRM deal
 
-Read one deal (HubSpot) or Opportunity (Salesforce) with its contacts.
+Read one deal (HubSpot), Opportunity (Salesforce) or opportunity (GoHighLevel) with its contacts.
 
 ### Example
 
@@ -640,9 +640,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
-        String dealId = "dealId_example"; // String | HubSpot deal id or Salesforce Opportunity id (`006...`).
-        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`.
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
+        String dealId = "dealId_example"; // String | HubSpot deal id, Salesforce Opportunity id (`006...`) or GoHighLevel opportunity id.
+        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`. On GoHighLevel, a field of the record (`source`, `status`), or a custom field by id or key.
         Boolean includeRaw = false; // Boolean | Also return the CRM's own record as `raw`.
         try {
             ApiResponse<GetCrmDeal200Response> response = apiInstance.getCrmDealWithHttpInfo(accountId, dealId, properties, includeRaw);
@@ -665,9 +665,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
-| **dealId** | **String**| HubSpot deal id or Salesforce Opportunity id (&#x60;006...&#x60;). | |
-| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. | [optional] |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
+| **dealId** | **String**| HubSpot deal id, Salesforce Opportunity id (&#x60;006...&#x60;) or GoHighLevel opportunity id. | |
+| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. On GoHighLevel, a field of the record (&#x60;source&#x60;, &#x60;status&#x60;), or a custom field by id or key. | [optional] |
 | **includeRaw** | **Boolean**| Also return the CRM&#39;s own record as &#x60;raw&#x60;. | [optional] [default to false] |
 
 ### Return type
@@ -690,10 +690,10 @@ ApiResponse<[**GetCrmDeal200Response**](GetCrmDeal200Response.md)>
 | **200** | The deal. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 
@@ -703,7 +703,7 @@ ApiResponse<[**GetCrmDeal200Response**](GetCrmDeal200Response.md)>
 
 List CRM deals
 
-List deals (HubSpot) or Opportunities (Salesforce), most recently changed first.  HubSpot needs the portal to have granted &#x60;crm.objects.deals.read&#x60;; otherwise 403 &#x60;crm_scope_missing&#x60;.
+List deals (HubSpot) or Opportunities (Salesforce), most recently changed first, or a GoHighLevel location&#39;s opportunities in GoHighLevel&#39;s own order.  HubSpot needs the portal to have granted &#x60;crm.objects.deals.read&#x60;; otherwise 403 &#x60;crm_scope_missing&#x60;. GoHighLevel cannot filter by update time: &#x60;updatedSince&#x60; answers 400 there.
 
 ### Example
 
@@ -726,10 +726,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
-        String stage = "stage_example"; // String | Only deals in this stage. HubSpot takes the stage's internal id (`closedwon`, `appointmentscheduled`); Salesforce the `StageName` (`Closed Won`).
-        OffsetDateTime updatedSince = OffsetDateTime.now(); // OffsetDateTime | Only deals changed at or after this time.
-        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`.
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
+        String stage = "stage_example"; // String | Only deals in this stage. HubSpot takes the stage's internal id (`closedwon`, `appointmentscheduled`); Salesforce the `StageName` (`Closed Won`); GoHighLevel the pipeline stage id.
+        OffsetDateTime updatedSince = OffsetDateTime.now(); // OffsetDateTime | Only deals changed at or after this time. HubSpot and Salesforce only.
+        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`. On GoHighLevel, a field of the record (`source`, `status`), or a custom field by id or key.
         Boolean includeRaw = false; // Boolean | Also return the CRM's own record as `raw`.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | The `nextCursor` of the previous page, unchanged.
@@ -752,10 +752,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
-| **stage** | **String**| Only deals in this stage. HubSpot takes the stage&#39;s internal id (&#x60;closedwon&#x60;, &#x60;appointmentscheduled&#x60;); Salesforce the &#x60;StageName&#x60; (&#x60;Closed Won&#x60;). | [optional] |
-| **updatedSince** | **OffsetDateTime**| Only deals changed at or after this time. | [optional] |
-| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. | [optional] |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
+| **stage** | **String**| Only deals in this stage. HubSpot takes the stage&#39;s internal id (&#x60;closedwon&#x60;, &#x60;appointmentscheduled&#x60;); Salesforce the &#x60;StageName&#x60; (&#x60;Closed Won&#x60;); GoHighLevel the pipeline stage id. | [optional] |
+| **updatedSince** | **OffsetDateTime**| Only deals changed at or after this time. HubSpot and Salesforce only. | [optional] |
+| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. On GoHighLevel, a field of the record (&#x60;source&#x60;, &#x60;status&#x60;), or a custom field by id or key. | [optional] |
 | **includeRaw** | **Boolean**| Also return the CRM&#39;s own record as &#x60;raw&#x60;. | [optional] [default to false] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page, unchanged. | [optional] |
@@ -780,10 +780,10 @@ public class Example {
 | **200** | One page of deals. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 ## listCrmDealsWithHttpInfo
@@ -792,7 +792,7 @@ public class Example {
 
 List CRM deals
 
-List deals (HubSpot) or Opportunities (Salesforce), most recently changed first.  HubSpot needs the portal to have granted &#x60;crm.objects.deals.read&#x60;; otherwise 403 &#x60;crm_scope_missing&#x60;.
+List deals (HubSpot) or Opportunities (Salesforce), most recently changed first, or a GoHighLevel location&#39;s opportunities in GoHighLevel&#39;s own order.  HubSpot needs the portal to have granted &#x60;crm.objects.deals.read&#x60;; otherwise 403 &#x60;crm_scope_missing&#x60;. GoHighLevel cannot filter by update time: &#x60;updatedSince&#x60; answers 400 there.
 
 ### Example
 
@@ -816,10 +816,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
-        String stage = "stage_example"; // String | Only deals in this stage. HubSpot takes the stage's internal id (`closedwon`, `appointmentscheduled`); Salesforce the `StageName` (`Closed Won`).
-        OffsetDateTime updatedSince = OffsetDateTime.now(); // OffsetDateTime | Only deals changed at or after this time.
-        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`.
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
+        String stage = "stage_example"; // String | Only deals in this stage. HubSpot takes the stage's internal id (`closedwon`, `appointmentscheduled`); Salesforce the `StageName` (`Closed Won`); GoHighLevel the pipeline stage id.
+        OffsetDateTime updatedSince = OffsetDateTime.now(); // OffsetDateTime | Only deals changed at or after this time. HubSpot and Salesforce only.
+        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`. On GoHighLevel, a field of the record (`source`, `status`), or a custom field by id or key.
         Boolean includeRaw = false; // Boolean | Also return the CRM's own record as `raw`.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | The `nextCursor` of the previous page, unchanged.
@@ -844,10 +844,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
-| **stage** | **String**| Only deals in this stage. HubSpot takes the stage&#39;s internal id (&#x60;closedwon&#x60;, &#x60;appointmentscheduled&#x60;); Salesforce the &#x60;StageName&#x60; (&#x60;Closed Won&#x60;). | [optional] |
-| **updatedSince** | **OffsetDateTime**| Only deals changed at or after this time. | [optional] |
-| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. | [optional] |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
+| **stage** | **String**| Only deals in this stage. HubSpot takes the stage&#39;s internal id (&#x60;closedwon&#x60;, &#x60;appointmentscheduled&#x60;); Salesforce the &#x60;StageName&#x60; (&#x60;Closed Won&#x60;); GoHighLevel the pipeline stage id. | [optional] |
+| **updatedSince** | **OffsetDateTime**| Only deals changed at or after this time. HubSpot and Salesforce only. | [optional] |
+| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. On GoHighLevel, a field of the record (&#x60;source&#x60;, &#x60;status&#x60;), or a custom field by id or key. | [optional] |
 | **includeRaw** | **Boolean**| Also return the CRM&#39;s own record as &#x60;raw&#x60;. | [optional] [default to false] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page, unchanged. | [optional] |
@@ -872,10 +872,10 @@ ApiResponse<[**ListCrmDeals200Response**](ListCrmDeals200Response.md)>
 | **200** | One page of deals. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 
@@ -885,7 +885,7 @@ ApiResponse<[**ListCrmDeals200Response**](ListCrmDeals200Response.md)>
 
 List CRM owners
 
-List the users records can be assigned to: HubSpot owners, or active standard Salesforce users. Use an &#x60;id&#x60; as &#x60;ownerId&#x60; on contacts and deals.  HubSpot needs &#x60;crm.objects.owners.read&#x60;, an optional scope portals approve when they connect; without it, 403 &#x60;crm_scope_missing&#x60; asks to reconnect HubSpot.
+List the users records can be assigned to: HubSpot owners, active standard Salesforce users, or the GoHighLevel location&#39;s users. Use an &#x60;id&#x60; as &#x60;ownerId&#x60; on contacts and deals.  HubSpot needs &#x60;crm.objects.owners.read&#x60;, an optional scope portals approve when they connect; without it, 403 &#x60;crm_scope_missing&#x60; asks to reconnect HubSpot. GoHighLevel needs &#x60;users.readonly&#x60;: a location installed before Zernio asked for it answers 403 &#x60;crm_scope_missing&#x60; until it reconnects.
 
 ### Example
 
@@ -908,7 +908,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
         Boolean includeRaw = false; // Boolean | Also return the CRM's own record as `raw`.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | The `nextCursor` of the previous page, unchanged.
@@ -931,7 +931,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
 | **includeRaw** | **Boolean**| Also return the CRM&#39;s own record as &#x60;raw&#x60;. | [optional] [default to false] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page, unchanged. | [optional] |
@@ -956,10 +956,10 @@ public class Example {
 | **200** | One page of owners. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 ## listCrmOwnersWithHttpInfo
@@ -968,7 +968,7 @@ public class Example {
 
 List CRM owners
 
-List the users records can be assigned to: HubSpot owners, or active standard Salesforce users. Use an &#x60;id&#x60; as &#x60;ownerId&#x60; on contacts and deals.  HubSpot needs &#x60;crm.objects.owners.read&#x60;, an optional scope portals approve when they connect; without it, 403 &#x60;crm_scope_missing&#x60; asks to reconnect HubSpot.
+List the users records can be assigned to: HubSpot owners, active standard Salesforce users, or the GoHighLevel location&#39;s users. Use an &#x60;id&#x60; as &#x60;ownerId&#x60; on contacts and deals.  HubSpot needs &#x60;crm.objects.owners.read&#x60;, an optional scope portals approve when they connect; without it, 403 &#x60;crm_scope_missing&#x60; asks to reconnect HubSpot. GoHighLevel needs &#x60;users.readonly&#x60;: a location installed before Zernio asked for it answers 403 &#x60;crm_scope_missing&#x60; until it reconnects.
 
 ### Example
 
@@ -992,7 +992,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
         Boolean includeRaw = false; // Boolean | Also return the CRM's own record as `raw`.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | The `nextCursor` of the previous page, unchanged.
@@ -1017,7 +1017,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
 | **includeRaw** | **Boolean**| Also return the CRM&#39;s own record as &#x60;raw&#x60;. | [optional] [default to false] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page, unchanged. | [optional] |
@@ -1042,10 +1042,10 @@ ApiResponse<[**ListCrmOwners200Response**](ListCrmOwners200Response.md)>
 | **200** | One page of owners. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 
@@ -1055,7 +1055,7 @@ ApiResponse<[**ListCrmOwners200Response**](ListCrmOwners200Response.md)>
 
 Search CRM contacts
 
-Find people in the connected CRM by free text, email or phone. Send exactly one of &#x60;q&#x60;, &#x60;email&#x60; or &#x60;phone&#x60;.  HubSpot searches contacts. Salesforce searches Contacts and Leads that are not converted (&#x60;objectType&#x60; tells which), newest change first.  - &#x60;email&#x60; is an exact match. - &#x60;phone&#x60; takes an international number and matches it however the CRM stored it (\&quot;+44 7911 123456\&quot;, \&quot;07911 123456\&quot;). - &#x60;q&#x60; searches names, emails, phones and company. On Salesforce, &#x60;q&#x60; and &#x60;phone&#x60; use the search index, so a record saved in the last few minutes may not show yet; &#x60;email&#x60; never lags.
+Find people in the connected CRM by free text, email or phone. Send exactly one of &#x60;q&#x60;, &#x60;email&#x60; or &#x60;phone&#x60;.  HubSpot searches contacts. Salesforce searches Contacts and Leads that are not converted (&#x60;objectType&#x60; tells which), newest change first. GoHighLevel searches the location&#39;s contacts.  - &#x60;email&#x60; is an exact match. - &#x60;phone&#x60; takes an international number and matches it however the CRM stored it (\&quot;+44 7911 123456\&quot;, \&quot;07911 123456\&quot;). - &#x60;q&#x60; searches names, emails, phones and company. On Salesforce, &#x60;q&#x60; and &#x60;phone&#x60; use the search index, so a record saved in the last few minutes may not show yet; &#x60;email&#x60; never lags. - On GoHighLevel, &#x60;email&#x60; and &#x60;phone&#x60; use the location&#39;s duplicate check: at most one contact, with no next page.
 
 ### Example
 
@@ -1078,11 +1078,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
         String q = "q_example"; // String | Free text, at least 2 characters.
         String email = "email_example"; // String | 
         String phone = "phone_example"; // String | International number with its country code, for example `+14155550100`.
-        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`.
+        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`. On GoHighLevel, a field of the record (`source`, `status`), or a custom field by id or key.
         Boolean includeRaw = false; // Boolean | Also return the CRM's own record as `raw`.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | The `nextCursor` of the previous page, unchanged.
@@ -1105,11 +1105,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
 | **q** | **String**| Free text, at least 2 characters. | [optional] |
 | **email** | **String**|  | [optional] |
 | **phone** | **String**| International number with its country code, for example &#x60;+14155550100&#x60;. | [optional] |
-| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. | [optional] |
+| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. On GoHighLevel, a field of the record (&#x60;source&#x60;, &#x60;status&#x60;), or a custom field by id or key. | [optional] |
 | **includeRaw** | **Boolean**| Also return the CRM&#39;s own record as &#x60;raw&#x60;. | [optional] [default to false] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page, unchanged. | [optional] |
@@ -1134,10 +1134,10 @@ public class Example {
 | **200** | Matching contacts, one page. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 ## searchCrmContactsWithHttpInfo
@@ -1146,7 +1146,7 @@ public class Example {
 
 Search CRM contacts
 
-Find people in the connected CRM by free text, email or phone. Send exactly one of &#x60;q&#x60;, &#x60;email&#x60; or &#x60;phone&#x60;.  HubSpot searches contacts. Salesforce searches Contacts and Leads that are not converted (&#x60;objectType&#x60; tells which), newest change first.  - &#x60;email&#x60; is an exact match. - &#x60;phone&#x60; takes an international number and matches it however the CRM stored it (\&quot;+44 7911 123456\&quot;, \&quot;07911 123456\&quot;). - &#x60;q&#x60; searches names, emails, phones and company. On Salesforce, &#x60;q&#x60; and &#x60;phone&#x60; use the search index, so a record saved in the last few minutes may not show yet; &#x60;email&#x60; never lags.
+Find people in the connected CRM by free text, email or phone. Send exactly one of &#x60;q&#x60;, &#x60;email&#x60; or &#x60;phone&#x60;.  HubSpot searches contacts. Salesforce searches Contacts and Leads that are not converted (&#x60;objectType&#x60; tells which), newest change first. GoHighLevel searches the location&#39;s contacts.  - &#x60;email&#x60; is an exact match. - &#x60;phone&#x60; takes an international number and matches it however the CRM stored it (\&quot;+44 7911 123456\&quot;, \&quot;07911 123456\&quot;). - &#x60;q&#x60; searches names, emails, phones and company. On Salesforce, &#x60;q&#x60; and &#x60;phone&#x60; use the search index, so a record saved in the last few minutes may not show yet; &#x60;email&#x60; never lags. - On GoHighLevel, &#x60;email&#x60; and &#x60;phone&#x60; use the location&#39;s duplicate check: at most one contact, with no next page.
 
 ### Example
 
@@ -1170,11 +1170,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
         String q = "q_example"; // String | Free text, at least 2 characters.
         String email = "email_example"; // String | 
         String phone = "phone_example"; // String | International number with its country code, for example `+14155550100`.
-        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`.
+        String properties = "properties_example"; // String | Comma-separated native field names to return in `properties` (at most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`. On GoHighLevel, a field of the record (`source`, `status`), or a custom field by id or key.
         Boolean includeRaw = false; // Boolean | Also return the CRM's own record as `raw`.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | The `nextCursor` of the previous page, unchanged.
@@ -1199,11 +1199,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
 | **q** | **String**| Free text, at least 2 characters. | [optional] |
 | **email** | **String**|  | [optional] |
 | **phone** | **String**| International number with its country code, for example &#x60;+14155550100&#x60;. | [optional] |
-| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. | [optional] |
+| **properties** | **String**| Comma-separated native field names to return in &#x60;properties&#x60; (at most 50), for example &#x60;lifecyclestage,hs_lead_status&#x60; or &#x60;LeadSource,Industry__c&#x60;. On GoHighLevel, a field of the record (&#x60;source&#x60;, &#x60;status&#x60;), or a custom field by id or key. | [optional] |
 | **includeRaw** | **Boolean**| Also return the CRM&#39;s own record as &#x60;raw&#x60;. | [optional] [default to false] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page, unchanged. | [optional] |
@@ -1228,10 +1228,10 @@ ApiResponse<[**SearchCrmContacts200Response**](SearchCrmContacts200Response.md)>
 | **200** | Matching contacts, one page. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 
@@ -1264,8 +1264,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
-        String contactId = "contactId_example"; // String | The CRM's own id. HubSpot contact id, or Salesforce Contact (`003...`) or Lead (`00Q...`) id.
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
+        String contactId = "contactId_example"; // String | The CRM's own id. HubSpot contact id, Salesforce Contact (`003...`) or Lead (`00Q...`) id, or GoHighLevel contact id.
         CrmContactInput crmContactInput = new CrmContactInput(); // CrmContactInput | 
         try {
             CreateCrmContact201Response result = apiInstance.updateCrmContact(accountId, contactId, crmContactInput);
@@ -1286,8 +1286,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
-| **contactId** | **String**| The CRM&#39;s own id. HubSpot contact id, or Salesforce Contact (&#x60;003...&#x60;) or Lead (&#x60;00Q...&#x60;) id. | |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
+| **contactId** | **String**| The CRM&#39;s own id. HubSpot contact id, Salesforce Contact (&#x60;003...&#x60;) or Lead (&#x60;00Q...&#x60;) id, or GoHighLevel contact id. | |
 | **crmContactInput** | [**CrmContactInput**](CrmContactInput.md)|  | |
 
 ### Return type
@@ -1310,11 +1310,11 @@ public class Example {
 | **200** | The updated contact, read back from the CRM. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
-| **409** | &#x60;crm_duplicate_record&#x60;: the CRM refused a duplicate (HubSpot: the email belongs to another contact; Salesforce: a duplicate rule). &#x60;details.existingId&#x60; is the existing record when the CRM names it.  &#x60;account_disconnected&#x60;: the CRM account needs reconnecting; see AccountDisconnected. |  -  |
+| **409** | &#x60;crm_duplicate_record&#x60;: the CRM refused a duplicate (HubSpot: the email belongs to another contact; Salesforce: a duplicate rule; GoHighLevel: a location that does not allow duplicate contacts). &#x60;details.existingId&#x60; is the existing record when the CRM names it.  &#x60;account_disconnected&#x60;: the CRM account needs reconnecting; see AccountDisconnected. |  -  |
 | **422** | The CRM refused the values: a validation rule, a required field, a bad picklist value or an unknown field. Code &#x60;crm_validation_failed&#x60;; &#x60;details.errors&#x60; lists the CRM&#39;s own errors, each with &#x60;code&#x60;, &#x60;message&#x60; and the &#x60;fields&#x60; at fault when the CRM names them. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 ## updateCrmContactWithHttpInfo
@@ -1347,8 +1347,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
-        String contactId = "contactId_example"; // String | The CRM's own id. HubSpot contact id, or Salesforce Contact (`003...`) or Lead (`00Q...`) id.
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
+        String contactId = "contactId_example"; // String | The CRM's own id. HubSpot contact id, Salesforce Contact (`003...`) or Lead (`00Q...`) id, or GoHighLevel contact id.
         CrmContactInput crmContactInput = new CrmContactInput(); // CrmContactInput | 
         try {
             ApiResponse<CreateCrmContact201Response> response = apiInstance.updateCrmContactWithHttpInfo(accountId, contactId, crmContactInput);
@@ -1371,8 +1371,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
-| **contactId** | **String**| The CRM&#39;s own id. HubSpot contact id, or Salesforce Contact (&#x60;003...&#x60;) or Lead (&#x60;00Q...&#x60;) id. | |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
+| **contactId** | **String**| The CRM&#39;s own id. HubSpot contact id, Salesforce Contact (&#x60;003...&#x60;) or Lead (&#x60;00Q...&#x60;) id, or GoHighLevel contact id. | |
 | **crmContactInput** | [**CrmContactInput**](CrmContactInput.md)|  | |
 
 ### Return type
@@ -1395,11 +1395,11 @@ ApiResponse<[**CreateCrmContact201Response**](CreateCrmContact201Response.md)>
 | **200** | The updated contact, read back from the CRM. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
-| **409** | &#x60;crm_duplicate_record&#x60;: the CRM refused a duplicate (HubSpot: the email belongs to another contact; Salesforce: a duplicate rule). &#x60;details.existingId&#x60; is the existing record when the CRM names it.  &#x60;account_disconnected&#x60;: the CRM account needs reconnecting; see AccountDisconnected. |  -  |
+| **409** | &#x60;crm_duplicate_record&#x60;: the CRM refused a duplicate (HubSpot: the email belongs to another contact; Salesforce: a duplicate rule; GoHighLevel: a location that does not allow duplicate contacts). &#x60;details.existingId&#x60; is the existing record when the CRM names it.  &#x60;account_disconnected&#x60;: the CRM account needs reconnecting; see AccountDisconnected. |  -  |
 | **422** | The CRM refused the values: a validation rule, a required field, a bad picklist value or an unknown field. Code &#x60;crm_validation_failed&#x60;; &#x60;details.errors&#x60; lists the CRM&#39;s own errors, each with &#x60;code&#x60;, &#x60;message&#x60; and the &#x60;fields&#x60; at fault when the CRM names them. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 
@@ -1409,7 +1409,7 @@ ApiResponse<[**CreateCrmContact201Response**](CreateCrmContact201Response.md)>
 
 Update a CRM deal
 
-Move a deal to another stage, or change its amount, close date, owner or native fields. Send only what changes.  HubSpot needs &#x60;crm.objects.deals.write&#x60;, an optional scope portals approve when they connect; without it, 403 &#x60;crm_scope_missing&#x60; asks to reconnect HubSpot. &#x60;currency&#x60; only works on multi-currency HubSpot portals and Salesforce orgs.
+Move a deal to another stage, or change its amount, close date, owner or native fields. Send only what changes.  HubSpot needs &#x60;crm.objects.deals.write&#x60;, an optional scope portals approve when they connect; without it, 403 &#x60;crm_scope_missing&#x60; asks to reconnect HubSpot. &#x60;currency&#x60; only works on multi-currency HubSpot portals and Salesforce orgs.  GoHighLevel: &#x60;stage&#x60; is the pipeline stage id, &#x60;amount&#x60; the opportunity value, and &#x60;properties.status&#x60; (&#x60;open&#x60;, &#x60;won&#x60;, &#x60;lost&#x60;, &#x60;abandoned&#x60;) marks it won or lost. Its opportunities have no close date or currency of their own: &#x60;closeDate&#x60; and &#x60;currency&#x60; answer 400.  Updating needs &#x60;opportunities.write&#x60;, which the Zernio GoHighLevel app does not request yet, so this call answers 403 &#x60;crm_scope_missing&#x60; on GoHighLevel for now.
 
 ### Example
 
@@ -1432,8 +1432,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
-        String dealId = "dealId_example"; // String | HubSpot deal id or Salesforce Opportunity id (`006...`).
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
+        String dealId = "dealId_example"; // String | HubSpot deal id, Salesforce Opportunity id (`006...`) or GoHighLevel opportunity id.
         UpdateCrmDealRequest updateCrmDealRequest = new UpdateCrmDealRequest(); // UpdateCrmDealRequest | 
         try {
             GetCrmDeal200Response result = apiInstance.updateCrmDeal(accountId, dealId, updateCrmDealRequest);
@@ -1454,8 +1454,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
-| **dealId** | **String**| HubSpot deal id or Salesforce Opportunity id (&#x60;006...&#x60;). | |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
+| **dealId** | **String**| HubSpot deal id, Salesforce Opportunity id (&#x60;006...&#x60;) or GoHighLevel opportunity id. | |
 | **updateCrmDealRequest** | [**UpdateCrmDealRequest**](UpdateCrmDealRequest.md)|  | |
 
 ### Return type
@@ -1478,11 +1478,11 @@ public class Example {
 | **200** | The updated deal, read back from the CRM. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
 | **422** | The CRM refused the values: a validation rule, a required field, a bad picklist value or an unknown field. Code &#x60;crm_validation_failed&#x60;; &#x60;details.errors&#x60; lists the CRM&#39;s own errors, each with &#x60;code&#x60;, &#x60;message&#x60; and the &#x60;fields&#x60; at fault when the CRM names them. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
 ## updateCrmDealWithHttpInfo
@@ -1491,7 +1491,7 @@ public class Example {
 
 Update a CRM deal
 
-Move a deal to another stage, or change its amount, close date, owner or native fields. Send only what changes.  HubSpot needs &#x60;crm.objects.deals.write&#x60;, an optional scope portals approve when they connect; without it, 403 &#x60;crm_scope_missing&#x60; asks to reconnect HubSpot. &#x60;currency&#x60; only works on multi-currency HubSpot portals and Salesforce orgs.
+Move a deal to another stage, or change its amount, close date, owner or native fields. Send only what changes.  HubSpot needs &#x60;crm.objects.deals.write&#x60;, an optional scope portals approve when they connect; without it, 403 &#x60;crm_scope_missing&#x60; asks to reconnect HubSpot. &#x60;currency&#x60; only works on multi-currency HubSpot portals and Salesforce orgs.  GoHighLevel: &#x60;stage&#x60; is the pipeline stage id, &#x60;amount&#x60; the opportunity value, and &#x60;properties.status&#x60; (&#x60;open&#x60;, &#x60;won&#x60;, &#x60;lost&#x60;, &#x60;abandoned&#x60;) marks it won or lost. Its opportunities have no close date or currency of their own: &#x60;closeDate&#x60; and &#x60;currency&#x60; answer 400.  Updating needs &#x60;opportunities.write&#x60;, which the Zernio GoHighLevel app does not request yet, so this call answers 403 &#x60;crm_scope_missing&#x60; on GoHighLevel for now.
 
 ### Example
 
@@ -1515,8 +1515,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CrmApi apiInstance = new CrmApi(defaultClient);
-        String accountId = "accountId_example"; // String | The connected HubSpot or Salesforce account (`GET /v1/accounts?platform=hubspot` or `salesforce`).
-        String dealId = "dealId_example"; // String | HubSpot deal id or Salesforce Opportunity id (`006...`).
+        String accountId = "accountId_example"; // String | The connected HubSpot, Salesforce or GoHighLevel account (`GET /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`).
+        String dealId = "dealId_example"; // String | HubSpot deal id, Salesforce Opportunity id (`006...`) or GoHighLevel opportunity id.
         UpdateCrmDealRequest updateCrmDealRequest = new UpdateCrmDealRequest(); // UpdateCrmDealRequest | 
         try {
             ApiResponse<GetCrmDeal200Response> response = apiInstance.updateCrmDealWithHttpInfo(accountId, dealId, updateCrmDealRequest);
@@ -1539,8 +1539,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The connected HubSpot or Salesforce account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60; or &#x60;salesforce&#x60;). | |
-| **dealId** | **String**| HubSpot deal id or Salesforce Opportunity id (&#x60;006...&#x60;). | |
+| **accountId** | **String**| The connected HubSpot, Salesforce or GoHighLevel account (&#x60;GET /v1/accounts?platform&#x3D;hubspot&#x60;, &#x60;salesforce&#x60; or &#x60;gohighlevel&#x60;). | |
+| **dealId** | **String**| HubSpot deal id, Salesforce Opportunity id (&#x60;006...&#x60;) or GoHighLevel opportunity id. | |
 | **updateCrmDealRequest** | [**UpdateCrmDealRequest**](UpdateCrmDealRequest.md)|  | |
 
 ### Return type
@@ -1563,10 +1563,10 @@ ApiResponse<[**GetCrmDeal200Response**](GetCrmDeal200Response.md)>
 | **200** | The updated deal, read back from the CRM. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
+| **403** | &#x60;crm_scope_missing&#x60;: the connection did not grant a scope this call needs (&#x60;details.scope&#x60;), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as &#x60;users.readonly&#x60;) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.  &#x60;crm_access_denied&#x60;: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). &#x60;details.errors&#x60; holds the CRM&#39;s own errors. |  -  |
 | **404** | &#x60;account_not_found&#x60;: the accountId is not a CRM account you can access. &#x60;crm_record_not_found&#x60;: the CRM has no record with this id (deleted, merged, or another object type). |  -  |
 | **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
 | **422** | The CRM refused the values: a validation rule, a required field, a bad picklist value or an unknown field. Code &#x60;crm_validation_failed&#x60;; &#x60;details.errors&#x60; lists the CRM&#39;s own errors, each with &#x60;code&#x60;, &#x60;message&#x60; and the &#x60;fields&#x60; at fault when the CRM names them. |  -  |
-| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
+| **429** | Zernio paces every connection inside its CRM limits (HubSpot per portal, Salesforce per org, GoHighLevel per location, shared with the conversation sync). Code &#x60;rate_limited&#x60;; wait for &#x60;Retry-After&#x60; seconds. |  * Retry-After - Seconds to wait before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 
