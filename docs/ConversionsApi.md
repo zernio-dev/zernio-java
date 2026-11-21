@@ -6391,7 +6391,7 @@ public class Example {
 | **from** | **OffsetDateTime**| Only events at or after this time (ISO 8601, on the event time). | [optional] |
 | **to** | **OffsetDateTime**| Only events before this time (ISO 8601, on the event time). | [optional] |
 | **eventName** | **String**| Only events with this name, such as &#x60;Purchase&#x60;. | [optional] |
-| **source** | **String**| Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. | [optional] [enum: api, relay, hubspot, meta_leads, google_leads, linkedin_leads, tiktok_leads, shopify, woocommerce, stripe, web, salesforce, postback, form_leads] |
+| **source** | **String**| Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. | [optional] [enum: api, relay, hubspot, meta_leads, google_leads, linkedin_leads, tiktok_leads, shopify, woocommerce, stripe, web, salesforce, gohighlevel, postback, form_leads] |
 | **platform** | **String**| Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. | [optional] |
 | **deliveryStatus** | **String**| Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). | [optional] [enum: sent, failed] |
 | **fromAd** | **Boolean**| &#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. | [optional] |
@@ -6487,7 +6487,7 @@ public class Example {
 | **from** | **OffsetDateTime**| Only events at or after this time (ISO 8601, on the event time). | [optional] |
 | **to** | **OffsetDateTime**| Only events before this time (ISO 8601, on the event time). | [optional] |
 | **eventName** | **String**| Only events with this name, such as &#x60;Purchase&#x60;. | [optional] |
-| **source** | **String**| Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. | [optional] [enum: api, relay, hubspot, meta_leads, google_leads, linkedin_leads, tiktok_leads, shopify, woocommerce, stripe, web, salesforce, postback, form_leads] |
+| **source** | **String**| Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. | [optional] [enum: api, relay, hubspot, meta_leads, google_leads, linkedin_leads, tiktok_leads, shopify, woocommerce, stripe, web, salesforce, gohighlevel, postback, form_leads] |
 | **platform** | **String**| Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. | [optional] |
 | **deliveryStatus** | **String**| Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). | [optional] [enum: sent, failed] |
 | **fromAd** | **Boolean**| &#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. | [optional] |

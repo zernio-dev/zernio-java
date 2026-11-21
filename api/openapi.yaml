@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.721.0
+  version: 1.723.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -18985,6 +18985,69 @@ paths:
       - hubspot
       x-accepts:
       - application/json
+  /v1/connect/gohighlevel:
+    get:
+      description: |
+        Initiates OAuth (authorization code, no PKCE) for the Zernio GoHighLevel Marketplace app. Each GoHighLevel sub-account (location) becomes one connected account with `platform: gohighlevel`. An agency that installs the app across its sub-accounts gets one connected account per installed sub-account.
+
+        ### Flow
+
+        1. Redirect the user to `authUrl` (GoHighLevel's install screen).
+        2. After the install, GoHighLevel returns the browser to Zernio's callback.
+        3. Zernio redirects to `redirect_url` (or the dashboard when omitted).
+
+        On success the redirect carries `connected=gohighlevel`, `profileId` and `accountId`. On failure it carries `error` (`gohighlevel_access_denied`, `gohighlevel_invalid_state` or `gohighlevel_connection_failed`), `platform=gohighlevel` and `error_message`.
+
+        Reconnecting the same sub-account on the same profile updates the stored connection in place and keeps its settings.
+      operationId: getGohighlevelConnectUrl
+      parameters:
+      - description: Your Zernio profile ID (get from /v1/profiles).
+        explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Custom redirect after connection. Must be an absolute http(s)
+          URL or custom app scheme such as `myapp://callback`; relative and unsafe
+          URLs return 400.
+        explode: true
+        in: query
+        name: redirect_url
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getGohighlevelConnectUrl_200_response"
+          description: OAuth authorization URL and authenticated state
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "API key does not have access to this profile, or the key is\
+            \ read-only."
+        "404":
+          description: Profile not found or access denied.
+        "503":
+          description: GoHighLevel OAuth is not configured.
+      security:
+      - bearerAuth: []
+      - connectToken: []
+      summary: Get GoHighLevel OAuth connect URL
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-platforms:
+      - gohighlevel
+      x-accepts:
+      - application/json
   /v1/connect/salesforce:
     get:
       description: |
@@ -27964,6 +28027,82 @@ paths:
       x-resource-group: accounts
       x-platforms:
       - hubspot
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/gohighlevel-settings:
+    get:
+      description: Read a connected GoHighLevel sub-account and what Zernio relays
+        from it and writes back to it.
+      operationId: getGohighlevelSettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getGohighlevelSettings_200_response"
+          description: GoHighLevel settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Get GoHighLevel account settings
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-platforms:
+      - gohighlevel
+      x-accepts:
+      - application/json
+    patch:
+      description: "Turn the conversion relay, the write-back to GoHighLevel contacts\
+        \ or forwarding to the profile's ad platforms on or off for a connected GoHighLevel\
+        \ sub-account. Send at least one field; omitted fields keep their value. Settings\
+        \ survive reconnecting the same sub-account."
+      operationId: updateGohighlevelSettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateGohighlevelSettings_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateGohighlevelSettings_200_response"
+          description: Updated settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Update GoHighLevel account settings
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-platforms:
+      - gohighlevel
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/accounts/{accountId}/salesforce-settings:
@@ -52059,6 +52198,7 @@ paths:
       x-platforms:
       - hubspot
       - salesforce
+      - gohighlevel
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -52171,6 +52311,7 @@ paths:
       x-platforms:
       - hubspot
       - salesforce
+      - gohighlevel
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -76758,6 +76899,7 @@ paths:
           - stripe
           - web
           - salesforce
+          - gohighlevel
           - postback
           - form_leads
           type: string
@@ -76844,6 +76986,7 @@ paths:
       - stripe
       - hubspot
       - salesforce
+      - gohighlevel
       x-accepts:
       - application/json
     post:
@@ -76928,6 +77071,7 @@ paths:
       - applovinads
       - snapchatads
       - googleanalytics
+      - gohighlevel
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -77636,6 +77780,7 @@ paths:
       - googleanalytics
       - hubspot
       - salesforce
+      - gohighlevel
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -122541,6 +122686,60 @@ components:
       - livemode
       - platform
       - stripeAccountId
+    GohighlevelSettings:
+      example:
+        relayConversions: true
+        companyId: companyId
+        locationName: locationName
+        writeBackAttribution: true
+        locationId: locationId
+        installedBy: installedBy
+        _id: _id
+        platform: gohighlevel
+        reportToAds: true
+      properties:
+        _id:
+          type: string
+        platform:
+          enum:
+          - gohighlevel
+          type: string
+        locationId:
+          description: The GoHighLevel sub-account (location) id.
+          type: string
+        companyId:
+          description: "The agency that owns the sub-account, null for a sub-account\
+            \ under no agency."
+          nullable: true
+          type: string
+        locationName:
+          nullable: true
+          type: string
+        installedBy:
+          description: The GoHighLevel user who installed the app.
+          nullable: true
+          type: string
+        relayConversions:
+          description: CRM events are relayed as conversions. Default true.
+          type: boolean
+        writeBackAttribution:
+          description: Relayed conversions are written back onto the GoHighLevel contact.
+            Default true.
+          type: boolean
+        reportToAds:
+          description: Relayed conversions are forwarded to the profile's ad platforms.
+            Default false.
+          type: boolean
+      required:
+      - _id
+      - companyId
+      - installedBy
+      - locationId
+      - locationName
+      - platform
+      - relayConversions
+      - reportToAds
+      - writeBackAttribution
     HubSpotSettings:
       example:
         hubId: hubId
@@ -154933,6 +155132,21 @@ components:
       required:
       - authUrl
       - state
+    getGohighlevelConnectUrl_200_response:
+      example:
+        authUrl: https://openapi-generator.tech
+        state: state
+      properties:
+        authUrl:
+          description: GoHighLevel URL to open in the user agent.
+          format: uri
+          type: string
+        state:
+          description: "Authenticated, expiring OAuth state handled by the callback."
+          type: string
+      required:
+      - authUrl
+      - state
     getSalesforceConnectUrl_200_response:
       example:
         authUrl: https://openapi-generator.tech
@@ -163224,6 +163438,54 @@ components:
           items:
             $ref: "#/components/schemas/HubSpotContactProperty"
           type: array
+    getGohighlevelSettings_200_response:
+      example:
+        account:
+          relayConversions: true
+          companyId: companyId
+          locationName: locationName
+          writeBackAttribution: true
+          locationId: locationId
+          installedBy: installedBy
+          _id: _id
+          platform: gohighlevel
+          reportToAds: true
+      properties:
+        account:
+          $ref: "#/components/schemas/GohighlevelSettings"
+    updateGohighlevelSettings_request:
+      properties:
+        relayConversions:
+          description: "Relay GoHighLevel CRM events (new contacts, won opportunities,\
+            \ appointments, paid invoices and orders) as conversions with `source`\
+            \ `gohighlevel`."
+          type: boolean
+        writeBackAttribution:
+          description: Write each relayed conversion onto the `Zernio Conversions`
+            custom field of the GoHighLevel contact.
+          type: boolean
+        reportToAds:
+          description: Also forward relayed conversions to the profile's ad platform
+            destinations. Off stores them only.
+          type: boolean
+    updateGohighlevelSettings_200_response:
+      example:
+        message: message
+        account:
+          relayConversions: true
+          companyId: companyId
+          locationName: locationName
+          writeBackAttribution: true
+          locationId: locationId
+          installedBy: installedBy
+          _id: _id
+          platform: gohighlevel
+          reportToAds: true
+      properties:
+        message:
+          type: string
+        account:
+          $ref: "#/components/schemas/GohighlevelSettings"
     getSalesforceSettings_200_response:
       example:
         account:

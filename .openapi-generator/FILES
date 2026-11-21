@@ -1602,6 +1602,8 @@ docs/GetGmbAttributeMetadata200ResponseAttributeMetadataInner.md
 docs/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner.md
 docs/GetGmbLocations200Response.md
 docs/GetGmbLocations200ResponseLocationsInner.md
+docs/GetGohighlevelConnectUrl200Response.md
+docs/GetGohighlevelSettings200Response.md
 docs/GetGoogleAnalyticsConnectUrl200Response.md
 docs/GetGoogleAnalyticsMetadata200Response.md
 docs/GetGoogleAnalyticsMetadata200ResponseDimensionsInner.md
@@ -1929,6 +1931,7 @@ docs/GmbPlaceActionsApi.md
 docs/GmbReviewsApi.md
 docs/GmbServicesApi.md
 docs/GmbVerificationsApi.md
+docs/GohighlevelSettings.md
 docs/GoogleAdLabel.md
 docs/GoogleAdLabelAssignments.md
 docs/GoogleAdsAccessRole.md
@@ -3518,6 +3521,8 @@ docs/UpdateFileRequest.md
 docs/UpdateForwardingRuleRequest.md
 docs/UpdateGmbLocation200Response.md
 docs/UpdateGmbLocationRequest.md
+docs/UpdateGohighlevelSettings200Response.md
+docs/UpdateGohighlevelSettingsRequest.md
 docs/UpdateGoogleAssetGroup200Response.md
 docs/UpdateGoogleAssetGroupRequest.md
 docs/UpdateGoogleBusinessAttributes200Response.md
@@ -5766,6 +5771,8 @@ src/main/java/dev/zernio/model/GetGmbAttributeMetadata200ResponseAttributeMetada
 src/main/java/dev/zernio/model/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner.java
 src/main/java/dev/zernio/model/GetGmbLocations200Response.java
 src/main/java/dev/zernio/model/GetGmbLocations200ResponseLocationsInner.java
+src/main/java/dev/zernio/model/GetGohighlevelConnectUrl200Response.java
+src/main/java/dev/zernio/model/GetGohighlevelSettings200Response.java
 src/main/java/dev/zernio/model/GetGoogleAnalyticsConnectUrl200Response.java
 src/main/java/dev/zernio/model/GetGoogleAnalyticsMetadata200Response.java
 src/main/java/dev/zernio/model/GetGoogleAnalyticsMetadata200ResponseDimensionsInner.java
@@ -6085,6 +6092,7 @@ src/main/java/dev/zernio/model/GetYoutubeCaptions200ResponseAvailableTracksInner
 src/main/java/dev/zernio/model/GetYoutubeCaptions200ResponseCuesInner.java
 src/main/java/dev/zernio/model/GetYoutubePlaylists200Response.java
 src/main/java/dev/zernio/model/GetYoutubePlaylists200ResponsePlaylistsInner.java
+src/main/java/dev/zernio/model/GohighlevelSettings.java
 src/main/java/dev/zernio/model/GoogleAdLabel.java
 src/main/java/dev/zernio/model/GoogleAdLabelAssignments.java
 src/main/java/dev/zernio/model/GoogleAdsAccessRole.java
@@ -7643,6 +7651,8 @@ src/main/java/dev/zernio/model/UpdateFileRequest.java
 src/main/java/dev/zernio/model/UpdateForwardingRuleRequest.java
 src/main/java/dev/zernio/model/UpdateGmbLocation200Response.java
 src/main/java/dev/zernio/model/UpdateGmbLocationRequest.java
+src/main/java/dev/zernio/model/UpdateGohighlevelSettings200Response.java
+src/main/java/dev/zernio/model/UpdateGohighlevelSettingsRequest.java
 src/main/java/dev/zernio/model/UpdateGoogleAssetGroup200Response.java
 src/main/java/dev/zernio/model/UpdateGoogleAssetGroupRequest.java
 src/main/java/dev/zernio/model/UpdateGoogleBusinessAttributes200Response.java
@@ -8205,3 +8215,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetGohighlevelConnectUrl200ResponseTest.java
+src/test/java/dev/zernio/model/GetGohighlevelSettings200ResponseTest.java
+src/test/java/dev/zernio/model/GohighlevelSettingsTest.java
+src/test/java/dev/zernio/model/UpdateGohighlevelSettings200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateGohighlevelSettingsRequestTest.java
