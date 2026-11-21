@@ -3847,7 +3847,7 @@ ApiResponse<Void>
 
 Update GoHighLevel account settings
 
-Turn the conversion relay, the write-back to GoHighLevel contacts or forwarding to the profile&#39;s ad platforms on or off for a connected GoHighLevel sub-account. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same sub-account.
+Turn the conversion relay, the write-back to HighLevel contacts, forwarding to the profile&#39;s ad platforms, contact sync, conversation logging or delivery marks on or off for a connected HighLevel sub-account. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same sub-account.
 
 ### Example
 
@@ -3922,7 +3922,7 @@ public class Example {
 
 Update GoHighLevel account settings
 
-Turn the conversion relay, the write-back to GoHighLevel contacts or forwarding to the profile&#39;s ad platforms on or off for a connected GoHighLevel sub-account. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same sub-account.
+Turn the conversion relay, the write-back to HighLevel contacts, forwarding to the profile&#39;s ad platforms, contact sync, conversation logging or delivery marks on or off for a connected HighLevel sub-account. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same sub-account.
 
 ### Example
 
