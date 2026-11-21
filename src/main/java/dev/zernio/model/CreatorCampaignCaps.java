@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreatorCampaignCaps.JSON_PROPERTY_MAX_X_READ_SPEND_CENTS,
   CreatorCampaignCaps.JSON_PROPERTY_AUTHENTICITY_THRESHOLD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:31:42.314540619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:37:28.006684394Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatorCampaignCaps {
   public static final String JSON_PROPERTY_MAX_PARTICIPANTS = "maxParticipants";
   @javax.annotation.Nullable

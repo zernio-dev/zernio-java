@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateCommerceRefund200Response.JSON_PROPERTY_VALIDATE_ONLY,
   CreateCommerceRefund200Response.JSON_PROPERTY_REFUND
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:31:42.314540619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:37:28.006684394Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCommerceRefund200Response {
   public static final String JSON_PROPERTY_VALIDATE_ONLY = "validateOnly";
   @javax.annotation.Nullable

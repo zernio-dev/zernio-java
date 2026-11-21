@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   AdKeywordMetrics.JSON_PROPERTY_FIRST_PAGE_CPC,
   AdKeywordMetrics.JSON_PROPERTY_FIRST_POSITION_CPC
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:31:42.314540619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:37:28.006684394Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdKeywordMetrics {
   public static final String JSON_PROPERTY_WINDOW_DAYS = "windowDays";
   @javax.annotation.Nullable

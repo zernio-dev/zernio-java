@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCallTranscriptSegmentCall.JSON_PROPERTY_CONTACT_ID,
   WebhookPayloadCallTranscriptSegmentCall.JSON_PROPERTY_CONVERSATION_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:31:42.314540619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:37:28.006684394Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCallTranscriptSegmentCall {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

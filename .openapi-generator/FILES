@@ -8257,17 +8257,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/ConversionAuditApiTest.java
-src/test/java/dev/zernio/model/ConversionAuditAnswerPublicReportTest.java
-src/test/java/dev/zernio/model/ConversionAuditAnswerTest.java
-src/test/java/dev/zernio/model/ConversionAuditReportChecksInnerTest.java
-src/test/java/dev/zernio/model/ConversionAuditReportChecksInnerVerifyTest.java
-src/test/java/dev/zernio/model/ConversionAuditReportConsentScanTest.java
-src/test/java/dev/zernio/model/ConversionAuditReportConsentTest.java
-src/test/java/dev/zernio/model/ConversionAuditReportOtherNetworksInnerTest.java
-src/test/java/dev/zernio/model/ConversionAuditReportPlatformsInnerTest.java
-src/test/java/dev/zernio/model/ConversionAuditReportScoreRangeTest.java
-src/test/java/dev/zernio/model/ConversionAuditReportServerSideSignalsInnerTest.java
-src/test/java/dev/zernio/model/ConversionAuditReportServerSideTest.java
-src/test/java/dev/zernio/model/ConversionAuditReportTest.java
-src/test/java/dev/zernio/model/GetLatestConversionAudit200ResponseTest.java

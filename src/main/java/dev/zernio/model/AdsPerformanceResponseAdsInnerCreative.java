@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   AdsPerformanceResponseAdsInnerCreative.JSON_PROPERTY_BODY,
   AdsPerformanceResponseAdsInnerCreative.JSON_PROPERTY_LINK_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:31:42.314540619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:37:28.006684394Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsPerformanceResponseAdsInnerCreative {
   /**
    * Same classification as the ad &#x60;creativeType&#x60;.

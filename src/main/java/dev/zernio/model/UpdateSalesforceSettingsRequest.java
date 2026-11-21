@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UpdateSalesforceSettingsRequest.JSON_PROPERTY_USE_OPPORTUNITIES_IN_RESULTS,
   UpdateSalesforceSettingsRequest.JSON_PROPERTY_REPORT_OPPORTUNITIES_TO_ADS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:31:42.314540619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:37:28.006684394Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateSalesforceSettingsRequest {
   public static final String JSON_PROPERTY_SYNC_CONTACTS = "syncContacts";
   @javax.annotation.Nullable

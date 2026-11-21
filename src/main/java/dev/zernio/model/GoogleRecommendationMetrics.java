@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GoogleRecommendationMetrics.JSON_PROPERTY_CONVERSIONS_VALUE,
   GoogleRecommendationMetrics.JSON_PROPERTY_VIDEO_VIEWS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:31:42.314540619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:37:28.006684394Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleRecommendationMetrics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nullable

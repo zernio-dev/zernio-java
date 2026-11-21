@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ConnectDiscordChannelRequest.JSON_PROPERTY_PROFILE_ID,
   ConnectDiscordChannelRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:31:42.314540619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:37:28.006684394Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectDiscordChannelRequest {
   public static final String JSON_PROPERTY_GUILD_ID = "guildId";
   @javax.annotation.Nonnull
