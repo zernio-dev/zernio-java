@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.732.1
+  version: 1.733.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -95451,13 +95451,15 @@ components:
           url: url
           platforms:
           - browserPixel: true
-            serverSide: true
             fired: before-consent
             note: note
             fixSteps:
             - fixSteps
             - fixSteps
             estimatedLossBrowserOnly: 5.637376656633329
+            relayedBy: zernio-tag
+            serverSideVerified: true
+            serverSide: true
             name: name
             ids:
             - ids
@@ -95468,13 +95470,15 @@ components:
             - events
             status: good
           - browserPixel: true
-            serverSide: true
             fired: before-consent
             note: note
             fixSteps:
             - fixSteps
             - fixSteps
             estimatedLossBrowserOnly: 5.637376656633329
+            relayedBy: zernio-tag
+            serverSideVerified: true
+            serverSide: true
             name: name
             ids:
             - ids
@@ -95578,13 +95582,15 @@ components:
         url: url
         platforms:
         - browserPixel: true
-          serverSide: true
           fired: before-consent
           note: note
           fixSteps:
           - fixSteps
           - fixSteps
           estimatedLossBrowserOnly: 5.637376656633329
+          relayedBy: zernio-tag
+          serverSideVerified: true
+          serverSide: true
           name: name
           ids:
           - ids
@@ -95595,13 +95601,15 @@ components:
           - events
           status: good
         - browserPixel: true
-          serverSide: true
           fired: before-consent
           note: note
           fixSteps:
           - fixSteps
           - fixSteps
           estimatedLossBrowserOnly: 5.637376656633329
+          relayedBy: zernio-tag
+          serverSideVerified: true
+          serverSide: true
           name: name
           ids:
           - ids
@@ -230392,13 +230400,15 @@ components:
           url: url
           platforms:
           - browserPixel: true
-            serverSide: true
             fired: before-consent
             note: note
             fixSteps:
             - fixSteps
             - fixSteps
             estimatedLossBrowserOnly: 5.637376656633329
+            relayedBy: zernio-tag
+            serverSideVerified: true
+            serverSide: true
             name: name
             ids:
             - ids
@@ -230409,13 +230419,15 @@ components:
             - events
             status: good
           - browserPixel: true
-            serverSide: true
             fired: before-consent
             note: note
             fixSteps:
             - fixSteps
             - fixSteps
             estimatedLossBrowserOnly: 5.637376656633329
+            relayedBy: zernio-tag
+            serverSideVerified: true
+            serverSide: true
             name: name
             ids:
             - ids
@@ -233558,13 +233570,15 @@ components:
     ConversionAuditReport_platforms_inner:
       example:
         browserPixel: true
-        serverSide: true
         fired: before-consent
         note: note
         fixSteps:
         - fixSteps
         - fixSteps
         estimatedLossBrowserOnly: 5.637376656633329
+        relayedBy: zernio-tag
+        serverSideVerified: true
+        serverSide: true
         name: name
         ids:
         - ids
@@ -233585,15 +233599,29 @@ components:
           description: Whether a browser pixel for this platform was found.
           type: boolean
         serverSide:
-          description: True only when the page shows a server-side path for this platform.
+          description: "True only when a server-side path is proven: visible from\
+            \ the page, or verified through the Zernio account behind the site tag."
+          type: boolean
+        relayedBy:
+          description: The only server path seen is the Zernio site tag relay; `serverSideVerified`
+            says whether its delivery to this platform is proven.
+          enum:
+          - zernio-tag
+          type: string
+        serverSideVerified:
+          description: The Zernio site tag on the page belongs to an account whose
+            destination for this platform accepted the site's events in the last 7
+            days.
           type: boolean
         status:
           description: "`good` = server-side, `warn` = browser-only (the leak), `missing`\
-            \ = not tracked."
+            \ = not tracked, `not-firing` = the tag is installed but sent nothing\
+            \ during a full visit."
           enum:
           - good
           - warn
           - missing
+          - not-firing
           type: string
         estimatedLossBrowserOnly:
           description: "Share of conversions typically lost when this platform runs\
