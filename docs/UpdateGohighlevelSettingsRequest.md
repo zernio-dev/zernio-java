@@ -13,6 +13,7 @@
 |**syncContacts** | **Boolean** | Match inbox contacts to HighLevel contacts (phone, then email) and create the ones that do not exist. |  [optional] |
 |**logMessages** | **Boolean** | Log inbox messages from every channel on the matched HighLevel contact, one note per channel and UTC day. |  [optional] |
 |**logDeliveryStatus** | **Boolean** | Mark sent, delivered, read and failed on logged outgoing messages. |  [optional] |
+|**syncAdLeads** | **Boolean** | Create or update a HighLevel contact for every lead from the profile&#39;s ad network lead forms (Meta, TikTok, LinkedIn, Google), tagged with the network, campaign and form. |  [optional] |
 
 
 

@@ -19,6 +19,7 @@
 |**syncContacts** | **Boolean** | Inbox contacts are matched to HighLevel contacts by phone, then email, and created there when none matches. Default true. |  |
 |**logMessages** | **Boolean** | Inbox messages from every channel (both directions) are logged on the HighLevel contact as one note per channel and day. Default true. |  |
 |**logDeliveryStatus** | **Boolean** | Logged outgoing messages show their delivery status (sent, delivered, read, failed) on their note line. Default true. |  |
+|**syncAdLeads** | **Boolean** | Leads from the profile&#39;s ad network lead forms become HighLevel contacts, deduplicated by email, then phone. Default true. |  |
 
 
 

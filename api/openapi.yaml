@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.728.0
+  version: 1.729.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -28067,10 +28067,10 @@ paths:
       - application/json
     patch:
       description: "Turn the conversion relay, the write-back to HighLevel contacts,\
-        \ forwarding to the profile's ad platforms, contact sync, conversation logging\
-        \ or delivery marks on or off for a connected HighLevel sub-account. Send\
-        \ at least one field; omitted fields keep their value. Settings survive reconnecting\
-        \ the same sub-account."
+        \ forwarding to the profile's ad platforms, contact sync, conversation logging,\
+        \ delivery marks or the ad lead sync on or off for a connected HighLevel sub-account.\
+        \ Send at least one field; omitted fields keep their value. Settings survive\
+        \ reconnecting the same sub-account."
       operationId: updateGohighlevelSettings
       parameters:
       - explode: false
@@ -122956,18 +122956,19 @@ components:
       - stripeAccountId
     GohighlevelSettings:
       example:
+        locationName: locationName
+        logDeliveryStatus: true
+        platform: gohighlevel
+        reportToAds: true
         relayConversions: true
         companyId: companyId
-        locationName: locationName
         writeBackAttribution: true
-        logDeliveryStatus: true
         locationId: locationId
         installedBy: installedBy
         _id: _id
         logMessages: true
         syncContacts: true
-        platform: gohighlevel
-        reportToAds: true
+        syncAdLeads: true
       properties:
         _id:
           type: string
@@ -123013,6 +123014,10 @@ components:
           description: "Logged outgoing messages show their delivery status (sent,\
             \ delivered, read, failed) on their note line. Default true."
           type: boolean
+        syncAdLeads:
+          description: "Leads from the profile's ad network lead forms become HighLevel\
+            \ contacts, deduplicated by email, then phone. Default true."
+          type: boolean
       required:
       - _id
       - companyId
@@ -123024,6 +123029,7 @@ components:
       - platform
       - relayConversions
       - reportToAds
+      - syncAdLeads
       - syncContacts
       - writeBackAttribution
     HubSpotSettings:
@@ -163948,18 +163954,19 @@ components:
     getGohighlevelSettings_200_response:
       example:
         account:
+          locationName: locationName
+          logDeliveryStatus: true
+          platform: gohighlevel
+          reportToAds: true
           relayConversions: true
           companyId: companyId
-          locationName: locationName
           writeBackAttribution: true
-          logDeliveryStatus: true
           locationId: locationId
           installedBy: installedBy
           _id: _id
           logMessages: true
           syncContacts: true
-          platform: gohighlevel
-          reportToAds: true
+          syncAdLeads: true
       properties:
         account:
           $ref: "#/components/schemas/GohighlevelSettings"
@@ -163989,22 +163996,28 @@ components:
         logDeliveryStatus:
           description: "Mark sent, delivered, read and failed on logged outgoing messages."
           type: boolean
+        syncAdLeads:
+          description: "Create or update a HighLevel contact for every lead from the\
+            \ profile's ad network lead forms (Meta, TikTok, LinkedIn, Google), tagged\
+            \ with the network, campaign and form."
+          type: boolean
     updateGohighlevelSettings_200_response:
       example:
         message: message
         account:
+          locationName: locationName
+          logDeliveryStatus: true
+          platform: gohighlevel
+          reportToAds: true
           relayConversions: true
           companyId: companyId
-          locationName: locationName
           writeBackAttribution: true
-          logDeliveryStatus: true
           locationId: locationId
           installedBy: installedBy
           _id: _id
           logMessages: true
           syncContacts: true
-          platform: gohighlevel
-          reportToAds: true
+          syncAdLeads: true
       properties:
         message:
           type: string
