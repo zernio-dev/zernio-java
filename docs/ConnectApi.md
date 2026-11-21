@@ -76,8 +76,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getFacebookPagesWithHttpInfo**](ConnectApi.md#getFacebookPagesWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages |
 | [**getGmbLocations**](ConnectApi.md#getGmbLocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations |
 | [**getGmbLocationsWithHttpInfo**](ConnectApi.md#getGmbLocationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations |
-| [**getGohighlevelConnectUrl**](ConnectApi.md#getGohighlevelConnectUrl) | **GET** /v1/connect/gohighlevel | Get GoHighLevel OAuth connect URL |
-| [**getGohighlevelConnectUrlWithHttpInfo**](ConnectApi.md#getGohighlevelConnectUrlWithHttpInfo) | **GET** /v1/connect/gohighlevel | Get GoHighLevel OAuth connect URL |
+| [**getGohighlevelConnectUrl**](ConnectApi.md#getGohighlevelConnectUrl) | **GET** /v1/connect/gohighlevel | Get HighLevel OAuth connect URL |
+| [**getGohighlevelConnectUrlWithHttpInfo**](ConnectApi.md#getGohighlevelConnectUrlWithHttpInfo) | **GET** /v1/connect/gohighlevel | Get HighLevel OAuth connect URL |
 | [**getGoogleAnalyticsConnectUrl**](ConnectApi.md#getGoogleAnalyticsConnectUrl) | **GET** /v1/connect/googleanalytics | Get Google Analytics OAuth connect URL |
 | [**getGoogleAnalyticsConnectUrlWithHttpInfo**](ConnectApi.md#getGoogleAnalyticsConnectUrlWithHttpInfo) | **GET** /v1/connect/googleanalytics | Get Google Analytics OAuth connect URL |
 | [**getGoogleSearchConsoleConnectUrl**](ConnectApi.md#getGoogleSearchConsoleConnectUrl) | **GET** /v1/connect/googlesearchconsole | Get Google Search Console OAuth connect URL |
@@ -5949,9 +5949,9 @@ ApiResponse<[**GetGmbLocations200Response**](GetGmbLocations200Response.md)>
 
 > GetGohighlevelConnectUrl200Response getGohighlevelConnectUrl(profileId, redirectUrl)
 
-Get GoHighLevel OAuth connect URL
+Get HighLevel OAuth connect URL
 
-Initiates OAuth (authorization code, no PKCE) for the Zernio GoHighLevel Marketplace app. Each GoHighLevel sub-account (location) becomes one connected account with &#x60;platform: gohighlevel&#x60;. An agency that installs the app across its sub-accounts gets one connected account per installed sub-account.  ### Flow  1. Redirect the user to &#x60;authUrl&#x60; (GoHighLevel&#39;s install screen). 2. After the install, GoHighLevel returns the browser to Zernio&#39;s callback. 3. Zernio redirects to &#x60;redirect_url&#x60; (or the dashboard when omitted).  On success the redirect carries &#x60;connected&#x3D;gohighlevel&#x60;, &#x60;profileId&#x60; and &#x60;accountId&#x60;. On failure it carries &#x60;error&#x60; (&#x60;gohighlevel_access_denied&#x60;, &#x60;gohighlevel_invalid_state&#x60; or &#x60;gohighlevel_connection_failed&#x60;), &#x60;platform&#x3D;gohighlevel&#x60; and &#x60;error_message&#x60;.  Reconnecting the same sub-account on the same profile updates the stored connection in place and keeps its settings. 
+Initiates OAuth (authorization code, no PKCE) for the Zernio HighLevel Marketplace app. Each HighLevel sub-account (location) becomes one connected account with &#x60;platform: gohighlevel&#x60;. An agency that installs the app across its sub-accounts gets one connected account per installed sub-account.  ### Flow  1. Redirect the user to &#x60;authUrl&#x60; (HighLevel&#39;s install screen). 2. After the install, HighLevel returns the browser to Zernio&#39;s callback. 3. Zernio redirects to &#x60;redirect_url&#x60; (or the dashboard when omitted).  On success the redirect carries &#x60;connected&#x3D;gohighlevel&#x60;, &#x60;profileId&#x60; and &#x60;accountId&#x60;. On failure it carries &#x60;error&#x60; (&#x60;gohighlevel_access_denied&#x60;, &#x60;gohighlevel_invalid_state&#x60; or &#x60;gohighlevel_connection_failed&#x60;), &#x60;platform&#x3D;gohighlevel&#x60; and &#x60;error_message&#x60;.  Reconnecting the same sub-account on the same profile updates the stored connection in place and keeps its settings. 
 
 ### Example
 
@@ -6026,15 +6026,15 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | API key does not have access to this profile, or the key is read-only. |  -  |
 | **404** | Profile not found or access denied. |  -  |
-| **503** | GoHighLevel OAuth is not configured. |  -  |
+| **503** | HighLevel OAuth is not configured. |  -  |
 
 ## getGohighlevelConnectUrlWithHttpInfo
 
 > ApiResponse<GetGohighlevelConnectUrl200Response> getGohighlevelConnectUrl getGohighlevelConnectUrlWithHttpInfo(profileId, redirectUrl)
 
-Get GoHighLevel OAuth connect URL
+Get HighLevel OAuth connect URL
 
-Initiates OAuth (authorization code, no PKCE) for the Zernio GoHighLevel Marketplace app. Each GoHighLevel sub-account (location) becomes one connected account with &#x60;platform: gohighlevel&#x60;. An agency that installs the app across its sub-accounts gets one connected account per installed sub-account.  ### Flow  1. Redirect the user to &#x60;authUrl&#x60; (GoHighLevel&#39;s install screen). 2. After the install, GoHighLevel returns the browser to Zernio&#39;s callback. 3. Zernio redirects to &#x60;redirect_url&#x60; (or the dashboard when omitted).  On success the redirect carries &#x60;connected&#x3D;gohighlevel&#x60;, &#x60;profileId&#x60; and &#x60;accountId&#x60;. On failure it carries &#x60;error&#x60; (&#x60;gohighlevel_access_denied&#x60;, &#x60;gohighlevel_invalid_state&#x60; or &#x60;gohighlevel_connection_failed&#x60;), &#x60;platform&#x3D;gohighlevel&#x60; and &#x60;error_message&#x60;.  Reconnecting the same sub-account on the same profile updates the stored connection in place and keeps its settings. 
+Initiates OAuth (authorization code, no PKCE) for the Zernio HighLevel Marketplace app. Each HighLevel sub-account (location) becomes one connected account with &#x60;platform: gohighlevel&#x60;. An agency that installs the app across its sub-accounts gets one connected account per installed sub-account.  ### Flow  1. Redirect the user to &#x60;authUrl&#x60; (HighLevel&#39;s install screen). 2. After the install, HighLevel returns the browser to Zernio&#39;s callback. 3. Zernio redirects to &#x60;redirect_url&#x60; (or the dashboard when omitted).  On success the redirect carries &#x60;connected&#x3D;gohighlevel&#x60;, &#x60;profileId&#x60; and &#x60;accountId&#x60;. On failure it carries &#x60;error&#x60; (&#x60;gohighlevel_access_denied&#x60;, &#x60;gohighlevel_invalid_state&#x60; or &#x60;gohighlevel_connection_failed&#x60;), &#x60;platform&#x3D;gohighlevel&#x60; and &#x60;error_message&#x60;.  Reconnecting the same sub-account on the same profile updates the stored connection in place and keeps its settings. 
 
 ### Example
 
@@ -6112,7 +6112,7 @@ ApiResponse<[**GetGohighlevelConnectUrl200Response**](GetGohighlevelConnectUrl20
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | API key does not have access to this profile, or the key is read-only. |  -  |
 | **404** | Profile not found or access denied. |  -  |
-| **503** | GoHighLevel OAuth is not configured. |  -  |
+| **503** | HighLevel OAuth is not configured. |  -  |
 
 
 ## getGoogleAnalyticsConnectUrl

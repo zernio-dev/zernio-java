@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**relayConversions** | **Boolean** | Relay GoHighLevel CRM events (new contacts, won opportunities, appointments, paid invoices and orders) as conversions with &#x60;source&#x60; &#x60;gohighlevel&#x60;. |  [optional] |
-|**writeBackAttribution** | **Boolean** | Write each relayed conversion onto the &#x60;Zernio Conversions&#x60; custom field of the GoHighLevel contact. |  [optional] |
+|**relayConversions** | **Boolean** | Relay HighLevel CRM events (new contacts, won opportunities, appointments, paid invoices and orders) as conversions with &#x60;source&#x60; &#x60;gohighlevel&#x60;. |  [optional] |
+|**writeBackAttribution** | **Boolean** | Write each relayed conversion onto the &#x60;Zernio Conversions&#x60; custom field of the HighLevel contact. |  [optional] |
 |**reportToAds** | **Boolean** | Also forward relayed conversions to the profile&#39;s ad platform destinations. Off stores them only. |  [optional] |
 |**syncContacts** | **Boolean** | Match inbox contacts to HighLevel contacts (phone, then email) and create the ones that do not exist. |  [optional] |
 |**logMessages** | **Boolean** | Log inbox messages from every channel on the matched HighLevel contact, one note per channel and UTC day. |  [optional] |

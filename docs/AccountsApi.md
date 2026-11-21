@@ -18,8 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getBlueskySettingsWithHttpInfo**](AccountsApi.md#getBlueskySettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/bluesky-settings | Get Bluesky account settings |
 | [**getFollowerStats**](AccountsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats |
 | [**getFollowerStatsWithHttpInfo**](AccountsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats |
-| [**getGohighlevelSettings**](AccountsApi.md#getGohighlevelSettings) | **GET** /v1/accounts/{accountId}/gohighlevel-settings | Get GoHighLevel account settings |
-| [**getGohighlevelSettingsWithHttpInfo**](AccountsApi.md#getGohighlevelSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gohighlevel-settings | Get GoHighLevel account settings |
+| [**getGohighlevelSettings**](AccountsApi.md#getGohighlevelSettings) | **GET** /v1/accounts/{accountId}/gohighlevel-settings | Get HighLevel account settings |
+| [**getGohighlevelSettingsWithHttpInfo**](AccountsApi.md#getGohighlevelSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gohighlevel-settings | Get HighLevel account settings |
 | [**getHubSpotSettings**](AccountsApi.md#getHubSpotSettings) | **GET** /v1/accounts/{accountId}/hubspot-settings | Get HubSpot account settings |
 | [**getHubSpotSettingsWithHttpInfo**](AccountsApi.md#getHubSpotSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/hubspot-settings | Get HubSpot account settings |
 | [**getInstagramFollowStatus**](AccountsApi.md#getInstagramFollowStatus) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account |
@@ -52,8 +52,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateAccountWithHttpInfo**](AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account |
 | [**updateBlueskySettings**](AccountsApi.md#updateBlueskySettings) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings |
 | [**updateBlueskySettingsWithHttpInfo**](AccountsApi.md#updateBlueskySettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings |
-| [**updateGohighlevelSettings**](AccountsApi.md#updateGohighlevelSettings) | **PATCH** /v1/accounts/{accountId}/gohighlevel-settings | Update GoHighLevel account settings |
-| [**updateGohighlevelSettingsWithHttpInfo**](AccountsApi.md#updateGohighlevelSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/gohighlevel-settings | Update GoHighLevel account settings |
+| [**updateGohighlevelSettings**](AccountsApi.md#updateGohighlevelSettings) | **PATCH** /v1/accounts/{accountId}/gohighlevel-settings | Update HighLevel account settings |
+| [**updateGohighlevelSettingsWithHttpInfo**](AccountsApi.md#updateGohighlevelSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/gohighlevel-settings | Update HighLevel account settings |
 | [**updateHubSpotSettings**](AccountsApi.md#updateHubSpotSettings) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings |
 | [**updateHubSpotSettingsWithHttpInfo**](AccountsApi.md#updateHubSpotSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings |
 | [**updateSalesforceSettings**](AccountsApi.md#updateSalesforceSettings) | **PATCH** /v1/accounts/{accountId}/salesforce-settings | Update Salesforce account settings |
@@ -1163,9 +1163,9 @@ ApiResponse<[**FollowerStatsResponse**](FollowerStatsResponse.md)>
 
 > GetGohighlevelSettings200Response getGohighlevelSettings(accountId)
 
-Get GoHighLevel account settings
+Get HighLevel account settings
 
-Read a connected GoHighLevel sub-account and what Zernio relays from it and writes back to it.
+Read a connected HighLevel sub-account and what Zernio relays from it and writes back to it.
 
 ### Example
 
@@ -1227,7 +1227,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | GoHighLevel settings |  -  |
+| **200** | HighLevel settings |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
@@ -1236,9 +1236,9 @@ public class Example {
 
 > ApiResponse<GetGohighlevelSettings200Response> getGohighlevelSettings getGohighlevelSettingsWithHttpInfo(accountId)
 
-Get GoHighLevel account settings
+Get HighLevel account settings
 
-Read a connected GoHighLevel sub-account and what Zernio relays from it and writes back to it.
+Read a connected HighLevel sub-account and what Zernio relays from it and writes back to it.
 
 ### Example
 
@@ -1303,7 +1303,7 @@ ApiResponse<[**GetGohighlevelSettings200Response**](GetGohighlevelSettings200Res
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | GoHighLevel settings |  -  |
+| **200** | HighLevel settings |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
@@ -3845,7 +3845,7 @@ ApiResponse<Void>
 
 > UpdateGohighlevelSettings200Response updateGohighlevelSettings(accountId, updateGohighlevelSettingsRequest)
 
-Update GoHighLevel account settings
+Update HighLevel account settings
 
 Turn the conversion relay, the write-back to HighLevel contacts, forwarding to the profile&#39;s ad platforms, contact sync, conversation logging, delivery marks or the ad lead sync on or off for a connected HighLevel sub-account. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same sub-account.
 
@@ -3920,7 +3920,7 @@ public class Example {
 
 > ApiResponse<UpdateGohighlevelSettings200Response> updateGohighlevelSettings updateGohighlevelSettingsWithHttpInfo(accountId, updateGohighlevelSettingsRequest)
 
-Update GoHighLevel account settings
+Update HighLevel account settings
 
 Turn the conversion relay, the write-back to HighLevel contacts, forwarding to the profile&#39;s ad platforms, contact sync, conversation logging, delivery marks or the ad lead sync on or off for a connected HighLevel sub-account. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same sub-account.
 

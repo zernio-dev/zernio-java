@@ -2,7 +2,7 @@
 
 # CrmContact
 
-A person in the connected CRM, in the same shape for HubSpot, Salesforce and GoHighLevel.
+A person in the connected CRM, in the same shape for HubSpot, Salesforce and HighLevel.
 
 ## Properties
 
@@ -14,7 +14,7 @@ A person in the connected CRM, in the same shape for HubSpot, Salesforce and GoH
 |**lastName** | **String** |  |  |
 |**email** | **String** |  |  |
 |**phone** | **String** | The phone, else the mobile phone, as stored in the CRM. |  |
-|**company** | **String** | HubSpot &#x60;company&#x60;; Salesforce Lead &#x60;Company&#x60; or Contact Account name; GoHighLevel &#x60;companyName&#x60;. |  |
+|**company** | **String** | HubSpot &#x60;company&#x60;; Salesforce Lead &#x60;Company&#x60; or Contact Account name; HighLevel &#x60;companyName&#x60;. |  |
 |**ownerId** | **String** |  |  |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**updatedAt** | **OffsetDateTime** |  |  |

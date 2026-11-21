@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.731.1
+  version: 1.732.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -18995,12 +18995,12 @@ paths:
   /v1/connect/gohighlevel:
     get:
       description: |
-        Initiates OAuth (authorization code, no PKCE) for the Zernio GoHighLevel Marketplace app. Each GoHighLevel sub-account (location) becomes one connected account with `platform: gohighlevel`. An agency that installs the app across its sub-accounts gets one connected account per installed sub-account.
+        Initiates OAuth (authorization code, no PKCE) for the Zernio HighLevel Marketplace app. Each HighLevel sub-account (location) becomes one connected account with `platform: gohighlevel`. An agency that installs the app across its sub-accounts gets one connected account per installed sub-account.
 
         ### Flow
 
-        1. Redirect the user to `authUrl` (GoHighLevel's install screen).
-        2. After the install, GoHighLevel returns the browser to Zernio's callback.
+        1. Redirect the user to `authUrl` (HighLevel's install screen).
+        2. After the install, HighLevel returns the browser to Zernio's callback.
         3. Zernio redirects to `redirect_url` (or the dashboard when omitted).
 
         On success the redirect carries `connected=gohighlevel`, `profileId` and `accountId`. On failure it carries `error` (`gohighlevel_access_denied`, `gohighlevel_invalid_state` or `gohighlevel_connection_failed`), `platform=gohighlevel` and `error_message`.
@@ -19043,11 +19043,11 @@ paths:
         "404":
           description: Profile not found or access denied.
         "503":
-          description: GoHighLevel OAuth is not configured.
+          description: HighLevel OAuth is not configured.
       security:
       - bearerAuth: []
       - connectToken: []
-      summary: Get GoHighLevel OAuth connect URL
+      summary: Get HighLevel OAuth connect URL
       tags:
       - Connect
       x-resource-group: accounts
@@ -28038,8 +28038,8 @@ paths:
       - application/json
   /v1/accounts/{accountId}/gohighlevel-settings:
     get:
-      description: Read a connected GoHighLevel sub-account and what Zernio relays
-        from it and writes back to it.
+      description: Read a connected HighLevel sub-account and what Zernio relays from
+        it and writes back to it.
       operationId: getGohighlevelSettings
       parameters:
       - explode: false
@@ -28055,14 +28055,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getGohighlevelSettings_200_response"
-          description: GoHighLevel settings
+          description: HighLevel settings
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: Account not found
-      summary: Get GoHighLevel account settings
+      summary: Get HighLevel account settings
       tags:
       - Accounts
       x-resource-group: accounts
@@ -28104,7 +28104,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: Account not found
-      summary: Update GoHighLevel account settings
+      summary: Update HighLevel account settings
       tags:
       - Accounts
       x-resource-group: accounts
@@ -28194,12 +28194,12 @@ paths:
       description: |-
         Find people in the connected CRM by free text, email or phone. Send exactly one of `q`, `email` or `phone`.
 
-        HubSpot searches contacts. Salesforce searches Contacts and Leads that are not converted (`objectType` tells which), newest change first. GoHighLevel searches the location's contacts.
+        HubSpot searches contacts. Salesforce searches Contacts and Leads that are not converted (`objectType` tells which), newest change first. HighLevel searches the location's contacts.
 
         - `email` is an exact match.
         - `phone` takes an international number and matches it however the CRM stored it ("+44 7911 123456", "07911 123456").
         - `q` searches names, emails, phones and company. On Salesforce, `q` and `phone` use the search index, so a record saved in the last few minutes may not show yet; `email` never lags.
-        - On GoHighLevel, `email` and `phone` use the location's duplicate check: at most one contact, with no next page.
+        - On HighLevel, `email` and `phone` use the location's duplicate check: at most one contact, with no next page.
       operationId: searchCrmContacts
       parameters:
       - $ref: "#/components/parameters/CrmAccountId"
@@ -28286,7 +28286,7 @@ paths:
 
         Salesforce requires `lastName` on both, and `company` on a Lead (`[not provided]` when you send none). A Contact takes its company from its Account: set `properties.AccountId` instead.
 
-        GoHighLevel creates a contact in the connected location. A location that does not allow duplicates answers 409 with the existing contact.
+        HighLevel creates a contact in the connected location. A location that does not allow duplicates answers 409 with the existing contact.
 
         Anything the CRM refuses (a required field, a validation rule, a duplicate rule) comes back as 422 or 409 with the CRM's own errors in `details.errors`.
       operationId: createCrmContact
@@ -28441,7 +28441,7 @@ paths:
 
         - HubSpot: a Communication on the contact's timeline for `channel` `whatsapp` or `sms`, otherwise a Note. The subject and direction lead the text.
         - Salesforce: a completed Task on the Contact or Lead (`WhoId`), dated `occurredAt`, with `body` as its comments. `channel: call` logs a call.
-        - GoHighLevel: a plain-text note on the contact. GoHighLevel dates a note when it is logged, so the subject (or channel), direction and `occurredAt` lead its text.
+        - HighLevel: a plain-text note on the contact. HighLevel dates a note when it is logged, so the subject (or channel), direction and `occurredAt` lead its text.
 
         To log inbox conversations automatically instead, turn on `logMessages` in the CRM settings.
       operationId: createCrmActivity
@@ -28496,15 +28496,15 @@ paths:
   /v1/crm/{accountId}/deals:
     get:
       description: |-
-        List deals (HubSpot) or Opportunities (Salesforce), most recently changed first, or a GoHighLevel location's opportunities in GoHighLevel's own order.
+        List deals (HubSpot) or Opportunities (Salesforce), most recently changed first, or a HighLevel location's opportunities in HighLevel's own order.
 
-        HubSpot needs the portal to have granted `crm.objects.deals.read`; otherwise 403 `crm_scope_missing`. GoHighLevel cannot filter by update time: `updatedSince` answers 400 there.
+        HubSpot needs the portal to have granted `crm.objects.deals.read`; otherwise 403 `crm_scope_missing`. HighLevel cannot filter by update time: `updatedSince` answers 400 there.
       operationId: listCrmDeals
       parameters:
       - $ref: "#/components/parameters/CrmAccountId"
       - description: "Only deals in this stage. HubSpot takes the stage's internal\
           \ id (`closedwon`, `appointmentscheduled`); Salesforce the `StageName` (`Closed\
-          \ Won`); GoHighLevel the pipeline stage id."
+          \ Won`); HighLevel the pipeline stage id."
         explode: true
         in: query
         name: stage
@@ -28561,7 +28561,7 @@ paths:
   /v1/crm/{accountId}/deals/{dealId}:
     get:
       description: "Read one deal (HubSpot), Opportunity (Salesforce) or opportunity\
-        \ (GoHighLevel) with its contacts."
+        \ (HighLevel) with its contacts."
       operationId: getCrmDeal
       parameters:
       - $ref: "#/components/parameters/CrmAccountId"
@@ -28605,9 +28605,9 @@ paths:
 
         HubSpot needs `crm.objects.deals.write`, an optional scope portals approve when they connect; without it, 403 `crm_scope_missing` asks to reconnect HubSpot. `currency` only works on multi-currency HubSpot portals and Salesforce orgs.
 
-        GoHighLevel: `stage` is the pipeline stage id, `amount` the opportunity value, and `properties.status` (`open`, `won`, `lost`, `abandoned`) marks it won or lost. Its opportunities have no close date or currency of their own: `closeDate` and `currency` answer 400.
+        HighLevel: `stage` is the pipeline stage id, `amount` the opportunity value, and `properties.status` (`open`, `won`, `lost`, `abandoned`) marks it won or lost. Its opportunities have no close date or currency of their own: `closeDate` and `currency` answer 400.
 
-        Updating needs `opportunities.write`, which the Zernio GoHighLevel app does not request yet, so this call answers 403 `crm_scope_missing` on GoHighLevel for now.
+        Updating needs `opportunities.write`, which the Zernio HighLevel app does not request yet, so this call answers 403 `crm_scope_missing` on HighLevel for now.
       operationId: updateCrmDeal
       parameters:
       - $ref: "#/components/parameters/CrmAccountId"
@@ -28659,9 +28659,9 @@ paths:
   /v1/crm/{accountId}/owners:
     get:
       description: |-
-        List the users records can be assigned to: HubSpot owners, active standard Salesforce users, or the GoHighLevel location's users. Use an `id` as `ownerId` on contacts and deals.
+        List the users records can be assigned to: HubSpot owners, active standard Salesforce users, or the HighLevel location's users. Use an `id` as `ownerId` on contacts and deals.
 
-        HubSpot needs `crm.objects.owners.read`, an optional scope portals approve when they connect; without it, 403 `crm_scope_missing` asks to reconnect HubSpot. GoHighLevel needs `users.readonly`: a location installed before Zernio asked for it answers 403 `crm_scope_missing` until it reconnects.
+        HubSpot needs `crm.objects.owners.read`, an optional scope portals approve when they connect; without it, 403 `crm_scope_missing` asks to reconnect HubSpot. HighLevel needs `users.readonly`: a location installed before Zernio asked for it answers 403 `crm_scope_missing` until it reconnects.
       operationId: listCrmOwners
       parameters:
       - $ref: "#/components/parameters/CrmAccountId"
@@ -94342,8 +94342,8 @@ components:
       style: simple
   parameters:
     CrmAccountId:
-      description: "The connected HubSpot, Salesforce or GoHighLevel account (`GET\
-        \ /v1/accounts?platform=hubspot`, `salesforce` or `gohighlevel`)."
+      description: "The connected HubSpot, Salesforce or HighLevel account (`GET /v1/accounts?platform=hubspot`,\
+        \ `salesforce` or `gohighlevel`)."
       explode: false
       in: path
       name: accountId
@@ -94353,7 +94353,7 @@ components:
       style: simple
     CrmContactId:
       description: "The CRM's own id. HubSpot contact id, Salesforce Contact (`003...`)\
-        \ or Lead (`00Q...`) id, or GoHighLevel contact id."
+        \ or Lead (`00Q...`) id, or HighLevel contact id."
       explode: false
       in: path
       name: contactId
@@ -94363,7 +94363,7 @@ components:
         type: string
       style: simple
     CrmDealId:
-      description: "HubSpot deal id, Salesforce Opportunity id (`006...`) or GoHighLevel\
+      description: "HubSpot deal id, Salesforce Opportunity id (`006...`) or HighLevel\
         \ opportunity id."
       explode: false
       in: path
@@ -94376,8 +94376,8 @@ components:
     CrmProperties:
       description: "Comma-separated native field names to return in `properties` (at\
         \ most 50), for example `lifecyclestage,hs_lead_status` or `LeadSource,Industry__c`.\
-        \ On GoHighLevel, a field of the record (`source`, `status`), or a custom\
-        \ field by id or key."
+        \ On HighLevel, a field of the record (`source`, `status`), or a custom field\
+        \ by id or key."
       explode: true
       in: query
       name: properties
@@ -94690,7 +94690,7 @@ components:
           schema:
             $ref: "#/components/schemas/ErrorResponse"
       description: |-
-        `crm_scope_missing`: the connection did not grant a scope this call needs (`details.scope`), typically a HubSpot optional scope added after the portal connected, or a GoHighLevel scope (such as `users.readonly`) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.
+        `crm_scope_missing`: the connection did not grant a scope this call needs (`details.scope`), typically a HubSpot optional scope added after the portal connected, or a HighLevel scope (such as `users.readonly`) added after the location installed the app. Reconnect the CRM and approve it; the account id stays the same.
 
         `crm_access_denied`: the CRM refused the connected user (Salesforce field-level security or sharing, a HubSpot permission). `details.errors` holds the CRM's own errors.
       x-summary: "The CRM refused: reconnect it to grant a missing scope (`crm_scope_missing`),\
@@ -94723,7 +94723,7 @@ components:
           schema:
             $ref: "#/components/schemas/ErrorResponse"
       description: |-
-        `crm_duplicate_record`: the CRM refused a duplicate (HubSpot: the email belongs to another contact; Salesforce: a duplicate rule; GoHighLevel: a location that does not allow duplicate contacts). `details.existingId` is the existing record when the CRM names it.
+        `crm_duplicate_record`: the CRM refused a duplicate (HubSpot: the email belongs to another contact; Salesforce: a duplicate rule; HighLevel: a location that does not allow duplicate contacts). `details.existingId` is the existing record when the CRM names it.
 
         `account_disconnected`: the CRM account needs reconnecting; see AccountDisconnected.
       x-summary: "The CRM already has this person (`crm_duplicate_record`), or the\
@@ -94762,7 +94762,7 @@ components:
           schema:
             $ref: "#/components/schemas/ErrorResponse"
       description: "Zernio paces every connection inside its CRM limits (HubSpot per\
-        \ portal, Salesforce per org, GoHighLevel per location, shared with the conversation\
+        \ portal, Salesforce per org, HighLevel per location, shared with the conversation\
         \ sync). Code `rate_limited`; wait for `Retry-After` seconds."
       headers:
         Retry-After:
@@ -98100,14 +98100,14 @@ components:
       additionalProperties:
         $ref: "#/components/schemas/CrmNativeProperties_value"
       description: "Native fields by internal name (HubSpot `lifecyclestage`, Salesforce\
-        \ `LeadSource` or `Industry__c`). On GoHighLevel, a record field (`source`,\
+        \ `LeadSource` or `Industry__c`). On HighLevel, a record field (`source`,\
         \ an opportunity `status`) or else a custom field id or key. A unified field\
         \ of the same request wins over its native twin. `null` clears a field."
       maxProperties: 50
     CrmContactInput:
       description: "Unified fields, mapped to HubSpot `firstname`, `lastname`, `email`,\
         \ `phone`, `company`, `hubspot_owner_id`, Salesforce `FirstName`, `LastName`,\
-        \ `Email`, `Phone`, `Company` (Leads), `OwnerId` and GoHighLevel `firstName`,\
+        \ `Email`, `Phone`, `Company` (Leads), `OwnerId` and HighLevel `firstName`,\
         \ `lastName`, `email`, `phone`, `companyName`, `assignedTo`."
       example:
         firstName: firstName
@@ -98148,14 +98148,14 @@ components:
           additionalProperties:
             $ref: "#/components/schemas/CrmNativeProperties_value"
           description: "Native fields by internal name (HubSpot `lifecyclestage`,\
-            \ Salesforce `LeadSource` or `Industry__c`). On GoHighLevel, a record\
-            \ field (`source`, an opportunity `status`) or else a custom field id\
-            \ or key. A unified field of the same request wins over its native twin.\
-            \ `null` clears a field."
+            \ Salesforce `LeadSource` or `Industry__c`). On HighLevel, a record field\
+            \ (`source`, an opportunity `status`) or else a custom field id or key.\
+            \ A unified field of the same request wins over its native twin. `null`\
+            \ clears a field."
           maxProperties: 50
     CrmContact:
       description: "A person in the connected CRM, in the same shape for HubSpot,\
-        \ Salesforce and GoHighLevel."
+        \ Salesforce and HighLevel."
       example:
         lastName: lastName
         raw:
@@ -98197,7 +98197,7 @@ components:
           type: string
         company:
           description: HubSpot `company`; Salesforce Lead `Company` or Contact Account
-            name; GoHighLevel `companyName`.
+            name; HighLevel `companyName`.
           nullable: true
           type: string
         ownerId:
@@ -98252,7 +98252,7 @@ components:
           type: string
         objectType:
           description: "HubSpot `note` or `communication` (WhatsApp, SMS); Salesforce\
-            \ `task`; GoHighLevel `note`."
+            \ `task`; HighLevel `note`."
           enum:
           - note
           - communication
@@ -98288,8 +98288,8 @@ components:
           format: date-time
           type: string
         url:
-          description: "The Salesforce Task, or the HubSpot or GoHighLevel contact\
-            \ whose record shows it."
+          description: "The Salesforce Task, or the HubSpot or HighLevel contact whose\
+            \ record shows it."
           format: uri
           type: string
       required:
@@ -98303,7 +98303,7 @@ components:
       - subject
       - url
     CrmDeal:
-      description: "A HubSpot deal, a Salesforce Opportunity or a GoHighLevel opportunity."
+      description: "A HubSpot deal, a Salesforce Opportunity or a HighLevel opportunity."
       example:
         id: "359143490267"
         objectType: deal
@@ -98332,8 +98332,8 @@ components:
           type: string
         stage:
           description: "HubSpot stage id (`closedwon`), Salesforce `StageName` (`Closed\
-            \ Won`) or GoHighLevel pipeline stage id. A GoHighLevel opportunity's\
-            \ won or lost `status` is a native field (`properties=status`)."
+            \ Won`) or HighLevel pipeline stage id. A HighLevel opportunity's won\
+            \ or lost `status` is a native field (`properties=status`)."
           nullable: true
           type: string
         amount:
@@ -98342,11 +98342,11 @@ components:
         currency:
           description: "ISO 4217. HubSpot sets it on multi-currency portals only.\
             \ Salesforce gives the Opportunity's currency on multi-currency orgs,\
-            \ else the org currency read from its Currency Locale. Null on GoHighLevel."
+            \ else the org currency read from its Currency Locale. Null on HighLevel."
           nullable: true
           type: string
         closeDate:
-          description: "Null on GoHighLevel, whose opportunities have no close date."
+          description: "Null on HighLevel, whose opportunities have no close date."
           format: date
           nullable: true
           type: string
@@ -98355,7 +98355,7 @@ components:
           type: string
         contactIds:
           description: "Associated HubSpot contacts, the Opportunity's contact roles\
-            \ (primary first), or the GoHighLevel opportunity's contact."
+            \ (primary first), or the HighLevel opportunity's contact."
           items:
             type: string
           type: array
@@ -123471,7 +123471,7 @@ components:
           - gohighlevel
           type: string
         locationId:
-          description: The GoHighLevel sub-account (location) id.
+          description: The HighLevel sub-account (location) id.
           type: string
         companyId:
           description: "The agency that owns the sub-account, null for a sub-account\
@@ -123482,14 +123482,14 @@ components:
           nullable: true
           type: string
         installedBy:
-          description: The GoHighLevel user who installed the app.
+          description: The HighLevel user who installed the app.
           nullable: true
           type: string
         relayConversions:
           description: CRM events are relayed as conversions. Default true.
           type: boolean
         writeBackAttribution:
-          description: Relayed conversions are written back onto the GoHighLevel contact.
+          description: Relayed conversions are written back onto the HighLevel contact.
             Default true.
           type: boolean
         reportToAds:
@@ -156151,7 +156151,7 @@ components:
         state: state
       properties:
         authUrl:
-          description: GoHighLevel URL to open in the user agent.
+          description: HighLevel URL to open in the user agent.
           format: uri
           type: string
         state:
@@ -164474,13 +164474,13 @@ components:
     updateGohighlevelSettings_request:
       properties:
         relayConversions:
-          description: "Relay GoHighLevel CRM events (new contacts, won opportunities,\
+          description: "Relay HighLevel CRM events (new contacts, won opportunities,\
             \ appointments, paid invoices and orders) as conversions with `source`\
             \ `gohighlevel`."
           type: boolean
         writeBackAttribution:
           description: Write each relayed conversion onto the `Zernio Conversions`
-            custom field of the GoHighLevel contact.
+            custom field of the HighLevel contact.
           type: boolean
         reportToAds:
           description: Also forward relayed conversions to the profile's ad platform
@@ -164667,7 +164667,7 @@ components:
       - properties:
           createAs:
             description: Salesforce only. Defaults to the connection's `createAs`
-              setting. Ignored on HubSpot and GoHighLevel.
+              setting. Ignored on HubSpot and HighLevel.
             enum:
             - lead
             - contact
@@ -164704,7 +164704,7 @@ components:
           type: string
         subject:
           description: "Salesforce Task subject (default `<Channel> activity (<direction>)`);\
-            \ on HubSpot, the bold first line; on GoHighLevel, the note's first line."
+            \ on HubSpot, the bold first line; on HighLevel, the note's first line."
           maxLength: 255
           type: string
         channel:
@@ -164821,7 +164821,7 @@ components:
           maxLength: 120
           type: string
         stage:
-          description: "HubSpot stage id, Salesforce `StageName` or GoHighLevel pipeline\
+          description: "HubSpot stage id, Salesforce `StageName` or HighLevel pipeline\
             \ stage id."
           maxLength: 100
           type: string
@@ -164844,10 +164844,10 @@ components:
           additionalProperties:
             $ref: "#/components/schemas/CrmNativeProperties_value"
           description: "Native fields by internal name (HubSpot `lifecyclestage`,\
-            \ Salesforce `LeadSource` or `Industry__c`). On GoHighLevel, a record\
-            \ field (`source`, an opportunity `status`) or else a custom field id\
-            \ or key. A unified field of the same request wins over its native twin.\
-            \ `null` clears a field."
+            \ Salesforce `LeadSource` or `Industry__c`). On HighLevel, a record field\
+            \ (`source`, an opportunity `status`) or else a custom field id or key.\
+            \ A unified field of the same request wins over its native twin. `null`\
+            \ clears a field."
           maxProperties: 50
     listCrmOwners_200_response:
       example:

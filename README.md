@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.731.1
+- API version: 1.732.0
 
-- Build date: 2026-11-21T21:54:10.912396306Z[Etc/UTC]
+- Build date: 2026-11-21T21:59:20.846538925Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.731.1</version>
+  <version>1.732.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.731.1"
+compile "dev.zernio:zernio-sdk:1.732.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.731.1.jar`
+- `target/zernio-sdk-1.732.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -189,8 +189,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getBlueskySettingsWithHttpInfo**](docs/AccountsApi.md#getBlueskySettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/bluesky-settings | Get Bluesky account settings
 *AccountsApi* | [**getFollowerStats**](docs/AccountsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats
 *AccountsApi* | [**getFollowerStatsWithHttpInfo**](docs/AccountsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats
-*AccountsApi* | [**getGohighlevelSettings**](docs/AccountsApi.md#getGohighlevelSettings) | **GET** /v1/accounts/{accountId}/gohighlevel-settings | Get GoHighLevel account settings
-*AccountsApi* | [**getGohighlevelSettingsWithHttpInfo**](docs/AccountsApi.md#getGohighlevelSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gohighlevel-settings | Get GoHighLevel account settings
+*AccountsApi* | [**getGohighlevelSettings**](docs/AccountsApi.md#getGohighlevelSettings) | **GET** /v1/accounts/{accountId}/gohighlevel-settings | Get HighLevel account settings
+*AccountsApi* | [**getGohighlevelSettingsWithHttpInfo**](docs/AccountsApi.md#getGohighlevelSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gohighlevel-settings | Get HighLevel account settings
 *AccountsApi* | [**getHubSpotSettings**](docs/AccountsApi.md#getHubSpotSettings) | **GET** /v1/accounts/{accountId}/hubspot-settings | Get HubSpot account settings
 *AccountsApi* | [**getHubSpotSettingsWithHttpInfo**](docs/AccountsApi.md#getHubSpotSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/hubspot-settings | Get HubSpot account settings
 *AccountsApi* | [**getInstagramFollowStatus**](docs/AccountsApi.md#getInstagramFollowStatus) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account
@@ -223,8 +223,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**updateAccountWithHttpInfo**](docs/AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**updateBlueskySettings**](docs/AccountsApi.md#updateBlueskySettings) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings
 *AccountsApi* | [**updateBlueskySettingsWithHttpInfo**](docs/AccountsApi.md#updateBlueskySettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings
-*AccountsApi* | [**updateGohighlevelSettings**](docs/AccountsApi.md#updateGohighlevelSettings) | **PATCH** /v1/accounts/{accountId}/gohighlevel-settings | Update GoHighLevel account settings
-*AccountsApi* | [**updateGohighlevelSettingsWithHttpInfo**](docs/AccountsApi.md#updateGohighlevelSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/gohighlevel-settings | Update GoHighLevel account settings
+*AccountsApi* | [**updateGohighlevelSettings**](docs/AccountsApi.md#updateGohighlevelSettings) | **PATCH** /v1/accounts/{accountId}/gohighlevel-settings | Update HighLevel account settings
+*AccountsApi* | [**updateGohighlevelSettingsWithHttpInfo**](docs/AccountsApi.md#updateGohighlevelSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/gohighlevel-settings | Update HighLevel account settings
 *AccountsApi* | [**updateHubSpotSettings**](docs/AccountsApi.md#updateHubSpotSettings) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings
 *AccountsApi* | [**updateHubSpotSettingsWithHttpInfo**](docs/AccountsApi.md#updateHubSpotSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings
 *AccountsApi* | [**updateSalesforceSettings**](docs/AccountsApi.md#updateSalesforceSettings) | **PATCH** /v1/accounts/{accountId}/salesforce-settings | Update Salesforce account settings
@@ -1321,8 +1321,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getFacebookPagesWithHttpInfo**](docs/ConnectApi.md#getFacebookPagesWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages
 *ConnectApi* | [**getGmbLocations**](docs/ConnectApi.md#getGmbLocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations
 *ConnectApi* | [**getGmbLocationsWithHttpInfo**](docs/ConnectApi.md#getGmbLocationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations
-*ConnectApi* | [**getGohighlevelConnectUrl**](docs/ConnectApi.md#getGohighlevelConnectUrl) | **GET** /v1/connect/gohighlevel | Get GoHighLevel OAuth connect URL
-*ConnectApi* | [**getGohighlevelConnectUrlWithHttpInfo**](docs/ConnectApi.md#getGohighlevelConnectUrlWithHttpInfo) | **GET** /v1/connect/gohighlevel | Get GoHighLevel OAuth connect URL
+*ConnectApi* | [**getGohighlevelConnectUrl**](docs/ConnectApi.md#getGohighlevelConnectUrl) | **GET** /v1/connect/gohighlevel | Get HighLevel OAuth connect URL
+*ConnectApi* | [**getGohighlevelConnectUrlWithHttpInfo**](docs/ConnectApi.md#getGohighlevelConnectUrlWithHttpInfo) | **GET** /v1/connect/gohighlevel | Get HighLevel OAuth connect URL
 *ConnectApi* | [**getGoogleAnalyticsConnectUrl**](docs/ConnectApi.md#getGoogleAnalyticsConnectUrl) | **GET** /v1/connect/googleanalytics | Get Google Analytics OAuth connect URL
 *ConnectApi* | [**getGoogleAnalyticsConnectUrlWithHttpInfo**](docs/ConnectApi.md#getGoogleAnalyticsConnectUrlWithHttpInfo) | **GET** /v1/connect/googleanalytics | Get Google Analytics OAuth connect URL
 *ConnectApi* | [**getGoogleSearchConsoleConnectUrl**](docs/ConnectApi.md#getGoogleSearchConsoleConnectUrl) | **GET** /v1/connect/googlesearchconsole | Get Google Search Console OAuth connect URL
