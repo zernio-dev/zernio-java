@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   InspectGoogleSearchConsoleUrlRequest.JSON_PROPERTY_INSPECTION_URL,
   InspectGoogleSearchConsoleUrlRequest.JSON_PROPERTY_LANGUAGE_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:59:20.846538925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T22:05:06.969662162Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InspectGoogleSearchConsoleUrlRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

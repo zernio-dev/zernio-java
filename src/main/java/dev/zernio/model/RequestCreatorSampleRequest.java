@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   RequestCreatorSampleRequest.JSON_PROPERTY_SHIPPING_ADDRESS,
   RequestCreatorSampleRequest.JSON_PROPERTY_NOTE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:59:20.846538925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T22:05:06.969662162Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RequestCreatorSampleRequest {
   public static final String JSON_PROPERTY_PRODUCT_ID = "productId";
   @javax.annotation.Nonnull

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListAdConversionDestinations200Response.JSON_PROPERTY_PLATFORM,
   ListAdConversionDestinations200Response.JSON_PROPERTY_DESTINATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:59:20.846538925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T22:05:06.969662162Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdConversionDestinations200Response {
   /**
    * Gets or Sets platform

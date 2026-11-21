@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   CPM.JSON_PROPERTY_MIN_VIEWS_TO_EARN,
   CPM.JSON_PROPERTY_MAX_PAYOUT_PER_CLIP_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:59:20.846538925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T22:05:06.969662162Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CPM {
   /**
    * Gets or Sets type

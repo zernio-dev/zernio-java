@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   UpdateAdCampaignStatus200Response.JSON_PROPERTY_SKIPPED,
   UpdateAdCampaignStatus200Response.JSON_PROPERTY_SKIPPED_REASONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:59:20.846538925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T22:05:06.969662162Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignStatus200Response {
   /**
    * The campaign&#39;s delivery status derived from its switch as read back (&#x60;paused&#x60; when the switch is off). Echoes the request when the platform could not be read.

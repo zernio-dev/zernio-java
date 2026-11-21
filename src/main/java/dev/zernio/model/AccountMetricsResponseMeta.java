@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   AccountMetricsResponseMeta.JSON_PROPERTY_FROM_DATE,
   AccountMetricsResponseMeta.JSON_PROPERTY_TO_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:59:20.846538925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T22:05:06.969662162Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountMetricsResponseMeta {
   public static final String JSON_PROPERTY_STALE = "stale";
   @javax.annotation.Nonnull

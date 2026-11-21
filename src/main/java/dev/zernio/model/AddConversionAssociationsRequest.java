@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   AddConversionAssociationsRequest.JSON_PROPERTY_AD_ACCOUNT_ID,
   AddConversionAssociationsRequest.JSON_PROPERTY_CAMPAIGN_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:59:20.846538925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T22:05:06.969662162Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddConversionAssociationsRequest {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nonnull

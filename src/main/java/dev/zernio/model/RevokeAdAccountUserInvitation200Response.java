@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   RevokeAdAccountUserInvitation200Response.JSON_PROPERTY_INVITATION_ID,
   RevokeAdAccountUserInvitation200Response.JSON_PROPERTY_REVOKED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T21:59:20.846538925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-21T22:05:06.969662162Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RevokeAdAccountUserInvitation200Response {
   public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
   @javax.annotation.Nullable
