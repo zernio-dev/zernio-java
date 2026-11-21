@@ -17,6 +17,7 @@
 |**isAiGenerated** | **Boolean** |  |  [optional] |
 |**isSharedToFeed** | **Boolean** |  |  [optional] |
 |**mediaAudioType** | **String** |  |  [optional] |
+|**upcomingStartAt** | **OffsetDateTime** | YouTube only. Start time of an upcoming Premiere or scheduled live stream. Absent once it airs. While it is present, publishedAt is the upload time; after it airs, publishedAt is the time it actually started. |  [optional] |
 
 
 

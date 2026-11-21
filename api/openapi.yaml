@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.717.0
+  version: 1.718.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -95783,6 +95783,13 @@ components:
           type: boolean
         mediaAudioType:
           type: string
+        upcomingStartAt:
+          description: "YouTube only. Start time of an upcoming Premiere or scheduled\
+            \ live stream. Absent once it airs. While it is present, publishedAt is\
+            \ the upload time; after it airs, publishedAt is the time it actually\
+            \ started."
+          format: date-time
+          type: string
       required:
       - content
       - mediaItems
@@ -103126,6 +103133,7 @@ components:
         mediaAudioType: mediaAudioType
         platformPostId: platformPostId
         thumbnailUrl: thumbnailUrl
+        upcomingStartAt: 2000-01-23T04:56:07.000+00:00
       properties:
         platform:
           description: "Platform the post belongs to (e.g. instagram, youtube, tiktok)"
@@ -103140,7 +103148,8 @@ components:
           description: Post caption / text
           type: string
         publishedAt:
-          description: When the post was published on the platform
+          description: When the post was published on the platform. For a YouTube
+            Premiere or live stream it follows the actual start time once it airs.
           format: date-time
           type: string
         mediaType:
@@ -103169,6 +103178,13 @@ components:
         mediaAudioType:
           description: "Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND).\
             \ Absent when the platform did not report it."
+          type: string
+        upcomingStartAt:
+          description: "YouTube only. Start time of an upcoming Premiere or scheduled\
+            \ live stream. Absent once it airs. While it is present, publishedAt is\
+            \ the upload time; after it airs, publishedAt is the time it actually\
+            \ started."
+          format: date-time
           type: string
         isOwner:
           description: "Pinterest: true when the account created the Pin, false when\
@@ -124229,6 +124245,7 @@ components:
         syncStatus: synced
         status: published
         thumbnailUrl: https://openapi-generator.tech
+        upcomingStartAt: 2000-01-23T04:56:07.000+00:00
       properties:
         postId:
           type: string
@@ -124332,6 +124349,13 @@ components:
         mediaAudioType:
           description: "Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND).\
             \ Absent when the platform did not report it."
+          type: string
+        upcomingStartAt:
+          description: "YouTube only. Start time of an upcoming Premiere or scheduled\
+            \ live stream. Absent once it airs. While it is present, publishedAt is\
+            \ the upload time; after it airs, publishedAt is the time it actually\
+            \ started."
+          format: date-time
           type: string
     AnalyticsListResponse:
       properties:
@@ -151505,6 +151529,7 @@ components:
           mediaAudioType: mediaAudioType
           platformPostId: platformPostId
           thumbnailUrl: thumbnailUrl
+          upcomingStartAt: 2000-01-23T04:56:07.000+00:00
         - publishedAt: 2000-01-23T04:56:07.000+00:00
           mediaType: mediaType
           platform: platform
@@ -151532,6 +151557,7 @@ components:
           mediaAudioType: mediaAudioType
           platformPostId: platformPostId
           thumbnailUrl: thumbnailUrl
+          upcomingStartAt: 2000-01-23T04:56:07.000+00:00
       properties:
         synced:
           $ref: "#/components/schemas/syncExternalPosts_200_response_synced"
@@ -245508,6 +245534,13 @@ components:
         mediaAudioType:
           description: "Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND).\
             \ Absent when the platform did not report it."
+          type: string
+        upcomingStartAt:
+          description: "YouTube only. Start time of an upcoming Premiere or scheduled\
+            \ live stream. Absent once it airs. While it is present, publishedAt is\
+            \ the upload time; after it airs, publishedAt is the time it actually\
+            \ started."
+          format: date-time
           type: string
     AnalyticsDeltaEntry_metrics:
       description: "Metrics a platform does not report are 0, not absent."

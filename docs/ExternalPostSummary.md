@@ -12,7 +12,7 @@ A post synced from a platform (published directly on the platform, not through Z
 |**platformPostId** | **String** | The platform&#39;s own post/media/video id |  [optional] |
 |**platformPostUrl** | **String** | Canonical URL (permalink) of the post on the platform |  [optional] |
 |**content** | **String** | Post caption / text |  [optional] |
-|**publishedAt** | **OffsetDateTime** | When the post was published on the platform |  [optional] |
+|**publishedAt** | **OffsetDateTime** | When the post was published on the platform. For a YouTube Premiere or live stream it follows the actual start time once it airs. |  [optional] |
 |**mediaType** | **String** | Media type (e.g. image, video, carousel) |  [optional] |
 |**thumbnailUrl** | **String** | Thumbnail URL |  [optional] |
 |**mediaItems** | **List&lt;Object&gt;** | Per-item media (for carousels / multi-media posts) |  [optional] |
@@ -20,6 +20,7 @@ A post synced from a platform (published directly on the platform, not through Z
 |**isAiGenerated** | **Boolean** | Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it. |  [optional] |
 |**isSharedToFeed** | **Boolean** | Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it. |  [optional] |
 |**mediaAudioType** | **String** | Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it. |  [optional] |
+|**upcomingStartAt** | **OffsetDateTime** | YouTube only. Start time of an upcoming Premiere or scheduled live stream. Absent once it airs. While it is present, publishedAt is the upload time; after it airs, publishedAt is the time it actually started. |  [optional] |
 |**isOwner** | **Boolean** | Pinterest: true when the account created the Pin, false when it saved it from another user; keep true to import only its own Pins. Facebook: false for a collab post by another Page. Null when unknown and for other platforms. |  [optional] |
 |**analytics** | [**ExternalPostSummaryAnalytics**](ExternalPostSummaryAnalytics.md) |  |  [optional] |
 
