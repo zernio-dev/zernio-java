@@ -38,6 +38,9 @@ docs/AdCampaignBudget.md
 docs/AdCampaignResultsApi.md
 docs/AdCampaignsApi.md
 docs/AdCreative.md
+docs/AdCreativeAssetFeed.md
+docs/AdCreativeAssetFeedImagesInner.md
+docs/AdCreativeAssetFeedVideosInner.md
 docs/AdCreativeAssets.md
 docs/AdCreativeAssetsMarketingImagesInner.md
 docs/AdCreativeAssetsSquareMarketingImagesInner.md
@@ -4238,6 +4241,9 @@ src/main/java/dev/zernio/model/AdBudget.java
 src/main/java/dev/zernio/model/AdCampaign.java
 src/main/java/dev/zernio/model/AdCampaignBudget.java
 src/main/java/dev/zernio/model/AdCreative.java
+src/main/java/dev/zernio/model/AdCreativeAssetFeed.java
+src/main/java/dev/zernio/model/AdCreativeAssetFeedImagesInner.java
+src/main/java/dev/zernio/model/AdCreativeAssetFeedVideosInner.java
 src/main/java/dev/zernio/model/AdCreativeAssets.java
 src/main/java/dev/zernio/model/AdCreativeAssetsMarketingImagesInner.java
 src/main/java/dev/zernio/model/AdCreativeAssetsSquareMarketingImagesInner.java
@@ -8215,8 +8221,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetGohighlevelConnectUrl200ResponseTest.java
-src/test/java/dev/zernio/model/GetGohighlevelSettings200ResponseTest.java
-src/test/java/dev/zernio/model/GohighlevelSettingsTest.java
-src/test/java/dev/zernio/model/UpdateGohighlevelSettings200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateGohighlevelSettingsRequestTest.java
+src/test/java/dev/zernio/model/AdCreativeAssetFeedImagesInnerTest.java
+src/test/java/dev/zernio/model/AdCreativeAssetFeedTest.java
+src/test/java/dev/zernio/model/AdCreativeAssetFeedVideosInnerTest.java

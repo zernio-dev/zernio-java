@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.723.0
+  version: 1.724.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -127747,12 +127747,7 @@ components:
           roasAverageFloor: 2.0
           creative:
             effectiveInstagramMediaId: effectiveInstagramMediaId
-            servingHoldReasons:
-            - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
-            bodies:
-            - bodies
-            - bodies
             catalog:
               productSetId: productSetId
               format: single_image
@@ -127765,9 +127760,8 @@ components:
                 data_source:
                 - data_source
                 - data_source
-            description: description
+            caption: caption
             videoId: videoId
-            leadGenFormId: leadGenFormId
             body: body
             descriptions:
             - Ad_creative_descriptions_inner
@@ -127775,7 +127769,6 @@ components:
             - Ad_creative_descriptions_inner
             - Ad_creative_descriptions_inner
             effectiveObjectStoryId: effectiveObjectStoryId
-            creativeId: creativeId
             callToAction: SIGN_UP
             objectType: objectType
             assets:
@@ -127785,15 +127778,35 @@ components:
               marketingImages:
               - resourceName: resourceName
               - resourceName: resourceName
+            pinterestDescription: pinterestDescription
+            linkUrl: linkUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
+            imageHash: imageHash
+            pageId: pageId
+            headlines:
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            isServing: true
+            servingHoldReasons:
+            - UNDER_REVIEW
+            bodies:
+            - bodies
+            - bodies
+            description: description
+            leadGenFormId: leadGenFormId
+            creativeId: creativeId
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             identityType: identityType
-            pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
             - https://openapi-generator.tech
             imageUrl: imageUrl
-            linkUrl: linkUrl
             googleHeadline: googleHeadline
             instagramVideoFallback:
               kind: instagram_video_reuploaded
@@ -127810,15 +127823,22 @@ components:
             - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
-            instagramPermalinkUrl: instagramPermalinkUrl
             identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
-            instagramUserId: instagramUserId
-            tiktokItemId: tiktokItemId
-            imageHash: imageHash
             pinterestTitle: pinterestTitle
-            pageId: pageId
             assetGroup: ""
+            assetFeed:
+              images:
+              - hash: hash
+                url: url
+              - hash: hash
+                url: url
+              optimizationType: optimizationType
+              videos:
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
             googleDescription: googleDescription
             urlTags: urlTags
             carouselCards:
@@ -127837,13 +127857,6 @@ components:
               headline: headline
               callToAction: SHOP_NOW
             identityId: identityId
-            headlines:
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            isServing: true
             assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
@@ -127904,12 +127917,7 @@ components:
           roasAverageFloor: 2.0
           creative:
             effectiveInstagramMediaId: effectiveInstagramMediaId
-            servingHoldReasons:
-            - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
-            bodies:
-            - bodies
-            - bodies
             catalog:
               productSetId: productSetId
               format: single_image
@@ -127922,9 +127930,8 @@ components:
                 data_source:
                 - data_source
                 - data_source
-            description: description
+            caption: caption
             videoId: videoId
-            leadGenFormId: leadGenFormId
             body: body
             descriptions:
             - Ad_creative_descriptions_inner
@@ -127932,7 +127939,6 @@ components:
             - Ad_creative_descriptions_inner
             - Ad_creative_descriptions_inner
             effectiveObjectStoryId: effectiveObjectStoryId
-            creativeId: creativeId
             callToAction: SIGN_UP
             objectType: objectType
             assets:
@@ -127942,15 +127948,35 @@ components:
               marketingImages:
               - resourceName: resourceName
               - resourceName: resourceName
+            pinterestDescription: pinterestDescription
+            linkUrl: linkUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
+            imageHash: imageHash
+            pageId: pageId
+            headlines:
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            isServing: true
+            servingHoldReasons:
+            - UNDER_REVIEW
+            bodies:
+            - bodies
+            - bodies
+            description: description
+            leadGenFormId: leadGenFormId
+            creativeId: creativeId
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             identityType: identityType
-            pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
             - https://openapi-generator.tech
             imageUrl: imageUrl
-            linkUrl: linkUrl
             googleHeadline: googleHeadline
             instagramVideoFallback:
               kind: instagram_video_reuploaded
@@ -127967,15 +127993,22 @@ components:
             - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
-            instagramPermalinkUrl: instagramPermalinkUrl
             identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
-            instagramUserId: instagramUserId
-            tiktokItemId: tiktokItemId
-            imageHash: imageHash
             pinterestTitle: pinterestTitle
-            pageId: pageId
             assetGroup: ""
+            assetFeed:
+              images:
+              - hash: hash
+                url: url
+              - hash: hash
+                url: url
+              optimizationType: optimizationType
+              videos:
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
             googleDescription: googleDescription
             urlTags: urlTags
             carouselCards:
@@ -127994,13 +128027,6 @@ components:
               headline: headline
               callToAction: SHOP_NOW
             identityId: identityId
-            headlines:
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            isServing: true
             assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
@@ -128392,12 +128418,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -128410,9 +128431,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -128420,7 +128440,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -128430,15 +128449,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -128455,15 +128494,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -128482,13 +128528,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -128549,12 +128588,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -128567,9 +128601,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -128577,7 +128610,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -128587,15 +128619,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -128612,15 +128664,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -128639,13 +128698,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -128960,12 +129012,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -128978,9 +129025,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -128988,7 +129034,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -128998,15 +129043,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -129023,15 +129088,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -129050,13 +129122,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -129117,12 +129182,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -129135,9 +129195,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -129145,7 +129204,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -129155,15 +129213,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -129180,15 +129258,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -129207,13 +129292,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -129785,12 +129863,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -129803,9 +129876,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -129813,7 +129885,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -129823,15 +129894,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -129848,15 +129939,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -129875,13 +129973,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -129942,12 +130033,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -129960,9 +130046,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -129970,7 +130055,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -129980,15 +130064,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -130005,15 +130109,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -130032,13 +130143,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -130353,12 +130457,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -130371,9 +130470,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -130381,7 +130479,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -130391,15 +130488,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -130416,15 +130533,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -130443,13 +130567,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -130510,12 +130627,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -130528,9 +130640,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -130538,7 +130649,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -130548,15 +130658,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -130573,15 +130703,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -130600,13 +130737,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -134476,12 +134606,7 @@ components:
         roasAverageFloor: 2.0
         creative:
           effectiveInstagramMediaId: effectiveInstagramMediaId
-          servingHoldReasons:
-          - UNDER_REVIEW
           whatsappPhoneNumber: "+12025550123"
-          bodies:
-          - bodies
-          - bodies
           catalog:
             productSetId: productSetId
             format: single_image
@@ -134494,9 +134619,8 @@ components:
               data_source:
               - data_source
               - data_source
-          description: description
+          caption: caption
           videoId: videoId
-          leadGenFormId: leadGenFormId
           body: body
           descriptions:
           - Ad_creative_descriptions_inner
@@ -134504,7 +134628,6 @@ components:
           - Ad_creative_descriptions_inner
           - Ad_creative_descriptions_inner
           effectiveObjectStoryId: effectiveObjectStoryId
-          creativeId: creativeId
           callToAction: SIGN_UP
           objectType: objectType
           assets:
@@ -134514,15 +134637,35 @@ components:
             marketingImages:
             - resourceName: resourceName
             - resourceName: resourceName
+          pinterestDescription: pinterestDescription
+          linkUrl: linkUrl
+          instagramPermalinkUrl: instagramPermalinkUrl
+          instagramUserId: instagramUserId
+          tiktokItemId: tiktokItemId
+          imageHash: imageHash
+          pageId: pageId
+          headlines:
+          - Ad_creative_headlines_inner
+          - Ad_creative_headlines_inner
+          - Ad_creative_headlines_inner
+          - Ad_creative_headlines_inner
+          - Ad_creative_headlines_inner
+          isServing: true
+          servingHoldReasons:
+          - UNDER_REVIEW
+          bodies:
+          - bodies
+          - bodies
+          description: description
+          leadGenFormId: leadGenFormId
+          creativeId: creativeId
           videoUrl: videoUrl
           objectStoryId: objectStoryId
           identityType: identityType
-          pinterestDescription: pinterestDescription
           finalUrls:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
           imageUrl: imageUrl
-          linkUrl: linkUrl
           googleHeadline: googleHeadline
           instagramVideoFallback:
             kind: instagram_video_reuploaded
@@ -134539,15 +134682,22 @@ components:
           - youtubeVideoIds
           thumbnailUrl: thumbnailUrl
           pinterestImageUrl: pinterestImageUrl
-          instagramPermalinkUrl: instagramPermalinkUrl
           identityAuthorizedBcId: identityAuthorizedBcId
           assetGroupResourceName: customers/9122445560/assetGroups/123456789
-          instagramUserId: instagramUserId
-          tiktokItemId: tiktokItemId
-          imageHash: imageHash
           pinterestTitle: pinterestTitle
-          pageId: pageId
           assetGroup: ""
+          assetFeed:
+            images:
+            - hash: hash
+              url: url
+            - hash: hash
+              url: url
+            optimizationType: optimizationType
+            videos:
+            - videoId: videoId
+              thumbnailUrl: thumbnailUrl
+            - videoId: videoId
+              thumbnailUrl: thumbnailUrl
           googleDescription: googleDescription
           urlTags: urlTags
           carouselCards:
@@ -134566,13 +134716,6 @@ components:
             headline: headline
             callToAction: SHOP_NOW
           identityId: identityId
-          headlines:
-          - Ad_creative_headlines_inner
-          - Ad_creative_headlines_inner
-          - Ad_creative_headlines_inner
-          - Ad_creative_headlines_inner
-          - Ad_creative_headlines_inner
-          isServing: true
           assetResourceName: assetResourceName
           adFormat: adFormat
           creativeFeatures: ""
@@ -134951,12 +135094,7 @@ components:
           roasAverageFloor: 2.0
           creative:
             effectiveInstagramMediaId: effectiveInstagramMediaId
-            servingHoldReasons:
-            - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
-            bodies:
-            - bodies
-            - bodies
             catalog:
               productSetId: productSetId
               format: single_image
@@ -134969,9 +135107,8 @@ components:
                 data_source:
                 - data_source
                 - data_source
-            description: description
+            caption: caption
             videoId: videoId
-            leadGenFormId: leadGenFormId
             body: body
             descriptions:
             - Ad_creative_descriptions_inner
@@ -134979,7 +135116,6 @@ components:
             - Ad_creative_descriptions_inner
             - Ad_creative_descriptions_inner
             effectiveObjectStoryId: effectiveObjectStoryId
-            creativeId: creativeId
             callToAction: SIGN_UP
             objectType: objectType
             assets:
@@ -134989,15 +135125,35 @@ components:
               marketingImages:
               - resourceName: resourceName
               - resourceName: resourceName
+            pinterestDescription: pinterestDescription
+            linkUrl: linkUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
+            imageHash: imageHash
+            pageId: pageId
+            headlines:
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            isServing: true
+            servingHoldReasons:
+            - UNDER_REVIEW
+            bodies:
+            - bodies
+            - bodies
+            description: description
+            leadGenFormId: leadGenFormId
+            creativeId: creativeId
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             identityType: identityType
-            pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
             - https://openapi-generator.tech
             imageUrl: imageUrl
-            linkUrl: linkUrl
             googleHeadline: googleHeadline
             instagramVideoFallback:
               kind: instagram_video_reuploaded
@@ -135014,15 +135170,22 @@ components:
             - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
-            instagramPermalinkUrl: instagramPermalinkUrl
             identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
-            instagramUserId: instagramUserId
-            tiktokItemId: tiktokItemId
-            imageHash: imageHash
             pinterestTitle: pinterestTitle
-            pageId: pageId
             assetGroup: ""
+            assetFeed:
+              images:
+              - hash: hash
+                url: url
+              - hash: hash
+                url: url
+              optimizationType: optimizationType
+              videos:
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
             googleDescription: googleDescription
             urlTags: urlTags
             carouselCards:
@@ -135041,13 +135204,6 @@ components:
               headline: headline
               callToAction: SHOP_NOW
             identityId: identityId
-            headlines:
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            isServing: true
             assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
@@ -135108,12 +135264,7 @@ components:
           roasAverageFloor: 2.0
           creative:
             effectiveInstagramMediaId: effectiveInstagramMediaId
-            servingHoldReasons:
-            - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
-            bodies:
-            - bodies
-            - bodies
             catalog:
               productSetId: productSetId
               format: single_image
@@ -135126,9 +135277,8 @@ components:
                 data_source:
                 - data_source
                 - data_source
-            description: description
+            caption: caption
             videoId: videoId
-            leadGenFormId: leadGenFormId
             body: body
             descriptions:
             - Ad_creative_descriptions_inner
@@ -135136,7 +135286,6 @@ components:
             - Ad_creative_descriptions_inner
             - Ad_creative_descriptions_inner
             effectiveObjectStoryId: effectiveObjectStoryId
-            creativeId: creativeId
             callToAction: SIGN_UP
             objectType: objectType
             assets:
@@ -135146,15 +135295,35 @@ components:
               marketingImages:
               - resourceName: resourceName
               - resourceName: resourceName
+            pinterestDescription: pinterestDescription
+            linkUrl: linkUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
+            imageHash: imageHash
+            pageId: pageId
+            headlines:
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            isServing: true
+            servingHoldReasons:
+            - UNDER_REVIEW
+            bodies:
+            - bodies
+            - bodies
+            description: description
+            leadGenFormId: leadGenFormId
+            creativeId: creativeId
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             identityType: identityType
-            pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
             - https://openapi-generator.tech
             imageUrl: imageUrl
-            linkUrl: linkUrl
             googleHeadline: googleHeadline
             instagramVideoFallback:
               kind: instagram_video_reuploaded
@@ -135171,15 +135340,22 @@ components:
             - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
-            instagramPermalinkUrl: instagramPermalinkUrl
             identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
-            instagramUserId: instagramUserId
-            tiktokItemId: tiktokItemId
-            imageHash: imageHash
             pinterestTitle: pinterestTitle
-            pageId: pageId
             assetGroup: ""
+            assetFeed:
+              images:
+              - hash: hash
+                url: url
+              - hash: hash
+                url: url
+              optimizationType: optimizationType
+              videos:
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
             googleDescription: googleDescription
             urlTags: urlTags
             carouselCards:
@@ -135198,13 +135374,6 @@ components:
               headline: headline
               callToAction: SHOP_NOW
             identityId: identityId
-            headlines:
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            isServing: true
             assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
@@ -135863,12 +136032,7 @@ components:
             roasAverageFloor: 2.0
             creative:
               effectiveInstagramMediaId: effectiveInstagramMediaId
-              servingHoldReasons:
-              - UNDER_REVIEW
               whatsappPhoneNumber: "+12025550123"
-              bodies:
-              - bodies
-              - bodies
               catalog:
                 productSetId: productSetId
                 format: single_image
@@ -135881,9 +136045,8 @@ components:
                   data_source:
                   - data_source
                   - data_source
-              description: description
+              caption: caption
               videoId: videoId
-              leadGenFormId: leadGenFormId
               body: body
               descriptions:
               - Ad_creative_descriptions_inner
@@ -135891,7 +136054,6 @@ components:
               - Ad_creative_descriptions_inner
               - Ad_creative_descriptions_inner
               effectiveObjectStoryId: effectiveObjectStoryId
-              creativeId: creativeId
               callToAction: SIGN_UP
               objectType: objectType
               assets:
@@ -135901,15 +136063,35 @@ components:
                 marketingImages:
                 - resourceName: resourceName
                 - resourceName: resourceName
+              pinterestDescription: pinterestDescription
+              linkUrl: linkUrl
+              instagramPermalinkUrl: instagramPermalinkUrl
+              instagramUserId: instagramUserId
+              tiktokItemId: tiktokItemId
+              imageHash: imageHash
+              pageId: pageId
+              headlines:
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              isServing: true
+              servingHoldReasons:
+              - UNDER_REVIEW
+              bodies:
+              - bodies
+              - bodies
+              description: description
+              leadGenFormId: leadGenFormId
+              creativeId: creativeId
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               identityType: identityType
-              pinterestDescription: pinterestDescription
               finalUrls:
               - https://openapi-generator.tech
               - https://openapi-generator.tech
               imageUrl: imageUrl
-              linkUrl: linkUrl
               googleHeadline: googleHeadline
               instagramVideoFallback:
                 kind: instagram_video_reuploaded
@@ -135926,15 +136108,22 @@ components:
               - youtubeVideoIds
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
-              instagramPermalinkUrl: instagramPermalinkUrl
               identityAuthorizedBcId: identityAuthorizedBcId
               assetGroupResourceName: customers/9122445560/assetGroups/123456789
-              instagramUserId: instagramUserId
-              tiktokItemId: tiktokItemId
-              imageHash: imageHash
               pinterestTitle: pinterestTitle
-              pageId: pageId
               assetGroup: ""
+              assetFeed:
+                images:
+                - hash: hash
+                  url: url
+                - hash: hash
+                  url: url
+                optimizationType: optimizationType
+                videos:
+                - videoId: videoId
+                  thumbnailUrl: thumbnailUrl
+                - videoId: videoId
+                  thumbnailUrl: thumbnailUrl
               googleDescription: googleDescription
               urlTags: urlTags
               carouselCards:
@@ -135953,13 +136142,6 @@ components:
                 headline: headline
                 callToAction: SHOP_NOW
               identityId: identityId
-              headlines:
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              isServing: true
               assetResourceName: assetResourceName
               adFormat: adFormat
               creativeFeatures: ""
@@ -136020,12 +136202,7 @@ components:
             roasAverageFloor: 2.0
             creative:
               effectiveInstagramMediaId: effectiveInstagramMediaId
-              servingHoldReasons:
-              - UNDER_REVIEW
               whatsappPhoneNumber: "+12025550123"
-              bodies:
-              - bodies
-              - bodies
               catalog:
                 productSetId: productSetId
                 format: single_image
@@ -136038,9 +136215,8 @@ components:
                   data_source:
                   - data_source
                   - data_source
-              description: description
+              caption: caption
               videoId: videoId
-              leadGenFormId: leadGenFormId
               body: body
               descriptions:
               - Ad_creative_descriptions_inner
@@ -136048,7 +136224,6 @@ components:
               - Ad_creative_descriptions_inner
               - Ad_creative_descriptions_inner
               effectiveObjectStoryId: effectiveObjectStoryId
-              creativeId: creativeId
               callToAction: SIGN_UP
               objectType: objectType
               assets:
@@ -136058,15 +136233,35 @@ components:
                 marketingImages:
                 - resourceName: resourceName
                 - resourceName: resourceName
+              pinterestDescription: pinterestDescription
+              linkUrl: linkUrl
+              instagramPermalinkUrl: instagramPermalinkUrl
+              instagramUserId: instagramUserId
+              tiktokItemId: tiktokItemId
+              imageHash: imageHash
+              pageId: pageId
+              headlines:
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              isServing: true
+              servingHoldReasons:
+              - UNDER_REVIEW
+              bodies:
+              - bodies
+              - bodies
+              description: description
+              leadGenFormId: leadGenFormId
+              creativeId: creativeId
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               identityType: identityType
-              pinterestDescription: pinterestDescription
               finalUrls:
               - https://openapi-generator.tech
               - https://openapi-generator.tech
               imageUrl: imageUrl
-              linkUrl: linkUrl
               googleHeadline: googleHeadline
               instagramVideoFallback:
                 kind: instagram_video_reuploaded
@@ -136083,15 +136278,22 @@ components:
               - youtubeVideoIds
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
-              instagramPermalinkUrl: instagramPermalinkUrl
               identityAuthorizedBcId: identityAuthorizedBcId
               assetGroupResourceName: customers/9122445560/assetGroups/123456789
-              instagramUserId: instagramUserId
-              tiktokItemId: tiktokItemId
-              imageHash: imageHash
               pinterestTitle: pinterestTitle
-              pageId: pageId
               assetGroup: ""
+              assetFeed:
+                images:
+                - hash: hash
+                  url: url
+                - hash: hash
+                  url: url
+                optimizationType: optimizationType
+                videos:
+                - videoId: videoId
+                  thumbnailUrl: thumbnailUrl
+                - videoId: videoId
+                  thumbnailUrl: thumbnailUrl
               googleDescription: googleDescription
               urlTags: urlTags
               carouselCards:
@@ -136110,13 +136312,6 @@ components:
                 headline: headline
                 callToAction: SHOP_NOW
               identityId: identityId
-              headlines:
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              isServing: true
               assetResourceName: assetResourceName
               adFormat: adFormat
               creativeFeatures: ""
@@ -136431,12 +136626,7 @@ components:
             roasAverageFloor: 2.0
             creative:
               effectiveInstagramMediaId: effectiveInstagramMediaId
-              servingHoldReasons:
-              - UNDER_REVIEW
               whatsappPhoneNumber: "+12025550123"
-              bodies:
-              - bodies
-              - bodies
               catalog:
                 productSetId: productSetId
                 format: single_image
@@ -136449,9 +136639,8 @@ components:
                   data_source:
                   - data_source
                   - data_source
-              description: description
+              caption: caption
               videoId: videoId
-              leadGenFormId: leadGenFormId
               body: body
               descriptions:
               - Ad_creative_descriptions_inner
@@ -136459,7 +136648,6 @@ components:
               - Ad_creative_descriptions_inner
               - Ad_creative_descriptions_inner
               effectiveObjectStoryId: effectiveObjectStoryId
-              creativeId: creativeId
               callToAction: SIGN_UP
               objectType: objectType
               assets:
@@ -136469,15 +136657,35 @@ components:
                 marketingImages:
                 - resourceName: resourceName
                 - resourceName: resourceName
+              pinterestDescription: pinterestDescription
+              linkUrl: linkUrl
+              instagramPermalinkUrl: instagramPermalinkUrl
+              instagramUserId: instagramUserId
+              tiktokItemId: tiktokItemId
+              imageHash: imageHash
+              pageId: pageId
+              headlines:
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              isServing: true
+              servingHoldReasons:
+              - UNDER_REVIEW
+              bodies:
+              - bodies
+              - bodies
+              description: description
+              leadGenFormId: leadGenFormId
+              creativeId: creativeId
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               identityType: identityType
-              pinterestDescription: pinterestDescription
               finalUrls:
               - https://openapi-generator.tech
               - https://openapi-generator.tech
               imageUrl: imageUrl
-              linkUrl: linkUrl
               googleHeadline: googleHeadline
               instagramVideoFallback:
                 kind: instagram_video_reuploaded
@@ -136494,15 +136702,22 @@ components:
               - youtubeVideoIds
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
-              instagramPermalinkUrl: instagramPermalinkUrl
               identityAuthorizedBcId: identityAuthorizedBcId
               assetGroupResourceName: customers/9122445560/assetGroups/123456789
-              instagramUserId: instagramUserId
-              tiktokItemId: tiktokItemId
-              imageHash: imageHash
               pinterestTitle: pinterestTitle
-              pageId: pageId
               assetGroup: ""
+              assetFeed:
+                images:
+                - hash: hash
+                  url: url
+                - hash: hash
+                  url: url
+                optimizationType: optimizationType
+                videos:
+                - videoId: videoId
+                  thumbnailUrl: thumbnailUrl
+                - videoId: videoId
+                  thumbnailUrl: thumbnailUrl
               googleDescription: googleDescription
               urlTags: urlTags
               carouselCards:
@@ -136521,13 +136736,6 @@ components:
                 headline: headline
                 callToAction: SHOP_NOW
               identityId: identityId
-              headlines:
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              isServing: true
               assetResourceName: assetResourceName
               adFormat: adFormat
               creativeFeatures: ""
@@ -136588,12 +136796,7 @@ components:
             roasAverageFloor: 2.0
             creative:
               effectiveInstagramMediaId: effectiveInstagramMediaId
-              servingHoldReasons:
-              - UNDER_REVIEW
               whatsappPhoneNumber: "+12025550123"
-              bodies:
-              - bodies
-              - bodies
               catalog:
                 productSetId: productSetId
                 format: single_image
@@ -136606,9 +136809,8 @@ components:
                   data_source:
                   - data_source
                   - data_source
-              description: description
+              caption: caption
               videoId: videoId
-              leadGenFormId: leadGenFormId
               body: body
               descriptions:
               - Ad_creative_descriptions_inner
@@ -136616,7 +136818,6 @@ components:
               - Ad_creative_descriptions_inner
               - Ad_creative_descriptions_inner
               effectiveObjectStoryId: effectiveObjectStoryId
-              creativeId: creativeId
               callToAction: SIGN_UP
               objectType: objectType
               assets:
@@ -136626,15 +136827,35 @@ components:
                 marketingImages:
                 - resourceName: resourceName
                 - resourceName: resourceName
+              pinterestDescription: pinterestDescription
+              linkUrl: linkUrl
+              instagramPermalinkUrl: instagramPermalinkUrl
+              instagramUserId: instagramUserId
+              tiktokItemId: tiktokItemId
+              imageHash: imageHash
+              pageId: pageId
+              headlines:
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              - Ad_creative_headlines_inner
+              isServing: true
+              servingHoldReasons:
+              - UNDER_REVIEW
+              bodies:
+              - bodies
+              - bodies
+              description: description
+              leadGenFormId: leadGenFormId
+              creativeId: creativeId
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               identityType: identityType
-              pinterestDescription: pinterestDescription
               finalUrls:
               - https://openapi-generator.tech
               - https://openapi-generator.tech
               imageUrl: imageUrl
-              linkUrl: linkUrl
               googleHeadline: googleHeadline
               instagramVideoFallback:
                 kind: instagram_video_reuploaded
@@ -136651,15 +136872,22 @@ components:
               - youtubeVideoIds
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
-              instagramPermalinkUrl: instagramPermalinkUrl
               identityAuthorizedBcId: identityAuthorizedBcId
               assetGroupResourceName: customers/9122445560/assetGroups/123456789
-              instagramUserId: instagramUserId
-              tiktokItemId: tiktokItemId
-              imageHash: imageHash
               pinterestTitle: pinterestTitle
-              pageId: pageId
               assetGroup: ""
+              assetFeed:
+                images:
+                - hash: hash
+                  url: url
+                - hash: hash
+                  url: url
+                optimizationType: optimizationType
+                videos:
+                - videoId: videoId
+                  thumbnailUrl: thumbnailUrl
+                - videoId: videoId
+                  thumbnailUrl: thumbnailUrl
               googleDescription: googleDescription
               urlTags: urlTags
               carouselCards:
@@ -136678,13 +136906,6 @@ components:
                 headline: headline
                 callToAction: SHOP_NOW
               identityId: identityId
-              headlines:
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              - Ad_creative_headlines_inner
-              isServing: true
               assetResourceName: assetResourceName
               adFormat: adFormat
               creativeFeatures: ""
@@ -190584,12 +190805,7 @@ components:
           roasAverageFloor: 2.0
           creative:
             effectiveInstagramMediaId: effectiveInstagramMediaId
-            servingHoldReasons:
-            - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
-            bodies:
-            - bodies
-            - bodies
             catalog:
               productSetId: productSetId
               format: single_image
@@ -190602,9 +190818,8 @@ components:
                 data_source:
                 - data_source
                 - data_source
-            description: description
+            caption: caption
             videoId: videoId
-            leadGenFormId: leadGenFormId
             body: body
             descriptions:
             - Ad_creative_descriptions_inner
@@ -190612,7 +190827,6 @@ components:
             - Ad_creative_descriptions_inner
             - Ad_creative_descriptions_inner
             effectiveObjectStoryId: effectiveObjectStoryId
-            creativeId: creativeId
             callToAction: SIGN_UP
             objectType: objectType
             assets:
@@ -190622,15 +190836,35 @@ components:
               marketingImages:
               - resourceName: resourceName
               - resourceName: resourceName
+            pinterestDescription: pinterestDescription
+            linkUrl: linkUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
+            imageHash: imageHash
+            pageId: pageId
+            headlines:
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            isServing: true
+            servingHoldReasons:
+            - UNDER_REVIEW
+            bodies:
+            - bodies
+            - bodies
+            description: description
+            leadGenFormId: leadGenFormId
+            creativeId: creativeId
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             identityType: identityType
-            pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
             - https://openapi-generator.tech
             imageUrl: imageUrl
-            linkUrl: linkUrl
             googleHeadline: googleHeadline
             instagramVideoFallback:
               kind: instagram_video_reuploaded
@@ -190647,15 +190881,22 @@ components:
             - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
-            instagramPermalinkUrl: instagramPermalinkUrl
             identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
-            instagramUserId: instagramUserId
-            tiktokItemId: tiktokItemId
-            imageHash: imageHash
             pinterestTitle: pinterestTitle
-            pageId: pageId
             assetGroup: ""
+            assetFeed:
+              images:
+              - hash: hash
+                url: url
+              - hash: hash
+                url: url
+              optimizationType: optimizationType
+              videos:
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
             googleDescription: googleDescription
             urlTags: urlTags
             carouselCards:
@@ -190674,13 +190915,6 @@ components:
               headline: headline
               callToAction: SHOP_NOW
             identityId: identityId
-            headlines:
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            isServing: true
             assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
@@ -190741,12 +190975,7 @@ components:
           roasAverageFloor: 2.0
           creative:
             effectiveInstagramMediaId: effectiveInstagramMediaId
-            servingHoldReasons:
-            - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
-            bodies:
-            - bodies
-            - bodies
             catalog:
               productSetId: productSetId
               format: single_image
@@ -190759,9 +190988,8 @@ components:
                 data_source:
                 - data_source
                 - data_source
-            description: description
+            caption: caption
             videoId: videoId
-            leadGenFormId: leadGenFormId
             body: body
             descriptions:
             - Ad_creative_descriptions_inner
@@ -190769,7 +190997,6 @@ components:
             - Ad_creative_descriptions_inner
             - Ad_creative_descriptions_inner
             effectiveObjectStoryId: effectiveObjectStoryId
-            creativeId: creativeId
             callToAction: SIGN_UP
             objectType: objectType
             assets:
@@ -190779,15 +191006,35 @@ components:
               marketingImages:
               - resourceName: resourceName
               - resourceName: resourceName
+            pinterestDescription: pinterestDescription
+            linkUrl: linkUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
+            imageHash: imageHash
+            pageId: pageId
+            headlines:
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            isServing: true
+            servingHoldReasons:
+            - UNDER_REVIEW
+            bodies:
+            - bodies
+            - bodies
+            description: description
+            leadGenFormId: leadGenFormId
+            creativeId: creativeId
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             identityType: identityType
-            pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
             - https://openapi-generator.tech
             imageUrl: imageUrl
-            linkUrl: linkUrl
             googleHeadline: googleHeadline
             instagramVideoFallback:
               kind: instagram_video_reuploaded
@@ -190804,15 +191051,22 @@ components:
             - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
-            instagramPermalinkUrl: instagramPermalinkUrl
             identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
-            instagramUserId: instagramUserId
-            tiktokItemId: tiktokItemId
-            imageHash: imageHash
             pinterestTitle: pinterestTitle
-            pageId: pageId
             assetGroup: ""
+            assetFeed:
+              images:
+              - hash: hash
+                url: url
+              - hash: hash
+                url: url
+              optimizationType: optimizationType
+              videos:
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
             googleDescription: googleDescription
             urlTags: urlTags
             carouselCards:
@@ -190831,13 +191085,6 @@ components:
               headline: headline
               callToAction: SHOP_NOW
             identityId: identityId
-            headlines:
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            isServing: true
             assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
@@ -199364,12 +199611,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -199382,9 +199624,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -199392,7 +199633,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -199402,15 +199642,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -199427,15 +199687,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -199454,13 +199721,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -199521,12 +199781,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -199539,9 +199794,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -199549,7 +199803,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -199559,15 +199812,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -199584,15 +199857,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -199611,13 +199891,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -199932,12 +200205,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -199950,9 +200218,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -199960,7 +200227,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -199970,15 +200236,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -199995,15 +200281,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -200022,13 +200315,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -200089,12 +200375,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -200107,9 +200388,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -200117,7 +200397,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -200127,15 +200406,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -200152,15 +200451,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -200179,13 +200485,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -200757,12 +201056,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -200775,9 +201069,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -200785,7 +201078,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -200795,15 +201087,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -200820,15 +201132,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -200847,13 +201166,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -200914,12 +201226,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -200932,9 +201239,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -200942,7 +201248,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -200952,15 +201257,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -200977,15 +201302,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -201004,13 +201336,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -201325,12 +201650,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -201343,9 +201663,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -201353,7 +201672,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -201363,15 +201681,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -201388,15 +201726,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -201415,13 +201760,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -201482,12 +201820,7 @@ components:
               roasAverageFloor: 2.0
               creative:
                 effectiveInstagramMediaId: effectiveInstagramMediaId
-                servingHoldReasons:
-                - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
-                bodies:
-                - bodies
-                - bodies
                 catalog:
                   productSetId: productSetId
                   format: single_image
@@ -201500,9 +201833,8 @@ components:
                     data_source:
                     - data_source
                     - data_source
-                description: description
+                caption: caption
                 videoId: videoId
-                leadGenFormId: leadGenFormId
                 body: body
                 descriptions:
                 - Ad_creative_descriptions_inner
@@ -201510,7 +201842,6 @@ components:
                 - Ad_creative_descriptions_inner
                 - Ad_creative_descriptions_inner
                 effectiveObjectStoryId: effectiveObjectStoryId
-                creativeId: creativeId
                 callToAction: SIGN_UP
                 objectType: objectType
                 assets:
@@ -201520,15 +201851,35 @@ components:
                   marketingImages:
                   - resourceName: resourceName
                   - resourceName: resourceName
+                pinterestDescription: pinterestDescription
+                linkUrl: linkUrl
+                instagramPermalinkUrl: instagramPermalinkUrl
+                instagramUserId: instagramUserId
+                tiktokItemId: tiktokItemId
+                imageHash: imageHash
+                pageId: pageId
+                headlines:
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                - Ad_creative_headlines_inner
+                isServing: true
+                servingHoldReasons:
+                - UNDER_REVIEW
+                bodies:
+                - bodies
+                - bodies
+                description: description
+                leadGenFormId: leadGenFormId
+                creativeId: creativeId
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 identityType: identityType
-                pinterestDescription: pinterestDescription
                 finalUrls:
                 - https://openapi-generator.tech
                 - https://openapi-generator.tech
                 imageUrl: imageUrl
-                linkUrl: linkUrl
                 googleHeadline: googleHeadline
                 instagramVideoFallback:
                   kind: instagram_video_reuploaded
@@ -201545,15 +201896,22 @@ components:
                 - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
-                instagramPermalinkUrl: instagramPermalinkUrl
                 identityAuthorizedBcId: identityAuthorizedBcId
                 assetGroupResourceName: customers/9122445560/assetGroups/123456789
-                instagramUserId: instagramUserId
-                tiktokItemId: tiktokItemId
-                imageHash: imageHash
                 pinterestTitle: pinterestTitle
-                pageId: pageId
                 assetGroup: ""
+                assetFeed:
+                  images:
+                  - hash: hash
+                    url: url
+                  - hash: hash
+                    url: url
+                  optimizationType: optimizationType
+                  videos:
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
+                  - videoId: videoId
+                    thumbnailUrl: thumbnailUrl
                 googleDescription: googleDescription
                 urlTags: urlTags
                 carouselCards:
@@ -201572,13 +201930,6 @@ components:
                   headline: headline
                   callToAction: SHOP_NOW
                 identityId: identityId
-                headlines:
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                - Ad_creative_headlines_inner
-                isServing: true
                 assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
@@ -202130,12 +202481,7 @@ components:
           roasAverageFloor: 2.0
           creative:
             effectiveInstagramMediaId: effectiveInstagramMediaId
-            servingHoldReasons:
-            - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
-            bodies:
-            - bodies
-            - bodies
             catalog:
               productSetId: productSetId
               format: single_image
@@ -202148,9 +202494,8 @@ components:
                 data_source:
                 - data_source
                 - data_source
-            description: description
+            caption: caption
             videoId: videoId
-            leadGenFormId: leadGenFormId
             body: body
             descriptions:
             - Ad_creative_descriptions_inner
@@ -202158,7 +202503,6 @@ components:
             - Ad_creative_descriptions_inner
             - Ad_creative_descriptions_inner
             effectiveObjectStoryId: effectiveObjectStoryId
-            creativeId: creativeId
             callToAction: SIGN_UP
             objectType: objectType
             assets:
@@ -202168,15 +202512,35 @@ components:
               marketingImages:
               - resourceName: resourceName
               - resourceName: resourceName
+            pinterestDescription: pinterestDescription
+            linkUrl: linkUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
+            imageHash: imageHash
+            pageId: pageId
+            headlines:
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            isServing: true
+            servingHoldReasons:
+            - UNDER_REVIEW
+            bodies:
+            - bodies
+            - bodies
+            description: description
+            leadGenFormId: leadGenFormId
+            creativeId: creativeId
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             identityType: identityType
-            pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
             - https://openapi-generator.tech
             imageUrl: imageUrl
-            linkUrl: linkUrl
             googleHeadline: googleHeadline
             instagramVideoFallback:
               kind: instagram_video_reuploaded
@@ -202193,15 +202557,22 @@ components:
             - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
-            instagramPermalinkUrl: instagramPermalinkUrl
             identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
-            instagramUserId: instagramUserId
-            tiktokItemId: tiktokItemId
-            imageHash: imageHash
             pinterestTitle: pinterestTitle
-            pageId: pageId
             assetGroup: ""
+            assetFeed:
+              images:
+              - hash: hash
+                url: url
+              - hash: hash
+                url: url
+              optimizationType: optimizationType
+              videos:
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
             googleDescription: googleDescription
             urlTags: urlTags
             carouselCards:
@@ -202220,13 +202591,6 @@ components:
               headline: headline
               callToAction: SHOP_NOW
             identityId: identityId
-            headlines:
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            isServing: true
             assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
@@ -202444,6 +202808,8 @@ components:
         - Image, video and call-to-action changes on asset_feed creatives apply to the story spec (Multiple Text Options creatives). They return 422 when the feed itself holds the images, videos or call-to-action options.
         - The live creative's deprecated `standard_enhancements` setting (Meta subcode 3858504) is never sent back; every other enhancement setting is kept.
         - `existingCreativeId` repoints the ad at a creative from GET /v1/ads/creatives and ignores every other field.
+        - `leadGenFormId` moves a lead ad to another instant form. `caption` sets the display link of a link ad.
+        - In a dynamic creative ad set (`is_dynamic_creative`), only asset feed creatives run: a full rebuild, or `existingCreativeId` pointing at a creative without an asset feed, returns 422. Text edits update the feed.
         - Meta creatives are immutable: any change creates a new creative and repoints the ad. The old creative stays on the ad account for historical reporting.
         - `creativeFeatures` is Meta-only. Omitted settings are preserved from the live creative, including on full rebuilds; a supplied creativeFeatures map overrides individual existing keys.
 
@@ -202571,6 +202937,18 @@ components:
           description: Meta only. Repoint the ad at an existing library creative (from
             GET /v1/ads/creatives); all other creative fields are ignored.
           type: string
+        leadGenFormId:
+          description: "Meta only. Moves a lead ad to another instant form (from GET\
+            \ /v1/ads/lead-forms), keeping the rest of the creative. Returns 422 on\
+            \ an ad that does not open an instant form."
+          pattern: ^\d+$
+          type: string
+        caption:
+          description: "Meta only. The display link shown on link (image) ads, Meta\
+            \ link_data.caption. Returns 422 on video creatives and on asset feeds\
+            \ without a link."
+          minLength: 1
+          type: string
     updateAd_request:
       properties:
         headlines:
@@ -202668,12 +203046,7 @@ components:
           roasAverageFloor: 2.0
           creative:
             effectiveInstagramMediaId: effectiveInstagramMediaId
-            servingHoldReasons:
-            - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
-            bodies:
-            - bodies
-            - bodies
             catalog:
               productSetId: productSetId
               format: single_image
@@ -202686,9 +203059,8 @@ components:
                 data_source:
                 - data_source
                 - data_source
-            description: description
+            caption: caption
             videoId: videoId
-            leadGenFormId: leadGenFormId
             body: body
             descriptions:
             - Ad_creative_descriptions_inner
@@ -202696,7 +203068,6 @@ components:
             - Ad_creative_descriptions_inner
             - Ad_creative_descriptions_inner
             effectiveObjectStoryId: effectiveObjectStoryId
-            creativeId: creativeId
             callToAction: SIGN_UP
             objectType: objectType
             assets:
@@ -202706,15 +203077,35 @@ components:
               marketingImages:
               - resourceName: resourceName
               - resourceName: resourceName
+            pinterestDescription: pinterestDescription
+            linkUrl: linkUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
+            imageHash: imageHash
+            pageId: pageId
+            headlines:
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            isServing: true
+            servingHoldReasons:
+            - UNDER_REVIEW
+            bodies:
+            - bodies
+            - bodies
+            description: description
+            leadGenFormId: leadGenFormId
+            creativeId: creativeId
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             identityType: identityType
-            pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
             - https://openapi-generator.tech
             imageUrl: imageUrl
-            linkUrl: linkUrl
             googleHeadline: googleHeadline
             instagramVideoFallback:
               kind: instagram_video_reuploaded
@@ -202731,15 +203122,22 @@ components:
             - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
-            instagramPermalinkUrl: instagramPermalinkUrl
             identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
-            instagramUserId: instagramUserId
-            tiktokItemId: tiktokItemId
-            imageHash: imageHash
             pinterestTitle: pinterestTitle
-            pageId: pageId
             assetGroup: ""
+            assetFeed:
+              images:
+              - hash: hash
+                url: url
+              - hash: hash
+                url: url
+              optimizationType: optimizationType
+              videos:
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
             googleDescription: googleDescription
             urlTags: urlTags
             carouselCards:
@@ -202758,13 +203156,6 @@ components:
               headline: headline
               callToAction: SHOP_NOW
             identityId: identityId
-            headlines:
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            isServing: true
             assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
@@ -211379,12 +211770,7 @@ components:
           roasAverageFloor: 2.0
           creative:
             effectiveInstagramMediaId: effectiveInstagramMediaId
-            servingHoldReasons:
-            - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
-            bodies:
-            - bodies
-            - bodies
             catalog:
               productSetId: productSetId
               format: single_image
@@ -211397,9 +211783,8 @@ components:
                 data_source:
                 - data_source
                 - data_source
-            description: description
+            caption: caption
             videoId: videoId
-            leadGenFormId: leadGenFormId
             body: body
             descriptions:
             - Ad_creative_descriptions_inner
@@ -211407,7 +211792,6 @@ components:
             - Ad_creative_descriptions_inner
             - Ad_creative_descriptions_inner
             effectiveObjectStoryId: effectiveObjectStoryId
-            creativeId: creativeId
             callToAction: SIGN_UP
             objectType: objectType
             assets:
@@ -211417,15 +211801,35 @@ components:
               marketingImages:
               - resourceName: resourceName
               - resourceName: resourceName
+            pinterestDescription: pinterestDescription
+            linkUrl: linkUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
+            imageHash: imageHash
+            pageId: pageId
+            headlines:
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            isServing: true
+            servingHoldReasons:
+            - UNDER_REVIEW
+            bodies:
+            - bodies
+            - bodies
+            description: description
+            leadGenFormId: leadGenFormId
+            creativeId: creativeId
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             identityType: identityType
-            pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
             - https://openapi-generator.tech
             imageUrl: imageUrl
-            linkUrl: linkUrl
             googleHeadline: googleHeadline
             instagramVideoFallback:
               kind: instagram_video_reuploaded
@@ -211442,15 +211846,22 @@ components:
             - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
-            instagramPermalinkUrl: instagramPermalinkUrl
             identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
-            instagramUserId: instagramUserId
-            tiktokItemId: tiktokItemId
-            imageHash: imageHash
             pinterestTitle: pinterestTitle
-            pageId: pageId
             assetGroup: ""
+            assetFeed:
+              images:
+              - hash: hash
+                url: url
+              - hash: hash
+                url: url
+              optimizationType: optimizationType
+              videos:
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
             googleDescription: googleDescription
             urlTags: urlTags
             carouselCards:
@@ -211469,13 +211880,6 @@ components:
               headline: headline
               callToAction: SHOP_NOW
             identityId: identityId
-            headlines:
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            isServing: true
             assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
@@ -214357,12 +214761,7 @@ components:
           roasAverageFloor: 2.0
           creative:
             effectiveInstagramMediaId: effectiveInstagramMediaId
-            servingHoldReasons:
-            - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
-            bodies:
-            - bodies
-            - bodies
             catalog:
               productSetId: productSetId
               format: single_image
@@ -214375,9 +214774,8 @@ components:
                 data_source:
                 - data_source
                 - data_source
-            description: description
+            caption: caption
             videoId: videoId
-            leadGenFormId: leadGenFormId
             body: body
             descriptions:
             - Ad_creative_descriptions_inner
@@ -214385,7 +214783,6 @@ components:
             - Ad_creative_descriptions_inner
             - Ad_creative_descriptions_inner
             effectiveObjectStoryId: effectiveObjectStoryId
-            creativeId: creativeId
             callToAction: SIGN_UP
             objectType: objectType
             assets:
@@ -214395,15 +214792,35 @@ components:
               marketingImages:
               - resourceName: resourceName
               - resourceName: resourceName
+            pinterestDescription: pinterestDescription
+            linkUrl: linkUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            instagramUserId: instagramUserId
+            tiktokItemId: tiktokItemId
+            imageHash: imageHash
+            pageId: pageId
+            headlines:
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            - Ad_creative_headlines_inner
+            isServing: true
+            servingHoldReasons:
+            - UNDER_REVIEW
+            bodies:
+            - bodies
+            - bodies
+            description: description
+            leadGenFormId: leadGenFormId
+            creativeId: creativeId
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             identityType: identityType
-            pinterestDescription: pinterestDescription
             finalUrls:
             - https://openapi-generator.tech
             - https://openapi-generator.tech
             imageUrl: imageUrl
-            linkUrl: linkUrl
             googleHeadline: googleHeadline
             instagramVideoFallback:
               kind: instagram_video_reuploaded
@@ -214420,15 +214837,22 @@ components:
             - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
-            instagramPermalinkUrl: instagramPermalinkUrl
             identityAuthorizedBcId: identityAuthorizedBcId
             assetGroupResourceName: customers/9122445560/assetGroups/123456789
-            instagramUserId: instagramUserId
-            tiktokItemId: tiktokItemId
-            imageHash: imageHash
             pinterestTitle: pinterestTitle
-            pageId: pageId
             assetGroup: ""
+            assetFeed:
+              images:
+              - hash: hash
+                url: url
+              - hash: hash
+                url: url
+              optimizationType: optimizationType
+              videos:
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
+              - videoId: videoId
+                thumbnailUrl: thumbnailUrl
             googleDescription: googleDescription
             urlTags: urlTags
             carouselCards:
@@ -214447,13 +214871,6 @@ components:
               headline: headline
               callToAction: SHOP_NOW
             identityId: identityId
-            headlines:
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            - Ad_creative_headlines_inner
-            isServing: true
             assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
@@ -248257,16 +248674,66 @@ components:
         videoId:
           description: Meta video id when the card is a video (`video_id`).
           type: string
+    Ad_creative_assetFeed_images_inner:
+      example:
+        hash: hash
+        url: url
+      properties:
+        hash:
+          description: Meta ad image hash.
+          type: string
+        url:
+          description: "Image URL, the stable permalink when Meta returns one."
+          nullable: true
+          type: string
+    Ad_creative_assetFeed_videos_inner:
+      example:
+        videoId: videoId
+        thumbnailUrl: thumbnailUrl
+      properties:
+        videoId:
+          description: Meta video id.
+          type: string
+        thumbnailUrl:
+          description: Video poster URL.
+          nullable: true
+          type: string
+    Ad_creative_assetFeed:
+      description: |
+        Meta only. The media of an asset feed creative (placement or language customization, dynamic creative). Absent on other creatives.
+
+        Synced ads stored before this field existed fill it in when they next change on Meta.
+      example:
+        images:
+        - hash: hash
+          url: url
+        - hash: hash
+          url: url
+        optimizationType: optimizationType
+        videos:
+        - videoId: videoId
+          thumbnailUrl: thumbnailUrl
+        - videoId: videoId
+          thumbnailUrl: thumbnailUrl
+      properties:
+        optimizationType:
+          description: "Meta `optimization_type`, e.g. PLACEMENT, LANGUAGE or REGULAR\
+            \ (dynamic creative)."
+          nullable: true
+          type: string
+        images:
+          items:
+            $ref: "#/components/schemas/Ad_creative_assetFeed_images_inner"
+          type: array
+        videos:
+          items:
+            $ref: "#/components/schemas/Ad_creative_assetFeed_videos_inner"
+          type: array
     Ad_creative:
       description: Platform-specific creative data. Fields vary by platform.
       example:
         effectiveInstagramMediaId: effectiveInstagramMediaId
-        servingHoldReasons:
-        - UNDER_REVIEW
         whatsappPhoneNumber: "+12025550123"
-        bodies:
-        - bodies
-        - bodies
         catalog:
           productSetId: productSetId
           format: single_image
@@ -248279,9 +248746,8 @@ components:
             data_source:
             - data_source
             - data_source
-        description: description
+        caption: caption
         videoId: videoId
-        leadGenFormId: leadGenFormId
         body: body
         descriptions:
         - Ad_creative_descriptions_inner
@@ -248289,7 +248755,6 @@ components:
         - Ad_creative_descriptions_inner
         - Ad_creative_descriptions_inner
         effectiveObjectStoryId: effectiveObjectStoryId
-        creativeId: creativeId
         callToAction: SIGN_UP
         objectType: objectType
         assets:
@@ -248299,15 +248764,35 @@ components:
           marketingImages:
           - resourceName: resourceName
           - resourceName: resourceName
+        pinterestDescription: pinterestDescription
+        linkUrl: linkUrl
+        instagramPermalinkUrl: instagramPermalinkUrl
+        instagramUserId: instagramUserId
+        tiktokItemId: tiktokItemId
+        imageHash: imageHash
+        pageId: pageId
+        headlines:
+        - Ad_creative_headlines_inner
+        - Ad_creative_headlines_inner
+        - Ad_creative_headlines_inner
+        - Ad_creative_headlines_inner
+        - Ad_creative_headlines_inner
+        isServing: true
+        servingHoldReasons:
+        - UNDER_REVIEW
+        bodies:
+        - bodies
+        - bodies
+        description: description
+        leadGenFormId: leadGenFormId
+        creativeId: creativeId
         videoUrl: videoUrl
         objectStoryId: objectStoryId
         identityType: identityType
-        pinterestDescription: pinterestDescription
         finalUrls:
         - https://openapi-generator.tech
         - https://openapi-generator.tech
         imageUrl: imageUrl
-        linkUrl: linkUrl
         googleHeadline: googleHeadline
         instagramVideoFallback:
           kind: instagram_video_reuploaded
@@ -248324,15 +248809,22 @@ components:
         - youtubeVideoIds
         thumbnailUrl: thumbnailUrl
         pinterestImageUrl: pinterestImageUrl
-        instagramPermalinkUrl: instagramPermalinkUrl
         identityAuthorizedBcId: identityAuthorizedBcId
         assetGroupResourceName: customers/9122445560/assetGroups/123456789
-        instagramUserId: instagramUserId
-        tiktokItemId: tiktokItemId
-        imageHash: imageHash
         pinterestTitle: pinterestTitle
-        pageId: pageId
         assetGroup: ""
+        assetFeed:
+          images:
+          - hash: hash
+            url: url
+          - hash: hash
+            url: url
+          optimizationType: optimizationType
+          videos:
+          - videoId: videoId
+            thumbnailUrl: thumbnailUrl
+          - videoId: videoId
+            thumbnailUrl: thumbnailUrl
         googleDescription: googleDescription
         urlTags: urlTags
         carouselCards:
@@ -248351,13 +248843,6 @@ components:
           headline: headline
           callToAction: SHOP_NOW
         identityId: identityId
-        headlines:
-        - Ad_creative_headlines_inner
-        - Ad_creative_headlines_inner
-        - Ad_creative_headlines_inner
-        - Ad_creative_headlines_inner
-        - Ad_creative_headlines_inner
-        isServing: true
         assetResourceName: assetResourceName
         adFormat: adFormat
         creativeFeatures: ""
@@ -248437,6 +248922,10 @@ components:
             \ or the asset feed's `call_to_actions` on a dynamic creative), the same\
             \ value as the `leadGenFormId` create input. Absent on ads without a lead\
             \ form."
+          type: string
+        caption:
+          description: "Meta: the display link of a link (image) ad (`link_data.caption`).\
+            \ Absent when the creative has none."
           type: string
         imageHash:
           description: "Meta: the ad image hash (`image_hash`), reusable as `imageHash`\
@@ -248554,6 +249043,8 @@ components:
           items:
             $ref: "#/components/schemas/Ad_creative_carouselCards_inner"
           type: array
+        assetFeed:
+          $ref: "#/components/schemas/Ad_creative_assetFeed"
         isServing:
           description: "LinkedIn only. Whether LinkedIn is currently serving this\
             \ specific creative. Complements the ad-level `servingStatuses`, which\

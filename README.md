@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.723.0
+- API version: 1.724.0
 
-- Build date: 2026-11-21T18:12:55.177216210Z[Etc/UTC]
+- Build date: 2026-11-21T19:12:02.967266335Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.723.0</version>
+  <version>1.724.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.723.0"
+compile "dev.zernio:zernio-sdk:1.724.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.723.0.jar`
+- `target/zernio-sdk-1.724.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2867,6 +2867,9 @@ Class | Method | HTTP request | Description
  - [AdCampaign](docs/AdCampaign.md)
  - [AdCampaignBudget](docs/AdCampaignBudget.md)
  - [AdCreative](docs/AdCreative.md)
+ - [AdCreativeAssetFeed](docs/AdCreativeAssetFeed.md)
+ - [AdCreativeAssetFeedImagesInner](docs/AdCreativeAssetFeedImagesInner.md)
+ - [AdCreativeAssetFeedVideosInner](docs/AdCreativeAssetFeedVideosInner.md)
  - [AdCreativeAssets](docs/AdCreativeAssets.md)
  - [AdCreativeAssetsMarketingImagesInner](docs/AdCreativeAssetsMarketingImagesInner.md)
  - [AdCreativeAssetsSquareMarketingImagesInner](docs/AdCreativeAssetsSquareMarketingImagesInner.md)
