@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.731.0
+  version: 1.731.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -38544,9 +38544,11 @@ paths:
     delete:
       description: |
         Remove a like from a comment. Supported platforms: Facebook, X, Bluesky,
-        Reddit, LinkedIn, and Instagram in limited release. For Bluesky, the likeUri query
-        parameter is required. Instagram has the same limited release, Facebook Login,
-        `instagram_manage_engagement` and burst-limit constraints as liking.
+        Reddit, LinkedIn, TikTok, and Instagram in limited release.
+
+        - Bluesky: the likeUri query parameter is required.
+        - TikTok: works only on accounts connected through the TikTok Business (Accounts API) connection. An account on the older developer-app connection gets a 400 with code `PLATFORM_LIMITATION`.
+        - Instagram: the same limited release, Facebook Login, `instagram_manage_engagement` and burst-limit constraints as liking.
       operationId: unlikeInboxComment
       parameters:
       - explode: false
@@ -38605,17 +38607,19 @@ paths:
       - reddit
       - linkedin
       - instagram
+      - tiktok
       x-accepts:
       - application/json
     post:
       description: |
-        Like or upvote a comment on a post. Supported platforms: Facebook, X, Bluesky, Reddit, LinkedIn, and Instagram in limited release (see below).
+        Like or upvote a comment on a post. Supported platforms: Facebook, X, Bluesky, Reddit, LinkedIn, TikTok, and Instagram in limited release (see below).
 
         ### Platform notes
 
         - Bluesky: the cid (content identifier) is required in the request body.
         - LinkedIn: pass the composite comment URN returned by the comments endpoints as commentId. An optional reactionType picks the reaction (defaults to LIKE).
         - LinkedIn: accounts connected before the social-feed scopes were requested get a 403 with code `linkedin_reconnect_required`.
+        - TikTok: works only on accounts connected through the TikTok Business (Accounts API) connection. An account on the older developer-app connection gets a 400 with code `PLATFORM_LIMITATION`.
 
         ### Instagram (limited release)
 
@@ -38686,6 +38690,7 @@ paths:
       - reddit
       - linkedin
       - instagram
+      - tiktok
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -95500,7 +95505,7 @@ components:
             verify:
               how: how
               copy: copy
-            id: pixels
+            id: id
             detail: detail
             title: title
             status: pass
@@ -95510,7 +95515,7 @@ components:
             verify:
               how: how
               copy: copy
-            id: pixels
+            id: id
             detail: detail
             title: title
             status: pass
@@ -95627,7 +95632,7 @@ components:
           verify:
             how: how
             copy: copy
-          id: pixels
+          id: id
           detail: detail
           title: title
           status: pass
@@ -95637,7 +95642,7 @@ components:
           verify:
             how: how
             copy: copy
-          id: pixels
+          id: id
           detail: detail
           title: title
           status: pass
@@ -230440,7 +230445,7 @@ components:
             verify:
               how: how
               copy: copy
-            id: pixels
+            id: id
             detail: detail
             title: title
             status: pass
@@ -230450,7 +230455,7 @@ components:
             verify:
               how: how
               copy: copy
-            id: pixels
+            id: id
             detail: detail
             title: title
             status: pass
@@ -233647,19 +233652,15 @@ components:
         verify:
           how: how
           copy: copy
-        id: pixels
+        id: id
         detail: detail
         title: title
         status: pass
         pointsToGain: 9.301444243932576
       properties:
         id:
-          enum:
-          - pixels
-          - server-side
-          - first-party
-          - consent
-          - match-quality
+          description: "Stable check id, such as `pixels`, `server-side`, `first-party`,\
+            \ `consent`, `consent-timing` or `match-quality`. New checks can appear."
           type: string
         title:
           type: string

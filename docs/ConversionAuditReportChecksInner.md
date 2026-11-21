@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | [**IdEnum**](#IdEnum) |  |  |
+|**id** | **String** | Stable check id, such as &#x60;pixels&#x60;, &#x60;server-side&#x60;, &#x60;first-party&#x60;, &#x60;consent&#x60;, &#x60;consent-timing&#x60; or &#x60;match-quality&#x60;. New checks can appear. |  |
 |**title** | **String** |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) | &#x60;unknown&#x60; &#x3D; the scan cannot see it from outside; &#x60;not-applicable&#x60; checks are left out of the score. |  |
 |**tier** | [**TierEnum**](#TierEnum) | A &#x60;bonus&#x60; check can only add points, never cost them. |  [optional] |
@@ -15,18 +15,6 @@
 |**detail** | **String** |  |  |
 |**pointsToGain** | **BigDecimal** | Points the score gains when this check alone is fixed. |  [optional] |
 |**verify** | [**ConversionAuditReportChecksInnerVerify**](ConversionAuditReportChecksInnerVerify.md) |  |  [optional] |
-
-
-
-## Enum: IdEnum
-
-| Name | Value |
-|---- | -----|
-| PIXELS | &quot;pixels&quot; |
-| SERVER_SIDE | &quot;server-side&quot; |
-| FIRST_PARTY | &quot;first-party&quot; |
-| CONSENT | &quot;consent&quot; |
-| MATCH_QUALITY | &quot;match-quality&quot; |
 
 
 
