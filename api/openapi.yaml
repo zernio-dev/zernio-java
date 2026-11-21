@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.732.0
+  version: 1.732.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -123493,8 +123493,9 @@ components:
             Default true.
           type: boolean
         reportToAds:
-          description: Relayed conversions are forwarded to the profile's ad platforms.
-            Default false.
+          description: "Relayed conversions are forwarded to the profile's ad platforms.\
+            \ A new connection starts with this on when its profile already sends\
+            \ events to an ad account, else off; reconnecting keeps the value."
           type: boolean
         syncContacts:
           description: "Inbox contacts are matched to HighLevel contacts by phone,\

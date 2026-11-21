@@ -15,7 +15,7 @@
 |**installedBy** | **String** | The HighLevel user who installed the app. |  |
 |**relayConversions** | **Boolean** | CRM events are relayed as conversions. Default true. |  |
 |**writeBackAttribution** | **Boolean** | Relayed conversions are written back onto the HighLevel contact. Default true. |  |
-|**reportToAds** | **Boolean** | Relayed conversions are forwarded to the profile&#39;s ad platforms. Default false. |  |
+|**reportToAds** | **Boolean** | Relayed conversions are forwarded to the profile&#39;s ad platforms. A new connection starts with this on when its profile already sends events to an ad account, else off; reconnecting keeps the value. |  |
 |**syncContacts** | **Boolean** | Inbox contacts are matched to HighLevel contacts by phone, then email, and created there when none matches. Default true. |  |
 |**logMessages** | **Boolean** | Inbox messages from every channel (both directions) are logged on the HighLevel contact as one note per channel and day. Default true. |  |
 |**logDeliveryStatus** | **Boolean** | Logged outgoing messages show their delivery status (sent, delivered, read, failed) on their note line. Default true. |  |
