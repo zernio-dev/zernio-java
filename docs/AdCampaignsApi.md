@@ -9215,7 +9215,7 @@ ApiResponse<[**ReplaceAdNegativeKeywordListKeywords200Response**](ReplaceAdNegat
 
 Replace campaign-level negative keywords
 
-Replaces a Google campaign&#39;s full list of campaign-level negative keywords, or clears it.  Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+Replaces a Google campaign&#39;s full list of campaign-level negative keywords, or clears it.  Replaces the FULL set of campaign-level negative keywords (C.270). The desired list is diffed against what Google already has, and the difference is applied in &#x60;create&#x60;/&#x60;remove&#x60; mutates of up to 5,000 operations.  - Creates run first, so a failed batch leaves extra negatives rather than missing ones. - When the old and new sets together would pass Google&#39;s 10,000 cap, removes run first. - Send the same request again to finish a failed replace. - Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
 
 ### Example
 
@@ -9293,7 +9293,7 @@ public class Example {
 
 Replace campaign-level negative keywords
 
-Replaces a Google campaign&#39;s full list of campaign-level negative keywords, or clears it.  Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one &#x60;create&#x60;/&#x60;remove&#x60; mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
+Replaces a Google campaign&#39;s full list of campaign-level negative keywords, or clears it.  Replaces the FULL set of campaign-level negative keywords (C.270). The desired list is diffed against what Google already has, and the difference is applied in &#x60;create&#x60;/&#x60;remove&#x60; mutates of up to 5,000 operations.  - Creates run first, so a failed batch leaves extra negatives rather than missing ones. - When the old and new sets together would pass Google&#39;s 10,000 cap, removes run first. - Send the same request again to finish a failed replace. - Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not &#x60;platform&#x60; was sent. 
 
 ### Example
 
