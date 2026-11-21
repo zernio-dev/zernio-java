@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.730.0
+- API version: 1.731.0
 
-- Build date: 2026-11-21T21:18:53.083113379Z[Etc/UTC]
+- Build date: 2026-11-21T21:31:42.314540619Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.730.0</version>
+  <version>1.731.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.730.0"
+compile "dev.zernio:zernio-sdk:1.731.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.730.0.jar`
+- `target/zernio-sdk-1.731.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1475,6 +1475,10 @@ Class | Method | HTTP request | Description
 *ContentRetentionApi* | [**getContentRetentionWithHttpInfo**](docs/ContentRetentionApi.md#getContentRetentionWithHttpInfo) | **GET** /v1/content-retention | Get content retention mode
 *ContentRetentionApi* | [**updateContentRetention**](docs/ContentRetentionApi.md#updateContentRetention) | **PUT** /v1/content-retention | Turn zero content retention on or off
 *ContentRetentionApi* | [**updateContentRetentionWithHttpInfo**](docs/ContentRetentionApi.md#updateContentRetentionWithHttpInfo) | **PUT** /v1/content-retention | Turn zero content retention on or off
+*ConversionAuditApi* | [**auditConversionTracking**](docs/ConversionAuditApi.md#auditConversionTracking) | **GET** /v1/conversion-audit | Audit a site&#39;s ad conversion tracking
+*ConversionAuditApi* | [**auditConversionTrackingWithHttpInfo**](docs/ConversionAuditApi.md#auditConversionTrackingWithHttpInfo) | **GET** /v1/conversion-audit | Audit a site&#39;s ad conversion tracking
+*ConversionAuditApi* | [**getLatestConversionAudit**](docs/ConversionAuditApi.md#getLatestConversionAudit) | **GET** /v1/conversion-audit/latest | Get a host&#39;s latest stored conversion audit
+*ConversionAuditApi* | [**getLatestConversionAuditWithHttpInfo**](docs/ConversionAuditApi.md#getLatestConversionAuditWithHttpInfo) | **GET** /v1/conversion-audit/latest | Get a host&#39;s latest stored conversion audit
 *ConversionsApi* | [**addAdConversionAssociations**](docs/ConversionsApi.md#addAdConversionAssociations) | **POST** /v1/ads/conversions/destinations/{destinationId}/associations | Associate campaigns
 *ConversionsApi* | [**addAdConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#addAdConversionAssociationsWithHttpInfo) | **POST** /v1/ads/conversions/destinations/{destinationId}/associations | Associate campaigns
 *ConversionsApi* | [**addConversionAssociations**](docs/ConversionsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
@@ -3528,6 +3532,18 @@ Class | Method | HTTP request | Description
  - [ConversationAdAttribution](docs/ConversationAdAttribution.md)
  - [ConversionAction](docs/ConversionAction.md)
  - [ConversionActionTagSnippetsInner](docs/ConversionActionTagSnippetsInner.md)
+ - [ConversionAuditAnswer](docs/ConversionAuditAnswer.md)
+ - [ConversionAuditAnswerPublicReport](docs/ConversionAuditAnswerPublicReport.md)
+ - [ConversionAuditReport](docs/ConversionAuditReport.md)
+ - [ConversionAuditReportChecksInner](docs/ConversionAuditReportChecksInner.md)
+ - [ConversionAuditReportChecksInnerVerify](docs/ConversionAuditReportChecksInnerVerify.md)
+ - [ConversionAuditReportConsent](docs/ConversionAuditReportConsent.md)
+ - [ConversionAuditReportConsentScan](docs/ConversionAuditReportConsentScan.md)
+ - [ConversionAuditReportOtherNetworksInner](docs/ConversionAuditReportOtherNetworksInner.md)
+ - [ConversionAuditReportPlatformsInner](docs/ConversionAuditReportPlatformsInner.md)
+ - [ConversionAuditReportScoreRange](docs/ConversionAuditReportScoreRange.md)
+ - [ConversionAuditReportServerSide](docs/ConversionAuditReportServerSide.md)
+ - [ConversionAuditReportServerSideSignalsInner](docs/ConversionAuditReportServerSideSignalsInner.md)
  - [ConversionDestination](docs/ConversionDestination.md)
  - [ConversionEvent](docs/ConversionEvent.md)
  - [ConversionEventCampaign](docs/ConversionEventCampaign.md)
@@ -4514,6 +4530,7 @@ Class | Method | HTTP request | Description
  - [GetInstagramStoryInsights200ResponseDataMetrics](docs/GetInstagramStoryInsights200ResponseDataMetrics.md)
  - [GetIosFourteenCampaignLimits200Response](docs/GetIosFourteenCampaignLimits200Response.md)
  - [GetIosFourteenCampaignLimits200ResponseLimits](docs/GetIosFourteenCampaignLimits200ResponseLimits.md)
+ - [GetLatestConversionAudit200Response](docs/GetLatestConversionAudit200Response.md)
  - [GetLeadForm200Response](docs/GetLeadForm200Response.md)
  - [GetLeadForm200ResponseForm](docs/GetLeadForm200ResponseForm.md)
  - [GetLedgerBalances200Response](docs/GetLedgerBalances200Response.md)
