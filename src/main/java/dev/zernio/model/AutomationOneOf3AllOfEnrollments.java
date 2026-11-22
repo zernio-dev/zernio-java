@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AutomationOneOf3AllOfEnrollments.JSON_PROPERTY_COMPLETED,
   AutomationOneOf3AllOfEnrollments.JSON_PROPERTY_EXITED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:02:21.463095755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:08:30.224491855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationOneOf3AllOfEnrollments {
   public static final String JSON_PROPERTY_TOTAL = "total";
   @javax.annotation.Nonnull

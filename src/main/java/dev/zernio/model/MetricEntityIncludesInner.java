@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   MetricEntityIncludesInner.JSON_PROPERTY_PLATFORMS,
   MetricEntityIncludesInner.JSON_PROPERTY_MAX_RANGE_DAYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:02:21.463095755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:08:30.224491855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetricEntityIncludesInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull

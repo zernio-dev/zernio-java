@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAccountRestrictedRestrictionPlatformError.JSON_PROPERTY_SUBCODE,
   WebhookPayloadAccountRestrictedRestrictionPlatformError.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:02:21.463095755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:08:30.224491855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAccountRestrictedRestrictionPlatformError {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable

@@ -63,7 +63,7 @@ import dev.zernio.ApiClient;
   UpdateAdRequestCreative.JSON_PROPERTY_LEAD_GEN_FORM_ID,
   UpdateAdRequestCreative.JSON_PROPERTY_CAPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:02:21.463095755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:08:30.224491855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestCreative {
   public static final String JSON_PROPERTY_PROMOTION = "promotion";
   private JsonNullable<Object> promotion = JsonNullable.<Object>undefined();

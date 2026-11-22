@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UpdateCampaignConversionGoalsRequest.JSON_PROPERTY_GOAL_CONFIG_LEVEL,
   UpdateCampaignConversionGoalsRequest.JSON_PROPERTY_CUSTOM_CONVERSION_GOAL_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:02:21.463095755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:08:30.224491855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCampaignConversionGoalsRequest {
   public static final String JSON_PROPERTY_GOALS = "goals";
   @javax.annotation.Nullable

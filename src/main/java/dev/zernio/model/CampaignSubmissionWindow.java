@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CampaignSubmissionWindow.JSON_PROPERTY_ENDS_AT,
   CampaignSubmissionWindow.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:02:21.463095755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:08:30.224491855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignSubmissionWindow {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

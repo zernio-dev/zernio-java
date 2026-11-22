@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ProfileCallLimitsResponseTeam.JSON_PROPERTY_DAILY_FORWARD_SPEND_USD,
   ProfileCallLimitsResponseTeam.JSON_PROPERTY_FORWARDED_MINUTES_PER_HOUR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:02:21.463095755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:08:30.224491855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ProfileCallLimitsResponseTeam {
   public static final String JSON_PROPERTY_CONCURRENT_CALLS = "concurrentCalls";
   @javax.annotation.Nullable

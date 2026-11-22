@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   WhatsAppConversationalAutomation.JSON_PROPERTY_PROMPTS,
   WhatsAppConversationalAutomation.JSON_PROPERTY_COMMANDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:02:21.463095755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:08:30.224491855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppConversationalAutomation {
   public static final String JSON_PROPERTY_ENABLE_WELCOME_MESSAGE = "enable_welcome_message";
   @javax.annotation.Nullable

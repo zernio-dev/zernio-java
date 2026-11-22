@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   GetEventsOverview200ResponseToday.JSON_PROPERTY_MATCHED,
   GetEventsOverview200ResponseToday.JSON_PROPERTY_COUNTED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:02:21.463095755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:08:30.224491855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEventsOverview200ResponseToday {
   public static final String JSON_PROPERTY_CONVERSIONS = "conversions";
   @javax.annotation.Nullable

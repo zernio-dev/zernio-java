@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetConversionPaths200Response.JSON_PROPERTY_TO_DATE,
   GetConversionPaths200Response.JSON_PROPERTY_PATHS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:02:21.463095755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:08:30.224491855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetConversionPaths200Response {
   public static final String JSON_PROPERTY_FROM_DATE = "fromDate";
   @javax.annotation.Nonnull

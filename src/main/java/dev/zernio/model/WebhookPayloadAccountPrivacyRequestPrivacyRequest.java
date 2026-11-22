@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAccountPrivacyRequestPrivacyRequest.JSON_PROPERTY_ORDER_IDS,
   WebhookPayloadAccountPrivacyRequestPrivacyRequest.JSON_PROPERTY_DATA_REQUEST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:02:21.463095755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:08:30.224491855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAccountPrivacyRequestPrivacyRequest {
   /**
    * customer_data_request: the merchant asked for the data you hold about &#x60;customer&#x60;. Send it to the merchant.  customer_redact: erase the data you hold about &#x60;customer&#x60; and the orders in &#x60;orderIds&#x60;.  shop_redact: erase the data you hold about the whole shop. Sent 48 hours after the merchant uninstalled the app.
