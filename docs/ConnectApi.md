@@ -5723,7 +5723,7 @@ ApiResponse<[**DeleteOrgConnection200Response**](DeleteOrgConnection200Response.
 
 Get Amazon Ads OAuth connect URL
 
-Starts Login with Amazon for Amazon Ads (scope &#x60;advertising::campaign_management&#x60;). The Amazon login becomes an account with platform &#x60;amazonads&#x60;; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (&#x60;GET /v1/ads/conversions/destinations&#x60;).  **Not open yet:** this answers 503 &#x60;FEATURE_NOT_AVAILABLE&#x60; until Amazon approves Zernio for the Amazon Ads API. Ask support for early access.  Errors on the redirect: &#x60;amazonads_no_profiles&#x60; (the login reaches no advertiser), &#x60;amazonads_no_refresh_token&#x60;. 
+Starts Login with Amazon for Amazon Ads (scope &#x60;advertising::campaign_management&#x60;). The Amazon login becomes an account with platform &#x60;amazonads&#x60;; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (&#x60;GET /v1/ads/conversions/destinations&#x60;).  Errors on the redirect: &#x60;amazonads_no_profiles&#x60; (the login reaches no advertiser), &#x60;amazonads_no_refresh_token&#x60;. 
 
 ### Example
 
@@ -5801,7 +5801,7 @@ public class Example {
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | API key does not have access to this profile, or the key is read-only. |  -  |
 | **404** | Profile not found or access denied. |  -  |
-| **503** | Amazon Ads is not open yet (Zernio&#39;s Amazon Ads API access is pending), code FEATURE_NOT_AVAILABLE. |  -  |
+| **503** | Amazon Ads is not configured on this server, code FEATURE_NOT_AVAILABLE. |  -  |
 
 ## getAmazonAdsConnectUrlWithHttpInfo
 
@@ -5809,7 +5809,7 @@ public class Example {
 
 Get Amazon Ads OAuth connect URL
 
-Starts Login with Amazon for Amazon Ads (scope &#x60;advertising::campaign_management&#x60;). The Amazon login becomes an account with platform &#x60;amazonads&#x60;; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (&#x60;GET /v1/ads/conversions/destinations&#x60;).  **Not open yet:** this answers 503 &#x60;FEATURE_NOT_AVAILABLE&#x60; until Amazon approves Zernio for the Amazon Ads API. Ask support for early access.  Errors on the redirect: &#x60;amazonads_no_profiles&#x60; (the login reaches no advertiser), &#x60;amazonads_no_refresh_token&#x60;. 
+Starts Login with Amazon for Amazon Ads (scope &#x60;advertising::campaign_management&#x60;). The Amazon login becomes an account with platform &#x60;amazonads&#x60;; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (&#x60;GET /v1/ads/conversions/destinations&#x60;).  Errors on the redirect: &#x60;amazonads_no_profiles&#x60; (the login reaches no advertiser), &#x60;amazonads_no_refresh_token&#x60;. 
 
 ### Example
 
@@ -5890,7 +5890,7 @@ ApiResponse<[**GetAmazonAdsConnectUrl200Response**](GetAmazonAdsConnectUrl200Res
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | API key does not have access to this profile, or the key is read-only. |  -  |
 | **404** | Profile not found or access denied. |  -  |
-| **503** | Amazon Ads is not open yet (Zernio&#39;s Amazon Ads API access is pending), code FEATURE_NOT_AVAILABLE. |  -  |
+| **503** | Amazon Ads is not configured on this server, code FEATURE_NOT_AVAILABLE. |  -  |
 
 
 ## getCampaignManagerConnectUrl
