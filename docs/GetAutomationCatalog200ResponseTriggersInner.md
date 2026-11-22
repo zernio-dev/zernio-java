@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**kind** | [**KindEnum**](#KindEnum) |  |  |
-|**type** | **String** | &#x60;schedule&#x60;, or the Zernio event name. |  |
+|**type** | **String** | &#x60;schedule&#x60;, &#x60;enrollment&#x60;, or the Zernio event name. |  |
 |**label** | **String** | Event triggers only. |  [optional] |
 |**subject** | **String** | What an event is about, such as &#x60;post&#x60; or &#x60;account&#x60;. |  [optional] |
 |**scope** | **Object** | Which of &#x60;profileId&#x60; and &#x60;accountIds&#x60; an event trigger needs. |  [optional] |
@@ -30,6 +30,7 @@
 | AD_RULE | &quot;ad_rule&quot; |
 | EVENT | &quot;event&quot; |
 | SCHEDULED | &quot;scheduled&quot; |
+| SEQUENCE | &quot;sequence&quot; |
 
 
 

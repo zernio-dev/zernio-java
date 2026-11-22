@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.740.0
+- API version: 1.741.0
 
-- Build date: 2026-11-22T10:27:32.687078893Z[Etc/UTC]
+- Build date: 2026-11-22T11:28:13.813386068Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.740.0</version>
+  <version>1.741.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.740.0"
+compile "dev.zernio:zernio-sdk:1.741.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.740.0.jar`
+- `target/zernio-sdk-1.741.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3161,6 +3161,8 @@ Class | Method | HTTP request | Description
  - [AutomationOneOf](docs/AutomationOneOf.md)
  - [AutomationOneOf1](docs/AutomationOneOf1.md)
  - [AutomationOneOf2](docs/AutomationOneOf2.md)
+ - [AutomationOneOf3](docs/AutomationOneOf3.md)
+ - [AutomationOneOf3AllOfEnrollments](docs/AutomationOneOf3AllOfEnrollments.md)
  - [AutomationPostSchedule](docs/AutomationPostSchedule.md)
  - [AutomationPostSubjects](docs/AutomationPostSubjects.md)
  - [AutomationPreview](docs/AutomationPreview.md)
@@ -3176,6 +3178,10 @@ Class | Method | HTTP request | Description
  - [AutomationScheduleTrigger](docs/AutomationScheduleTrigger.md)
  - [AutomationScheduleTriggerQuietHours](docs/AutomationScheduleTriggerQuietHours.md)
  - [AutomationScheduleTriggerTimesInner](docs/AutomationScheduleTriggerTimesInner.md)
+ - [AutomationSequenceStep](docs/AutomationSequenceStep.md)
+ - [AutomationSequenceStepMessage](docs/AutomationSequenceStepMessage.md)
+ - [AutomationSequenceStepMessageAttachmentsInner](docs/AutomationSequenceStepMessageAttachmentsInner.md)
+ - [AutomationSequenceStepTemplate](docs/AutomationSequenceStepTemplate.md)
  - [AutomationStep](docs/AutomationStep.md)
  - [AutomationStepOneOf](docs/AutomationStepOneOf.md)
  - [AutomationStepOneOf1](docs/AutomationStepOneOf1.md)
@@ -6008,6 +6014,9 @@ Class | Method | HTTP request | Description
  - [SendWhatsAppFlowMessageRequest](docs/SendWhatsAppFlowMessageRequest.md)
  - [SendWhatsAppFlowMessageRequestFlowActionPayload](docs/SendWhatsAppFlowMessageRequestFlowActionPayload.md)
  - [SendWhatsAppFlowMessageRequestHeader](docs/SendWhatsAppFlowMessageRequestHeader.md)
+ - [SequenceAutomationDefinition](docs/SequenceAutomationDefinition.md)
+ - [SequenceAutomationDefinitionLimits](docs/SequenceAutomationDefinitionLimits.md)
+ - [SequenceAutomationDefinitionTrigger](docs/SequenceAutomationDefinitionTrigger.md)
  - [SetBusinessAgentConnectorCredentialsRequest](docs/SetBusinessAgentConnectorCredentialsRequest.md)
  - [SetBusinessAgentConnectorCredentialsRequestOneOf](docs/SetBusinessAgentConnectorCredentialsRequestOneOf.md)
  - [SetBusinessAgentConnectorCredentialsRequestOneOf1](docs/SetBusinessAgentConnectorCredentialsRequestOneOf1.md)

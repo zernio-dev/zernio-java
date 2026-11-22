@@ -2,12 +2,13 @@
 
 # AutomationDefinition
 
-An automation of one of three kinds, told apart by its shape:  - **Ad rule**: a `schedule` trigger over campaigns, ad sets, ads, Google keywords or Google search terms, with metric `conditions` and ad `steps`. - **Event**: a Zernio event in `trigger.type`, narrowed by `trigger.filter`, with notify steps, or none to only record each matching event as a check. - **Scheduled**: a `schedule` trigger over `subjects.each: post`, narrowed by `filter`, with notify and boost steps. 
+An automation of one of four kinds, told apart by its shape:  - **Ad rule**: a `schedule` trigger over campaigns, ad sets, ads, Google keywords or Google search terms, with metric `conditions` and ad `steps`. - **Event**: a Zernio event in `trigger.type`, narrowed by `trigger.filter`, with notify steps, or none to only record each matching event as a check. - **Scheduled**: a `schedule` trigger over `subjects.each: post`, narrowed by `filter`, with notify and boost steps. - **Sequence**: an `enrollment` trigger on one account, with message steps sent over time. 
 
 ## oneOf schemas
 * [AdRuleAutomationDefinition](AdRuleAutomationDefinition.md)
 * [EventAutomationDefinition](EventAutomationDefinition.md)
 * [ScheduledAutomationDefinition](ScheduledAutomationDefinition.md)
+* [SequenceAutomationDefinition](SequenceAutomationDefinition.md)
 
 ## Example
 ```java
@@ -16,6 +17,7 @@ import dev.zernio.model.AutomationDefinition;
 import dev.zernio.model.AdRuleAutomationDefinition;
 import dev.zernio.model.EventAutomationDefinition;
 import dev.zernio.model.ScheduledAutomationDefinition;
+import dev.zernio.model.SequenceAutomationDefinition;
 
 public class Example {
     public static void main(String[] args) {
@@ -41,6 +43,13 @@ public class Example {
         exampleAutomationDefinition.setActualInstance(exampleScheduledAutomationDefinition);
         // to get back the ScheduledAutomationDefinition set earlier
         ScheduledAutomationDefinition testScheduledAutomationDefinition = (ScheduledAutomationDefinition) exampleAutomationDefinition.getActualInstance();
+
+        // create a new SequenceAutomationDefinition
+        SequenceAutomationDefinition exampleSequenceAutomationDefinition = new SequenceAutomationDefinition();
+        // set AutomationDefinition to SequenceAutomationDefinition
+        exampleAutomationDefinition.setActualInstance(exampleSequenceAutomationDefinition);
+        // to get back the SequenceAutomationDefinition set earlier
+        SequenceAutomationDefinition testSequenceAutomationDefinition = (SequenceAutomationDefinition) exampleAutomationDefinition.getActualInstance();
     }
 }
 ```

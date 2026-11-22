@@ -309,6 +309,8 @@ docs/AutomationNotifyStepToInner.md
 docs/AutomationOneOf.md
 docs/AutomationOneOf1.md
 docs/AutomationOneOf2.md
+docs/AutomationOneOf3.md
+docs/AutomationOneOf3AllOfEnrollments.md
 docs/AutomationPostSchedule.md
 docs/AutomationPostSubjects.md
 docs/AutomationPreview.md
@@ -324,6 +326,10 @@ docs/AutomationRunResult.md
 docs/AutomationScheduleTrigger.md
 docs/AutomationScheduleTriggerQuietHours.md
 docs/AutomationScheduleTriggerTimesInner.md
+docs/AutomationSequenceStep.md
+docs/AutomationSequenceStepMessage.md
+docs/AutomationSequenceStepMessageAttachmentsInner.md
+docs/AutomationSequenceStepTemplate.md
 docs/AutomationStep.md
 docs/AutomationStepOneOf.md
 docs/AutomationStepOneOf1.md
@@ -3212,6 +3218,9 @@ docs/SendWhatsAppFlowMessage200Response.md
 docs/SendWhatsAppFlowMessageRequest.md
 docs/SendWhatsAppFlowMessageRequestFlowActionPayload.md
 docs/SendWhatsAppFlowMessageRequestHeader.md
+docs/SequenceAutomationDefinition.md
+docs/SequenceAutomationDefinitionLimits.md
+docs/SequenceAutomationDefinitionTrigger.md
 docs/SequencesApi.md
 docs/SetBusinessAgentConnectorCredentialsRequest.md
 docs/SetBusinessAgentConnectorCredentialsRequestOneOf.md
@@ -4554,6 +4563,8 @@ src/main/java/dev/zernio/model/AutomationNotifyStepToInner.java
 src/main/java/dev/zernio/model/AutomationOneOf.java
 src/main/java/dev/zernio/model/AutomationOneOf1.java
 src/main/java/dev/zernio/model/AutomationOneOf2.java
+src/main/java/dev/zernio/model/AutomationOneOf3.java
+src/main/java/dev/zernio/model/AutomationOneOf3AllOfEnrollments.java
 src/main/java/dev/zernio/model/AutomationPostSchedule.java
 src/main/java/dev/zernio/model/AutomationPostSubjects.java
 src/main/java/dev/zernio/model/AutomationPreview.java
@@ -4569,6 +4580,10 @@ src/main/java/dev/zernio/model/AutomationRunResult.java
 src/main/java/dev/zernio/model/AutomationScheduleTrigger.java
 src/main/java/dev/zernio/model/AutomationScheduleTriggerQuietHours.java
 src/main/java/dev/zernio/model/AutomationScheduleTriggerTimesInner.java
+src/main/java/dev/zernio/model/AutomationSequenceStep.java
+src/main/java/dev/zernio/model/AutomationSequenceStepMessage.java
+src/main/java/dev/zernio/model/AutomationSequenceStepMessageAttachmentsInner.java
+src/main/java/dev/zernio/model/AutomationSequenceStepTemplate.java
 src/main/java/dev/zernio/model/AutomationStep.java
 src/main/java/dev/zernio/model/AutomationStepOneOf.java
 src/main/java/dev/zernio/model/AutomationStepOneOf1.java
@@ -7401,6 +7416,9 @@ src/main/java/dev/zernio/model/SendWhatsAppFlowMessage200Response.java
 src/main/java/dev/zernio/model/SendWhatsAppFlowMessageRequest.java
 src/main/java/dev/zernio/model/SendWhatsAppFlowMessageRequestFlowActionPayload.java
 src/main/java/dev/zernio/model/SendWhatsAppFlowMessageRequestHeader.java
+src/main/java/dev/zernio/model/SequenceAutomationDefinition.java
+src/main/java/dev/zernio/model/SequenceAutomationDefinitionLimits.java
+src/main/java/dev/zernio/model/SequenceAutomationDefinitionTrigger.java
 src/main/java/dev/zernio/model/SetBusinessAgentConnectorCredentialsRequest.java
 src/main/java/dev/zernio/model/SetBusinessAgentConnectorCredentialsRequestOneOf.java
 src/main/java/dev/zernio/model/SetBusinessAgentConnectorCredentialsRequestOneOf1.java
@@ -8317,3 +8335,12 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AutomationOneOf3AllOfEnrollmentsTest.java
+src/test/java/dev/zernio/model/AutomationOneOf3Test.java
+src/test/java/dev/zernio/model/AutomationSequenceStepMessageAttachmentsInnerTest.java
+src/test/java/dev/zernio/model/AutomationSequenceStepMessageTest.java
+src/test/java/dev/zernio/model/AutomationSequenceStepTemplateTest.java
+src/test/java/dev/zernio/model/AutomationSequenceStepTest.java
+src/test/java/dev/zernio/model/SequenceAutomationDefinitionLimitsTest.java
+src/test/java/dev/zernio/model/SequenceAutomationDefinitionTest.java
+src/test/java/dev/zernio/model/SequenceAutomationDefinitionTriggerTest.java
