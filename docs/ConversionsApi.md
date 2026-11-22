@@ -1711,7 +1711,7 @@ ApiResponse<[**CreateForwardingRule201Response**](CreateForwardingRule201Respons
 
 Turn on server-side tracking for a website
 
-Creates a tracking site. With &#x60;storeAccountId&#x60;, Zernio installs its tag on the connected Shopify, WordPress (WooCommerce), Wix or Webflow store. With only &#x60;url&#x60;, paste the returned &#x60;install.snippet&#x60; into the site.  The ad accounts you picked for each connection get a forwarding rule, so website conversions reach them at once. &#x60;checks&#x60; shows each step; &#x60;setup.status&#x60; turns &#x60;ready&#x60; when all have passed. 
+Creates a tracking site. With &#x60;storeAccountId&#x60;, Zernio installs its tag on the connected Shopify, WordPress (WooCommerce), Wix or Webflow store. With only &#x60;url&#x60;, paste the returned &#x60;install.snippet&#x60; into the site. Adding a &#x60;url&#x60; the profile already tracks returns that site and its snippet instead of creating a second one.  The ad accounts you picked for each connection get a forwarding rule, so website conversions reach them at once. &#x60;checks&#x60; shows each step; &#x60;setup.status&#x60; turns &#x60;ready&#x60; when all have passed. 
 
 ### Example
 
@@ -1787,7 +1787,7 @@ public class Example {
 
 Turn on server-side tracking for a website
 
-Creates a tracking site. With &#x60;storeAccountId&#x60;, Zernio installs its tag on the connected Shopify, WordPress (WooCommerce), Wix or Webflow store. With only &#x60;url&#x60;, paste the returned &#x60;install.snippet&#x60; into the site.  The ad accounts you picked for each connection get a forwarding rule, so website conversions reach them at once. &#x60;checks&#x60; shows each step; &#x60;setup.status&#x60; turns &#x60;ready&#x60; when all have passed. 
+Creates a tracking site. With &#x60;storeAccountId&#x60;, Zernio installs its tag on the connected Shopify, WordPress (WooCommerce), Wix or Webflow store. With only &#x60;url&#x60;, paste the returned &#x60;install.snippet&#x60; into the site. Adding a &#x60;url&#x60; the profile already tracks returns that site and its snippet instead of creating a second one.  The ad accounts you picked for each connection get a forwarding rule, so website conversions reach them at once. &#x60;checks&#x60; shows each step; &#x60;setup.status&#x60; turns &#x60;ready&#x60; when all have passed. 
 
 ### Example
 

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.738.0
+  version: 1.738.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -78484,7 +78484,7 @@ paths:
       - application/json
     post:
       description: |
-        Creates a tracking site. With `storeAccountId`, Zernio installs its tag on the connected Shopify, WordPress (WooCommerce), Wix or Webflow store. With only `url`, paste the returned `install.snippet` into the site.
+        Creates a tracking site. With `storeAccountId`, Zernio installs its tag on the connected Shopify, WordPress (WooCommerce), Wix or Webflow store. With only `url`, paste the returned `install.snippet` into the site. Adding a `url` the profile already tracks returns that site and its snippet instead of creating a second one.
 
         The ad accounts you picked for each connection get a forwarding rule, so website conversions reach them at once. `checks` shows each step; `setup.status` turns `ready` when all have passed.
       operationId: createTrackingSite
