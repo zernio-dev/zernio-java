@@ -88,6 +88,9 @@
 | GOOGLETAGMANAGER | &quot;googletagmanager&quot; |
 | STRIPE | &quot;stripe&quot; |
 | GOOGLESEARCHCONSOLE | &quot;googlesearchconsole&quot; |
+| CAMPAIGNMANAGER360 | &quot;campaignmanager360&quot; |
+| TRADEDESKADS | &quot;tradedeskads&quot; |
+| AMAZONADS | &quot;amazonads&quot; |
 
 
 

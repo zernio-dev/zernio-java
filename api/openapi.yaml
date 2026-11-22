@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.746.0
+  version: 1.747.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15365,6 +15365,9 @@ paths:
           - wechat
           - googletagmanager
           - googlesearchconsole
+          - campaignmanager360
+          - tradedeskads
+          - amazonads
           type: string
         style: form
       - description: Filter by health status
@@ -18925,6 +18928,257 @@ paths:
       x-platforms:
       - googlesearchconsole
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/campaignmanager360:
+    get:
+      description: |
+        Starts Google OAuth for Campaign Manager 360 (Floodlight). Each connected CM360 user profile becomes an account with platform `campaignmanager360`; it receives the conversions you forward to its Floodlight activities and does not post.
+
+        Requested scopes: `https://www.googleapis.com/auth/datamanager` (conversions go through Google's Data Manager API) and `https://www.googleapis.com/auth/dfatrafficking` (only to list advertisers and Floodlight activities; Campaign Manager has no read-only trafficking scope).
+
+        ### Flow
+
+        Redirect the user to `authUrl`.
+
+        - **One CM360 user profile:** Zernio connects it and redirects to `redirect_url` (or the dashboard) with `connected=campaignmanager360`, `profileId`, `accountId` and `username`.
+        - **Several:** the user first picks one on a Zernio-hosted page, which then redirects the same way.
+
+        Then list the Floodlight activities with `GET /v1/ads/conversions/destinations?accountId=...`.
+
+        ### Your own picker
+
+        Add `headless=true` to `redirect_url`. Zernio then redirects there with `step=select_profile`, `profileId`, `platform=campaignmanager360` and a `pendingDataToken` for `GET /v1/connect/campaignmanager360/profiles` and `POST /v1/connect/campaignmanager360/select-profile`.
+
+        ### Errors
+
+        On failure the redirect carries `error`, `platform=campaignmanager360` and `error_message`. Errors include:
+
+        - `campaignmanager360_scope_missing`: the user unticked one of the two permissions.
+        - `campaignmanager360_no_profiles`: the Google account has no Campaign Manager 360 user profile.
+        - `campaignmanager360_no_refresh_token`: Google returned no refresh token; connect again.
+      operationId: getCampaignManagerConnectUrl
+      parameters:
+      - description: Your Zernio profile ID (get from /v1/profiles).
+        explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Custom redirect after connection. Must be an absolute http(s)
+          URL or custom app scheme such as `myapp://callback`; relative and unsafe
+          URLs return 400.
+        explode: true
+        in: query
+        name: redirect_url
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Zernio account ID of the Campaign Manager 360 account being reconnected.
+          Picking a different CM360 profile then fails instead of adding a second
+          account.
+        explode: true
+        in: query
+        name: reconnectAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getGoogleAnalyticsConnectUrl_200_response"
+          description: OAuth authorization URL and authenticated state
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: "API key does not have access to this profile, or the key is\
+            \ read-only."
+        "404":
+          description: Profile not found or access denied.
+        "503":
+          description: Campaign Manager 360 OAuth is not configured.
+      security:
+      - bearerAuth: []
+      - connectToken: []
+      summary: Get Campaign Manager 360 OAuth connect URL
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-platforms:
+      - campaignmanager360
+      x-accepts:
+      - application/json
+  /v1/connect/campaignmanager360/profiles:
+    get:
+      description: |
+        For headless flows: lists the Campaign Manager 360 user profiles (one per CM360 account) of a pending connect, so you can show your own picker.
+
+        - Listing does not consume the token.
+        - A headless token is honored only together with your API key (or connect token) for the same profile.
+        - It expires after one hour.
+      operationId: listCampaignManagerProfiles
+      parameters:
+      - description: Token from the headless redirect.
+        explode: true
+        in: query
+        name: pendingDataToken
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCampaignManagerProfiles_200_response"
+          description: CM360 user profiles the Google account holds
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The connect token was issued for a different profile or platform
+            (INSUFFICIENT_PERMISSIONS).
+        "404":
+          description: The pending sign-in expired or was already used. Start the
+            connect again.
+          x-summary: "The pending sign-in expired or was already used: start the connect\
+            \ again."
+      security:
+      - bearerAuth: []
+      - connectToken: []
+      summary: List Campaign Manager 360 profiles for a pending connect
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-platforms:
+      - campaignmanager360
+      x-accepts:
+      - application/json
+  /v1/connect/campaignmanager360/select-profile:
+    post:
+      description: |
+        For headless flows. Connects the CM360 user profile the user picked as a `campaignmanager360` account and returns where to send the user next.
+
+        Consumes the `pendingDataToken`; a refused or failed attempt leaves it usable for a retry. Send your API key (or connect token) for the same profile with a headless token.
+      operationId: selectCampaignManagerProfile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/selectCampaignManagerProfile_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/selectCampaignManagerProfile_200_response"
+          description: "The profile is connected, or the connect was refused with\
+            \ a reason in redirect_url"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          description: The connect token was issued for a different profile or platform
+            (INSUFFICIENT_PERMISSIONS).
+        "404":
+          description: The pending sign-in expired or was already used. Start the
+            connect again.
+          x-summary: "The pending sign-in expired or was already used: start the connect\
+            \ again."
+        "500":
+          description: Google or Zernio failed while saving. The pendingDataToken
+            stays usable; retry.
+          x-summary: "Saving failed on the Google or Zernio side: the `pendingDataToken`\
+            \ stays usable, so retry."
+      security:
+      - bearerAuth: []
+      - connectToken: []
+      summary: Connect the chosen Campaign Manager 360 profile
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-platforms:
+      - campaignmanager360
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/amazonads:
+    get:
+      description: |
+        Starts Login with Amazon for Amazon Ads (scope `advertising::campaign_management`). The Amazon login becomes an account with platform `amazonads`; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (`GET /v1/ads/conversions/destinations`).
+
+        **Not open yet:** this answers 503 `FEATURE_NOT_AVAILABLE` until Amazon approves Zernio for the Amazon Ads API. Ask support for early access.
+
+        Errors on the redirect: `amazonads_no_profiles` (the login reaches no advertiser), `amazonads_no_refresh_token`.
+      operationId: getAmazonAdsConnectUrl
+      parameters:
+      - description: Your Zernio profile ID (get from /v1/profiles).
+        explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Custom redirect after connection. Must be an absolute http(s)
+          URL or custom app scheme.
+        explode: true
+        in: query
+        name: redirect_url
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Zernio account ID of the Amazon Ads account being reconnected.
+        explode: true
+        in: query
+        name: reconnectAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAmazonAdsConnectUrl_200_response"
+          description: OAuth authorization URL and authenticated state
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: "API key does not have access to this profile, or the key is\
+            \ read-only."
+        "404":
+          description: Profile not found or access denied.
+        "503":
+          description: "Amazon Ads is not open yet (Zernio's Amazon Ads API access\
+            \ is pending), code FEATURE_NOT_AVAILABLE."
+      security:
+      - bearerAuth: []
+      - connectToken: []
+      summary: Get Amazon Ads OAuth connect URL
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-platforms:
+      - amazonads
       x-accepts:
       - application/json
   /v1/connect/hubspot:
@@ -23603,6 +23857,54 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/tradedesk-ads/credentials:
+    post:
+      description: |
+        Connect a Trade Desk advertiser and the tracking tag your conversions count against, for the Real-Time Conversions API. The API takes no secret, so nothing secret is stored: get the Advertiser ID from Advertiser Preferences and ask your Trade Desk representative for a Real-Time Conversion tracking tag.
+
+        The Trade Desk does not check either id when it receives events, so a wrong id loses conversions silently: check the tag's conversions in The Trade Desk after the first sends. Connecting the same tag again replaces its advertiser.
+
+        Requires the Ads add-on.
+      operationId: connectTradeDeskAdsCredentials
+      requestBody:
+        content:
+          application/json:
+            example:
+              advertiserId: abc1234
+              trackerId: xyz7890
+              profileId: 6507a1b2c3d4e5f6a7b8c9d0
+            schema:
+              $ref: "#/components/schemas/connectTradeDeskAdsCredentials_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                accountId: 6507a1b2c3d4e5f6a7b8c9d0
+                advertiserId: abc1234
+                trackerId: xyz7890
+                accountName: Trade Desk tag xyz7890
+              schema:
+                $ref: "#/components/schemas/connectTradeDeskAdsCredentials_200_response"
+          description: Trade Desk tracking tag connected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: Ads add-on required.
+      summary: Connect a Trade Desk tracking tag
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-platforms:
+      - tradedeskads
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -76750,6 +77052,9 @@ paths:
         - Attentive (`attentive`) via the eCommerce and Custom Events APIs
         - Impact (`impact`) via the Conversions API (`POST /Advertisers/{AccountSID}/Conversions`)
         - Awin (`awin`) via the Conversion API (`POST /s2s/advertiser/{advertiserId}/orders`)
+        - Campaign Manager 360 (`campaignmanager360`) via the Data Manager API `ingestEvents`, to a Floodlight activity
+        - The Trade Desk (`tradedeskads`) via the Real-Time Conversions API (`POST https://insight.adsrvr.org/track/realtimeconversion`)
+        - Amazon Ads (`amazonads`) via the Amazon Ads Conversions API (`POST /adsApi/v1/create/events`); opens once Amazon approves Zernio's Ads API access
 
         ### `destinationId` per platform
 
@@ -76771,6 +77076,9 @@ paths:
         - Impact: `<program id>:<event type id>`, e.g. `12345:67890`. Each event needs `clickIds.irclickid`, an `externalId` (sent as `CustomerId`) or `platformData.promo_code`; the email is sent SHA-256 hashed. Priced `items` are sent as item lines, otherwise `value` as the order subtotal. A `testCode` is refused: credit a test partner instead.
         - Awin: the connection's advertiser id. Each event needs `clickIds.awc` (or `platformData.voucher`), `value` and `currency`; `value` is the order amount on the `DEFAULT` commission group (`platformData.commission_group` overrides it). With `testCode`, orders are sent with `isTest` and not tracked.
         - Impact and Awin refuse browsing and funnel steps (`ViewContent`, `AddToCart`, `InitiateCheckout` and the like): they pay a partner for every conversion they get.
+        - Campaign Manager 360: `<floodlightConfigurationId>:<floodlightActivityId>`, e.g. `1234567:7654321`. Each event needs `clickIds.gclid` or `clickIds.dclid` (a hashed email or phone only enhances it); `eventId` is the transaction id Google dedups on. With `testCode`, events are only validated (`validateOnly`) and not recorded.
+        - The Trade Desk: the connection's tracking tag id, e.g. `abc1234`. Each event needs `clickIds.tdid`, `clickIds.uid2` or `clickIds.uid2Token`; `eventId` is sent as `order_id`. TTD has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).
+        - Amazon Ads: `<region>:<profileId>:<accountId>:<country>`, e.g. `EU:42:ENTITY1ABC:DE`. Each event needs an `email` or a `phone` (sent hashed); `eventId` is Amazon's dedup key; standard event names keep their name and custom ones are sent as `Custom` (Amazon caps conversion definitions at 100). No test mode: an event with `testCode` is not sent.
 
         Callers can list valid destinations via `GET /v1/ads/conversions/destinations`.
 
@@ -77768,6 +78076,9 @@ paths:
       - attentive
       - impact
       - awin
+      - campaignmanager360
+      - tradedeskads
+      - amazonads
       - googleanalytics
       - stripe
       - hubspot
@@ -77873,6 +78184,9 @@ paths:
       - attentive
       - impact
       - awin
+      - campaignmanager360
+      - tradedeskads
+      - amazonads
       - googleanalytics
       - gohighlevel
       x-content-type: application/json
@@ -78584,6 +78898,9 @@ paths:
       - attentive
       - impact
       - awin
+      - campaignmanager360
+      - tradedeskads
+      - amazonads
       - googleanalytics
       - hubspot
       - salesforce
@@ -125266,6 +125583,9 @@ components:
           - googletagmanager
           - stripe
           - googlesearchconsole
+          - campaignmanager360
+          - tradedeskads
+          - amazonads
           type: string
         profileId:
           $ref: "#/components/schemas/SocialAccount_profileId"
@@ -157639,6 +157959,99 @@ components:
           type: string
         account:
           $ref: "#/components/schemas/selectGoogleSearchConsoleSite_200_response_account"
+    listCampaignManagerProfiles_200_response_profiles_inner:
+      example:
+        accountId: "123456"
+        accountName: Acme Network
+        profileId: "998877"
+        userName: userName
+      properties:
+        profileId:
+          description: "CM360 user profile id, sent as `cmProfileId` to select it."
+          example: "998877"
+          type: string
+        accountId:
+          example: "123456"
+          type: string
+        accountName:
+          example: Acme Network
+          type: string
+        userName:
+          type: string
+    listCampaignManagerProfiles_200_response:
+      example:
+        profiles:
+        - accountId: "123456"
+          accountName: Acme Network
+          profileId: "998877"
+          userName: userName
+        - accountId: "123456"
+          accountName: Acme Network
+          profileId: "998877"
+          userName: userName
+      properties:
+        profiles:
+          items:
+            $ref: "#/components/schemas/listCampaignManagerProfiles_200_response_profiles_inner"
+          type: array
+    selectCampaignManagerProfile_request:
+      properties:
+        pendingDataToken:
+          description: Token from the headless redirect.
+          type: string
+        cmProfileId:
+          description: A profileId from the profiles list.
+          example: "998877"
+          type: string
+      required:
+      - cmProfileId
+      - pendingDataToken
+    selectCampaignManagerProfile_200_response_account:
+      description: "The connected account, or null when the connect was refused."
+      example:
+        accountId: accountId
+        displayName: displayName
+        platform: campaignmanager360
+        username: username
+      properties:
+        accountId:
+          type: string
+        platform:
+          example: campaignmanager360
+          type: string
+        username:
+          type: string
+        displayName:
+          type: string
+    selectCampaignManagerProfile_200_response:
+      example:
+        redirect_url: redirect_url
+        account:
+          accountId: accountId
+          displayName: displayName
+          platform: campaignmanager360
+          username: username
+      properties:
+        redirect_url:
+          description: Where to send the user next.
+          type: string
+        account:
+          $ref: "#/components/schemas/selectCampaignManagerProfile_200_response_account"
+    getAmazonAdsConnectUrl_200_response:
+      example:
+        authUrl: https://openapi-generator.tech
+        state: state
+      properties:
+        authUrl:
+          description: Login with Amazon URL to open in the user agent.
+          format: uri
+          type: string
+        state:
+          description: "Authenticated, expiring OAuth state handled by the callback."
+          type: string
+      required:
+      - authUrl
+      - state
     getHubSpotConnectUrl_200_response:
       example:
         authUrl: https://openapi-generator.tech
@@ -162924,6 +163337,51 @@ components:
         accountId:
           type: string
         advertiserId:
+          type: string
+        accountName:
+          type: string
+        redirectUrl:
+          type: string
+    connectTradeDeskAdsCredentials_request:
+      properties:
+        advertiserId:
+          description: "Trade Desk Advertiser ID, a short code such as `abc1234`."
+          type: string
+        trackerId:
+          description: "Tracking tag id of a Real-Time Conversion tag, a short code\
+            \ such as `xyz7890`."
+          type: string
+        name:
+          description: Optional display name for the account.
+          maxLength: 100
+          type: string
+        profileId:
+          description: Your Zernio profile ID
+          type: string
+        state:
+          description: Optional state passthrough for the connect flow.
+          type: string
+        redirect_url:
+          description: "Optional URL to redirect to after a successful connection,\
+            \ echoed back as redirectUrl."
+          type: string
+      required:
+      - advertiserId
+      - profileId
+      - trackerId
+    connectTradeDeskAdsCredentials_200_response:
+      example:
+        accountId: accountId
+        redirectUrl: redirectUrl
+        trackerId: trackerId
+        accountName: accountName
+        advertiserId: advertiserId
+      properties:
+        accountId:
+          type: string
+        advertiserId:
+          type: string
+        trackerId:
           type: string
         accountName:
           type: string
@@ -256797,6 +257255,22 @@ components:
         awc:
           description: Awin click id (the `awc` URL param Awin adds to publisher links).
             Sent to Awin as the order's `awc`.
+          type: string
+        dclid:
+          description: Campaign Manager 360 / Display & Video 360 click ID (the `dclid`
+            URL param). Sent to Floodlight as is.
+          type: string
+        tdid:
+          description: The Trade Desk browser id (TDID) from a TTD cookie sync. Sent
+            to The Trade Desk as `adid` of type `TDID`.
+          type: string
+        uid2:
+          description: "A raw UID2 for the person, from your UID2 integration. Sent\
+            \ to The Trade Desk as `adid` of type `UID2`."
+          type: string
+        uid2Token:
+          description: "A UID2 token (encrypted, from the UID2 SDK on your site).\
+            \ Sent to The Trade Desk as `uid2_token`."
           type: string
     ConversionEvent_user:
       description: User identity fields. More signals mean higher match rates.

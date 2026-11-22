@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.746.0
+- API version: 1.747.0
 
-- Build date: 2026-11-22T14:49:45.944764405Z[Etc/UTC]
+- Build date: 2026-11-22T15:19:39.137200651Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.746.0</version>
+  <version>1.747.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.746.0"
+compile "dev.zernio:zernio-sdk:1.747.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.746.0.jar`
+- `target/zernio-sdk-1.747.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1299,6 +1299,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectSlackChannelWithHttpInfo**](docs/ConnectApi.md#connectSlackChannelWithHttpInfo) | **POST** /v1/connect/slack | Connect a Slack channel
 *ConnectApi* | [**connectSnapchatAdsCredentials**](docs/ConnectApi.md#connectSnapchatAdsCredentials) | **POST** /v1/connect/snapchat-ads/credentials | Connect a Snapchat Ads pixel
 *ConnectApi* | [**connectSnapchatAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectSnapchatAdsCredentialsWithHttpInfo) | **POST** /v1/connect/snapchat-ads/credentials | Connect a Snapchat Ads pixel
+*ConnectApi* | [**connectTradeDeskAdsCredentials**](docs/ConnectApi.md#connectTradeDeskAdsCredentials) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag
+*ConnectApi* | [**connectTradeDeskAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectTradeDeskAdsCredentialsWithHttpInfo) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag
 *ConnectApi* | [**connectWebflowWithSiteToken**](docs/ConnectApi.md#connectWebflowWithSiteToken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token
 *ConnectApi* | [**connectWebflowWithSiteTokenWithHttpInfo**](docs/ConnectApi.md#connectWebflowWithSiteTokenWithHttpInfo) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token
 *ConnectApi* | [**connectWechatCredentials**](docs/ConnectApi.md#connectWechatCredentials) | **POST** /v1/connect/wechat/credentials | Connect WeChat Official Account
@@ -1329,6 +1331,10 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**deleteOAuthAppWithHttpInfo**](docs/ConnectApi.md#deleteOAuthAppWithHttpInfo) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app
 *ConnectApi* | [**deleteOrgConnection**](docs/ConnectApi.md#deleteOrgConnection) | **DELETE** /v1/org-connections/{orgConnectionId} | Delete an organization connection
 *ConnectApi* | [**deleteOrgConnectionWithHttpInfo**](docs/ConnectApi.md#deleteOrgConnectionWithHttpInfo) | **DELETE** /v1/org-connections/{orgConnectionId} | Delete an organization connection
+*ConnectApi* | [**getAmazonAdsConnectUrl**](docs/ConnectApi.md#getAmazonAdsConnectUrl) | **GET** /v1/connect/amazonads | Get Amazon Ads OAuth connect URL
+*ConnectApi* | [**getAmazonAdsConnectUrlWithHttpInfo**](docs/ConnectApi.md#getAmazonAdsConnectUrlWithHttpInfo) | **GET** /v1/connect/amazonads | Get Amazon Ads OAuth connect URL
+*ConnectApi* | [**getCampaignManagerConnectUrl**](docs/ConnectApi.md#getCampaignManagerConnectUrl) | **GET** /v1/connect/campaignmanager360 | Get Campaign Manager 360 OAuth connect URL
+*ConnectApi* | [**getCampaignManagerConnectUrlWithHttpInfo**](docs/ConnectApi.md#getCampaignManagerConnectUrlWithHttpInfo) | **GET** /v1/connect/campaignmanager360 | Get Campaign Manager 360 OAuth connect URL
 *ConnectApi* | [**getConnectHandoff**](docs/ConnectApi.md#getConnectHandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff
 *ConnectApi* | [**getConnectHandoffWithHttpInfo**](docs/ConnectApi.md#getConnectHandoffWithHttpInfo) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff
 *ConnectApi* | [**getConnectUrl**](docs/ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL
@@ -1393,6 +1399,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**handleOAuthCallbackWithHttpInfo**](docs/ConnectApi.md#handleOAuthCallbackWithHttpInfo) | **POST** /v1/connect/{platform} | Complete OAuth callback
 *ConnectApi* | [**initiateTelegramConnect**](docs/ConnectApi.md#initiateTelegramConnect) | **POST** /v1/connect/telegram | Connect Telegram directly
 *ConnectApi* | [**initiateTelegramConnectWithHttpInfo**](docs/ConnectApi.md#initiateTelegramConnectWithHttpInfo) | **POST** /v1/connect/telegram | Connect Telegram directly
+*ConnectApi* | [**listCampaignManagerProfiles**](docs/ConnectApi.md#listCampaignManagerProfiles) | **GET** /v1/connect/campaignmanager360/profiles | List Campaign Manager 360 profiles for a pending connect
+*ConnectApi* | [**listCampaignManagerProfilesWithHttpInfo**](docs/ConnectApi.md#listCampaignManagerProfilesWithHttpInfo) | **GET** /v1/connect/campaignmanager360/profiles | List Campaign Manager 360 profiles for a pending connect
 *ConnectApi* | [**listFacebookPages**](docs/ConnectApi.md#listFacebookPages) | **GET** /v1/connect/facebook/select-page | List Facebook pages
 *ConnectApi* | [**listFacebookPagesWithHttpInfo**](docs/ConnectApi.md#listFacebookPagesWithHttpInfo) | **GET** /v1/connect/facebook/select-page | List Facebook pages
 *ConnectApi* | [**listGoogleAnalyticsProperties**](docs/ConnectApi.md#listGoogleAnalyticsProperties) | **GET** /v1/connect/googleanalytics/properties | List Google Analytics properties for a pending connect
@@ -1425,6 +1433,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**resyncPageWebhookSubscriptionWithHttpInfo**](docs/ConnectApi.md#resyncPageWebhookSubscriptionWithHttpInfo) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe an account to Zernio&#39;s webhooks
 *ConnectApi* | [**searchGoogleBusinessLocations**](docs/ConnectApi.md#searchGoogleBusinessLocations) | **POST** /v1/accounts/{accountId}/gmb-locations/search | Search existing Google listings
 *ConnectApi* | [**searchGoogleBusinessLocationsWithHttpInfo**](docs/ConnectApi.md#searchGoogleBusinessLocationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-locations/search | Search existing Google listings
+*ConnectApi* | [**selectCampaignManagerProfile**](docs/ConnectApi.md#selectCampaignManagerProfile) | **POST** /v1/connect/campaignmanager360/select-profile | Connect the chosen Campaign Manager 360 profile
+*ConnectApi* | [**selectCampaignManagerProfileWithHttpInfo**](docs/ConnectApi.md#selectCampaignManagerProfileWithHttpInfo) | **POST** /v1/connect/campaignmanager360/select-profile | Connect the chosen Campaign Manager 360 profile
 *ConnectApi* | [**selectFacebookPage**](docs/ConnectApi.md#selectFacebookPage) | **POST** /v1/connect/facebook/select-page | Select Facebook page
 *ConnectApi* | [**selectFacebookPageWithHttpInfo**](docs/ConnectApi.md#selectFacebookPageWithHttpInfo) | **POST** /v1/connect/facebook/select-page | Select Facebook page
 *ConnectApi* | [**selectGoogleAnalyticsProperty**](docs/ConnectApi.md#selectGoogleAnalyticsProperty) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property
@@ -3562,6 +3572,8 @@ Class | Method | HTTP request | Description
  - [ConnectSlackChannelRequest](docs/ConnectSlackChannelRequest.md)
  - [ConnectSnapchatAdsCredentials200Response](docs/ConnectSnapchatAdsCredentials200Response.md)
  - [ConnectSnapchatAdsCredentialsRequest](docs/ConnectSnapchatAdsCredentialsRequest.md)
+ - [ConnectTradeDeskAdsCredentials200Response](docs/ConnectTradeDeskAdsCredentials200Response.md)
+ - [ConnectTradeDeskAdsCredentialsRequest](docs/ConnectTradeDeskAdsCredentialsRequest.md)
  - [ConnectWebflowWithSiteToken200Response](docs/ConnectWebflowWithSiteToken200Response.md)
  - [ConnectWebflowWithSiteToken200ResponseAccount](docs/ConnectWebflowWithSiteToken200ResponseAccount.md)
  - [ConnectWebflowWithSiteTokenRequest](docs/ConnectWebflowWithSiteTokenRequest.md)
@@ -4353,6 +4365,7 @@ Class | Method | HTTP request | Description
  - [GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction](docs/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md)
  - [GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction](docs/GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction.md)
  - [GetAllAccountsHealth200ResponseSummary](docs/GetAllAccountsHealth200ResponseSummary.md)
+ - [GetAmazonAdsConnectUrl200Response](docs/GetAmazonAdsConnectUrl200Response.md)
  - [GetAnalytics200Response](docs/GetAnalytics200Response.md)
  - [GetAnalytics400Response](docs/GetAnalytics400Response.md)
  - [GetAnalytics402Response](docs/GetAnalytics402Response.md)
@@ -5176,6 +5189,8 @@ Class | Method | HTTP request | Description
  - [ListCampaignDrafts200Response](docs/ListCampaignDrafts200Response.md)
  - [ListCampaignLedger200Response](docs/ListCampaignLedger200Response.md)
  - [ListCampaignLedger200ResponsePagination](docs/ListCampaignLedger200ResponsePagination.md)
+ - [ListCampaignManagerProfiles200Response](docs/ListCampaignManagerProfiles200Response.md)
+ - [ListCampaignManagerProfiles200ResponseProfilesInner](docs/ListCampaignManagerProfiles200ResponseProfilesInner.md)
  - [ListCampaignNegativeKeywords200Response](docs/ListCampaignNegativeKeywords200Response.md)
  - [ListCampaignNegativeKeywords200ResponseKeywordsInner](docs/ListCampaignNegativeKeywords200ResponseKeywordsInner.md)
  - [ListCampaignOrders200Response](docs/ListCampaignOrders200Response.md)
@@ -5912,6 +5927,9 @@ Class | Method | HTTP request | Description
  - [SearchTweets200ResponsePagination](docs/SearchTweets200ResponsePagination.md)
  - [SearchTweets200ResponseTweetsInner](docs/SearchTweets200ResponseTweetsInner.md)
  - [SearchTweets200ResponseTweetsInnerAuthor](docs/SearchTweets200ResponseTweetsInnerAuthor.md)
+ - [SelectCampaignManagerProfile200Response](docs/SelectCampaignManagerProfile200Response.md)
+ - [SelectCampaignManagerProfile200ResponseAccount](docs/SelectCampaignManagerProfile200ResponseAccount.md)
+ - [SelectCampaignManagerProfileRequest](docs/SelectCampaignManagerProfileRequest.md)
  - [SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
  - [SelectFacebookPage200ResponseAccount](docs/SelectFacebookPage200ResponseAccount.md)
  - [SelectFacebookPage200ResponseFailedInner](docs/SelectFacebookPage200ResponseFailedInner.md)

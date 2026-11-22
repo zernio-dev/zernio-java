@@ -712,6 +712,8 @@ docs/ConnectShopifyWithTokenRequest.md
 docs/ConnectSlackChannelRequest.md
 docs/ConnectSnapchatAdsCredentials200Response.md
 docs/ConnectSnapchatAdsCredentialsRequest.md
+docs/ConnectTradeDeskAdsCredentials200Response.md
+docs/ConnectTradeDeskAdsCredentialsRequest.md
 docs/ConnectWebflowWithSiteToken200Response.md
 docs/ConnectWebflowWithSiteToken200ResponseAccount.md
 docs/ConnectWebflowWithSiteTokenRequest.md
@@ -1516,6 +1518,7 @@ docs/GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync.md
 docs/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md
 docs/GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction.md
 docs/GetAllAccountsHealth200ResponseSummary.md
+docs/GetAmazonAdsConnectUrl200Response.md
 docs/GetAnalytics200Response.md
 docs/GetAnalytics400Response.md
 docs/GetAnalytics402Response.md
@@ -2354,6 +2357,8 @@ docs/ListCampaignAssets200ResponseStructuredSnippetsInner.md
 docs/ListCampaignDrafts200Response.md
 docs/ListCampaignLedger200Response.md
 docs/ListCampaignLedger200ResponsePagination.md
+docs/ListCampaignManagerProfiles200Response.md
+docs/ListCampaignManagerProfiles200ResponseProfilesInner.md
 docs/ListCampaignNegativeKeywords200Response.md
 docs/ListCampaignNegativeKeywords200ResponseKeywordsInner.md
 docs/ListCampaignOrders200Response.md
@@ -3106,6 +3111,9 @@ docs/SearchTweets200ResponseMeta.md
 docs/SearchTweets200ResponsePagination.md
 docs/SearchTweets200ResponseTweetsInner.md
 docs/SearchTweets200ResponseTweetsInnerAuthor.md
+docs/SelectCampaignManagerProfile200Response.md
+docs/SelectCampaignManagerProfile200ResponseAccount.md
+docs/SelectCampaignManagerProfileRequest.md
 docs/SelectFacebookPage200Response.md
 docs/SelectFacebookPage200ResponseAccount.md
 docs/SelectFacebookPage200ResponseFailedInner.md
@@ -4975,6 +4983,8 @@ src/main/java/dev/zernio/model/ConnectShopifyWithTokenRequest.java
 src/main/java/dev/zernio/model/ConnectSlackChannelRequest.java
 src/main/java/dev/zernio/model/ConnectSnapchatAdsCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectSnapchatAdsCredentialsRequest.java
+src/main/java/dev/zernio/model/ConnectTradeDeskAdsCredentials200Response.java
+src/main/java/dev/zernio/model/ConnectTradeDeskAdsCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteToken200Response.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteToken200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteTokenRequest.java
@@ -5766,6 +5776,7 @@ src/main/java/dev/zernio/model/GetAllAccountsHealth200ResponseAccountsInnerAnaly
 src/main/java/dev/zernio/model/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.java
 src/main/java/dev/zernio/model/GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction.java
 src/main/java/dev/zernio/model/GetAllAccountsHealth200ResponseSummary.java
+src/main/java/dev/zernio/model/GetAmazonAdsConnectUrl200Response.java
 src/main/java/dev/zernio/model/GetAnalytics200Response.java
 src/main/java/dev/zernio/model/GetAnalytics400Response.java
 src/main/java/dev/zernio/model/GetAnalytics402Response.java
@@ -6589,6 +6600,8 @@ src/main/java/dev/zernio/model/ListCampaignAssets200ResponseStructuredSnippetsIn
 src/main/java/dev/zernio/model/ListCampaignDrafts200Response.java
 src/main/java/dev/zernio/model/ListCampaignLedger200Response.java
 src/main/java/dev/zernio/model/ListCampaignLedger200ResponsePagination.java
+src/main/java/dev/zernio/model/ListCampaignManagerProfiles200Response.java
+src/main/java/dev/zernio/model/ListCampaignManagerProfiles200ResponseProfilesInner.java
 src/main/java/dev/zernio/model/ListCampaignNegativeKeywords200Response.java
 src/main/java/dev/zernio/model/ListCampaignNegativeKeywords200ResponseKeywordsInner.java
 src/main/java/dev/zernio/model/ListCampaignOrders200Response.java
@@ -7325,6 +7338,9 @@ src/main/java/dev/zernio/model/SearchTweets200ResponseMeta.java
 src/main/java/dev/zernio/model/SearchTweets200ResponsePagination.java
 src/main/java/dev/zernio/model/SearchTweets200ResponseTweetsInner.java
 src/main/java/dev/zernio/model/SearchTweets200ResponseTweetsInnerAuthor.java
+src/main/java/dev/zernio/model/SelectCampaignManagerProfile200Response.java
+src/main/java/dev/zernio/model/SelectCampaignManagerProfile200ResponseAccount.java
+src/main/java/dev/zernio/model/SelectCampaignManagerProfileRequest.java
 src/main/java/dev/zernio/model/SelectFacebookPage200Response.java
 src/main/java/dev/zernio/model/SelectFacebookPage200ResponseAccount.java
 src/main/java/dev/zernio/model/SelectFacebookPage200ResponseFailedInner.java
@@ -8377,3 +8393,11 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ConnectTradeDeskAdsCredentials200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectTradeDeskAdsCredentialsRequestTest.java
+src/test/java/dev/zernio/model/GetAmazonAdsConnectUrl200ResponseTest.java
+src/test/java/dev/zernio/model/ListCampaignManagerProfiles200ResponseProfilesInnerTest.java
+src/test/java/dev/zernio/model/ListCampaignManagerProfiles200ResponseTest.java
+src/test/java/dev/zernio/model/SelectCampaignManagerProfile200ResponseAccountTest.java
+src/test/java/dev/zernio/model/SelectCampaignManagerProfile200ResponseTest.java
+src/test/java/dev/zernio/model/SelectCampaignManagerProfileRequestTest.java

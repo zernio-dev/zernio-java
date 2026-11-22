@@ -42,6 +42,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**connectSlackChannelWithHttpInfo**](ConnectApi.md#connectSlackChannelWithHttpInfo) | **POST** /v1/connect/slack | Connect a Slack channel |
 | [**connectSnapchatAdsCredentials**](ConnectApi.md#connectSnapchatAdsCredentials) | **POST** /v1/connect/snapchat-ads/credentials | Connect a Snapchat Ads pixel |
 | [**connectSnapchatAdsCredentialsWithHttpInfo**](ConnectApi.md#connectSnapchatAdsCredentialsWithHttpInfo) | **POST** /v1/connect/snapchat-ads/credentials | Connect a Snapchat Ads pixel |
+| [**connectTradeDeskAdsCredentials**](ConnectApi.md#connectTradeDeskAdsCredentials) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag |
+| [**connectTradeDeskAdsCredentialsWithHttpInfo**](ConnectApi.md#connectTradeDeskAdsCredentialsWithHttpInfo) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag |
 | [**connectWebflowWithSiteToken**](ConnectApi.md#connectWebflowWithSiteToken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token |
 | [**connectWebflowWithSiteTokenWithHttpInfo**](ConnectApi.md#connectWebflowWithSiteTokenWithHttpInfo) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token |
 | [**connectWechatCredentials**](ConnectApi.md#connectWechatCredentials) | **POST** /v1/connect/wechat/credentials | Connect WeChat Official Account |
@@ -72,6 +74,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteOAuthAppWithHttpInfo**](ConnectApi.md#deleteOAuthAppWithHttpInfo) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app |
 | [**deleteOrgConnection**](ConnectApi.md#deleteOrgConnection) | **DELETE** /v1/org-connections/{orgConnectionId} | Delete an organization connection |
 | [**deleteOrgConnectionWithHttpInfo**](ConnectApi.md#deleteOrgConnectionWithHttpInfo) | **DELETE** /v1/org-connections/{orgConnectionId} | Delete an organization connection |
+| [**getAmazonAdsConnectUrl**](ConnectApi.md#getAmazonAdsConnectUrl) | **GET** /v1/connect/amazonads | Get Amazon Ads OAuth connect URL |
+| [**getAmazonAdsConnectUrlWithHttpInfo**](ConnectApi.md#getAmazonAdsConnectUrlWithHttpInfo) | **GET** /v1/connect/amazonads | Get Amazon Ads OAuth connect URL |
+| [**getCampaignManagerConnectUrl**](ConnectApi.md#getCampaignManagerConnectUrl) | **GET** /v1/connect/campaignmanager360 | Get Campaign Manager 360 OAuth connect URL |
+| [**getCampaignManagerConnectUrlWithHttpInfo**](ConnectApi.md#getCampaignManagerConnectUrlWithHttpInfo) | **GET** /v1/connect/campaignmanager360 | Get Campaign Manager 360 OAuth connect URL |
 | [**getConnectHandoff**](ConnectApi.md#getConnectHandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
 | [**getConnectHandoffWithHttpInfo**](ConnectApi.md#getConnectHandoffWithHttpInfo) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
 | [**getConnectUrl**](ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
@@ -136,6 +142,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**handleOAuthCallbackWithHttpInfo**](ConnectApi.md#handleOAuthCallbackWithHttpInfo) | **POST** /v1/connect/{platform} | Complete OAuth callback |
 | [**initiateTelegramConnect**](ConnectApi.md#initiateTelegramConnect) | **POST** /v1/connect/telegram | Connect Telegram directly |
 | [**initiateTelegramConnectWithHttpInfo**](ConnectApi.md#initiateTelegramConnectWithHttpInfo) | **POST** /v1/connect/telegram | Connect Telegram directly |
+| [**listCampaignManagerProfiles**](ConnectApi.md#listCampaignManagerProfiles) | **GET** /v1/connect/campaignmanager360/profiles | List Campaign Manager 360 profiles for a pending connect |
+| [**listCampaignManagerProfilesWithHttpInfo**](ConnectApi.md#listCampaignManagerProfilesWithHttpInfo) | **GET** /v1/connect/campaignmanager360/profiles | List Campaign Manager 360 profiles for a pending connect |
 | [**listFacebookPages**](ConnectApi.md#listFacebookPages) | **GET** /v1/connect/facebook/select-page | List Facebook pages |
 | [**listFacebookPagesWithHttpInfo**](ConnectApi.md#listFacebookPagesWithHttpInfo) | **GET** /v1/connect/facebook/select-page | List Facebook pages |
 | [**listGoogleAnalyticsProperties**](ConnectApi.md#listGoogleAnalyticsProperties) | **GET** /v1/connect/googleanalytics/properties | List Google Analytics properties for a pending connect |
@@ -168,6 +176,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**resyncPageWebhookSubscriptionWithHttpInfo**](ConnectApi.md#resyncPageWebhookSubscriptionWithHttpInfo) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe an account to Zernio&#39;s webhooks |
 | [**searchGoogleBusinessLocations**](ConnectApi.md#searchGoogleBusinessLocations) | **POST** /v1/accounts/{accountId}/gmb-locations/search | Search existing Google listings |
 | [**searchGoogleBusinessLocationsWithHttpInfo**](ConnectApi.md#searchGoogleBusinessLocationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-locations/search | Search existing Google listings |
+| [**selectCampaignManagerProfile**](ConnectApi.md#selectCampaignManagerProfile) | **POST** /v1/connect/campaignmanager360/select-profile | Connect the chosen Campaign Manager 360 profile |
+| [**selectCampaignManagerProfileWithHttpInfo**](ConnectApi.md#selectCampaignManagerProfileWithHttpInfo) | **POST** /v1/connect/campaignmanager360/select-profile | Connect the chosen Campaign Manager 360 profile |
 | [**selectFacebookPage**](ConnectApi.md#selectFacebookPage) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**selectFacebookPageWithHttpInfo**](ConnectApi.md#selectFacebookPageWithHttpInfo) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**selectGoogleAnalyticsProperty**](ConnectApi.md#selectGoogleAnalyticsProperty) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property |
@@ -3211,6 +3221,158 @@ ApiResponse<[**ConnectSnapchatAdsCredentials200Response**](ConnectSnapchatAdsCre
 | **502** | Snapchat could not confirm the token right now, so nothing was saved (code platform_api_error). Retry in a minute. |  -  |
 
 
+## connectTradeDeskAdsCredentials
+
+> ConnectTradeDeskAdsCredentials200Response connectTradeDeskAdsCredentials(connectTradeDeskAdsCredentialsRequest)
+
+Connect a Trade Desk tracking tag
+
+Connect a Trade Desk advertiser and the tracking tag your conversions count against, for the Real-Time Conversions API. The API takes no secret, so nothing secret is stored: get the Advertiser ID from Advertiser Preferences and ask your Trade Desk representative for a Real-Time Conversion tracking tag.  The Trade Desk does not check either id when it receives events, so a wrong id loses conversions silently: check the tag&#39;s conversions in The Trade Desk after the first sends. Connecting the same tag again replaces its advertiser.  Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectTradeDeskAdsCredentialsRequest connectTradeDeskAdsCredentialsRequest = new ConnectTradeDeskAdsCredentialsRequest(); // ConnectTradeDeskAdsCredentialsRequest | 
+        try {
+            ConnectTradeDeskAdsCredentials200Response result = apiInstance.connectTradeDeskAdsCredentials(connectTradeDeskAdsCredentialsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectTradeDeskAdsCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectTradeDeskAdsCredentialsRequest** | [**ConnectTradeDeskAdsCredentialsRequest**](ConnectTradeDeskAdsCredentialsRequest.md)|  | |
+
+### Return type
+
+[**ConnectTradeDeskAdsCredentials200Response**](ConnectTradeDeskAdsCredentials200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Trade Desk tracking tag connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+
+## connectTradeDeskAdsCredentialsWithHttpInfo
+
+> ApiResponse<ConnectTradeDeskAdsCredentials200Response> connectTradeDeskAdsCredentials connectTradeDeskAdsCredentialsWithHttpInfo(connectTradeDeskAdsCredentialsRequest)
+
+Connect a Trade Desk tracking tag
+
+Connect a Trade Desk advertiser and the tracking tag your conversions count against, for the Real-Time Conversions API. The API takes no secret, so nothing secret is stored: get the Advertiser ID from Advertiser Preferences and ask your Trade Desk representative for a Real-Time Conversion tracking tag.  The Trade Desk does not check either id when it receives events, so a wrong id loses conversions silently: check the tag&#39;s conversions in The Trade Desk after the first sends. Connecting the same tag again replaces its advertiser.  Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectTradeDeskAdsCredentialsRequest connectTradeDeskAdsCredentialsRequest = new ConnectTradeDeskAdsCredentialsRequest(); // ConnectTradeDeskAdsCredentialsRequest | 
+        try {
+            ApiResponse<ConnectTradeDeskAdsCredentials200Response> response = apiInstance.connectTradeDeskAdsCredentialsWithHttpInfo(connectTradeDeskAdsCredentialsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectTradeDeskAdsCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectTradeDeskAdsCredentialsRequest** | [**ConnectTradeDeskAdsCredentialsRequest**](ConnectTradeDeskAdsCredentialsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ConnectTradeDeskAdsCredentials200Response**](ConnectTradeDeskAdsCredentials200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Trade Desk tracking tag connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+
+
 ## connectWebflowWithSiteToken
 
 > ConnectWebflowWithSiteToken200Response connectWebflowWithSiteToken(connectWebflowWithSiteTokenRequest)
@@ -5553,6 +5715,358 @@ ApiResponse<[**DeleteOrgConnection200Response**](DeleteOrgConnection200Response.
 | **200** | Deleted |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+
+## getAmazonAdsConnectUrl
+
+> GetAmazonAdsConnectUrl200Response getAmazonAdsConnectUrl(profileId, redirectUrl, reconnectAccountId)
+
+Get Amazon Ads OAuth connect URL
+
+Starts Login with Amazon for Amazon Ads (scope &#x60;advertising::campaign_management&#x60;). The Amazon login becomes an account with platform &#x60;amazonads&#x60;; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (&#x60;GET /v1/ads/conversions/destinations&#x60;).  **Not open yet:** this answers 503 &#x60;FEATURE_NOT_AVAILABLE&#x60; until Amazon approves Zernio for the Amazon Ads API. Ask support for early access.  Errors on the redirect: &#x60;amazonads_no_profiles&#x60; (the login reaches no advertiser), &#x60;amazonads_no_refresh_token&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
+        String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | Zernio account ID of the Amazon Ads account being reconnected.
+        try {
+            GetAmazonAdsConnectUrl200Response result = apiInstance.getAmazonAdsConnectUrl(profileId, redirectUrl, reconnectAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getAmazonAdsConnectUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
+| **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme. | [optional] |
+| **reconnectAccountId** | **String**| Zernio account ID of the Amazon Ads account being reconnected. | [optional] |
+
+### Return type
+
+[**GetAmazonAdsConnectUrl200Response**](GetAmazonAdsConnectUrl200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Amazon Ads is not open yet (Zernio&#39;s Amazon Ads API access is pending), code FEATURE_NOT_AVAILABLE. |  -  |
+
+## getAmazonAdsConnectUrlWithHttpInfo
+
+> ApiResponse<GetAmazonAdsConnectUrl200Response> getAmazonAdsConnectUrl getAmazonAdsConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId)
+
+Get Amazon Ads OAuth connect URL
+
+Starts Login with Amazon for Amazon Ads (scope &#x60;advertising::campaign_management&#x60;). The Amazon login becomes an account with platform &#x60;amazonads&#x60;; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (&#x60;GET /v1/ads/conversions/destinations&#x60;).  **Not open yet:** this answers 503 &#x60;FEATURE_NOT_AVAILABLE&#x60; until Amazon approves Zernio for the Amazon Ads API. Ask support for early access.  Errors on the redirect: &#x60;amazonads_no_profiles&#x60; (the login reaches no advertiser), &#x60;amazonads_no_refresh_token&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
+        String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | Zernio account ID of the Amazon Ads account being reconnected.
+        try {
+            ApiResponse<GetAmazonAdsConnectUrl200Response> response = apiInstance.getAmazonAdsConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getAmazonAdsConnectUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
+| **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme. | [optional] |
+| **reconnectAccountId** | **String**| Zernio account ID of the Amazon Ads account being reconnected. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetAmazonAdsConnectUrl200Response**](GetAmazonAdsConnectUrl200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Amazon Ads is not open yet (Zernio&#39;s Amazon Ads API access is pending), code FEATURE_NOT_AVAILABLE. |  -  |
+
+
+## getCampaignManagerConnectUrl
+
+> GetGoogleAnalyticsConnectUrl200Response getCampaignManagerConnectUrl(profileId, redirectUrl, reconnectAccountId)
+
+Get Campaign Manager 360 OAuth connect URL
+
+Starts Google OAuth for Campaign Manager 360 (Floodlight). Each connected CM360 user profile becomes an account with platform &#x60;campaignmanager360&#x60;; it receives the conversions you forward to its Floodlight activities and does not post.  Requested scopes: &#x60;https://www.googleapis.com/auth/datamanager&#x60; (conversions go through Google&#39;s Data Manager API) and &#x60;https://www.googleapis.com/auth/dfatrafficking&#x60; (only to list advertisers and Floodlight activities; Campaign Manager has no read-only trafficking scope).  ### Flow  Redirect the user to &#x60;authUrl&#x60;.  - **One CM360 user profile:** Zernio connects it and redirects to &#x60;redirect_url&#x60; (or the dashboard) with &#x60;connected&#x3D;campaignmanager360&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60;. - **Several:** the user first picks one on a Zernio-hosted page, which then redirects the same way.  Then list the Floodlight activities with &#x60;GET /v1/ads/conversions/destinations?accountId&#x3D;...&#x60;.  ### Your own picker  Add &#x60;headless&#x3D;true&#x60; to &#x60;redirect_url&#x60;. Zernio then redirects there with &#x60;step&#x3D;select_profile&#x60;, &#x60;profileId&#x60;, &#x60;platform&#x3D;campaignmanager360&#x60; and a &#x60;pendingDataToken&#x60; for &#x60;GET /v1/connect/campaignmanager360/profiles&#x60; and &#x60;POST /v1/connect/campaignmanager360/select-profile&#x60;.  ### Errors  On failure the redirect carries &#x60;error&#x60;, &#x60;platform&#x3D;campaignmanager360&#x60; and &#x60;error_message&#x60;. Errors include:  - &#x60;campaignmanager360_scope_missing&#x60;: the user unticked one of the two permissions. - &#x60;campaignmanager360_no_profiles&#x60;: the Google account has no Campaign Manager 360 user profile. - &#x60;campaignmanager360_no_refresh_token&#x60;: Google returned no refresh token; connect again. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
+        String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | Zernio account ID of the Campaign Manager 360 account being reconnected. Picking a different CM360 profile then fails instead of adding a second account.
+        try {
+            GetGoogleAnalyticsConnectUrl200Response result = apiInstance.getCampaignManagerConnectUrl(profileId, redirectUrl, reconnectAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getCampaignManagerConnectUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
+| **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| Zernio account ID of the Campaign Manager 360 account being reconnected. Picking a different CM360 profile then fails instead of adding a second account. | [optional] |
+
+### Return type
+
+[**GetGoogleAnalyticsConnectUrl200Response**](GetGoogleAnalyticsConnectUrl200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Campaign Manager 360 OAuth is not configured. |  -  |
+
+## getCampaignManagerConnectUrlWithHttpInfo
+
+> ApiResponse<GetGoogleAnalyticsConnectUrl200Response> getCampaignManagerConnectUrl getCampaignManagerConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId)
+
+Get Campaign Manager 360 OAuth connect URL
+
+Starts Google OAuth for Campaign Manager 360 (Floodlight). Each connected CM360 user profile becomes an account with platform &#x60;campaignmanager360&#x60;; it receives the conversions you forward to its Floodlight activities and does not post.  Requested scopes: &#x60;https://www.googleapis.com/auth/datamanager&#x60; (conversions go through Google&#39;s Data Manager API) and &#x60;https://www.googleapis.com/auth/dfatrafficking&#x60; (only to list advertisers and Floodlight activities; Campaign Manager has no read-only trafficking scope).  ### Flow  Redirect the user to &#x60;authUrl&#x60;.  - **One CM360 user profile:** Zernio connects it and redirects to &#x60;redirect_url&#x60; (or the dashboard) with &#x60;connected&#x3D;campaignmanager360&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60;. - **Several:** the user first picks one on a Zernio-hosted page, which then redirects the same way.  Then list the Floodlight activities with &#x60;GET /v1/ads/conversions/destinations?accountId&#x3D;...&#x60;.  ### Your own picker  Add &#x60;headless&#x3D;true&#x60; to &#x60;redirect_url&#x60;. Zernio then redirects there with &#x60;step&#x3D;select_profile&#x60;, &#x60;profileId&#x60;, &#x60;platform&#x3D;campaignmanager360&#x60; and a &#x60;pendingDataToken&#x60; for &#x60;GET /v1/connect/campaignmanager360/profiles&#x60; and &#x60;POST /v1/connect/campaignmanager360/select-profile&#x60;.  ### Errors  On failure the redirect carries &#x60;error&#x60;, &#x60;platform&#x3D;campaignmanager360&#x60; and &#x60;error_message&#x60;. Errors include:  - &#x60;campaignmanager360_scope_missing&#x60;: the user unticked one of the two permissions. - &#x60;campaignmanager360_no_profiles&#x60;: the Google account has no Campaign Manager 360 user profile. - &#x60;campaignmanager360_no_refresh_token&#x60;: Google returned no refresh token; connect again. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
+        String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | Zernio account ID of the Campaign Manager 360 account being reconnected. Picking a different CM360 profile then fails instead of adding a second account.
+        try {
+            ApiResponse<GetGoogleAnalyticsConnectUrl200Response> response = apiInstance.getCampaignManagerConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getCampaignManagerConnectUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
+| **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| Zernio account ID of the Campaign Manager 360 account being reconnected. Picking a different CM360 profile then fails instead of adding a second account. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetGoogleAnalyticsConnectUrl200Response**](GetGoogleAnalyticsConnectUrl200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Campaign Manager 360 OAuth is not configured. |  -  |
 
 
 ## getConnectHandoff
@@ -10773,6 +11287,170 @@ ApiResponse<[**InitiateTelegramConnect200Response**](InitiateTelegramConnect200R
 | **500** | Internal error |  -  |
 
 
+## listCampaignManagerProfiles
+
+> ListCampaignManagerProfiles200Response listCampaignManagerProfiles(pendingDataToken)
+
+List Campaign Manager 360 profiles for a pending connect
+
+For headless flows: lists the Campaign Manager 360 user profiles (one per CM360 account) of a pending connect, so you can show your own picker.  - Listing does not consume the token. - A headless token is honored only together with your API key (or connect token) for the same profile. - It expires after one hour. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String pendingDataToken = "pendingDataToken_example"; // String | Token from the headless redirect.
+        try {
+            ListCampaignManagerProfiles200Response result = apiInstance.listCampaignManagerProfiles(pendingDataToken);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listCampaignManagerProfiles");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pendingDataToken** | **String**| Token from the headless redirect. | |
+
+### Return type
+
+[**ListCampaignManagerProfiles200Response**](ListCampaignManagerProfiles200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | CM360 user profiles the Google account holds |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+
+## listCampaignManagerProfilesWithHttpInfo
+
+> ApiResponse<ListCampaignManagerProfiles200Response> listCampaignManagerProfiles listCampaignManagerProfilesWithHttpInfo(pendingDataToken)
+
+List Campaign Manager 360 profiles for a pending connect
+
+For headless flows: lists the Campaign Manager 360 user profiles (one per CM360 account) of a pending connect, so you can show your own picker.  - Listing does not consume the token. - A headless token is honored only together with your API key (or connect token) for the same profile. - It expires after one hour. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String pendingDataToken = "pendingDataToken_example"; // String | Token from the headless redirect.
+        try {
+            ApiResponse<ListCampaignManagerProfiles200Response> response = apiInstance.listCampaignManagerProfilesWithHttpInfo(pendingDataToken);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listCampaignManagerProfiles");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pendingDataToken** | **String**| Token from the headless redirect. | |
+
+### Return type
+
+ApiResponse<[**ListCampaignManagerProfiles200Response**](ListCampaignManagerProfiles200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | CM360 user profiles the Google account holds |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+
+
 ## listFacebookPages
 
 > ListFacebookPages200Response listFacebookPages(profileId, tempToken, xTempToken, connectFlow, selectionToken)
@@ -13379,6 +14057,170 @@ ApiResponse<[**SearchGoogleBusinessLocations200Response**](SearchGoogleBusinessL
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Read-only API key, or the key is not scoped to this account |  -  |
 | **404** | Resource not found |  -  |
+
+
+## selectCampaignManagerProfile
+
+> SelectCampaignManagerProfile200Response selectCampaignManagerProfile(selectCampaignManagerProfileRequest)
+
+Connect the chosen Campaign Manager 360 profile
+
+For headless flows. Connects the CM360 user profile the user picked as a &#x60;campaignmanager360&#x60; account and returns where to send the user next.  Consumes the &#x60;pendingDataToken&#x60;; a refused or failed attempt leaves it usable for a retry. Send your API key (or connect token) for the same profile with a headless token. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        SelectCampaignManagerProfileRequest selectCampaignManagerProfileRequest = new SelectCampaignManagerProfileRequest(); // SelectCampaignManagerProfileRequest | 
+        try {
+            SelectCampaignManagerProfile200Response result = apiInstance.selectCampaignManagerProfile(selectCampaignManagerProfileRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#selectCampaignManagerProfile");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **selectCampaignManagerProfileRequest** | [**SelectCampaignManagerProfileRequest**](SelectCampaignManagerProfileRequest.md)|  | |
+
+### Return type
+
+[**SelectCampaignManagerProfile200Response**](SelectCampaignManagerProfile200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The profile is connected, or the connect was refused with a reason in redirect_url |  -  |
+| **400** | Invalid request |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+| **500** | Google or Zernio failed while saving. The pendingDataToken stays usable; retry. |  -  |
+
+## selectCampaignManagerProfileWithHttpInfo
+
+> ApiResponse<SelectCampaignManagerProfile200Response> selectCampaignManagerProfile selectCampaignManagerProfileWithHttpInfo(selectCampaignManagerProfileRequest)
+
+Connect the chosen Campaign Manager 360 profile
+
+For headless flows. Connects the CM360 user profile the user picked as a &#x60;campaignmanager360&#x60; account and returns where to send the user next.  Consumes the &#x60;pendingDataToken&#x60;; a refused or failed attempt leaves it usable for a retry. Send your API key (or connect token) for the same profile with a headless token. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        SelectCampaignManagerProfileRequest selectCampaignManagerProfileRequest = new SelectCampaignManagerProfileRequest(); // SelectCampaignManagerProfileRequest | 
+        try {
+            ApiResponse<SelectCampaignManagerProfile200Response> response = apiInstance.selectCampaignManagerProfileWithHttpInfo(selectCampaignManagerProfileRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#selectCampaignManagerProfile");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **selectCampaignManagerProfileRequest** | [**SelectCampaignManagerProfileRequest**](SelectCampaignManagerProfileRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**SelectCampaignManagerProfile200Response**](SelectCampaignManagerProfile200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The profile is connected, or the connect was refused with a reason in redirect_url |  -  |
+| **400** | Invalid request |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+| **500** | Google or Zernio failed while saving. The pendingDataToken stays usable; retry. |  -  |
 
 
 ## selectFacebookPage
