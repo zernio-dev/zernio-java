@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ConversionAuditReportScoreRange.JSON_PROPERTY_LOW,
   ConversionAuditReportScoreRange.JSON_PROPERTY_HIGH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:10:31.019038256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:15:14.379884254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionAuditReportScoreRange {
   public static final String JSON_PROPERTY_LOW = "low";
   @javax.annotation.Nonnull

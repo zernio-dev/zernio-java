@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   StoredEventAd.JSON_PROPERTY_AD_SET_ID,
   StoredEventAd.JSON_PROPERTY_AD_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:10:31.019038256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:15:14.379884254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StoredEventAd {
   /**
    * Gets or Sets platform

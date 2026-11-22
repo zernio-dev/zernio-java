@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAccountRecoveredRecovery.JSON_PROPERTY_RECOVERED_AT,
   WebhookPayloadAccountRecoveredRecovery.JSON_PROPERTY_POST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:10:31.019038256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:15:14.379884254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAccountRecoveredRecovery {
   /**
    * &#x60;suspended&#x60;: banned or suspended by the platform. &#x60;restricted&#x60;: locked, restricted or blocked from posting. &#x60;verification_required&#x60;: the platform asks for an identity or security check. &#x60;auth_expired&#x60;: the login stopped working; reconnect.

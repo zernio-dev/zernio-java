@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   ConnectedApp.JSON_PROPERTY_TOKEN_COUNT,
   ConnectedApp.JSON_PROPERTY_WORKSPACES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:10:31.019038256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:15:14.379884254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectedApp {
   public static final String JSON_PROPERTY_CLIENT_ID = "clientId";
   @javax.annotation.Nullable

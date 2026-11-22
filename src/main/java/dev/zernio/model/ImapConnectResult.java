@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   ImapConnectResult.JSON_PROPERTY_SETTINGS,
   ImapConnectResult.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:10:31.019038256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:15:14.379884254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ImapConnectResult {
   public static final String JSON_PROPERTY_DRY_RUN = "dryRun";
   @javax.annotation.Nullable

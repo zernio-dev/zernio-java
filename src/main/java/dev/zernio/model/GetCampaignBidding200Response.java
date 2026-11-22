@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetCampaignBidding200Response.JSON_PROPERTY_STALE,
   GetCampaignBidding200Response.JSON_PROPERTY_CAMPAIGN_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:10:31.019038256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:15:14.379884254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCampaignBidding200Response {
   /**
    * campaign.advertising_channel_type. COST_CAP&#39;s underlying Google field differs by channel; see bidStrategy on PUT.

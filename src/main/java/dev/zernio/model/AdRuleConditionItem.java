@@ -57,7 +57,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:10:31.019038256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:15:14.379884254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = AdRuleConditionItem.AdRuleConditionItemDeserializer.class)
 @JsonSerialize(using = AdRuleConditionItem.AdRuleConditionItemSerializer.class)
 public class AdRuleConditionItem extends AbstractOpenApiSchema {

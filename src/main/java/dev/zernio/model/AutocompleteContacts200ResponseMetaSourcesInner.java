@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AutocompleteContacts200ResponseMetaSourcesInner.JSON_PROPERTY_SEARCHED,
   AutocompleteContacts200ResponseMetaSourcesInner.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:10:31.019038256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:15:14.379884254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutocompleteContacts200ResponseMetaSourcesInner {
   /**
    * Gets or Sets source

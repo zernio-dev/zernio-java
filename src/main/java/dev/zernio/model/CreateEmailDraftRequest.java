@@ -63,7 +63,7 @@ import dev.zernio.ApiClient;
   CreateEmailDraftRequest.JSON_PROPERTY_TRACK_LINKS,
   CreateEmailDraftRequest.JSON_PROPERTY_TRACK_REPLIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:10:31.019038256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:15:14.379884254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateEmailDraftRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

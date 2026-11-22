@@ -78,7 +78,7 @@ import dev.zernio.ApiClient;
   AdMetricRowDailyInner.JSON_PROPERTY_ENGAGEMENT_RATE_RANKING,
   AdMetricRowDailyInner.JSON_PROPERTY_CONVERSION_RATE_RANKING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:10:31.019038256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:15:14.379884254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdMetricRowDailyInner {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nonnull

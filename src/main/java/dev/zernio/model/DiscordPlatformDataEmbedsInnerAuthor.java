@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   DiscordPlatformDataEmbedsInnerAuthor.JSON_PROPERTY_URL,
   DiscordPlatformDataEmbedsInnerAuthor.JSON_PROPERTY_ICON_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:10:31.019038256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T17:15:14.379884254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordPlatformDataEmbedsInnerAuthor {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
