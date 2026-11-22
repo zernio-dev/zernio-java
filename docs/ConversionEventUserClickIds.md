@@ -21,7 +21,7 @@ Platform click identifiers captured from the originating ad click.
 |**alart** | **String** | Axon (AppLovin) attribution token (the &#x60;alart&#x60; URL param, &#x60;_axart&#x60; cookie). Sent to Axon as &#x60;user_data.alart&#x60;, not hashed. |  [optional] |
 |**axwrt** | **String** | Axon Pixel browser id (the &#x60;_axwrt&#x60; cookie). Sent to Axon as &#x60;user_data.axwrt&#x60;, not hashed. |  [optional] |
 |**twclid** | **String** | X click ID (the &#x60;twclid&#x60; URL param X adds to ad clicks). Sent to X as a &#x60;twclid&#x60; identifier, not hashed. |  [optional] |
-|**msclkid** | **String** | Microsoft Advertising click ID (the &#x60;msclkid&#x60; URL param Microsoft adds to ad clicks). Sent to Microsoft as &#x60;MicrosoftClickId&#x60;, not hashed. |  [optional] |
+|**msclkid** | **String** | Microsoft Advertising click ID (the &#x60;msclkid&#x60; URL param Microsoft adds to ad clicks). Sent to Microsoft as &#x60;MicrosoftClickId&#x60; (offline goals) or &#x60;userData.msclkid&#x60; (UET tags), not hashed. |  [optional] |
 |**sccid** | **String** | Snapchat click ID (the &#x60;ScCid&#x60; URL param Snap adds to ad clicks). Sent to Snapchat as &#x60;sc_click_id&#x60;, not hashed. |  [optional] |
 |**scid** | **String** | Snap Pixel browser id (the &#x60;_scid&#x60; cookie). Sent to Snapchat as &#x60;sc_cookie1&#x60;, not hashed. |  [optional] |
 
