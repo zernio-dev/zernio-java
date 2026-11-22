@@ -8377,12 +8377,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ConnectAttentiveCredentials200ResponseTest.java
-src/test/java/dev/zernio/model/ConnectAttentiveCredentialsRequestTest.java
-src/test/java/dev/zernio/model/ConnectAwinCredentials200ResponseTest.java
-src/test/java/dev/zernio/model/ConnectAwinCredentialsRequestTest.java
-src/test/java/dev/zernio/model/ConnectImpactCredentials200ResponseTest.java
-src/test/java/dev/zernio/model/ConnectImpactCredentialsRequestTest.java
-src/test/java/dev/zernio/model/ConnectKlaviyoCredentials200ResponseTest.java
-src/test/java/dev/zernio/model/ConnectKlaviyoCredentialsRequestTest.java
-src/test/java/dev/zernio/model/TrackingSitePixelTest.java

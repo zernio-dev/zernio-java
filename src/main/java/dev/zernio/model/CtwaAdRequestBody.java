@@ -129,7 +129,7 @@ import dev.zernio.ApiClient;
   CtwaAdRequestBody.JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES,
   CtwaAdRequestBody.JSON_PROPERTY_REGIONAL_REGULATION_IDENTITIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T14:45:50.631277166Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T14:49:45.944764405Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBody {
   public static final String JSON_PROPERTY_RETRY_ON_SERVER_ERROR = "retryOnServerError";
   @javax.annotation.Nullable

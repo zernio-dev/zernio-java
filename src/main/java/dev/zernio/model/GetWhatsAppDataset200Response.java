@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetWhatsAppDataset200Response.JSON_PROPERTY_DATASET_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T14:45:50.631277166Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T14:49:45.944764405Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppDataset200Response {
   public static final String JSON_PROPERTY_DATASET_ID = "datasetId";
   private JsonNullable<String> datasetId = JsonNullable.<String>undefined();

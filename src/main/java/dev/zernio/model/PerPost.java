@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   PerPost.JSON_PROPERTY_PER_APPROVED_POST_CENTS,
   PerPost.JSON_PROPERTY_MAX_POSTS_PER_PARTICIPANT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T14:45:50.631277166Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T14:49:45.944764405Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PerPost {
   /**
    * Gets or Sets type

@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GoogleAdsUserInvitationApproval.JSON_PROPERTY_REQUEST_USER_EMAIL,
   GoogleAdsUserInvitationApproval.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T14:45:50.631277166Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T14:49:45.944764405Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleAdsUserInvitationApproval {
   public static final String JSON_PROPERTY_MULTI_PARTY_AUTH_REVIEW_ID = "multiPartyAuthReviewId";
   @javax.annotation.Nullable
