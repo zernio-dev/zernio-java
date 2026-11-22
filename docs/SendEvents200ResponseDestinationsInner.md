@@ -33,6 +33,19 @@
 | OPENAIADS | &quot;openaiads&quot; |
 | PINTERESTADS | &quot;pinterestads&quot; |
 | REDDITADS | &quot;redditads&quot; |
+| APPLOVINADS | &quot;applovinads&quot; |
+| MICROSOFTADS | &quot;microsoftads&quot; |
+| XADS | &quot;xads&quot; |
+| SNAPCHATADS | &quot;snapchatads&quot; |
+| TABOOLAADS | &quot;taboolaads&quot; |
+| GOOGLEANALYTICS | &quot;googleanalytics&quot; |
+| KLAVIYO | &quot;klaviyo&quot; |
+| ATTENTIVE | &quot;attentive&quot; |
+| IMPACT | &quot;impact&quot; |
+| AWIN | &quot;awin&quot; |
+| CAMPAIGNMANAGER360 | &quot;campaignmanager360&quot; |
+| TRADEDESKADS | &quot;tradedeskads&quot; |
+| AMAZONADS | &quot;amazonads&quot; |
 
 
 
