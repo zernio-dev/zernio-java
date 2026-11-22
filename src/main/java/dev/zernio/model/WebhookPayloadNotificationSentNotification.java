@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadNotificationSentNotification.JSON_PROPERTY_REASON,
   WebhookPayloadNotificationSentNotification.JSON_PROPERTY_ACTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T09:48:18.469616353Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T10:02:54.142638566Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadNotificationSentNotification {
   /**
    * The email notification preference this notification belongs to. securityAlerts has no preference: it is always sent.

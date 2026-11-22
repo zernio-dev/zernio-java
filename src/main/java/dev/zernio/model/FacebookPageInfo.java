@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   FacebookPageInfo.JSON_PROPERTY_EMAILS,
   FacebookPageInfo.JSON_PROPERTY_HOURS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T09:48:18.469616353Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T10:02:54.142638566Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FacebookPageInfo {
   public static final String JSON_PROPERTY_ABOUT = "about";
   @javax.annotation.Nullable

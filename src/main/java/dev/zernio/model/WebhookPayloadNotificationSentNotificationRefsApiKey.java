@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadNotificationSentNotificationRefsApiKey.JSON_PROPERTY_KEY_PREVIEW,
   WebhookPayloadNotificationSentNotificationRefsApiKey.JSON_PROPERTY_EXPIRES_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T09:48:18.469616353Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T10:02:54.142638566Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadNotificationSentNotificationRefsApiKey {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

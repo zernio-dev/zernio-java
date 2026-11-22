@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   SendConversions200Response.JSON_PROPERTY_PLATFORM_MESSAGES,
   SendConversions200Response.JSON_PROPERTY_TEST_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T09:48:18.469616353Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T10:02:54.142638566Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendConversions200Response {
   /**
    * Gets or Sets platform

@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   LaunchCampaignAdsRequest.JSON_PROPERTY_LINK_URL,
   LaunchCampaignAdsRequest.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T09:48:18.469616353Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T10:02:54.142638566Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LaunchCampaignAdsRequest {
   public static final String JSON_PROPERTY_SUBMISSION_IDS = "submissionIds";
   @javax.annotation.Nonnull

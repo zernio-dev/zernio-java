@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CreateCrmContactRequest.JSON_PROPERTY_PROPERTIES,
   CreateCrmContactRequest.JSON_PROPERTY_CREATE_AS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T09:48:18.469616353Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T10:02:54.142638566Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCrmContactRequest {
   public static final String JSON_PROPERTY_FIRST_NAME = "firstName";
   @javax.annotation.Nullable
