@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.737.0
+  version: 1.738.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -561,7 +561,7 @@ tags:
     The API changelog (https://docs.zernio.com/changelog) as data: the entries the `api.changelog.published` webhook announces, newest first, for agents that automate against API changes and need to back-fill what they missed.
   name: Changelog
 - description: |
-    The free Conversion Leak Report as data: scan any public URL for ad-platform conversion tracking and score how much conversion signal it leaks to iOS/ATT, ad-blockers and short cookie windows before the ad platforms see it.
+    The free Conversion Leak Report as data: scan any public URL for ad-platform conversion tracking and score how much conversion signal it leaks to ad blockers, browser limits and short cookie windows before the ad platforms see it, counting only visitors who accept tracking.
 
     Over REST the API key is optional; the MCP tools use your key.
   name: Conversion Audit
@@ -77558,6 +77558,19 @@ paths:
         - A destination saved with `eventNames` only receives events with those names.
         - One destination failing never blocks the others: each one reports its own result.
 
+        ### Consent
+
+        Send each visitor's consent on the event (`events[].consent`) or for the whole request (`consent`), as Google Consent Mode's four signals. Zernio applies it per destination for visitors in the EEA, the UK and Switzerland, read from `user.country` (website events use the visitor's country):
+
+        - A signal left out counts as `DENIED`. Zernio has no setting to change this.
+        - Meta, LinkedIn, TikTok, Pinterest, Reddit, X, Snapchat, Microsoft, OpenAI and AppLovin get the event only with `adUserData: GRANTED` and neither `adStorage` nor `adPersonalization` `DENIED`.
+        - Google Ads gets every event with `adUserData` and `adPersonalization` set, a missing one as `DENIED`. Google decides what it can use.
+        - Google Analytics gets the event only with `analyticsStorage: GRANTED`, with the same ad signals.
+        - An event left out is reported on its destination as `drops` (with `consent_denied` or `consent_missing`), as `dropped` on `GET /v1/events/{eventId}`, and counted in `GET /v1/events/overview`. It is still stored and counted in your results.
+        - Visitors elsewhere, or with no `user.country`, are sent as before with the consent they carry.
+
+        Zernio applies the consent you send; it does not collect it or give legal advice. Profiles created before this rule started (Nov 2026) keep sending as before until they are switched over.
+
         ### Storage
 
         Zernio also stores each event for the profile's reporting.
@@ -91765,7 +91778,9 @@ paths:
 
         The API key is optional. Without one, a caller's IP address gets 20 scans a minute. The Zernio MCP server always needs a key, because its sign-in covers the whole connection.
 
-        The scan fetches the page (SSRF-guarded) and its Google Tag Manager containers, and can render it in a headless browser. It finds every ad platform's browser pixel, checks for visible server-side (Conversions API) tracking, and estimates the signal lost to iOS/ATT, ad-blockers and short cookie windows.
+        The scan fetches the page (SSRF-guarded) and its Google Tag Manager containers, and can render it in a headless browser. It finds every ad platform's browser pixel, checks for visible server-side (Conversions API) tracking, and estimates the signal lost to ad blockers, browser limits and short cookie windows.
+
+        Visitors who decline consent are never counted as lost.
 
         The scan reads the page only and changes nothing on the site. Like the free page, it publishes the result as the host's public report.
 
@@ -99186,11 +99201,11 @@ components:
       description: "A tracking site's page views over a period, as approximate distinct\
         \ counts."
       example:
-        visits: 7
-        bots: 1
-        recovered: 9
-        purchases: 5
-        consented: 4
+        visits: 5
+        bots: 9
+        recovered: 8
+        purchases: 6
+        consented: 9
       properties:
         visits:
           description: Page views without bots.
@@ -144191,6 +144206,58 @@ components:
         createdAt:
           format: date-time
           type: string
+    EventConsent:
+      description: |
+        Google Consent Mode's four signals as the visitor gave them. Leave a signal out when the visitor was never asked or never answered.
+
+        For a visitor in the EEA, the UK or Switzerland (from `user.country`), a signal left out counts as `DENIED`. See "Consent" on `POST /v1/events`.
+      properties:
+        adStorage:
+          description: Ad cookies and click ids (`ad_storage`).
+          enum:
+          - GRANTED
+          - DENIED
+          type: string
+        adUserData:
+          description: Sending personal data to ad platforms (`ad_user_data`).
+          enum:
+          - GRANTED
+          - DENIED
+          type: string
+        adPersonalization:
+          description: Personalized advertising and remarketing (`ad_personalization`).
+          enum:
+          - GRANTED
+          - DENIED
+          type: string
+        analyticsStorage:
+          description: "Analytics cookies (`analytics_storage`): Google Analytics\
+            \ only."
+          enum:
+          - GRANTED
+          - DENIED
+          type: string
+    ConsentDrop:
+      description: An event the destination did not get because the visitor did not
+        consent.
+      example:
+        eventId: eventId
+        reason: consent_denied
+        eventIndex: 5
+      properties:
+        eventIndex:
+          description: Index into the events sent to this destination.
+          type: integer
+        eventId:
+          type: string
+        reason:
+          description: "`consent_denied`: a signal the platform needs is `DENIED`.\
+            \ `consent_missing`: the visitor is in the EEA, UK or CH and the signal\
+            \ was never given."
+          enum:
+          - consent_denied
+          - consent_missing
+          type: string
     ConversionEvent:
       description: |
         A single conversion event to relay to the ad platform. All PII fields
@@ -144246,6 +144313,11 @@ components:
           type: string
         campaign:
           $ref: "#/components/schemas/ConversionEvent_campaign"
+        consent:
+          allOf:
+          - $ref: "#/components/schemas/EventConsent"
+          description: This event's consent. Each signal given here wins over the
+            request's `consent`.
         actionSource:
           description: "Where the conversion happened. Used by Meta. Google also requires\
             \ an event source internally; omitting this field sends OTHER to Google.\
@@ -220112,24 +220184,6 @@ components:
           items:
             $ref: "#/components/schemas/getConversionsQuality_200_response_rows_inner"
           type: array
-    sendConversions_request_consent:
-      description: |
-        Batch-level user consent. Required by Google for EEA/UK events under the Feb 2026 restrictions.
-
-        - **Meta:** any DENIED flag enables Limited Data Use on every event in the batch (data_processing_options ["LDU"] with geolocation, country 0 / state 0). GRANTED or absent consent sends events with Meta's default processing.
-        - **Reddit:** `adUserData: DENIED` drops every user field from the events.
-        - **LinkedIn:** ignored.
-      properties:
-        adUserData:
-          enum:
-          - GRANTED
-          - DENIED
-          type: string
-        adPersonalization:
-          enum:
-          - GRANTED
-          - DENIED
-          type: string
     sendConversions_request:
       properties:
         accountId:
@@ -220161,7 +220215,17 @@ components:
             - Google, LinkedIn and OpenAI Ads: ignored.
           type: string
         consent:
-          $ref: "#/components/schemas/sendConversions_request_consent"
+          allOf:
+          - $ref: "#/components/schemas/EventConsent"
+          description: |
+            Every event's consent, unless the event sets its own. For visitors in the EEA, UK and CH it decides whether the destination gets the event at all, as described under Consent on `POST /v1/events`; events left out are listed in `drops`.
+
+            How the platforms read the signals of the events they get:
+
+            - **Google:** sent as the request's consent. Google does not use EEA, UK or CH conversions without `adUserData: GRANTED`.
+            - **Meta:** any `DENIED` flag enables Limited Data Use on the events (data_processing_options ["LDU"] with geolocation, country 0 / state 0). LDU applies to US state privacy laws, not to the EEA, UK or CH.
+            - **Reddit:** `adUserData: DENIED` drops every user field from the events.
+            - **LinkedIn:** the signals are not sent; LinkedIn matches only members who allow it in their own LinkedIn settings.
       required:
       - accountId
       - destinationId
@@ -220176,7 +220240,7 @@ components:
         code: sendConversions_200_response_failures_inner_code
         platformError:
           key: ""
-        eventIndex: 1
+        eventIndex: 5
         message: message
       properties:
         eventIndex:
@@ -220198,20 +220262,28 @@ components:
             already ends with `error_user_msg`. Absent when Meta returned no error body.
     sendConversions_200_response:
       example:
+        eventsDropped: 1
         traceId: traceId
+        drops:
+        - eventId: eventId
+          reason: consent_denied
+          eventIndex: 5
+        - eventId: eventId
+          reason: consent_denied
+          eventIndex: 5
         testCode: testCode
         failures:
         - eventId: eventId
           code: sendConversions_200_response_failures_inner_code
           platformError:
             key: ""
-          eventIndex: 1
+          eventIndex: 5
           message: message
         - eventId: eventId
           code: sendConversions_200_response_failures_inner_code
           platformError:
             key: ""
-          eventIndex: 1
+          eventIndex: 5
           message: message
         eventsFailed: 6
         eventsReceived: 0
@@ -220236,6 +220308,13 @@ components:
         eventsFailed:
           description: Events rejected (see failures).
           type: integer
+        eventsDropped:
+          description: Events not sent because the visitor did not consent (see `consent`).
+          type: integer
+        drops:
+          items:
+            $ref: "#/components/schemas/ConsentDrop"
+          type: array
         failures:
           items:
             $ref: "#/components/schemas/sendConversions_200_response_failures_inner"
@@ -220934,10 +221013,12 @@ components:
             \ the send failed before the platform was known."
           type: string
         status:
+          description: "`dropped`: not sent, the visitor did not consent."
           enum:
           - sent
           - retrying
           - failed
+          - dropped
           type: string
     listEvents_200_response_events_inner:
       allOf:
@@ -221105,20 +221186,6 @@ components:
       required:
       - accountId
       - destinationId
-    sendEvents_request_consent:
-      description: "Batch-level user consent, forwarded to every destination (see\
-        \ POST /v1/ads/conversions)."
-      properties:
-        adUserData:
-          enum:
-          - GRANTED
-          - DENIED
-          type: string
-        adPersonalization:
-          enum:
-          - GRANTED
-          - DENIED
-          type: string
     sendEvents_request:
       additionalProperties: {}
       properties:
@@ -221141,7 +221208,10 @@ components:
           minItems: 1
           type: array
         consent:
-          $ref: "#/components/schemas/sendEvents_request_consent"
+          allOf:
+          - $ref: "#/components/schemas/EventConsent"
+          description: "Every event's consent, unless the event sets its own (see\
+            \ Consent above)."
         testCode:
           description: Forwarded as each platform test code (see POST /v1/ads/conversions).
             A root-level `test_event_code` is accepted as an alias. Test events are
@@ -221179,8 +221249,16 @@ components:
           $ref: "#/components/schemas/sendConversions_200_response_failures_inner_code"
     sendEvents_200_response_destinations_inner:
       example:
+        eventsDropped: 5
         traceId: traceId
         accountId: accountId
+        drops:
+        - eventId: eventId
+          reason: consent_denied
+          eventIndex: 5
+        - eventId: eventId
+          reason: consent_denied
+          eventIndex: 5
         failures:
         - eventId: eventId
           code: sendConversions_200_response_failures_inner_code
@@ -221219,6 +221297,14 @@ components:
           type: integer
         eventsFailed:
           type: integer
+        eventsDropped:
+          description: Events this destination did not get because the visitor did
+            not consent (see Consent above).
+          type: integer
+        drops:
+          items:
+            $ref: "#/components/schemas/ConsentDrop"
+          type: array
         failures:
           items:
             $ref: "#/components/schemas/sendEvents_200_response_destinations_inner_failures_inner"
@@ -221245,13 +221331,21 @@ components:
           type: array
     sendEvents_200_response:
       example:
-        queuedDestinations: 5
+        queuedDestinations: 2
         testCode: testCode
         eventsReceived: 0
         stored: true
         destinations:
-        - traceId: traceId
+        - eventsDropped: 5
+          traceId: traceId
           accountId: accountId
+          drops:
+          - eventId: eventId
+            reason: consent_denied
+            eventIndex: 5
+          - eventId: eventId
+            reason: consent_denied
+            eventIndex: 5
           failures:
           - eventId: eventId
             code: sendConversions_200_response_failures_inner_code
@@ -221270,8 +221364,16 @@ components:
           - platformMessages
           - platformMessages
           platform: metaads
-        - traceId: traceId
+        - eventsDropped: 5
+          traceId: traceId
           accountId: accountId
+          drops:
+          - eventId: eventId
+            reason: consent_denied
+            eventIndex: 5
+          - eventId: eventId
+            reason: consent_denied
+            eventIndex: 5
           failures:
           - eventId: eventId
             code: sendConversions_200_response_failures_inner_code
@@ -221313,9 +221415,9 @@ components:
           type: integer
     sendEvents_202_response:
       example:
-        queuedDestinations: 7
+        queuedDestinations: 9
         testCode: testCode
-        eventsReceived: 2
+        eventsReceived: 7
         stored: true
         destinations: []
       properties:
@@ -221749,20 +221851,40 @@ components:
           description: "Today's events that count as campaign results (see `GET /v1/ads/campaign-results/events`),\
             \ the ones looked up for a campaign."
           type: integer
+    getEventsOverview_200_response_platforms_inner_droppedToday:
+      description: "Today's events the destination did not get, by reason."
+      example:
+        consentDenied: 3
+        invalid: 4
+        consentMissing: 2
+      properties:
+        consentDenied:
+          description: The visitor denied a consent signal the platform needs.
+          type: integer
+        consentMissing:
+          description: "A visitor in the EEA, UK or CH with no consent given."
+          type: integer
+        invalid:
+          description: Refused before sending as invalid (also counted in `failedToday`).
+          type: integer
     getEventsOverview_200_response_platforms_inner:
       example:
-        accountId: accountId
         lastError: lastError
         accountName: accountName
-        failedToday: 9
-        profileId: profileId
-        destinationName: destinationName
         lastEventName: lastEventName
-        fixUrl: fixUrl
         lastSentAt: 2000-01-23T04:56:07.000+00:00
         destinationId: destinationId
         platform: platform
         sentToday: 7
+        accountId: accountId
+        failedToday: 9
+        profileId: profileId
+        destinationName: destinationName
+        droppedToday:
+          consentDenied: 3
+          invalid: 4
+          consentMissing: 2
+        fixUrl: fixUrl
       properties:
         profileId:
           description: The profile the forwarding rule belongs to.
@@ -221787,6 +221909,8 @@ components:
         failedToday:
           description: Events that failed for good today.
           type: integer
+        droppedToday:
+          $ref: "#/components/schemas/getEventsOverview_200_response_platforms_inner_droppedToday"
         lastSentAt:
           description: Last accepted send in the last 30 days.
           format: date-time
@@ -221808,7 +221932,7 @@ components:
     getEventsOverview_200_response_sources_inner:
       example:
         lastSeenAt: 2000-01-23T04:56:07.000+00:00
-        eventsToday: 3
+        eventsToday: 7
         source: source
         label: label
         state: "on"
@@ -221836,7 +221960,7 @@ components:
     getEventsOverview_200_response_website_steps_inner:
       example:
         name: name
-        count: 2
+        count: 1
         label: label
       properties:
         name:
@@ -221853,18 +221977,18 @@ components:
         serverPlatforms:
         - serverPlatforms
         - serverPlatforms
-        visits: 1
-        recovered: 4
-        conversions: 7
+        visits: 7
+        recovered: 1
+        conversions: 1
         bots: 1
         steps:
         - name: name
-          count: 2
+          count: 1
           label: label
         - name: name
-          count: 2
+          count: 1
           label: label
-        consented: 1
+        consented: 6
       properties:
         steps:
           description: "The funnel: page views, product views, add to cart, checkouts\
@@ -221898,23 +222022,23 @@ components:
         \ ending today (UTC)."
       example:
         today:
-          visits: 7
-          bots: 1
-          recovered: 9
-          purchases: 5
-          consented: 4
+          visits: 5
+          bots: 9
+          recovered: 8
+          purchases: 6
+          consented: 9
         "30d":
-          visits: 7
-          bots: 1
-          recovered: 9
-          purchases: 5
-          consented: 4
+          visits: 5
+          bots: 9
+          recovered: 8
+          purchases: 6
+          consented: 9
         "7d":
-          visits: 7
-          bots: 1
-          recovered: 9
-          purchases: 5
-          consented: 4
+          visits: 5
+          bots: 9
+          recovered: 8
+          purchases: 6
+          consented: 9
       properties:
         today:
           $ref: "#/components/schemas/TrackingSitePeriodTotals"
@@ -221929,24 +222053,24 @@ components:
         siteId: siteId
         totals:
           today:
-            visits: 7
-            bots: 1
-            recovered: 9
-            purchases: 5
-            consented: 4
+            visits: 5
+            bots: 9
+            recovered: 8
+            purchases: 6
+            consented: 9
           "30d":
-            visits: 7
-            bots: 1
-            recovered: 9
-            purchases: 5
-            consented: 4
+            visits: 5
+            bots: 9
+            recovered: 8
+            purchases: 6
+            consented: 9
           "7d":
-            visits: 7
-            bots: 1
-            recovered: 9
-            purchases: 5
-            consented: 4
-        hitsToday: 6
+            visits: 5
+            bots: 9
+            recovered: 8
+            purchases: 6
+            consented: 9
+        hitsToday: 4
       properties:
         siteId:
           type: string
@@ -221996,26 +222120,26 @@ components:
           serverPlatforms:
           - serverPlatforms
           - serverPlatforms
-          visits: 1
-          recovered: 4
-          conversions: 7
+          visits: 7
+          recovered: 1
+          conversions: 1
           bots: 1
           steps:
           - name: name
-            count: 2
+            count: 1
             label: label
           - name: name
-            count: 2
+            count: 1
             label: label
-          consented: 1
+          consented: 6
         sources:
         - lastSeenAt: 2000-01-23T04:56:07.000+00:00
-          eventsToday: 3
+          eventsToday: 7
           source: source
           label: label
           state: "on"
         - lastSeenAt: 2000-01-23T04:56:07.000+00:00
-          eventsToday: 3
+          eventsToday: 7
           source: source
           label: label
           state: "on"
@@ -222033,47 +222157,47 @@ components:
           siteId: siteId
           totals:
             today:
-              visits: 7
-              bots: 1
-              recovered: 9
-              purchases: 5
-              consented: 4
+              visits: 5
+              bots: 9
+              recovered: 8
+              purchases: 6
+              consented: 9
             "30d":
-              visits: 7
-              bots: 1
-              recovered: 9
-              purchases: 5
-              consented: 4
+              visits: 5
+              bots: 9
+              recovered: 8
+              purchases: 6
+              consented: 9
             "7d":
-              visits: 7
-              bots: 1
-              recovered: 9
-              purchases: 5
-              consented: 4
-          hitsToday: 6
+              visits: 5
+              bots: 9
+              recovered: 8
+              purchases: 6
+              consented: 9
+          hitsToday: 4
         - lastActiveOn: 2000-01-23
           profileId: profileId
           siteId: siteId
           totals:
             today:
-              visits: 7
-              bots: 1
-              recovered: 9
-              purchases: 5
-              consented: 4
+              visits: 5
+              bots: 9
+              recovered: 8
+              purchases: 6
+              consented: 9
             "30d":
-              visits: 7
-              bots: 1
-              recovered: 9
-              purchases: 5
-              consented: 4
+              visits: 5
+              bots: 9
+              recovered: 8
+              purchases: 6
+              consented: 9
             "7d":
-              visits: 7
-              bots: 1
-              recovered: 9
-              purchases: 5
-              consented: 4
-          hitsToday: 6
+              visits: 5
+              bots: 9
+              recovered: 8
+              purchases: 6
+              consented: 9
+          hitsToday: 4
         eventNames:
         - websiteToday: 9
           fromWebsite: true
@@ -222090,30 +222214,38 @@ components:
           - serverSources
           - serverSources
         platforms:
-        - accountId: accountId
-          lastError: lastError
+        - lastError: lastError
           accountName: accountName
-          failedToday: 9
-          profileId: profileId
-          destinationName: destinationName
           lastEventName: lastEventName
-          fixUrl: fixUrl
           lastSentAt: 2000-01-23T04:56:07.000+00:00
           destinationId: destinationId
           platform: platform
           sentToday: 7
-        - accountId: accountId
-          lastError: lastError
-          accountName: accountName
+          accountId: accountId
           failedToday: 9
           profileId: profileId
           destinationName: destinationName
-          lastEventName: lastEventName
+          droppedToday:
+            consentDenied: 3
+            invalid: 4
+            consentMissing: 2
           fixUrl: fixUrl
+        - lastError: lastError
+          accountName: accountName
+          lastEventName: lastEventName
           lastSentAt: 2000-01-23T04:56:07.000+00:00
           destinationId: destinationId
           platform: platform
           sentToday: 7
+          accountId: accountId
+          failedToday: 9
+          profileId: profileId
+          destinationName: destinationName
+          droppedToday:
+            consentDenied: 3
+            invalid: 4
+            consentMissing: 2
+          fixUrl: fixUrl
       properties:
         today:
           $ref: "#/components/schemas/getEventsOverview_200_response_today"
@@ -222633,10 +222765,13 @@ components:
           nullable: true
           type: string
         status:
+          description: "`dropped`: not sent because the visitor did not consent; `errorCode`\
+            \ says why (`consent_denied` or `consent_missing`)."
           enum:
           - sent
           - retrying
           - failed
+          - dropped
           type: string
         attempt:
           description: Send attempt (1 = the first).

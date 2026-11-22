@@ -10,6 +10,8 @@
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
 |**eventsReceived** | **Integer** | Events accepted by the platform. |  [optional] |
 |**eventsFailed** | **Integer** | Events rejected (see failures). |  [optional] |
+|**eventsDropped** | **Integer** | Events not sent because the visitor did not consent (see &#x60;consent&#x60;). |  [optional] |
+|**drops** | [**List&lt;ConsentDrop&gt;**](ConsentDrop.md) |  |  [optional] |
 |**failures** | [**List&lt;SendConversions200ResponseFailuresInner&gt;**](SendConversions200ResponseFailuresInner.md) |  |  [optional] |
 |**traceId** | **String** | Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google, request_id for TikTok. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID), OpenAI Ads and Reddit (no trace ID surfaced).  |  [optional] |
 |**platformMessages** | **List&lt;String&gt;** | Meta only. Meta&#39;s &#x60;messages&#x60; (warnings about the events it accepted), each distinct one once, at most 20. Absent when Meta sent none. |  [optional] |

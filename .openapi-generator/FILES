@@ -709,6 +709,7 @@ docs/ConnectedApp.md
 docs/ConnectedAppsApi.md
 docs/ConnectedMessagingAccount.md
 docs/ConnectedStore.md
+docs/ConsentDrop.md
 docs/ContactsApi.md
 docs/ContentRetentionApi.md
 docs/ContentRetentionResponse.md
@@ -1342,6 +1343,7 @@ docs/EstimateAdReachRequest.md
 docs/EventAutomationCheck.md
 docs/EventAutomationCheckSubject.md
 docs/EventAutomationDefinition.md
+docs/EventConsent.md
 docs/EventCorrection.md
 docs/EventDestination.md
 docs/Expired.md
@@ -1593,6 +1595,7 @@ docs/GetEventsAccuracy200ResponseDestinationsInnerMatch.md
 docs/GetEventsOverview200Response.md
 docs/GetEventsOverview200ResponseEventNamesInner.md
 docs/GetEventsOverview200ResponsePlatformsInner.md
+docs/GetEventsOverview200ResponsePlatformsInnerDroppedToday.md
 docs/GetEventsOverview200ResponseSitesInner.md
 docs/GetEventsOverview200ResponseSitesInnerTotals.md
 docs/GetEventsOverview200ResponseSourcesInner.md
@@ -3122,7 +3125,6 @@ docs/SendConversions200Response.md
 docs/SendConversions200ResponseFailuresInner.md
 docs/SendConversions200ResponseFailuresInnerCode.md
 docs/SendConversionsRequest.md
-docs/SendConversionsRequestConsent.md
 docs/SendDiscordDirectMessage200Response.md
 docs/SendDiscordDirectMessage200ResponseAccount.md
 docs/SendDiscordDirectMessage200ResponseRecipient.md
@@ -3138,7 +3140,6 @@ docs/SendEvents200ResponseDestinationsInner.md
 docs/SendEvents200ResponseDestinationsInnerFailuresInner.md
 docs/SendEvents202Response.md
 docs/SendEventsRequest.md
-docs/SendEventsRequestConsent.md
 docs/SendEventsRequestDestinationsInner.md
 docs/SendGohighlevelPastWonDeals200Response.md
 docs/SendInboxMessage200Response.md
@@ -4940,6 +4941,7 @@ src/main/java/dev/zernio/model/ConnectedAccount.java
 src/main/java/dev/zernio/model/ConnectedApp.java
 src/main/java/dev/zernio/model/ConnectedMessagingAccount.java
 src/main/java/dev/zernio/model/ConnectedStore.java
+src/main/java/dev/zernio/model/ConsentDrop.java
 src/main/java/dev/zernio/model/ContentRetentionResponse.java
 src/main/java/dev/zernio/model/ConversationAdAttribution.java
 src/main/java/dev/zernio/model/ConversionAction.java
@@ -5563,6 +5565,7 @@ src/main/java/dev/zernio/model/EstimateAdReachRequest.java
 src/main/java/dev/zernio/model/EventAutomationCheck.java
 src/main/java/dev/zernio/model/EventAutomationCheckSubject.java
 src/main/java/dev/zernio/model/EventAutomationDefinition.java
+src/main/java/dev/zernio/model/EventConsent.java
 src/main/java/dev/zernio/model/EventCorrection.java
 src/main/java/dev/zernio/model/EventDestination.java
 src/main/java/dev/zernio/model/Expired.java
@@ -5812,6 +5815,7 @@ src/main/java/dev/zernio/model/GetEventsAccuracy200ResponseDestinationsInnerMatc
 src/main/java/dev/zernio/model/GetEventsOverview200Response.java
 src/main/java/dev/zernio/model/GetEventsOverview200ResponseEventNamesInner.java
 src/main/java/dev/zernio/model/GetEventsOverview200ResponsePlatformsInner.java
+src/main/java/dev/zernio/model/GetEventsOverview200ResponsePlatformsInnerDroppedToday.java
 src/main/java/dev/zernio/model/GetEventsOverview200ResponseSitesInner.java
 src/main/java/dev/zernio/model/GetEventsOverview200ResponseSitesInnerTotals.java
 src/main/java/dev/zernio/model/GetEventsOverview200ResponseSourcesInner.java
@@ -7310,7 +7314,6 @@ src/main/java/dev/zernio/model/SendConversions200Response.java
 src/main/java/dev/zernio/model/SendConversions200ResponseFailuresInner.java
 src/main/java/dev/zernio/model/SendConversions200ResponseFailuresInnerCode.java
 src/main/java/dev/zernio/model/SendConversionsRequest.java
-src/main/java/dev/zernio/model/SendConversionsRequestConsent.java
 src/main/java/dev/zernio/model/SendDiscordDirectMessage200Response.java
 src/main/java/dev/zernio/model/SendDiscordDirectMessage200ResponseAccount.java
 src/main/java/dev/zernio/model/SendDiscordDirectMessage200ResponseRecipient.java
@@ -7326,7 +7329,6 @@ src/main/java/dev/zernio/model/SendEvents200ResponseDestinationsInner.java
 src/main/java/dev/zernio/model/SendEvents200ResponseDestinationsInnerFailuresInner.java
 src/main/java/dev/zernio/model/SendEvents202Response.java
 src/main/java/dev/zernio/model/SendEventsRequest.java
-src/main/java/dev/zernio/model/SendEventsRequestConsent.java
 src/main/java/dev/zernio/model/SendEventsRequestDestinationsInner.java
 src/main/java/dev/zernio/model/SendGohighlevelPastWonDeals200Response.java
 src/main/java/dev/zernio/model/SendInboxMessage200Response.java
@@ -8315,8 +8317,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ConversionAuditMonitorAnswerTest.java
-src/test/java/dev/zernio/model/ConversionAuditMonitorScoreHistoryInnerTest.java
-src/test/java/dev/zernio/model/ConversionAuditMonitorTest.java
-src/test/java/dev/zernio/model/CreateConversionAuditMonitorRequestTest.java
-src/test/java/dev/zernio/model/ListConversionAuditMonitors200ResponseTest.java
+src/test/java/dev/zernio/model/ConsentDropTest.java
+src/test/java/dev/zernio/model/EventConsentTest.java
+src/test/java/dev/zernio/model/GetEventsOverview200ResponsePlatformsInnerDroppedTodayTest.java

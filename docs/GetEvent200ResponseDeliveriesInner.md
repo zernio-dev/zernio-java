@@ -10,7 +10,7 @@
 |**accountId** | **String** |  |  [optional] |
 |**destinationId** | **String** |  |  [optional] |
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
-|**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
+|**status** | [**StatusEnum**](#StatusEnum) | &#x60;dropped&#x60;: not sent because the visitor did not consent; &#x60;errorCode&#x60; says why (&#x60;consent_denied&#x60; or &#x60;consent_missing&#x60;). |  [optional] |
 |**attempt** | **Integer** | Send attempt (1 &#x3D; the first). |  [optional] |
 |**error** | **String** |  |  [optional] |
 |**errorCode** | **String** |  |  [optional] |
@@ -39,6 +39,7 @@
 | SENT | &quot;sent&quot; |
 | RETRYING | &quot;retrying&quot; |
 | FAILED | &quot;failed&quot; |
+| DROPPED | &quot;dropped&quot; |
 
 
 

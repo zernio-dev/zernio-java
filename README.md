@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.737.0
+- API version: 1.738.0
 
-- Build date: 2026-11-22T01:46:22.181210961Z[Etc/UTC]
+- Build date: 2026-11-22T02:48:42.179027724Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.737.0</version>
+  <version>1.738.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.737.0"
+compile "dev.zernio:zernio-sdk:1.738.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.737.0.jar`
+- `target/zernio-sdk-1.738.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3548,6 +3548,7 @@ Class | Method | HTTP request | Description
  - [ConnectedApp](docs/ConnectedApp.md)
  - [ConnectedMessagingAccount](docs/ConnectedMessagingAccount.md)
  - [ConnectedStore](docs/ConnectedStore.md)
+ - [ConsentDrop](docs/ConsentDrop.md)
  - [ContentRetentionResponse](docs/ContentRetentionResponse.md)
  - [ConversationAdAttribution](docs/ConversationAdAttribution.md)
  - [ConversionAction](docs/ConversionAction.md)
@@ -4171,6 +4172,7 @@ Class | Method | HTTP request | Description
  - [EventAutomationCheck](docs/EventAutomationCheck.md)
  - [EventAutomationCheckSubject](docs/EventAutomationCheckSubject.md)
  - [EventAutomationDefinition](docs/EventAutomationDefinition.md)
+ - [EventConsent](docs/EventConsent.md)
  - [EventCorrection](docs/EventCorrection.md)
  - [EventDestination](docs/EventDestination.md)
  - [Expired](docs/Expired.md)
@@ -4420,6 +4422,7 @@ Class | Method | HTTP request | Description
  - [GetEventsOverview200Response](docs/GetEventsOverview200Response.md)
  - [GetEventsOverview200ResponseEventNamesInner](docs/GetEventsOverview200ResponseEventNamesInner.md)
  - [GetEventsOverview200ResponsePlatformsInner](docs/GetEventsOverview200ResponsePlatformsInner.md)
+ - [GetEventsOverview200ResponsePlatformsInnerDroppedToday](docs/GetEventsOverview200ResponsePlatformsInnerDroppedToday.md)
  - [GetEventsOverview200ResponseSitesInner](docs/GetEventsOverview200ResponseSitesInner.md)
  - [GetEventsOverview200ResponseSitesInnerTotals](docs/GetEventsOverview200ResponseSitesInnerTotals.md)
  - [GetEventsOverview200ResponseSourcesInner](docs/GetEventsOverview200ResponseSourcesInner.md)
@@ -5918,7 +5921,6 @@ Class | Method | HTTP request | Description
  - [SendConversions200ResponseFailuresInner](docs/SendConversions200ResponseFailuresInner.md)
  - [SendConversions200ResponseFailuresInnerCode](docs/SendConversions200ResponseFailuresInnerCode.md)
  - [SendConversionsRequest](docs/SendConversionsRequest.md)
- - [SendConversionsRequestConsent](docs/SendConversionsRequestConsent.md)
  - [SendDiscordDirectMessage200Response](docs/SendDiscordDirectMessage200Response.md)
  - [SendDiscordDirectMessage200ResponseAccount](docs/SendDiscordDirectMessage200ResponseAccount.md)
  - [SendDiscordDirectMessage200ResponseRecipient](docs/SendDiscordDirectMessage200ResponseRecipient.md)
@@ -5934,7 +5936,6 @@ Class | Method | HTTP request | Description
  - [SendEvents200ResponseDestinationsInnerFailuresInner](docs/SendEvents200ResponseDestinationsInnerFailuresInner.md)
  - [SendEvents202Response](docs/SendEvents202Response.md)
  - [SendEventsRequest](docs/SendEventsRequest.md)
- - [SendEventsRequestConsent](docs/SendEventsRequestConsent.md)
  - [SendEventsRequestDestinationsInner](docs/SendEventsRequestDestinationsInner.md)
  - [SendGohighlevelPastWonDeals200Response](docs/SendGohighlevelPastWonDeals200Response.md)
  - [SendInboxMessage200Response](docs/SendInboxMessage200Response.md)
