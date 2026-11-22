@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   GetAd200ResponseDarkPost.JSON_PROPERTY_FIRST_SEEN_AT,
   GetAd200ResponseDarkPost.JSON_PROPERTY_LAST_ACTIVITY_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:30:14.674918240Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:36:02.777569427Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAd200ResponseDarkPost {
   /**
    * Gets or Sets platform

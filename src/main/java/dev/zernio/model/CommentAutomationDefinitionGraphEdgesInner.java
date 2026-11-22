@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   CommentAutomationDefinitionGraphEdgesInner.JSON_PROPERTY_TARGET,
   CommentAutomationDefinitionGraphEdgesInner.JSON_PROPERTY_SOURCE_HANDLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:30:14.674918240Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:36:02.777569427Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationDefinitionGraphEdgesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

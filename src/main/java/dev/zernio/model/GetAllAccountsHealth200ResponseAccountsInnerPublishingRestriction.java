@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction.JSON_PROPERTY_LAST_FAILED_AT,
   GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction.JSON_PROPERTY_BLOCKS_PUBLISH_NOW
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:30:14.674918240Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:36:02.777569427Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction {
   /**
    * Gets or Sets reason

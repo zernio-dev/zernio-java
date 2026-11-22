@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ConversionAuditReportConsent.JSON_PROPERTY_DEFAULTS_TO_DENIED,
   ConversionAuditReportConsent.JSON_PROPERTY_EVIDENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:30:14.674918240Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T19:36:02.777569427Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionAuditReportConsent {
   public static final String JSON_PROPERTY_CMP = "cmp";
   @javax.annotation.Nullable
