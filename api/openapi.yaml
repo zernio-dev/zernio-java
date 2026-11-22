@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.745.0
+  version: 1.746.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15354,6 +15354,10 @@ paths:
           - whopads
           - applovinads
           - snapchatads
+          - klaviyo
+          - attentive
+          - impact
+          - awin
           - hubspot
           - webflow
           - googleanalytics
@@ -23418,6 +23422,184 @@ paths:
           description: "Snapchat could not confirm the token right now, so nothing\
             \ was saved (code platform_api_error). Retry in a minute."
       summary: Connect a Snapchat Ads pixel
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/klaviyo/credentials:
+    post:
+      description: |
+        Connect Klaviyo with a private API key (Settings, API keys) that has the Events (write) and Accounts (read) scopes.
+
+        Zernio reads the key's account once to check it, then sends the events you forward to it (`POST /v1/events`, forwarding rules) to Klaviyo's Events API. Connecting the same account again replaces its key.
+
+        Requires the Ads add-on.
+      operationId: connectKlaviyoCredentials
+      requestBody:
+        content:
+          application/json:
+            example:
+              apiKey: pk_0123456789abcdef
+              profileId: 6507a1b2c3d4e5f6a7b8c9d0
+            schema:
+              $ref: "#/components/schemas/connectKlaviyoCredentials_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/connectKlaviyoCredentials_200_response"
+          description: Klaviyo account connected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: "Unauthorized, or Klaviyo did not accept the key (code invalid_credentials)."
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: Ads add-on required.
+        "502":
+          description: "Klaviyo could not confirm the key right now, so nothing was\
+            \ saved (code platform_api_error). Retry in a minute."
+      summary: Connect a Klaviyo account
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/attentive/credentials:
+    post:
+      description: |
+        Connect Attentive with the API key of a custom app (Integrations, Custom apps) that can write Custom Events and eCommerce events.
+
+        Zernio reads the key's company from Attentive once to check it, then sends the events you forward to it to Attentive. Connecting the same company again replaces its key.
+
+        Requires the Ads add-on.
+      operationId: connectAttentiveCredentials
+      requestBody:
+        content:
+          application/json:
+            example:
+              apiKey: attentive-api-key
+              profileId: 6507a1b2c3d4e5f6a7b8c9d0
+            schema:
+              $ref: "#/components/schemas/connectAttentiveCredentials_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/connectAttentiveCredentials_200_response"
+          description: Attentive company connected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: "Unauthorized, or Attentive did not accept the key (code invalid_credentials)."
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: Ads add-on required.
+        "502":
+          description: "Attentive could not confirm the key right now, so nothing\
+            \ was saved (code platform_api_error). Retry in a minute."
+      summary: Connect an Attentive company
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/impact/credentials:
+    post:
+      description: |
+        Connect impact.com with an access token (Settings, API) that can read Campaigns and write Conversions, the program the conversions count in and the event type they count as.
+
+        Zernio lists the account's programs once to check the token, then sends the conversions you forward to it to `<programId>:<eventTypeId>`. Another event type of the same account is another forwarding rule with that `destinationId`.
+
+        Requires the Ads add-on.
+      operationId: connectImpactCredentials
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountSid: IRaBcD1234567890
+              authToken: impact-auth-token
+              programId: "12345"
+              eventTypeId: "67890"
+              profileId: 6507a1b2c3d4e5f6a7b8c9d0
+            schema:
+              $ref: "#/components/schemas/connectImpactCredentials_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/connectImpactCredentials_200_response"
+          description: Impact program connected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: "Unauthorized, or Impact did not accept the Account SID and\
+            \ Auth Token (code invalid_credentials)."
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: Ads add-on required.
+        "502":
+          description: "Impact could not confirm the credentials right now, so nothing\
+            \ was saved (code platform_api_error). Retry in a minute."
+      summary: Connect an Impact program
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/awin/credentials:
+    post:
+      description: |
+        Connect Awin with your advertiser id and an API key (Settings, User settings, API credentials).
+
+        Zernio checks the key with one test order (`isTest`, not tracked by Awin) before saving it. Events sent with `testCode` reach Awin the same way.
+
+        Requires the Ads add-on.
+      operationId: connectAwinCredentials
+      requestBody:
+        content:
+          application/json:
+            example:
+              apiKey: awin-api-key
+              advertiserId: "1001"
+              profileId: 6507a1b2c3d4e5f6a7b8c9d0
+            schema:
+              $ref: "#/components/schemas/connectAwinCredentials_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/connectAwinCredentials_200_response"
+          description: Awin advertiser connected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: "Unauthorized, or Awin did not accept the key for this advertiser\
+            \ (code invalid_credentials)."
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: Ads add-on required.
+        "502":
+          description: "Awin could not confirm the key right now, so nothing was saved\
+            \ (code platform_api_error). Retry in a minute."
+      summary: Connect an Awin advertiser
       tags:
       - Connect
       x-resource-group: accounts
@@ -76564,6 +76746,10 @@ paths:
         - Microsoft Advertising (`microsoftads`) via offline conversion uploads (`ApplyOfflineConversions`) or the UET Conversions API (`POST https://capi.uet.microsoft.com/v1/{tagId}/events`)
         - X Ads (`xads`) via the X Conversion API (`POST /12/measurement/conversions/{pixelId}`)
         - Snapchat (`snapchatads`) via the Snapchat Conversions API (`POST https://tr.snapchat.com/v3/{pixelId}/events`)
+        - Klaviyo (`klaviyo`) via the Events API (`POST https://a.klaviyo.com/api/events`)
+        - Attentive (`attentive`) via the eCommerce and Custom Events APIs
+        - Impact (`impact`) via the Conversions API (`POST /Advertisers/{AccountSID}/Conversions`)
+        - Awin (`awin`) via the Conversion API (`POST /s2s/advertiser/{advertiserId}/orders`)
 
         ### `destinationId` per platform
 
@@ -76579,6 +76765,12 @@ paths:
         - Microsoft has no test mode: with `testCode`, UET events are sent with ad storage denied, which Microsoft excludes from conversion attribution and retargeting.
         - X Ads: X Pixel event id, e.g. `tw-rbhhj-rcfms`. Each event needs `clickIds.twclid`, an `email`, a `phone`, or `ipAddress` plus `userAgent`; the event decides the type and `eventId` is sent as `conversion_id`.
         - Snapchat: the connection's Snap Pixel ID, e.g. `1a2b3c4d-5e6f-4a8b-9c0d-1e2f3a4b5c6d`. Each event needs an `email`, a `phone`, or `ipAddress` plus `userAgent`; website events also need `sourceUrl`. With `testCode`, events go to Snap's validate endpoint and are not recorded.
+        - Klaviyo: the connection's Klaviyo account id. Each event needs an unhashed `email`, a `phone` with its country code, or an `externalId`; `eventId` is the `unique_id`. Klaviyo has no test mode, so a `testCode` is refused.
+        - Klaviyo metrics: `Purchase` is `Placed Order`, `InitiateCheckout` `Started Checkout`, `ViewContent` `Viewed Product`, `AddToCart` `Added to Cart`; any other name is a metric of that name.
+        - Attentive: the connection's Attentive company id. `Purchase`, `AddToCart` and `ViewContent` with priced `items` go to the eCommerce endpoints; every other event goes out as a custom event named `eventName`. Each event needs an unhashed `email`, a `phone` with its country code, or an `externalId`. A `testCode` is refused.
+        - Impact: `<program id>:<event type id>`, e.g. `12345:67890`. Each event needs `clickIds.irclickid`, an `externalId` (sent as `CustomerId`) or `platformData.promo_code`; the email is sent SHA-256 hashed. Priced `items` are sent as item lines, otherwise `value` as the order subtotal. A `testCode` is refused: credit a test partner instead.
+        - Awin: the connection's advertiser id. Each event needs `clickIds.awc` (or `platformData.voucher`), `value` and `currency`; `value` is the order amount on the `DEFAULT` commission group (`platformData.commission_group` overrides it). With `testCode`, orders are sent with `isTest` and not tracked.
+        - Impact and Awin refuse browsing and funnel steps (`ViewContent`, `AddToCart`, `InitiateCheckout` and the like): they pay a partner for every conversion they get.
 
         Callers can list valid destinations via `GET /v1/ads/conversions/destinations`.
 
@@ -77572,6 +77764,10 @@ paths:
       - openai
       - applovinads
       - snapchatads
+      - klaviyo
+      - attentive
+      - impact
+      - awin
       - googleanalytics
       - stripe
       - hubspot
@@ -77673,6 +77869,10 @@ paths:
       - openai
       - applovinads
       - snapchatads
+      - klaviyo
+      - attentive
+      - impact
+      - awin
       - googleanalytics
       - gohighlevel
       x-content-type: application/json
@@ -78380,6 +78580,10 @@ paths:
       - openai
       - applovinads
       - snapchatads
+      - klaviyo
+      - attentive
+      - impact
+      - awin
       - googleanalytics
       - hubspot
       - salesforce
@@ -78654,6 +78858,10 @@ paths:
         `proxyPath` serves the tag from a path of the site itself, such as `brand.com/zt`, through a proxy on your server. The response's `proxy.secret` signs what the proxy forwards. `null` removes it.
 
         `googleTagIds` lists the site's own Google tags that the same proxy relays to Google's tag gateway. Load each from its `proxy.googleTags[].src` instead of googletagmanager.com. `null` or an empty list removes them.
+
+        `pixels` lists the ad pixels the tag loads for you. In the EEA, UK and Switzerland none loads until the visitor accepts on the site's consent banner. Elsewhere `consentMode` decides. Remove your own copy of each pixel, or it fires twice. `null` or an empty list removes them.
+
+        `consentModeBridge` writes the banner's answer into Google Consent Mode v2. The tag reads OneTrust, Cookiebot, Usercentrics, Didomi, Shopify's privacy banner and any IAB TCF v2 banner.
       operationId: updateTrackingSite
       parameters:
       - explode: false
@@ -112381,6 +112589,7 @@ components:
           id: id
         id: id
         trackingSite:
+          consentModeBridge: true
           googleTagIds:
           - googleTagIds
           - googleTagIds
@@ -112407,6 +112616,11 @@ components:
             status: verified
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
+          pixels:
+          - id: id
+            platform: meta
+          - id: id
+            platform: meta
           checks:
           - checkedAt: 2000-01-23T04:56:07.000+00:00
             detail: detail
@@ -125033,6 +125247,10 @@ components:
           - whopads
           - applovinads
           - snapchatads
+          - klaviyo
+          - attentive
+          - impact
+          - awin
           - google
           - microsoft
           - imap
@@ -144120,8 +144338,37 @@ components:
       - opt_in
       - opt_out
       type: string
+    TrackingSitePixel:
+      additionalProperties: false
+      example:
+        id: id
+        platform: meta
+      properties:
+        platform:
+          enum:
+          - meta
+          - google
+          - tiktok
+          - linkedin
+          - pinterest
+          - snapchat
+          - reddit
+          - x
+          - microsoft
+          type: string
+        id:
+          description: "The id the platform's own snippet loads, such as a Meta pixel\
+            \ id, `AW-123456789` or `G-XXXXXXXXXX` for Google, a TikTok pixel code,\
+            \ a LinkedIn partner id or a Microsoft UET tag id."
+          maxLength: 64
+          minLength: 1
+          type: string
+      required:
+      - id
+      - platform
     TrackingSite:
       example:
+        consentModeBridge: true
         googleTagIds:
         - googleTagIds
         - googleTagIds
@@ -144148,6 +144395,11 @@ components:
           status: verified
         createdAt: 2000-01-23T04:56:07.000+00:00
         siteKey: siteKey
+        pixels:
+        - id: id
+          platform: meta
+        - id: id
+          platform: meta
         checks:
         - checkedAt: 2000-01-23T04:56:07.000+00:00
           detail: detail
@@ -144208,6 +144460,18 @@ components:
           type: array
         consentMode:
           $ref: "#/components/schemas/TrackingSiteConsentMode"
+        pixels:
+          description: "The ad pixels the tag loads itself. In the EEA, UK and Switzerland\
+            \ none loads before the visitor accepts on the site's consent banner;\
+            \ elsewhere `consentMode` decides."
+          items:
+            $ref: "#/components/schemas/TrackingSitePixel"
+          type: array
+        consentModeBridge:
+          description: "The tag writes the answer on the site's consent banner into\
+            \ Google Consent Mode v2: denied by default in the EEA, UK and Switzerland,\
+            \ then updated. On for sites created from November 2026."
+          type: boolean
         checks:
           description: "One per setup step: `script` for the install, then one per\
             \ ad account the site sends to, keyed by its platform and ids."
@@ -162492,6 +162756,174 @@ components:
         accountId:
           type: string
         pixelId:
+          type: string
+        accountName:
+          type: string
+        redirectUrl:
+          type: string
+    connectKlaviyoCredentials_request:
+      properties:
+        apiKey:
+          description: "Klaviyo private API key, starting with pk_."
+          type: string
+        name:
+          description: Optional display name for the account.
+          maxLength: 100
+          type: string
+        profileId:
+          description: Your Zernio profile ID
+          type: string
+        state:
+          description: Optional state passthrough for the connect flow.
+          type: string
+        redirect_url:
+          description: "Optional URL to redirect to after a successful connection,\
+            \ echoed back as redirectUrl."
+          type: string
+      required:
+      - apiKey
+      - profileId
+    connectKlaviyoCredentials_200_response:
+      example:
+        accountId: accountId
+        redirectUrl: redirectUrl
+        accountName: accountName
+        testAccount: true
+        klaviyoAccountId: klaviyoAccountId
+      properties:
+        accountId:
+          type: string
+        klaviyoAccountId:
+          type: string
+        testAccount:
+          type: boolean
+        accountName:
+          type: string
+        redirectUrl:
+          type: string
+    connectAttentiveCredentials_request:
+      properties:
+        apiKey:
+          description: API key of an Attentive custom app.
+          type: string
+        name:
+          description: Optional display name for the account.
+          maxLength: 100
+          type: string
+        profileId:
+          description: Your Zernio profile ID
+          type: string
+        state:
+          description: Optional state passthrough for the connect flow.
+          type: string
+        redirect_url:
+          description: "Optional URL to redirect to after a successful connection,\
+            \ echoed back as redirectUrl."
+          type: string
+      required:
+      - apiKey
+      - profileId
+    connectAttentiveCredentials_200_response:
+      example:
+        accountId: accountId
+        companyId: companyId
+        redirectUrl: redirectUrl
+        accountName: accountName
+      properties:
+        accountId:
+          type: string
+        companyId:
+          type: string
+        accountName:
+          type: string
+        redirectUrl:
+          type: string
+    connectImpactCredentials_request:
+      properties:
+        accountSid:
+          description: "Account SID, starting with IR."
+          type: string
+        authToken:
+          description: Auth Token of the same access token.
+          type: string
+        programId:
+          description: Numeric program (campaign) id.
+          type: string
+        eventTypeId:
+          description: "Numeric event type id (ActionTrackerId), from Settings, Event\
+            \ Types."
+          type: string
+        name:
+          description: Optional display name for the account.
+          maxLength: 100
+          type: string
+        profileId:
+          description: Your Zernio profile ID
+          type: string
+        state:
+          description: Optional state passthrough for the connect flow.
+          type: string
+        redirect_url:
+          description: "Optional URL to redirect to after a successful connection,\
+            \ echoed back as redirectUrl."
+          type: string
+      required:
+      - accountSid
+      - authToken
+      - eventTypeId
+      - profileId
+      - programId
+    connectImpactCredentials_200_response:
+      example:
+        accountId: accountId
+        redirectUrl: redirectUrl
+        accountName: accountName
+        destinationId: destinationId
+      properties:
+        accountId:
+          type: string
+        destinationId:
+          type: string
+        accountName:
+          type: string
+        redirectUrl:
+          type: string
+    connectAwinCredentials_request:
+      properties:
+        apiKey:
+          description: Awin API key.
+          type: string
+        advertiserId:
+          description: Numeric Awin advertiser id.
+          type: string
+        name:
+          description: Optional display name for the account.
+          maxLength: 100
+          type: string
+        profileId:
+          description: Your Zernio profile ID
+          type: string
+        state:
+          description: Optional state passthrough for the connect flow.
+          type: string
+        redirect_url:
+          description: "Optional URL to redirect to after a successful connection,\
+            \ echoed back as redirectUrl."
+          type: string
+      required:
+      - advertiserId
+      - apiKey
+      - profileId
+    connectAwinCredentials_200_response:
+      example:
+        accountId: accountId
+        redirectUrl: redirectUrl
+        accountName: accountName
+        advertiserId: advertiserId
+      properties:
+        accountId:
+          type: string
+        advertiserId:
           type: string
         accountName:
           type: string
@@ -223517,7 +223949,8 @@ components:
         pagination:
           nextCursor: nextCursor
         sites:
-        - googleTagIds:
+        - consentModeBridge: true
+          googleTagIds:
           - googleTagIds
           - googleTagIds
           customHostname:
@@ -223543,6 +223976,11 @@ components:
             status: verified
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
+          pixels:
+          - id: id
+            platform: meta
+          - id: id
+            platform: meta
           checks:
           - checkedAt: 2000-01-23T04:56:07.000+00:00
             detail: detail
@@ -223564,7 +224002,8 @@ components:
           id: id
           status: active
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        - googleTagIds:
+        - consentModeBridge: true
+          googleTagIds:
           - googleTagIds
           - googleTagIds
           customHostname:
@@ -223590,6 +224029,11 @@ components:
             status: verified
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
+          pixels:
+          - id: id
+            platform: meta
+          - id: id
+            platform: meta
           checks:
           - checkedAt: 2000-01-23T04:56:07.000+00:00
             detail: detail
@@ -223657,6 +224101,7 @@ components:
     createTrackingSite_201_response:
       example:
         site:
+          consentModeBridge: true
           googleTagIds:
           - googleTagIds
           - googleTagIds
@@ -223683,6 +224128,11 @@ components:
             status: verified
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
+          pixels:
+          - id: id
+            platform: meta
+          - id: id
+            platform: meta
           checks:
           - checkedAt: 2000-01-23T04:56:07.000+00:00
             detail: detail
@@ -223715,6 +224165,19 @@ components:
           maxLength: 200
           minLength: 1
           type: string
+        pixels:
+          description: "The ad pixels the tag loads once consent allows, up to 20,\
+            \ one Microsoft UET tag at most. `null` or `[]` removes them."
+          items:
+            $ref: "#/components/schemas/TrackingSitePixel"
+          maxItems: 20
+          nullable: true
+          type: array
+        consentModeBridge:
+          description: "Write the site's consent banner into Google Consent Mode v2:\
+            \ a denied default in the EEA, UK and Switzerland where the page sets\
+            \ none, then each update."
+          type: boolean
         domains:
           description: "Hosts allowed to send events, such as `brand.com`. Events\
             \ from any other origin are dropped."
@@ -256326,6 +256789,14 @@ components:
         scid:
           description: "Snap Pixel browser id (the `_scid` cookie). Sent to Snapchat\
             \ as `sc_cookie1`, not hashed."
+          type: string
+        irclickid:
+          description: Impact partner click id (the `irclickid` URL param Impact adds
+            to partner links). Sent to Impact as `ClickId`.
+          type: string
+        awc:
+          description: Awin click id (the `awc` URL param Awin adds to publisher links).
+            Sent to Awin as the order's `awc`.
           type: string
     ConversionEvent_user:
       description: User identity fields. More signals mean higher match rates.

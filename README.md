@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.745.0
+- API version: 1.746.0
 
-- Build date: 2026-11-22T14:31:45.202870922Z[Etc/UTC]
+- Build date: 2026-11-22T14:45:50.631277166Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.745.0</version>
+  <version>1.746.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.745.0"
+compile "dev.zernio:zernio-sdk:1.746.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.745.0.jar`
+- `target/zernio-sdk-1.746.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1277,10 +1277,18 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectAdsWithHttpInfo**](docs/ConnectApi.md#connectAdsWithHttpInfo) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
 *ConnectApi* | [**connectAppLovinAdsCredentials**](docs/ConnectApi.md#connectAppLovinAdsCredentials) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin Axon account
 *ConnectApi* | [**connectAppLovinAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectAppLovinAdsCredentialsWithHttpInfo) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin Axon account
+*ConnectApi* | [**connectAttentiveCredentials**](docs/ConnectApi.md#connectAttentiveCredentials) | **POST** /v1/connect/attentive/credentials | Connect an Attentive company
+*ConnectApi* | [**connectAttentiveCredentialsWithHttpInfo**](docs/ConnectApi.md#connectAttentiveCredentialsWithHttpInfo) | **POST** /v1/connect/attentive/credentials | Connect an Attentive company
+*ConnectApi* | [**connectAwinCredentials**](docs/ConnectApi.md#connectAwinCredentials) | **POST** /v1/connect/awin/credentials | Connect an Awin advertiser
+*ConnectApi* | [**connectAwinCredentialsWithHttpInfo**](docs/ConnectApi.md#connectAwinCredentialsWithHttpInfo) | **POST** /v1/connect/awin/credentials | Connect an Awin advertiser
 *ConnectApi* | [**connectBlueskyCredentials**](docs/ConnectApi.md#connectBlueskyCredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**connectBlueskyCredentialsWithHttpInfo**](docs/ConnectApi.md#connectBlueskyCredentialsWithHttpInfo) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**connectDiscordChannel**](docs/ConnectApi.md#connectDiscordChannel) | **POST** /v1/connect/discord | Connect a Discord channel
 *ConnectApi* | [**connectDiscordChannelWithHttpInfo**](docs/ConnectApi.md#connectDiscordChannelWithHttpInfo) | **POST** /v1/connect/discord | Connect a Discord channel
+*ConnectApi* | [**connectImpactCredentials**](docs/ConnectApi.md#connectImpactCredentials) | **POST** /v1/connect/impact/credentials | Connect an Impact program
+*ConnectApi* | [**connectImpactCredentialsWithHttpInfo**](docs/ConnectApi.md#connectImpactCredentialsWithHttpInfo) | **POST** /v1/connect/impact/credentials | Connect an Impact program
+*ConnectApi* | [**connectKlaviyoCredentials**](docs/ConnectApi.md#connectKlaviyoCredentials) | **POST** /v1/connect/klaviyo/credentials | Connect a Klaviyo account
+*ConnectApi* | [**connectKlaviyoCredentialsWithHttpInfo**](docs/ConnectApi.md#connectKlaviyoCredentialsWithHttpInfo) | **POST** /v1/connect/klaviyo/credentials | Connect a Klaviyo account
 *ConnectApi* | [**connectLineCredentials**](docs/ConnectApi.md#connectLineCredentials) | **POST** /v1/connect/line/credentials | Connect LINE Official Account
 *ConnectApi* | [**connectLineCredentialsWithHttpInfo**](docs/ConnectApi.md#connectLineCredentialsWithHttpInfo) | **POST** /v1/connect/line/credentials | Connect LINE Official Account
 *ConnectApi* | [**connectOpenAIAdsCredentials**](docs/ConnectApi.md#connectOpenAIAdsCredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account
@@ -3528,6 +3536,10 @@ Class | Method | HTTP request | Description
  - [ConnectAds200ResponseOneOf1](docs/ConnectAds200ResponseOneOf1.md)
  - [ConnectAppLovinAdsCredentials200Response](docs/ConnectAppLovinAdsCredentials200Response.md)
  - [ConnectAppLovinAdsCredentialsRequest](docs/ConnectAppLovinAdsCredentialsRequest.md)
+ - [ConnectAttentiveCredentials200Response](docs/ConnectAttentiveCredentials200Response.md)
+ - [ConnectAttentiveCredentialsRequest](docs/ConnectAttentiveCredentialsRequest.md)
+ - [ConnectAwinCredentials200Response](docs/ConnectAwinCredentials200Response.md)
+ - [ConnectAwinCredentialsRequest](docs/ConnectAwinCredentialsRequest.md)
  - [ConnectBlueskyCredentials200Response](docs/ConnectBlueskyCredentials200Response.md)
  - [ConnectBlueskyCredentialsRequest](docs/ConnectBlueskyCredentialsRequest.md)
  - [ConnectDiscordChannelRequest](docs/ConnectDiscordChannelRequest.md)
@@ -3535,6 +3547,10 @@ Class | Method | HTTP request | Description
  - [ConnectHandoffAccountsInner](docs/ConnectHandoffAccountsInner.md)
  - [ConnectHandoffError](docs/ConnectHandoffError.md)
  - [ConnectHandoffLink](docs/ConnectHandoffLink.md)
+ - [ConnectImpactCredentials200Response](docs/ConnectImpactCredentials200Response.md)
+ - [ConnectImpactCredentialsRequest](docs/ConnectImpactCredentialsRequest.md)
+ - [ConnectKlaviyoCredentials200Response](docs/ConnectKlaviyoCredentials200Response.md)
+ - [ConnectKlaviyoCredentialsRequest](docs/ConnectKlaviyoCredentialsRequest.md)
  - [ConnectLineCredentials200Response](docs/ConnectLineCredentials200Response.md)
  - [ConnectLineCredentials200ResponseWebhook](docs/ConnectLineCredentials200ResponseWebhook.md)
  - [ConnectLineCredentialsRequest](docs/ConnectLineCredentialsRequest.md)
@@ -6179,6 +6195,7 @@ Class | Method | HTTP request | Description
  - [TrackingSiteCustomHostnameDnsRecord](docs/TrackingSiteCustomHostnameDnsRecord.md)
  - [TrackingSiteInstall](docs/TrackingSiteInstall.md)
  - [TrackingSitePeriodTotals](docs/TrackingSitePeriodTotals.md)
+ - [TrackingSitePixel](docs/TrackingSitePixel.md)
  - [TrackingSiteProxy](docs/TrackingSiteProxy.md)
  - [TrackingSiteProxyGoogleTagsInner](docs/TrackingSiteProxyGoogleTagsInner.md)
  - [TrackingSiteSetup](docs/TrackingSiteSetup.md)

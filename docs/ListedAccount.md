@@ -69,6 +69,10 @@
 | WHOPADS | &quot;whopads&quot; |
 | APPLOVINADS | &quot;applovinads&quot; |
 | SNAPCHATADS | &quot;snapchatads&quot; |
+| KLAVIYO | &quot;klaviyo&quot; |
+| ATTENTIVE | &quot;attentive&quot; |
+| IMPACT | &quot;impact&quot; |
+| AWIN | &quot;awin&quot; |
 | GOOGLE | &quot;google&quot; |
 | MICROSOFT | &quot;microsoft&quot; |
 | IMAP | &quot;imap&quot; |
