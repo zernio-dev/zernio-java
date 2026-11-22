@@ -4,6 +4,7 @@
 
 ## oneOf schemas
 * [AutomationBoostStep](AutomationBoostStep.md)
+* [AutomationSequenceStep](AutomationSequenceStep.md)
 * [AutomationStep](AutomationStep.md)
 
 ## Example
@@ -11,6 +12,7 @@
 // Import classes:
 import dev.zernio.model.UpdateAutomationRequestStepsInner;
 import dev.zernio.model.AutomationBoostStep;
+import dev.zernio.model.AutomationSequenceStep;
 import dev.zernio.model.AutomationStep;
 
 public class Example {
@@ -23,6 +25,13 @@ public class Example {
         exampleUpdateAutomationRequestStepsInner.setActualInstance(exampleAutomationBoostStep);
         // to get back the AutomationBoostStep set earlier
         AutomationBoostStep testAutomationBoostStep = (AutomationBoostStep) exampleUpdateAutomationRequestStepsInner.getActualInstance();
+
+        // create a new AutomationSequenceStep
+        AutomationSequenceStep exampleAutomationSequenceStep = new AutomationSequenceStep();
+        // set UpdateAutomationRequestStepsInner to AutomationSequenceStep
+        exampleUpdateAutomationRequestStepsInner.setActualInstance(exampleAutomationSequenceStep);
+        // to get back the AutomationSequenceStep set earlier
+        AutomationSequenceStep testAutomationSequenceStep = (AutomationSequenceStep) exampleUpdateAutomationRequestStepsInner.getActualInstance();
 
         // create a new AutomationStep
         AutomationStep exampleAutomationStep = new AutomationStep();

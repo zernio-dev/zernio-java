@@ -701,7 +701,7 @@ ApiResponse<[**AutomationBacktest**](AutomationBacktest.md)>
 
 Create an automation
 
-Creates an automation. Its shape picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Sequence**: an &#x60;enrollment&#x60; trigger on one messaging account, with message steps sent over time. It is on unless &#x60;status&#x60; is &#x60;draft&#x60;. It needs what &#x60;/v1/sequences&#x60; needs: the inbox add-on and a key with the &#x60;messages&#x60; group. - **Comment to DM**: a comment door in &#x60;trigger.type&#x60;, such as &#x60;comment.keyword&#x60;, with a &#x60;graph&#x60; of the shapes &#x60;/v1/comment-automations&#x60; holds. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;, and needs what &#x60;/v1/comment-automations&#x60; needs. A post that already has an active automation is a 409.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
+Creates an automation. Its trigger picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Sequence**: an &#x60;enrollment&#x60; trigger on one messaging account, with message steps sent over time. It is on unless &#x60;status&#x60; is &#x60;draft&#x60;. It needs what &#x60;/v1/sequences&#x60; needs: the inbox add-on and a key with the &#x60;messages&#x60; group. - **Comment to DM**: a comment door in &#x60;trigger.type&#x60;, such as &#x60;comment.keyword&#x60;, with a &#x60;graph&#x60; of the shapes &#x60;/v1/comment-automations&#x60; holds. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;, and needs what &#x60;/v1/comment-automations&#x60; needs. A post that already has an active automation is a 409. - **Flow** (&#x60;kind&#x60; is &#x60;workflow&#x60;): a flow trigger such as &#x60;inbound_message&#x60; (or a &#x60;graph&#x60; whose trigger node names it) on one account, with the builder&#39;s &#x60;graph&#x60;. It is a draft unless &#x60;status&#x60; is &#x60;active&#x60;, which needs a complete graph; &#x60;paused&#x60; is refused. It needs the inbox add-on and a full-access key.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
 
 ### Example
 
@@ -778,7 +778,7 @@ public class Example {
 
 Create an automation
 
-Creates an automation. Its shape picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Sequence**: an &#x60;enrollment&#x60; trigger on one messaging account, with message steps sent over time. It is on unless &#x60;status&#x60; is &#x60;draft&#x60;. It needs what &#x60;/v1/sequences&#x60; needs: the inbox add-on and a key with the &#x60;messages&#x60; group. - **Comment to DM**: a comment door in &#x60;trigger.type&#x60;, such as &#x60;comment.keyword&#x60;, with a &#x60;graph&#x60; of the shapes &#x60;/v1/comment-automations&#x60; holds. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;, and needs what &#x60;/v1/comment-automations&#x60; needs. A post that already has an active automation is a 409.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
+Creates an automation. Its trigger picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Sequence**: an &#x60;enrollment&#x60; trigger on one messaging account, with message steps sent over time. It is on unless &#x60;status&#x60; is &#x60;draft&#x60;. It needs what &#x60;/v1/sequences&#x60; needs: the inbox add-on and a key with the &#x60;messages&#x60; group. - **Comment to DM**: a comment door in &#x60;trigger.type&#x60;, such as &#x60;comment.keyword&#x60;, with a &#x60;graph&#x60; of the shapes &#x60;/v1/comment-automations&#x60; holds. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;, and needs what &#x60;/v1/comment-automations&#x60; needs. A post that already has an active automation is a 409. - **Flow** (&#x60;kind&#x60; is &#x60;workflow&#x60;): a flow trigger such as &#x60;inbound_message&#x60; (or a &#x60;graph&#x60; whose trigger node names it) on one account, with the builder&#39;s &#x60;graph&#x60;. It is a draft unless &#x60;status&#x60; is &#x60;active&#x60;, which needs a complete graph; &#x60;paused&#x60; is refused. It needs the inbox add-on and a full-access key.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
 
 ### Example
 
@@ -3483,7 +3483,7 @@ ApiResponse<[**ListAutomationTemplates200Response**](ListAutomationTemplates200R
 
 List automations
 
-Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations, sequences, comment to DM and flows. One &#x60;cursor&#x60; pages them all.  Each kind is listed only for callers its own route lets read it; the others are left out, never an error:  - **Sequences, comment to DM and flows** need the inbox add-on and a key with the &#x60;messages&#x60; group, as &#x60;/v1/sequences&#x60;, &#x60;/v1/comment-automations&#x60; and &#x60;/v1/workflows&#x60; do. - **Ad rules, event and scheduled automations** need only access to their profile, as reading, pausing and deleting them does. Creating, editing, activating or previewing an ad rule needs the ads add-on. 
+Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations, sequences, comment to DM and flows. One &#x60;cursor&#x60; pages them all.  Each kind is listed only for callers its own route lets read it; the others are left out, never an error:  - **Sequences and comment to DM** need the inbox add-on and a key with the &#x60;messages&#x60; group, as &#x60;/v1/sequences&#x60; and &#x60;/v1/comment-automations&#x60; do. - **Flows** need the inbox add-on and a full-access key, as &#x60;/v1/workflows&#x60; does. - **Ad rules, event and scheduled automations** need only access to their profile, as reading, pausing and deleting them does. Creating, editing, activating or previewing an ad rule needs the ads add-on. 
 
 ### Example
 
@@ -3506,7 +3506,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Only automations on this account: the ads connection of an ad rule, or one of the `accountIds` of an event or scheduled automation.
+        String accountId = "accountId_example"; // String | Only automations on this account: the ads connection of an ad rule, one of the `accountIds` of an event or scheduled automation, or the account a sequence, comment to DM or flow runs on.
         String adAccountId = "adAccountId_example"; // String | Only ad rules checking this platform ad account.
         String kind = "ad_rule,event"; // String | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`, `comment`, `workflow`.
         Integer limit = 50; // Integer | 
@@ -3530,7 +3530,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Only automations on this account: the ads connection of an ad rule, or one of the &#x60;accountIds&#x60; of an event or scheduled automation. | [optional] |
+| **accountId** | **String**| Only automations on this account: the ads connection of an ad rule, one of the &#x60;accountIds&#x60; of an event or scheduled automation, or the account a sequence, comment to DM or flow runs on. | [optional] |
 | **adAccountId** | **String**| Only ad rules checking this platform ad account. | [optional] |
 | **kind** | **String**| Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;, &#x60;comment&#x60;, &#x60;workflow&#x60;. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
@@ -3563,7 +3563,7 @@ public class Example {
 
 List automations
 
-Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations, sequences, comment to DM and flows. One &#x60;cursor&#x60; pages them all.  Each kind is listed only for callers its own route lets read it; the others are left out, never an error:  - **Sequences, comment to DM and flows** need the inbox add-on and a key with the &#x60;messages&#x60; group, as &#x60;/v1/sequences&#x60;, &#x60;/v1/comment-automations&#x60; and &#x60;/v1/workflows&#x60; do. - **Ad rules, event and scheduled automations** need only access to their profile, as reading, pausing and deleting them does. Creating, editing, activating or previewing an ad rule needs the ads add-on. 
+Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations, sequences, comment to DM and flows. One &#x60;cursor&#x60; pages them all.  Each kind is listed only for callers its own route lets read it; the others are left out, never an error:  - **Sequences and comment to DM** need the inbox add-on and a key with the &#x60;messages&#x60; group, as &#x60;/v1/sequences&#x60; and &#x60;/v1/comment-automations&#x60; do. - **Flows** need the inbox add-on and a full-access key, as &#x60;/v1/workflows&#x60; does. - **Ad rules, event and scheduled automations** need only access to their profile, as reading, pausing and deleting them does. Creating, editing, activating or previewing an ad rule needs the ads add-on. 
 
 ### Example
 
@@ -3587,7 +3587,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Only automations on this account: the ads connection of an ad rule, or one of the `accountIds` of an event or scheduled automation.
+        String accountId = "accountId_example"; // String | Only automations on this account: the ads connection of an ad rule, one of the `accountIds` of an event or scheduled automation, or the account a sequence, comment to DM or flow runs on.
         String adAccountId = "adAccountId_example"; // String | Only ad rules checking this platform ad account.
         String kind = "ad_rule,event"; // String | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`, `comment`, `workflow`.
         Integer limit = 50; // Integer | 
@@ -3613,7 +3613,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Only automations on this account: the ads connection of an ad rule, or one of the &#x60;accountIds&#x60; of an event or scheduled automation. | [optional] |
+| **accountId** | **String**| Only automations on this account: the ads connection of an ad rule, one of the &#x60;accountIds&#x60; of an event or scheduled automation, or the account a sequence, comment to DM or flow runs on. | [optional] |
 | **adAccountId** | **String**| Only ad rules checking this platform ad account. | [optional] |
 | **kind** | **String**| Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;, &#x60;comment&#x60;, &#x60;workflow&#x60;. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |

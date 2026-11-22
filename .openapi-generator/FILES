@@ -314,6 +314,7 @@ docs/AutomationOneOf3.md
 docs/AutomationOneOf3AllOfEnrollments.md
 docs/AutomationOneOf4.md
 docs/AutomationOneOf4AllOfStats.md
+docs/AutomationOneOf5.md
 docs/AutomationPostSchedule.md
 docs/AutomationPostSubjects.md
 docs/AutomationPreview.md
@@ -1405,6 +1406,9 @@ docs/FileItem.md
 docs/FilePickerSession.md
 docs/FileShareLink.md
 docs/FilesApi.md
+docs/FlowAutomationDefinition.md
+docs/FlowAutomationDefinitionGraph.md
+docs/FlowAutomationDefinitionTrigger.md
 docs/FollowUser200Response.md
 docs/FollowUserRequest.md
 docs/FollowerStatsResponse.md
@@ -3525,7 +3529,6 @@ docs/UpdateAutoRechargeRequest.md
 docs/UpdateAutomationAdAccountControlsRequest.md
 docs/UpdateAutomationControlsRequest.md
 docs/UpdateAutomationRequest.md
-docs/UpdateAutomationRequestLimits.md
 docs/UpdateAutomationRequestStepsInner.md
 docs/UpdateAutomationRequestSubjects.md
 docs/UpdateAutomationTemplateRequest.md
@@ -4598,6 +4601,7 @@ src/main/java/dev/zernio/model/AutomationOneOf3.java
 src/main/java/dev/zernio/model/AutomationOneOf3AllOfEnrollments.java
 src/main/java/dev/zernio/model/AutomationOneOf4.java
 src/main/java/dev/zernio/model/AutomationOneOf4AllOfStats.java
+src/main/java/dev/zernio/model/AutomationOneOf5.java
 src/main/java/dev/zernio/model/AutomationPostSchedule.java
 src/main/java/dev/zernio/model/AutomationPostSubjects.java
 src/main/java/dev/zernio/model/AutomationPreview.java
@@ -5664,6 +5668,9 @@ src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptionsRequest.jav
 src/main/java/dev/zernio/model/FileItem.java
 src/main/java/dev/zernio/model/FilePickerSession.java
 src/main/java/dev/zernio/model/FileShareLink.java
+src/main/java/dev/zernio/model/FlowAutomationDefinition.java
+src/main/java/dev/zernio/model/FlowAutomationDefinitionGraph.java
+src/main/java/dev/zernio/model/FlowAutomationDefinitionTrigger.java
 src/main/java/dev/zernio/model/FollowUser200Response.java
 src/main/java/dev/zernio/model/FollowUserRequest.java
 src/main/java/dev/zernio/model/FollowerStatsResponse.java
@@ -7745,7 +7752,6 @@ src/main/java/dev/zernio/model/UpdateAutoRechargeRequest.java
 src/main/java/dev/zernio/model/UpdateAutomationAdAccountControlsRequest.java
 src/main/java/dev/zernio/model/UpdateAutomationControlsRequest.java
 src/main/java/dev/zernio/model/UpdateAutomationRequest.java
-src/main/java/dev/zernio/model/UpdateAutomationRequestLimits.java
 src/main/java/dev/zernio/model/UpdateAutomationRequestStepsInner.java
 src/main/java/dev/zernio/model/UpdateAutomationRequestSubjects.java
 src/main/java/dev/zernio/model/UpdateAutomationTemplateRequest.java
@@ -8395,3 +8401,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AutomationOneOf5Test.java
+src/test/java/dev/zernio/model/FlowAutomationDefinitionGraphTest.java
+src/test/java/dev/zernio/model/FlowAutomationDefinitionTest.java
+src/test/java/dev/zernio/model/FlowAutomationDefinitionTriggerTest.java

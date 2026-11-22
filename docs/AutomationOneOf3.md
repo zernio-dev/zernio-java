@@ -9,15 +9,15 @@
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** |  |  |
 |**description** | **String** |  |  [optional] |
-|**status** | [**StatusEnum**](#StatusEnum) | Only a sequence can be a draft. |  |
+|**status** | [**StatusEnum**](#StatusEnum) | Only a sequence or a flow can be a draft. |  |
 |**trigger** | [**SequenceAutomationDefinitionTrigger**](SequenceAutomationDefinitionTrigger.md) |  |  |
 |**steps** | [**List&lt;AutomationSequenceStep&gt;**](AutomationSequenceStep.md) | At least one step for an active sequence. Steps change only while it is a draft or paused. |  |
 |**limits** | [**SequenceAutomationDefinitionLimits**](SequenceAutomationDefinitionLimits.md) |  |  [optional] |
 |**id** | **String** |  |  |
 |**kind** | [**KindEnum**](#KindEnum) |  |  |
 |**version** | **String** | Send it back as &#x60;If-Match&#x60; when editing, so an edit made after someone else saved is refused. |  |
-|**lastCheckAt** | **OffsetDateTime** | Null until an ad rule first checks. Always null for event and scheduled automations; their checks list when they ran. |  |
-|**nextCheckAt** | **OffsetDateTime** | Null while paused. Always null for event, scheduled and sequence automations. |  |
+|**lastCheckAt** | **OffsetDateTime** | Null until an ad rule first checks. Always null for every other kind; the checks of event and scheduled automations list when they ran. |  |
+|**nextCheckAt** | **OffsetDateTime** | Null while paused. Always null for every kind but ad rules. |  |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**updatedAt** | **OffsetDateTime** |  |  |
 |**template** | [**AutomationRecordTemplate**](AutomationRecordTemplate.md) |  |  [optional] |

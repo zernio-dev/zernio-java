@@ -9,10 +9,10 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  |
 |**kind** | [**KindEnum**](#KindEnum) |  |  |
-|**status** | [**StatusEnum**](#StatusEnum) | Only a sequence can be a draft. |  |
+|**status** | [**StatusEnum**](#StatusEnum) | Only a sequence or a flow can be a draft. |  |
 |**version** | **String** | Send it back as &#x60;If-Match&#x60; when editing, so an edit made after someone else saved is refused. |  |
-|**lastCheckAt** | **OffsetDateTime** | Null until an ad rule first checks. Always null for event and scheduled automations; their checks list when they ran. |  |
-|**nextCheckAt** | **OffsetDateTime** | Null while paused. Always null for event, scheduled and sequence automations. |  |
+|**lastCheckAt** | **OffsetDateTime** | Null until an ad rule first checks. Always null for every other kind; the checks of event and scheduled automations list when they ran. |  |
+|**nextCheckAt** | **OffsetDateTime** | Null while paused. Always null for every kind but ad rules. |  |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**updatedAt** | **OffsetDateTime** |  |  |
 |**template** | [**AutomationRecordTemplate**](AutomationRecordTemplate.md) |  |  [optional] |
@@ -28,6 +28,7 @@
 | SCHEDULED | &quot;scheduled&quot; |
 | SEQUENCE | &quot;sequence&quot; |
 | COMMENT | &quot;comment&quot; |
+| WORKFLOW | &quot;workflow&quot; |
 
 
 

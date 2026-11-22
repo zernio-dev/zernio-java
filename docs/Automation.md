@@ -8,6 +8,7 @@
 * [AutomationOneOf2](AutomationOneOf2.md)
 * [AutomationOneOf3](AutomationOneOf3.md)
 * [AutomationOneOf4](AutomationOneOf4.md)
+* [AutomationOneOf5](AutomationOneOf5.md)
 
 ## Example
 ```java
@@ -18,6 +19,7 @@ import dev.zernio.model.AutomationOneOf1;
 import dev.zernio.model.AutomationOneOf2;
 import dev.zernio.model.AutomationOneOf3;
 import dev.zernio.model.AutomationOneOf4;
+import dev.zernio.model.AutomationOneOf5;
 
 public class Example {
     public static void main(String[] args) {
@@ -57,6 +59,13 @@ public class Example {
         exampleAutomation.setActualInstance(exampleAutomationOneOf4);
         // to get back the AutomationOneOf4 set earlier
         AutomationOneOf4 testAutomationOneOf4 = (AutomationOneOf4) exampleAutomation.getActualInstance();
+
+        // create a new AutomationOneOf5
+        AutomationOneOf5 exampleAutomationOneOf5 = new AutomationOneOf5();
+        // set Automation to AutomationOneOf5
+        exampleAutomation.setActualInstance(exampleAutomationOneOf5);
+        // to get back the AutomationOneOf5 set earlier
+        AutomationOneOf5 testAutomationOneOf5 = (AutomationOneOf5) exampleAutomation.getActualInstance();
     }
 }
 ```

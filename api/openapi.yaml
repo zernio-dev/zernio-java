@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.750.0
+  version: 1.754.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -55793,12 +55793,14 @@ paths:
 
         Each kind is listed only for callers its own route lets read it; the others are left out, never an error:
 
-        - **Sequences, comment to DM and flows** need the inbox add-on and a key with the `messages` group, as `/v1/sequences`, `/v1/comment-automations` and `/v1/workflows` do.
+        - **Sequences and comment to DM** need the inbox add-on and a key with the `messages` group, as `/v1/sequences` and `/v1/comment-automations` do.
+        - **Flows** need the inbox add-on and a full-access key, as `/v1/workflows` does.
         - **Ad rules, event and scheduled automations** need only access to their profile, as reading, pausing and deleting them does. Creating, editing, activating or previewing an ad rule needs the ads add-on.
       operationId: listAutomations
       parameters:
       - description: "Only automations on this account: the ads connection of an ad\
-          \ rule, or one of the `accountIds` of an event or scheduled automation."
+          \ rule, one of the `accountIds` of an event or scheduled automation, or\
+          \ the account a sequence, comment to DM or flow runs on."
         explode: true
         in: query
         name: accountId
@@ -55866,13 +55868,14 @@ paths:
       - application/json
     post:
       description: |
-        Creates an automation. Its shape picks the kind:
+        Creates an automation. Its trigger picks the kind:
 
         - **Ad rule**: a `schedule` over campaigns, ad sets, ads, Google keywords or Google search terms, with metric `conditions` and ad `steps`. It stays paused unless `status` is `active`; preview it first with `POST /v1/automations/preview`.
         - **Event**: a Zernio event in `trigger.type`, such as `post.failed`, with notify steps. It is on unless `status` is `paused`.
         - **Scheduled**: a `schedule` over a profile's posts, with notify steps and an optional boost. It is on unless `status` is `paused`.
         - **Sequence**: an `enrollment` trigger on one messaging account, with message steps sent over time. It is on unless `status` is `draft`. It needs what `/v1/sequences` needs: the inbox add-on and a key with the `messages` group.
         - **Comment to DM**: a comment door in `trigger.type`, such as `comment.keyword`, with a `graph` of the shapes `/v1/comment-automations` holds. It is on unless `status` is `paused`, and needs what `/v1/comment-automations` needs. A post that already has an active automation is a 409.
+        - **Flow** (`kind` is `workflow`): a flow trigger such as `inbound_message` (or a `graph` whose trigger node names it) on one account, with the builder's `graph`. It is a draft unless `status` is `active`, which needs a complete graph; `paused` is refused. It needs the inbox add-on and a full-access key.
 
         Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in `details.problems`.
       operationId: createAutomation
@@ -141439,21 +141442,50 @@ components:
       - left
       - op
       - right
+    FlowAutomationDefinition:
+      description: "A flow: the workflow builder's graph of steps on one messaging\
+        \ account, the same flow `/v1/workflows` serves (versions and activation rules\
+        \ included). Its `kind` is `workflow`. Unknown fields are refused."
+      properties:
+        name:
+          minLength: 1
+          type: string
+        description:
+          type: string
+        status:
+          description: "A new flow is `draft` (the default) or `active`, which needs\
+            \ a complete graph. An active or paused flow never goes back to draft,\
+            \ and only an active flow can be paused."
+          enum:
+          - draft
+          - active
+          - paused
+          type: string
+        trigger:
+          $ref: "#/components/schemas/FlowAutomationDefinition_trigger"
+        graph:
+          $ref: "#/components/schemas/FlowAutomationDefinition_graph"
+      required:
+      - graph
+      - name
+      - trigger
     AutomationDefinition:
       description: |
-        An automation of one of five kinds, told apart by its shape:
+        An automation of one of six kinds. The kind follows from `trigger.type`, each type belonging to one kind; a `schedule` is an ad rule unless `subjects.each` is `post`, and a flow may leave `trigger.type` out:
 
         - **Ad rule**: a `schedule` trigger over campaigns, ad sets, ads, Google keywords or Google search terms, with metric `conditions` and ad `steps`.
         - **Event**: a Zernio event in `trigger.type`, narrowed by `trigger.filter`, with notify steps, or none to only record each matching event as a check.
         - **Scheduled**: a `schedule` trigger over `subjects.each: post`, narrowed by `filter`, with notify and boost steps.
         - **Sequence**: an `enrollment` trigger on one account, with message steps sent over time.
         - **Comment to DM**: a comment door in `trigger.type` (`comment.keyword`, `comment.live`, `story.reply`, `story.mention`) with a `graph`.
+        - **Flow**: a workflow trigger (`inbound_message`, `api_call`, `comment` and the others) with the builder's `graph`; `trigger.type` may be left out, read from the graph's trigger node.
       oneOf:
       - $ref: "#/components/schemas/AdRuleAutomationDefinition"
       - $ref: "#/components/schemas/EventAutomationDefinition"
       - $ref: "#/components/schemas/ScheduledAutomationDefinition"
       - $ref: "#/components/schemas/SequenceAutomationDefinition"
       - $ref: "#/components/schemas/CommentAutomationDefinition"
+      - $ref: "#/components/schemas/FlowAutomationDefinition"
     AutomationRecord:
       properties:
         id:
@@ -141465,9 +141497,10 @@ components:
           - scheduled
           - sequence
           - comment
+          - workflow
           type: string
         status:
-          description: Only a sequence can be a draft.
+          description: Only a sequence or a flow can be a draft.
           enum:
           - draft
           - active
@@ -141478,14 +141511,13 @@ components:
             \ someone else saved is refused."
           type: string
         lastCheckAt:
-          description: Null until an ad rule first checks. Always null for event and
-            scheduled automations; their checks list when they ran.
+          description: Null until an ad rule first checks. Always null for every other
+            kind; the checks of event and scheduled automations list when they ran.
           format: date-time
           nullable: true
           type: string
         nextCheckAt:
-          description: "Null while paused. Always null for event, scheduled and sequence\
-            \ automations."
+          description: Null while paused. Always null for every kind but ad rules.
           format: date-time
           nullable: true
           type: string
@@ -141513,6 +141545,7 @@ components:
       - $ref: "#/components/schemas/Automation_oneOf_2"
       - $ref: "#/components/schemas/Automation_oneOf_3"
       - $ref: "#/components/schemas/Automation_oneOf_4"
+      - $ref: "#/components/schemas/Automation_oneOf_5"
     AutomationProblems:
       description: "Every problem with the automation, each at a JSON path such as\
         \ `steps[0].by`. The first one also fills `error` and `param`."
@@ -195818,6 +195851,9 @@ components:
         steps:
         - steps
         - steps
+        platforms:
+        - platforms
+        - platforms
         times: "{}"
         filterOperators:
         - filterOperators
@@ -195838,10 +195874,12 @@ components:
           - scheduled
           - sequence
           - comment
+          - workflow
           type: string
         type:
           description: "`schedule`, `enrollment`, a comment door such as `comment.keyword`\
-            \ (comment to DM), or the Zernio event name."
+            \ (comment to DM), a flow trigger such as `inbound_message`, or the Zernio\
+            \ event name."
           example: post.failed
           type: string
         label:
@@ -195851,8 +195889,15 @@ components:
           description: "What an event is about, such as `post` or `account`."
           type: string
         scope:
-          description: Which of `profileId` and `accountIds` an event trigger needs.
+          description: "Which of `profileId`, `accountId`, `accountIds` and `platformPostId`\
+            \ the trigger needs."
           type: object
+        platforms:
+          description: "The platforms a sequence, comment to DM or flow trigger runs\
+            \ on."
+          items:
+            type: string
+          type: array
         facts:
           description: "The facts a `filter` can compare, for an event trigger."
           items:
@@ -196031,6 +196076,9 @@ components:
           steps:
           - steps
           - steps
+          platforms:
+          - platforms
+          - platforms
           times: "{}"
           filterOperators:
           - filterOperators
@@ -196060,6 +196108,9 @@ components:
           steps:
           - steps
           - steps
+          platforms:
+          - platforms
+          - platforms
           times: "{}"
           filterOperators:
           - filterOperators
@@ -196342,25 +196393,37 @@ components:
       oneOf:
       - $ref: "#/components/schemas/AutomationStep"
       - $ref: "#/components/schemas/AutomationBoostStep"
-    updateAutomation_request_limits:
-      oneOf:
-      - $ref: "#/components/schemas/AutomationLimits"
-      - $ref: "#/components/schemas/AutomationEventLimits"
+      - $ref: "#/components/schemas/AutomationSequenceStep"
     updateAutomation_request:
-      additionalProperties: {}
+      description: Any top-level field of the automation's kind (see `AutomationDefinition`);
+        the fields of another kind are refused.
       minProperties: 1
       properties:
         name:
           maxLength: 200
           minLength: 1
           type: string
+        description:
+          description: Sequences and flows.
+          type: string
         status:
+          description: '`draft` only for a sequence or a flow that has not left draft.'
           enum:
+          - draft
           - active
           - paused
           type: string
         trigger:
-          $ref: "#/components/schemas/AutomationTrigger"
+          description: The trigger of the automation's kind.
+          type: object
+        orTriggers:
+          description: Comment to DM.
+          items:
+            type: object
+          type: array
+        graph:
+          description: "Comment to DM and flows: the whole graph, as read."
+          type: object
         subjects:
           $ref: "#/components/schemas/updateAutomation_request_subjects"
         filter:
@@ -196378,7 +196441,8 @@ components:
           minItems: 1
           type: array
         limits:
-          $ref: "#/components/schemas/updateAutomation_request_limits"
+          description: The limits of the automation's kind.
+          type: object
     takeOverAutomation_200_response:
       example:
         automation:
@@ -255285,6 +255349,43 @@ components:
       required:
       - keywords
       - mode
+    FlowAutomationDefinition_trigger:
+      additionalProperties: false
+      properties:
+        type:
+          description: "Read from the graph's trigger node; sent, it must agree with\
+            \ it. Absent while the graph has no trigger node."
+          enum:
+          - inbound_message
+          - api_call
+          - whatsapp_event
+          - referral
+          - story_mention
+          - comment
+          - reaction
+          - lead_received
+          type: string
+        accountId:
+          description: The account it runs on.
+          type: string
+      required:
+      - accountId
+    FlowAutomationDefinition_graph:
+      additionalProperties: false
+      properties:
+        entryNodeId:
+          type: string
+        nodes:
+          items:
+            $ref: "#/components/schemas/WorkflowNode"
+          type: array
+        edges:
+          items:
+            $ref: "#/components/schemas/WorkflowEdge"
+          type: array
+      required:
+      - edges
+      - nodes
     AutomationRecord_template:
       description: "Only on `GET /v1/automations/{automationId}`, for an automation\
         \ installed from a template."
@@ -255588,6 +255689,20 @@ components:
         required:
         - platform
         - stats
+    Automation_oneOf_5:
+      allOf:
+      - $ref: "#/components/schemas/FlowAutomationDefinition"
+      - $ref: "#/components/schemas/AutomationRecord"
+      - properties:
+          kind:
+            enum:
+            - workflow
+            type: string
+          platform:
+            description: The account's platform.
+            type: string
+        required:
+        - platform
     AutomationProblems_problems_inner:
       example:
         path: trigger.every

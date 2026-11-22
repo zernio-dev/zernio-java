@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.750.0
+- API version: 1.754.0
 
-- Build date: 2026-11-22T16:20:39.993487808Z[Etc/UTC]
+- Build date: 2026-11-22T16:28:38.134106347Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.750.0</version>
+  <version>1.754.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.750.0"
+compile "dev.zernio:zernio-sdk:1.754.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.750.0.jar`
+- `target/zernio-sdk-1.754.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3186,6 +3186,7 @@ Class | Method | HTTP request | Description
  - [AutomationOneOf3AllOfEnrollments](docs/AutomationOneOf3AllOfEnrollments.md)
  - [AutomationOneOf4](docs/AutomationOneOf4.md)
  - [AutomationOneOf4AllOfStats](docs/AutomationOneOf4AllOfStats.md)
+ - [AutomationOneOf5](docs/AutomationOneOf5.md)
  - [AutomationPostSchedule](docs/AutomationPostSchedule.md)
  - [AutomationPostSubjects](docs/AutomationPostSubjects.md)
  - [AutomationPreview](docs/AutomationPreview.md)
@@ -4252,6 +4253,9 @@ Class | Method | HTTP request | Description
  - [FileItem](docs/FileItem.md)
  - [FilePickerSession](docs/FilePickerSession.md)
  - [FileShareLink](docs/FileShareLink.md)
+ - [FlowAutomationDefinition](docs/FlowAutomationDefinition.md)
+ - [FlowAutomationDefinitionGraph](docs/FlowAutomationDefinitionGraph.md)
+ - [FlowAutomationDefinitionTrigger](docs/FlowAutomationDefinitionTrigger.md)
  - [FollowUser200Response](docs/FollowUser200Response.md)
  - [FollowUserRequest](docs/FollowUserRequest.md)
  - [FollowerStatsResponse](docs/FollowerStatsResponse.md)
@@ -6333,7 +6337,6 @@ Class | Method | HTTP request | Description
  - [UpdateAutomationAdAccountControlsRequest](docs/UpdateAutomationAdAccountControlsRequest.md)
  - [UpdateAutomationControlsRequest](docs/UpdateAutomationControlsRequest.md)
  - [UpdateAutomationRequest](docs/UpdateAutomationRequest.md)
- - [UpdateAutomationRequestLimits](docs/UpdateAutomationRequestLimits.md)
  - [UpdateAutomationRequestStepsInner](docs/UpdateAutomationRequestStepsInner.md)
  - [UpdateAutomationRequestSubjects](docs/UpdateAutomationRequestSubjects.md)
  - [UpdateAutomationTemplateRequest](docs/UpdateAutomationTemplateRequest.md)
