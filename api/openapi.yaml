@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.761.0
+  version: 1.762.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -96927,6 +96927,11 @@ components:
             high: 1.4658129805029452
             low: 6.027456183070403
           visibility: full
+          otherNetworksConfigured:
+          - relaySupported: true
+            name: name
+          - relaySupported: true
+            name: name
           scanMode: static
           consent:
             googleConsentMode: v2
@@ -97060,6 +97065,11 @@ components:
           high: 1.4658129805029452
           low: 6.027456183070403
         visibility: full
+        otherNetworksConfigured:
+        - relaySupported: true
+          name: name
+        - relaySupported: true
+          name: name
         scanMode: static
         consent:
           googleConsentMode: v2
@@ -97254,6 +97264,13 @@ components:
         otherNetworks:
           description: Ad networks found that the score does not cover. `relaySupported`
             is true when Zernio can send them conversions.
+          items:
+            $ref: "#/components/schemas/ConversionAuditReport_otherNetworks_inner"
+          type: array
+        otherNetworksConfigured:
+          description: "Rendered scans: unscored ad networks found only in a Google\
+            \ Tag Manager container that the visit never saw load or send. Not counted\
+            \ in `otherNetworks`."
           items:
             $ref: "#/components/schemas/ConversionAuditReport_otherNetworks_inner"
           type: array
@@ -232901,6 +232918,11 @@ components:
             high: 1.4658129805029452
             low: 6.027456183070403
           visibility: full
+          otherNetworksConfigured:
+          - relaySupported: true
+            name: name
+          - relaySupported: true
+            name: name
           scanMode: static
           consent:
             googleConsentMode: v2
@@ -236529,14 +236551,17 @@ components:
             \ from the page."
           type: string
         status:
-          description: "`good` = server-side, `warn` = browser-only (the leak), `missing`\
-            \ = not tracked, `not-firing` = the tag is installed but sent nothing\
-            \ during a full visit."
+          description: "`good`: server-side. `warn`: browser-only (the leak). `missing`:\
+            \ not tracked. `not-firing`: installed but sent nothing during a full\
+            \ visit. `configured`: only in a Google Tag Manager container and not\
+            \ seen firing on a visit where silence proves nothing, so not counted\
+            \ as tracked."
           enum:
           - good
           - warn
           - missing
           - not-firing
+          - configured
           type: string
         estimatedLossBrowserOnly:
           description: "Share of conversions typically lost when this platform runs\
