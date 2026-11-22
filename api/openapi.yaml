@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.763.1
+  version: 1.764.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -78933,6 +78933,12 @@ paths:
         Saves where a profile's events go: every event sent to `POST /v1/events` for that profile is then forwarded to this destination.
 
         Pick `destinationId` from `GET /v1/ads/conversions/destinations`. Set `eventNames` to forward only those events, such as only `Purchase`; leave it out to forward every event.
+
+        - `eventNameMap` renames events for this destination (send your `Lead` as its `Purchase`).
+        - `valueOverride` changes the value it gets (a fixed amount or a percent of the event's value).
+        - `valueCondition` forwards only events above, below or equal to a value.
+
+        Each applies to this rule only: the event is stored, and sent to other rules, as received.
       operationId: createForwardingRule
       requestBody:
         content:
@@ -79030,7 +79036,9 @@ paths:
       - application/json
     patch:
       description: |
-        Replaces the `apiSecret` of a rule whose destination needs one, such as a Google Analytics data stream's Measurement Protocol API secret. Before saving, Zernio sends one hit to Google's validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events.
+        Changes the fields you send and keeps the others. Send `eventNameMap: null` to stop renaming, `valueOverride: { "mode": "original" }` to send the event's own value again, and `valueCondition: null` to forward whatever the value.
+
+        `apiSecret` replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream's Measurement Protocol API secret. Before saving, Zernio sends one hit to Google's validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events.
       operationId: updateForwardingRule
       parameters:
       - description: The rule `id`.
@@ -79044,6 +79052,15 @@ paths:
       requestBody:
         content:
           application/json:
+            example:
+              eventNameMap:
+                Lead: Purchase
+              valueOverride:
+                mode: percent
+                amount: 30
+              valueCondition:
+                operator: gt
+                amount: 10
             schema:
               $ref: "#/components/schemas/updateForwardingRule_request"
         required: true
@@ -79053,7 +79070,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/createForwardingRule_201_response"
-          description: Secret saved.
+          description: Rule saved.
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -79062,7 +79079,7 @@ paths:
           $ref: "#/components/responses/NotFound"
       security:
       - bearerAuth: []
-      summary: Change a forwarding rule's API secret
+      summary: Update a forwarding rule
       tags:
       - Conversions
       x-resource-group: ads
@@ -144772,16 +144789,22 @@ components:
       example:
         accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
+        eventNameMap:
+          key: eventNameMap
         sources:
         - api
         - api
         apiSecretVerified: true
         profileId: profileId
+        valueCondition: ""
         eventNames:
         - eventNames
         - eventNames
         id: id
         destinationId: destinationId
+        valueOverride:
+          mode: percent
+          amount: 30
       properties:
         id:
           description: "Rule ID, used to delete it."
@@ -144829,9 +144852,76 @@ components:
             \ `false` there: the first events in GA4 Realtime prove the secret is\
             \ right."
           type: boolean
+        eventNameMap:
+          additionalProperties:
+            type: string
+          description: "Renames events for this destination, such as `{ \"Lead\":\
+            \ \"Purchase\" }`; null sends every event under its own name."
+        valueOverride:
+          $ref: "#/components/schemas/ForwardingRuleValueOverride"
+        valueCondition:
+          allOf:
+          - $ref: "#/components/schemas/ForwardingRuleValueCondition"
+          nullable: true
         createdAt:
           format: date-time
           type: string
+    ForwardingRuleEventNameMap:
+      additionalProperties:
+        maxLength: 100
+        minLength: 1
+        type: string
+      description: |-
+        Your event name to the name this destination gets, such as `{ "Lead": "Purchase" }`. Names not in the map are sent unchanged.
+
+        A target spelled like a standard event in another case or form (`purchase`, `generate_lead`) is saved as the standard name (`Purchase`, `Lead`), so each platform gets its own standard event.
+
+        `eventNames` and `valueCondition` are checked against the name and value as received, before renaming. The event id is never changed, so deduplication still works.
+      example:
+        Lead: Purchase
+      maxProperties: 50
+    ForwardingRuleValueOverride:
+      description: "The value this destination gets. `original` sends the event's\
+        \ own value; `fixed` sends `amount` for every event; `percent` sends `amount`\
+        \ percent of the event's value (30 sends 30%, rounded to cents), and leaves\
+        \ an event without a value without one. The currency is kept."
+      example:
+        mode: percent
+        amount: 30
+      properties:
+        mode:
+          enum:
+          - original
+          - fixed
+          - percent
+          type: string
+        amount:
+          description: Required for `fixed` and `percent` (at most 1000 for `percent`);
+            null for `original`.
+          minimum: 0
+          nullable: true
+          type: number
+      required:
+      - mode
+    ForwardingRuleValueCondition:
+      description: "Forward only events whose value is greater than (`gt`), less than\
+        \ (`lt`) or equal to (`eq`) `amount`. An event without a value counts as 0.\
+        \ Checked on the value as received, before `valueOverride`."
+      example:
+        operator: gt
+        amount: 10
+      properties:
+        operator:
+          enum:
+          - gt
+          - lt
+          - eq
+          type: string
+        amount:
+          type: number
+      required:
+      - amount
+      - operator
     TrackingSiteConsentMode:
       description: "How a visitor with no consent signal is treated. `eu_opt_in` (default):\
         \ no consent in the EU, UK and other countries that require it, consent elsewhere.\
@@ -224560,28 +224650,40 @@ components:
         forwardingRules:
         - accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
+          eventNameMap:
+            key: eventNameMap
           sources:
           - api
           - api
           apiSecretVerified: true
           profileId: profileId
+          valueCondition: ""
           eventNames:
           - eventNames
           - eventNames
           id: id
           destinationId: destinationId
+          valueOverride:
+            mode: percent
+            amount: 30
         - accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
+          eventNameMap:
+            key: eventNameMap
           sources:
           - api
           - api
           apiSecretVerified: true
           profileId: profileId
+          valueCondition: ""
           eventNames:
           - eventNames
           - eventNames
           id: id
           destinationId: destinationId
+          valueOverride:
+            mode: percent
+            amount: 30
       properties:
         forwardingRules:
           items:
@@ -224628,6 +224730,26 @@ components:
             type: string
           minItems: 1
           type: array
+        eventNameMap:
+          additionalProperties:
+            maxLength: 100
+            minLength: 1
+            type: string
+          description: |-
+            Your event name to the name this destination gets, such as `{ "Lead": "Purchase" }`. Names not in the map are sent unchanged.
+
+            A target spelled like a standard event in another case or form (`purchase`, `generate_lead`) is saved as the standard name (`Purchase`, `Lead`), so each platform gets its own standard event.
+
+            `eventNames` and `valueCondition` are checked against the name and value as received, before renaming. The event id is never changed, so deduplication still works.
+          example:
+            Lead: Purchase
+          maxProperties: 50
+        valueOverride:
+          $ref: "#/components/schemas/ForwardingRuleValueOverride"
+        valueCondition:
+          allOf:
+          - $ref: "#/components/schemas/ForwardingRuleValueCondition"
+          nullable: true
         apiSecret:
           description: "Google Analytics streams only: the stream's Measurement Protocol\
             \ API secret (GA4 Admin › Data streams). Optional when the connection\
@@ -224646,28 +224768,43 @@ components:
         forwardingRule:
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
+          eventNameMap:
+            key: eventNameMap
           sources:
           - api
           - api
           apiSecretVerified: true
           profileId: profileId
+          valueCondition: ""
           eventNames:
           - eventNames
           - eventNames
           id: id
           destinationId: destinationId
+          valueOverride:
+            mode: percent
+            amount: 30
       properties:
         forwardingRule:
           $ref: "#/components/schemas/ForwardingRule"
     updateForwardingRule_request:
       additionalProperties: {}
+      minProperties: 1
       properties:
         apiSecret:
           maxLength: 200
           type: string
           writeOnly: true
-      required:
-      - apiSecret
+        eventNameMap:
+          allOf:
+          - $ref: "#/components/schemas/ForwardingRuleEventNameMap"
+          nullable: true
+        valueOverride:
+          $ref: "#/components/schemas/ForwardingRuleValueOverride"
+        valueCondition:
+          allOf:
+          - $ref: "#/components/schemas/ForwardingRuleValueCondition"
+          nullable: true
     listTrackingSites_200_response_pagination:
       example:
         nextCursor: nextCursor

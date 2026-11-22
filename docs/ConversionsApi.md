@@ -116,8 +116,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateConversionDestinationWithHttpInfo**](ConversionsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
 | [**updateCustomConversionGoal**](ConversionsApi.md#updateCustomConversionGoal) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal |
 | [**updateCustomConversionGoalWithHttpInfo**](ConversionsApi.md#updateCustomConversionGoalWithHttpInfo) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal |
-| [**updateForwardingRule**](ConversionsApi.md#updateForwardingRule) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret |
-| [**updateForwardingRuleWithHttpInfo**](ConversionsApi.md#updateForwardingRuleWithHttpInfo) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret |
+| [**updateForwardingRule**](ConversionsApi.md#updateForwardingRule) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Update a forwarding rule |
+| [**updateForwardingRuleWithHttpInfo**](ConversionsApi.md#updateForwardingRuleWithHttpInfo) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Update a forwarding rule |
 | [**updateTrackingSite**](ConversionsApi.md#updateTrackingSite) | **PATCH** /v1/tracking-sites/{siteId} | Update a tracking site |
 | [**updateTrackingSiteWithHttpInfo**](ConversionsApi.md#updateTrackingSiteWithHttpInfo) | **PATCH** /v1/tracking-sites/{siteId} | Update a tracking site |
 
@@ -1711,7 +1711,7 @@ ApiResponse<[**CreateEventDestination201Response**](CreateEventDestination201Res
 
 Add a forwarding rule
 
-Saves where a profile&#39;s events go: every event sent to &#x60;POST /v1/events&#x60; for that profile is then forwarded to this destination.  Pick &#x60;destinationId&#x60; from &#x60;GET /v1/ads/conversions/destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events, such as only &#x60;Purchase&#x60;; leave it out to forward every event. 
+Saves where a profile&#39;s events go: every event sent to &#x60;POST /v1/events&#x60; for that profile is then forwarded to this destination.  Pick &#x60;destinationId&#x60; from &#x60;GET /v1/ads/conversions/destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events, such as only &#x60;Purchase&#x60;; leave it out to forward every event.  - &#x60;eventNameMap&#x60; renames events for this destination (send your &#x60;Lead&#x60; as its &#x60;Purchase&#x60;). - &#x60;valueOverride&#x60; changes the value it gets (a fixed amount or a percent of the event&#39;s value). - &#x60;valueCondition&#x60; forwards only events above, below or equal to a value.  Each applies to this rule only: the event is stored, and sent to other rules, as received. 
 
 ### Example
 
@@ -1785,7 +1785,7 @@ public class Example {
 
 Add a forwarding rule
 
-Saves where a profile&#39;s events go: every event sent to &#x60;POST /v1/events&#x60; for that profile is then forwarded to this destination.  Pick &#x60;destinationId&#x60; from &#x60;GET /v1/ads/conversions/destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events, such as only &#x60;Purchase&#x60;; leave it out to forward every event. 
+Saves where a profile&#39;s events go: every event sent to &#x60;POST /v1/events&#x60; for that profile is then forwarded to this destination.  Pick &#x60;destinationId&#x60; from &#x60;GET /v1/ads/conversions/destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events, such as only &#x60;Purchase&#x60;; leave it out to forward every event.  - &#x60;eventNameMap&#x60; renames events for this destination (send your &#x60;Lead&#x60; as its &#x60;Purchase&#x60;). - &#x60;valueOverride&#x60; changes the value it gets (a fixed amount or a percent of the event&#39;s value). - &#x60;valueCondition&#x60; forwards only events above, below or equal to a value.  Each applies to this rule only: the event is stored, and sent to other rules, as received. 
 
 ### Example
 
@@ -9071,9 +9071,9 @@ ApiResponse<[**UpdateCustomConversionGoal200Response**](UpdateCustomConversionGo
 
 > CreateForwardingRule201Response updateForwardingRule(ruleId, updateForwardingRuleRequest)
 
-Change a forwarding rule&#39;s API secret
+Update a forwarding rule
 
-Replaces the &#x60;apiSecret&#x60; of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
+Changes the fields you send and keeps the others. Send &#x60;eventNameMap: null&#x60; to stop renaming, &#x60;valueOverride: { \&quot;mode\&quot;: \&quot;original\&quot; }&#x60; to send the event&#39;s own value again, and &#x60;valueCondition: null&#x60; to forward whatever the value.  &#x60;apiSecret&#x60; replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
 
 ### Example
 
@@ -9137,7 +9137,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Secret saved. |  -  |
+| **200** | Rule saved. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
@@ -9146,9 +9146,9 @@ public class Example {
 
 > ApiResponse<CreateForwardingRule201Response> updateForwardingRule updateForwardingRuleWithHttpInfo(ruleId, updateForwardingRuleRequest)
 
-Change a forwarding rule&#39;s API secret
+Update a forwarding rule
 
-Replaces the &#x60;apiSecret&#x60; of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
+Changes the fields you send and keeps the others. Send &#x60;eventNameMap: null&#x60; to stop renaming, &#x60;valueOverride: { \&quot;mode\&quot;: \&quot;original\&quot; }&#x60; to send the event&#39;s own value again, and &#x60;valueCondition: null&#x60; to forward whatever the value.  &#x60;apiSecret&#x60; replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
 
 ### Example
 
@@ -9215,7 +9215,7 @@ ApiResponse<[**CreateForwardingRule201Response**](CreateForwardingRule201Respons
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Secret saved. |  -  |
+| **200** | Rule saved. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |

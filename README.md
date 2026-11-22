@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.763.1
+- API version: 1.764.0
 
-- Build date: 2026-11-22T20:56:18.403805211Z[Etc/UTC]
+- Build date: 2026-11-22T23:16:03.538300157Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.763.1</version>
+  <version>1.764.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.763.1"
+compile "dev.zernio:zernio-sdk:1.764.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.763.1.jar`
+- `target/zernio-sdk-1.764.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1631,8 +1631,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**updateConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
 *ConversionsApi* | [**updateCustomConversionGoal**](docs/ConversionsApi.md#updateCustomConversionGoal) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal
 *ConversionsApi* | [**updateCustomConversionGoalWithHttpInfo**](docs/ConversionsApi.md#updateCustomConversionGoalWithHttpInfo) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal
-*ConversionsApi* | [**updateForwardingRule**](docs/ConversionsApi.md#updateForwardingRule) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret
-*ConversionsApi* | [**updateForwardingRuleWithHttpInfo**](docs/ConversionsApi.md#updateForwardingRuleWithHttpInfo) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret
+*ConversionsApi* | [**updateForwardingRule**](docs/ConversionsApi.md#updateForwardingRule) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Update a forwarding rule
+*ConversionsApi* | [**updateForwardingRuleWithHttpInfo**](docs/ConversionsApi.md#updateForwardingRuleWithHttpInfo) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Update a forwarding rule
 *ConversionsApi* | [**updateTrackingSite**](docs/ConversionsApi.md#updateTrackingSite) | **PATCH** /v1/tracking-sites/{siteId} | Update a tracking site
 *ConversionsApi* | [**updateTrackingSiteWithHttpInfo**](docs/ConversionsApi.md#updateTrackingSiteWithHttpInfo) | **PATCH** /v1/tracking-sites/{siteId} | Update a tracking site
 *CreatorCampaignsApi* | [**activateCreatorCampaign**](docs/CreatorCampaignsApi.md#activateCreatorCampaign) | **POST** /v1/creator-campaigns/{campaignId}/activate | Activate creator campaign
@@ -4275,6 +4275,8 @@ Class | Method | HTTP request | Description
  - [FoodMenuSection](docs/FoodMenuSection.md)
  - [ForwardEmailRequest](docs/ForwardEmailRequest.md)
  - [ForwardingRule](docs/ForwardingRule.md)
+ - [ForwardingRuleValueCondition](docs/ForwardingRuleValueCondition.md)
+ - [ForwardingRuleValueOverride](docs/ForwardingRuleValueOverride.md)
  - [FreeBusyError](docs/FreeBusyError.md)
  - [FromASharedTemplate](docs/FromASharedTemplate.md)
  - [FromAZernioTemplate](docs/FromAZernioTemplate.md)

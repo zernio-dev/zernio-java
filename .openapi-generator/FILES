@@ -1426,6 +1426,8 @@ docs/FoodMenuLabel.md
 docs/FoodMenuSection.md
 docs/ForwardEmailRequest.md
 docs/ForwardingRule.md
+docs/ForwardingRuleValueCondition.md
+docs/ForwardingRuleValueOverride.md
 docs/FreeBusyError.md
 docs/FromASharedTemplate.md
 docs/FromAZernioTemplate.md
@@ -5693,6 +5695,8 @@ src/main/java/dev/zernio/model/FoodMenuLabel.java
 src/main/java/dev/zernio/model/FoodMenuSection.java
 src/main/java/dev/zernio/model/ForwardEmailRequest.java
 src/main/java/dev/zernio/model/ForwardingRule.java
+src/main/java/dev/zernio/model/ForwardingRuleValueCondition.java
+src/main/java/dev/zernio/model/ForwardingRuleValueOverride.java
 src/main/java/dev/zernio/model/FreeBusyError.java
 src/main/java/dev/zernio/model/FromASharedTemplate.java
 src/main/java/dev/zernio/model/FromAZernioTemplate.java
@@ -8411,3 +8415,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ForwardingRuleValueConditionTest.java
+src/test/java/dev/zernio/model/ForwardingRuleValueOverrideTest.java
