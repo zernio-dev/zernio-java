@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.738.1
+  version: 1.739.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -96222,6 +96222,7 @@ components:
             relayedBy: zernio-tag
             serverSideVerified: true
             serverSide: true
+            serverTool: serverTool
             name: name
             ids:
             - ids
@@ -96241,6 +96242,7 @@ components:
             relayedBy: zernio-tag
             serverSideVerified: true
             serverSide: true
+            serverTool: serverTool
             name: name
             ids:
             - ids
@@ -96353,6 +96355,7 @@ components:
           relayedBy: zernio-tag
           serverSideVerified: true
           serverSide: true
+          serverTool: serverTool
           name: name
           ids:
           - ids
@@ -96372,6 +96375,7 @@ components:
           relayedBy: zernio-tag
           serverSideVerified: true
           serverSide: true
+          serverTool: serverTool
           name: name
           ids:
           - ids
@@ -231558,6 +231562,7 @@ components:
             relayedBy: zernio-tag
             serverSideVerified: true
             serverSide: true
+            serverTool: serverTool
             name: name
             ids:
             - ids
@@ -231577,6 +231582,7 @@ components:
             relayedBy: zernio-tag
             serverSideVerified: true
             serverSide: true
+            serverTool: serverTool
             name: name
             ids:
             - ids
@@ -235108,6 +235114,7 @@ components:
         relayedBy: zernio-tag
         serverSideVerified: true
         serverSide: true
+        serverTool: serverTool
         name: name
         ids:
         - ids
@@ -235142,6 +235149,12 @@ components:
             destination for this platform accepted the site's events in the last 7
             days.
           type: boolean
+        serverTool:
+          description: "A third-party server-side tool installed on the site that\
+            \ may already send this platform's events (Elevar, Littledata, Stape),\
+            \ when its status is `likely`. Which platforms the tool feeds is not visible\
+            \ from the page."
+          type: string
         status:
           description: "`good` = server-side, `warn` = browser-only (the leak), `missing`\
             \ = not tracked, `not-firing` = the tag is installed but sent nothing\
