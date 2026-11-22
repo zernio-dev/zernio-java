@@ -18,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getBlueskySettingsWithHttpInfo**](AccountsApi.md#getBlueskySettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/bluesky-settings | Get Bluesky account settings |
 | [**getFollowerStats**](AccountsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats |
 | [**getFollowerStatsWithHttpInfo**](AccountsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats |
+| [**getGohighlevelFunnelTracking**](AccountsApi.md#getGohighlevelFunnelTracking) | **GET** /v1/accounts/{accountId}/gohighlevel-funnel-tracking | Get HighLevel funnel tracking |
+| [**getGohighlevelFunnelTrackingWithHttpInfo**](AccountsApi.md#getGohighlevelFunnelTrackingWithHttpInfo) | **GET** /v1/accounts/{accountId}/gohighlevel-funnel-tracking | Get HighLevel funnel tracking |
 | [**getGohighlevelSettings**](AccountsApi.md#getGohighlevelSettings) | **GET** /v1/accounts/{accountId}/gohighlevel-settings | Get HighLevel account settings |
 | [**getGohighlevelSettingsWithHttpInfo**](AccountsApi.md#getGohighlevelSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gohighlevel-settings | Get HighLevel account settings |
 | [**getHubSpotSettings**](AccountsApi.md#getHubSpotSettings) | **GET** /v1/accounts/{accountId}/hubspot-settings | Get HubSpot account settings |
@@ -38,6 +40,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAccountsWithHttpInfo**](AccountsApi.md#listAccountsWithHttpInfo) | **GET** /v1/accounts | List accounts |
 | [**listBusinessPartners**](AccountsApi.md#listBusinessPartners) | **GET** /v1/accounts/{accountId}/business-partners | List partner businesses of the Page |
 | [**listBusinessPartnersWithHttpInfo**](AccountsApi.md#listBusinessPartnersWithHttpInfo) | **GET** /v1/accounts/{accountId}/business-partners | List partner businesses of the Page |
+| [**listGohighlevelAudienceSyncs**](AccountsApi.md#listGohighlevelAudienceSyncs) | **GET** /v1/accounts/{accountId}/gohighlevel-audiences | List HighLevel tag audience syncs |
+| [**listGohighlevelAudienceSyncsWithHttpInfo**](AccountsApi.md#listGohighlevelAudienceSyncsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gohighlevel-audiences | List HighLevel tag audience syncs |
 | [**listHubSpotContactProperties**](AccountsApi.md#listHubSpotContactProperties) | **GET** /v1/accounts/{accountId}/hubspot-settings/contact-properties | List HubSpot contact properties |
 | [**listHubSpotContactPropertiesWithHttpInfo**](AccountsApi.md#listHubSpotContactPropertiesWithHttpInfo) | **GET** /v1/accounts/{accountId}/hubspot-settings/contact-properties | List HubSpot contact properties |
 | [**listTikTokCommercialMusic**](AccountsApi.md#listTikTokCommercialMusic) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music |
@@ -48,6 +52,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**revokeBusinessPartnerWithHttpInfo**](AccountsApi.md#revokeBusinessPartnerWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/business-partners | Revoke a partner business from the Page |
 | [**searchTikTokLocations**](AccountsApi.md#searchTikTokLocations) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags |
 | [**searchTikTokLocationsWithHttpInfo**](AccountsApi.md#searchTikTokLocationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags |
+| [**sendGohighlevelPastWonDeals**](AccountsApi.md#sendGohighlevelPastWonDeals) | **POST** /v1/accounts/{accountId}/gohighlevel-won-deals-backfill | Send past HighLevel won deals as conversions |
+| [**sendGohighlevelPastWonDealsWithHttpInfo**](AccountsApi.md#sendGohighlevelPastWonDealsWithHttpInfo) | **POST** /v1/accounts/{accountId}/gohighlevel-won-deals-backfill | Send past HighLevel won deals as conversions |
+| [**startGohighlevelAudienceSync**](AccountsApi.md#startGohighlevelAudienceSync) | **POST** /v1/accounts/{accountId}/gohighlevel-audiences | Sync a HighLevel tag to ad audiences |
+| [**startGohighlevelAudienceSyncWithHttpInfo**](AccountsApi.md#startGohighlevelAudienceSyncWithHttpInfo) | **POST** /v1/accounts/{accountId}/gohighlevel-audiences | Sync a HighLevel tag to ad audiences |
+| [**stopGohighlevelAudienceSync**](AccountsApi.md#stopGohighlevelAudienceSync) | **DELETE** /v1/accounts/{accountId}/gohighlevel-audiences/{syncId} | Stop a HighLevel tag audience sync |
+| [**stopGohighlevelAudienceSyncWithHttpInfo**](AccountsApi.md#stopGohighlevelAudienceSyncWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/gohighlevel-audiences/{syncId} | Stop a HighLevel tag audience sync |
 | [**updateAccount**](AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account |
 | [**updateAccountWithHttpInfo**](AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account |
 | [**updateBlueskySettings**](AccountsApi.md#updateBlueskySettings) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings |
@@ -62,6 +72,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateSlackSettingsWithHttpInfo**](AccountsApi.md#updateSlackSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings |
 | [**updateStripeSettings**](AccountsApi.md#updateStripeSettings) | **PATCH** /v1/accounts/{accountId}/stripe-settings | Update Stripe account settings |
 | [**updateStripeSettingsWithHttpInfo**](AccountsApi.md#updateStripeSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/stripe-settings | Update Stripe account settings |
+| [**verifyGohighlevelFunnelTracking**](AccountsApi.md#verifyGohighlevelFunnelTracking) | **POST** /v1/accounts/{accountId}/gohighlevel-funnel-tracking/verify | Check the Zernio tag on a HighLevel funnel page |
+| [**verifyGohighlevelFunnelTrackingWithHttpInfo**](AccountsApi.md#verifyGohighlevelFunnelTrackingWithHttpInfo) | **POST** /v1/accounts/{accountId}/gohighlevel-funnel-tracking/verify | Check the Zernio tag on a HighLevel funnel page |
 
 
 
@@ -1157,6 +1169,156 @@ ApiResponse<[**FollowerStatsResponse**](FollowerStatsResponse.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+
+
+## getGohighlevelFunnelTracking
+
+> GohighlevelFunnelTracking getGohighlevelFunnelTracking(accountId)
+
+Get HighLevel funnel tracking
+
+Get the Zernio tag for a connected HighLevel sub-account&#39;s funnels and websites, created on the first call, and the line to paste into each funnel&#39;s tracking code (the funnel&#39;s Settings, then Head tracking code).  Each funnel and website says whether it already carries the tag, and &#x60;live&#x60; whether the tag has sent its first visit. Visits on tagged pages tie ad clicks to the leads and sales HighLevel records.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The HighLevel account id from `listAccounts`.
+        try {
+            GohighlevelFunnelTracking result = apiInstance.getGohighlevelFunnelTracking(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#getGohighlevelFunnelTracking");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The HighLevel account id from &#x60;listAccounts&#x60;. | |
+
+### Return type
+
+[**GohighlevelFunnelTracking**](GohighlevelFunnelTracking.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Funnel tracking |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+## getGohighlevelFunnelTrackingWithHttpInfo
+
+> ApiResponse<GohighlevelFunnelTracking> getGohighlevelFunnelTracking getGohighlevelFunnelTrackingWithHttpInfo(accountId)
+
+Get HighLevel funnel tracking
+
+Get the Zernio tag for a connected HighLevel sub-account&#39;s funnels and websites, created on the first call, and the line to paste into each funnel&#39;s tracking code (the funnel&#39;s Settings, then Head tracking code).  Each funnel and website says whether it already carries the tag, and &#x60;live&#x60; whether the tag has sent its first visit. Visits on tagged pages tie ad clicks to the leads and sales HighLevel records.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The HighLevel account id from `listAccounts`.
+        try {
+            ApiResponse<GohighlevelFunnelTracking> response = apiInstance.getGohighlevelFunnelTrackingWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#getGohighlevelFunnelTracking");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The HighLevel account id from &#x60;listAccounts&#x60;. | |
+
+### Return type
+
+ApiResponse<[**GohighlevelFunnelTracking**](GohighlevelFunnelTracking.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Funnel tracking |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
 
 
 ## getGohighlevelSettings
@@ -2763,6 +2925,156 @@ ApiResponse<[**ListBusinessPartners200Response**](ListBusinessPartners200Respons
 | **429** | The connected account&#39;s upstream platform quota is exhausted. Behavior per platform:  - **Reddit:** rate-limits per connected Reddit user (1000 requests per 10-minute window), shared by every operation on that account. Retry after the window resets; repeated calls while exhausted do not succeed and keep the budget spent. - **Google Ads:** writes and reports run on one developer token shared by every Google Ads account on Zernio. It holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. - **Google Ads envelope:** &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed. - **YouTube Analytics:** reads (channel-insights, demographics, daily-views, video-retention) use the \&quot;Queries per day\&quot; quota of the Google Cloud project the account is connected through, shared with other Zernio customers, so a 429 is not your own volume. Resets at midnight Pacific Time. - **YouTube Analytics envelope:** &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaExhausted: true&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60;, &#x60;details.resetsAt&#x60; and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed. - **Meta ads:** every Meta throttle (codes 4, 17, 32, 613 and business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when sent, else Meta&#39;s 60-second minimum (30 seconds for the one-write-per-30-seconds limit on one object). - **Pinterest ads:** limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when sent, otherwise 60 seconds. - **TikTok ads:** limits per app and per endpoint (per second, minute and day), answering overage with code 40100 or code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (e.g. one ad at a time per advertiser) instead of retrying at once.  **TikTok Smart+ review read** (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has its own stricter TikTok quota. After an overage, Zernio answers 429 for that advertiser and connection without calling TikTok for about 60 seconds, then 120, up to 240 while TikTok keeps refusing, each with up to 10% random jitter.  A successful call holds nothing back; the next overage pauses about 60 seconds again. &#x60;Retry-After&#x60; is the time left. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;retryAfterSeconds&#x60; and &#x60;refreshState&#x60; instead. Keep one request in flight per advertiser there.  |  * Retry-After - Seconds until card payments are tried again. <br>  |
 
 
+## listGohighlevelAudienceSyncs
+
+> GohighlevelAudienceSyncOverview listGohighlevelAudienceSyncs(accountId)
+
+List HighLevel tag audience syncs
+
+List the tags of a connected HighLevel sub-account that Zernio keeps as customer list audiences on Meta and Reddit ad accounts, the ad accounts a tag can sync to (&#x60;targetChoices&#x60;), and the sub-account&#39;s tags. Pass a &#x60;targetChoices&#x60; entry to &#x60;startGohighlevelAudienceSync&#x60; to start a sync.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The HighLevel account id from `listAccounts`.
+        try {
+            GohighlevelAudienceSyncOverview result = apiInstance.listGohighlevelAudienceSyncs(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#listGohighlevelAudienceSyncs");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The HighLevel account id from &#x60;listAccounts&#x60;. | |
+
+### Return type
+
+[**GohighlevelAudienceSyncOverview**](GohighlevelAudienceSyncOverview.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tag audience syncs |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+## listGohighlevelAudienceSyncsWithHttpInfo
+
+> ApiResponse<GohighlevelAudienceSyncOverview> listGohighlevelAudienceSyncs listGohighlevelAudienceSyncsWithHttpInfo(accountId)
+
+List HighLevel tag audience syncs
+
+List the tags of a connected HighLevel sub-account that Zernio keeps as customer list audiences on Meta and Reddit ad accounts, the ad accounts a tag can sync to (&#x60;targetChoices&#x60;), and the sub-account&#39;s tags. Pass a &#x60;targetChoices&#x60; entry to &#x60;startGohighlevelAudienceSync&#x60; to start a sync.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The HighLevel account id from `listAccounts`.
+        try {
+            ApiResponse<GohighlevelAudienceSyncOverview> response = apiInstance.listGohighlevelAudienceSyncsWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#listGohighlevelAudienceSyncs");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The HighLevel account id from &#x60;listAccounts&#x60;. | |
+
+### Return type
+
+ApiResponse<[**GohighlevelAudienceSyncOverview**](GohighlevelAudienceSyncOverview.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tag audience syncs |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+
 ## listHubSpotContactProperties
 
 > ListHubSpotContactProperties200Response listHubSpotContactProperties(accountId)
@@ -3531,6 +3843,476 @@ ApiResponse<[**SearchTikTokLocations200Response**](SearchTikTokLocations200Respo
 | **200** | The closest location tags, best match first |  -  |
 | **400** | Invalid request |  -  |
 | **404** | Account not found |  -  |
+
+
+## sendGohighlevelPastWonDeals
+
+> SendGohighlevelPastWonDeals200Response sendGohighlevelPastWonDeals(accountId)
+
+Send past HighLevel won deals as conversions
+
+Send the opportunities a connected HighLevel sub-account won in the last 90 days through the conversion relay. Each is stored as a Purchase conversion and forwarded to the profile&#39;s ad platforms when &#x60;reportToAds&#x60; is on.  Each call sends up to 50 and skips deals Zernio already holds, so calling again goes on with the rest. &#x60;remaining&#x60; says how many are left. A deal that fails is picked again on the next call, so stop when a call sends none.  Returns &#x60;relay_off&#x60; when the conversion relay is off (&#x60;updateGohighlevelSettings&#x60;). Needs a read-write key.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The HighLevel account id from `listAccounts`.
+        try {
+            SendGohighlevelPastWonDeals200Response result = apiInstance.sendGohighlevelPastWonDeals(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#sendGohighlevelPastWonDeals");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The HighLevel account id from &#x60;listAccounts&#x60;. | |
+
+### Return type
+
+[**SendGohighlevelPastWonDeals200Response**](SendGohighlevelPastWonDeals200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Backfill result |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is read-only |  -  |
+| **404** | Account not found |  -  |
+| **409** | Another call is sending this sub-account&#39;s past won deals. Retry when it ends. |  -  |
+
+## sendGohighlevelPastWonDealsWithHttpInfo
+
+> ApiResponse<SendGohighlevelPastWonDeals200Response> sendGohighlevelPastWonDeals sendGohighlevelPastWonDealsWithHttpInfo(accountId)
+
+Send past HighLevel won deals as conversions
+
+Send the opportunities a connected HighLevel sub-account won in the last 90 days through the conversion relay. Each is stored as a Purchase conversion and forwarded to the profile&#39;s ad platforms when &#x60;reportToAds&#x60; is on.  Each call sends up to 50 and skips deals Zernio already holds, so calling again goes on with the rest. &#x60;remaining&#x60; says how many are left. A deal that fails is picked again on the next call, so stop when a call sends none.  Returns &#x60;relay_off&#x60; when the conversion relay is off (&#x60;updateGohighlevelSettings&#x60;). Needs a read-write key.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The HighLevel account id from `listAccounts`.
+        try {
+            ApiResponse<SendGohighlevelPastWonDeals200Response> response = apiInstance.sendGohighlevelPastWonDealsWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#sendGohighlevelPastWonDeals");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The HighLevel account id from &#x60;listAccounts&#x60;. | |
+
+### Return type
+
+ApiResponse<[**SendGohighlevelPastWonDeals200Response**](SendGohighlevelPastWonDeals200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Backfill result |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is read-only |  -  |
+| **404** | Account not found |  -  |
+| **409** | Another call is sending this sub-account&#39;s past won deals. Retry when it ends. |  -  |
+
+
+## startGohighlevelAudienceSync
+
+> StartGohighlevelAudienceSync201Response startGohighlevelAudienceSync(accountId, startGohighlevelAudienceSyncRequest)
+
+Sync a HighLevel tag to ad audiences
+
+Keep every HighLevel contact with a tag as a customer list audience on one or more Meta or Reddit ad accounts of the profile. Take &#x60;targets&#x60; from &#x60;targetChoices&#x60; of &#x60;listGohighlevelAudienceSyncs&#x60;.  Zernio creates one audience per ad account and fills it within a few minutes. A contact joins or leaves as soon as the tag is added to or removed from it, and every 6 hours Zernio re-reads the tag. Emails and phones are hashed before upload.  A tag syncs once per sub-account; stop it to change its ad accounts. Needs a read-write key.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The HighLevel account id from `listAccounts`.
+        StartGohighlevelAudienceSyncRequest startGohighlevelAudienceSyncRequest = new StartGohighlevelAudienceSyncRequest(); // StartGohighlevelAudienceSyncRequest | 
+        try {
+            StartGohighlevelAudienceSync201Response result = apiInstance.startGohighlevelAudienceSync(accountId, startGohighlevelAudienceSyncRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#startGohighlevelAudienceSync");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The HighLevel account id from &#x60;listAccounts&#x60;. | |
+| **startGohighlevelAudienceSyncRequest** | [**StartGohighlevelAudienceSyncRequest**](StartGohighlevelAudienceSyncRequest.md)|  | |
+
+### Return type
+
+[**StartGohighlevelAudienceSync201Response**](StartGohighlevelAudienceSync201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Sync started |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is read-only |  -  |
+| **404** | Account not found |  -  |
+| **409** | The tag is being set up or synced right now, or is already synced. Retry later, or stop the existing sync first. |  -  |
+
+## startGohighlevelAudienceSyncWithHttpInfo
+
+> ApiResponse<StartGohighlevelAudienceSync201Response> startGohighlevelAudienceSync startGohighlevelAudienceSyncWithHttpInfo(accountId, startGohighlevelAudienceSyncRequest)
+
+Sync a HighLevel tag to ad audiences
+
+Keep every HighLevel contact with a tag as a customer list audience on one or more Meta or Reddit ad accounts of the profile. Take &#x60;targets&#x60; from &#x60;targetChoices&#x60; of &#x60;listGohighlevelAudienceSyncs&#x60;.  Zernio creates one audience per ad account and fills it within a few minutes. A contact joins or leaves as soon as the tag is added to or removed from it, and every 6 hours Zernio re-reads the tag. Emails and phones are hashed before upload.  A tag syncs once per sub-account; stop it to change its ad accounts. Needs a read-write key.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The HighLevel account id from `listAccounts`.
+        StartGohighlevelAudienceSyncRequest startGohighlevelAudienceSyncRequest = new StartGohighlevelAudienceSyncRequest(); // StartGohighlevelAudienceSyncRequest | 
+        try {
+            ApiResponse<StartGohighlevelAudienceSync201Response> response = apiInstance.startGohighlevelAudienceSyncWithHttpInfo(accountId, startGohighlevelAudienceSyncRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#startGohighlevelAudienceSync");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The HighLevel account id from &#x60;listAccounts&#x60;. | |
+| **startGohighlevelAudienceSyncRequest** | [**StartGohighlevelAudienceSyncRequest**](StartGohighlevelAudienceSyncRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**StartGohighlevelAudienceSync201Response**](StartGohighlevelAudienceSync201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Sync started |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is read-only |  -  |
+| **404** | Account not found |  -  |
+| **409** | The tag is being set up or synced right now, or is already synced. Retry later, or stop the existing sync first. |  -  |
+
+
+## stopGohighlevelAudienceSync
+
+> DeleteAccountGroup200Response stopGohighlevelAudienceSync(accountId, syncId)
+
+Stop a HighLevel tag audience sync
+
+Stop keeping a tag in sync. Its audiences stay on the ad accounts with their current members, so running ads keep their targeting; delete an audience with &#x60;deleteAdAudience&#x60;. Needs a read-write key.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The HighLevel account id from `listAccounts`.
+        String syncId = "syncId_example"; // String | The sync id from `listGohighlevelAudienceSyncs`.
+        try {
+            DeleteAccountGroup200Response result = apiInstance.stopGohighlevelAudienceSync(accountId, syncId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#stopGohighlevelAudienceSync");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The HighLevel account id from &#x60;listAccounts&#x60;. | |
+| **syncId** | **String**| The sync id from &#x60;listGohighlevelAudienceSyncs&#x60;. | |
+
+### Return type
+
+[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sync stopped |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is read-only |  -  |
+| **404** | Account or sync not found |  -  |
+| **409** | The tag is being set up or synced right now, or is already synced. Retry later, or stop the existing sync first. |  -  |
+
+## stopGohighlevelAudienceSyncWithHttpInfo
+
+> ApiResponse<DeleteAccountGroup200Response> stopGohighlevelAudienceSync stopGohighlevelAudienceSyncWithHttpInfo(accountId, syncId)
+
+Stop a HighLevel tag audience sync
+
+Stop keeping a tag in sync. Its audiences stay on the ad accounts with their current members, so running ads keep their targeting; delete an audience with &#x60;deleteAdAudience&#x60;. Needs a read-write key.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The HighLevel account id from `listAccounts`.
+        String syncId = "syncId_example"; // String | The sync id from `listGohighlevelAudienceSyncs`.
+        try {
+            ApiResponse<DeleteAccountGroup200Response> response = apiInstance.stopGohighlevelAudienceSyncWithHttpInfo(accountId, syncId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#stopGohighlevelAudienceSync");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The HighLevel account id from &#x60;listAccounts&#x60;. | |
+| **syncId** | **String**| The sync id from &#x60;listGohighlevelAudienceSyncs&#x60;. | |
+
+### Return type
+
+ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sync stopped |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is read-only |  -  |
+| **404** | Account or sync not found |  -  |
+| **409** | The tag is being set up or synced right now, or is already synced. Retry later, or stop the existing sync first. |  -  |
 
 
 ## updateAccount
@@ -4606,5 +5388,161 @@ ApiResponse<[**UpdateStripeSettings200Response**](UpdateStripeSettings200Respons
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+
+## verifyGohighlevelFunnelTracking
+
+> GohighlevelFunnelTracking verifyGohighlevelFunnelTracking(accountId, verifyGohighlevelFunnelTrackingRequest)
+
+Check the Zernio tag on a HighLevel funnel page
+
+Load a live funnel or website page and report whether it carries the sub-account&#39;s Zernio tag. A page that does adds its domain to the tag&#39;s domains, so visits there are tied to the contacts who fill its forms.  Returns the same funnel tracking state as &#x60;getGohighlevelFunnelTracking&#x60;, with &#x60;verified&#x60; set. Needs a read-write key.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The HighLevel account id from `listAccounts`.
+        VerifyGohighlevelFunnelTrackingRequest verifyGohighlevelFunnelTrackingRequest = new VerifyGohighlevelFunnelTrackingRequest(); // VerifyGohighlevelFunnelTrackingRequest | 
+        try {
+            GohighlevelFunnelTracking result = apiInstance.verifyGohighlevelFunnelTracking(accountId, verifyGohighlevelFunnelTrackingRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#verifyGohighlevelFunnelTracking");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The HighLevel account id from &#x60;listAccounts&#x60;. | |
+| **verifyGohighlevelFunnelTrackingRequest** | [**VerifyGohighlevelFunnelTrackingRequest**](VerifyGohighlevelFunnelTrackingRequest.md)|  | |
+
+### Return type
+
+[**GohighlevelFunnelTracking**](GohighlevelFunnelTracking.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Funnel tracking, with the page check |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is read-only |  -  |
+| **404** | Account not found |  -  |
+
+## verifyGohighlevelFunnelTrackingWithHttpInfo
+
+> ApiResponse<GohighlevelFunnelTracking> verifyGohighlevelFunnelTracking verifyGohighlevelFunnelTrackingWithHttpInfo(accountId, verifyGohighlevelFunnelTrackingRequest)
+
+Check the Zernio tag on a HighLevel funnel page
+
+Load a live funnel or website page and report whether it carries the sub-account&#39;s Zernio tag. A page that does adds its domain to the tag&#39;s domains, so visits there are tied to the contacts who fill its forms.  Returns the same funnel tracking state as &#x60;getGohighlevelFunnelTracking&#x60;, with &#x60;verified&#x60; set. Needs a read-write key.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The HighLevel account id from `listAccounts`.
+        VerifyGohighlevelFunnelTrackingRequest verifyGohighlevelFunnelTrackingRequest = new VerifyGohighlevelFunnelTrackingRequest(); // VerifyGohighlevelFunnelTrackingRequest | 
+        try {
+            ApiResponse<GohighlevelFunnelTracking> response = apiInstance.verifyGohighlevelFunnelTrackingWithHttpInfo(accountId, verifyGohighlevelFunnelTrackingRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#verifyGohighlevelFunnelTracking");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The HighLevel account id from &#x60;listAccounts&#x60;. | |
+| **verifyGohighlevelFunnelTrackingRequest** | [**VerifyGohighlevelFunnelTrackingRequest**](VerifyGohighlevelFunnelTrackingRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**GohighlevelFunnelTracking**](GohighlevelFunnelTracking.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Funnel tracking, with the page check |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is read-only |  -  |
 | **404** | Account not found |  -  |
 

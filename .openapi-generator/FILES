@@ -1952,6 +1952,13 @@ docs/GmbPlaceActionsApi.md
 docs/GmbReviewsApi.md
 docs/GmbServicesApi.md
 docs/GmbVerificationsApi.md
+docs/GohighlevelAudienceSync.md
+docs/GohighlevelAudienceSyncAudiencesInner.md
+docs/GohighlevelAudienceSyncOverview.md
+docs/GohighlevelAudienceSyncOverviewTargetChoicesInner.md
+docs/GohighlevelFunnelTracking.md
+docs/GohighlevelFunnelTrackingFunnelsInner.md
+docs/GohighlevelFunnelTrackingVerified.md
 docs/GohighlevelSettings.md
 docs/GoogleAdLabel.md
 docs/GoogleAdLabelAssignments.md
@@ -3116,6 +3123,7 @@ docs/SendEvents202Response.md
 docs/SendEventsRequest.md
 docs/SendEventsRequestConsent.md
 docs/SendEventsRequestDestinationsInner.md
+docs/SendGohighlevelPastWonDeals200Response.md
 docs/SendInboxMessage200Response.md
 docs/SendInboxMessage200ResponseData.md
 docs/SendInboxMessage200ResponseDataAttachmentsInner.md
@@ -3254,6 +3262,9 @@ docs/StartCreatorConnect200Response.md
 docs/StartCreatorConnectRequest.md
 docs/StartCreatorPayouts200Response.md
 docs/StartCreatorPayoutsRequest.md
+docs/StartGohighlevelAudienceSync201Response.md
+docs/StartGohighlevelAudienceSyncRequest.md
+docs/StartGohighlevelAudienceSyncRequestTargetsInner.md
 docs/StartGoogleBusinessVerification200Response.md
 docs/StartGoogleBusinessVerification200ResponseVerification.md
 docs/StartGoogleBusinessVerificationRequest.md
@@ -3748,6 +3759,7 @@ docs/ValueRuleSet.md
 docs/Verification.md
 docs/VerifyApi.md
 docs/VerifyCredential200Response.md
+docs/VerifyGohighlevelFunnelTrackingRequest.md
 docs/VerifyOrgConnectionRequest.md
 docs/VerifySmsRegistrationOtp200Response.md
 docs/VerifySmsRegistrationOtpRequest.md
@@ -6134,6 +6146,13 @@ src/main/java/dev/zernio/model/GetYoutubeCaptions200ResponseAvailableTracksInner
 src/main/java/dev/zernio/model/GetYoutubeCaptions200ResponseCuesInner.java
 src/main/java/dev/zernio/model/GetYoutubePlaylists200Response.java
 src/main/java/dev/zernio/model/GetYoutubePlaylists200ResponsePlaylistsInner.java
+src/main/java/dev/zernio/model/GohighlevelAudienceSync.java
+src/main/java/dev/zernio/model/GohighlevelAudienceSyncAudiencesInner.java
+src/main/java/dev/zernio/model/GohighlevelAudienceSyncOverview.java
+src/main/java/dev/zernio/model/GohighlevelAudienceSyncOverviewTargetChoicesInner.java
+src/main/java/dev/zernio/model/GohighlevelFunnelTracking.java
+src/main/java/dev/zernio/model/GohighlevelFunnelTrackingFunnelsInner.java
+src/main/java/dev/zernio/model/GohighlevelFunnelTrackingVerified.java
 src/main/java/dev/zernio/model/GohighlevelSettings.java
 src/main/java/dev/zernio/model/GoogleAdLabel.java
 src/main/java/dev/zernio/model/GoogleAdLabelAssignments.java
@@ -7275,6 +7294,7 @@ src/main/java/dev/zernio/model/SendEvents202Response.java
 src/main/java/dev/zernio/model/SendEventsRequest.java
 src/main/java/dev/zernio/model/SendEventsRequestConsent.java
 src/main/java/dev/zernio/model/SendEventsRequestDestinationsInner.java
+src/main/java/dev/zernio/model/SendGohighlevelPastWonDeals200Response.java
 src/main/java/dev/zernio/model/SendInboxMessage200Response.java
 src/main/java/dev/zernio/model/SendInboxMessage200ResponseData.java
 src/main/java/dev/zernio/model/SendInboxMessage200ResponseDataAttachmentsInner.java
@@ -7410,6 +7430,9 @@ src/main/java/dev/zernio/model/StartCreatorConnect200Response.java
 src/main/java/dev/zernio/model/StartCreatorConnectRequest.java
 src/main/java/dev/zernio/model/StartCreatorPayouts200Response.java
 src/main/java/dev/zernio/model/StartCreatorPayoutsRequest.java
+src/main/java/dev/zernio/model/StartGohighlevelAudienceSync201Response.java
+src/main/java/dev/zernio/model/StartGohighlevelAudienceSyncRequest.java
+src/main/java/dev/zernio/model/StartGohighlevelAudienceSyncRequestTargetsInner.java
 src/main/java/dev/zernio/model/StartGoogleBusinessVerification200Response.java
 src/main/java/dev/zernio/model/StartGoogleBusinessVerification200ResponseVerification.java
 src/main/java/dev/zernio/model/StartGoogleBusinessVerificationRequest.java
@@ -7895,6 +7918,7 @@ src/main/java/dev/zernio/model/ValueRuleCriterion.java
 src/main/java/dev/zernio/model/ValueRuleSet.java
 src/main/java/dev/zernio/model/Verification.java
 src/main/java/dev/zernio/model/VerifyCredential200Response.java
+src/main/java/dev/zernio/model/VerifyGohighlevelFunnelTrackingRequest.java
 src/main/java/dev/zernio/model/VerifyOrgConnectionRequest.java
 src/main/java/dev/zernio/model/VerifySmsRegistrationOtp200Response.java
 src/main/java/dev/zernio/model/VerifySmsRegistrationOtpRequest.java
@@ -8257,3 +8281,15 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GohighlevelAudienceSyncAudiencesInnerTest.java
+src/test/java/dev/zernio/model/GohighlevelAudienceSyncOverviewTargetChoicesInnerTest.java
+src/test/java/dev/zernio/model/GohighlevelAudienceSyncOverviewTest.java
+src/test/java/dev/zernio/model/GohighlevelAudienceSyncTest.java
+src/test/java/dev/zernio/model/GohighlevelFunnelTrackingFunnelsInnerTest.java
+src/test/java/dev/zernio/model/GohighlevelFunnelTrackingTest.java
+src/test/java/dev/zernio/model/GohighlevelFunnelTrackingVerifiedTest.java
+src/test/java/dev/zernio/model/SendGohighlevelPastWonDeals200ResponseTest.java
+src/test/java/dev/zernio/model/StartGohighlevelAudienceSync201ResponseTest.java
+src/test/java/dev/zernio/model/StartGohighlevelAudienceSyncRequestTargetsInnerTest.java
+src/test/java/dev/zernio/model/StartGohighlevelAudienceSyncRequestTest.java
+src/test/java/dev/zernio/model/VerifyGohighlevelFunnelTrackingRequestTest.java
