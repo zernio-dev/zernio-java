@@ -27,6 +27,7 @@
 | EVENT | &quot;event&quot; |
 | SCHEDULED | &quot;scheduled&quot; |
 | SEQUENCE | &quot;sequence&quot; |
+| COMMENT | &quot;comment&quot; |
 
 
 

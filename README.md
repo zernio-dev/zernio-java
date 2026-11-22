@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.741.0
+- API version: 1.742.0
 
-- Build date: 2026-11-22T11:28:13.813386068Z[Etc/UTC]
+- Build date: 2026-11-22T11:59:59.813936439Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.741.0</version>
+  <version>1.742.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.741.0"
+compile "dev.zernio:zernio-sdk:1.742.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.741.0.jar`
+- `target/zernio-sdk-1.742.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3163,6 +3163,7 @@ Class | Method | HTTP request | Description
  - [AutomationOneOf2](docs/AutomationOneOf2.md)
  - [AutomationOneOf3](docs/AutomationOneOf3.md)
  - [AutomationOneOf3AllOfEnrollments](docs/AutomationOneOf3AllOfEnrollments.md)
+ - [AutomationOneOf4](docs/AutomationOneOf4.md)
  - [AutomationPostSchedule](docs/AutomationPostSchedule.md)
  - [AutomationPostSubjects](docs/AutomationPostSubjects.md)
  - [AutomationPreview](docs/AutomationPreview.md)
@@ -3432,7 +3433,18 @@ Class | Method | HTTP request | Description
  - [CommentAttachment](docs/CommentAttachment.md)
  - [CommentAutomationActions](docs/CommentAutomationActions.md)
  - [CommentAutomationAudience](docs/CommentAutomationAudience.md)
+ - [CommentAutomationDefinition](docs/CommentAutomationDefinition.md)
+ - [CommentAutomationDefinitionGraph](docs/CommentAutomationDefinitionGraph.md)
+ - [CommentAutomationDefinitionGraphEdgesInner](docs/CommentAutomationDefinitionGraphEdgesInner.md)
+ - [CommentAutomationDefinitionGraphNodesInner](docs/CommentAutomationDefinitionGraphNodesInner.md)
+ - [CommentAutomationDefinitionLimits](docs/CommentAutomationDefinitionLimits.md)
+ - [CommentAutomationDefinitionLimitsRepeat](docs/CommentAutomationDefinitionLimitsRepeat.md)
+ - [CommentAutomationDefinitionOrTriggersInner](docs/CommentAutomationDefinitionOrTriggersInner.md)
+ - [CommentAutomationDefinitionTrigger](docs/CommentAutomationDefinitionTrigger.md)
  - [CommentAutomationDmMedia](docs/CommentAutomationDmMedia.md)
+ - [CommentAutomationFilter](docs/CommentAutomationFilter.md)
+ - [CommentAutomationFilterLeft](docs/CommentAutomationFilterLeft.md)
+ - [CommentAutomationFilterRight](docs/CommentAutomationFilterRight.md)
  - [CommentAutomationFollowGate](docs/CommentAutomationFollowGate.md)
  - [CommentAutomationLog](docs/CommentAutomationLog.md)
  - [CommentAutomationLogPlatformError](docs/CommentAutomationLogPlatformError.md)

@@ -701,7 +701,7 @@ ApiResponse<[**AutomationBacktest**](AutomationBacktest.md)>
 
 Create an automation
 
-Creates an automation. Its shape picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Sequence**: an &#x60;enrollment&#x60; trigger on one messaging account, with message steps sent over time. It is on unless &#x60;status&#x60; is &#x60;draft&#x60;. It needs what &#x60;/v1/sequences&#x60; needs: the inbox add-on and a key with the &#x60;messages&#x60; group.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
+Creates an automation. Its shape picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Sequence**: an &#x60;enrollment&#x60; trigger on one messaging account, with message steps sent over time. It is on unless &#x60;status&#x60; is &#x60;draft&#x60;. It needs what &#x60;/v1/sequences&#x60; needs: the inbox add-on and a key with the &#x60;messages&#x60; group. - **Comment to DM**: a comment door in &#x60;trigger.type&#x60;, such as &#x60;comment.keyword&#x60;, with a &#x60;graph&#x60; of the shapes &#x60;/v1/comment-automations&#x60; holds. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;, and needs what &#x60;/v1/comment-automations&#x60; needs. A post that already has an active automation is a 409.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
 
 ### Example
 
@@ -778,7 +778,7 @@ public class Example {
 
 Create an automation
 
-Creates an automation. Its shape picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Sequence**: an &#x60;enrollment&#x60; trigger on one messaging account, with message steps sent over time. It is on unless &#x60;status&#x60; is &#x60;draft&#x60;. It needs what &#x60;/v1/sequences&#x60; needs: the inbox add-on and a key with the &#x60;messages&#x60; group.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
+Creates an automation. Its shape picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Sequence**: an &#x60;enrollment&#x60; trigger on one messaging account, with message steps sent over time. It is on unless &#x60;status&#x60; is &#x60;draft&#x60;. It needs what &#x60;/v1/sequences&#x60; needs: the inbox add-on and a key with the &#x60;messages&#x60; group. - **Comment to DM**: a comment door in &#x60;trigger.type&#x60;, such as &#x60;comment.keyword&#x60;, with a &#x60;graph&#x60; of the shapes &#x60;/v1/comment-automations&#x60; holds. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;, and needs what &#x60;/v1/comment-automations&#x60; needs. A post that already has an active automation is a 409.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
 
 ### Example
 
@@ -3483,7 +3483,7 @@ ApiResponse<[**ListAutomationTemplates200Response**](ListAutomationTemplates200R
 
 List automations
 
-Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations and sequences. Sequences need what &#x60;/v1/sequences&#x60; needs: the inbox add-on, and a key with the &#x60;messages&#x60; group; without them they are left out. 
+Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations, sequences and comment to DM.  Sequences and comment to DM need what &#x60;/v1/sequences&#x60; and &#x60;/v1/comment-automations&#x60; need: the inbox add-on, and a key with the &#x60;messages&#x60; group; without them they are left out. 
 
 ### Example
 
@@ -3508,7 +3508,7 @@ public class Example {
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
         String accountId = "accountId_example"; // String | Only automations on this account: the ads connection of an ad rule, or one of the `accountIds` of an event or scheduled automation.
         String adAccountId = "adAccountId_example"; // String | Only ad rules checking this platform ad account.
-        String kind = "ad_rule,event"; // String | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`.
+        String kind = "ad_rule,event"; // String | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`, `comment`.
         Integer limit = 50; // Integer | 
         String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
         try {
@@ -3532,7 +3532,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Only automations on this account: the ads connection of an ad rule, or one of the &#x60;accountIds&#x60; of an event or scheduled automation. | [optional] |
 | **adAccountId** | **String**| Only ad rules checking this platform ad account. | [optional] |
-| **kind** | **String**| Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;. | [optional] |
+| **kind** | **String**| Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;, &#x60;comment&#x60;. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
 
@@ -3563,7 +3563,7 @@ public class Example {
 
 List automations
 
-Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations and sequences. Sequences need what &#x60;/v1/sequences&#x60; needs: the inbox add-on, and a key with the &#x60;messages&#x60; group; without them they are left out. 
+Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations, sequences and comment to DM.  Sequences and comment to DM need what &#x60;/v1/sequences&#x60; and &#x60;/v1/comment-automations&#x60; need: the inbox add-on, and a key with the &#x60;messages&#x60; group; without them they are left out. 
 
 ### Example
 
@@ -3589,7 +3589,7 @@ public class Example {
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
         String accountId = "accountId_example"; // String | Only automations on this account: the ads connection of an ad rule, or one of the `accountIds` of an event or scheduled automation.
         String adAccountId = "adAccountId_example"; // String | Only ad rules checking this platform ad account.
-        String kind = "ad_rule,event"; // String | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`.
+        String kind = "ad_rule,event"; // String | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`, `comment`.
         Integer limit = 50; // Integer | 
         String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
         try {
@@ -3615,7 +3615,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Only automations on this account: the ads connection of an ad rule, or one of the &#x60;accountIds&#x60; of an event or scheduled automation. | [optional] |
 | **adAccountId** | **String**| Only ad rules checking this platform ad account. | [optional] |
-| **kind** | **String**| Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;. | [optional] |
+| **kind** | **String**| Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;, &#x60;comment&#x60;. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
 

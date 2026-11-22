@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.741.0
+  version: 1.742.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -55305,7 +55305,9 @@ paths:
   /v1/automations:
     get:
       description: |
-        Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations and sequences. Sequences need what `/v1/sequences` needs: the inbox add-on, and a key with the `messages` group; without them they are left out.
+        Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations, sequences and comment to DM.
+
+        Sequences and comment to DM need what `/v1/sequences` and `/v1/comment-automations` need: the inbox add-on, and a key with the `messages` group; without them they are left out.
       operationId: listAutomations
       parameters:
       - description: "Only automations on this account: the ads connection of an ad\
@@ -55326,7 +55328,7 @@ paths:
           type: string
         style: form
       - description: "Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`,\
-          \ `sequence`."
+          \ `sequence`, `comment`."
         explode: true
         in: query
         name: kind
@@ -55380,6 +55382,7 @@ paths:
         - **Event**: a Zernio event in `trigger.type`, such as `post.failed`, with notify steps. It is on unless `status` is `paused`.
         - **Scheduled**: a `schedule` over a profile's posts, with notify steps and an optional boost. It is on unless `status` is `paused`.
         - **Sequence**: an `enrollment` trigger on one messaging account, with message steps sent over time. It is on unless `status` is `draft`. It needs what `/v1/sequences` needs: the inbox add-on and a key with the `messages` group.
+        - **Comment to DM**: a comment door in `trigger.type`, such as `comment.keyword`, with a `graph` of the shapes `/v1/comment-automations` holds. It is on unless `status` is `paused`, and needs what `/v1/comment-automations` needs. A post that already has an active automation is a 409.
 
         Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in `details.problems`.
       operationId: createAutomation
@@ -140738,19 +140741,71 @@ components:
       required:
       - after
       - type
+    CommentAutomationDefinition:
+      description: |
+        Comment to DM: a comment matching keywords (or a live comment, a story reply or a story mention on Instagram) runs a graph of steps with fixed ids. The same automation `/v1/comment-automations` serves.
+
+        Only the graphs that automation can hold are stored: read one to see the shapes it takes, and edit from there. Any other graph is refused at `graph`, naming the nodes and edges it would not keep. Unknown fields are refused.
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+        status:
+          default: active
+          enum:
+          - active
+          - paused
+          type: string
+        trigger:
+          $ref: "#/components/schemas/CommentAutomationDefinition_trigger"
+        orTriggers:
+          description: "A DM with the same keywords also starts it (`dm.keyword`),\
+            \ at the decision and with no comment to act on. Comment triggers with\
+            \ keywords only."
+          items:
+            $ref: "#/components/schemas/CommentAutomationDefinition_orTriggers_inner"
+          maxItems: 1
+          type: array
+        graph:
+          $ref: "#/components/schemas/CommentAutomationDefinition_graph"
+        limits:
+          $ref: "#/components/schemas/CommentAutomationDefinition_limits"
+      required:
+      - graph
+      - limits
+      - name
+      - trigger
+    CommentAutomationFilter:
+      additionalProperties: false
+      properties:
+        left:
+          $ref: "#/components/schemas/CommentAutomationFilter_left"
+        op:
+          enum:
+          - matches_text
+          type: string
+        right:
+          $ref: "#/components/schemas/CommentAutomationFilter_right"
+      required:
+      - left
+      - op
+      - right
     AutomationDefinition:
       description: |
-        An automation of one of four kinds, told apart by its shape:
+        An automation of one of five kinds, told apart by its shape:
 
         - **Ad rule**: a `schedule` trigger over campaigns, ad sets, ads, Google keywords or Google search terms, with metric `conditions` and ad `steps`.
         - **Event**: a Zernio event in `trigger.type`, narrowed by `trigger.filter`, with notify steps, or none to only record each matching event as a check.
         - **Scheduled**: a `schedule` trigger over `subjects.each: post`, narrowed by `filter`, with notify and boost steps.
         - **Sequence**: an `enrollment` trigger on one account, with message steps sent over time.
+        - **Comment to DM**: a comment door in `trigger.type` (`comment.keyword`, `comment.live`, `story.reply`, `story.mention`) with a `graph`.
       oneOf:
       - $ref: "#/components/schemas/AdRuleAutomationDefinition"
       - $ref: "#/components/schemas/EventAutomationDefinition"
       - $ref: "#/components/schemas/ScheduledAutomationDefinition"
       - $ref: "#/components/schemas/SequenceAutomationDefinition"
+      - $ref: "#/components/schemas/CommentAutomationDefinition"
     AutomationRecord:
       properties:
         id:
@@ -140761,6 +140816,7 @@ components:
           - event
           - scheduled
           - sequence
+          - comment
           type: string
         status:
           description: Only a sequence can be a draft.
@@ -140808,6 +140864,7 @@ components:
       - $ref: "#/components/schemas/Automation_oneOf_1"
       - $ref: "#/components/schemas/Automation_oneOf_2"
       - $ref: "#/components/schemas/Automation_oneOf_3"
+      - $ref: "#/components/schemas/Automation_oneOf_4"
     AutomationProblems:
       description: "Every problem with the automation, each at a JSON path such as\
         \ `steps[0].by`. The first one also fills `error` and `param`."
@@ -194778,9 +194835,11 @@ components:
           - event
           - scheduled
           - sequence
+          - comment
           type: string
         type:
-          description: "`schedule`, `enrollment`, or the Zernio event name."
+          description: "`schedule`, `enrollment`, a comment door such as `comment.keyword`\
+            \ (comment to DM), or the Zernio event name."
           example: post.failed
           type: string
         label:
@@ -254024,6 +254083,171 @@ components:
       required:
       - language
       - name
+    CommentAutomationDefinition_trigger:
+      additionalProperties: false
+      properties:
+        type:
+          description: "`comment.keyword` for a comment on a post or reel. The `comment.received`\
+            \ event starts an event automation, not comment to DM."
+          enum:
+          - comment.keyword
+          - comment.live
+          - story.reply
+          - story.mention
+          type: string
+        profileId:
+          type: string
+        accountId:
+          description: "The account it answers on, on the profile. It cannot change\
+            \ once saved."
+          type: string
+        platformPostId:
+          description: The platform post or story it answers. Null answers every one.
+            One active automation per post.
+          nullable: true
+          type: string
+        postId:
+          description: A Zernio post. A scheduled one is answered once it publishes.
+          nullable: true
+          type: string
+        postTitle:
+          nullable: true
+          type: string
+        filter:
+          $ref: "#/components/schemas/CommentAutomationFilter"
+        entry:
+          description: The nodes a run starts at.
+          items:
+            type: string
+          type: array
+      required:
+      - accountId
+      - entry
+      - filter
+      - profileId
+      - type
+    CommentAutomationDefinition_orTriggers_inner:
+      additionalProperties: false
+      properties:
+        type:
+          enum:
+          - dm.keyword
+          type: string
+        filter:
+          $ref: "#/components/schemas/CommentAutomationFilter"
+        entry:
+          items:
+            type: string
+          type: array
+      required:
+      - entry
+      - filter
+      - type
+    CommentAutomationDefinition_graph_nodes_inner:
+      properties:
+        id:
+          type: string
+        type:
+          example: messages.send
+          type: string
+        config:
+          additionalProperties: true
+          type: object
+      required:
+      - config
+      - id
+      - type
+    CommentAutomationDefinition_graph_edges_inner:
+      properties:
+        id:
+          description: Derived from the other fields.
+          type: string
+        source:
+          type: string
+        target:
+          type: string
+        sourceHandle:
+          description: "The outcome it follows, such as `sent`, `tapped` or a follower\
+            \ rule. Null follows any outcome."
+          nullable: true
+          type: string
+      required:
+      - source
+      - target
+    CommentAutomationDefinition_graph:
+      additionalProperties: false
+      properties:
+        nodes:
+          description: "Steps with fixed ids: `like`, `hide`, `reply` (the public\
+            \ reply), `delay`, `dm`, `audience` (follower rules), `gate`, `decline`,\
+            \ `gate_wait`, `gate_check`, `nudge`, `nudge_end`. On TikTok, Threads,\
+            \ LinkedIn and YouTube only `delay` and `reply` exist."
+          items:
+            $ref: "#/components/schemas/CommentAutomationDefinition_graph_nodes_inner"
+          type: array
+        edges:
+          items:
+            $ref: "#/components/schemas/CommentAutomationDefinition_graph_edges_inner"
+          type: array
+      required:
+      - edges
+      - nodes
+    CommentAutomationDefinition_limits_repeat:
+      properties:
+        mode:
+          description: "Once per person, or on every comment."
+          enum:
+          - once
+          - every_comment
+          type: string
+        cooldownHours:
+          description: every_comment only.
+          minimum: 1
+          type: integer
+      required:
+      - mode
+    CommentAutomationDefinition_limits:
+      additionalProperties: false
+      properties:
+        repeat:
+          $ref: "#/components/schemas/CommentAutomationDefinition_limits_repeat"
+        sameTextDedupeHours:
+          description: "Skips a DM with the same text to the same person within these\
+            \ hours, across automations."
+          minimum: 1
+          nullable: true
+          type: integer
+      required:
+      - repeat
+    CommentAutomationFilter_left:
+      properties:
+        var:
+          example: comment.text
+          type: string
+    CommentAutomationFilter_right:
+      properties:
+        keywords:
+          description: Empty matches every comment.
+          items:
+            type: string
+          type: array
+        mode:
+          enum:
+          - contains
+          - word
+          - exact
+          type: string
+        exclude:
+          items:
+            type: string
+          nullable: true
+          type: array
+        typoTolerance:
+          nullable: true
+          type: boolean
+      required:
+      - keywords
+      - mode
     AutomationRecord_template:
       description: "Only on `GET /v1/automations/{automationId}`, for an automation\
         \ installed from a template."
@@ -254292,6 +254516,21 @@ components:
             $ref: "#/components/schemas/Automation_oneOf_3_allOf_enrollments"
         required:
         - enrollments
+        - platform
+    Automation_oneOf_4:
+      allOf:
+      - $ref: "#/components/schemas/CommentAutomationDefinition"
+      - $ref: "#/components/schemas/AutomationRecord"
+      - properties:
+          kind:
+            enum:
+            - comment
+            type: string
+          platform:
+            description: "The account's platform. On TikTok, Threads, LinkedIn and\
+              \ YouTube it only posts the public reply."
+            type: string
+        required:
         - platform
     AutomationProblems_problems_inner:
       example:
