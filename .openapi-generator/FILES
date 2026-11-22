@@ -2643,6 +2643,7 @@ docs/ListWorkflowExecutionEvents200ResponseExecution.md
 docs/ListWorkflowExecutions200Response.md
 docs/ListWorkflowExecutions200ResponseExecutionsInner.md
 docs/ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor.md
+docs/ListWorkflowExecutions200ResponsePagination.md
 docs/ListWorkflowVersions200Response.md
 docs/ListWorkflowVersions200ResponseVersionsInner.md
 docs/ListWorkflows200Response.md
@@ -6890,6 +6891,7 @@ src/main/java/dev/zernio/model/ListWorkflowExecutionEvents200ResponseExecution.j
 src/main/java/dev/zernio/model/ListWorkflowExecutions200Response.java
 src/main/java/dev/zernio/model/ListWorkflowExecutions200ResponseExecutionsInner.java
 src/main/java/dev/zernio/model/ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor.java
+src/main/java/dev/zernio/model/ListWorkflowExecutions200ResponsePagination.java
 src/main/java/dev/zernio/model/ListWorkflowVersions200Response.java
 src/main/java/dev/zernio/model/ListWorkflowVersions200ResponseVersionsInner.java
 src/main/java/dev/zernio/model/ListWorkflows200Response.java
@@ -8401,7 +8403,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AutomationOneOf5Test.java
-src/test/java/dev/zernio/model/FlowAutomationDefinitionGraphTest.java
-src/test/java/dev/zernio/model/FlowAutomationDefinitionTest.java
-src/test/java/dev/zernio/model/FlowAutomationDefinitionTriggerTest.java
+src/test/java/dev/zernio/model/ListWorkflowExecutions200ResponsePaginationTest.java

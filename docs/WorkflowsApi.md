@@ -1091,7 +1091,7 @@ ApiResponse<[**ListWorkflowExecutionEvents200Response**](ListWorkflowExecutionEv
 
 ## listWorkflowExecutions
 
-> ListWorkflowExecutions200Response listWorkflowExecutions(workflowId, status, limit, skip)
+> ListWorkflowExecutions200Response listWorkflowExecutions(workflowId, status, limit, skip, cursor)
 
 List workflow runs
 
@@ -1122,8 +1122,9 @@ public class Example {
         String status = "running"; // String | 
         Integer limit = 25; // Integer | 
         Integer skip = 0; // Integer | 
+        String cursor = "cursor_example"; // String | The previous page's pagination.nextCursor. Pages stay stable while runs start or end; skip applies after it. Page past the first 1000 runs with the cursor: a larger skip may be refused with 400.
         try {
-            ListWorkflowExecutions200Response result = apiInstance.listWorkflowExecutions(workflowId, status, limit, skip);
+            ListWorkflowExecutions200Response result = apiInstance.listWorkflowExecutions(workflowId, status, limit, skip, cursor);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WorkflowsApi#listWorkflowExecutions");
@@ -1145,6 +1146,7 @@ public class Example {
 | **status** | **String**|  | [optional] [enum: running, waiting, completed, exited, failed] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **skip** | **Integer**|  | [optional] [default to 0] |
+| **cursor** | **String**| The previous page&#39;s pagination.nextCursor. Pages stay stable while runs start or end; skip applies after it. Page past the first 1000 runs with the cursor: a larger skip may be refused with 400. | [optional] |
 
 ### Return type
 
@@ -1170,7 +1172,7 @@ public class Example {
 
 ## listWorkflowExecutionsWithHttpInfo
 
-> ApiResponse<ListWorkflowExecutions200Response> listWorkflowExecutions listWorkflowExecutionsWithHttpInfo(workflowId, status, limit, skip)
+> ApiResponse<ListWorkflowExecutions200Response> listWorkflowExecutions listWorkflowExecutionsWithHttpInfo(workflowId, status, limit, skip, cursor)
 
 List workflow runs
 
@@ -1202,8 +1204,9 @@ public class Example {
         String status = "running"; // String | 
         Integer limit = 25; // Integer | 
         Integer skip = 0; // Integer | 
+        String cursor = "cursor_example"; // String | The previous page's pagination.nextCursor. Pages stay stable while runs start or end; skip applies after it. Page past the first 1000 runs with the cursor: a larger skip may be refused with 400.
         try {
-            ApiResponse<ListWorkflowExecutions200Response> response = apiInstance.listWorkflowExecutionsWithHttpInfo(workflowId, status, limit, skip);
+            ApiResponse<ListWorkflowExecutions200Response> response = apiInstance.listWorkflowExecutionsWithHttpInfo(workflowId, status, limit, skip, cursor);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1227,6 +1230,7 @@ public class Example {
 | **status** | **String**|  | [optional] [enum: running, waiting, completed, exited, failed] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **skip** | **Integer**|  | [optional] [default to 0] |
+| **cursor** | **String**| The previous page&#39;s pagination.nextCursor. Pages stay stable while runs start or end; skip applies after it. Page past the first 1000 runs with the cursor: a larger skip may be refused with 400. | [optional] |
 
 ### Return type
 

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.754.0
+- API version: 1.755.0
 
-- Build date: 2026-11-22T16:28:38.134106347Z[Etc/UTC]
+- Build date: 2026-11-22T16:36:00.281360611Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.754.0</version>
+  <version>1.755.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.754.0"
+compile "dev.zernio:zernio-sdk:1.755.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.754.0.jar`
+- `target/zernio-sdk-1.755.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -5475,6 +5475,7 @@ Class | Method | HTTP request | Description
  - [ListWorkflowExecutions200Response](docs/ListWorkflowExecutions200Response.md)
  - [ListWorkflowExecutions200ResponseExecutionsInner](docs/ListWorkflowExecutions200ResponseExecutionsInner.md)
  - [ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor](docs/ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor.md)
+ - [ListWorkflowExecutions200ResponsePagination](docs/ListWorkflowExecutions200ResponsePagination.md)
  - [ListWorkflowVersions200Response](docs/ListWorkflowVersions200Response.md)
  - [ListWorkflowVersions200ResponseVersionsInner](docs/ListWorkflowVersions200ResponseVersionsInner.md)
  - [ListWorkflows200Response](docs/ListWorkflows200Response.md)

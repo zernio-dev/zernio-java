@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.754.0
+  version: 1.755.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -53243,6 +53243,16 @@ paths:
         schema:
           default: 0
           type: integer
+        style: form
+      - description: "The previous page's pagination.nextCursor. Pages stay stable\
+          \ while runs start or end; skip applies after it. Page past the first 1000\
+          \ runs with the cursor: a larger skip may be refused with 400."
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
         style: form
       responses:
         "200":
@@ -190704,6 +190714,26 @@ components:
           format: date-time
           nullable: true
           type: string
+    listWorkflowExecutions_200_response_pagination:
+      example:
+        nextCursor: nextCursor
+        total: 6
+        limit: 1
+        hasMore: true
+        skip: 5
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        skip:
+          type: integer
+        hasMore:
+          type: boolean
+        nextCursor:
+          description: Pass as cursor for the next page; null on a short last page.
+          nullable: true
+          type: string
     listWorkflowExecutions_200_response:
       example:
         executions:
@@ -190740,10 +190770,11 @@ components:
           status: running
           updatedAt: 2000-01-23T04:56:07.000+00:00
         pagination:
-          total: 0
-          limit: 6
+          nextCursor: nextCursor
+          total: 6
+          limit: 1
           hasMore: true
-          skip: 1
+          skip: 5
         success: true
       properties:
         success:
@@ -190753,7 +190784,7 @@ components:
             $ref: "#/components/schemas/listWorkflowExecutions_200_response_executions_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/listWorkspaces_200_response_pagination"
+          $ref: "#/components/schemas/listWorkflowExecutions_200_response_pagination"
     triggerWorkflow_request:
       description: Provide either `to` (WhatsApp phone) or `conversationId`.
       properties:
