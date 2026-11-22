@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**addConversionAssociationsWithHttpInfo**](ConversionsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns |
 | [**adjustConversions**](ConversionsApi.md#adjustConversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions |
 | [**adjustConversionsWithHttpInfo**](ConversionsApi.md#adjustConversionsWithHttpInfo) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions |
+| [**checkTrackingSiteProxy**](ConversionsApi.md#checkTrackingSiteProxy) | **POST** /v1/tracking-sites/{siteId}/proxy-check | Check a tracking site&#39;s own-domain path |
+| [**checkTrackingSiteProxyWithHttpInfo**](ConversionsApi.md#checkTrackingSiteProxyWithHttpInfo) | **POST** /v1/tracking-sites/{siteId}/proxy-check | Check a tracking site&#39;s own-domain path |
 | [**createAdConversionDestination**](ConversionsApi.md#createAdConversionDestination) | **POST** /v1/ads/conversions/destinations | Create a conversion destination |
 | [**createAdConversionDestinationWithHttpInfo**](ConversionsApi.md#createAdConversionDestinationWithHttpInfo) | **POST** /v1/ads/conversions/destinations | Create a conversion destination |
 | [**createAdCustomConversion**](ConversionsApi.md#createAdCustomConversion) | **POST** /v1/ads/conversions/custom-conversions | Create custom conversion |
@@ -605,6 +607,156 @@ ApiResponse<[**AdjustConversions200Response**](AdjustConversions200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | Google Ads errors:  - &#x60;ads_connection_required&#x60;: no Google Ads customer account is left on this connection after its ad-account selection. Reconnect via GET /v1/connect/googleads/ads with a Google user that can reach the ad account, or select one of its ad accounts. - &#x60;invalid_resource_state&#x60;: the connection reaches only a Google Ads manager account with no client accounts yet. Create one with POST /v1/ads/accounts or under the manager in Google Ads, then retry.  |  -  |
 | **405** | Conversion adjustments are only available for Google Ads (the account&#39;s platform is not &#x60;googleads&#x60;). |  -  |
+
+
+## checkTrackingSiteProxy
+
+> CreateTrackingSite201Response checkTrackingSiteProxy(siteId)
+
+Check a tracking site&#39;s own-domain path
+
+Loads &#x60;https://&lt;first domain&gt;&lt;proxyPath&gt;/z.js&#x60; from Zernio&#39;s servers and records whether your proxy serves the tag, signed, in &#x60;proxy.status&#x60;. Once &#x60;verified&#x60;, cookies come from your own domain and Safari keeps them; a connected Tag Manager container moves to the path. Also runs after &#x60;proxyPath&#x60; changes.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String siteId = "siteId_example"; // String | 
+        try {
+            CreateTrackingSite201Response result = apiInstance.checkTrackingSiteProxy(siteId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#checkTrackingSiteProxy");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**|  | |
+
+### Return type
+
+[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The site with &#x60;proxy.status&#x60; updated. &#x60;proxy&#x60; is null when the site has no &#x60;proxyPath&#x60;. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## checkTrackingSiteProxyWithHttpInfo
+
+> ApiResponse<CreateTrackingSite201Response> checkTrackingSiteProxy checkTrackingSiteProxyWithHttpInfo(siteId)
+
+Check a tracking site&#39;s own-domain path
+
+Loads &#x60;https://&lt;first domain&gt;&lt;proxyPath&gt;/z.js&#x60; from Zernio&#39;s servers and records whether your proxy serves the tag, signed, in &#x60;proxy.status&#x60;. Once &#x60;verified&#x60;, cookies come from your own domain and Safari keeps them; a connected Tag Manager container moves to the path. Also runs after &#x60;proxyPath&#x60; changes.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String siteId = "siteId_example"; // String | 
+        try {
+            ApiResponse<CreateTrackingSite201Response> response = apiInstance.checkTrackingSiteProxyWithHttpInfo(siteId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#checkTrackingSiteProxy");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **siteId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The site with &#x60;proxy.status&#x60; updated. &#x60;proxy&#x60; is null when the site has no &#x60;proxyPath&#x60;. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## createAdConversionDestination

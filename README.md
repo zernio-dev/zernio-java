@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.743.0
+- API version: 1.744.0
 
-- Build date: 2026-11-22T12:26:25.806202102Z[Etc/UTC]
+- Build date: 2026-11-22T14:15:34.971287669Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.743.0</version>
+  <version>1.744.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.743.0"
+compile "dev.zernio:zernio-sdk:1.744.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.743.0.jar`
+- `target/zernio-sdk-1.744.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1505,6 +1505,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**addConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
 *ConversionsApi* | [**adjustConversions**](docs/ConversionsApi.md#adjustConversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
 *ConversionsApi* | [**adjustConversionsWithHttpInfo**](docs/ConversionsApi.md#adjustConversionsWithHttpInfo) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
+*ConversionsApi* | [**checkTrackingSiteProxy**](docs/ConversionsApi.md#checkTrackingSiteProxy) | **POST** /v1/tracking-sites/{siteId}/proxy-check | Check a tracking site&#39;s own-domain path
+*ConversionsApi* | [**checkTrackingSiteProxyWithHttpInfo**](docs/ConversionsApi.md#checkTrackingSiteProxyWithHttpInfo) | **POST** /v1/tracking-sites/{siteId}/proxy-check | Check a tracking site&#39;s own-domain path
 *ConversionsApi* | [**createAdConversionDestination**](docs/ConversionsApi.md#createAdConversionDestination) | **POST** /v1/ads/conversions/destinations | Create a conversion destination
 *ConversionsApi* | [**createAdConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#createAdConversionDestinationWithHttpInfo) | **POST** /v1/ads/conversions/destinations | Create a conversion destination
 *ConversionsApi* | [**createAdCustomConversion**](docs/ConversionsApi.md#createAdCustomConversion) | **POST** /v1/ads/conversions/custom-conversions | Create custom conversion

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.743.0
+  version: 1.744.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -78745,6 +78745,44 @@ paths:
       x-resource-group: ads
       x-accepts:
       - application/json
+  /v1/tracking-sites/{siteId}/proxy-check:
+    post:
+      description: "Loads `https://<first domain><proxyPath>/z.js` from Zernio's servers\
+        \ and records whether your proxy serves the tag, signed, in `proxy.status`.\
+        \ Once `verified`, cookies come from your own domain and Safari keeps them;\
+        \ a connected Tag Manager container moves to the path. Also runs after `proxyPath`\
+        \ changes."
+      operationId: checkTrackingSiteProxy
+      parameters:
+      - explode: false
+        in: path
+        name: siteId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createTrackingSite_201_response"
+          description: The site with `proxy.status` updated. `proxy` is null when
+            the site has no `proxyPath`.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Check a tracking site's own-domain path
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-accepts:
+      - application/json
   /v1/tracking-links:
     get:
       description: The tracking links of your workspace in creation order. Pass `profileId`
@@ -112357,12 +112395,14 @@ components:
           - domains
           proxy:
             path: path
+            checkedAt: 2000-01-23T04:56:07.000+00:00
             secret: secret
             googleTags:
             - src: src
               id: id
             - src: src
               id: id
+            status: verified
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
           checks:
@@ -144096,12 +144136,14 @@ components:
         - domains
         proxy:
           path: path
+          checkedAt: 2000-01-23T04:56:07.000+00:00
           secret: secret
           googleTags:
           - src: src
             id: id
           - src: src
             id: id
+          status: verified
         createdAt: 2000-01-23T04:56:07.000+00:00
         siteKey: siteKey
         checks:
@@ -223489,12 +223531,14 @@ components:
           - domains
           proxy:
             path: path
+            checkedAt: 2000-01-23T04:56:07.000+00:00
             secret: secret
             googleTags:
             - src: src
               id: id
             - src: src
               id: id
+            status: verified
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
           checks:
@@ -223534,12 +223578,14 @@ components:
           - domains
           proxy:
             path: path
+            checkedAt: 2000-01-23T04:56:07.000+00:00
             secret: secret
             googleTags:
             - src: src
               id: id
             - src: src
               id: id
+            status: verified
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
           checks:
@@ -223625,12 +223671,14 @@ components:
           - domains
           proxy:
             path: path
+            checkedAt: 2000-01-23T04:56:07.000+00:00
             secret: secret
             googleTags:
             - src: src
               id: id
             - src: src
               id: id
+            status: verified
           createdAt: 2000-01-23T04:56:07.000+00:00
           siteKey: siteKey
           checks:
@@ -256107,12 +256155,14 @@ components:
         \ from the site's own domain. Null when it has none."
       example:
         path: path
+        checkedAt: 2000-01-23T04:56:07.000+00:00
         secret: secret
         googleTags:
         - src: src
           id: id
         - src: src
           id: id
+        status: verified
       properties:
         path:
           description: "Such as `/zt`: the snippet loads `https://<first domain>/zt/z.js`."
@@ -256120,6 +256170,21 @@ components:
         secret:
           description: Signs the visitor's IP and country your proxy forwards. Only
             on reading or updating one site.
+          nullable: true
+          type: string
+        status:
+          description: "The last check of the path. `verified`: it serves the tag,\
+            \ signed, so cookies keep their full life in Safari. `unsigned`: it reaches\
+            \ Zernio without a valid signature, so no cookies are set. `unreachable`:\
+            \ it does not serve the tag. `unchecked`: the path or key changed since."
+          enum:
+          - verified
+          - unsigned
+          - unreachable
+          - unchecked
+          type: string
+        checkedAt:
+          format: date-time
           nullable: true
           type: string
         googleTags:
