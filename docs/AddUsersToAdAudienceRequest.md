@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**users** | [**List&lt;AddUsersToAdAudienceRequestUsersInner&gt;**](AddUsersToAdAudienceRequestUsersInner.md) |  |  |
+|**users** | [**List&lt;AudienceUploadUser&gt;**](AudienceUploadUser.md) |  |  |
 
 
 

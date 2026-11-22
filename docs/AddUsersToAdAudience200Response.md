@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**message** | **String** |  |  [optional] |
 |**numReceived** | **Integer** |  |  [optional] |
-|**numInvalid** | **Integer** | Rows the platform could not read. Returned on Meta, and on Reddit for rows without a valid email. |  [optional] |
+|**numInvalid** | **Integer** | Rows the platform could not read (Meta), or rows without any key the platform uses (every other platform). |  [optional] |
 
 
 

@@ -29,7 +29,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Add users to audience
 
-Uploads customer emails (and phone numbers on Meta) to a customer list audience, hashed before they are sent.  Data is SHA256-hashed server-side before sending to the platform. Max 10,000 users per request.  ### Per-platform behavior  - **All platforms**: email is used everywhere. Phone is used on Meta only (other platforms ignore it). - **TikTok and Pinterest**: the first upload also provisions the audience (deferred create). - **LinkedIn**: uploads are full-replace. - **Reddit**: see below.  ### Reddit  - Emails are lowercased and trimmed before hashing, duplicates are sent once, and the upload goes out in batches of 2,500. - Reddit matches by email only: rows without a valid email count in &#x60;numInvalid&#x60;, and a request where no row has one is a 400. - Reddit audiences need the &#x60;redditads&#x60; connection, not the Reddit posting account (422).  ### Audience types  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
+Uploads people to a customer list audience. Send each match key in plaintext or already SHA-256 hashed (64 hex characters): plaintext is normalized and hashed server-side, a hash is sent as is. Max 10,000 users per request.  ### Hashing it yourself  Hash the normalized value, or it will not match: email trimmed and lowercased; first and last name lowercased without punctuation; &#x60;birthYear&#x60; as &#x60;YYYY&#x60;, &#x60;birthMonth&#x60; and &#x60;birthDay&#x60; as two digits; &#x60;gender&#x60; as &#x60;m&#x60; or &#x60;f&#x60;; &#x60;country&#x60; as a lowercase ISO 3166-1 alpha-2 code.  Phone is the one key the platforms disagree on: Meta hashes the digits with the country code and no &#x60;+&#x60; (&#x60;14155551234&#x60;), Google wants E.164 with the &#x60;+&#x60; (&#x60;+14155551234&#x60;). Send phones in plaintext to match on both; a hashed phone is sent unchanged to each platform.  ### Which keys each platform uses  | Platform | Keys used | |---|---| | Meta | every key | | Google | &#x60;email&#x60;, &#x60;phone&#x60;, and the address (&#x60;firstName&#x60;, &#x60;lastName&#x60;, &#x60;country&#x60;, &#x60;zip&#x60;) when all four are present with &#x60;country&#x60; and &#x60;zip&#x60; in plaintext | | TikTok, LinkedIn, Pinterest, X, Reddit | &#x60;email&#x60; |  Keys a platform does not use are ignored. A row with none of the keys that platform uses counts in &#x60;numInvalid&#x60;.  ### Large lists  Send lists over 10,000 people as several requests to the same audience: each one adds to it, except on LinkedIn.  - **TikTok and Pinterest**: the first upload creates the audience on the platform, later uploads add to it. TikTok allows 24 updates per audience per day. - **LinkedIn**: each upload replaces the whole list (a list-upload segment holds one list), so send the full list in one request.  ### Reddit  - Duplicates are sent once, and the upload goes out in batches of 2,500. - A request where no row has an email is a 400. - Reddit audiences need the &#x60;redditads&#x60; connection, not the Reddit posting account (422).  ### Audience types  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
 
 ### Example
 
@@ -94,7 +94,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Users added |  -  |
-| **400** | Invalid input (malformed audienceId, empty users array, missing email/phone) |  -  |
+| **400** | Invalid input (malformed audienceId, empty users array, a user with no match key) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; it is included by default on usage-based plans.  Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the targeted ad account is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  Fix: add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection), or use a connection that has it selected.  |  -  |
 | **404** | Resource not found |  -  |
@@ -106,7 +106,7 @@ public class Example {
 
 Add users to audience
 
-Uploads customer emails (and phone numbers on Meta) to a customer list audience, hashed before they are sent.  Data is SHA256-hashed server-side before sending to the platform. Max 10,000 users per request.  ### Per-platform behavior  - **All platforms**: email is used everywhere. Phone is used on Meta only (other platforms ignore it). - **TikTok and Pinterest**: the first upload also provisions the audience (deferred create). - **LinkedIn**: uploads are full-replace. - **Reddit**: see below.  ### Reddit  - Emails are lowercased and trimmed before hashing, duplicates are sent once, and the upload goes out in batches of 2,500. - Reddit matches by email only: rows without a valid email count in &#x60;numInvalid&#x60;, and a request where no row has one is a 400. - Reddit audiences need the &#x60;redditads&#x60; connection, not the Reddit posting account (422).  ### Audience types  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
+Uploads people to a customer list audience. Send each match key in plaintext or already SHA-256 hashed (64 hex characters): plaintext is normalized and hashed server-side, a hash is sent as is. Max 10,000 users per request.  ### Hashing it yourself  Hash the normalized value, or it will not match: email trimmed and lowercased; first and last name lowercased without punctuation; &#x60;birthYear&#x60; as &#x60;YYYY&#x60;, &#x60;birthMonth&#x60; and &#x60;birthDay&#x60; as two digits; &#x60;gender&#x60; as &#x60;m&#x60; or &#x60;f&#x60;; &#x60;country&#x60; as a lowercase ISO 3166-1 alpha-2 code.  Phone is the one key the platforms disagree on: Meta hashes the digits with the country code and no &#x60;+&#x60; (&#x60;14155551234&#x60;), Google wants E.164 with the &#x60;+&#x60; (&#x60;+14155551234&#x60;). Send phones in plaintext to match on both; a hashed phone is sent unchanged to each platform.  ### Which keys each platform uses  | Platform | Keys used | |---|---| | Meta | every key | | Google | &#x60;email&#x60;, &#x60;phone&#x60;, and the address (&#x60;firstName&#x60;, &#x60;lastName&#x60;, &#x60;country&#x60;, &#x60;zip&#x60;) when all four are present with &#x60;country&#x60; and &#x60;zip&#x60; in plaintext | | TikTok, LinkedIn, Pinterest, X, Reddit | &#x60;email&#x60; |  Keys a platform does not use are ignored. A row with none of the keys that platform uses counts in &#x60;numInvalid&#x60;.  ### Large lists  Send lists over 10,000 people as several requests to the same audience: each one adds to it, except on LinkedIn.  - **TikTok and Pinterest**: the first upload creates the audience on the platform, later uploads add to it. TikTok allows 24 updates per audience per day. - **LinkedIn**: each upload replaces the whole list (a list-upload segment holds one list), so send the full list in one request.  ### Reddit  - Duplicates are sent once, and the upload goes out in batches of 2,500. - A request where no row has an email is a 400. - Reddit audiences need the &#x60;redditads&#x60; connection, not the Reddit posting account (422).  ### Audience types  customer_list only. A LinkedIn &#x60;company_list&#x60; audience takes company rows, not people: send those to &#x60;POST /v1/ads/audiences/{audienceId}/companies&#x60;. This endpoint 422s for every other audience type. 
 
 ### Example
 
@@ -174,7 +174,7 @@ ApiResponse<[**AddUsersToAdAudience200Response**](AddUsersToAdAudience200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Users added |  -  |
-| **400** | Invalid input (malformed audienceId, empty users array, missing email/phone) |  -  |
+| **400** | Invalid input (malformed audienceId, empty users array, a user with no match key) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; it is included by default on usage-based plans.  Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the targeted ad account is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  Fix: add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection), or use a connection that has it selected.  |  -  |
 | **404** | Resource not found |  -  |
@@ -805,11 +805,11 @@ ApiResponse<[**ListAdAudiences200Response**](ListAdAudiences200Response.md)>
 
 ## removeUsersFromAdAudience
 
-> RemoveUsersFromAdAudience200Response removeUsersFromAdAudience(audienceId, removeUsersFromAdAudienceRequest)
+> RemoveUsersFromAdAudience200Response removeUsersFromAdAudience(audienceId, addUsersToAdAudienceRequest)
 
 Remove users from audience
 
-Removes customer emails (and phone numbers on Meta) from a Meta or Reddit customer list audience. Same body as &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;: send plaintext rows, they are normalized and SHA256-hashed server-side exactly like an upload, so a row removes the person it added.  Meta and Reddit only, customer_list only. Every other platform returns 422 with code &#x60;feature_not_available&#x60;, and every other audience type returns 422. Max 10,000 users per request. The platform applies the removal asynchronously, so the audience size does not drop immediately. On Reddit &#x60;invalidEntrySamples&#x60; is always empty. 
+Removes people from a Meta or Reddit customer list audience. Same body as &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;: plaintext keys are normalized and SHA-256 hashed exactly like an upload and hashed keys are sent as is, so a row removes the person it added.  Meta and Reddit only, customer_list only. Every other platform returns 422 with code &#x60;feature_not_available&#x60;, and every other audience type returns 422. Max 10,000 users per request. The platform applies the removal asynchronously, so the audience size does not drop immediately. On Reddit &#x60;invalidEntrySamples&#x60; is always empty. 
 
 ### Example
 
@@ -833,9 +833,9 @@ public class Example {
 
         AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
         String audienceId = "audienceId_example"; // String | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.
-        RemoveUsersFromAdAudienceRequest removeUsersFromAdAudienceRequest = new RemoveUsersFromAdAudienceRequest(); // RemoveUsersFromAdAudienceRequest | 
+        AddUsersToAdAudienceRequest addUsersToAdAudienceRequest = new AddUsersToAdAudienceRequest(); // AddUsersToAdAudienceRequest | 
         try {
-            RemoveUsersFromAdAudience200Response result = apiInstance.removeUsersFromAdAudience(audienceId, removeUsersFromAdAudienceRequest);
+            RemoveUsersFromAdAudience200Response result = apiInstance.removeUsersFromAdAudience(audienceId, addUsersToAdAudienceRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAudiencesApi#removeUsersFromAdAudience");
@@ -854,7 +854,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **audienceId** | **String**| The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id. | |
-| **removeUsersFromAdAudienceRequest** | [**RemoveUsersFromAdAudienceRequest**](RemoveUsersFromAdAudienceRequest.md)|  | |
+| **addUsersToAdAudienceRequest** | [**AddUsersToAdAudienceRequest**](AddUsersToAdAudienceRequest.md)|  | |
 
 ### Return type
 
@@ -882,11 +882,11 @@ public class Example {
 
 ## removeUsersFromAdAudienceWithHttpInfo
 
-> ApiResponse<RemoveUsersFromAdAudience200Response> removeUsersFromAdAudience removeUsersFromAdAudienceWithHttpInfo(audienceId, removeUsersFromAdAudienceRequest)
+> ApiResponse<RemoveUsersFromAdAudience200Response> removeUsersFromAdAudience removeUsersFromAdAudienceWithHttpInfo(audienceId, addUsersToAdAudienceRequest)
 
 Remove users from audience
 
-Removes customer emails (and phone numbers on Meta) from a Meta or Reddit customer list audience. Same body as &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;: send plaintext rows, they are normalized and SHA256-hashed server-side exactly like an upload, so a row removes the person it added.  Meta and Reddit only, customer_list only. Every other platform returns 422 with code &#x60;feature_not_available&#x60;, and every other audience type returns 422. Max 10,000 users per request. The platform applies the removal asynchronously, so the audience size does not drop immediately. On Reddit &#x60;invalidEntrySamples&#x60; is always empty. 
+Removes people from a Meta or Reddit customer list audience. Same body as &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;: plaintext keys are normalized and SHA-256 hashed exactly like an upload and hashed keys are sent as is, so a row removes the person it added.  Meta and Reddit only, customer_list only. Every other platform returns 422 with code &#x60;feature_not_available&#x60;, and every other audience type returns 422. Max 10,000 users per request. The platform applies the removal asynchronously, so the audience size does not drop immediately. On Reddit &#x60;invalidEntrySamples&#x60; is always empty. 
 
 ### Example
 
@@ -911,9 +911,9 @@ public class Example {
 
         AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
         String audienceId = "audienceId_example"; // String | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.
-        RemoveUsersFromAdAudienceRequest removeUsersFromAdAudienceRequest = new RemoveUsersFromAdAudienceRequest(); // RemoveUsersFromAdAudienceRequest | 
+        AddUsersToAdAudienceRequest addUsersToAdAudienceRequest = new AddUsersToAdAudienceRequest(); // AddUsersToAdAudienceRequest | 
         try {
-            ApiResponse<RemoveUsersFromAdAudience200Response> response = apiInstance.removeUsersFromAdAudienceWithHttpInfo(audienceId, removeUsersFromAdAudienceRequest);
+            ApiResponse<RemoveUsersFromAdAudience200Response> response = apiInstance.removeUsersFromAdAudienceWithHttpInfo(audienceId, addUsersToAdAudienceRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -934,7 +934,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **audienceId** | **String**| The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id. | |
-| **removeUsersFromAdAudienceRequest** | [**RemoveUsersFromAdAudienceRequest**](RemoveUsersFromAdAudienceRequest.md)|  | |
+| **addUsersToAdAudienceRequest** | [**AddUsersToAdAudienceRequest**](AddUsersToAdAudienceRequest.md)|  | |
 
 ### Return type
 

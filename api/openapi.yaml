@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.742.0
+  version: 1.743.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -76253,9 +76253,9 @@ paths:
   /v1/ads/audiences/{audienceId}/users:
     delete:
       description: |
-        Removes customer emails (and phone numbers on Meta) from a Meta or Reddit customer list audience. Same body as
-        `POST /v1/ads/audiences/{audienceId}/users`: send plaintext rows, they are normalized and
-        SHA256-hashed server-side exactly like an upload, so a row removes the person it added.
+        Removes people from a Meta or Reddit customer list audience. Same body as
+        `POST /v1/ads/audiences/{audienceId}/users`: plaintext keys are normalized and SHA-256 hashed
+        exactly like an upload and hashed keys are sent as is, so a row removes the person it added.
 
         Meta and Reddit only, customer_list only. Every other platform returns 422 with code `feature_not_available`,
         and every other audience type returns 422. Max 10,000 users per request. The platform applies the removal
@@ -76275,7 +76275,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/removeUsersFromAdAudience_request"
+              $ref: "#/components/schemas/addUsersToAdAudience_request"
         required: true
       responses:
         "200":
@@ -76316,21 +76316,35 @@ paths:
       - application/json
     post:
       description: |
-        Uploads customer emails (and phone numbers on Meta) to a customer list audience, hashed before they are sent.
+        Uploads people to a customer list audience. Send each match key in plaintext or already SHA-256 hashed (64 hex characters): plaintext is normalized and hashed server-side, a hash is sent as is. Max 10,000 users per request.
 
-        Data is SHA256-hashed server-side before sending to the platform. Max 10,000 users per request.
+        ### Hashing it yourself
 
-        ### Per-platform behavior
+        Hash the normalized value, or it will not match: email trimmed and lowercased; first and last name lowercased without punctuation; `birthYear` as `YYYY`, `birthMonth` and `birthDay` as two digits; `gender` as `m` or `f`; `country` as a lowercase ISO 3166-1 alpha-2 code.
 
-        - **All platforms**: email is used everywhere. Phone is used on Meta only (other platforms ignore it).
-        - **TikTok and Pinterest**: the first upload also provisions the audience (deferred create).
-        - **LinkedIn**: uploads are full-replace.
-        - **Reddit**: see below.
+        Phone is the one key the platforms disagree on: Meta hashes the digits with the country code and no `+` (`14155551234`), Google wants E.164 with the `+` (`+14155551234`). Send phones in plaintext to match on both; a hashed phone is sent unchanged to each platform.
+
+        ### Which keys each platform uses
+
+        | Platform | Keys used |
+        |---|---|
+        | Meta | every key |
+        | Google | `email`, `phone`, and the address (`firstName`, `lastName`, `country`, `zip`) when all four are present with `country` and `zip` in plaintext |
+        | TikTok, LinkedIn, Pinterest, X, Reddit | `email` |
+
+        Keys a platform does not use are ignored. A row with none of the keys that platform uses counts in `numInvalid`.
+
+        ### Large lists
+
+        Send lists over 10,000 people as several requests to the same audience: each one adds to it, except on LinkedIn.
+
+        - **TikTok and Pinterest**: the first upload creates the audience on the platform, later uploads add to it. TikTok allows 24 updates per audience per day.
+        - **LinkedIn**: each upload replaces the whole list (a list-upload segment holds one list), so send the full list in one request.
 
         ### Reddit
 
-        - Emails are lowercased and trimmed before hashing, duplicates are sent once, and the upload goes out in batches of 2,500.
-        - Reddit matches by email only: rows without a valid email count in `numInvalid`, and a request where no row has one is a 400.
+        - Duplicates are sent once, and the upload goes out in batches of 2,500.
+        - A request where no row has an email is a 400.
         - Reddit audiences need the `redditads` connection, not the Reddit posting account (422).
 
         ### Audience types
@@ -76361,8 +76375,8 @@ paths:
                 $ref: "#/components/schemas/addUsersToAdAudience_200_response"
           description: Users added
         "400":
-          description: "Invalid input (malformed audienceId, empty users array, missing\
-            \ email/phone)"
+          description: "Invalid input (malformed audienceId, empty users array, a\
+            \ user with no match key)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -95931,6 +95945,54 @@ components:
       x-summary: "Billing blocked the request: redirect the user to `dashboard_url`\
         \ to add or verify a card or use the enterprise form."
   schemas:
+    AudienceUploadUser:
+      description: One person. Each key is plaintext or its SHA-256 hash (64 hex characters).
+        At least one key is required; see the endpoint description for which keys
+        each platform uses.
+      properties:
+        email:
+          description: "Email, or SHA-256 of it trimmed and lowercased."
+          type: string
+        phone:
+          description: Phone with country code. Plaintext matches on Meta and Google;
+            see the endpoint description before sending it hashed.
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        birthYear:
+          description: YYYY. Meta only.
+          type: string
+        birthMonth:
+          description: MM (01-12). Meta only.
+          type: string
+        birthDay:
+          description: DD (01-31). Meta only.
+          type: string
+        gender:
+          description: m or f. Meta only.
+          type: string
+        city:
+          description: Meta only.
+          type: string
+        state:
+          description: Meta only.
+          type: string
+        zip:
+          type: string
+        country:
+          description: ISO 3166-1 alpha-2 code.
+          type: string
+        externalId:
+          description: Your own id for the person. Meta only.
+          type: string
+        region:
+          description: "Where the person is (ISO country, or US-CA). With no granted\
+            \ consent, EEA, UK and CH people are dropped before upload."
+          type: string
+        consent:
+          $ref: "#/components/schemas/AudienceUploadUser_consent"
     MetaDatasetAudit:
       example:
         accountId: accountId
@@ -220166,20 +220228,13 @@ components:
             - $ref: "#/components/schemas/TargetingSpec"
             nullable: true
           description: Full replacement for the stored targeting spec.
-    addUsersToAdAudience_request_users_inner:
-      description: Each user must have at least email or phone
-      properties:
-        email:
-          format: email
-          type: string
-        phone:
-          type: string
     addUsersToAdAudience_request:
       properties:
         users:
           items:
-            $ref: "#/components/schemas/addUsersToAdAudience_request_users_inner"
+            $ref: "#/components/schemas/AudienceUploadUser"
           maxItems: 10000
+          minItems: 1
           type: array
       required:
       - users
@@ -220194,19 +220249,9 @@ components:
         numReceived:
           type: integer
         numInvalid:
-          description: "Rows the platform could not read. Returned on Meta, and on\
-            \ Reddit for rows without a valid email."
+          description: "Rows the platform could not read (Meta), or rows without any\
+            \ key the platform uses (every other platform)."
           type: integer
-    removeUsersFromAdAudience_request:
-      properties:
-        users:
-          items:
-            $ref: "#/components/schemas/addUsersToAdAudience_request_users_inner"
-          maxItems: 10000
-          minItems: 1
-          type: array
-      required:
-      - users
     removeUsersFromAdAudience_200_response:
       example:
         invalidEntrySamples:
@@ -234875,6 +234920,20 @@ components:
         reason:
           description: "Our review note on changes_requested, the reason on rejected,\
             \ or why a launch filing bounced back to testing."
+    AudienceUploadUser_consent:
+      properties:
+        adUserData:
+          enum:
+          - granted
+          - denied
+          - unspecified
+          type: string
+        adPersonalization:
+          enum:
+          - granted
+          - denied
+          - unspecified
+          type: string
     MetaDatasetAudit_dataset:
       example:
         automaticMatching: true

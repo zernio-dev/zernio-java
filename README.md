@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.742.0
+- API version: 1.743.0
 
-- Build date: 2026-11-22T11:59:59.813936439Z[Etc/UTC]
+- Build date: 2026-11-22T12:26:25.806202102Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.742.0</version>
+  <version>1.743.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.742.0"
+compile "dev.zernio:zernio-sdk:1.743.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.742.0.jar`
+- `target/zernio-sdk-1.743.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3031,7 +3031,6 @@ Class | Method | HTTP request | Description
  - [AddTrackingTagSharedAccountRequest](docs/AddTrackingTagSharedAccountRequest.md)
  - [AddUsersToAdAudience200Response](docs/AddUsersToAdAudience200Response.md)
  - [AddUsersToAdAudienceRequest](docs/AddUsersToAdAudienceRequest.md)
- - [AddUsersToAdAudienceRequestUsersInner](docs/AddUsersToAdAudienceRequestUsersInner.md)
  - [AddWhatsAppGroupParticipantsRequest](docs/AddWhatsAppGroupParticipantsRequest.md)
  - [AdjustConversions200Response](docs/AdjustConversions200Response.md)
  - [AdjustConversions200ResponseFailuresInner](docs/AdjustConversions200ResponseFailuresInner.md)
@@ -3104,6 +3103,8 @@ Class | Method | HTTP request | Description
  - [AttachCampaignAssetsRequest](docs/AttachCampaignAssetsRequest.md)
  - [AttachNumberToSipTrunk200Response](docs/AttachNumberToSipTrunk200Response.md)
  - [AttachNumberToSipTrunkRequest](docs/AttachNumberToSipTrunkRequest.md)
+ - [AudienceUploadUser](docs/AudienceUploadUser.md)
+ - [AudienceUploadUserConsent](docs/AudienceUploadUserConsent.md)
  - [AutoRecharge](docs/AutoRecharge.md)
  - [AutocompleteContacts200Response](docs/AutocompleteContacts200Response.md)
  - [AutocompleteContacts200ResponseDataInner](docs/AutocompleteContacts200ResponseDataInner.md)
@@ -5764,7 +5765,6 @@ Class | Method | HTTP request | Description
  - [RemoveUser200ResponseRemovedUser](docs/RemoveUser200ResponseRemovedUser.md)
  - [RemoveUser403Response](docs/RemoveUser403Response.md)
  - [RemoveUsersFromAdAudience200Response](docs/RemoveUsersFromAdAudience200Response.md)
- - [RemoveUsersFromAdAudienceRequest](docs/RemoveUsersFromAdAudienceRequest.md)
  - [RemoveWhatsAppGroupParticipantsRequest](docs/RemoveWhatsAppGroupParticipantsRequest.md)
  - [ReorderCommerceCollectionProductsRequest](docs/ReorderCommerceCollectionProductsRequest.md)
  - [ReorderCommerceCollectionProductsRequestMovesInner](docs/ReorderCommerceCollectionProductsRequestMovesInner.md)

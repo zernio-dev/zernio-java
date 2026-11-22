@@ -177,7 +177,6 @@ docs/AddTrackingTagSharedAccount201Response.md
 docs/AddTrackingTagSharedAccountRequest.md
 docs/AddUsersToAdAudience200Response.md
 docs/AddUsersToAdAudienceRequest.md
-docs/AddUsersToAdAudienceRequestUsersInner.md
 docs/AddWhatsAppGroupParticipantsRequest.md
 docs/AdjustConversions200Response.md
 docs/AdjustConversions200ResponseFailuresInner.md
@@ -252,6 +251,8 @@ docs/AttachCampaignAssets201Response.md
 docs/AttachCampaignAssetsRequest.md
 docs/AttachNumberToSipTrunk200Response.md
 docs/AttachNumberToSipTrunkRequest.md
+docs/AudienceUploadUser.md
+docs/AudienceUploadUserConsent.md
 docs/AutoRecharge.md
 docs/AutocompleteContacts200Response.md
 docs/AutocompleteContacts200ResponseDataInner.md
@@ -2967,7 +2968,6 @@ docs/RemoveUser200Response.md
 docs/RemoveUser200ResponseRemovedUser.md
 docs/RemoveUser403Response.md
 docs/RemoveUsersFromAdAudience200Response.md
-docs/RemoveUsersFromAdAudienceRequest.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
 docs/ReorderCommerceCollectionProductsRequest.md
 docs/ReorderCommerceCollectionProductsRequestMovesInner.md
@@ -4445,7 +4445,6 @@ src/main/java/dev/zernio/model/AddTrackingTagSharedAccount201Response.java
 src/main/java/dev/zernio/model/AddTrackingTagSharedAccountRequest.java
 src/main/java/dev/zernio/model/AddUsersToAdAudience200Response.java
 src/main/java/dev/zernio/model/AddUsersToAdAudienceRequest.java
-src/main/java/dev/zernio/model/AddUsersToAdAudienceRequestUsersInner.java
 src/main/java/dev/zernio/model/AddWhatsAppGroupParticipantsRequest.java
 src/main/java/dev/zernio/model/AdjustConversions200Response.java
 src/main/java/dev/zernio/model/AdjustConversions200ResponseFailuresInner.java
@@ -4518,6 +4517,8 @@ src/main/java/dev/zernio/model/AttachCampaignAssets201Response.java
 src/main/java/dev/zernio/model/AttachCampaignAssetsRequest.java
 src/main/java/dev/zernio/model/AttachNumberToSipTrunk200Response.java
 src/main/java/dev/zernio/model/AttachNumberToSipTrunkRequest.java
+src/main/java/dev/zernio/model/AudienceUploadUser.java
+src/main/java/dev/zernio/model/AudienceUploadUserConsent.java
 src/main/java/dev/zernio/model/AutoRecharge.java
 src/main/java/dev/zernio/model/AutocompleteContacts200Response.java
 src/main/java/dev/zernio/model/AutocompleteContacts200ResponseDataInner.java
@@ -7178,7 +7179,6 @@ src/main/java/dev/zernio/model/RemoveUser200Response.java
 src/main/java/dev/zernio/model/RemoveUser200ResponseRemovedUser.java
 src/main/java/dev/zernio/model/RemoveUser403Response.java
 src/main/java/dev/zernio/model/RemoveUsersFromAdAudience200Response.java
-src/main/java/dev/zernio/model/RemoveUsersFromAdAudienceRequest.java
 src/main/java/dev/zernio/model/RemoveWhatsAppGroupParticipantsRequest.java
 src/main/java/dev/zernio/model/ReorderCommerceCollectionProductsRequest.java
 src/main/java/dev/zernio/model/ReorderCommerceCollectionProductsRequestMovesInner.java
@@ -8359,15 +8359,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AutomationOneOf4Test.java
-src/test/java/dev/zernio/model/CommentAutomationDefinitionGraphEdgesInnerTest.java
-src/test/java/dev/zernio/model/CommentAutomationDefinitionGraphNodesInnerTest.java
-src/test/java/dev/zernio/model/CommentAutomationDefinitionGraphTest.java
-src/test/java/dev/zernio/model/CommentAutomationDefinitionLimitsRepeatTest.java
-src/test/java/dev/zernio/model/CommentAutomationDefinitionLimitsTest.java
-src/test/java/dev/zernio/model/CommentAutomationDefinitionOrTriggersInnerTest.java
-src/test/java/dev/zernio/model/CommentAutomationDefinitionTest.java
-src/test/java/dev/zernio/model/CommentAutomationDefinitionTriggerTest.java
-src/test/java/dev/zernio/model/CommentAutomationFilterLeftTest.java
-src/test/java/dev/zernio/model/CommentAutomationFilterRightTest.java
-src/test/java/dev/zernio/model/CommentAutomationFilterTest.java
+src/test/java/dev/zernio/model/AudienceUploadUserConsentTest.java
+src/test/java/dev/zernio/model/AudienceUploadUserTest.java
