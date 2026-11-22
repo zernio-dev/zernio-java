@@ -22,6 +22,8 @@
 |**updatedAt** | **OffsetDateTime** |  |  |
 |**template** | [**AutomationRecordTemplate**](AutomationRecordTemplate.md) |  |  [optional] |
 |**platform** | **String** | The account&#39;s platform. On TikTok, Threads, LinkedIn and YouTube it only posts the public reply. |  |
+|**readOnly** | **Boolean** | Always true when present. Present when the graph only comes near what the automation does. It is read here and edited through &#x60;/v1/comment-automations&#x60;; an edit here is refused. |  [optional] |
+|**stats** | **AutomationOneOf4AllOfStats** |  |  |
 
 
 

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.747.0
+- API version: 1.750.0
 
-- Build date: 2026-11-22T15:19:39.137200651Z[Etc/UTC]
+- Build date: 2026-11-22T16:15:02.816132655Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.747.0</version>
+  <version>1.750.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.747.0"
+compile "dev.zernio:zernio-sdk:1.750.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.747.0.jar`
+- `target/zernio-sdk-1.750.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3185,6 +3185,7 @@ Class | Method | HTTP request | Description
  - [AutomationOneOf3](docs/AutomationOneOf3.md)
  - [AutomationOneOf3AllOfEnrollments](docs/AutomationOneOf3AllOfEnrollments.md)
  - [AutomationOneOf4](docs/AutomationOneOf4.md)
+ - [AutomationOneOf4AllOfStats](docs/AutomationOneOf4AllOfStats.md)
  - [AutomationPostSchedule](docs/AutomationPostSchedule.md)
  - [AutomationPostSubjects](docs/AutomationPostSubjects.md)
  - [AutomationPreview](docs/AutomationPreview.md)

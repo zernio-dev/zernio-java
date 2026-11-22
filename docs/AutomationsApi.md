@@ -3483,7 +3483,7 @@ ApiResponse<[**ListAutomationTemplates200Response**](ListAutomationTemplates200R
 
 List automations
 
-Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations, sequences and comment to DM.  Sequences and comment to DM need what &#x60;/v1/sequences&#x60; and &#x60;/v1/comment-automations&#x60; need: the inbox add-on, and a key with the &#x60;messages&#x60; group; without them they are left out. 
+Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations, sequences, comment to DM and flows. One &#x60;cursor&#x60; pages them all.  Each kind is listed only for callers its own route lets read it; the others are left out, never an error:  - **Sequences, comment to DM and flows** need the inbox add-on and a key with the &#x60;messages&#x60; group, as &#x60;/v1/sequences&#x60;, &#x60;/v1/comment-automations&#x60; and &#x60;/v1/workflows&#x60; do. - **Ad rules, event and scheduled automations** need only access to their profile, as reading, pausing and deleting them does. Creating, editing, activating or previewing an ad rule needs the ads add-on. 
 
 ### Example
 
@@ -3508,9 +3508,9 @@ public class Example {
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
         String accountId = "accountId_example"; // String | Only automations on this account: the ads connection of an ad rule, or one of the `accountIds` of an event or scheduled automation.
         String adAccountId = "adAccountId_example"; // String | Only ad rules checking this platform ad account.
-        String kind = "ad_rule,event"; // String | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`, `comment`.
+        String kind = "ad_rule,event"; // String | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`, `comment`, `workflow`.
         Integer limit = 50; // Integer | 
-        String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page, sent back unchanged with the same `kind`, `accountId` and `adAccountId`.  Opaque: it holds the creation time and id of the page's last automation, and the next page is every kind's automations strictly older than it, so an automation created meanwhile never shifts or repeats a page. 
         try {
             ListAutomations200Response result = apiInstance.listAutomations(accountId, adAccountId, kind, limit, cursor);
             System.out.println(result);
@@ -3532,9 +3532,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Only automations on this account: the ads connection of an ad rule, or one of the &#x60;accountIds&#x60; of an event or scheduled automation. | [optional] |
 | **adAccountId** | **String**| Only ad rules checking this platform ad account. | [optional] |
-| **kind** | **String**| Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;, &#x60;comment&#x60;. | [optional] |
+| **kind** | **String**| Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;, &#x60;comment&#x60;, &#x60;workflow&#x60;. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
-| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page, sent back unchanged with the same &#x60;kind&#x60;, &#x60;accountId&#x60; and &#x60;adAccountId&#x60;.  Opaque: it holds the creation time and id of the page&#39;s last automation, and the next page is every kind&#39;s automations strictly older than it, so an automation created meanwhile never shifts or repeats a page.  | [optional] |
 
 ### Return type
 
@@ -3563,7 +3563,7 @@ public class Example {
 
 List automations
 
-Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations, sequences and comment to DM.  Sequences and comment to DM need what &#x60;/v1/sequences&#x60; and &#x60;/v1/comment-automations&#x60; need: the inbox add-on, and a key with the &#x60;messages&#x60; group; without them they are left out. 
+Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations, sequences, comment to DM and flows. One &#x60;cursor&#x60; pages them all.  Each kind is listed only for callers its own route lets read it; the others are left out, never an error:  - **Sequences, comment to DM and flows** need the inbox add-on and a key with the &#x60;messages&#x60; group, as &#x60;/v1/sequences&#x60;, &#x60;/v1/comment-automations&#x60; and &#x60;/v1/workflows&#x60; do. - **Ad rules, event and scheduled automations** need only access to their profile, as reading, pausing and deleting them does. Creating, editing, activating or previewing an ad rule needs the ads add-on. 
 
 ### Example
 
@@ -3589,9 +3589,9 @@ public class Example {
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
         String accountId = "accountId_example"; // String | Only automations on this account: the ads connection of an ad rule, or one of the `accountIds` of an event or scheduled automation.
         String adAccountId = "adAccountId_example"; // String | Only ad rules checking this platform ad account.
-        String kind = "ad_rule,event"; // String | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`, `comment`.
+        String kind = "ad_rule,event"; // String | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`, `comment`, `workflow`.
         Integer limit = 50; // Integer | 
-        String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page, sent back unchanged with the same `kind`, `accountId` and `adAccountId`.  Opaque: it holds the creation time and id of the page's last automation, and the next page is every kind's automations strictly older than it, so an automation created meanwhile never shifts or repeats a page. 
         try {
             ApiResponse<ListAutomations200Response> response = apiInstance.listAutomationsWithHttpInfo(accountId, adAccountId, kind, limit, cursor);
             System.out.println("Status code: " + response.getStatusCode());
@@ -3615,9 +3615,9 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Only automations on this account: the ads connection of an ad rule, or one of the &#x60;accountIds&#x60; of an event or scheduled automation. | [optional] |
 | **adAccountId** | **String**| Only ad rules checking this platform ad account. | [optional] |
-| **kind** | **String**| Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;, &#x60;comment&#x60;. | [optional] |
+| **kind** | **String**| Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;, &#x60;comment&#x60;, &#x60;workflow&#x60;. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
-| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page, sent back unchanged with the same &#x60;kind&#x60;, &#x60;accountId&#x60; and &#x60;adAccountId&#x60;.  Opaque: it holds the creation time and id of the page&#39;s last automation, and the next page is every kind&#39;s automations strictly older than it, so an automation created meanwhile never shifts or repeats a page.  | [optional] |
 
 ### Return type
 
