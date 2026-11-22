@@ -718,6 +718,9 @@ docs/ConversionActionTagSnippetsInner.md
 docs/ConversionAuditAnswer.md
 docs/ConversionAuditAnswerPublicReport.md
 docs/ConversionAuditApi.md
+docs/ConversionAuditMonitor.md
+docs/ConversionAuditMonitorAnswer.md
+docs/ConversionAuditMonitorScoreHistoryInner.md
 docs/ConversionAuditReport.md
 docs/ConversionAuditReportChecksInner.md
 docs/ConversionAuditReportChecksInnerVerify.md
@@ -866,6 +869,7 @@ docs/CreateContact200ResponseContact.md
 docs/CreateContactRequest.md
 docs/CreateConversionAction201Response.md
 docs/CreateConversionActionRequest.md
+docs/CreateConversionAuditMonitorRequest.md
 docs/CreateConversionDestinationRequest.md
 docs/CreateCreatorCampaign201Response.md
 docs/CreateCreatorCampaignRequest.md
@@ -2364,6 +2368,7 @@ docs/ListContacts200Response.md
 docs/ListContacts200ResponseContactsInner.md
 docs/ListContacts200ResponseFilters.md
 docs/ListConversionActions200Response.md
+docs/ListConversionAuditMonitors200Response.md
 docs/ListCreatorCampaigns200Response.md
 docs/ListCrmDeals200Response.md
 docs/ListCrmOwners200Response.md
@@ -4941,6 +4946,9 @@ src/main/java/dev/zernio/model/ConversionAction.java
 src/main/java/dev/zernio/model/ConversionActionTagSnippetsInner.java
 src/main/java/dev/zernio/model/ConversionAuditAnswer.java
 src/main/java/dev/zernio/model/ConversionAuditAnswerPublicReport.java
+src/main/java/dev/zernio/model/ConversionAuditMonitor.java
+src/main/java/dev/zernio/model/ConversionAuditMonitorAnswer.java
+src/main/java/dev/zernio/model/ConversionAuditMonitorScoreHistoryInner.java
 src/main/java/dev/zernio/model/ConversionAuditReport.java
 src/main/java/dev/zernio/model/ConversionAuditReportChecksInner.java
 src/main/java/dev/zernio/model/ConversionAuditReportChecksInnerVerify.java
@@ -5088,6 +5096,7 @@ src/main/java/dev/zernio/model/CreateContact200ResponseContact.java
 src/main/java/dev/zernio/model/CreateContactRequest.java
 src/main/java/dev/zernio/model/CreateConversionAction201Response.java
 src/main/java/dev/zernio/model/CreateConversionActionRequest.java
+src/main/java/dev/zernio/model/CreateConversionAuditMonitorRequest.java
 src/main/java/dev/zernio/model/CreateConversionDestinationRequest.java
 src/main/java/dev/zernio/model/CreateCreatorCampaign201Response.java
 src/main/java/dev/zernio/model/CreateCreatorCampaignRequest.java
@@ -6563,6 +6572,7 @@ src/main/java/dev/zernio/model/ListContacts200Response.java
 src/main/java/dev/zernio/model/ListContacts200ResponseContactsInner.java
 src/main/java/dev/zernio/model/ListContacts200ResponseFilters.java
 src/main/java/dev/zernio/model/ListConversionActions200Response.java
+src/main/java/dev/zernio/model/ListConversionAuditMonitors200Response.java
 src/main/java/dev/zernio/model/ListCreatorCampaigns200Response.java
 src/main/java/dev/zernio/model/ListCrmDeals200Response.java
 src/main/java/dev/zernio/model/ListCrmOwners200Response.java
@@ -8305,15 +8315,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/MetaDatasetAuditDatasetTest.java
-src/test/java/dev/zernio/model/MetaDatasetAuditDatasetsInnerTest.java
-src/test/java/dev/zernio/model/MetaDatasetAuditEventsInnerDailyInnerTest.java
-src/test/java/dev/zernio/model/MetaDatasetAuditEventsInnerDedupInnerTest.java
-src/test/java/dev/zernio/model/MetaDatasetAuditEventsInnerDiagnosticsInnerTest.java
-src/test/java/dev/zernio/model/MetaDatasetAuditEventsInnerMatchKeysInnerTest.java
-src/test/java/dev/zernio/model/MetaDatasetAuditEventsInnerTest.java
-src/test/java/dev/zernio/model/MetaDatasetAuditFindingsInnerFixTest.java
-src/test/java/dev/zernio/model/MetaDatasetAuditFindingsInnerTest.java
-src/test/java/dev/zernio/model/MetaDatasetAuditTest.java
-src/test/java/dev/zernio/model/MetaDatasetAuditUnavailableInnerTest.java
-src/test/java/dev/zernio/model/MetaDatasetAuditWindowTest.java
+src/test/java/dev/zernio/model/ConversionAuditMonitorAnswerTest.java
+src/test/java/dev/zernio/model/ConversionAuditMonitorScoreHistoryInnerTest.java
+src/test/java/dev/zernio/model/ConversionAuditMonitorTest.java
+src/test/java/dev/zernio/model/CreateConversionAuditMonitorRequestTest.java
+src/test/java/dev/zernio/model/ListConversionAuditMonitors200ResponseTest.java

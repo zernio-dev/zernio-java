@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.736.0
+- API version: 1.737.0
 
-- Build date: 2026-11-22T01:25:05.227631232Z[Etc/UTC]
+- Build date: 2026-11-22T01:46:22.181210961Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.736.0</version>
+  <version>1.737.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.736.0"
+compile "dev.zernio:zernio-sdk:1.737.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.736.0.jar`
+- `target/zernio-sdk-1.737.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1489,10 +1489,16 @@ Class | Method | HTTP request | Description
 *ContentRetentionApi* | [**updateContentRetentionWithHttpInfo**](docs/ContentRetentionApi.md#updateContentRetentionWithHttpInfo) | **PUT** /v1/content-retention | Turn zero content retention on or off
 *ConversionAuditApi* | [**auditConversionTracking**](docs/ConversionAuditApi.md#auditConversionTracking) | **GET** /v1/conversion-audit | Audit a site&#39;s ad conversion tracking
 *ConversionAuditApi* | [**auditConversionTrackingWithHttpInfo**](docs/ConversionAuditApi.md#auditConversionTrackingWithHttpInfo) | **GET** /v1/conversion-audit | Audit a site&#39;s ad conversion tracking
+*ConversionAuditApi* | [**createConversionAuditMonitor**](docs/ConversionAuditApi.md#createConversionAuditMonitor) | **POST** /v1/conversion-audit/monitors | Watch a domain
+*ConversionAuditApi* | [**createConversionAuditMonitorWithHttpInfo**](docs/ConversionAuditApi.md#createConversionAuditMonitorWithHttpInfo) | **POST** /v1/conversion-audit/monitors | Watch a domain
+*ConversionAuditApi* | [**deleteConversionAuditMonitor**](docs/ConversionAuditApi.md#deleteConversionAuditMonitor) | **DELETE** /v1/conversion-audit/monitors/{monitorId} | Stop watching a domain
+*ConversionAuditApi* | [**deleteConversionAuditMonitorWithHttpInfo**](docs/ConversionAuditApi.md#deleteConversionAuditMonitorWithHttpInfo) | **DELETE** /v1/conversion-audit/monitors/{monitorId} | Stop watching a domain
 *ConversionAuditApi* | [**getLatestConversionAudit**](docs/ConversionAuditApi.md#getLatestConversionAudit) | **GET** /v1/conversion-audit/latest | Get a host&#39;s latest stored conversion audit
 *ConversionAuditApi* | [**getLatestConversionAuditWithHttpInfo**](docs/ConversionAuditApi.md#getLatestConversionAuditWithHttpInfo) | **GET** /v1/conversion-audit/latest | Get a host&#39;s latest stored conversion audit
 *ConversionAuditApi* | [**getMetaConversionAudit**](docs/ConversionAuditApi.md#getMetaConversionAudit) | **GET** /v1/conversion-audit/meta-audit | Audit a connected Meta pixel from inside Events Manager
 *ConversionAuditApi* | [**getMetaConversionAuditWithHttpInfo**](docs/ConversionAuditApi.md#getMetaConversionAuditWithHttpInfo) | **GET** /v1/conversion-audit/meta-audit | Audit a connected Meta pixel from inside Events Manager
+*ConversionAuditApi* | [**listConversionAuditMonitors**](docs/ConversionAuditApi.md#listConversionAuditMonitors) | **GET** /v1/conversion-audit/monitors | List watched domains
+*ConversionAuditApi* | [**listConversionAuditMonitorsWithHttpInfo**](docs/ConversionAuditApi.md#listConversionAuditMonitorsWithHttpInfo) | **GET** /v1/conversion-audit/monitors | List watched domains
 *ConversionsApi* | [**addAdConversionAssociations**](docs/ConversionsApi.md#addAdConversionAssociations) | **POST** /v1/ads/conversions/destinations/{destinationId}/associations | Associate campaigns
 *ConversionsApi* | [**addAdConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#addAdConversionAssociationsWithHttpInfo) | **POST** /v1/ads/conversions/destinations/{destinationId}/associations | Associate campaigns
 *ConversionsApi* | [**addConversionAssociations**](docs/ConversionsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
@@ -3548,6 +3554,9 @@ Class | Method | HTTP request | Description
  - [ConversionActionTagSnippetsInner](docs/ConversionActionTagSnippetsInner.md)
  - [ConversionAuditAnswer](docs/ConversionAuditAnswer.md)
  - [ConversionAuditAnswerPublicReport](docs/ConversionAuditAnswerPublicReport.md)
+ - [ConversionAuditMonitor](docs/ConversionAuditMonitor.md)
+ - [ConversionAuditMonitorAnswer](docs/ConversionAuditMonitorAnswer.md)
+ - [ConversionAuditMonitorScoreHistoryInner](docs/ConversionAuditMonitorScoreHistoryInner.md)
  - [ConversionAuditReport](docs/ConversionAuditReport.md)
  - [ConversionAuditReportChecksInner](docs/ConversionAuditReportChecksInner.md)
  - [ConversionAuditReportChecksInnerVerify](docs/ConversionAuditReportChecksInnerVerify.md)
@@ -3695,6 +3704,7 @@ Class | Method | HTTP request | Description
  - [CreateContactRequest](docs/CreateContactRequest.md)
  - [CreateConversionAction201Response](docs/CreateConversionAction201Response.md)
  - [CreateConversionActionRequest](docs/CreateConversionActionRequest.md)
+ - [CreateConversionAuditMonitorRequest](docs/CreateConversionAuditMonitorRequest.md)
  - [CreateConversionDestinationRequest](docs/CreateConversionDestinationRequest.md)
  - [CreateCreatorCampaign201Response](docs/CreateCreatorCampaign201Response.md)
  - [CreateCreatorCampaignRequest](docs/CreateCreatorCampaignRequest.md)
@@ -5170,6 +5180,7 @@ Class | Method | HTTP request | Description
  - [ListContacts200ResponseContactsInner](docs/ListContacts200ResponseContactsInner.md)
  - [ListContacts200ResponseFilters](docs/ListContacts200ResponseFilters.md)
  - [ListConversionActions200Response](docs/ListConversionActions200Response.md)
+ - [ListConversionAuditMonitors200Response](docs/ListConversionAuditMonitors200Response.md)
  - [ListCreatorCampaigns200Response](docs/ListCreatorCampaigns200Response.md)
  - [ListCrmDeals200Response](docs/ListCrmDeals200Response.md)
  - [ListCrmOwners200Response](docs/ListCrmOwners200Response.md)
