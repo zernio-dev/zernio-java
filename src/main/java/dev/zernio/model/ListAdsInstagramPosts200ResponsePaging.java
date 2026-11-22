@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ListAdsInstagramPosts200ResponsePaging.JSON_PROPERTY_AFTER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T16:15:02.816132655Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T16:20:39.993487808Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdsInstagramPosts200ResponsePaging {
   public static final String JSON_PROPERTY_AFTER = "after";
   @javax.annotation.Nullable

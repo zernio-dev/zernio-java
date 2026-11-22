@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   ImessageSandboxContact.JSON_PROPERTY_LAST_INBOUND_AT,
   ImessageSandboxContact.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T16:15:02.816132655Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-22T16:20:39.993487808Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ImessageSandboxContact {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
