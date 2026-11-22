@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.760.1
+- API version: 1.761.0
 
-- Build date: 2026-11-22T18:12:23.067813103Z[Etc/UTC]
+- Build date: 2026-11-22T19:02:21.463095755Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.760.1</version>
+  <version>1.761.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.760.1"
+compile "dev.zernio:zernio-sdk:1.761.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.760.1.jar`
+- `target/zernio-sdk-1.761.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1299,6 +1299,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectSlackChannelWithHttpInfo**](docs/ConnectApi.md#connectSlackChannelWithHttpInfo) | **POST** /v1/connect/slack | Connect a Slack channel
 *ConnectApi* | [**connectSnapchatAdsCredentials**](docs/ConnectApi.md#connectSnapchatAdsCredentials) | **POST** /v1/connect/snapchat-ads/credentials | Connect a Snapchat Ads pixel
 *ConnectApi* | [**connectSnapchatAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectSnapchatAdsCredentialsWithHttpInfo) | **POST** /v1/connect/snapchat-ads/credentials | Connect a Snapchat Ads pixel
+*ConnectApi* | [**connectTaboolaAdsCredentials**](docs/ConnectApi.md#connectTaboolaAdsCredentials) | **POST** /v1/connect/taboola-ads/credentials | Connect a Taboola account
+*ConnectApi* | [**connectTaboolaAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectTaboolaAdsCredentialsWithHttpInfo) | **POST** /v1/connect/taboola-ads/credentials | Connect a Taboola account
 *ConnectApi* | [**connectTradeDeskAdsCredentials**](docs/ConnectApi.md#connectTradeDeskAdsCredentials) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag
 *ConnectApi* | [**connectTradeDeskAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectTradeDeskAdsCredentialsWithHttpInfo) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag
 *ConnectApi* | [**connectWebflowWithSiteToken**](docs/ConnectApi.md#connectWebflowWithSiteToken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token
@@ -3574,6 +3576,8 @@ Class | Method | HTTP request | Description
  - [ConnectSlackChannelRequest](docs/ConnectSlackChannelRequest.md)
  - [ConnectSnapchatAdsCredentials200Response](docs/ConnectSnapchatAdsCredentials200Response.md)
  - [ConnectSnapchatAdsCredentialsRequest](docs/ConnectSnapchatAdsCredentialsRequest.md)
+ - [ConnectTaboolaAdsCredentials200Response](docs/ConnectTaboolaAdsCredentials200Response.md)
+ - [ConnectTaboolaAdsCredentialsRequest](docs/ConnectTaboolaAdsCredentialsRequest.md)
  - [ConnectTradeDeskAdsCredentials200Response](docs/ConnectTradeDeskAdsCredentials200Response.md)
  - [ConnectTradeDeskAdsCredentialsRequest](docs/ConnectTradeDeskAdsCredentialsRequest.md)
  - [ConnectWebflowWithSiteToken200Response](docs/ConnectWebflowWithSiteToken200Response.md)

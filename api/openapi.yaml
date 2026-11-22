@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.760.1
+  version: 1.761.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15354,6 +15354,7 @@ paths:
           - whopads
           - applovinads
           - snapchatads
+          - taboolaads
           - klaviyo
           - attentive
           - impact
@@ -23902,6 +23903,55 @@ paths:
       x-resource-group: accounts
       x-platforms:
       - tradedeskads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/taboola-ads/credentials:
+    post:
+      description: |
+        Connect a Taboola advertiser account by its numeric Account ID from Taboola Realize. Taboola's S2S postback takes no credential, so nothing secret is stored and nothing is checked with Taboola.
+
+        The account then receives the conversion events you forward to it (`POST /v1/events`, forwarding rules). Each event needs the Taboola click ID (`clickIds.tblci`).
+
+        Taboola counts an event only when its name equals the Event Name of a conversion rule in Realize. Rename events in the forwarding rule when they differ.
+
+        Requires the Ads add-on.
+      operationId: connectTaboolaAdsCredentials
+      requestBody:
+        content:
+          application/json:
+            example:
+              taboolaAccountId: "1234567"
+              profileId: 6507a1b2c3d4e5f6a7b8c9d0
+            schema:
+              $ref: "#/components/schemas/connectTaboolaAdsCredentials_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                accountId: 6507a1b2c3d4e5f6a7b8c9d0
+                taboolaAccountId: "1234567"
+                accountName: Taboola account 1234567
+              schema:
+                $ref: "#/components/schemas/connectTaboolaAdsCredentials_200_response"
+          description: Taboola account connected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: Ads add-on required.
+        "409":
+          description: This profile already has another Taboola account connected
+            (code profile_platform_conflict).
+      summary: Connect a Taboola account
+      tags:
+      - Connect
+      x-resource-group: accounts
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -77076,6 +77126,7 @@ paths:
         - Microsoft Advertising (`microsoftads`) via offline conversion uploads (`ApplyOfflineConversions`) or the UET Conversions API (`POST https://capi.uet.microsoft.com/v1/{tagId}/events`)
         - X Ads (`xads`) via the X Conversion API (`POST /12/measurement/conversions/{pixelId}`)
         - Snapchat (`snapchatads`) via the Snapchat Conversions API (`POST https://tr.snapchat.com/v3/{pixelId}/events`)
+        - Taboola (`taboolaads`) via its S2S postback (`GET https://trc.taboola.com/actions-handler/log/3/s2s-action`), one request per event
         - Klaviyo (`klaviyo`) via the Events API (`POST https://a.klaviyo.com/api/events`)
         - Attentive (`attentive`) via the eCommerce and Custom Events APIs
         - Impact (`impact`) via the Conversions API (`POST /Advertisers/{AccountSID}/Conversions`)
@@ -77098,6 +77149,7 @@ paths:
         - Microsoft has no test mode: with `testCode`, UET events are sent with ad storage denied, which Microsoft excludes from conversion attribution and retargeting.
         - X Ads: X Pixel event id, e.g. `tw-rbhhj-rcfms`. Each event needs `clickIds.twclid`, an `email`, a `phone`, or `ipAddress` plus `userAgent`; the event decides the type and `eventId` is sent as `conversion_id`.
         - Snapchat: the connection's Snap Pixel ID, e.g. `1a2b3c4d-5e6f-4a8b-9c0d-1e2f3a4b5c6d`. Each event needs an `email`, a `phone`, or `ipAddress` plus `userAgent`; website events also need `sourceUrl`. With `testCode`, events go to Snap's validate endpoint and are not recorded.
+        - Taboola: the connection's numeric Taboola Account ID, e.g. `1234567`. Each event needs `clickIds.tblci`. `eventName` is sent as is and must equal the Event Name of a conversion rule in Realize (case-sensitive). Taboola has no test mode, so `testCode` is ignored.
         - Klaviyo: the connection's Klaviyo account id. Each event needs an unhashed `email`, a `phone` with its country code, or an `externalId`; `eventId` is the `unique_id`. Klaviyo has no test mode, so a `testCode` is refused.
         - Klaviyo metrics: `Purchase` is `Placed Order`, `InitiateCheckout` `Started Checkout`, `ViewContent` `Viewed Product`, `AddToCart` `Added to Cart`; any other name is a metric of that name.
         - Attentive: the connection's Attentive company id. `Purchase`, `AddToCart` and `ViewContent` with priced `items` go to the eCommerce endpoints; every other event goes out as a custom event named `eventName`. Each event needs an unhashed `email`, a `phone` with its country code, or an `externalId`. A `testCode` is refused.
@@ -78100,6 +78152,7 @@ paths:
       - openai
       - applovinads
       - snapchatads
+      - taboolaads
       - klaviyo
       - attentive
       - impact
@@ -78208,6 +78261,7 @@ paths:
       - openai
       - applovinads
       - snapchatads
+      - taboolaads
       - klaviyo
       - attentive
       - impact
@@ -78922,6 +78976,7 @@ paths:
       - openai
       - applovinads
       - snapchatads
+      - taboolaads
       - klaviyo
       - attentive
       - impact
@@ -125592,6 +125647,7 @@ components:
           - whopads
           - applovinads
           - snapchatads
+          - taboolaads
           - klaviyo
           - attentive
           - impact
@@ -163440,6 +163496,44 @@ components:
         advertiserId:
           type: string
         trackerId:
+          type: string
+        accountName:
+          type: string
+        redirectUrl:
+          type: string
+    connectTaboolaAdsCredentials_request:
+      properties:
+        taboolaAccountId:
+          description: "Numeric Taboola Account ID, shown in Realize under the account\
+            \ name."
+          type: string
+        name:
+          description: Optional display name for the account.
+          maxLength: 100
+          type: string
+        profileId:
+          description: Your Zernio profile ID
+          type: string
+        state:
+          description: Optional state passthrough for the connect flow.
+          type: string
+        redirect_url:
+          description: "Optional URL to redirect to after a successful connection,\
+            \ echoed back as redirectUrl."
+          type: string
+      required:
+      - profileId
+      - taboolaAccountId
+    connectTaboolaAdsCredentials_200_response:
+      example:
+        accountId: accountId
+        redirectUrl: redirectUrl
+        accountName: accountName
+        taboolaAccountId: taboolaAccountId
+      properties:
+        accountId:
+          type: string
+        taboolaAccountId:
           type: string
         accountName:
           type: string
@@ -225011,7 +225105,8 @@ components:
             Advertising: `accounts/{id}/conversionGoals/{id}`
             or `accounts/{id}/uetTags/{id}`.
             X Ads: pixel event id (`tw-...`). Snapchat:
-            Snap Pixel ID (a UUID).
+            Snap Pixel ID (a UUID). Taboola: numeric
+            Account ID.
           type: string
         name:
           type: string
@@ -257427,6 +257522,11 @@ components:
         scid:
           description: "Snap Pixel browser id (the `_scid` cookie). Sent to Snapchat\
             \ as `sc_cookie1`, not hashed."
+          type: string
+        tblci:
+          description: "Taboola click ID (the `tblci` URL param Taboola adds to ad\
+            \ clicks with its `{click_id}` macro). Sent to Taboola as `click-id`,\
+            \ not hashed."
           type: string
         irclickid:
           description: Impact partner click id (the `irclickid` URL param Impact adds

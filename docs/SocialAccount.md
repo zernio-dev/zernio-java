@@ -68,6 +68,7 @@
 | WHOPADS | &quot;whopads&quot; |
 | APPLOVINADS | &quot;applovinads&quot; |
 | SNAPCHATADS | &quot;snapchatads&quot; |
+| TABOOLAADS | &quot;taboolaads&quot; |
 | KLAVIYO | &quot;klaviyo&quot; |
 | ATTENTIVE | &quot;attentive&quot; |
 | IMPACT | &quot;impact&quot; |

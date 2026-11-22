@@ -42,6 +42,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**connectSlackChannelWithHttpInfo**](ConnectApi.md#connectSlackChannelWithHttpInfo) | **POST** /v1/connect/slack | Connect a Slack channel |
 | [**connectSnapchatAdsCredentials**](ConnectApi.md#connectSnapchatAdsCredentials) | **POST** /v1/connect/snapchat-ads/credentials | Connect a Snapchat Ads pixel |
 | [**connectSnapchatAdsCredentialsWithHttpInfo**](ConnectApi.md#connectSnapchatAdsCredentialsWithHttpInfo) | **POST** /v1/connect/snapchat-ads/credentials | Connect a Snapchat Ads pixel |
+| [**connectTaboolaAdsCredentials**](ConnectApi.md#connectTaboolaAdsCredentials) | **POST** /v1/connect/taboola-ads/credentials | Connect a Taboola account |
+| [**connectTaboolaAdsCredentialsWithHttpInfo**](ConnectApi.md#connectTaboolaAdsCredentialsWithHttpInfo) | **POST** /v1/connect/taboola-ads/credentials | Connect a Taboola account |
 | [**connectTradeDeskAdsCredentials**](ConnectApi.md#connectTradeDeskAdsCredentials) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag |
 | [**connectTradeDeskAdsCredentialsWithHttpInfo**](ConnectApi.md#connectTradeDeskAdsCredentialsWithHttpInfo) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag |
 | [**connectWebflowWithSiteToken**](ConnectApi.md#connectWebflowWithSiteToken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token |
@@ -3219,6 +3221,160 @@ ApiResponse<[**ConnectSnapchatAdsCredentials200Response**](ConnectSnapchatAdsCre
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | Ads add-on required. |  -  |
 | **502** | Snapchat could not confirm the token right now, so nothing was saved (code platform_api_error). Retry in a minute. |  -  |
+
+
+## connectTaboolaAdsCredentials
+
+> ConnectTaboolaAdsCredentials200Response connectTaboolaAdsCredentials(connectTaboolaAdsCredentialsRequest)
+
+Connect a Taboola account
+
+Connect a Taboola advertiser account by its numeric Account ID from Taboola Realize. Taboola&#39;s S2S postback takes no credential, so nothing secret is stored and nothing is checked with Taboola.  The account then receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules). Each event needs the Taboola click ID (&#x60;clickIds.tblci&#x60;).  Taboola counts an event only when its name equals the Event Name of a conversion rule in Realize. Rename events in the forwarding rule when they differ.  Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectTaboolaAdsCredentialsRequest connectTaboolaAdsCredentialsRequest = new ConnectTaboolaAdsCredentialsRequest(); // ConnectTaboolaAdsCredentialsRequest | 
+        try {
+            ConnectTaboolaAdsCredentials200Response result = apiInstance.connectTaboolaAdsCredentials(connectTaboolaAdsCredentialsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectTaboolaAdsCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectTaboolaAdsCredentialsRequest** | [**ConnectTaboolaAdsCredentialsRequest**](ConnectTaboolaAdsCredentialsRequest.md)|  | |
+
+### Return type
+
+[**ConnectTaboolaAdsCredentials200Response**](ConnectTaboolaAdsCredentials200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Taboola account connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+| **409** | This profile already has another Taboola account connected (code profile_platform_conflict). |  -  |
+
+## connectTaboolaAdsCredentialsWithHttpInfo
+
+> ApiResponse<ConnectTaboolaAdsCredentials200Response> connectTaboolaAdsCredentials connectTaboolaAdsCredentialsWithHttpInfo(connectTaboolaAdsCredentialsRequest)
+
+Connect a Taboola account
+
+Connect a Taboola advertiser account by its numeric Account ID from Taboola Realize. Taboola&#39;s S2S postback takes no credential, so nothing secret is stored and nothing is checked with Taboola.  The account then receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules). Each event needs the Taboola click ID (&#x60;clickIds.tblci&#x60;).  Taboola counts an event only when its name equals the Event Name of a conversion rule in Realize. Rename events in the forwarding rule when they differ.  Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectTaboolaAdsCredentialsRequest connectTaboolaAdsCredentialsRequest = new ConnectTaboolaAdsCredentialsRequest(); // ConnectTaboolaAdsCredentialsRequest | 
+        try {
+            ApiResponse<ConnectTaboolaAdsCredentials200Response> response = apiInstance.connectTaboolaAdsCredentialsWithHttpInfo(connectTaboolaAdsCredentialsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectTaboolaAdsCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectTaboolaAdsCredentialsRequest** | [**ConnectTaboolaAdsCredentialsRequest**](ConnectTaboolaAdsCredentialsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ConnectTaboolaAdsCredentials200Response**](ConnectTaboolaAdsCredentials200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Taboola account connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+| **409** | This profile already has another Taboola account connected (code profile_platform_conflict). |  -  |
 
 
 ## connectTradeDeskAdsCredentials

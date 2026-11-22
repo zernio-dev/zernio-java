@@ -714,6 +714,8 @@ docs/ConnectShopifyWithTokenRequest.md
 docs/ConnectSlackChannelRequest.md
 docs/ConnectSnapchatAdsCredentials200Response.md
 docs/ConnectSnapchatAdsCredentialsRequest.md
+docs/ConnectTaboolaAdsCredentials200Response.md
+docs/ConnectTaboolaAdsCredentialsRequest.md
 docs/ConnectTradeDeskAdsCredentials200Response.md
 docs/ConnectTradeDeskAdsCredentialsRequest.md
 docs/ConnectWebflowWithSiteToken200Response.md
@@ -4990,6 +4992,8 @@ src/main/java/dev/zernio/model/ConnectShopifyWithTokenRequest.java
 src/main/java/dev/zernio/model/ConnectSlackChannelRequest.java
 src/main/java/dev/zernio/model/ConnectSnapchatAdsCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectSnapchatAdsCredentialsRequest.java
+src/main/java/dev/zernio/model/ConnectTaboolaAdsCredentials200Response.java
+src/main/java/dev/zernio/model/ConnectTaboolaAdsCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectTradeDeskAdsCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectTradeDeskAdsCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteToken200Response.java
@@ -8403,3 +8407,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ConnectTaboolaAdsCredentials200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectTaboolaAdsCredentialsRequestTest.java
