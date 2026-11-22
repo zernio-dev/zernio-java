@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.758.0
+  version: 1.760.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -55826,6 +55826,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Only automations whose name contains this text, ignoring case.\
+          \ `%` and `_` match themselves."
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          example: welcome
+          maxLength: 100
+          minLength: 2
+          type: string
+        style: form
       - description: "Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`,\
           \ `sequence`, `comment`, `workflow`."
         explode: true
@@ -55847,7 +55859,7 @@ paths:
           type: integer
         style: form
       - description: |
-          `nextCursor` from the previous page, sent back unchanged with the same `kind`, `accountId` and `adAccountId`.
+          `nextCursor` from the previous page, sent back unchanged with the same `q`, `kind`, `accountId` and `adAccountId`.
 
           Opaque: it holds the creation time and id of the page's last automation, and the next page is every kind's automations strictly older than it, so an automation created meanwhile never shifts or repeats a page.
         explode: true

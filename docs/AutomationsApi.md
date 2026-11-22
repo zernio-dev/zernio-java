@@ -3479,7 +3479,7 @@ ApiResponse<[**ListAutomationTemplates200Response**](ListAutomationTemplates200R
 
 ## listAutomations
 
-> ListAutomations200Response listAutomations(accountId, adAccountId, kind, limit, cursor)
+> ListAutomations200Response listAutomations(accountId, adAccountId, q, kind, limit, cursor)
 
 List automations
 
@@ -3508,11 +3508,12 @@ public class Example {
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
         String accountId = "accountId_example"; // String | Only automations on this account: the ads connection of an ad rule, one of the `accountIds` of an event or scheduled automation, or the account a sequence, comment to DM or flow runs on.
         String adAccountId = "adAccountId_example"; // String | Only ad rules checking this platform ad account.
+        String q = "welcome"; // String | Only automations whose name contains this text, ignoring case. `%` and `_` match themselves.
         String kind = "ad_rule,event"; // String | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`, `comment`, `workflow`.
         Integer limit = 50; // Integer | 
-        String cursor = "cursor_example"; // String | `nextCursor` from the previous page, sent back unchanged with the same `kind`, `accountId` and `adAccountId`.  Opaque: it holds the creation time and id of the page's last automation, and the next page is every kind's automations strictly older than it, so an automation created meanwhile never shifts or repeats a page. 
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page, sent back unchanged with the same `q`, `kind`, `accountId` and `adAccountId`.  Opaque: it holds the creation time and id of the page's last automation, and the next page is every kind's automations strictly older than it, so an automation created meanwhile never shifts or repeats a page. 
         try {
-            ListAutomations200Response result = apiInstance.listAutomations(accountId, adAccountId, kind, limit, cursor);
+            ListAutomations200Response result = apiInstance.listAutomations(accountId, adAccountId, q, kind, limit, cursor);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AutomationsApi#listAutomations");
@@ -3532,9 +3533,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Only automations on this account: the ads connection of an ad rule, one of the &#x60;accountIds&#x60; of an event or scheduled automation, or the account a sequence, comment to DM or flow runs on. | [optional] |
 | **adAccountId** | **String**| Only ad rules checking this platform ad account. | [optional] |
+| **q** | **String**| Only automations whose name contains this text, ignoring case. &#x60;%&#x60; and &#x60;_&#x60; match themselves. | [optional] |
 | **kind** | **String**| Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;, &#x60;comment&#x60;, &#x60;workflow&#x60;. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
-| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page, sent back unchanged with the same &#x60;kind&#x60;, &#x60;accountId&#x60; and &#x60;adAccountId&#x60;.  Opaque: it holds the creation time and id of the page&#39;s last automation, and the next page is every kind&#39;s automations strictly older than it, so an automation created meanwhile never shifts or repeats a page.  | [optional] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page, sent back unchanged with the same &#x60;q&#x60;, &#x60;kind&#x60;, &#x60;accountId&#x60; and &#x60;adAccountId&#x60;.  Opaque: it holds the creation time and id of the page&#39;s last automation, and the next page is every kind&#39;s automations strictly older than it, so an automation created meanwhile never shifts or repeats a page.  | [optional] |
 
 ### Return type
 
@@ -3559,7 +3561,7 @@ public class Example {
 
 ## listAutomationsWithHttpInfo
 
-> ApiResponse<ListAutomations200Response> listAutomations listAutomationsWithHttpInfo(accountId, adAccountId, kind, limit, cursor)
+> ApiResponse<ListAutomations200Response> listAutomations listAutomationsWithHttpInfo(accountId, adAccountId, q, kind, limit, cursor)
 
 List automations
 
@@ -3589,11 +3591,12 @@ public class Example {
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
         String accountId = "accountId_example"; // String | Only automations on this account: the ads connection of an ad rule, one of the `accountIds` of an event or scheduled automation, or the account a sequence, comment to DM or flow runs on.
         String adAccountId = "adAccountId_example"; // String | Only ad rules checking this platform ad account.
+        String q = "welcome"; // String | Only automations whose name contains this text, ignoring case. `%` and `_` match themselves.
         String kind = "ad_rule,event"; // String | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`, `comment`, `workflow`.
         Integer limit = 50; // Integer | 
-        String cursor = "cursor_example"; // String | `nextCursor` from the previous page, sent back unchanged with the same `kind`, `accountId` and `adAccountId`.  Opaque: it holds the creation time and id of the page's last automation, and the next page is every kind's automations strictly older than it, so an automation created meanwhile never shifts or repeats a page. 
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page, sent back unchanged with the same `q`, `kind`, `accountId` and `adAccountId`.  Opaque: it holds the creation time and id of the page's last automation, and the next page is every kind's automations strictly older than it, so an automation created meanwhile never shifts or repeats a page. 
         try {
-            ApiResponse<ListAutomations200Response> response = apiInstance.listAutomationsWithHttpInfo(accountId, adAccountId, kind, limit, cursor);
+            ApiResponse<ListAutomations200Response> response = apiInstance.listAutomationsWithHttpInfo(accountId, adAccountId, q, kind, limit, cursor);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3615,9 +3618,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Only automations on this account: the ads connection of an ad rule, one of the &#x60;accountIds&#x60; of an event or scheduled automation, or the account a sequence, comment to DM or flow runs on. | [optional] |
 | **adAccountId** | **String**| Only ad rules checking this platform ad account. | [optional] |
+| **q** | **String**| Only automations whose name contains this text, ignoring case. &#x60;%&#x60; and &#x60;_&#x60; match themselves. | [optional] |
 | **kind** | **String**| Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;, &#x60;comment&#x60;, &#x60;workflow&#x60;. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
-| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page, sent back unchanged with the same &#x60;kind&#x60;, &#x60;accountId&#x60; and &#x60;adAccountId&#x60;.  Opaque: it holds the creation time and id of the page&#39;s last automation, and the next page is every kind&#39;s automations strictly older than it, so an automation created meanwhile never shifts or repeats a page.  | [optional] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page, sent back unchanged with the same &#x60;q&#x60;, &#x60;kind&#x60;, &#x60;accountId&#x60; and &#x60;adAccountId&#x60;.  Opaque: it holds the creation time and id of the page&#39;s last automation, and the next page is every kind&#39;s automations strictly older than it, so an automation created meanwhile never shifts or repeats a page.  | [optional] |
 
 ### Return type
 
