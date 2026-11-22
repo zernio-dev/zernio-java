@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.733.0
+  version: 1.734.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -60656,6 +60656,8 @@ paths:
         `placements` and `targeting` take the same shapes as POST /v1/ads/create. Meta replaces an ad set's targeting wholesale, so Zernio reads the live targeting first, changes only what the request names and writes the merged spec back.
 
         Custom audiences, geo, age, interest groups and `targeting_automation` you do not send are kept.
+
+        Locations are replaced as a set: sending any location field (countries, countryGroups, regions, cities, zips, metros, customLocations, places, neighborhoods) replaces every included location on the ad set, because Meta ORs them together. Resend the ones to keep. Meta's `location_types` and other geo settings Zernio does not model are always kept.
 
         - `placements` replaces the whole placement set.
         - `placements: null` returns the ad set to automatic placements.
@@ -134052,6 +134054,17 @@ components:
             - android_free_store
             - android_paid_store
             type: string
+          type: array
+        places:
+          description: Meta only. Named points of interest to target. `key` from /v1/ads/targeting/search.
+          items:
+            $ref: "#/components/schemas/CtwaAdRequestBody_places_inner"
+          type: array
+        neighborhoods:
+          description: Meta only. Named neighbourhood areas to target. `key` from
+            /v1/ads/targeting/search.
+          items:
+            $ref: "#/components/schemas/CtwaAdRequestBody_places_inner"
           type: array
         customLocations:
           description: Point-radius (lat/lng) targeting (Meta custom_locations / Google
