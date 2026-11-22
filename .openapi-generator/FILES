@@ -750,7 +750,9 @@ docs/ConversationAdAttribution.md
 docs/ConversionAction.md
 docs/ConversionActionTagSnippetsInner.md
 docs/ConversionAuditAnswer.md
+docs/ConversionAuditAnswerNetworksInner.md
 docs/ConversionAuditAnswerPublicReport.md
+docs/ConversionAuditAnswerTopFixesInner.md
 docs/ConversionAuditApi.md
 docs/ConversionAuditMonitor.md
 docs/ConversionAuditMonitorAnswer.md
@@ -5025,7 +5027,9 @@ src/main/java/dev/zernio/model/ConversationAdAttribution.java
 src/main/java/dev/zernio/model/ConversionAction.java
 src/main/java/dev/zernio/model/ConversionActionTagSnippetsInner.java
 src/main/java/dev/zernio/model/ConversionAuditAnswer.java
+src/main/java/dev/zernio/model/ConversionAuditAnswerNetworksInner.java
 src/main/java/dev/zernio/model/ConversionAuditAnswerPublicReport.java
+src/main/java/dev/zernio/model/ConversionAuditAnswerTopFixesInner.java
 src/main/java/dev/zernio/model/ConversionAuditMonitor.java
 src/main/java/dev/zernio/model/ConversionAuditMonitorAnswer.java
 src/main/java/dev/zernio/model/ConversionAuditMonitorScoreHistoryInner.java
@@ -8407,3 +8411,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ConversionAuditAnswerNetworksInnerTest.java
+src/test/java/dev/zernio/model/ConversionAuditAnswerTopFixesInnerTest.java

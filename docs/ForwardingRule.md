@@ -34,6 +34,7 @@
 | STRIPE | &quot;stripe&quot; |
 | WEB | &quot;web&quot; |
 | SALESFORCE | &quot;salesforce&quot; |
+| GOHIGHLEVEL | &quot;gohighlevel&quot; |
 | POSTBACK | &quot;postback&quot; |
 | FORM_LEADS | &quot;form_leads&quot; |
 

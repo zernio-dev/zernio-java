@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.762.0
+  version: 1.763.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -92466,6 +92466,9 @@ paths:
         - `report.visibility: "limited"` means some pixels load through a tag manager or a store platform, so only part of the setup is visible from outside. It does not mean the tracking failed or is missing.
         - `status: "warn"` (browser-only) is the leak: the platform is tracked in the browser but not server-side.
         - `status: "good"` (server-side) means conversions reach the platform server-side, which recovers most of that signal.
+        - `networks` and `topFixes` are the per-network setup, leak and ordered fixes exactly as the public report page
+        computes them; read them instead of deriving your own from `report`.
+
         - `fixPrompt` is the same fix prompt the Conversion Leak Report page shows: this scan's findings, then the steps to send conversions server-side with `POST /v1/events` and to verify them.
         - To fix the leak with Zernio, follow https://docs.zernio.com/products/server-side-tracking/fix-with-agent: a tracking site, its tag, a forwarding rule per network to the pixel the page runs, then a rescan. A network turns `good` once the site's events reached that pixel in the last 7 days.
         - `publicReport` links the host's public page on is-bleeding.com. A homepage scan that could read the site's pixels becomes that page's snapshot, the same as a scan on is-bleeding.com. Any other scan links the stored snapshot, taken at `scannedAt`, or returns null when the host has none.
@@ -96953,6 +96956,7 @@ components:
             serverSideVerified: true
             serverSide: true
             serverTool: serverTool
+            loadedBy: zernio-tag
             name: name
             ids:
             - ids
@@ -96973,6 +96977,7 @@ components:
             serverSideVerified: true
             serverSide: true
             serverTool: serverTool
+            loadedBy: zernio-tag
             name: name
             ids:
             - ids
@@ -96991,6 +96996,7 @@ components:
             - strength: detected
               evidence: evidence
               label: label
+            firstPartyCollection: firstPartyCollection
             status: detected
           tagManagers:
           - tagManagers
@@ -97038,9 +97044,46 @@ components:
           limitations:
           - limitations
           - limitations
+        topFixes:
+        - compliance: true
+          why: why
+          title: title
+          points: 2
+        - compliance: true
+          why: why
+          title: title
+          points: 2
+        - compliance: true
+          why: why
+          title: title
+          points: 2
+        networks:
+        - loadedBy: zernio-tag
+          name: name
+          setup: verified
+          leakPct: 36
+          key: key
+        - loadedBy: zernio-tag
+          name: name
+          setup: verified
+          leakPct: 36
+          key: key
       properties:
         report:
           $ref: "#/components/schemas/ConversionAuditReport"
+        networks:
+          description: "Each ad network with its final setup and leak, computed exactly\
+            \ as the public report page shows them, best setup first."
+          items:
+            $ref: "#/components/schemas/ConversionAuditAnswer_networks_inner"
+          type: array
+        topFixes:
+          description: "The few fixes that matter most, in the order the public report\
+            \ page lists them."
+          items:
+            $ref: "#/components/schemas/ConversionAuditAnswer_topFixes_inner"
+          maxItems: 3
+          type: array
         fixPrompt:
           description: "A prompt to paste into a coding agent. It lists the report's\
             \ findings, then connecting Zernio, sending conversions server-side and\
@@ -97050,8 +97093,10 @@ components:
           $ref: "#/components/schemas/ConversionAuditAnswer_publicReport"
       required:
       - fixPrompt
+      - networks
       - publicReport
       - report
+      - topFixes
     ConversionAuditReport:
       description: The scored conversion-tracking audit of one page.
       example:
@@ -97091,6 +97136,7 @@ components:
           serverSideVerified: true
           serverSide: true
           serverTool: serverTool
+          loadedBy: zernio-tag
           name: name
           ids:
           - ids
@@ -97111,6 +97157,7 @@ components:
           serverSideVerified: true
           serverSide: true
           serverTool: serverTool
+          loadedBy: zernio-tag
           name: name
           ids:
           - ids
@@ -97129,6 +97176,7 @@ components:
           - strength: detected
             evidence: evidence
             label: label
+          firstPartyCollection: firstPartyCollection
           status: detected
         tagManagers:
         - tagManagers
@@ -100300,9 +100348,10 @@ components:
           type: string
         source:
           description: "Where the event came from: `api`, `relay`, `web`, `shopify`,\
-            \ `woocommerce`, `stripe`, `hubspot`, `salesforce`, `meta_leads`, `google_leads`,\
-            \ `linkedin_leads`, `tiktok_leads` or `postback` (an affiliate network's\
-            \ postback to a tracking link)."
+            \ `woocommerce`, `stripe`, `hubspot`, `salesforce`, `gohighlevel`, `meta_leads`,\
+            \ `google_leads`, `linkedin_leads`, `tiktok_leads`, `form_leads` (a website\
+            \ form or `POST /v1/leads`) or `postback` (an affiliate network's postback\
+            \ to a tracking link)."
           type: string
         eventName:
           type: string
@@ -144766,6 +144815,7 @@ components:
             - stripe
             - web
             - salesforce
+            - gohighlevel
             - postback
             - form_leads
             type: string
@@ -224570,6 +224620,7 @@ components:
             - stripe
             - web
             - salesforce
+            - gohighlevel
             - postback
             - form_leads
             type: string
@@ -232944,6 +232995,7 @@ components:
             serverSideVerified: true
             serverSide: true
             serverTool: serverTool
+            loadedBy: zernio-tag
             name: name
             ids:
             - ids
@@ -232964,6 +233016,7 @@ components:
             serverSideVerified: true
             serverSide: true
             serverTool: serverTool
+            loadedBy: zernio-tag
             name: name
             ids:
             - ids
@@ -232982,6 +233035,7 @@ components:
             - strength: detected
               evidence: evidence
               label: label
+            firstPartyCollection: firstPartyCollection
             status: detected
           tagManagers:
           - tagManagers
@@ -233029,7 +233083,31 @@ components:
           limitations:
           - limitations
           - limitations
+        topFixes:
+        - compliance: true
+          why: why
+          title: title
+          points: 2
+        - compliance: true
+          why: why
+          title: title
+          points: 2
+        - compliance: true
+          why: why
+          title: title
+          points: 2
         host: host
+        networks:
+        - loadedBy: zernio-tag
+          name: name
+          setup: verified
+          leakPct: 36
+          key: key
+        - loadedBy: zernio-tag
+          name: name
+          setup: verified
+          leakPct: 36
+          key: key
     listConversionAuditMonitors_200_response:
       example:
         monitors:
@@ -236465,6 +236543,84 @@ components:
       required:
       - at
       - score
+    ConversionAuditAnswer_networks_inner:
+      example:
+        loadedBy: zernio-tag
+        name: name
+        setup: verified
+        leakPct: 36
+        key: key
+      properties:
+        key:
+          description: "Stable platform key (meta, google, tiktok, ...), as in `report.platforms`."
+          type: string
+        name:
+          description: "Short network name (Meta, Google, TikTok, ...)."
+          type: string
+        setup:
+          description: "How the network gets its conversions: `verified`, `likely`\
+            \ or `possible` server path, `not-visible` (browser pixel, no server path\
+            \ visible), `not-firing` (installed, sent nothing), `configured` (tag\
+            \ manager only, never seen firing, not at risk) or `missing`."
+          enum:
+          - verified
+          - likely
+          - possible
+          - not-visible
+          - not-firing
+          - configured
+          - missing
+          type: string
+        leakPct:
+          description: "Share of this network's conversions at risk, 0-100 (0 once\
+            \ a server path is verified). Null when the network has no working browser\
+            \ pixel to measure."
+          maximum: 100
+          minimum: 0
+          nullable: true
+          type: integer
+        loadedBy:
+          description: "`zernio-tag` when the pixel comes from the Zernio site tag's\
+            \ settings (it loads the pixel after consent) rather than from the page\
+            \ itself, on a scan that read the page source only."
+          enum:
+          - zernio-tag
+          - null
+          nullable: true
+          type: string
+      required:
+      - key
+      - leakPct
+      - loadedBy
+      - name
+      - setup
+    ConversionAuditAnswer_topFixes_inner:
+      example:
+        compliance: true
+        why: why
+        title: title
+        points: 2
+      properties:
+        title:
+          description: The action to take.
+          type: string
+        why:
+          description: Why it matters on this site.
+          type: string
+        points:
+          description: "Points the score gains when this fix alone lands, or null\
+            \ when the scan can't tell."
+          nullable: true
+          type: integer
+        compliance:
+          description: True when what's at stake is data sent without consent rather
+            than lost signal.
+          type: boolean
+      required:
+      - compliance
+      - points
+      - title
+      - why
     ConversionAuditAnswer_publicReport:
       example:
         scannedAt: 2000-01-23T04:56:07.000+00:00
@@ -236510,6 +236666,7 @@ components:
         serverSideVerified: true
         serverSide: true
         serverTool: serverTool
+        loadedBy: zernio-tag
         name: name
         ids:
         - ids
@@ -236536,6 +236693,13 @@ components:
         relayedBy:
           description: The only server path seen is the Zernio site tag relay; `serverSideVerified`
             says whether its delivery to this platform is proven.
+          enum:
+          - zernio-tag
+          type: string
+        loadedBy:
+          description: "On a scan that read the page source only: the pixel comes\
+            \ from the Zernio site tag's settings, which load it after consent, not\
+            \ from the page. Its ids are not reported."
           enum:
           - zernio-tag
           type: string
@@ -236694,6 +236858,7 @@ components:
         - strength: detected
           evidence: evidence
           label: label
+        firstPartyCollection: firstPartyCollection
         status: detected
       properties:
         status:
@@ -236707,6 +236872,10 @@ components:
             $ref: "#/components/schemas/ConversionAuditReport_serverSide_signals_inner"
           type: array
         note:
+          type: string
+        firstPartyCollection:
+          description: "The server-side path that collects on the site's own domain,\
+            \ when the scan saw one."
           type: string
       required:
       - note
@@ -243132,9 +243301,9 @@ components:
           type: string
         source:
           description: "Who sent it: `api`, `relay`, a lead form (`meta_leads`, `google_leads`,\
-            \ `linkedin_leads`, `tiktok_leads`), a store (`shopify`, `woocommerce`),\
-            \ `stripe`, `hubspot`, `salesforce`, `web` or `postback` (an affiliate\
-            \ network's postback to a tracking link)."
+            \ `linkedin_leads`, `tiktok_leads`, `form_leads`), a store (`shopify`,\
+            \ `woocommerce`), `stripe`, `hubspot`, `salesforce`, `gohighlevel`, `web`\
+            \ or `postback` (an affiliate network's postback to a tracking link)."
           type: string
         actionSource:
           nullable: true

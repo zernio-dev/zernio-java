@@ -10,6 +10,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**signals** | [**List&lt;ConversionAuditReportServerSideSignalsInner&gt;**](ConversionAuditReportServerSideSignalsInner.md) |  |  |
 |**note** | **String** |  |  |
+|**firstPartyCollection** | **String** | The server-side path that collects on the site&#39;s own domain, when the scan saw one. |  [optional] |
 
 
 
