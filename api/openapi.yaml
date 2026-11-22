@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.735.0
+  version: 1.736.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -91860,6 +91860,101 @@ paths:
       x-resource-group: public
       x-accepts:
       - application/json
+  /v1/conversion-audit/meta-audit:
+    get:
+      description: |
+        The connected follow-up to the Conversion Leak Report. A page scan only sees the browser; this reads what Meta itself recorded for the ad account's pixel (dataset) with the connection's own token, over the last 7 days.
+
+        ### What it reads
+
+        - each event's volume per day, its last 24 hours and the last hour Meta counted it in
+        - the share of each event that arrived through the Conversions API (server) rather than the browser pixel
+        - Event Match Quality per event, with the coverage of every customer-information key Meta matched on (email, phone, external id, IP address, user agent, `fbp`, `fbc`, name and address fields)
+        - the event_id, external_id and fbp deduplication coverage of browser and server copies, where an event has both
+        - Meta's diagnostics for the dataset and its failed dataset checks
+        - whether automatic advanced matching and first-party cookies are on
+
+        Each `findings` entry is a problem one of those numbers shows, with its fix and who makes it (`fix.by`):
+
+        - `zernio`: turning on Zernio server-side events or the Zernio site tag fixes it
+        - `you`: a change in your site or API call
+        - `meta`: a setting only Events Manager has
+
+        Meta does not return a business's verified domains or an Aggregated Event Measurement setup to this API, so both are listed under `unavailable`, with any read Meta refused.
+
+        `accountId` is a Meta ads connection (or the Facebook account it belongs to). Without `adAccountId`, the first selected ad account that has a pixel is audited; without `pixelId`, its most recently active pixel. The result is cached for 10 minutes per pixel.
+      operationId: getMetaConversionAudit
+      parameters:
+      - description: The Meta ads connection to read with.
+        example: 6a10b66d520992756da032cb
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The ad account whose pixel is audited. Must be selected on the
+          connection.
+        example: act_757082720485182
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          pattern: ^act_\d+$
+          type: string
+        style: form
+      - description: "One of the ad account's pixels (`datasets[].id`)."
+        example: "1729525464415281"
+        explode: true
+        in: query
+        name: pixelId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MetaDatasetAudit"
+          description: "The pixel's events, findings and what Meta did not expose"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The ad account is not selected on the connection, or the key\
+            \ cannot use ads"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The connection is not a Meta connection
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Meta refused to list the ad account's pixels
+      summary: Audit a connected Meta pixel from inside Events Manager
+      tags:
+      - Conversion Audit
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
   /v1/changelog:
     get:
       description: |
@@ -95697,6 +95792,181 @@ components:
       x-summary: "Billing blocked the request: redirect the user to `dashboard_url`\
         \ to add or verify a card or use the enterprise form."
   schemas:
+    MetaDatasetAudit:
+      example:
+        accountId: accountId
+        checkedAt: 2000-01-23T04:56:07.000+00:00
+        unavailable:
+        - reason: reason
+          id: domain_verification
+        - reason: reason
+          id: domain_verification
+        adAccountId: act_757082720485182
+        findings:
+        - severity: high
+          fix:
+            by: zernio
+            label: label
+            steps:
+            - steps
+            - steps
+            url: url
+          eventName: eventName
+          id: browser_only:Purchase
+          detail: detail
+          title: title
+        - severity: high
+          fix:
+            by: zernio
+            label: label
+            steps:
+            - steps
+            - steps
+            url: url
+          eventName: eventName
+          id: browser_only:Purchase
+          detail: detail
+          title: title
+        datasets:
+        - lastFiredAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          id: id
+        - lastFiredAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          id: id
+        window:
+          from: 2000-01-23T04:56:07.000+00:00
+          to: 2000-01-23T04:56:07.000+00:00
+        dataset:
+          automaticMatching: true
+          automaticMatchingKeys:
+          - automaticMatchingKeys
+          - automaticMatchingKeys
+          lastFiredAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          id: id
+          firstPartyCookies: true
+        events:
+        - diagnostics:
+          - affectedEvents: 9
+            affectedPct: 7.061401241503109
+            solution: solution
+            totalEvents: 3
+            description: description
+            title: title
+          - affectedEvents: 9
+            affectedPct: 7.061401241503109
+            solution: solution
+            totalEvents: 3
+            description: description
+            title: title
+          last24Hours: 6
+          serverSharePct: 5.962133916683182
+          matchQuality: 5.637376656633329
+          daily:
+          - date: 2000-01-23
+            count: 1
+          - date: 2000-01-23
+            count: 1
+          name: Purchase
+          matchKeys:
+          - coveragePct: 2.3021358869347655
+            key: email
+          - coveragePct: 2.3021358869347655
+            key: email
+          dedup:
+          - browserDedupedPct: 7.386281948385884
+            serverWithKeyPct: 4.145608029883936
+            browserWithKeyPct: 2.027123023002322
+            key: event_id
+          - browserDedupedPct: 7.386281948385884
+            serverWithKeyPct: 4.145608029883936
+            browserWithKeyPct: 2.027123023002322
+            key: event_id
+          last7Days: 0
+          lastSeenHour: 2000-01-23T04:56:07.000+00:00
+        - diagnostics:
+          - affectedEvents: 9
+            affectedPct: 7.061401241503109
+            solution: solution
+            totalEvents: 3
+            description: description
+            title: title
+          - affectedEvents: 9
+            affectedPct: 7.061401241503109
+            solution: solution
+            totalEvents: 3
+            description: description
+            title: title
+          last24Hours: 6
+          serverSharePct: 5.962133916683182
+          matchQuality: 5.637376656633329
+          daily:
+          - date: 2000-01-23
+            count: 1
+          - date: 2000-01-23
+            count: 1
+          name: Purchase
+          matchKeys:
+          - coveragePct: 2.3021358869347655
+            key: email
+          - coveragePct: 2.3021358869347655
+            key: email
+          dedup:
+          - browserDedupedPct: 7.386281948385884
+            serverWithKeyPct: 4.145608029883936
+            browserWithKeyPct: 2.027123023002322
+            key: event_id
+          - browserDedupedPct: 7.386281948385884
+            serverWithKeyPct: 4.145608029883936
+            browserWithKeyPct: 2.027123023002322
+            key: event_id
+          last7Days: 0
+          lastSeenHour: 2000-01-23T04:56:07.000+00:00
+      properties:
+        accountId:
+          type: string
+        adAccountId:
+          example: act_757082720485182
+          type: string
+        dataset:
+          $ref: "#/components/schemas/MetaDatasetAudit_dataset"
+        datasets:
+          description: Every pixel assigned to the ad account.
+          items:
+            $ref: "#/components/schemas/MetaDatasetAudit_datasets_inner"
+          type: array
+        window:
+          $ref: "#/components/schemas/MetaDatasetAudit_window"
+        events:
+          description: "One entry per event Meta counted in the window or scored,\
+            \ busiest first."
+          items:
+            $ref: "#/components/schemas/MetaDatasetAudit_events_inner"
+          type: array
+        findings:
+          description: "Problems the numbers show, most damaging first."
+          items:
+            $ref: "#/components/schemas/MetaDatasetAudit_findings_inner"
+          type: array
+        unavailable:
+          description: "What the audit could not read, and why."
+          items:
+            $ref: "#/components/schemas/MetaDatasetAudit_unavailable_inner"
+          type: array
+        checkedAt:
+          format: date-time
+          type: string
+      required:
+      - accountId
+      - adAccountId
+      - checkedAt
+      - dataset
+      - datasets
+      - events
+      - findings
+      - unavailable
+      - window
     ConversionAuditAnswer:
       example:
         fixPrompt: fixPrompt
@@ -234076,6 +234346,325 @@ components:
         reason:
           description: "Our review note on changes_requested, the reason on rejected,\
             \ or why a launch filing bounced back to testing."
+    MetaDatasetAudit_dataset:
+      example:
+        automaticMatching: true
+        automaticMatchingKeys:
+        - automaticMatchingKeys
+        - automaticMatchingKeys
+        lastFiredAt: 2000-01-23T04:56:07.000+00:00
+        name: name
+        id: id
+        firstPartyCookies: true
+      nullable: true
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        lastFiredAt:
+          format: date-time
+          nullable: true
+          type: string
+        automaticMatching:
+          description: Automatic advanced matching on the browser pixel.
+          type: boolean
+        automaticMatchingKeys:
+          description: "The keys automatic matching collects, as Meta names them (em,\
+            \ ph, fn)."
+          items:
+            type: string
+          type: array
+        firstPartyCookies:
+          nullable: true
+          type: boolean
+      required:
+      - automaticMatching
+      - automaticMatchingKeys
+      - firstPartyCookies
+      - id
+      - lastFiredAt
+      - name
+    MetaDatasetAudit_datasets_inner:
+      example:
+        lastFiredAt: 2000-01-23T04:56:07.000+00:00
+        name: name
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        lastFiredAt:
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - id
+      - lastFiredAt
+      - name
+    MetaDatasetAudit_window:
+      example:
+        from: 2000-01-23T04:56:07.000+00:00
+        to: 2000-01-23T04:56:07.000+00:00
+      properties:
+        from:
+          format: date-time
+          type: string
+        to:
+          format: date-time
+          type: string
+      required:
+      - from
+      - to
+    MetaDatasetAudit_events_inner_daily_inner:
+      example:
+        date: 2000-01-23
+        count: 1
+      properties:
+        date:
+          format: date
+          type: string
+        count:
+          type: integer
+      required:
+      - count
+      - date
+    MetaDatasetAudit_events_inner_matchKeys_inner:
+      example:
+        coveragePct: 2.3021358869347655
+        key: email
+      properties:
+        key:
+          example: email
+          type: string
+        coveragePct:
+          type: number
+      required:
+      - coveragePct
+      - key
+    MetaDatasetAudit_events_inner_diagnostics_inner:
+      example:
+        affectedEvents: 9
+        affectedPct: 7.061401241503109
+        solution: solution
+        totalEvents: 3
+        description: description
+        title: title
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        solution:
+          type: string
+        affectedPct:
+          type: number
+        affectedEvents:
+          type: integer
+        totalEvents:
+          type: integer
+      required:
+      - affectedEvents
+      - affectedPct
+      - description
+      - solution
+      - title
+      - totalEvents
+    MetaDatasetAudit_events_inner_dedup_inner:
+      example:
+        browserDedupedPct: 7.386281948385884
+        serverWithKeyPct: 4.145608029883936
+        browserWithKeyPct: 2.027123023002322
+        key: event_id
+      properties:
+        key:
+          example: event_id
+          type: string
+        browserWithKeyPct:
+          type: number
+        serverWithKeyPct:
+          type: number
+        browserDedupedPct:
+          type: number
+      required:
+      - browserDedupedPct
+      - browserWithKeyPct
+      - key
+      - serverWithKeyPct
+    MetaDatasetAudit_events_inner:
+      example:
+        diagnostics:
+        - affectedEvents: 9
+          affectedPct: 7.061401241503109
+          solution: solution
+          totalEvents: 3
+          description: description
+          title: title
+        - affectedEvents: 9
+          affectedPct: 7.061401241503109
+          solution: solution
+          totalEvents: 3
+          description: description
+          title: title
+        last24Hours: 6
+        serverSharePct: 5.962133916683182
+        matchQuality: 5.637376656633329
+        daily:
+        - date: 2000-01-23
+          count: 1
+        - date: 2000-01-23
+          count: 1
+        name: Purchase
+        matchKeys:
+        - coveragePct: 2.3021358869347655
+          key: email
+        - coveragePct: 2.3021358869347655
+          key: email
+        dedup:
+        - browserDedupedPct: 7.386281948385884
+          serverWithKeyPct: 4.145608029883936
+          browserWithKeyPct: 2.027123023002322
+          key: event_id
+        - browserDedupedPct: 7.386281948385884
+          serverWithKeyPct: 4.145608029883936
+          browserWithKeyPct: 2.027123023002322
+          key: event_id
+        last7Days: 0
+        lastSeenHour: 2000-01-23T04:56:07.000+00:00
+      properties:
+        name:
+          example: Purchase
+          type: string
+        last7Days:
+          type: integer
+        last24Hours:
+          type: integer
+        lastSeenHour:
+          description: "Start of the last hour Meta counted the event in: Meta's stats\
+            \ are hourly."
+          format: date-time
+          nullable: true
+          type: string
+        daily:
+          items:
+            $ref: "#/components/schemas/MetaDatasetAudit_events_inner_daily_inner"
+          type: array
+        serverSharePct:
+          description: Percent of the window's events received through the Conversions
+            API. Null when not measured (only the 12 busiest events are split by source).
+          nullable: true
+          type: number
+        matchQuality:
+          description: "Event Match Quality, 0 to 10. Meta rates 6 and above as good."
+          nullable: true
+          type: number
+        matchKeys:
+          items:
+            $ref: "#/components/schemas/MetaDatasetAudit_events_inner_matchKeys_inner"
+          type: array
+        diagnostics:
+          items:
+            $ref: "#/components/schemas/MetaDatasetAudit_events_inner_diagnostics_inner"
+          type: array
+        dedup:
+          description: "Per deduplication key, the share of browser and server copies\
+            \ carrying it and of browser copies Meta paired through it."
+          items:
+            $ref: "#/components/schemas/MetaDatasetAudit_events_inner_dedup_inner"
+          type: array
+      required:
+      - daily
+      - dedup
+      - diagnostics
+      - last24Hours
+      - last7Days
+      - lastSeenHour
+      - matchKeys
+      - matchQuality
+      - name
+      - serverSharePct
+    MetaDatasetAudit_findings_inner_fix:
+      example:
+        by: zernio
+        label: label
+        steps:
+        - steps
+        - steps
+        url: url
+      properties:
+        by:
+          description: "Who makes the fix: Zernio once turned on, you in your site\
+            \ or API call, or a setting in Events Manager."
+          enum:
+          - zernio
+          - you
+          - meta
+          type: string
+        label:
+          type: string
+        steps:
+          items:
+            type: string
+          type: array
+        url:
+          description: A Zernio dashboard path or an Events Manager link.
+          type: string
+      required:
+      - by
+      - label
+      - steps
+    MetaDatasetAudit_findings_inner:
+      example:
+        severity: high
+        fix:
+          by: zernio
+          label: label
+          steps:
+          - steps
+          - steps
+          url: url
+        eventName: eventName
+        id: browser_only:Purchase
+        detail: detail
+        title: title
+      properties:
+        id:
+          example: browser_only:Purchase
+          type: string
+        severity:
+          enum:
+          - high
+          - medium
+          - low
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+        eventName:
+          type: string
+        fix:
+          $ref: "#/components/schemas/MetaDatasetAudit_findings_inner_fix"
+      required:
+      - detail
+      - fix
+      - id
+      - severity
+      - title
+    MetaDatasetAudit_unavailable_inner:
+      example:
+        reason: reason
+        id: domain_verification
+      properties:
+        id:
+          example: domain_verification
+          type: string
+        reason:
+          type: string
+      required:
+      - id
+      - reason
     ConversionAuditAnswer_publicReport:
       example:
         scannedAt: 2000-01-23T04:56:07.000+00:00

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.735.0
+- API version: 1.736.0
 
-- Build date: 2026-11-22T01:10:18.021193474Z[Etc/UTC]
+- Build date: 2026-11-22T01:25:05.227631232Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.735.0</version>
+  <version>1.736.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.735.0"
+compile "dev.zernio:zernio-sdk:1.736.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.735.0.jar`
+- `target/zernio-sdk-1.736.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1491,6 +1491,8 @@ Class | Method | HTTP request | Description
 *ConversionAuditApi* | [**auditConversionTrackingWithHttpInfo**](docs/ConversionAuditApi.md#auditConversionTrackingWithHttpInfo) | **GET** /v1/conversion-audit | Audit a site&#39;s ad conversion tracking
 *ConversionAuditApi* | [**getLatestConversionAudit**](docs/ConversionAuditApi.md#getLatestConversionAudit) | **GET** /v1/conversion-audit/latest | Get a host&#39;s latest stored conversion audit
 *ConversionAuditApi* | [**getLatestConversionAuditWithHttpInfo**](docs/ConversionAuditApi.md#getLatestConversionAuditWithHttpInfo) | **GET** /v1/conversion-audit/latest | Get a host&#39;s latest stored conversion audit
+*ConversionAuditApi* | [**getMetaConversionAudit**](docs/ConversionAuditApi.md#getMetaConversionAudit) | **GET** /v1/conversion-audit/meta-audit | Audit a connected Meta pixel from inside Events Manager
+*ConversionAuditApi* | [**getMetaConversionAuditWithHttpInfo**](docs/ConversionAuditApi.md#getMetaConversionAuditWithHttpInfo) | **GET** /v1/conversion-audit/meta-audit | Audit a connected Meta pixel from inside Events Manager
 *ConversionsApi* | [**addAdConversionAssociations**](docs/ConversionsApi.md#addAdConversionAssociations) | **POST** /v1/ads/conversions/destinations/{destinationId}/associations | Associate campaigns
 *ConversionsApi* | [**addAdConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#addAdConversionAssociationsWithHttpInfo) | **POST** /v1/ads/conversions/destinations/{destinationId}/associations | Associate campaigns
 *ConversionsApi* | [**addConversionAssociations**](docs/ConversionsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
@@ -5431,6 +5433,18 @@ Class | Method | HTTP request | Description
  - [MetaCatalogProduct](docs/MetaCatalogProduct.md)
  - [MetaCatalogProductInput](docs/MetaCatalogProductInput.md)
  - [MetaCustomerLifecycle](docs/MetaCustomerLifecycle.md)
+ - [MetaDatasetAudit](docs/MetaDatasetAudit.md)
+ - [MetaDatasetAuditDataset](docs/MetaDatasetAuditDataset.md)
+ - [MetaDatasetAuditDatasetsInner](docs/MetaDatasetAuditDatasetsInner.md)
+ - [MetaDatasetAuditEventsInner](docs/MetaDatasetAuditEventsInner.md)
+ - [MetaDatasetAuditEventsInnerDailyInner](docs/MetaDatasetAuditEventsInnerDailyInner.md)
+ - [MetaDatasetAuditEventsInnerDedupInner](docs/MetaDatasetAuditEventsInnerDedupInner.md)
+ - [MetaDatasetAuditEventsInnerDiagnosticsInner](docs/MetaDatasetAuditEventsInnerDiagnosticsInner.md)
+ - [MetaDatasetAuditEventsInnerMatchKeysInner](docs/MetaDatasetAuditEventsInnerMatchKeysInner.md)
+ - [MetaDatasetAuditFindingsInner](docs/MetaDatasetAuditFindingsInner.md)
+ - [MetaDatasetAuditFindingsInnerFix](docs/MetaDatasetAuditFindingsInnerFix.md)
+ - [MetaDatasetAuditUnavailableInner](docs/MetaDatasetAuditUnavailableInner.md)
+ - [MetaDatasetAuditWindow](docs/MetaDatasetAuditWindow.md)
  - [MetaFeedUpload](docs/MetaFeedUpload.md)
  - [MetaInstagramIdentityRef](docs/MetaInstagramIdentityRef.md)
  - [MetaLeadForm](docs/MetaLeadForm.md)
