@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GoogleAnalyticsPlatformQueryBodyOneOf1MinuteRangesInner.JSON_PROPERTY_END_MINUTES_AGO,
   GoogleAnalyticsPlatformQueryBodyOneOf1MinuteRangesInner.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T15:24:11.466326623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T15:30:41.969068963Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleAnalyticsPlatformQueryBodyOneOf1MinuteRangesInner {
   public static final String JSON_PROPERTY_START_MINUTES_AGO = "startMinutesAgo";
   @javax.annotation.Nullable

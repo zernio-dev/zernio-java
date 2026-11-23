@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ConnectSnapchatAdsCredentialsRequest.JSON_PROPERTY_STATE,
   ConnectSnapchatAdsCredentialsRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T15:24:11.466326623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T15:30:41.969068963Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectSnapchatAdsCredentialsRequest {
   public static final String JSON_PROPERTY_ACCESS_TOKEN = "accessToken";
   @javax.annotation.Nonnull

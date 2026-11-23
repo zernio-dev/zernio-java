@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   CrmContactInput.JSON_PROPERTY_OWNER_ID,
   CrmContactInput.JSON_PROPERTY_PROPERTIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T15:24:11.466326623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T15:30:41.969068963Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CrmContactInput {
   public static final String JSON_PROPERTY_FIRST_NAME = "firstName";
   private JsonNullable<String> firstName = JsonNullable.<String>undefined();

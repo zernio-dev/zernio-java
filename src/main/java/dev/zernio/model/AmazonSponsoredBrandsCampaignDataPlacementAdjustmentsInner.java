@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   AmazonSponsoredBrandsCampaignDataPlacementAdjustmentsInner.JSON_PROPERTY_PLACEMENT,
   AmazonSponsoredBrandsCampaignDataPlacementAdjustmentsInner.JSON_PROPERTY_PERCENTAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T15:24:11.466326623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T15:30:41.969068963Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AmazonSponsoredBrandsCampaignDataPlacementAdjustmentsInner {
   /**
    * Gets or Sets placement

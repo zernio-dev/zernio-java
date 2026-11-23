@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   QueryGoogleSearchConsoleSearchAnalytics200ResponseMeta.JSON_PROPERTY_FIRST_INCOMPLETE_DATE,
   QueryGoogleSearchConsoleSearchAnalytics200ResponseMeta.JSON_PROPERTY_FIRST_INCOMPLETE_HOUR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T15:24:11.466326623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T15:30:41.969068963Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueryGoogleSearchConsoleSearchAnalytics200ResponseMeta {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
