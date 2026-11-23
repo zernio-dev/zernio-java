@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UploadWhatsAppFlowJsonRequest.JSON_PROPERTY_ACCOUNT_ID,
   UploadWhatsAppFlowJsonRequest.JSON_PROPERTY_FLOW_JSON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T14:20:31.933119918Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T14:25:57.020015747Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadWhatsAppFlowJsonRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

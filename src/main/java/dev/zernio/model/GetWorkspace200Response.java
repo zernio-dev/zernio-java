@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetWorkspace200Response.JSON_PROPERTY_WORKSPACE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T14:20:31.933119918Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T14:25:57.020015747Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWorkspace200Response {
   public static final String JSON_PROPERTY_WORKSPACE = "workspace";
   @javax.annotation.Nullable

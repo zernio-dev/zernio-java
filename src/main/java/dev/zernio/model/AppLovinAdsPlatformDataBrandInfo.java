@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   AppLovinAdsPlatformDataBrandInfo.JSON_PROPERTY_BUTTON_COLOR,
   AppLovinAdsPlatformDataBrandInfo.JSON_PROPERTY_ICON_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T14:20:31.933119918Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T14:25:57.020015747Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AppLovinAdsPlatformDataBrandInfo {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nonnull

@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   OnWhatsAppNumberKycSubmittedRequest.JSON_PROPERTY_TIMESTAMP,
   OnWhatsAppNumberKycSubmittedRequest.JSON_PROPERTY_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T14:20:31.933119918Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T14:25:57.020015747Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OnWhatsAppNumberKycSubmittedRequest {
   public static final String JSON_PROPERTY_TEST = "test";
   @javax.annotation.Nullable

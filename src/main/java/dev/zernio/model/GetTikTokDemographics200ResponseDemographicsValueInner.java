@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetTikTokDemographics200ResponseDemographicsValueInner.JSON_PROPERTY_DIMENSION,
   GetTikTokDemographics200ResponseDemographicsValueInner.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T14:20:31.933119918Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T14:25:57.020015747Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTikTokDemographics200ResponseDemographicsValueInner {
   public static final String JSON_PROPERTY_DIMENSION = "dimension";
   @javax.annotation.Nullable

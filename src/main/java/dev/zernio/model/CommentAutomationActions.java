@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CommentAutomationActions.JSON_PROPERTY_LIKE_COMMENT,
   CommentAutomationActions.JSON_PROPERTY_HIDE_COMMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T14:20:31.933119918Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T14:25:57.020015747Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationActions {
   public static final String JSON_PROPERTY_LIKE_COMMENT = "likeComment";
   @javax.annotation.Nullable
