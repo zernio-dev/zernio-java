@@ -32,6 +32,9 @@
 | TIKTOK | &quot;tiktok&quot; |
 | LINE | &quot;line&quot; |
 | WECHAT | &quot;wechat&quot; |
+| SMS | &quot;sms&quot; |
+| RCS | &quot;rcs&quot; |
+| IMESSAGE | &quot;imessage&quot; |
 
 
 
