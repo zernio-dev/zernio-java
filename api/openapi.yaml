@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.793.0
+  version: 1.793.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -9580,9 +9580,10 @@ paths:
       summary: Get a post's authenticity score
       tags:
       - Analytics
-      x-resource-group: analytics
+      x-resource-group: publishing
       x-oauth-scopes:
-      - analytics:read
+      - posts:read
+      - posts:write
       x-platforms:
       - instagram
       - facebook
@@ -14648,10 +14649,7 @@ paths:
       summary: Remove member
       tags:
       - Users
-      x-resource-group: accounts
-      x-oauth-scopes:
-      - accounts:read
-      - accounts:write
+      x-resource-group: admin-plane
       x-accepts:
       - application/json
     get:
@@ -20456,6 +20454,10 @@ paths:
       summary: Get a hosted link to connect any mailbox
       tags:
       - Connect
+      x-resource-group: accounts
+      x-oauth-scopes:
+      - accounts:read
+      - accounts:write
       x-platforms:
       - google
       - microsoft
@@ -47723,10 +47725,9 @@ paths:
       summary: Clear ice breakers and commands
       tags:
       - WhatsApp
-      x-resource-group: accounts
+      x-resource-group: messages
       x-oauth-scopes:
-      - accounts:read
-      - accounts:write
+      - messaging:write
       x-accepts:
       - application/json
     get:
@@ -47761,10 +47762,10 @@ paths:
       summary: Get ice breakers and commands
       tags:
       - WhatsApp
-      x-resource-group: accounts
+      x-resource-group: messages
       x-oauth-scopes:
-      - accounts:read
-      - accounts:write
+      - messaging:write
+      - messaging:read
       x-accepts:
       - application/json
     post:
@@ -47806,10 +47807,9 @@ paths:
       summary: Set ice breakers and commands
       tags:
       - WhatsApp
-      x-resource-group: accounts
+      x-resource-group: messages
       x-oauth-scopes:
-      - accounts:read
-      - accounts:write
+      - messaging:write
       x-content-type: application/json
       x-accepts:
       - application/json
