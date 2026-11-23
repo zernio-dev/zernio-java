@@ -22,7 +22,7 @@
 |**lastMessage** | **String** |  |  [optional] |
 |**lastMessageAt** | **OffsetDateTime** |  |  [optional] |
 |**updatedTime** | **OffsetDateTime** |  |  [optional] |
-|**participants** | [**List&lt;UpdateFacebookPage200ResponseSelectedPage&gt;**](UpdateFacebookPage200ResponseSelectedPage.md) |  |  [optional] |
+|**participants** | [**List&lt;ConnectTradeDeskAdsPartner200ResponseAdvertisersInner&gt;**](ConnectTradeDeskAdsPartner200ResponseAdvertisersInner.md) |  |  [optional] |
 |**instagramProfile** | [**ListInboxConversations200ResponseDataInnerInstagramProfile**](ListInboxConversations200ResponseDataInnerInstagramProfile.md) |  |  [optional] |
 |**metadata** | [**InboxConversationAdMetadata**](InboxConversationAdMetadata.md) |  |  [optional] |
 |**adAttribution** | [**ConversationAdAttribution**](ConversationAdAttribution.md) |  |  [optional] |

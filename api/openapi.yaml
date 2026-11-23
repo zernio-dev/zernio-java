@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.776.1
+  version: 1.777.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15406,6 +15406,7 @@ paths:
           - stripe
           - campaignmanager360
           - tradedeskads
+          - tradedeskdsp
           - amazonads
           type: string
         style: form
@@ -23961,6 +23962,64 @@ paths:
       x-resource-group: accounts
       x-platforms:
       - tradedeskads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/tradedesk-ads/partner:
+    post:
+      description: |
+        Connects a Trade Desk partner with an API token for ads management. Sending conversions to a tracking tag is a separate connection: `POST /v1/connect/tradedesk-ads/credentials`.
+
+        Connects a Trade Desk partner with an API token. The Trade Desk has no OAuth: your Trade Desk account manager enables API access for your user, who then creates a token in the Partner Portal under Manage API Tokens.
+
+        Zernio lists the partner's advertisers with the token before saving anything. Each advertiser becomes an ad account of the connection (`GET /v1/ads/accounts`), and `adAccountIds` keeps only some of them. The token is stored encrypted and never returned.
+
+        Requires the Ads add-on.
+      operationId: connectTradeDeskAdsPartner
+      requestBody:
+        content:
+          application/json:
+            example:
+              partnerId: ptn1234
+              apiToken: YOUR_TTD_API_TOKEN
+              profileId: 6507a1b2c3d4e5f6a7b8c9d0
+            schema:
+              $ref: "#/components/schemas/connectTradeDeskAdsPartner_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                accountId: 6507a1b2c3d4e5f6a7b8c9d0
+                partnerId: ptn1234
+                accountName: Trade Desk partner ptn1234
+                advertisers:
+                - id: abc1234
+                  name: Acme
+              schema:
+                $ref: "#/components/schemas/connectTradeDeskAdsPartner_200_response"
+          description: Trade Desk partner connected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          description: "Unauthorized, or The Trade Desk refused the token or partner\
+            \ id (`invalid_credentials`)."
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: Ads add-on required.
+        "409":
+          description: The profile already holds another Trade Desk partner.
+        "502":
+          description: The Trade Desk could not be reached to check the token. Nothing
+            was saved.
+      summary: Connect a Trade Desk partner for ads management
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-platforms:
+      - tradedeskdsp
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -126669,6 +126728,7 @@ components:
           - googlesearchconsole
           - campaignmanager360
           - tradedeskads
+          - tradedeskdsp
           - amazonads
           - gohighlevel
           type: string
@@ -127121,7 +127181,7 @@ components:
             only for accounts with workspaces enabled; empty for an app authorized
             before the choice existed.
           items:
-            $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+            $ref: "#/components/schemas/connectTradeDeskAdsPartner_200_response_advertisers_inner"
           type: array
     BillingSnapshot:
       description: |
@@ -148949,7 +149009,7 @@ components:
           format: date-time
           type: string
         sequence:
-          $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+          $ref: "#/components/schemas/connectTradeDeskAdsPartner_200_response_advertisers_inner"
         contact:
           $ref: "#/components/schemas/WebhookPayloadContactTag_contact"
         enrollment:
@@ -164579,6 +164639,77 @@ components:
           type: string
         redirectUrl:
           type: string
+    connectTradeDeskAdsPartner_request:
+      properties:
+        partnerId:
+          description: "Trade Desk Partner ID, a short code such as `ptn1234`. Stored\
+            \ and echoed lowercased."
+          pattern: "^[A-Za-z0-9]{5,12}$"
+          type: string
+        apiToken:
+          description: API token of a Trade Desk user with API access to the partner.
+          type: string
+        adAccountIds:
+          description: "Advertiser ids to keep. Left out or empty, a new connection\
+            \ keeps every advertiser and a reconnect keeps its saved selection."
+          items:
+            pattern: "^[A-Za-z0-9]{5,12}$"
+            type: string
+          maxItems: 500
+          type: array
+        name:
+          description: Optional display name for the account.
+          maxLength: 100
+          type: string
+        profileId:
+          description: Your Zernio profile ID
+          type: string
+        state:
+          description: Optional state passthrough for the connect flow.
+          type: string
+        redirect_url:
+          description: "Optional URL to redirect to after a successful connection,\
+            \ echoed back as redirectUrl."
+          type: string
+      required:
+      - apiToken
+      - partnerId
+      - profileId
+    connectTradeDeskAdsPartner_200_response_advertisers_inner:
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    connectTradeDeskAdsPartner_200_response:
+      example:
+        accountId: accountId
+        redirectUrl: redirectUrl
+        accountName: accountName
+        advertisers:
+        - name: name
+          id: id
+        - name: name
+          id: id
+        partnerId: partnerId
+      properties:
+        accountId:
+          type: string
+        partnerId:
+          type: string
+        accountName:
+          type: string
+        advertisers:
+          description: "Every advertiser the token reaches under the partner, whatever\
+            \ adAccountIds keeps."
+          items:
+            $ref: "#/components/schemas/connectTradeDeskAdsPartner_200_response_advertisers_inner"
+          type: array
+        redirectUrl:
+          type: string
     connectTaboolaAdsCredentials_request:
       properties:
         taboolaAccountId:
@@ -165839,15 +165970,6 @@ components:
           type: string
       required:
       - selectedPageId
-    updateFacebookPage_200_response_selectedPage:
-      example:
-        name: name
-        id: id
-      properties:
-        id:
-          type: string
-        name:
-          type: string
     updateFacebookPage_200_response:
       example:
         selectedPage:
@@ -165858,7 +165980,7 @@ components:
         message:
           type: string
         selectedPage:
-          $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+          $ref: "#/components/schemas/connectTradeDeskAdsPartner_200_response_advertisers_inner"
     updateFacebookPageInfo_request:
       additionalProperties: {}
       minProperties: 1
@@ -167084,7 +167206,7 @@ components:
         message:
           type: string
         selectedLocation:
-          $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+          $ref: "#/components/schemas/connectTradeDeskAdsPartner_200_response_advertisers_inner"
     createGoogleBusinessLocation_request_storefrontAddress:
       description: Physical address of the business. Required unless serviceArea is
         provided.
@@ -174585,7 +174707,7 @@ components:
           type: string
         participants:
           items:
-            $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+            $ref: "#/components/schemas/connectTradeDeskAdsPartner_200_response_advertisers_inner"
           type: array
         instagramProfile:
           $ref: "#/components/schemas/listInboxConversations_200_response_data_inner_instagramProfile"
@@ -183657,7 +183779,7 @@ components:
           type: string
         catalogs:
           items:
-            $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+            $ref: "#/components/schemas/connectTradeDeskAdsPartner_200_response_advertisers_inner"
           type: array
     linkWhatsAppCatalog_request:
       properties:
@@ -220221,7 +220343,7 @@ components:
           example: success
           type: string
         form:
-          $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+          $ref: "#/components/schemas/connectTradeDeskAdsPartner_200_response_advertisers_inner"
     getLeadForm_200_response_form:
       oneOf:
       - $ref: "#/components/schemas/MetaLeadForm"
@@ -228383,7 +228505,7 @@ components:
         sidebars:
           description: Active widget areas of the theme.
           items:
-            $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+            $ref: "#/components/schemas/connectTradeDeskAdsPartner_200_response_advertisers_inner"
           type: array
     getTrackingTagStoreInstall_200_response_install:
       allOf:

@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**message** | **String** |  |  [optional] |
-|**selectedPage** | [**UpdateFacebookPage200ResponseSelectedPage**](UpdateFacebookPage200ResponseSelectedPage.md) |  |  [optional] |
+|**selectedPage** | [**ConnectTradeDeskAdsPartner200ResponseAdvertisersInner**](ConnectTradeDeskAdsPartner200ResponseAdvertisersInner.md) |  |  [optional] |
 
 
 

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.776.1
+- API version: 1.777.0
 
-- Build date: 2026-11-23T11:47:55.743148461Z[Etc/UTC]
+- Build date: 2026-11-23T12:00:48.122447927Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.776.1</version>
+  <version>1.777.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.776.1"
+compile "dev.zernio:zernio-sdk:1.777.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.776.1.jar`
+- `target/zernio-sdk-1.777.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1303,6 +1303,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectTaboolaAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectTaboolaAdsCredentialsWithHttpInfo) | **POST** /v1/connect/taboola-ads/credentials | Connect a Taboola account
 *ConnectApi* | [**connectTradeDeskAdsCredentials**](docs/ConnectApi.md#connectTradeDeskAdsCredentials) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag
 *ConnectApi* | [**connectTradeDeskAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectTradeDeskAdsCredentialsWithHttpInfo) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag
+*ConnectApi* | [**connectTradeDeskAdsPartner**](docs/ConnectApi.md#connectTradeDeskAdsPartner) | **POST** /v1/connect/tradedesk-ads/partner | Connect a Trade Desk partner for ads management
+*ConnectApi* | [**connectTradeDeskAdsPartnerWithHttpInfo**](docs/ConnectApi.md#connectTradeDeskAdsPartnerWithHttpInfo) | **POST** /v1/connect/tradedesk-ads/partner | Connect a Trade Desk partner for ads management
 *ConnectApi* | [**connectWebflowWithSiteToken**](docs/ConnectApi.md#connectWebflowWithSiteToken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token
 *ConnectApi* | [**connectWebflowWithSiteTokenWithHttpInfo**](docs/ConnectApi.md#connectWebflowWithSiteTokenWithHttpInfo) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token
 *ConnectApi* | [**connectWechatCredentials**](docs/ConnectApi.md#connectWechatCredentials) | **POST** /v1/connect/wechat/credentials | Connect WeChat Official Account
@@ -3609,6 +3611,9 @@ Class | Method | HTTP request | Description
  - [ConnectTaboolaAdsCredentialsRequest](docs/ConnectTaboolaAdsCredentialsRequest.md)
  - [ConnectTradeDeskAdsCredentials200Response](docs/ConnectTradeDeskAdsCredentials200Response.md)
  - [ConnectTradeDeskAdsCredentialsRequest](docs/ConnectTradeDeskAdsCredentialsRequest.md)
+ - [ConnectTradeDeskAdsPartner200Response](docs/ConnectTradeDeskAdsPartner200Response.md)
+ - [ConnectTradeDeskAdsPartner200ResponseAdvertisersInner](docs/ConnectTradeDeskAdsPartner200ResponseAdvertisersInner.md)
+ - [ConnectTradeDeskAdsPartnerRequest](docs/ConnectTradeDeskAdsPartnerRequest.md)
  - [ConnectWebflowWithSiteToken200Response](docs/ConnectWebflowWithSiteToken200Response.md)
  - [ConnectWebflowWithSiteToken200ResponseAccount](docs/ConnectWebflowWithSiteToken200ResponseAccount.md)
  - [ConnectWebflowWithSiteTokenRequest](docs/ConnectWebflowWithSiteTokenRequest.md)
@@ -6452,7 +6457,6 @@ Class | Method | HTTP request | Description
  - [UpdateEmailSignatureRequest](docs/UpdateEmailSignatureRequest.md)
  - [UpdateEmailThread200Response](docs/UpdateEmailThread200Response.md)
  - [UpdateFacebookPage200Response](docs/UpdateFacebookPage200Response.md)
- - [UpdateFacebookPage200ResponseSelectedPage](docs/UpdateFacebookPage200ResponseSelectedPage.md)
  - [UpdateFacebookPageInfoRequest](docs/UpdateFacebookPageInfoRequest.md)
  - [UpdateFacebookPageRequest](docs/UpdateFacebookPageRequest.md)
  - [UpdateFileRequest](docs/UpdateFileRequest.md)

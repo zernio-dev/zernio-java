@@ -747,6 +747,9 @@ docs/ConnectTaboolaAdsCredentials200Response.md
 docs/ConnectTaboolaAdsCredentialsRequest.md
 docs/ConnectTradeDeskAdsCredentials200Response.md
 docs/ConnectTradeDeskAdsCredentialsRequest.md
+docs/ConnectTradeDeskAdsPartner200Response.md
+docs/ConnectTradeDeskAdsPartner200ResponseAdvertisersInner.md
+docs/ConnectTradeDeskAdsPartnerRequest.md
 docs/ConnectWebflowWithSiteToken200Response.md
 docs/ConnectWebflowWithSiteToken200ResponseAccount.md
 docs/ConnectWebflowWithSiteTokenRequest.md
@@ -3642,7 +3645,6 @@ docs/UpdateEmailDraftRequest.md
 docs/UpdateEmailSignatureRequest.md
 docs/UpdateEmailThread200Response.md
 docs/UpdateFacebookPage200Response.md
-docs/UpdateFacebookPage200ResponseSelectedPage.md
 docs/UpdateFacebookPageInfoRequest.md
 docs/UpdateFacebookPageRequest.md
 docs/UpdateFileRequest.md
@@ -5058,6 +5060,9 @@ src/main/java/dev/zernio/model/ConnectTaboolaAdsCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectTaboolaAdsCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectTradeDeskAdsCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectTradeDeskAdsCredentialsRequest.java
+src/main/java/dev/zernio/model/ConnectTradeDeskAdsPartner200Response.java
+src/main/java/dev/zernio/model/ConnectTradeDeskAdsPartner200ResponseAdvertisersInner.java
+src/main/java/dev/zernio/model/ConnectTradeDeskAdsPartnerRequest.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteToken200Response.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteToken200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectWebflowWithSiteTokenRequest.java
@@ -7901,7 +7906,6 @@ src/main/java/dev/zernio/model/UpdateEmailDraftRequest.java
 src/main/java/dev/zernio/model/UpdateEmailSignatureRequest.java
 src/main/java/dev/zernio/model/UpdateEmailThread200Response.java
 src/main/java/dev/zernio/model/UpdateFacebookPage200Response.java
-src/main/java/dev/zernio/model/UpdateFacebookPage200ResponseSelectedPage.java
 src/main/java/dev/zernio/model/UpdateFacebookPageInfoRequest.java
 src/main/java/dev/zernio/model/UpdateFacebookPageRequest.java
 src/main/java/dev/zernio/model/UpdateFileRequest.java
@@ -8473,5 +8477,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AdAccountMetricsResponseMetaTest.java
-src/test/java/dev/zernio/model/CampaignMetricRowDailyInnerTest.java
+src/test/java/dev/zernio/model/ConnectTradeDeskAdsPartner200ResponseAdvertisersInnerTest.java
+src/test/java/dev/zernio/model/ConnectTradeDeskAdsPartner200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectTradeDeskAdsPartnerRequestTest.java

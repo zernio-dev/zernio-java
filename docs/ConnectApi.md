@@ -46,6 +46,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**connectTaboolaAdsCredentialsWithHttpInfo**](ConnectApi.md#connectTaboolaAdsCredentialsWithHttpInfo) | **POST** /v1/connect/taboola-ads/credentials | Connect a Taboola account |
 | [**connectTradeDeskAdsCredentials**](ConnectApi.md#connectTradeDeskAdsCredentials) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag |
 | [**connectTradeDeskAdsCredentialsWithHttpInfo**](ConnectApi.md#connectTradeDeskAdsCredentialsWithHttpInfo) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag |
+| [**connectTradeDeskAdsPartner**](ConnectApi.md#connectTradeDeskAdsPartner) | **POST** /v1/connect/tradedesk-ads/partner | Connect a Trade Desk partner for ads management |
+| [**connectTradeDeskAdsPartnerWithHttpInfo**](ConnectApi.md#connectTradeDeskAdsPartnerWithHttpInfo) | **POST** /v1/connect/tradedesk-ads/partner | Connect a Trade Desk partner for ads management |
 | [**connectWebflowWithSiteToken**](ConnectApi.md#connectWebflowWithSiteToken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token |
 | [**connectWebflowWithSiteTokenWithHttpInfo**](ConnectApi.md#connectWebflowWithSiteTokenWithHttpInfo) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token |
 | [**connectWechatCredentials**](ConnectApi.md#connectWechatCredentials) | **POST** /v1/connect/wechat/credentials | Connect WeChat Official Account |
@@ -3527,6 +3529,162 @@ ApiResponse<[**ConnectTradeDeskAdsCredentials200Response**](ConnectTradeDeskAdsC
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | Ads add-on required. |  -  |
+
+
+## connectTradeDeskAdsPartner
+
+> ConnectTradeDeskAdsPartner200Response connectTradeDeskAdsPartner(connectTradeDeskAdsPartnerRequest)
+
+Connect a Trade Desk partner for ads management
+
+Connects a Trade Desk partner with an API token for ads management. Sending conversions to a tracking tag is a separate connection: &#x60;POST /v1/connect/tradedesk-ads/credentials&#x60;.  Connects a Trade Desk partner with an API token. The Trade Desk has no OAuth: your Trade Desk account manager enables API access for your user, who then creates a token in the Partner Portal under Manage API Tokens.  Zernio lists the partner&#39;s advertisers with the token before saving anything. Each advertiser becomes an ad account of the connection (&#x60;GET /v1/ads/accounts&#x60;), and &#x60;adAccountIds&#x60; keeps only some of them. The token is stored encrypted and never returned.  Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectTradeDeskAdsPartnerRequest connectTradeDeskAdsPartnerRequest = new ConnectTradeDeskAdsPartnerRequest(); // ConnectTradeDeskAdsPartnerRequest | 
+        try {
+            ConnectTradeDeskAdsPartner200Response result = apiInstance.connectTradeDeskAdsPartner(connectTradeDeskAdsPartnerRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectTradeDeskAdsPartner");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectTradeDeskAdsPartnerRequest** | [**ConnectTradeDeskAdsPartnerRequest**](ConnectTradeDeskAdsPartnerRequest.md)|  | |
+
+### Return type
+
+[**ConnectTradeDeskAdsPartner200Response**](ConnectTradeDeskAdsPartner200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Trade Desk partner connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized, or The Trade Desk refused the token or partner id (&#x60;invalid_credentials&#x60;). |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+| **409** | The profile already holds another Trade Desk partner. |  -  |
+| **502** | The Trade Desk could not be reached to check the token. Nothing was saved. |  -  |
+
+## connectTradeDeskAdsPartnerWithHttpInfo
+
+> ApiResponse<ConnectTradeDeskAdsPartner200Response> connectTradeDeskAdsPartner connectTradeDeskAdsPartnerWithHttpInfo(connectTradeDeskAdsPartnerRequest)
+
+Connect a Trade Desk partner for ads management
+
+Connects a Trade Desk partner with an API token for ads management. Sending conversions to a tracking tag is a separate connection: &#x60;POST /v1/connect/tradedesk-ads/credentials&#x60;.  Connects a Trade Desk partner with an API token. The Trade Desk has no OAuth: your Trade Desk account manager enables API access for your user, who then creates a token in the Partner Portal under Manage API Tokens.  Zernio lists the partner&#39;s advertisers with the token before saving anything. Each advertiser becomes an ad account of the connection (&#x60;GET /v1/ads/accounts&#x60;), and &#x60;adAccountIds&#x60; keeps only some of them. The token is stored encrypted and never returned.  Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectTradeDeskAdsPartnerRequest connectTradeDeskAdsPartnerRequest = new ConnectTradeDeskAdsPartnerRequest(); // ConnectTradeDeskAdsPartnerRequest | 
+        try {
+            ApiResponse<ConnectTradeDeskAdsPartner200Response> response = apiInstance.connectTradeDeskAdsPartnerWithHttpInfo(connectTradeDeskAdsPartnerRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectTradeDeskAdsPartner");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectTradeDeskAdsPartnerRequest** | [**ConnectTradeDeskAdsPartnerRequest**](ConnectTradeDeskAdsPartnerRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ConnectTradeDeskAdsPartner200Response**](ConnectTradeDeskAdsPartner200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Trade Desk partner connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized, or The Trade Desk refused the token or partner id (&#x60;invalid_credentials&#x60;). |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+| **409** | The profile already holds another Trade Desk partner. |  -  |
+| **502** | The Trade Desk could not be reached to check the token. Nothing was saved. |  -  |
 
 
 ## connectWebflowWithSiteToken
