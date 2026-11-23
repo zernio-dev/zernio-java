@@ -7403,7 +7403,7 @@ ApiResponse<[**GetGmbLocations200Response**](GetGmbLocations200Response.md)>
 
 ## getGohighlevelConnectUrl
 
-> GetGohighlevelConnectUrl200Response getGohighlevelConnectUrl(profileId, redirectUrl)
+> GetGohighlevelConnectUrl200Response getGohighlevelConnectUrl(profileId, redirectUrl, reconnectAccountId)
 
 Get HighLevel OAuth connect URL
 
@@ -7438,8 +7438,9 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The GoHighLevel location connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same location.
         try {
-            GetGohighlevelConnectUrl200Response result = apiInstance.getGohighlevelConnectUrl(profileId, redirectUrl);
+            GetGohighlevelConnectUrl200Response result = apiInstance.getGohighlevelConnectUrl(profileId, redirectUrl, reconnectAccountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#getGohighlevelConnectUrl");
@@ -7459,6 +7460,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The GoHighLevel location connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same location. | [optional] |
 
 ### Return type
 
@@ -7486,7 +7488,7 @@ public class Example {
 
 ## getGohighlevelConnectUrlWithHttpInfo
 
-> ApiResponse<GetGohighlevelConnectUrl200Response> getGohighlevelConnectUrl getGohighlevelConnectUrlWithHttpInfo(profileId, redirectUrl)
+> ApiResponse<GetGohighlevelConnectUrl200Response> getGohighlevelConnectUrl getGohighlevelConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId)
 
 Get HighLevel OAuth connect URL
 
@@ -7522,8 +7524,9 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The GoHighLevel location connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same location.
         try {
-            ApiResponse<GetGohighlevelConnectUrl200Response> response = apiInstance.getGohighlevelConnectUrlWithHttpInfo(profileId, redirectUrl);
+            ApiResponse<GetGohighlevelConnectUrl200Response> response = apiInstance.getGohighlevelConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -7545,6 +7548,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The GoHighLevel location connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same location. | [optional] |
 
 ### Return type
 
@@ -7965,7 +7969,7 @@ ApiResponse<[**GetGoogleAnalyticsConnectUrl200Response**](GetGoogleAnalyticsConn
 
 ## getHubSpotConnectUrl
 
-> GetHubSpotConnectUrl200Response getHubSpotConnectUrl(profileId, redirectUrl)
+> GetHubSpotConnectUrl200Response getHubSpotConnectUrl(profileId, redirectUrl, reconnectAccountId)
 
 Get HubSpot OAuth connect URL
 
@@ -8000,8 +8004,9 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The HubSpot portal connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same portal.
         try {
-            GetHubSpotConnectUrl200Response result = apiInstance.getHubSpotConnectUrl(profileId, redirectUrl);
+            GetHubSpotConnectUrl200Response result = apiInstance.getHubSpotConnectUrl(profileId, redirectUrl, reconnectAccountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#getHubSpotConnectUrl");
@@ -8021,6 +8026,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The HubSpot portal connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same portal. | [optional] |
 
 ### Return type
 
@@ -8049,7 +8055,7 @@ public class Example {
 
 ## getHubSpotConnectUrlWithHttpInfo
 
-> ApiResponse<GetHubSpotConnectUrl200Response> getHubSpotConnectUrl getHubSpotConnectUrlWithHttpInfo(profileId, redirectUrl)
+> ApiResponse<GetHubSpotConnectUrl200Response> getHubSpotConnectUrl getHubSpotConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId)
 
 Get HubSpot OAuth connect URL
 
@@ -8085,8 +8091,9 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The HubSpot portal connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same portal.
         try {
-            ApiResponse<GetHubSpotConnectUrl200Response> response = apiInstance.getHubSpotConnectUrlWithHttpInfo(profileId, redirectUrl);
+            ApiResponse<GetHubSpotConnectUrl200Response> response = apiInstance.getHubSpotConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -8108,6 +8115,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The HubSpot portal connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same portal. | [optional] |
 
 ### Return type
 
@@ -9339,7 +9347,7 @@ ApiResponse<[**GetRedditSubreddits200Response**](GetRedditSubreddits200Response.
 
 ## getSalesforceConnectUrl
 
-> GetSalesforceConnectUrl200Response getSalesforceConnectUrl(profileId, environment, redirectUrl)
+> GetSalesforceConnectUrl200Response getSalesforceConnectUrl(profileId, environment, redirectUrl, reconnectAccountId)
 
 Get Salesforce OAuth connect URL
 
@@ -9375,8 +9383,9 @@ public class Example {
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String environment = "production"; // String | Sign in at login.salesforce.com (`production`, also Developer Edition orgs) or test.salesforce.com (`sandbox`).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The Salesforce org connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same org.
         try {
-            GetSalesforceConnectUrl200Response result = apiInstance.getSalesforceConnectUrl(profileId, environment, redirectUrl);
+            GetSalesforceConnectUrl200Response result = apiInstance.getSalesforceConnectUrl(profileId, environment, redirectUrl, reconnectAccountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#getSalesforceConnectUrl");
@@ -9397,6 +9406,7 @@ public class Example {
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **environment** | **String**| Sign in at login.salesforce.com (&#x60;production&#x60;, also Developer Edition orgs) or test.salesforce.com (&#x60;sandbox&#x60;). | [optional] [default to production] [enum: production, sandbox] |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The Salesforce org connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same org. | [optional] |
 
 ### Return type
 
@@ -9425,7 +9435,7 @@ public class Example {
 
 ## getSalesforceConnectUrlWithHttpInfo
 
-> ApiResponse<GetSalesforceConnectUrl200Response> getSalesforceConnectUrl getSalesforceConnectUrlWithHttpInfo(profileId, environment, redirectUrl)
+> ApiResponse<GetSalesforceConnectUrl200Response> getSalesforceConnectUrl getSalesforceConnectUrlWithHttpInfo(profileId, environment, redirectUrl, reconnectAccountId)
 
 Get Salesforce OAuth connect URL
 
@@ -9462,8 +9472,9 @@ public class Example {
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String environment = "production"; // String | Sign in at login.salesforce.com (`production`, also Developer Edition orgs) or test.salesforce.com (`sandbox`).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The Salesforce org connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same org.
         try {
-            ApiResponse<GetSalesforceConnectUrl200Response> response = apiInstance.getSalesforceConnectUrlWithHttpInfo(profileId, environment, redirectUrl);
+            ApiResponse<GetSalesforceConnectUrl200Response> response = apiInstance.getSalesforceConnectUrlWithHttpInfo(profileId, environment, redirectUrl, reconnectAccountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -9486,6 +9497,7 @@ public class Example {
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **environment** | **String**| Sign in at login.salesforce.com (&#x60;production&#x60;, also Developer Edition orgs) or test.salesforce.com (&#x60;sandbox&#x60;). | [optional] [default to production] [enum: production, sandbox] |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The Salesforce org connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same org. | [optional] |
 
 ### Return type
 
@@ -10171,7 +10183,7 @@ ApiResponse<[**GetTelegramConnectStatus200Response**](GetTelegramConnectStatus20
 
 ## getWebflowConnectUrl
 
-> GetWebflowConnectUrl200Response getWebflowConnectUrl(profileId, redirectUrl)
+> GetWebflowConnectUrl200Response getWebflowConnectUrl(profileId, redirectUrl, reconnectAccountId)
 
 Get Webflow OAuth URL
 
@@ -10206,8 +10218,9 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The Webflow site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site.
         try {
-            GetWebflowConnectUrl200Response result = apiInstance.getWebflowConnectUrl(profileId, redirectUrl);
+            GetWebflowConnectUrl200Response result = apiInstance.getWebflowConnectUrl(profileId, redirectUrl, reconnectAccountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#getWebflowConnectUrl");
@@ -10227,6 +10240,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The Webflow site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site. | [optional] |
 
 ### Return type
 
@@ -10255,7 +10269,7 @@ public class Example {
 
 ## getWebflowConnectUrlWithHttpInfo
 
-> ApiResponse<GetWebflowConnectUrl200Response> getWebflowConnectUrl getWebflowConnectUrlWithHttpInfo(profileId, redirectUrl)
+> ApiResponse<GetWebflowConnectUrl200Response> getWebflowConnectUrl getWebflowConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId)
 
 Get Webflow OAuth URL
 
@@ -10291,8 +10305,9 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The Webflow site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site.
         try {
-            ApiResponse<GetWebflowConnectUrl200Response> response = apiInstance.getWebflowConnectUrlWithHttpInfo(profileId, redirectUrl);
+            ApiResponse<GetWebflowConnectUrl200Response> response = apiInstance.getWebflowConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -10314,6 +10329,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The Webflow site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site. | [optional] |
 
 ### Return type
 
@@ -10631,7 +10647,7 @@ ApiResponse<[**GetWhatsAppSdkConfig200Response**](GetWhatsAppSdkConfig200Respons
 
 ## getWixConnectUrl
 
-> GetWixConnectUrl200Response getWixConnectUrl(profileId, redirectUrl)
+> GetWixConnectUrl200Response getWixConnectUrl(profileId, redirectUrl, reconnectAccountId)
 
 Get Wix site install URL
 
@@ -10666,8 +10682,9 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The Wix site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site.
         try {
-            GetWixConnectUrl200Response result = apiInstance.getWixConnectUrl(profileId, redirectUrl);
+            GetWixConnectUrl200Response result = apiInstance.getWixConnectUrl(profileId, redirectUrl, reconnectAccountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#getWixConnectUrl");
@@ -10687,6 +10704,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The Wix site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site. | [optional] |
 
 ### Return type
 
@@ -10715,7 +10733,7 @@ public class Example {
 
 ## getWixConnectUrlWithHttpInfo
 
-> ApiResponse<GetWixConnectUrl200Response> getWixConnectUrl getWixConnectUrlWithHttpInfo(profileId, redirectUrl)
+> ApiResponse<GetWixConnectUrl200Response> getWixConnectUrl getWixConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId)
 
 Get Wix site install URL
 
@@ -10751,8 +10769,9 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The Wix site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site.
         try {
-            ApiResponse<GetWixConnectUrl200Response> response = apiInstance.getWixConnectUrlWithHttpInfo(profileId, redirectUrl);
+            ApiResponse<GetWixConnectUrl200Response> response = apiInstance.getWixConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -10774,6 +10793,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The Wix site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site. | [optional] |
 
 ### Return type
 
@@ -10803,7 +10823,7 @@ ApiResponse<[**GetWixConnectUrl200Response**](GetWixConnectUrl200Response.md)>
 
 ## getWordPressAuthUrl
 
-> GetWordPressAuthUrl200Response getWordPressAuthUrl(profileId, redirectUrl)
+> GetWordPressAuthUrl200Response getWordPressAuthUrl(profileId, redirectUrl, reconnectAccountId)
 
 Get WordPress.com OAuth connect URL
 
@@ -10838,8 +10858,9 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The WordPress site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site.
         try {
-            GetWordPressAuthUrl200Response result = apiInstance.getWordPressAuthUrl(profileId, redirectUrl);
+            GetWordPressAuthUrl200Response result = apiInstance.getWordPressAuthUrl(profileId, redirectUrl, reconnectAccountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#getWordPressAuthUrl");
@@ -10859,6 +10880,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The WordPress site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site. | [optional] |
 
 ### Return type
 
@@ -10887,7 +10909,7 @@ public class Example {
 
 ## getWordPressAuthUrlWithHttpInfo
 
-> ApiResponse<GetWordPressAuthUrl200Response> getWordPressAuthUrl getWordPressAuthUrlWithHttpInfo(profileId, redirectUrl)
+> ApiResponse<GetWordPressAuthUrl200Response> getWordPressAuthUrl getWordPressAuthUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId)
 
 Get WordPress.com OAuth connect URL
 
@@ -10923,8 +10945,9 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        String reconnectAccountId = "reconnectAccountId_example"; // String | The WordPress site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site.
         try {
-            ApiResponse<GetWordPressAuthUrl200Response> response = apiInstance.getWordPressAuthUrlWithHttpInfo(profileId, redirectUrl);
+            ApiResponse<GetWordPressAuthUrl200Response> response = apiInstance.getWordPressAuthUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -10946,6 +10969,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+| **reconnectAccountId** | **String**| The WordPress site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site. | [optional] |
 
 ### Return type
 

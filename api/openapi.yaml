@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.779.0
+  version: 1.780.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -19276,6 +19276,16 @@ paths:
         schema:
           type: string
         style: form
+      - description: "The HubSpot portal connection being reconnected. In a workspace\
+          \ with no billing set up, the connect is allowed only when it returns to\
+          \ that same portal."
+        explode: true
+        in: query
+        name: reconnectAccountId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -19337,6 +19347,16 @@ paths:
         explode: true
         in: query
         name: redirect_url
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The GoHighLevel location connection being reconnected. In a\
+          \ workspace with no billing set up, the connect is allowed only when it\
+          \ returns to that same location."
+        explode: true
+        in: query
+        name: reconnectAccountId
         required: false
         schema:
           type: string
@@ -19419,6 +19439,16 @@ paths:
         explode: true
         in: query
         name: redirect_url
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The Salesforce org connection being reconnected. In a workspace\
+          \ with no billing set up, the connect is allowed only when it returns to\
+          \ that same org."
+        explode: true
+        in: query
+        name: reconnectAccountId
         required: false
         schema:
           type: string
@@ -19568,6 +19598,16 @@ paths:
         schema:
           type: string
         style: form
+      - description: "The WordPress site connection being reconnected. In a workspace\
+          \ with no billing set up, the connect is allowed only when it returns to\
+          \ that same site."
+        explode: true
+        in: query
+        name: reconnectAccountId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -19628,6 +19668,16 @@ paths:
         explode: true
         in: query
         name: redirect_url
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The Wix site connection being reconnected. In a workspace with\
+          \ no billing set up, the connect is allowed only when it returns to that\
+          \ same site."
+        explode: true
+        in: query
+        name: reconnectAccountId
         required: false
         schema:
           type: string
@@ -19694,6 +19744,16 @@ paths:
         explode: true
         in: query
         name: redirect_url
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The Webflow site connection being reconnected. In a workspace\
+          \ with no billing set up, the connect is allowed only when it returns to\
+          \ that same site."
+        explode: true
+        in: query
+        name: reconnectAccountId
         required: false
         schema:
           type: string
@@ -159582,6 +159642,11 @@ components:
           minLength: 1
           type: string
           writeOnly: true
+        reconnectAccountId:
+          description: "The Webflow site connection being reconnected. In a workspace\
+            \ with no billing set up, the connect is allowed only when it returns\
+            \ to that same site."
+          type: string
       required:
       - profileId
       - siteToken
@@ -159662,6 +159727,11 @@ components:
           minLength: 1
           type: string
           writeOnly: true
+        reconnectAccountId:
+          description: "The WordPress site connection being reconnected. In a workspace\
+            \ with no billing set up, the connect is allowed only when it returns\
+            \ to that same site."
+          type: string
       required:
       - applicationPassword
       - profileId

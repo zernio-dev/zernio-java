@@ -8495,11 +8495,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AppLovinAdsPlatformDataAssetsInnerOneOfTest.java
-src/test/java/dev/zernio/model/AppLovinAdsPlatformDataAssetsInnerTest.java
-src/test/java/dev/zernio/model/AppLovinAdsPlatformDataBrandInfoTest.java
-src/test/java/dev/zernio/model/AppLovinAdsPlatformDataTest.java
-src/test/java/dev/zernio/model/AppLovinAdsPlatformDataTrackingTest.java
-src/test/java/dev/zernio/model/CreateAdCampaignRequestMetrosInnerTest.java
-src/test/java/dev/zernio/model/CreateAdCampaignRequestPlatformSpecificDataTest.java
-src/test/java/dev/zernio/model/CreateAdCampaignRequestRegionsInnerTest.java
