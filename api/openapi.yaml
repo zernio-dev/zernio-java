@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.782.2
+  version: 1.783.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -49691,8 +49691,9 @@ paths:
   /v1/phone-numbers/sip-trunks/{id}:
     delete:
       description: |
-        Tears down the trunk and its carrier-side objects. Refused while any
-        number is still attached: detach them first.
+        Detaches every number still attached to the trunk (their inbound calls
+        go back to Zernio calling), then tears down the trunk and its
+        carrier-side objects. Its credentials stop working immediately.
       operationId: deleteSipTrunk
       parameters:
       - explode: false
@@ -49707,7 +49708,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/deleteSmsSenderId_200_response"
+                $ref: "#/components/schemas/deleteSipTrunk_200_response"
           description: Trunk deleted.
         "400":
           $ref: "#/components/responses/BadRequest"
@@ -49715,8 +49716,6 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: SIP trunk not found
-        "409":
-          description: Numbers are still attached to this trunk (code invalid_resource_state).
       security:
       - bearerAuth: []
       summary: Delete a SIP trunk
@@ -189400,6 +189399,21 @@ components:
         numbers:
           items:
             $ref: "#/components/schemas/getSipTrunk_200_response_numbers_inner"
+          type: array
+    deleteSipTrunk_200_response:
+      example:
+        deleted: true
+        detachedNumbers:
+        - detachedNumbers
+        - detachedNumbers
+      properties:
+        deleted:
+          type: boolean
+        detachedNumbers:
+          description: Numbers (E.164) that were attached to the trunk and are now
+            detached.
+          items:
+            type: string
           type: array
     rotateSipTrunkCredentials_200_response:
       example:

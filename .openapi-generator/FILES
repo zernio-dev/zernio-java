@@ -1304,6 +1304,7 @@ docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteOAuthApp200Response.md
 docs/DeleteOrgConnection200Response.md
 docs/DeleteOrgConnection200ResponseData.md
+docs/DeleteSipTrunk200Response.md
 docs/DeleteSmsOptOut200Response.md
 docs/DeleteSmsSenderId200Response.md
 docs/DeleteTestLead200Response.md
@@ -5620,6 +5621,7 @@ src/main/java/dev/zernio/model/DeleteInboxReviewReplyRequest.java
 src/main/java/dev/zernio/model/DeleteOAuthApp200Response.java
 src/main/java/dev/zernio/model/DeleteOrgConnection200Response.java
 src/main/java/dev/zernio/model/DeleteOrgConnection200ResponseData.java
+src/main/java/dev/zernio/model/DeleteSipTrunk200Response.java
 src/main/java/dev/zernio/model/DeleteSmsOptOut200Response.java
 src/main/java/dev/zernio/model/DeleteSmsSenderId200Response.java
 src/main/java/dev/zernio/model/DeleteTestLead200Response.java
@@ -8501,3 +8503,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/DeleteSipTrunk200ResponseTest.java

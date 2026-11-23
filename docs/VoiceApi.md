@@ -807,11 +807,11 @@ ApiResponse<[**CreateVoiceWebSession200Response**](CreateVoiceWebSession200Respo
 
 ## deleteSipTrunk
 
-> DeleteSmsSenderId200Response deleteSipTrunk(id)
+> DeleteSipTrunk200Response deleteSipTrunk(id)
 
 Delete a SIP trunk
 
-Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+Detaches every number still attached to the trunk (their inbound calls go back to Zernio calling), then tears down the trunk and its carrier-side objects. Its credentials stop working immediately. 
 
 ### Example
 
@@ -836,7 +836,7 @@ public class Example {
         VoiceApi apiInstance = new VoiceApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            DeleteSmsSenderId200Response result = apiInstance.deleteSipTrunk(id);
+            DeleteSipTrunk200Response result = apiInstance.deleteSipTrunk(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling VoiceApi#deleteSipTrunk");
@@ -858,7 +858,7 @@ public class Example {
 
 ### Return type
 
-[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)
+[**DeleteSipTrunk200Response**](DeleteSipTrunk200Response.md)
 
 
 ### Authorization
@@ -877,15 +877,14 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | SIP trunk not found |  -  |
-| **409** | Numbers are still attached to this trunk (code invalid_resource_state). |  -  |
 
 ## deleteSipTrunkWithHttpInfo
 
-> ApiResponse<DeleteSmsSenderId200Response> deleteSipTrunk deleteSipTrunkWithHttpInfo(id)
+> ApiResponse<DeleteSipTrunk200Response> deleteSipTrunk deleteSipTrunkWithHttpInfo(id)
 
 Delete a SIP trunk
 
-Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+Detaches every number still attached to the trunk (their inbound calls go back to Zernio calling), then tears down the trunk and its carrier-side objects. Its credentials stop working immediately. 
 
 ### Example
 
@@ -911,7 +910,7 @@ public class Example {
         VoiceApi apiInstance = new VoiceApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            ApiResponse<DeleteSmsSenderId200Response> response = apiInstance.deleteSipTrunkWithHttpInfo(id);
+            ApiResponse<DeleteSipTrunk200Response> response = apiInstance.deleteSipTrunkWithHttpInfo(id);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -935,7 +934,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)>
+ApiResponse<[**DeleteSipTrunk200Response**](DeleteSipTrunk200Response.md)>
 
 
 ### Authorization
@@ -954,7 +953,6 @@ ApiResponse<[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | SIP trunk not found |  -  |
-| **409** | Numbers are still attached to this trunk (code invalid_resource_state). |  -  |
 
 
 ## detachNumberFromSipTrunk
