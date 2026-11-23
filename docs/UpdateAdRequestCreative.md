@@ -15,11 +15,11 @@ Replace or patch the ad's creative. Meta, TikTok, and LinkedIn.  **Meta**: patch
 |**longHeadline** | **String** | Google Display only. Replaces the responsive display ad&#39;s long headline. |  [optional] |
 |**businessName** | **String** | Google Display only. Replaces the responsive display ad&#39;s business name. |  [optional] |
 |**squareImageUrl** | **URI** | Google Display only. Uploaded as a new square (1:1) marketing image asset that replaces the current one. |  [optional] |
-|**body** | **String** | Primary text. On a Meta asset_feed creative it replaces the feed&#39;s only body option (422 when it has several: send &#x60;bodies&#x60;). |  [optional] |
-|**bodies** | **List&lt;String&gt;** | Meta only. The primary text options of an asset_feed creative, one text per option in the order GET /v1/ads/{adId} returns them. Each replaces the option in its position and keeps its rule. A different count returns 422, as does a single-text creative (send &#x60;body&#x60;). Not with &#x60;body&#x60;. |  [optional] |
-|**headlines** | **List&lt;String&gt;** | Meta only. Same as &#x60;bodies&#x60;, for the headline options (Meta &#x60;asset_feed_spec.titles&#x60;). Cannot be sent with &#x60;headline&#x60;. Not the top-level Google &#x60;headlines&#x60;. |  [optional] |
+|**body** | **String** | Primary text. On a Meta asset_feed creative it replaces the feed&#39;s only body option and the story text (422 when it has several: send &#x60;bodies&#x60;). Sent with &#x60;bodies&#x60;, it sets the story&#39;s fallback primary text (&#x60;link_data.message&#x60; or &#x60;video_data.message&#x60;) while &#x60;bodies&#x60; replaces the options. |  [optional] |
+|**bodies** | **List&lt;String&gt;** | Meta only. The primary text options of an asset_feed creative, one text per option in the order GET /v1/ads/{adId} returns them. Each replaces the option in its position and keeps its rule.  A different count returns 422, as does a single-text creative (send &#x60;body&#x60;). Add &#x60;body&#x60; to set the story&#39;s fallback text as well. |  [optional] |
+|**headlines** | **List&lt;String&gt;** | Meta only. Same as &#x60;bodies&#x60;, for the headline options (Meta &#x60;asset_feed_spec.titles&#x60;). Add &#x60;headline&#x60; to set the story&#39;s fallback title. Not the top-level Google &#x60;headlines&#x60;. |  [optional] |
 |**description** | **String** | Link description slot (Meta &#x60;link_data.description&#x60; / &#x60;video_data.link_description&#x60;, LinkedIn creative description). |  [optional] |
-|**descriptions** | **List&lt;String&gt;** | Meta only. Same as &#x60;bodies&#x60;, for the description options. Cannot be sent with &#x60;description&#x60;. Not the top-level Google &#x60;descriptions&#x60;. |  [optional] |
+|**descriptions** | **List&lt;String&gt;** | Meta only. Same as &#x60;bodies&#x60;, for the description options. Add &#x60;description&#x60; to set the story&#39;s fallback description. Not the top-level Google &#x60;descriptions&#x60;. |  [optional] |
 |**callToAction** | **String** |  |  [optional] |
 |**linkUrl** | **URI** |  |  [optional] |
 |**imageUrl** | **URI** |  |  [optional] |
