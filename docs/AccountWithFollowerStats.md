@@ -75,6 +75,7 @@
 | APPLOVINADS | &quot;applovinads&quot; |
 | SNAPCHATADS | &quot;snapchatads&quot; |
 | TABOOLAADS | &quot;taboolaads&quot; |
+| OUTBRAINADS | &quot;outbrainads&quot; |
 | KLAVIYO | &quot;klaviyo&quot; |
 | ATTENTIVE | &quot;attentive&quot; |
 | IMPACT | &quot;impact&quot; |

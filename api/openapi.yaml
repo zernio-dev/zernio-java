@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.798.0
+  version: 1.799.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15808,6 +15808,7 @@ paths:
           - applovinads
           - snapchatads
           - taboolaads
+          - outbrainads
           - klaviyo
           - attentive
           - impact
@@ -24856,6 +24857,58 @@ paths:
           description: This profile already has another Taboola account connected
             (code profile_platform_conflict).
       summary: Connect a Taboola account
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-oauth-scopes:
+      - accounts:read
+      - accounts:write
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/outbrain-ads/credentials:
+    post:
+      description: |
+        Connect an Outbrain marketer by its marketer id from Outbrain Amplify. Outbrain's server-to-server pixel takes no credential, so nothing secret is stored and nothing is checked with Outbrain.
+
+        The account then receives the conversion events you forward to it (`POST /v1/events`, forwarding rules). Each event needs the Outbrain click ID (`clickIds.ob_click_id`), which the campaign's Track box passes with `ob_click_id={{ob_click_id}}`.
+
+        Outbrain counts an event only when its name equals the name of an Event-Based Conversion in Amplify, case included. Rename events in the forwarding rule when they differ.
+
+        Requires the Ads add-on.
+      operationId: connectOutbrainAdsCredentials
+      requestBody:
+        content:
+          application/json:
+            example:
+              outbrainMarketerId: 00f4b02153ee75f3c9dc4fc128ab0419ab
+              profileId: 6507a1b2c3d4e5f6a7b8c9d0
+            schema:
+              $ref: "#/components/schemas/connectOutbrainAdsCredentials_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                accountId: 6507a1b2c3d4e5f6a7b8c9d0
+                outbrainMarketerId: 00f4b02153ee75f3c9dc4fc128ab0419ab
+                accountName: Outbrain marketer 00f4b02153ee75f3c9dc4fc128ab0419ab
+              schema:
+                $ref: "#/components/schemas/connectOutbrainAdsCredentials_200_response"
+          description: Outbrain marketer connected
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: Ads add-on required.
+        "409":
+          description: This profile already has another Outbrain marketer connected
+            (code profile_platform_conflict).
+      summary: Connect an Outbrain marketer
       tags:
       - Connect
       x-resource-group: accounts
@@ -80553,6 +80606,7 @@ paths:
         - X Ads (`xads`) via the X Conversion API (`POST /12/measurement/conversions/{pixelId}`)
         - Snapchat (`snapchatads`) via the Snapchat Conversions API (`POST https://tr.snapchat.com/v3/{pixelId}/events`)
         - Taboola (`taboolaads`) via its S2S postback (`GET https://trc.taboola.com/actions-handler/log/3/s2s-action`), one request per event
+        - Outbrain (`outbrainads`) via its S2S pixel (`GET https://tr.outbrain.com/unifiedPixel`), one request per event
         - Klaviyo (`klaviyo`) via the Events API (`POST https://a.klaviyo.com/api/events`)
         - Attentive (`attentive`) via the eCommerce and Custom Events APIs
         - Impact (`impact`) via the Conversions API (`POST /Advertisers/{AccountSID}/Conversions`)
@@ -80576,6 +80630,7 @@ paths:
         - X Ads: X Pixel event id, e.g. `tw-rbhhj-rcfms`. Each event needs `clickIds.twclid`, an `email`, a `phone`, or `ipAddress` plus `userAgent`; the event decides the type and `eventId` is sent as `conversion_id`.
         - Snapchat: the connection's Snap Pixel ID, e.g. `1a2b3c4d-5e6f-4a8b-9c0d-1e2f3a4b5c6d`. Each event needs an `email`, a `phone`, or `ipAddress` plus `userAgent`; website events also need `sourceUrl`. With `testCode`, events go to Snap's validate endpoint and are not recorded.
         - Taboola: the connection's numeric Taboola Account ID, e.g. `1234567`. Each event needs `clickIds.tblci`. `eventName` is sent as is and must equal the Event Name of a conversion rule in Realize (case-sensitive). Taboola has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).
+        - Outbrain: the connection's Outbrain marketer id, e.g. `00f4b02153ee75f3c9dc4fc128ab0419ab`. Each event needs `clickIds.ob_click_id`. `eventName` is sent as is and must equal the name of an Event-Based Conversion in Amplify (case-sensitive). Outbrain has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).
         - Klaviyo: the connection's Klaviyo account id. Each event needs an unhashed `email`, a `phone` with its country code, or an `externalId`; `eventId` is the `unique_id`. Klaviyo has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).
         - Klaviyo metrics: `Purchase` is `Placed Order`, `InitiateCheckout` `Started Checkout`, `ViewContent` `Viewed Product`, `AddToCart` `Added to Cart`; any other name is a metric of that name.
         - Attentive: the connection's Attentive company id. `Purchase`, `AddToCart` and `ViewContent` with priced `items` go to the eCommerce endpoints; every other event goes out as a custom event named `eventName`. Each event needs an unhashed `email`, a `phone` with its country code, or an `externalId`. A `testCode` is refused.
@@ -81626,6 +81681,7 @@ paths:
       - applovinads
       - snapchatads
       - taboolaads
+      - outbrainads
       - klaviyo
       - attentive
       - impact
@@ -81737,6 +81793,7 @@ paths:
       - applovinads
       - snapchatads
       - taboolaads
+      - outbrainads
       - klaviyo
       - attentive
       - impact
@@ -82498,6 +82555,7 @@ paths:
       - applovinads
       - snapchatads
       - taboolaads
+      - outbrainads
       - klaviyo
       - attentive
       - impact
@@ -131219,6 +131277,7 @@ components:
           - applovinads
           - snapchatads
           - taboolaads
+          - outbrainads
           - klaviyo
           - attentive
           - impact
@@ -169489,6 +169548,43 @@ components:
         accountId:
           type: string
         taboolaAccountId:
+          type: string
+        accountName:
+          type: string
+        redirectUrl:
+          type: string
+    connectOutbrainAdsCredentials_request:
+      properties:
+        outbrainMarketerId:
+          description: "Outbrain marketer id from Amplify, letters and digits."
+          type: string
+        name:
+          description: Optional display name for the marketer.
+          maxLength: 100
+          type: string
+        profileId:
+          description: Your Zernio profile ID
+          type: string
+        state:
+          description: Optional state passthrough for the connect flow.
+          type: string
+        redirect_url:
+          description: "Optional URL to redirect to after a successful connection,\
+            \ echoed back as redirectUrl."
+          type: string
+      required:
+      - outbrainMarketerId
+      - profileId
+    connectOutbrainAdsCredentials_200_response:
+      example:
+        accountId: accountId
+        redirectUrl: redirectUrl
+        accountName: accountName
+        outbrainMarketerId: outbrainMarketerId
+      properties:
+        accountId:
+          type: string
+        outbrainMarketerId:
           type: string
         accountName:
           type: string
@@ -227920,6 +228016,7 @@ components:
           - xads
           - snapchatads
           - taboolaads
+          - outbrainads
           - googleanalytics
           - klaviyo
           - attentive
@@ -228932,6 +229029,7 @@ components:
           - xads
           - snapchatads
           - taboolaads
+          - outbrainads
           - googleanalytics
           - klaviyo
           - attentive
@@ -230458,6 +230556,7 @@ components:
           - xads
           - snapchatads
           - taboolaads
+          - outbrainads
           - googleanalytics
           - klaviyo
           - attentive
@@ -231535,7 +231634,7 @@ components:
             or `accounts/{id}/uetTags/{id}`.
             X Ads: pixel event id (`tw-...`). Snapchat:
             Snap Pixel ID (a UUID). Taboola: numeric
-            Account ID.
+            Account ID. Outbrain: marketer id.
           type: string
         name:
           type: string
@@ -231623,6 +231722,7 @@ components:
           - xads
           - snapchatads
           - taboolaads
+          - outbrainads
           - googleanalytics
           - klaviyo
           - attentive
@@ -264669,6 +264769,11 @@ components:
           description: "Taboola click ID (the `tblci` URL param Taboola adds to ad\
             \ clicks with its `{click_id}` macro). Sent to Taboola as `click-id`,\
             \ not hashed."
+          type: string
+        ob_click_id:
+          description: "Outbrain click ID (the `ob_click_id` URL param, filled by\
+            \ the `{{ob_click_id}}` macro you add to the campaign's Track box). Sent\
+            \ to Outbrain as `ob_click_id`, not hashed."
           type: string
         irclickid:
           description: Impact partner click id (the `irclickid` URL param Impact adds

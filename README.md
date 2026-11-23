@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.798.0
+- API version: 1.799.0
 
-- Build date: 2026-11-23T23:17:41.708814407Z[Etc/UTC]
+- Build date: 2026-11-23T23:27:47.576886357Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.798.0</version>
+  <version>1.799.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.798.0"
+compile "dev.zernio:zernio-sdk:1.799.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.798.0.jar`
+- `target/zernio-sdk-1.799.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1301,6 +1301,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectLineCredentialsWithHttpInfo**](docs/ConnectApi.md#connectLineCredentialsWithHttpInfo) | **POST** /v1/connect/line/credentials | Connect LINE Official Account
 *ConnectApi* | [**connectOpenAIAdsCredentials**](docs/ConnectApi.md#connectOpenAIAdsCredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account
 *ConnectApi* | [**connectOpenAIAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectOpenAIAdsCredentialsWithHttpInfo) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account
+*ConnectApi* | [**connectOutbrainAdsCredentials**](docs/ConnectApi.md#connectOutbrainAdsCredentials) | **POST** /v1/connect/outbrain-ads/credentials | Connect an Outbrain marketer
+*ConnectApi* | [**connectOutbrainAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectOutbrainAdsCredentialsWithHttpInfo) | **POST** /v1/connect/outbrain-ads/credentials | Connect an Outbrain marketer
 *ConnectApi* | [**connectShopifyWithToken**](docs/ConnectApi.md#connectShopifyWithToken) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token
 *ConnectApi* | [**connectShopifyWithTokenWithHttpInfo**](docs/ConnectApi.md#connectShopifyWithTokenWithHttpInfo) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token
 *ConnectApi* | [**connectSlackChannel**](docs/ConnectApi.md#connectSlackChannel) | **POST** /v1/connect/slack | Connect a Slack channel
@@ -3627,6 +3629,8 @@ Class | Method | HTTP request | Description
  - [ConnectLineCredentialsRequest](docs/ConnectLineCredentialsRequest.md)
  - [ConnectOpenAIAdsCredentials200Response](docs/ConnectOpenAIAdsCredentials200Response.md)
  - [ConnectOpenAIAdsCredentialsRequest](docs/ConnectOpenAIAdsCredentialsRequest.md)
+ - [ConnectOutbrainAdsCredentials200Response](docs/ConnectOutbrainAdsCredentials200Response.md)
+ - [ConnectOutbrainAdsCredentialsRequest](docs/ConnectOutbrainAdsCredentialsRequest.md)
  - [ConnectShopifyWithToken200Response](docs/ConnectShopifyWithToken200Response.md)
  - [ConnectShopifyWithToken200ResponseAccount](docs/ConnectShopifyWithToken200ResponseAccount.md)
  - [ConnectShopifyWithTokenRequest](docs/ConnectShopifyWithTokenRequest.md)

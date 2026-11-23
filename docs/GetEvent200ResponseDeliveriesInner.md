@@ -34,6 +34,7 @@
 | XADS | &quot;xads&quot; |
 | SNAPCHATADS | &quot;snapchatads&quot; |
 | TABOOLAADS | &quot;taboolaads&quot; |
+| OUTBRAINADS | &quot;outbrainads&quot; |
 | GOOGLEANALYTICS | &quot;googleanalytics&quot; |
 | KLAVIYO | &quot;klaviyo&quot; |
 | ATTENTIVE | &quot;attentive&quot; |

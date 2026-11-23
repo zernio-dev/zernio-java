@@ -36,6 +36,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**connectLineCredentialsWithHttpInfo**](ConnectApi.md#connectLineCredentialsWithHttpInfo) | **POST** /v1/connect/line/credentials | Connect LINE Official Account |
 | [**connectOpenAIAdsCredentials**](ConnectApi.md#connectOpenAIAdsCredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account |
 | [**connectOpenAIAdsCredentialsWithHttpInfo**](ConnectApi.md#connectOpenAIAdsCredentialsWithHttpInfo) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account |
+| [**connectOutbrainAdsCredentials**](ConnectApi.md#connectOutbrainAdsCredentials) | **POST** /v1/connect/outbrain-ads/credentials | Connect an Outbrain marketer |
+| [**connectOutbrainAdsCredentialsWithHttpInfo**](ConnectApi.md#connectOutbrainAdsCredentialsWithHttpInfo) | **POST** /v1/connect/outbrain-ads/credentials | Connect an Outbrain marketer |
 | [**connectShopifyWithToken**](ConnectApi.md#connectShopifyWithToken) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token |
 | [**connectShopifyWithTokenWithHttpInfo**](ConnectApi.md#connectShopifyWithTokenWithHttpInfo) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token |
 | [**connectSlackChannel**](ConnectApi.md#connectSlackChannel) | **POST** /v1/connect/slack | Connect a Slack channel |
@@ -2763,6 +2765,160 @@ ApiResponse<[**ConnectOpenAIAdsCredentials200Response**](ConnectOpenAIAdsCredent
 | **401** | Unauthorized, or the API key could not read an OpenAI ad account (code invalid_credentials). |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | Ads add-on required. |  -  |
+
+
+## connectOutbrainAdsCredentials
+
+> ConnectOutbrainAdsCredentials200Response connectOutbrainAdsCredentials(connectOutbrainAdsCredentialsRequest)
+
+Connect an Outbrain marketer
+
+Connect an Outbrain marketer by its marketer id from Outbrain Amplify. Outbrain&#39;s server-to-server pixel takes no credential, so nothing secret is stored and nothing is checked with Outbrain.  The account then receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules). Each event needs the Outbrain click ID (&#x60;clickIds.ob_click_id&#x60;), which the campaign&#39;s Track box passes with &#x60;ob_click_id&#x3D;{{ob_click_id}}&#x60;.  Outbrain counts an event only when its name equals the name of an Event-Based Conversion in Amplify, case included. Rename events in the forwarding rule when they differ.  Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectOutbrainAdsCredentialsRequest connectOutbrainAdsCredentialsRequest = new ConnectOutbrainAdsCredentialsRequest(); // ConnectOutbrainAdsCredentialsRequest | 
+        try {
+            ConnectOutbrainAdsCredentials200Response result = apiInstance.connectOutbrainAdsCredentials(connectOutbrainAdsCredentialsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectOutbrainAdsCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectOutbrainAdsCredentialsRequest** | [**ConnectOutbrainAdsCredentialsRequest**](ConnectOutbrainAdsCredentialsRequest.md)|  | |
+
+### Return type
+
+[**ConnectOutbrainAdsCredentials200Response**](ConnectOutbrainAdsCredentials200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Outbrain marketer connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+| **409** | This profile already has another Outbrain marketer connected (code profile_platform_conflict). |  -  |
+
+## connectOutbrainAdsCredentialsWithHttpInfo
+
+> ApiResponse<ConnectOutbrainAdsCredentials200Response> connectOutbrainAdsCredentials connectOutbrainAdsCredentialsWithHttpInfo(connectOutbrainAdsCredentialsRequest)
+
+Connect an Outbrain marketer
+
+Connect an Outbrain marketer by its marketer id from Outbrain Amplify. Outbrain&#39;s server-to-server pixel takes no credential, so nothing secret is stored and nothing is checked with Outbrain.  The account then receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules). Each event needs the Outbrain click ID (&#x60;clickIds.ob_click_id&#x60;), which the campaign&#39;s Track box passes with &#x60;ob_click_id&#x3D;{{ob_click_id}}&#x60;.  Outbrain counts an event only when its name equals the name of an Event-Based Conversion in Amplify, case included. Rename events in the forwarding rule when they differ.  Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectOutbrainAdsCredentialsRequest connectOutbrainAdsCredentialsRequest = new ConnectOutbrainAdsCredentialsRequest(); // ConnectOutbrainAdsCredentialsRequest | 
+        try {
+            ApiResponse<ConnectOutbrainAdsCredentials200Response> response = apiInstance.connectOutbrainAdsCredentialsWithHttpInfo(connectOutbrainAdsCredentialsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectOutbrainAdsCredentials");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectOutbrainAdsCredentialsRequest** | [**ConnectOutbrainAdsCredentialsRequest**](ConnectOutbrainAdsCredentialsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ConnectOutbrainAdsCredentials200Response**](ConnectOutbrainAdsCredentials200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Outbrain marketer connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+| **409** | This profile already has another Outbrain marketer connected (code profile_platform_conflict). |  -  |
 
 
 ## connectShopifyWithToken
