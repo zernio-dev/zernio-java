@@ -62795,6 +62795,19 @@ paths:
           - amazon
           type: string
         style: form
+      - description: "Set to `adAccount` to keep one row per day and platform ad account,\
+          \ each carrying its `adAccountId`, instead of one row per day and currency.\
+          \ Two connections that reach the same ad account both return it: add their\
+          \ timelines per `adAccountId` to count it once."
+        explode: true
+        in: query
+        name: breakdown
+        required: false
+        schema:
+          enum:
+          - adAccount
+          type: string
+        style: form
       - description: "Set to `previous` to also return `previousRows` for the period\
           \ of the same length that ends the day before `fromDate`, with that period\
           \ as `previousRange`. Needs a `fromDate` (sent or defaulted); `toDate` alone\
@@ -135548,6 +135561,7 @@ components:
           cpm: 9.301444243932576
           conversions: 3.616076749251911
           engagement: 5
+          adAccountId: adAccountId
           reach: 1
           conversionsByType:
             key: 4.145608029883936
@@ -135569,6 +135583,7 @@ components:
           cpm: 9.301444243932576
           conversions: 3.616076749251911
           engagement: 5
+          adAccountId: adAccountId
           reach: 1
           conversionsByType:
             key: 4.145608029883936
@@ -207826,6 +207841,7 @@ components:
           cpm: 9.301444243932576
           conversions: 3.616076749251911
           engagement: 5
+          adAccountId: adAccountId
           reach: 1
           conversionsByType:
             key: 4.145608029883936
@@ -207847,6 +207863,7 @@ components:
           cpm: 9.301444243932576
           conversions: 3.616076749251911
           engagement: 5
+          adAccountId: adAccountId
           reach: 1
           conversionsByType:
             key: 4.145608029883936
@@ -254136,6 +254153,7 @@ components:
         cpm: 9.301444243932576
         conversions: 3.616076749251911
         engagement: 5
+        adAccountId: adAccountId
         reach: 1
         conversionsByType:
           key: 4.145608029883936
@@ -254160,6 +254178,12 @@ components:
             ISO 4217 currency of every money field in this row (spend, cpc, cpm, costPerConversion, purchaseValue, actionValues). Null when the currency of the row's ad accounts is unknown. Added 2026-10-23.
 
             An account whose ad accounts bill in different currencies gets one row per currency for that day, never a sum across currencies.
+          nullable: true
+          type: string
+        adAccountId:
+          description: Only with `breakdown=adAccount`. The platform ad account of
+            this row (e.g. Meta `act_…`); null for rows ingested before 2026-05-13.
+            Added 2026-11-23.
           nullable: true
           type: string
         spend:

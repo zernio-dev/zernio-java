@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   CommentAutomationDefinitionTrigger.JSON_PROPERTY_FILTER,
   CommentAutomationDefinitionTrigger.JSON_PROPERTY_ENTRY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationDefinitionTrigger {
   /**
    * &#x60;comment.keyword&#x60; for a comment on a post or reel. The &#x60;comment.received&#x60; event starts an event automation, not comment to DM.

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessLocationDetailsRequestServiceArea.JSON_PROPERTY_PLACES,
   UpdateGoogleBusinessLocationDetailsRequestServiceArea.JSON_PROPERTY_REGION_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessLocationDetailsRequestServiceArea {
   /**
    * Gets or Sets businessType

@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetLtvCohorts200ResponseCohortsInner.JSON_PROPERTY_CUSTOMERS,
   GetLtvCohorts200ResponseCohortsInner.JSON_PROPERTY_REVENUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLtvCohorts200ResponseCohortsInner {
   public static final String JSON_PROPERTY_COHORT = "cohort";
   @javax.annotation.Nullable

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateImessageSenderRequest.JSON_PROPERTY_DISPLAY_NAME,
   UpdateImessageSenderRequest.JSON_PROPERTY_CONTACT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateImessageSenderRequest {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nullable

@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessLocationDetailsRequestStorefrontAddress.JSON_PROPERTY_LOCALITY,
   UpdateGoogleBusinessLocationDetailsRequestStorefrontAddress.JSON_PROPERTY_ADDRESS_LINES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessLocationDetailsRequestStorefrontAddress {
   public static final String JSON_PROPERTY_REGION_CODE = "regionCode";
   @javax.annotation.Nullable

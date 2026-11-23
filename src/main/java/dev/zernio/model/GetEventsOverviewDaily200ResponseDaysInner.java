@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   GetEventsOverviewDaily200ResponseDaysInner.JSON_PROPERTY_MATCHED,
   GetEventsOverviewDaily200ResponseDaysInner.JSON_PROPERTY_BY_EVENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEventsOverviewDaily200ResponseDaysInner {
   public static final String JSON_PROPERTY_DAY = "day";
   @javax.annotation.Nullable

@@ -57,7 +57,7 @@ import dev.zernio.ApiClient;
   ConversionEventUserClickIds.JSON_PROPERTY_UID2,
   ConversionEventUserClickIds.JSON_PROPERTY_UID2_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEventUserClickIds {
   public static final String JSON_PROPERTY_FBC = "fbc";
   @javax.annotation.Nullable

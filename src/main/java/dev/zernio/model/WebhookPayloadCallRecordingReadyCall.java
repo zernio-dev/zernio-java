@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCallRecordingReadyCall.JSON_PROPERTY_CONVERSATION_ID,
   WebhookPayloadCallRecordingReadyCall.JSON_PROPERTY_IS_VOICEMAIL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCallRecordingReadyCall {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

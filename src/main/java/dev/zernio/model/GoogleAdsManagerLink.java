@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GoogleAdsManagerLink.JSON_PROPERTY_STATUS,
   GoogleAdsManagerLink.JSON_PROPERTY_VALIDATE_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleAdsManagerLink {
   public static final String JSON_PROPERTY_MANAGER_CUSTOMER_ID = "managerCustomerId";
   @javax.annotation.Nullable

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SettleCampaignParticipantRequest.JSON_PROPERTY_EXTERNAL_REFERENCE,
   SettleCampaignParticipantRequest.JSON_PROPERTY_RECORD_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SettleCampaignParticipantRequest {
   public static final String JSON_PROPERTY_AMOUNT_CENTS = "amountCents";
   @javax.annotation.Nullable

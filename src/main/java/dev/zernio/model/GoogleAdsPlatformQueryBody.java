@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GoogleAdsPlatformQueryBody.JSON_PROPERTY_QUERY,
   GoogleAdsPlatformQueryBody.JSON_PROPERTY_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleAdsPlatformQueryBody {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

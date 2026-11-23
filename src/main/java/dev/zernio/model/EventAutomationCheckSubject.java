@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   EventAutomationCheckSubject.JSON_PROPERTY_ID,
   EventAutomationCheckSubject.JSON_PROPERTY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EventAutomationCheckSubject {
   public static final String JSON_PROPERTY_KIND = "kind";
   @javax.annotation.Nullable

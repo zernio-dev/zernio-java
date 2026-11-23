@@ -161,7 +161,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -4243,12 +4243,13 @@ public class AdCampaignsApi {
    * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param platform Restrict to one platform. (optional)
+   * @param breakdown Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. (optional)
    * @param compare Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. (optional)
    * @return AdsTimelineResponse
    * @throws ApiException if fails to make API call
    */
-  public AdsTimelineResponse getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String compare) throws ApiException {
-    return getAdsTimeline(accountId, adAccountId, fromDate, toDate, platform, compare, null);
+  public AdsTimelineResponse getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String breakdown, @javax.annotation.Nullable String compare) throws ApiException {
+    return getAdsTimeline(accountId, adAccountId, fromDate, toDate, platform, breakdown, compare, null);
   }
 
   /**
@@ -4259,13 +4260,14 @@ public class AdCampaignsApi {
    * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param platform Restrict to one platform. (optional)
+   * @param breakdown Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. (optional)
    * @param compare Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. (optional)
    * @param headers Optional headers to include in the request
    * @return AdsTimelineResponse
    * @throws ApiException if fails to make API call
    */
-  public AdsTimelineResponse getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String compare, Map<String, String> headers) throws ApiException {
-    ApiResponse<AdsTimelineResponse> localVarResponse = getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, compare, headers);
+  public AdsTimelineResponse getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String breakdown, @javax.annotation.Nullable String compare, Map<String, String> headers) throws ApiException {
+    ApiResponse<AdsTimelineResponse> localVarResponse = getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, breakdown, compare, headers);
     return localVarResponse.getData();
   }
 
@@ -4277,12 +4279,13 @@ public class AdCampaignsApi {
    * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param platform Restrict to one platform. (optional)
+   * @param breakdown Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. (optional)
    * @param compare Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. (optional)
    * @return ApiResponse&lt;AdsTimelineResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<AdsTimelineResponse> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String compare) throws ApiException {
-    return getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, compare, null);
+  public ApiResponse<AdsTimelineResponse> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String breakdown, @javax.annotation.Nullable String compare) throws ApiException {
+    return getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, breakdown, compare, null);
   }
 
   /**
@@ -4293,13 +4296,14 @@ public class AdCampaignsApi {
    * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param platform Restrict to one platform. (optional)
+   * @param breakdown Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. (optional)
    * @param compare Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;AdsTimelineResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<AdsTimelineResponse> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String compare, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAdsTimelineRequestBuilder(accountId, adAccountId, fromDate, toDate, platform, compare, headers);
+  public ApiResponse<AdsTimelineResponse> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String breakdown, @javax.annotation.Nullable String compare, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdsTimelineRequestBuilder(accountId, adAccountId, fromDate, toDate, platform, breakdown, compare, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4346,7 +4350,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder getAdsTimelineRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String compare, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getAdsTimelineRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String breakdown, @javax.annotation.Nullable String compare, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getAdsTimeline");
@@ -4369,6 +4373,8 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
     localVarQueryParameterBaseName = "platform";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+    localVarQueryParameterBaseName = "breakdown";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("breakdown", breakdown));
     localVarQueryParameterBaseName = "compare";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("compare", compare));
 

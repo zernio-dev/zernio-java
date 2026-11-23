@@ -43,6 +43,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   AdsTimelineResponseRowsInner.JSON_PROPERTY_DATE,
   AdsTimelineResponseRowsInner.JSON_PROPERTY_CURRENCY,
+  AdsTimelineResponseRowsInner.JSON_PROPERTY_AD_ACCOUNT_ID,
   AdsTimelineResponseRowsInner.JSON_PROPERTY_SPEND,
   AdsTimelineResponseRowsInner.JSON_PROPERTY_IMPRESSIONS,
   AdsTimelineResponseRowsInner.JSON_PROPERTY_REACH,
@@ -60,7 +61,7 @@ import dev.zernio.ApiClient;
   AdsTimelineResponseRowsInner.JSON_PROPERTY_PURCHASE_VALUE,
   AdsTimelineResponseRowsInner.JSON_PROPERTY_ROAS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:19:45.434646798Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T17:27:29.474659163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsTimelineResponseRowsInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nullable
@@ -68,6 +69,9 @@ public class AdsTimelineResponseRowsInner {
 
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   private JsonNullable<String> currency = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
+  private JsonNullable<String> adAccountId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable
@@ -189,6 +193,38 @@ public class AdsTimelineResponseRowsInner {
 
   public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = JsonNullable.<String>of(currency);
+  }
+
+
+  public AdsTimelineResponseRowsInner adAccountId(@javax.annotation.Nullable String adAccountId) {
+    this.adAccountId = JsonNullable.<String>of(adAccountId);
+    return this;
+  }
+
+  /**
+   * Only with &#x60;breakdown&#x3D;adAccount&#x60;. The platform ad account of this row (e.g. Meta &#x60;act_…&#x60;); null for rows ingested before 2026-05-13. Added 2026-11-23.
+   * @return adAccountId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getAdAccountId() {
+        return adAccountId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_AD_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getAdAccountId_JsonNullable() {
+    return adAccountId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AD_ACCOUNT_ID)
+  public void setAdAccountId_JsonNullable(JsonNullable<String> adAccountId) {
+    this.adAccountId = adAccountId;
+  }
+
+  public void setAdAccountId(@javax.annotation.Nullable String adAccountId) {
+    this.adAccountId = JsonNullable.<String>of(adAccountId);
   }
 
 
@@ -614,6 +650,7 @@ public class AdsTimelineResponseRowsInner {
     AdsTimelineResponseRowsInner adsTimelineResponseRowsInner = (AdsTimelineResponseRowsInner) o;
     return Objects.equals(this.date, adsTimelineResponseRowsInner.date) &&
         equalsNullable(this.currency, adsTimelineResponseRowsInner.currency) &&
+        equalsNullable(this.adAccountId, adsTimelineResponseRowsInner.adAccountId) &&
         Objects.equals(this.spend, adsTimelineResponseRowsInner.spend) &&
         Objects.equals(this.impressions, adsTimelineResponseRowsInner.impressions) &&
         Objects.equals(this.reach, adsTimelineResponseRowsInner.reach) &&
@@ -638,7 +675,7 @@ public class AdsTimelineResponseRowsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(date, hashCodeNullable(currency), spend, impressions, reach, clicks, engagement, ctr, cpc, cpm, conversions, allConversions, conversionsByType, costPerConversion, actions, actionValues, purchaseValue, roas);
+    return Objects.hash(date, hashCodeNullable(currency), hashCodeNullable(adAccountId), spend, impressions, reach, clicks, engagement, ctr, cpc, cpm, conversions, allConversions, conversionsByType, costPerConversion, actions, actionValues, purchaseValue, roas);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -654,6 +691,7 @@ public class AdsTimelineResponseRowsInner {
     sb.append("class AdsTimelineResponseRowsInner {\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
     sb.append("    spend: ").append(toIndentedString(spend)).append("\n");
     sb.append("    impressions: ").append(toIndentedString(impressions)).append("\n");
     sb.append("    reach: ").append(toIndentedString(reach)).append("\n");
@@ -725,6 +763,11 @@ public class AdsTimelineResponseRowsInner {
     // add `currency` to the URL query string
     if (getCurrency() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scurrency%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCurrency()))));
+    }
+
+    // add `adAccountId` to the URL query string
+    if (getAdAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdAccountId()))));
     }
 
     // add `spend` to the URL query string
