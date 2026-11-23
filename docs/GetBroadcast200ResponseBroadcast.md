@@ -20,10 +20,10 @@
 |**startedAt** | **OffsetDateTime** |  |  [optional] |
 |**completedAt** | **OffsetDateTime** |  |  [optional] |
 |**recipientCount** | **Integer** |  |  [optional] |
-|**sentCount** | **Integer** |  |  [optional] |
-|**deliveredCount** | **Integer** |  |  [optional] |
-|**readCount** | **Integer** |  |  [optional] |
-|**failedCount** | **Integer** |  |  [optional] |
+|**sentCount** | **Integer** | Recipients whose latest status is &#x60;sent&#x60;: the platform accepted the message and has not confirmed delivery yet. Each recipient counts once, under its latest status, so everyone the broadcast went out to is sentCount + deliveredCount + readCount. |  [optional] |
+|**deliveredCount** | **Integer** | Recipients whose latest status is &#x60;delivered&#x60;, not read yet. Everyone it was delivered to is deliveredCount + readCount. |  [optional] |
+|**readCount** | **Integer** | Recipients whose latest status is &#x60;read&#x60;. |  [optional] |
+|**failedCount** | **Integer** | Recipients whose send failed. |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] |
 
