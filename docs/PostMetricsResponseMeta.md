@@ -15,6 +15,7 @@
 |**toDate** | **String** |  |  |
 |**missingIds** | **List&lt;String&gt;** | Ids asked that match no published post the caller can read. |  |
 |**total** | **Integer** |  |  |
+|**syncRequestedAccountIds** | **List&lt;String&gt;** | On a list of posts: the accounts this read queued for a fresh sync, because they were never synced or their stored numbers are over 90 minutes old. The answer holds the stored numbers; the synced ones arrive within minutes. |  [optional] |
 |**metricsSample** | [**PostMetricsResponseMetaAllOfMetricsSample**](PostMetricsResponseMetaAllOfMetricsSample.md) |  |  [optional] |
 
 
