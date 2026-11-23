@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   UpdateForwardingRuleRequest.JSON_PROPERTY_VALUE_OVERRIDE,
   UpdateForwardingRuleRequest.JSON_PROPERTY_VALUE_CONDITION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateForwardingRuleRequest {
   public static final String JSON_PROPERTY_API_SECRET = "apiSecret";
   @javax.annotation.Nullable

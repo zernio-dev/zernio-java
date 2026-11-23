@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   AmazonSponsoredProductsCampaignData.JSON_PROPERTY_PLACEMENT_BIDDING,
   AmazonSponsoredProductsCampaignData.JSON_PROPERTY_PORTFOLIO_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AmazonSponsoredProductsCampaignData {
   /**
    * Gets or Sets adProduct

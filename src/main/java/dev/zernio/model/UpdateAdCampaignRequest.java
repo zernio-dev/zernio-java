@@ -61,7 +61,7 @@ import dev.zernio.ApiClient;
   UpdateAdCampaignRequest.JSON_PROPERTY_NAME,
   UpdateAdCampaignRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignRequest {
   /**
    * Required: platform campaign IDs are not globally unique.
@@ -238,7 +238,7 @@ public class UpdateAdCampaignRequest {
   }
 
   /**
-   * **Meta + Google.**  - Meta: the campaign default that ad sets inherit unless they override it. - Google: the campaign&#39;s own bidding strategy. LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling. - Google: portfolioBidStrategyId attaches a portfolio strategy instead. 
+   * **Meta, Google and AppLovin.**  - Meta: the campaign default that ad sets inherit unless they override it. - Google: the campaign&#39;s own bidding strategy. LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling. - Google: portfolioBidStrategyId attaches a portfolio strategy instead. - AppLovin: sets the campaign goal value; the goal type itself cannot change. COST_CAP + bidAmount for a CPI, CPE or CPP goal, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor for a ROAS goal. - AppLovin app limits, checked before AppLovin is called: CPI below 200, CPE and CPP below 500, AD_ROAS at least 0.1, CHK_ROAS at least 0.01, BLD_ROAS at least 0.05. - AppLovin: a goal set per country, or the other goal family, is a 422. 
    * @return bidStrategy
    */
   @javax.annotation.Nullable
@@ -262,7 +262,7 @@ public class UpdateAdCampaignRequest {
   }
 
   /**
-   * **Google only.** Whole currency units (USD: 12 &#x3D; $12.00). Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both.
+   * **Google and AppLovin.** Whole currency units (USD: 12 &#x3D; $12.00). Google: max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both. AppLovin: the CPI, CPE or CPP goal value, with COST_CAP.
    * @return bidAmount
    */
   @javax.annotation.Nullable
@@ -286,7 +286,7 @@ public class UpdateAdCampaignRequest {
   }
 
   /**
-   * **Google only.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS.
+   * **Google and AppLovin.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS. AppLovin: the ROAS goal value.
    * @return roasAverageFloor
    */
   @javax.annotation.Nullable
@@ -534,7 +534,7 @@ public class UpdateAdCampaignRequest {
   }
 
   /**
-   * **Meta and Reddit.** Rename the campaign.
+   * **Meta, Reddit and AppLovin.** Rename the campaign.
    * @return name
    */
   @javax.annotation.Nullable

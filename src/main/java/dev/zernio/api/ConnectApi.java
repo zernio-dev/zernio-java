@@ -200,7 +200,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1335,8 +1335,8 @@ public class ConnectApi {
   }
 
   /**
-   * Connect an AppLovin Axon account
-   * Connect AppLovin Axon with the Conversion API key and Event Key from the Keys page of Axon Ads Manager.  Zernio checks both keys with Axon before saving them. The account then receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules), and its Event Key works as a site tag on tracking sites.  Add the optional Report Key to sync AppLovin spend. Every few hours Zernio reads spend, impressions and clicks per campaign and creative set for the last 7 days, so AppLovin campaigns show in the ads campaign listings and in campaign results.  Zernio checks the Report Key with AppLovin before saving it. Connecting again without a Report Key keeps the one already saved.  Requires the Ads add-on. 
+   * Connect an AppLovin account
+   * Connect an AppLovin account (Axon ads) with the Conversion API key and Event Key from the Keys page of AppLovin Axon Ads Manager, the Campaign Management API key with its account id, or all of them.  Zernio checks each key set with AppLovin before saving it.  - With the conversion keys, the account receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules), and its Event Key works as a site tag on tracking sites. - With the Campaign Management keys, Zernio reads, creates and manages the account&#39;s campaigns and creative sets (&#x60;/v1/ads&#x60;). - Connecting the Campaign Management keys to a profile that already has the conversion keys adds them to the same connection. A connection made with the Campaign Management keys only cannot take the conversion keys later: connect all keys together instead.  Add the optional Report Key to sync AppLovin spend. Every few hours Zernio reads spend, impressions and clicks per campaign and creative set for the last 7 days, so AppLovin campaigns show in the ads campaign listings and in campaign results.  Connecting again without a key keeps the one already saved.  Requires the Ads add-on. 
    * @param connectAppLovinAdsCredentialsRequest  (required)
    * @return ConnectAppLovinAdsCredentials200Response
    * @throws ApiException if fails to make API call
@@ -1346,8 +1346,8 @@ public class ConnectApi {
   }
 
   /**
-   * Connect an AppLovin Axon account
-   * Connect AppLovin Axon with the Conversion API key and Event Key from the Keys page of Axon Ads Manager.  Zernio checks both keys with Axon before saving them. The account then receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules), and its Event Key works as a site tag on tracking sites.  Add the optional Report Key to sync AppLovin spend. Every few hours Zernio reads spend, impressions and clicks per campaign and creative set for the last 7 days, so AppLovin campaigns show in the ads campaign listings and in campaign results.  Zernio checks the Report Key with AppLovin before saving it. Connecting again without a Report Key keeps the one already saved.  Requires the Ads add-on. 
+   * Connect an AppLovin account
+   * Connect an AppLovin account (Axon ads) with the Conversion API key and Event Key from the Keys page of AppLovin Axon Ads Manager, the Campaign Management API key with its account id, or all of them.  Zernio checks each key set with AppLovin before saving it.  - With the conversion keys, the account receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules), and its Event Key works as a site tag on tracking sites. - With the Campaign Management keys, Zernio reads, creates and manages the account&#39;s campaigns and creative sets (&#x60;/v1/ads&#x60;). - Connecting the Campaign Management keys to a profile that already has the conversion keys adds them to the same connection. A connection made with the Campaign Management keys only cannot take the conversion keys later: connect all keys together instead.  Add the optional Report Key to sync AppLovin spend. Every few hours Zernio reads spend, impressions and clicks per campaign and creative set for the last 7 days, so AppLovin campaigns show in the ads campaign listings and in campaign results.  Connecting again without a key keeps the one already saved.  Requires the Ads add-on. 
    * @param connectAppLovinAdsCredentialsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ConnectAppLovinAdsCredentials200Response
@@ -1359,8 +1359,8 @@ public class ConnectApi {
   }
 
   /**
-   * Connect an AppLovin Axon account
-   * Connect AppLovin Axon with the Conversion API key and Event Key from the Keys page of Axon Ads Manager.  Zernio checks both keys with Axon before saving them. The account then receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules), and its Event Key works as a site tag on tracking sites.  Add the optional Report Key to sync AppLovin spend. Every few hours Zernio reads spend, impressions and clicks per campaign and creative set for the last 7 days, so AppLovin campaigns show in the ads campaign listings and in campaign results.  Zernio checks the Report Key with AppLovin before saving it. Connecting again without a Report Key keeps the one already saved.  Requires the Ads add-on. 
+   * Connect an AppLovin account
+   * Connect an AppLovin account (Axon ads) with the Conversion API key and Event Key from the Keys page of AppLovin Axon Ads Manager, the Campaign Management API key with its account id, or all of them.  Zernio checks each key set with AppLovin before saving it.  - With the conversion keys, the account receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules), and its Event Key works as a site tag on tracking sites. - With the Campaign Management keys, Zernio reads, creates and manages the account&#39;s campaigns and creative sets (&#x60;/v1/ads&#x60;). - Connecting the Campaign Management keys to a profile that already has the conversion keys adds them to the same connection. A connection made with the Campaign Management keys only cannot take the conversion keys later: connect all keys together instead.  Add the optional Report Key to sync AppLovin spend. Every few hours Zernio reads spend, impressions and clicks per campaign and creative set for the last 7 days, so AppLovin campaigns show in the ads campaign listings and in campaign results.  Connecting again without a key keeps the one already saved.  Requires the Ads add-on. 
    * @param connectAppLovinAdsCredentialsRequest  (required)
    * @return ApiResponse&lt;ConnectAppLovinAdsCredentials200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1370,8 +1370,8 @@ public class ConnectApi {
   }
 
   /**
-   * Connect an AppLovin Axon account
-   * Connect AppLovin Axon with the Conversion API key and Event Key from the Keys page of Axon Ads Manager.  Zernio checks both keys with Axon before saving them. The account then receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules), and its Event Key works as a site tag on tracking sites.  Add the optional Report Key to sync AppLovin spend. Every few hours Zernio reads spend, impressions and clicks per campaign and creative set for the last 7 days, so AppLovin campaigns show in the ads campaign listings and in campaign results.  Zernio checks the Report Key with AppLovin before saving it. Connecting again without a Report Key keeps the one already saved.  Requires the Ads add-on. 
+   * Connect an AppLovin account
+   * Connect an AppLovin account (Axon ads) with the Conversion API key and Event Key from the Keys page of AppLovin Axon Ads Manager, the Campaign Management API key with its account id, or all of them.  Zernio checks each key set with AppLovin before saving it.  - With the conversion keys, the account receives the conversion events you forward to it (&#x60;POST /v1/events&#x60;, forwarding rules), and its Event Key works as a site tag on tracking sites. - With the Campaign Management keys, Zernio reads, creates and manages the account&#39;s campaigns and creative sets (&#x60;/v1/ads&#x60;). - Connecting the Campaign Management keys to a profile that already has the conversion keys adds them to the same connection. A connection made with the Campaign Management keys only cannot take the conversion keys later: connect all keys together instead.  Add the optional Report Key to sync AppLovin spend. Every few hours Zernio reads spend, impressions and clicks per campaign and creative set for the last 7 days, so AppLovin campaigns show in the ads campaign listings and in campaign results.  Connecting again without a key keeps the one already saved.  Requires the Ads add-on. 
    * @param connectAppLovinAdsCredentialsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ConnectAppLovinAdsCredentials200Response&gt;

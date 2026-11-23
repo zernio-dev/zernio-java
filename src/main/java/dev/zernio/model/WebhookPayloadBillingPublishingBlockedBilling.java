@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadBillingPublishingBlockedBilling.JSON_PROPERTY_REASON,
   WebhookPayloadBillingPublishingBlockedBilling.JSON_PROPERTY_BLOCKED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadBillingPublishingBlockedBilling {
   /**
    * Gets or Sets reason

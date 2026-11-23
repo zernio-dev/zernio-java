@@ -248,6 +248,11 @@ docs/ApiKey.md
 docs/ApiKeyCreatedBy.md
 docs/ApiKeyProfileIdsInner.md
 docs/ApiKeysApi.md
+docs/AppLovinAdsPlatformData.md
+docs/AppLovinAdsPlatformDataAssetsInner.md
+docs/AppLovinAdsPlatformDataAssetsInnerOneOf.md
+docs/AppLovinAdsPlatformDataBrandInfo.md
+docs/AppLovinAdsPlatformDataTracking.md
 docs/AppealSmsRegistration200Response.md
 docs/AppealSmsRegistrationRequest.md
 docs/ApplyGoogleRecommendations200Response.md
@@ -820,6 +825,9 @@ docs/CreateAdAudienceRequest.md
 docs/CreateAdCampaign200Response.md
 docs/CreateAdCampaign201Response.md
 docs/CreateAdCampaignRequest.md
+docs/CreateAdCampaignRequestMetrosInner.md
+docs/CreateAdCampaignRequestPlatformSpecificData.md
+docs/CreateAdCampaignRequestRegionsInner.md
 docs/CreateAdCatalog201Response.md
 docs/CreateAdCatalogFeed201Response.md
 docs/CreateAdCatalogFeedRequest.md
@@ -4574,6 +4582,11 @@ src/main/java/dev/zernio/model/ApiChangelogOperationRef.java
 src/main/java/dev/zernio/model/ApiKey.java
 src/main/java/dev/zernio/model/ApiKeyCreatedBy.java
 src/main/java/dev/zernio/model/ApiKeyProfileIdsInner.java
+src/main/java/dev/zernio/model/AppLovinAdsPlatformData.java
+src/main/java/dev/zernio/model/AppLovinAdsPlatformDataAssetsInner.java
+src/main/java/dev/zernio/model/AppLovinAdsPlatformDataAssetsInnerOneOf.java
+src/main/java/dev/zernio/model/AppLovinAdsPlatformDataBrandInfo.java
+src/main/java/dev/zernio/model/AppLovinAdsPlatformDataTracking.java
 src/main/java/dev/zernio/model/AppealSmsRegistration200Response.java
 src/main/java/dev/zernio/model/AppealSmsRegistrationRequest.java
 src/main/java/dev/zernio/model/ApplyGoogleRecommendations200Response.java
@@ -5129,6 +5142,9 @@ src/main/java/dev/zernio/model/CreateAdAudienceRequest.java
 src/main/java/dev/zernio/model/CreateAdCampaign200Response.java
 src/main/java/dev/zernio/model/CreateAdCampaign201Response.java
 src/main/java/dev/zernio/model/CreateAdCampaignRequest.java
+src/main/java/dev/zernio/model/CreateAdCampaignRequestMetrosInner.java
+src/main/java/dev/zernio/model/CreateAdCampaignRequestPlatformSpecificData.java
+src/main/java/dev/zernio/model/CreateAdCampaignRequestRegionsInner.java
 src/main/java/dev/zernio/model/CreateAdCatalog201Response.java
 src/main/java/dev/zernio/model/CreateAdCatalogFeed201Response.java
 src/main/java/dev/zernio/model/CreateAdCatalogFeedRequest.java
@@ -8479,4 +8495,11 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetEventsAccuracy200ResponseDestinationsInnerFailureReasonsInnerTest.java
+src/test/java/dev/zernio/model/AppLovinAdsPlatformDataAssetsInnerOneOfTest.java
+src/test/java/dev/zernio/model/AppLovinAdsPlatformDataAssetsInnerTest.java
+src/test/java/dev/zernio/model/AppLovinAdsPlatformDataBrandInfoTest.java
+src/test/java/dev/zernio/model/AppLovinAdsPlatformDataTest.java
+src/test/java/dev/zernio/model/AppLovinAdsPlatformDataTrackingTest.java
+src/test/java/dev/zernio/model/CreateAdCampaignRequestMetrosInnerTest.java
+src/test/java/dev/zernio/model/CreateAdCampaignRequestPlatformSpecificDataTest.java
+src/test/java/dev/zernio/model/CreateAdCampaignRequestRegionsInnerTest.java

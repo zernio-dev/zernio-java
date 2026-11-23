@@ -30,26 +30,41 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * ConnectAppLovinAdsCredentialsRequest
+ * Send apiKey with eventKey, campaignApiKey with accountId, or all four. Each pair goes together (400 otherwise).
  */
 @JsonPropertyOrder({
   ConnectAppLovinAdsCredentialsRequest.JSON_PROPERTY_API_KEY,
   ConnectAppLovinAdsCredentialsRequest.JSON_PROPERTY_EVENT_KEY,
+  ConnectAppLovinAdsCredentialsRequest.JSON_PROPERTY_CAMPAIGN_API_KEY,
+  ConnectAppLovinAdsCredentialsRequest.JSON_PROPERTY_ACCOUNT_ID,
+  ConnectAppLovinAdsCredentialsRequest.JSON_PROPERTY_RECONNECT_ACCOUNT_ID,
   ConnectAppLovinAdsCredentialsRequest.JSON_PROPERTY_REPORT_KEY,
   ConnectAppLovinAdsCredentialsRequest.JSON_PROPERTY_NAME,
   ConnectAppLovinAdsCredentialsRequest.JSON_PROPERTY_PROFILE_ID,
   ConnectAppLovinAdsCredentialsRequest.JSON_PROPERTY_STATE,
   ConnectAppLovinAdsCredentialsRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectAppLovinAdsCredentialsRequest {
   public static final String JSON_PROPERTY_API_KEY = "apiKey";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String apiKey;
 
   public static final String JSON_PROPERTY_EVENT_KEY = "eventKey";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String eventKey;
+
+  public static final String JSON_PROPERTY_CAMPAIGN_API_KEY = "campaignApiKey";
+  @javax.annotation.Nullable
+  private String campaignApiKey;
+
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  @javax.annotation.Nullable
+  private String accountId;
+
+  public static final String JSON_PROPERTY_RECONNECT_ACCOUNT_ID = "reconnectAccountId";
+  @javax.annotation.Nullable
+  private String reconnectAccountId;
 
   public static final String JSON_PROPERTY_REPORT_KEY = "reportKey";
   @javax.annotation.Nullable
@@ -74,51 +89,123 @@ public class ConnectAppLovinAdsCredentialsRequest {
   public ConnectAppLovinAdsCredentialsRequest() { 
   }
 
-  public ConnectAppLovinAdsCredentialsRequest apiKey(@javax.annotation.Nonnull String apiKey) {
+  public ConnectAppLovinAdsCredentialsRequest apiKey(@javax.annotation.Nullable String apiKey) {
     this.apiKey = apiKey;
     return this;
   }
 
   /**
-   * Conversion API key from the Keys page of Axon Ads Manager.
+   * Conversion API key from the Keys page of AppLovin Axon Ads Manager. Sent with eventKey.
    * @return apiKey
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_API_KEY, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_API_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getApiKey() {
     return apiKey;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_API_KEY, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setApiKey(@javax.annotation.Nonnull String apiKey) {
+  @JsonProperty(value = JSON_PROPERTY_API_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setApiKey(@javax.annotation.Nullable String apiKey) {
     this.apiKey = apiKey;
   }
 
 
-  public ConnectAppLovinAdsCredentialsRequest eventKey(@javax.annotation.Nonnull String eventKey) {
+  public ConnectAppLovinAdsCredentialsRequest eventKey(@javax.annotation.Nullable String eventKey) {
     this.eventKey = eventKey;
     return this;
   }
 
   /**
-   * Event Key from the Keys page of Axon Ads Manager: 8 to 128 letters, digits, dots, dashes or underscores.
+   * Event Key from the Keys page of AppLovin Axon Ads Manager: 8 to 128 letters, digits, dots, dashes or underscores. Sent with apiKey.
    * @return eventKey
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_EVENT_KEY, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EVENT_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getEventKey() {
     return eventKey;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_EVENT_KEY, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEventKey(@javax.annotation.Nonnull String eventKey) {
+  @JsonProperty(value = JSON_PROPERTY_EVENT_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEventKey(@javax.annotation.Nullable String eventKey) {
     this.eventKey = eventKey;
+  }
+
+
+  public ConnectAppLovinAdsCredentialsRequest campaignApiKey(@javax.annotation.Nullable String campaignApiKey) {
+    this.campaignApiKey = campaignApiKey;
+    return this;
+  }
+
+  /**
+   * Campaign Management API key from the Keys page of ads.axon.ai (visible to account Admins only). Sent with accountId. Lets Zernio read, create and manage campaigns and creative sets.
+   * @return campaignApiKey
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_API_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCampaignApiKey() {
+    return campaignApiKey;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_API_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCampaignApiKey(@javax.annotation.Nullable String campaignApiKey) {
+    this.campaignApiKey = campaignApiKey;
+  }
+
+
+  public ConnectAppLovinAdsCredentialsRequest accountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+  /**
+   * Numeric AppLovin account id (Account menu, then Go to settings, in ads.axon.ai). Sent with campaignApiKey.
+   * @return accountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+  }
+
+
+  public ConnectAppLovinAdsCredentialsRequest reconnectAccountId(@javax.annotation.Nullable String reconnectAccountId) {
+    this.reconnectAccountId = reconnectAccountId;
+    return this;
+  }
+
+  /**
+   * The Zernio id of the AppLovin connection being reconnected (a connection on this profile). The keys sent update that connection, which keeps its identity, instead of creating one: send it to add or replace keys on an existing connection.
+   * @return reconnectAccountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RECONNECT_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getReconnectAccountId() {
+    return reconnectAccountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RECONNECT_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReconnectAccountId(@javax.annotation.Nullable String reconnectAccountId) {
+    this.reconnectAccountId = reconnectAccountId;
   }
 
 
@@ -256,6 +343,9 @@ public class ConnectAppLovinAdsCredentialsRequest {
     ConnectAppLovinAdsCredentialsRequest connectAppLovinAdsCredentialsRequest = (ConnectAppLovinAdsCredentialsRequest) o;
     return Objects.equals(this.apiKey, connectAppLovinAdsCredentialsRequest.apiKey) &&
         Objects.equals(this.eventKey, connectAppLovinAdsCredentialsRequest.eventKey) &&
+        Objects.equals(this.campaignApiKey, connectAppLovinAdsCredentialsRequest.campaignApiKey) &&
+        Objects.equals(this.accountId, connectAppLovinAdsCredentialsRequest.accountId) &&
+        Objects.equals(this.reconnectAccountId, connectAppLovinAdsCredentialsRequest.reconnectAccountId) &&
         Objects.equals(this.reportKey, connectAppLovinAdsCredentialsRequest.reportKey) &&
         Objects.equals(this.name, connectAppLovinAdsCredentialsRequest.name) &&
         Objects.equals(this.profileId, connectAppLovinAdsCredentialsRequest.profileId) &&
@@ -265,7 +355,7 @@ public class ConnectAppLovinAdsCredentialsRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(apiKey, eventKey, reportKey, name, profileId, state, redirectUrl);
+    return Objects.hash(apiKey, eventKey, campaignApiKey, accountId, reconnectAccountId, reportKey, name, profileId, state, redirectUrl);
   }
 
   @Override
@@ -274,6 +364,9 @@ public class ConnectAppLovinAdsCredentialsRequest {
     sb.append("class ConnectAppLovinAdsCredentialsRequest {\n");
     sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
     sb.append("    eventKey: ").append(toIndentedString(eventKey)).append("\n");
+    sb.append("    campaignApiKey: ").append(toIndentedString(campaignApiKey)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    reconnectAccountId: ").append(toIndentedString(reconnectAccountId)).append("\n");
     sb.append("    reportKey: ").append(toIndentedString(reportKey)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
@@ -334,6 +427,21 @@ public class ConnectAppLovinAdsCredentialsRequest {
     // add `eventKey` to the URL query string
     if (getEventKey() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%seventKey%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEventKey()))));
+    }
+
+    // add `campaignApiKey` to the URL query string
+    if (getCampaignApiKey() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scampaignApiKey%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCampaignApiKey()))));
+    }
+
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
+    }
+
+    // add `reconnectAccountId` to the URL query string
+    if (getReconnectAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreconnectAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReconnectAccountId()))));
     }
 
     // add `reportKey` to the URL query string

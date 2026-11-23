@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   FlowAutomationDefinitionTrigger.JSON_PROPERTY_TYPE,
   FlowAutomationDefinitionTrigger.JSON_PROPERTY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FlowAutomationDefinitionTrigger {
   /**
    * Read from the graph&#39;s trigger node; sent, it must agree with it. Absent while the graph has no trigger node.

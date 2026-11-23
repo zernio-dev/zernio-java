@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.779.0
 
-- Build date: 2026-11-23T13:47:22.479345857Z[Etc/UTC]
+- Build date: 2026-11-23T13:54:18.836653719Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1275,8 +1275,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**configureTikTokAdsBrandIdentityWithHttpInfo**](docs/ConnectApi.md#configureTikTokAdsBrandIdentityWithHttpInfo) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity
 *ConnectApi* | [**connectAds**](docs/ConnectApi.md#connectAds) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
 *ConnectApi* | [**connectAdsWithHttpInfo**](docs/ConnectApi.md#connectAdsWithHttpInfo) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
-*ConnectApi* | [**connectAppLovinAdsCredentials**](docs/ConnectApi.md#connectAppLovinAdsCredentials) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin Axon account
-*ConnectApi* | [**connectAppLovinAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectAppLovinAdsCredentialsWithHttpInfo) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin Axon account
+*ConnectApi* | [**connectAppLovinAdsCredentials**](docs/ConnectApi.md#connectAppLovinAdsCredentials) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin account
+*ConnectApi* | [**connectAppLovinAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectAppLovinAdsCredentialsWithHttpInfo) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin account
 *ConnectApi* | [**connectAttentiveCredentials**](docs/ConnectApi.md#connectAttentiveCredentials) | **POST** /v1/connect/attentive/credentials | Connect an Attentive company
 *ConnectApi* | [**connectAttentiveCredentialsWithHttpInfo**](docs/ConnectApi.md#connectAttentiveCredentialsWithHttpInfo) | **POST** /v1/connect/attentive/credentials | Connect an Attentive company
 *ConnectApi* | [**connectAwinCredentials**](docs/ConnectApi.md#connectAwinCredentials) | **POST** /v1/connect/awin/credentials | Connect an Awin advertiser
@@ -3124,6 +3124,11 @@ Class | Method | HTTP request | Description
  - [ApiKey](docs/ApiKey.md)
  - [ApiKeyCreatedBy](docs/ApiKeyCreatedBy.md)
  - [ApiKeyProfileIdsInner](docs/ApiKeyProfileIdsInner.md)
+ - [AppLovinAdsPlatformData](docs/AppLovinAdsPlatformData.md)
+ - [AppLovinAdsPlatformDataAssetsInner](docs/AppLovinAdsPlatformDataAssetsInner.md)
+ - [AppLovinAdsPlatformDataAssetsInnerOneOf](docs/AppLovinAdsPlatformDataAssetsInnerOneOf.md)
+ - [AppLovinAdsPlatformDataBrandInfo](docs/AppLovinAdsPlatformDataBrandInfo.md)
+ - [AppLovinAdsPlatformDataTracking](docs/AppLovinAdsPlatformDataTracking.md)
  - [AppealSmsRegistration200Response](docs/AppealSmsRegistration200Response.md)
  - [AppealSmsRegistrationRequest](docs/AppealSmsRegistrationRequest.md)
  - [ApplyGoogleRecommendations200Response](docs/ApplyGoogleRecommendations200Response.md)
@@ -3679,6 +3684,9 @@ Class | Method | HTTP request | Description
  - [CreateAdCampaign200Response](docs/CreateAdCampaign200Response.md)
  - [CreateAdCampaign201Response](docs/CreateAdCampaign201Response.md)
  - [CreateAdCampaignRequest](docs/CreateAdCampaignRequest.md)
+ - [CreateAdCampaignRequestMetrosInner](docs/CreateAdCampaignRequestMetrosInner.md)
+ - [CreateAdCampaignRequestPlatformSpecificData](docs/CreateAdCampaignRequestPlatformSpecificData.md)
+ - [CreateAdCampaignRequestRegionsInner](docs/CreateAdCampaignRequestRegionsInner.md)
  - [CreateAdCatalog201Response](docs/CreateAdCatalog201Response.md)
  - [CreateAdCatalogFeed201Response](docs/CreateAdCatalogFeed201Response.md)
  - [CreateAdCatalogFeedRequest](docs/CreateAdCatalogFeedRequest.md)

@@ -25,7 +25,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.AdPromotedObject;
-import dev.zernio.model.AmazonAdsCampaignPlatformData;
+import dev.zernio.model.CreateAdCampaignRequestMetrosInner;
+import dev.zernio.model.CreateAdCampaignRequestPlatformSpecificData;
+import dev.zernio.model.CreateAdCampaignRequestRegionsInner;
 import dev.zernio.model.GoogleLocationTargetingType;
 import dev.zernio.model.GoogleManualCpc;
 import dev.zernio.model.GoogleNetworkSettings;
@@ -57,6 +59,9 @@ import dev.zernio.ApiClient;
   CreateAdCampaignRequest.JSON_PROPERTY_STATUS,
   CreateAdCampaignRequest.JSON_PROPERTY_START_DATE,
   CreateAdCampaignRequest.JSON_PROPERTY_END_DATE,
+  CreateAdCampaignRequest.JSON_PROPERTY_COUNTRIES,
+  CreateAdCampaignRequest.JSON_PROPERTY_REGIONS,
+  CreateAdCampaignRequest.JSON_PROPERTY_METROS,
   CreateAdCampaignRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA,
   CreateAdCampaignRequest.JSON_PROPERTY_LOCATION_TARGETING_TYPE,
   CreateAdCampaignRequest.JSON_PROPERTY_BID_STRATEGY,
@@ -67,7 +72,7 @@ import dev.zernio.ApiClient;
   CreateAdCampaignRequest.JSON_PROPERTY_MANUAL_CPC,
   CreateAdCampaignRequest.JSON_PROPERTY_NETWORK_SETTINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCampaignRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -328,9 +333,21 @@ public class CreateAdCampaignRequest {
   @javax.annotation.Nullable
   private OffsetDateTime endDate;
 
+  public static final String JSON_PROPERTY_COUNTRIES = "countries";
+  @javax.annotation.Nullable
+  private List<String> countries = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_REGIONS = "regions";
+  @javax.annotation.Nullable
+  private List<CreateAdCampaignRequestRegionsInner> regions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_METROS = "metros";
+  @javax.annotation.Nullable
+  private List<CreateAdCampaignRequestMetrosInner> metros = new ArrayList<>();
+
   public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
   @javax.annotation.Nullable
-  private AmazonAdsCampaignPlatformData platformSpecificData;
+  private CreateAdCampaignRequestPlatformSpecificData platformSpecificData;
 
   public static final String JSON_PROPERTY_LOCATION_TARGETING_TYPE = "locationTargetingType";
   @javax.annotation.Nullable
@@ -708,7 +725,7 @@ public class CreateAdCampaignRequest {
   }
 
   /**
-   * Reddit and Amazon only (400 elsewhere). Campaign start (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (&#x60;budgetAmount&#x60; + &#x60;budgetType&#x60;, 400 otherwise). Defaults to now.
+   * Reddit, Amazon and AppLovin only (400 elsewhere). Campaign start (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (&#x60;budgetAmount&#x60; + &#x60;budgetType&#x60;, 400 otherwise). AppLovin reads it in UTC and refuses a start before today. Defaults to now.
    * @return startDate
    */
   @javax.annotation.Nullable
@@ -732,7 +749,7 @@ public class CreateAdCampaignRequest {
   }
 
   /**
-   * Reddit and Amazon only (400 elsewhere). Campaign end (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (400 otherwise), and is required for &#x60;budgetType: lifetime&#x60;.
+   * Reddit, Amazon and AppLovin only (400 elsewhere). Campaign end (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (400 otherwise), and is required for &#x60;budgetType: lifetime&#x60;. On AppLovin no endDate means continuous delivery.
    * @return endDate
    */
   @javax.annotation.Nullable
@@ -750,26 +767,122 @@ public class CreateAdCampaignRequest {
   }
 
 
-  public CreateAdCampaignRequest platformSpecificData(@javax.annotation.Nullable AmazonAdsCampaignPlatformData platformSpecificData) {
+  public CreateAdCampaignRequest countries(@javax.annotation.Nullable List<String> countries) {
+    this.countries = countries;
+    return this;
+  }
+
+  public CreateAdCampaignRequest addCountriesItem(String countriesItem) {
+    if (this.countries == null) {
+      this.countries = new ArrayList<>();
+    }
+    this.countries.add(countriesItem);
+    return this;
+  }
+
+  /**
+   * AppLovin only (400 elsewhere), where the campaign carries the targeting: the countries it serves, at least one.
+   * @return countries
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COUNTRIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getCountries() {
+    return countries;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COUNTRIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCountries(@javax.annotation.Nullable List<String> countries) {
+    this.countries = countries;
+  }
+
+
+  public CreateAdCampaignRequest regions(@javax.annotation.Nullable List<CreateAdCampaignRequestRegionsInner> regions) {
+    this.regions = regions;
+    return this;
+  }
+
+  public CreateAdCampaignRequest addRegionsItem(CreateAdCampaignRequestRegionsInner regionsItem) {
+    if (this.regions == null) {
+      this.regions = new ArrayList<>();
+    }
+    this.regions.add(regionsItem);
+    return this;
+  }
+
+  /**
+   * AppLovin only (400 elsewhere). US state codes (&#x60;CA&#x60; or &#x60;US-CA&#x60;), with &#x60;US&#x60; in countries. Never together with metros.
+   * @return regions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateAdCampaignRequestRegionsInner> getRegions() {
+    return regions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegions(@javax.annotation.Nullable List<CreateAdCampaignRequestRegionsInner> regions) {
+    this.regions = regions;
+  }
+
+
+  public CreateAdCampaignRequest metros(@javax.annotation.Nullable List<CreateAdCampaignRequestMetrosInner> metros) {
+    this.metros = metros;
+    return this;
+  }
+
+  public CreateAdCampaignRequest addMetrosItem(CreateAdCampaignRequestMetrosInner metrosItem) {
+    if (this.metros == null) {
+      this.metros = new ArrayList<>();
+    }
+    this.metros.add(metrosItem);
+    return this;
+  }
+
+  /**
+   * AppLovin only (400 elsewhere). AppLovin metro names, with &#x60;US&#x60; in countries. Never together with regions.
+   * @return metros
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_METROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateAdCampaignRequestMetrosInner> getMetros() {
+    return metros;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetros(@javax.annotation.Nullable List<CreateAdCampaignRequestMetrosInner> metros) {
+    this.metros = metros;
+  }
+
+
+  public CreateAdCampaignRequest platformSpecificData(@javax.annotation.Nullable CreateAdCampaignRequestPlatformSpecificData platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
     return this;
   }
 
   /**
-   * Amazon Ads only (400 elsewhere), and required there: the ad product and its campaign settings.
+   * Get platformSpecificData
    * @return platformSpecificData
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public AmazonAdsCampaignPlatformData getPlatformSpecificData() {
+  public CreateAdCampaignRequestPlatformSpecificData getPlatformSpecificData() {
     return platformSpecificData;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformSpecificData(@javax.annotation.Nullable AmazonAdsCampaignPlatformData platformSpecificData) {
+  public void setPlatformSpecificData(@javax.annotation.Nullable CreateAdCampaignRequestPlatformSpecificData platformSpecificData) {
     this.platformSpecificData = platformSpecificData;
   }
 
@@ -992,6 +1105,9 @@ public class CreateAdCampaignRequest {
         Objects.equals(this.status, createAdCampaignRequest.status) &&
         Objects.equals(this.startDate, createAdCampaignRequest.startDate) &&
         Objects.equals(this.endDate, createAdCampaignRequest.endDate) &&
+        Objects.equals(this.countries, createAdCampaignRequest.countries) &&
+        Objects.equals(this.regions, createAdCampaignRequest.regions) &&
+        Objects.equals(this.metros, createAdCampaignRequest.metros) &&
         Objects.equals(this.platformSpecificData, createAdCampaignRequest.platformSpecificData) &&
         Objects.equals(this.locationTargetingType, createAdCampaignRequest.locationTargetingType) &&
         Objects.equals(this.bidStrategy, createAdCampaignRequest.bidStrategy) &&
@@ -1005,7 +1121,7 @@ public class CreateAdCampaignRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, isSkadnetworkAttribution, promotedObject, buyingType, validateOnly, specialAdCategories, budgetAmount, budgetType, status, startDate, endDate, platformSpecificData, locationTargetingType, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, targetImpressionShare, manualCpc, networkSettings);
+    return Objects.hash(accountId, adAccountId, name, goal, isSkadnetworkAttribution, promotedObject, buyingType, validateOnly, specialAdCategories, budgetAmount, budgetType, status, startDate, endDate, countries, regions, metros, platformSpecificData, locationTargetingType, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, targetImpressionShare, manualCpc, networkSettings);
   }
 
   @Override
@@ -1026,6 +1142,9 @@ public class CreateAdCampaignRequest {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
+    sb.append("    regions: ").append(toIndentedString(regions)).append("\n");
+    sb.append("    metros: ").append(toIndentedString(metros)).append("\n");
     sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("    locationTargetingType: ").append(toIndentedString(locationTargetingType)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
@@ -1154,6 +1273,35 @@ public class CreateAdCampaignRequest {
     // add `endDate` to the URL query string
     if (getEndDate() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sendDate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEndDate()))));
+    }
+
+    // add `countries` to the URL query string
+    if (getCountries() != null) {
+      for (int i = 0; i < getCountries().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scountries%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getCountries().get(i)))));
+      }
+    }
+
+    // add `regions` to the URL query string
+    if (getRegions() != null) {
+      for (int i = 0; i < getRegions().size(); i++) {
+        if (getRegions().get(i) != null) {
+          joiner.add(getRegions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sregions%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `metros` to the URL query string
+    if (getMetros() != null) {
+      for (int i = 0; i < getMetros().size(); i++) {
+        if (getMetros().get(i) != null) {
+          joiner.add(getMetros().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%smetros%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `platformSpecificData` to the URL query string

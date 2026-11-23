@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   InboxMetricsResponseMeta.JSON_PROPERTY_TOTAL,
   InboxMetricsResponseMeta.JSON_PROPERTY_TOTAL_IS_CAPPED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxMetricsResponseMeta {
   public static final String JSON_PROPERTY_STALE = "stale";
   @javax.annotation.Nonnull

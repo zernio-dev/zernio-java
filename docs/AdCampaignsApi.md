@@ -7262,7 +7262,7 @@ public class Example {
 | **fromDate** | **LocalDate**| Inclusive start of the range (YYYY-MM-DD). | |
 | **toDate** | **LocalDate**| Inclusive end of the range (YYYY-MM-DD). Max 730-day range. | |
 | **adAccountId** | **String**| Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;) to rank one ad account only. | [optional] |
-| **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit, microsoft, amazon] |
+| **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit, microsoft, amazon, applovin] |
 | **sortBy** | **String**| Metric the ads are ranked by, highest first. | [optional] [default to spend] [enum: spend, impressions, clicks, conversions, roas] |
 | **limit** | **Integer**| How many ads to return. | [optional] [default to 50] |
 
@@ -7353,7 +7353,7 @@ public class Example {
 | **fromDate** | **LocalDate**| Inclusive start of the range (YYYY-MM-DD). | |
 | **toDate** | **LocalDate**| Inclusive end of the range (YYYY-MM-DD). Max 730-day range. | |
 | **adAccountId** | **String**| Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;) to rank one ad account only. | [optional] |
-| **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit, microsoft, amazon] |
+| **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit, microsoft, amazon, applovin] |
 | **sortBy** | **String**| Metric the ads are ranked by, highest first. | [optional] [default to spend] [enum: spend, impressions, clicks, conversions, roas] |
 | **limit** | **Integer**| How many ads to return. | [optional] [default to 50] |
 

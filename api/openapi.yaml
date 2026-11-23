@@ -23640,13 +23640,17 @@ paths:
   /v1/connect/applovin-ads/credentials:
     post:
       description: |
-        Connect AppLovin Axon with the Conversion API key and Event Key from the Keys page of Axon Ads Manager.
+        Connect an AppLovin account (Axon ads) with the Conversion API key and Event Key from the Keys page of AppLovin Axon Ads Manager, the Campaign Management API key with its account id, or all of them.
 
-        Zernio checks both keys with Axon before saving them. The account then receives the conversion events you forward to it (`POST /v1/events`, forwarding rules), and its Event Key works as a site tag on tracking sites.
+        Zernio checks each key set with AppLovin before saving it.
+
+        - With the conversion keys, the account receives the conversion events you forward to it (`POST /v1/events`, forwarding rules), and its Event Key works as a site tag on tracking sites.
+        - With the Campaign Management keys, Zernio reads, creates and manages the account's campaigns and creative sets (`/v1/ads`).
+        - Connecting the Campaign Management keys to a profile that already has the conversion keys adds them to the same connection. A connection made with the Campaign Management keys only cannot take the conversion keys later: connect all keys together instead.
 
         Add the optional Report Key to sync AppLovin spend. Every few hours Zernio reads spend, impressions and clicks per campaign and creative set for the last 7 days, so AppLovin campaigns show in the ads campaign listings and in campaign results.
 
-        Zernio checks the Report Key with AppLovin before saving it. Connecting again without a Report Key keeps the one already saved.
+        Connecting again without a key keeps the one already saved.
 
         Requires the Ads add-on.
       operationId: connectAppLovinAdsCredentials
@@ -23656,6 +23660,8 @@ paths:
             example:
               apiKey: axon-conversion-api-key
               eventKey: abc123def456
+              campaignApiKey: axon-campaign-management-key
+              accountId: "123456"
               profileId: 6507a1b2c3d4e5f6a7b8c9d0
             schema:
               $ref: "#/components/schemas/connectAppLovinAdsCredentials_request"
@@ -23674,8 +23680,9 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
-          description: "Unauthorized, or Axon did not accept the Conversion API key\
-            \ and Event Key, or AppLovin did not accept the Report Key (code invalid_credentials)."
+          description: "Unauthorized, or AppLovin did not accept the Conversion API\
+            \ key and Event Key, the Campaign Management key or the Report Key (code\
+            \ invalid_credentials)."
         "402":
           $ref: "#/components/responses/PaymentRequired"
         "403":
@@ -23683,7 +23690,7 @@ paths:
         "502":
           description: "Axon or AppLovin could not confirm the keys right now, so\
             \ nothing was saved (code platform_api_error). Retry in a minute."
-      summary: Connect an AppLovin Axon account
+      summary: Connect an AppLovin account
       tags:
       - Connect
       x-resource-group: accounts
@@ -54821,6 +54828,7 @@ paths:
       - microsoft
       - amazon
       - tradedesk
+      - applovin
       x-accepts:
       - application/json
   /v1/ads/search-terms:
@@ -59510,6 +59518,7 @@ paths:
       - microsoft
       - amazon
       - tradedesk
+      - applovin
       x-accepts:
       - application/json
     post:
@@ -59637,6 +59646,7 @@ paths:
       - reddit
       - amazon
       - tradedesk
+      - applovin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -59752,6 +59762,7 @@ paths:
       - microsoft
       - amazon
       - tradedesk
+      - applovin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -60451,6 +60462,7 @@ paths:
       - microsoft
       - amazon
       - tradedesk
+      - applovin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -60726,6 +60738,7 @@ paths:
       - microsoft
       - amazon
       - tradedesk
+      - applovin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -61217,6 +61230,7 @@ paths:
       - microsoft
       - amazon
       - tradedesk
+      - applovin
       x-accepts:
       - application/json
     post:
@@ -62365,6 +62379,7 @@ paths:
       - microsoft
       - amazon
       - tradedesk
+      - applovin
       x-accepts:
       - application/json
   /v1/ads/performance:
@@ -62433,6 +62448,7 @@ paths:
           - reddit
           - microsoft
           - amazon
+          - applovin
           type: string
         style: form
       - description: "Metric the ads are ranked by, highest first."
@@ -62512,6 +62528,7 @@ paths:
       - reddit
       - microsoft
       - amazon
+      - applovin
       x-accepts:
       - application/json
   /v1/ads/timeline:
@@ -62665,6 +62682,7 @@ paths:
       - reddit
       - microsoft
       - amazon
+      - applovin
       x-accepts:
       - application/json
   /v1/ads/{adId}:
@@ -62753,6 +62771,7 @@ paths:
       - microsoft
       - amazon
       - tradedesk
+      - applovin
       x-accepts:
       - application/json
     get:
@@ -62881,6 +62900,7 @@ paths:
       - microsoft
       - amazon
       - tradedesk
+      - applovin
       x-accepts:
       - application/json
     put:
@@ -63145,6 +63165,7 @@ paths:
       - reddit
       - microsoft
       - amazon
+      - applovin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -63255,6 +63276,7 @@ paths:
       - reddit
       - microsoft
       - amazon
+      - applovin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -64103,6 +64125,7 @@ paths:
       - reddit
       - microsoft
       - amazon
+      - applovin
       x-accepts:
       - application/json
   /v1/ads/preview:
@@ -65229,6 +65252,7 @@ paths:
       - reddit
       - microsoft
       - amazon
+      - applovin
       x-accepts:
       - application/json
   /v1/ads/{adId}/tracking-tags:
@@ -71953,6 +71977,7 @@ paths:
       - microsoft
       - amazon
       - tradedesk
+      - applovin
       x-accepts:
       - application/json
     patch:
@@ -73634,6 +73659,7 @@ paths:
       - reddit
       - microsoft
       - amazon
+      - applovin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -121821,6 +121847,116 @@ components:
           type: array
       required:
       - strategy
+    AppLovinAdsPlatformData:
+      additionalProperties: {}
+      description: "AppLovin options in platformSpecificData. Campaign fields apply\
+        \ to a new campaign; assets, languages and brandInfo to the creative set (the\
+        \ ad)."
+      properties:
+        campaignType:
+          description: Required for a new campaign.
+          enum:
+          - APP
+          - WEB
+          type: string
+        os:
+          description: APP campaigns. Required.
+          enum:
+          - IOS
+          - ANDROID
+          type: string
+        packageName:
+          description: APP campaigns. Required.
+          example: com.acme.game
+          type: string
+        itunesId:
+          description: iOS APP campaigns. Required.
+          example: 1234567890
+          type: integer
+        websiteUrl:
+          description: WEB campaigns. Required unless linkUrl is sent.
+          format: uri
+          type: string
+        biddingStrategy:
+          description: "Defaults to CPI billing for a CPI goal, CPM billing otherwise.\
+            \ TARGET_GOAL_WITH_CPI_BILLING takes an APP campaign with a CPI goal only.\
+            \ Set at creation only."
+          enum:
+          - TARGET_GOAL_WITH_CPI_BILLING
+          - AUTO_BIDDING_WITH_CPM_BILLING
+          type: string
+        goalType:
+          description: "APP takes all, WEB takes CPE, CPP and CHK_ROAS. Defaults from\
+            \ goal: app_promotion is CPI, conversions CPP, lead_generation CPE. Set\
+            \ at creation only."
+          enum:
+          - CPI
+          - CPE
+          - CPP
+          - AD_ROAS
+          - CHK_ROAS
+          - BLD_ROAS
+          type: string
+        goalValue:
+          description: "The goal for every country (a cost, or a ROAS ratio). APP\
+            \ limits: CPI below 200, CPE and CPP below 500, AD_ROAS at least 0.1,\
+            \ CHK_ROAS at least 0.01, BLD_ROAS at least 0.05. Send this or countryGoalValues."
+          example: 2.5
+          type: number
+        countryGoalValues:
+          additionalProperties:
+            type: number
+          description: Per-country goal values for targeted countries.
+          example:
+            US: 2.5
+        roasDayTarget:
+          description: "Required for ROAS goals (and WEB CPP). APP takes DAY7 or DAY28,\
+            \ WEB DAY0 or DAY7."
+          enum:
+          - DAY0
+          - DAY7
+          - DAY28
+          type: string
+        eventTarget:
+          description: Required for a CPE goal.
+          example: GENERATE_LEAD
+          type: string
+        countryBudgets:
+          additionalProperties:
+            type: number
+          description: "Per-country daily budgets, instead of budgetAmount. AppLovin\
+            \ budgets are daily only."
+          example:
+            US: 40
+            CA: 10
+        tracking:
+          $ref: "#/components/schemas/AppLovinAdsPlatformData_tracking"
+        audienceStrategy:
+          description: WEB campaigns.
+          enum:
+          - UNIVERSAL
+          - PROSPECTING
+          - DISCOVERY
+          type: string
+        assets:
+          description: "The creative set media: URLs Zernio uploads to AppLovin, or\
+            \ ids of assets already there. Needs a HOSTED_HTML asset, or an IMG_INTER_P\
+            \ image plus a VID_LONG_P or VID_SHORT_P video."
+          items:
+            $ref: "#/components/schemas/AppLovinAdsPlatformData_assets_inner"
+          maxItems: 40
+          minItems: 1
+          type: array
+        languages:
+          description: Creative set languages as AppLovin names them. All languages
+            by default.
+          example:
+          - ENGLISH
+          items:
+            type: string
+          type: array
+        brandInfo:
+          $ref: "#/components/schemas/AppLovinAdsPlatformData_brandInfo"
     LinkedInAdsPlatformData:
       additionalProperties: {}
       description: |
@@ -164364,13 +164500,32 @@ components:
         redirectUrl:
           type: string
     connectAppLovinAdsCredentials_request:
+      description: "Send apiKey with eventKey, campaignApiKey with accountId, or all\
+        \ four. Each pair goes together (400 otherwise)."
       properties:
         apiKey:
-          description: Conversion API key from the Keys page of Axon Ads Manager.
+          description: Conversion API key from the Keys page of AppLovin Axon Ads
+            Manager. Sent with eventKey.
           type: string
         eventKey:
-          description: "Event Key from the Keys page of Axon Ads Manager: 8 to 128\
-            \ letters, digits, dots, dashes or underscores."
+          description: "Event Key from the Keys page of AppLovin Axon Ads Manager:\
+            \ 8 to 128 letters, digits, dots, dashes or underscores. Sent with apiKey."
+          type: string
+        campaignApiKey:
+          description: "Campaign Management API key from the Keys page of ads.axon.ai\
+            \ (visible to account Admins only). Sent with accountId. Lets Zernio read,\
+            \ create and manage campaigns and creative sets."
+          type: string
+        accountId:
+          description: "Numeric AppLovin account id (Account menu, then Go to settings,\
+            \ in ads.axon.ai). Sent with campaignApiKey."
+          pattern: "^\\d{1,20}$"
+          type: string
+        reconnectAccountId:
+          description: "The Zernio id of the AppLovin connection being reconnected\
+            \ (a connection on this profile). The keys sent update that connection,\
+            \ which keeps its identity, instead of creating one: send it to add or\
+            \ replace keys on an existing connection."
           type: string
         reportKey:
           description: "Optional Report Key from the Keys page of your AppLovin account.\
@@ -164391,8 +164546,6 @@ components:
             \ echoed back as redirectUrl."
           type: string
       required:
-      - apiKey
-      - eventKey
       - profileId
     connectAppLovinAdsCredentials_200_response:
       example:
@@ -164400,10 +164553,16 @@ components:
         redirectUrl: redirectUrl
         accountName: accountName
         eventKey: eventKey
+        axonAccountId: axonAccountId
       properties:
         accountId:
           type: string
         eventKey:
+          description: Present when the request sent the conversion keys.
+          type: string
+        axonAccountId:
+          description: The AppLovin account id. Present when the request sent the
+            Campaign Management keys.
           type: string
         accountName:
           type: string
@@ -201143,6 +201302,27 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/Pagination"
+    createAdCampaign_request_regions_inner:
+      properties:
+        key:
+          example: CA
+          type: string
+      required:
+      - key
+    createAdCampaign_request_metros_inner:
+      properties:
+        key:
+          example: "New York-Newark-Jersey City, NY-NJ-PA"
+          type: string
+      required:
+      - key
+    createAdCampaign_request_platformSpecificData:
+      description: "Amazon Ads (required there: the ad product and its campaign settings)\
+        \ and AppLovin (the campaign type, app or website, goal, bidding and tracking;\
+        \ its creative set fields do not apply here) only, 400 elsewhere."
+      oneOf:
+      - $ref: "#/components/schemas/AmazonAdsCampaignPlatformData"
+      - $ref: "#/components/schemas/AppLovinAdsPlatformData"
     createAdCampaign_request:
       properties:
         accountId:
@@ -201224,24 +201404,45 @@ components:
           - PAUSED
           type: string
         startDate:
-          description: "Reddit and Amazon only (400 elsewhere). Campaign start (ISO\
-            \ 8601); a value without an offset is read in the ad account time zone.\
-            \ Requires a campaign budget (`budgetAmount` + `budgetType`, 400 otherwise).\
-            \ Defaults to now."
+          description: "Reddit, Amazon and AppLovin only (400 elsewhere). Campaign\
+            \ start (ISO 8601); a value without an offset is read in the ad account\
+            \ time zone. Requires a campaign budget (`budgetAmount` + `budgetType`,\
+            \ 400 otherwise). AppLovin reads it in UTC and refuses a start before\
+            \ today. Defaults to now."
           format: date-time
           type: string
         endDate:
-          description: "Reddit and Amazon only (400 elsewhere). Campaign end (ISO\
-            \ 8601); a value without an offset is read in the ad account time zone.\
-            \ Requires a campaign budget (400 otherwise), and is required for `budgetType:\
-            \ lifetime`."
+          description: "Reddit, Amazon and AppLovin only (400 elsewhere). Campaign\
+            \ end (ISO 8601); a value without an offset is read in the ad account\
+            \ time zone. Requires a campaign budget (400 otherwise), and is required\
+            \ for `budgetType: lifetime`. On AppLovin no endDate means continuous\
+            \ delivery."
           format: date-time
           type: string
+        countries:
+          description: "AppLovin only (400 elsewhere), where the campaign carries\
+            \ the targeting: the countries it serves, at least one."
+          example:
+          - US
+          - CA
+          items:
+            pattern: "^[A-Z]{2}$"
+            type: string
+          type: array
+        regions:
+          description: "AppLovin only (400 elsewhere). US state codes (`CA` or `US-CA`),\
+            \ with `US` in countries. Never together with metros."
+          items:
+            $ref: "#/components/schemas/createAdCampaign_request_regions_inner"
+          type: array
+        metros:
+          description: "AppLovin only (400 elsewhere). AppLovin metro names, with\
+            \ `US` in countries. Never together with regions."
+          items:
+            $ref: "#/components/schemas/createAdCampaign_request_metros_inner"
+          type: array
         platformSpecificData:
-          allOf:
-          - $ref: "#/components/schemas/AmazonAdsCampaignPlatformData"
-          description: "Amazon Ads only (400 elsewhere), and required there: the ad\
-            \ product and its campaign settings."
+          $ref: "#/components/schemas/createAdCampaign_request_platformSpecificData"
         locationTargetingType:
           allOf:
           - $ref: "#/components/schemas/GoogleLocationTargetingType"
@@ -201743,19 +201944,22 @@ components:
           allOf:
           - $ref: "#/components/schemas/BidStrategy"
           description: |
-            **Meta + Google.**
+            **Meta, Google and AppLovin.**
 
             - Meta: the campaign default that ad sets inherit unless they override it.
             - Google: the campaign's own bidding strategy. LOWEST_COST_WITHOUT_CAP = Maximize Conversions, COST_CAP + bidAmount = Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor = Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount = Maximize Clicks with a CPC ceiling.
             - Google: portfolioBidStrategyId attaches a portfolio strategy instead.
+            - AppLovin: sets the campaign goal value; the goal type itself cannot change. COST_CAP + bidAmount for a CPI, CPE or CPP goal, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor for a ROAS goal.
+            - AppLovin app limits, checked before AppLovin is called: CPI below 200, CPE and CPP below 500, AD_ROAS at least 0.1, CHK_ROAS at least 0.01, BLD_ROAS at least 0.05.
+            - AppLovin: a goal set per country, or the other goal family, is a 422.
         bidAmount:
-          description: "**Google only.** Whole currency units (USD: 12 = $12.00).\
-            \ Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required\
-            \ for both."
+          description: "**Google and AppLovin.** Whole currency units (USD: 12 = $12.00).\
+            \ Google: max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP;\
+            \ required for both. AppLovin: the CPI, CPE or CPP goal value, with COST_CAP."
           type: number
         roasAverageFloor:
-          description: "**Google only.** Decimal ROAS multiplier (2.0 = 2.0x), required\
-            \ for LOWEST_COST_WITH_MIN_ROAS."
+          description: "**Google and AppLovin.** Decimal ROAS multiplier (2.0 = 2.0x),\
+            \ required for LOWEST_COST_WITH_MIN_ROAS. AppLovin: the ROAS goal value."
           type: number
         portfolioBidStrategyId:
           description: '**Google only.** Attach an existing portfolio bid strategy
@@ -201798,7 +202002,7 @@ components:
         budget:
           $ref: "#/components/schemas/updateAdCampaign_request_budget"
         name:
-          description: '**Meta and Reddit.** Rename the campaign.'
+          description: "**Meta, Reddit and AppLovin.** Rename the campaign."
           maxLength: 255
           type: string
         platformSpecificData:
@@ -217886,9 +218090,14 @@ components:
       - values
     createStandaloneAd_request_platformSpecificData:
       description: |
-        Platform-specific options. The platform is derived from `accountId`; options for a different platform return a 400. LinkedIn (campaign bidding and delivery controls), Meta (the bid trio) and Amazon Ads (required: the ad product, products, creative and targeting) have options today.
+        Platform-specific options. The platform is derived from `accountId`; options for a different platform return a 400. LinkedIn (campaign bidding and delivery controls), Meta (the bid trio) Amazon Ads (required: the ad product, products, creative and targeting) and AppLovin (the campaign and creative set) have options today.
 
         **Amazon Ads**: see `AmazonAdsPlatformData`. Amazon has no dry run, so `validateOnly` returns a 501.
+
+        **AppLovin**
+
+        - A new campaign needs `campaignType` (`APP` or `WEB`), the goal and, for an app, `os`, `packageName` and `tracking`. With `existingCampaignId`, only the creative set fields (`assets`, `languages`, `brandInfo`) apply.
+        - Zernio checks every documented AppLovin rule (goal value limits, ROAS day targets, US-only regions and metros, the asset combination, brand info lengths) before calling AppLovin, because 100 refused calls in five minutes lock the AppLovin account for a day. `validateOnly` runs those checks and calls nothing.
 
         **Meta**
 
@@ -217899,6 +218108,7 @@ components:
       - $ref: "#/components/schemas/LinkedInAdsPlatformData"
       - $ref: "#/components/schemas/MetaAdsPlatformData"
       - $ref: "#/components/schemas/AmazonAdsPlatformData"
+      - $ref: "#/components/schemas/AppLovinAdsPlatformData"
     createStandaloneAd_request_brandIdentity:
       description: |
         TikTok only; non-TikTok platforms ignore this field. Synthetic Brand Identity used when the ad attributes to a CUSTOMIZED_USER (instead of a real TT_USER @username).
@@ -249616,6 +249826,73 @@ components:
       - dayOfWeek
       - endHour
       - startHour
+    AppLovinAdsPlatformData_tracking:
+      description: APP campaigns. Required.
+      properties:
+        method:
+          enum:
+          - ADJUST
+          - APPSFLYER
+          - APSALAR
+          - BRANCH
+          - KOCHAVA
+          - TENJIN
+          type: string
+        impressionUrl:
+          format: uri
+          type: string
+        clickUrl:
+          format: uri
+          type: string
+      required:
+      - clickUrl
+      - impressionUrl
+      - method
+    AppLovinAdsPlatformData_assets_inner_oneOf:
+      properties:
+        type:
+          enum:
+          - HOSTED_HTML
+          - VID_LONG_P
+          - VID_SHORT_P
+          - IMG_BANNER
+          - IMG_INTER_P
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - type
+      - url
+    AppLovinAdsPlatformData_assets_inner:
+      oneOf:
+      - $ref: "#/components/schemas/AppLovinAdsPlatformData_assets_inner_oneOf"
+      - $ref: "#/components/schemas/WebhookPayloadCampaignSubmission_participant"
+    AppLovinAdsPlatformData_brandInfo:
+      description: WEB creative sets. Omitted means the account-level brand info.
+      properties:
+        title:
+          maxLength: 25
+          type: string
+        description:
+          maxLength: 75
+          type: string
+        buttonLabel:
+          maxLength: 13
+          type: string
+        buttonColor:
+          example: "#00B3FF"
+          pattern: "^#[0-9A-Fa-f]{6}$"
+          type: string
+        iconUrl:
+          format: uri
+          type: string
+      required:
+      - buttonColor
+      - buttonLabel
+      - description
+      - iconUrl
+      - title
     LinkedInAdsPlatformData_carousel_cards_inner:
       additionalProperties: false
       properties:

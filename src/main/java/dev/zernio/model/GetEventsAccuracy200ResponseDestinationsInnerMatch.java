@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetEventsAccuracy200ResponseDestinationsInnerMatch.JSON_PROPERTY_EXTERNAL_ID,
   GetEventsAccuracy200ResponseDestinationsInnerMatch.JSON_PROPERTY_CLICK_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEventsAccuracy200ResponseDestinationsInnerMatch {
   public static final String JSON_PROPERTY_EVENTS = "events";
   @javax.annotation.Nullable

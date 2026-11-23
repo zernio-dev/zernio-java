@@ -32,6 +32,10 @@ import dev.zernio.model.AmazonSponsoredBrandsCampaignDataPlacementAdjustmentsInn
 import dev.zernio.model.AmazonSponsoredDisplayAdDataAllOfTargets;
 import dev.zernio.model.AmazonSponsoredProductsAdDataAllOfAutoTargeting;
 import dev.zernio.model.AmazonSponsoredProductsCampaignDataPlacementBiddingInner;
+import dev.zernio.model.AppLovinAdsPlatformData;
+import dev.zernio.model.AppLovinAdsPlatformDataAssetsInner;
+import dev.zernio.model.AppLovinAdsPlatformDataBrandInfo;
+import dev.zernio.model.AppLovinAdsPlatformDataTracking;
 import dev.zernio.model.BidStrategy;
 import dev.zernio.model.LinkedInAdsPlatformData;
 import dev.zernio.model.LinkedInAdsPlatformDataCarousel;
@@ -47,9 +51,12 @@ import dev.zernio.model.MetaAdScheduleInner;
 import dev.zernio.model.MetaAdsPlatformData;
 import dev.zernio.model.MetaCustomerLifecycle;
 import java.math.BigDecimal;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -77,7 +84,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = CreateStandaloneAdRequestPlatformSpecificData.CreateStandaloneAdRequestPlatformSpecificDataDeserializer.class)
 @JsonSerialize(using = CreateStandaloneAdRequestPlatformSpecificData.CreateStandaloneAdRequestPlatformSpecificDataSerializer.class)
 public class CreateStandaloneAdRequestPlatformSpecificData extends AbstractOpenApiSchema {
@@ -138,6 +145,32 @@ public class CreateStandaloneAdRequestPlatformSpecificData extends AbstractOpenA
             } catch (Exception e) {
                 // deserialization failed, continue
                 log.log(Level.FINER, "Input data does not match schema 'AmazonAdsPlatformData'", e);
+            }
+
+            // deserialize AppLovinAdsPlatformData
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (AppLovinAdsPlatformData.class.equals(Integer.class) || AppLovinAdsPlatformData.class.equals(Long.class) || AppLovinAdsPlatformData.class.equals(Float.class) || AppLovinAdsPlatformData.class.equals(Double.class) || AppLovinAdsPlatformData.class.equals(Boolean.class) || AppLovinAdsPlatformData.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((AppLovinAdsPlatformData.class.equals(Integer.class) || AppLovinAdsPlatformData.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((AppLovinAdsPlatformData.class.equals(Float.class) || AppLovinAdsPlatformData.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (AppLovinAdsPlatformData.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (AppLovinAdsPlatformData.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(AppLovinAdsPlatformData.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'AppLovinAdsPlatformData'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'AppLovinAdsPlatformData'", e);
             }
 
             // deserialize LinkedInAdsPlatformData
@@ -221,6 +254,11 @@ public class CreateStandaloneAdRequestPlatformSpecificData extends AbstractOpenA
         setActualInstance(o);
     }
 
+    public CreateStandaloneAdRequestPlatformSpecificData(AppLovinAdsPlatformData o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
     public CreateStandaloneAdRequestPlatformSpecificData(LinkedInAdsPlatformData o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
@@ -233,6 +271,7 @@ public class CreateStandaloneAdRequestPlatformSpecificData extends AbstractOpenA
 
     static {
         schemas.put("AmazonAdsPlatformData", AmazonAdsPlatformData.class);
+        schemas.put("AppLovinAdsPlatformData", AppLovinAdsPlatformData.class);
         schemas.put("LinkedInAdsPlatformData", LinkedInAdsPlatformData.class);
         schemas.put("MetaAdsPlatformData", MetaAdsPlatformData.class);
         JSON.registerDescendants(CreateStandaloneAdRequestPlatformSpecificData.class, Collections.unmodifiableMap(schemas));
@@ -246,7 +285,7 @@ public class CreateStandaloneAdRequestPlatformSpecificData extends AbstractOpenA
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * AmazonAdsPlatformData, LinkedInAdsPlatformData, MetaAdsPlatformData
+     * AmazonAdsPlatformData, AppLovinAdsPlatformData, LinkedInAdsPlatformData, MetaAdsPlatformData
      *
      * It could be an instance of the 'oneOf' schemas.
      * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
@@ -254,6 +293,11 @@ public class CreateStandaloneAdRequestPlatformSpecificData extends AbstractOpenA
     @Override
     public void setActualInstance(Object instance) {
         if (JSON.isInstanceOf(AmazonAdsPlatformData.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (JSON.isInstanceOf(AppLovinAdsPlatformData.class, instance, new HashSet<Class<?>>())) {
             super.setActualInstance(instance);
             return;
         }
@@ -268,14 +312,14 @@ public class CreateStandaloneAdRequestPlatformSpecificData extends AbstractOpenA
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be AmazonAdsPlatformData, LinkedInAdsPlatformData, MetaAdsPlatformData");
+        throw new RuntimeException("Invalid instance type. Must be AmazonAdsPlatformData, AppLovinAdsPlatformData, LinkedInAdsPlatformData, MetaAdsPlatformData");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * AmazonAdsPlatformData, LinkedInAdsPlatformData, MetaAdsPlatformData
+     * AmazonAdsPlatformData, AppLovinAdsPlatformData, LinkedInAdsPlatformData, MetaAdsPlatformData
      *
-     * @return The actual instance (AmazonAdsPlatformData, LinkedInAdsPlatformData, MetaAdsPlatformData)
+     * @return The actual instance (AmazonAdsPlatformData, AppLovinAdsPlatformData, LinkedInAdsPlatformData, MetaAdsPlatformData)
      */
     @Override
     public Object getActualInstance() {
@@ -291,6 +335,17 @@ public class CreateStandaloneAdRequestPlatformSpecificData extends AbstractOpenA
      */
     public AmazonAdsPlatformData getAmazonAdsPlatformData() throws ClassCastException {
         return (AmazonAdsPlatformData)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `AppLovinAdsPlatformData`. If the actual instance is not `AppLovinAdsPlatformData`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `AppLovinAdsPlatformData`
+     * @throws ClassCastException if the instance is not `AppLovinAdsPlatformData`
+     */
+    public AppLovinAdsPlatformData getAppLovinAdsPlatformData() throws ClassCastException {
+        return (AppLovinAdsPlatformData)super.getActualInstance();
     }
 
     /**
@@ -364,6 +419,12 @@ public class CreateStandaloneAdRequestPlatformSpecificData extends AbstractOpenA
     if (getActualInstance() instanceof AmazonAdsPlatformData) {
         if (getActualInstance() != null) {
           joiner.add(((AmazonAdsPlatformData)getActualInstance()).toUrlQueryString(prefix + "one_of_2" + suffix));
+        }
+        return joiner.toString();
+    }
+    if (getActualInstance() instanceof AppLovinAdsPlatformData) {
+        if (getActualInstance() != null) {
+          joiner.add(((AppLovinAdsPlatformData)getActualInstance()).toUrlQueryString(prefix + "one_of_3" + suffix));
         }
         return joiner.toString();
     }

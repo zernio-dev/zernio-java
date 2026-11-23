@@ -2,10 +2,11 @@
 
 # CreateStandaloneAdRequestPlatformSpecificData
 
-Platform-specific options. The platform is derived from `accountId`; options for a different platform return a 400. LinkedIn (campaign bidding and delivery controls), Meta (the bid trio) and Amazon Ads (required: the ad product, products, creative and targeting) have options today.  **Amazon Ads**: see `AmazonAdsPlatformData`. Amazon has no dry run, so `validateOnly` returns a 501.  **Meta**  - `bidStrategy`, `bidAmount` and `roasAverageFloor` may be sent here instead of at the root (the preferred home going forward). Sending them in BOTH places returns a 400 (`mutually_exclusive_fields`). - Sending any bid field in `adSetId` attach mode is a 400 (the ad set already has its bid). - `dailyMinSpendTarget` / `lifetimeMinSpendTarget` set the new ad set's minimum spend and live here only; also rejected in `adSetId` attach mode. 
+Platform-specific options. The platform is derived from `accountId`; options for a different platform return a 400. LinkedIn (campaign bidding and delivery controls), Meta (the bid trio) Amazon Ads (required: the ad product, products, creative and targeting) and AppLovin (the campaign and creative set) have options today.  **Amazon Ads**: see `AmazonAdsPlatformData`. Amazon has no dry run, so `validateOnly` returns a 501.  **AppLovin**  - A new campaign needs `campaignType` (`APP` or `WEB`), the goal and, for an app, `os`, `packageName` and `tracking`. With `existingCampaignId`, only the creative set fields (`assets`, `languages`, `brandInfo`) apply. - Zernio checks every documented AppLovin rule (goal value limits, ROAS day targets, US-only regions and metros, the asset combination, brand info lengths) before calling AppLovin, because 100 refused calls in five minutes lock the AppLovin account for a day. `validateOnly` runs those checks and calls nothing.  **Meta**  - `bidStrategy`, `bidAmount` and `roasAverageFloor` may be sent here instead of at the root (the preferred home going forward). Sending them in BOTH places returns a 400 (`mutually_exclusive_fields`). - Sending any bid field in `adSetId` attach mode is a 400 (the ad set already has its bid). - `dailyMinSpendTarget` / `lifetimeMinSpendTarget` set the new ad set's minimum spend and live here only; also rejected in `adSetId` attach mode. 
 
 ## oneOf schemas
 * [AmazonAdsPlatformData](AmazonAdsPlatformData.md)
+* [AppLovinAdsPlatformData](AppLovinAdsPlatformData.md)
 * [LinkedInAdsPlatformData](LinkedInAdsPlatformData.md)
 * [MetaAdsPlatformData](MetaAdsPlatformData.md)
 
@@ -14,6 +15,7 @@ Platform-specific options. The platform is derived from `accountId`; options for
 // Import classes:
 import dev.zernio.model.CreateStandaloneAdRequestPlatformSpecificData;
 import dev.zernio.model.AmazonAdsPlatformData;
+import dev.zernio.model.AppLovinAdsPlatformData;
 import dev.zernio.model.LinkedInAdsPlatformData;
 import dev.zernio.model.MetaAdsPlatformData;
 
@@ -27,6 +29,13 @@ public class Example {
         exampleCreateStandaloneAdRequestPlatformSpecificData.setActualInstance(exampleAmazonAdsPlatformData);
         // to get back the AmazonAdsPlatformData set earlier
         AmazonAdsPlatformData testAmazonAdsPlatformData = (AmazonAdsPlatformData) exampleCreateStandaloneAdRequestPlatformSpecificData.getActualInstance();
+
+        // create a new AppLovinAdsPlatformData
+        AppLovinAdsPlatformData exampleAppLovinAdsPlatformData = new AppLovinAdsPlatformData();
+        // set CreateStandaloneAdRequestPlatformSpecificData to AppLovinAdsPlatformData
+        exampleCreateStandaloneAdRequestPlatformSpecificData.setActualInstance(exampleAppLovinAdsPlatformData);
+        // to get back the AppLovinAdsPlatformData set earlier
+        AppLovinAdsPlatformData testAppLovinAdsPlatformData = (AppLovinAdsPlatformData) exampleCreateStandaloneAdRequestPlatformSpecificData.getActualInstance();
 
         // create a new LinkedInAdsPlatformData
         LinkedInAdsPlatformData exampleLinkedInAdsPlatformData = new LinkedInAdsPlatformData();

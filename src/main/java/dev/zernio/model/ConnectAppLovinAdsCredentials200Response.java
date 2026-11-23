@@ -35,10 +35,11 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ConnectAppLovinAdsCredentials200Response.JSON_PROPERTY_ACCOUNT_ID,
   ConnectAppLovinAdsCredentials200Response.JSON_PROPERTY_EVENT_KEY,
+  ConnectAppLovinAdsCredentials200Response.JSON_PROPERTY_AXON_ACCOUNT_ID,
   ConnectAppLovinAdsCredentials200Response.JSON_PROPERTY_ACCOUNT_NAME,
   ConnectAppLovinAdsCredentials200Response.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectAppLovinAdsCredentials200Response {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
@@ -47,6 +48,10 @@ public class ConnectAppLovinAdsCredentials200Response {
   public static final String JSON_PROPERTY_EVENT_KEY = "eventKey";
   @javax.annotation.Nullable
   private String eventKey;
+
+  public static final String JSON_PROPERTY_AXON_ACCOUNT_ID = "axonAccountId";
+  @javax.annotation.Nullable
+  private String axonAccountId;
 
   public static final String JSON_PROPERTY_ACCOUNT_NAME = "accountName";
   @javax.annotation.Nullable
@@ -89,7 +94,7 @@ public class ConnectAppLovinAdsCredentials200Response {
   }
 
   /**
-   * Get eventKey
+   * Present when the request sent the conversion keys.
    * @return eventKey
    */
   @javax.annotation.Nullable
@@ -104,6 +109,30 @@ public class ConnectAppLovinAdsCredentials200Response {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEventKey(@javax.annotation.Nullable String eventKey) {
     this.eventKey = eventKey;
+  }
+
+
+  public ConnectAppLovinAdsCredentials200Response axonAccountId(@javax.annotation.Nullable String axonAccountId) {
+    this.axonAccountId = axonAccountId;
+    return this;
+  }
+
+  /**
+   * The AppLovin account id. Present when the request sent the Campaign Management keys.
+   * @return axonAccountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AXON_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAxonAccountId() {
+    return axonAccountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AXON_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAxonAccountId(@javax.annotation.Nullable String axonAccountId) {
+    this.axonAccountId = axonAccountId;
   }
 
 
@@ -169,13 +198,14 @@ public class ConnectAppLovinAdsCredentials200Response {
     ConnectAppLovinAdsCredentials200Response connectAppLovinAdsCredentials200Response = (ConnectAppLovinAdsCredentials200Response) o;
     return Objects.equals(this.accountId, connectAppLovinAdsCredentials200Response.accountId) &&
         Objects.equals(this.eventKey, connectAppLovinAdsCredentials200Response.eventKey) &&
+        Objects.equals(this.axonAccountId, connectAppLovinAdsCredentials200Response.axonAccountId) &&
         Objects.equals(this.accountName, connectAppLovinAdsCredentials200Response.accountName) &&
         Objects.equals(this.redirectUrl, connectAppLovinAdsCredentials200Response.redirectUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, eventKey, accountName, redirectUrl);
+    return Objects.hash(accountId, eventKey, axonAccountId, accountName, redirectUrl);
   }
 
   @Override
@@ -184,6 +214,7 @@ public class ConnectAppLovinAdsCredentials200Response {
     sb.append("class ConnectAppLovinAdsCredentials200Response {\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    eventKey: ").append(toIndentedString(eventKey)).append("\n");
+    sb.append("    axonAccountId: ").append(toIndentedString(axonAccountId)).append("\n");
     sb.append("    accountName: ").append(toIndentedString(accountName)).append("\n");
     sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
     sb.append("}");
@@ -241,6 +272,11 @@ public class ConnectAppLovinAdsCredentials200Response {
     // add `eventKey` to the URL query string
     if (getEventKey() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%seventKey%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEventKey()))));
+    }
+
+    // add `axonAccountId` to the URL query string
+    if (getAxonAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saxonAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAxonAccountId()))));
     }
 
     // add `accountName` to the URL query string

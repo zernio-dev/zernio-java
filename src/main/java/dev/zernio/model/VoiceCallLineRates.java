@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   VoiceCallLineRates.JSON_PROPERTY_MAX_PER_MINUTE_USD,
   VoiceCallLineRates.JSON_PROPERTY_NETWORKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:47:22.479345857Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T13:54:18.836653719Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class VoiceCallLineRates {
   /**
    * Caller-ID band the carrier rates this call with. &#x60;unknown_caller&#x60; (no caller ID) shows the dearest band.
