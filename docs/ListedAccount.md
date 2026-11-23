@@ -92,6 +92,7 @@
 | CAMPAIGNMANAGER360 | &quot;campaignmanager360&quot; |
 | TRADEDESKADS | &quot;tradedeskads&quot; |
 | AMAZONADS | &quot;amazonads&quot; |
+| GOHIGHLEVEL | &quot;gohighlevel&quot; |
 
 
 

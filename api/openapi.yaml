@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.765.0
+  version: 1.766.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15360,12 +15360,15 @@ paths:
           - impact
           - awin
           - hubspot
+          - salesforce
+          - gohighlevel
           - webflow
           - googleanalytics
           - line
           - wechat
           - googletagmanager
           - googlesearchconsole
+          - stripe
           - campaignmanager360
           - tradedeskads
           - amazonads
@@ -125757,6 +125760,7 @@ components:
           - campaignmanager360
           - tradedeskads
           - amazonads
+          - gohighlevel
           type: string
         profileId:
           $ref: "#/components/schemas/SocialAccount_profileId"
