@@ -5875,11 +5875,11 @@ ApiResponse<[**DeleteOrgConnection200Response**](DeleteOrgConnection200Response.
 
 ## getAmazonAdsConnectUrl
 
-> GetAmazonAdsConnectUrl200Response getAmazonAdsConnectUrl(profileId, redirectUrl, reconnectAccountId)
+> GetAmazonAdsConnectUrl200Response getAmazonAdsConnectUrl(profileId, redirectUrl, reconnectAccountId, region)
 
 Get Amazon Ads OAuth connect URL
 
-Starts Login with Amazon for Amazon Ads (scope &#x60;advertising::campaign_management&#x60;). The Amazon login becomes an account with platform &#x60;amazonads&#x60;; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (&#x60;GET /v1/ads/conversions/destinations&#x60;).  Errors on the redirect: &#x60;amazonads_no_profiles&#x60; (the login reaches no advertiser), &#x60;amazonads_no_refresh_token&#x60;. 
+Starts Login with Amazon for Amazon Ads (scope &#x60;advertising::campaign_management&#x60;). The Amazon login becomes an account with platform &#x60;amazonads&#x60;.  Every seller and vendor advertiser profile it reaches, in the NA, EU and FE regions, is an ad account (&#x60;GET /v1/ads/accounts&#x60;) and a conversions destination (&#x60;GET /v1/ads/conversions/destinations&#x60;).  Pass &#x60;region&#x60; so the user signs in on their own region&#39;s Amazon consent page; the connection still reaches the profiles of every region.  Errors on the redirect: &#x60;amazonads_no_profiles&#x60; (the login reaches no advertiser), &#x60;amazonads_no_refresh_token&#x60;. 
 
 ### Example
 
@@ -5911,8 +5911,9 @@ public class Example {
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme.
         String reconnectAccountId = "reconnectAccountId_example"; // String | Zernio account ID of the Amazon Ads account being reconnected.
+        String region = "NA"; // String | Amazon region whose consent page the user signs in on: NA (amazon.com), EU (Europe, Middle East, India) or FE (Japan, Australia, Singapore).
         try {
-            GetAmazonAdsConnectUrl200Response result = apiInstance.getAmazonAdsConnectUrl(profileId, redirectUrl, reconnectAccountId);
+            GetAmazonAdsConnectUrl200Response result = apiInstance.getAmazonAdsConnectUrl(profileId, redirectUrl, reconnectAccountId, region);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#getAmazonAdsConnectUrl");
@@ -5933,6 +5934,7 @@ public class Example {
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme. | [optional] |
 | **reconnectAccountId** | **String**| Zernio account ID of the Amazon Ads account being reconnected. | [optional] |
+| **region** | **String**| Amazon region whose consent page the user signs in on: NA (amazon.com), EU (Europe, Middle East, India) or FE (Japan, Australia, Singapore). | [optional] [default to NA] [enum: NA, EU, FE] |
 
 ### Return type
 
@@ -5961,11 +5963,11 @@ public class Example {
 
 ## getAmazonAdsConnectUrlWithHttpInfo
 
-> ApiResponse<GetAmazonAdsConnectUrl200Response> getAmazonAdsConnectUrl getAmazonAdsConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId)
+> ApiResponse<GetAmazonAdsConnectUrl200Response> getAmazonAdsConnectUrl getAmazonAdsConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId, region)
 
 Get Amazon Ads OAuth connect URL
 
-Starts Login with Amazon for Amazon Ads (scope &#x60;advertising::campaign_management&#x60;). The Amazon login becomes an account with platform &#x60;amazonads&#x60;; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (&#x60;GET /v1/ads/conversions/destinations&#x60;).  Errors on the redirect: &#x60;amazonads_no_profiles&#x60; (the login reaches no advertiser), &#x60;amazonads_no_refresh_token&#x60;. 
+Starts Login with Amazon for Amazon Ads (scope &#x60;advertising::campaign_management&#x60;). The Amazon login becomes an account with platform &#x60;amazonads&#x60;.  Every seller and vendor advertiser profile it reaches, in the NA, EU and FE regions, is an ad account (&#x60;GET /v1/ads/accounts&#x60;) and a conversions destination (&#x60;GET /v1/ads/conversions/destinations&#x60;).  Pass &#x60;region&#x60; so the user signs in on their own region&#39;s Amazon consent page; the connection still reaches the profiles of every region.  Errors on the redirect: &#x60;amazonads_no_profiles&#x60; (the login reaches no advertiser), &#x60;amazonads_no_refresh_token&#x60;. 
 
 ### Example
 
@@ -5998,8 +6000,9 @@ public class Example {
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
         String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme.
         String reconnectAccountId = "reconnectAccountId_example"; // String | Zernio account ID of the Amazon Ads account being reconnected.
+        String region = "NA"; // String | Amazon region whose consent page the user signs in on: NA (amazon.com), EU (Europe, Middle East, India) or FE (Japan, Australia, Singapore).
         try {
-            ApiResponse<GetAmazonAdsConnectUrl200Response> response = apiInstance.getAmazonAdsConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
+            ApiResponse<GetAmazonAdsConnectUrl200Response> response = apiInstance.getAmazonAdsConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId, region);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -6022,6 +6025,7 @@ public class Example {
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
 | **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme. | [optional] |
 | **reconnectAccountId** | **String**| Zernio account ID of the Amazon Ads account being reconnected. | [optional] |
+| **region** | **String**| Amazon region whose consent page the user signs in on: NA (amazon.com), EU (Europe, Middle East, India) or FE (Japan, Australia, Singapore). | [optional] [default to NA] [enum: NA, EU, FE] |
 
 ### Return type
 

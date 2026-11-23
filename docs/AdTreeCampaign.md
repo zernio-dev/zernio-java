@@ -59,6 +59,7 @@ Campaign with nested ad sets and rolled-up metrics
 | OPENAI | &quot;openai&quot; |
 | REDDIT | &quot;reddit&quot; |
 | MICROSOFT | &quot;microsoft&quot; |
+| AMAZON | &quot;amazon&quot; |
 
 
 

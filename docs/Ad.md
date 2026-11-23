@@ -62,6 +62,7 @@
 | OPENAI | &quot;openai&quot; |
 | REDDIT | &quot;reddit&quot; |
 | MICROSOFT | &quot;microsoft&quot; |
+| AMAZON | &quot;amazon&quot; |
 
 
 

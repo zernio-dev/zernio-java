@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.770.0
+- API version: 1.772.0
 
-- Build date: 2026-11-23T09:04:39.340993755Z[Etc/UTC]
+- Build date: 2026-11-23T09:31:44.483671871Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.770.0</version>
+  <version>1.772.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.770.0"
+compile "dev.zernio:zernio-sdk:1.772.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.770.0.jar`
+- `target/zernio-sdk-1.772.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -483,8 +483,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**getAdReviewWithHttpInfo**](docs/AdCampaignsApi.md#getAdReviewWithHttpInfo) | **GET** /v1/ads/{adId}/review | Read the platform&#39;s review verdict for an ad
 *AdCampaignsApi* | [**getAdSetDetails**](docs/AdCampaignsApi.md#getAdSetDetails) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details
 *AdCampaignsApi* | [**getAdSetDetailsWithHttpInfo**](docs/AdCampaignsApi.md#getAdSetDetailsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details
-*AdCampaignsApi* | [**getAdSetTargeting**](docs/AdCampaignsApi.md#getAdSetTargeting) | **GET** /v1/ads/ad-sets/{adSetId}/targeting | Read a Reddit ad group&#39;s targeting and schedule
-*AdCampaignsApi* | [**getAdSetTargetingWithHttpInfo**](docs/AdCampaignsApi.md#getAdSetTargetingWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId}/targeting | Read a Reddit ad group&#39;s targeting and schedule
+*AdCampaignsApi* | [**getAdSetTargeting**](docs/AdCampaignsApi.md#getAdSetTargeting) | **GET** /v1/ads/ad-sets/{adSetId}/targeting | Read an ad group&#39;s targeting and schedule
+*AdCampaignsApi* | [**getAdSetTargetingWithHttpInfo**](docs/AdCampaignsApi.md#getAdSetTargetingWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId}/targeting | Read an ad group&#39;s targeting and schedule
 *AdCampaignsApi* | [**getAdTree**](docs/AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**getAdTreeWithHttpInfo**](docs/AdCampaignsApi.md#getAdTreeWithHttpInfo) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**getAdsTimeline**](docs/AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily account metrics
@@ -3070,6 +3070,33 @@ Class | Method | HTTP request | Description
  - [AdsTimelineResponse](docs/AdsTimelineResponse.md)
  - [AdsTimelineResponsePreviousRange](docs/AdsTimelineResponsePreviousRange.md)
  - [AdsTimelineResponseRowsInner](docs/AdsTimelineResponseRowsInner.md)
+ - [AmazonAdsCampaignPlatformData](docs/AmazonAdsCampaignPlatformData.md)
+ - [AmazonAdsPlatformData](docs/AmazonAdsPlatformData.md)
+ - [AmazonAdvertisedProducts](docs/AmazonAdvertisedProducts.md)
+ - [AmazonAutoTargetGroup](docs/AmazonAutoTargetGroup.md)
+ - [AmazonSponsoredBrandsAdData](docs/AmazonSponsoredBrandsAdData.md)
+ - [AmazonSponsoredBrandsAdDataAllOfAd](docs/AmazonSponsoredBrandsAdDataAllOfAd.md)
+ - [AmazonSponsoredBrandsAdDataAllOfAdOneOf](docs/AmazonSponsoredBrandsAdDataAllOfAdOneOf.md)
+ - [AmazonSponsoredBrandsAdDataAllOfAdOneOf1](docs/AmazonSponsoredBrandsAdDataAllOfAdOneOf1.md)
+ - [AmazonSponsoredBrandsAdDataAllOfAdOneOf1SubpagesInner](docs/AmazonSponsoredBrandsAdDataAllOfAdOneOf1SubpagesInner.md)
+ - [AmazonSponsoredBrandsAdDataAllOfAdOneOf2](docs/AmazonSponsoredBrandsAdDataAllOfAdOneOf2.md)
+ - [AmazonSponsoredBrandsAdDataAllOfAdOneOfLandingPage](docs/AmazonSponsoredBrandsAdDataAllOfAdOneOfLandingPage.md)
+ - [AmazonSponsoredBrandsAdDataAllOfExpressions](docs/AmazonSponsoredBrandsAdDataAllOfExpressions.md)
+ - [AmazonSponsoredBrandsAdDataAllOfNegativeProductTargets](docs/AmazonSponsoredBrandsAdDataAllOfNegativeProductTargets.md)
+ - [AmazonSponsoredBrandsAdDataAllOfProductTargets](docs/AmazonSponsoredBrandsAdDataAllOfProductTargets.md)
+ - [AmazonSponsoredBrandsCampaignData](docs/AmazonSponsoredBrandsCampaignData.md)
+ - [AmazonSponsoredBrandsCampaignDataPlacementAdjustmentsInner](docs/AmazonSponsoredBrandsCampaignDataPlacementAdjustmentsInner.md)
+ - [AmazonSponsoredDisplayAdData](docs/AmazonSponsoredDisplayAdData.md)
+ - [AmazonSponsoredDisplayAdDataAllOfExpression](docs/AmazonSponsoredDisplayAdDataAllOfExpression.md)
+ - [AmazonSponsoredDisplayAdDataAllOfTargets](docs/AmazonSponsoredDisplayAdDataAllOfTargets.md)
+ - [AmazonSponsoredDisplayCampaignData](docs/AmazonSponsoredDisplayCampaignData.md)
+ - [AmazonSponsoredProductsAdData](docs/AmazonSponsoredProductsAdData.md)
+ - [AmazonSponsoredProductsAdDataAllOfAutoTargeting](docs/AmazonSponsoredProductsAdDataAllOfAutoTargeting.md)
+ - [AmazonSponsoredProductsAdDataAllOfExpression](docs/AmazonSponsoredProductsAdDataAllOfExpression.md)
+ - [AmazonSponsoredProductsAdDataAllOfNegativeProductTargets](docs/AmazonSponsoredProductsAdDataAllOfNegativeProductTargets.md)
+ - [AmazonSponsoredProductsAdDataAllOfProductTargets](docs/AmazonSponsoredProductsAdDataAllOfProductTargets.md)
+ - [AmazonSponsoredProductsCampaignData](docs/AmazonSponsoredProductsCampaignData.md)
+ - [AmazonSponsoredProductsCampaignDataPlacementBiddingInner](docs/AmazonSponsoredProductsCampaignDataPlacementBiddingInner.md)
  - [AnalyticsDashboardFollowers](docs/AnalyticsDashboardFollowers.md)
  - [AnalyticsDashboardFollowersByAccountInner](docs/AnalyticsDashboardFollowersByAccountInner.md)
  - [AnalyticsDashboardPost](docs/AnalyticsDashboardPost.md)
