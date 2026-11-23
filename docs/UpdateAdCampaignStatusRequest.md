@@ -36,6 +36,7 @@
 | REDDIT | &quot;reddit&quot; |
 | MICROSOFT | &quot;microsoft&quot; |
 | AMAZON | &quot;amazon&quot; |
+| TRADEDESK | &quot;tradedesk&quot; |
 
 
 
