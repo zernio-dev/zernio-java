@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.773.0
+  version: 1.774.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -38961,6 +38961,7 @@ paths:
 
             - LinkedIn: a profile or company URL mention that cannot be resolved returns `linkedin_mentions_invalid`, or `linkedin_mentions_limit_exceeded` for more than 10, with `details.mentions[]`.
             - `mentionAuthor` without `commentId`, or on a platform other than LinkedIn, is rejected.
+            - `attachmentType` without `attachmentUrl` is rejected.
             - An author whose name LinkedIn does not return gives `linkedin_mention_name_unavailable` with `details.authorUrn`.
           x-summary: "The request is invalid, for example an attachment URL on a non-Facebook\
             \ platform or a LinkedIn mention that cannot be resolved."
@@ -177151,6 +177152,14 @@ components:
             \ comment alongside the text. The URL must be publicly accessible so Meta\
             \ can fetch it. Returns 400 for other platforms."
           format: uri
+          type: string
+        attachmentType:
+          description: "(Facebook only) How Facebook publishes `attachmentUrl`: `image`\
+            \ (default) as a photo comment, `gif` as an animated GIF comment. A GIF\
+            \ sent as `image` is stored as a still photo. Requires `attachmentUrl`."
+          enum:
+          - image
+          - gif
           type: string
         commentId:
           description: Reply to specific comment (optional)
