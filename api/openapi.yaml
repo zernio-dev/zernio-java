@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.766.0
+  version: 1.767.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -96960,6 +96960,7 @@ components:
           - relaySupported: true
             name: name
           scanMode: static
+          scannerBlocked: true
           consent:
             googleConsentMode: v2
             evidence:
@@ -97097,7 +97098,8 @@ components:
           $ref: "#/components/schemas/ConversionAuditReport"
         networks:
           description: "Each ad network with its final setup and leak, computed exactly\
-            \ as the public report page shows them, best setup first."
+            \ as the public report page shows them, best setup first. Empty when `report.scannerBlocked`\
+            \ is set: the scan could not see any network."
           items:
             $ref: "#/components/schemas/ConversionAuditAnswer_networks_inner"
           type: array
@@ -97140,6 +97142,7 @@ components:
         - relaySupported: true
           name: name
         scanMode: static
+        scannerBlocked: true
         consent:
           googleConsentMode: v2
           evidence:
@@ -97301,6 +97304,12 @@ components:
           - limited
           - none
           type: string
+        scannerBlocked:
+          description: "Always `true` when present: set when the site served our page\
+            \ fetch a bot wall and showed no pixel. The report is a partial, source-only\
+            \ read, so `score` and `grade` are placeholders, not a verdict, and `networks`\
+            \ is empty."
+          type: boolean
         siteSignals:
           description: "Site tech recognized (Shopify, WooCommerce, ...)."
           items:
@@ -233172,6 +233181,7 @@ components:
           - relaySupported: true
             name: name
           scanMode: static
+          scannerBlocked: true
           consent:
             googleConsentMode: v2
             evidence:
