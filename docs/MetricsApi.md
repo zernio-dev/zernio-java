@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdAccountMetricsWithHttpInfo**](MetricsApi.md#getAdAccountMetricsWithHttpInfo) | **GET** /v1/metrics/ad-accounts | Read the uploaded results summed across ad accounts |
 | [**getAdMetrics**](MetricsApi.md#getAdMetrics) | **GET** /v1/metrics/ads | Read ad metrics by id, or one ad day by day with breakdowns |
 | [**getAdMetricsWithHttpInfo**](MetricsApi.md#getAdMetricsWithHttpInfo) | **GET** /v1/metrics/ads | Read ad metrics by id, or one ad day by day with breakdowns |
+| [**getAdSetMetrics**](MetricsApi.md#getAdSetMetrics) | **GET** /v1/metrics/ad-sets | Read the delivery metrics of ad sets over a window |
+| [**getAdSetMetricsWithHttpInfo**](MetricsApi.md#getAdSetMetricsWithHttpInfo) | **GET** /v1/metrics/ad-sets | Read the delivery metrics of ad sets over a window |
 | [**getCampaignMetrics**](MetricsApi.md#getCampaignMetrics) | **GET** /v1/metrics/campaigns | Read the delivery metrics or the uploaded results of each campaign over a window |
 | [**getCampaignMetricsWithHttpInfo**](MetricsApi.md#getCampaignMetricsWithHttpInfo) | **GET** /v1/metrics/campaigns | Read the delivery metrics or the uploaded results of each campaign over a window |
 | [**getInboxMetrics**](MetricsApi.md#getInboxMetrics) | **GET** /v1/metrics/inbox | Read message volume and response times |
@@ -559,6 +561,190 @@ ApiResponse<[**AdMetricsResponse**](AdMetricsResponse.md)>
 | **400** | The query is invalid: an unknown or repeated parameter, a missing or second scope, a metric, groupBy, include or sort the entity does not have, or a window past its limit. &#x60;param&#x60; names the field. &#x60;GET /v1/metrics/catalog&#x60; lists what each entity accepts. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | &#x60;ads_addon_required&#x60;: the account has no ads access (included on usage-based plans). &#x60;insufficient_permissions&#x60;: the API key can read no profile. Also returned for a restricted key without the &#x60;ads&#x60; resource group. |  -  |
+| **429** | A limit on your request rate was reached. &#x60;details.scope&#x60; says which one:  - absent: your plan&#39;s API limit. - &#x60;post-analytics&#x60;, &#x60;account-insights&#x60;, &#x60;ad-analytics&#x60; or &#x60;campaign-analytics&#x60;: the team&#39;s cap of 300 reads per 30 seconds for that group. - &#x60;account_route&#x60;: 120 reads per hour of one account on one account-level endpoint. - &#x60;team_budget&#x60;: the team spent its analytics compute budget of 24 seconds per 30-second window. &#x60;Retry-After&#x60; counts to the end of the window. - &#x60;in_flight&#x60;: too many of the team&#39;s analytics reads are running at once.  &#x60;team_budget&#x60; and &#x60;in_flight&#x60; apply to posts, accounts, ads, campaigns and ad accounts reads. |  * Retry-After - Seconds until card payments are tried again. <br>  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+
+## getAdSetMetrics
+
+> AdSetMetricsResponse getAdSetMetrics(fromDate, toDate, metrics, limit, cursor, adSetId, campaignId, granularity)
+
+Read the delivery metrics of ad sets over a window
+
+Sums the delivery metrics of every ad of each ad set from the stored daily rows, over &#x60;fromDate&#x60; to &#x60;toDate&#x60; (both required, at most 400 days). Send the ad sets by id with &#x60;adSetId&#x60; (up to 100), or one &#x60;campaignId&#x60; for its ad sets, paged with &#x60;cursor&#x60;.  Each ad set comes with its &#x60;campaignId&#x60; and the &#x60;currency&#x60; of its ad account, and &#x60;granularity&#x3D;day&#x60; adds one point per day. A query reads at most 9,200 ad set days (100 ad sets for 92 days, 23 for 400) and answers 422 &#x60;query_too_large&#x60; beyond that.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MetricsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MetricsApi apiInstance = new MetricsApi(defaultClient);
+        LocalDate fromDate = LocalDate.now(); // LocalDate | First day, inclusive.
+        LocalDate toDate = LocalDate.now(); // LocalDate | Last day, inclusive. The range is at most 400 days.
+        String metrics = "metrics_example"; // String | Comma-separated delivery metrics, as GET /v1/metrics/catalog?entity=ad-sets lists them (spend, impressions, reach, clicks, ctr, cpc, cpm, conversions, roas...).
+        Integer limit = 50; // Integer | With campaignId, ad sets per page, 50 by default, 100 at most.
+        String cursor = "cursor_example"; // String | With campaignId, pagination.nextCursor of the previous page, sent with the same query.
+        String adSetId = "adSetId_example"; // String | Comma-separated platform ad set ids, up to 100. Send adSetId or campaignId.
+        String campaignId = "campaignId_example"; // String | One platform campaign id, for its ad sets. Send adSetId or campaignId.
+        String granularity = "total"; // String | day adds one point per day to each ad set.
+        try {
+            AdSetMetricsResponse result = apiInstance.getAdSetMetrics(fromDate, toDate, metrics, limit, cursor, adSetId, campaignId, granularity);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MetricsApi#getAdSetMetrics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **fromDate** | **LocalDate**| First day, inclusive. | |
+| **toDate** | **LocalDate**| Last day, inclusive. The range is at most 400 days. | |
+| **metrics** | **String**| Comma-separated delivery metrics, as GET /v1/metrics/catalog?entity&#x3D;ad-sets lists them (spend, impressions, reach, clicks, ctr, cpc, cpm, conversions, roas...). | |
+| **limit** | **Integer**| With campaignId, ad sets per page, 50 by default, 100 at most. | [optional] [default to 50] |
+| **cursor** | **String**| With campaignId, pagination.nextCursor of the previous page, sent with the same query. | [optional] |
+| **adSetId** | **String**| Comma-separated platform ad set ids, up to 100. Send adSetId or campaignId. | [optional] |
+| **campaignId** | **String**| One platform campaign id, for its ad sets. Send adSetId or campaignId. | [optional] |
+| **granularity** | **String**| day adds one point per day to each ad set. | [optional] [default to total] [enum: total, day] |
+
+### Return type
+
+[**AdSetMetricsResponse**](AdSetMetricsResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One row per visible ad set. |  -  |
+| **400** | The query is invalid: an unknown or repeated parameter, a missing or second scope, a metric, groupBy, include or sort the entity does not have, or a window past its limit. &#x60;param&#x60; names the field. &#x60;GET /v1/metrics/catalog&#x60; lists what each entity accepts. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | &#x60;ads_addon_required&#x60;: the account has no ads access (included on usage-based plans). &#x60;insufficient_permissions&#x60;: the API key can read no profile. Also returned for a restricted key without the &#x60;ads&#x60; resource group. |  -  |
+| **422** | More than 9,200 ad set days: split the range or the ad sets. |  -  |
+| **429** | A limit on your request rate was reached. &#x60;details.scope&#x60; says which one:  - absent: your plan&#39;s API limit. - &#x60;post-analytics&#x60;, &#x60;account-insights&#x60;, &#x60;ad-analytics&#x60; or &#x60;campaign-analytics&#x60;: the team&#39;s cap of 300 reads per 30 seconds for that group. - &#x60;account_route&#x60;: 120 reads per hour of one account on one account-level endpoint. - &#x60;team_budget&#x60;: the team spent its analytics compute budget of 24 seconds per 30-second window. &#x60;Retry-After&#x60; counts to the end of the window. - &#x60;in_flight&#x60;: too many of the team&#39;s analytics reads are running at once.  &#x60;team_budget&#x60; and &#x60;in_flight&#x60; apply to posts, accounts, ads, campaigns and ad accounts reads. |  * Retry-After - Seconds until card payments are tried again. <br>  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+## getAdSetMetricsWithHttpInfo
+
+> ApiResponse<AdSetMetricsResponse> getAdSetMetrics getAdSetMetricsWithHttpInfo(fromDate, toDate, metrics, limit, cursor, adSetId, campaignId, granularity)
+
+Read the delivery metrics of ad sets over a window
+
+Sums the delivery metrics of every ad of each ad set from the stored daily rows, over &#x60;fromDate&#x60; to &#x60;toDate&#x60; (both required, at most 400 days). Send the ad sets by id with &#x60;adSetId&#x60; (up to 100), or one &#x60;campaignId&#x60; for its ad sets, paged with &#x60;cursor&#x60;.  Each ad set comes with its &#x60;campaignId&#x60; and the &#x60;currency&#x60; of its ad account, and &#x60;granularity&#x3D;day&#x60; adds one point per day. A query reads at most 9,200 ad set days (100 ad sets for 92 days, 23 for 400) and answers 422 &#x60;query_too_large&#x60; beyond that.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MetricsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MetricsApi apiInstance = new MetricsApi(defaultClient);
+        LocalDate fromDate = LocalDate.now(); // LocalDate | First day, inclusive.
+        LocalDate toDate = LocalDate.now(); // LocalDate | Last day, inclusive. The range is at most 400 days.
+        String metrics = "metrics_example"; // String | Comma-separated delivery metrics, as GET /v1/metrics/catalog?entity=ad-sets lists them (spend, impressions, reach, clicks, ctr, cpc, cpm, conversions, roas...).
+        Integer limit = 50; // Integer | With campaignId, ad sets per page, 50 by default, 100 at most.
+        String cursor = "cursor_example"; // String | With campaignId, pagination.nextCursor of the previous page, sent with the same query.
+        String adSetId = "adSetId_example"; // String | Comma-separated platform ad set ids, up to 100. Send adSetId or campaignId.
+        String campaignId = "campaignId_example"; // String | One platform campaign id, for its ad sets. Send adSetId or campaignId.
+        String granularity = "total"; // String | day adds one point per day to each ad set.
+        try {
+            ApiResponse<AdSetMetricsResponse> response = apiInstance.getAdSetMetricsWithHttpInfo(fromDate, toDate, metrics, limit, cursor, adSetId, campaignId, granularity);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MetricsApi#getAdSetMetrics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **fromDate** | **LocalDate**| First day, inclusive. | |
+| **toDate** | **LocalDate**| Last day, inclusive. The range is at most 400 days. | |
+| **metrics** | **String**| Comma-separated delivery metrics, as GET /v1/metrics/catalog?entity&#x3D;ad-sets lists them (spend, impressions, reach, clicks, ctr, cpc, cpm, conversions, roas...). | |
+| **limit** | **Integer**| With campaignId, ad sets per page, 50 by default, 100 at most. | [optional] [default to 50] |
+| **cursor** | **String**| With campaignId, pagination.nextCursor of the previous page, sent with the same query. | [optional] |
+| **adSetId** | **String**| Comma-separated platform ad set ids, up to 100. Send adSetId or campaignId. | [optional] |
+| **campaignId** | **String**| One platform campaign id, for its ad sets. Send adSetId or campaignId. | [optional] |
+| **granularity** | **String**| day adds one point per day to each ad set. | [optional] [default to total] [enum: total, day] |
+
+### Return type
+
+ApiResponse<[**AdSetMetricsResponse**](AdSetMetricsResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One row per visible ad set. |  -  |
+| **400** | The query is invalid: an unknown or repeated parameter, a missing or second scope, a metric, groupBy, include or sort the entity does not have, or a window past its limit. &#x60;param&#x60; names the field. &#x60;GET /v1/metrics/catalog&#x60; lists what each entity accepts. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | &#x60;ads_addon_required&#x60;: the account has no ads access (included on usage-based plans). &#x60;insufficient_permissions&#x60;: the API key can read no profile. Also returned for a restricted key without the &#x60;ads&#x60; resource group. |  -  |
+| **422** | More than 9,200 ad set days: split the range or the ad sets. |  -  |
 | **429** | A limit on your request rate was reached. &#x60;details.scope&#x60; says which one:  - absent: your plan&#39;s API limit. - &#x60;post-analytics&#x60;, &#x60;account-insights&#x60;, &#x60;ad-analytics&#x60; or &#x60;campaign-analytics&#x60;: the team&#39;s cap of 300 reads per 30 seconds for that group. - &#x60;account_route&#x60;: 120 reads per hour of one account on one account-level endpoint. - &#x60;team_budget&#x60;: the team spent its analytics compute budget of 24 seconds per 30-second window. &#x60;Retry-After&#x60; counts to the end of the window. - &#x60;in_flight&#x60;: too many of the team&#39;s analytics reads are running at once.  &#x60;team_budget&#x60; and &#x60;in_flight&#x60; apply to posts, accounts, ads, campaigns and ad accounts reads. |  * Retry-After - Seconds until card payments are tried again. <br>  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 

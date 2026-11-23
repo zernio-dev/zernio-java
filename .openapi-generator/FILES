@@ -121,6 +121,9 @@ docs/AdRuleScheduleTimesInner.md
 docs/AdRulesApi.md
 docs/AdSchedule.md
 docs/AdScheduleWindow.md
+docs/AdSetMetricRow.md
+docs/AdSetMetricsResponse.md
+docs/AdSetMetricsResponseMeta.md
 docs/AdStatus.md
 docs/AdTargetingApi.md
 docs/AdTracking.md
@@ -4458,6 +4461,9 @@ src/main/java/dev/zernio/model/AdRuleScheduleQuietHours.java
 src/main/java/dev/zernio/model/AdRuleScheduleTimesInner.java
 src/main/java/dev/zernio/model/AdSchedule.java
 src/main/java/dev/zernio/model/AdScheduleWindow.java
+src/main/java/dev/zernio/model/AdSetMetricRow.java
+src/main/java/dev/zernio/model/AdSetMetricsResponse.java
+src/main/java/dev/zernio/model/AdSetMetricsResponseMeta.java
 src/main/java/dev/zernio/model/AdStatus.java
 src/main/java/dev/zernio/model/AdTracking.java
 src/main/java/dev/zernio/model/AdTreeAdSet.java
@@ -8495,3 +8501,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdSetMetricRowTest.java
+src/test/java/dev/zernio/model/AdSetMetricsResponseMetaTest.java
+src/test/java/dev/zernio/model/AdSetMetricsResponseTest.java
