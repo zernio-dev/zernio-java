@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.780.0
+  version: 1.781.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -39118,14 +39118,15 @@ paths:
               schema:
                 $ref: "#/components/schemas/replyToInboxPost_400_response"
           description: |
-            Invalid request (e.g. attachmentUrl on a platform other than Facebook, code PLATFORM_NOT_SUPPORTED).
+            Invalid request (e.g. attachmentUrl on a platform other than Facebook, Bluesky and LinkedIn, or attachmentType on a platform other than Facebook, code PLATFORM_NOT_SUPPORTED).
 
             - LinkedIn: a profile or company URL mention that cannot be resolved returns `linkedin_mentions_invalid`, or `linkedin_mentions_limit_exceeded` for more than 10, with `details.mentions[]`.
             - `mentionAuthor` without `commentId`, or on a platform other than LinkedIn, is rejected.
             - `attachmentType` without `attachmentUrl` is rejected.
             - An author whose name LinkedIn does not return gives `linkedin_mention_name_unavailable` with `details.authorUrn`.
-          x-summary: "The request is invalid, for example an attachment URL on a non-Facebook\
-            \ platform or a LinkedIn mention that cannot be resolved."
+          x-summary: "The request is invalid, for example an attachment URL on a platform\
+            \ other than Facebook, Bluesky and LinkedIn or a LinkedIn mention that\
+            \ cannot be resolved."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -178016,15 +178017,16 @@ components:
             \ match LinkedIn's exactly or it renders as plain text."
           type: string
         attachmentUrl:
-          description: "(Facebook only) URL of an image to attach, publishing a photo\
-            \ comment alongside the text. The URL must be publicly accessible so Meta\
-            \ can fetch it. Returns 400 for other platforms."
+          description: "(Facebook, Bluesky and LinkedIn) URL of an image to attach\
+            \ to the comment or reply. The URL must be publicly fetchable. Returns\
+            \ 400 for other platforms."
           format: uri
           type: string
         attachmentType:
           description: "(Facebook only) How Facebook publishes `attachmentUrl`: `image`\
             \ (default) as a photo comment, `gif` as an animated GIF comment. A GIF\
-            \ sent as `image` is stored as a still photo. Requires `attachmentUrl`."
+            \ sent as `image` is stored as a still photo. Requires `attachmentUrl`.\
+            \ Returns 400 on other platforms."
           enum:
           - image
           - gif
