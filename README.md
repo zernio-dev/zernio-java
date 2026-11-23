@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.799.0
+- API version: 1.800.0
 
-- Build date: 2026-11-23T23:27:47.576886357Z[Etc/UTC]
+- Build date: 2026-11-23T23:35:13.281709990Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.799.0</version>
+  <version>1.800.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.799.0"
+compile "dev.zernio:zernio-sdk:1.800.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.799.0.jar`
+- `target/zernio-sdk-1.800.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3220,6 +3220,12 @@ Class | Method | HTTP request | Description
  - [AutomationConditionResult](docs/AutomationConditionResult.md)
  - [AutomationControls](docs/AutomationControls.md)
  - [AutomationDefinition](docs/AutomationDefinition.md)
+ - [AutomationEventActionStep](docs/AutomationEventActionStep.md)
+ - [AutomationEventActionStepOneOf](docs/AutomationEventActionStepOneOf.md)
+ - [AutomationEventActionStepOneOf1](docs/AutomationEventActionStepOneOf1.md)
+ - [AutomationEventActionStepOneOf2](docs/AutomationEventActionStepOneOf2.md)
+ - [AutomationEventActionStepOneOf3](docs/AutomationEventActionStepOneOf3.md)
+ - [AutomationEventActionStepOneOf4](docs/AutomationEventActionStepOneOf4.md)
  - [AutomationEventLimits](docs/AutomationEventLimits.md)
  - [AutomationEventTrigger](docs/AutomationEventTrigger.md)
  - [AutomationFactCondition](docs/AutomationFactCondition.md)
@@ -4297,6 +4303,7 @@ Class | Method | HTTP request | Description
  - [EventAutomationCheck](docs/EventAutomationCheck.md)
  - [EventAutomationCheckSubject](docs/EventAutomationCheckSubject.md)
  - [EventAutomationDefinition](docs/EventAutomationDefinition.md)
+ - [EventAutomationDefinitionStepsInner](docs/EventAutomationDefinitionStepsInner.md)
  - [EventConsent](docs/EventConsent.md)
  - [EventCorrection](docs/EventCorrection.md)
  - [EventDestination](docs/EventDestination.md)

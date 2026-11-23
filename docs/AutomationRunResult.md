@@ -19,6 +19,11 @@
 |---- | -----|
 | NOTIFY_SEND | &quot;notify.send&quot; |
 | ADS_BOOST_POST | &quot;ads.boost_post&quot; |
+| MESSAGES_SEND | &quot;messages.send&quot; |
+| WORKFLOWS_START | &quot;workflows.start&quot; |
+| SEQUENCES_ENROLL | &quot;sequences.enroll&quot; |
+| WEBHOOK_CALL | &quot;webhook.call&quot; |
+| CONTACTS_TAG | &quot;contacts.tag&quot; |
 
 
 

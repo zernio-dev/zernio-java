@@ -332,6 +332,12 @@ docs/AutomationCheck.md
 docs/AutomationConditionResult.md
 docs/AutomationControls.md
 docs/AutomationDefinition.md
+docs/AutomationEventActionStep.md
+docs/AutomationEventActionStepOneOf.md
+docs/AutomationEventActionStepOneOf1.md
+docs/AutomationEventActionStepOneOf2.md
+docs/AutomationEventActionStepOneOf3.md
+docs/AutomationEventActionStepOneOf4.md
 docs/AutomationEventLimits.md
 docs/AutomationEventTrigger.md
 docs/AutomationFactCondition.md
@@ -1432,6 +1438,7 @@ docs/EstimateAdReachRequest.md
 docs/EventAutomationCheck.md
 docs/EventAutomationCheckSubject.md
 docs/EventAutomationDefinition.md
+docs/EventAutomationDefinitionStepsInner.md
 docs/EventConsent.md
 docs/EventCorrection.md
 docs/EventDestination.md
@@ -4686,6 +4693,12 @@ src/main/java/dev/zernio/model/AutomationCheck.java
 src/main/java/dev/zernio/model/AutomationConditionResult.java
 src/main/java/dev/zernio/model/AutomationControls.java
 src/main/java/dev/zernio/model/AutomationDefinition.java
+src/main/java/dev/zernio/model/AutomationEventActionStep.java
+src/main/java/dev/zernio/model/AutomationEventActionStepOneOf.java
+src/main/java/dev/zernio/model/AutomationEventActionStepOneOf1.java
+src/main/java/dev/zernio/model/AutomationEventActionStepOneOf2.java
+src/main/java/dev/zernio/model/AutomationEventActionStepOneOf3.java
+src/main/java/dev/zernio/model/AutomationEventActionStepOneOf4.java
 src/main/java/dev/zernio/model/AutomationEventLimits.java
 src/main/java/dev/zernio/model/AutomationEventTrigger.java
 src/main/java/dev/zernio/model/AutomationFactCondition.java
@@ -5763,6 +5776,7 @@ src/main/java/dev/zernio/model/EstimateAdReachRequest.java
 src/main/java/dev/zernio/model/EventAutomationCheck.java
 src/main/java/dev/zernio/model/EventAutomationCheckSubject.java
 src/main/java/dev/zernio/model/EventAutomationDefinition.java
+src/main/java/dev/zernio/model/EventAutomationDefinitionStepsInner.java
 src/main/java/dev/zernio/model/EventConsent.java
 src/main/java/dev/zernio/model/EventCorrection.java
 src/main/java/dev/zernio/model/EventDestination.java
@@ -8535,5 +8549,10 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ConnectOutbrainAdsCredentials200ResponseTest.java
-src/test/java/dev/zernio/model/ConnectOutbrainAdsCredentialsRequestTest.java
+src/test/java/dev/zernio/model/AutomationEventActionStepOneOf1Test.java
+src/test/java/dev/zernio/model/AutomationEventActionStepOneOf2Test.java
+src/test/java/dev/zernio/model/AutomationEventActionStepOneOf3Test.java
+src/test/java/dev/zernio/model/AutomationEventActionStepOneOf4Test.java
+src/test/java/dev/zernio/model/AutomationEventActionStepOneOfTest.java
+src/test/java/dev/zernio/model/AutomationEventActionStepTest.java
+src/test/java/dev/zernio/model/EventAutomationDefinitionStepsInnerTest.java
