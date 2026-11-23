@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.775.1
+- API version: 1.776.1
 
-- Build date: 2026-11-23T10:57:45.448551456Z[Etc/UTC]
+- Build date: 2026-11-23T11:47:55.743148461Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.775.1</version>
+  <version>1.776.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.775.1"
+compile "dev.zernio:zernio-sdk:1.776.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.775.1.jar`
+- `target/zernio-sdk-1.776.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2149,8 +2149,8 @@ Class | Method | HTTP request | Description
 *MetricsApi* | [**getAdAccountMetricsWithHttpInfo**](docs/MetricsApi.md#getAdAccountMetricsWithHttpInfo) | **GET** /v1/metrics/ad-accounts | Read the uploaded results summed across ad accounts
 *MetricsApi* | [**getAdMetrics**](docs/MetricsApi.md#getAdMetrics) | **GET** /v1/metrics/ads | Read ad metrics by id, or one ad day by day with breakdowns
 *MetricsApi* | [**getAdMetricsWithHttpInfo**](docs/MetricsApi.md#getAdMetricsWithHttpInfo) | **GET** /v1/metrics/ads | Read ad metrics by id, or one ad day by day with breakdowns
-*MetricsApi* | [**getCampaignMetrics**](docs/MetricsApi.md#getCampaignMetrics) | **GET** /v1/metrics/campaigns | Read the uploaded results of each campaign over a window
-*MetricsApi* | [**getCampaignMetricsWithHttpInfo**](docs/MetricsApi.md#getCampaignMetricsWithHttpInfo) | **GET** /v1/metrics/campaigns | Read the uploaded results of each campaign over a window
+*MetricsApi* | [**getCampaignMetrics**](docs/MetricsApi.md#getCampaignMetrics) | **GET** /v1/metrics/campaigns | Read the delivery metrics or the uploaded results of each campaign over a window
+*MetricsApi* | [**getCampaignMetricsWithHttpInfo**](docs/MetricsApi.md#getCampaignMetricsWithHttpInfo) | **GET** /v1/metrics/campaigns | Read the delivery metrics or the uploaded results of each campaign over a window
 *MetricsApi* | [**getInboxMetrics**](docs/MetricsApi.md#getInboxMetrics) | **GET** /v1/metrics/inbox | Read message volume and response times
 *MetricsApi* | [**getInboxMetricsWithHttpInfo**](docs/MetricsApi.md#getInboxMetricsWithHttpInfo) | **GET** /v1/metrics/inbox | Read message volume and response times
 *MetricsApi* | [**getInsightMetrics**](docs/MetricsApi.md#getInsightMetrics) | **GET** /v1/metrics/insights | Read live account or post insights from the platform
@@ -2910,6 +2910,7 @@ Class | Method | HTTP request | Description
  - [ActivateWorkflow200ResponseWorkflow](docs/ActivateWorkflow200ResponseWorkflow.md)
  - [Ad](docs/Ad.md)
  - [AdAccountMetricsResponse](docs/AdAccountMetricsResponse.md)
+ - [AdAccountMetricsResponseMeta](docs/AdAccountMetricsResponseMeta.md)
  - [AdActivationStatus](docs/AdActivationStatus.md)
  - [AdAnalyticsResponse](docs/AdAnalyticsResponse.md)
  - [AdAnalyticsResponseAd](docs/AdAnalyticsResponseAd.md)
@@ -3418,6 +3419,7 @@ Class | Method | HTTP request | Description
  - [CampaignDraftCounts](docs/CampaignDraftCounts.md)
  - [CampaignLedgerEntry](docs/CampaignLedgerEntry.md)
  - [CampaignMetricRow](docs/CampaignMetricRow.md)
+ - [CampaignMetricRowDailyInner](docs/CampaignMetricRowDailyInner.md)
  - [CampaignMetricsResponse](docs/CampaignMetricsResponse.md)
  - [CampaignMetricsResponseMeta](docs/CampaignMetricsResponseMeta.md)
  - [CampaignParticipant](docs/CampaignParticipant.md)

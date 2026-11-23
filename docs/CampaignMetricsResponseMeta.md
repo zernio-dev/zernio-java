@@ -11,6 +11,7 @@
 |**staleSince** | **String** | With stale&#x3D;true: when the oldest stored copy used stopped being fresh. |  |
 |**fromDate** | **String** |  |  |
 |**toDate** | **String** |  |  |
+|**missingIds** | **List&lt;String&gt;** | With metrics, asked campaignIds that are not campaigns the caller can see. |  [optional] |
 
 
 

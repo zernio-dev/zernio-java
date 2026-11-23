@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.775.1
+  version: 1.776.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -2550,9 +2550,11 @@ paths:
   /v1/metrics/campaigns:
     get:
       description: |-
-        Sums, per campaign, each result metric you uploaded (one key per metric, as `GET /v1/ads/campaign-results/metrics` lists them), with `cac_percent`, `cost_per_sale`, `cost_per_qualified_lead`, `lead_to_sale` and `qualified_rate` next to them, over `fromDate` to `toDate` (both required, at most 400 days).
+        Without `metrics`, sums per campaign each result metric you uploaded (one key per metric, as `GET /v1/ads/campaign-results/metrics` lists them), with `cac_percent`, `cost_per_sale`, `cost_per_qualified_lead`, `lead_to_sale` and `qualified_rate` next to them, over `fromDate` to `toDate` (both required, at most 400 days). Filter with `campaignId` (platform campaign ids); pages with `cursor`.
 
-        Filter with `campaignId` (platform campaign ids); pages with `cursor`.
+        With `metrics` (for example `metrics=spend,impressions,clicks,ctr`), sums the delivery metrics of every ad of each campaign in `campaignId` (required, up to 100) from the stored daily rows. Every campaign comes on one page with its `currency`, and `granularity=day` adds one point per day.
+
+        A query reads at most 9,200 campaign days (100 campaigns for 92 days, 23 for 400) and answers 422 `query_too_large` beyond that. Breakdowns stay live in the platform queries, such as `POST /v1/metrics/platform-queries/meta-ads`.
       operationId: getCampaignMetrics
       parameters:
       - description: "Rows per page, 50 by default, 100 at most."
@@ -2593,13 +2595,37 @@ paths:
           format: date
           type: string
         style: form
-      - description: Comma-separated platform campaign ids.
+      - description: "Comma-separated platform campaign ids. Required with metrics,\
+          \ up to 100."
         explode: true
         in: query
         name: campaignId
         required: false
         schema:
           minLength: 1
+          type: string
+        style: form
+      - description: "Comma-separated delivery metrics, as GET /v1/metrics/catalog?entity=campaigns\
+          \ lists them (spend, impressions, reach, clicks, ctr, cpc, cpm, conversions,\
+          \ roas, actions, funnel, video counts...)."
+        explode: true
+        in: query
+        name: metrics
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: day adds one point per day to each campaign. Needs metrics.
+        explode: true
+        in: query
+        name: granularity
+        required: false
+        schema:
+          default: total
+          enum:
+          - total
+          - day
           type: string
         style: form
       responses:
@@ -2621,18 +2647,27 @@ paths:
                       staleSince: null
               schema:
                 $ref: "#/components/schemas/CampaignMetricsResponse"
-          description: One row per campaign with results in the window.
+          description: "One row per campaign with results in the window, or with metrics\
+            \ one row per visible asked campaign."
         "400":
           $ref: "#/components/responses/MetricsBadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/MetricsAdsForbidden"
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "More than 9,200 campaign days with metrics: split the range\
+            \ or the campaignIds."
         "429":
           $ref: "#/components/responses/MetricsRateLimited"
         "503":
           $ref: "#/components/responses/TemporarilyUnavailable"
-      summary: Read the uploaded results of each campaign over a window
+      summary: Read the delivery metrics or the uploaded results of each campaign
+        over a window
       tags:
       - Metrics
       x-resource-group: ads
@@ -99431,6 +99466,149 @@ components:
       example:
         adAccountId: adAccountId
         campaignId: campaignId
+        daily:
+        - date: 2000-01-23
+          conversions: 2.027123023002322
+          videoAvgTimeWatchedActions: 6.878052220127876
+          engagement: 3
+          funnel:
+            searches: 3
+            contentViews: 3
+            purchases: 0
+            registrationsCompleted: 8
+            cartAdds: 0
+            wishlistAdds: 7
+            messagingConversationsStarted: 3
+            messagingFirstReplies: 3
+            appInstalls: 7
+            leads: 4
+            paymentInfoAdds: 6
+            schedules: 7
+            landingPageViews: 6
+            checkoutsInitiated: 7
+          reach: 5
+          videoP75WatchedActions: 6
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 8
+          spend: 6.027456183070403
+          cpc: 7.061401241503109
+          roas: 1.0246457001441578
+          uniqueClicks: 4
+          outboundClicksCtr: 6.84685269835264
+          ctr: 2.3021358869347655
+          purchaseValue: 1.2315135367772556
+          cpm: 9.301444243932576
+          inlineLinkClickCtr: 1.1730742509559433
+          outboundClicks: 1
+          videoP50WatchedActions: 9
+          videoP95WatchedActions: 3
+          video2SecWatchedActions: 1
+          impressions: 1
+          videoP100WatchedActions: 6
+          video6SecWatchedActions: 2
+          costPerAction:
+            link_click: 0.1052
+            offsite_conversion.fb_pixel_purchase: 4.0114
+          videoPlayActions: 9
+          engagementBreakdown:
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
+          inlineLinkClicks: 7
+          allConversions: 4.145608029883936
+          videoThruplayWatchedActions: 6
+          video30SecWatchedActions: 9
+          clicks: 5
+          uniqueCtr: 5.025004791520295
+          costPerThruplay: 5.944895607614016
+          costPerConversion: 7.386281948385884
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
+          video6SecFocusedViews: 6
+        - date: 2000-01-23
+          conversions: 2.027123023002322
+          videoAvgTimeWatchedActions: 6.878052220127876
+          engagement: 3
+          funnel:
+            searches: 3
+            contentViews: 3
+            purchases: 0
+            registrationsCompleted: 8
+            cartAdds: 0
+            wishlistAdds: 7
+            messagingConversationsStarted: 3
+            messagingFirstReplies: 3
+            appInstalls: 7
+            leads: 4
+            paymentInfoAdds: 6
+            schedules: 7
+            landingPageViews: 6
+            checkoutsInitiated: 7
+          reach: 5
+          videoP75WatchedActions: 6
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 8
+          spend: 6.027456183070403
+          cpc: 7.061401241503109
+          roas: 1.0246457001441578
+          uniqueClicks: 4
+          outboundClicksCtr: 6.84685269835264
+          ctr: 2.3021358869347655
+          purchaseValue: 1.2315135367772556
+          cpm: 9.301444243932576
+          inlineLinkClickCtr: 1.1730742509559433
+          outboundClicks: 1
+          videoP50WatchedActions: 9
+          videoP95WatchedActions: 3
+          video2SecWatchedActions: 1
+          impressions: 1
+          videoP100WatchedActions: 6
+          video6SecWatchedActions: 2
+          costPerAction:
+            link_click: 0.1052
+            offsite_conversion.fb_pixel_purchase: 4.0114
+          videoPlayActions: 9
+          engagementBreakdown:
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
+          inlineLinkClicks: 7
+          allConversions: 4.145608029883936
+          videoThruplayWatchedActions: 6
+          video30SecWatchedActions: 9
+          clicks: 5
+          uniqueCtr: 5.025004791520295
+          costPerThruplay: 5.944895607614016
+          costPerConversion: 7.386281948385884
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
+          video6SecFocusedViews: 6
+        lastSyncedAt: lastSyncedAt
+        name: name
+        currency: currency
+        metrics: ""
         results:
           key: 0.8008281904610115
         platform: platform
@@ -99444,13 +99622,39 @@ components:
         results:
           additionalProperties:
             type: number
-          description: "Each uploaded result metric summed over the range, by metric\
-            \ key."
+          description: "Without metrics, each uploaded result metric summed over the\
+            \ range, by metric key."
+        name:
+          description: "With metrics, the campaign name. null before its first sync."
+          nullable: true
+          type: string
+        currency:
+          description: "With metrics, the ad account currency every money metric of\
+            \ this campaign is in. Campaigns of different ad accounts are never summed\
+            \ together."
+          nullable: true
+          type: string
+        metrics:
+          allOf:
+          - $ref: "#/components/schemas/AdMetrics"
+          description: "With metrics, only the asked metrics, summed over every ad\
+            \ of the campaign with rates recomputed from the sums. reach is deduplicated\
+            \ across the range for Meta and TikTok when the platform returns it."
+        daily:
+          description: "With granularity=day, one point per day with delivery, each\
+            \ carrying date and the asked metrics."
+          items:
+            $ref: "#/components/schemas/CampaignMetricRow_daily_inner"
+          type: array
+        lastSyncedAt:
+          description: "With metrics, when the newest daily row of the campaign was\
+            \ synced."
+          nullable: true
+          type: string
       required:
       - adAccountId
       - campaignId
       - platform
-      - results
     CampaignMetricsResponse:
       example:
         pagination:
@@ -99459,11 +99663,297 @@ components:
         data:
         - adAccountId: adAccountId
           campaignId: campaignId
+          daily:
+          - date: 2000-01-23
+            conversions: 2.027123023002322
+            videoAvgTimeWatchedActions: 6.878052220127876
+            engagement: 3
+            funnel:
+              searches: 3
+              contentViews: 3
+              purchases: 0
+              registrationsCompleted: 8
+              cartAdds: 0
+              wishlistAdds: 7
+              messagingConversationsStarted: 3
+              messagingFirstReplies: 3
+              appInstalls: 7
+              leads: 4
+              paymentInfoAdds: 6
+              schedules: 7
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 5
+            videoP75WatchedActions: 6
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 8
+            spend: 6.027456183070403
+            cpc: 7.061401241503109
+            roas: 1.0246457001441578
+            uniqueClicks: 4
+            outboundClicksCtr: 6.84685269835264
+            ctr: 2.3021358869347655
+            purchaseValue: 1.2315135367772556
+            cpm: 9.301444243932576
+            inlineLinkClickCtr: 1.1730742509559433
+            outboundClicks: 1
+            videoP50WatchedActions: 9
+            videoP95WatchedActions: 3
+            video2SecWatchedActions: 1
+            impressions: 1
+            videoP100WatchedActions: 6
+            video6SecWatchedActions: 2
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 9
+            engagementBreakdown:
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
+            inlineLinkClicks: 7
+            allConversions: 4.145608029883936
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 9
+            clicks: 5
+            uniqueCtr: 5.025004791520295
+            costPerThruplay: 5.944895607614016
+            costPerConversion: 7.386281948385884
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+            video6SecFocusedViews: 6
+          - date: 2000-01-23
+            conversions: 2.027123023002322
+            videoAvgTimeWatchedActions: 6.878052220127876
+            engagement: 3
+            funnel:
+              searches: 3
+              contentViews: 3
+              purchases: 0
+              registrationsCompleted: 8
+              cartAdds: 0
+              wishlistAdds: 7
+              messagingConversationsStarted: 3
+              messagingFirstReplies: 3
+              appInstalls: 7
+              leads: 4
+              paymentInfoAdds: 6
+              schedules: 7
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 5
+            videoP75WatchedActions: 6
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 8
+            spend: 6.027456183070403
+            cpc: 7.061401241503109
+            roas: 1.0246457001441578
+            uniqueClicks: 4
+            outboundClicksCtr: 6.84685269835264
+            ctr: 2.3021358869347655
+            purchaseValue: 1.2315135367772556
+            cpm: 9.301444243932576
+            inlineLinkClickCtr: 1.1730742509559433
+            outboundClicks: 1
+            videoP50WatchedActions: 9
+            videoP95WatchedActions: 3
+            video2SecWatchedActions: 1
+            impressions: 1
+            videoP100WatchedActions: 6
+            video6SecWatchedActions: 2
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 9
+            engagementBreakdown:
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
+            inlineLinkClicks: 7
+            allConversions: 4.145608029883936
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 9
+            clicks: 5
+            uniqueCtr: 5.025004791520295
+            costPerThruplay: 5.944895607614016
+            costPerConversion: 7.386281948385884
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+            video6SecFocusedViews: 6
+          lastSyncedAt: lastSyncedAt
+          name: name
+          currency: currency
+          metrics: ""
           results:
             key: 0.8008281904610115
           platform: platform
         - adAccountId: adAccountId
           campaignId: campaignId
+          daily:
+          - date: 2000-01-23
+            conversions: 2.027123023002322
+            videoAvgTimeWatchedActions: 6.878052220127876
+            engagement: 3
+            funnel:
+              searches: 3
+              contentViews: 3
+              purchases: 0
+              registrationsCompleted: 8
+              cartAdds: 0
+              wishlistAdds: 7
+              messagingConversationsStarted: 3
+              messagingFirstReplies: 3
+              appInstalls: 7
+              leads: 4
+              paymentInfoAdds: 6
+              schedules: 7
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 5
+            videoP75WatchedActions: 6
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 8
+            spend: 6.027456183070403
+            cpc: 7.061401241503109
+            roas: 1.0246457001441578
+            uniqueClicks: 4
+            outboundClicksCtr: 6.84685269835264
+            ctr: 2.3021358869347655
+            purchaseValue: 1.2315135367772556
+            cpm: 9.301444243932576
+            inlineLinkClickCtr: 1.1730742509559433
+            outboundClicks: 1
+            videoP50WatchedActions: 9
+            videoP95WatchedActions: 3
+            video2SecWatchedActions: 1
+            impressions: 1
+            videoP100WatchedActions: 6
+            video6SecWatchedActions: 2
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 9
+            engagementBreakdown:
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
+            inlineLinkClicks: 7
+            allConversions: 4.145608029883936
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 9
+            clicks: 5
+            uniqueCtr: 5.025004791520295
+            costPerThruplay: 5.944895607614016
+            costPerConversion: 7.386281948385884
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+            video6SecFocusedViews: 6
+          - date: 2000-01-23
+            conversions: 2.027123023002322
+            videoAvgTimeWatchedActions: 6.878052220127876
+            engagement: 3
+            funnel:
+              searches: 3
+              contentViews: 3
+              purchases: 0
+              registrationsCompleted: 8
+              cartAdds: 0
+              wishlistAdds: 7
+              messagingConversationsStarted: 3
+              messagingFirstReplies: 3
+              appInstalls: 7
+              leads: 4
+              paymentInfoAdds: 6
+              schedules: 7
+              landingPageViews: 6
+              checkoutsInitiated: 7
+            reach: 5
+            videoP75WatchedActions: 6
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 8
+            spend: 6.027456183070403
+            cpc: 7.061401241503109
+            roas: 1.0246457001441578
+            uniqueClicks: 4
+            outboundClicksCtr: 6.84685269835264
+            ctr: 2.3021358869347655
+            purchaseValue: 1.2315135367772556
+            cpm: 9.301444243932576
+            inlineLinkClickCtr: 1.1730742509559433
+            outboundClicks: 1
+            videoP50WatchedActions: 9
+            videoP95WatchedActions: 3
+            video2SecWatchedActions: 1
+            impressions: 1
+            videoP100WatchedActions: 6
+            video6SecWatchedActions: 2
+            costPerAction:
+              link_click: 0.1052
+              offsite_conversion.fb_pixel_purchase: 4.0114
+            videoPlayActions: 9
+            engagementBreakdown:
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
+            inlineLinkClicks: 7
+            allConversions: 4.145608029883936
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 9
+            clicks: 5
+            uniqueCtr: 5.025004791520295
+            costPerThruplay: 5.944895607614016
+            costPerConversion: 7.386281948385884
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+            video6SecFocusedViews: 6
+          lastSyncedAt: lastSyncedAt
+          name: name
+          currency: currency
+          metrics: ""
           results:
             key: 0.8008281904610115
           platform: platform
@@ -99471,6 +99961,9 @@ components:
           fromDate: fromDate
           stale: true
           toDate: toDate
+          missingIds:
+          - missingIds
+          - missingIds
           staleSince: staleSince
       properties:
         data:
@@ -99501,7 +99994,7 @@ components:
           description: "Each uploaded result metric summed over the range, by metric\
             \ key."
         meta:
-          $ref: "#/components/schemas/CampaignMetricsResponse_meta"
+          $ref: "#/components/schemas/AdAccountMetricsResponse_meta"
       required:
       - meta
       - results
@@ -140412,8 +140905,8 @@ components:
         platformAdAccountName: platformAdAccountName
         budgetLevel: campaign
         adCount: 0
-        bidAmount: 9.132027271330688
-        roasAverageFloor: 0.8774076871421566
+        bidAmount: 6.704019297950036
+        roasAverageFloor: 3.353193347011243
         nativeSettings:
           key: ""
         accountId: accountId
@@ -200303,8 +200796,8 @@ components:
           platformAdAccountName: platformAdAccountName
           budgetLevel: campaign
           adCount: 0
-          bidAmount: 9.132027271330688
-          roasAverageFloor: 0.8774076871421566
+          bidAmount: 6.704019297950036
+          roasAverageFloor: 3.353193347011243
           nativeSettings:
             key: ""
           accountId: accountId
@@ -200411,8 +200904,8 @@ components:
           platformAdAccountName: platformAdAccountName
           budgetLevel: campaign
           adCount: 0
-          bidAmount: 9.132027271330688
-          roasAverageFloor: 0.8774076871421566
+          bidAmount: 6.704019297950036
+          roasAverageFloor: 3.353193347011243
           nativeSettings:
             key: ""
           accountId: accountId
@@ -238449,7 +238942,111 @@ components:
         - missingIds
         - missingIds
         staleSince: staleSince
+    CampaignMetricRow_daily_inner:
+      allOf:
+      - $ref: "#/components/schemas/AdMetrics"
+      - properties:
+          date:
+            format: date
+            type: string
+        required:
+        - date
+      example:
+        date: 2000-01-23
+        conversions: 2.027123023002322
+        videoAvgTimeWatchedActions: 6.878052220127876
+        engagement: 3
+        funnel:
+          searches: 3
+          contentViews: 3
+          purchases: 0
+          registrationsCompleted: 8
+          cartAdds: 0
+          wishlistAdds: 7
+          messagingConversationsStarted: 3
+          messagingFirstReplies: 3
+          appInstalls: 7
+          leads: 4
+          paymentInfoAdds: 6
+          schedules: 7
+          landingPageViews: 6
+          checkoutsInitiated: 7
+        reach: 5
+        videoP75WatchedActions: 6
+        lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+        actionValues:
+          offsite_conversion.fb_pixel_purchase: 2456.78
+          offsite_conversion.fb_pixel_add_to_cart: 980.5
+        videoP25WatchedActions: 8
+        spend: 6.027456183070403
+        cpc: 7.061401241503109
+        roas: 1.0246457001441578
+        uniqueClicks: 4
+        outboundClicksCtr: 6.84685269835264
+        ctr: 2.3021358869347655
+        purchaseValue: 1.2315135367772556
+        cpm: 9.301444243932576
+        inlineLinkClickCtr: 1.1730742509559433
+        outboundClicks: 1
+        videoP50WatchedActions: 9
+        videoP95WatchedActions: 3
+        video2SecWatchedActions: 1
+        impressions: 1
+        videoP100WatchedActions: 6
+        video6SecWatchedActions: 2
+        costPerAction:
+          link_click: 0.1052
+          offsite_conversion.fb_pixel_purchase: 4.0114
+        videoPlayActions: 9
+        engagementBreakdown:
+          shares: 6
+          pageEngagement: 3
+          comments: 0
+          pageLikes: 1
+          saves: 4
+          linkClicks: 7
+          reactions: 4
+          postEngagement: 5
+          videoViews: 4
+        inlineLinkClicks: 7
+        allConversions: 4.145608029883936
+        videoThruplayWatchedActions: 6
+        video30SecWatchedActions: 9
+        clicks: 5
+        uniqueCtr: 5.025004791520295
+        costPerThruplay: 5.944895607614016
+        costPerConversion: 7.386281948385884
+        actions:
+          link_click: 160
+          post_engagement: 300
+          offsite_conversion.fb_pixel_purchase: 42
+        video6SecFocusedViews: 6
     CampaignMetricsResponse_meta:
+      allOf:
+      - properties:
+          fromDate:
+            type: string
+          toDate:
+            type: string
+          missingIds:
+            description: "With metrics, asked campaignIds that are not campaigns the\
+              \ caller can see."
+            items:
+              type: string
+            type: array
+        required:
+        - fromDate
+        - toDate
+      - $ref: "#/components/schemas/MetricsFreshness"
+      example:
+        fromDate: fromDate
+        stale: true
+        toDate: toDate
+        missingIds:
+        - missingIds
+        - missingIds
+        staleSince: staleSince
+    AdAccountMetricsResponse_meta:
       allOf:
       - properties:
           fromDate:

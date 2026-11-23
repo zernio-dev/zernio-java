@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**results** | **Map&lt;String, BigDecimal&gt;** | Each uploaded result metric summed over the range, by metric key. |  |
-|**meta** | [**CampaignMetricsResponseMeta**](CampaignMetricsResponseMeta.md) |  |  |
+|**meta** | [**AdAccountMetricsResponseMeta**](AdAccountMetricsResponseMeta.md) |  |  |
 
 
 

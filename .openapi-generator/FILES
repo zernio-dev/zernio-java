@@ -25,6 +25,7 @@ docs/ActivateWorkflow200Response.md
 docs/ActivateWorkflow200ResponseWorkflow.md
 docs/Ad.md
 docs/AdAccountMetricsResponse.md
+docs/AdAccountMetricsResponseMeta.md
 docs/AdAccountsApi.md
 docs/AdActivationStatus.md
 docs/AdAnalyticsResponse.md
@@ -551,6 +552,7 @@ docs/CampaignDraftCommentsInner.md
 docs/CampaignDraftCounts.md
 docs/CampaignLedgerEntry.md
 docs/CampaignMetricRow.md
+docs/CampaignMetricRowDailyInner.md
 docs/CampaignMetricsResponse.md
 docs/CampaignMetricsResponseMeta.md
 docs/CampaignParticipant.md
@@ -4357,6 +4359,7 @@ src/main/java/dev/zernio/model/ActivateWorkflow200Response.java
 src/main/java/dev/zernio/model/ActivateWorkflow200ResponseWorkflow.java
 src/main/java/dev/zernio/model/Ad.java
 src/main/java/dev/zernio/model/AdAccountMetricsResponse.java
+src/main/java/dev/zernio/model/AdAccountMetricsResponseMeta.java
 src/main/java/dev/zernio/model/AdActivationStatus.java
 src/main/java/dev/zernio/model/AdAnalyticsResponse.java
 src/main/java/dev/zernio/model/AdAnalyticsResponseAd.java
@@ -4865,6 +4868,7 @@ src/main/java/dev/zernio/model/CampaignDraftCommentsInner.java
 src/main/java/dev/zernio/model/CampaignDraftCounts.java
 src/main/java/dev/zernio/model/CampaignLedgerEntry.java
 src/main/java/dev/zernio/model/CampaignMetricRow.java
+src/main/java/dev/zernio/model/CampaignMetricRowDailyInner.java
 src/main/java/dev/zernio/model/CampaignMetricsResponse.java
 src/main/java/dev/zernio/model/CampaignMetricsResponseMeta.java
 src/main/java/dev/zernio/model/CampaignParticipant.java
@@ -8469,3 +8473,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdAccountMetricsResponseMetaTest.java
+src/test/java/dev/zernio/model/CampaignMetricRowDailyInnerTest.java
