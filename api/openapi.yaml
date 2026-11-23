@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.796.1
+  version: 1.797.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -58703,6 +58703,98 @@ paths:
       security:
       - bearerAuth: []
       summary: Get one run of an automation
+      tags:
+      - Automations
+      x-resource-group: ads
+      x-oauth-scopes:
+      - ads:write
+      - ads:read
+      x-accepts:
+      - application/json
+  /v1/automations/{automationId}/test:
+    post:
+      description: |
+        Runs one sample through the automation's own decision code and says whether it would run, what it matched and the steps it would take. Nothing is claimed, sent or written, whatever the automation does.
+
+        What each kind reads:
+
+        - Comment to DM: a comment (`event.text`, `event.platformPostId`).
+        - Flow: an inbound event (`event.trigger`, `event.text`, `event.firstMessage`).
+        - Event automation: the event's webhook payload, or the sample payload when `event` is left out.
+        - Ad rule: the ad account as it is now, like a preview. `subjectId` narrows to one object.
+        - Scheduled automation: the posts it would check now, and its next check. `subjectId` narrows to one post.
+        - Sequence: the contact in `subjectId`.
+
+        A paused or draft automation is tested as if it were live, and answers `wouldRun: false` with its status as `reason`. Cooldowns, daily caps and a conversation's live run read history and are left out. `GET /v1/automations/{automationId}/test/sample` returns a body to start from.
+      operationId: testAutomation
+      parameters:
+      - explode: false
+        in: path
+        name: automationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/testAutomation_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/testAutomation_200_response"
+          description: Decision
+        "400":
+          $ref: "#/components/responses/AutomationInvalid"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AutomationsAdsRequired"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Test an automation on a sample event
+      tags:
+      - Automations
+      x-resource-group: ads
+      x-oauth-scopes:
+      - ads:write
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/automations/{automationId}/test/sample:
+    get:
+      description: |
+        A body `POST /v1/automations/{automationId}/test` accepts for this automation: a comment with its first keyword, an inbound event its flow's trigger takes, its event's webhook payload with sample values, or the contact a sequence enrolled last. Kinds that read live data instead take no event.
+      operationId: getAutomationTestSample
+      parameters:
+      - explode: false
+        in: path
+        name: automationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAutomationTestSample_200_response"
+          description: Sample
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a sample test body for an automation
       tags:
       - Automations
       x-resource-group: ads
@@ -147480,6 +147572,53 @@ components:
       - $ref: "#/components/schemas/AdRuleAutomationCheck"
       - $ref: "#/components/schemas/EventAutomationCheck"
       - $ref: "#/components/schemas/ScheduledAutomationCheck"
+    AutomationTestDecision:
+      description: "What the automation would do with the sample, decided by the code\
+        \ its live runs use."
+      example:
+        wouldRun: true
+        reason: reason
+        plannedSteps:
+        - summary: summary
+          type: type
+        - summary: summary
+          type: type
+        matched:
+        - type: type
+          value: value
+        - type: type
+          value: value
+        nextRunAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        wouldRun:
+          type: boolean
+        reason:
+          description: "Why it would not run: keyword_miss, keyword_excluded, other_post,\
+            \ trigger_miss, not_first_message, account_not_listened, filter_miss,\
+            \ no_match, subject_not_matched, post_not_matched, no_accounts, no_subscribed_channel,\
+            \ unsubscribed, already_enrolled, runs_paused, paused or draft."
+          type: string
+        matched:
+          description: "What the sample met, such as a keyword, a filter condition,\
+            \ the trigger, a post or an ad."
+          items:
+            $ref: "#/components/schemas/AutomationTestDecision_matched_inner"
+          type: array
+        plannedSteps:
+          description: "The steps it would take, in order. A flow lists its first\
+            \ steps up to the first branch."
+          items:
+            $ref: "#/components/schemas/AutomationTestDecision_plannedSteps_inner"
+          type: array
+        nextRunAt:
+          description: A scheduled automation's next check.
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - matched
+      - plannedSteps
+      - wouldRun
     AutomationRun:
       description: "One subject going through an automation, the same shape for every\
         \ kind. A flow, sequence or comment to DM run is one conversation, contact\
@@ -202468,6 +202607,75 @@ components:
           $ref: "#/components/schemas/AutomationRunDetail"
       required:
       - run
+    testAutomation_request:
+      properties:
+        event:
+          additionalProperties: {}
+          description: "The sample event, shaped by the automation's kind."
+        subjectId:
+          description: "A sequence's contact, a scheduled automation's post or an\
+            \ ad rule's object."
+          type: string
+    testAutomation_200_response:
+      example:
+        decision:
+          wouldRun: true
+          reason: reason
+          plannedSteps:
+          - summary: summary
+            type: type
+          - summary: summary
+            type: type
+          matched:
+          - type: type
+            value: value
+          - type: type
+            value: value
+          nextRunAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        decision:
+          $ref: "#/components/schemas/AutomationTestDecision"
+      required:
+      - decision
+    getAutomationTestSample_200_response_sample:
+      example:
+        description: description
+        event:
+          key: ""
+        subjectId: subjectId
+      properties:
+        event:
+          additionalProperties: true
+          type: object
+        subjectId:
+          type: string
+        description:
+          type: string
+      required:
+      - description
+    getAutomationTestSample_200_response:
+      example:
+        kind: ad_rule
+        sample:
+          description: description
+          event:
+            key: ""
+          subjectId: subjectId
+      properties:
+        kind:
+          enum:
+          - ad_rule
+          - event
+          - scheduled
+          - sequence
+          - comment
+          - workflow
+          type: string
+        sample:
+          $ref: "#/components/schemas/getAutomationTestSample_200_response_sample"
+      required:
+      - kind
+      - sample
     updateAutomation_request_subjects:
       oneOf:
       - $ref: "#/components/schemas/AutomationSubjects"
@@ -262798,6 +263006,30 @@ components:
       - properties:
           postId:
             type: string
+    AutomationTestDecision_matched_inner:
+      example:
+        type: type
+        value: value
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+      required:
+      - type
+      - value
+    AutomationTestDecision_plannedSteps_inner:
+      example:
+        summary: summary
+        type: type
+      properties:
+        type:
+          type: string
+        summary:
+          type: string
+      required:
+      - summary
+      - type
     AutomationRun_subject:
       description: "What the run is about. Null for a scheduled check, which judges\
         \ many subjects."

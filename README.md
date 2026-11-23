@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.796.1
+- API version: 1.797.0
 
-- Build date: 2026-11-23T22:53:30.842699046Z[Etc/UTC]
+- Build date: 2026-11-23T23:01:19.346653464Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.796.1</version>
+  <version>1.797.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.796.1"
+compile "dev.zernio:zernio-sdk:1.797.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.796.1.jar`
+- `target/zernio-sdk-1.797.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -801,6 +801,8 @@ Class | Method | HTTP request | Description
 *AutomationsApi* | [**getAutomationRunWithHttpInfo**](docs/AutomationsApi.md#getAutomationRunWithHttpInfo) | **GET** /v1/automations/{automationId}/runs/{runId} | Get one run of an automation
 *AutomationsApi* | [**getAutomationTemplate**](docs/AutomationsApi.md#getAutomationTemplate) | **GET** /v1/automations/templates/{templateId} | Get an automation template
 *AutomationsApi* | [**getAutomationTemplateWithHttpInfo**](docs/AutomationsApi.md#getAutomationTemplateWithHttpInfo) | **GET** /v1/automations/templates/{templateId} | Get an automation template
+*AutomationsApi* | [**getAutomationTestSample**](docs/AutomationsApi.md#getAutomationTestSample) | **GET** /v1/automations/{automationId}/test/sample | Get a sample test body for an automation
+*AutomationsApi* | [**getAutomationTestSampleWithHttpInfo**](docs/AutomationsApi.md#getAutomationTestSampleWithHttpInfo) | **GET** /v1/automations/{automationId}/test/sample | Get a sample test body for an automation
 *AutomationsApi* | [**getSharedAutomationTemplate**](docs/AutomationsApi.md#getSharedAutomationTemplate) | **GET** /v1/automations/templates/shared/{shareToken} | Get a shared automation template
 *AutomationsApi* | [**getSharedAutomationTemplateWithHttpInfo**](docs/AutomationsApi.md#getSharedAutomationTemplateWithHttpInfo) | **GET** /v1/automations/templates/shared/{shareToken} | Get a shared automation template
 *AutomationsApi* | [**getZernioAutomationTemplate**](docs/AutomationsApi.md#getZernioAutomationTemplate) | **GET** /v1/automations/templates/zernio/{templateId} | Get a Zernio automation template
@@ -833,6 +835,8 @@ Class | Method | HTTP request | Description
 *AutomationsApi* | [**rejectAutomationApprovalWithHttpInfo**](docs/AutomationsApi.md#rejectAutomationApprovalWithHttpInfo) | **POST** /v1/automations/{automationId}/approvals/{approvalId}/reject | Reject an approval request
 *AutomationsApi* | [**takeOverAutomation**](docs/AutomationsApi.md#takeOverAutomation) | **POST** /v1/automations/{automationId}/take-over | Take over an automation
 *AutomationsApi* | [**takeOverAutomationWithHttpInfo**](docs/AutomationsApi.md#takeOverAutomationWithHttpInfo) | **POST** /v1/automations/{automationId}/take-over | Take over an automation
+*AutomationsApi* | [**testAutomation**](docs/AutomationsApi.md#testAutomation) | **POST** /v1/automations/{automationId}/test | Test an automation on a sample event
+*AutomationsApi* | [**testAutomationWithHttpInfo**](docs/AutomationsApi.md#testAutomationWithHttpInfo) | **POST** /v1/automations/{automationId}/test | Test an automation on a sample event
 *AutomationsApi* | [**updateAutomation**](docs/AutomationsApi.md#updateAutomation) | **PATCH** /v1/automations/{automationId} | Edit an automation
 *AutomationsApi* | [**updateAutomationWithHttpInfo**](docs/AutomationsApi.md#updateAutomationWithHttpInfo) | **PATCH** /v1/automations/{automationId} | Edit an automation
 *AutomationsApi* | [**updateAutomationAdAccountControls**](docs/AutomationsApi.md#updateAutomationAdAccountControls) | **PATCH** /v1/automations/controls/ad-accounts | Update one ad account&#39;s controls
@@ -3288,6 +3292,9 @@ Class | Method | HTTP request | Description
  - [AutomationTemplateShare](docs/AutomationTemplateShare.md)
  - [AutomationTemplateTargetResult](docs/AutomationTemplateTargetResult.md)
  - [AutomationTemplateTargetResultError](docs/AutomationTemplateTargetResultError.md)
+ - [AutomationTestDecision](docs/AutomationTestDecision.md)
+ - [AutomationTestDecisionMatchedInner](docs/AutomationTestDecisionMatchedInner.md)
+ - [AutomationTestDecisionPlannedStepsInner](docs/AutomationTestDecisionPlannedStepsInner.md)
  - [AutomationTrigger](docs/AutomationTrigger.md)
  - [BalanceRequiredError](docs/BalanceRequiredError.md)
  - [BatchAdCatalogProducts202Response](docs/BatchAdCatalogProducts202Response.md)
@@ -4451,6 +4458,8 @@ Class | Method | HTTP request | Description
  - [GetAutomationCatalog200ResponseTriggersInnerFactsInner](docs/GetAutomationCatalog200ResponseTriggersInnerFactsInner.md)
  - [GetAutomationControls200Response](docs/GetAutomationControls200Response.md)
  - [GetAutomationRun200Response](docs/GetAutomationRun200Response.md)
+ - [GetAutomationTestSample200Response](docs/GetAutomationTestSample200Response.md)
+ - [GetAutomationTestSample200ResponseSample](docs/GetAutomationTestSample200ResponseSample.md)
  - [GetBalance200Response](docs/GetBalance200Response.md)
  - [GetBalance200ResponseHeld](docs/GetBalance200ResponseHeld.md)
  - [GetBalance200ResponsePayoutLocksInner](docs/GetBalance200ResponsePayoutLocksInner.md)
@@ -6262,6 +6271,8 @@ Class | Method | HTTP request | Description
  - [TargetingSpecExcludedLocations](docs/TargetingSpecExcludedLocations.md)
  - [TargetingSpecExcludedLocationsCitiesInner](docs/TargetingSpecExcludedLocationsCitiesInner.md)
  - [TelegramPlatformData](docs/TelegramPlatformData.md)
+ - [TestAutomation200Response](docs/TestAutomation200Response.md)
+ - [TestAutomationRequest](docs/TestAutomationRequest.md)
  - [TestWebhookRequest](docs/TestWebhookRequest.md)
  - [ThreadsPlatformData](docs/ThreadsPlatformData.md)
  - [TikTokAdsPlatformQueryBody](docs/TikTokAdsPlatformQueryBody.md)

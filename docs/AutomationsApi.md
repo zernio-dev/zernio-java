@@ -32,6 +32,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAutomationRunWithHttpInfo**](AutomationsApi.md#getAutomationRunWithHttpInfo) | **GET** /v1/automations/{automationId}/runs/{runId} | Get one run of an automation |
 | [**getAutomationTemplate**](AutomationsApi.md#getAutomationTemplate) | **GET** /v1/automations/templates/{templateId} | Get an automation template |
 | [**getAutomationTemplateWithHttpInfo**](AutomationsApi.md#getAutomationTemplateWithHttpInfo) | **GET** /v1/automations/templates/{templateId} | Get an automation template |
+| [**getAutomationTestSample**](AutomationsApi.md#getAutomationTestSample) | **GET** /v1/automations/{automationId}/test/sample | Get a sample test body for an automation |
+| [**getAutomationTestSampleWithHttpInfo**](AutomationsApi.md#getAutomationTestSampleWithHttpInfo) | **GET** /v1/automations/{automationId}/test/sample | Get a sample test body for an automation |
 | [**getSharedAutomationTemplate**](AutomationsApi.md#getSharedAutomationTemplate) | **GET** /v1/automations/templates/shared/{shareToken} | Get a shared automation template |
 | [**getSharedAutomationTemplateWithHttpInfo**](AutomationsApi.md#getSharedAutomationTemplateWithHttpInfo) | **GET** /v1/automations/templates/shared/{shareToken} | Get a shared automation template |
 | [**getZernioAutomationTemplate**](AutomationsApi.md#getZernioAutomationTemplate) | **GET** /v1/automations/templates/zernio/{templateId} | Get a Zernio automation template |
@@ -64,6 +66,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**rejectAutomationApprovalWithHttpInfo**](AutomationsApi.md#rejectAutomationApprovalWithHttpInfo) | **POST** /v1/automations/{automationId}/approvals/{approvalId}/reject | Reject an approval request |
 | [**takeOverAutomation**](AutomationsApi.md#takeOverAutomation) | **POST** /v1/automations/{automationId}/take-over | Take over an automation |
 | [**takeOverAutomationWithHttpInfo**](AutomationsApi.md#takeOverAutomationWithHttpInfo) | **POST** /v1/automations/{automationId}/take-over | Take over an automation |
+| [**testAutomation**](AutomationsApi.md#testAutomation) | **POST** /v1/automations/{automationId}/test | Test an automation on a sample event |
+| [**testAutomationWithHttpInfo**](AutomationsApi.md#testAutomationWithHttpInfo) | **POST** /v1/automations/{automationId}/test | Test an automation on a sample event |
 | [**updateAutomation**](AutomationsApi.md#updateAutomation) | **PATCH** /v1/automations/{automationId} | Edit an automation |
 | [**updateAutomationWithHttpInfo**](AutomationsApi.md#updateAutomationWithHttpInfo) | **PATCH** /v1/automations/{automationId} | Edit an automation |
 | [**updateAutomationAdAccountControls**](AutomationsApi.md#updateAutomationAdAccountControls) | **PATCH** /v1/automations/controls/ad-accounts | Update one ad account&#39;s controls |
@@ -2197,6 +2201,156 @@ ApiResponse<[**CreateAutomationTemplate201Response**](CreateAutomationTemplate20
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No template with this id in your team. |  -  |
+
+
+## getAutomationTestSample
+
+> GetAutomationTestSample200Response getAutomationTestSample(automationId)
+
+Get a sample test body for an automation
+
+A body &#x60;POST /v1/automations/{automationId}/test&#x60; accepts for this automation: a comment with its first keyword, an inbound event its flow&#39;s trigger takes, its event&#39;s webhook payload with sample values, or the contact a sequence enrolled last. Kinds that read live data instead take no event. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AutomationsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AutomationsApi apiInstance = new AutomationsApi(defaultClient);
+        String automationId = "automationId_example"; // String | 
+        try {
+            GetAutomationTestSample200Response result = apiInstance.getAutomationTestSample(automationId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AutomationsApi#getAutomationTestSample");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **automationId** | **String**|  | |
+
+### Return type
+
+[**GetAutomationTestSample200Response**](GetAutomationTestSample200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sample |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## getAutomationTestSampleWithHttpInfo
+
+> ApiResponse<GetAutomationTestSample200Response> getAutomationTestSample getAutomationTestSampleWithHttpInfo(automationId)
+
+Get a sample test body for an automation
+
+A body &#x60;POST /v1/automations/{automationId}/test&#x60; accepts for this automation: a comment with its first keyword, an inbound event its flow&#39;s trigger takes, its event&#39;s webhook payload with sample values, or the contact a sequence enrolled last. Kinds that read live data instead take no event. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AutomationsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AutomationsApi apiInstance = new AutomationsApi(defaultClient);
+        String automationId = "automationId_example"; // String | 
+        try {
+            ApiResponse<GetAutomationTestSample200Response> response = apiInstance.getAutomationTestSampleWithHttpInfo(automationId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AutomationsApi#getAutomationTestSample");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **automationId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetAutomationTestSample200Response**](GetAutomationTestSample200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sample |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## getSharedAutomationTemplate
@@ -4744,6 +4898,162 @@ ApiResponse<[**TakeOverAutomation200Response**](TakeOverAutomation200Response.md
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Not the owner or an admin of the active workspace (insufficient_permissions). |  -  |
+| **404** | Resource not found |  -  |
+
+
+## testAutomation
+
+> TestAutomation200Response testAutomation(automationId, testAutomationRequest)
+
+Test an automation on a sample event
+
+Runs one sample through the automation&#39;s own decision code and says whether it would run, what it matched and the steps it would take. Nothing is claimed, sent or written, whatever the automation does.  What each kind reads:  - Comment to DM: a comment (&#x60;event.text&#x60;, &#x60;event.platformPostId&#x60;). - Flow: an inbound event (&#x60;event.trigger&#x60;, &#x60;event.text&#x60;, &#x60;event.firstMessage&#x60;). - Event automation: the event&#39;s webhook payload, or the sample payload when &#x60;event&#x60; is left out. - Ad rule: the ad account as it is now, like a preview. &#x60;subjectId&#x60; narrows to one object. - Scheduled automation: the posts it would check now, and its next check. &#x60;subjectId&#x60; narrows to one post. - Sequence: the contact in &#x60;subjectId&#x60;.  A paused or draft automation is tested as if it were live, and answers &#x60;wouldRun: false&#x60; with its status as &#x60;reason&#x60;. Cooldowns, daily caps and a conversation&#39;s live run read history and are left out. &#x60;GET /v1/automations/{automationId}/test/sample&#x60; returns a body to start from. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AutomationsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AutomationsApi apiInstance = new AutomationsApi(defaultClient);
+        String automationId = "automationId_example"; // String | 
+        TestAutomationRequest testAutomationRequest = new TestAutomationRequest(); // TestAutomationRequest | 
+        try {
+            TestAutomation200Response result = apiInstance.testAutomation(automationId, testAutomationRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AutomationsApi#testAutomation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **automationId** | **String**|  | |
+| **testAutomationRequest** | [**TestAutomationRequest**](TestAutomationRequest.md)|  | [optional] |
+
+### Return type
+
+[**TestAutomation200Response**](TestAutomation200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Decision |  -  |
+| **400** | The automation is invalid, or holds something its kind cannot: &#x60;details.problems&#x60; lists each problem with its JSON path. A few ad rule checks (an unsupported platform, step or metric, a cooldown shorter than the schedule, approvers not on the team) answer with &#x60;param&#x60; instead. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ad rules only: your account has no ads access (code &#x60;ads_addon_required&#x60;). Ads are included on usage-based plans. Event and scheduled automations never get this 403: a boost step without ads access is refused with a 400 at its path. |  -  |
+| **404** | Resource not found |  -  |
+
+## testAutomationWithHttpInfo
+
+> ApiResponse<TestAutomation200Response> testAutomation testAutomationWithHttpInfo(automationId, testAutomationRequest)
+
+Test an automation on a sample event
+
+Runs one sample through the automation&#39;s own decision code and says whether it would run, what it matched and the steps it would take. Nothing is claimed, sent or written, whatever the automation does.  What each kind reads:  - Comment to DM: a comment (&#x60;event.text&#x60;, &#x60;event.platformPostId&#x60;). - Flow: an inbound event (&#x60;event.trigger&#x60;, &#x60;event.text&#x60;, &#x60;event.firstMessage&#x60;). - Event automation: the event&#39;s webhook payload, or the sample payload when &#x60;event&#x60; is left out. - Ad rule: the ad account as it is now, like a preview. &#x60;subjectId&#x60; narrows to one object. - Scheduled automation: the posts it would check now, and its next check. &#x60;subjectId&#x60; narrows to one post. - Sequence: the contact in &#x60;subjectId&#x60;.  A paused or draft automation is tested as if it were live, and answers &#x60;wouldRun: false&#x60; with its status as &#x60;reason&#x60;. Cooldowns, daily caps and a conversation&#39;s live run read history and are left out. &#x60;GET /v1/automations/{automationId}/test/sample&#x60; returns a body to start from. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AutomationsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AutomationsApi apiInstance = new AutomationsApi(defaultClient);
+        String automationId = "automationId_example"; // String | 
+        TestAutomationRequest testAutomationRequest = new TestAutomationRequest(); // TestAutomationRequest | 
+        try {
+            ApiResponse<TestAutomation200Response> response = apiInstance.testAutomationWithHttpInfo(automationId, testAutomationRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AutomationsApi#testAutomation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **automationId** | **String**|  | |
+| **testAutomationRequest** | [**TestAutomationRequest**](TestAutomationRequest.md)|  | [optional] |
+
+### Return type
+
+ApiResponse<[**TestAutomation200Response**](TestAutomation200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Decision |  -  |
+| **400** | The automation is invalid, or holds something its kind cannot: &#x60;details.problems&#x60; lists each problem with its JSON path. A few ad rule checks (an unsupported platform, step or metric, a cooldown shorter than the schedule, approvers not on the team) answer with &#x60;param&#x60; instead. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ad rules only: your account has no ads access (code &#x60;ads_addon_required&#x60;). Ads are included on usage-based plans. Event and scheduled automations never get this 403: a boost step without ads access is refused with a 400 at its path. |  -  |
 | **404** | Resource not found |  -  |
 
 
