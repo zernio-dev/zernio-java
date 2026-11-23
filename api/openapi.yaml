@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.778.1
+  version: 1.779.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -224278,9 +224278,32 @@ components:
           type: integer
         clickId:
           type: integer
+    getEventsAccuracy_200_response_destinations_inner_failureReasons_inner:
+      example:
+        code: code
+        events: 4
+        example: example
+      properties:
+        code:
+          description: "The refusal code: the platform's own, or Zernio's (such as\
+            \ `INVALID_EVENT` or `INVALID_EVENT_TIME`)."
+          type: string
+        example:
+          description: "One refusal message of this code, as the platform worded it."
+          type: string
+        events:
+          description: Events refused with this code.
+          type: integer
     getEventsAccuracy_200_response_destinations_inner:
       example:
         accountName: accountName
+        failureReasons:
+        - code: code
+          events: 4
+          example: example
+        - code: code
+          events: 4
+          example: example
         match:
           identified: 1
           phone: 1
@@ -224350,11 +224373,24 @@ components:
           description: '`match.identified / match.events`. `null` with nothing sent.'
           nullable: true
           type: number
+        failureReasons:
+          description: "Why the destination refused events in the period, by refusal\
+            \ code, most events first (at most 5). Empty when it refused none."
+          items:
+            $ref: "#/components/schemas/getEventsAccuracy_200_response_destinations_inner_failureReasons_inner"
+          type: array
     getEventsAccuracy_200_response:
       example:
         period: today
         destinations:
         - accountName: accountName
+          failureReasons:
+          - code: code
+            events: 4
+            example: example
+          - code: code
+            events: 4
+            example: example
           match:
             identified: 1
             phone: 1
@@ -224381,6 +224417,13 @@ components:
           ruleId: ruleId
           matchRate: 1.1730742509559433
         - accountName: accountName
+          failureReasons:
+          - code: code
+            events: 4
+            example: example
+          - code: code
+            events: 4
+            example: example
           match:
             identified: 1
             phone: 1

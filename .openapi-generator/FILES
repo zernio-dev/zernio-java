@@ -1664,6 +1664,7 @@ docs/GetEvent200ResponseTouchesInnerDetail.md
 docs/GetEventsAccuracy200Response.md
 docs/GetEventsAccuracy200ResponseDestinationsInner.md
 docs/GetEventsAccuracy200ResponseDestinationsInnerDeliveries.md
+docs/GetEventsAccuracy200ResponseDestinationsInnerFailureReasonsInner.md
 docs/GetEventsAccuracy200ResponseDestinationsInnerMatch.md
 docs/GetEventsOverview200Response.md
 docs/GetEventsOverview200ResponseEventNamesInner.md
@@ -5964,6 +5965,7 @@ src/main/java/dev/zernio/model/GetEvent200ResponseTouchesInnerDetail.java
 src/main/java/dev/zernio/model/GetEventsAccuracy200Response.java
 src/main/java/dev/zernio/model/GetEventsAccuracy200ResponseDestinationsInner.java
 src/main/java/dev/zernio/model/GetEventsAccuracy200ResponseDestinationsInnerDeliveries.java
+src/main/java/dev/zernio/model/GetEventsAccuracy200ResponseDestinationsInnerFailureReasonsInner.java
 src/main/java/dev/zernio/model/GetEventsAccuracy200ResponseDestinationsInnerMatch.java
 src/main/java/dev/zernio/model/GetEventsOverview200Response.java
 src/main/java/dev/zernio/model/GetEventsOverview200ResponseEventNamesInner.java
@@ -8477,3 +8479,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetEventsAccuracy200ResponseDestinationsInnerFailureReasonsInnerTest.java
