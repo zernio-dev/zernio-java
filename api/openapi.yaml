@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.767.0
+  version: 1.768.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -96944,31 +96944,7 @@ components:
           scannedAt: 2000-01-23T04:56:07.000+00:00
           url: https://openapi-generator.tech
         report:
-          summary: summary
           estimatedSignalLossPct: 59.621339166831824
-          siteSignals:
-          - siteSignals
-          - siteSignals
-          consentManager: consentManager
-          scoreRange:
-            high: 1.4658129805029452
-            low: 6.027456183070403
-          visibility: full
-          otherNetworksConfigured:
-          - relaySupported: true
-            name: name
-          - relaySupported: true
-            name: name
-          scanMode: static
-          scannerBlocked: true
-          consent:
-            googleConsentMode: v2
-            evidence:
-            - evidence
-            - evidence
-            cmp: cmp
-            defaultsToDenied: true
-          url: url
           platforms:
           - browserPixel: true
             fired: before-consent
@@ -97028,6 +97004,42 @@ components:
           - tagManagers
           score: 8.008281904610115
           faviconUrl: faviconUrl
+          consentScan:
+            firedAfterConsent:
+            - firedAfterConsent
+            - firedAfterConsent
+            firedBeforeConsent:
+            - firedBeforeConsent
+            - firedBeforeConsent
+            accepted: accepted
+          limitations:
+          - limitations
+          - limitations
+          gradeReason: gradeReason
+          summary: summary
+          siteSignals:
+          - siteSignals
+          - siteSignals
+          consentManager: consentManager
+          scoreRange:
+            high: 1.4658129805029452
+            low: 6.027456183070403
+          visibility: full
+          otherNetworksConfigured:
+          - relaySupported: true
+            name: name
+          - relaySupported: true
+            name: name
+          scanMode: static
+          scannerBlocked: true
+          consent:
+            googleConsentMode: v2
+            evidence:
+            - evidence
+            - evidence
+            cmp: cmp
+            defaultsToDenied: true
+          url: url
           checks:
           - tier: essential
             weight: 7.061401241503109
@@ -97052,23 +97064,12 @@ components:
           domain: domain
           grade: A
           activePlatformCount: 2
-          consentScan:
-            firedAfterConsent:
-            - firedAfterConsent
-            - firedAfterConsent
-            firedBeforeConsent:
-            - firedBeforeConsent
-            - firedBeforeConsent
-            accepted: accepted
           otherNetworks:
           - relaySupported: true
             name: name
           - relaySupported: true
             name: name
           browserOnly: true
-          limitations:
-          - limitations
-          - limitations
         topFixes:
         - compliance: true
           why: why
@@ -97126,31 +97127,7 @@ components:
     ConversionAuditReport:
       description: The scored conversion-tracking audit of one page.
       example:
-        summary: summary
         estimatedSignalLossPct: 59.621339166831824
-        siteSignals:
-        - siteSignals
-        - siteSignals
-        consentManager: consentManager
-        scoreRange:
-          high: 1.4658129805029452
-          low: 6.027456183070403
-        visibility: full
-        otherNetworksConfigured:
-        - relaySupported: true
-          name: name
-        - relaySupported: true
-          name: name
-        scanMode: static
-        scannerBlocked: true
-        consent:
-          googleConsentMode: v2
-          evidence:
-          - evidence
-          - evidence
-          cmp: cmp
-          defaultsToDenied: true
-        url: url
         platforms:
         - browserPixel: true
           fired: before-consent
@@ -97210,6 +97187,42 @@ components:
         - tagManagers
         score: 8.008281904610115
         faviconUrl: faviconUrl
+        consentScan:
+          firedAfterConsent:
+          - firedAfterConsent
+          - firedAfterConsent
+          firedBeforeConsent:
+          - firedBeforeConsent
+          - firedBeforeConsent
+          accepted: accepted
+        limitations:
+        - limitations
+        - limitations
+        gradeReason: gradeReason
+        summary: summary
+        siteSignals:
+        - siteSignals
+        - siteSignals
+        consentManager: consentManager
+        scoreRange:
+          high: 1.4658129805029452
+          low: 6.027456183070403
+        visibility: full
+        otherNetworksConfigured:
+        - relaySupported: true
+          name: name
+        - relaySupported: true
+          name: name
+        scanMode: static
+        scannerBlocked: true
+        consent:
+          googleConsentMode: v2
+          evidence:
+          - evidence
+          - evidence
+          cmp: cmp
+          defaultsToDenied: true
+        url: url
         checks:
         - tier: essential
           weight: 7.061401241503109
@@ -97234,23 +97247,12 @@ components:
         domain: domain
         grade: A
         activePlatformCount: 2
-        consentScan:
-          firedAfterConsent:
-          - firedAfterConsent
-          - firedAfterConsent
-          firedBeforeConsent:
-          - firedBeforeConsent
-          - firedBeforeConsent
-          accepted: accepted
         otherNetworks:
         - relaySupported: true
           name: name
         - relaySupported: true
           name: name
         browserOnly: true
-        limitations:
-        - limitations
-        - limitations
       properties:
         url:
           description: The normalized URL that was scanned.
@@ -97276,11 +97278,20 @@ components:
         scoreRange:
           $ref: "#/components/schemas/ConversionAuditReport_scoreRange"
         estimatedSignalLossPct:
-          description: "Average share of conversions at risk on the networks with\
-            \ no visible server-side path, 0-100."
+          description: "Share of the conversions across every network that fires which\
+            \ is at risk if the networks without a verified server path run browser-only,\
+            \ 0-100. A verified network counts as 0. Consent checks and tags that\
+            \ never fire are not counted here; `gradeReason` says how they affect\
+            \ the grade."
           maximum: 100
           minimum: 0
           type: number
+        gradeReason:
+          description: "One plain line tying the grade to `estimatedSignalLossPct`:\
+            \ whether the grade comes mostly from the conversions at risk or from\
+            \ what that share leaves out (consent, tags not firing, matching), named.\
+            \ Absent when the score lost no points."
+          type: string
         platforms:
           description: One finding per ad platform the scan looked for.
           items:
@@ -233165,31 +233176,7 @@ components:
           scannedAt: 2000-01-23T04:56:07.000+00:00
           url: https://openapi-generator.tech
         report:
-          summary: summary
           estimatedSignalLossPct: 59.621339166831824
-          siteSignals:
-          - siteSignals
-          - siteSignals
-          consentManager: consentManager
-          scoreRange:
-            high: 1.4658129805029452
-            low: 6.027456183070403
-          visibility: full
-          otherNetworksConfigured:
-          - relaySupported: true
-            name: name
-          - relaySupported: true
-            name: name
-          scanMode: static
-          scannerBlocked: true
-          consent:
-            googleConsentMode: v2
-            evidence:
-            - evidence
-            - evidence
-            cmp: cmp
-            defaultsToDenied: true
-          url: url
           platforms:
           - browserPixel: true
             fired: before-consent
@@ -233249,6 +233236,42 @@ components:
           - tagManagers
           score: 8.008281904610115
           faviconUrl: faviconUrl
+          consentScan:
+            firedAfterConsent:
+            - firedAfterConsent
+            - firedAfterConsent
+            firedBeforeConsent:
+            - firedBeforeConsent
+            - firedBeforeConsent
+            accepted: accepted
+          limitations:
+          - limitations
+          - limitations
+          gradeReason: gradeReason
+          summary: summary
+          siteSignals:
+          - siteSignals
+          - siteSignals
+          consentManager: consentManager
+          scoreRange:
+            high: 1.4658129805029452
+            low: 6.027456183070403
+          visibility: full
+          otherNetworksConfigured:
+          - relaySupported: true
+            name: name
+          - relaySupported: true
+            name: name
+          scanMode: static
+          scannerBlocked: true
+          consent:
+            googleConsentMode: v2
+            evidence:
+            - evidence
+            - evidence
+            cmp: cmp
+            defaultsToDenied: true
+          url: url
           checks:
           - tier: essential
             weight: 7.061401241503109
@@ -233273,23 +233296,12 @@ components:
           domain: domain
           grade: A
           activePlatformCount: 2
-          consentScan:
-            firedAfterConsent:
-            - firedAfterConsent
-            - firedAfterConsent
-            firedBeforeConsent:
-            - firedBeforeConsent
-            - firedBeforeConsent
-            accepted: accepted
           otherNetworks:
           - relaySupported: true
             name: name
           - relaySupported: true
             name: name
           browserOnly: true
-          limitations:
-          - limitations
-          - limitations
         topFixes:
         - compliance: true
           why: why
