@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   InlineObject4.JSON_PROPERTY_CODE,
   InlineObject4.JSON_PROPERTY_REQUIRED_GROUP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:21:55.534299496Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:26:46.969250992Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InlineObject4 {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable

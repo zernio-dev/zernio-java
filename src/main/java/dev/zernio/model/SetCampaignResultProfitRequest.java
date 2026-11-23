@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   SetCampaignResultProfitRequest.JSON_PROPERTY_MARGIN_PERCENT,
   SetCampaignResultProfitRequest.JSON_PROPERTY_COST_PER_ORDER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:21:55.534299496Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:26:46.969250992Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetCampaignResultProfitRequest {
   public static final String JSON_PROPERTY_MARGIN_PERCENT = "marginPercent";
   @javax.annotation.Nullable

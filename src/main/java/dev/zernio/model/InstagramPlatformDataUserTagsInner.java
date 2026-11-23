@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   InstagramPlatformDataUserTagsInner.JSON_PROPERTY_Y,
   InstagramPlatformDataUserTagsInner.JSON_PROPERTY_MEDIA_INDEX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:21:55.534299496Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:26:46.969250992Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramPlatformDataUserTagsInner {
   public static final String JSON_PROPERTY_USERNAME = "username";
   @javax.annotation.Nonnull

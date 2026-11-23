@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   ListContactGroups200ResponseDataInner.JSON_PROPERTY_SYSTEM,
   ListContactGroups200ResponseDataInner.JSON_PROPERTY_MEMBER_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:21:55.534299496Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:26:46.969250992Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListContactGroups200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SelectCampaignManagerProfile200Response.JSON_PROPERTY_REDIRECT_URL,
   SelectCampaignManagerProfile200Response.JSON_PROPERTY_ACCOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:21:55.534299496Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:26:46.969250992Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectCampaignManagerProfile200Response {
   public static final String JSON_PROPERTY_REDIRECT_URL = "redirect_url";
   @javax.annotation.Nullable

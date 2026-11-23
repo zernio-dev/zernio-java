@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   RcsLaunchRequestConsent.JSON_PROPERTY_HELP_RESPONSE,
   RcsLaunchRequestConsent.JSON_PROPERTY_OPT_OUT_RESPONSE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:21:55.534299496Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:26:46.969250992Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RcsLaunchRequestConsent {
   public static final String JSON_PROPERTY_OPT_IN_METHODS = "optInMethods";
   @javax.annotation.Nonnull

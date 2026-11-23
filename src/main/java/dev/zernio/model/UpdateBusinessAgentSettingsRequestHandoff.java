@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateBusinessAgentSettingsRequestHandoff.JSON_PROPERTY_MESSAGE,
   UpdateBusinessAgentSettingsRequestHandoff.JSON_PROPERTY_MESSAGE_SELECTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:21:55.534299496Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:26:46.969250992Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateBusinessAgentSettingsRequestHandoff {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nonnull

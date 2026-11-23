@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   AutomationBacktestDay.JSON_PROPERTY_HELD_BACK,
   AutomationBacktestDay.JSON_PROPERTY_ACTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:21:55.534299496Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T21:26:46.969250992Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationBacktestDay {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nonnull
