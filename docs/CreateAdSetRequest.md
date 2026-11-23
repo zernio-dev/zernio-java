@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** | Zernio SocialAccount id owning the Google Ads or Reddit Ads connection. |  |
-|**platform** | [**PlatformEnum**](#PlatformEnum) | \&quot;google\&quot; and \&quot;reddit\&quot; are implemented; every other value returns 501. |  |
+|**platform** | [**PlatformEnum**](#PlatformEnum) | \&quot;google\&quot;, \&quot;reddit\&quot; and \&quot;snapchat\&quot; are implemented; every other value returns 501. |  |
 |**campaignId** | **String** | Platform campaign ID the ad group is created under (numeric on Google). |  |
 |**name** | **String** |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
@@ -40,6 +40,7 @@
 | TWITTER | &quot;twitter&quot; |
 | OPENAI | &quot;openai&quot; |
 | REDDIT | &quot;reddit&quot; |
+| SNAPCHAT | &quot;snapchat&quot; |
 
 
 

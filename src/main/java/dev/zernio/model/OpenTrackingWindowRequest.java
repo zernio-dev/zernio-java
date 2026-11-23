@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   OpenTrackingWindowRequest.JSON_PROPERTY_TRACKING_DAYS,
   OpenTrackingWindowRequest.JSON_PROPERTY_REQUESTED_BY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T18:53:12.642912225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T19:06:49.547440587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OpenTrackingWindowRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable

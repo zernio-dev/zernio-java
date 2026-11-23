@@ -54,14 +54,14 @@ import dev.zernio.ApiClient;
   CreateAdSetRequest.JSON_PROPERTY_BID_STRATEGY,
   CreateAdSetRequest.JSON_PROPERTY_BID_AMOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T18:53:12.642912225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T19:06:49.547440587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdSetRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
   private String accountId;
 
   /**
-   * \&quot;google\&quot; and \&quot;reddit\&quot; are implemented; every other value returns 501.
+   * \&quot;google\&quot;, \&quot;reddit\&quot; and \&quot;snapchat\&quot; are implemented; every other value returns 501.
    */
   public enum PlatformEnum {
     FACEBOOK(String.valueOf("facebook")),
@@ -80,7 +80,9 @@ public class CreateAdSetRequest {
     
     OPENAI(String.valueOf("openai")),
     
-    REDDIT(String.valueOf("reddit"));
+    REDDIT(String.valueOf("reddit")),
+    
+    SNAPCHAT(String.valueOf("snapchat"));
 
     private String value;
 
@@ -313,7 +315,7 @@ public class CreateAdSetRequest {
   }
 
   /**
-   * \&quot;google\&quot; and \&quot;reddit\&quot; are implemented; every other value returns 501.
+   * \&quot;google\&quot;, \&quot;reddit\&quot; and \&quot;snapchat\&quot; are implemented; every other value returns 501.
    * @return platform
    */
   @javax.annotation.Nonnull

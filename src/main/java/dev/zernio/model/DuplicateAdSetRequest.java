@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   DuplicateAdSetRequest.JSON_PROPERTY_SYNC_AFTER,
   DuplicateAdSetRequest.JSON_PROPERTY_WEBSITE_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T18:53:12.642912225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T19:06:49.547440587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DuplicateAdSetRequest {
   /**
    * Gets or Sets platform

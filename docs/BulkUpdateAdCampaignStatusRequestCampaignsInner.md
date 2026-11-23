@@ -34,6 +34,8 @@
 | OPENAIADS | &quot;openaiads&quot; |
 | REDDITADS | &quot;redditads&quot; |
 | MICROSOFTADS | &quot;microsoftads&quot; |
+| SNAPCHAT | &quot;snapchat&quot; |
+| SNAPCHATADS | &quot;snapchatads&quot; |
 
 
 

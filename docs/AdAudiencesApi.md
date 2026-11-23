@@ -691,7 +691,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads, redditads] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads, redditads, snapchatads] |
 | **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences and needs no adAccountId; the other types keep only the platform audiences of that type (an empty list when the platform has none). Meta ENGAGEMENT audiences are &#x60;meta_engagement&#x60;. | [optional] [enum: customer_list, company_list, engagement, meta_engagement, website, website_retargeting, lookalike, saved_targeting] |
 
 ### Return type
@@ -775,7 +775,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads, redditads] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads, redditads, snapchatads] |
 | **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences and needs no adAccountId; the other types keep only the platform audiences of that type (an empty list when the platform has none). Meta ENGAGEMENT audiences are &#x60;meta_engagement&#x60;. | [optional] [enum: customer_list, company_list, engagement, meta_engagement, website, website_retargeting, lookalike, saved_targeting] |
 
 ### Return type

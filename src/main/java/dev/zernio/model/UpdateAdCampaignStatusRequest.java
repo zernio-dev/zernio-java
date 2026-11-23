@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateAdCampaignStatusRequest.JSON_PROPERTY_STATUS,
   UpdateAdCampaignStatusRequest.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T18:53:12.642912225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T19:06:49.547440587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignStatusRequest {
   /**
    * Gets or Sets status
@@ -103,7 +103,9 @@ public class UpdateAdCampaignStatusRequest {
     
     AMAZON(String.valueOf("amazon")),
     
-    TRADEDESK(String.valueOf("tradedesk"));
+    TRADEDESK(String.valueOf("tradedesk")),
+    
+    SNAPCHAT(String.valueOf("snapchat"));
 
     private String value;
 

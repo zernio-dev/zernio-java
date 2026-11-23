@@ -61,7 +61,7 @@ import dev.zernio.ApiClient;
   UpdateAdCampaignRequest.JSON_PROPERTY_NAME,
   UpdateAdCampaignRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T18:53:12.642912225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T19:06:49.547440587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignRequest {
   /**
    * Required: platform campaign IDs are not globally unique.
@@ -89,7 +89,9 @@ public class UpdateAdCampaignRequest {
     
     AMAZON(String.valueOf("amazon")),
     
-    TRADEDESK(String.valueOf("tradedesk"));
+    TRADEDESK(String.valueOf("tradedesk")),
+    
+    SNAPCHAT(String.valueOf("snapchat"));
 
     private String value;
 

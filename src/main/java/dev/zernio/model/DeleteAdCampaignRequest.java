@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   DeleteAdCampaignRequest.JSON_PROPERTY_ACCOUNT_ID,
   DeleteAdCampaignRequest.JSON_PROPERTY_AD_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T18:53:12.642912225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T19:06:49.547440587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DeleteAdCampaignRequest {
   /**
    * Gets or Sets platform
@@ -65,7 +65,9 @@ public class DeleteAdCampaignRequest {
     
     AMAZON(String.valueOf("amazon")),
     
-    TRADEDESK(String.valueOf("tradedesk"));
+    TRADEDESK(String.valueOf("tradedesk")),
+    
+    SNAPCHAT(String.valueOf("snapchat"));
 
     private String value;
 

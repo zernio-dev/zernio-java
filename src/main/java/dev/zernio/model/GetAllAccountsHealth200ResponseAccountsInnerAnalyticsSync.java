@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync.JSON_PROPERTY_STATUS,
   GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync.JSON_PROPERTY_LAST_SYNCED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T18:53:12.642912225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T19:06:49.547440587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync {
   /**
    * Gets or Sets status

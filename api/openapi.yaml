@@ -30,14 +30,14 @@ info:
     manage DMs, comments, and reviews across X, Instagram, WhatsApp, TikTok, LinkedIn,
     Facebook, YouTube, Threads, Pinterest, Bluesky, Telegram, Google Business Profile, Snapchat,
     Discord, Slack, iMessage, LINE, and WeChat, all from a single REST API. Run paid ads on Meta (Facebook + Instagram), Google,
-    TikTok, LinkedIn, Pinterest, X, OpenAI, Reddit, Microsoft, Amazon, and The Trade Desk from the same account.
+    TikTok, LinkedIn, Pinterest, X, OpenAI, Reddit, Microsoft, Amazon, The Trade Desk, AppLovin, and Snapchat from the same account.
 
     Connect Shopify, WordPress and Wix as blog accounts to list sites and manage
     articles, drafts, featured images, tags, authors, and native scheduling.
 
-    Key features: Unified posting and messaging across 18 platforms, ads management on 12 ad networks (via /v1/ads), aggregated analytics, unified inbox (DMs, comments, reviews), webhooks, OAuth connect, queue scheduling, and white-label support for agencies managing unlimited accounts.
+    Key features: Unified posting and messaging across 18 platforms, ads management on 13 ad networks (via /v1/ads), aggregated analytics, unified inbox (DMs, comments, reviews), webhooks, OAuth connect, queue scheduling, and white-label support for agencies managing unlimited accounts.
 
-    Supported posting platforms: X, Instagram, WhatsApp, Facebook, LinkedIn, TikTok, YouTube, Pinterest, Bluesky, Threads, Google Business Profile, Telegram, Snapchat, Discord, Slack. Supported ad platforms: Meta Ads, Google Ads, TikTok Ads, LinkedIn Ads, Pinterest Ads, X Ads, OpenAI Ads, Reddit Ads, Microsoft Ads, Amazon Ads, The Trade Desk. Snapchat is a closed beta with no public release date: connections are gated behind approval and return 403 `PLATFORM_BETA_RESTRICTED` until then. Organic Reddit is temporarily unavailable: Reddit has blocked third-party apps from its API, so Reddit posting, messages, analytics and the Reddit endpoints return 503 `PLATFORM_DISABLED` until Reddit restores access. Your Reddit accounts stay connected. Reddit Ads is not affected.
+    Supported posting platforms: X, Instagram, WhatsApp, Facebook, LinkedIn, TikTok, YouTube, Pinterest, Bluesky, Threads, Google Business Profile, Telegram, Snapchat, Discord, Slack. Supported ad platforms: Meta Ads, Google Ads, TikTok Ads, LinkedIn Ads, Pinterest Ads, X Ads, OpenAI Ads, Reddit Ads, Microsoft Ads, Amazon Ads, The Trade Desk, AppLovin, Snapchat Ads. Organic Snapchat posting is a closed beta with no public release date: its connections are gated behind approval and return 403 `PLATFORM_BETA_RESTRICTED` until then (Snapchat Ads is not affected). Organic Reddit is temporarily unavailable: Reddit has blocked third-party apps from its API, so Reddit posting, messages, analytics and the Reddit endpoints return 503 `PLATFORM_DISABLED` until Reddit restores access. Your Reddit accounts stay connected. Reddit Ads is not affected.
   x-category: Social
   x-website: https://zernio.com
   x-thumbnail: https://rapidapi-prod-apis.s3.amazonaws.com/b24d3df5-563c-4a50-9e1e-1ad3eb1fce69.png
@@ -17475,12 +17475,13 @@ paths:
           - X Ads (platform=xads): `x_ads_denied`, `x_ads_auth_failed`, `x_ads_config_error`, `x_ads_account_not_found`, `x_ads_state_error`, `x_ads_token_failed`, `x_ads_token_missing`, `x_ads_callback_error`.
           - Reddit Ads (platform=redditads): `reddit_ads_auth_failed`, `reddit_ads_invalid_state`, `reddit_ads_access_denied`, `reddit_ads_scope_not_granted`, `reddit_ads_no_ad_accounts`, `reddit_ads_callback_error`.
           - Microsoft Ads (platform=microsoftads): `microsoft_ads_auth_failed`, `microsoft_ads_invalid_state`, `microsoft_ads_access_denied`, `microsoft_ads_scope_not_granted`, `microsoft_ads_unknown_user`, `microsoft_ads_no_ad_accounts`, `microsoft_ads_callback_error`.
+          - Snapchat Ads (platform=snapchatads): `snapchat_ads_auth_failed`, `snapchat_ads_invalid_state`, `snapchat_ads_access_denied`, `snapchat_ads_no_ad_accounts`, `snapchat_ads_callback_error`.
           - Shopify (platform=shopify): `shopify_auth_failed`, `shopify_config_error`, `shopify_invalid_state`, `shopify_invalid_hmac`, `shopify_invalid_shop`, `shopify_missing_scopes`, `shopify_callback_error`.
 
           Notes:
 
           1. On this endpoint every upstream OAuth error collapses into `oauth_denied`, with the provider's values in the `platform_error*` params. The dedicated ads flows differ: they use their own denial slugs, and `google_ads_auth_failed` and `tiktok_ads_auth_failed` may carry the provider's raw error string in `error_message`.
-          2. On the tiktok and twitter ads flows `platform` carries the ads platform id (`tiktokads`, `xads`), not the value in the request path. The googleads, redditads, microsoftads and shopify flows report `googleads`, `redditads`, `microsoftads` and `shopify`.
+          2. On the tiktok and twitter ads flows `platform` carries the ads platform id (`tiktokads`, `xads`), not the value in the request path. The googleads, redditads, microsoftads, snapchatads and shopify flows report `googleads`, `redditads`, `microsoftads`, `snapchatads` and `shopify`.
           3. `missing_tiktok_permissions`: the TikTok authorization left out a permission the already-connected account needs, so nothing changed and it keeps working as before. User-fixable: connect again and accept every permission on TikTok's screen.
           4. `instagram_login_method_mismatch`: an Instagram Login authorization landed on a profile whose Instagram account is connected through Facebook Login, so nothing changed. To refresh it, connect again with `loginMethod=facebook_login`. To move it to Instagram Login, disconnect it first.
         explode: true
@@ -18046,6 +18047,20 @@ paths:
         - `error=microsoft_ads_no_ad_accounts`: the user reaches no Microsoft Advertising ad account
 
         Without `redirect_url` the browser lands on the Zernio dashboard's ad account picker for the new connection.
+
+        ### Standalone platforms (snapchatads)
+
+        Starts the Snap Marketing API OAuth flow and creates a standalone ads SocialAccount (snapchatads) with no parent. It is reached only as `snapchatads` in the path.
+
+        A profile that already sends conversions through a pasted Snap Pixel token (POST /v1/connect/snapchat-ads/credentials) keeps that connection: the OAuth upgrades it in place (same accountId) and conversions keep flowing to the same pixel.
+
+        Discovery lists every ad account of every Snapchat organization the user belongs to. The callback redirects with `platform=snapchatads` and:
+
+        - `error=snapchat_ads_auth_failed`: the user declines on Snapchat's consent screen, or Snapchat refuses the sign-in (nothing is saved)
+        - `error=snapchat_ads_access_denied`: the signed-in Zernio user cannot reach the profile the connect was started for
+        - `error=snapchat_ads_no_ad_accounts`: the user reaches no Snapchat ad account
+
+        Without `redirect_url` the browser lands on the Zernio dashboard's ad account picker for the new connection.
       operationId: connectAds
       parameters:
       - description: "Microsoft Ads only. How the user signs in to Microsoft Advertising:\
@@ -18128,6 +18143,7 @@ paths:
           - googleads
           - redditads
           - microsoftads
+          - snapchatads
           type: string
         style: simple
       - description: Your Zernio profile ID
@@ -18144,7 +18160,7 @@ paths:
           - `twitter` (X Ads): required.
           - `tiktok`: optional. Omit it for ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER).
           - Same-token platforms (`facebook`, `instagram`, `linkedin`, `pinterest`): picks which posting account the ads connection uses when the profile holds several of that platform. With one, it can be omitted.
-          - Standalone platforms (`googleads`, `redditads`, `microsoftads`): ignored.
+          - Standalone platforms (`googleads`, `redditads`, `microsoftads`, `snapchatads`): ignored.
 
           On same-token platforms, an id that names no active account of the platform on the profile is ignored. Exception: with `force=true`, when it names the posting account the profile's ads connection hangs off, that account is no longer connected.
 
@@ -18164,12 +18180,12 @@ paths:
           On success:
 
           - `tiktok`: lands on the URL unchanged.
-          - `twitter`, `googleads`, `redditads` and `microsoftads`: append `connected` (the ads platform id: `xads`, `googleads`, `redditads` or `microsoftads`), `profileId`, `accountId` (the ads connection) and `username`.
+          - `twitter`, `googleads`, `redditads`, `microsoftads` and `snapchatads`: append `connected` (the ads platform id: `xads`, `googleads`, `redditads`, `microsoftads` or `snapchatads`), `profileId`, `accountId` (the ads connection) and `username`.
           - Same-token platforms (`facebook`, `instagram`, `linkedin`, `pinterest`): append `connected`, `profileId`, `accountId`, `username` and, on API-key calls, `connect_token`.
 
           On failure the same error contract applies as on GET /v1/connect/{platform}: `error` and `platform` are always appended, other params are optional, and the value list there is not exhaustive.
 
-          On the tiktok, twitter, googleads, redditads and microsoftads flows, `platform` carries the ads platform id (`tiktokads`, `xads`, `googleads`, `redditads`, `microsoftads`), not the value used in the request path.
+          On the tiktok, twitter, googleads, redditads, microsoftads and snapchatads flows, `platform` carries the ads platform id (`tiktokads`, `xads`, `googleads`, `redditads`, `microsoftads`, `snapchatads`), not the value used in the request path.
         explode: true
         in: query
         name: redirect_url
@@ -18213,6 +18229,7 @@ paths:
           - `googleads`: bare customer id digits.
           - `redditads`: Reddit ad account id, `a2_<id>` or `t2_<id>`.
           - `microsoftads`: bare numeric account id (the Id, not the account number).
+          - `snapchatads`: Snapchat ad account UUID.
           - `twitter` (X Ads): base36 account id.
           - `tiktok` (TikTok Ads): numeric advertiser id.
 
@@ -18228,7 +18245,7 @@ paths:
 
           **Through OAuth**: on Meta the scope is kept when this call returns an `authUrl`, so the Meta Ads account created after OAuth is scoped (only its scoped ad accounts synced and subscribed) from the start.
 
-          On `googleads`, `redditads` and `microsoftads` it is kept through OAuth when `redirect_url` is set, so the new connection syncs only scoped ad accounts from the first sync.
+          On `googleads`, `redditads`, `microsoftads` and `snapchatads` it is kept through OAuth when `redirect_url` is set, so the new connection syncs only scoped ad accounts from the first sync.
 
           On `tiktok` it is kept through OAuth with or without `redirect_url`. The TikTok Ads connection holds only the scoped advertisers from the first sync, and is named after the first of them. Its `platformUserId` and cached Brand Identity follow that advertiser too.
 
@@ -18385,6 +18402,7 @@ paths:
       - pinterest
       - google
       - reddit
+      - snapchat
       x-accepts:
       - application/json
   /v1/connect/meta-ads/callback:
@@ -54836,6 +54854,7 @@ paths:
           - microsoft
           - amazon
           - tradedesk
+          - snapchat
           type: string
         style: form
       - description: Account ID
@@ -55008,6 +55027,7 @@ paths:
       - amazon
       - tradedesk
       - applovin
+      - snapchat
       x-accepts:
       - application/json
   /v1/ads/search-terms:
@@ -59533,6 +59553,7 @@ paths:
           - microsoft
           - amazon
           - tradedesk
+          - snapchat
           type: string
         style: form
       - description: Filter by derived campaign status (post-aggregation). `not_deleted`
@@ -59698,6 +59719,7 @@ paths:
       - amazon
       - tradedesk
       - applovin
+      - snapchat
       x-accepts:
       - application/json
     post:
@@ -59826,6 +59848,7 @@ paths:
       - amazon
       - tradedesk
       - applovin
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -59942,6 +59965,7 @@ paths:
       - amazon
       - tradedesk
       - applovin
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -60425,6 +60449,7 @@ paths:
       - microsoft
       - amazon
       - tradedesk
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -60642,6 +60667,7 @@ paths:
       - amazon
       - tradedesk
       - applovin
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -60918,6 +60944,7 @@ paths:
       - amazon
       - tradedesk
       - applovin
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -61332,6 +61359,7 @@ paths:
           - twitter
           - openai
           - reddit
+          - snapchat
           type: string
         style: form
       - description: "Filter by the ad set's stored `status`, the value each row returns.\
@@ -61410,6 +61438,7 @@ paths:
       - amazon
       - tradedesk
       - applovin
+      - snapchat
       x-accepts:
       - application/json
     post:
@@ -61509,6 +61538,7 @@ paths:
       x-platforms:
       - google
       - reddit
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -61755,6 +61785,7 @@ paths:
       - reddit
       - amazon
       - tradedesk
+      - snapchat
       x-accepts:
       - application/json
     get:
@@ -62008,6 +62039,7 @@ paths:
       - reddit
       - amazon
       - tradedesk
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -62048,6 +62080,7 @@ paths:
           enum:
           - reddit
           - amazon
+          - snapchat
           type: string
         style: form
       responses:
@@ -62075,6 +62108,7 @@ paths:
       x-platforms:
       - reddit
       - amazon
+      - snapchat
       x-accepts:
       - application/json
   /v1/ads/ad-sets/{adSetId}/status:
@@ -62176,6 +62210,7 @@ paths:
       - microsoft
       - amazon
       - tradedesk
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -62258,6 +62293,7 @@ paths:
           - microsoft
           - amazon
           - tradedesk
+          - snapchat
           type: string
         style: form
       - description: Filter by derived campaign status (post-aggregation). `not_deleted`
@@ -62559,6 +62595,7 @@ paths:
       - amazon
       - tradedesk
       - applovin
+      - snapchat
       x-accepts:
       - application/json
   /v1/ads/performance:
@@ -62628,6 +62665,7 @@ paths:
           - microsoft
           - amazon
           - applovin
+          - snapchat
           type: string
         style: form
       - description: "Metric the ads are ranked by, highest first."
@@ -62708,6 +62746,7 @@ paths:
       - microsoft
       - amazon
       - applovin
+      - snapchat
       x-accepts:
       - application/json
   /v1/ads/timeline:
@@ -62795,6 +62834,7 @@ paths:
           - reddit
           - microsoft
           - amazon
+          - snapchat
           type: string
         style: form
       - description: "Set to `adAccount` to keep one row per day and platform ad account,\
@@ -62875,6 +62915,7 @@ paths:
       - microsoft
       - amazon
       - applovin
+      - snapchat
       x-accepts:
       - application/json
   /v1/ads/{adId}:
@@ -62964,6 +63005,7 @@ paths:
       - amazon
       - tradedesk
       - applovin
+      - snapchat
       x-accepts:
       - application/json
     get:
@@ -63093,6 +63135,7 @@ paths:
       - amazon
       - tradedesk
       - applovin
+      - snapchat
       x-accepts:
       - application/json
     put:
@@ -63358,6 +63401,7 @@ paths:
       - microsoft
       - amazon
       - applovin
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -63469,6 +63513,7 @@ paths:
       - microsoft
       - amazon
       - applovin
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -64318,6 +64363,7 @@ paths:
       - microsoft
       - amazon
       - applovin
+      - snapchat
       x-accepts:
       - application/json
   /v1/ads/preview:
@@ -65445,6 +65491,7 @@ paths:
       - microsoft
       - amazon
       - applovin
+      - snapchat
       x-accepts:
       - application/json
   /v1/ads/{adId}/tracking-tags:
@@ -72173,6 +72220,7 @@ paths:
       - amazon
       - tradedesk
       - applovin
+      - snapchat
       x-accepts:
       - application/json
     patch:
@@ -73268,7 +73316,7 @@ paths:
       description: |
         Creates a paid ad with your own creative, building the campaign and ad set it needs or adding it to existing ones.
 
-        Works across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, OpenAI Ads (ChatGPT Ads), Reddit Ads, Microsoft Ads and Amazon Ads (Sponsored Products, Sponsored Brands and Sponsored Display, see `AmazonAdsPlatformData`). Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.
+        Works across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, OpenAI Ads (ChatGPT Ads), Reddit Ads, Microsoft Ads, Snapchat Ads and Amazon Ads (Sponsored Products, Sponsored Brands and Sponsored Display, see `AmazonAdsPlatformData`). Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.
 
         ### Request shapes
 
@@ -73411,6 +73459,19 @@ paths:
         - Bid fields, `negativeKeywords`, `campaignNegativeKeywords`, sitelinks, callouts, structured snippets, `businessName`, `longHeadline` and a `campaignType` other than `search` return 422.
 
         Without `status`, every level is switched on and the campaign spends once Microsoft approves the ad: send `status: PAUSED` to create it paused. A failed step deletes the campaign the call created.
+
+        ### Snapchat Ads
+
+        Use the `accountId` of a `snapchatads` connection signed in through GET /v1/connect/snapchatads/ads and an ad account UUID as `adAccountId`. A connection that only holds a pasted Snap Pixel token returns 422 `ads_connection_required`. Zernio creates a campaign, an ad squad carrying the budget, schedule, bid and targeting, and a Snap Ad.
+
+        - `goal`: `awareness`, `engagement`, `video_views`, `traffic` or `conversions` (needs a Snap Pixel, `promotedObject.pixelId` or the ad account's first).
+        - `headline` (34 characters) is required; `businessName` is the brand name (32 characters). `body` is ignored: a Snap Ad has no body text.
+        - One image (`imageUrl`, JPEG or PNG up to 5 MB) or video (`video.url`, up to 1 GB); no `creatives[]`. `linkUrl` must be https.
+        - The budget sits on the ad squad: daily at least 5 in the account currency, lifetime needs `endDate`.
+        - `bidStrategy` `LOWEST_COST_WITH_BID_CAP` or `COST_CAP` takes `bidAmount` (at least 0.01).
+        - `existingCampaignId` adds a new ad squad and ad to a campaign; `adSetId` adds the ad to an existing ad squad. `validateOnly` returns 501.
+
+        Without `status`, every level is switched on: send `status: PAUSED` to create it paused. A failed step deletes what the call created.
 
         ### Idempotency
 
@@ -73855,6 +73916,7 @@ paths:
       - microsoft
       - amazon
       - applovin
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -75479,6 +75541,7 @@ paths:
       - linkedin
       - pinterest
       - reddit
+      - snapchat
       x-accepts:
       - application/json
   /v1/ads/targeting/browse:
@@ -76025,6 +76088,7 @@ paths:
       - linkedin
       - pinterest
       - x
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -76985,6 +77049,7 @@ paths:
           - twitter
           - xads
           - redditads
+          - snapchatads
           type: string
         style: form
       - description: Filter to one audience type. `saved_targeting` returns stored
@@ -77041,6 +77106,7 @@ paths:
       - pinterest
       - x
       - reddit
+      - snapchat
       x-accepts:
       - application/json
     post:
@@ -77133,6 +77199,7 @@ paths:
       - pinterest
       - x
       - reddit
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -77200,6 +77267,7 @@ paths:
       - pinterest
       - x
       - reddit
+      - snapchat
       x-accepts:
       - application/json
     get:
@@ -77253,6 +77321,7 @@ paths:
       - pinterest
       - x
       - reddit
+      - snapchat
       x-accepts:
       - application/json
     put:
@@ -77397,6 +77466,7 @@ paths:
       - pinterest
       - x
       - reddit
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -77494,6 +77564,7 @@ paths:
       - pinterest
       - x
       - reddit
+      - snapchat
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -202323,6 +202394,7 @@ components:
           - microsoft
           - amazon
           - tradedesk
+          - snapchat
           type: string
       required:
       - platform
@@ -202694,6 +202766,7 @@ components:
           - microsoft
           - amazon
           - tradedesk
+          - snapchat
           type: string
         accountId:
           description: '**Meta only.** Zernio SocialAccount id owning the ad account.
@@ -202850,6 +202923,7 @@ components:
           - microsoft
           - amazon
           - tradedesk
+          - snapchat
           type: string
         accountId:
           description: "Zernio SocialAccount id owning the ad account. Required only\
@@ -203044,6 +203118,8 @@ components:
           - openaiads
           - redditads
           - microsoftads
+          - snapchat
+          - snapchatads
           type: string
       required:
       - platform
@@ -204007,8 +204083,8 @@ components:
             connection.
           type: string
         platform:
-          description: '"google" and "reddit" are implemented; every other value returns
-            501.'
+          description: "\"google\", \"reddit\" and \"snapchat\" are implemented; every\
+            \ other value returns 501."
           enum:
           - facebook
           - instagram
@@ -204019,6 +204095,7 @@ components:
           - twitter
           - openai
           - reddit
+          - snapchat
           type: string
         campaignId:
           description: Platform campaign ID the ad group is created under (numeric
@@ -204497,6 +204574,7 @@ components:
           - twitter
           - openai
           - reddit
+          - snapchat
           type: string
         budget:
           $ref: "#/components/schemas/updateAdSet_request_budget"

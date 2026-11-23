@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   RecoverCreatorPortalLinksRequest.JSON_PROPERTY_EMAIL,
   RecoverCreatorPortalLinksRequest.JSON_PROPERTY_CAMPAIGN_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T18:53:12.642912225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T19:06:49.547440587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RecoverCreatorPortalLinksRequest {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nonnull

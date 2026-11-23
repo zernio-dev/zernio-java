@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.JSON_PROPERTY_NAME,
   CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.JSON_PROPERTY_PRE_ORDERABLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T18:53:12.642912225Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T19:06:49.547440587Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberAvailability200ResponseSoldOutAreasInner {
   public static final String JSON_PROPERTY_NDC = "ndc";
   @javax.annotation.Nullable
