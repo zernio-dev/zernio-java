@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ListGoogleSearchConsoleSitemaps200ResponseMeta.JSON_PROPERTY_ACCOUNT_ID,
   ListGoogleSearchConsoleSitemaps200ResponseMeta.JSON_PROPERTY_SITE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:48:40.528227158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:53:30.842699046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListGoogleSearchConsoleSitemaps200ResponseMeta {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable

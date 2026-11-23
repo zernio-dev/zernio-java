@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInner.JSON_PROPERTY_ERROR,
   ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInner.JSON_PROPERTY_REFUSED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:48:40.528227158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:53:30.842699046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInner {
   public static final String JSON_PROPERTY_SMART_PLUS_AD_ID = "smartPlusAdId";
   @javax.annotation.Nullable

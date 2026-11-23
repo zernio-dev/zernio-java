@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   ListAdAccounts200Response.JSON_PROPERTY_CACHED_AT,
   ListAdAccounts200Response.JSON_PROPERTY_STALE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:48:40.528227158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:53:30.842699046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAccounts200Response {
   public static final String JSON_PROPERTY_ACCOUNTS = "accounts";
   @javax.annotation.Nullable

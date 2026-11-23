@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   ListAdNegativeKeywordLists200Response.JSON_PROPERTY_CACHED_AT,
   ListAdNegativeKeywordLists200Response.JSON_PROPERTY_STALE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:48:40.528227158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:53:30.842699046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdNegativeKeywordLists200Response {
   public static final String JSON_PROPERTY_LISTS = "lists";
   @javax.annotation.Nullable

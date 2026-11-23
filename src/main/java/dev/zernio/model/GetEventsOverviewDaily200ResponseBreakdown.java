@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetEventsOverviewDaily200ResponseBreakdown.JSON_PROPERTY_SOURCES,
   GetEventsOverviewDaily200ResponseBreakdown.JSON_PROPERTY_CAMPAIGNS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:48:40.528227158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:53:30.842699046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEventsOverviewDaily200ResponseBreakdown {
   public static final String JSON_PROPERTY_EVENTS = "events";
   @javax.annotation.Nullable

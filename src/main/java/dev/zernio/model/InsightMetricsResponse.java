@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   InsightMetricsResponse.JSON_PROPERTY_META,
   InsightMetricsResponse.JSON_PROPERTY_RETENTION_CURVE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:48:40.528227158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:53:30.842699046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InsightMetricsResponse {
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nonnull

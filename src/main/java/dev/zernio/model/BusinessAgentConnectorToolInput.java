@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   BusinessAgentConnectorToolInput.JSON_PROPERTY_USER_AUTH_ACTION_CONFIG,
   BusinessAgentConnectorToolInput.JSON_PROPERTY_TRANSFORMATION_SPEC
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:48:40.528227158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:53:30.842699046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentConnectorToolInput {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull

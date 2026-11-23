@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpsertCommerceMarketingActivityRequestBudget.JSON_PROPERTY_TYPE,
   UpsertCommerceMarketingActivityRequestBudget.JSON_PROPERTY_AMOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:48:40.528227158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:53:30.842699046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpsertCommerceMarketingActivityRequestBudget {
   /**
    * Gets or Sets type

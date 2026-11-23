@@ -56,7 +56,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:48:40.528227158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:53:30.842699046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using=RetryPost402Response.RetryPost402ResponseDeserializer.class)
 @JsonSerialize(using = RetryPost402Response.RetryPost402ResponseSerializer.class)
 public class RetryPost402Response extends AbstractOpenApiSchema {

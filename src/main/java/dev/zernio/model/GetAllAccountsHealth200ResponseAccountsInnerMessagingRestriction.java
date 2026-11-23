@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.JSON_PROPERTY_LAST_SEEN_AT,
   GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.JSON_PROPERTY_PAUSED_UNTIL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:48:40.528227158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:53:30.842699046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction {
   public static final String JSON_PROPERTY_CODE = "code";
   private JsonNullable<Integer> code = JsonNullable.<Integer>undefined();

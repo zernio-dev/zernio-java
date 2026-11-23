@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ProfileCallLimitsResponseProfile.JSON_PROPERTY_DAILY_CALL_SPEND_USD,
   ProfileCallLimitsResponseProfile.JSON_PROPERTY_FORWARDED_MINUTES_PER_DAY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:48:40.528227158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:53:30.842699046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ProfileCallLimitsResponseProfile {
   public static final String JSON_PROPERTY_OUTBOUND_CALLS_PER_HOUR = "outboundCallsPerHour";
   @javax.annotation.Nullable

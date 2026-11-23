@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   UpdateAdTrackingTagsRequestCreative.JSON_PROPERTY_VIDEO_URL,
   UpdateAdTrackingTagsRequestCreative.JSON_PROPERTY_CALL_TO_ACTION_LINK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:48:40.528227158Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-23T22:53:30.842699046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdTrackingTagsRequestCreative {
   public static final String JSON_PROPERTY_HEADLINE = "headline";
   @javax.annotation.Nonnull
