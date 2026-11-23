@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.791.0
+  version: 1.792.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -42711,7 +42711,7 @@ paths:
       description: |
         Moves the call's current leg to a new destination (a phone number or a SIP endpoint).
 
-        This is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is always your own number.
+        This is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is your own number unless you pass `callerId: "caller"` on an inbound call, which presents the original caller's number.
       operationId: transferVoiceCall
       parameters:
       - explode: false
@@ -42734,12 +42734,17 @@ paths:
               schema:
                 $ref: "#/components/schemas/transferVoiceCall_200_response"
           description: Transfer issued.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: Call not found
         "409":
           description: "Call is not connected yet, or has already ended"
+        "422":
+          description: The carrier refused presenting the caller's number on this
+            route. Retry with callerId business.
       security:
       - bearerAuth: []
       summary: Blind-transfer a live call
@@ -181846,6 +181851,16 @@ components:
         to:
           description: "+E164 phone number (tel: prefix optional) or a sip: URI. wss://\
             \ is not a valid transfer target."
+          type: string
+        callerId:
+          default: business
+          description: "Caller ID shown on the transfer leg. `business` is your own\
+            \ number. `caller` is the original caller's number, for inbound calls\
+            \ only. The carrier may refuse `caller` on some routes: you get a 422,\
+            \ then retry with `business`."
+          enum:
+          - business
+          - caller
           type: string
       required:
       - to

@@ -2819,7 +2819,7 @@ ApiResponse<[**RotateSipTrunkCredentials200Response**](RotateSipTrunkCredentials
 
 Blind-transfer a live call
 
-Moves the call&#39;s current leg to a new destination (a phone number or a SIP endpoint).  This is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is always your own number. 
+Moves the call&#39;s current leg to a new destination (a phone number or a SIP endpoint).  This is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is your own number unless you pass &#x60;callerId: \&quot;caller\&quot;&#x60; on an inbound call, which presents the original caller&#39;s number. 
 
 ### Example
 
@@ -2884,9 +2884,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Transfer issued. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found |  -  |
 | **409** | Call is not connected yet, or has already ended |  -  |
+| **422** | The carrier refused presenting the caller&#39;s number on this route. Retry with callerId business. |  -  |
 
 ## transferVoiceCallWithHttpInfo
 
@@ -2894,7 +2896,7 @@ public class Example {
 
 Blind-transfer a live call
 
-Moves the call&#39;s current leg to a new destination (a phone number or a SIP endpoint).  This is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is always your own number. 
+Moves the call&#39;s current leg to a new destination (a phone number or a SIP endpoint).  This is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is your own number unless you pass &#x60;callerId: \&quot;caller\&quot;&#x60; on an inbound call, which presents the original caller&#39;s number. 
 
 ### Example
 
@@ -2962,7 +2964,9 @@ ApiResponse<[**TransferVoiceCall200Response**](TransferVoiceCall200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Transfer issued. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found |  -  |
 | **409** | Call is not connected yet, or has already ended |  -  |
+| **422** | The carrier refused presenting the caller&#39;s number on this route. Retry with callerId business. |  -  |
 
