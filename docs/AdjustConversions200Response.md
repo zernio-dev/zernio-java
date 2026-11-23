@@ -21,6 +21,7 @@
 |---- | -----|
 | GOOGLEADS | &quot;googleads&quot; |
 | IMPACT | &quot;impact&quot; |
+| MICROSOFTADS | &quot;microsoftads&quot; |
 
 
 
