@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.789.1
+  version: 1.790.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -142890,16 +142890,22 @@ components:
           - commerce.order.updated
           - commerce.order.refunded
           - message.received
+          - message.sent
           - message.failed
           - conversation.started
           - reaction.received
           - referral.received
           - comment.received
+          - mention.received
           - review.new
           - call.received
           - call.ended
           - call.failed
+          - call.recording_ready
           - lead.received
+          - email.opened
+          - email.link_clicked
+          - email.thread_replied
           example: post.failed
           type: string
         profileId:

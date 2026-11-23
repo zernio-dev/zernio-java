@@ -45,16 +45,22 @@ Starts the automation when something happens in Zernio, in one profile. `GET /v1
 | COMMERCE_ORDER_UPDATED | &quot;commerce.order.updated&quot; |
 | COMMERCE_ORDER_REFUNDED | &quot;commerce.order.refunded&quot; |
 | MESSAGE_RECEIVED | &quot;message.received&quot; |
+| MESSAGE_SENT | &quot;message.sent&quot; |
 | MESSAGE_FAILED | &quot;message.failed&quot; |
 | CONVERSATION_STARTED | &quot;conversation.started&quot; |
 | REACTION_RECEIVED | &quot;reaction.received&quot; |
 | REFERRAL_RECEIVED | &quot;referral.received&quot; |
 | COMMENT_RECEIVED | &quot;comment.received&quot; |
+| MENTION_RECEIVED | &quot;mention.received&quot; |
 | REVIEW_NEW | &quot;review.new&quot; |
 | CALL_RECEIVED | &quot;call.received&quot; |
 | CALL_ENDED | &quot;call.ended&quot; |
 | CALL_FAILED | &quot;call.failed&quot; |
+| CALL_RECORDING_READY | &quot;call.recording_ready&quot; |
 | LEAD_RECEIVED | &quot;lead.received&quot; |
+| EMAIL_OPENED | &quot;email.opened&quot; |
+| EMAIL_LINK_CLICKED | &quot;email.link_clicked&quot; |
+| EMAIL_THREAD_REPLIED | &quot;email.thread_replied&quot; |
 
 
 
