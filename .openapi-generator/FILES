@@ -8531,10 +8531,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AutomationTestDecisionMatchedInnerTest.java
-src/test/java/dev/zernio/model/AutomationTestDecisionPlannedStepsInnerTest.java
-src/test/java/dev/zernio/model/AutomationTestDecisionTest.java
-src/test/java/dev/zernio/model/GetAutomationTestSample200ResponseSampleTest.java
-src/test/java/dev/zernio/model/GetAutomationTestSample200ResponseTest.java
-src/test/java/dev/zernio/model/TestAutomation200ResponseTest.java
-src/test/java/dev/zernio/model/TestAutomationRequestTest.java
