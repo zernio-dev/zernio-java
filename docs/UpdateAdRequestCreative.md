@@ -28,6 +28,7 @@ Replace or patch the ad's creative. Meta, TikTok, and LinkedIn.  **Meta**: patch
 |**existingCreativeId** | **String** | Meta only. Repoint the ad at an existing library creative (from GET /v1/ads/creatives); all other creative fields are ignored. |  [optional] |
 |**leadGenFormId** | **String** | Meta only. Moves a lead ad to another instant form (from GET /v1/ads/lead-forms), keeping the rest of the creative. Returns 422 on an ad that does not open an instant form. |  [optional] |
 |**caption** | **String** | Meta only. The display link shown on link (image) ads, Meta link_data.caption. Returns 422 on video creatives and on asset feeds without a link. |  [optional] |
+|**callToActionLink** | **String** | Meta only. The map location the &#x60;GET_DIRECTIONS&#x60; button opens, while the ad link stays as it is. Send it with &#x60;callToAction: GET_DIRECTIONS&#x60;.  - 400 with any other &#x60;callToAction&#x60;, with a value that is not an &#x60;fbgeo://&#x60; location, and on other networks. - 422 on video ads (their only link is the button, so change &#x60;linkUrl&#x60;), on lead ads, and on asset feed creatives that list their calls to action in the feed. - Required with &#x60;callToAction: GET_DIRECTIONS&#x60; on a full image creative (headline, body, callToAction, linkUrl, imageUrl), and on a partial edit of an image ad whose button has no location yet. Without it the request is a 400, and no other field of it reaches Meta.  |  [optional] |
 
 
 

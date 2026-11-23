@@ -28,6 +28,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAutomationCatalogWithHttpInfo**](AutomationsApi.md#getAutomationCatalogWithHttpInfo) | **GET** /v1/automations/catalog | Get the automations catalog |
 | [**getAutomationControls**](AutomationsApi.md#getAutomationControls) | **GET** /v1/automations/controls | Get automation controls |
 | [**getAutomationControlsWithHttpInfo**](AutomationsApi.md#getAutomationControlsWithHttpInfo) | **GET** /v1/automations/controls | Get automation controls |
+| [**getAutomationRun**](AutomationsApi.md#getAutomationRun) | **GET** /v1/automations/{automationId}/runs/{runId} | Get one run of an automation |
+| [**getAutomationRunWithHttpInfo**](AutomationsApi.md#getAutomationRunWithHttpInfo) | **GET** /v1/automations/{automationId}/runs/{runId} | Get one run of an automation |
 | [**getAutomationTemplate**](AutomationsApi.md#getAutomationTemplate) | **GET** /v1/automations/templates/{templateId} | Get an automation template |
 | [**getAutomationTemplateWithHttpInfo**](AutomationsApi.md#getAutomationTemplateWithHttpInfo) | **GET** /v1/automations/templates/{templateId} | Get an automation template |
 | [**getSharedAutomationTemplate**](AutomationsApi.md#getSharedAutomationTemplate) | **GET** /v1/automations/templates/shared/{shareToken} | Get a shared automation template |
@@ -46,6 +48,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAutomationApprovalsWithHttpInfo**](AutomationsApi.md#listAutomationApprovalsWithHttpInfo) | **GET** /v1/automations/{automationId}/approvals | List an automation&#39;s approval requests |
 | [**listAutomationChecks**](AutomationsApi.md#listAutomationChecks) | **GET** /v1/automations/{automationId}/checks | List an automation&#39;s checks |
 | [**listAutomationChecksWithHttpInfo**](AutomationsApi.md#listAutomationChecksWithHttpInfo) | **GET** /v1/automations/{automationId}/checks | List an automation&#39;s checks |
+| [**listAutomationRuns**](AutomationsApi.md#listAutomationRuns) | **GET** /v1/automations/{automationId}/runs | List an automation&#39;s runs |
+| [**listAutomationRunsWithHttpInfo**](AutomationsApi.md#listAutomationRunsWithHttpInfo) | **GET** /v1/automations/{automationId}/runs | List an automation&#39;s runs |
 | [**listAutomationTemplates**](AutomationsApi.md#listAutomationTemplates) | **GET** /v1/automations/templates | List automation templates |
 | [**listAutomationTemplatesWithHttpInfo**](AutomationsApi.md#listAutomationTemplatesWithHttpInfo) | **GET** /v1/automations/templates | List automation templates |
 | [**listAutomations**](AutomationsApi.md#listAutomations) | **GET** /v1/automations | List automations |
@@ -1891,6 +1895,160 @@ ApiResponse<[**GetAutomationControls200Response**](GetAutomationControls200Respo
 | **403** | Ad rules only: your account has no ads access (code &#x60;ads_addon_required&#x60;). Ads are included on usage-based plans. Event and scheduled automations never get this 403: a boost step without ads access is refused with a 400 at its path. |  -  |
 
 
+## getAutomationRun
+
+> GetAutomationRun200Response getAutomationRun(automationId, runId)
+
+Get one run of an automation
+
+The run with each step it took, where its store keeps them: a flow run&#39;s nodes, a comment to DM log&#39;s DM and public reply, an ad rule, event or scheduled check&#39;s actions. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AutomationsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AutomationsApi apiInstance = new AutomationsApi(defaultClient);
+        String automationId = "automationId_example"; // String | 
+        String runId = "runId_example"; // String | 
+        try {
+            GetAutomationRun200Response result = apiInstance.getAutomationRun(automationId, runId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AutomationsApi#getAutomationRun");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **automationId** | **String**|  | |
+| **runId** | **String**|  | |
+
+### Return type
+
+[**GetAutomationRun200Response**](GetAutomationRun200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Run |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## getAutomationRunWithHttpInfo
+
+> ApiResponse<GetAutomationRun200Response> getAutomationRun getAutomationRunWithHttpInfo(automationId, runId)
+
+Get one run of an automation
+
+The run with each step it took, where its store keeps them: a flow run&#39;s nodes, a comment to DM log&#39;s DM and public reply, an ad rule, event or scheduled check&#39;s actions. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AutomationsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AutomationsApi apiInstance = new AutomationsApi(defaultClient);
+        String automationId = "automationId_example"; // String | 
+        String runId = "runId_example"; // String | 
+        try {
+            ApiResponse<GetAutomationRun200Response> response = apiInstance.getAutomationRunWithHttpInfo(automationId, runId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AutomationsApi#getAutomationRun");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **automationId** | **String**|  | |
+| **runId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetAutomationRun200Response**](GetAutomationRun200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Run |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
 ## getAutomationTemplate
 
 > CreateAutomationTemplate201Response getAutomationTemplate(templateId)
@@ -3324,6 +3482,172 @@ ApiResponse<[**ListAutomationChecks200Response**](ListAutomationChecks200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Checks |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## listAutomationRuns
+
+> ListAutomationRuns200Response listAutomationRuns(automationId, status, since, limit, cursor)
+
+List an automation&#39;s runs
+
+Every run of any kind of automation, newest first, in one shape. Flows read both their run stores, comment to DM reads its engine runs and its older trigger logs, and ad rules, event and scheduled automations list their checks that acted or tried to (&#x60;/checks&#x60; lists every check). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AutomationsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AutomationsApi apiInstance = new AutomationsApi(defaultClient);
+        String automationId = "automationId_example"; // String | 
+        String status = "live"; // String | 
+        OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Only runs started at or after this time.
+        Integer limit = 20; // Integer | 
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
+        try {
+            ListAutomationRuns200Response result = apiInstance.listAutomationRuns(automationId, status, since, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AutomationsApi#listAutomationRuns");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **automationId** | **String**|  | |
+| **status** | **String**|  | [optional] [enum: live, paused, completed, exited, failed] |
+| **since** | **OffsetDateTime**| Only runs started at or after this time. | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 20] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+[**ListAutomationRuns200Response**](ListAutomationRuns200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Runs |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## listAutomationRunsWithHttpInfo
+
+> ApiResponse<ListAutomationRuns200Response> listAutomationRuns listAutomationRunsWithHttpInfo(automationId, status, since, limit, cursor)
+
+List an automation&#39;s runs
+
+Every run of any kind of automation, newest first, in one shape. Flows read both their run stores, comment to DM reads its engine runs and its older trigger logs, and ad rules, event and scheduled automations list their checks that acted or tried to (&#x60;/checks&#x60; lists every check). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AutomationsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AutomationsApi apiInstance = new AutomationsApi(defaultClient);
+        String automationId = "automationId_example"; // String | 
+        String status = "live"; // String | 
+        OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Only runs started at or after this time.
+        Integer limit = 20; // Integer | 
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
+        try {
+            ApiResponse<ListAutomationRuns200Response> response = apiInstance.listAutomationRunsWithHttpInfo(automationId, status, since, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AutomationsApi#listAutomationRuns");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **automationId** | **String**|  | |
+| **status** | **String**|  | [optional] [enum: live, paused, completed, exited, failed] |
+| **since** | **OffsetDateTime**| Only runs started at or after this time. | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 20] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListAutomationRuns200Response**](ListAutomationRuns200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Runs |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |

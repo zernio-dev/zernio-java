@@ -14,6 +14,7 @@ Meta only. OPTIONAL: omit to preserve the existing creative verbatim (default). 
 |**linkUrl** | **URI** |  |  |
 |**imageUrl** | **URI** |  |  |
 |**videoUrl** | **URI** |  |  [optional] |
+|**callToActionLink** | **String** | The Get Directions button location, required to rebuild a &#x60;GET_DIRECTIONS&#x60; image creative (400 without it). Only with &#x60;callToAction: GET_DIRECTIONS&#x60;. |  [optional] |
 
 
 

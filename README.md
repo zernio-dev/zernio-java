@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.790.0
+- API version: 1.791.0
 
-- Build date: 2026-11-23T21:12:09.192666881Z[Etc/UTC]
+- Build date: 2026-11-23T21:21:55.534299496Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.790.0</version>
+  <version>1.791.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.790.0"
+compile "dev.zernio:zernio-sdk:1.791.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.790.0.jar`
+- `target/zernio-sdk-1.791.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -797,6 +797,8 @@ Class | Method | HTTP request | Description
 *AutomationsApi* | [**getAutomationCatalogWithHttpInfo**](docs/AutomationsApi.md#getAutomationCatalogWithHttpInfo) | **GET** /v1/automations/catalog | Get the automations catalog
 *AutomationsApi* | [**getAutomationControls**](docs/AutomationsApi.md#getAutomationControls) | **GET** /v1/automations/controls | Get automation controls
 *AutomationsApi* | [**getAutomationControlsWithHttpInfo**](docs/AutomationsApi.md#getAutomationControlsWithHttpInfo) | **GET** /v1/automations/controls | Get automation controls
+*AutomationsApi* | [**getAutomationRun**](docs/AutomationsApi.md#getAutomationRun) | **GET** /v1/automations/{automationId}/runs/{runId} | Get one run of an automation
+*AutomationsApi* | [**getAutomationRunWithHttpInfo**](docs/AutomationsApi.md#getAutomationRunWithHttpInfo) | **GET** /v1/automations/{automationId}/runs/{runId} | Get one run of an automation
 *AutomationsApi* | [**getAutomationTemplate**](docs/AutomationsApi.md#getAutomationTemplate) | **GET** /v1/automations/templates/{templateId} | Get an automation template
 *AutomationsApi* | [**getAutomationTemplateWithHttpInfo**](docs/AutomationsApi.md#getAutomationTemplateWithHttpInfo) | **GET** /v1/automations/templates/{templateId} | Get an automation template
 *AutomationsApi* | [**getSharedAutomationTemplate**](docs/AutomationsApi.md#getSharedAutomationTemplate) | **GET** /v1/automations/templates/shared/{shareToken} | Get a shared automation template
@@ -815,6 +817,8 @@ Class | Method | HTTP request | Description
 *AutomationsApi* | [**listAutomationApprovalsWithHttpInfo**](docs/AutomationsApi.md#listAutomationApprovalsWithHttpInfo) | **GET** /v1/automations/{automationId}/approvals | List an automation&#39;s approval requests
 *AutomationsApi* | [**listAutomationChecks**](docs/AutomationsApi.md#listAutomationChecks) | **GET** /v1/automations/{automationId}/checks | List an automation&#39;s checks
 *AutomationsApi* | [**listAutomationChecksWithHttpInfo**](docs/AutomationsApi.md#listAutomationChecksWithHttpInfo) | **GET** /v1/automations/{automationId}/checks | List an automation&#39;s checks
+*AutomationsApi* | [**listAutomationRuns**](docs/AutomationsApi.md#listAutomationRuns) | **GET** /v1/automations/{automationId}/runs | List an automation&#39;s runs
+*AutomationsApi* | [**listAutomationRunsWithHttpInfo**](docs/AutomationsApi.md#listAutomationRunsWithHttpInfo) | **GET** /v1/automations/{automationId}/runs | List an automation&#39;s runs
 *AutomationsApi* | [**listAutomationTemplates**](docs/AutomationsApi.md#listAutomationTemplates) | **GET** /v1/automations/templates | List automation templates
 *AutomationsApi* | [**listAutomationTemplatesWithHttpInfo**](docs/AutomationsApi.md#listAutomationTemplatesWithHttpInfo) | **GET** /v1/automations/templates | List automation templates
 *AutomationsApi* | [**listAutomations**](docs/AutomationsApi.md#listAutomations) | **GET** /v1/automations | List automations
@@ -3240,7 +3244,12 @@ Class | Method | HTTP request | Description
  - [AutomationProblemsProblemsInner](docs/AutomationProblemsProblemsInner.md)
  - [AutomationRecord](docs/AutomationRecord.md)
  - [AutomationRecordTemplate](docs/AutomationRecordTemplate.md)
+ - [AutomationRun](docs/AutomationRun.md)
+ - [AutomationRunDetail](docs/AutomationRunDetail.md)
+ - [AutomationRunDetailAllOfTrace](docs/AutomationRunDetailAllOfTrace.md)
  - [AutomationRunResult](docs/AutomationRunResult.md)
+ - [AutomationRunSteps](docs/AutomationRunSteps.md)
+ - [AutomationRunSubject](docs/AutomationRunSubject.md)
  - [AutomationScheduleTrigger](docs/AutomationScheduleTrigger.md)
  - [AutomationScheduleTriggerQuietHours](docs/AutomationScheduleTriggerQuietHours.md)
  - [AutomationScheduleTriggerTimesInner](docs/AutomationScheduleTriggerTimesInner.md)
@@ -4441,6 +4450,7 @@ Class | Method | HTTP request | Description
  - [GetAutomationCatalog200ResponseTriggersInner](docs/GetAutomationCatalog200ResponseTriggersInner.md)
  - [GetAutomationCatalog200ResponseTriggersInnerFactsInner](docs/GetAutomationCatalog200ResponseTriggersInnerFactsInner.md)
  - [GetAutomationControls200Response](docs/GetAutomationControls200Response.md)
+ - [GetAutomationRun200Response](docs/GetAutomationRun200Response.md)
  - [GetBalance200Response](docs/GetBalance200Response.md)
  - [GetBalance200ResponseHeld](docs/GetBalance200ResponseHeld.md)
  - [GetBalance200ResponsePayoutLocksInner](docs/GetBalance200ResponsePayoutLocksInner.md)
@@ -5213,6 +5223,7 @@ Class | Method | HTTP request | Description
  - [ListAutomationActions200Response](docs/ListAutomationActions200Response.md)
  - [ListAutomationApprovals200Response](docs/ListAutomationApprovals200Response.md)
  - [ListAutomationChecks200Response](docs/ListAutomationChecks200Response.md)
+ - [ListAutomationRuns200Response](docs/ListAutomationRuns200Response.md)
  - [ListAutomationTemplates200Response](docs/ListAutomationTemplates200Response.md)
  - [ListAutomations200Response](docs/ListAutomations200Response.md)
  - [ListBidStrategies200Response](docs/ListBidStrategies200Response.md)

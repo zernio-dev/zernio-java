@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.790.0
+  version: 1.791.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -56585,6 +56585,121 @@ paths:
       security:
       - bearerAuth: []
       summary: List an automation's checks
+      tags:
+      - Automations
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+  /v1/automations/{automationId}/runs:
+    get:
+      description: |
+        Every run of any kind of automation, newest first, in one shape. Flows read both their run stores, comment to DM reads its engine runs and its older trigger logs, and ad rules, event and scheduled automations list their checks that acted or tried to (`/checks` lists every check).
+      operationId: listAutomationRuns
+      parameters:
+      - explode: false
+        in: path
+        name: automationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - live
+          - paused
+          - completed
+          - exited
+          - failed
+          type: string
+        style: form
+      - description: Only runs started at or after this time.
+        explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: '`nextCursor` from the previous page.'
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAutomationRuns_200_response"
+          description: Runs
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: List an automation's runs
+      tags:
+      - Automations
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+  /v1/automations/{automationId}/runs/{runId}:
+    get:
+      description: |
+        The run with each step it took, where its store keeps them: a flow run's nodes, a comment to DM log's DM and public reply, an ad rule, event or scheduled check's actions.
+      operationId: getAutomationRun
+      parameters:
+      - explode: false
+        in: path
+        name: automationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAutomationRun_200_response"
+          description: Run
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get one run of an automation
       tags:
       - Automations
       x-resource-group: ads
@@ -144025,6 +144140,122 @@ components:
       - $ref: "#/components/schemas/AdRuleAutomationCheck"
       - $ref: "#/components/schemas/EventAutomationCheck"
       - $ref: "#/components/schemas/ScheduledAutomationCheck"
+    AutomationRun:
+      description: "One subject going through an automation, the same shape for every\
+        \ kind. A flow, sequence or comment to DM run is one conversation, contact\
+        \ or comment; an ad rule, event or scheduled automation run is one check that\
+        \ acted or tried to."
+      example:
+        automationId: automationId
+        exitReason: exitReason
+        kind: ad_rule
+        subject:
+          id: id
+          type: type
+        endedAt: 2000-01-23T04:56:07.000+00:00
+        startedAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        error: error
+        steps:
+          currentNodeId: currentNodeId
+          done: 0
+        status: live
+      properties:
+        id:
+          type: string
+        automationId:
+          type: string
+        kind:
+          enum:
+          - ad_rule
+          - event
+          - scheduled
+          - sequence
+          - comment
+          - workflow
+          type: string
+        status:
+          description: '`live` while it runs or waits (a comment to DM run waiting
+            for its follow gate is live).'
+          enum:
+          - live
+          - paused
+          - completed
+          - exited
+          - failed
+          type: string
+        subject:
+          $ref: "#/components/schemas/AutomationRun_subject"
+        startedAt:
+          format: date-time
+          type: string
+        endedAt:
+          format: date-time
+          nullable: true
+          type: string
+        exitReason:
+          description: "Why an exited or failed run stopped, for example `replied`,\
+            \ `unsubscribed` or `skipped`."
+          nullable: true
+          type: string
+        error:
+          nullable: true
+          type: string
+        steps:
+          $ref: "#/components/schemas/AutomationRun_steps"
+      required:
+      - automationId
+      - endedAt
+      - error
+      - exitReason
+      - id
+      - kind
+      - startedAt
+      - status
+      - steps
+      - subject
+    AutomationRunDetail:
+      allOf:
+      - $ref: "#/components/schemas/AutomationRun"
+      - properties:
+          trace:
+            description: Each step in order. Null where the run's store keeps no step
+              by step record (runs on the automation engine keep where they are and
+              how many steps they took).
+            items:
+              $ref: "#/components/schemas/AutomationRunDetail_allOf_trace"
+            nullable: true
+            type: array
+        required:
+        - trace
+      example:
+        automationId: automationId
+        trace:
+        - note: note
+          at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          nodeId: nodeId
+          subjectId: subjectId
+          status: status
+        - note: note
+          at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          nodeId: nodeId
+          subjectId: subjectId
+          status: status
+        exitReason: exitReason
+        kind: ad_rule
+        subject:
+          id: id
+          type: type
+        endedAt: 2000-01-23T04:56:07.000+00:00
+        startedAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        error: error
+        steps:
+          currentNodeId: currentNodeId
+          done: 0
+        status: live
     AutomationAction:
       allOf:
       - $ref: "#/components/schemas/AutomationActionResult"
@@ -198781,6 +199012,85 @@ components:
       required:
       - checks
       - nextCursor
+    listAutomationRuns_200_response:
+      example:
+        nextCursor: nextCursor
+        runs:
+        - automationId: automationId
+          exitReason: exitReason
+          kind: ad_rule
+          subject:
+            id: id
+            type: type
+          endedAt: 2000-01-23T04:56:07.000+00:00
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          error: error
+          steps:
+            currentNodeId: currentNodeId
+            done: 0
+          status: live
+        - automationId: automationId
+          exitReason: exitReason
+          kind: ad_rule
+          subject:
+            id: id
+            type: type
+          endedAt: 2000-01-23T04:56:07.000+00:00
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          error: error
+          steps:
+            currentNodeId: currentNodeId
+            done: 0
+          status: live
+      properties:
+        runs:
+          items:
+            $ref: "#/components/schemas/AutomationRun"
+          type: array
+        nextCursor:
+          description: Null on the last page.
+          nullable: true
+          type: string
+      required:
+      - nextCursor
+      - runs
+    getAutomationRun_200_response:
+      example:
+        run:
+          automationId: automationId
+          trace:
+          - note: note
+            at: 2000-01-23T04:56:07.000+00:00
+            type: type
+            nodeId: nodeId
+            subjectId: subjectId
+            status: status
+          - note: note
+            at: 2000-01-23T04:56:07.000+00:00
+            type: type
+            nodeId: nodeId
+            subjectId: subjectId
+            status: status
+          exitReason: exitReason
+          kind: ad_rule
+          subject:
+            id: id
+            type: type
+          endedAt: 2000-01-23T04:56:07.000+00:00
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          error: error
+          steps:
+            currentNodeId: currentNodeId
+            done: 0
+          status: live
+      properties:
+        run:
+          $ref: "#/components/schemas/AutomationRunDetail"
+      required:
+      - run
     updateAutomation_request_subjects:
       oneOf:
       - $ref: "#/components/schemas/AutomationSubjects"
@@ -208604,6 +208914,15 @@ components:
             \ without a link."
           minLength: 1
           type: string
+        callToActionLink:
+          allOf:
+          - $ref: "#/components/schemas/MetaCallToActionLink"
+          description: |
+            Meta only. The map location the `GET_DIRECTIONS` button opens, while the ad link stays as it is. Send it with `callToAction: GET_DIRECTIONS`.
+
+            - 400 with any other `callToAction`, with a value that is not an `fbgeo://` location, and on other networks.
+            - 422 on video ads (their only link is the button, so change `linkUrl`), on lead ads, and on asset feed creatives that list their calls to action in the feed.
+            - Required with `callToAction: GET_DIRECTIONS` on a full image creative (headline, body, callToAction, linkUrl, imageUrl), and on a partial edit of an image ad whose button has no location yet. Without it the request is a 400, and no other field of it reaches Meta.
     updateAd_request:
       properties:
         headlines:
@@ -211151,6 +211470,12 @@ components:
         videoUrl:
           format: uri
           type: string
+        callToActionLink:
+          allOf:
+          - $ref: "#/components/schemas/MetaCallToActionLink"
+          description: "The Get Directions button location, required to rebuild a\
+            \ `GET_DIRECTIONS` image creative (400 without it). Only with `callToAction:\
+            \ GET_DIRECTIONS`."
       required:
       - body
       - callToAction
@@ -217211,6 +217536,10 @@ components:
             `VIEW_INSTAGRAM_PROFILE`, `WHATSAPP_MESSAGE`, `MESSAGE_PAGE`,
             and `INSTAGRAM_MESSAGE`. VIEW_INSTAGRAM_PROFILE requires linkUrl;
             the messaging CTAs select their destination automatically.
+
+            **Meta** `GET_DIRECTIONS` is a 400: Meta opens that button on a map location,
+            and a boost's only button link is `linkUrl`, a website. Create the ad
+            with POST /v1/ads/create and `callToActionLink` instead.
 
             **TikTok**: pass-through to `call_to_action` on the Spark Ad creative; the
             platform validates the value. See TikTok's "Enumeration - Call-to-Action".
@@ -259092,6 +259421,72 @@ components:
       - properties:
           postId:
             type: string
+    AutomationRun_subject:
+      description: "What the run is about. Null for a scheduled check, which judges\
+        \ many subjects."
+      example:
+        id: id
+        type: type
+      properties:
+        type:
+          description: "For example `conversation`, `contact`, `comment`, `message`\
+            \ or `post`."
+          type: string
+        id:
+          type: string
+    AutomationRun_steps:
+      example:
+        currentNodeId: currentNodeId
+        done: 0
+      properties:
+        done:
+          description: Steps the run has taken.
+          type: integer
+        currentNodeId:
+          description: "The graph node the run is at, where its kind has one."
+          nullable: true
+          type: string
+      required:
+      - currentNodeId
+      - done
+    AutomationRunDetail_allOf_trace:
+      example:
+        note: note
+        at: 2000-01-23T04:56:07.000+00:00
+        type: type
+        nodeId: nodeId
+        subjectId: subjectId
+        status: status
+      properties:
+        type:
+          type: string
+        nodeId:
+          nullable: true
+          type: string
+        subjectId:
+          description: "The object an ad rule, event or scheduled automation acted\
+            \ on."
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        at:
+          format: date-time
+          nullable: true
+          type: string
+        note:
+          description: "Which branch a condition took, or why a step failed or was\
+            \ skipped."
+          nullable: true
+          type: string
+      required:
+      - at
+      - nodeId
+      - note
+      - status
+      - subjectId
+      - type
     AutomationAction_allOf_subject:
       example:
         kind: campaign
