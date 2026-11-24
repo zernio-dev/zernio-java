@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.808.0
+  version: 1.809.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -229967,6 +229967,9 @@ components:
       example:
         lastActiveOn: 2000-01-23
         profileId: profileId
+        eventNamesLastWeek:
+        - eventNamesLastWeek
+        - eventNamesLastWeek
         siteId: siteId
         totals:
           today:
@@ -230002,6 +230005,13 @@ components:
           format: date
           nullable: true
           type: string
+        eventNamesLastWeek:
+          description: "Each event name people (not bots) sent the site in the last\
+            \ 7 days, sorted. Names the site sends that are neither standard nor in\
+            \ its `customEvents` are left out."
+          items:
+            type: string
+          type: array
         totals:
           $ref: "#/components/schemas/getEventsOverview_200_response_sites_inner_totals"
     getEventsOverview_200_response_eventNames_inner:
@@ -230071,6 +230081,9 @@ components:
         sites:
         - lastActiveOn: 2000-01-23
           profileId: profileId
+          eventNamesLastWeek:
+          - eventNamesLastWeek
+          - eventNamesLastWeek
           siteId: siteId
           totals:
             today:
@@ -230094,6 +230107,9 @@ components:
           hitsToday: 4
         - lastActiveOn: 2000-01-23
           profileId: profileId
+          eventNamesLastWeek:
+          - eventNamesLastWeek
+          - eventNamesLastWeek
           siteId: siteId
           totals:
             today:
