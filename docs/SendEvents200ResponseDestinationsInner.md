@@ -14,6 +14,8 @@
 |**eventsFailed** | **Integer** |  |  [optional] |
 |**eventsDropped** | **Integer** | Events this destination did not get because the visitor did not consent (see Consent above). |  [optional] |
 |**drops** | [**List&lt;ConsentDrop&gt;**](ConsentDrop.md) |  |  [optional] |
+|**eventsSkipped** | **Integer** | Events not sent again because this destination already accepted them (same eventId and eventName within 48 hours), another request is sending them right now, or an earlier event in this request has the same eventId and eventName. |  [optional] |
+|**skipped** | [**List&lt;SendEvents200ResponseDestinationsInnerSkippedInner&gt;**](SendEvents200ResponseDestinationsInnerSkippedInner.md) |  |  [optional] |
 |**failures** | [**List&lt;SendEvents200ResponseDestinationsInnerFailuresInner&gt;**](SendEvents200ResponseDestinationsInnerFailuresInner.md) |  |  [optional] |
 |**error** | **String** | Set when the destination could not be reached at all (account disconnected, unsupported platform, platform error). |  [optional] |
 |**retrying** | **Boolean** | The destination failed for now (platform error, timeout, rate limit) and the send is queued for retries; its outcome shows on GET /v1/events/{eventId}. |  [optional] |

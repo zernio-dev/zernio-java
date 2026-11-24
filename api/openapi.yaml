@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.822.0
+  version: 1.823.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -229943,11 +229943,22 @@ components:
       required:
       - events
       - profileId
+    sendEvents_200_response_destinations_inner_skipped_inner:
+      example:
+        eventId: eventId
+        eventIndex: 2
+      properties:
+        eventIndex:
+          description: "Position of the event in the request's `events` array, counted\
+            \ from 0."
+          type: integer
+        eventId:
+          type: string
     sendEvents_200_response_destinations_inner_failures_inner:
       example:
         eventId: eventId
         code: sendConversions_200_response_failures_inner_code
-        eventIndex: 5
+        eventIndex: 7
         message: message
       properties:
         eventIndex:
@@ -229965,6 +229976,26 @@ components:
       example:
         eventsDropped: 5
         traceId: traceId
+        failures:
+        - eventId: eventId
+          code: sendConversions_200_response_failures_inner_code
+          eventIndex: 7
+          message: message
+        - eventId: eventId
+          code: sendConversions_200_response_failures_inner_code
+          eventIndex: 7
+          message: message
+        eventsFailed: 1
+        eventsSent: 6
+        eventsSkipped: 5
+        destinationId: destinationId
+        error: error
+        platform: metaads
+        skipped:
+        - eventId: eventId
+          eventIndex: 2
+        - eventId: eventId
+          eventIndex: 2
         accountId: accountId
         drops:
         - eventId: eventId
@@ -229973,24 +230004,10 @@ components:
         - eventId: eventId
           reason: consent_denied
           eventIndex: 5
-        failures:
-        - eventId: eventId
-          code: sendConversions_200_response_failures_inner_code
-          eventIndex: 5
-          message: message
-        - eventId: eventId
-          code: sendConversions_200_response_failures_inner_code
-          eventIndex: 5
-          message: message
-        eventsFailed: 1
         retrying: true
-        eventsSent: 6
-        destinationId: destinationId
-        error: error
         platformMessages:
         - platformMessages
         - platformMessages
-        platform: metaads
       properties:
         accountId:
           type: string
@@ -230033,6 +230050,16 @@ components:
           items:
             $ref: "#/components/schemas/ConsentDrop"
           type: array
+        eventsSkipped:
+          description: "Events not sent again because this destination already accepted\
+            \ them (same eventId and eventName within 48 hours), another request is\
+            \ sending them right now, or an earlier event in this request has the\
+            \ same eventId and eventName."
+          type: integer
+        skipped:
+          items:
+            $ref: "#/components/schemas/sendEvents_200_response_destinations_inner_skipped_inner"
+          type: array
         failures:
           items:
             $ref: "#/components/schemas/sendEvents_200_response_destinations_inner_failures_inner"
@@ -230059,13 +230086,33 @@ components:
           type: array
     sendEvents_200_response:
       example:
-        queuedDestinations: 2
+        queuedDestinations: 9
         testCode: testCode
         eventsReceived: 0
         stored: true
         destinations:
         - eventsDropped: 5
           traceId: traceId
+          failures:
+          - eventId: eventId
+            code: sendConversions_200_response_failures_inner_code
+            eventIndex: 7
+            message: message
+          - eventId: eventId
+            code: sendConversions_200_response_failures_inner_code
+            eventIndex: 7
+            message: message
+          eventsFailed: 1
+          eventsSent: 6
+          eventsSkipped: 5
+          destinationId: destinationId
+          error: error
+          platform: metaads
+          skipped:
+          - eventId: eventId
+            eventIndex: 2
+          - eventId: eventId
+            eventIndex: 2
           accountId: accountId
           drops:
           - eventId: eventId
@@ -230074,26 +230121,32 @@ components:
           - eventId: eventId
             reason: consent_denied
             eventIndex: 5
-          failures:
-          - eventId: eventId
-            code: sendConversions_200_response_failures_inner_code
-            eventIndex: 5
-            message: message
-          - eventId: eventId
-            code: sendConversions_200_response_failures_inner_code
-            eventIndex: 5
-            message: message
-          eventsFailed: 1
           retrying: true
-          eventsSent: 6
-          destinationId: destinationId
-          error: error
           platformMessages:
           - platformMessages
           - platformMessages
-          platform: metaads
         - eventsDropped: 5
           traceId: traceId
+          failures:
+          - eventId: eventId
+            code: sendConversions_200_response_failures_inner_code
+            eventIndex: 7
+            message: message
+          - eventId: eventId
+            code: sendConversions_200_response_failures_inner_code
+            eventIndex: 7
+            message: message
+          eventsFailed: 1
+          eventsSent: 6
+          eventsSkipped: 5
+          destinationId: destinationId
+          error: error
+          platform: metaads
+          skipped:
+          - eventId: eventId
+            eventIndex: 2
+          - eventId: eventId
+            eventIndex: 2
           accountId: accountId
           drops:
           - eventId: eventId
@@ -230102,24 +230155,10 @@ components:
           - eventId: eventId
             reason: consent_denied
             eventIndex: 5
-          failures:
-          - eventId: eventId
-            code: sendConversions_200_response_failures_inner_code
-            eventIndex: 5
-            message: message
-          - eventId: eventId
-            code: sendConversions_200_response_failures_inner_code
-            eventIndex: 5
-            message: message
-          eventsFailed: 1
           retrying: true
-          eventsSent: 6
-          destinationId: destinationId
-          error: error
           platformMessages:
           - platformMessages
           - platformMessages
-          platform: metaads
       properties:
         eventsReceived:
           description: Events in the request.
@@ -230143,9 +230182,9 @@ components:
           type: integer
     sendEvents_202_response:
       example:
-        queuedDestinations: 9
+        queuedDestinations: 2
         testCode: testCode
-        eventsReceived: 7
+        eventsReceived: 3
         stored: true
         destinations: []
       properties:
