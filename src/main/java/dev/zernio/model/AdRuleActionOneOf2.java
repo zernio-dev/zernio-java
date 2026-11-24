@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   AdRuleActionOneOf2.JSON_PROPERTY_MAX_CHANGES_PER_DAY,
   AdRuleActionOneOf2.JSON_PROPERTY_MAX_CHANGES_PER_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleActionOneOf2 {
   /**
    * Reactivate a campaign, ad set or ad a rule paused, once &#x60;cooldownMinutes&#x60; has passed since the pause. A rule on set times (&#x60;schedule.times&#x60;) does not wait: it restarts only what a rule on set times paused. Objects you paused yourself are left alone unless &#x60;includeManuallyPaused&#x60; is true.

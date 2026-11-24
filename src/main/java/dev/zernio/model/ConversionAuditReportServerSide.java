@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ConversionAuditReportServerSide.JSON_PROPERTY_NOTE,
   ConversionAuditReportServerSide.JSON_PROPERTY_FIRST_PARTY_COLLECTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionAuditReportServerSide {
   /**
    * Gets or Sets status

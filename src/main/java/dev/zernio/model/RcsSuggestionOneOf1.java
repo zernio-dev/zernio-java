@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   RcsSuggestionOneOf1.JSON_PROPERTY_PHONE_NUMBER,
   RcsSuggestionOneOf1.JSON_PROPERTY_POSTBACK_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RcsSuggestionOneOf1 {
   /**
    * Gets or Sets type

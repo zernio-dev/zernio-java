@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CommentAutomationFollowGate.JSON_PROPERTY_PROFILE_BUTTON_LABEL,
   CommentAutomationFollowGate.JSON_PROPERTY_NOT_FOLLOWING_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationFollowGate {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

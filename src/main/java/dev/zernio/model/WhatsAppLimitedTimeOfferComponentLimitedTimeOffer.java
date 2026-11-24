@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.JSON_PROPERTY_TEXT,
   WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.JSON_PROPERTY_HAS_EXPIRATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppLimitedTimeOfferComponentLimitedTimeOffer {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nonnull

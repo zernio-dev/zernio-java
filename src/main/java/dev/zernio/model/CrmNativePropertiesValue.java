@@ -45,7 +45,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using=CrmNativePropertiesValue.CrmNativePropertiesValueDeserializer.class)
 @JsonSerialize(using = CrmNativePropertiesValue.CrmNativePropertiesValueSerializer.class)
 public class CrmNativePropertiesValue extends AbstractOpenApiSchema {

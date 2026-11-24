@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   AutomationRunDetail.JSON_PROPERTY_STEPS,
   AutomationRunDetail.JSON_PROPERTY_TRACE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationRunDetail {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

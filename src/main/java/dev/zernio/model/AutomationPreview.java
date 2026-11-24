@@ -55,7 +55,7 @@ import dev.zernio.ApiClient;
   AutomationPreview.JSON_PROPERTY_SUBJECTS,
   AutomationPreview.JSON_PROPERTY_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationPreview {
   public static final String JSON_PROPERTY_EVALUATED_AT = "evaluatedAt";
   @javax.annotation.Nonnull

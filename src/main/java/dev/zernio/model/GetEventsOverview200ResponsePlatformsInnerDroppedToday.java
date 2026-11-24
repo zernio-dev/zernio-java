@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetEventsOverview200ResponsePlatformsInnerDroppedToday.JSON_PROPERTY_CONSENT_MISSING,
   GetEventsOverview200ResponsePlatformsInnerDroppedToday.JSON_PROPERTY_INVALID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEventsOverview200ResponsePlatformsInnerDroppedToday {
   public static final String JSON_PROPERTY_CONSENT_DENIED = "consentDenied";
   @javax.annotation.Nullable

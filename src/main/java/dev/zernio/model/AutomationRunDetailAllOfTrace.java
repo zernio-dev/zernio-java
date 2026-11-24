@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   AutomationRunDetailAllOfTrace.JSON_PROPERTY_AT,
   AutomationRunDetailAllOfTrace.JSON_PROPERTY_NOTE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationRunDetailAllOfTrace {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull

@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   CoexistenceHistorySync.JSON_PROPERTY_REQUEST_ID,
   CoexistenceHistorySync.JSON_PROPERTY_REFUSED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CoexistenceHistorySync {
   /**
    * - &#x60;requested&#x60;: Meta accepted the request and has not sent history yet, which can take a while. - &#x60;imported&#x60;: Meta sent chat history to this account, including history a reconnect kept. - &#x60;declined&#x60;: the business chose not to share its chat history in Meta&#39;s window. - &#x60;already_synced&#x60;: Meta refused the request because an earlier connection already used the number&#39;s one history share. Disconnecting inside the WhatsApp Business app (Settings &gt; Account &gt; Business Platform), then connecting again gets a new import. - &#x60;refused&#x60;: Meta refused it for another reason. 

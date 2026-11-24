@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetLtvCohorts200Response.JSON_PROPERTY_TO_MONTH,
   GetLtvCohorts200Response.JSON_PROPERTY_COHORTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLtvCohorts200Response {
   public static final String JSON_PROPERTY_FROM_MONTH = "fromMonth";
   @javax.annotation.Nonnull

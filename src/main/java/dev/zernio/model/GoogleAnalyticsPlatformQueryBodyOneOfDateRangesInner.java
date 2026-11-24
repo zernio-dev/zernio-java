@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GoogleAnalyticsPlatformQueryBodyOneOfDateRangesInner.JSON_PROPERTY_END_DATE,
   GoogleAnalyticsPlatformQueryBodyOneOfDateRangesInner.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:32:05.117823476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:37:58.721755165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleAnalyticsPlatformQueryBodyOneOfDateRangesInner {
   public static final String JSON_PROPERTY_START_DATE = "startDate";
   @javax.annotation.Nonnull
