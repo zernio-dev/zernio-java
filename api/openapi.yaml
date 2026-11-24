@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.818.0
+  version: 1.818.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -3588,8 +3588,10 @@ paths:
             - While a platform has not published, status is the post's own status (for example scheduled or publishing).
             - A post with one failed platform returns 202 rather than 424 until the others finish.
             - Pending platforms whose account failed its last analytics sync carry that error in platformAnalytics[].errorMessage, and the message says so.
+            - A pending X entry whose account is in analyticsOff stays pending however often you retry: the message gives the reason.
           x-summary: "Analytics are still syncing or the post has not finished publishing\
-            \ everywhere: retry later to get the full results."
+            \ everywhere: retry later to get the full results, except for X accounts\
+            \ in analyticsOff."
         "400":
           content:
             application/json:
@@ -132779,6 +132781,8 @@ components:
           - PAYMENT_REQUIRED
           type: string
         message:
+          description: The reason in words. X_ANALYTICS_NOT_ENABLED also says how
+            to turn it on.
           type: string
       required:
       - code
@@ -132983,7 +132987,9 @@ components:
           type: string
         message:
           description: "Human-readable status message for pending, partial, or failed\
-            \ states"
+            \ states. When a pending X entry waits on an account in analyticsOff,\
+            \ it gives the reason and, when X analytics is not enabled, how to turn\
+            \ it on."
           nullable: true
           type: string
         analyticsOff:
