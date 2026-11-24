@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.803.1
+  version: 1.804.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -135179,6 +135179,34 @@ components:
       properties:
         message:
           type: string
+    CoexistenceHistorySync:
+      description: "The outcome of the latest chat history request Zernio sent Meta\
+        \ for a WhatsApp coexistence number, read from the account (not a live probe)."
+      properties:
+        status:
+          description: |
+            - `requested`: Meta accepted the request and has not sent history yet, which can take a while.
+            - `imported`: Meta sent chat history to this account, including history a reconnect kept.
+            - `declined`: the business chose not to share its chat history in Meta's window.
+            - `already_synced`: Meta refused the request because an earlier connection already used the number's one history share. Disconnecting inside the WhatsApp Business app (Settings > Account > Business Platform), then connecting again gets a new import.
+            - `refused`: Meta refused it for another reason.
+          enum:
+          - requested
+          - imported
+          - declined
+          - already_synced
+          - refused
+          type: string
+        requestId:
+          description: "The id of the last history request Meta accepted, kept across\
+            \ reconnects. Quote it in a Meta support case."
+          nullable: true
+          type: string
+        refusedAt:
+          description: When Meta refused the latest request. Null when it was accepted.
+          format: date-time
+          nullable: true
+          type: string
     InboundActivity:
       description: "When inbound messages and comments were first and last seen for\
         \ the account. Only events matched to this account count. WhatsApp delivery\
@@ -161661,6 +161689,7 @@ components:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           status: ok
         tokenExpiresAt: 2000-01-23T04:56:07.000+00:00
+        coexistenceHistorySync: ""
         username: username
         status: healthy
         canFetchAnalytics: true
@@ -161754,6 +161783,10 @@ components:
           allOf:
           - $ref: "#/components/schemas/InboundActivity"
           nullable: true
+        coexistenceHistorySync:
+          allOf:
+          - $ref: "#/components/schemas/CoexistenceHistorySync"
+          nullable: true
         publishingRestriction:
           $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_publishingRestriction"
         messagingRestriction:
@@ -161802,6 +161835,7 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             status: ok
           tokenExpiresAt: 2000-01-23T04:56:07.000+00:00
+          coexistenceHistorySync: ""
           username: username
           status: healthy
           canFetchAnalytics: true
@@ -161840,6 +161874,7 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             status: ok
           tokenExpiresAt: 2000-01-23T04:56:07.000+00:00
+          coexistenceHistorySync: ""
           username: username
           status: healthy
           canFetchAnalytics: true
@@ -162120,40 +162155,6 @@ components:
           format: date-time
           nullable: true
           type: string
-    getAccountHealth_200_response_coexistenceHistorySync:
-      description: "WhatsApp accounts only. The outcome of the latest chat history\
-        \ request Zernio sent Meta for a coexistence number, read from the account\
-        \ (not a live probe). Null when no request ran for the current connection,\
-        \ and on numbers that are not in coexistence."
-      example:
-        refusedAt: 2000-01-23T04:56:07.000+00:00
-        requestId: requestId
-        status: requested
-      properties:
-        status:
-          description: |
-            - `requested`: Meta accepted the request and has not sent history yet, which can take a while.
-            - `imported`: Meta sent chat history to this account, including history a reconnect kept.
-            - `declined`: the business chose not to share its chat history in Meta's window.
-            - `already_synced`: Meta refused the request because an earlier connection already used the number's one history share. The description above says how to get a new import.
-            - `refused`: Meta refused it for another reason.
-          enum:
-          - requested
-          - imported
-          - declined
-          - already_synced
-          - refused
-          type: string
-        requestId:
-          description: "The id of the last history request Meta accepted, kept across\
-            \ reconnects. Quote it in a Meta support case."
-          nullable: true
-          type: string
-        refusedAt:
-          description: When Meta refused the latest request. Null when it was accepted.
-          format: date-time
-          nullable: true
-          type: string
     getAccountHealth_200_response_platformConnection_metaError:
       description: Set only when status is `disconnected`
       example:
@@ -162376,10 +162377,7 @@ components:
         analyticsSync:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           status: ok
-        coexistenceHistorySync:
-          refusedAt: 2000-01-23T04:56:07.000+00:00
-          requestId: requestId
-          status: requested
+        coexistenceHistorySync: ""
         platformConnection:
           canSendMessage: canSendMessage
           checkedAt: 2000-01-23T04:56:07.000+00:00
@@ -162530,7 +162528,9 @@ components:
         messagingRestriction:
           $ref: "#/components/schemas/getAccountHealth_200_response_messagingRestriction"
         coexistenceHistorySync:
-          $ref: "#/components/schemas/getAccountHealth_200_response_coexistenceHistorySync"
+          allOf:
+          - $ref: "#/components/schemas/CoexistenceHistorySync"
+          nullable: true
         platformConnection:
           $ref: "#/components/schemas/getAccountHealth_200_response_platformConnection"
         lineWebhook:

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.803.1
+- API version: 1.804.0
 
-- Build date: 2026-11-24T06:23:30.845391044Z[Etc/UTC]
+- Build date: 2026-11-24T06:47:30.671815780Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.803.1</version>
+  <version>1.804.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.803.1"
+compile "dev.zernio:zernio-sdk:1.804.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.803.1.jar`
+- `target/zernio-sdk-1.804.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3520,6 +3520,7 @@ Class | Method | HTTP request | Description
  - [CheckVerificationRequest](docs/CheckVerificationRequest.md)
  - [CheckWhatsAppNumberAvailability200Response](docs/CheckWhatsAppNumberAvailability200Response.md)
  - [CheckWhatsAppNumberAvailability200ResponseAreaAvailability](docs/CheckWhatsAppNumberAvailability200ResponseAreaAvailability.md)
+ - [CoexistenceHistorySync](docs/CoexistenceHistorySync.md)
  - [CommentAttachment](docs/CommentAttachment.md)
  - [CommentAutomationActions](docs/CommentAutomationActions.md)
  - [CommentAutomationAudience](docs/CommentAutomationAudience.md)
@@ -4367,7 +4368,6 @@ Class | Method | HTTP request | Description
  - [GeoRestriction](docs/GeoRestriction.md)
  - [GetAccount200Response](docs/GetAccount200Response.md)
  - [GetAccountHealth200Response](docs/GetAccountHealth200Response.md)
- - [GetAccountHealth200ResponseCoexistenceHistorySync](docs/GetAccountHealth200ResponseCoexistenceHistorySync.md)
  - [GetAccountHealth200ResponseLineWebhook](docs/GetAccountHealth200ResponseLineWebhook.md)
  - [GetAccountHealth200ResponseMailbox](docs/GetAccountHealth200ResponseMailbox.md)
  - [GetAccountHealth200ResponseMessagingRestriction](docs/GetAccountHealth200ResponseMessagingRestriction.md)
