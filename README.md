@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.824.2
+- API version: 1.825.0
 
-- Build date: 2026-11-24T22:47:40.071877178Z[Etc/UTC]
+- Build date: 2026-11-24T23:23:10.741993352Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.824.2</version>
+  <version>1.825.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.824.2"
+compile "dev.zernio:zernio-sdk:1.825.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.824.2.jar`
+- `target/zernio-sdk-1.825.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1335,6 +1335,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectWhopAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectWhopAdsCredentialsWithHttpInfo) | **POST** /v1/connect/whop-ads/credentials | Connect a Whop account
 *ConnectApi* | [**connectWordPressWithApplicationPassword**](docs/ConnectApi.md#connectWordPressWithApplicationPassword) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password
 *ConnectApi* | [**connectWordPressWithApplicationPasswordWithHttpInfo**](docs/ConnectApi.md#connectWordPressWithApplicationPasswordWithHttpInfo) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password
+*ConnectApi* | [**createConnectCustomDomain**](docs/ConnectApi.md#createConnectCustomDomain) | **POST** /v1/connect/custom-domains | Add a custom domain
+*ConnectApi* | [**createConnectCustomDomainWithHttpInfo**](docs/ConnectApi.md#createConnectCustomDomainWithHttpInfo) | **POST** /v1/connect/custom-domains | Add a custom domain
 *ConnectApi* | [**createGoogleBusinessLocation**](docs/ConnectApi.md#createGoogleBusinessLocation) | **POST** /v1/accounts/{accountId}/gmb-locations | Create Google Business Profile location
 *ConnectApi* | [**createGoogleBusinessLocationWithHttpInfo**](docs/ConnectApi.md#createGoogleBusinessLocationWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-locations | Create Google Business Profile location
 *ConnectApi* | [**createGoogleOrgConnection**](docs/ConnectApi.md#createGoogleOrgConnection) | **POST** /v1/connect/google/org | Start a Google Workspace organization connection
@@ -1349,6 +1351,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**createPlatformInviteWithHttpInfo**](docs/ConnectApi.md#createPlatformInviteWithHttpInfo) | **POST** /v1/platform-invites | Create a connect link
 *ConnectApi* | [**createYoutubePlaylist**](docs/ConnectApi.md#createYoutubePlaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
 *ConnectApi* | [**createYoutubePlaylistWithHttpInfo**](docs/ConnectApi.md#createYoutubePlaylistWithHttpInfo) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
+*ConnectApi* | [**deleteConnectCustomDomain**](docs/ConnectApi.md#deleteConnectCustomDomain) | **DELETE** /v1/connect/custom-domains/{domainId} | Remove a custom domain
+*ConnectApi* | [**deleteConnectCustomDomainWithHttpInfo**](docs/ConnectApi.md#deleteConnectCustomDomainWithHttpInfo) | **DELETE** /v1/connect/custom-domains/{domainId} | Remove a custom domain
 *ConnectApi* | [**deleteOAuthApp**](docs/ConnectApi.md#deleteOAuthApp) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app
 *ConnectApi* | [**deleteOAuthAppWithHttpInfo**](docs/ConnectApi.md#deleteOAuthAppWithHttpInfo) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app
 *ConnectApi* | [**deleteOrgConnection**](docs/ConnectApi.md#deleteOrgConnection) | **DELETE** /v1/org-connections/{orgConnectionId} | Delete an organization connection
@@ -1357,6 +1361,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getAmazonAdsConnectUrlWithHttpInfo**](docs/ConnectApi.md#getAmazonAdsConnectUrlWithHttpInfo) | **GET** /v1/connect/amazonads | Get Amazon Ads OAuth connect URL
 *ConnectApi* | [**getCampaignManagerConnectUrl**](docs/ConnectApi.md#getCampaignManagerConnectUrl) | **GET** /v1/connect/campaignmanager360 | Get Campaign Manager 360 OAuth connect URL
 *ConnectApi* | [**getCampaignManagerConnectUrlWithHttpInfo**](docs/ConnectApi.md#getCampaignManagerConnectUrlWithHttpInfo) | **GET** /v1/connect/campaignmanager360 | Get Campaign Manager 360 OAuth connect URL
+*ConnectApi* | [**getConnectCustomDomain**](docs/ConnectApi.md#getConnectCustomDomain) | **GET** /v1/connect/custom-domains/{domainId} | Get a custom domain
+*ConnectApi* | [**getConnectCustomDomainWithHttpInfo**](docs/ConnectApi.md#getConnectCustomDomainWithHttpInfo) | **GET** /v1/connect/custom-domains/{domainId} | Get a custom domain
 *ConnectApi* | [**getConnectHandoff**](docs/ConnectApi.md#getConnectHandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff
 *ConnectApi* | [**getConnectHandoffWithHttpInfo**](docs/ConnectApi.md#getConnectHandoffWithHttpInfo) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff
 *ConnectApi* | [**getConnectUrl**](docs/ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL
@@ -1423,6 +1429,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**initiateTelegramConnectWithHttpInfo**](docs/ConnectApi.md#initiateTelegramConnectWithHttpInfo) | **POST** /v1/connect/telegram | Connect Telegram directly
 *ConnectApi* | [**listCampaignManagerProfiles**](docs/ConnectApi.md#listCampaignManagerProfiles) | **GET** /v1/connect/campaignmanager360/profiles | List Campaign Manager 360 profiles for a pending connect
 *ConnectApi* | [**listCampaignManagerProfilesWithHttpInfo**](docs/ConnectApi.md#listCampaignManagerProfilesWithHttpInfo) | **GET** /v1/connect/campaignmanager360/profiles | List Campaign Manager 360 profiles for a pending connect
+*ConnectApi* | [**listConnectCustomDomains**](docs/ConnectApi.md#listConnectCustomDomains) | **GET** /v1/connect/custom-domains | List the workspace&#39;s custom domains
+*ConnectApi* | [**listConnectCustomDomainsWithHttpInfo**](docs/ConnectApi.md#listConnectCustomDomainsWithHttpInfo) | **GET** /v1/connect/custom-domains | List the workspace&#39;s custom domains
 *ConnectApi* | [**listFacebookPages**](docs/ConnectApi.md#listFacebookPages) | **GET** /v1/connect/facebook/select-page | List Facebook pages
 *ConnectApi* | [**listFacebookPagesWithHttpInfo**](docs/ConnectApi.md#listFacebookPagesWithHttpInfo) | **GET** /v1/connect/facebook/select-page | List Facebook pages
 *ConnectApi* | [**listGoogleAnalyticsProperties**](docs/ConnectApi.md#listGoogleAnalyticsProperties) | **GET** /v1/connect/googleanalytics/properties | List Google Analytics properties for a pending connect
@@ -1479,6 +1487,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**startMicrosoftAdminConsentWithHttpInfo**](docs/ConnectApi.md#startMicrosoftAdminConsentWithHttpInfo) | **GET** /v1/connect/microsoft/admin-consent | Admin-consent link for a Microsoft tenant
 *ConnectApi* | [**testOAuthApp**](docs/ConnectApi.md#testOAuthApp) | **POST** /v1/connect/oauth-apps/{appId}/test | Check an OAuth app&#39;s keys
 *ConnectApi* | [**testOAuthAppWithHttpInfo**](docs/ConnectApi.md#testOAuthAppWithHttpInfo) | **POST** /v1/connect/oauth-apps/{appId}/test | Check an OAuth app&#39;s keys
+*ConnectApi* | [**updateConnectCustomDomain**](docs/ConnectApi.md#updateConnectCustomDomain) | **PATCH** /v1/connect/custom-domains/{domainId} | Turn a custom domain on or off for connect
+*ConnectApi* | [**updateConnectCustomDomainWithHttpInfo**](docs/ConnectApi.md#updateConnectCustomDomainWithHttpInfo) | **PATCH** /v1/connect/custom-domains/{domainId} | Turn a custom domain on or off for connect
 *ConnectApi* | [**updateConnectWelcomeScreen**](docs/ConnectApi.md#updateConnectWelcomeScreen) | **PUT** /v1/connect/welcome-screen | Save the welcome screen
 *ConnectApi* | [**updateConnectWelcomeScreenWithHttpInfo**](docs/ConnectApi.md#updateConnectWelcomeScreenWithHttpInfo) | **PUT** /v1/connect/welcome-screen | Save the welcome screen
 *ConnectApi* | [**updateFacebookPage**](docs/ConnectApi.md#updateFacebookPage) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page
@@ -1497,6 +1507,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**updateRedditSubredditsWithHttpInfo**](docs/ConnectApi.md#updateRedditSubredditsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit
 *ConnectApi* | [**updateYoutubeDefaultPlaylist**](docs/ConnectApi.md#updateYoutubeDefaultPlaylist) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist
 *ConnectApi* | [**updateYoutubeDefaultPlaylistWithHttpInfo**](docs/ConnectApi.md#updateYoutubeDefaultPlaylistWithHttpInfo) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist
+*ConnectApi* | [**verifyConnectCustomDomain**](docs/ConnectApi.md#verifyConnectCustomDomain) | **POST** /v1/connect/custom-domains/{domainId}/verify | Check a custom domain&#39;s DNS records now
+*ConnectApi* | [**verifyConnectCustomDomainWithHttpInfo**](docs/ConnectApi.md#verifyConnectCustomDomainWithHttpInfo) | **POST** /v1/connect/custom-domains/{domainId}/verify | Check a custom domain&#39;s DNS records now
 *ConnectApi* | [**verifyOrgConnection**](docs/ConnectApi.md#verifyOrgConnection) | **POST** /v1/org-connections/{orgConnectionId}/verify | Verify an organization connection
 *ConnectApi* | [**verifyOrgConnectionWithHttpInfo**](docs/ConnectApi.md#verifyOrgConnectionWithHttpInfo) | **POST** /v1/org-connections/{orgConnectionId}/verify | Verify an organization connection
 *ConnectApi* | [**voteRedditThing**](docs/ConnectApi.md#voteRedditThing) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment
@@ -3632,6 +3644,8 @@ Class | Method | HTTP request | Description
  - [ConnectAwinCredentialsRequest](docs/ConnectAwinCredentialsRequest.md)
  - [ConnectBlueskyCredentials200Response](docs/ConnectBlueskyCredentials200Response.md)
  - [ConnectBlueskyCredentialsRequest](docs/ConnectBlueskyCredentialsRequest.md)
+ - [ConnectCustomDomain](docs/ConnectCustomDomain.md)
+ - [ConnectCustomDomainRecordsInner](docs/ConnectCustomDomainRecordsInner.md)
  - [ConnectDiscordChannelRequest](docs/ConnectDiscordChannelRequest.md)
  - [ConnectHandoff](docs/ConnectHandoff.md)
  - [ConnectHandoffAccountsInner](docs/ConnectHandoffAccountsInner.md)
@@ -3840,6 +3854,8 @@ Class | Method | HTTP request | Description
  - [CreateCommerceRefund200Response](docs/CreateCommerceRefund200Response.md)
  - [CreateCommerceRefund201Response](docs/CreateCommerceRefund201Response.md)
  - [CreateCommerceRefundRequest](docs/CreateCommerceRefundRequest.md)
+ - [CreateConnectCustomDomain201Response](docs/CreateConnectCustomDomain201Response.md)
+ - [CreateConnectCustomDomainRequest](docs/CreateConnectCustomDomainRequest.md)
  - [CreateContact200Response](docs/CreateContact200Response.md)
  - [CreateContact200ResponseChannel](docs/CreateContact200ResponseChannel.md)
  - [CreateContact200ResponseContact](docs/CreateContact200ResponseContact.md)
@@ -5335,6 +5351,7 @@ Class | Method | HTTP request | Description
  - [ListCommerceProductMetafields200Response](docs/ListCommerceProductMetafields200Response.md)
  - [ListCommerceProducts200Response](docs/ListCommerceProducts200Response.md)
  - [ListCommerceRedirects200Response](docs/ListCommerceRedirects200Response.md)
+ - [ListConnectCustomDomains200Response](docs/ListConnectCustomDomains200Response.md)
  - [ListConnectedApps200Response](docs/ListConnectedApps200Response.md)
  - [ListContactGroups200Response](docs/ListContactGroups200Response.md)
  - [ListContactGroups200ResponseDataInner](docs/ListContactGroups200ResponseDataInner.md)
@@ -6505,6 +6522,7 @@ Class | Method | HTTP request | Description
  - [UpdateCommerceProductPricesRequestVariantsInnerPrice](docs/UpdateCommerceProductPricesRequestVariantsInnerPrice.md)
  - [UpdateCommerceProductRequest](docs/UpdateCommerceProductRequest.md)
  - [UpdateCommerceRedirectRequest](docs/UpdateCommerceRedirectRequest.md)
+ - [UpdateConnectCustomDomainRequest](docs/UpdateConnectCustomDomainRequest.md)
  - [UpdateConnectWelcomeScreenRequest](docs/UpdateConnectWelcomeScreenRequest.md)
  - [UpdateContact200Response](docs/UpdateContact200Response.md)
  - [UpdateContact200ResponseContact](docs/UpdateContact200ResponseContact.md)

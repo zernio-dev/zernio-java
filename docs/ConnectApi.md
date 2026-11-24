@@ -62,6 +62,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**connectWhopAdsCredentialsWithHttpInfo**](ConnectApi.md#connectWhopAdsCredentialsWithHttpInfo) | **POST** /v1/connect/whop-ads/credentials | Connect a Whop account |
 | [**connectWordPressWithApplicationPassword**](ConnectApi.md#connectWordPressWithApplicationPassword) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password |
 | [**connectWordPressWithApplicationPasswordWithHttpInfo**](ConnectApi.md#connectWordPressWithApplicationPasswordWithHttpInfo) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password |
+| [**createConnectCustomDomain**](ConnectApi.md#createConnectCustomDomain) | **POST** /v1/connect/custom-domains | Add a custom domain |
+| [**createConnectCustomDomainWithHttpInfo**](ConnectApi.md#createConnectCustomDomainWithHttpInfo) | **POST** /v1/connect/custom-domains | Add a custom domain |
 | [**createGoogleBusinessLocation**](ConnectApi.md#createGoogleBusinessLocation) | **POST** /v1/accounts/{accountId}/gmb-locations | Create Google Business Profile location |
 | [**createGoogleBusinessLocationWithHttpInfo**](ConnectApi.md#createGoogleBusinessLocationWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-locations | Create Google Business Profile location |
 | [**createGoogleOrgConnection**](ConnectApi.md#createGoogleOrgConnection) | **POST** /v1/connect/google/org | Start a Google Workspace organization connection |
@@ -76,6 +78,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createPlatformInviteWithHttpInfo**](ConnectApi.md#createPlatformInviteWithHttpInfo) | **POST** /v1/platform-invites | Create a connect link |
 | [**createYoutubePlaylist**](ConnectApi.md#createYoutubePlaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist |
 | [**createYoutubePlaylistWithHttpInfo**](ConnectApi.md#createYoutubePlaylistWithHttpInfo) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist |
+| [**deleteConnectCustomDomain**](ConnectApi.md#deleteConnectCustomDomain) | **DELETE** /v1/connect/custom-domains/{domainId} | Remove a custom domain |
+| [**deleteConnectCustomDomainWithHttpInfo**](ConnectApi.md#deleteConnectCustomDomainWithHttpInfo) | **DELETE** /v1/connect/custom-domains/{domainId} | Remove a custom domain |
 | [**deleteOAuthApp**](ConnectApi.md#deleteOAuthApp) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app |
 | [**deleteOAuthAppWithHttpInfo**](ConnectApi.md#deleteOAuthAppWithHttpInfo) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app |
 | [**deleteOrgConnection**](ConnectApi.md#deleteOrgConnection) | **DELETE** /v1/org-connections/{orgConnectionId} | Delete an organization connection |
@@ -84,6 +88,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAmazonAdsConnectUrlWithHttpInfo**](ConnectApi.md#getAmazonAdsConnectUrlWithHttpInfo) | **GET** /v1/connect/amazonads | Get Amazon Ads OAuth connect URL |
 | [**getCampaignManagerConnectUrl**](ConnectApi.md#getCampaignManagerConnectUrl) | **GET** /v1/connect/campaignmanager360 | Get Campaign Manager 360 OAuth connect URL |
 | [**getCampaignManagerConnectUrlWithHttpInfo**](ConnectApi.md#getCampaignManagerConnectUrlWithHttpInfo) | **GET** /v1/connect/campaignmanager360 | Get Campaign Manager 360 OAuth connect URL |
+| [**getConnectCustomDomain**](ConnectApi.md#getConnectCustomDomain) | **GET** /v1/connect/custom-domains/{domainId} | Get a custom domain |
+| [**getConnectCustomDomainWithHttpInfo**](ConnectApi.md#getConnectCustomDomainWithHttpInfo) | **GET** /v1/connect/custom-domains/{domainId} | Get a custom domain |
 | [**getConnectHandoff**](ConnectApi.md#getConnectHandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
 | [**getConnectHandoffWithHttpInfo**](ConnectApi.md#getConnectHandoffWithHttpInfo) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
 | [**getConnectUrl**](ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
@@ -150,6 +156,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**initiateTelegramConnectWithHttpInfo**](ConnectApi.md#initiateTelegramConnectWithHttpInfo) | **POST** /v1/connect/telegram | Connect Telegram directly |
 | [**listCampaignManagerProfiles**](ConnectApi.md#listCampaignManagerProfiles) | **GET** /v1/connect/campaignmanager360/profiles | List Campaign Manager 360 profiles for a pending connect |
 | [**listCampaignManagerProfilesWithHttpInfo**](ConnectApi.md#listCampaignManagerProfilesWithHttpInfo) | **GET** /v1/connect/campaignmanager360/profiles | List Campaign Manager 360 profiles for a pending connect |
+| [**listConnectCustomDomains**](ConnectApi.md#listConnectCustomDomains) | **GET** /v1/connect/custom-domains | List the workspace&#39;s custom domains |
+| [**listConnectCustomDomainsWithHttpInfo**](ConnectApi.md#listConnectCustomDomainsWithHttpInfo) | **GET** /v1/connect/custom-domains | List the workspace&#39;s custom domains |
 | [**listFacebookPages**](ConnectApi.md#listFacebookPages) | **GET** /v1/connect/facebook/select-page | List Facebook pages |
 | [**listFacebookPagesWithHttpInfo**](ConnectApi.md#listFacebookPagesWithHttpInfo) | **GET** /v1/connect/facebook/select-page | List Facebook pages |
 | [**listGoogleAnalyticsProperties**](ConnectApi.md#listGoogleAnalyticsProperties) | **GET** /v1/connect/googleanalytics/properties | List Google Analytics properties for a pending connect |
@@ -206,6 +214,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**startMicrosoftAdminConsentWithHttpInfo**](ConnectApi.md#startMicrosoftAdminConsentWithHttpInfo) | **GET** /v1/connect/microsoft/admin-consent | Admin-consent link for a Microsoft tenant |
 | [**testOAuthApp**](ConnectApi.md#testOAuthApp) | **POST** /v1/connect/oauth-apps/{appId}/test | Check an OAuth app&#39;s keys |
 | [**testOAuthAppWithHttpInfo**](ConnectApi.md#testOAuthAppWithHttpInfo) | **POST** /v1/connect/oauth-apps/{appId}/test | Check an OAuth app&#39;s keys |
+| [**updateConnectCustomDomain**](ConnectApi.md#updateConnectCustomDomain) | **PATCH** /v1/connect/custom-domains/{domainId} | Turn a custom domain on or off for connect |
+| [**updateConnectCustomDomainWithHttpInfo**](ConnectApi.md#updateConnectCustomDomainWithHttpInfo) | **PATCH** /v1/connect/custom-domains/{domainId} | Turn a custom domain on or off for connect |
 | [**updateConnectWelcomeScreen**](ConnectApi.md#updateConnectWelcomeScreen) | **PUT** /v1/connect/welcome-screen | Save the welcome screen |
 | [**updateConnectWelcomeScreenWithHttpInfo**](ConnectApi.md#updateConnectWelcomeScreenWithHttpInfo) | **PUT** /v1/connect/welcome-screen | Save the welcome screen |
 | [**updateFacebookPage**](ConnectApi.md#updateFacebookPage) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page |
@@ -224,6 +234,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateRedditSubredditsWithHttpInfo**](ConnectApi.md#updateRedditSubredditsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit |
 | [**updateYoutubeDefaultPlaylist**](ConnectApi.md#updateYoutubeDefaultPlaylist) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist |
 | [**updateYoutubeDefaultPlaylistWithHttpInfo**](ConnectApi.md#updateYoutubeDefaultPlaylistWithHttpInfo) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist |
+| [**verifyConnectCustomDomain**](ConnectApi.md#verifyConnectCustomDomain) | **POST** /v1/connect/custom-domains/{domainId}/verify | Check a custom domain&#39;s DNS records now |
+| [**verifyConnectCustomDomainWithHttpInfo**](ConnectApi.md#verifyConnectCustomDomainWithHttpInfo) | **POST** /v1/connect/custom-domains/{domainId}/verify | Check a custom domain&#39;s DNS records now |
 | [**verifyOrgConnection**](ConnectApi.md#verifyOrgConnection) | **POST** /v1/org-connections/{orgConnectionId}/verify | Verify an organization connection |
 | [**verifyOrgConnectionWithHttpInfo**](ConnectApi.md#verifyOrgConnectionWithHttpInfo) | **POST** /v1/org-connections/{orgConnectionId}/verify | Verify an organization connection |
 | [**voteRedditThing**](ConnectApi.md#voteRedditThing) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment |
@@ -4795,6 +4807,160 @@ ApiResponse<[**ConnectWordPressWithApplicationPassword200Response**](ConnectWord
 | **503** | The WordPress site could not be reached. |  -  |
 
 
+## createConnectCustomDomain
+
+> CreateConnectCustomDomain201Response createConnectCustomDomain(createConnectCustomDomainRequest)
+
+Add a custom domain
+
+Adds a subdomain you control. The answer lists the two DNS records to add at your DNS provider: a CNAME that points the subdomain at Zernio and a TXT record that proves it is yours.  Nothing is registered until the TXT record is found; then the certificate is issued and &#x60;status&#x60; turns &#x60;active&#x60;, usually within minutes.  Connect links only move to the domain once it is active and &#x60;connectEnabled&#x60; is true. Requires the workspace settings permission (owner or admin).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        CreateConnectCustomDomainRequest createConnectCustomDomainRequest = new CreateConnectCustomDomainRequest(); // CreateConnectCustomDomainRequest | 
+        try {
+            CreateConnectCustomDomain201Response result = apiInstance.createConnectCustomDomain(createConnectCustomDomainRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#createConnectCustomDomain");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createConnectCustomDomainRequest** | [**CreateConnectCustomDomainRequest**](CreateConnectCustomDomainRequest.md)|  | |
+
+### Return type
+
+[**CreateConnectCustomDomain201Response**](CreateConnectCustomDomain201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The domain, with the DNS records to add. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller cannot change workspace settings. |  -  |
+| **409** | The workspace already has a custom domain, or another workspace verified this hostname (&#x60;custom_hostname_taken&#x60;). |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted. Behavior per platform:  - **Reddit:** rate-limits per connected Reddit user (1000 requests per 10-minute window), shared by every operation on that account. Retry after the window resets; repeated calls while exhausted do not succeed and keep the budget spent. - **Google Ads:** writes and reports run on one developer token shared by every Google Ads account on Zernio. It holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. - **Google Ads envelope:** &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed. - **YouTube Analytics:** reads (channel-insights, demographics, daily-views, video-retention) use the \&quot;Queries per day\&quot; quota of the Google Cloud project the account is connected through, shared with other Zernio customers, so a 429 is not your own volume. Resets at midnight Pacific Time. - **YouTube Analytics envelope:** &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaExhausted: true&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60;, &#x60;details.resetsAt&#x60; and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed. - **Meta ads:** every Meta throttle (codes 4, 17, 32, 613 and business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when sent, else Meta&#39;s 60-second minimum (30 seconds for the one-write-per-30-seconds limit on one object). - **Pinterest ads:** limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when sent, otherwise 60 seconds. - **TikTok ads:** limits per app and per endpoint (per second, minute and day), answering overage with code 40100 or code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (e.g. one ad at a time per advertiser) instead of retrying at once.  **TikTok Smart+ review read** (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has its own stricter TikTok quota. After an overage, Zernio answers 429 for that advertiser and connection without calling TikTok for about 60 seconds, then 120, up to 240 while TikTok keeps refusing, each with up to 10% random jitter.  A successful call holds nothing back; the next overage pauses about 60 seconds again. &#x60;Retry-After&#x60; is the time left. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;retryAfterSeconds&#x60; and &#x60;refreshState&#x60; instead. Keep one request in flight per advertiser there.  |  * Retry-After - Seconds until card payments are tried again. <br>  |
+
+## createConnectCustomDomainWithHttpInfo
+
+> ApiResponse<CreateConnectCustomDomain201Response> createConnectCustomDomain createConnectCustomDomainWithHttpInfo(createConnectCustomDomainRequest)
+
+Add a custom domain
+
+Adds a subdomain you control. The answer lists the two DNS records to add at your DNS provider: a CNAME that points the subdomain at Zernio and a TXT record that proves it is yours.  Nothing is registered until the TXT record is found; then the certificate is issued and &#x60;status&#x60; turns &#x60;active&#x60;, usually within minutes.  Connect links only move to the domain once it is active and &#x60;connectEnabled&#x60; is true. Requires the workspace settings permission (owner or admin).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        CreateConnectCustomDomainRequest createConnectCustomDomainRequest = new CreateConnectCustomDomainRequest(); // CreateConnectCustomDomainRequest | 
+        try {
+            ApiResponse<CreateConnectCustomDomain201Response> response = apiInstance.createConnectCustomDomainWithHttpInfo(createConnectCustomDomainRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#createConnectCustomDomain");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createConnectCustomDomainRequest** | [**CreateConnectCustomDomainRequest**](CreateConnectCustomDomainRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateConnectCustomDomain201Response**](CreateConnectCustomDomain201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The domain, with the DNS records to add. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller cannot change workspace settings. |  -  |
+| **409** | The workspace already has a custom domain, or another workspace verified this hostname (&#x60;custom_hostname_taken&#x60;). |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted. Behavior per platform:  - **Reddit:** rate-limits per connected Reddit user (1000 requests per 10-minute window), shared by every operation on that account. Retry after the window resets; repeated calls while exhausted do not succeed and keep the budget spent. - **Google Ads:** writes and reports run on one developer token shared by every Google Ads account on Zernio. It holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. - **Google Ads envelope:** &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed. - **YouTube Analytics:** reads (channel-insights, demographics, daily-views, video-retention) use the \&quot;Queries per day\&quot; quota of the Google Cloud project the account is connected through, shared with other Zernio customers, so a 429 is not your own volume. Resets at midnight Pacific Time. - **YouTube Analytics envelope:** &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaExhausted: true&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60;, &#x60;details.resetsAt&#x60; and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed. - **Meta ads:** every Meta throttle (codes 4, 17, 32, 613 and business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when sent, else Meta&#39;s 60-second minimum (30 seconds for the one-write-per-30-seconds limit on one object). - **Pinterest ads:** limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when sent, otherwise 60 seconds. - **TikTok ads:** limits per app and per endpoint (per second, minute and day), answering overage with code 40100 or code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (e.g. one ad at a time per advertiser) instead of retrying at once.  **TikTok Smart+ review read** (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has its own stricter TikTok quota. After an overage, Zernio answers 429 for that advertiser and connection without calling TikTok for about 60 seconds, then 120, up to 240 while TikTok keeps refusing, each with up to 10% random jitter.  A successful call holds nothing back; the next overage pauses about 60 seconds again. &#x60;Retry-After&#x60; is the time left. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;retryAfterSeconds&#x60; and &#x60;refreshState&#x60; instead. Keep one request in flight per advertiser there.  |  * Retry-After - Seconds until card payments are tried again. <br>  |
+
+
 ## createGoogleBusinessLocation
 
 > CreateGoogleBusinessLocation200Response createGoogleBusinessLocation(accountId, createGoogleBusinessLocationRequest, idempotencyKey)
@@ -5883,6 +6049,158 @@ ApiResponse<[**CreateYoutubePlaylist201Response**](CreateYoutubePlaylist201Respo
 | **502** | YouTube request failed. Check existing playlists before retrying, because the playlist may have been created. |  -  |
 
 
+## deleteConnectCustomDomain
+
+> void deleteConnectCustomDomain(domainId)
+
+Remove a custom domain
+
+Removes the domain and its certificate. New connect links open on zernio.com again and links already sent on the domain stop working; you can then delete both DNS records. Requires the workspace settings permission (owner or admin).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String domainId = "domainId_example"; // String | The custom domain's id.
+        try {
+            apiInstance.deleteConnectCustomDomain(domainId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#deleteConnectCustomDomain");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **domainId** | **String**| The custom domain&#39;s id. | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | The custom domain was removed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller cannot change workspace settings. |  -  |
+| **404** | Resource not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+## deleteConnectCustomDomainWithHttpInfo
+
+> ApiResponse<Void> deleteConnectCustomDomain deleteConnectCustomDomainWithHttpInfo(domainId)
+
+Remove a custom domain
+
+Removes the domain and its certificate. New connect links open on zernio.com again and links already sent on the domain stop working; you can then delete both DNS records. Requires the workspace settings permission (owner or admin).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String domainId = "domainId_example"; // String | The custom domain's id.
+        try {
+            ApiResponse<Void> response = apiInstance.deleteConnectCustomDomainWithHttpInfo(domainId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#deleteConnectCustomDomain");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **domainId** | **String**| The custom domain&#39;s id. | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | The custom domain was removed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller cannot change workspace settings. |  -  |
+| **404** | Resource not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+
 ## deleteOAuthApp
 
 > DeleteOAuthApp200Response deleteOAuthApp(appId, confirm)
@@ -6543,6 +6861,156 @@ ApiResponse<[**GetGoogleAnalyticsConnectUrl200Response**](GetGoogleAnalyticsConn
 | **403** | API key does not have access to this profile, or the key is read-only. |  -  |
 | **404** | Profile not found or access denied. |  -  |
 | **503** | Campaign Manager 360 OAuth is not configured. |  -  |
+
+
+## getConnectCustomDomain
+
+> CreateConnectCustomDomain201Response getConnectCustomDomain(domainId)
+
+Get a custom domain
+
+The custom domain with its status and DNS records.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String domainId = "domainId_example"; // String | The custom domain's id.
+        try {
+            CreateConnectCustomDomain201Response result = apiInstance.getConnectCustomDomain(domainId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getConnectCustomDomain");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **domainId** | **String**| The custom domain&#39;s id. | |
+
+### Return type
+
+[**CreateConnectCustomDomain201Response**](CreateConnectCustomDomain201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The custom domain. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## getConnectCustomDomainWithHttpInfo
+
+> ApiResponse<CreateConnectCustomDomain201Response> getConnectCustomDomain getConnectCustomDomainWithHttpInfo(domainId)
+
+Get a custom domain
+
+The custom domain with its status and DNS records.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String domainId = "domainId_example"; // String | The custom domain's id.
+        try {
+            ApiResponse<CreateConnectCustomDomain201Response> response = apiInstance.getConnectCustomDomainWithHttpInfo(domainId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getConnectCustomDomain");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **domainId** | **String**| The custom domain&#39;s id. | |
+
+### Return type
+
+ApiResponse<[**CreateConnectCustomDomain201Response**](CreateConnectCustomDomain201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The custom domain. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## getConnectHandoff
@@ -11951,6 +12419,144 @@ ApiResponse<[**ListCampaignManagerProfiles200Response**](ListCampaignManagerProf
 | **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
 
 
+## listConnectCustomDomains
+
+> ListConnectCustomDomains200Response listConnectCustomDomains()
+
+List the workspace&#39;s custom domains
+
+The custom domains of the workspace the request acts in. A custom domain puts the hosted connect screens (the welcome screen and the result screen) on your own subdomain, such as &#x60;connect.yourbrand.com&#x60;, instead of zernio.com.  A workspace has at most one today; the list leaves room for more. Guide: [Use your own domain for connect](https://docs.zernio.com/guides/custom-domains).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        try {
+            ListConnectCustomDomains200Response result = apiInstance.listConnectCustomDomains();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listConnectCustomDomains");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListConnectCustomDomains200Response**](ListConnectCustomDomains200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The workspace&#39;s custom domains. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## listConnectCustomDomainsWithHttpInfo
+
+> ApiResponse<ListConnectCustomDomains200Response> listConnectCustomDomains listConnectCustomDomainsWithHttpInfo()
+
+List the workspace&#39;s custom domains
+
+The custom domains of the workspace the request acts in. A custom domain puts the hosted connect screens (the welcome screen and the result screen) on your own subdomain, such as &#x60;connect.yourbrand.com&#x60;, instead of zernio.com.  A workspace has at most one today; the list leaves room for more. Guide: [Use your own domain for connect](https://docs.zernio.com/guides/custom-domains).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        try {
+            ApiResponse<ListConnectCustomDomains200Response> response = apiInstance.listConnectCustomDomainsWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listConnectCustomDomains");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**ListConnectCustomDomains200Response**](ListConnectCustomDomains200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The workspace&#39;s custom domains. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
 ## listFacebookPages
 
 > ListFacebookPages200Response listFacebookPages(profileId, tempToken, xTempToken, connectFlow, selectionToken)
@@ -16489,6 +17095,162 @@ ApiResponse<[**CreateOAuthApp201Response**](CreateOAuthApp201Response.md)>
 | **404** | Resource not found |  -  |
 
 
+## updateConnectCustomDomain
+
+> CreateConnectCustomDomain201Response updateConnectCustomDomain(domainId, updateConnectCustomDomainRequest)
+
+Turn a custom domain on or off for connect
+
+With &#x60;connectEnabled&#x60; true, new connect links open on the domain once it is active; with false they open on zernio.com again. Links already sent keep working. Requires the workspace settings permission (owner or admin).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String domainId = "domainId_example"; // String | The custom domain's id.
+        UpdateConnectCustomDomainRequest updateConnectCustomDomainRequest = new UpdateConnectCustomDomainRequest(); // UpdateConnectCustomDomainRequest | 
+        try {
+            CreateConnectCustomDomain201Response result = apiInstance.updateConnectCustomDomain(domainId, updateConnectCustomDomainRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#updateConnectCustomDomain");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **domainId** | **String**| The custom domain&#39;s id. | |
+| **updateConnectCustomDomainRequest** | [**UpdateConnectCustomDomainRequest**](UpdateConnectCustomDomainRequest.md)|  | |
+
+### Return type
+
+[**CreateConnectCustomDomain201Response**](CreateConnectCustomDomain201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated custom domain. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller cannot change workspace settings. |  -  |
+| **404** | Resource not found |  -  |
+
+## updateConnectCustomDomainWithHttpInfo
+
+> ApiResponse<CreateConnectCustomDomain201Response> updateConnectCustomDomain updateConnectCustomDomainWithHttpInfo(domainId, updateConnectCustomDomainRequest)
+
+Turn a custom domain on or off for connect
+
+With &#x60;connectEnabled&#x60; true, new connect links open on the domain once it is active; with false they open on zernio.com again. Links already sent keep working. Requires the workspace settings permission (owner or admin).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String domainId = "domainId_example"; // String | The custom domain's id.
+        UpdateConnectCustomDomainRequest updateConnectCustomDomainRequest = new UpdateConnectCustomDomainRequest(); // UpdateConnectCustomDomainRequest | 
+        try {
+            ApiResponse<CreateConnectCustomDomain201Response> response = apiInstance.updateConnectCustomDomainWithHttpInfo(domainId, updateConnectCustomDomainRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#updateConnectCustomDomain");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **domainId** | **String**| The custom domain&#39;s id. | |
+| **updateConnectCustomDomainRequest** | [**UpdateConnectCustomDomainRequest**](UpdateConnectCustomDomainRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateConnectCustomDomain201Response**](CreateConnectCustomDomain201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated custom domain. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller cannot change workspace settings. |  -  |
+| **404** | Resource not found |  -  |
+
+
 ## updateConnectWelcomeScreen
 
 > ConnectWelcomeScreen updateConnectWelcomeScreen(updateConnectWelcomeScreenRequest)
@@ -17879,6 +18641,158 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+
+
+## verifyConnectCustomDomain
+
+> CreateConnectCustomDomain201Response verifyConnectCustomDomain(domainId)
+
+Check a custom domain&#39;s DNS records now
+
+Looks for the DNS records right away instead of waiting for the hourly check, and asks the certificate authority to validate again. Calls within 30 seconds of the last check answer that check.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String domainId = "domainId_example"; // String | The custom domain's id.
+        try {
+            CreateConnectCustomDomain201Response result = apiInstance.verifyConnectCustomDomain(domainId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#verifyConnectCustomDomain");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **domainId** | **String**| The custom domain&#39;s id. | |
+
+### Return type
+
+[**CreateConnectCustomDomain201Response**](CreateConnectCustomDomain201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The custom domain after the check. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+## verifyConnectCustomDomainWithHttpInfo
+
+> ApiResponse<CreateConnectCustomDomain201Response> verifyConnectCustomDomain verifyConnectCustomDomainWithHttpInfo(domainId)
+
+Check a custom domain&#39;s DNS records now
+
+Looks for the DNS records right away instead of waiting for the hourly check, and asks the certificate authority to validate again. Calls within 30 seconds of the last check answer that check.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String domainId = "domainId_example"; // String | The custom domain's id.
+        try {
+            ApiResponse<CreateConnectCustomDomain201Response> response = apiInstance.verifyConnectCustomDomainWithHttpInfo(domainId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#verifyConnectCustomDomain");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **domainId** | **String**| The custom domain&#39;s id. | |
+
+### Return type
+
+ApiResponse<[**CreateConnectCustomDomain201Response**](CreateConnectCustomDomain201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The custom domain after the check. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 
 ## verifyOrgConnection

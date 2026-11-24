@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.824.2
+  version: 1.825.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -23431,6 +23431,254 @@ paths:
       x-oauth-scopes:
       - accounts:write
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/custom-domains:
+    get:
+      description: |-
+        The custom domains of the workspace the request acts in. A custom domain puts the hosted connect screens (the welcome screen and the result screen) on your own subdomain, such as `connect.yourbrand.com`, instead of zernio.com.
+
+        A workspace has at most one today; the list leaves room for more. Guide: [Use your own domain for connect](https://docs.zernio.com/guides/custom-domains).
+      operationId: listConnectCustomDomains
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listConnectCustomDomains_200_response"
+          description: The workspace's custom domains.
+          x-summary: "The workspace's custom domains are returned, an empty list when\
+            \ it has none."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List the workspace's custom domains
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-oauth-scopes:
+      - accounts:read
+      - accounts:write
+      x-accepts:
+      - application/json
+    post:
+      description: |-
+        Adds a subdomain you control. The answer lists the two DNS records to add at your DNS provider: a CNAME that points the subdomain at Zernio and a TXT record that proves it is yours.
+
+        Nothing is registered until the TXT record is found; then the certificate is issued and `status` turns `active`, usually within minutes.
+
+        Connect links only move to the domain once it is active and `connectEnabled` is true. Requires the workspace settings permission (owner or admin).
+      operationId: createConnectCustomDomain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createConnectCustomDomain_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createConnectCustomDomain_201_response"
+          description: "The domain, with the DNS records to add."
+          x-summary: "The custom domain is added, pending until its DNS records are\
+            \ found."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller cannot change workspace settings.
+        "409":
+          description: "The workspace already has a custom domain, or another workspace\
+            \ verified this hostname (`custom_hostname_taken`)."
+        "429":
+          $ref: "#/components/responses/RateLimited"
+      security:
+      - bearerAuth: []
+      summary: Add a custom domain
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-oauth-scopes:
+      - accounts:write
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/custom-domains/{domainId}:
+    delete:
+      description: Removes the domain and its certificate. New connect links open
+        on zernio.com again and links already sent on the domain stop working; you
+        can then delete both DNS records. Requires the workspace settings permission
+        (owner or admin).
+      operationId: deleteConnectCustomDomain
+      parameters:
+      - description: The custom domain's id.
+        explode: false
+        in: path
+        name: domainId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: The custom domain was removed.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller cannot change workspace settings.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+      security:
+      - bearerAuth: []
+      summary: Remove a custom domain
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-oauth-scopes:
+      - accounts:write
+      x-accepts:
+      - application/json
+    get:
+      description: The custom domain with its status and DNS records.
+      operationId: getConnectCustomDomain
+      parameters:
+      - description: The custom domain's id.
+        explode: false
+        in: path
+        name: domainId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createConnectCustomDomain_201_response"
+          description: The custom domain.
+          x-summary: The custom domain is returned.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a custom domain
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-oauth-scopes:
+      - accounts:read
+      - accounts:write
+      x-accepts:
+      - application/json
+    parameters:
+    - description: The custom domain's id.
+      explode: false
+      in: path
+      name: domainId
+      required: true
+      schema:
+        type: string
+      style: simple
+    patch:
+      description: "With `connectEnabled` true, new connect links open on the domain\
+        \ once it is active; with false they open on zernio.com again. Links already\
+        \ sent keep working. Requires the workspace settings permission (owner or\
+        \ admin)."
+      operationId: updateConnectCustomDomain
+      parameters:
+      - description: The custom domain's id.
+        explode: false
+        in: path
+        name: domainId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateConnectCustomDomain_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createConnectCustomDomain_201_response"
+          description: The updated custom domain.
+          x-summary: The custom domain is updated.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller cannot change workspace settings.
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Turn a custom domain on or off for connect
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-oauth-scopes:
+      - accounts:write
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/custom-domains/{domainId}/verify:
+    post:
+      description: "Looks for the DNS records right away instead of waiting for the\
+        \ hourly check, and asks the certificate authority to validate again. Calls\
+        \ within 30 seconds of the last check answer that check."
+      operationId: verifyConnectCustomDomain
+      parameters:
+      - description: The custom domain's id.
+        explode: false
+        in: path
+        name: domainId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createConnectCustomDomain_201_response"
+          description: The custom domain after the check.
+          x-summary: The custom domain is returned with its status after the check.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
+      security:
+      - bearerAuth: []
+      summary: Check a custom domain's DNS records now
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-oauth-scopes:
+      - accounts:write
       x-accepts:
       - application/json
   /v1/connect/oauth-apps:
@@ -107492,6 +107740,71 @@ components:
       - platform
       - redirectUri
       - scopeAreas
+    ConnectCustomDomain:
+      example:
+        id: 6b00123b10b06d3a302cee8a
+        hostname: connect.yourbrand.com
+        zone: yourbrand.com
+        status: active
+        connectEnabled: true
+        ownershipVerified: true
+        records:
+        - type: CNAME
+          name: connect.yourbrand.com
+          host: connect
+          value: cname.zerniocdn.com
+        - type: TXT
+          name: _zernio-verify.connect.yourbrand.com
+          host: _zernio-verify.connect
+          value: zernio-verify=43966a9e-6484-4eab-9a2d-6a71c9662dd4
+        activatedAt: 2026-11-20T09:29:22.954Z
+        createdAt: 2026-11-20T09:26:19.390Z
+      properties:
+        id:
+          type: string
+        hostname:
+          description: "The subdomain, such as `connect.yourbrand.com`."
+          type: string
+        zone:
+          description: "The registered domain the records live in, such as `yourbrand.com`."
+          type: string
+        status:
+          description: "`pending` until the TXT record is found and the certificate\
+            \ is issued, `active` once the domain serves the connect screens, `failed`\
+            \ when it stopped pointing at Zernio (remove it and add it again)."
+          enum:
+          - pending
+          - active
+          - failed
+          type: string
+        connectEnabled:
+          description: Whether new connect links open on this domain while it is active.
+          type: boolean
+        ownershipVerified:
+          description: True once the TXT record was found.
+          type: boolean
+        records:
+          description: The DNS records to add at your DNS provider.
+          items:
+            $ref: "#/components/schemas/ConnectCustomDomain_records_inner"
+          type: array
+        activatedAt:
+          format: date-time
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+      required:
+      - activatedAt
+      - connectEnabled
+      - createdAt
+      - hostname
+      - id
+      - ownershipVerified
+      - records
+      - status
+      - zone
     ConnectWelcomeScreen:
       example:
         showByDefault: true
@@ -168985,6 +169298,92 @@ components:
           type: object
       required:
       - showByDefault
+    listConnectCustomDomains_200_response:
+      example:
+        customDomains:
+        - id: 6b00123b10b06d3a302cee8a
+          hostname: connect.yourbrand.com
+          zone: yourbrand.com
+          status: active
+          connectEnabled: true
+          ownershipVerified: true
+          records:
+          - type: CNAME
+            name: connect.yourbrand.com
+            host: connect
+            value: cname.zerniocdn.com
+          - type: TXT
+            name: _zernio-verify.connect.yourbrand.com
+            host: _zernio-verify.connect
+            value: zernio-verify=43966a9e-6484-4eab-9a2d-6a71c9662dd4
+          activatedAt: 2026-11-20T09:29:22.954Z
+          createdAt: 2026-11-20T09:26:19.390Z
+        - id: 6b00123b10b06d3a302cee8a
+          hostname: connect.yourbrand.com
+          zone: yourbrand.com
+          status: active
+          connectEnabled: true
+          ownershipVerified: true
+          records:
+          - type: CNAME
+            name: connect.yourbrand.com
+            host: connect
+            value: cname.zerniocdn.com
+          - type: TXT
+            name: _zernio-verify.connect.yourbrand.com
+            host: _zernio-verify.connect
+            value: zernio-verify=43966a9e-6484-4eab-9a2d-6a71c9662dd4
+          activatedAt: 2026-11-20T09:29:22.954Z
+          createdAt: 2026-11-20T09:26:19.390Z
+      properties:
+        customDomains:
+          items:
+            $ref: "#/components/schemas/ConnectCustomDomain"
+          type: array
+      required:
+      - customDomains
+    createConnectCustomDomain_request:
+      additionalProperties: {}
+      properties:
+        hostname:
+          description: "A subdomain, never the domain itself: `connect.yourbrand.com`."
+          example: connect.yourbrand.com
+          maxLength: 253
+          type: string
+      required:
+      - hostname
+    createConnectCustomDomain_201_response:
+      example:
+        customDomain:
+          id: 6b00123b10b06d3a302cee8a
+          hostname: connect.yourbrand.com
+          zone: yourbrand.com
+          status: active
+          connectEnabled: true
+          ownershipVerified: true
+          records:
+          - type: CNAME
+            name: connect.yourbrand.com
+            host: connect
+            value: cname.zerniocdn.com
+          - type: TXT
+            name: _zernio-verify.connect.yourbrand.com
+            host: _zernio-verify.connect
+            value: zernio-verify=43966a9e-6484-4eab-9a2d-6a71c9662dd4
+          activatedAt: 2026-11-20T09:29:22.954Z
+          createdAt: 2026-11-20T09:26:19.390Z
+      properties:
+        customDomain:
+          $ref: "#/components/schemas/ConnectCustomDomain"
+      required:
+      - customDomain
+    updateConnectCustomDomain_request:
+      additionalProperties: {}
+      properties:
+        connectEnabled:
+          type: boolean
+      required:
+      - connectEnabled
     listOAuthApps_200_response_pagination:
       example:
         nextCursor: nextCursor
@@ -246673,6 +247072,26 @@ components:
       required:
       - area
       - scopes
+    ConnectCustomDomain_records_inner:
+      properties:
+        type:
+          enum:
+          - CNAME
+          - TXT
+          type: string
+        name:
+          description: The full record name.
+          type: string
+        host:
+          description: "The name relative to `zone`, what most DNS providers ask for."
+          type: string
+        value:
+          type: string
+      required:
+      - host
+      - name
+      - type
+      - value
     AnalyticsDashboardFollowers_byAccount_inner:
       example:
         accountId: accountId
