@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.813.1
+  version: 1.814.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -11436,7 +11436,7 @@ paths:
 
         ### With `range`, `granularity`, `from`, or `to`
 
-        Returns usage METERING: billed spend (USD) by product family over the window, at `day` / `month` / `total` granularity. Product families: `accounts`, `numbers`, `imessage`, `calls`, `sms`, `messages`, `verify`, `dlc`, `xApi`, `ads`, `credits`, `other`.
+        Returns usage METERING: billed spend (USD) by product family over the window, at `day` / `month` / `total` granularity. Product families: `accounts`, `numbers`, `imessage`, `rcs`, `calls`, `sms`, `messages`, `verify`, `dlc`, `xApi`, `ads`, `automations`, `websiteEvents`, `credits`, `other`.
 
         Data comes from the usage-based invoice breakdown (the CHARGE view, which always reconciles with what gets billed). Also served at `GET /v1/usage/daily`.
 
@@ -11455,7 +11455,13 @@ paths:
 
         With `groupBy=profile`, each group also carries `profileId` and `externalId`.
 
-        Profile-scoped API keys and members only see their profiles' groups (`attribution.restricted: true`, with `totals` summing the visible groups). Credits, 10DLC fees and Verify are always unattributed.
+        Profile-scoped API keys and members only see their profiles' groups (`attribution.restricted: true`, with `totals` summing the visible groups).
+
+        Credits, managed messages, RCS messages, ad automations, Verify and website events are always unattributed.
+
+        iMessage sender and RCS agent fees go to the profile of the sender or agent. Automation runs split each day's fee by that day's runs.
+
+        A 10DLC fee goes to a profile only when its registration names one. Registrations filed by API or dashboard belong to the owner and stay unattributed.
 
         A caller that sees the whole workspace gets `restricted: false` and the same `totals` as without `groupBy`. Shares are measured over everything the bill and its members carry, so `unattributed` can include spend outside the workspace, never named.
 
@@ -11640,6 +11646,7 @@ paths:
         ### Related endpoints
 
         - Billed spend by product: call `GET /v1/usage` with `range` / `granularity` params.
+        - Billed spend per profile, by your own `externalId`: `GET /v1/usage?range=cycle&groupBy=profile` ([what each customer costs you](/multi-tenant)).
         - The statement view (balance, credits, caps, payment status) lives at `GET /v1/billing`.
 
         ### Response shape
@@ -15743,6 +15750,8 @@ paths:
       description: |
         Returns health status of all connected accounts including token validity, permissions, and issues needing attention. A failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least warning.
 
+        An X account whose analytics is off has `analyticsOff` with the reason. It never changes `status`: `analyticsSync` then keeps the date of the last read.
+
         An account the platform has restricted or banned (for example a WhatsApp number Meta reports as BANNED) is `error`, with the platform's reason in `issues`. `needsReconnect` stays false, since reconnecting does not lift it.
       operationId: getAllAccountsHealth
       parameters:
@@ -16075,6 +16084,8 @@ paths:
         Returns detailed health info for a specific account including token status, permissions, and recommendations.
 
         A failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least `warning`.
+
+        An X account whose analytics is off has `analyticsOff` with the reason. It never changes `status`: `analyticsSync` then keeps the date of the last read.
 
         An account the platform has restricted or banned is `error`, with the platform's reason in `issues` and a recommendation that says reconnecting does not lift it.
 
@@ -102958,6 +102969,13 @@ components:
           fromDate: fromDate
           total: 3
           stale: true
+          analyticsOff:
+          - accountId: accountId
+            code: X_ANALYTICS_NOT_ENABLED
+            message: message
+          - accountId: accountId
+            code: X_ANALYTICS_NOT_ENABLED
+            message: message
           granularity: total
           toDate: toDate
           missingIds:
@@ -132600,6 +132618,42 @@ components:
             \ user. Null when unknown or for other platforms."
           nullable: true
           type: boolean
+    AnalyticsOff:
+      description: "X only: why no analytics sync runs for the account, so its numbers\
+        \ stay as of the last read (one read is made when the account connects)."
+      example:
+        code: X_ANALYTICS_NOT_ENABLED
+        message: message
+      properties:
+        code:
+          description: |
+            - X_ANALYTICS_NOT_ENABLED: `xCapabilities.analytics` is off on the account. It is opt-in on usage-based billing. Turn it on with `PUT /v1/accounts/{accountId}`, or in the account's X settings in the dashboard.
+            - X_ANALYTICS_PAUSED: it was on, and the monthly X spend cap turned it off.
+            - PAYMENT_REQUIRED: X access is paused because billing on this account failed.
+
+            New values may be added.
+          enum:
+          - X_ANALYTICS_NOT_ENABLED
+          - X_ANALYTICS_PAUSED
+          - PAYMENT_REQUIRED
+          type: string
+        message:
+          type: string
+      required:
+      - code
+      - message
+    AnalyticsOffAccount:
+      allOf:
+      - properties:
+          accountId:
+            type: string
+        required:
+        - accountId
+      - $ref: "#/components/schemas/AnalyticsOff"
+      example:
+        accountId: accountId
+        code: X_ANALYTICS_NOT_ENABLED
+        message: message
     AnalyticsOverview:
       properties:
         totalPosts:
@@ -132696,6 +132750,13 @@ components:
             "12": 0.3605
           totalLikes: 330
           reposts: 0
+        analyticsOff:
+        - accountId: accountId
+          code: X_ANALYTICS_NOT_ENABLED
+          message: message
+        - accountId: accountId
+          code: X_ANALYTICS_NOT_ENABLED
+          message: message
         isSharedToFeed: true
         mediaItems:
         - thumbnail: https://openapi-generator.tech
@@ -132784,6 +132845,13 @@ components:
             \ states"
           nullable: true
           type: string
+        analyticsOff:
+          description: "The X accounts of this post whose analytics sync does not\
+            \ run: synced numbers stay as of the last read, and a pending X entry\
+            \ stays pending. Absent when there are none."
+          items:
+            $ref: "#/components/schemas/AnalyticsOffAccount"
+          type: array
         thumbnailUrl:
           description: |-
             Cover image URL. A Facebook, Instagram or TikTok cover whose signed CDN link is still valid is served as that link, which expires (Meta `oe=`, TikTok `x-expires=`): download the image rather than storing the link.
@@ -132854,6 +132922,14 @@ components:
         hasAnalyticsAccess:
           description: Whether user has analytics add-on access
           type: boolean
+        analyticsOff:
+          description: "The X accounts this list covers (after its platform, profile\
+            \ and account filters) whose analytics sync does not run: their numbers\
+            \ stay as of the last read. Also sent with `view=summary`. Absent when\
+            \ there are none."
+          items:
+            $ref: "#/components/schemas/AnalyticsOffAccount"
+          type: array
     AnalyticsDeltaEntry:
       description: |
         One changed analytics snapshot. Metrics are the absolute values recorded at
@@ -158471,6 +158547,13 @@ components:
             **TikTok** accounts connected through the TikTok for Business app: from TikTok video_view_retention, at each whole second, at most 61 points, thinned evenly on videos longer than 60 s.
     getPostTimeline_200_response:
       example:
+        analyticsOff:
+        - accountId: accountId
+          code: X_ANALYTICS_NOT_ENABLED
+          message: message
+        - accountId: accountId
+          code: X_ANALYTICS_NOT_ENABLED
+          message: message
         timeline:
         - date: 2000-01-23
           comments: 5
@@ -158528,6 +158611,12 @@ components:
         timeline:
           items:
             $ref: "#/components/schemas/getPostTimeline_200_response_timeline_inner"
+          type: array
+        analyticsOff:
+          description: "The X accounts of this post whose analytics sync does not\
+            \ run, so their rows stop at the last read. Absent when there are none."
+          items:
+            $ref: "#/components/schemas/AnalyticsOffAccount"
           type: array
     getPostTimeline_400_response:
       example:
@@ -161991,6 +162080,9 @@ components:
         canPost: true
         disconnectionType: intentional
         analyticsSupported: true
+        analyticsOff:
+          code: X_ANALYTICS_NOT_ENABLED
+          message: message
         profileId: profileId
         ownerUserId: ownerUserId
         inboundActivity: ""
@@ -162088,6 +162180,8 @@ components:
           type: string
         analyticsSync:
           $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_analyticsSync"
+        analyticsOff:
+          $ref: "#/components/schemas/AnalyticsOff"
         inboundActivity:
           allOf:
           - $ref: "#/components/schemas/InboundActivity"
@@ -162137,6 +162231,9 @@ components:
           canPost: true
           disconnectionType: intentional
           analyticsSupported: true
+          analyticsOff:
+            code: X_ANALYTICS_NOT_ENABLED
+            message: message
           profileId: profileId
           ownerUserId: ownerUserId
           inboundActivity: ""
@@ -162176,6 +162273,9 @@ components:
           canPost: true
           disconnectionType: intentional
           analyticsSupported: true
+          analyticsOff:
+            code: X_ANALYTICS_NOT_ENABLED
+            message: message
           profileId: profileId
           ownerUserId: ownerUserId
           inboundActivity: ""
@@ -162650,6 +162750,9 @@ components:
         - recommendations
         - recommendations
         platform: platform
+        analyticsOff:
+          code: X_ANALYTICS_NOT_ENABLED
+          message: message
         permissions:
           analytics:
           - scope: scope
@@ -162828,6 +162931,8 @@ components:
           type: string
         analyticsSync:
           $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_analyticsSync"
+        analyticsOff:
+          $ref: "#/components/schemas/AnalyticsOff"
         inboundActivity:
           allOf:
           - $ref: "#/components/schemas/InboundActivity"
@@ -244356,6 +244461,14 @@ components:
             items:
               type: string
             type: array
+          analyticsOff:
+            description: "The X accounts read whose analytics sync does not run: their\
+              \ stored numbers are not refreshed, and their posts without any stay\
+              \ pending. On a list, on the first page. Absent when there are none,\
+              \ and on the groupBy and changedSince reads other than groupBy=post."
+            items:
+              $ref: "#/components/schemas/AnalyticsOffAccount"
+            type: array
           metricsSample:
             $ref: "#/components/schemas/PostMetricsResponse_meta_allOf_metricsSample"
         required:
@@ -244370,6 +244483,13 @@ components:
         fromDate: fromDate
         total: 3
         stale: true
+        analyticsOff:
+        - accountId: accountId
+          code: X_ANALYTICS_NOT_ENABLED
+          message: message
+        - accountId: accountId
+          code: X_ANALYTICS_NOT_ENABLED
+          message: message
         granularity: total
         toDate: toDate
         missingIds:
@@ -257761,6 +257881,9 @@ components:
         imessage:
           description: iMessage sender fees.
           type: number
+        rcs:
+          description: RCS agent and message fees.
+          type: number
         calls:
           type: number
         sms:
@@ -257779,6 +257902,12 @@ components:
         ads:
           description: Managed ads fees.
           type: number
+        automations:
+          description: Automation run and ad automation fees.
+          type: number
+        websiteEvents:
+          description: Website event fees.
+          type: number
         credits:
           description: Applied credits/discounts (negative).
           type: number
@@ -257794,6 +257923,8 @@ components:
           type: number
         imessage:
           type: number
+        rcs:
+          type: number
         calls:
           type: number
         sms:
@@ -257807,6 +257938,10 @@ components:
         xApi:
           type: number
         ads:
+          type: number
+        automations:
+          type: number
+        websiteEvents:
           type: number
         credits:
           type: number
@@ -257823,6 +257958,7 @@ components:
           - accounts
           - numbers
           - imessage
+          - rcs
           - calls
           - sms
           - messages
@@ -257830,6 +257966,8 @@ components:
           - dlc
           - xApi
           - ads
+          - automations
+          - websiteEvents
           - credits
           - other
           type: string
@@ -257919,9 +258057,10 @@ components:
           allOf:
           - $ref: "#/components/schemas/UsageAttributionSlice"
           description: "Spend no profile/account of your workspace can claim: credits,\
-            \ 10DLC fees, Verify, usage whose record no longer resolves to an account,\
-            \ and the share measured outside your workspace. Zero for a restricted\
-            \ principal."
+            \ managed messages, RCS messages, ad automations, Verify, website events,\
+            \ 10DLC registrations that name no profile, usage whose record no longer\
+            \ resolves, and the share measured outside your workspace. Zero for a\
+            \ restricted principal."
         totals:
           allOf:
           - $ref: "#/components/schemas/UsageAttributionSlice"
@@ -257948,6 +258087,8 @@ components:
           type: number
         imessage:
           type: number
+        rcs:
+          type: number
         calls:
           type: number
         sms:
@@ -257961,6 +258102,10 @@ components:
         xApi:
           type: number
         ads:
+          type: number
+        automations:
+          type: number
+        websiteEvents:
           type: number
         credits:
           type: number

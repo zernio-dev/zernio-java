@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.813.1
+- API version: 1.814.0
 
-- Build date: 2026-11-24T14:04:31.227649760Z[Etc/UTC]
+- Build date: 2026-11-24T14:24:39.998181371Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.813.1</version>
+  <version>1.814.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.813.1"
+compile "dev.zernio:zernio-sdk:1.814.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.813.1.jar`
+- `target/zernio-sdk-1.814.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3132,6 +3132,8 @@ Class | Method | HTTP request | Description
  - [AnalyticsListResponse](docs/AnalyticsListResponse.md)
  - [AnalyticsListResponsePostsInner](docs/AnalyticsListResponsePostsInner.md)
  - [AnalyticsListResponsePostsInnerMediaItemsInner](docs/AnalyticsListResponsePostsInnerMediaItemsInner.md)
+ - [AnalyticsOff](docs/AnalyticsOff.md)
+ - [AnalyticsOffAccount](docs/AnalyticsOffAccount.md)
  - [AnalyticsOverview](docs/AnalyticsOverview.md)
  - [AnalyticsOverviewDataStaleness](docs/AnalyticsOverviewDataStaleness.md)
  - [AnalyticsSinglePostResponse](docs/AnalyticsSinglePostResponse.md)

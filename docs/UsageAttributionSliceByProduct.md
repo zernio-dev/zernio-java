@@ -11,6 +11,7 @@ USD per product family.
 |**accounts** | **BigDecimal** |  |  [optional] |
 |**numbers** | **BigDecimal** |  |  [optional] |
 |**imessage** | **BigDecimal** |  |  [optional] |
+|**rcs** | **BigDecimal** |  |  [optional] |
 |**calls** | **BigDecimal** |  |  [optional] |
 |**sms** | **BigDecimal** |  |  [optional] |
 |**messages** | **BigDecimal** |  |  [optional] |
@@ -18,6 +19,8 @@ USD per product family.
 |**dlc** | **BigDecimal** |  |  [optional] |
 |**xApi** | **BigDecimal** |  |  [optional] |
 |**ads** | **BigDecimal** |  |  [optional] |
+|**automations** | **BigDecimal** |  |  [optional] |
+|**websiteEvents** | **BigDecimal** |  |  [optional] |
 |**credits** | **BigDecimal** |  |  [optional] |
 |**other** | **BigDecimal** |  |  [optional] |
 

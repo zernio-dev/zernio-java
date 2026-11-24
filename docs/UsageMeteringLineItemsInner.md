@@ -22,6 +22,7 @@
 | ACCOUNTS | &quot;accounts&quot; |
 | NUMBERS | &quot;numbers&quot; |
 | IMESSAGE | &quot;imessage&quot; |
+| RCS | &quot;rcs&quot; |
 | CALLS | &quot;calls&quot; |
 | SMS | &quot;sms&quot; |
 | MESSAGES | &quot;messages&quot; |
@@ -29,6 +30,8 @@
 | DLC | &quot;dlc&quot; |
 | X_API | &quot;xApi&quot; |
 | ADS | &quot;ads&quot; |
+| AUTOMATIONS | &quot;automations&quot; |
+| WEBSITE_EVENTS | &quot;websiteEvents&quot; |
 | CREDITS | &quot;credits&quot; |
 | OTHER | &quot;other&quot; |
 
