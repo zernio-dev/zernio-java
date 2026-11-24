@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   SubmitFeedbackRequestAgent.JSON_PROPERTY_NAME,
   SubmitFeedbackRequestAgent.JSON_PROPERTY_MODEL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:06:58.621023580Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:11:44.904001330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitFeedbackRequestAgent {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

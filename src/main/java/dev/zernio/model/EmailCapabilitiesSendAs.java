@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   EmailCapabilitiesSendAs.JSON_PROPERTY_LIST,
   EmailCapabilitiesSendAs.JSON_PROPERTY_SHARED_MAILBOXES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:06:58.621023580Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:11:44.904001330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EmailCapabilitiesSendAs {
   /**
    * &#x60;provider&#x60;: &#x60;GET /v1/email/send-as&#x60; lists every address the provider accepts. &#x60;partial&#x60;: shared mailboxes are not listed; declare them with &#x60;POST /v1/email/send-as&#x60;.

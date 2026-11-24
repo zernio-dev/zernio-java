@@ -165,7 +165,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:06:58.621023580Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:11:44.904001330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -14781,7 +14781,7 @@ public class WebhookEventsApi {
 
   /**
    * Review new event
-   * A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
+   * A new review was posted on a connected Google Business Profile account (in real time through Pub/Sub) or Facebook Page (from the Page ratings webhook). 
    * @param webhookPayloadReviewNew  (required)
    * @throws ApiException if fails to make API call
    */
@@ -14791,7 +14791,7 @@ public class WebhookEventsApi {
 
   /**
    * Review new event
-   * A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
+   * A new review was posted on a connected Google Business Profile account (in real time through Pub/Sub) or Facebook Page (from the Page ratings webhook). 
    * @param webhookPayloadReviewNew  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -14802,7 +14802,7 @@ public class WebhookEventsApi {
 
   /**
    * Review new event
-   * A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
+   * A new review was posted on a connected Google Business Profile account (in real time through Pub/Sub) or Facebook Page (from the Page ratings webhook). 
    * @param webhookPayloadReviewNew  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -14813,7 +14813,7 @@ public class WebhookEventsApi {
 
   /**
    * Review new event
-   * A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
+   * A new review was posted on a connected Google Business Profile account (in real time through Pub/Sub) or Facebook Page (from the Page ratings webhook). 
    * @param webhookPayloadReviewNew  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;

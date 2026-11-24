@@ -39,23 +39,26 @@ import dev.zernio.ApiClient;
   ReviewWebhookReview.JSON_PROPERTY_ID,
   ReviewWebhookReview.JSON_PROPERTY_PLATFORM,
   ReviewWebhookReview.JSON_PROPERTY_RATING,
+  ReviewWebhookReview.JSON_PROPERTY_RECOMMENDATION_TYPE,
   ReviewWebhookReview.JSON_PROPERTY_TEXT,
   ReviewWebhookReview.JSON_PROPERTY_REVIEWER,
   ReviewWebhookReview.JSON_PROPERTY_CREATED_AT,
   ReviewWebhookReview.JSON_PROPERTY_HAS_REPLY,
   ReviewWebhookReview.JSON_PROPERTY_REPLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:06:58.621023580Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:11:44.904001330Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReviewWebhookReview {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
   private String id;
 
   /**
-   * Platform the review originated on. Currently Google Business Profile only.
+   * Platform the review originated on (Google Business Profile or Facebook Pages).
    */
   public enum PlatformEnum {
-    GOOGLEBUSINESS(String.valueOf("googlebusiness"));
+    GOOGLEBUSINESS(String.valueOf("googlebusiness")),
+    
+    FACEBOOK(String.valueOf("facebook"));
 
     private String value;
 
@@ -89,8 +92,47 @@ public class ReviewWebhookReview {
   private PlatformEnum platform;
 
   public static final String JSON_PROPERTY_RATING = "rating";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private Integer rating;
+
+  /**
+   * Facebook only. Whether the reviewer recommended the Page.
+   */
+  public enum RecommendationTypeEnum {
+    POSITIVE(String.valueOf("positive")),
+    
+    NEGATIVE(String.valueOf("negative"));
+
+    private String value;
+
+    RecommendationTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static RecommendationTypeEnum fromValue(String value) {
+      for (RecommendationTypeEnum b : RecommendationTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_RECOMMENDATION_TYPE = "recommendationType";
+  @javax.annotation.Nullable
+  private RecommendationTypeEnum recommendationType;
 
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nonnull
@@ -145,7 +187,7 @@ public class ReviewWebhookReview {
   }
 
   /**
-   * Platform the review originated on. Currently Google Business Profile only.
+   * Platform the review originated on (Google Business Profile or Facebook Pages).
    * @return platform
    */
   @javax.annotation.Nonnull
@@ -163,29 +205,53 @@ public class ReviewWebhookReview {
   }
 
 
-  public ReviewWebhookReview rating(@javax.annotation.Nonnull Integer rating) {
+  public ReviewWebhookReview rating(@javax.annotation.Nullable Integer rating) {
     this.rating = rating;
     return this;
   }
 
   /**
-   * Star rating the reviewer gave.
+   * Star rating the reviewer gave. Null for a Facebook recommendation without stars.
    * minimum: 1
    * maximum: 5
    * @return rating
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_RATING, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RATING, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Integer getRating() {
     return rating;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_RATING, required = true)
+  @JsonProperty(value = JSON_PROPERTY_RATING, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRating(@javax.annotation.Nonnull Integer rating) {
+  public void setRating(@javax.annotation.Nullable Integer rating) {
     this.rating = rating;
+  }
+
+
+  public ReviewWebhookReview recommendationType(@javax.annotation.Nullable RecommendationTypeEnum recommendationType) {
+    this.recommendationType = recommendationType;
+    return this;
+  }
+
+  /**
+   * Facebook only. Whether the reviewer recommended the Page.
+   * @return recommendationType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RECOMMENDATION_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public RecommendationTypeEnum getRecommendationType() {
+    return recommendationType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RECOMMENDATION_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRecommendationType(@javax.annotation.Nullable RecommendationTypeEnum recommendationType) {
+    this.recommendationType = recommendationType;
   }
 
 
@@ -324,6 +390,7 @@ public class ReviewWebhookReview {
     return Objects.equals(this.id, reviewWebhookReview.id) &&
         Objects.equals(this.platform, reviewWebhookReview.platform) &&
         Objects.equals(this.rating, reviewWebhookReview.rating) &&
+        Objects.equals(this.recommendationType, reviewWebhookReview.recommendationType) &&
         Objects.equals(this.text, reviewWebhookReview.text) &&
         Objects.equals(this.reviewer, reviewWebhookReview.reviewer) &&
         Objects.equals(this.createdAt, reviewWebhookReview.createdAt) &&
@@ -333,7 +400,7 @@ public class ReviewWebhookReview {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, rating, text, reviewer, createdAt, hasReply, reply);
+    return Objects.hash(id, platform, rating, recommendationType, text, reviewer, createdAt, hasReply, reply);
   }
 
   @Override
@@ -343,6 +410,7 @@ public class ReviewWebhookReview {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    rating: ").append(toIndentedString(rating)).append("\n");
+    sb.append("    recommendationType: ").append(toIndentedString(recommendationType)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    reviewer: ").append(toIndentedString(reviewer)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
@@ -408,6 +476,11 @@ public class ReviewWebhookReview {
     // add `rating` to the URL query string
     if (getRating() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%srating%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRating()))));
+    }
+
+    // add `recommendationType` to the URL query string
+    if (getRecommendationType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srecommendationType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRecommendationType()))));
     }
 
     // add `text` to the URL query string
