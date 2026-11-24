@@ -533,7 +533,7 @@ ApiResponse<[**DeleteAdVideo200Response**](DeleteAdVideo200Response.md)>
 
 Render pre-create ad previews
 
-Shows how a Meta creative will look in each placement before you create the ad, as embeddable previews.  Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. 
+Shows how a Meta creative will look in each placement before you create the ad, as embeddable previews.  Renders how a creative would look per placement BEFORE any ad exists. Provide exactly one creative source: &#x60;creativeSpec&#x60; renders via Meta&#39;s &#x60;/generatepreviews&#x60;, &#x60;existingCreativeId&#x60; via Meta&#39;s &#x60;/{creative_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. 
 
 ### Example
 
@@ -609,7 +609,7 @@ public class Example {
 
 Render pre-create ad previews
 
-Shows how a Meta creative will look in each placement before you create the ad, as embeddable previews.  Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. 
+Shows how a Meta creative will look in each placement before you create the ad, as embeddable previews.  Renders how a creative would look per placement BEFORE any ad exists. Provide exactly one creative source: &#x60;creativeSpec&#x60; renders via Meta&#39;s &#x60;/generatepreviews&#x60;, &#x60;existingCreativeId&#x60; via Meta&#39;s &#x60;/{creative_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. 
 
 ### Example
 
