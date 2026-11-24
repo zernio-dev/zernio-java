@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   UpdateConversionAction200ResponseAction.JSON_PROPERTY_CLICK_THROUGH_LOOKBACK_WINDOW_DAYS,
   UpdateConversionAction200ResponseAction.JSON_PROPERTY_VIEW_THROUGH_LOOKBACK_WINDOW_DAYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:58:46.346093167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:04:31.227649760Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateConversionAction200ResponseAction {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

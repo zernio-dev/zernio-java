@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   PostMetricAuthenticity.JSON_PROPERTY_COMPUTED_AT,
   PostMetricAuthenticity.JSON_PROPERTY_SAMPLE_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:58:46.346093167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:04:31.227649760Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostMetricAuthenticity {
   public static final String JSON_PROPERTY_SCORE = "score";
   @javax.annotation.Nonnull

@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   TrackingSiteInstall.JSON_PROPERTY_STORE_ACCOUNT_ID,
   TrackingSiteInstall.JSON_PROPERTY_SNIPPET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:58:46.346093167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:04:31.227649760Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TrackingSiteInstall {
   /**
    * How the tag is installed. &#x60;snippet&#x60; means you paste it.

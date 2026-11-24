@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetPhoneNumberClaim200ResponseCountry.JSON_PROPERTY_MONTHLY_CENTS,
   GetPhoneNumberClaim200ResponseCountry.JSON_PROPERTY_TYPES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:58:46.346093167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:04:31.227649760Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumberClaim200ResponseCountry {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable

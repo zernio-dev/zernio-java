@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   GoogleDemandGenInput.JSON_PROPERTY_AUDIENCE,
   GoogleDemandGenInput.JSON_PROPERTY_AUDIENCE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:58:46.346093167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:04:31.227649760Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleDemandGenInput {
   public static final String JSON_PROPERTY_AD_GROUP_NAME = "adGroupName";
   @javax.annotation.Nullable

@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   EventDestination.JSON_PROPERTY_EVENT_NAMES,
   EventDestination.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:58:46.346093167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:04:31.227649760Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EventDestination {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

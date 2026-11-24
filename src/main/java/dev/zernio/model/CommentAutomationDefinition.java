@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   CommentAutomationDefinition.JSON_PROPERTY_GRAPH,
   CommentAutomationDefinition.JSON_PROPERTY_LIMITS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:58:46.346093167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:04:31.227649760Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationDefinition {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull

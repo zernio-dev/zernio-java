@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   GoogleAnalyticsPlatformQueryBodyOneOf.JSON_PROPERTY_CURRENCY_CODE,
   GoogleAnalyticsPlatformQueryBodyOneOf.JSON_PROPERTY_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:58:46.346093167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:04:31.227649760Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleAnalyticsPlatformQueryBodyOneOf {
   /**
    * A GA4 report over date ranges, paged with a cursor.

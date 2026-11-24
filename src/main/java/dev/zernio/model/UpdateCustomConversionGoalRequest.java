@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   UpdateCustomConversionGoalRequest.JSON_PROPERTY_NAME,
   UpdateCustomConversionGoalRequest.JSON_PROPERTY_CONVERSION_ACTION_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:58:46.346093167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:04:31.227649760Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCustomConversionGoalRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

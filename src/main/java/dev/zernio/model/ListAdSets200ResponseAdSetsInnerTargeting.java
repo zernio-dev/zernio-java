@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListAdSets200ResponseAdSetsInnerTargeting.JSON_PROPERTY_AUDIENCE_EXPANSION_ENABLED,
   ListAdSets200ResponseAdSetsInnerTargeting.JSON_PROPERTY_OFFSITE_DELIVERY_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:58:46.346093167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:04:31.227649760Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdSets200ResponseAdSetsInnerTargeting {
   public static final String JSON_PROPERTY_INCLUDE = "include";
   @javax.annotation.Nullable
