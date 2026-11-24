@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ReplyToInboxPost400ResponseDetails.JSON_PROPERTY_AUTHOR_URN,
   ReplyToInboxPost400ResponseDetails.JSON_PROPERTY_MENTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:18:15.557760400Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:24:47.621576941Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReplyToInboxPost400ResponseDetails {
   public static final String JSON_PROPERTY_AUTHOR_URN = "authorUrn";
   @javax.annotation.Nullable

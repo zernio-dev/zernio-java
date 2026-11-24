@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   CommerceRefundRequest.JSON_PROPERTY_AMOUNT,
   CommerceRefundRequest.JSON_PROPERTY_CURRENCY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:18:15.557760400Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:24:47.621576941Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceRefundRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

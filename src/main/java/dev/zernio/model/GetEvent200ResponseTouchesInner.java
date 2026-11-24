@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   GetEvent200ResponseTouchesInner.JSON_PROPERTY_DETAIL,
   GetEvent200ResponseTouchesInner.JSON_PROPERTY_CREDIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:18:15.557760400Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T16:24:47.621576941Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEvent200ResponseTouchesInner {
   public static final String JSON_PROPERTY_AT = "at";
   @javax.annotation.Nullable
