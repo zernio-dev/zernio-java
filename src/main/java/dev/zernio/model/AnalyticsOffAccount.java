@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AnalyticsOffAccount.JSON_PROPERTY_MESSAGE,
   AnalyticsOffAccount.JSON_PROPERTY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:24:39.998181371Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:30:11.628402131Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsOffAccount {
   /**
    * - X_ANALYTICS_NOT_ENABLED: &#x60;xCapabilities.analytics&#x60; is off on the account. It is opt-in on usage-based billing. Turn it on with &#x60;PUT /v1/accounts/{accountId}&#x60;, or in the account&#39;s X settings in the dashboard. - X_ANALYTICS_PAUSED: it was on, and the monthly X spend cap turned it off. - PAYMENT_REQUIRED: X access is paused because billing on this account failed.  New values may be added. 

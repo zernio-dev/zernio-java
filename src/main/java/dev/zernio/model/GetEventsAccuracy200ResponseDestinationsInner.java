@@ -61,7 +61,7 @@ import dev.zernio.ApiClient;
   GetEventsAccuracy200ResponseDestinationsInner.JSON_PROPERTY_MATCH_RATE,
   GetEventsAccuracy200ResponseDestinationsInner.JSON_PROPERTY_FAILURE_REASONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:24:39.998181371Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:30:11.628402131Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEventsAccuracy200ResponseDestinationsInner {
   public static final String JSON_PROPERTY_RULE_ID = "ruleId";
   @javax.annotation.Nullable

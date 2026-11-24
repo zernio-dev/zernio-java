@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   EmailCleanRemoved.JSON_PROPERTY_FORWARD_HEADER,
   EmailCleanRemoved.JSON_PROPERTY_BOILERPLATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:24:39.998181371Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:30:11.628402131Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EmailCleanRemoved {
   public static final String JSON_PROPERTY_QUOTED = "quoted";
   @javax.annotation.Nullable

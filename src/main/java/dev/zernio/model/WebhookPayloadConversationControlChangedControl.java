@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadConversationControlChangedControl.JSON_PROPERTY_OWNER_APP_ID,
   WebhookPayloadConversationControlChangedControl.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:24:39.998181371Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T14:30:11.628402131Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadConversationControlChangedControl {
   /**
    * Who answers now. ai_agent: Meta Business Agent (WhatsApp); app: you; other: another app (a WhatsApp partner, or a Messenger / Instagram receiver such as Page Inbox).
