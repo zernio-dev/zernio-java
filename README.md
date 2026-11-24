@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.802.1
+- API version: 1.803.0
 
-- Build date: 2026-11-24T05:01:27.628485033Z[Etc/UTC]
+- Build date: 2026-11-24T05:13:13.783272169Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.802.1</version>
+  <version>1.803.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.802.1"
+compile "dev.zernio:zernio-sdk:1.803.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.802.1.jar`
+- `target/zernio-sdk-1.803.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4367,6 +4367,7 @@ Class | Method | HTTP request | Description
  - [GeoRestriction](docs/GeoRestriction.md)
  - [GetAccount200Response](docs/GetAccount200Response.md)
  - [GetAccountHealth200Response](docs/GetAccountHealth200Response.md)
+ - [GetAccountHealth200ResponseCoexistenceHistorySync](docs/GetAccountHealth200ResponseCoexistenceHistorySync.md)
  - [GetAccountHealth200ResponseLineWebhook](docs/GetAccountHealth200ResponseLineWebhook.md)
  - [GetAccountHealth200ResponseMailbox](docs/GetAccountHealth200ResponseMailbox.md)
  - [GetAccountHealth200ResponseMessagingRestriction](docs/GetAccountHealth200ResponseMessagingRestriction.md)

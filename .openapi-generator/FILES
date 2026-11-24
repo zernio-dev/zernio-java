@@ -1504,6 +1504,7 @@ docs/GenerateKeywordIdeasRequest.md
 docs/GeoRestriction.md
 docs/GetAccount200Response.md
 docs/GetAccountHealth200Response.md
+docs/GetAccountHealth200ResponseCoexistenceHistorySync.md
 docs/GetAccountHealth200ResponseLineWebhook.md
 docs/GetAccountHealth200ResponseMailbox.md
 docs/GetAccountHealth200ResponseMessagingRestriction.md
@@ -5840,6 +5841,7 @@ src/main/java/dev/zernio/model/GenerateKeywordIdeasRequest.java
 src/main/java/dev/zernio/model/GeoRestriction.java
 src/main/java/dev/zernio/model/GetAccount200Response.java
 src/main/java/dev/zernio/model/GetAccountHealth200Response.java
+src/main/java/dev/zernio/model/GetAccountHealth200ResponseCoexistenceHistorySync.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponseLineWebhook.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponseMailbox.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponseMessagingRestriction.java
@@ -8549,3 +8551,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetAccountHealth200ResponseCoexistenceHistorySyncTest.java

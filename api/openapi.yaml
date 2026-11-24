@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.802.1
+  version: 1.803.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -16115,6 +16115,9 @@ paths:
         - When `platformConnection.phoneStatus` is anything other than `CONNECTED`, an entry is added to `issues` and the overall `status` is at least `warning`; `BANNED` makes it `error`. `disconnectReason` stays null, since reconnecting does not lift a Meta status.
         - When Meta reports `platformConnection.canSendMessage` as `BLOCKED` (for example a payment-method error on the WhatsApp Business Account), an entry is added to `issues` with Meta's own reason, the recommendation is Meta's suggested fix, and the overall `status` is at least `warning`. `LIMITED` does not change `status`. Reconnecting does not lift it.
         - When sends to one country keep failing with error 130497 (3 failures within 7 days, none delivered there since), an entry naming the country is added to `issues` and `status` is at least `warning`. The recommendation says how Meta lifts it. A delivered send there clears it.
+        - `coexistenceHistorySync` reports the latest chat history request of a coexistence number. Meta shares a number's chat history only once until the number is disconnected inside the WhatsApp Business app.
+        - When Meta refused because an earlier connection already used it (Meta error 135000, or 4 after rapid reconnects) and this account holds no imported history, `coexistenceHistorySync.status` is `already_synced` and an entry is added to `issues`. It never changes the overall `status`.
+        - The recommendation then gives the steps that get a new import: disconnect inside the WhatsApp Business app (Settings > Account > Business Platform), then connect the number again. Removing the account in Zernio and connecting it again does not.
 
         ### LINE
 
@@ -162115,6 +162118,40 @@ components:
           format: date-time
           nullable: true
           type: string
+    getAccountHealth_200_response_coexistenceHistorySync:
+      description: "WhatsApp accounts only. The outcome of the latest chat history\
+        \ request Zernio sent Meta for a coexistence number, read from the account\
+        \ (not a live probe). Null when no request ran for the current connection,\
+        \ and on numbers that are not in coexistence."
+      example:
+        refusedAt: 2000-01-23T04:56:07.000+00:00
+        requestId: requestId
+        status: requested
+      properties:
+        status:
+          description: |
+            - `requested`: Meta accepted the request and has not sent history yet, which can take a while.
+            - `imported`: Meta sent chat history to this account, including history a reconnect kept.
+            - `declined`: the business chose not to share its chat history in Meta's window.
+            - `already_synced`: Meta refused the request because an earlier connection already used the number's one history share. The description above says how to get a new import.
+            - `refused`: Meta refused it for another reason.
+          enum:
+          - requested
+          - imported
+          - declined
+          - already_synced
+          - refused
+          type: string
+        requestId:
+          description: "The id of the last history request Meta accepted, kept across\
+            \ reconnects. Quote it in a Meta support case."
+          nullable: true
+          type: string
+        refusedAt:
+          description: When Meta refused the latest request. Null when it was accepted.
+          format: date-time
+          nullable: true
+          type: string
     getAccountHealth_200_response_platformConnection_metaError:
       description: Set only when status is `disconnected`
       example:
@@ -162286,19 +162323,7 @@ components:
           blocksPublishNow: true
           message: message
           since: 2000-01-23T04:56:07.000+00:00
-        lineWebhook:
-          checkedAt: 2000-01-23T04:56:07.000+00:00
-          destination: zernio
-          active: true
         displayName: displayName
-        unhealthySince: 2000-01-23T04:56:07.000+00:00
-        sendCap:
-          baseLimit: 6
-          doubled: true
-          doublesAt: 2000-01-23T04:56:07.000+00:00
-          limit: 0
-          resetsAt: 2000-01-23T04:56:07.000+00:00
-          used: 1
         messagingRestriction:
           lastSeenAt: 2000-01-23T04:56:07.000+00:00
           code: 5
@@ -162313,15 +162338,6 @@ components:
         - recommendations
         - recommendations
         platform: platform
-        push: active
-        accountId: accountId
-        disconnectReason: disconnectReason
-        mailbox:
-          reason: no_mailbox
-          detectedAt: 2000-01-23T04:56:07.000+00:00
-          message: message
-          status: unavailable
-        disconnectionType: intentional
         permissions:
           analytics:
           - scope: scope
@@ -162353,14 +162369,15 @@ components:
             granted: true
           canFetchAnalytics: true
         sentItemsSync: push
-        ownerUserId: ownerUserId
         inboundActivity: ""
         integrationLane: business
         analyticsSync:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           status: ok
-        username: username
-        status: healthy
+        coexistenceHistorySync:
+          refusedAt: 2000-01-23T04:56:07.000+00:00
+          requestId: requestId
+          status: requested
         platformConnection:
           canSendMessage: canSendMessage
           checkedAt: 2000-01-23T04:56:07.000+00:00
@@ -162382,6 +162399,30 @@ components:
             entityType: entityType
             description: description
           status: connected
+        lineWebhook:
+          checkedAt: 2000-01-23T04:56:07.000+00:00
+          destination: zernio
+          active: true
+        unhealthySince: 2000-01-23T04:56:07.000+00:00
+        sendCap:
+          baseLimit: 6
+          doubled: true
+          doublesAt: 2000-01-23T04:56:07.000+00:00
+          limit: 0
+          resetsAt: 2000-01-23T04:56:07.000+00:00
+          used: 1
+        push: active
+        accountId: accountId
+        disconnectReason: disconnectReason
+        mailbox:
+          reason: no_mailbox
+          detectedAt: 2000-01-23T04:56:07.000+00:00
+          message: message
+          status: unavailable
+        disconnectionType: intentional
+        ownerUserId: ownerUserId
+        username: username
+        status: healthy
       properties:
         accountId:
           type: string
@@ -162486,6 +162527,8 @@ components:
           $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_publishingRestriction"
         messagingRestriction:
           $ref: "#/components/schemas/getAccountHealth_200_response_messagingRestriction"
+        coexistenceHistorySync:
+          $ref: "#/components/schemas/getAccountHealth_200_response_coexistenceHistorySync"
         platformConnection:
           $ref: "#/components/schemas/getAccountHealth_200_response_platformConnection"
         lineWebhook:
