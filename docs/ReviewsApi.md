@@ -206,7 +206,7 @@ public class Example {
         String sortBy = "date"; // String | rating puts reviews without a star rating last in both orders.
         String sortOrder = "asc"; // String | 
         Integer limit = 25; // Integer | 
-        String cursor = "cursor_example"; // String | 
+        String cursor = "cursor_example"; // String | Pass back pagination.nextCursor of the previous page unchanged, with the same sortBy and sortOrder.
         String accountId = "accountId_example"; // String | One account id, or several comma-separated.
         try {
             ListInboxReviews200Response result = apiInstance.listInboxReviews(profileId, platform, minRating, maxRating, hasReply, sortBy, sortOrder, limit, cursor, accountId);
@@ -235,7 +235,7 @@ public class Example {
 | **sortBy** | **String**| rating puts reviews without a star rating last in both orders. | [optional] [default to date] [enum: date, rating] |
 | **sortOrder** | **String**|  | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
-| **cursor** | **String**|  | [optional] |
+| **cursor** | **String**| Pass back pagination.nextCursor of the previous page unchanged, with the same sortBy and sortOrder. | [optional] |
 | **accountId** | **String**| One account id, or several comma-separated. | [optional] |
 
 ### Return type
@@ -298,7 +298,7 @@ public class Example {
         String sortBy = "date"; // String | rating puts reviews without a star rating last in both orders.
         String sortOrder = "asc"; // String | 
         Integer limit = 25; // Integer | 
-        String cursor = "cursor_example"; // String | 
+        String cursor = "cursor_example"; // String | Pass back pagination.nextCursor of the previous page unchanged, with the same sortBy and sortOrder.
         String accountId = "accountId_example"; // String | One account id, or several comma-separated.
         try {
             ApiResponse<ListInboxReviews200Response> response = apiInstance.listInboxReviewsWithHttpInfo(profileId, platform, minRating, maxRating, hasReply, sortBy, sortOrder, limit, cursor, accountId);
@@ -329,7 +329,7 @@ public class Example {
 | **sortBy** | **String**| rating puts reviews without a star rating last in both orders. | [optional] [default to date] [enum: date, rating] |
 | **sortOrder** | **String**|  | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
-| **cursor** | **String**|  | [optional] |
+| **cursor** | **String**| Pass back pagination.nextCursor of the previous page unchanged, with the same sortBy and sortOrder. | [optional] |
 | **accountId** | **String**| One account id, or several comma-separated. | [optional] |
 
 ### Return type
