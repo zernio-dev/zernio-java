@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.819.1
+  version: 1.820.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -42069,7 +42069,7 @@ paths:
         Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options.
         Supported platforms: Facebook, Google Business Profile.
 
-        Each account's reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account's listing is cached for up to 60 seconds.
+        Each account's reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated; those accounts are listed in meta.truncatedAccounts. Each account's listing is cached for up to 60 seconds.
       operationId: listInboxReviews
       parameters:
       - explode: true
@@ -42154,7 +42154,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by specific account ID
+      - description: "One account id, or several comma-separated."
         explode: true
         in: query
         name: accountId
@@ -42169,6 +42169,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listInboxReviews_200_response"
           description: Aggregated reviews
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -184519,10 +184521,63 @@ components:
         reviewUrl:
           nullable: true
           type: string
+    listInboxReviews_200_response_meta:
+      example:
+        lastUpdated: 2000-01-23T04:56:07.000+00:00
+        accountsFailed: 5
+        failedAccounts:
+        - accountId: accountId
+          code: code
+          retryAfter: 5
+          accountUsername: accountUsername
+          error: error
+          platform: platform
+        - accountId: accountId
+          code: code
+          retryAfter: 5
+          accountUsername: accountUsername
+          error: error
+          platform: platform
+        accountsSkipped:
+        - accountId: accountId
+          platform: platform
+        - accountId: accountId
+          platform: platform
+        accountsQueried: 1
+        truncatedAccounts:
+        - accountId: accountId
+          platform: platform
+        - accountId: accountId
+          platform: platform
+      properties:
+        accountsQueried:
+          type: integer
+        accountsFailed:
+          type: integer
+        failedAccounts:
+          items:
+            $ref: "#/components/schemas/listInboxConversations_200_response_meta_failedAccounts_inner"
+          type: array
+        lastUpdated:
+          format: date-time
+          type: string
+        accountsSkipped:
+          description: "Connected accounts that were not queried: their platform does\
+            \ not support this feature, or the account is not enabled for it"
+          items:
+            $ref: "#/components/schemas/listInboxConversations_200_response_meta_accountsSkipped_inner"
+          type: array
+        truncatedAccounts:
+          description: "Accounts whose listing hit the read budget with pages left:\
+            \ their reviews in data, and the Google Business Profile summary, are\
+            \ partial. Empty when every account was read in full."
+          items:
+            $ref: "#/components/schemas/listInboxConversations_200_response_meta_accountsSkipped_inner"
+          type: array
     listInboxReviews_200_response_summary:
       example:
-        totalReviews: 1
-        averageRating: 5.962133916683182
+        totalReviews: 5
+        averageRating: 2.3021358869347655
       properties:
         totalReviews:
           type: integer
@@ -184532,8 +184587,8 @@ components:
     listInboxReviews_200_response:
       example:
         summary:
-          totalReviews: 1
-          averageRating: 5.962133916683182
+          totalReviews: 5
+          averageRating: 2.3021358869347655
         pagination:
           nextCursor: nextCursor
           hasMore: true
@@ -184610,6 +184665,11 @@ components:
           - accountId: accountId
             platform: platform
           accountsQueried: 1
+          truncatedAccounts:
+          - accountId: accountId
+            platform: platform
+          - accountId: accountId
+            platform: platform
         status: status
       properties:
         status:
@@ -184621,7 +184681,7 @@ components:
         pagination:
           $ref: "#/components/schemas/listCalendarEventInstances_200_response_pagination"
         meta:
-          $ref: "#/components/schemas/listInboxConversations_200_response_meta"
+          $ref: "#/components/schemas/listInboxReviews_200_response_meta"
         summary:
           $ref: "#/components/schemas/listInboxReviews_200_response_summary"
     replyToInboxReview_request:

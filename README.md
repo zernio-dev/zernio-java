@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.819.1
+- API version: 1.820.0
 
-- Build date: 2026-11-24T18:19:29.361914242Z[Etc/UTC]
+- Build date: 2026-11-24T18:42:35.737747212Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.819.1</version>
+  <version>1.820.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.819.1"
+compile "dev.zernio:zernio-sdk:1.820.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.819.1.jar`
+- `target/zernio-sdk-1.820.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -5434,6 +5434,7 @@ Class | Method | HTTP request | Description
  - [ListInboxReviews200ResponseDataInnerPhotosInner](docs/ListInboxReviews200ResponseDataInnerPhotosInner.md)
  - [ListInboxReviews200ResponseDataInnerReply](docs/ListInboxReviews200ResponseDataInnerReply.md)
  - [ListInboxReviews200ResponseDataInnerReviewer](docs/ListInboxReviews200ResponseDataInnerReviewer.md)
+ - [ListInboxReviews200ResponseMeta](docs/ListInboxReviews200ResponseMeta.md)
  - [ListInboxReviews200ResponseSummary](docs/ListInboxReviews200ResponseSummary.md)
  - [ListInstagramLiveMedia200Response](docs/ListInstagramLiveMedia200Response.md)
  - [ListInstagramMediaCollaborators200Response](docs/ListInstagramMediaCollaborators200Response.md)

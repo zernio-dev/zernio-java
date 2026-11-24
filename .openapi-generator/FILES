@@ -2579,6 +2579,7 @@ docs/ListInboxReviews200ResponseDataInner.md
 docs/ListInboxReviews200ResponseDataInnerPhotosInner.md
 docs/ListInboxReviews200ResponseDataInnerReply.md
 docs/ListInboxReviews200ResponseDataInnerReviewer.md
+docs/ListInboxReviews200ResponseMeta.md
 docs/ListInboxReviews200ResponseSummary.md
 docs/ListInstagramLiveMedia200Response.md
 docs/ListInstagramMediaCollaborators200Response.md
@@ -6915,6 +6916,7 @@ src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerPhotosInner.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerReply.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerReviewer.java
+src/main/java/dev/zernio/model/ListInboxReviews200ResponseMeta.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseSummary.java
 src/main/java/dev/zernio/model/ListInstagramLiveMedia200Response.java
 src/main/java/dev/zernio/model/ListInstagramMediaCollaborators200Response.java
@@ -8579,3 +8581,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListInboxReviews200ResponseMetaTest.java

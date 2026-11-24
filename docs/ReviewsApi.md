@@ -175,7 +175,7 @@ ApiResponse<[**DeleteInboxReviewReply200Response**](DeleteInboxReviewReply200Res
 
 List reviews
 
-Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
+Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated; those accounts are listed in meta.truncatedAccounts. Each account&#39;s listing is cached for up to 60 seconds. 
 
 ### Example
 
@@ -207,7 +207,7 @@ public class Example {
         String sortOrder = "asc"; // String | 
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | 
-        String accountId = "accountId_example"; // String | Filter by specific account ID
+        String accountId = "accountId_example"; // String | One account id, or several comma-separated.
         try {
             ListInboxReviews200Response result = apiInstance.listInboxReviews(profileId, platform, minRating, maxRating, hasReply, sortBy, sortOrder, limit, cursor, accountId);
             System.out.println(result);
@@ -236,7 +236,7 @@ public class Example {
 | **sortOrder** | **String**|  | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**|  | [optional] |
-| **accountId** | **String**| Filter by specific account ID | [optional] |
+| **accountId** | **String**| One account id, or several comma-separated. | [optional] |
 
 ### Return type
 
@@ -256,6 +256,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated reviews |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -265,7 +266,7 @@ public class Example {
 
 List reviews
 
-Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
+Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated; those accounts are listed in meta.truncatedAccounts. Each account&#39;s listing is cached for up to 60 seconds. 
 
 ### Example
 
@@ -298,7 +299,7 @@ public class Example {
         String sortOrder = "asc"; // String | 
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | 
-        String accountId = "accountId_example"; // String | Filter by specific account ID
+        String accountId = "accountId_example"; // String | One account id, or several comma-separated.
         try {
             ApiResponse<ListInboxReviews200Response> response = apiInstance.listInboxReviewsWithHttpInfo(profileId, platform, minRating, maxRating, hasReply, sortBy, sortOrder, limit, cursor, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -329,7 +330,7 @@ public class Example {
 | **sortOrder** | **String**|  | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**|  | [optional] |
-| **accountId** | **String**| Filter by specific account ID | [optional] |
+| **accountId** | **String**| One account id, or several comma-separated. | [optional] |
 
 ### Return type
 
@@ -349,6 +350,7 @@ ApiResponse<[**ListInboxReviews200Response**](ListInboxReviews200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated reviews |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
