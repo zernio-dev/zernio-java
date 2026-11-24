@@ -9973,6 +9973,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **200** | Ad updated |  -  |
 | **400** | Invalid update. Causes:  - Invalid status transition, or budget below minimum. - A LinkedIn creative update without imageUrl or videoUrl, or a LinkedIn targeting update without countries or regions. - A Google targeting update that is unsupported, empty, mixes locations with the top-level geo fields, or names an unknown country or language code. - Code &#x60;missing_required_field&#x60;: the body has none of the updatable fields (status, budget, targeting, name, creative, headlines, descriptions, finalUrls, path1, path2, assetGroup, demandGen), e.g. &#x60;{}&#x60; or only misspelled keys. Unknown keys are ignored, so such a body would otherwise change nothing.  |  -  |
@@ -10059,6 +10060,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **200** | Ad updated |  -  |
 | **400** | Invalid update. Causes:  - Invalid status transition, or budget below minimum. - A LinkedIn creative update without imageUrl or videoUrl, or a LinkedIn targeting update without countries or regions. - A Google targeting update that is unsupported, empty, mixes locations with the top-level geo fields, or names an unknown country or language code. - Code &#x60;missing_required_field&#x60;: the body has none of the updatable fields (status, budget, targeting, name, creative, headlines, descriptions, finalUrls, path1, path2, assetGroup, demandGen), e.g. &#x60;{}&#x60; or only misspelled keys. Unknown keys are ignored, so such a body would otherwise change nothing.  |  -  |
@@ -10143,6 +10145,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **200** | Campaign updated |  -  |
 | **400** | Invalid input, or a field the resolved platform does not support at the campaign level (see the support table) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -10226,6 +10229,7 @@ ApiResponse<[**UpdateAdCampaign200Response**](UpdateAdCampaign200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **200** | Campaign updated |  -  |
 | **400** | Invalid input, or a field the resolved platform does not support at the campaign level (see the support table) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -10799,6 +10803,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **200** | Ad set updated |  -  |
 | **400** | Invalid input, including:  - &#x60;placements&#x60; on a platform other than Meta, or &#x60;targeting&#x60; on a platform other than Meta and Reddit. - A Reddit &#x60;startDate&#x60; or &#x60;endDate&#x60; that is not a date, or a Reddit schedule the campaign does not allow. - A targeting field the platform cannot honour. - &#x60;placements&#x60; sent both at the top level and inside &#x60;targeting&#x60;. - A &#x60;platformSpecificData.promotedObject&#x60; key Meta cannot change on an existing ad set (anything but &#x60;pixelId&#x60;, &#x60;customEventType&#x60;, &#x60;customEventStr&#x60;, &#x60;applicationId&#x60; and &#x60;productCatalogId&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -10884,6 +10889,7 @@ ApiResponse<[**UpdateAdSet200Response**](UpdateAdSet200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **200** | Ad set updated |  -  |
 | **400** | Invalid input, including:  - &#x60;placements&#x60; on a platform other than Meta, or &#x60;targeting&#x60; on a platform other than Meta and Reddit. - A Reddit &#x60;startDate&#x60; or &#x60;endDate&#x60; that is not a date, or a Reddit schedule the campaign does not allow. - A targeting field the platform cannot honour. - &#x60;placements&#x60; sent both at the top level and inside &#x60;targeting&#x60;. - A &#x60;platformSpecificData.promotedObject&#x60; key Meta cannot change on an existing ad set (anything but &#x60;pixelId&#x60;, &#x60;customEventType&#x60;, &#x60;customEventStr&#x60;, &#x60;applicationId&#x60; and &#x60;productCatalogId&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
