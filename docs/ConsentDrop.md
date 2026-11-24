@@ -8,7 +8,7 @@ An event the destination did not get because the visitor did not consent.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**eventIndex** | **Integer** | Index into the events sent to this destination. |  [optional] |
+|**eventIndex** | **Integer** | Position of the event in the request&#39;s &#x60;events&#x60; array, counted from 0, also when repeats or events this destination does not take were left out. |  [optional] |
 |**eventId** | **String** |  |  [optional] |
 |**reason** | [**ReasonEnum**](#ReasonEnum) | &#x60;consent_denied&#x60;: a signal the platform needs is &#x60;DENIED&#x60;. &#x60;consent_missing&#x60;: the visitor is in the EEA, UK or CH and the signal was never given. |  [optional] |
 
