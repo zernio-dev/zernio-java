@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadPostTrackingCompletedFinal.JSON_PROPERTY_SAVES,
   WebhookPayloadPostTrackingCompletedFinal.JSON_PROPERTY_SYNCED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T18:08:52.127643123Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T18:19:29.361914242Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadPostTrackingCompletedFinal {
   public static final String JSON_PROPERTY_VIEWS = "views";
   @javax.annotation.Nonnull

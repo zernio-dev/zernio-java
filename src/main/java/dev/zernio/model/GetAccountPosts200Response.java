@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GetAccountPosts200Response.JSON_PROPERTY_PAGINATION,
   GetAccountPosts200Response.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T18:08:52.127643123Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T18:19:29.361914242Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAccountPosts200Response {
   /**
    * Gets or Sets status

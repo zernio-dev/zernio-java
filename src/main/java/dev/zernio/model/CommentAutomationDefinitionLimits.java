@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CommentAutomationDefinitionLimits.JSON_PROPERTY_REPEAT,
   CommentAutomationDefinitionLimits.JSON_PROPERTY_SAME_TEXT_DEDUPE_HOURS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T18:08:52.127643123Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T18:19:29.361914242Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationDefinitionLimits {
   public static final String JSON_PROPERTY_REPEAT = "repeat";
   @javax.annotation.Nonnull

@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadEmailDeletedEmail.JSON_PROPERTY_MESSAGE_ID,
   WebhookPayloadEmailDeletedEmail.JSON_PROPERTY_THREAD_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T18:08:52.127643123Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T18:19:29.361914242Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadEmailDeletedEmail {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   @javax.annotation.Nullable
