@@ -9073,7 +9073,7 @@ ApiResponse<[**UpdateCustomConversionGoal200Response**](UpdateCustomConversionGo
 
 Update a forwarding rule
 
-Changes the fields you send and keeps the others. Send &#x60;eventNameMap: null&#x60; to stop renaming, &#x60;valueOverride: { \&quot;mode\&quot;: \&quot;original\&quot; }&#x60; to send the event&#39;s own value again, and &#x60;valueCondition: null&#x60; to forward whatever the value. &#x60;eventValues&#x60; replaces the whole map; &#x60;null&#x60; or &#x60;{}&#x60; clears it.  &#x60;apiSecret&#x60; replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
+Changes the fields you send and keeps the others. Send &#x60;eventNameMap: null&#x60; to stop renaming, &#x60;valueOverride: { \&quot;mode\&quot;: \&quot;original\&quot; }&#x60; to send the event&#39;s own value again, and &#x60;valueCondition: null&#x60; to forward whatever the value. &#x60;eventValues&#x60; replaces the whole map; &#x60;null&#x60; or &#x60;{}&#x60; clears it.  &#x60;apiSecret&#x60; replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Events that name the stream in &#x60;destinations&#x60; on &#x60;POST /v1/events&#x60; use it too.  Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
 
 ### Example
 
@@ -9148,7 +9148,7 @@ public class Example {
 
 Update a forwarding rule
 
-Changes the fields you send and keeps the others. Send &#x60;eventNameMap: null&#x60; to stop renaming, &#x60;valueOverride: { \&quot;mode\&quot;: \&quot;original\&quot; }&#x60; to send the event&#39;s own value again, and &#x60;valueCondition: null&#x60; to forward whatever the value. &#x60;eventValues&#x60; replaces the whole map; &#x60;null&#x60; or &#x60;{}&#x60; clears it.  &#x60;apiSecret&#x60; replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
+Changes the fields you send and keeps the others. Send &#x60;eventNameMap: null&#x60; to stop renaming, &#x60;valueOverride: { \&quot;mode\&quot;: \&quot;original\&quot; }&#x60; to send the event&#39;s own value again, and &#x60;valueCondition: null&#x60; to forward whatever the value. &#x60;eventValues&#x60; replaces the whole map; &#x60;null&#x60; or &#x60;{}&#x60; clears it.  &#x60;apiSecret&#x60; replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Events that name the stream in &#x60;destinations&#x60; on &#x60;POST /v1/events&#x60; use it too.  Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
 
 ### Example
 
