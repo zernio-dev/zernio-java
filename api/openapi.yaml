@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.809.0
+  version: 1.809.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -10725,7 +10725,6 @@ paths:
       - Account Groups
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -10763,7 +10762,6 @@ paths:
       - Account Groups
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -10820,7 +10818,6 @@ paths:
       - Account Groups
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -10863,7 +10860,6 @@ paths:
       - Media
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-content-type: application/json
       x-accepts:
@@ -13046,7 +13042,6 @@ paths:
       - Posts
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-selectedCodeSample: schedule
       x-docs:
@@ -13265,7 +13260,6 @@ paths:
       - Analytics
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-platforms:
       - instagram
@@ -13350,7 +13344,6 @@ paths:
       - Posts
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-accepts:
       - application/json
@@ -13618,7 +13611,6 @@ paths:
       - Posts
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-content-type: application/json
       x-accepts:
@@ -13764,7 +13756,6 @@ paths:
       - Posts
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-content-type: multipart/form-data
       x-accepts:
@@ -13921,7 +13912,6 @@ paths:
       - Posts
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-content-type: application/json
       x-accepts:
@@ -13981,7 +13971,6 @@ paths:
       - Posts
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-content-type: application/json
       x-accepts:
@@ -14052,7 +14041,6 @@ paths:
       - Posts
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-platforms:
       - facebook
@@ -14138,7 +14126,6 @@ paths:
       - Posts
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-platforms:
       - facebook
@@ -14213,7 +14200,6 @@ paths:
       - Posts
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-platforms:
       - facebook
@@ -14355,7 +14341,6 @@ paths:
       - Posts
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-platforms:
       - twitter
@@ -14500,7 +14485,6 @@ paths:
       - Posts
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-platforms:
       - youtube
@@ -14848,7 +14832,6 @@ paths:
       - Profiles
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -14890,7 +14873,6 @@ paths:
       - Profiles
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -14998,7 +14980,6 @@ paths:
       - Profiles
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -15569,7 +15550,6 @@ paths:
       - Accounts
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -15680,7 +15660,6 @@ paths:
       - Accounts
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -15750,7 +15729,6 @@ paths:
       - Accounts
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -15950,7 +15928,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -16035,7 +16012,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -16084,7 +16060,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -16714,7 +16689,6 @@ paths:
       - Feedback
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -17367,7 +17341,6 @@ paths:
       - Content Retention
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -17573,7 +17546,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -18236,7 +18208,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - instagram
@@ -18971,7 +18942,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -19224,7 +19194,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -19483,7 +19452,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - googlesearchconsole
@@ -19678,7 +19646,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - campaignmanager360
@@ -20387,7 +20354,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -20523,7 +20489,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -20586,7 +20551,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -20815,7 +20779,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - facebook
@@ -21008,7 +20971,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -21172,7 +21134,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -21451,7 +21412,6 @@ paths:
       - GMB Verifications
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -21519,7 +21479,6 @@ paths:
       - GMB Verifications
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -21593,7 +21552,6 @@ paths:
       - GMB Verifications
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -21788,7 +21746,6 @@ paths:
       - GMB Food Menus
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -22021,7 +21978,6 @@ paths:
       - GMB Location Details
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -22081,7 +22037,6 @@ paths:
       - GMB Media
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -22215,7 +22170,6 @@ paths:
       - GMB Media
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -22591,7 +22545,6 @@ paths:
       - GMB Attributes
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -22652,7 +22605,6 @@ paths:
       - GMB Place Actions
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -22792,7 +22744,6 @@ paths:
       - GMB Place Actions
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -22855,7 +22806,6 @@ paths:
       - GMB Place Actions
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -22978,7 +22928,6 @@ paths:
       - GMB Services
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -23441,7 +23390,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -23550,7 +23498,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -23603,7 +23550,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -23693,7 +23639,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -23731,7 +23676,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -24002,7 +23946,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24138,7 +24081,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24295,7 +24237,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24346,7 +24287,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24399,7 +24339,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24462,7 +24401,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24514,7 +24452,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24560,7 +24497,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24606,7 +24542,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24656,7 +24591,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24704,7 +24638,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24753,7 +24686,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - tradedeskads
@@ -24814,7 +24746,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - tradedeskdsp
@@ -24868,7 +24799,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24920,7 +24850,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -24974,7 +24903,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -25062,7 +24990,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -25258,7 +25185,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -25310,7 +25236,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -25395,7 +25320,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -25582,7 +25506,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -25665,7 +25588,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -25756,7 +25678,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -25920,7 +25841,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -25969,7 +25889,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -26065,7 +25984,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - facebook
@@ -26120,7 +26038,6 @@ paths:
       - Accounts
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - facebook
@@ -26257,7 +26174,6 @@ paths:
       - Accounts
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - facebook
@@ -26392,7 +26308,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -26546,7 +26461,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -27094,7 +27008,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -28202,7 +28115,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -28253,7 +28165,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -28514,7 +28425,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -28561,7 +28471,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -28735,7 +28644,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -28792,7 +28700,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -28875,7 +28782,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -28953,7 +28859,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -29336,7 +29241,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -29595,7 +29499,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -29675,7 +29578,6 @@ paths:
       - Accounts
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - hubspot
@@ -29796,7 +29698,6 @@ paths:
       - Accounts
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - gohighlevel
@@ -30163,7 +30064,6 @@ paths:
       - Accounts
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - salesforce
@@ -30775,7 +30675,6 @@ paths:
       - Accounts
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -30850,7 +30749,6 @@ paths:
       - Accounts
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -30926,7 +30824,6 @@ paths:
       - Accounts
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -31030,7 +30927,6 @@ paths:
       - Discord
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -32477,7 +32373,6 @@ paths:
       - Queue
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-accepts:
       - application/json
@@ -32619,7 +32514,6 @@ paths:
       - Queue
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-content-type: application/json
       x-accepts:
@@ -32686,7 +32580,6 @@ paths:
       - Queue
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-content-type: application/json
       x-accepts:
@@ -36711,7 +36604,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -36751,7 +36643,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -36831,7 +36722,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - google
@@ -36922,7 +36812,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - google
@@ -36974,7 +36863,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - google
@@ -37074,7 +36962,6 @@ paths:
       - Connect
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - google
@@ -39208,7 +39095,6 @@ paths:
       - Messages
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-content-type: multipart/form-data
       x-accepts:
@@ -39240,7 +39126,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -39320,7 +39205,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -39363,7 +39247,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -39447,7 +39330,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -39484,7 +39366,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -39570,7 +39451,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -39607,7 +39487,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -39698,7 +39577,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -39730,7 +39608,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -39799,7 +39676,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -39830,7 +39706,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -39898,7 +39773,6 @@ paths:
       - Account Settings
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -42603,7 +42477,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -42682,7 +42555,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -42858,7 +42730,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -42913,7 +42784,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -43026,7 +42896,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -47952,7 +47821,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -48001,7 +47869,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: multipart/form-data
       x-accepts:
@@ -48080,7 +47947,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -48122,7 +47988,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -48233,7 +48098,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -48809,7 +48673,6 @@ paths:
       - WhatsApp
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -53002,7 +52865,6 @@ paths:
       - WhatsApp Flows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -53049,7 +52911,6 @@ paths:
       - WhatsApp Flows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -53144,7 +53005,6 @@ paths:
       - WhatsApp Flows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -53268,7 +53128,6 @@ paths:
       - WhatsApp Flows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -53415,7 +53274,6 @@ paths:
       - WhatsApp Flows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -53461,7 +53319,6 @@ paths:
       - WhatsApp Flows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -53554,7 +53411,6 @@ paths:
       - WhatsApp Flows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -54298,7 +54154,6 @@ paths:
       - Custom Fields
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -54330,7 +54185,6 @@ paths:
       - Custom Fields
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -54370,7 +54224,6 @@ paths:
       - Custom Fields
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -55257,7 +55110,6 @@ paths:
       - Workflows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - hubspot
@@ -55290,7 +55142,6 @@ paths:
       - Workflows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -55379,7 +55230,6 @@ paths:
       - Workflows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - hubspot
@@ -55419,7 +55269,6 @@ paths:
       - Workflows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -55454,7 +55303,6 @@ paths:
       - Workflows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -55493,7 +55341,6 @@ paths:
       - Workflows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -55742,7 +55589,6 @@ paths:
       - Workflows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -55866,7 +55712,6 @@ paths:
       - Workflows
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
@@ -58919,6 +58764,7 @@ paths:
       x-resource-group: ads
       x-oauth-scopes:
       - ads:write
+      - ads:read
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -59232,6 +59078,7 @@ paths:
       x-resource-group: ads
       x-oauth-scopes:
       - ads:write
+      - ads:read
       x-accepts:
       - application/json
   /v1/automations/templates:
@@ -60285,6 +60132,7 @@ paths:
       x-resource-group: ads
       x-oauth-scopes:
       - ads:write
+      - ads:read
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -60329,6 +60177,7 @@ paths:
       x-resource-group: ads
       x-oauth-scopes:
       - ads:write
+      - ads:read
       x-accepts:
       - application/json
   /v1/ads/rules:
@@ -85647,7 +85496,6 @@ paths:
       - Ad Accounts
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-platforms:
       - meta
@@ -90082,7 +89930,6 @@ paths:
       - Blogs
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-platforms:
       - shopify
@@ -90142,7 +89989,6 @@ paths:
       - Blogs
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-platforms:
       - shopify
@@ -90276,7 +90122,6 @@ paths:
       - Blogs
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-platforms:
       - shopify
@@ -90501,7 +90346,6 @@ paths:
       - Blogs
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-platforms:
       - shopify
@@ -90585,7 +90429,6 @@ paths:
       - Blogs
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-platforms:
       - shopify
@@ -90768,7 +90611,6 @@ paths:
       - Blogs
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-platforms:
       - shopify
@@ -96561,7 +96403,6 @@ paths:
       - Media
       x-resource-group: publishing
       x-oauth-scopes:
-      - posts:read
       - posts:write
       x-content-type: application/json
       x-accepts:
@@ -96846,7 +96687,6 @@ paths:
       - Conversion Audit
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-content-type: application/json
       x-accepts:
@@ -96885,7 +96725,6 @@ paths:
       - Conversion Audit
       x-resource-group: accounts
       x-oauth-scopes:
-      - accounts:read
       - accounts:write
       x-accepts:
       - application/json
