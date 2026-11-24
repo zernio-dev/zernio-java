@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.811.1
+  version: 1.812.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -163346,6 +163346,7 @@ components:
     verifyCredential_200_response:
       example:
         valid: true
+        audience: audience
         scope: scope
         name: name
         authType: api_key
@@ -163372,6 +163373,12 @@ components:
           type: string
         scope:
           description: "Granted OAuth scopes, space-separated. Null for API keys."
+          nullable: true
+          type: string
+        audience:
+          description: "Resource the OAuth token was issued for (RFC 8707), for example\
+            \ https://mcp.zernio.com/mcp. Null for API keys and for tokens issued\
+            \ without one."
           nullable: true
           type: string
     submitFeedback_request_agent:

@@ -13,6 +13,7 @@
 |**email** | **String** | Email of the credential&#39;s owner. |  [optional] |
 |**authType** | [**AuthTypeEnum**](#AuthTypeEnum) |  |  [optional] |
 |**scope** | **String** | Granted OAuth scopes, space-separated. Null for API keys. |  [optional] |
+|**audience** | **String** | Resource the OAuth token was issued for (RFC 8707), for example https://mcp.zernio.com/mcp. Null for API keys and for tokens issued without one. |  [optional] |
 
 
 
