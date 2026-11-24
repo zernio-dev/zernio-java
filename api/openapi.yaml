@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.815.2
+  version: 1.816.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -60681,6 +60681,67 @@ paths:
       - reddit
       x-accepts:
       - application/json
+  /v1/ads/changes:
+    get:
+      description: |
+        Lists the ad changes waiting to be confirmed or discarded, newest first. A confirmed or failed change is not listed; read it by id.
+
+        Each item is a summary without the diff. Read one change to get its before/after values.
+      operationId: listAdChanges
+      parameters:
+      - description: How many changes to return.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: "The `nextCursor` of the previous page, unchanged."
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdChanges_200_response"
+          description: One page of staged changes
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Ads access required (code `ads_addon_required`). Legacy plans
+            need the Ads add-on; included by default on usage-based plans.
+          x-summary: "Ads access is required: legacy plans need the Ads add-on, and\
+            \ usage-based plans include it by default."
+      security:
+      - bearerAuth: []
+      summary: List staged ad changes
+      tags:
+      - Ad Changes
+      x-resource-group: ads
+      x-oauth-scopes:
+      - ads:write
+      - ads:read
+      x-platforms:
+      - meta
+      - google
+      x-accepts:
+      - application/json
   /v1/ads/changes/{changeId}:
     delete:
       description: |
@@ -105407,7 +105468,9 @@ components:
         visits: 5
         bots: 9
         recovered: 8
+        checkouts: 6
         purchases: 6
+        leads: 9
         consented: 9
       properties:
         visits:
@@ -105425,6 +105488,12 @@ components:
         recovered:
           description: "Purchases with ad consent for which no browser pixel fired,\
             \ so only the server reported them."
+          type: integer
+        leads:
+          description: Leads recorded on the site without bots.
+          type: integer
+        checkouts:
+          description: Checkouts started on the site without bots.
           type: integer
     SmsOptOutRequest:
       example:
@@ -150050,6 +150119,77 @@ components:
       - platform
       - status
       - targetId
+      - type
+    StagedAdChangeSummary:
+      description: "A staged ad change as the list returns it: what it targets and\
+        \ who staged it, without the diff."
+      example:
+        id: 6790a1b2c3d4e5f6a7b8c9d0
+        type: campaign_status
+        platform: facebook
+        accountId: 665f1c2ab3d4e5f6a7b8c9d0
+        adAccountId: act_757082720485182
+        targetId: "120214567890123456"
+        targetName: Autumn sale
+        creates: false
+        createdBy: 665f1c2ab3d4e5f6a7b8c9d1
+        createdAt: 2026-11-20T10:00:00.000Z
+      properties:
+        id:
+          description: "The change id, used in /v1/ads/changes/{changeId}."
+          type: string
+        type:
+          description: Which write was staged.
+          enum:
+          - campaign_status
+          - ad_set_status
+          - ad_status
+          - campaign_update
+          - ad_set_update
+          - ad_update
+          - ad_create
+          - campaign_create
+          - ad_set_create
+          type: string
+        platform:
+          description: "The ad platform of the object, as the write route names it."
+          example: facebook
+          type: string
+        accountId:
+          description: The connected account the write goes through.
+          type: string
+        adAccountId:
+          description: The ad account id on the platform.
+          type: string
+        targetId:
+          description: "The object the change applies to. Null for a create, whose\
+            \ object does not exist yet."
+          nullable: true
+          type: string
+        targetName:
+          description: "The name of the object when the change was staged, or the\
+            \ name a create will give it. Null when it is not known."
+          nullable: true
+          type: string
+        creates:
+          description: True when the change creates a new object.
+          type: boolean
+        createdBy:
+          description: The user who staged the change.
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+      required:
+      - accountId
+      - adAccountId
+      - createdAt
+      - createdBy
+      - creates
+      - id
+      - platform
+      - targetId
+      - targetName
       - type
     AdRule:
       example:
@@ -205590,6 +205730,43 @@ components:
           $ref: "#/components/schemas/undoAdRuleActivity_200_response_undo"
       required:
       - undo
+    listAdChanges_200_response:
+      example:
+        nextCursor: nextCursor
+        changes:
+        - id: 6790a1b2c3d4e5f6a7b8c9d0
+          type: campaign_status
+          platform: facebook
+          accountId: 665f1c2ab3d4e5f6a7b8c9d0
+          adAccountId: act_757082720485182
+          targetId: "120214567890123456"
+          targetName: Autumn sale
+          creates: false
+          createdBy: 665f1c2ab3d4e5f6a7b8c9d1
+          createdAt: 2026-11-20T10:00:00.000Z
+        - id: 6790a1b2c3d4e5f6a7b8c9d0
+          type: campaign_status
+          platform: facebook
+          accountId: 665f1c2ab3d4e5f6a7b8c9d0
+          adAccountId: act_757082720485182
+          targetId: "120214567890123456"
+          targetName: Autumn sale
+          creates: false
+          createdBy: 665f1c2ab3d4e5f6a7b8c9d1
+          createdAt: 2026-11-20T10:00:00.000Z
+      properties:
+        changes:
+          items:
+            $ref: "#/components/schemas/StagedAdChangeSummary"
+          type: array
+        nextCursor:
+          description: Pass it as `cursor` to read the next page. Null on the last
+            page.
+          nullable: true
+          type: string
+      required:
+      - changes
+      - nextCursor
     getAdChange_200_response:
       example:
         change:
@@ -230471,19 +230648,25 @@ components:
           visits: 5
           bots: 9
           recovered: 8
+          checkouts: 6
           purchases: 6
+          leads: 9
           consented: 9
         "30d":
           visits: 5
           bots: 9
           recovered: 8
+          checkouts: 6
           purchases: 6
+          leads: 9
           consented: 9
         "7d":
           visits: 5
           bots: 9
           recovered: 8
+          checkouts: 6
           purchases: 6
+          leads: 9
           consented: 9
       properties:
         today:
@@ -230505,21 +230688,28 @@ components:
             visits: 5
             bots: 9
             recovered: 8
+            checkouts: 6
             purchases: 6
+            leads: 9
             consented: 9
           "30d":
             visits: 5
             bots: 9
             recovered: 8
+            checkouts: 6
             purchases: 6
+            leads: 9
             consented: 9
           "7d":
             visits: 5
             bots: 9
             recovered: 8
+            checkouts: 6
             purchases: 6
+            leads: 9
             consented: 9
         hitsToday: 4
+        sendsNowhere: true
       properties:
         siteId:
           type: string
@@ -230543,9 +230733,14 @@ components:
           type: array
         totals:
           $ref: "#/components/schemas/getEventsOverview_200_response_sites_inner_totals"
+        sendsNowhere:
+          description: "Whether no forwarding rule of the profile to an ad platform\
+            \ uses the site (its own events, or server events its visits complete)\
+            \ and its tag fires no ad pixel in the browser."
+          type: boolean
     getEventsOverview_200_response_eventNames_inner:
       example:
-        websiteToday: 9
+        websiteToday: 3
         fromWebsite: true
         serverToday: 6
         eventName: eventName
@@ -230619,21 +230814,28 @@ components:
               visits: 5
               bots: 9
               recovered: 8
+              checkouts: 6
               purchases: 6
+              leads: 9
               consented: 9
             "30d":
               visits: 5
               bots: 9
               recovered: 8
+              checkouts: 6
               purchases: 6
+              leads: 9
               consented: 9
             "7d":
               visits: 5
               bots: 9
               recovered: 8
+              checkouts: 6
               purchases: 6
+              leads: 9
               consented: 9
           hitsToday: 4
+          sendsNowhere: true
         - lastActiveOn: 2000-01-23
           profileId: profileId
           eventNamesLastWeek:
@@ -230645,30 +230847,37 @@ components:
               visits: 5
               bots: 9
               recovered: 8
+              checkouts: 6
               purchases: 6
+              leads: 9
               consented: 9
             "30d":
               visits: 5
               bots: 9
               recovered: 8
+              checkouts: 6
               purchases: 6
+              leads: 9
               consented: 9
             "7d":
               visits: 5
               bots: 9
               recovered: 8
+              checkouts: 6
               purchases: 6
+              leads: 9
               consented: 9
           hitsToday: 4
+          sendsNowhere: true
         eventNames:
-        - websiteToday: 9
+        - websiteToday: 3
           fromWebsite: true
           serverToday: 6
           eventName: eventName
           serverSources:
           - serverSources
           - serverSources
-        - websiteToday: 9
+        - websiteToday: 3
           fromWebsite: true
           serverToday: 6
           eventName: eventName

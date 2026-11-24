@@ -13,6 +13,8 @@ A tracking site's page views over a period, as approximate distinct counts.
 |**consented** | **Integer** | Page views with ad storage consent, at most &#x60;visits&#x60;. |  [optional] |
 |**purchases** | **Integer** | Purchases recorded on the site. |  [optional] |
 |**recovered** | **Integer** | Purchases with ad consent for which no browser pixel fired, so only the server reported them. |  [optional] |
+|**leads** | **Integer** | Leads recorded on the site without bots. |  [optional] |
+|**checkouts** | **Integer** | Checkouts started on the site without bots. |  [optional] |
 
 
 

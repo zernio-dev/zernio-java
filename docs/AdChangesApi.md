@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**discardAdChangeWithHttpInfo**](AdChangesApi.md#discardAdChangeWithHttpInfo) | **DELETE** /v1/ads/changes/{changeId} | Discard a staged ad change |
 | [**getAdChange**](AdChangesApi.md#getAdChange) | **GET** /v1/ads/changes/{changeId} | Get a staged ad change |
 | [**getAdChangeWithHttpInfo**](AdChangesApi.md#getAdChangeWithHttpInfo) | **GET** /v1/ads/changes/{changeId} | Get a staged ad change |
+| [**listAdChanges**](AdChangesApi.md#listAdChanges) | **GET** /v1/ads/changes | List staged ad changes |
+| [**listAdChangesWithHttpInfo**](AdChangesApi.md#listAdChangesWithHttpInfo) | **GET** /v1/ads/changes | List staged ad changes |
 
 
 
@@ -471,4 +473,158 @@ ApiResponse<[**GetAdChange200Response**](GetAdChange200Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
+
+
+## listAdChanges
+
+> ListAdChanges200Response listAdChanges(limit, cursor)
+
+List staged ad changes
+
+Lists the ad changes waiting to be confirmed or discarded, newest first. A confirmed or failed change is not listed; read it by id.  Each item is a summary without the diff. Read one change to get its before/after values. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdChangesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdChangesApi apiInstance = new AdChangesApi(defaultClient);
+        Integer limit = 50; // Integer | How many changes to return.
+        String cursor = "cursor_example"; // String | The `nextCursor` of the previous page, unchanged.
+        try {
+            ListAdChanges200Response result = apiInstance.listAdChanges(limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdChangesApi#listAdChanges");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | **Integer**| How many changes to return. | [optional] [default to 50] |
+| **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page, unchanged. | [optional] |
+
+### Return type
+
+[**ListAdChanges200Response**](ListAdChanges200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of staged changes |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+## listAdChangesWithHttpInfo
+
+> ApiResponse<ListAdChanges200Response> listAdChanges listAdChangesWithHttpInfo(limit, cursor)
+
+List staged ad changes
+
+Lists the ad changes waiting to be confirmed or discarded, newest first. A confirmed or failed change is not listed; read it by id.  Each item is a summary without the diff. Read one change to get its before/after values. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdChangesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdChangesApi apiInstance = new AdChangesApi(defaultClient);
+        Integer limit = 50; // Integer | How many changes to return.
+        String cursor = "cursor_example"; // String | The `nextCursor` of the previous page, unchanged.
+        try {
+            ApiResponse<ListAdChanges200Response> response = apiInstance.listAdChangesWithHttpInfo(limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdChangesApi#listAdChanges");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | **Integer**| How many changes to return. | [optional] [default to 50] |
+| **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page, unchanged. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListAdChanges200Response**](ListAdChanges200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of staged changes |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.815.2
+- API version: 1.816.0
 
-- Build date: 2026-11-24T15:59:15.408181325Z[Etc/UTC]
+- Build date: 2026-11-24T16:06:58.621023580Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.815.2</version>
+  <version>1.816.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.815.2"
+compile "dev.zernio:zernio-sdk:1.816.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.815.2.jar`
+- `target/zernio-sdk-1.816.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -579,6 +579,8 @@ Class | Method | HTTP request | Description
 *AdChangesApi* | [**discardAdChangeWithHttpInfo**](docs/AdChangesApi.md#discardAdChangeWithHttpInfo) | **DELETE** /v1/ads/changes/{changeId} | Discard a staged ad change
 *AdChangesApi* | [**getAdChange**](docs/AdChangesApi.md#getAdChange) | **GET** /v1/ads/changes/{changeId} | Get a staged ad change
 *AdChangesApi* | [**getAdChangeWithHttpInfo**](docs/AdChangesApi.md#getAdChangeWithHttpInfo) | **GET** /v1/ads/changes/{changeId} | Get a staged ad change
+*AdChangesApi* | [**listAdChanges**](docs/AdChangesApi.md#listAdChanges) | **GET** /v1/ads/changes | List staged ad changes
+*AdChangesApi* | [**listAdChangesWithHttpInfo**](docs/AdChangesApi.md#listAdChangesWithHttpInfo) | **GET** /v1/ads/changes | List staged ad changes
 *AdCreativesApi* | [**createAdCreative**](docs/AdCreativesApi.md#createAdCreative) | **POST** /v1/ads/creatives | Create a standalone creative
 *AdCreativesApi* | [**createAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#createAdCreativeWithHttpInfo) | **POST** /v1/ads/creatives | Create a standalone creative
 *AdCreativesApi* | [**deleteAdCreative**](docs/AdCreativesApi.md#deleteAdCreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative
@@ -5202,6 +5204,7 @@ Class | Method | HTTP request | Description
  - [ListAdCatalogProductSets200ResponseProductSetsInner](docs/ListAdCatalogProductSets200ResponseProductSetsInner.md)
  - [ListAdCatalogProducts200Response](docs/ListAdCatalogProducts200Response.md)
  - [ListAdCatalogs200Response](docs/ListAdCatalogs200Response.md)
+ - [ListAdChanges200Response](docs/ListAdChanges200Response.md)
  - [ListAdConversionAssociations200Response](docs/ListAdConversionAssociations200Response.md)
  - [ListAdConversionAssociations200ResponseAssociationsInner](docs/ListAdConversionAssociations200ResponseAssociationsInner.md)
  - [ListAdConversionDestinations200Response](docs/ListAdConversionDestinations200Response.md)
@@ -6235,6 +6238,7 @@ Class | Method | HTTP request | Description
  - [StagedAdChange](docs/StagedAdChange.md)
  - [StagedAdChangeDiffInner](docs/StagedAdChangeDiffInner.md)
  - [StagedAdChangeError](docs/StagedAdChangeError.md)
+ - [StagedAdChangeSummary](docs/StagedAdChangeSummary.md)
  - [StartBusinessAgentEvalRun202Response](docs/StartBusinessAgentEvalRun202Response.md)
  - [StartBusinessAgentEvalRunRequest](docs/StartBusinessAgentEvalRunRequest.md)
  - [StartCreatorConnect200Response](docs/StartCreatorConnect200Response.md)
