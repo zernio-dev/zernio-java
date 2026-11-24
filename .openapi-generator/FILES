@@ -8549,10 +8549,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AutomationEventActionStepOneOf1Test.java
-src/test/java/dev/zernio/model/AutomationEventActionStepOneOf2Test.java
-src/test/java/dev/zernio/model/AutomationEventActionStepOneOf3Test.java
-src/test/java/dev/zernio/model/AutomationEventActionStepOneOf4Test.java
-src/test/java/dev/zernio/model/AutomationEventActionStepOneOfTest.java
-src/test/java/dev/zernio/model/AutomationEventActionStepTest.java
-src/test/java/dev/zernio/model/EventAutomationDefinitionStepsInnerTest.java
