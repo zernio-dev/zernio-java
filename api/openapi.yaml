@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.817.0
+  version: 1.818.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -132161,6 +132161,12 @@ components:
           $ref: "#/components/schemas/UsageMetering_tax"
         attribution:
           $ref: "#/components/schemas/UsageMetering_attribution"
+        incomplete:
+          description: "Check it before rebilling. Present and true when a read behind\
+            \ the split failed: a group's spend can then be lower than the real one\
+            \ (it is `unattributed` in a full breakdown, missing from a view of some\
+            \ profiles or accounts). Retry in a minute."
+          type: boolean
         scope:
           $ref: "#/components/schemas/UsageMetering_scope"
     UsageAttributionGroup:
