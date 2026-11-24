@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   SearchGoogleBusinessLocations200ResponseGoogleLocationsInner.JSON_PROPERTY_LOCATION,
   SearchGoogleBusinessLocations200ResponseGoogleLocationsInner.JSON_PROPERTY_REQUEST_ADMIN_RIGHTS_URI
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:10:00.268844791Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:16:13.789546512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchGoogleBusinessLocations200ResponseGoogleLocationsInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

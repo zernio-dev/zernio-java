@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   AdTreeAdSetAttributionSpecInner.JSON_PROPERTY_EVENT_TYPE,
   AdTreeAdSetAttributionSpecInner.JSON_PROPERTY_WINDOW_DAYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:10:00.268844791Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:16:13.789546512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeAdSetAttributionSpecInner {
   /**
    * Gets or Sets eventType

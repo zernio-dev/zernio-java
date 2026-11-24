@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   EmailSendAs.JSON_PROPERTY_REPLY_TO,
   EmailSendAs.JSON_PROPERTY_SIGNATURE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:10:00.268844791Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:16:13.789546512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EmailSendAs {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable

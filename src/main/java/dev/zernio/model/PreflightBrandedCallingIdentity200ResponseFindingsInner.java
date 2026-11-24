@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   PreflightBrandedCallingIdentity200ResponseFindingsInner.JSON_PROPERTY_FIELD,
   PreflightBrandedCallingIdentity200ResponseFindingsInner.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:10:00.268844791Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:16:13.789546512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PreflightBrandedCallingIdentity200ResponseFindingsInner {
   /**
    * Gets or Sets code

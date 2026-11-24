@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   VoiceCallLineRatesNetworksInner.JSON_PROPERTY_PER_MINUTE_USD,
   VoiceCallLineRatesNetworksInner.JSON_PROPERTY_ABOVE_RATE_CAP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:10:00.268844791Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:16:13.789546512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class VoiceCallLineRatesNetworksInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

@@ -57,7 +57,7 @@ import dev.zernio.ApiClient;
   AdRuleRunEvaluation.JSON_PROPERTY_ACTIONS,
   AdRuleRunEvaluation.JSON_PROPERTY_NOTIFICATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:10:00.268844791Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:16:13.789546512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleRunEvaluation {
   public static final String JSON_PROPERTY_UNREAD_OBJECTS = "unreadObjects";
   @javax.annotation.Nullable

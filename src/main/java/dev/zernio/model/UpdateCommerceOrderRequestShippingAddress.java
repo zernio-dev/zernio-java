@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   UpdateCommerceOrderRequestShippingAddress.JSON_PROPERTY_POSTAL_CODE,
   UpdateCommerceOrderRequestShippingAddress.JSON_PROPERTY_COUNTRY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:10:00.268844791Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T12:16:13.789546512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCommerceOrderRequestShippingAddress {
   public static final String JSON_PROPERTY_FIRST_NAME = "firstName";
   private JsonNullable<String> firstName = JsonNullable.<String>undefined();
