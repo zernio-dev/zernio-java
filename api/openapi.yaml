@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.814.0
+  version: 1.814.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -18299,6 +18299,10 @@ paths:
 
         Subsequent classic requests can change the ad-account scope using the business token. force=true (or disconnecting the business connection first) switches the profile to the standard Facebook login; the ads account is then held by the user token.
 
+        When the profile's accounts are already one per ad account of a single business login, `adAccountIds` adds an account per new entry. Existing accounts are never de-scoped: disconnect an account to remove its ad account.
+
+        With several of those accounts, disconnect each of them instead of passing force=true to switch to the standard Facebook login.
+
         ### Same-token platforms (facebook, instagram, linkedin, pinterest)
 
         The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when:
@@ -18725,11 +18729,18 @@ paths:
           description: |
             Conflict. One of:
 
-            - The Business Login connection needs reconnecting: reconnect it with loginMode=business, or pass force=true or disconnect it first to switch to the standard login.
+            - The Business Login connection needs reconnecting: reconnect it with loginMode=business, or pass force=true or disconnect it first to switch to the standard login. With one account per ad account, disconnect each of them.
             - ambiguous_account: the profile holds several active accounts of the platform and no accountId names one.
             - reconnect_required: force=true names the posting account the ads connection hangs off, and it is no longer connected.
           x-summary: "The ads connection conflicts with the existing connection, like\
             \ one needing reconnection or several matching accounts: follow the message."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: None of the requested ad accounts could be added. `details.failed`
+            lists each one with the reason.
         "503":
           description: Business login is not configured or the platform is temporarily
             unavailable.
