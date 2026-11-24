@@ -1129,7 +1129,7 @@ ApiResponse<[**GetLeadForm200Response**](GetLeadForm200Response.md)>
 
 List leads for a single form
 
-Lists the leads submitted through one Meta lead form.  It serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read.  ### Accounts  Accepts either of these with leads_retrieval access to the form:  - a Facebook account - a metaads business-login account, which uses its system-user token without a posting parent  ### Freshness  Persisted leads arrive in real time through Meta&#39;s webhook. A background pass re-reads every Page from Meta to catch the leads the webhook misses: every 15 minutes for Pages that received a lead in the last 7 days.  &#x60;meta.lastCheckedAt&#x60; says when that pass last ran, so polling this endpoint faster than that returns nothing new. Subscribe to the &#x60;lead.received&#x60; webhook instead.  The live Graph read is cached for 5 minutes, and &#x60;meta.lastCheckedAt&#x60; is when it was read. 
+Lists the leads submitted through one Meta lead form.  It serves the leads Zernio stored when the form has any, newest stored first. Otherwise it reads them live from Meta. No parameter forces a live read.  ### Accounts  Accepts either of these with leads_retrieval access to the form:  - a Facebook account - a metaads business-login account, which uses its system-user token without a posting parent  ### Freshness  Leads are stored within seconds through Meta&#39;s webhook. A recovery pass stores the leads the webhook missed and sends them as &#x60;lead.received&#x60; too.  Recovered leads usually arrive within 15 minutes for Pages with a lead in the last 7 days, up to 4 hours for Pages with forms but no recent lead, and up to 3 days for a Page&#39;s first lead form. Failing Meta reads add up to 24 hours.  Reading this endpoint does not trigger that pass. A live read that finds leads only moves the Page&#39;s next pass forward.  ### What recovery skips  For a form with no stored lead, recovery reaches back 7 days. It reads only the first 200 forms Meta lists for a Page and skips archived or deleted forms. It stores at most 50 new leads per form per pass, leaving the rest for the next pass.  A form whose missed backlog is too deep to page through is skipped and logged, so recovery is not proof that every lead is stored.  ### meta.lastCheckedAt  For stored leads, it is when the recovery pass last finished for the Page. That pass can skip forms, so the value can be recent while leads are missing, including on an empty page.  For live reads, it is when Meta was read. With content retained, that read is cached for 5 minutes. With zero content retention, every read is live and uncached.  ### Paging  Pass &#x60;pagination.cursor&#x60; back as &#x60;cursor&#x60; while &#x60;hasMore&#x60; is true. Pages are not a snapshot: leads stored after the first page, recovered ones included, sort first and appear only when you read from the start again. Deduplicate on &#x60;id&#x60;. 
 
 ### Example
 
@@ -1155,7 +1155,7 @@ public class Example {
         String formId = "formId_example"; // String | 
         String accountId = "accountId_example"; // String | 
         Integer limit = 25; // Integer | 
-        String cursor = "cursor_example"; // String | 
+        String cursor = "cursor_example"; // String | The pagination.cursor of the previous page.
         Integer since = 56; // Integer | Unix seconds.
         try {
             ListFormLeads200Response result = apiInstance.listFormLeads(formId, accountId, limit, cursor, since);
@@ -1179,7 +1179,7 @@ public class Example {
 | **formId** | **String**|  | |
 | **accountId** | **String**|  | |
 | **limit** | **Integer**|  | [optional] [default to 25] |
-| **cursor** | **String**|  | [optional] |
+| **cursor** | **String**| The pagination.cursor of the previous page. | [optional] |
 | **since** | **Integer**| Unix seconds. | [optional] |
 
 ### Return type
@@ -1211,7 +1211,7 @@ public class Example {
 
 List leads for a single form
 
-Lists the leads submitted through one Meta lead form.  It serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read.  ### Accounts  Accepts either of these with leads_retrieval access to the form:  - a Facebook account - a metaads business-login account, which uses its system-user token without a posting parent  ### Freshness  Persisted leads arrive in real time through Meta&#39;s webhook. A background pass re-reads every Page from Meta to catch the leads the webhook misses: every 15 minutes for Pages that received a lead in the last 7 days.  &#x60;meta.lastCheckedAt&#x60; says when that pass last ran, so polling this endpoint faster than that returns nothing new. Subscribe to the &#x60;lead.received&#x60; webhook instead.  The live Graph read is cached for 5 minutes, and &#x60;meta.lastCheckedAt&#x60; is when it was read. 
+Lists the leads submitted through one Meta lead form.  It serves the leads Zernio stored when the form has any, newest stored first. Otherwise it reads them live from Meta. No parameter forces a live read.  ### Accounts  Accepts either of these with leads_retrieval access to the form:  - a Facebook account - a metaads business-login account, which uses its system-user token without a posting parent  ### Freshness  Leads are stored within seconds through Meta&#39;s webhook. A recovery pass stores the leads the webhook missed and sends them as &#x60;lead.received&#x60; too.  Recovered leads usually arrive within 15 minutes for Pages with a lead in the last 7 days, up to 4 hours for Pages with forms but no recent lead, and up to 3 days for a Page&#39;s first lead form. Failing Meta reads add up to 24 hours.  Reading this endpoint does not trigger that pass. A live read that finds leads only moves the Page&#39;s next pass forward.  ### What recovery skips  For a form with no stored lead, recovery reaches back 7 days. It reads only the first 200 forms Meta lists for a Page and skips archived or deleted forms. It stores at most 50 new leads per form per pass, leaving the rest for the next pass.  A form whose missed backlog is too deep to page through is skipped and logged, so recovery is not proof that every lead is stored.  ### meta.lastCheckedAt  For stored leads, it is when the recovery pass last finished for the Page. That pass can skip forms, so the value can be recent while leads are missing, including on an empty page.  For live reads, it is when Meta was read. With content retained, that read is cached for 5 minutes. With zero content retention, every read is live and uncached.  ### Paging  Pass &#x60;pagination.cursor&#x60; back as &#x60;cursor&#x60; while &#x60;hasMore&#x60; is true. Pages are not a snapshot: leads stored after the first page, recovered ones included, sort first and appear only when you read from the start again. Deduplicate on &#x60;id&#x60;. 
 
 ### Example
 
@@ -1238,7 +1238,7 @@ public class Example {
         String formId = "formId_example"; // String | 
         String accountId = "accountId_example"; // String | 
         Integer limit = 25; // Integer | 
-        String cursor = "cursor_example"; // String | 
+        String cursor = "cursor_example"; // String | The pagination.cursor of the previous page.
         Integer since = 56; // Integer | Unix seconds.
         try {
             ApiResponse<ListFormLeads200Response> response = apiInstance.listFormLeadsWithHttpInfo(formId, accountId, limit, cursor, since);
@@ -1264,7 +1264,7 @@ public class Example {
 | **formId** | **String**|  | |
 | **accountId** | **String**|  | |
 | **limit** | **Integer**|  | [optional] [default to 25] |
-| **cursor** | **String**|  | [optional] |
+| **cursor** | **String**| The pagination.cursor of the previous page. | [optional] |
 | **since** | **Integer**| Unix seconds. | [optional] |
 
 ### Return type

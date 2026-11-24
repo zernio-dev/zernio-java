@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.819.0
+- API version: 1.819.1
 
-- Build date: 2026-11-24T17:37:28.497858773Z[Etc/UTC]
+- Build date: 2026-11-24T18:08:52.127643123Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.819.0</version>
+  <version>1.819.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.819.0"
+compile "dev.zernio:zernio-sdk:1.819.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.819.0.jar`
+- `target/zernio-sdk-1.819.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -5380,6 +5380,7 @@ Class | Method | HTTP request | Description
  - [ListFormLeads200Response](docs/ListFormLeads200Response.md)
  - [ListFormLeads200ResponseLeadsInner](docs/ListFormLeads200ResponseLeadsInner.md)
  - [ListFormLeads200ResponseMeta](docs/ListFormLeads200ResponseMeta.md)
+ - [ListFormLeads200ResponsePagination](docs/ListFormLeads200ResponsePagination.md)
  - [ListForwardingRules200Response](docs/ListForwardingRules200Response.md)
  - [ListGoogleAnalyticsProperties200Response](docs/ListGoogleAnalyticsProperties200Response.md)
  - [ListGoogleAnalyticsProperties200ResponsePropertiesInner](docs/ListGoogleAnalyticsProperties200ResponsePropertiesInner.md)

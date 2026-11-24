@@ -2525,6 +2525,7 @@ docs/ListFiles200Response.md
 docs/ListFormLeads200Response.md
 docs/ListFormLeads200ResponseLeadsInner.md
 docs/ListFormLeads200ResponseMeta.md
+docs/ListFormLeads200ResponsePagination.md
 docs/ListForwardingRules200Response.md
 docs/ListGoogleAnalyticsProperties200Response.md
 docs/ListGoogleAnalyticsProperties200ResponsePropertiesInner.md
@@ -6860,6 +6861,7 @@ src/main/java/dev/zernio/model/ListFiles200Response.java
 src/main/java/dev/zernio/model/ListFormLeads200Response.java
 src/main/java/dev/zernio/model/ListFormLeads200ResponseLeadsInner.java
 src/main/java/dev/zernio/model/ListFormLeads200ResponseMeta.java
+src/main/java/dev/zernio/model/ListFormLeads200ResponsePagination.java
 src/main/java/dev/zernio/model/ListForwardingRules200Response.java
 src/main/java/dev/zernio/model/ListGoogleAnalyticsProperties200Response.java
 src/main/java/dev/zernio/model/ListGoogleAnalyticsProperties200ResponsePropertiesInner.java
@@ -8577,3 +8579,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListFormLeads200ResponsePaginationTest.java
