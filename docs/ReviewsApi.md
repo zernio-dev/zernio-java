@@ -200,10 +200,10 @@ public class Example {
         ReviewsApi apiInstance = new ReviewsApi(defaultClient);
         String profileId = "profileId_example"; // String | 
         String platform = "facebook"; // String | 
-        Integer minRating = 56; // Integer | 
-        Integer maxRating = 56; // Integer | 
+        Integer minRating = 56; // Integer | Reviews without a star rating (Facebook recommendations) never match.
+        Integer maxRating = 56; // Integer | Reviews without a star rating (Facebook recommendations) never match.
         Boolean hasReply = true; // Boolean | Filter by reply status
-        String sortBy = "date"; // String | 
+        String sortBy = "date"; // String | rating puts reviews without a star rating last in both orders.
         String sortOrder = "asc"; // String | 
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | 
@@ -229,10 +229,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**|  | [optional] |
 | **platform** | **String**|  | [optional] [enum: facebook, googlebusiness] |
-| **minRating** | **Integer**|  | [optional] |
-| **maxRating** | **Integer**|  | [optional] |
+| **minRating** | **Integer**| Reviews without a star rating (Facebook recommendations) never match. | [optional] |
+| **maxRating** | **Integer**| Reviews without a star rating (Facebook recommendations) never match. | [optional] |
 | **hasReply** | **Boolean**| Filter by reply status | [optional] |
-| **sortBy** | **String**|  | [optional] [default to date] [enum: date, rating] |
+| **sortBy** | **String**| rating puts reviews without a star rating last in both orders. | [optional] [default to date] [enum: date, rating] |
 | **sortOrder** | **String**|  | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**|  | [optional] |
@@ -292,10 +292,10 @@ public class Example {
         ReviewsApi apiInstance = new ReviewsApi(defaultClient);
         String profileId = "profileId_example"; // String | 
         String platform = "facebook"; // String | 
-        Integer minRating = 56; // Integer | 
-        Integer maxRating = 56; // Integer | 
+        Integer minRating = 56; // Integer | Reviews without a star rating (Facebook recommendations) never match.
+        Integer maxRating = 56; // Integer | Reviews without a star rating (Facebook recommendations) never match.
         Boolean hasReply = true; // Boolean | Filter by reply status
-        String sortBy = "date"; // String | 
+        String sortBy = "date"; // String | rating puts reviews without a star rating last in both orders.
         String sortOrder = "asc"; // String | 
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | 
@@ -323,10 +323,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**|  | [optional] |
 | **platform** | **String**|  | [optional] [enum: facebook, googlebusiness] |
-| **minRating** | **Integer**|  | [optional] |
-| **maxRating** | **Integer**|  | [optional] |
+| **minRating** | **Integer**| Reviews without a star rating (Facebook recommendations) never match. | [optional] |
+| **maxRating** | **Integer**| Reviews without a star rating (Facebook recommendations) never match. | [optional] |
 | **hasReply** | **Boolean**| Filter by reply status | [optional] |
-| **sortBy** | **String**|  | [optional] [default to date] [enum: date, rating] |
+| **sortBy** | **String**| rating puts reviews without a star rating last in both orders. | [optional] [default to date] [enum: date, rating] |
 | **sortOrder** | **String**|  | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**|  | [optional] |

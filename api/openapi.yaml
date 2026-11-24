@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.820.0
+  version: 1.821.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -42089,7 +42089,9 @@ paths:
           - googlebusiness
           type: string
         style: form
-      - explode: true
+      - description: Reviews without a star rating (Facebook recommendations) never
+          match.
+        explode: true
         in: query
         name: minRating
         required: false
@@ -42098,7 +42100,9 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - explode: true
+      - description: Reviews without a star rating (Facebook recommendations) never
+          match.
+        explode: true
         in: query
         name: maxRating
         required: false
@@ -42115,7 +42119,8 @@ paths:
         schema:
           type: boolean
         style: form
-      - explode: true
+      - description: rating puts reviews without a star rating last in both orders.
+        explode: true
         in: query
         name: sortBy
         required: false
@@ -131652,6 +131657,7 @@ components:
             - **Instagram Login accounts:** the app-scoped user id (the professional account id is in `metadata.instagramScopedId`).
             - **Instagram via Facebook Login:** the professional account id (`17841...`).
             - **TikTok:** the open_id of Zernio's TikTok app, which differs from the open_id any other app sees for the same user.
+            - **Google Business Profile:** `<googleUserId>:location:<locationId>`, the Google user that connected it and the selected location. The location part is empty until a location is selected.
 
             Either value can be passed back as `expectedPlatformUserId` on GET /v1/connect/{platform}.
           type: string
@@ -184421,16 +184427,21 @@ components:
           format: uri
           type: string
     listInboxReviews_200_response_data_inner_reply:
+      description: The reply from the Page or business. Absent when hasReply is false.
       example:
         created: 2000-01-23T04:56:07.000+00:00
         id: id
         text: text
       properties:
         id:
+          description: Reply id. On Google Business Profile it is the review id.
           type: string
         text:
+          description: Reply text.
           type: string
         created:
+          description: "When the reply was written (on Google Business Profile, last\
+            \ updated)."
           format: date-time
           type: string
     listInboxReviews_200_response_data_inner:
@@ -184484,6 +184495,9 @@ components:
         reviewer:
           $ref: "#/components/schemas/listInboxReviews_200_response_data_inner_reviewer"
         rating:
+          description: "Star rating the reviewer gave, 1 to 5. Null for a Facebook\
+            \ recommendation without stars (see recommendationType)."
+          nullable: true
           type: integer
         recommendationType:
           description: "Facebook recommendation: positive means recommends, negative\
@@ -184575,13 +184589,20 @@ components:
             $ref: "#/components/schemas/listInboxConversations_200_response_meta_accountsSkipped_inner"
           type: array
     listInboxReviews_200_response_summary:
+      description: "Computed over every review matching the filters, before pagination.\
+        \ A Facebook Page contributes the Page-wide count and average Facebook reports,\
+        \ which ignore the filters. Google Business Profile locations are computed\
+        \ over the reviews read, partial for accounts in meta.truncatedAccounts."
       example:
         totalReviews: 5
         averageRating: 2.3021358869347655
       properties:
         totalReviews:
+          description: Includes reviews without a star rating.
           type: integer
         averageRating:
+          description: "Mean star rating rounded to one decimal, leaving out reviews\
+            \ without a star rating. Null when none has one."
           nullable: true
           type: number
     listInboxReviews_200_response:
