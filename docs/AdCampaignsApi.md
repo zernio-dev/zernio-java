@@ -10307,6 +10307,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **200** | Campaign status updated |  -  |
 | **400** | Invalid input, campaign spans multiple accounts, or the platform refused the write (&#x60;platform_api_error&#x60;, see Retrying above) |  -  |
@@ -10390,6 +10391,7 @@ ApiResponse<[**UpdateAdCampaignStatus200Response**](UpdateAdCampaignStatus200Res
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **200** | Campaign status updated |  -  |
 | **400** | Invalid input, campaign spans multiple accounts, or the platform refused the write (&#x60;platform_api_error&#x60;, see Retrying above) |  -  |
@@ -10965,6 +10967,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **200** | Ad set status updated |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -11047,6 +11050,7 @@ ApiResponse<[**UpdateAdSetStatus200Response**](UpdateAdSetStatus200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **200** | Ad set status updated |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
@@ -11127,6 +11131,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **200** | Ad status updated (or skipped when no change was needed) |  -  |
 | **400** | Invalid input |  -  |
@@ -11209,6 +11214,7 @@ ApiResponse<[**UpdateAdStatus200Response**](UpdateAdStatus200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **200** | Ad status updated (or skipped when no change was needed) |  -  |
 | **400** | Invalid input |  -  |

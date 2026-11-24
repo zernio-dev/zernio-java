@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.810.0
+- API version: 1.811.0
 
-- Build date: 2026-11-24T12:02:58.886444570Z[Etc/UTC]
+- Build date: 2026-11-24T12:10:00.268844791Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.810.0</version>
+  <version>1.811.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.810.0"
+compile "dev.zernio:zernio-sdk:1.811.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.810.0.jar`
+- `target/zernio-sdk-1.811.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -573,6 +573,12 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**updateCampaignTargetingWithHttpInfo**](docs/AdCampaignsApi.md#updateCampaignTargetingWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, excluded location, or language targeting
 *AdCampaignsApi* | [**updateGoogleAssetGroup**](docs/AdCampaignsApi.md#updateGoogleAssetGroup) | **PATCH** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Update a Performance Max asset group
 *AdCampaignsApi* | [**updateGoogleAssetGroupWithHttpInfo**](docs/AdCampaignsApi.md#updateGoogleAssetGroupWithHttpInfo) | **PATCH** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Update a Performance Max asset group
+*AdChangesApi* | [**confirmAdChange**](docs/AdChangesApi.md#confirmAdChange) | **POST** /v1/ads/changes/{changeId}/confirm | Confirm a staged ad change
+*AdChangesApi* | [**confirmAdChangeWithHttpInfo**](docs/AdChangesApi.md#confirmAdChangeWithHttpInfo) | **POST** /v1/ads/changes/{changeId}/confirm | Confirm a staged ad change
+*AdChangesApi* | [**discardAdChange**](docs/AdChangesApi.md#discardAdChange) | **DELETE** /v1/ads/changes/{changeId} | Discard a staged ad change
+*AdChangesApi* | [**discardAdChangeWithHttpInfo**](docs/AdChangesApi.md#discardAdChangeWithHttpInfo) | **DELETE** /v1/ads/changes/{changeId} | Discard a staged ad change
+*AdChangesApi* | [**getAdChange**](docs/AdChangesApi.md#getAdChange) | **GET** /v1/ads/changes/{changeId} | Get a staged ad change
+*AdChangesApi* | [**getAdChangeWithHttpInfo**](docs/AdChangesApi.md#getAdChangeWithHttpInfo) | **GET** /v1/ads/changes/{changeId} | Get a staged ad change
 *AdCreativesApi* | [**createAdCreative**](docs/AdCreativesApi.md#createAdCreative) | **POST** /v1/ads/creatives | Create a standalone creative
 *AdCreativesApi* | [**createAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#createAdCreativeWithHttpInfo) | **POST** /v1/ads/creatives | Create a standalone creative
 *AdCreativesApi* | [**deleteAdCreative**](docs/AdCreativesApi.md#deleteAdCreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative
@@ -4415,6 +4421,7 @@ Class | Method | HTTP request | Description
  - [GetAdCatalogBatch200Response](docs/GetAdCatalogBatch200Response.md)
  - [GetAdCatalogBatch200ResponseBatch](docs/GetAdCatalogBatch200ResponseBatch.md)
  - [GetAdCatalogBatch200ResponseBatchErrorsInner](docs/GetAdCatalogBatch200ResponseBatchErrorsInner.md)
+ - [GetAdChange200Response](docs/GetAdChange200Response.md)
  - [GetAdComments200Response](docs/GetAdComments200Response.md)
  - [GetAdComments200ResponseMeta](docs/GetAdComments200ResponseMeta.md)
  - [GetAdComments200ResponsePagination](docs/GetAdComments200ResponsePagination.md)
@@ -6223,6 +6230,9 @@ Class | Method | HTTP request | Description
  - [SnapchatPlatformData](docs/SnapchatPlatformData.md)
  - [SocialAccount](docs/SocialAccount.md)
  - [SocialAccountProfileId](docs/SocialAccountProfileId.md)
+ - [StagedAdChange](docs/StagedAdChange.md)
+ - [StagedAdChangeDiffInner](docs/StagedAdChangeDiffInner.md)
+ - [StagedAdChangeError](docs/StagedAdChangeError.md)
  - [StartBusinessAgentEvalRun202Response](docs/StartBusinessAgentEvalRun202Response.md)
  - [StartBusinessAgentEvalRunRequest](docs/StartBusinessAgentEvalRunRequest.md)
  - [StartCreatorConnect200Response](docs/StartCreatorConnect200Response.md)

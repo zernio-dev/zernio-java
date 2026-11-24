@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.810.0
+  version: 1.811.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -362,6 +362,9 @@ tags:
     Rules that check campaigns, ad sets, ads, Google keywords or Google search terms on a schedule and pause, reactivate, rebudget or notify
     when their metrics cross a threshold. Requires the Ads add-on.
   name: Ad Rules
+- description: |
+    Staged ad changes. Send a supported ad write with `stage: true` and it is validated and stored instead of applied. Read the change to see its before/after diff, confirm it to apply it, or discard it. A staged change does not expire. Meta and Google only. Requires the Ads add-on.
+  name: Ad Changes
 - description: |
     One API for every automation: ad rules that check ads on a schedule, event automations that run when something happens in Zernio, and scheduled automations that check posts. Each has a `trigger`, the `subjects` it checks, the `steps` it takes and its `limits`.
 
@@ -60626,6 +60629,205 @@ paths:
       - reddit
       x-accepts:
       - application/json
+  /v1/ads/changes/{changeId}:
+    delete:
+      description: |
+        Deletes a change that is still staged. Nothing was written to the ad network, so there is nothing to undo.
+
+        A change that was already confirmed or has failed cannot be discarded.
+      operationId: discardAdChange
+      parameters:
+      - description: The id of the staged change.
+        explode: false
+        in: path
+        name: changeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Change discarded
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Ads access required (code `ads_addon_required`). Legacy plans
+            need the Ads add-on; included by default on usage-based plans.
+          x-summary: "Ads access is required: legacy plans need the Ads add-on, and\
+            \ usage-based plans include it by default."
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The change is no longer staged: `change_not_staged` when it\
+            \ was confirmed or has failed, `change_outcome_unknown` while a confirm\
+            \ is running."
+          x-summary: "The change is no longer staged, so it cannot be discarded."
+      security:
+      - bearerAuth: []
+      summary: Discard a staged ad change
+      tags:
+      - Ad Changes
+      x-resource-group: ads
+      x-oauth-scopes:
+      - ads:write
+      x-platforms:
+      - meta
+      - google
+      x-accepts:
+      - application/json
+    get:
+      description: |
+        Returns one ad change with its before/after diff. A change is created by sending a supported ad write with `stage: true`.
+
+        A staged change does not expire. A confirmed or failed change stays readable for 7 days.
+      operationId: getAdChange
+      parameters:
+      - description: The id of the staged change.
+        explode: false
+        in: path
+        name: changeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdChange_200_response"
+          description: The change
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Ads access required (code `ads_addon_required`). Legacy plans
+            need the Ads add-on; included by default on usage-based plans.
+          x-summary: "Ads access is required: legacy plans need the Ads add-on, and\
+            \ usage-based plans include it by default."
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a staged ad change
+      tags:
+      - Ad Changes
+      x-resource-group: ads
+      x-oauth-scopes:
+      - ads:write
+      - ads:read
+      x-platforms:
+      - meta
+      - google
+      x-accepts:
+      - application/json
+    parameters:
+    - description: The id of the staged change.
+      explode: false
+      in: path
+      name: changeId
+      required: true
+      schema:
+        type: string
+      style: simple
+  /v1/ads/changes/{changeId}/confirm:
+    post:
+      description: |
+        Applies a staged change and returns what the direct write returns: the response body of the route the change was staged on.
+
+        The caller needs the same access to the object as for the direct write, and the checks of that write run here, including the live ads allowance.
+
+        ### Changed since staging
+
+        Before writing, the object is read from the ad network again and compared with what it held when the change was staged.
+
+        If it changed in between, nothing is written, the change ends as `failed` and the answer is `409` `change_target_changed` with the current values in `details.current`. Stage the change again from those values.
+
+        ### Retrying
+
+        A change is applied at most once. Confirming a change that is already `confirmed` returns its stored result again. A change that failed answers `409` `change_not_staged`: stage a new one.
+      operationId: confirmAdChange
+      parameters:
+      - description: The id of the staged change.
+        explode: false
+        in: path
+        name: changeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                updated: 1
+                skipped: 0
+                status: paused
+                platformCampaignStatus: PAUSED
+                statusReadAt: 2026-11-20T10:05:00.000Z
+              schema:
+                additionalProperties: true
+                type: object
+          description: "The change was applied. The body is the response of the staged\
+            \ write, for example the body of PUT /v1/ads/campaigns/{campaignId}/status."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The refusals of the staged write: `ads_addon_required`, `ads_allowance_exceeded`\
+            \ or `ad_account_not_selected`. An allowance refusal ends the change as\
+            \ `failed`."
+          x-summary: "Ads access is missing, the free live ads limit is reached without\
+            \ a card, or the ad account is not selected."
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: |
+            The change was not applied. The code says why:
+
+            - `change_target_changed`: the object changed on the ad network after the change was staged. `details.current` carries its current values.
+            - `change_not_staged`: the change has already failed.
+            - `change_outcome_unknown`: another confirm of this change is running, or one started and never recorded how it ended. Read the change, and check the object on the ad network before staging a new one.
+          x-summary: "The object changed on the ad network since staging, or the change\
+            \ is no longer staged."
+      security:
+      - bearerAuth: []
+      summary: Confirm a staged ad change
+      tags:
+      - Ad Changes
+      x-resource-group: ads
+      x-oauth-scopes:
+      - ads:write
+      x-platforms:
+      - meta
+      - google
+      x-accepts:
+      - application/json
   /v1/ads/rules/{ruleId}:
     delete:
       description: |
@@ -62166,6 +62368,13 @@ paths:
               $ref: "#/components/schemas/updateAdCampaignStatus_request"
         required: true
       responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdChange_200_response"
+          description: "Sent with `stage: true`. The change was validated and stored,\
+            \ and nothing was written to the ad network."
         "409":
           $ref: "#/components/responses/IdempotencyKeyInFlight"
         "200":
@@ -64470,6 +64679,13 @@ paths:
               $ref: "#/components/schemas/updateAdCampaignStatus_request"
         required: true
       responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdChange_200_response"
+          description: "Sent with `stage: true`. The change was validated and stored,\
+            \ and nothing was written to the ad network."
         "200":
           content:
             application/json:
@@ -65791,6 +66007,13 @@ paths:
               $ref: "#/components/schemas/updateAdStatus_request"
         required: true
       responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdChange_200_response"
+          description: "Sent with `stage: true`. The change was validated and stored,\
+            \ and nothing was written to the ad network."
         "409":
           $ref: "#/components/responses/IdempotencyKeyInFlight"
         "200":
@@ -149509,6 +149732,98 @@ components:
       - evaluated
       - heldBack
       - matched
+    StagedAdChange:
+      description: "An ad write that was validated and stored with `stage: true`,\
+        \ waiting to be confirmed or discarded."
+      example:
+        id: 6790a1b2c3d4e5f6a7b8c9d0
+        type: campaign_status
+        platform: facebook
+        accountId: 665f1c2ab3d4e5f6a7b8c9d0
+        adAccountId: act_757082720485182
+        targetId: "120214567890123456"
+        status: staged
+        diff:
+        - field: status
+          before: active
+          after: paused
+          beforeAvailable: true
+        createdBy: 665f1c2ab3d4e5f6a7b8c9d1
+        createdAt: 2026-11-20T10:00:00.000Z
+        finishedAt: null
+      properties:
+        id:
+          description: "The change id, used in /v1/ads/changes/{changeId}."
+          type: string
+        type:
+          description: Which write was staged.
+          enum:
+          - campaign_status
+          - ad_set_status
+          - ad_status
+          type: string
+        platform:
+          description: "The ad platform of the object, as the write route names it."
+          example: facebook
+          type: string
+        accountId:
+          description: The connected account the write goes through.
+          type: string
+        adAccountId:
+          description: The ad account id on the platform.
+          type: string
+        targetId:
+          description: "The object the change applies to: the platform campaign id,\
+            \ the platform ad set id, or the Zernio ad id."
+          nullable: true
+          type: string
+        status:
+          description: |
+            - `staged`: waiting to be confirmed or discarded.
+            - `confirming`: a confirm is running. A change that stays here has an unknown outcome and is never applied again automatically.
+            - `confirmed`: applied. `result` holds what the write returned.
+            - `failed`: not applied. `error` says why.
+          enum:
+          - staged
+          - confirming
+          - confirmed
+          - failed
+          type: string
+        diff:
+          description: One entry per field of the staged request.
+          items:
+            $ref: "#/components/schemas/StagedAdChange_diff_inner"
+          type: array
+        createdBy:
+          description: The user who staged the change.
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        finishedAt:
+          description: "When the confirm ended, as `confirmed` or `failed`. A finished\
+            \ change is deleted 7 days later."
+          format: date-time
+          nullable: true
+          type: string
+        result:
+          additionalProperties: true
+          description: "Present once `confirmed`: the response body of the write."
+          type: object
+        error:
+          $ref: "#/components/schemas/StagedAdChange_error"
+      required:
+      - accountId
+      - adAccountId
+      - createdAt
+      - createdBy
+      - diff
+      - finishedAt
+      - id
+      - platform
+      - status
+      - targetId
+      - type
     AdRule:
       example:
         lastRunAt: 2000-01-23T04:56:07.000+00:00
@@ -205012,6 +205327,29 @@ components:
           $ref: "#/components/schemas/undoAdRuleActivity_200_response_undo"
       required:
       - undo
+    getAdChange_200_response:
+      example:
+        change:
+          id: 6790a1b2c3d4e5f6a7b8c9d0
+          type: campaign_status
+          platform: facebook
+          accountId: 665f1c2ab3d4e5f6a7b8c9d0
+          adAccountId: act_757082720485182
+          targetId: "120214567890123456"
+          status: staged
+          diff:
+          - field: status
+            before: active
+            after: paused
+            beforeAvailable: true
+          createdBy: 665f1c2ab3d4e5f6a7b8c9d1
+          createdAt: 2026-11-20T10:00:00.000Z
+          finishedAt: null
+      properties:
+        change:
+          $ref: "#/components/schemas/StagedAdChange"
+      required:
+      - change
     updateAdRule_request:
       properties:
         name:
@@ -206407,6 +206745,12 @@ components:
           - tradedesk
           - snapchat
           type: string
+        stage:
+          description: "Send true to stage this change instead of applying it. Nothing\
+            \ is written to the ad network; the response is `202` with the staged\
+            \ change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm.\
+            \ Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+          type: boolean
       required:
       - platform
       - status
@@ -212836,6 +213180,12 @@ components:
           - active
           - paused
           type: string
+        stage:
+          description: "Send true to stage this change instead of applying it. Nothing\
+            \ is written to the ad network; the response is `202` with the staged\
+            \ change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm.\
+            \ Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+          type: boolean
       required:
       - status
     updateAdStatus_200_response:
@@ -223564,6 +223914,7 @@ components:
             - **LinkedIn:** required for `traffic` ads, optional for `engagement` / `awareness`. `imageUrl` + `linkUrl` publishes an ARTICLE-content creative (LinkedIn's article ad format), with the image as thumbnail and `longHeadline` as description.
             - **OpenAI Ads:** required (the chat card's target_url).
             - **Reddit:** required on image and video ads (the post's destination and the ad's click URL), the fallback for carousel cards without their own, and refused with 400 on text ads.
+            - **TikTok:** not required with goal `engagement` or `app_promotion`. With `smartPlus: true` and `adSetId`, required unless that ad group's campaign promotes an app.
           format: uri
           type: string
         callToActionLink:
@@ -223637,7 +223988,7 @@ components:
 
             **Platforms.** Supported on Meta (facebook, instagram), Google Ads, TikTok, LinkedIn and Reddit Ads.
 
-            - TikTok: `adSetId` is the ad group ID; the new ad inherits the ad group's bid, budget and targeting.
+            - TikTok: `adSetId` is the ad group ID; the new ad inherits the ad group's bid, budget and targeting. For an ad group of an Upgraded Smart+ campaign, also send `smartPlus: true` (see `smartPlus`).
             - LinkedIn: `adSetId` is the LinkedIn Campaign ID (numeric). We attach a new Creative to that Campaign, so its `platformSpecificData` bidding, targeting, budget and schedule are inherited (passing those fields returns 400).
             - Reddit Ads: `adSetId` is the AD GROUP id. Only the post and the ad are created; the ad group keeps its budget, schedule, targeting, bid and optimization. `goal` is not required. An ad group of another ad account returns 404.
             - Reddit Ads, rejected with 400: `budgetAmount`, `budgetType`, `startDate`, `endDate`, targeting fields, `promotedObject`, `tracking.pixelId` and `optimizationGoal`.
@@ -224384,7 +224735,14 @@ components:
 
             Targeting works like on any TikTok ad (defaults to `countries: ["US"]` when omitted), and TikTok automates delivery within it.
 
-            The budget lives on the Smart+ campaign (Campaign Budget Optimization). A `lifetime` budget without `endDate` ends 7 days after it starts. Smart+ needs `goal` sent; it is never inferred. Cannot be combined with `adSetId`.
+            The budget lives on the Smart+ campaign (Campaign Budget Optimization). A `lifetime` budget without `endDate` ends 7 days after it starts. Smart+ needs `goal` sent; it is never inferred.
+
+            **Adding a creative to an existing Smart+ ad group.** With `adSetId` (an ad group of an Upgraded Smart+ campaign), the uploaded video (`imageUrl`) and `body` become one more Smart+ ad in that ad group, under `identityType` / `identityId`.
+
+            - The campaign keeps its goal, budget and bid, so `goal`, `promotedObject` and the budget fields are not needed. Targeting stays the ad group's (`smartTargeting` returns 400).
+            - `linkUrl` is required unless the campaign is `app_promotion`, where the app is the destination and `linkUrl` is not used. Ad groups that use a TikTok Instant Form are not supported.
+            - An ad group outside a Smart+ campaign returns 400 on `adSetId`.
+            - `status: PAUSED` leaves the new ad paused. `validateOnly` is not supported with `adSetId`.
           type: boolean
         userOs:
           description: "Meta only. Operating systems and version ranges, such as iOS_ver_14.0_and_above\
@@ -264252,6 +264610,32 @@ components:
       required:
       - subject
       - type
+    StagedAdChange_diff_inner:
+      properties:
+        field:
+          example: status
+          type: string
+        before: {}
+        after: {}
+        beforeAvailable:
+          description: "False when the live read of the object does not return this\
+            \ field, so `before` is unknown."
+          type: boolean
+      required:
+      - after
+      - before
+      - beforeAvailable
+      - field
+    StagedAdChange_error:
+      description: Present once `failed`.
+      properties:
+        code:
+          description: "An error code, or `target_changed` when the object changed\
+            \ on the ad network after staging."
+          type: string
+        message:
+          nullable: true
+          type: string
     AdRuleObjectEvaluation_conditions_inner:
       allOf:
       - $ref: "#/components/schemas/AdRuleCondition"

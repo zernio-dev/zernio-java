@@ -38,6 +38,7 @@ docs/AdCampaign.md
 docs/AdCampaignBudget.md
 docs/AdCampaignResultsApi.md
 docs/AdCampaignsApi.md
+docs/AdChangesApi.md
 docs/AdCreative.md
 docs/AdCreativeAssetFeed.md
 docs/AdCreativeAssetFeedImagesInner.md
@@ -1552,6 +1553,7 @@ docs/GetAdCampaignDetails200Response.md
 docs/GetAdCatalogBatch200Response.md
 docs/GetAdCatalogBatch200ResponseBatch.md
 docs/GetAdCatalogBatch200ResponseBatchErrorsInner.md
+docs/GetAdChange200Response.md
 docs/GetAdComments200Response.md
 docs/GetAdComments200ResponseMeta.md
 docs/GetAdComments200ResponsePagination.md
@@ -3394,6 +3396,9 @@ docs/SmsRegistrationReviewRequestPointsInner.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
 docs/SocialAccountProfileId.md
+docs/StagedAdChange.md
+docs/StagedAdChangeDiffInner.md
+docs/StagedAdChangeError.md
 docs/StartBusinessAgentEvalRun202Response.md
 docs/StartBusinessAgentEvalRunRequest.md
 docs/StartCreatorConnect200Response.md
@@ -4298,6 +4303,7 @@ src/main/java/dev/zernio/api/AdAccountsApi.java
 src/main/java/dev/zernio/api/AdAudiencesApi.java
 src/main/java/dev/zernio/api/AdCampaignResultsApi.java
 src/main/java/dev/zernio/api/AdCampaignsApi.java
+src/main/java/dev/zernio/api/AdChangesApi.java
 src/main/java/dev/zernio/api/AdCreativesApi.java
 src/main/java/dev/zernio/api/AdInsightsApi.java
 src/main/java/dev/zernio/api/AdLibraryApi.java
@@ -5893,6 +5899,7 @@ src/main/java/dev/zernio/model/GetAdCampaignDetails200Response.java
 src/main/java/dev/zernio/model/GetAdCatalogBatch200Response.java
 src/main/java/dev/zernio/model/GetAdCatalogBatch200ResponseBatch.java
 src/main/java/dev/zernio/model/GetAdCatalogBatch200ResponseBatchErrorsInner.java
+src/main/java/dev/zernio/model/GetAdChange200Response.java
 src/main/java/dev/zernio/model/GetAdComments200Response.java
 src/main/java/dev/zernio/model/GetAdComments200ResponseMeta.java
 src/main/java/dev/zernio/model/GetAdComments200ResponsePagination.java
@@ -7701,6 +7708,9 @@ src/main/java/dev/zernio/model/SmsRegistrationReviewRequestPointsInner.java
 src/main/java/dev/zernio/model/SnapchatPlatformData.java
 src/main/java/dev/zernio/model/SocialAccount.java
 src/main/java/dev/zernio/model/SocialAccountProfileId.java
+src/main/java/dev/zernio/model/StagedAdChange.java
+src/main/java/dev/zernio/model/StagedAdChangeDiffInner.java
+src/main/java/dev/zernio/model/StagedAdChangeError.java
 src/main/java/dev/zernio/model/StartBusinessAgentEvalRun202Response.java
 src/main/java/dev/zernio/model/StartBusinessAgentEvalRunRequest.java
 src/main/java/dev/zernio/model/StartCreatorConnect200Response.java
@@ -8559,3 +8569,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/api/AdChangesApiTest.java
+src/test/java/dev/zernio/model/GetAdChange200ResponseTest.java
+src/test/java/dev/zernio/model/StagedAdChangeDiffInnerTest.java
+src/test/java/dev/zernio/model/StagedAdChangeErrorTest.java
+src/test/java/dev/zernio/model/StagedAdChangeTest.java
