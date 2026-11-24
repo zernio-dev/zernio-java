@@ -39,6 +39,8 @@ import dev.zernio.ApiClient;
   ConversionEventUserClickIds.JSON_PROPERTY_GBRAID,
   ConversionEventUserClickIds.JSON_PROPERTY_WBRAID,
   ConversionEventUserClickIds.JSON_PROPERTY_LI_FAT_ID,
+  ConversionEventUserClickIds.JSON_PROPERTY_TTCLID,
+  ConversionEventUserClickIds.JSON_PROPERTY_TTP,
   ConversionEventUserClickIds.JSON_PROPERTY_EPIK,
   ConversionEventUserClickIds.JSON_PROPERTY_RDT_CID,
   ConversionEventUserClickIds.JSON_PROPERTY_RDT_UUID,
@@ -58,7 +60,7 @@ import dev.zernio.ApiClient;
   ConversionEventUserClickIds.JSON_PROPERTY_UID2,
   ConversionEventUserClickIds.JSON_PROPERTY_UID2_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:43:00.418848182Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:52:17.731351391Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEventUserClickIds {
   public static final String JSON_PROPERTY_FBC = "fbc";
   @javax.annotation.Nullable
@@ -83,6 +85,14 @@ public class ConversionEventUserClickIds {
   public static final String JSON_PROPERTY_LI_FAT_ID = "li_fat_id";
   @javax.annotation.Nullable
   private String liFatId;
+
+  public static final String JSON_PROPERTY_TTCLID = "ttclid";
+  @javax.annotation.Nullable
+  private String ttclid;
+
+  public static final String JSON_PROPERTY_TTP = "ttp";
+  @javax.annotation.Nullable
+  private String ttp;
 
   public static final String JSON_PROPERTY_EPIK = "epik";
   @javax.annotation.Nullable
@@ -300,6 +310,54 @@ public class ConversionEventUserClickIds {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLiFatId(@javax.annotation.Nullable String liFatId) {
     this.liFatId = liFatId;
+  }
+
+
+  public ConversionEventUserClickIds ttclid(@javax.annotation.Nullable String ttclid) {
+    this.ttclid = ttclid;
+    return this;
+  }
+
+  /**
+   * TikTok click ID (the &#x60;ttclid&#x60; URL param TikTok adds to ad clicks). Sent to TikTok pixel destinations as &#x60;user.ttclid&#x60;, not hashed.
+   * @return ttclid
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TTCLID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTtclid() {
+    return ttclid;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TTCLID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTtclid(@javax.annotation.Nullable String ttclid) {
+    this.ttclid = ttclid;
+  }
+
+
+  public ConversionEventUserClickIds ttp(@javax.annotation.Nullable String ttp) {
+    this.ttp = ttp;
+    return this;
+  }
+
+  /**
+   * TikTok Pixel browser id (the &#x60;_ttp&#x60; cookie). Sent to TikTok pixel destinations as &#x60;user.ttp&#x60;, not hashed. Offline Event Sets match on email and phone only.
+   * @return ttp
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TTP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTtp() {
+    return ttp;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TTP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTtp(@javax.annotation.Nullable String ttp) {
+    this.ttp = ttp;
   }
 
 
@@ -753,6 +811,8 @@ public class ConversionEventUserClickIds {
         Objects.equals(this.gbraid, conversionEventUserClickIds.gbraid) &&
         Objects.equals(this.wbraid, conversionEventUserClickIds.wbraid) &&
         Objects.equals(this.liFatId, conversionEventUserClickIds.liFatId) &&
+        Objects.equals(this.ttclid, conversionEventUserClickIds.ttclid) &&
+        Objects.equals(this.ttp, conversionEventUserClickIds.ttp) &&
         Objects.equals(this.epik, conversionEventUserClickIds.epik) &&
         Objects.equals(this.rdtCid, conversionEventUserClickIds.rdtCid) &&
         Objects.equals(this.rdtUuid, conversionEventUserClickIds.rdtUuid) &&
@@ -775,7 +835,7 @@ public class ConversionEventUserClickIds {
 
   @Override
   public int hashCode() {
-    return Objects.hash(fbc, fbp, gclid, gbraid, wbraid, liFatId, epik, rdtCid, rdtUuid, aleid, alart, axwrt, twclid, msclkid, sccid, scid, tblci, obClickId, irclickid, awc, dclid, tdid, uid2, uid2Token);
+    return Objects.hash(fbc, fbp, gclid, gbraid, wbraid, liFatId, ttclid, ttp, epik, rdtCid, rdtUuid, aleid, alart, axwrt, twclid, msclkid, sccid, scid, tblci, obClickId, irclickid, awc, dclid, tdid, uid2, uid2Token);
   }
 
   @Override
@@ -788,6 +848,8 @@ public class ConversionEventUserClickIds {
     sb.append("    gbraid: ").append(toIndentedString(gbraid)).append("\n");
     sb.append("    wbraid: ").append(toIndentedString(wbraid)).append("\n");
     sb.append("    liFatId: ").append(toIndentedString(liFatId)).append("\n");
+    sb.append("    ttclid: ").append(toIndentedString(ttclid)).append("\n");
+    sb.append("    ttp: ").append(toIndentedString(ttp)).append("\n");
     sb.append("    epik: ").append(toIndentedString(epik)).append("\n");
     sb.append("    rdtCid: ").append(toIndentedString(rdtCid)).append("\n");
     sb.append("    rdtUuid: ").append(toIndentedString(rdtUuid)).append("\n");
@@ -881,6 +943,16 @@ public class ConversionEventUserClickIds {
     // add `li_fat_id` to the URL query string
     if (getLiFatId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sli_fat_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLiFatId()))));
+    }
+
+    // add `ttclid` to the URL query string
+    if (getTtclid() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sttclid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTtclid()))));
+    }
+
+    // add `ttp` to the URL query string
+    if (getTtp() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sttp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTtp()))));
     }
 
     // add `epik` to the URL query string

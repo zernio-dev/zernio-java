@@ -265456,6 +265456,15 @@ components:
             LINKEDIN_FIRST_PARTY_ADS_TRACKING_UUID userId. Opaque
             token, not hashed.
           type: string
+        ttclid:
+          description: "TikTok click ID (the `ttclid` URL param TikTok adds to ad\
+            \ clicks). Sent to TikTok pixel destinations as `user.ttclid`, not hashed."
+          type: string
+        ttp:
+          description: "TikTok Pixel browser id (the `_ttp` cookie). Sent to TikTok\
+            \ pixel destinations as `user.ttp`, not hashed. Offline Event Sets match\
+            \ on email and phone only."
+          type: string
         epik:
           description: "Pinterest click ID (the `epik` URL param or `_epik` cookie).\
             \ Sent to Pinterest as `click_id`, not hashed."

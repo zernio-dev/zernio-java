@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   StartCreatorPayouts200Response.JSON_PROPERTY_URL,
   StartCreatorPayouts200Response.JSON_PROPERTY_CLIENT_SECRET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:43:00.418848182Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:52:17.731351391Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartCreatorPayouts200Response {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull

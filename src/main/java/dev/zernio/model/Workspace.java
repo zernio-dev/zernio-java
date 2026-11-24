@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   Workspace.JSON_PROPERTY_CREATED_AT,
   Workspace.JSON_PROPERTY_DELETION_SCHEDULED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:43:00.418848182Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T13:52:17.731351391Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Workspace {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
