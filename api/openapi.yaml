@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.823.0
+  version: 1.824.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -63865,6 +63865,16 @@ paths:
         - Campaigns migrated from Discovery that still target on the campaign keep being written there.
         - `devices` and `locationTargetingType` stay campaign-level.
         - `excludedLocations` is not available on Demand Gen yet and returns 400.
+
+        ### Staging
+
+        Send `stage: true` to store the edit as an ad change of type `campaign_targeting` instead of applying it. The answer is `202` with the change.
+
+        Its diff has one entry per value under `targeting`. `before` comes from the campaign's devices, locations, excluded locations, languages and location targeting type, read live from Google.
+
+        Confirm reads them again and answers `409` if any of them changed.
+
+        A Demand Gen campaign's targeting cannot be staged yet: its locations and languages live on its ad groups, which that read does not cover. `stage: true` on one returns `400` with code `staging_not_supported` before anything is stored.
       operationId: updateCampaignTargeting
       parameters:
       - description: Google platform campaign ID
@@ -63882,6 +63892,13 @@ paths:
               $ref: "#/components/schemas/updateCampaignTargeting_request"
         required: true
       responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdChange_200_response"
+          description: "Sent with `stage: true`. The change was validated and stored,\
+            \ and nothing was written to the ad network."
         "200":
           content:
             application/json:
@@ -150096,8 +150113,9 @@ components:
           type: string
         type:
           description: "Which write was staged: a status route, the update route of\
-            \ a campaign, an ad set or an ad, or one of the create routes (POST /v1/ads/create,\
-            \ POST /v1/ads/campaigns, POST /v1/ads/ad-sets)."
+            \ a campaign, an ad set or an ad, the campaign targeting route, or one\
+            \ of the create routes (POST /v1/ads/create, POST /v1/ads/campaigns, POST\
+            \ /v1/ads/ad-sets)."
           enum:
           - campaign_status
           - ad_set_status
@@ -150105,6 +150123,7 @@ components:
           - campaign_update
           - ad_set_update
           - ad_update
+          - campaign_targeting
           - ad_create
           - campaign_create
           - ad_set_create
@@ -150209,6 +150228,7 @@ components:
           - campaign_update
           - ad_set_update
           - ad_update
+          - campaign_targeting
           - ad_create
           - campaign_create
           - ad_set_create
@@ -208509,6 +208529,12 @@ components:
           $ref: "#/components/schemas/GoogleLocationTargetingType"
     updateCampaignTargeting_request:
       properties:
+        stage:
+          description: "Send true to stage this change instead of applying it. Nothing\
+            \ is written to the ad network; the response is `202` with the staged\
+            \ change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm.\
+            \ Cannot be combined with `validateOnly` or `dryRun`."
+          type: boolean
         platform:
           enum:
           - google

@@ -31,6 +31,7 @@ A staged ad change as the list returns it: what it targets and who staged it, wi
 | CAMPAIGN_UPDATE | &quot;campaign_update&quot; |
 | AD_SET_UPDATE | &quot;ad_set_update&quot; |
 | AD_UPDATE | &quot;ad_update&quot; |
+| CAMPAIGN_TARGETING | &quot;campaign_targeting&quot; |
 | AD_CREATE | &quot;ad_create&quot; |
 | CAMPAIGN_CREATE | &quot;campaign_create&quot; |
 | AD_SET_CREATE | &quot;ad_set_create&quot; |
