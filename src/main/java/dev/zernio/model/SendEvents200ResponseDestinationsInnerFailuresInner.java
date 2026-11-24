@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   SendEvents200ResponseDestinationsInnerFailuresInner.JSON_PROPERTY_MESSAGE,
   SendEvents200ResponseDestinationsInnerFailuresInner.JSON_PROPERTY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T09:24:00.662847130Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-24T09:41:15.696301120Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendEvents200ResponseDestinationsInnerFailuresInner {
   public static final String JSON_PROPERTY_EVENT_INDEX = "eventIndex";
   @javax.annotation.Nullable
