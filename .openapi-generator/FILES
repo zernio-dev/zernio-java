@@ -1472,6 +1472,7 @@ docs/FileItem.md
 docs/FilePickerSession.md
 docs/FileShareLink.md
 docs/FilesApi.md
+docs/Fixed.md
 docs/FlowAutomationDefinition.md
 docs/FlowAutomationDefinitionGraph.md
 docs/FlowAutomationDefinitionTrigger.md
@@ -1488,6 +1489,7 @@ docs/FoodMenuLabel.md
 docs/FoodMenuSection.md
 docs/ForwardEmailRequest.md
 docs/ForwardingRule.md
+docs/ForwardingRuleEventValue.md
 docs/ForwardingRuleValueCondition.md
 docs/ForwardingRuleValueOverride.md
 docs/FreeBusyError.md
@@ -2852,6 +2854,7 @@ docs/OrderImessageSenderRequestContact.md
 docs/OrgConnection.md
 docs/OrgConnectionSetup.md
 docs/OrgConnectionSetupDnsRecord.md
+docs/Original.md
 docs/OwnedPhoneNumber.md
 docs/OwnedPhoneNumberFeatures.md
 docs/OwnedPhoneNumberProfileId.md
@@ -2863,6 +2866,7 @@ docs/PayoutBatchItem.md
 docs/PayoutBatchItemCreator.md
 docs/Pending.md
 docs/PerPost.md
+docs/Percent.md
 docs/PhoneNumberStockWatch.md
 docs/PhoneNumbersApi.md
 docs/PinDiscordMessage200Response.md
@@ -5809,6 +5813,7 @@ src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptionsRequest.jav
 src/main/java/dev/zernio/model/FileItem.java
 src/main/java/dev/zernio/model/FilePickerSession.java
 src/main/java/dev/zernio/model/FileShareLink.java
+src/main/java/dev/zernio/model/Fixed.java
 src/main/java/dev/zernio/model/FlowAutomationDefinition.java
 src/main/java/dev/zernio/model/FlowAutomationDefinitionGraph.java
 src/main/java/dev/zernio/model/FlowAutomationDefinitionTrigger.java
@@ -5825,6 +5830,7 @@ src/main/java/dev/zernio/model/FoodMenuLabel.java
 src/main/java/dev/zernio/model/FoodMenuSection.java
 src/main/java/dev/zernio/model/ForwardEmailRequest.java
 src/main/java/dev/zernio/model/ForwardingRule.java
+src/main/java/dev/zernio/model/ForwardingRuleEventValue.java
 src/main/java/dev/zernio/model/ForwardingRuleValueCondition.java
 src/main/java/dev/zernio/model/ForwardingRuleValueOverride.java
 src/main/java/dev/zernio/model/FreeBusyError.java
@@ -7168,6 +7174,7 @@ src/main/java/dev/zernio/model/OrderImessageSenderRequestContact.java
 src/main/java/dev/zernio/model/OrgConnection.java
 src/main/java/dev/zernio/model/OrgConnectionSetup.java
 src/main/java/dev/zernio/model/OrgConnectionSetupDnsRecord.java
+src/main/java/dev/zernio/model/Original.java
 src/main/java/dev/zernio/model/OwnedPhoneNumber.java
 src/main/java/dev/zernio/model/OwnedPhoneNumberFeatures.java
 src/main/java/dev/zernio/model/OwnedPhoneNumberProfileId.java
@@ -7179,6 +7186,7 @@ src/main/java/dev/zernio/model/PayoutBatchItem.java
 src/main/java/dev/zernio/model/PayoutBatchItemCreator.java
 src/main/java/dev/zernio/model/Pending.java
 src/main/java/dev/zernio/model/PerPost.java
+src/main/java/dev/zernio/model/Percent.java
 src/main/java/dev/zernio/model/PhoneNumberStockWatch.java
 src/main/java/dev/zernio/model/PinDiscordMessage200Response.java
 src/main/java/dev/zernio/model/PinInboxComment200Response.java
@@ -8551,3 +8559,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/FixedTest.java
+src/test/java/dev/zernio/model/ForwardingRuleEventValueTest.java
+src/test/java/dev/zernio/model/OriginalTest.java
+src/test/java/dev/zernio/model/PercentTest.java

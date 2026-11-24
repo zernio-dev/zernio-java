@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.805.0
+- API version: 1.807.0
 
-- Build date: 2026-11-24T09:41:15.696301120Z[Etc/UTC]
+- Build date: 2026-11-24T10:13:10.353477092Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.805.0</version>
+  <version>1.807.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.805.0"
+compile "dev.zernio:zernio-sdk:1.807.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.805.0.jar`
+- `target/zernio-sdk-1.807.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4335,6 +4335,7 @@ Class | Method | HTTP request | Description
  - [FileItem](docs/FileItem.md)
  - [FilePickerSession](docs/FilePickerSession.md)
  - [FileShareLink](docs/FileShareLink.md)
+ - [Fixed](docs/Fixed.md)
  - [FlowAutomationDefinition](docs/FlowAutomationDefinition.md)
  - [FlowAutomationDefinitionGraph](docs/FlowAutomationDefinitionGraph.md)
  - [FlowAutomationDefinitionTrigger](docs/FlowAutomationDefinitionTrigger.md)
@@ -4351,6 +4352,7 @@ Class | Method | HTTP request | Description
  - [FoodMenuSection](docs/FoodMenuSection.md)
  - [ForwardEmailRequest](docs/ForwardEmailRequest.md)
  - [ForwardingRule](docs/ForwardingRule.md)
+ - [ForwardingRuleEventValue](docs/ForwardingRuleEventValue.md)
  - [ForwardingRuleValueCondition](docs/ForwardingRuleValueCondition.md)
  - [ForwardingRuleValueOverride](docs/ForwardingRuleValueOverride.md)
  - [FreeBusyError](docs/FreeBusyError.md)
@@ -5694,6 +5696,7 @@ Class | Method | HTTP request | Description
  - [OrgConnection](docs/OrgConnection.md)
  - [OrgConnectionSetup](docs/OrgConnectionSetup.md)
  - [OrgConnectionSetupDnsRecord](docs/OrgConnectionSetupDnsRecord.md)
+ - [Original](docs/Original.md)
  - [OwnedPhoneNumber](docs/OwnedPhoneNumber.md)
  - [OwnedPhoneNumberFeatures](docs/OwnedPhoneNumberFeatures.md)
  - [OwnedPhoneNumberProfileId](docs/OwnedPhoneNumberProfileId.md)
@@ -5705,6 +5708,7 @@ Class | Method | HTTP request | Description
  - [PayoutBatchItemCreator](docs/PayoutBatchItemCreator.md)
  - [Pending](docs/Pending.md)
  - [PerPost](docs/PerPost.md)
+ - [Percent](docs/Percent.md)
  - [PhoneNumberStockWatch](docs/PhoneNumberStockWatch.md)
  - [PinDiscordMessage200Response](docs/PinDiscordMessage200Response.md)
  - [PinInboxComment200Response](docs/PinInboxComment200Response.md)

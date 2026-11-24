@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.805.0
+  version: 1.807.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -82513,6 +82513,7 @@ paths:
         - `eventNameMap` renames events for this destination (send your `Lead` as its `Purchase`).
         - `valueOverride` changes the value it gets (a fixed amount or a percent of the event's value).
         - `valueCondition` forwards only events above, below or equal to a value.
+        - `eventValues` sets the value of each event name (a `Lead` worth 20 EUR, a `QualifiedLead` worth 150 EUR) and wins over `valueOverride` for the names it lists.
 
         Each applies to this rule only: the event is stored, and sent to other rules, as received.
       operationId: createForwardingRule
@@ -82617,7 +82618,7 @@ paths:
       - application/json
     patch:
       description: |
-        Changes the fields you send and keeps the others. Send `eventNameMap: null` to stop renaming, `valueOverride: { "mode": "original" }` to send the event's own value again, and `valueCondition: null` to forward whatever the value.
+        Changes the fields you send and keeps the others. Send `eventNameMap: null` to stop renaming, `valueOverride: { "mode": "original" }` to send the event's own value again, and `valueCondition: null` to forward whatever the value. `eventValues` replaces the whole map; `null` or `{}` clears it.
 
         `apiSecret` replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream's Measurement Protocol API secret. Before saving, Zernio sends one hit to Google's validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events.
       operationId: updateForwardingRule
@@ -82634,14 +82635,17 @@ paths:
         content:
           application/json:
             example:
-              eventNameMap:
-                Lead: Purchase
-              valueOverride:
-                mode: percent
-                amount: 30
-              valueCondition:
-                operator: gt
-                amount: 10
+              eventValues:
+                Lead:
+                  mode: fixed
+                  amount: 20
+                  currency: EUR
+                QualifiedLead:
+                  mode: fixed
+                  amount: 150
+                  currency: EUR
+                Purchase:
+                  mode: original
             schema:
               $ref: "#/components/schemas/updateForwardingRule_request"
         required: true
@@ -150618,6 +150622,7 @@ components:
         valueOverride:
           mode: percent
           amount: 30
+        eventValues: ""
       properties:
         id:
           description: "Rule ID, used to delete it."
@@ -150676,9 +150681,46 @@ components:
           allOf:
           - $ref: "#/components/schemas/ForwardingRuleValueCondition"
           nullable: true
+        eventValues:
+          allOf:
+          - $ref: "#/components/schemas/ForwardingRuleEventValues"
+          nullable: true
         createdAt:
           format: date-time
           type: string
+    ForwardingRuleEventValues:
+      additionalProperties:
+        $ref: "#/components/schemas/ForwardingRuleEventValue"
+      description: |-
+        The value this destination gets for each event name, keyed by the name as received (before `eventNameMap` renames it), such as a `Lead` worth 20 EUR and a `QualifiedLead` worth 150 EUR. An event listed here ignores `valueOverride`; events not listed keep it.
+
+        The dashboard's Value sent section (Ads, Conversions, a destination) sets this map.
+      example:
+        Lead:
+          mode: fixed
+          amount: 20
+          currency: EUR
+        QualifiedLead:
+          mode: fixed
+          amount: 150
+          currency: EUR
+        Purchase:
+          mode: original
+      maxProperties: 50
+    ForwardingRuleEventValue:
+      description: "How one event is valued. `original` sends its own value. `fixed`\
+        \ sends `amount` in `currency`, even when the event came without a value.\
+        \ `percent` sends `amount` percent of its own value (10 sends 10%, rounded\
+        \ to cents) in its own currency, and leaves an event without a value without\
+        \ one."
+      example:
+        mode: fixed
+        amount: 20
+        currency: EUR
+      oneOf:
+      - $ref: "#/components/schemas/Original"
+      - $ref: "#/components/schemas/Fixed"
+      - $ref: "#/components/schemas/Percent"
     ForwardingRuleEventNameMap:
       additionalProperties:
         maxLength: 100
@@ -230611,6 +230653,8 @@ components:
     getEvent_200_response_deliveries_inner:
       example:
         accountId: accountId
+        valueSent: 5.962133916683182
+        currencySent: currencySent
         errorCode: errorCode
         sentAt: 2000-01-23T04:56:07.000+00:00
         destinationId: destinationId
@@ -230669,6 +230713,16 @@ components:
           type: string
         sentAt:
           format: date-time
+          type: string
+        valueSent:
+          description: "The value this destination got, after its forwarding rule's\
+            \ `eventValues` or `valueOverride`. Null when it got none, and on sends\
+            \ before 2026-11-24."
+          nullable: true
+          type: number
+        currencySent:
+          description: The currency sent with `valueSent`.
+          nullable: true
           type: string
     getEvent_200_response_touches_inner_detail:
       description: Where the touch came from. Each field is present only when known;
@@ -230774,7 +230828,7 @@ components:
         eventName: eventName
         currency: currency
         source: source
-        value: 5.962133916683182
+        value: 5.637376656633329
       properties:
         eventId:
           type: string
@@ -230837,13 +230891,13 @@ components:
           eventName: eventName
           currency: currency
           source: source
-          value: 5.962133916683182
+          value: 5.637376656633329
         - eventId: eventId
           eventTime: 2000-01-23T04:56:07.000+00:00
           eventName: eventName
           currency: currency
           source: source
-          value: 5.962133916683182
+          value: 5.637376656633329
         event:
           eventId: eventId
           ad:
@@ -230885,6 +230939,8 @@ components:
           destinationsSent: 6
         deliveries:
         - accountId: accountId
+          valueSent: 5.962133916683182
+          currencySent: currencySent
           errorCode: errorCode
           sentAt: 2000-01-23T04:56:07.000+00:00
           destinationId: destinationId
@@ -230893,6 +230949,8 @@ components:
           platform: metaads
           status: sent
         - accountId: accountId
+          valueSent: 5.962133916683182
+          currencySent: currencySent
           errorCode: errorCode
           sentAt: 2000-01-23T04:56:07.000+00:00
           destinationId: destinationId
@@ -231068,6 +231126,7 @@ components:
           valueOverride:
             mode: percent
             amount: 30
+          eventValues: ""
         - accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
           eventNameMap:
@@ -231086,6 +231145,7 @@ components:
           valueOverride:
             mode: percent
             amount: 30
+          eventValues: ""
       properties:
         forwardingRules:
           items:
@@ -231152,6 +231212,10 @@ components:
           allOf:
           - $ref: "#/components/schemas/ForwardingRuleValueCondition"
           nullable: true
+        eventValues:
+          allOf:
+          - $ref: "#/components/schemas/ForwardingRuleEventValues"
+          nullable: true
         apiSecret:
           description: "Google Analytics streams only: the stream's Measurement Protocol\
             \ API secret (GA4 Admin › Data streams). Optional when the connection\
@@ -231186,6 +231250,7 @@ components:
           valueOverride:
             mode: percent
             amount: 30
+          eventValues: ""
       properties:
         forwardingRule:
           $ref: "#/components/schemas/ForwardingRule"
@@ -231206,6 +231271,10 @@ components:
         valueCondition:
           allOf:
           - $ref: "#/components/schemas/ForwardingRuleValueCondition"
+          nullable: true
+        eventValues:
+          allOf:
+          - $ref: "#/components/schemas/ForwardingRuleEventValues"
           nullable: true
     listTrackingSites_200_response_pagination:
       example:
@@ -264743,6 +264812,50 @@ components:
           type: string
       required:
       - text
+    Original:
+      additionalProperties: false
+      properties:
+        mode:
+          enum:
+          - original
+          type: string
+      required:
+      - mode
+      title: Original
+    Fixed:
+      additionalProperties: false
+      properties:
+        mode:
+          enum:
+          - fixed
+          type: string
+        amount:
+          minimum: 0
+          type: number
+        currency:
+          description: "ISO 4217 code, saved in capitals."
+          pattern: "^[A-Za-z]{3}$"
+          type: string
+      required:
+      - amount
+      - currency
+      - mode
+      title: Fixed
+    Percent:
+      additionalProperties: false
+      properties:
+        mode:
+          enum:
+          - percent
+          type: string
+        amount:
+          maximum: 1000
+          minimum: 0
+          type: number
+      required:
+      - amount
+      - mode
+      title: Percent
     TrackingSite_install:
       example:
         snippet: snippet

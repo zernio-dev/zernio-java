@@ -17,6 +17,7 @@
 |**eventNameMap** | **Map&lt;String, String&gt;** | Renames events for this destination, such as &#x60;{ \&quot;Lead\&quot;: \&quot;Purchase\&quot; }&#x60;; null sends every event under its own name. |  [optional] |
 |**valueOverride** | [**ForwardingRuleValueOverride**](ForwardingRuleValueOverride.md) |  |  [optional] |
 |**valueCondition** | [**ForwardingRuleValueCondition**](ForwardingRuleValueCondition.md) |  |  [optional] |
+|**eventValues** | [**Map&lt;String, ForwardingRuleEventValue&gt;**](ForwardingRuleEventValue.md) | The value this destination gets for each event name, keyed by the name as received (before &#x60;eventNameMap&#x60; renames it), such as a &#x60;Lead&#x60; worth 20 EUR and a &#x60;QualifiedLead&#x60; worth 150 EUR. An event listed here ignores &#x60;valueOverride&#x60;; events not listed keep it.  The dashboard&#39;s Value sent section (Ads, Conversions, a destination) sets this map. |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 
 

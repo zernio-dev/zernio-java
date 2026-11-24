@@ -1711,7 +1711,7 @@ ApiResponse<[**CreateEventDestination201Response**](CreateEventDestination201Res
 
 Add a forwarding rule
 
-Saves where a profile&#39;s events go: every event sent to &#x60;POST /v1/events&#x60; for that profile is then forwarded to this destination.  Pick &#x60;destinationId&#x60; from &#x60;GET /v1/ads/conversions/destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events, such as only &#x60;Purchase&#x60;; leave it out to forward every event.  - &#x60;eventNameMap&#x60; renames events for this destination (send your &#x60;Lead&#x60; as its &#x60;Purchase&#x60;). - &#x60;valueOverride&#x60; changes the value it gets (a fixed amount or a percent of the event&#39;s value). - &#x60;valueCondition&#x60; forwards only events above, below or equal to a value.  Each applies to this rule only: the event is stored, and sent to other rules, as received. 
+Saves where a profile&#39;s events go: every event sent to &#x60;POST /v1/events&#x60; for that profile is then forwarded to this destination.  Pick &#x60;destinationId&#x60; from &#x60;GET /v1/ads/conversions/destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events, such as only &#x60;Purchase&#x60;; leave it out to forward every event.  - &#x60;eventNameMap&#x60; renames events for this destination (send your &#x60;Lead&#x60; as its &#x60;Purchase&#x60;). - &#x60;valueOverride&#x60; changes the value it gets (a fixed amount or a percent of the event&#39;s value). - &#x60;valueCondition&#x60; forwards only events above, below or equal to a value. - &#x60;eventValues&#x60; sets the value of each event name (a &#x60;Lead&#x60; worth 20 EUR, a &#x60;QualifiedLead&#x60; worth 150 EUR) and wins over &#x60;valueOverride&#x60; for the names it lists.  Each applies to this rule only: the event is stored, and sent to other rules, as received. 
 
 ### Example
 
@@ -1785,7 +1785,7 @@ public class Example {
 
 Add a forwarding rule
 
-Saves where a profile&#39;s events go: every event sent to &#x60;POST /v1/events&#x60; for that profile is then forwarded to this destination.  Pick &#x60;destinationId&#x60; from &#x60;GET /v1/ads/conversions/destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events, such as only &#x60;Purchase&#x60;; leave it out to forward every event.  - &#x60;eventNameMap&#x60; renames events for this destination (send your &#x60;Lead&#x60; as its &#x60;Purchase&#x60;). - &#x60;valueOverride&#x60; changes the value it gets (a fixed amount or a percent of the event&#39;s value). - &#x60;valueCondition&#x60; forwards only events above, below or equal to a value.  Each applies to this rule only: the event is stored, and sent to other rules, as received. 
+Saves where a profile&#39;s events go: every event sent to &#x60;POST /v1/events&#x60; for that profile is then forwarded to this destination.  Pick &#x60;destinationId&#x60; from &#x60;GET /v1/ads/conversions/destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events, such as only &#x60;Purchase&#x60;; leave it out to forward every event.  - &#x60;eventNameMap&#x60; renames events for this destination (send your &#x60;Lead&#x60; as its &#x60;Purchase&#x60;). - &#x60;valueOverride&#x60; changes the value it gets (a fixed amount or a percent of the event&#39;s value). - &#x60;valueCondition&#x60; forwards only events above, below or equal to a value. - &#x60;eventValues&#x60; sets the value of each event name (a &#x60;Lead&#x60; worth 20 EUR, a &#x60;QualifiedLead&#x60; worth 150 EUR) and wins over &#x60;valueOverride&#x60; for the names it lists.  Each applies to this rule only: the event is stored, and sent to other rules, as received. 
 
 ### Example
 
@@ -9073,7 +9073,7 @@ ApiResponse<[**UpdateCustomConversionGoal200Response**](UpdateCustomConversionGo
 
 Update a forwarding rule
 
-Changes the fields you send and keeps the others. Send &#x60;eventNameMap: null&#x60; to stop renaming, &#x60;valueOverride: { \&quot;mode\&quot;: \&quot;original\&quot; }&#x60; to send the event&#39;s own value again, and &#x60;valueCondition: null&#x60; to forward whatever the value.  &#x60;apiSecret&#x60; replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
+Changes the fields you send and keeps the others. Send &#x60;eventNameMap: null&#x60; to stop renaming, &#x60;valueOverride: { \&quot;mode\&quot;: \&quot;original\&quot; }&#x60; to send the event&#39;s own value again, and &#x60;valueCondition: null&#x60; to forward whatever the value. &#x60;eventValues&#x60; replaces the whole map; &#x60;null&#x60; or &#x60;{}&#x60; clears it.  &#x60;apiSecret&#x60; replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
 
 ### Example
 
@@ -9148,7 +9148,7 @@ public class Example {
 
 Update a forwarding rule
 
-Changes the fields you send and keeps the others. Send &#x60;eventNameMap: null&#x60; to stop renaming, &#x60;valueOverride: { \&quot;mode\&quot;: \&quot;original\&quot; }&#x60; to send the event&#39;s own value again, and &#x60;valueCondition: null&#x60; to forward whatever the value.  &#x60;apiSecret&#x60; replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
+Changes the fields you send and keeps the others. Send &#x60;eventNameMap: null&#x60; to stop renaming, &#x60;valueOverride: { \&quot;mode\&quot;: \&quot;original\&quot; }&#x60; to send the event&#39;s own value again, and &#x60;valueCondition: null&#x60; to forward whatever the value. &#x60;eventValues&#x60; replaces the whole map; &#x60;null&#x60; or &#x60;{}&#x60; clears it.  &#x60;apiSecret&#x60; replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream&#39;s Measurement Protocol API secret. Before saving, Zernio sends one hit to Google&#39;s validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
 
 ### Example
 
