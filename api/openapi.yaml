@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.832.0
+  version: 1.832.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -68948,13 +68948,14 @@ paths:
         schema:
           type: string
         style: simple
-      - description: TikTok comment ID from the ad comment listing.
+      - description: TikTok comment ID from the ad comment listing. A Meta comment
+          ID (post_comment) answers 501 with the inbox comment endpoints to use.
         explode: false
         in: path
         name: commentId
         required: true
         schema:
-          pattern: ^\d+$
+          pattern: ^\d+(_\d+)?$
           type: string
         style: simple
       - description: Start date of the comment lookup window. Defaults to 30 days
@@ -69066,13 +69067,14 @@ paths:
         schema:
           type: string
         style: simple
-      - description: TikTok comment ID from the ad comment listing.
+      - description: TikTok comment ID from the ad comment listing. A Meta comment
+          ID (post_comment) answers 501 with the inbox comment endpoints to use.
         explode: false
         in: path
         name: commentId
         required: true
         schema:
-          pattern: ^\d+$
+          pattern: ^\d+(_\d+)?$
           type: string
         style: simple
       - description: Start date of the comment lookup window. Defaults to 30 days
@@ -69182,13 +69184,14 @@ paths:
         schema:
           type: string
         style: simple
-      - description: TikTok comment ID from the ad comment listing.
+      - description: TikTok comment ID from the ad comment listing. A Meta comment
+          ID (post_comment) answers 501 with the inbox comment endpoints to use.
         explode: false
         in: path
         name: commentId
         required: true
         schema:
-          pattern: ^\d+$
+          pattern: ^\d+(_\d+)?$
           type: string
         style: simple
       - description: Start date of the comment lookup window. Defaults to 30 days

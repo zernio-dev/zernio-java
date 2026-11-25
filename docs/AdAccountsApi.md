@@ -2091,7 +2091,7 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad ID.
-        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing.
+        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use.
         LocalDate since = LocalDate.now(); // LocalDate | Start date of the comment lookup window. Defaults to 30 days before until.
         LocalDate until = LocalDate.now(); // LocalDate | End date of the comment lookup window. Defaults to today in UTC.
         try {
@@ -2114,7 +2114,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Internal Zernio ad ID or indexed platform ad ID. | |
-| **commentId** | **String**| TikTok comment ID from the ad comment listing. | |
+| **commentId** | **String**| TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use. | |
 | **since** | **LocalDate**| Start date of the comment lookup window. Defaults to 30 days before until. | [optional] |
 | **until** | **LocalDate**| End date of the comment lookup window. Defaults to today in UTC. | [optional] |
 
@@ -2175,7 +2175,7 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad ID.
-        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing.
+        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use.
         LocalDate since = LocalDate.now(); // LocalDate | Start date of the comment lookup window. Defaults to 30 days before until.
         LocalDate until = LocalDate.now(); // LocalDate | End date of the comment lookup window. Defaults to today in UTC.
         try {
@@ -2200,7 +2200,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Internal Zernio ad ID or indexed platform ad ID. | |
-| **commentId** | **String**| TikTok comment ID from the ad comment listing. | |
+| **commentId** | **String**| TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use. | |
 | **since** | **LocalDate**| Start date of the comment lookup window. Defaults to 30 days before until. | [optional] |
 | **until** | **LocalDate**| End date of the comment lookup window. Defaults to today in UTC. | [optional] |
 
@@ -4939,7 +4939,7 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad ID.
-        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing.
+        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use.
         HideAdCommentRequest hideAdCommentRequest = new HideAdCommentRequest(); // HideAdCommentRequest | 
         LocalDate since = LocalDate.now(); // LocalDate | Start date of the comment lookup window. Defaults to 30 days before until.
         LocalDate until = LocalDate.now(); // LocalDate | End date of the comment lookup window. Defaults to today in UTC.
@@ -4963,7 +4963,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Internal Zernio ad ID or indexed platform ad ID. | |
-| **commentId** | **String**| TikTok comment ID from the ad comment listing. | |
+| **commentId** | **String**| TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use. | |
 | **hideAdCommentRequest** | [**HideAdCommentRequest**](HideAdCommentRequest.md)|  | |
 | **since** | **LocalDate**| Start date of the comment lookup window. Defaults to 30 days before until. | [optional] |
 | **until** | **LocalDate**| End date of the comment lookup window. Defaults to today in UTC. | [optional] |
@@ -5025,7 +5025,7 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad ID.
-        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing.
+        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use.
         HideAdCommentRequest hideAdCommentRequest = new HideAdCommentRequest(); // HideAdCommentRequest | 
         LocalDate since = LocalDate.now(); // LocalDate | Start date of the comment lookup window. Defaults to 30 days before until.
         LocalDate until = LocalDate.now(); // LocalDate | End date of the comment lookup window. Defaults to today in UTC.
@@ -5051,7 +5051,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Internal Zernio ad ID or indexed platform ad ID. | |
-| **commentId** | **String**| TikTok comment ID from the ad comment listing. | |
+| **commentId** | **String**| TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use. | |
 | **hideAdCommentRequest** | [**HideAdCommentRequest**](HideAdCommentRequest.md)|  | |
 | **since** | **LocalDate**| Start date of the comment lookup window. Defaults to 30 days before until. | [optional] |
 | **until** | **LocalDate**| End date of the comment lookup window. Defaults to today in UTC. | [optional] |
@@ -10091,7 +10091,7 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad ID.
-        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing.
+        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use.
         ReplyToAdCommentRequest replyToAdCommentRequest = new ReplyToAdCommentRequest(); // ReplyToAdCommentRequest | 
         LocalDate since = LocalDate.now(); // LocalDate | Start date of the comment lookup window. Defaults to 30 days before until.
         LocalDate until = LocalDate.now(); // LocalDate | End date of the comment lookup window. Defaults to today in UTC.
@@ -10115,7 +10115,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Internal Zernio ad ID or indexed platform ad ID. | |
-| **commentId** | **String**| TikTok comment ID from the ad comment listing. | |
+| **commentId** | **String**| TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use. | |
 | **replyToAdCommentRequest** | [**ReplyToAdCommentRequest**](ReplyToAdCommentRequest.md)|  | |
 | **since** | **LocalDate**| Start date of the comment lookup window. Defaults to 30 days before until. | [optional] |
 | **until** | **LocalDate**| End date of the comment lookup window. Defaults to today in UTC. | [optional] |
@@ -10177,7 +10177,7 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String adId = "adId_example"; // String | Internal Zernio ad ID or indexed platform ad ID.
-        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing.
+        String commentId = "commentId_example"; // String | TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use.
         ReplyToAdCommentRequest replyToAdCommentRequest = new ReplyToAdCommentRequest(); // ReplyToAdCommentRequest | 
         LocalDate since = LocalDate.now(); // LocalDate | Start date of the comment lookup window. Defaults to 30 days before until.
         LocalDate until = LocalDate.now(); // LocalDate | End date of the comment lookup window. Defaults to today in UTC.
@@ -10203,7 +10203,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Internal Zernio ad ID or indexed platform ad ID. | |
-| **commentId** | **String**| TikTok comment ID from the ad comment listing. | |
+| **commentId** | **String**| TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use. | |
 | **replyToAdCommentRequest** | [**ReplyToAdCommentRequest**](ReplyToAdCommentRequest.md)|  | |
 | **since** | **LocalDate**| Start date of the comment lookup window. Defaults to 30 days before until. | [optional] |
 | **until** | **LocalDate**| End date of the comment lookup window. Defaults to today in UTC. | [optional] |
