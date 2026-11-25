@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.833.1
+  version: 1.834.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -193220,6 +193220,11 @@ components:
           enum:
           - full
           - partial
+          type: string
+        profileId:
+          description: "Profile the ported numbers land on. When omitted, a profile\
+            \ is picked the same way as for a number purchase. Must be a profile the\
+            \ caller can access."
           type: string
         requirements:
           description: "Country-specific requirement values for international ports\
