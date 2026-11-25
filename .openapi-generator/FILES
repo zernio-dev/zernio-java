@@ -8595,9 +8595,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ConnectCustomDomainRecordsInnerTest.java
-src/test/java/dev/zernio/model/ConnectCustomDomainTest.java
-src/test/java/dev/zernio/model/CreateConnectCustomDomain201ResponseTest.java
-src/test/java/dev/zernio/model/CreateConnectCustomDomainRequestTest.java
-src/test/java/dev/zernio/model/ListConnectCustomDomains200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateConnectCustomDomainRequestTest.java

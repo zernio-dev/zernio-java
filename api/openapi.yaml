@@ -22,22 +22,22 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.825.0
+  version: 1.826.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
-    Zernio is the social media API that replaces 35 integrations. Schedule posts, retrieve analytics,
+    Zernio is the social media API that replaces 34 integrations. Schedule posts, retrieve analytics,
     manage DMs, comments, and reviews across X, Instagram, WhatsApp, TikTok, LinkedIn,
     Facebook, YouTube, Threads, Pinterest, Bluesky, Telegram, Google Business Profile, Snapchat,
     Discord, Slack, iMessage, LINE, and WeChat, all from a single REST API. Run paid ads on Meta (Facebook + Instagram), Google,
-    TikTok, LinkedIn, Pinterest, X, OpenAI, Reddit, Microsoft, Amazon, The Trade Desk, AppLovin, and Snapchat from the same account.
+    TikTok, LinkedIn, Pinterest, X, OpenAI, Reddit, Microsoft, Amazon, The Trade Desk, and Snapchat from the same account.
 
     Connect Shopify, WordPress and Wix as blog accounts to list sites and manage
     articles, drafts, featured images, tags, authors, and native scheduling.
 
-    Key features: Unified posting and messaging across 18 platforms, ads management on 13 ad networks (via /v1/ads), aggregated analytics, unified inbox (DMs, comments, reviews), webhooks, OAuth connect, queue scheduling, and white-label support for agencies managing unlimited accounts.
+    Key features: Unified posting and messaging across 18 platforms, ads management on 12 ad networks (via /v1/ads), aggregated analytics, unified inbox (DMs, comments, reviews), webhooks, OAuth connect, queue scheduling, and white-label support for agencies managing unlimited accounts.
 
-    Supported posting platforms: X, Instagram, WhatsApp, Facebook, LinkedIn, TikTok, YouTube, Pinterest, Bluesky, Threads, Google Business Profile, Telegram, Snapchat, Discord, Slack. Supported ad platforms: Meta Ads, Google Ads, TikTok Ads, LinkedIn Ads, Pinterest Ads, X Ads, OpenAI Ads, Reddit Ads, Microsoft Ads, Amazon Ads, The Trade Desk, AppLovin, Snapchat Ads. Organic Snapchat posting is a closed beta with no public release date: its connections are gated behind approval and return 403 `PLATFORM_BETA_RESTRICTED` until then (Snapchat Ads is not affected). Organic Reddit is temporarily unavailable: Reddit has blocked third-party apps from its API, so Reddit posting, messages, analytics and the Reddit endpoints return 503 `PLATFORM_DISABLED` until Reddit restores access. Your Reddit accounts stay connected. Reddit Ads is not affected.
+    Supported posting platforms: X, Instagram, WhatsApp, Facebook, LinkedIn, TikTok, YouTube, Pinterest, Bluesky, Threads, Google Business Profile, Telegram, Snapchat, Discord, Slack. Supported ad platforms: Meta Ads, Google Ads, TikTok Ads, LinkedIn Ads, Pinterest Ads, X Ads, OpenAI Ads, Reddit Ads, Microsoft Ads, Amazon Ads, The Trade Desk, Snapchat Ads. AppLovin is not available yet: AppLovin has not given Zernio access to its Campaign Management API, so its connect answers 403 `platform_not_available_yet`. Organic Snapchat posting is a closed beta with no public release date: its connections are gated behind approval and return 403 `PLATFORM_BETA_RESTRICTED` until then (Snapchat Ads is not affected). Organic Reddit is temporarily unavailable: Reddit has blocked third-party apps from its API, so Reddit posting, messages, analytics and the Reddit endpoints return 503 `PLATFORM_DISABLED` until Reddit restores access. Your Reddit accounts stay connected. Reddit Ads is not affected.
   x-category: Social
   x-website: https://zernio.com
   x-thumbnail: https://rapidapi-prod-apis.s3.amazonaws.com/b24d3df5-563c-4a50-9e1e-1ad3eb1fce69.png
@@ -24633,6 +24633,8 @@ paths:
   /v1/connect/applovin-ads/credentials:
     post:
       description: |
+        **Not available yet.** AppLovin has not given Zernio access to its Campaign Management API, so this call answers 403 `platform_not_available_yet` and saves nothing. The rest of this description is how it will work once AppLovin opens.
+
         Connect an AppLovin account (Axon ads) with the Conversion API key and Event Key from the Keys page of AppLovin Axon Ads Manager, the Campaign Management API key with its account id, or all of them.
 
         Zernio checks each key set with AppLovin before saving it.
@@ -24679,11 +24681,12 @@ paths:
         "402":
           $ref: "#/components/responses/PaymentRequired"
         "403":
-          description: Ads add-on required.
+          description: "AppLovin is not available yet (code platform_not_available_yet),\
+            \ or the Ads add-on is required."
         "502":
           description: "Axon or AppLovin could not confirm the keys right now, so\
             \ nothing was saved (code platform_api_error). Retry in a minute."
-      summary: Connect an AppLovin account
+      summary: Connect an AppLovin account (not available yet)
       tags:
       - Connect
       x-resource-group: accounts
@@ -57206,7 +57209,6 @@ paths:
       - microsoft
       - amazon
       - tradedesk
-      - applovin
       - snapchat
       x-accepts:
       - application/json
@@ -62573,7 +62575,6 @@ paths:
       - microsoft
       - amazon
       - tradedesk
-      - applovin
       - snapchat
       x-accepts:
       - application/json
@@ -62713,7 +62714,6 @@ paths:
       - reddit
       - amazon
       - tradedesk
-      - applovin
       - snapchat
       x-content-type: application/json
       x-accepts:
@@ -62839,7 +62839,6 @@ paths:
       - microsoft
       - amazon
       - tradedesk
-      - applovin
       - snapchat
       x-content-type: application/json
       x-accepts:
@@ -63563,7 +63562,6 @@ paths:
       - microsoft
       - amazon
       - tradedesk
-      - applovin
       - snapchat
       x-content-type: application/json
       x-accepts:
@@ -63849,7 +63847,6 @@ paths:
       - microsoft
       - amazon
       - tradedesk
-      - applovin
       - snapchat
       x-content-type: application/json
       x-accepts:
@@ -64370,7 +64367,6 @@ paths:
       - microsoft
       - amazon
       - tradedesk
-      - applovin
       - snapchat
       x-accepts:
       - application/json
@@ -65572,7 +65568,6 @@ paths:
       - microsoft
       - amazon
       - tradedesk
-      - applovin
       - snapchat
       x-accepts:
       - application/json
@@ -65726,7 +65721,6 @@ paths:
       - reddit
       - microsoft
       - amazon
-      - applovin
       - snapchat
       x-accepts:
       - application/json
@@ -65898,7 +65892,6 @@ paths:
       - reddit
       - microsoft
       - amazon
-      - applovin
       - snapchat
       x-accepts:
       - application/json
@@ -65990,7 +65983,6 @@ paths:
       - microsoft
       - amazon
       - tradedesk
-      - applovin
       - snapchat
       x-accepts:
       - application/json
@@ -66123,7 +66115,6 @@ paths:
       - microsoft
       - amazon
       - tradedesk
-      - applovin
       - snapchat
       x-accepts:
       - application/json
@@ -66398,7 +66389,6 @@ paths:
       - reddit
       - microsoft
       - amazon
-      - applovin
       - snapchat
       x-content-type: application/json
       x-accepts:
@@ -66519,7 +66509,6 @@ paths:
       - reddit
       - microsoft
       - amazon
-      - applovin
       - snapchat
       x-content-type: application/json
       x-accepts:
@@ -67390,7 +67379,6 @@ paths:
       - reddit
       - microsoft
       - amazon
-      - applovin
       - snapchat
       x-accepts:
       - application/json
@@ -68548,7 +68536,6 @@ paths:
       - reddit
       - microsoft
       - amazon
-      - applovin
       - snapchat
       x-accepts:
       - application/json
@@ -75483,7 +75470,6 @@ paths:
       - microsoft
       - amazon
       - tradedesk
-      - applovin
       - snapchat
       x-accepts:
       - application/json
@@ -77224,7 +77210,6 @@ paths:
       - reddit
       - microsoft
       - amazon
-      - applovin
       - snapchat
       x-content-type: application/json
       x-accepts:
@@ -126938,9 +126923,9 @@ components:
       - strategy
     AppLovinAdsPlatformData:
       additionalProperties: {}
-      description: "AppLovin options in platformSpecificData. Campaign fields apply\
-        \ to a new campaign; assets, languages and brandInfo to the creative set (the\
-        \ ad)."
+      description: "Not available yet: an AppLovin create answers 403 `platform_not_available_yet`.\
+        \ AppLovin options in platformSpecificData. Campaign fields apply to a new\
+        \ campaign; assets, languages and brandInfo to the creative set (the ad)."
       properties:
         campaignType:
           description: Required for a new campaign.
@@ -224383,6 +224368,7 @@ components:
 
         **AppLovin**
 
+        - Not available yet: AppLovin has not given Zernio access to its Campaign Management API, so an AppLovin create or change answers 403 `platform_not_available_yet`.
         - A new campaign needs `campaignType` (`APP` or `WEB`), the goal and, for an app, `os`, `packageName` and `tracking`. With `existingCampaignId`, only the creative set fields (`assets`, `languages`, `brandInfo`) apply.
         - Zernio checks every documented AppLovin rule (goal value limits, ROAS day targets, US-only regions and metros, the asset combination, brand info lengths) before calling AppLovin, because 100 refused calls in five minutes lock the AppLovin account for a day. `validateOnly` runs those checks and calls nothing.
 
@@ -267908,7 +267894,7 @@ x-documentation:
   readme: |
     # Zernio API
 
-    The social media API that replaces 35 integrations. Build social media and blog publishing features into your app in minutes, not months.
+    The social media API that replaces 34 integrations. Build social media and blog publishing features into your app in minutes, not months.
 
     ## Quick Start
 

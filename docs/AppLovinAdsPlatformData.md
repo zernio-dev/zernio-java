@@ -2,7 +2,7 @@
 
 # AppLovinAdsPlatformData
 
-AppLovin options in platformSpecificData. Campaign fields apply to a new campaign; assets, languages and brandInfo to the creative set (the ad).
+Not available yet: an AppLovin create answers 403 `platform_not_available_yet`. AppLovin options in platformSpecificData. Campaign fields apply to a new campaign; assets, languages and brandInfo to the creative set (the ad).
 
 ## Properties
 

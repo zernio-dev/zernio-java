@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.825.0
+- API version: 1.826.0
 
-- Build date: 2026-11-24T23:23:10.741993352Z[Etc/UTC]
+- Build date: 2026-11-25T00:31:06.290373265Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.825.0</version>
+  <version>1.826.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.825.0"
+compile "dev.zernio:zernio-sdk:1.826.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.825.0.jar`
+- `target/zernio-sdk-1.826.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1291,8 +1291,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**configureTikTokAdsBrandIdentityWithHttpInfo**](docs/ConnectApi.md#configureTikTokAdsBrandIdentityWithHttpInfo) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity
 *ConnectApi* | [**connectAds**](docs/ConnectApi.md#connectAds) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
 *ConnectApi* | [**connectAdsWithHttpInfo**](docs/ConnectApi.md#connectAdsWithHttpInfo) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
-*ConnectApi* | [**connectAppLovinAdsCredentials**](docs/ConnectApi.md#connectAppLovinAdsCredentials) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin account
-*ConnectApi* | [**connectAppLovinAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectAppLovinAdsCredentialsWithHttpInfo) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin account
+*ConnectApi* | [**connectAppLovinAdsCredentials**](docs/ConnectApi.md#connectAppLovinAdsCredentials) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin account (not available yet)
+*ConnectApi* | [**connectAppLovinAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectAppLovinAdsCredentialsWithHttpInfo) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin account (not available yet)
 *ConnectApi* | [**connectAttentiveCredentials**](docs/ConnectApi.md#connectAttentiveCredentials) | **POST** /v1/connect/attentive/credentials | Connect an Attentive company
 *ConnectApi* | [**connectAttentiveCredentialsWithHttpInfo**](docs/ConnectApi.md#connectAttentiveCredentialsWithHttpInfo) | **POST** /v1/connect/attentive/credentials | Connect an Attentive company
 *ConnectApi* | [**connectAwinCredentials**](docs/ConnectApi.md#connectAwinCredentials) | **POST** /v1/connect/awin/credentials | Connect an Awin advertiser
