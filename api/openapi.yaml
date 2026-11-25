@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.831.0
+  version: 1.831.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -166233,6 +166233,12 @@ components:
           items:
             $ref: "#/components/schemas/getGoogleBusinessVerifications_200_response_verifications_inner"
           type: array
+    startGoogleBusinessVerification_request_mailerContact:
+      anyOf:
+      - type: string
+      - type: object
+      description: For ADDRESS (postcard) verification. The contact name Google prints
+        on the postcard; an object is also accepted.
     startGoogleBusinessVerification_request:
       properties:
         method:
@@ -166256,8 +166262,7 @@ components:
           description: For EMAIL.
           type: string
         mailerContact:
-          description: For ADDRESS (postcard) verification.
-          type: object
+          $ref: "#/components/schemas/startGoogleBusinessVerification_request_mailerContact"
         context:
           description: ServiceBusinessContext (e.g. service address). Required for
             service-area businesses.

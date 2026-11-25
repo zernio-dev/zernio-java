@@ -11,7 +11,7 @@
 |**languageCode** | **String** |  |  [optional] |
 |**phoneNumber** | **String** | For PHONE_CALL / SMS. |  [optional] |
 |**emailAddress** | **String** | For EMAIL. |  [optional] |
-|**mailerContact** | **Object** | For ADDRESS (postcard) verification. |  [optional] |
+|**mailerContact** | [**StartGoogleBusinessVerificationRequestMailerContact**](StartGoogleBusinessVerificationRequestMailerContact.md) |  |  [optional] |
 |**context** | **Object** | ServiceBusinessContext (e.g. service address). Required for service-area businesses. |  [optional] |
 
 
