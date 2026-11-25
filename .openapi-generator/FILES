@@ -504,12 +504,13 @@ docs/BusinessAgentBudget.md
 docs/BusinessAgentBusinessInformation.md
 docs/BusinessAgentBusinessInformationContactInfo.md
 docs/BusinessAgentConnector.md
-docs/BusinessAgentConnectorAllOfConnectionStatus.md
+docs/BusinessAgentConnectorConnectionStatus.md
 docs/BusinessAgentConnectorInput.md
 docs/BusinessAgentConnectorInputAuthConfig.md
 docs/BusinessAgentConnectorInputUserAuthInjectionConfig.md
 docs/BusinessAgentConnectorTool.md
 docs/BusinessAgentConnectorToolInput.md
+docs/BusinessAgentConnectorUserAuthInjectionConfig.md
 docs/BusinessAgentEventStatus.md
 docs/BusinessAgentFaq.md
 docs/BusinessAgentFaqInput.md
@@ -4884,12 +4885,13 @@ src/main/java/dev/zernio/model/BusinessAgentBudget.java
 src/main/java/dev/zernio/model/BusinessAgentBusinessInformation.java
 src/main/java/dev/zernio/model/BusinessAgentBusinessInformationContactInfo.java
 src/main/java/dev/zernio/model/BusinessAgentConnector.java
-src/main/java/dev/zernio/model/BusinessAgentConnectorAllOfConnectionStatus.java
+src/main/java/dev/zernio/model/BusinessAgentConnectorConnectionStatus.java
 src/main/java/dev/zernio/model/BusinessAgentConnectorInput.java
 src/main/java/dev/zernio/model/BusinessAgentConnectorInputAuthConfig.java
 src/main/java/dev/zernio/model/BusinessAgentConnectorInputUserAuthInjectionConfig.java
 src/main/java/dev/zernio/model/BusinessAgentConnectorTool.java
 src/main/java/dev/zernio/model/BusinessAgentConnectorToolInput.java
+src/main/java/dev/zernio/model/BusinessAgentConnectorUserAuthInjectionConfig.java
 src/main/java/dev/zernio/model/BusinessAgentEventStatus.java
 src/main/java/dev/zernio/model/BusinessAgentFaq.java
 src/main/java/dev/zernio/model/BusinessAgentFaqInput.java
@@ -8597,4 +8599,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/StartGoogleBusinessVerificationRequestMailerContactTest.java
+src/test/java/dev/zernio/model/BusinessAgentConnectorConnectionStatusTest.java
+src/test/java/dev/zernio/model/BusinessAgentConnectorUserAuthInjectionConfigTest.java

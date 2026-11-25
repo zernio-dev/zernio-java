@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.831.1
+- API version: 1.832.0
 
-- Build date: 2026-11-25T12:36:39.696227756Z[Etc/UTC]
+- Build date: 2026-11-25T12:58:30.278802283Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.831.1</version>
+  <version>1.832.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.831.1"
+compile "dev.zernio:zernio-sdk:1.832.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.831.1.jar`
+- `target/zernio-sdk-1.832.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3406,12 +3406,13 @@ Class | Method | HTTP request | Description
  - [BusinessAgentBusinessInformation](docs/BusinessAgentBusinessInformation.md)
  - [BusinessAgentBusinessInformationContactInfo](docs/BusinessAgentBusinessInformationContactInfo.md)
  - [BusinessAgentConnector](docs/BusinessAgentConnector.md)
- - [BusinessAgentConnectorAllOfConnectionStatus](docs/BusinessAgentConnectorAllOfConnectionStatus.md)
+ - [BusinessAgentConnectorConnectionStatus](docs/BusinessAgentConnectorConnectionStatus.md)
  - [BusinessAgentConnectorInput](docs/BusinessAgentConnectorInput.md)
  - [BusinessAgentConnectorInputAuthConfig](docs/BusinessAgentConnectorInputAuthConfig.md)
  - [BusinessAgentConnectorInputUserAuthInjectionConfig](docs/BusinessAgentConnectorInputUserAuthInjectionConfig.md)
  - [BusinessAgentConnectorTool](docs/BusinessAgentConnectorTool.md)
  - [BusinessAgentConnectorToolInput](docs/BusinessAgentConnectorToolInput.md)
+ - [BusinessAgentConnectorUserAuthInjectionConfig](docs/BusinessAgentConnectorUserAuthInjectionConfig.md)
  - [BusinessAgentEventStatus](docs/BusinessAgentEventStatus.md)
  - [BusinessAgentFaq](docs/BusinessAgentFaq.md)
  - [BusinessAgentFaqInput](docs/BusinessAgentFaqInput.md)

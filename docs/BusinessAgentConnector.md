@@ -2,23 +2,24 @@
 
 # BusinessAgentConnector
 
+Secret values are never returned: auth_config and mtls_config leave out client_secret, client_key, private_key and every API key value. Send them again with the credentials call to rotate them.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** | Unique per number. |  |
-|**description** | **String** | Tell the agent what the service provides. |  [optional] |
-|**baseUrl** | **URI** | Public HTTPS URL reachable from Meta. |  |
+|**id** | **String** |  |  |
+|**name** | **String** |  |  |
+|**description** | **String** |  |  [optional] |
+|**baseUrl** | **URI** |  |  |
 |**connectorProtocol** | **String** |  |  [optional] |
 |**authType** | [**AuthTypeEnum**](#AuthTypeEnum) |  |  |
-|**authConfig** | [**BusinessAgentConnectorInputAuthConfig**](BusinessAgentConnectorInputAuthConfig.md) |  |  [optional] |
-|**userAuthInjectionConfig** | [**BusinessAgentConnectorInputUserAuthInjectionConfig**](BusinessAgentConnectorInputUserAuthInjectionConfig.md) |  |  [optional] |
+|**authConfig** | **Map&lt;String, Object&gt;** | What Meta stores for the connector&#39;s auth (for example oauth2_client_credentials with token_url and client_id), without secret values. |  [optional] |
+|**userAuthInjectionConfig** | [**BusinessAgentConnectorUserAuthInjectionConfig**](BusinessAgentConnectorUserAuthInjectionConfig.md) |  |  [optional] |
 |**requiresCertificate** | **Boolean** |  |  [optional] |
-|**id** | **String** |  |  |
 |**mcpToolSync** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**mtlsConfig** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**connectionStatus** | [**BusinessAgentConnectorAllOfConnectionStatus**](BusinessAgentConnectorAllOfConnectionStatus.md) |  |  [optional] |
+|**mtlsConfig** | **Map&lt;String, Object&gt;** | Certificate details, without client_key or private_key. |  [optional] |
+|**connectionStatus** | [**BusinessAgentConnectorConnectionStatus**](BusinessAgentConnectorConnectionStatus.md) |  |  [optional] |
 
 
 

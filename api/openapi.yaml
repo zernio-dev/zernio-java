@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.831.1
+  version: 1.832.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -155829,26 +155829,14 @@ components:
       - base_url
       - name
     BusinessAgentConnector:
-      allOf:
-      - $ref: "#/components/schemas/BusinessAgentConnectorInput"
-      - properties:
-          id:
-            type: string
-          mcp_tool_sync:
-            additionalProperties: true
-            type: object
-          mtls_config:
-            additionalProperties: true
-            type: object
-          connection_status:
-            $ref: "#/components/schemas/BusinessAgentConnector_allOf_connection_status"
-        required:
-        - id
+      description: "Secret values are never returned: auth_config and mtls_config\
+        \ leave out client_secret, client_key, private_key and every API key value.\
+        \ Send them again with the credentials call to rotate them."
       example:
         auth_type: OAUTH2_CLIENT_CREDENTIALS
         user_auth_injection_config:
           prefix: prefix
-          location: headers
+          location: location
           field_name: field_name
         requires_certificate: true
         connector_protocol: HTTP
@@ -155860,40 +155848,53 @@ components:
         description: description
         id: id
         auth_config:
-          api_key:
-            headers:
-            - prefix: prefix
-              value: value
-              field_name: field_name
-            - prefix: prefix
-              value: value
-              field_name: field_name
-            query_params:
-            - prefix: prefix
-              value: value
-              field_name: field_name
-            - prefix: prefix
-              value: value
-              field_name: field_name
-            body_params:
-            - prefix: prefix
-              value: value
-              field_name: field_name
-            - prefix: prefix
-              value: value
-              field_name: field_name
-          oauth2_client_credentials:
-            token_request_content_type: application/x-www-form-urlencoded
-            scopes_to_request:
-            - scopes_to_request
-            - scopes_to_request
-            client_secret: client_secret
-            token_url: https://openapi-generator.tech
-            client_id: client_id
+          key: ""
         mcp_tool_sync:
           key: ""
         mtls_config:
           key: ""
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        base_url:
+          format: uri
+          type: string
+        connector_protocol:
+          example: HTTP
+          type: string
+        auth_type:
+          enum:
+          - OAUTH2_CLIENT_CREDENTIALS
+          - API_KEY
+          - NONE
+          type: string
+        auth_config:
+          additionalProperties: true
+          description: "What Meta stores for the connector's auth (for example oauth2_client_credentials\
+            \ with token_url and client_id), without secret values."
+          type: object
+        user_auth_injection_config:
+          $ref: "#/components/schemas/BusinessAgentConnector_user_auth_injection_config"
+        requires_certificate:
+          type: boolean
+        mcp_tool_sync:
+          additionalProperties: true
+          type: object
+        mtls_config:
+          additionalProperties: true
+          description: "Certificate details, without client_key or private_key."
+          type: object
+        connection_status:
+          $ref: "#/components/schemas/BusinessAgentConnector_connection_status"
+      required:
+      - auth_type
+      - base_url
+      - id
+      - name
     BusinessAgentConnectorToolInput:
       example:
         user_auth_action_config:
@@ -234563,7 +234564,7 @@ components:
         - auth_type: OAUTH2_CLIENT_CREDENTIALS
           user_auth_injection_config:
             prefix: prefix
-            location: headers
+            location: location
             field_name: field_name
           requires_certificate: true
           connector_protocol: HTTP
@@ -234575,36 +234576,7 @@ components:
           description: description
           id: id
           auth_config:
-            api_key:
-              headers:
-              - prefix: prefix
-                value: value
-                field_name: field_name
-              - prefix: prefix
-                value: value
-                field_name: field_name
-              query_params:
-              - prefix: prefix
-                value: value
-                field_name: field_name
-              - prefix: prefix
-                value: value
-                field_name: field_name
-              body_params:
-              - prefix: prefix
-                value: value
-                field_name: field_name
-              - prefix: prefix
-                value: value
-                field_name: field_name
-            oauth2_client_credentials:
-              token_request_content_type: application/x-www-form-urlencoded
-              scopes_to_request:
-              - scopes_to_request
-              - scopes_to_request
-              client_secret: client_secret
-              token_url: https://openapi-generator.tech
-              client_id: client_id
+            key: ""
           mcp_tool_sync:
             key: ""
           mtls_config:
@@ -234612,7 +234584,7 @@ components:
         - auth_type: OAUTH2_CLIENT_CREDENTIALS
           user_auth_injection_config:
             prefix: prefix
-            location: headers
+            location: location
             field_name: field_name
           requires_certificate: true
           connector_protocol: HTTP
@@ -234624,36 +234596,7 @@ components:
           description: description
           id: id
           auth_config:
-            api_key:
-              headers:
-              - prefix: prefix
-                value: value
-                field_name: field_name
-              - prefix: prefix
-                value: value
-                field_name: field_name
-              query_params:
-              - prefix: prefix
-                value: value
-                field_name: field_name
-              - prefix: prefix
-                value: value
-                field_name: field_name
-              body_params:
-              - prefix: prefix
-                value: value
-                field_name: field_name
-              - prefix: prefix
-                value: value
-                field_name: field_name
-            oauth2_client_credentials:
-              token_request_content_type: application/x-www-form-urlencoded
-              scopes_to_request:
-              - scopes_to_request
-              - scopes_to_request
-              client_secret: client_secret
-              token_url: https://openapi-generator.tech
-              client_id: client_id
+            key: ""
           mcp_tool_sync:
             key: ""
           mtls_config:
@@ -267598,7 +267541,19 @@ components:
       required:
       - field_name
       - location
-    BusinessAgentConnector_allOf_connection_status:
+    BusinessAgentConnector_user_auth_injection_config:
+      example:
+        prefix: prefix
+        location: location
+        field_name: field_name
+      properties:
+        location:
+          type: string
+        field_name:
+          type: string
+        prefix:
+          type: string
+    BusinessAgentConnector_connection_status:
       example:
         error_message: error_message
         status: status
