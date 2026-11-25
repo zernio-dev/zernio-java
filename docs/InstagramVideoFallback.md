@@ -9,7 +9,7 @@ Meta only. Present when Meta refused an existing Instagram video as the boosted 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**kind** | [**KindEnum**](#KindEnum) |  |  |
-|**linkedToOriginalPost** | **Boolean** | True when the ad still references the original Instagram post and keeps its engagement. |  |
+|**linkedToOriginalPost** | **Boolean** | True when the ad still references the original Instagram post and keeps its engagement. The ad&#39;s creative may still report an effective_instagram_media_id and permalink different from the boosted media: Instagram&#39;s boosted rendition of the same post, which shares its likes and comments. |  |
 |**videoId** | **String** | The Facebook-side ad video Zernio made.  - instagram_video_reuploaded: the copy in the ad account video library (possibly one made by an earlier boost of the same media, reused). The creative carries it as video_id, unless Meta accepted the plain post reference once the copy existed; then the copy is kept for that reference. - instagram_video_rehosted_copy: the new upload the creative uses (an unused copy made by this request is deleted). |  |
 |**platformError** | [**InstagramVideoFallbackPlatformError**](InstagramVideoFallbackPlatformError.md) |  |  |
 

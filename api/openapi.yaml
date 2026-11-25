@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.833.0
+  version: 1.833.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -143466,8 +143466,10 @@ components:
           - instagram_video_rehosted_copy
           type: string
         linkedToOriginalPost:
-          description: True when the ad still references the original Instagram post
-            and keeps its engagement.
+          description: "True when the ad still references the original Instagram post\
+            \ and keeps its engagement. The ad's creative may still report an effective_instagram_media_id\
+            \ and permalink different from the boosted media: Instagram's boosted\
+            \ rendition of the same post, which shares its likes and comments."
           type: boolean
         videoId:
           description: |-
