@@ -2509,7 +2509,7 @@ ApiResponse<[**CreateAutomationTemplate201Response**](CreateAutomationTemplate20
 
 Get a Zernio automation template
 
-Returns one of Zernio&#39;s ready-made ad rule templates in the same shape as your own. Each threshold and budget or bid amount is an input with the template&#39;s own value as its default, so an install can change it or leave it. 
+Returns one of Zernio&#39;s ready-made templates in the same shape as your own: an ad rule (like &#x60;stop_losers&#x60;), a comment to DM (&#x60;comment-keyword-dm&#x60;, &#x60;comment-keyword-dm-follow-gate&#x60;) or a sequence (&#x60;sequence-welcome-series&#x60;, &#x60;sequence-nurture&#x60;).  In an ad rule, each threshold and budget or bid amount is an input with the template&#39;s own value as its default, so an install can change it or leave it. A comment to DM or a sequence asks for a profile and one account of it. 
 
 ### Example
 
@@ -2582,7 +2582,7 @@ public class Example {
 
 Get a Zernio automation template
 
-Returns one of Zernio&#39;s ready-made ad rule templates in the same shape as your own. Each threshold and budget or bid amount is an input with the template&#39;s own value as its default, so an install can change it or leave it. 
+Returns one of Zernio&#39;s ready-made templates in the same shape as your own: an ad rule (like &#x60;stop_losers&#x60;), a comment to DM (&#x60;comment-keyword-dm&#x60;, &#x60;comment-keyword-dm-follow-gate&#x60;) or a sequence (&#x60;sequence-welcome-series&#x60;, &#x60;sequence-nurture&#x60;).  In an ad rule, each threshold and budget or bid amount is an input with the template&#39;s own value as its default, so an install can change it or leave it. A comment to DM or a sequence asks for a profile and one account of it. 
 
 ### Example
 

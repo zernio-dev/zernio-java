@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.830.0
+  version: 1.831.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -58504,10 +58504,10 @@ paths:
       summary: List automations
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
       x-accepts:
       - application/json
     post:
@@ -58635,9 +58635,9 @@ paths:
       summary: Create an automation
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -58671,10 +58671,10 @@ paths:
       summary: Get the automations catalog
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
       x-accepts:
       - application/json
   /v1/automations/actions:
@@ -58821,10 +58821,10 @@ paths:
       summary: List an automation's checks
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
       x-accepts:
       - application/json
   /v1/automations/{automationId}/runs:
@@ -58898,10 +58898,10 @@ paths:
       summary: List an automation's runs
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
       x-accepts:
       - application/json
   /v1/automations/{automationId}/runs/{runId}:
@@ -58942,10 +58942,10 @@ paths:
       summary: Get one run of an automation
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
       x-accepts:
       - application/json
   /v1/automations/{automationId}/test:
@@ -58997,9 +58997,9 @@ paths:
       summary: Test an automation on a sample event
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -59034,10 +59034,10 @@ paths:
       summary: Get a sample test body for an automation
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
       x-accepts:
       - application/json
   /v1/automations/preview:
@@ -59129,9 +59129,9 @@ paths:
       summary: Delete an automation
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
       x-accepts:
       - application/json
     get:
@@ -59163,10 +59163,10 @@ paths:
       summary: Get an automation
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
       x-accepts:
       - application/json
     parameters:
@@ -59235,9 +59235,9 @@ paths:
       summary: Edit an automation
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -59273,9 +59273,9 @@ paths:
       summary: Turn an automation on
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
       x-accepts:
       - application/json
   /v1/automations/{automationId}/pause:
@@ -59308,9 +59308,9 @@ paths:
       summary: Turn an automation off
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
       x-accepts:
       - application/json
   /v1/automations/{automationId}/take-over:
@@ -59446,10 +59446,10 @@ paths:
       summary: List automation templates
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
       x-accepts:
       - application/json
     post:
@@ -59518,9 +59518,9 @@ paths:
       summary: Create an automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -59561,9 +59561,9 @@ paths:
       summary: Delete an automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
       x-accepts:
       - application/json
     get:
@@ -59602,10 +59602,10 @@ paths:
       summary: Get an automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
       x-accepts:
       - application/json
     patch:
@@ -59657,9 +59657,9 @@ paths:
       summary: Update an automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -59754,9 +59754,9 @@ paths:
       summary: Install an automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -59799,10 +59799,10 @@ paths:
       summary: Get a shared automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
       x-accepts:
       - application/json
   /v1/automations/templates/shared/{shareToken}/install:
@@ -59898,16 +59898,18 @@ paths:
       summary: Install a shared automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
       x-content-type: application/json
       x-accepts:
       - application/json
   /v1/automations/templates/zernio/{templateId}:
     get:
       description: |
-        Returns one of Zernio's ready-made ad rule templates in the same shape as your own. Each threshold and budget or bid amount is an input with the template's own value as its default, so an install can change it or leave it.
+        Returns one of Zernio's ready-made templates in the same shape as your own: an ad rule (like `stop_losers`), a comment to DM (`comment-keyword-dm`, `comment-keyword-dm-follow-gate`) or a sequence (`sequence-welcome-series`, `sequence-nurture`).
+
+        In an ad rule, each threshold and budget or bid amount is an input with the template's own value as its default, so an install can change it or leave it. A comment to DM or a sequence asks for a profile and one account of it.
       operationId: getZernioAutomationTemplate
       parameters:
       - description: "The id of one of Zernio's templates, for example `stop_losers`."
@@ -59943,10 +59945,10 @@ paths:
       summary: Get a Zernio automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
       x-accepts:
       - application/json
   /v1/automations/templates/zernio/{templateId}/install:
@@ -60042,9 +60044,9 @@ paths:
       summary: Install a Zernio automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -148878,14 +148880,14 @@ components:
           example: adAccount
           type: string
         type:
-          description: "What the value is. `ad_account`: `{ accountId, adAccountId\
-            \ }`. `profile`: a profile id. `social_accounts`: an array of social account\
-            \ ids. `notify_destination`: an array of `{ accountId, to?, channelId?\
-            \ }`. `number`, `money` (in the ad account's currency) and `percent`:\
-            \ a number within the bounds below. `choice`: one of `options[].value`."
+          description: |-
+            What the value is. `ad_account`: `{ accountId, adAccountId }`. `profile`: a profile id. `social_account`: one social account id of that profile (a comment to DM or a sequence).
+
+            `social_accounts`: an array of social account ids. `notify_destination`: an array of `{ accountId, to?, channelId? }`. `number`, `money` (in the ad account's currency) and `percent`: a number within the bounds below. `choice`: one of `options[].value`.
           enum:
           - ad_account
           - profile
+          - social_account
           - social_accounts
           - notify_destination
           - number
