@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.832.2
+  version: 1.833.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -61081,7 +61081,7 @@ paths:
       description: |
         Returns one ad change with its before/after diff. A change is created by sending a supported ad write with `stage: true`.
 
-        A staged change does not expire. A confirmed or failed change stays readable for 7 days.
+        A staged change does not expire. A confirmed or failed change stays readable for 7 days, a failed create for 30 days. Disconnecting the connection of a staged change deletes it.
       operationId: getAdChange
       parameters:
       - description: The id of the staged change.
@@ -61148,7 +61148,9 @@ paths:
 
         Before writing, the object is read from the ad network again and compared with what it held when the change was staged.
 
-        If it changed in between, nothing is written, the change ends as `failed` and the answer is `409` `change_target_changed` with the current values in `details.current`. Stage the change again from those values.
+        If it changed in between, nothing is written and the answer is `409` `change_target_changed` with the current values in `details.current`. The change stays `staged` and reads `stale: true`. Discard it and stage the change again from those values.
+
+        After a confirm, the other staged changes on the same object are read again, so confirming one of two changes on an object does not refuse the other.
 
         ### Retrying
 
@@ -150399,6 +150401,7 @@ components:
         accountId: 665f1c2ab3d4e5f6a7b8c9d0
         adAccountId: act_757082720485182
         targetId: "120214567890123456"
+        targetName: Autumn sale
         status: staged
         diff:
         - field: budget.amount
@@ -150422,6 +150425,7 @@ components:
           after: 45
           beforeAvailable: true
         createdBy: 665f1c2ab3d4e5f6a7b8c9d1
+        confirmedBy: null
         createdAt: 2026-11-20T10:00:00.000Z
         finishedAt: null
       properties:
@@ -150461,6 +150465,11 @@ components:
             \ object does not exist yet."
           nullable: true
           type: string
+        targetName:
+          description: "The name of the object when the change was staged, or the\
+            \ name a create will give it. Null when it is not known."
+          nullable: true
+          type: string
         creates:
           description: "Present and true when the change creates a new object. Every\
             \ diff entry then has `before: null` and `beforeAvailable: false`."
@@ -150468,7 +150477,7 @@ components:
         status:
           description: |
             - `staged`: waiting to be confirmed or discarded.
-            - `confirming`: a confirm is running. A change that stays here has an unknown outcome and is never applied again automatically.
+            - `confirming`: a confirm is running. A change left here for 15 minutes ends as `failed` with error code `change_outcome_unknown`, and is never applied again automatically.
             - `confirmed`: applied. `result` holds what the write returned.
             - `failed`: not applied. `error` says why.
           enum:
@@ -150491,12 +150500,22 @@ components:
         createdBy:
           description: The user who staged the change.
           type: string
+        confirmedBy:
+          description: "The user who confirmed the change. Null while nobody has,\
+            \ and after a confirm that left the change staged."
+          nullable: true
+          type: string
+        stale:
+          description: Present and true on a staged change whose last confirm was
+            refused with `change_target_changed`. `error` then says why. Discard it
+            and stage it again from the current values.
+          type: boolean
         createdAt:
           format: date-time
           type: string
         finishedAt:
           description: "When the confirm ended, as `confirmed` or `failed`. A finished\
-            \ change is deleted 7 days later."
+            \ change is deleted 7 days later, a failed create 30 days later."
           format: date-time
           nullable: true
           type: string
@@ -206340,6 +206359,7 @@ components:
           accountId: 665f1c2ab3d4e5f6a7b8c9d0
           adAccountId: act_757082720485182
           targetId: "120214567890123456"
+          targetName: Autumn sale
           status: staged
           diff:
           - field: budget.amount
@@ -206363,6 +206383,7 @@ components:
             after: 45
             beforeAvailable: true
           createdBy: 665f1c2ab3d4e5f6a7b8c9d1
+          confirmedBy: null
           createdAt: 2026-11-20T10:00:00.000Z
           finishedAt: null
       properties:
@@ -265804,7 +265825,7 @@ components:
       - beforeAvailable
       - field
     StagedAdChange_error:
-      description: Present once `failed`.
+      description: "Present once `failed`, and on a staged change marked `stale`."
       properties:
         code:
           description: "An error code, or `target_changed` when the object changed\
