@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.827.1
+  version: 1.828.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -65411,10 +65411,10 @@ paths:
           minimum: 0
           type: number
         style: form
-      - description: Campaign-level sort order. `newest` (default) / `oldest` order
-          by the campaign's newest-ad createdAt. `spend_desc` / `spend_asc` order
-          by aggregated spend in the requested date range; campaigns with no spend
-          land at the end.
+      - description: "Campaign order. `newest` (default) / `oldest`: by the newest\
+          \ ad's createdAt. `spend_*`: by spend in the date range. `results_*` / `cost_per_result_*`:\
+          \ by results, or spend per result, for each campaign's objective (reach\
+          \ summed across its ads); no-result campaigns end a cost order."
         explode: true
         in: query
         name: sort
@@ -65426,6 +65426,10 @@ paths:
           - oldest
           - spend_desc
           - spend_asc
+          - results_desc
+          - results_asc
+          - cost_per_result_asc
+          - cost_per_result_desc
           type: string
         style: form
       - description: |-
