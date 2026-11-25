@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.829.0
+  version: 1.830.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -18732,6 +18732,8 @@ paths:
             \ or a non-absolute redirect_url"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
         "403":
           description: "Ads access required (Ads add-on on legacy plans, included\
             \ on usage-based plans), or no access to profile"
