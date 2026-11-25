@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.828.0
+  version: 1.829.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -119339,7 +119339,7 @@ components:
 
         When a reply is present, review.hasReply is true and review.reply is populated.
 
-        On Facebook Pages it fires when the reviewer edits their review and when the Page adds or edits a reply, with the review read live from the Page. A reply sent through the API produces only the review.updated from Meta's webhook, with no immediate delivery.
+        On Facebook Pages it fires when the reviewer edits their review and when the Page adds, edits or removes a reply, with the review read live from the Page. A reply sent through the API produces only the review.updated from Meta's webhook, with no immediate delivery.
       example:
         test: true
         review:
@@ -119419,6 +119419,7 @@ components:
         - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored.
         - A review.updated can arrive for a review reported by review.deleted. The next check restores it.
         - It may arrive for a review id you never received review.new for. Ignore ids you do not know.
+        - On Facebook Pages it fires when Meta reports a removed recommendation with its review id. Best effort: Meta does not document the id on removals, so some removals produce no event.
       example:
         test: true
         review:
@@ -251698,12 +251699,12 @@ components:
         platform: googlebusiness
       properties:
         id:
-          description: "Full review name, matching review.id on the review.new event\
-            \ (\"accounts/123/locations/456/reviews/789\")."
+          description: "Google: full review name. Facebook: the review id from review.new."
           type: string
         platform:
           enum:
           - googlebusiness
+          - facebook
           type: string
         rating:
           description: Star rating the reviewer gave. Null when it was never recorded.
@@ -251713,12 +251714,13 @@ components:
           type: integer
         createdAt:
           description: When the reviewer posted the review. Null when it was never
-            recorded.
+            recorded. Always null on Facebook.
           format: date-time
           nullable: true
           type: string
         lastSeenAt:
-          description: Last time Zernio saw Google return this review.
+          description: "Last time Zernio saw Google return this review. On Facebook,\
+            \ when Meta's removal notice arrived."
           format: date-time
           type: string
       required:
@@ -268051,8 +268053,8 @@ x-documentation:
     - `comment.received` - New comment received on a post (Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit, TikTok). X/Twitter does NOT fire this event
     - `mention.received` - Your account was mentioned in a post, caption or comment (Instagram, Facebook, LinkedIn)
     - `review.new` - New review posted on a connected account (Google Business Profile, Facebook Pages)
-    - `review.updated` - A Google Business Profile reviewer edited their review text or rating, or a reply was added, edited or removed. A reply posted through `POST /v1/inbox/reviews/{reviewId}/reply` fires immediately, and the periodic check reports it again with the full review payload, so expect a second delivery. A reply removed through the API, or written or removed in Google's own interface, is reported by the periodic check: for replies written in Google, usually within 6 hours for reviews updated in the last 30 days and usually within about 7 days for older ones. Only teams with a webhook subscribed to `review.updated` are checked. A removed reply fires with `hasReply: false`. On Facebook Pages it fires when the reviewer edits their review and when the Page adds or edits a reply, with the review read live from the Page; a reply sent through the API may be followed by a second delivery.
-    - `review.deleted` - Google Business Profile stopped returning this review, for example after Google's spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to `review.deleted` or `review.restored`. If the review comes back, `review.restored` fires. May arrive for a review id you never received `review.new` for. A review hidden and restored by Google may produce `review.deleted` followed by `review.restored`, and a `review.updated` can arrive for a review previously reported by `review.deleted` (it is restored on the next check).
+    - `review.updated` - A Google Business Profile reviewer edited their review text or rating, or a reply was added, edited or removed. A reply posted through `POST /v1/inbox/reviews/{reviewId}/reply` fires immediately, and the periodic check reports it again with the full review payload, so expect a second delivery. A reply removed through the API, or written or removed in Google's own interface, is reported by the periodic check: for replies written in Google, usually within 6 hours for reviews updated in the last 30 days and usually within about 7 days for older ones. Only teams with a webhook subscribed to `review.updated` are checked. A removed reply fires with `hasReply: false`. On Facebook Pages it fires when the reviewer edits their review and when the Page adds, edits or removes a reply, with the review read live from the Page; a reply sent through the API may be followed by a second delivery.
+    - `review.deleted` - Google Business Profile stopped returning this review, for example after Google's spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to `review.deleted` or `review.restored`. If the review comes back, `review.restored` fires. May arrive for a review id you never received `review.new` for. A review hidden and restored by Google may produce `review.deleted` followed by `review.restored`, and a `review.updated` can arrive for a review previously reported by `review.deleted` (it is restored on the next check). On Facebook Pages it fires when Meta reports a removed recommendation with its review id. Best effort: Meta does not document the id on removals, so some removals produce no event.
     - `review.restored` - A review reported by `review.deleted` is returned by Google again. Same payload as `review.new`.
     - `conversion.received` - Zernio stored an event sent to `POST /v1/events`, by the relay or by a connected source (lead forms, stores, HubSpot), new or a newer version. `conversion.campaign` is the campaign it counts for.
     - `tracking_site.ready` - A tracked website's tag is confirmed on it: by its store or Tag Manager install, or by its first real visit for a pasted line. `trackingSite` is the site as `GET /v1/tracking-sites/{siteId}` returns it.

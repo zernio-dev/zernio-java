@@ -2,7 +2,7 @@
 
 # WebhookPayloadReviewDeleted
 
-Webhook payload for the review.deleted event.  Google Business Profile stopped returning this review, for example after Google's spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
+Webhook payload for the review.deleted event.  Google Business Profile stopped returning this review, for example after Google's spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. - On Facebook Pages it fires when Meta reports a removed recommendation with its review id. Best effort: Meta does not document the id on removals, so some removals produce no event. 
 
 ## Properties
 
