@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   RequestPhoneNumberWhatsAppCodeRequest.JSON_PROPERTY_METHOD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:17:41.824082073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:23:42.259210748Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RequestPhoneNumberWhatsAppCodeRequest {
   /**
    * Delivery method for the code. Omit to let Zernio pick (SMS when the number can receive it, else VOICE).

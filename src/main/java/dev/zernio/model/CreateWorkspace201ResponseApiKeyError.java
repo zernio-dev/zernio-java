@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CreateWorkspace201ResponseApiKeyError.JSON_PROPERTY_CODE,
   CreateWorkspace201ResponseApiKeyError.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:17:41.824082073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:23:42.259210748Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWorkspace201ResponseApiKeyError {
   /**
    * Gets or Sets code

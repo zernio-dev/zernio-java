@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   MessengerIceBreakerLocale.JSON_PROPERTY_LOCALE,
   MessengerIceBreakerLocale.JSON_PROPERTY_CALL_TO_ACTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:17:41.824082073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:23:42.259210748Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessengerIceBreakerLocale {
   public static final String JSON_PROPERTY_LOCALE = "locale";
   @javax.annotation.Nonnull

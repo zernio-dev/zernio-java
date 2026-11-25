@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   AmazonSponsoredProductsAdData.JSON_PROPERTY_NEGATIVE_PRODUCT_TARGETS,
   AmazonSponsoredProductsAdData.JSON_PROPERTY_AUTO_TARGETING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:17:41.824082073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:23:42.259210748Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AmazonSponsoredProductsAdData {
   /**
    * Gets or Sets adProduct

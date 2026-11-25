@@ -56,7 +56,7 @@ import dev.zernio.ApiClient;
   TreasuryTopup.JSON_PROPERTY_HAS_INVOICE,
   TreasuryTopup.JSON_PROPERTY_BONUS_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:17:41.824082073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:23:42.259210748Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TreasuryTopup {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

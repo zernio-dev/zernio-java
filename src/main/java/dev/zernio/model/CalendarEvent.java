@@ -75,7 +75,7 @@ import dev.zernio.ApiClient;
   CalendarEvent.JSON_PROPERTY_CREATED_AT,
   CalendarEvent.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:17:41.824082073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:23:42.259210748Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CalendarEvent {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

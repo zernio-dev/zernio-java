@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAdRuleTriggeredRule.JSON_PROPERTY_LEVEL,
   WebhookPayloadAdRuleTriggeredRule.JSON_PROPERTY_PLATFORM_AD_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:17:41.824082073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:23:42.259210748Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAdRuleTriggeredRule {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

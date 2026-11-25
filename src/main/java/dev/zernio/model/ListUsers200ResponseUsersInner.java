@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   ListUsers200ResponseUsersInner.JSON_PROPERTY_CREATED_AT,
   ListUsers200ResponseUsersInner.JSON_PROPERTY_LAST_LOGIN_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:17:41.824082073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:23:42.259210748Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListUsers200ResponseUsersInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable

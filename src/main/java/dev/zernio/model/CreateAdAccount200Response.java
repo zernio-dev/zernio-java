@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateAdAccount200Response.JSON_PROPERTY_MANAGER_CUSTOMER_ID,
   CreateAdAccount200Response.JSON_PROPERTY_VALIDATE_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:17:41.824082073Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-25T09:23:42.259210748Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdAccount200Response {
   /**
    * Gets or Sets platform
