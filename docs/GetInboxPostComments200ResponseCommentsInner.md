@@ -22,7 +22,7 @@
 |**canHide** | **Boolean** | Whether hide is supported for this comment&#39;s platform (Facebook, Instagram, Threads, X, TikTok). It does not check each comment: X needs a conversation started by the account, and Threads only hides top-level replies. Always present. |  [optional] |
 |**canLike** | **Boolean** | Whether this comment can be liked (Facebook, X, Bluesky, Reddit, LinkedIn, TikTok). Always present. |  [optional] |
 |**isHidden** | **Boolean** | Whether the comment is currently hidden. On Instagram accounts connected through Facebook Login, Meta leaves hidden comments (and their replies) out of the list entirely, so they never appear with isHidden true; Instagram Login accounts and Facebook Pages return them with isHidden true. |  [optional] |
-|**isLiked** | **Boolean** | Whether the current user has liked this comment |  [optional] |
+|**isLiked** | **Boolean** | Whether the connected account has liked this comment. Read on Facebook, Bluesky, Reddit and TikTok only. On every other platform (Instagram, X, LinkedIn, Threads, YouTube and the rest) it is never true, even for comments the account liked, so treat false or a missing value there as unknown. |  [optional] |
 |**attachment** | [**CommentAttachment**](CommentAttachment.md) | The comment&#39;s media, whenever the platform returns one (replies included). Supported on Facebook, TikTok, X, Threads and Bluesky; absent when the comment has no media and on every other platform. See CommentAttachment for each platform&#39;s &#x60;type&#x60; values. |  [optional] |
 |**likeUri** | **String** | Bluesky like URI for unliking |  [optional] |
 |**cid** | **String** | Bluesky content identifier |  [optional] |

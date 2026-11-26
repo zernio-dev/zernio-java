@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.835.1
+  version: 1.835.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -183483,7 +183483,11 @@ components:
             \ true."
           type: boolean
         isLiked:
-          description: Whether the current user has liked this comment
+          description: "Whether the connected account has liked this comment. Read\
+            \ on Facebook, Bluesky, Reddit and TikTok only. On every other platform\
+            \ (Instagram, X, LinkedIn, Threads, YouTube and the rest) it is never\
+            \ true, even for comments the account liked, so treat false or a missing\
+            \ value there as unknown."
           type: boolean
         attachment:
           allOf:
