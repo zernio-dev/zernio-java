@@ -10320,7 +10320,7 @@ public class Example {
 | **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **200** | Campaign status updated |  -  |
-| **400** | Invalid input, campaign spans multiple accounts, or the platform refused the write (&#x60;platform_api_error&#x60;, see Retrying above) |  -  |
+| **400** | Invalid input (including an invalid &#x60;accountId&#x60;, or &#x60;stage: true&#x60; with &#x60;accountId&#x60; on a campaign Zernio has not synced), campaign spans multiple accounts, or the platform refused the write (&#x60;platform_api_error&#x60;, see Retrying above) |  -  |
 | **401** | Missing or invalid API key (&#x60;missing_credentials&#x60; / &#x60;invalid_credentials&#x60;), or the platform no longer accepts the connection&#39;s token (&#x60;reconnect_required&#x60;): reconnect the account, then retry. |  -  |
 | **403** | Forbidden. Two codes:  - &#x60;ads_allowance_exceeded&#x60;: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume. - &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the targeted ad account is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | No ads found for this campaign |  -  |
@@ -10404,7 +10404,7 @@ ApiResponse<[**UpdateAdCampaignStatus200Response**](UpdateAdCampaignStatus200Res
 | **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **200** | Campaign status updated |  -  |
-| **400** | Invalid input, campaign spans multiple accounts, or the platform refused the write (&#x60;platform_api_error&#x60;, see Retrying above) |  -  |
+| **400** | Invalid input (including an invalid &#x60;accountId&#x60;, or &#x60;stage: true&#x60; with &#x60;accountId&#x60; on a campaign Zernio has not synced), campaign spans multiple accounts, or the platform refused the write (&#x60;platform_api_error&#x60;, see Retrying above) |  -  |
 | **401** | Missing or invalid API key (&#x60;missing_credentials&#x60; / &#x60;invalid_credentials&#x60;), or the platform no longer accepts the connection&#39;s token (&#x60;reconnect_required&#x60;): reconnect the account, then retry. |  -  |
 | **403** | Forbidden. Two codes:  - &#x60;ads_allowance_exceeded&#x60;: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume. - &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the targeted ad account is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | No ads found for this campaign |  -  |
@@ -10909,7 +10909,7 @@ ApiResponse<[**UpdateAdSet200Response**](UpdateAdSet200Response.md)>
 
 ## updateAdSetStatus
 
-> UpdateAdSetStatus200Response updateAdSetStatus(adSetId, updateAdCampaignStatusRequest, idempotencyKey)
+> UpdateAdSetStatus200Response updateAdSetStatus(adSetId, updateAdSetStatusRequest, idempotencyKey)
 
 Pause or resume a single ad set
 
@@ -10937,10 +10937,10 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adSetId = "adSetId_example"; // String | Platform ad set ID
-        UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest = new UpdateAdCampaignStatusRequest(); // UpdateAdCampaignStatusRequest | 
+        UpdateAdSetStatusRequest updateAdSetStatusRequest = new UpdateAdSetStatusRequest(); // UpdateAdSetStatusRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            UpdateAdSetStatus200Response result = apiInstance.updateAdSetStatus(adSetId, updateAdCampaignStatusRequest, idempotencyKey);
+            UpdateAdSetStatus200Response result = apiInstance.updateAdSetStatus(adSetId, updateAdSetStatusRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#updateAdSetStatus");
@@ -10959,7 +10959,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adSetId** | **String**| Platform ad set ID | |
-| **updateAdCampaignStatusRequest** | [**UpdateAdCampaignStatusRequest**](UpdateAdCampaignStatusRequest.md)|  | |
+| **updateAdSetStatusRequest** | [**UpdateAdSetStatusRequest**](UpdateAdSetStatusRequest.md)|  | |
 | **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
@@ -10981,7 +10981,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **200** | Ad set status updated |  -  |
-| **400** | Invalid input |  -  |
+| **400** | Invalid input, including an invalid &#x60;accountId&#x60; or &#x60;stage: true&#x60; with &#x60;accountId&#x60; on an ad set Zernio has not synced |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | One of two refusals:  - &#x60;ads_allowance_exceeded&#x60;: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume. - &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the ad account this request targets is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | Ad set not found |  -  |
@@ -10989,7 +10989,7 @@ public class Example {
 
 ## updateAdSetStatusWithHttpInfo
 
-> ApiResponse<UpdateAdSetStatus200Response> updateAdSetStatus updateAdSetStatusWithHttpInfo(adSetId, updateAdCampaignStatusRequest, idempotencyKey)
+> ApiResponse<UpdateAdSetStatus200Response> updateAdSetStatus updateAdSetStatusWithHttpInfo(adSetId, updateAdSetStatusRequest, idempotencyKey)
 
 Pause or resume a single ad set
 
@@ -11018,10 +11018,10 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adSetId = "adSetId_example"; // String | Platform ad set ID
-        UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest = new UpdateAdCampaignStatusRequest(); // UpdateAdCampaignStatusRequest | 
+        UpdateAdSetStatusRequest updateAdSetStatusRequest = new UpdateAdSetStatusRequest(); // UpdateAdSetStatusRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            ApiResponse<UpdateAdSetStatus200Response> response = apiInstance.updateAdSetStatusWithHttpInfo(adSetId, updateAdCampaignStatusRequest, idempotencyKey);
+            ApiResponse<UpdateAdSetStatus200Response> response = apiInstance.updateAdSetStatusWithHttpInfo(adSetId, updateAdSetStatusRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -11042,7 +11042,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adSetId** | **String**| Platform ad set ID | |
-| **updateAdCampaignStatusRequest** | [**UpdateAdCampaignStatusRequest**](UpdateAdCampaignStatusRequest.md)|  | |
+| **updateAdSetStatusRequest** | [**UpdateAdSetStatusRequest**](UpdateAdSetStatusRequest.md)|  | |
 | **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
@@ -11064,7 +11064,7 @@ ApiResponse<[**UpdateAdSetStatus200Response**](UpdateAdSetStatus200Response.md)>
 |-------------|-------------|------------------|
 | **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **200** | Ad set status updated |  -  |
-| **400** | Invalid input |  -  |
+| **400** | Invalid input, including an invalid &#x60;accountId&#x60; or &#x60;stage: true&#x60; with &#x60;accountId&#x60; on an ad set Zernio has not synced |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | One of two refusals:  - &#x60;ads_allowance_exceeded&#x60;: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume. - &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the ad account this request targets is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | Ad set not found |  -  |
@@ -11146,7 +11146,7 @@ public class Example {
 | **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **200** | Ad status updated (or skipped when no change was needed) |  -  |
-| **400** | Invalid input |  -  |
+| **400** | Invalid input, including an invalid &#x60;accountId&#x60; or &#x60;stage: true&#x60; with &#x60;accountId&#x60; on an ad Zernio has not synced |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden. The code says why:  - &#x60;ads_allowance_exceeded&#x60;: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume. - &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the ad account this request targets is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | Ad not found (&#x60;ad_not_found&#x60;), or &#x60;account_not_found&#x60; when the ad&#39;s connection is on a profile this API key can&#39;t access. |  -  |
@@ -11229,7 +11229,7 @@ ApiResponse<[**UpdateAdStatus200Response**](UpdateAdStatus200Response.md)>
 | **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **200** | Ad status updated (or skipped when no change was needed) |  -  |
-| **400** | Invalid input |  -  |
+| **400** | Invalid input, including an invalid &#x60;accountId&#x60; or &#x60;stage: true&#x60; with &#x60;accountId&#x60; on an ad Zernio has not synced |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden. The code says why:  - &#x60;ads_allowance_exceeded&#x60;: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume. - &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the ad account this request targets is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | Ad not found (&#x60;ad_not_found&#x60;), or &#x60;account_not_found&#x60; when the ad&#39;s connection is on a profile this API key can&#39;t access. |  -  |

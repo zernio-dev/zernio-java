@@ -3626,6 +3626,7 @@ docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md
 docs/UpdateAdSetRequestRegionalRegulationIdentitiesValue.md
 docs/UpdateAdSetRequestSmartTargeting.md
 docs/UpdateAdSetStatus200Response.md
+docs/UpdateAdSetStatusRequest.md
 docs/UpdateAdStatus200Response.md
 docs/UpdateAdStatusRequest.md
 docs/UpdateAdTrackingTags200Response.md
@@ -7959,6 +7960,7 @@ src/main/java/dev/zernio/model/UpdateAdSetRequestPlatformSpecificDataPromotedObj
 src/main/java/dev/zernio/model/UpdateAdSetRequestRegionalRegulationIdentitiesValue.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestSmartTargeting.java
 src/main/java/dev/zernio/model/UpdateAdSetStatus200Response.java
+src/main/java/dev/zernio/model/UpdateAdSetStatusRequest.java
 src/main/java/dev/zernio/model/UpdateAdStatus200Response.java
 src/main/java/dev/zernio/model/UpdateAdStatusRequest.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTags200Response.java
@@ -8621,4 +8623,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/WebhookPayloadMessageSentMetadataTemplateButtonsInnerTest.java
+src/test/java/dev/zernio/model/UpdateAdSetStatusRequestTest.java

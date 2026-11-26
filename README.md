@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.840.0
+- API version: 1.841.0
 
-- Build date: 2026-11-26T12:47:57.965483605Z[Etc/UTC]
+- Build date: 2026-11-26T14:02:33.504848448Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.840.0</version>
+  <version>1.841.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.840.0"
+compile "dev.zernio:zernio-sdk:1.841.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.840.0.jar`
+- `target/zernio-sdk-1.841.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -6469,6 +6469,7 @@ Class | Method | HTTP request | Description
  - [UpdateAdSetRequestRegionalRegulationIdentitiesValue](docs/UpdateAdSetRequestRegionalRegulationIdentitiesValue.md)
  - [UpdateAdSetRequestSmartTargeting](docs/UpdateAdSetRequestSmartTargeting.md)
  - [UpdateAdSetStatus200Response](docs/UpdateAdSetStatus200Response.md)
+ - [UpdateAdSetStatusRequest](docs/UpdateAdSetStatusRequest.md)
  - [UpdateAdStatus200Response](docs/UpdateAdStatus200Response.md)
  - [UpdateAdStatusRequest](docs/UpdateAdStatusRequest.md)
  - [UpdateAdTrackingTags200Response](docs/UpdateAdTrackingTags200Response.md)

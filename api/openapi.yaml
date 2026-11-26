@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.840.0
+  version: 1.841.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -62826,8 +62826,10 @@ paths:
                 $ref: "#/components/schemas/updateAdCampaignStatus_200_response"
           description: Campaign status updated
         "400":
-          description: "Invalid input, campaign spans multiple accounts, or the platform\
-            \ refused the write (`platform_api_error`, see Retrying above)"
+          description: "Invalid input (including an invalid `accountId`, or `stage:\
+            \ true` with `accountId` on a campaign Zernio has not synced), campaign\
+            \ spans multiple accounts, or the platform refused the write (`platform_api_error`,\
+            \ see Retrying above)"
         "401":
           description: "Missing or invalid API key (`missing_credentials` / `invalid_credentials`),\
             \ or the platform no longer accepts the connection's token (`reconnect_required`):\
@@ -65155,7 +65157,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/updateAdCampaignStatus_request"
+              $ref: "#/components/schemas/updateAdSetStatus_request"
         required: true
       responses:
         "202":
@@ -65172,7 +65174,8 @@ paths:
                 $ref: "#/components/schemas/updateAdSetStatus_200_response"
           description: Ad set status updated
         "400":
-          description: Invalid input
+          description: "Invalid input, including an invalid `accountId` or `stage:\
+            \ true` with `accountId` on an ad set Zernio has not synced"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -66507,7 +66510,8 @@ paths:
                 $ref: "#/components/schemas/updateAdStatus_200_response"
           description: Ad status updated (or skipped when no change was needed)
         "400":
-          description: Invalid input
+          description: "Invalid input, including an invalid `accountId` or `stage:\
+            \ true` with `accountId` on an ad Zernio has not synced"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -208513,6 +208517,13 @@ components:
           - tradedesk
           - snapchat
           type: string
+        accountId:
+          description: "A Zernio Meta Ads or Facebook connection id (also accepted\
+            \ in the query). Changes the status of a campaign created in Ads Manager\
+            \ that Zernio has not synced, by numeric Meta id. Ignored when Zernio\
+            \ has the campaign. It echoes the requested status; `stage: true` answers\
+            \ 400."
+          type: string
         stage:
           description: "Send true to stage this change instead of applying it. Nothing\
             \ is written to the ad network; the response is `202` with the staged\
@@ -211017,6 +211028,46 @@ components:
           description: "The ad group's end_time, null when it runs continuously."
           nullable: true
           type: string
+    updateAdSetStatus_request:
+      properties:
+        status:
+          enum:
+          - active
+          - paused
+          type: string
+        platform:
+          enum:
+          - facebook
+          - instagram
+          - tiktok
+          - linkedin
+          - pinterest
+          - google
+          - twitter
+          - openai
+          - reddit
+          - microsoft
+          - amazon
+          - tradedesk
+          - snapchat
+          type: string
+        accountId:
+          description: "A Zernio Meta Ads or Facebook connection id (also accepted\
+            \ in the query). Changes the status of an ad set created in Ads Manager\
+            \ that Zernio has not synced, by numeric Meta id. Ignored when Zernio\
+            \ has the ad set. It echoes the requested status; `stage: true` answers\
+            \ 400."
+          type: string
+        stage:
+          description: "Send true to stage this change instead of applying it. Nothing\
+            \ is written to the ad network; the response is `202` with the staged\
+            \ change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm.\
+            \ Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with\
+            \ `validateOnly` or `dryRun`."
+          type: boolean
+      required:
+      - platform
+      - status
     updateAdSetStatus_200_response:
       example:
         platformAdSetStatus: platformAdSetStatus
@@ -214990,6 +215041,12 @@ components:
           enum:
           - active
           - paused
+          type: string
+        accountId:
+          description: "A Zernio Meta Ads or Facebook connection id (also accepted\
+            \ in the query). Changes the status of an ad created in Ads Manager that\
+            \ Zernio has not synced, by numeric Meta id. Ignored when Zernio has the\
+            \ ad. It echoes the requested status; `stage: true` answers 400."
           type: string
         stage:
           description: "Send true to stage this change instead of applying it. Nothing\
