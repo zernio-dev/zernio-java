@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.844.0
+  version: 1.845.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -269444,6 +269444,7 @@ components:
         UX. Keys vary by `reason`.
       example:
         free_tier_account_limit: 2
+        can_add_card: true
         verification_amount_cents: 1000
         current_account_count: 5
         has_payment_method: true
@@ -269461,6 +269462,11 @@ components:
         has_payment_method:
           description: Whether the team currently has a card on file in Stripe. Set
             when reason=free_tier_exceeded or reason=twitter_passthrough.
+          type: boolean
+        can_add_card:
+          description: "Whether the caller can add the card themselves (the payer,\
+            \ or an owner, admin or billing admin of the workspace). False for a member\
+            \ or a viewer: the workspace owner has to add it. Set for the card reasons."
           type: boolean
         verification_amount_cents:
           description: "One-time card verification charge in USD cents, credited to\
@@ -269481,6 +269487,7 @@ components:
         code: PAYMENT_REQUIRED
         details:
           free_tier_account_limit: 2
+          can_add_card: true
           verification_amount_cents: 1000
           current_account_count: 5
           has_payment_method: true

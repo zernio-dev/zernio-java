@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Zernio API
-  version: "1.844.0"
+  version: "1.845.0"
   description: |
     API reference for Zernio. Authenticate with a Bearer API key.
     Base URL: https://zernio.com/api
@@ -1856,6 +1856,9 @@ components:
                   has_payment_method:
                     type: boolean
                     description: Whether the team currently has a card on file in Stripe. Set when reason=free_tier_exceeded or reason=twitter_passthrough.
+                  can_add_card:
+                    type: boolean
+                    description: 'Whether the caller can add the card themselves (the payer, or an owner, admin or billing admin of the workspace). False for a member or a viewer: the workspace owner has to add it. Set for the card reasons.'
                   verification_amount_cents:
                     type: integer
                     description: 'One-time card verification charge in USD cents, credited to usage. Only set when reason=card_verification_required.'
