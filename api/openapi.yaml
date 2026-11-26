@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.836.0
+  version: 1.837.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -52060,6 +52060,7 @@ paths:
             - `whatsapp_number_in_use`: Meta reports the number is registered to another WhatsApp account.
             - `META_INVALID_NUMBER`: Meta refused a never-live number and no replacement could be sourced.
             - `PENDING_REGULATORY`: the number is still in carrier regulatory review.
+            - `whatsapp_number_already_connected`: the number is already connected to WhatsApp, so there is no code to request.
           x-summary: "The number cannot be verified for WhatsApp right now, for example\
             \ because Meta disallows it: buy a new number for WhatsApp."
         "429":
