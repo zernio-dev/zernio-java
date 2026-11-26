@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.841.0
+- API version: 1.842.0
 
-- Build date: 2026-11-26T14:02:33.504848448Z[Etc/UTC]
+- Build date: 2026-11-26T15:31:43.417971539Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.841.0</version>
+  <version>1.842.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.841.0"
+compile "dev.zernio:zernio-sdk:1.842.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.841.0.jar`
+- `target/zernio-sdk-1.842.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -581,6 +581,10 @@ Class | Method | HTTP request | Description
 *AdChangesApi* | [**getAdChangeWithHttpInfo**](docs/AdChangesApi.md#getAdChangeWithHttpInfo) | **GET** /v1/ads/changes/{changeId} | Get a staged ad change
 *AdChangesApi* | [**listAdChanges**](docs/AdChangesApi.md#listAdChanges) | **GET** /v1/ads/changes | List staged ad changes
 *AdChangesApi* | [**listAdChangesWithHttpInfo**](docs/AdChangesApi.md#listAdChangesWithHttpInfo) | **GET** /v1/ads/changes | List staged ad changes
+*AdChangesApi* | [**restageAdChange**](docs/AdChangesApi.md#restageAdChange) | **POST** /v1/ads/changes/{changeId}/restage | Stage a failed ad change again
+*AdChangesApi* | [**restageAdChangeWithHttpInfo**](docs/AdChangesApi.md#restageAdChangeWithHttpInfo) | **POST** /v1/ads/changes/{changeId}/restage | Stage a failed ad change again
+*AdChangesApi* | [**updateAdChange**](docs/AdChangesApi.md#updateAdChange) | **PATCH** /v1/ads/changes/{changeId} | Edit or refresh a staged ad change
+*AdChangesApi* | [**updateAdChangeWithHttpInfo**](docs/AdChangesApi.md#updateAdChangeWithHttpInfo) | **PATCH** /v1/ads/changes/{changeId} | Edit or refresh a staged ad change
 *AdCreativesApi* | [**createAdCreative**](docs/AdCreativesApi.md#createAdCreative) | **POST** /v1/ads/creatives | Create a standalone creative
 *AdCreativesApi* | [**createAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#createAdCreativeWithHttpInfo) | **POST** /v1/ads/creatives | Create a standalone creative
 *AdCreativesApi* | [**deleteAdCreative**](docs/AdCreativesApi.md#deleteAdCreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative
@@ -6267,7 +6271,10 @@ Class | Method | HTTP request | Description
  - [StagedAdChange](docs/StagedAdChange.md)
  - [StagedAdChangeDiffInner](docs/StagedAdChangeDiffInner.md)
  - [StagedAdChangeError](docs/StagedAdChangeError.md)
+ - [StagedAdChangeRequest](docs/StagedAdChangeRequest.md)
  - [StagedAdChangeSummary](docs/StagedAdChangeSummary.md)
+ - [StagedAdChangeSummaryError](docs/StagedAdChangeSummaryError.md)
+ - [StagedAdChangeSummaryRequest](docs/StagedAdChangeSummaryRequest.md)
  - [StartBusinessAgentEvalRun202Response](docs/StartBusinessAgentEvalRun202Response.md)
  - [StartBusinessAgentEvalRunRequest](docs/StartBusinessAgentEvalRunRequest.md)
  - [StartCreatorConnect200Response](docs/StartCreatorConnect200Response.md)

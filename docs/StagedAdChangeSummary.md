@@ -2,14 +2,18 @@
 
 # StagedAdChangeSummary
 
-A staged ad change as the list returns it: what it targets and who staged it, without the diff.
+A staged or failed ad change as the list returns it: what it targets and who staged it, without the diff.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | The change id, used in /v1/ads/changes/{changeId}. |  |
-|**type** | [**TypeEnum**](#TypeEnum) | Which write was staged. |  |
+|**type** | [**TypeEnum**](#TypeEnum) | Which write was staged. &#x60;operation&#x60; is a write staged as its request, named by &#x60;request&#x60;. |  |
+|**request** | [**StagedAdChangeSummaryRequest**](StagedAdChangeSummaryRequest.md) |  |  [optional] |
+|**status** | [**StatusEnum**](#StatusEnum) | The status the list was asked for. |  |
+|**stale** | **Boolean** | Present and true on a staged change whose object was edited on the ad network after staging. Refresh it with PATCH /v1/ads/changes/{changeId}. |  [optional] |
+|**error** | [**StagedAdChangeSummaryError**](StagedAdChangeSummaryError.md) |  |  [optional] |
 |**platform** | **String** | The ad platform of the object, as the write route names it. |  |
 |**accountId** | **String** | The connected account the write goes through. |  |
 |**adAccountId** | **String** | The ad account id on the platform. |  |
@@ -35,6 +39,16 @@ A staged ad change as the list returns it: what it targets and who staged it, wi
 | AD_CREATE | &quot;ad_create&quot; |
 | CAMPAIGN_CREATE | &quot;campaign_create&quot; |
 | AD_SET_CREATE | &quot;ad_set_create&quot; |
+| OPERATION | &quot;operation&quot; |
+
+
+
+## Enum: StatusEnum
+
+| Name | Value |
+|---- | -----|
+| STAGED | &quot;staged&quot; |
+| FAILED | &quot;failed&quot; |
 
 
 

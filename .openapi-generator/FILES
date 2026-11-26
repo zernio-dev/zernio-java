@@ -3419,7 +3419,10 @@ docs/SocialAccountProfileId.md
 docs/StagedAdChange.md
 docs/StagedAdChangeDiffInner.md
 docs/StagedAdChangeError.md
+docs/StagedAdChangeRequest.md
 docs/StagedAdChangeSummary.md
+docs/StagedAdChangeSummaryError.md
+docs/StagedAdChangeSummaryRequest.md
 docs/StartBusinessAgentEvalRun202Response.md
 docs/StartBusinessAgentEvalRunRequest.md
 docs/StartCreatorConnect200Response.md
@@ -7758,7 +7761,10 @@ src/main/java/dev/zernio/model/SocialAccountProfileId.java
 src/main/java/dev/zernio/model/StagedAdChange.java
 src/main/java/dev/zernio/model/StagedAdChangeDiffInner.java
 src/main/java/dev/zernio/model/StagedAdChangeError.java
+src/main/java/dev/zernio/model/StagedAdChangeRequest.java
 src/main/java/dev/zernio/model/StagedAdChangeSummary.java
+src/main/java/dev/zernio/model/StagedAdChangeSummaryError.java
+src/main/java/dev/zernio/model/StagedAdChangeSummaryRequest.java
 src/main/java/dev/zernio/model/StartBusinessAgentEvalRun202Response.java
 src/main/java/dev/zernio/model/StartBusinessAgentEvalRunRequest.java
 src/main/java/dev/zernio/model/StartCreatorConnect200Response.java
@@ -8623,4 +8629,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/UpdateAdSetStatusRequestTest.java
+src/test/java/dev/zernio/model/StagedAdChangeRequestTest.java
+src/test/java/dev/zernio/model/StagedAdChangeSummaryErrorTest.java
+src/test/java/dev/zernio/model/StagedAdChangeSummaryRequestTest.java
