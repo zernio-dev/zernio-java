@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.834.1
+- API version: 1.835.0
 
-- Build date: 2026-11-26T02:45:45.285912761Z[Etc/UTC]
+- Build date: 2026-11-26T06:00:01.683385819Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.834.1</version>
+  <version>1.835.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.834.1"
+compile "dev.zernio:zernio-sdk:1.835.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.834.1.jar`
+- `target/zernio-sdk-1.835.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -6979,6 +6979,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadMessageSentMessageSender](docs/WebhookPayloadMessageSentMessageSender.md)
  - [WebhookPayloadMessageSentMetadata](docs/WebhookPayloadMessageSentMetadata.md)
  - [WebhookPayloadMessageSentMetadataLocation](docs/WebhookPayloadMessageSentMetadataLocation.md)
+ - [WebhookPayloadMessageSentMetadataUnsupported](docs/WebhookPayloadMessageSentMetadataUnsupported.md)
  - [WebhookPayloadNotificationSent](docs/WebhookPayloadNotificationSent.md)
  - [WebhookPayloadNotificationSentNotification](docs/WebhookPayloadNotificationSentNotification.md)
  - [WebhookPayloadNotificationSentNotificationActionsInner](docs/WebhookPayloadNotificationSentNotificationActionsInner.md)

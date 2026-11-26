@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.834.1
+  version: 1.835.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -120617,13 +120617,18 @@ components:
         metadata:
           metaInteractive:
             key: ""
+          unsupported:
+            code: 0
+            details: details
+            title: title
+            type: type
           quotedMessageId: quotedMessageId
           tiktokMessageType: tiktokMessageType
           location:
             address: address
-            latitude: 0.8008281904610115
+            latitude: 6.027456183070403
             name: name
-            longitude: 6.027456183070403
+            longitude: 1.4658129805029452
           threadTs: threadTs
           contacts:
           - key: ""
@@ -253062,6 +253067,28 @@ components:
       - sender
       - sentAt
       - text
+    WebhookPayloadMessageSent_metadata_unsupported:
+      description: |
+        WhatsApp only. Meta's own reason this message has no renderable body. Present on Coexistence echoes of a message sent from the WhatsApp Business app that Meta could not render (for example an album, code 131051: message type currently not supported). Absent otherwise.
+      example:
+        code: 0
+        details: details
+        title: title
+        type: type
+      properties:
+        code:
+          description: Meta's numeric error code (e.g. 131051).
+          type: integer
+        title:
+          description: Meta's short error title.
+          type: string
+        details:
+          description: Meta's human-readable error detail string.
+          type: string
+        type:
+          description: "Meta's name for the content WhatsApp could not deliver, e.g.\
+            \ unknown or album. Absent when Meta sends none."
+          type: string
     WebhookPayloadMessageSent_metadata_location:
       description: |
         WhatsApp only. The location pin this message carries, in the same shape the inbox send API accepts.
@@ -253071,9 +253098,9 @@ components:
         The message `text` is only the emoji preview (`📍 <name>`); the pin itself lives here.
       example:
         address: address
-        latitude: 0.8008281904610115
+        latitude: 6.027456183070403
         name: name
-        longitude: 6.027456183070403
+        longitude: 1.4658129805029452
       properties:
         latitude:
           description: Latitude in decimal degrees.
@@ -253089,24 +253116,31 @@ components:
           type: string
     WebhookPayloadMessageSent_metadata:
       description: |
-        Platform-specific context for the sent message: a quote-reply reference, a WhatsApp location pin, WhatsApp contact cards, the TikTok message type, or outgoing Instagram/Facebook buttons, quick replies and template.
+        Platform-specific context for the sent message: a quote-reply reference, a WhatsApp location pin, WhatsApp contact cards, Meta's reason a WhatsApp Business app echo has no renderable body, the TikTok message type, or outgoing Instagram/Facebook buttons, quick replies and template.
 
         The key is present only when the send carried some context: it is never null and never an empty object. Read it to tell a location or contact-card message from a text one without a GET on the message.
       example:
         metaInteractive:
           key: ""
+        unsupported:
+          code: 0
+          details: details
+          title: title
+          type: type
         quotedMessageId: quotedMessageId
         tiktokMessageType: tiktokMessageType
         location:
           address: address
-          latitude: 0.8008281904610115
+          latitude: 6.027456183070403
           name: name
-          longitude: 6.027456183070403
+          longitude: 1.4658129805029452
         threadTs: threadTs
         contacts:
         - key: ""
         - key: ""
       properties:
+        unsupported:
+          $ref: "#/components/schemas/WebhookPayloadMessageSent_metadata_unsupported"
         metaInteractive:
           additionalProperties: true
           description: "Instagram/Facebook only. The buttons, quickReplies and/or\
