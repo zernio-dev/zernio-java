@@ -4150,6 +4150,7 @@ docs/WebhookPayloadMessageSentMessageAttachmentsInner.md
 docs/WebhookPayloadMessageSentMessageSender.md
 docs/WebhookPayloadMessageSentMetadata.md
 docs/WebhookPayloadMessageSentMetadataLocation.md
+docs/WebhookPayloadMessageSentMetadataTemplateButtonsInner.md
 docs/WebhookPayloadMessageSentMetadataTemplateHeader.md
 docs/WebhookPayloadMessageSentMetadataUnsupported.md
 docs/WebhookPayloadNotificationSent.md
@@ -8476,6 +8477,7 @@ src/main/java/dev/zernio/model/WebhookPayloadMessageSentMessageAttachmentsInner.
 src/main/java/dev/zernio/model/WebhookPayloadMessageSentMessageSender.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageSentMetadata.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageSentMetadataLocation.java
+src/main/java/dev/zernio/model/WebhookPayloadMessageSentMetadataTemplateButtonsInner.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageSentMetadataTemplateHeader.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageSentMetadataUnsupported.java
 src/main/java/dev/zernio/model/WebhookPayloadNotificationSent.java
@@ -8619,3 +8621,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookPayloadMessageSentMetadataTemplateButtonsInnerTest.java
