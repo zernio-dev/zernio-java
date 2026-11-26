@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.843.0
+  version: 1.844.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -6945,6 +6945,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
       x-accepts:
       - application/json
   /v1/ledger/entries:
@@ -7047,6 +7048,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
       x-accepts:
       - application/json
   /v1/balance:
@@ -7081,6 +7083,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
       x-accepts:
       - application/json
   /v1/balance/auto-recharge:
@@ -7118,6 +7121,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
       x-accepts:
       - application/json
     patch:
@@ -7216,6 +7220,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
       x-accepts:
       - application/json
     post:
@@ -7374,6 +7379,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
       x-accepts:
       - application/json
       - application/pdf
@@ -7418,6 +7424,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
       x-accepts:
       - application/json
   /v1/balance/top-ups/{topupId}/statement:
@@ -7464,6 +7471,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
       x-accepts:
       - application/json
   /v1/balance/top-ups/{topupId}/confirm:
@@ -7579,6 +7587,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
       x-accepts:
       - application/json
   /v1/payees/{payeeId}/onboarding-link:
@@ -7670,6 +7679,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
       x-accepts:
       - application/json
     post:
@@ -7740,6 +7750,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
       x-accepts:
       - application/json
   /public/creator-campaigns/recover-link:
@@ -8551,6 +8562,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
       x-accepts:
       - application/json
   /v1/payout-batches/{batchId}/confirm:
@@ -30462,6 +30474,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - hubspot
       - salesforce
@@ -30569,6 +30582,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - hubspot
       - salesforce
@@ -30753,6 +30767,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - hubspot
       - salesforce
@@ -30797,6 +30812,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - hubspot
       - salesforce
@@ -30902,6 +30918,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - hubspot
       - salesforce
@@ -31343,6 +31360,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
   /v1/discord/dms:
@@ -31744,6 +31762,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
   /v1/discord/guilds/{guildId}/members/search:
@@ -31810,6 +31829,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
   /v1/discord/guilds/{guildId}/members/{userId}:
@@ -31864,6 +31884,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
   /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId}:
@@ -33108,6 +33129,7 @@ paths:
       x-resource-group: webhooks
       x-oauth-scopes:
       - automations:write
+      - automations:read
       x-accepts:
       - application/json
     post:
@@ -33429,6 +33451,7 @@ paths:
       x-resource-group: webhooks
       x-oauth-scopes:
       - automations:write
+      - automations:read
       x-accepts:
       - application/json
   /v1/webhooks/logs/redeliver:
@@ -35803,6 +35826,7 @@ paths:
       x-resource-group: calendar
       x-oauth-scopes:
       - calendar:write
+      - calendar:read
       x-accepts:
       - application/json
   /v1/calendar/events:
@@ -35954,6 +35978,7 @@ paths:
       x-resource-group: calendar
       x-oauth-scopes:
       - calendar:write
+      - calendar:read
       x-accepts:
       - application/json
     post:
@@ -36137,6 +36162,7 @@ paths:
       x-resource-group: calendar
       x-oauth-scopes:
       - calendar:write
+      - calendar:read
       x-accepts:
       - application/json
     patch:
@@ -36276,6 +36302,7 @@ paths:
       x-resource-group: calendar
       x-oauth-scopes:
       - calendar:write
+      - calendar:read
       x-accepts:
       - application/json
   /v1/calendar/events/{eventId}/rsvp:
@@ -36361,6 +36388,7 @@ paths:
       x-resource-group: calendar
       x-oauth-scopes:
       - calendar:write
+      - calendar:read
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -36399,6 +36427,7 @@ paths:
       x-resource-group: calendar
       x-oauth-scopes:
       - calendar:write
+      - calendar:read
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -36470,6 +36499,7 @@ paths:
       x-resource-group: files
       x-oauth-scopes:
       - files:write
+      - files:read
       x-accepts:
       - application/json
     post:
@@ -36687,6 +36717,7 @@ paths:
       x-resource-group: files
       x-oauth-scopes:
       - files:write
+      - files:read
       x-accepts:
       - application/json
     patch:
@@ -36772,6 +36803,7 @@ paths:
       x-resource-group: files
       x-oauth-scopes:
       - files:write
+      - files:read
       x-accepts:
       - application/json
       - application/octet-stream
@@ -36813,6 +36845,7 @@ paths:
       x-resource-group: files
       x-oauth-scopes:
       - files:write
+      - files:read
       x-accepts:
       - application/json
   /v1/connect/microsoft/admin-consent:
@@ -43456,6 +43489,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
   /v1/whatsapp/calls:
@@ -46261,6 +46295,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
       - text/csv
@@ -48549,6 +48584,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
   /v1/whatsapp/pricing-analytics:
@@ -48747,6 +48783,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
   /v1/whatsapp/block-users:
@@ -48837,6 +48874,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
     post:
@@ -54001,6 +54039,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
     post:
@@ -54096,6 +54135,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
   /v1/contacts/autocomplete:
@@ -54176,6 +54216,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
   /v1/contacts/{contactId}:
@@ -54238,6 +54279,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
     patch:
@@ -54312,6 +54354,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-accepts:
       - application/json
   /v1/contacts/bulk:
@@ -77629,6 +77672,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - meta
       - google
@@ -77679,6 +77723,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - meta
       x-accepts:
@@ -78177,6 +78222,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - meta
       x-accepts:
@@ -91666,6 +91712,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -91731,6 +91778,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -91871,6 +91919,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -92010,6 +92059,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -92068,6 +92118,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -92464,6 +92515,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -92611,6 +92663,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -92669,6 +92722,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -92764,6 +92818,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -92908,6 +92963,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -93091,6 +93147,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -93252,6 +93309,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -93980,6 +94038,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -94220,6 +94279,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -94516,6 +94576,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -94679,6 +94740,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -94787,6 +94849,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -94845,6 +94908,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -94954,6 +95018,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -95032,6 +95097,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -95199,6 +95265,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -95449,6 +95516,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -95661,6 +95729,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -95822,6 +95891,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -95928,6 +95998,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -96003,6 +96074,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -96165,6 +96237,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -96271,6 +96344,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -96321,6 +96395,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       x-accepts:
@@ -96644,6 +96719,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -96776,6 +96852,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -97855,6 +97932,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
     post:
@@ -97941,6 +98019,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
     patch:
@@ -98250,6 +98329,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
     post:
@@ -98359,6 +98439,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
   /v1/creator-campaigns/{campaignId}/participants/{participantId}/approve:
@@ -98862,6 +98943,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
     parameters:
@@ -99229,6 +99311,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
   /v1/creator-campaigns/{campaignId}/submissions/{submissionId}:
@@ -99276,6 +99359,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
   /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/approve:
@@ -99556,6 +99640,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
   /v1/creator-campaigns/{campaignId}/drafts/{draftId}:
@@ -99603,6 +99688,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
   /v1/creator-campaigns/{campaignId}/drafts/{draftId}/approve:
@@ -99860,6 +99946,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
   /v1/creator-campaigns/{campaignId}/samples/{sampleId}/approve:
@@ -100089,6 +100176,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
   /v1/creator-campaigns/{campaignId}/adjustments:
@@ -100236,6 +100324,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
   /v1/creator-campaigns/{campaignId}/orders:
@@ -100318,6 +100407,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
   /v1/creator-campaigns/{campaignId}/report:
@@ -100358,6 +100448,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
   /v1/creator-campaigns/{campaignId}/ads/launch:
@@ -100507,6 +100598,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
       x-accepts:
       - application/json
 components:
