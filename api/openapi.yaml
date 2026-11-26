@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.846.0
+  version: 1.847.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -149393,6 +149393,7 @@ components:
         definition:
           key: ""
         key: automation1
+        graph: ""
       properties:
         key:
           description: "Stable within the template, for example `automation1`."
@@ -149405,6 +149406,10 @@ components:
             : \"adAccount\" }`. Campaign ids, id filters, start and end dates and\
             \ approval steps are not kept."
           type: object
+        graph:
+          allOf:
+          - $ref: "#/components/schemas/AutomationGraph"
+          nullable: true
       required:
       - definition
       - key
@@ -149414,9 +149419,11 @@ components:
         - definition:
             key: ""
           key: automation1
+          graph: ""
         - definition:
             key: ""
           key: automation1
+          graph: ""
         visibility: team
         inputs:
         - default: AutomationTemplateInput_default
@@ -204981,9 +204988,11 @@ components:
           - definition:
               key: ""
             key: automation1
+            graph: ""
           - definition:
               key: ""
             key: automation1
+            graph: ""
           visibility: team
           inputs:
           - default: AutomationTemplateInput_default
@@ -205035,9 +205044,11 @@ components:
           - definition:
               key: ""
             key: automation1
+            graph: ""
           - definition:
               key: ""
             key: automation1
+            graph: ""
           visibility: team
           inputs:
           - default: AutomationTemplateInput_default
@@ -205113,9 +205124,11 @@ components:
           - definition:
               key: ""
             key: automation1
+            graph: ""
           - definition:
               key: ""
             key: automation1
+            graph: ""
           visibility: team
           inputs:
           - default: AutomationTemplateInput_default
