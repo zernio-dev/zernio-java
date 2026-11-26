@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.845.0
+  version: 1.845.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -4161,7 +4161,7 @@ paths:
 
         - Response shape matches /v1/analytics/instagram/account-insights.
         - Max 89 days, defaults to last 30 days.
-        - Requires the user.info.stats scope on the account (412 if missing).
+        - Requires the user.info.stats scope on the account, or user.insights on an account connected through Zernio's TikTok Business connection (412 if missing).
 
         ### Daily account metrics
 
@@ -4208,7 +4208,7 @@ paths:
           Comma-separated list. Defaults to
           "follower_count,likes_count,video_count,followers_gained,followers_lost".
 
-          Live profile counters (requires user.info.stats scope):
+          Live profile counters (requires user.info.stats, or user.insights on a TikTok Business connection):
             - follower_count  (cumulative; time series joined from AccountStats)
             - following_count (cumulative; time series joined from AccountStats.metadata)
             - likes_count     (cumulative; time series joined from AccountStats.metadata)
@@ -4303,7 +4303,8 @@ paths:
         "404":
           description: Account not found
         "412":
-          description: Missing user.info.stats scope
+          description: Missing user.info.stats scope (or user.insights on a TikTok
+            Business connection)
       summary: Get TikTok account-level insights
       tags:
       - Analytics
