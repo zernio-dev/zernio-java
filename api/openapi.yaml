@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.842.0
+  version: 1.843.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -150997,7 +150997,7 @@ components:
           description: "Which write was staged: a status route, an update route (campaign,\
             \ ad set, ad), the campaign targeting route or a create route. `operation`\
             \ is any other ads write, staged as its request and named by `request`.\
-            \ It has no live read, so its diff shows the new values only."
+            \ It has no live read, so its diff shows the sent values only."
           enum:
           - campaign_status
           - ad_set_status
@@ -151025,8 +151025,9 @@ components:
           type: string
         targetId:
           description: "The object the change applies to: the platform campaign id,\
-            \ the platform ad set id, or the Zernio ad id. Null for a create, whose\
-            \ object does not exist yet."
+            \ the platform ad set id, or the Zernio ad id. A write staged as its request\
+            \ with no such object carries the last id of its path. Null when there\
+            \ is none, as for a create."
           nullable: true
           type: string
         targetName:
@@ -267309,6 +267310,16 @@ components:
           description: "The path of the write, for example /v1/ads/keywords."
           example: /v1/ads/keywords
           type: string
+        params:
+          additionalProperties:
+            type: string
+          description: "The path values of the staged request, by the names in `path`."
+          example:
+            labelId: "22292442088"
+        query:
+          additionalProperties:
+            type: string
+          description: "The query values of the staged request, without `stage`."
       required:
       - method
       - operation
