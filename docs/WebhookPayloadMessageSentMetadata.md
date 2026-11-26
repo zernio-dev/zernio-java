@@ -2,12 +2,16 @@
 
 # WebhookPayloadMessageSentMetadata
 
-Platform-specific context for the sent message: a quote-reply reference, a WhatsApp location pin, WhatsApp contact cards, Meta's reason a WhatsApp Business app echo has no renderable body, the TikTok message type, or outgoing Instagram/Facebook buttons, quick replies and template.  The key is present only when the send carried some context: it is never null and never an empty object. Read it to tell a location or contact-card message from a text one without a GET on the message. 
+Platform-specific context for the sent message: a quote-reply reference, a WhatsApp location pin, WhatsApp contact cards, WhatsApp template name, language, header and footer, Meta's reason a WhatsApp Business app echo has no renderable body, the TikTok message type, or outgoing Instagram/Facebook buttons, quick replies and template.  The key is present only when the send carried some context: it is never null and never an empty object. Read it to tell a location or contact-card message from a text one without a GET on the message. 
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**templateName** | **String** | WhatsApp template sends only. Name of the approved template that was sent. |  [optional] |
+|**templateLanguage** | **String** | WhatsApp template sends only. Language code of the approved template that was sent. |  [optional] |
+|**templateHeader** | [**WebhookPayloadMessageSentMetadataTemplateHeader**](WebhookPayloadMessageSentMetadataTemplateHeader.md) |  |  [optional] |
+|**templateFooter** | **String** | WhatsApp template sends only. Footer text of the template. Absent when the template has no footer, and on bulk, broadcast and automation sends. |  [optional] |
 |**unsupported** | [**WebhookPayloadMessageSentMetadataUnsupported**](WebhookPayloadMessageSentMetadataUnsupported.md) |  |  [optional] |
 |**metaInteractive** | **Map&lt;String, Object&gt;** | Instagram/Facebook only. The buttons, quickReplies and/or template this outgoing message carried, as sent (tracked urls included when link tracking wrapped a button). Absent when the send carried none. |  [optional] |
 |**location** | [**WebhookPayloadMessageSentMetadataLocation**](WebhookPayloadMessageSentMetadataLocation.md) |  |  [optional] |
