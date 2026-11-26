@@ -23,6 +23,7 @@
 |**createdAt** | **OffsetDateTime** |  |  |
 |**updatedAt** | **OffsetDateTime** |  |  |
 |**template** | [**AutomationRecordTemplate**](AutomationRecordTemplate.md) |  |  [optional] |
+|**graph** | [**AutomationGraph**](AutomationGraph.md) |  |  [optional] |
 
 
 

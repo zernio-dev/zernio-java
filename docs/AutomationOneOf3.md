@@ -21,6 +21,7 @@
 |**createdAt** | **OffsetDateTime** |  |  |
 |**updatedAt** | **OffsetDateTime** |  |  |
 |**template** | [**AutomationRecordTemplate**](AutomationRecordTemplate.md) |  |  [optional] |
+|**graph** | [**AutomationGraph**](AutomationGraph.md) |  |  [optional] |
 |**platform** | **String** | The account&#39;s platform. On &#x60;whatsapp&#x60; every step sends a template. |  |
 |**enrollments** | [**AutomationOneOf3AllOfEnrollments**](AutomationOneOf3AllOfEnrollments.md) |  |  |
 

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.837.1
+  version: 1.838.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -58535,6 +58535,10 @@ paths:
         - **Comment to DM**: a comment door in `trigger.type`, such as `comment.keyword`, with a `graph` of the shapes `/v1/comment-automations` holds. It is on unless `status` is `paused`, and needs what `/v1/comment-automations` needs. A post that already has an active automation is a 409.
         - **Flow** (`kind` is `workflow`): a flow trigger such as `inbound_message` (or a `graph` whose trigger node names it) on one account, with the builder's `graph`. It is a draft unless `status` is `active`, which needs a complete graph; `paused` is refused. It needs the inbox add-on and a full-access key.
 
+        An ad rule, event, scheduled automation or sequence can instead be sent as `name`, `status` and an automation `graph` (`AutomationGraph`, the one its response carries). The graph's trigger picks the kind, and it is saved exactly as its own shape would be.
+
+        A comment to DM or flow sent as an automation graph is refused (`not_supported`).
+
         Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in `details.problems`.
       operationId: createAutomation
       parameters:
@@ -58618,7 +58622,7 @@ paths:
                   limits:
                     maxChangesPerDay: 3
             schema:
-              $ref: "#/components/schemas/AutomationDefinition"
+              $ref: "#/components/schemas/createAutomation_request"
         required: true
       responses:
         "201":
@@ -148054,6 +148058,113 @@ components:
       - $ref: "#/components/schemas/SequenceAutomationDefinition"
       - $ref: "#/components/schemas/CommentAutomationDefinition"
       - $ref: "#/components/schemas/FlowAutomationDefinition"
+    AutomationGraph:
+      additionalProperties: {}
+      description: "An automation's definition as one graph: the trigger that starts\
+        \ it, the nodes its runs walk from `entry` along `edges`, and its guardrails.\
+        \ Ad rules, event and scheduled automations and sequences run their nodes\
+        \ in one chain, a condition first where the kind has one."
+      example:
+        entry:
+        - entry
+        - entry
+        nodes:
+        - id: id
+          position:
+            x: 2.3021358869347655
+            "y": 7.061401241503109
+          label: label
+          type: type
+          config:
+            key: ""
+        - id: id
+          position:
+            x: 2.3021358869347655
+            "y": 7.061401241503109
+          label: label
+          type: type
+          config:
+            key: ""
+        edges:
+        - sourceHandle: sourceHandle
+          id: id
+          source: source
+          target: target
+        - sourceHandle: sourceHandle
+          id: id
+          source: source
+          target: target
+        triggers:
+        - entry:
+          - entry
+          - entry
+          type: type
+          config:
+            key: ""
+        - entry:
+          - entry
+          - entry
+          type: type
+          config:
+            key: ""
+        limits:
+          stopOn:
+          - reply
+          - reply
+          cooldown: cooldown
+          maxChangesPerDay: 1
+          maxChangesPerObject: 1
+      properties:
+        triggers:
+          description: "One trigger. Its `type` is the kind's `trigger.type`; `config`\
+            \ holds the rest of the trigger, and `subjects` for a schedule."
+          items:
+            $ref: "#/components/schemas/AutomationGraph_triggers_inner"
+          type: array
+        nodes:
+          items:
+            $ref: "#/components/schemas/AutomationGraph_nodes_inner"
+          type: array
+        edges:
+          items:
+            $ref: "#/components/schemas/AutomationGraph_edges_inner"
+          type: array
+        entry:
+          description: The node runs start at.
+          items:
+            type: string
+          type: array
+        limits:
+          $ref: "#/components/schemas/AutomationGraph_limits"
+      required:
+      - edges
+      - entry
+      - limits
+      - nodes
+      - triggers
+    GraphAutomationDefinition:
+      additionalProperties: false
+      description: "An ad rule, event or scheduled automation or sequence sent as\
+        \ an automation graph. It is saved as its own shape would be."
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+        description:
+          description: Sequences.
+          type: string
+        status:
+          enum:
+          - draft
+          - active
+          - paused
+          type: string
+        graph:
+          $ref: "#/components/schemas/AutomationGraph"
+      required:
+      - graph
+      - name
     AutomationRecord:
       properties:
         id:
@@ -149298,6 +149409,56 @@ components:
           - id: pause
             type: ads.pause
           version: version
+          graph:
+            entry:
+            - entry
+            - entry
+            nodes:
+            - id: id
+              position:
+                x: 2.3021358869347655
+                "y": 7.061401241503109
+              label: label
+              type: type
+              config:
+                key: ""
+            - id: id
+              position:
+                x: 2.3021358869347655
+                "y": 7.061401241503109
+              label: label
+              type: type
+              config:
+                key: ""
+            edges:
+            - sourceHandle: sourceHandle
+              id: id
+              source: source
+              target: target
+            - sourceHandle: sourceHandle
+              id: id
+              source: source
+              target: target
+            triggers:
+            - entry:
+              - entry
+              - entry
+              type: type
+              config:
+                key: ""
+            - entry:
+              - entry
+              - entry
+              type: type
+              config:
+                key: ""
+            limits:
+              stopOn:
+              - reply
+              - reply
+              cooldown: cooldown
+              maxChangesPerDay: 1
+              maxChangesPerObject: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           alert:
             critical:
@@ -149481,6 +149642,56 @@ components:
           - id: pause
             type: ads.pause
           version: version
+          graph:
+            entry:
+            - entry
+            - entry
+            nodes:
+            - id: id
+              position:
+                x: 2.3021358869347655
+                "y": 7.061401241503109
+              label: label
+              type: type
+              config:
+                key: ""
+            - id: id
+              position:
+                x: 2.3021358869347655
+                "y": 7.061401241503109
+              label: label
+              type: type
+              config:
+                key: ""
+            edges:
+            - sourceHandle: sourceHandle
+              id: id
+              source: source
+              target: target
+            - sourceHandle: sourceHandle
+              id: id
+              source: source
+              target: target
+            triggers:
+            - entry:
+              - entry
+              - entry
+              type: type
+              config:
+                key: ""
+            - entry:
+              - entry
+              - entry
+              type: type
+              config:
+                key: ""
+            limits:
+              stopOn:
+              - reply
+              - reply
+              cooldown: cooldown
+              maxChangesPerDay: 1
+              maxChangesPerObject: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           alert:
             critical:
@@ -149683,6 +149894,56 @@ components:
             - id: pause
               type: ads.pause
             version: version
+            graph:
+              entry:
+              - entry
+              - entry
+              nodes:
+              - id: id
+                position:
+                  x: 2.3021358869347655
+                  "y": 7.061401241503109
+                label: label
+                type: type
+                config:
+                  key: ""
+              - id: id
+                position:
+                  x: 2.3021358869347655
+                  "y": 7.061401241503109
+                label: label
+                type: type
+                config:
+                  key: ""
+              edges:
+              - sourceHandle: sourceHandle
+                id: id
+                source: source
+                target: target
+              - sourceHandle: sourceHandle
+                id: id
+                source: source
+                target: target
+              triggers:
+              - entry:
+                - entry
+                - entry
+                type: type
+                config:
+                  key: ""
+              - entry:
+                - entry
+                - entry
+                type: type
+                config:
+                  key: ""
+              limits:
+                stopOn:
+                - reply
+                - reply
+                cooldown: cooldown
+                maxChangesPerDay: 1
+                maxChangesPerObject: 1
             createdAt: 2000-01-23T04:56:07.000+00:00
             alert:
               critical:
@@ -149866,6 +150127,56 @@ components:
             - id: pause
               type: ads.pause
             version: version
+            graph:
+              entry:
+              - entry
+              - entry
+              nodes:
+              - id: id
+                position:
+                  x: 2.3021358869347655
+                  "y": 7.061401241503109
+                label: label
+                type: type
+                config:
+                  key: ""
+              - id: id
+                position:
+                  x: 2.3021358869347655
+                  "y": 7.061401241503109
+                label: label
+                type: type
+                config:
+                  key: ""
+              edges:
+              - sourceHandle: sourceHandle
+                id: id
+                source: source
+                target: target
+              - sourceHandle: sourceHandle
+                id: id
+                source: source
+                target: target
+              triggers:
+              - entry:
+                - entry
+                - entry
+                type: type
+                config:
+                  key: ""
+              - entry:
+                - entry
+                - entry
+                type: type
+                config:
+                  key: ""
+              limits:
+                stopOn:
+                - reply
+                - reply
+                cooldown: cooldown
+                maxChangesPerDay: 1
+                maxChangesPerObject: 1
             createdAt: 2000-01-23T04:56:07.000+00:00
             alert:
               critical:
@@ -202928,6 +203239,56 @@ components:
           - id: pause
             type: ads.pause
           version: version
+          graph:
+            entry:
+            - entry
+            - entry
+            nodes:
+            - id: id
+              position:
+                x: 2.3021358869347655
+                "y": 7.061401241503109
+              label: label
+              type: type
+              config:
+                key: ""
+            - id: id
+              position:
+                x: 2.3021358869347655
+                "y": 7.061401241503109
+              label: label
+              type: type
+              config:
+                key: ""
+            edges:
+            - sourceHandle: sourceHandle
+              id: id
+              source: source
+              target: target
+            - sourceHandle: sourceHandle
+              id: id
+              source: source
+              target: target
+            triggers:
+            - entry:
+              - entry
+              - entry
+              type: type
+              config:
+                key: ""
+            - entry:
+              - entry
+              - entry
+              type: type
+              config:
+                key: ""
+            limits:
+              stopOn:
+              - reply
+              - reply
+              cooldown: cooldown
+              maxChangesPerDay: 1
+              maxChangesPerObject: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           alert:
             critical:
@@ -203111,6 +203472,56 @@ components:
           - id: pause
             type: ads.pause
           version: version
+          graph:
+            entry:
+            - entry
+            - entry
+            nodes:
+            - id: id
+              position:
+                x: 2.3021358869347655
+                "y": 7.061401241503109
+              label: label
+              type: type
+              config:
+                key: ""
+            - id: id
+              position:
+                x: 2.3021358869347655
+                "y": 7.061401241503109
+              label: label
+              type: type
+              config:
+                key: ""
+            edges:
+            - sourceHandle: sourceHandle
+              id: id
+              source: source
+              target: target
+            - sourceHandle: sourceHandle
+              id: id
+              source: source
+              target: target
+            triggers:
+            - entry:
+              - entry
+              - entry
+              type: type
+              config:
+                key: ""
+            - entry:
+              - entry
+              - entry
+              type: type
+              config:
+                key: ""
+            limits:
+              stopOn:
+              - reply
+              - reply
+              cooldown: cooldown
+              maxChangesPerDay: 1
+              maxChangesPerObject: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           alert:
             critical:
@@ -203180,6 +203591,10 @@ components:
       required:
       - automations
       - nextCursor
+    createAutomation_request:
+      oneOf:
+      - $ref: "#/components/schemas/AutomationDefinition"
+      - $ref: "#/components/schemas/GraphAutomationDefinition"
     createAutomation_201_response:
       example:
         automation:
@@ -203309,6 +203724,56 @@ components:
           - id: pause
             type: ads.pause
           version: version
+          graph:
+            entry:
+            - entry
+            - entry
+            nodes:
+            - id: id
+              position:
+                x: 2.3021358869347655
+                "y": 7.061401241503109
+              label: label
+              type: type
+              config:
+                key: ""
+            - id: id
+              position:
+                x: 2.3021358869347655
+                "y": 7.061401241503109
+              label: label
+              type: type
+              config:
+                key: ""
+            edges:
+            - sourceHandle: sourceHandle
+              id: id
+              source: source
+              target: target
+            - sourceHandle: sourceHandle
+              id: id
+              source: source
+              target: target
+            triggers:
+            - entry:
+              - entry
+              - entry
+              type: type
+              config:
+                key: ""
+            - entry:
+              - entry
+              - entry
+              type: type
+              config:
+                key: ""
+            limits:
+              stopOn:
+              - reply
+              - reply
+              cooldown: cooldown
+              maxChangesPerDay: 1
+              maxChangesPerObject: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           alert:
             critical:
@@ -204127,7 +204592,10 @@ components:
             type: object
           type: array
         graph:
-          description: "Comment to DM and flows: the whole graph, as read."
+          description: "Comment to DM and flows: the whole graph, as read. Ad rules,\
+            \ event and scheduled automations and sequences: an `AutomationGraph`\
+            \ that replaces the whole definition, sent without `trigger`, `subjects`,\
+            \ `filter`, `conditions`, `alert`, `steps` or `limits`."
           type: object
         subjects:
           $ref: "#/components/schemas/updateAutomation_request_subjects"
@@ -204509,6 +204977,56 @@ components:
               - id: pause
                 type: ads.pause
               version: version
+              graph:
+                entry:
+                - entry
+                - entry
+                nodes:
+                - id: id
+                  position:
+                    x: 2.3021358869347655
+                    "y": 7.061401241503109
+                  label: label
+                  type: type
+                  config:
+                    key: ""
+                - id: id
+                  position:
+                    x: 2.3021358869347655
+                    "y": 7.061401241503109
+                  label: label
+                  type: type
+                  config:
+                    key: ""
+                edges:
+                - sourceHandle: sourceHandle
+                  id: id
+                  source: source
+                  target: target
+                - sourceHandle: sourceHandle
+                  id: id
+                  source: source
+                  target: target
+                triggers:
+                - entry:
+                  - entry
+                  - entry
+                  type: type
+                  config:
+                    key: ""
+                - entry:
+                  - entry
+                  - entry
+                  type: type
+                  config:
+                    key: ""
+                limits:
+                  stopOn:
+                  - reply
+                  - reply
+                  cooldown: cooldown
+                  maxChangesPerDay: 1
+                  maxChangesPerObject: 1
               createdAt: 2000-01-23T04:56:07.000+00:00
               alert:
                 critical:
@@ -204692,6 +205210,56 @@ components:
               - id: pause
                 type: ads.pause
               version: version
+              graph:
+                entry:
+                - entry
+                - entry
+                nodes:
+                - id: id
+                  position:
+                    x: 2.3021358869347655
+                    "y": 7.061401241503109
+                  label: label
+                  type: type
+                  config:
+                    key: ""
+                - id: id
+                  position:
+                    x: 2.3021358869347655
+                    "y": 7.061401241503109
+                  label: label
+                  type: type
+                  config:
+                    key: ""
+                edges:
+                - sourceHandle: sourceHandle
+                  id: id
+                  source: source
+                  target: target
+                - sourceHandle: sourceHandle
+                  id: id
+                  source: source
+                  target: target
+                triggers:
+                - entry:
+                  - entry
+                  - entry
+                  type: type
+                  config:
+                    key: ""
+                - entry:
+                  - entry
+                  - entry
+                  type: type
+                  config:
+                    key: ""
+                limits:
+                  stopOn:
+                  - reply
+                  - reply
+                  cooldown: cooldown
+                  maxChangesPerDay: 1
+                  maxChangesPerObject: 1
               createdAt: 2000-01-23T04:56:07.000+00:00
               alert:
                 critical:
@@ -204887,6 +205455,56 @@ components:
               - id: pause
                 type: ads.pause
               version: version
+              graph:
+                entry:
+                - entry
+                - entry
+                nodes:
+                - id: id
+                  position:
+                    x: 2.3021358869347655
+                    "y": 7.061401241503109
+                  label: label
+                  type: type
+                  config:
+                    key: ""
+                - id: id
+                  position:
+                    x: 2.3021358869347655
+                    "y": 7.061401241503109
+                  label: label
+                  type: type
+                  config:
+                    key: ""
+                edges:
+                - sourceHandle: sourceHandle
+                  id: id
+                  source: source
+                  target: target
+                - sourceHandle: sourceHandle
+                  id: id
+                  source: source
+                  target: target
+                triggers:
+                - entry:
+                  - entry
+                  - entry
+                  type: type
+                  config:
+                    key: ""
+                - entry:
+                  - entry
+                  - entry
+                  type: type
+                  config:
+                    key: ""
+                limits:
+                  stopOn:
+                  - reply
+                  - reply
+                  cooldown: cooldown
+                  maxChangesPerDay: 1
+                  maxChangesPerObject: 1
               createdAt: 2000-01-23T04:56:07.000+00:00
               alert:
                 critical:
@@ -205070,6 +205688,56 @@ components:
               - id: pause
                 type: ads.pause
               version: version
+              graph:
+                entry:
+                - entry
+                - entry
+                nodes:
+                - id: id
+                  position:
+                    x: 2.3021358869347655
+                    "y": 7.061401241503109
+                  label: label
+                  type: type
+                  config:
+                    key: ""
+                - id: id
+                  position:
+                    x: 2.3021358869347655
+                    "y": 7.061401241503109
+                  label: label
+                  type: type
+                  config:
+                    key: ""
+                edges:
+                - sourceHandle: sourceHandle
+                  id: id
+                  source: source
+                  target: target
+                - sourceHandle: sourceHandle
+                  id: id
+                  source: source
+                  target: target
+                triggers:
+                - entry:
+                  - entry
+                  - entry
+                  type: type
+                  config:
+                    key: ""
+                - entry:
+                  - entry
+                  - entry
+                  type: type
+                  config:
+                    key: ""
+                limits:
+                  stopOn:
+                  - reply
+                  - reply
+                  cooldown: cooldown
+                  maxChangesPerDay: 1
+                  maxChangesPerObject: 1
               createdAt: 2000-01-23T04:56:07.000+00:00
               alert:
                 critical:
@@ -264503,6 +265171,117 @@ components:
       required:
       - edges
       - nodes
+    AutomationGraph_triggers_inner:
+      additionalProperties: false
+      example:
+        entry:
+        - entry
+        - entry
+        type: type
+        config:
+          key: ""
+      properties:
+        type:
+          type: string
+        config:
+          additionalProperties: true
+          type: object
+        entry:
+          items:
+            type: string
+          type: array
+      required:
+      - config
+      - type
+    AutomationGraph_nodes_inner_position:
+      example:
+        x: 2.3021358869347655
+        "y": 7.061401241503109
+      properties:
+        x:
+          type: number
+        "y":
+          type: number
+      required:
+      - x
+      - "y"
+    AutomationGraph_nodes_inner:
+      additionalProperties: false
+      example:
+        id: id
+        position:
+          x: 2.3021358869347655
+          "y": 7.061401241503109
+        label: label
+        type: type
+        config:
+          key: ""
+      properties:
+        id:
+          type: string
+        type:
+          description: "A step type such as `notify.send`, `messages.send`, `delay`\
+            \ or `condition`."
+          type: string
+        config:
+          additionalProperties: true
+          type: object
+        position:
+          $ref: "#/components/schemas/AutomationGraph_nodes_inner_position"
+        label:
+          type: string
+      required:
+      - config
+      - id
+      - type
+    AutomationGraph_edges_inner:
+      additionalProperties: false
+      example:
+        sourceHandle: sourceHandle
+        id: id
+        source: source
+        target: target
+      properties:
+        id:
+          type: string
+        source:
+          type: string
+        target:
+          type: string
+        sourceHandle:
+          description: Null when followed whatever the step's outcome; `matched` after
+            a condition.
+          nullable: true
+          type: string
+      required:
+      - id
+      - source
+      - sourceHandle
+      - target
+    AutomationGraph_limits:
+      example:
+        stopOn:
+        - reply
+        - reply
+        cooldown: cooldown
+        maxChangesPerDay: 1
+        maxChangesPerObject: 1
+      properties:
+        cooldown:
+          type: string
+        maxChangesPerDay:
+          minimum: 1
+          type: integer
+        maxChangesPerObject:
+          minimum: 1
+          type: integer
+        stopOn:
+          items:
+            enum:
+            - reply
+            - unsubscribe
+            type: string
+          type: array
     AutomationRecord_template:
       description: "Only on `GET /v1/automations/{automationId}`, for an automation\
         \ installed from a template."
@@ -264538,6 +265317,8 @@ components:
             enum:
             - ad_rule
             type: string
+          graph:
+            $ref: "#/components/schemas/AutomationGraph"
       example:
         template:
           latestVersion: 5
@@ -264665,6 +265446,56 @@ components:
         - id: pause
           type: ads.pause
         version: version
+        graph:
+          entry:
+          - entry
+          - entry
+          nodes:
+          - id: id
+            position:
+              x: 2.3021358869347655
+              "y": 7.061401241503109
+            label: label
+            type: type
+            config:
+              key: ""
+          - id: id
+            position:
+              x: 2.3021358869347655
+              "y": 7.061401241503109
+            label: label
+            type: type
+            config:
+              key: ""
+          edges:
+          - sourceHandle: sourceHandle
+            id: id
+            source: source
+            target: target
+          - sourceHandle: sourceHandle
+            id: id
+            source: source
+            target: target
+          triggers:
+          - entry:
+            - entry
+            - entry
+            type: type
+            config:
+              key: ""
+          - entry:
+            - entry
+            - entry
+            type: type
+            config:
+              key: ""
+          limits:
+            stopOn:
+            - reply
+            - reply
+            cooldown: cooldown
+            maxChangesPerDay: 1
+            maxChangesPerObject: 1
         createdAt: 2000-01-23T04:56:07.000+00:00
         alert:
           critical:
@@ -264731,6 +265562,8 @@ components:
             enum:
             - event
             type: string
+          graph:
+            $ref: "#/components/schemas/AutomationGraph"
     Automation_oneOf_2:
       allOf:
       - $ref: "#/components/schemas/ScheduledAutomationDefinition"
@@ -264740,6 +265573,8 @@ components:
             enum:
             - scheduled
             type: string
+          graph:
+            $ref: "#/components/schemas/AutomationGraph"
     Automation_oneOf_3_allOf_enrollments:
       description: "Contacts ever enrolled, and how many finished or left early. Each\
         \ enrollment is listed by `GET /v1/sequences/{sequenceId}/enrollments`."
@@ -264763,6 +265598,8 @@ components:
             enum:
             - sequence
             type: string
+          graph:
+            $ref: "#/components/schemas/AutomationGraph"
           platform:
             description: The account's platform. On `whatsapp` every step sends a
               template.
@@ -265432,6 +266269,56 @@ components:
             - id: pause
               type: ads.pause
             version: version
+            graph:
+              entry:
+              - entry
+              - entry
+              nodes:
+              - id: id
+                position:
+                  x: 2.3021358869347655
+                  "y": 7.061401241503109
+                label: label
+                type: type
+                config:
+                  key: ""
+              - id: id
+                position:
+                  x: 2.3021358869347655
+                  "y": 7.061401241503109
+                label: label
+                type: type
+                config:
+                  key: ""
+              edges:
+              - sourceHandle: sourceHandle
+                id: id
+                source: source
+                target: target
+              - sourceHandle: sourceHandle
+                id: id
+                source: source
+                target: target
+              triggers:
+              - entry:
+                - entry
+                - entry
+                type: type
+                config:
+                  key: ""
+              - entry:
+                - entry
+                - entry
+                type: type
+                config:
+                  key: ""
+              limits:
+                stopOn:
+                - reply
+                - reply
+                cooldown: cooldown
+                maxChangesPerDay: 1
+                maxChangesPerObject: 1
             createdAt: 2000-01-23T04:56:07.000+00:00
             alert:
               critical:
@@ -265615,6 +266502,56 @@ components:
             - id: pause
               type: ads.pause
             version: version
+            graph:
+              entry:
+              - entry
+              - entry
+              nodes:
+              - id: id
+                position:
+                  x: 2.3021358869347655
+                  "y": 7.061401241503109
+                label: label
+                type: type
+                config:
+                  key: ""
+              - id: id
+                position:
+                  x: 2.3021358869347655
+                  "y": 7.061401241503109
+                label: label
+                type: type
+                config:
+                  key: ""
+              edges:
+              - sourceHandle: sourceHandle
+                id: id
+                source: source
+                target: target
+              - sourceHandle: sourceHandle
+                id: id
+                source: source
+                target: target
+              triggers:
+              - entry:
+                - entry
+                - entry
+                type: type
+                config:
+                  key: ""
+              - entry:
+                - entry
+                - entry
+                type: type
+                config:
+                  key: ""
+              limits:
+                stopOn:
+                - reply
+                - reply
+                cooldown: cooldown
+                maxChangesPerDay: 1
+                maxChangesPerObject: 1
             createdAt: 2000-01-23T04:56:07.000+00:00
             alert:
               critical:

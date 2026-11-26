@@ -705,11 +705,11 @@ ApiResponse<[**AutomationBacktest**](AutomationBacktest.md)>
 
 ## createAutomation
 
-> CreateAutomation201Response createAutomation(automationDefinition, idempotencyKey)
+> CreateAutomation201Response createAutomation(createAutomationRequest, idempotencyKey)
 
 Create an automation
 
-Creates an automation. Its trigger picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Sequence**: an &#x60;enrollment&#x60; trigger on one messaging account, with message steps sent over time. It is on unless &#x60;status&#x60; is &#x60;draft&#x60;. It needs what &#x60;/v1/sequences&#x60; needs: the inbox add-on and a key with the &#x60;messages&#x60; group. - **Comment to DM**: a comment door in &#x60;trigger.type&#x60;, such as &#x60;comment.keyword&#x60;, with a &#x60;graph&#x60; of the shapes &#x60;/v1/comment-automations&#x60; holds. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;, and needs what &#x60;/v1/comment-automations&#x60; needs. A post that already has an active automation is a 409. - **Flow** (&#x60;kind&#x60; is &#x60;workflow&#x60;): a flow trigger such as &#x60;inbound_message&#x60; (or a &#x60;graph&#x60; whose trigger node names it) on one account, with the builder&#39;s &#x60;graph&#x60;. It is a draft unless &#x60;status&#x60; is &#x60;active&#x60;, which needs a complete graph; &#x60;paused&#x60; is refused. It needs the inbox add-on and a full-access key.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
+Creates an automation. Its trigger picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Sequence**: an &#x60;enrollment&#x60; trigger on one messaging account, with message steps sent over time. It is on unless &#x60;status&#x60; is &#x60;draft&#x60;. It needs what &#x60;/v1/sequences&#x60; needs: the inbox add-on and a key with the &#x60;messages&#x60; group. - **Comment to DM**: a comment door in &#x60;trigger.type&#x60;, such as &#x60;comment.keyword&#x60;, with a &#x60;graph&#x60; of the shapes &#x60;/v1/comment-automations&#x60; holds. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;, and needs what &#x60;/v1/comment-automations&#x60; needs. A post that already has an active automation is a 409. - **Flow** (&#x60;kind&#x60; is &#x60;workflow&#x60;): a flow trigger such as &#x60;inbound_message&#x60; (or a &#x60;graph&#x60; whose trigger node names it) on one account, with the builder&#39;s &#x60;graph&#x60;. It is a draft unless &#x60;status&#x60; is &#x60;active&#x60;, which needs a complete graph; &#x60;paused&#x60; is refused. It needs the inbox add-on and a full-access key.  An ad rule, event, scheduled automation or sequence can instead be sent as &#x60;name&#x60;, &#x60;status&#x60; and an automation &#x60;graph&#x60; (&#x60;AutomationGraph&#x60;, the one its response carries). The graph&#39;s trigger picks the kind, and it is saved exactly as its own shape would be.  A comment to DM or flow sent as an automation graph is refused (&#x60;not_supported&#x60;).  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
 
 ### Example
 
@@ -732,10 +732,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
-        AutomationDefinition automationDefinition = new AutomationDefinition(); // AutomationDefinition | 
+        CreateAutomationRequest createAutomationRequest = new CreateAutomationRequest(); // CreateAutomationRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            CreateAutomation201Response result = apiInstance.createAutomation(automationDefinition, idempotencyKey);
+            CreateAutomation201Response result = apiInstance.createAutomation(createAutomationRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AutomationsApi#createAutomation");
@@ -753,7 +753,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **automationDefinition** | [**AutomationDefinition**](AutomationDefinition.md)|  | |
+| **createAutomationRequest** | [**CreateAutomationRequest**](CreateAutomationRequest.md)|  | |
 | **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type
@@ -782,11 +782,11 @@ public class Example {
 
 ## createAutomationWithHttpInfo
 
-> ApiResponse<CreateAutomation201Response> createAutomation createAutomationWithHttpInfo(automationDefinition, idempotencyKey)
+> ApiResponse<CreateAutomation201Response> createAutomation createAutomationWithHttpInfo(createAutomationRequest, idempotencyKey)
 
 Create an automation
 
-Creates an automation. Its trigger picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Sequence**: an &#x60;enrollment&#x60; trigger on one messaging account, with message steps sent over time. It is on unless &#x60;status&#x60; is &#x60;draft&#x60;. It needs what &#x60;/v1/sequences&#x60; needs: the inbox add-on and a key with the &#x60;messages&#x60; group. - **Comment to DM**: a comment door in &#x60;trigger.type&#x60;, such as &#x60;comment.keyword&#x60;, with a &#x60;graph&#x60; of the shapes &#x60;/v1/comment-automations&#x60; holds. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;, and needs what &#x60;/v1/comment-automations&#x60; needs. A post that already has an active automation is a 409. - **Flow** (&#x60;kind&#x60; is &#x60;workflow&#x60;): a flow trigger such as &#x60;inbound_message&#x60; (or a &#x60;graph&#x60; whose trigger node names it) on one account, with the builder&#39;s &#x60;graph&#x60;. It is a draft unless &#x60;status&#x60; is &#x60;active&#x60;, which needs a complete graph; &#x60;paused&#x60; is refused. It needs the inbox add-on and a full-access key.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
+Creates an automation. Its trigger picks the kind:  - **Ad rule**: a &#x60;schedule&#x60; over campaigns, ad sets, ads, Google keywords or Google search terms, with metric &#x60;conditions&#x60; and ad &#x60;steps&#x60;. It stays paused unless &#x60;status&#x60; is &#x60;active&#x60;; preview it first with &#x60;POST /v1/automations/preview&#x60;. - **Event**: a Zernio event in &#x60;trigger.type&#x60;, such as &#x60;post.failed&#x60;, with notify steps. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Scheduled**: a &#x60;schedule&#x60; over a profile&#39;s posts, with notify steps and an optional boost. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;. - **Sequence**: an &#x60;enrollment&#x60; trigger on one messaging account, with message steps sent over time. It is on unless &#x60;status&#x60; is &#x60;draft&#x60;. It needs what &#x60;/v1/sequences&#x60; needs: the inbox add-on and a key with the &#x60;messages&#x60; group. - **Comment to DM**: a comment door in &#x60;trigger.type&#x60;, such as &#x60;comment.keyword&#x60;, with a &#x60;graph&#x60; of the shapes &#x60;/v1/comment-automations&#x60; holds. It is on unless &#x60;status&#x60; is &#x60;paused&#x60;, and needs what &#x60;/v1/comment-automations&#x60; needs. A post that already has an active automation is a 409. - **Flow** (&#x60;kind&#x60; is &#x60;workflow&#x60;): a flow trigger such as &#x60;inbound_message&#x60; (or a &#x60;graph&#x60; whose trigger node names it) on one account, with the builder&#39;s &#x60;graph&#x60;. It is a draft unless &#x60;status&#x60; is &#x60;active&#x60;, which needs a complete graph; &#x60;paused&#x60; is refused. It needs the inbox add-on and a full-access key.  An ad rule, event, scheduled automation or sequence can instead be sent as &#x60;name&#x60;, &#x60;status&#x60; and an automation &#x60;graph&#x60; (&#x60;AutomationGraph&#x60;, the one its response carries). The graph&#39;s trigger picks the kind, and it is saved exactly as its own shape would be.  A comment to DM or flow sent as an automation graph is refused (&#x60;not_supported&#x60;).  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in &#x60;details.problems&#x60;. 
 
 ### Example
 
@@ -810,10 +810,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
-        AutomationDefinition automationDefinition = new AutomationDefinition(); // AutomationDefinition | 
+        CreateAutomationRequest createAutomationRequest = new CreateAutomationRequest(); // CreateAutomationRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         try {
-            ApiResponse<CreateAutomation201Response> response = apiInstance.createAutomationWithHttpInfo(automationDefinition, idempotencyKey);
+            ApiResponse<CreateAutomation201Response> response = apiInstance.createAutomationWithHttpInfo(createAutomationRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -833,7 +833,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **automationDefinition** | [**AutomationDefinition**](AutomationDefinition.md)|  | |
+| **createAutomationRequest** | [**CreateAutomationRequest**](CreateAutomationRequest.md)|  | |
 | **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 
 ### Return type

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.837.1
+- API version: 1.838.0
 
-- Build date: 2026-11-26T10:56:07.026345235Z[Etc/UTC]
+- Build date: 2026-11-26T11:13:17.305156087Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.837.1</version>
+  <version>1.838.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.837.1"
+compile "dev.zernio:zernio-sdk:1.838.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.837.1.jar`
+- `target/zernio-sdk-1.838.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3256,6 +3256,12 @@ Class | Method | HTTP request | Description
  - [AutomationFactConditionOneOf2](docs/AutomationFactConditionOneOf2.md)
  - [AutomationFactConditionOneOfValue](docs/AutomationFactConditionOneOfValue.md)
  - [AutomationFactResult](docs/AutomationFactResult.md)
+ - [AutomationGraph](docs/AutomationGraph.md)
+ - [AutomationGraphEdgesInner](docs/AutomationGraphEdgesInner.md)
+ - [AutomationGraphLimits](docs/AutomationGraphLimits.md)
+ - [AutomationGraphNodesInner](docs/AutomationGraphNodesInner.md)
+ - [AutomationGraphNodesInnerPosition](docs/AutomationGraphNodesInnerPosition.md)
+ - [AutomationGraphTriggersInner](docs/AutomationGraphTriggersInner.md)
  - [AutomationLimits](docs/AutomationLimits.md)
  - [AutomationNotifyStep](docs/AutomationNotifyStep.md)
  - [AutomationNotifyStepToInner](docs/AutomationNotifyStepToInner.md)
@@ -3779,6 +3785,7 @@ Class | Method | HTTP request | Description
  - [CreateApiKey201Response](docs/CreateApiKey201Response.md)
  - [CreateApiKeyRequest](docs/CreateApiKeyRequest.md)
  - [CreateAutomation201Response](docs/CreateAutomation201Response.md)
+ - [CreateAutomationRequest](docs/CreateAutomationRequest.md)
  - [CreateAutomationTemplate201Response](docs/CreateAutomationTemplate201Response.md)
  - [CreateAutomationTemplateRequest](docs/CreateAutomationTemplateRequest.md)
  - [CreateBidStrategy201Response](docs/CreateBidStrategy201Response.md)
@@ -5043,6 +5050,7 @@ Class | Method | HTTP request | Description
  - [GrantBusinessPartner201Response](docs/GrantBusinessPartner201Response.md)
  - [GrantBusinessPartner201ResponsePartner](docs/GrantBusinessPartner201ResponsePartner.md)
  - [GrantBusinessPartnerRequest](docs/GrantBusinessPartnerRequest.md)
+ - [GraphAutomationDefinition](docs/GraphAutomationDefinition.md)
  - [HandleOAuthCallbackRequest](docs/HandleOAuthCallbackRequest.md)
  - [HideAdComment200Response](docs/HideAdComment200Response.md)
  - [HideAdCommentRequest](docs/HideAdCommentRequest.md)

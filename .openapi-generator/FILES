@@ -349,6 +349,12 @@ docs/AutomationFactConditionOneOf1.md
 docs/AutomationFactConditionOneOf2.md
 docs/AutomationFactConditionOneOfValue.md
 docs/AutomationFactResult.md
+docs/AutomationGraph.md
+docs/AutomationGraphEdgesInner.md
+docs/AutomationGraphLimits.md
+docs/AutomationGraphNodesInner.md
+docs/AutomationGraphNodesInnerPosition.md
+docs/AutomationGraphTriggersInner.md
 docs/AutomationLimits.md
 docs/AutomationNotifyStep.md
 docs/AutomationNotifyStepToInner.md
@@ -889,6 +895,7 @@ docs/CreateAdSetRequestPromotedObject.md
 docs/CreateApiKey201Response.md
 docs/CreateApiKeyRequest.md
 docs/CreateAutomation201Response.md
+docs/CreateAutomationRequest.md
 docs/CreateAutomationTemplate201Response.md
 docs/CreateAutomationTemplateRequest.md
 docs/CreateBidStrategy201Response.md
@@ -2169,6 +2176,7 @@ docs/GrantBusinessPartner200ResponsePartner.md
 docs/GrantBusinessPartner201Response.md
 docs/GrantBusinessPartner201ResponsePartner.md
 docs/GrantBusinessPartnerRequest.md
+docs/GraphAutomationDefinition.md
 docs/HandleOAuthCallbackRequest.md
 docs/HideAdComment200Response.md
 docs/HideAdCommentRequest.md
@@ -4737,6 +4745,12 @@ src/main/java/dev/zernio/model/AutomationFactConditionOneOf1.java
 src/main/java/dev/zernio/model/AutomationFactConditionOneOf2.java
 src/main/java/dev/zernio/model/AutomationFactConditionOneOfValue.java
 src/main/java/dev/zernio/model/AutomationFactResult.java
+src/main/java/dev/zernio/model/AutomationGraph.java
+src/main/java/dev/zernio/model/AutomationGraphEdgesInner.java
+src/main/java/dev/zernio/model/AutomationGraphLimits.java
+src/main/java/dev/zernio/model/AutomationGraphNodesInner.java
+src/main/java/dev/zernio/model/AutomationGraphNodesInnerPosition.java
+src/main/java/dev/zernio/model/AutomationGraphTriggersInner.java
 src/main/java/dev/zernio/model/AutomationLimits.java
 src/main/java/dev/zernio/model/AutomationNotifyStep.java
 src/main/java/dev/zernio/model/AutomationNotifyStepToInner.java
@@ -5260,6 +5274,7 @@ src/main/java/dev/zernio/model/CreateAdSetRequestPromotedObject.java
 src/main/java/dev/zernio/model/CreateApiKey201Response.java
 src/main/java/dev/zernio/model/CreateApiKeyRequest.java
 src/main/java/dev/zernio/model/CreateAutomation201Response.java
+src/main/java/dev/zernio/model/CreateAutomationRequest.java
 src/main/java/dev/zernio/model/CreateAutomationTemplate201Response.java
 src/main/java/dev/zernio/model/CreateAutomationTemplateRequest.java
 src/main/java/dev/zernio/model/CreateBidStrategy201Response.java
@@ -6524,6 +6539,7 @@ src/main/java/dev/zernio/model/GrantBusinessPartner200ResponsePartner.java
 src/main/java/dev/zernio/model/GrantBusinessPartner201Response.java
 src/main/java/dev/zernio/model/GrantBusinessPartner201ResponsePartner.java
 src/main/java/dev/zernio/model/GrantBusinessPartnerRequest.java
+src/main/java/dev/zernio/model/GraphAutomationDefinition.java
 src/main/java/dev/zernio/model/HandleOAuthCallbackRequest.java
 src/main/java/dev/zernio/model/HideAdComment200Response.java
 src/main/java/dev/zernio/model/HideAdCommentRequest.java
@@ -8603,3 +8619,11 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AutomationGraphEdgesInnerTest.java
+src/test/java/dev/zernio/model/AutomationGraphLimitsTest.java
+src/test/java/dev/zernio/model/AutomationGraphNodesInnerPositionTest.java
+src/test/java/dev/zernio/model/AutomationGraphNodesInnerTest.java
+src/test/java/dev/zernio/model/AutomationGraphTest.java
+src/test/java/dev/zernio/model/AutomationGraphTriggersInnerTest.java
+src/test/java/dev/zernio/model/CreateAutomationRequestTest.java
+src/test/java/dev/zernio/model/GraphAutomationDefinitionTest.java
