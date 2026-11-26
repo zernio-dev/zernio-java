@@ -8619,11 +8619,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AutomationGraphEdgesInnerTest.java
-src/test/java/dev/zernio/model/AutomationGraphLimitsTest.java
-src/test/java/dev/zernio/model/AutomationGraphNodesInnerPositionTest.java
-src/test/java/dev/zernio/model/AutomationGraphNodesInnerTest.java
-src/test/java/dev/zernio/model/AutomationGraphTest.java
-src/test/java/dev/zernio/model/AutomationGraphTriggersInnerTest.java
-src/test/java/dev/zernio/model/CreateAutomationRequestTest.java
-src/test/java/dev/zernio/model/GraphAutomationDefinitionTest.java

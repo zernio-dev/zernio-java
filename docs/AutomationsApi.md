@@ -551,11 +551,11 @@ ApiResponse<[**AutomationBacktest**](AutomationBacktest.md)>
 
 ## backtestAutomationDraft
 
-> AutomationBacktest backtestAutomationDraft(automationDefinition, days)
+> AutomationBacktest backtestAutomationDraft(createAutomationRequest, days)
 
 Backtest an unsaved automation
 
-Replays an automation over past days on stored daily metrics, without saving it or changing anything. It refuses what saving would refuse.  Each day lists what it would have done. Its own changes carry into later days, but the metrics stay what really happened. &#x60;notes&#x60; says what the replay could not know.  Only ad automations can be backtested, on at most 5,000 ads. 
+Replays an automation over past days on stored daily metrics, without saving it or changing anything. It refuses what saving would refuse.  Each day lists what it would have done. Its own changes carry into later days, but the metrics stay what really happened. &#x60;notes&#x60; says what the replay could not know.  Only ad automations can be backtested, on at most 5,000 ads.  The draft can instead be sent as &#x60;name&#x60; and an automation &#x60;graph&#x60; (&#x60;AutomationGraph&#x60;), replayed exactly as its own shape would be. A comment to DM or flow graph is refused (&#x60;not_supported&#x60;). 
 
 ### Example
 
@@ -578,10 +578,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
-        AutomationDefinition automationDefinition = new AutomationDefinition(); // AutomationDefinition | 
+        CreateAutomationRequest createAutomationRequest = new CreateAutomationRequest(); // CreateAutomationRequest | 
         Integer days = 30; // Integer | How many whole days before today to replay. Today is not replayed.
         try {
-            AutomationBacktest result = apiInstance.backtestAutomationDraft(automationDefinition, days);
+            AutomationBacktest result = apiInstance.backtestAutomationDraft(createAutomationRequest, days);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AutomationsApi#backtestAutomationDraft");
@@ -599,7 +599,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **automationDefinition** | [**AutomationDefinition**](AutomationDefinition.md)|  | |
+| **createAutomationRequest** | [**CreateAutomationRequest**](CreateAutomationRequest.md)|  | |
 | **days** | **Integer**| How many whole days before today to replay. Today is not replayed. | [optional] [default to 30] |
 
 ### Return type
@@ -626,11 +626,11 @@ public class Example {
 
 ## backtestAutomationDraftWithHttpInfo
 
-> ApiResponse<AutomationBacktest> backtestAutomationDraft backtestAutomationDraftWithHttpInfo(automationDefinition, days)
+> ApiResponse<AutomationBacktest> backtestAutomationDraft backtestAutomationDraftWithHttpInfo(createAutomationRequest, days)
 
 Backtest an unsaved automation
 
-Replays an automation over past days on stored daily metrics, without saving it or changing anything. It refuses what saving would refuse.  Each day lists what it would have done. Its own changes carry into later days, but the metrics stay what really happened. &#x60;notes&#x60; says what the replay could not know.  Only ad automations can be backtested, on at most 5,000 ads. 
+Replays an automation over past days on stored daily metrics, without saving it or changing anything. It refuses what saving would refuse.  Each day lists what it would have done. Its own changes carry into later days, but the metrics stay what really happened. &#x60;notes&#x60; says what the replay could not know.  Only ad automations can be backtested, on at most 5,000 ads.  The draft can instead be sent as &#x60;name&#x60; and an automation &#x60;graph&#x60; (&#x60;AutomationGraph&#x60;), replayed exactly as its own shape would be. A comment to DM or flow graph is refused (&#x60;not_supported&#x60;). 
 
 ### Example
 
@@ -654,10 +654,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
-        AutomationDefinition automationDefinition = new AutomationDefinition(); // AutomationDefinition | 
+        CreateAutomationRequest createAutomationRequest = new CreateAutomationRequest(); // CreateAutomationRequest | 
         Integer days = 30; // Integer | How many whole days before today to replay. Today is not replayed.
         try {
-            ApiResponse<AutomationBacktest> response = apiInstance.backtestAutomationDraftWithHttpInfo(automationDefinition, days);
+            ApiResponse<AutomationBacktest> response = apiInstance.backtestAutomationDraftWithHttpInfo(createAutomationRequest, days);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -677,7 +677,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **automationDefinition** | [**AutomationDefinition**](AutomationDefinition.md)|  | |
+| **createAutomationRequest** | [**CreateAutomationRequest**](CreateAutomationRequest.md)|  | |
 | **days** | **Integer**| How many whole days before today to replay. Today is not replayed. | [optional] [default to 30] |
 
 ### Return type
@@ -4433,11 +4433,11 @@ ApiResponse<[**AutomationPreview**](AutomationPreview.md)>
 
 ## previewAutomationDraft
 
-> AutomationPreview previewAutomationDraft(automationDefinition, limit)
+> AutomationPreview previewAutomationDraft(createAutomationRequest, limit)
 
 Preview an unsaved automation
 
-Shows what an ad rule would do if it ran now, without saving it or changing anything: every object it checks, each condition with its actual value, and the steps a match would run. It refuses what saving would refuse.  Event and scheduled automations cannot be previewed yet (400, &#x60;not_supported&#x60;). 
+Shows what an ad rule would do if it ran now, without saving it or changing anything: every object it checks, each condition with its actual value, and the steps a match would run. It refuses what saving would refuse.  Event and scheduled automations cannot be previewed yet (400, &#x60;not_supported&#x60;).  The draft can instead be sent as &#x60;name&#x60; and an automation &#x60;graph&#x60; (&#x60;AutomationGraph&#x60;), previewed exactly as its own shape would be. A comment to DM or flow graph is refused (&#x60;not_supported&#x60;). 
 
 ### Example
 
@@ -4460,10 +4460,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
-        AutomationDefinition automationDefinition = new AutomationDefinition(); // AutomationDefinition | 
+        CreateAutomationRequest createAutomationRequest = new CreateAutomationRequest(); // CreateAutomationRequest | 
         Integer limit = 100; // Integer | How many subjects to list, matches first. `evaluated` and `matched` always count them all.
         try {
-            AutomationPreview result = apiInstance.previewAutomationDraft(automationDefinition, limit);
+            AutomationPreview result = apiInstance.previewAutomationDraft(createAutomationRequest, limit);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AutomationsApi#previewAutomationDraft");
@@ -4481,7 +4481,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **automationDefinition** | [**AutomationDefinition**](AutomationDefinition.md)|  | |
+| **createAutomationRequest** | [**CreateAutomationRequest**](CreateAutomationRequest.md)|  | |
 | **limit** | **Integer**| How many subjects to list, matches first. &#x60;evaluated&#x60; and &#x60;matched&#x60; always count them all. | [optional] [default to 100] |
 
 ### Return type
@@ -4509,11 +4509,11 @@ public class Example {
 
 ## previewAutomationDraftWithHttpInfo
 
-> ApiResponse<AutomationPreview> previewAutomationDraft previewAutomationDraftWithHttpInfo(automationDefinition, limit)
+> ApiResponse<AutomationPreview> previewAutomationDraft previewAutomationDraftWithHttpInfo(createAutomationRequest, limit)
 
 Preview an unsaved automation
 
-Shows what an ad rule would do if it ran now, without saving it or changing anything: every object it checks, each condition with its actual value, and the steps a match would run. It refuses what saving would refuse.  Event and scheduled automations cannot be previewed yet (400, &#x60;not_supported&#x60;). 
+Shows what an ad rule would do if it ran now, without saving it or changing anything: every object it checks, each condition with its actual value, and the steps a match would run. It refuses what saving would refuse.  Event and scheduled automations cannot be previewed yet (400, &#x60;not_supported&#x60;).  The draft can instead be sent as &#x60;name&#x60; and an automation &#x60;graph&#x60; (&#x60;AutomationGraph&#x60;), previewed exactly as its own shape would be. A comment to DM or flow graph is refused (&#x60;not_supported&#x60;). 
 
 ### Example
 
@@ -4537,10 +4537,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AutomationsApi apiInstance = new AutomationsApi(defaultClient);
-        AutomationDefinition automationDefinition = new AutomationDefinition(); // AutomationDefinition | 
+        CreateAutomationRequest createAutomationRequest = new CreateAutomationRequest(); // CreateAutomationRequest | 
         Integer limit = 100; // Integer | How many subjects to list, matches first. `evaluated` and `matched` always count them all.
         try {
-            ApiResponse<AutomationPreview> response = apiInstance.previewAutomationDraftWithHttpInfo(automationDefinition, limit);
+            ApiResponse<AutomationPreview> response = apiInstance.previewAutomationDraftWithHttpInfo(createAutomationRequest, limit);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4560,7 +4560,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **automationDefinition** | [**AutomationDefinition**](AutomationDefinition.md)|  | |
+| **createAutomationRequest** | [**CreateAutomationRequest**](CreateAutomationRequest.md)|  | |
 | **limit** | **Integer**| How many subjects to list, matches first. &#x60;evaluated&#x60; and &#x60;matched&#x60; always count them all. | [optional] [default to 100] |
 
 ### Return type
