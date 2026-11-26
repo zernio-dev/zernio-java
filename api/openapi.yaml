@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.834.0
+  version: 1.834.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -7581,8 +7581,12 @@ paths:
       - application/json
   /v1/payees/{payeeId}/onboarding-link:
     post:
-      description: Returns a Stripe-hosted link where the payee completes identity
-        and bank details so they can receive payouts.
+      description: |
+        Returns a Stripe-hosted link where the payee completes identity and bank details so they can receive payouts.
+
+        Only for a payee that has not submitted their details yet: after that, only the payee changes them, from their own payouts page.
+
+        Needs an owner, admin or billing admin, signed in or through a full-access key they created.
       operationId: createPayeeOnboardingLink
       parameters:
       - explode: false
@@ -7604,9 +7608,16 @@ paths:
         "402":
           $ref: "#/components/responses/PaymentRequired"
         "403":
-          $ref: "#/components/responses/ResourceGroupForbidden"
+          $ref: "#/components/responses/MoneyForbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The payee has already submitted their payout details (code
+            `invalid_resource_state`). Only the payee can change them.
       summary: Create a payee onboarding link
       tags:
       - Treasury
