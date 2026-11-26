@@ -15,7 +15,7 @@ One subject going through an automation, the same shape for every kind. A flow, 
 |**subject** | [**AutomationRunSubject**](AutomationRunSubject.md) |  |  |
 |**startedAt** | **OffsetDateTime** |  |  |
 |**endedAt** | **OffsetDateTime** |  |  |
-|**exitReason** | **String** | Why an exited or failed run stopped, for example &#x60;replied&#x60;, &#x60;unsubscribed&#x60; or &#x60;skipped&#x60;. |  |
+|**exitReason** | **String** | Why an exited or failed run stopped, for example &#x60;handoff&#x60; (a flow handed the conversation to a person), &#x60;wait_expired&#x60;, &#x60;superseded&#x60;, &#x60;replied&#x60;, &#x60;unsubscribed&#x60; or &#x60;skipped&#x60;. |  |
 |**error** | **String** |  |  |
 |**steps** | [**AutomationRunSteps**](AutomationRunSteps.md) |  |  |
 

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.845.1
+  version: 1.846.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -148945,6 +148945,8 @@ components:
         exitReason: exitReason
         kind: ad_rule
         subject:
+          name: name
+          handle: handle
           id: id
           type: type
         endedAt: 2000-01-23T04:56:07.000+00:00
@@ -148989,8 +148991,9 @@ components:
           nullable: true
           type: string
         exitReason:
-          description: "Why an exited or failed run stopped, for example `replied`,\
-            \ `unsubscribed` or `skipped`."
+          description: "Why an exited or failed run stopped, for example `handoff`\
+            \ (a flow handed the conversation to a person), `wait_expired`, `superseded`,\
+            \ `replied`, `unsubscribed` or `skipped`."
           nullable: true
           type: string
         error:
@@ -149041,6 +149044,8 @@ components:
         exitReason: exitReason
         kind: ad_rule
         subject:
+          name: name
+          handle: handle
           id: id
           type: type
         endedAt: 2000-01-23T04:56:07.000+00:00
@@ -204752,6 +204757,8 @@ components:
           exitReason: exitReason
           kind: ad_rule
           subject:
+            name: name
+            handle: handle
             id: id
             type: type
           endedAt: 2000-01-23T04:56:07.000+00:00
@@ -204766,6 +204773,8 @@ components:
           exitReason: exitReason
           kind: ad_rule
           subject:
+            name: name
+            handle: handle
             id: id
             type: type
           endedAt: 2000-01-23T04:56:07.000+00:00
@@ -204808,6 +204817,8 @@ components:
           exitReason: exitReason
           kind: ad_rule
           subject:
+            name: name
+            handle: handle
             id: id
             type: type
           endedAt: 2000-01-23T04:56:07.000+00:00
@@ -266239,6 +266250,8 @@ components:
       description: "What the run is about. Null for a scheduled check, which judges\
         \ many subjects."
       example:
+        name: name
+        handle: handle
         id: id
         type: type
       properties:
@@ -266247,6 +266260,16 @@ components:
             \ or `post`."
           type: string
         id:
+          type: string
+        name:
+          description: "The person's display name, where the run knows it. Null for\
+            \ a check about a post, an ad or an order."
+          nullable: true
+          type: string
+        handle:
+          description: "The person's username without `@`, or their phone number in\
+            \ E.164 (it always starts with `+`). Null where neither is known."
+          nullable: true
           type: string
     AutomationRun_steps:
       example:
