@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   PostMetricsResponseMeta.JSON_PROPERTY_ANALYTICS_OFF,
   PostMetricsResponseMeta.JSON_PROPERTY_METRICS_SAMPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:00:16.034581037Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:08:57.479255402Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostMetricsResponseMeta {
   public static final String JSON_PROPERTY_STALE = "stale";
   @javax.annotation.Nonnull

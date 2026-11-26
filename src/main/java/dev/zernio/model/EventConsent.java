@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   EventConsent.JSON_PROPERTY_AD_PERSONALIZATION,
   EventConsent.JSON_PROPERTY_ANALYTICS_STORAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:00:16.034581037Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:08:57.479255402Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EventConsent {
   /**
    * Ad cookies and click ids (&#x60;ad_storage&#x60;).

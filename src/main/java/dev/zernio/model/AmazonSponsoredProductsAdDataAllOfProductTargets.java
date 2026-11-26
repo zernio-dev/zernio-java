@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   AmazonSponsoredProductsAdDataAllOfProductTargets.JSON_PROPERTY_EXPRESSION,
   AmazonSponsoredProductsAdDataAllOfProductTargets.JSON_PROPERTY_BID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:00:16.034581037Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:08:57.479255402Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AmazonSponsoredProductsAdDataAllOfProductTargets {
   public static final String JSON_PROPERTY_EXPRESSION = "expression";
   @javax.annotation.Nonnull

@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   AutomationGraph.JSON_PROPERTY_ENTRY,
   AutomationGraph.JSON_PROPERTY_LIMITS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:00:16.034581037Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:08:57.479255402Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationGraph {
   public static final String JSON_PROPERTY_TRIGGERS = "triggers";
   @javax.annotation.Nonnull

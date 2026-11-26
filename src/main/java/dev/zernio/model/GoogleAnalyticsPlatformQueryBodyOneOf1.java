@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   GoogleAnalyticsPlatformQueryBodyOneOf1.JSON_PROPERTY_LIMIT,
   GoogleAnalyticsPlatformQueryBodyOneOf1.JSON_PROPERTY_MINUTE_RANGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:00:16.034581037Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:08:57.479255402Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleAnalyticsPlatformQueryBodyOneOf1 {
   /**
    * A GA4 realtime report on the last 30 minutes, one page.

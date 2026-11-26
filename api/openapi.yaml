@@ -363,7 +363,9 @@ tags:
     when their metrics cross a threshold. Requires the Ads add-on.
   name: Ad Rules
 - description: |
-    Staged ad changes. Send a supported ad write with `stage: true` and it is validated and stored instead of applied. Read the change to see its before/after diff, confirm it to apply it, or discard it. A staged change does not expire. Meta and Google only. Requires the Ads add-on.
+    Staged ad changes. Send a supported ad write with `stage: true` and it is validated and stored instead of applied. Read the change to see its before/after diff, confirm it to apply it, or discard it. A staged change does not expire. Requires the Ads add-on.
+
+    Edits of campaigns, ad sets and ads can be staged on Meta, Google, TikTok, X, Snapchat and Reddit. Creates can be staged on Meta and Google only.
   name: Ad Changes
 - description: |
     One API for every automation: ad rules that check ads on a schedule, event automations that run when something happens in Zernio, and scheduled automations that check posts. Each has a `trigger`, the `subjects` it checks, the `steps` it takes and its `limits`.
@@ -208506,7 +208508,8 @@ components:
           description: "Send true to stage this change instead of applying it. Nothing\
             \ is written to the ad network; the response is `202` with the staged\
             \ change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm.\
-            \ Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+            \ Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with\
+            \ `validateOnly` or `dryRun`."
           type: boolean
       required:
       - platform
@@ -208867,7 +208870,8 @@ components:
           description: "Send true to stage this change instead of applying it. Nothing\
             \ is written to the ad network; the response is `202` with the staged\
             \ change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm.\
-            \ Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+            \ Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with\
+            \ `validateOnly` or `dryRun`."
           type: boolean
         platform:
           description: "Required: platform campaign IDs are not globally unique."
@@ -210706,7 +210710,8 @@ components:
           description: "Send true to stage this change instead of applying it. Nothing\
             \ is written to the ad network; the response is `202` with the staged\
             \ change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm.\
-            \ Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+            \ Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with\
+            \ `validateOnly` or `dryRun`."
           type: boolean
         platform:
           enum:
@@ -214723,7 +214728,8 @@ components:
           description: "Send true to stage this change instead of applying it. Nothing\
             \ is written to the ad network; the response is `202` with the staged\
             \ change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm.\
-            \ Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+            \ Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with\
+            \ `validateOnly` or `dryRun`."
           type: boolean
         headlines:
           description: "Google Search and Display only. Replaces the complete headline\
@@ -214980,7 +214986,8 @@ components:
           description: "Send true to stage this change instead of applying it. Nothing\
             \ is written to the ad network; the response is `202` with the staged\
             \ change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm.\
-            \ Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+            \ Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with\
+            \ `validateOnly` or `dryRun`."
           type: boolean
       required:
       - status

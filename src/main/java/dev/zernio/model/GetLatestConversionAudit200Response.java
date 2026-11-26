@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   GetLatestConversionAudit200Response.JSON_PROPERTY_PUBLIC_REPORT,
   GetLatestConversionAudit200Response.JSON_PROPERTY_HOST
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:00:16.034581037Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:08:57.479255402Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLatestConversionAudit200Response {
   public static final String JSON_PROPERTY_REPORT = "report";
   @javax.annotation.Nonnull

@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   EmailCleanForwarded.JSON_PROPERTY_DATE,
   EmailCleanForwarded.JSON_PROPERTY_SUBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:00:16.034581037Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:08:57.479255402Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EmailCleanForwarded {
   public static final String JSON_PROPERTY_FROM = "from";
   private JsonNullable<String> from = JsonNullable.<String>undefined();

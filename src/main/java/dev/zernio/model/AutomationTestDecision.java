@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   AutomationTestDecision.JSON_PROPERTY_PLANNED_STEPS,
   AutomationTestDecision.JSON_PROPERTY_NEXT_RUN_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:00:16.034581037Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:08:57.479255402Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AutomationTestDecision {
   public static final String JSON_PROPERTY_WOULD_RUN = "wouldRun";
   @javax.annotation.Nonnull

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SalesforceSettingsSyncIssue.JSON_PROPERTY_MESSAGE,
   SalesforceSettingsSyncIssue.JSON_PROPERTY_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:00:16.034581037Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:08:57.479255402Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SalesforceSettingsSyncIssue {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nonnull

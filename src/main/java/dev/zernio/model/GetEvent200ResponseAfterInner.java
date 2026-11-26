@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   GetEvent200ResponseAfterInner.JSON_PROPERTY_VALUE,
   GetEvent200ResponseAfterInner.JSON_PROPERTY_CURRENCY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:00:16.034581037Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-26T12:08:57.479255402Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetEvent200ResponseAfterInner {
   public static final String JSON_PROPERTY_EVENT_ID = "eventId";
   @javax.annotation.Nullable
