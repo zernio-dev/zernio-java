@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.854.0
+  version: 1.854.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -48548,6 +48548,7 @@ paths:
         - name
         - business verification
         - timezone
+        - billing currency
         - health_status
 
         ### Why live
@@ -48697,6 +48698,7 @@ paths:
                 granularity: DAILY
                 start: 2026-09-01T00:00:00.000Z
                 end: 2026-09-30T00:00:00.000Z
+                currency: USD
                 dataPoints:
                 - start: 2026-09-01T00:00:00.000Z
                   end: 2026-09-02T00:00:00.000Z
@@ -191025,6 +191027,7 @@ components:
         business_verification_status: business_verification_status
         name: name
         timezone_id: timezone_id
+        currency: currency
         health_status: "{}"
       properties:
         name:
@@ -191034,6 +191037,11 @@ components:
           type: string
         timezone_id:
           description: Meta integer timezone-enum id
+          type: string
+        currency:
+          description: ISO 4217 currency of the WABA's payment method (for example
+            USD or BRL). Null when Meta does not return it.
+          nullable: true
           type: string
         health_status:
           type: object
@@ -191055,6 +191063,7 @@ components:
           business_verification_status: business_verification_status
           name: name
           timezone_id: timezone_id
+          currency: currency
           health_status: "{}"
       properties:
         phone:
@@ -191104,8 +191113,7 @@ components:
           nullable: true
           type: integer
         cost:
-          description: "Approximate charge, in the currency of the WABA's payment\
-            \ method."
+          description: "Approximate charge, in the currency given by `currency`."
           nullable: true
           type: number
       required:
@@ -191144,6 +191152,7 @@ components:
           end: 2000-01-23T04:56:07.000+00:00
           pricingType: pricingType
         end: 2000-01-23T04:56:07.000+00:00
+        currency: currency
       properties:
         accountId:
           type: string
@@ -191162,12 +191171,18 @@ components:
         end:
           format: date-time
           type: string
+        currency:
+          description: "ISO 4217 currency every `cost` is in, from the WABA's payment\
+            \ method (for example USD or BRL). Null when Meta does not return it."
+          nullable: true
+          type: string
         dataPoints:
           items:
             $ref: "#/components/schemas/getWhatsAppPricingAnalytics_200_response_dataPoints_inner"
           type: array
       required:
       - accountId
+      - currency
       - dataPoints
       - end
       - granularity

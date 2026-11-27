@@ -15,7 +15,7 @@
 |**pricingType** | **String** | Set when dimensions includes PRICING_TYPE. |  |
 |**pricingCategory** | **String** | Set when dimensions includes PRICING_CATEGORY. |  |
 |**volume** | **Integer** | Messages delivered. |  |
-|**cost** | **BigDecimal** | Approximate charge, in the currency of the WABA&#39;s payment method. |  |
+|**cost** | **BigDecimal** | Approximate charge, in the currency given by &#x60;currency&#x60;. |  |
 
 
 

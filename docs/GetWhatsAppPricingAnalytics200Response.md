@@ -12,6 +12,7 @@
 |**granularity** | [**GranularityEnum**](#GranularityEnum) |  |  |
 |**start** | **OffsetDateTime** |  |  |
 |**end** | **OffsetDateTime** |  |  |
+|**currency** | **String** | ISO 4217 currency every &#x60;cost&#x60; is in, from the WABA&#39;s payment method (for example USD or BRL). Null when Meta does not return it. |  |
 |**dataPoints** | [**List&lt;GetWhatsAppPricingAnalytics200ResponseDataPointsInner&gt;**](GetWhatsAppPricingAnalytics200ResponseDataPointsInner.md) |  |  |
 
 
