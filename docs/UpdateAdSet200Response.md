@@ -7,6 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**validateOnly** | **Boolean** | Present and true when the request was sent with validateOnly: nothing was changed. The other fields of a real update are then absent. |  [optional] |
+|**results** | [**List&lt;AdWriteValidationResult&gt;**](AdWriteValidationResult.md) | validateOnly only: one entry, the object Meta validated. |  [optional] |
+|**message** | **String** | validateOnly only: what was validated. |  [optional] |
 |**budget** | [**AdBudget**](AdBudget.md) |  |  [optional] |
 |**budgetLevel** | [**BudgetLevelEnum**](#BudgetLevelEnum) |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | As in PUT /v1/ads/ad-sets/{adSetId}/status: delivery derived from the switches read back. |  [optional] |

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.863.0
+  version: 1.864.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -72291,6 +72291,19 @@ paths:
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "200":
+          content:
+            application/json:
+              example:
+                validateOnly: true
+                results:
+                - node: creative
+                  status: validated
+                message: Meta validated the creative; nothing was created or uploaded.
+              schema:
+                $ref: "#/components/schemas/AdWriteValidation"
+          description: "Sent with `validateOnly: true`. Meta validated the creative\
+            \ and nothing was created or uploaded."
         "201":
           content:
             application/json:
@@ -151554,6 +151567,50 @@ components:
       - evaluated
       - heldBack
       - matched
+    AdWriteValidationResult:
+      example:
+        node: adSet
+        status: validated
+      properties:
+        node:
+          description: The object Meta validated.
+          enum:
+          - adSet
+          - ad
+          - creative
+          type: string
+        status:
+          enum:
+          - validated
+          type: string
+      required:
+      - node
+      - status
+    AdWriteValidation:
+      description: "The answer to a single-object Meta write sent with validateOnly:\
+        \ Meta checked every write and nothing was changed on Meta or in Zernio."
+      example:
+        validateOnly: true
+        message: message
+        results:
+        - node: adSet
+          status: validated
+        - node: adSet
+          status: validated
+      properties:
+        validateOnly:
+          description: Always true.
+          type: boolean
+        results:
+          items:
+            $ref: "#/components/schemas/AdWriteValidationResult"
+          type: array
+        message:
+          type: string
+      required:
+      - message
+      - results
+      - validateOnly
     StagedAdChange:
       description: "An ad write that was validated and stored with `stage: true`,\
         \ waiting to be confirmed or discarded."
@@ -211785,6 +211842,20 @@ components:
           $ref: "#/components/schemas/updateAdSet_request_platformSpecificData_promotedObject"
     updateAdSet_request:
       properties:
+        validateOnly:
+          description: |
+            Meta only. Sends every write of this update to Meta with `execution_options: ["validate_only"]`. Meta checks it and changes nothing; Zernio stores nothing and fires no webhook.
+
+            - Answers `200` with `{ validateOnly: true, results, message }`, the shape of a validateOnly POST /v1/ads/create.
+
+            - The checks Zernio runs before the write (body, bid strategy, live ads allowance) run as for a real update.
+
+            - `true` on any other platform is a 400 naming `validateOnly`; `false` is ignored.
+
+            - Cannot be combined with `stage` (400 `mutually_exclusive_fields`). Counts toward the Meta ad account write guard.
+
+            - Idempotency-Key storage is bypassed, so the real update can reuse the key.
+          type: boolean
         stage:
           description: "Send true to stage this change instead of applying it. Nothing\
             \ is written to the ad network; the response is `202` with the staged\
@@ -211976,11 +212047,18 @@ components:
         endDate: endDate
         budgetLevel: adset
         bidAmount: 5.962133916683182
+        message: message
         platformCampaignStatus: platformCampaignStatus
         roasAverageFloor: 5.637376656633329
         statusSkipped: 1
+        validateOnly: true
         platformAdSetStatus: platformAdSetStatus
         targeting: "{}"
+        results:
+        - node: adSet
+          status: validated
+        - node: adSet
+          status: validated
         statusUpdated: 6
         startDate: startDate
         budget:
@@ -211989,6 +212067,18 @@ components:
         status: active
         statusReadAt: 2000-01-23T04:56:07.000+00:00
       properties:
+        validateOnly:
+          description: "Present and true when the request was sent with validateOnly:\
+            \ nothing was changed. The other fields of a real update are then absent."
+          type: boolean
+        results:
+          description: "validateOnly only: one entry, the object Meta validated."
+          items:
+            $ref: "#/components/schemas/AdWriteValidationResult"
+          type: array
+        message:
+          description: "validateOnly only: what was validated."
+          type: string
         budget:
           $ref: "#/components/schemas/AdBudget"
         budgetLevel:
@@ -215855,6 +215945,22 @@ components:
             - Required with `callToAction: GET_DIRECTIONS` on a full image creative (headline, body, callToAction, linkUrl, imageUrl), and on a partial edit of an image ad whose button has no location yet. Without it the request is a 400, and no other field of it reaches Meta.
     updateAd_request:
       properties:
+        validateOnly:
+          description: |
+            Meta only. Sends every write of this update to Meta with `execution_options: ["validate_only"]`. Meta checks it and changes nothing; Zernio stores nothing and fires no webhook.
+
+            - Answers `200` with `{ validateOnly: true, results, message }`, the shape of a validateOnly POST /v1/ads/create.
+
+            - The checks Zernio runs before the write (body, bid strategy, live ads allowance) run as for a real update.
+
+            - `true` on any other platform is a 400 naming `validateOnly`; `false` is ignored.
+
+            - Cannot be combined with `stage` (400 `mutually_exclusive_fields`). Counts toward the Meta ad account write guard.
+
+            - Idempotency-Key storage is bypassed, so the real update can reuse the key.
+
+            - A `creative` other than `existingCreativeId` is a 400: a dry run returns no creative id to link to the ad. Check a new creative with POST /v1/ads/creatives and `validateOnly`, create it, then send its id as `creative.existingCreativeId`.
+          type: boolean
         stage:
           description: "Send true to stage this change instead of applying it. Nothing\
             \ is written to the ad network; the response is `202` with the staged\
@@ -215928,6 +216034,7 @@ components:
           type: string
     updateAd_200_response:
       example:
+        validateOnly: true
         ad:
           bidStrategy: ""
           adSetName: adSetName
@@ -216101,7 +216208,21 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         message: message
+        results:
+        - node: adSet
+          status: validated
+        - node: adSet
+          status: validated
       properties:
+        validateOnly:
+          description: "Present and true when the request was sent with validateOnly:\
+            \ nothing was changed. The other fields of a real update are then absent."
+          type: boolean
+        results:
+          description: "validateOnly only: one entry, the object Meta validated."
+          items:
+            $ref: "#/components/schemas/AdWriteValidationResult"
+          type: array
         ad:
           $ref: "#/components/schemas/Ad"
         message:
@@ -220642,6 +220763,16 @@ components:
           description: "Send true to store this write as a staged change instead of\
             \ applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm\
             \ applies it later. Cannot be combined with `validateOnly`."
+          type: boolean
+        validateOnly:
+          description: |
+            Sends the creative to Meta with `execution_options: ["validate_only"]`. Meta checks it and creates nothing.
+
+            - No image is uploaded: `imageUrl` and the card images are sent by URL.
+
+            - Answers `200` with `{ validateOnly: true, results, message }`, the shape of a validateOnly POST /v1/ads/create.
+
+            - `false` is ignored. Cannot be combined with `stage`. Counts toward the Meta ad account write guard.
           type: boolean
         accountId:
           description: Zernio SocialAccount id (posting or ads variant) used to resolve
