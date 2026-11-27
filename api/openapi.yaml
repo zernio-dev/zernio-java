@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.854.4
+  version: 1.855.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -84985,14 +84985,18 @@ paths:
   /v1/ads/conversions/destinations/{destinationId}/metrics:
     get:
       description: |
-        Shows a LinkedIn conversion rule's attributed conversions, value, leads and cost over time.
+        Shows the conversions an ad network credited to a destination over time, bucketed by date.
 
-        LinkedIn-only today. Returns conversion-attribution metrics
-        (`externalWebsiteConversions`, `externalWebsitePostClickConversions`,
-        `externalWebsitePostViewConversions`, `conversionValueInLocalCurrency`,
-        `qualifiedLeads`, `costInLocalCurrency`) bucketed by date.
+        **LinkedIn** (a conversion rule): `externalWebsiteConversions`, `externalWebsitePostClickConversions`,
+        `externalWebsitePostViewConversions`, `conversionValueInLocalCurrency`, `qualifiedLeads`, `costInLocalCurrency`.
 
-        Date-range constraints (passed through from LinkedIn):
+        **Google Ads** (a conversion action, `destinationId` as `customers/{customerId}/conversionActions/{id}` or the bare id; `adAccountId` is the customer id):
+        `conversions`, `conversionsValue`, `allConversions`, `allConversionsValue`. Dates are in the Google Ads account's time zone,
+        days with no conversions have no row, and month and year buckets are cut to the asked range.
+
+        Other platforms answer 405.
+
+        Date-range constraints on LinkedIn:
         - `granularity=DAILY` is retained for ~6 months only
         - `granularity=ALL` with a range > 6 months auto-rounds to month boundaries
         - `granularity=MONTHLY`/`YEARLY` retains 24 months
@@ -85067,13 +85071,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on or LinkedIn reconnect required.
+          description: Ads add-on or reconnect required.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "405":
           description: Platform does not support metrics readback.
         "429":
-          description: LinkedIn analytics rate limit hit.
+          description: Platform analytics rate limit hit.
       security:
       - bearerAuth: []
       summary: Get attribution metrics
@@ -85085,6 +85089,7 @@ paths:
       - ads:read
       x-platforms:
       - linkedin
+      - google
       x-accepts:
       - application/json
   /v1/ads/conversions/custom-conversions:
@@ -85844,13 +85849,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on or LinkedIn reconnect required.
+          description: Ads add-on or reconnect required.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "405":
           description: Platform does not support metrics readback.
         "429":
-          description: LinkedIn analytics rate limit hit.
+          description: Platform analytics rate limit hit.
       security:
       - bearerAuth: []
       summary: Get attribution metrics
@@ -85862,6 +85867,7 @@ paths:
       - ads:read
       x-platforms:
       - linkedin
+      - google
       x-accepts:
       - application/json
   /v1/whatsapp/conversions:
@@ -234867,6 +234873,7 @@ components:
         platform:
           enum:
           - linkedinads
+          - googleads
           type: string
         granularity:
           enum:

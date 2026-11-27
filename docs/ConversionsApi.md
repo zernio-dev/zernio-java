@@ -2961,7 +2961,7 @@ ApiResponse<[**GetAdConversionDestination200Response**](GetAdConversionDestinati
 
 Get attribution metrics
 
-Shows a LinkedIn conversion rule&#39;s attributed conversions, value, leads and cost over time.  LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+Shows the conversions an ad network credited to a destination over time, bucketed by date.  **LinkedIn** (a conversion rule): &#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;.  **Google Ads** (a conversion action, &#x60;destinationId&#x60; as &#x60;customers/{customerId}/conversionActions/{id}&#x60; or the bare id; &#x60;adAccountId&#x60; is the customer id): &#x60;conversions&#x60;, &#x60;conversionsValue&#x60;, &#x60;allConversions&#x60;, &#x60;allConversionsValue&#x60;. Dates are in the Google Ads account&#39;s time zone, days with no conversions have no row, and month and year buckets are cut to the asked range.  Other platforms answer 405.  Date-range constraints on LinkedIn: - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
 
 ### Example
 
@@ -3037,10 +3037,10 @@ public class Example {
 | **200** | Metrics rows |  -  |
 | **400** | Validation error or invalid date range. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **403** | Ads add-on or reconnect required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **405** | Platform does not support metrics readback. |  -  |
-| **429** | LinkedIn analytics rate limit hit. |  -  |
+| **429** | Platform analytics rate limit hit. |  -  |
 
 ## getAdConversionMetricsWithHttpInfo
 
@@ -3048,7 +3048,7 @@ public class Example {
 
 Get attribution metrics
 
-Shows a LinkedIn conversion rule&#39;s attributed conversions, value, leads and cost over time.  LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+Shows the conversions an ad network credited to a destination over time, bucketed by date.  **LinkedIn** (a conversion rule): &#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;.  **Google Ads** (a conversion action, &#x60;destinationId&#x60; as &#x60;customers/{customerId}/conversionActions/{id}&#x60; or the bare id; &#x60;adAccountId&#x60; is the customer id): &#x60;conversions&#x60;, &#x60;conversionsValue&#x60;, &#x60;allConversions&#x60;, &#x60;allConversionsValue&#x60;. Dates are in the Google Ads account&#39;s time zone, days with no conversions have no row, and month and year buckets are cut to the asked range.  Other platforms answer 405.  Date-range constraints on LinkedIn: - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
 
 ### Example
 
@@ -3127,10 +3127,10 @@ ApiResponse<[**GetAdConversionMetrics200Response**](GetAdConversionMetrics200Res
 | **200** | Metrics rows |  -  |
 | **400** | Validation error or invalid date range. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **403** | Ads add-on or reconnect required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **405** | Platform does not support metrics readback. |  -  |
-| **429** | LinkedIn analytics rate limit hit. |  -  |
+| **429** | Platform analytics rate limit hit. |  -  |
 
 
 ## getConversionDestination
@@ -3381,10 +3381,10 @@ public class Example {
 | **200** | Metrics rows |  -  |
 | **400** | Validation error or invalid date range. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **403** | Ads add-on or reconnect required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **405** | Platform does not support metrics readback. |  -  |
-| **429** | LinkedIn analytics rate limit hit. |  -  |
+| **429** | Platform analytics rate limit hit. |  -  |
 
 ## getConversionMetricsWithHttpInfo
 
@@ -3471,10 +3471,10 @@ ApiResponse<[**GetAdConversionMetrics200Response**](GetAdConversionMetrics200Res
 | **200** | Metrics rows |  -  |
 | **400** | Validation error or invalid date range. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **403** | Ads add-on or reconnect required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **405** | Platform does not support metrics readback. |  -  |
-| **429** | LinkedIn analytics rate limit hit. |  -  |
+| **429** | Platform analytics rate limit hit. |  -  |
 
 
 ## getConversionPaths
