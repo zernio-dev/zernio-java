@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.860.0
+  version: 1.861.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -37469,6 +37469,27 @@ paths:
         schema:
           type: string
         style: form
+      - description: |
+          `true` returns only conversations holding at least one unread incoming message.
+
+          Read state is kept by Zernio, not by the platform. An incoming message stays unread until its conversation is marked read, in one of two ways:
+
+          - POST /v1/inbox/conversations/{conversationId}/read.
+          - On Telegram, Slack, SMS, RCS, iMessage, email and TikTok, reading its messages with GET /v1/inbox/conversations/{conversationId}/messages.
+
+          Messages you send never count, and replayed Meta history is stored as already read.
+
+          - On Bluesky and Reddit, a listed thread whose messages Zernio has not pulled yet (it pulls them when the thread is opened or when background polling reaches it) has no local read state and is not returned.
+          - Cannot be combined with `folder=requests` or `updatedSince`.
+
+          To render a badge without paging, use GET /v1/inbox/unread-count.
+        explode: true
+        in: query
+        name: unread
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -37732,6 +37753,109 @@ paths:
       - microsoft
       - imap
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/inbox/unread-count:
+    get:
+      description: |
+        Count the conversations holding at least one unread incoming message, across the connected messaging accounts. Use it for an unread badge instead of paging GET /v1/inbox/conversations?unread=true, which lists the same conversations.
+
+        Read state is kept by Zernio, not by the platform. An incoming message stays unread until its conversation is marked read, in one of two ways:
+
+        - POST /v1/inbox/conversations/{conversationId}/read.
+        - On Telegram, Slack, SMS, RCS, iMessage, email and TikTok, reading its messages with GET /v1/inbox/conversations/{conversationId}/messages.
+
+        Messages you send never count, and replayed Meta history is stored as already read.
+
+        - The count stops at 1000. `capped: true` means there are at least that many.
+        - Read from a replica, so it can trail a conversation you just marked read by about a second.
+        - On Bluesky and Reddit, a listed thread whose messages Zernio has not pulled yet has no local read state and is not counted.
+        - In the shared WhatsApp and iMessage sandboxes, only your own test conversations count.
+      operationId: getInboxUnreadCount
+      parameters:
+      - description: Count only accounts in this profile
+        explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Count only accounts on this platform
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          enum:
+          - facebook
+          - instagram
+          - twitter
+          - bluesky
+          - reddit
+          - telegram
+          - whatsapp
+          - sms
+          - rcs
+          - slack
+          - tiktok
+          - imessage
+          - line
+          - wechat
+          - google
+          - microsoft
+          - imap
+          type: string
+        style: form
+      - description: Count only this account
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Count only conversations with this status. Both are counted\
+          \ when omitted, as GET /v1/inbox/conversations lists both."
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - active
+          - archived
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                  unreadConversations: 12
+                  capped: false
+                meta:
+                  accountsQueried: 3
+                  accountsSkipped: []
+              schema:
+                $ref: "#/components/schemas/getInboxUnreadCount_200_response"
+          description: Unread conversation count
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+      security:
+      - bearerAuth: []
+      summary: Count unread conversations
+      tags:
+      - Messages
+      x-resource-group: messages
+      x-oauth-scopes:
+      - messaging:write
+      - messaging:read
       x-accepts:
       - application/json
   /v1/inbox/conversations/search:
@@ -181413,6 +181537,55 @@ components:
       anyOf:
       - $ref: "#/components/schemas/createInboxConversation_429_response_anyOf"
       - $ref: "#/components/schemas/WhatsAppTemplateLookupError"
+    getInboxUnreadCount_200_response_data:
+      example:
+        unreadConversations: 80
+        capped: true
+      properties:
+        unreadConversations:
+          description: "Conversations with at least one unread incoming message, capped\
+            \ at 1000."
+          maximum: 1000
+          minimum: 0
+          type: integer
+        capped:
+          description: "true when the count reached the cap: there are at least 1000."
+          type: boolean
+    getInboxUnreadCount_200_response_meta:
+      example:
+        accountsSkipped:
+        - accountId: accountId
+          platform: platform
+        - accountId: accountId
+          platform: platform
+        accountsQueried: 6
+      properties:
+        accountsQueried:
+          description: Connected messaging accounts the count covers
+          type: integer
+        accountsSkipped:
+          description: "Connected accounts that were not counted: their platform does\
+            \ not support direct messages, or the account is not enabled for them"
+          items:
+            $ref: "#/components/schemas/listInboxConversations_200_response_meta_accountsSkipped_inner"
+          type: array
+    getInboxUnreadCount_200_response:
+      example:
+        data:
+          unreadConversations: 80
+          capped: true
+        meta:
+          accountsSkipped:
+          - accountId: accountId
+            platform: platform
+          - accountId: accountId
+            platform: platform
+          accountsQueried: 6
+      properties:
+        data:
+          $ref: "#/components/schemas/getInboxUnreadCount_200_response_data"
+        meta:
+          $ref: "#/components/schemas/getInboxUnreadCount_200_response_meta"
     searchInboxConversations_200_response_data_inner_conversation:
       example:
         participantPicture: participantPicture

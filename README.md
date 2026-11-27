@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.860.0
+- API version: 1.861.1
 
-- Build date: 2026-11-27T11:42:36.181809246Z[Etc/UTC]
+- Build date: 2026-11-27T12:08:01.187367246Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.860.0</version>
+  <version>1.861.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.860.0"
+compile "dev.zernio:zernio-sdk:1.861.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.860.0.jar`
+- `target/zernio-sdk-1.861.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2147,6 +2147,8 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**getInboxConversationWithHttpInfo**](docs/MessagesApi.md#getInboxConversationWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation
 *MessagesApi* | [**getInboxConversationMessages**](docs/MessagesApi.md#getInboxConversationMessages) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages
 *MessagesApi* | [**getInboxConversationMessagesWithHttpInfo**](docs/MessagesApi.md#getInboxConversationMessagesWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages
+*MessagesApi* | [**getInboxUnreadCount**](docs/MessagesApi.md#getInboxUnreadCount) | **GET** /v1/inbox/unread-count | Count unread conversations
+*MessagesApi* | [**getInboxUnreadCountWithHttpInfo**](docs/MessagesApi.md#getInboxUnreadCountWithHttpInfo) | **GET** /v1/inbox/unread-count | Count unread conversations
 *MessagesApi* | [**getMessageAttachment**](docs/MessagesApi.md#getMessageAttachment) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment
 *MessagesApi* | [**getMessageAttachmentWithHttpInfo**](docs/MessagesApi.md#getMessageAttachmentWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment
 *MessagesApi* | [**listConversationLabels**](docs/MessagesApi.md#listConversationLabels) | **GET** /v1/inbox/conversations/{conversationId}/labels | List the labels on a conversation
@@ -4727,6 +4729,9 @@ Class | Method | HTTP request | Description
  - [GetInboxSourceBreakdown200ResponseSourcesInnerByPlatformInner](docs/GetInboxSourceBreakdown200ResponseSourcesInnerByPlatformInner.md)
  - [GetInboxTopAccounts200Response](docs/GetInboxTopAccounts200Response.md)
  - [GetInboxTopAccounts200ResponseAccountsInner](docs/GetInboxTopAccounts200ResponseAccountsInner.md)
+ - [GetInboxUnreadCount200Response](docs/GetInboxUnreadCount200Response.md)
+ - [GetInboxUnreadCount200ResponseData](docs/GetInboxUnreadCount200ResponseData.md)
+ - [GetInboxUnreadCount200ResponseMeta](docs/GetInboxUnreadCount200ResponseMeta.md)
  - [GetInboxVolume200Response](docs/GetInboxVolume200Response.md)
  - [GetInboxVolume200ResponseByPlatformInner](docs/GetInboxVolume200ResponseByPlatformInner.md)
  - [GetInboxVolume200ResponseSummary](docs/GetInboxVolume200ResponseSummary.md)

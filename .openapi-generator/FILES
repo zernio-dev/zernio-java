@@ -1841,6 +1841,9 @@ docs/GetInboxSourceBreakdown200ResponseSourcesInner.md
 docs/GetInboxSourceBreakdown200ResponseSourcesInnerByPlatformInner.md
 docs/GetInboxTopAccounts200Response.md
 docs/GetInboxTopAccounts200ResponseAccountsInner.md
+docs/GetInboxUnreadCount200Response.md
+docs/GetInboxUnreadCount200ResponseData.md
+docs/GetInboxUnreadCount200ResponseMeta.md
 docs/GetInboxVolume200Response.md
 docs/GetInboxVolume200ResponseByPlatformInner.md
 docs/GetInboxVolume200ResponseSummary.md
@@ -6224,6 +6227,9 @@ src/main/java/dev/zernio/model/GetInboxSourceBreakdown200ResponseSourcesInner.ja
 src/main/java/dev/zernio/model/GetInboxSourceBreakdown200ResponseSourcesInnerByPlatformInner.java
 src/main/java/dev/zernio/model/GetInboxTopAccounts200Response.java
 src/main/java/dev/zernio/model/GetInboxTopAccounts200ResponseAccountsInner.java
+src/main/java/dev/zernio/model/GetInboxUnreadCount200Response.java
+src/main/java/dev/zernio/model/GetInboxUnreadCount200ResponseData.java
+src/main/java/dev/zernio/model/GetInboxUnreadCount200ResponseMeta.java
 src/main/java/dev/zernio/model/GetInboxVolume200Response.java
 src/main/java/dev/zernio/model/GetInboxVolume200ResponseByPlatformInner.java
 src/main/java/dev/zernio/model/GetInboxVolume200ResponseSummary.java
@@ -8643,5 +8649,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/RestageAdChangeRequestTest.java
-src/test/java/dev/zernio/model/StagedAdChangeLeftBehindInnerTest.java
+src/test/java/dev/zernio/model/GetInboxUnreadCount200ResponseDataTest.java
+src/test/java/dev/zernio/model/GetInboxUnreadCount200ResponseMetaTest.java
+src/test/java/dev/zernio/model/GetInboxUnreadCount200ResponseTest.java
