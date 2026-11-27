@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.861.1
+  version: 1.862.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -231410,6 +231410,9 @@ components:
       - destinationId
       - events
     sendConversions_200_response_failures_inner_code:
+      description: "The platform's error code. For Google Ads and Campaign Manager\
+        \ 360, Google's reason for this event (`EVENT_TIME_INVALID`, `REQUIRED_FIELD_MISSING`...)\
+        \ when Google named this event with one."
       oneOf:
       - type: string
       - type: integer
@@ -231417,6 +231420,8 @@ components:
       example:
         eventId: eventId
         code: sendConversions_200_response_failures_inner_code
+        field: field
+        scope: event
         platformError:
           key: ""
         eventIndex: 5
@@ -231432,6 +231437,23 @@ components:
           type: string
         code:
           $ref: "#/components/schemas/sendConversions_200_response_failures_inner_code"
+        field:
+          description: "Google Ads and Campaign Manager 360 only: the event field\
+            \ Google refused (`event_timestamp`, `currency`...), without the `events.events[N].`\
+            \ prefix. Absent when Google named the event but no field."
+          type: string
+        scope:
+          description: |-
+            Google Ads and Campaign Manager 360 only, when Google refused the request. Absent for other platforms.
+
+            - `event`: Google named this event, and `message` is its own violation.
+            - `batch`: the refusal is about the whole request (destination, account, an outage) and is copied to every event of it.
+            - `batch_rejected`: Google did not name this event, but its resend without the named events failed too. `message` is that resend's error.
+          enum:
+          - event
+          - batch
+          - batch_rejected
+          type: string
         platformError:
           additionalProperties: {}
           description: |
@@ -231454,12 +231476,16 @@ components:
         failures:
         - eventId: eventId
           code: sendConversions_200_response_failures_inner_code
+          field: field
+          scope: event
           platformError:
             key: ""
           eventIndex: 5
           message: message
         - eventId: eventId
           code: sendConversions_200_response_failures_inner_code
+          field: field
+          scope: event
           platformError:
             key: ""
           eventIndex: 5
@@ -231603,9 +231629,13 @@ components:
       - accountId
       - adjustments
       - destinationId
+    adjustConversions_200_response_failures_inner_code:
+      oneOf:
+      - type: string
+      - type: integer
     adjustConversions_200_response_failures_inner:
       example:
-        code: sendConversions_200_response_failures_inner_code
+        code: adjustConversions_200_response_failures_inner_code
         adjustmentIndex: 1
         message: message
       properties:
@@ -231615,15 +231645,15 @@ components:
         message:
           type: string
         code:
-          $ref: "#/components/schemas/sendConversions_200_response_failures_inner_code"
+          $ref: "#/components/schemas/adjustConversions_200_response_failures_inner_code"
     adjustConversions_200_response:
       example:
         traceId: traceId
         failures:
-        - code: sendConversions_200_response_failures_inner_code
+        - code: adjustConversions_200_response_failures_inner_code
           adjustmentIndex: 1
           message: message
-        - code: sendConversions_200_response_failures_inner_code
+        - code: adjustConversions_200_response_failures_inner_code
           adjustmentIndex: 1
           message: message
         adjustmentsFailed: 6
@@ -232487,6 +232517,8 @@ components:
       example:
         eventId: eventId
         code: sendConversions_200_response_failures_inner_code
+        field: field
+        scope: event
         eventIndex: 7
         message: message
       properties:
@@ -232501,6 +232533,23 @@ components:
           type: string
         code:
           $ref: "#/components/schemas/sendConversions_200_response_failures_inner_code"
+        field:
+          description: "Google Ads and Campaign Manager 360 only: the event field\
+            \ Google refused (`event_timestamp`, `currency`...), without the `events.events[N].`\
+            \ prefix. Absent when Google named the event but no field."
+          type: string
+        scope:
+          description: |-
+            Google Ads and Campaign Manager 360 only, when Google refused the request. Absent for other platforms.
+
+            - `event`: Google named this event, and `message` is its own violation.
+            - `batch`: the refusal is about the whole request (destination, account, an outage) and is copied to every event of it.
+            - `batch_rejected`: Google did not name this event, but its resend without the named events failed too. `message` is that resend's error.
+          enum:
+          - event
+          - batch
+          - batch_rejected
+          type: string
     sendEvents_200_response_destinations_inner:
       example:
         eventsDropped: 5
@@ -232508,10 +232557,14 @@ components:
         failures:
         - eventId: eventId
           code: sendConversions_200_response_failures_inner_code
+          field: field
+          scope: event
           eventIndex: 7
           message: message
         - eventId: eventId
           code: sendConversions_200_response_failures_inner_code
+          field: field
+          scope: event
           eventIndex: 7
           message: message
         eventsFailed: 1
@@ -232630,10 +232683,14 @@ components:
           failures:
           - eventId: eventId
             code: sendConversions_200_response_failures_inner_code
+            field: field
+            scope: event
             eventIndex: 7
             message: message
           - eventId: eventId
             code: sendConversions_200_response_failures_inner_code
+            field: field
+            scope: event
             eventIndex: 7
             message: message
           eventsFailed: 1
@@ -232664,10 +232721,14 @@ components:
           failures:
           - eventId: eventId
             code: sendConversions_200_response_failures_inner_code
+            field: field
+            scope: event
             eventIndex: 7
             message: message
           - eventId: eventId
             code: sendConversions_200_response_failures_inner_code
+            field: field
+            scope: event
             eventIndex: 7
             message: message
           eventsFailed: 1
@@ -236130,7 +236191,7 @@ components:
     sendWhatsAppConversion_200_response_failures_inner:
       example:
         eventId: eventId
-        code: sendConversions_200_response_failures_inner_code
+        code: adjustConversions_200_response_failures_inner_code
         platformError:
           key: ""
         eventIndex: 1
@@ -236145,7 +236206,7 @@ components:
         message:
           type: string
         code:
-          $ref: "#/components/schemas/sendConversions_200_response_failures_inner_code"
+          $ref: "#/components/schemas/adjustConversions_200_response_failures_inner_code"
         platformError:
           additionalProperties: {}
           description: |
@@ -236159,13 +236220,13 @@ components:
         testCode: testCode
         failures:
         - eventId: eventId
-          code: sendConversions_200_response_failures_inner_code
+          code: adjustConversions_200_response_failures_inner_code
           platformError:
             key: ""
           eventIndex: 1
           message: message
         - eventId: eventId
-          code: sendConversions_200_response_failures_inner_code
+          code: adjustConversions_200_response_failures_inner_code
           platformError:
             key: ""
           eventIndex: 1
