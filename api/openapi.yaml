@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.855.0
+  version: 1.856.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -58713,7 +58713,7 @@ paths:
         What an automation can contain and where each part works, built from the same checks that validate a save, so it never offers what saving refuses.
 
         - `schema`: the JSON Schema of the body of `POST /v1/automations`.
-        - `triggers`: every trigger, tagged with its `kind`. Ad rule and scheduled triggers list their intervals; event triggers list each event with its facts.
+        - `triggers`: every trigger, tagged with its `kind`, with the `label`, `description`, picker `group`, `resourceGroup` and allowed `steps` a trigger picker shows. Ad rule and scheduled triggers list their intervals; event triggers list each event with its facts.
         - The other sections describe ad rules: per subject (campaign, ad set, ad) its metrics and steps with the platforms that accept them, plus filters, groups, alerts, conditions, limits and approval.
       operationId: getAutomationCatalog
       responses:
@@ -204281,11 +204281,13 @@ components:
           type: string
     getAutomationCatalog_200_response_triggers_inner:
       example:
+        resourceGroup: messages
         kind: ad_rule
         subject: subject
         subjects:
         - "{}"
         - "{}"
+        description: description
         label: label
         type: post.failed
         facts:
@@ -204313,6 +204315,7 @@ components:
         limits:
         - limits
         - limits
+        group: social
       properties:
         kind:
           enum:
@@ -204323,6 +204326,22 @@ components:
           - comment
           - workflow
           type: string
+        group:
+          description: "Where a trigger picker files it: the same groups as the template\
+            \ marketplace."
+          enum:
+          - social
+          - messaging
+          - ads
+          type: string
+        resourceGroup:
+          description: The API key resource group its kind needs to create one.
+          enum:
+          - messages
+          - ads
+          - null
+          nullable: true
+          type: string
         type:
           description: "`schedule`, `enrollment`, a comment door such as `comment.keyword`\
             \ (comment to DM), a flow trigger such as `inbound_message`, or the Zernio\
@@ -204330,7 +204349,10 @@ components:
           example: post.failed
           type: string
         label:
-          description: Event triggers only.
+          description: "Its short name, such as `Ad rule schedule`."
+          type: string
+        description:
+          description: One line on when it starts and what the automation does then.
           type: string
         subject:
           description: "What an event is about, such as `post` or `account`."
@@ -204368,8 +204390,8 @@ components:
             type: string
           type: array
         steps:
-          description: "The step types the trigger takes. For an event, only those\
-            \ its subject can reach."
+          description: "The step types allowed after the trigger. For an event, only\
+            \ those its subject can reach."
           items:
             type: string
           type: array
@@ -204382,7 +204404,12 @@ components:
             type: string
           type: array
       required:
+      - description
+      - group
       - kind
+      - label
+      - resourceGroup
+      - steps
       - type
     getAutomationCatalog_200_response_subjects_inner_metrics_inner:
       example:
@@ -204508,11 +204535,13 @@ components:
         groups: "{}"
         filters: "{}"
         triggers:
-        - kind: ad_rule
+        - resourceGroup: messages
+          kind: ad_rule
           subject: subject
           subjects:
           - "{}"
           - "{}"
+          description: description
           label: label
           type: post.failed
           facts:
@@ -204540,11 +204569,14 @@ components:
           limits:
           - limits
           - limits
-        - kind: ad_rule
+          group: social
+        - resourceGroup: messages
+          kind: ad_rule
           subject: subject
           subjects:
           - "{}"
           - "{}"
+          description: description
           label: label
           type: post.failed
           facts:
@@ -204572,6 +204604,7 @@ components:
           limits:
           - limits
           - limits
+          group: social
         conditions: "{}"
         limits:
         - limits

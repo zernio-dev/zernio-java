@@ -1627,7 +1627,7 @@ ApiResponse<[**GetAutomationApproval200Response**](GetAutomationApproval200Respo
 
 Get the automations catalog
 
-What an automation can contain and where each part works, built from the same checks that validate a save, so it never offers what saving refuses.  - &#x60;schema&#x60;: the JSON Schema of the body of &#x60;POST /v1/automations&#x60;. - &#x60;triggers&#x60;: every trigger, tagged with its &#x60;kind&#x60;. Ad rule and scheduled triggers list their intervals; event triggers list each event with its facts. - The other sections describe ad rules: per subject (campaign, ad set, ad) its metrics and steps with the platforms that accept them, plus filters, groups, alerts, conditions, limits and approval. 
+What an automation can contain and where each part works, built from the same checks that validate a save, so it never offers what saving refuses.  - &#x60;schema&#x60;: the JSON Schema of the body of &#x60;POST /v1/automations&#x60;. - &#x60;triggers&#x60;: every trigger, tagged with its &#x60;kind&#x60;, with the &#x60;label&#x60;, &#x60;description&#x60;, picker &#x60;group&#x60;, &#x60;resourceGroup&#x60; and allowed &#x60;steps&#x60; a trigger picker shows. Ad rule and scheduled triggers list their intervals; event triggers list each event with its facts. - The other sections describe ad rules: per subject (campaign, ad set, ad) its metrics and steps with the platforms that accept them, plus filters, groups, alerts, conditions, limits and approval. 
 
 ### Example
 
@@ -1694,7 +1694,7 @@ This endpoint does not need any parameter.
 
 Get the automations catalog
 
-What an automation can contain and where each part works, built from the same checks that validate a save, so it never offers what saving refuses.  - &#x60;schema&#x60;: the JSON Schema of the body of &#x60;POST /v1/automations&#x60;. - &#x60;triggers&#x60;: every trigger, tagged with its &#x60;kind&#x60;. Ad rule and scheduled triggers list their intervals; event triggers list each event with its facts. - The other sections describe ad rules: per subject (campaign, ad set, ad) its metrics and steps with the platforms that accept them, plus filters, groups, alerts, conditions, limits and approval. 
+What an automation can contain and where each part works, built from the same checks that validate a save, so it never offers what saving refuses.  - &#x60;schema&#x60;: the JSON Schema of the body of &#x60;POST /v1/automations&#x60;. - &#x60;triggers&#x60;: every trigger, tagged with its &#x60;kind&#x60;, with the &#x60;label&#x60;, &#x60;description&#x60;, picker &#x60;group&#x60;, &#x60;resourceGroup&#x60; and allowed &#x60;steps&#x60; a trigger picker shows. Ad rule and scheduled triggers list their intervals; event triggers list each event with its facts. - The other sections describe ad rules: per subject (campaign, ad set, ad) its metrics and steps with the platforms that accept them, plus filters, groups, alerts, conditions, limits and approval. 
 
 ### Example
 
