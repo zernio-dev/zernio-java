@@ -93,7 +93,7 @@ public class Example {
 | **403** | The refusals of the staged write: &#x60;ads_addon_required&#x60;, &#x60;ads_allowance_exceeded&#x60; or &#x60;ad_account_not_selected&#x60;. None of them writes anything, and the change stays &#x60;staged&#x60;. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | Code &#x60;rate_limited&#x60;. A refusal by Zernio&#39;s own limit (&#x60;details.reason&#x60; on Meta, &#x60;details.budgetScope&#x60; on Google) on a change of one field wrote nothing and leaves the change &#x60;staged&#x60;. Any other &#x60;429&#x60;, including one from the ad network, ends the change as &#x60;failed&#x60;. |  -  |
-| **409** | The change was not applied. The code says why:  - &#x60;change_target_changed&#x60;: the object changed on the ad network after the change was staged. &#x60;details.current&#x60; carries its current values. - &#x60;change_not_staged&#x60;: the change has already failed. - &#x60;change_outcome_unknown&#x60;: another confirm of this change is running, or one started and never recorded how it ended. Read the change, and check the object on the ad network before staging a new one.  |  -  |
+| **409** | The change was not applied. The code says why:  - &#x60;change_target_changed&#x60;: the object changed on the ad network after the change was staged. &#x60;details.current&#x60; carries its current values. - &#x60;change_not_staged&#x60;: the change has already failed. - &#x60;change_outcome_unknown&#x60;: another confirm of this change is running, or one started and never recorded how it ended. Read the change, and check the object on the ad network before staging a new one. - &#x60;change_partly_applied&#x60;: a write on a list was sent and some items failed. The change ends as &#x60;failed&#x60;, and &#x60;details&#x60; holds the result of each item. - &#x60;invalid_resource_state&#x60;: the change was edited while this confirm started. Nothing was sent and it is still staged. Read it and confirm again.  |  -  |
 
 ## confirmAdChangeWithHttpInfo
 
@@ -172,7 +172,7 @@ ApiResponse<**Map&lt;String, Object&gt;**>
 | **403** | The refusals of the staged write: &#x60;ads_addon_required&#x60;, &#x60;ads_allowance_exceeded&#x60; or &#x60;ad_account_not_selected&#x60;. None of them writes anything, and the change stays &#x60;staged&#x60;. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | Code &#x60;rate_limited&#x60;. A refusal by Zernio&#39;s own limit (&#x60;details.reason&#x60; on Meta, &#x60;details.budgetScope&#x60; on Google) on a change of one field wrote nothing and leaves the change &#x60;staged&#x60;. Any other &#x60;429&#x60;, including one from the ad network, ends the change as &#x60;failed&#x60;. |  -  |
-| **409** | The change was not applied. The code says why:  - &#x60;change_target_changed&#x60;: the object changed on the ad network after the change was staged. &#x60;details.current&#x60; carries its current values. - &#x60;change_not_staged&#x60;: the change has already failed. - &#x60;change_outcome_unknown&#x60;: another confirm of this change is running, or one started and never recorded how it ended. Read the change, and check the object on the ad network before staging a new one.  |  -  |
+| **409** | The change was not applied. The code says why:  - &#x60;change_target_changed&#x60;: the object changed on the ad network after the change was staged. &#x60;details.current&#x60; carries its current values. - &#x60;change_not_staged&#x60;: the change has already failed. - &#x60;change_outcome_unknown&#x60;: another confirm of this change is running, or one started and never recorded how it ended. Read the change, and check the object on the ad network before staging a new one. - &#x60;change_partly_applied&#x60;: a write on a list was sent and some items failed. The change ends as &#x60;failed&#x60;, and &#x60;details&#x60; holds the result of each item. - &#x60;invalid_resource_state&#x60;: the change was edited while this confirm started. Nothing was sent and it is still staged. Read it and confirm again.  |  -  |
 
 
 ## discardAdChange
@@ -659,7 +659,7 @@ ApiResponse<[**ListAdChanges200Response**](ListAdChanges200Response.md)>
 
 Stage a failed ad change again
 
-Makes a new staged change from a change that failed at confirm. Nothing is written to the ad network.  The new change holds the same request. It is checked for the calling user, and an edit is read against the current values of its object. The failed change stays readable until it is deleted.  A failed create cannot be staged again (&#x60;409&#x60;): it may have made part of its objects on the ad network, which its &#x60;error.details&#x60; lists. Stage a new create instead. 
+Makes a new staged change from a change that failed at confirm. Nothing is written to the ad network.  The new change holds the same request. It is checked for the calling user, and an edit is read against the current values of its object. The failed change stays readable until it is deleted.  A failed create cannot be staged again (&#x60;409&#x60;): it may have made part of its objects on the ad network, which its &#x60;error.details&#x60; lists. Stage a new create instead. This covers every change with &#x60;creates: true&#x60;.  Also refused with &#x60;409&#x60;: a change that failed as &#x60;change_outcome_unknown&#x60;, and a change whose kept uploads were deleted or moved to an earlier restage. 
 
 ### Example
 
@@ -726,7 +726,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The change did not fail, or it is a failed create (&#x60;invalid_resource_state&#x60;). |  -  |
+| **409** | Code &#x60;invalid_resource_state&#x60;. The change did not fail, it creates an object, nobody knows how it ended, or its kept uploads are gone. |  -  |
 
 ## restageAdChangeWithHttpInfo
 
@@ -734,7 +734,7 @@ public class Example {
 
 Stage a failed ad change again
 
-Makes a new staged change from a change that failed at confirm. Nothing is written to the ad network.  The new change holds the same request. It is checked for the calling user, and an edit is read against the current values of its object. The failed change stays readable until it is deleted.  A failed create cannot be staged again (&#x60;409&#x60;): it may have made part of its objects on the ad network, which its &#x60;error.details&#x60; lists. Stage a new create instead. 
+Makes a new staged change from a change that failed at confirm. Nothing is written to the ad network.  The new change holds the same request. It is checked for the calling user, and an edit is read against the current values of its object. The failed change stays readable until it is deleted.  A failed create cannot be staged again (&#x60;409&#x60;): it may have made part of its objects on the ad network, which its &#x60;error.details&#x60; lists. Stage a new create instead. This covers every change with &#x60;creates: true&#x60;.  Also refused with &#x60;409&#x60;: a change that failed as &#x60;change_outcome_unknown&#x60;, and a change whose kept uploads were deleted or moved to an earlier restage. 
 
 ### Example
 
@@ -804,7 +804,7 @@ ApiResponse<[**GetAdChange200Response**](GetAdChange200Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The change did not fail, or it is a failed create (&#x60;invalid_resource_state&#x60;). |  -  |
+| **409** | Code &#x60;invalid_resource_state&#x60;. The change did not fail, it creates an object, nobody knows how it ended, or its kept uploads are gone. |  -  |
 
 
 ## updateAdChange

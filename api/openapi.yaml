@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.857.1
+  version: 1.858.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -366,6 +366,10 @@ tags:
     Staged ad changes. Send a supported ad write with `stage: true` and it is validated and stored instead of applied. Read the change to see its before/after diff, confirm it to apply it, or discard it. A staged change does not expire. Requires the Ads add-on.
 
     Edits of campaigns, ad sets and ads can be staged on Meta, Google, TikTok, X, Snapchat and Reddit. Creates can be staged on Meta and Google only.
+
+    `stage` is a boolean in a body. In the query it is `true`, `1`, `false` or `0`. Any other value answers `400`, so a request is never sent because the flag was misspelled.
+
+    A staged body is at most 256 KB and names at most 50 temporary uploads.
   name: Ad Changes
 - description: |
     One API for every automation: ad rules that check ads on a schedule, event automations that run when something happens in Zernio, and scheduled automations that check posts. Each has a `trigger`, the `subjects` it checks, the `steps` it takes and its `limits`.
@@ -61355,7 +61359,9 @@ paths:
 
         The new change holds the same request. It is checked for the calling user, and an edit is read against the current values of its object. The failed change stays readable until it is deleted.
 
-        A failed create cannot be staged again (`409`): it may have made part of its objects on the ad network, which its `error.details` lists. Stage a new create instead.
+        A failed create cannot be staged again (`409`): it may have made part of its objects on the ad network, which its `error.details` lists. Stage a new create instead. This covers every change with `creates: true`.
+
+        Also refused with `409`: a change that failed as `change_outcome_unknown`, and a change whose kept uploads were deleted or moved to an earlier restage.
       operationId: restageAdChange
       parameters:
       - description: The id of the failed change.
@@ -61393,7 +61399,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: "The change did not fail, or it is a failed create (`invalid_resource_state`)."
+          description: "Code `invalid_resource_state`. The change did not fail, it\
+            \ creates an object, nobody knows how it ended, or its kept uploads are\
+            \ gone."
           x-summary: Only a failed edit or a failed request can be staged again.
       security:
       - bearerAuth: []
@@ -61497,6 +61505,8 @@ paths:
             - `change_target_changed`: the object changed on the ad network after the change was staged. `details.current` carries its current values.
             - `change_not_staged`: the change has already failed.
             - `change_outcome_unknown`: another confirm of this change is running, or one started and never recorded how it ended. Read the change, and check the object on the ad network before staging a new one.
+            - `change_partly_applied`: a write on a list was sent and some items failed. The change ends as `failed`, and `details` holds the result of each item.
+            - `invalid_resource_state`: the change was edited while this confirm started. Nothing was sent and it is still staged. Read it and confirm again.
           x-summary: "The object changed on the ad network since staging, or the change\
             \ is no longer staged."
       security:
@@ -151207,7 +151217,7 @@ components:
         status:
           description: |
             - `staged`: waiting to be confirmed or discarded.
-            - `confirming`: a confirm is running. A change left here for 15 minutes ends as `failed` with error code `change_outcome_unknown`, and is never applied again automatically.
+            - `confirming`: a confirm is running. A change left here for about 18 minutes ends as `failed` with error code `change_outcome_unknown`, and is never applied again automatically.
             - `confirmed`: applied. `result` holds what the write returned.
             - `failed`: not applied. `error` says why.
           enum:
@@ -267612,9 +267622,9 @@ components:
           example:
             labelId: "22292442088"
         query:
-          additionalProperties:
-            type: string
-          description: "The query values of the staged request, without `stage`."
+          additionalProperties: {}
+          description: "The query values of the staged request, without `stage`. A\
+            \ key that was sent more than once holds every value, in the order sent."
       required:
       - method
       - operation
@@ -267659,8 +267669,9 @@ components:
           type: string
         details:
           additionalProperties: true
-          description: "Creates only. What the failed create reported, such as objects\
-            \ it had already made on the ad network."
+          description: "Only on a failed change. What the write reported: the objects\
+            \ a failed create had already made, the fields an update had written (`appliedFields`),\
+            \ or the result of each item of a list write that failed in part."
           type: object
     StagedAdChangeSummary_request:
       description: "Only with type `operation`: the staged write."

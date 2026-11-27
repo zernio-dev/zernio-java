@@ -12,7 +12,7 @@ Only with type `operation`: the write that was staged as its request. Confirm se
 |**method** | [**MethodEnum**](#MethodEnum) |  |  |
 |**path** | **String** | The path of the write, for example /v1/ads/keywords. |  |
 |**params** | **Map&lt;String, String&gt;** | The path values of the staged request, by the names in &#x60;path&#x60;. |  [optional] |
-|**query** | **Map&lt;String, String&gt;** | The query values of the staged request, without &#x60;stage&#x60;. |  [optional] |
+|**query** | **Map&lt;String, Object&gt;** | The query values of the staged request, without &#x60;stage&#x60;. A key that was sent more than once holds every value, in the order sent. |  [optional] |
 
 
 
