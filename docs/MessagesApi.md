@@ -30,6 +30,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getInboxUnreadCountWithHttpInfo**](MessagesApi.md#getInboxUnreadCountWithHttpInfo) | **GET** /v1/inbox/unread-count | Count unread conversations |
 | [**getMessageAttachment**](MessagesApi.md#getMessageAttachment) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment |
 | [**getMessageAttachmentWithHttpInfo**](MessagesApi.md#getMessageAttachmentWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment |
+| [**getMessengerContact**](MessagesApi.md#getMessengerContact) | **GET** /v1/inbox/conversations/{conversationId}/messenger-contact | Get a Messenger contact&#39;s language, time zone and gender |
+| [**getMessengerContactWithHttpInfo**](MessagesApi.md#getMessengerContactWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messenger-contact | Get a Messenger contact&#39;s language, time zone and gender |
 | [**listConversationLabels**](MessagesApi.md#listConversationLabels) | **GET** /v1/inbox/conversations/{conversationId}/labels | List the labels on a conversation |
 | [**listConversationLabelsWithHttpInfo**](MessagesApi.md#listConversationLabelsWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/labels | List the labels on a conversation |
 | [**listInboxConversations**](MessagesApi.md#listInboxConversations) | **GET** /v1/inbox/conversations | List conversations |
@@ -2137,6 +2139,164 @@ ApiResponse<[**GetMessageAttachment200Response**](GetMessageAttachment200Respons
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account, conversation, message or attachment not found, or the platform no longer serves the media |  -  |
+
+
+## getMessengerContact
+
+> GetMessengerContact200Response getMessengerContact(conversationId, accountId)
+
+Get a Messenger contact&#39;s language, time zone and gender
+
+Reads the language, time zone and gender of the person in a Facebook Messenger conversation, live from Meta with the Page token.  Available on Facebook Page conversations only. Instagram and every other platform answer 400 &#x60;platform_not_supported&#x60;.  Meta shares each field only when the person made it available, so any field can be &#x60;null&#x60;. A null field is not an error. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | The conversation ID
+        String accountId = "accountId_example"; // String | The Facebook social account ID
+        try {
+            GetMessengerContact200Response result = apiInstance.getMessengerContact(conversationId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#getMessengerContact");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| The conversation ID | |
+| **accountId** | **String**| The Facebook social account ID | |
+
+### Return type
+
+[**GetMessengerContact200Response**](GetMessengerContact200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The contact&#39;s details |  -  |
+| **400** | Invalid accountId, a conversation that is not on Facebook (code platform_not_supported), or Meta refused the read (code platform_api_error) |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found |  -  |
+| **502** | Meta did not name the person in the thread, or Meta failed (code platform_api_error) |  -  |
+
+## getMessengerContactWithHttpInfo
+
+> ApiResponse<GetMessengerContact200Response> getMessengerContact getMessengerContactWithHttpInfo(conversationId, accountId)
+
+Get a Messenger contact&#39;s language, time zone and gender
+
+Reads the language, time zone and gender of the person in a Facebook Messenger conversation, live from Meta with the Page token.  Available on Facebook Page conversations only. Instagram and every other platform answer 400 &#x60;platform_not_supported&#x60;.  Meta shares each field only when the person made it available, so any field can be &#x60;null&#x60;. A null field is not an error. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | The conversation ID
+        String accountId = "accountId_example"; // String | The Facebook social account ID
+        try {
+            ApiResponse<GetMessengerContact200Response> response = apiInstance.getMessengerContactWithHttpInfo(conversationId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#getMessengerContact");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| The conversation ID | |
+| **accountId** | **String**| The Facebook social account ID | |
+
+### Return type
+
+ApiResponse<[**GetMessengerContact200Response**](GetMessengerContact200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The contact&#39;s details |  -  |
+| **400** | Invalid accountId, a conversation that is not on Facebook (code platform_not_supported), or Meta refused the read (code platform_api_error) |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found |  -  |
+| **502** | Meta did not name the person in the thread, or Meta failed (code platform_api_error) |  -  |
 
 
 ## listConversationLabels

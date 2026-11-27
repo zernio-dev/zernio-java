@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.864.5
+- API version: 1.865.0
 
-- Build date: 2026-11-27T18:16:00.276982920Z[Etc/UTC]
+- Build date: 2026-11-27T20:17:20.311796362Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.864.5</version>
+  <version>1.865.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.864.5"
+compile "dev.zernio:zernio-sdk:1.865.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.864.5.jar`
+- `target/zernio-sdk-1.865.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2153,6 +2153,8 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**getInboxUnreadCountWithHttpInfo**](docs/MessagesApi.md#getInboxUnreadCountWithHttpInfo) | **GET** /v1/inbox/unread-count | Count unread conversations
 *MessagesApi* | [**getMessageAttachment**](docs/MessagesApi.md#getMessageAttachment) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment
 *MessagesApi* | [**getMessageAttachmentWithHttpInfo**](docs/MessagesApi.md#getMessageAttachmentWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment
+*MessagesApi* | [**getMessengerContact**](docs/MessagesApi.md#getMessengerContact) | **GET** /v1/inbox/conversations/{conversationId}/messenger-contact | Get a Messenger contact&#39;s language, time zone and gender
+*MessagesApi* | [**getMessengerContactWithHttpInfo**](docs/MessagesApi.md#getMessengerContactWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messenger-contact | Get a Messenger contact&#39;s language, time zone and gender
 *MessagesApi* | [**listConversationLabels**](docs/MessagesApi.md#listConversationLabels) | **GET** /v1/inbox/conversations/{conversationId}/labels | List the labels on a conversation
 *MessagesApi* | [**listConversationLabelsWithHttpInfo**](docs/MessagesApi.md#listConversationLabelsWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/labels | List the labels on a conversation
 *MessagesApi* | [**listInboxConversations**](docs/MessagesApi.md#listInboxConversations) | **GET** /v1/inbox/conversations | List conversations
@@ -4792,6 +4794,8 @@ Class | Method | HTTP request | Description
  - [GetMediaPresignedUrl200Response](docs/GetMediaPresignedUrl200Response.md)
  - [GetMediaPresignedUrlRequest](docs/GetMediaPresignedUrlRequest.md)
  - [GetMessageAttachment200Response](docs/GetMessageAttachment200Response.md)
+ - [GetMessengerContact200Response](docs/GetMessengerContact200Response.md)
+ - [GetMessengerContact200ResponseData](docs/GetMessengerContact200ResponseData.md)
  - [GetMessengerGetStarted200Response](docs/GetMessengerGetStarted200Response.md)
  - [GetMessengerGetStarted200ResponseData](docs/GetMessengerGetStarted200ResponseData.md)
  - [GetMessengerGreeting200Response](docs/GetMessengerGreeting200Response.md)

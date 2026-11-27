@@ -1902,6 +1902,8 @@ docs/GetLtvCohorts200ResponseCohortsInnerRevenue.md
 docs/GetMediaPresignedUrl200Response.md
 docs/GetMediaPresignedUrlRequest.md
 docs/GetMessageAttachment200Response.md
+docs/GetMessengerContact200Response.md
+docs/GetMessengerContact200ResponseData.md
 docs/GetMessengerGetStarted200Response.md
 docs/GetMessengerGetStarted200ResponseData.md
 docs/GetMessengerGreeting200Response.md
@@ -6294,6 +6296,8 @@ src/main/java/dev/zernio/model/GetLtvCohorts200ResponseCohortsInnerRevenue.java
 src/main/java/dev/zernio/model/GetMediaPresignedUrl200Response.java
 src/main/java/dev/zernio/model/GetMediaPresignedUrlRequest.java
 src/main/java/dev/zernio/model/GetMessageAttachment200Response.java
+src/main/java/dev/zernio/model/GetMessengerContact200Response.java
+src/main/java/dev/zernio/model/GetMessengerContact200ResponseData.java
 src/main/java/dev/zernio/model/GetMessengerGetStarted200Response.java
 src/main/java/dev/zernio/model/GetMessengerGetStarted200ResponseData.java
 src/main/java/dev/zernio/model/GetMessengerGreeting200Response.java
@@ -8661,6 +8665,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/InstagramHashtagMediaTest.java
-src/test/java/dev/zernio/model/InstagramHashtagResearchHashtagTest.java
-src/test/java/dev/zernio/model/InstagramHashtagResearchTest.java
+src/test/java/dev/zernio/model/GetMessengerContact200ResponseDataTest.java
+src/test/java/dev/zernio/model/GetMessengerContact200ResponseTest.java

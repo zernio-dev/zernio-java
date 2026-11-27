@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.864.5
+  version: 1.865.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -38995,6 +38995,77 @@ paths:
       - facebook
       - instagram
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/inbox/conversations/{conversationId}/messenger-contact:
+    get:
+      description: |
+        Reads the language, time zone and gender of the person in a Facebook Messenger conversation, live from Meta with the Page token.
+
+        Available on Facebook Page conversations only. Instagram and every other platform answer 400 `platform_not_supported`.
+
+        Meta shares each field only when the person made it available, so any field can be `null`. A null field is not an error.
+      operationId: getMessengerContact
+      parameters:
+      - description: The conversation ID
+        explode: false
+        in: path
+        name: conversationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The Facebook social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                  locale: es_ES
+                  timezone: 1
+                  gender: female
+              schema:
+                $ref: "#/components/schemas/getMessengerContact_200_response"
+          description: The contact's details
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid accountId, a conversation that is not on Facebook\
+            \ (code platform_not_supported), or Meta refused the read (code platform_api_error)"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: Account or conversation not found
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Meta did not name the person in the thread, or Meta failed\
+            \ (code platform_api_error)"
+      security:
+      - bearerAuth: []
+      summary: "Get a Messenger contact's language, time zone and gender"
+      tags:
+      - Messages
+      x-resource-group: messages
+      x-oauth-scopes:
+      - messaging:write
+      - messaging:read
+      x-platforms:
+      - facebook
       x-accepts:
       - application/json
   /v1/inbox/conversations/{conversationId}/accept:
@@ -184320,6 +184391,38 @@ components:
           type: boolean
         control:
           $ref: "#/components/schemas/setConversationThreadControl_200_response_control"
+    getMessengerContact_200_response_data:
+      example:
+        gender: gender
+        timezone: 0.8008281904610115
+        locale: locale
+      properties:
+        locale:
+          description: "Locale as Meta reports it, for example `es_ES`."
+          nullable: true
+          type: string
+        timezone:
+          description: "Offset from UTC in hours, fractional for half-hour zones (for\
+            \ example -5.5)."
+          nullable: true
+          type: number
+        gender:
+          description: "Gender as Meta reports it, for example `female` or `male`."
+          nullable: true
+          type: string
+      required:
+      - gender
+      - locale
+      - timezone
+    getMessengerContact_200_response:
+      example:
+        data:
+          gender: gender
+          timezone: 0.8008281904610115
+          locale: locale
+      properties:
+        data:
+          $ref: "#/components/schemas/getMessengerContact_200_response_data"
     acceptConversationRequest_request:
       properties:
         accountId:
