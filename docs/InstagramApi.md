@@ -26,6 +26,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listInstagramTaggedMediaWithHttpInfo**](InstagramApi.md#listInstagramTaggedMediaWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/tags | List the posts an Instagram account is tagged in |
 | [**searchInstagramAudio**](InstagramApi.md#searchInstagramAudio) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio |
 | [**searchInstagramAudioWithHttpInfo**](InstagramApi.md#searchInstagramAudioWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio |
+| [**searchInstagramHashtag**](InstagramApi.md#searchInstagramHashtag) | **GET** /v1/accounts/{accountId}/instagram/hashtag-search | Search public Instagram media by hashtag |
+| [**searchInstagramHashtagWithHttpInfo**](InstagramApi.md#searchInstagramHashtagWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/hashtag-search | Search public Instagram media by hashtag |
 
 
 
@@ -1767,4 +1769,166 @@ ApiResponse<[**SearchInstagramAudio200Response**](SearchInstagramAudio200Respons
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **502** | Instagram rejected the request |  -  |
+
+
+## searchInstagramHashtag
+
+> InstagramHashtagResearch searchInstagramHashtag(accountId, hashtag, limit)
+
+Search public Instagram media by hashtag
+
+Resolves a hashtag to its Instagram hashtag ID, then returns the top and the recent public media carrying it, read through one of your connected Instagram accounts. Useful for trend, content and competitor research.  Requires an Instagram account connected via **Facebook Login**. Meta serves hashtag search on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_hashtag_search_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option.  **Weekly limit:** Meta lets one Instagram account search at most 30 unique hashtags in a rolling 7 days.  - Searching a hashtag again inside the window does not count twice. - &#x60;recentlySearchedCount&#x60; shows how much of the budget is used. - Past the limit the request answers 429   &#x60;instagram_hashtag_search_limit_reached&#x60; until older searches leave   the window. - Another connected account has its own budget.  &#x60;recentMedia&#x60; only holds media published in the last 24 hours. Meta returns no media for hashtags it considers sensitive or offensive, and never returns the author&#39;s username. Media URLs are temporary. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Instagram account (Facebook Login).
+        String hashtag = "interiordesign"; // String | One hashtag: letters, digits or \"_\", with or without the leading #. Case-insensitive.
+        Integer limit = 24; // Integer | How many media to return in each of topMedia and recentMedia.
+        try {
+            InstagramHashtagResearch result = apiInstance.searchInstagramHashtag(accountId, hashtag, limit);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#searchInstagramHashtag");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Instagram account (Facebook Login). | |
+| **hashtag** | **String**| One hashtag: letters, digits or \&quot;_\&quot;, with or without the leading #. Case-insensitive. | |
+| **limit** | **Integer**| How many media to return in each of topMedia and recentMedia. | [optional] [default to 24] |
+
+### Return type
+
+[**InstagramHashtagResearch**](InstagramHashtagResearch.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The hashtag with its top and recent media |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or Instagram has no hashtag by that name (&#x60;instagram_hashtag_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | The account reached Meta&#39;s limit of 30 unique hashtags per rolling 7 days (&#x60;instagram_hashtag_search_limit_reached&#x60;, type &#x60;rate_limit_error&#x60;). Hashtags already searched in the window still work. |  -  |
+
+## searchInstagramHashtagWithHttpInfo
+
+> ApiResponse<InstagramHashtagResearch> searchInstagramHashtag searchInstagramHashtagWithHttpInfo(accountId, hashtag, limit)
+
+Search public Instagram media by hashtag
+
+Resolves a hashtag to its Instagram hashtag ID, then returns the top and the recent public media carrying it, read through one of your connected Instagram accounts. Useful for trend, content and competitor research.  Requires an Instagram account connected via **Facebook Login**. Meta serves hashtag search on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_hashtag_search_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option.  **Weekly limit:** Meta lets one Instagram account search at most 30 unique hashtags in a rolling 7 days.  - Searching a hashtag again inside the window does not count twice. - &#x60;recentlySearchedCount&#x60; shows how much of the budget is used. - Past the limit the request answers 429   &#x60;instagram_hashtag_search_limit_reached&#x60; until older searches leave   the window. - Another connected account has its own budget.  &#x60;recentMedia&#x60; only holds media published in the last 24 hours. Meta returns no media for hashtags it considers sensitive or offensive, and never returns the author&#39;s username. Media URLs are temporary. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Instagram account (Facebook Login).
+        String hashtag = "interiordesign"; // String | One hashtag: letters, digits or \"_\", with or without the leading #. Case-insensitive.
+        Integer limit = 24; // Integer | How many media to return in each of topMedia and recentMedia.
+        try {
+            ApiResponse<InstagramHashtagResearch> response = apiInstance.searchInstagramHashtagWithHttpInfo(accountId, hashtag, limit);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#searchInstagramHashtag");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Instagram account (Facebook Login). | |
+| **hashtag** | **String**| One hashtag: letters, digits or \&quot;_\&quot;, with or without the leading #. Case-insensitive. | |
+| **limit** | **Integer**| How many media to return in each of topMedia and recentMedia. | [optional] [default to 24] |
+
+### Return type
+
+ApiResponse<[**InstagramHashtagResearch**](InstagramHashtagResearch.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The hashtag with its top and recent media |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or Instagram has no hashtag by that name (&#x60;instagram_hashtag_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | The account reached Meta&#39;s limit of 30 unique hashtags per rolling 7 days (&#x60;instagram_hashtag_search_limit_reached&#x60;, type &#x60;rate_limit_error&#x60;). Hashtags already searched in the window still work. |  -  |
 

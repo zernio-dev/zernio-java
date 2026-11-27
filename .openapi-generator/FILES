@@ -2273,6 +2273,9 @@ docs/InstagramBusinessDiscoveryMediaInnerChildrenInner.md
 docs/InstagramBusinessDiscoveryProfile.md
 docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
+docs/InstagramHashtagMedia.md
+docs/InstagramHashtagResearch.md
+docs/InstagramHashtagResearchHashtag.md
 docs/InstagramLiveMedia.md
 docs/InstagramMediaCollaborator.md
 docs/InstagramMentionedComment.md
@@ -6651,6 +6654,9 @@ src/main/java/dev/zernio/model/InstagramBusinessDiscoveryMediaInnerChildrenInner
 src/main/java/dev/zernio/model/InstagramBusinessDiscoveryProfile.java
 src/main/java/dev/zernio/model/InstagramDemographicsResponse.java
 src/main/java/dev/zernio/model/InstagramDemographicsResponseDemographicsValueInner.java
+src/main/java/dev/zernio/model/InstagramHashtagMedia.java
+src/main/java/dev/zernio/model/InstagramHashtagResearch.java
+src/main/java/dev/zernio/model/InstagramHashtagResearchHashtag.java
 src/main/java/dev/zernio/model/InstagramLiveMedia.java
 src/main/java/dev/zernio/model/InstagramMediaCollaborator.java
 src/main/java/dev/zernio/model/InstagramMentionedComment.java
@@ -8655,3 +8661,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/InstagramHashtagMediaTest.java
+src/test/java/dev/zernio/model/InstagramHashtagResearchHashtagTest.java
+src/test/java/dev/zernio/model/InstagramHashtagResearchTest.java

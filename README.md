@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.864.4
+- API version: 1.864.5
 
-- Build date: 2026-11-27T17:09:47.216764872Z[Etc/UTC]
+- Build date: 2026-11-27T18:16:00.276982920Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.864.4</version>
+  <version>1.864.5</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.864.4"
+compile "dev.zernio:zernio-sdk:1.864.5"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.864.4.jar`
+- `target/zernio-sdk-1.864.5.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2085,6 +2085,8 @@ Class | Method | HTTP request | Description
 *InstagramApi* | [**listInstagramTaggedMediaWithHttpInfo**](docs/InstagramApi.md#listInstagramTaggedMediaWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/tags | List the posts an Instagram account is tagged in
 *InstagramApi* | [**searchInstagramAudio**](docs/InstagramApi.md#searchInstagramAudio) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio
 *InstagramApi* | [**searchInstagramAudioWithHttpInfo**](docs/InstagramApi.md#searchInstagramAudioWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio
+*InstagramApi* | [**searchInstagramHashtag**](docs/InstagramApi.md#searchInstagramHashtag) | **GET** /v1/accounts/{accountId}/instagram/hashtag-search | Search public Instagram media by hashtag
+*InstagramApi* | [**searchInstagramHashtagWithHttpInfo**](docs/InstagramApi.md#searchInstagramHashtagWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/hashtag-search | Search public Instagram media by hashtag
 *InvitesApi* | [**createInviteToken**](docs/InvitesApi.md#createInviteToken) | **POST** /v1/invite/tokens | Create invite token
 *InvitesApi* | [**createInviteTokenWithHttpInfo**](docs/InvitesApi.md#createInviteTokenWithHttpInfo) | **POST** /v1/invite/tokens | Create invite token
 *LeadGenApi* | [**archiveLeadForm**](docs/LeadGenApi.md#archiveLeadForm) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
@@ -5150,6 +5152,9 @@ Class | Method | HTTP request | Description
  - [InstagramBusinessDiscoveryProfile](docs/InstagramBusinessDiscoveryProfile.md)
  - [InstagramDemographicsResponse](docs/InstagramDemographicsResponse.md)
  - [InstagramDemographicsResponseDemographicsValueInner](docs/InstagramDemographicsResponseDemographicsValueInner.md)
+ - [InstagramHashtagMedia](docs/InstagramHashtagMedia.md)
+ - [InstagramHashtagResearch](docs/InstagramHashtagResearch.md)
+ - [InstagramHashtagResearchHashtag](docs/InstagramHashtagResearchHashtag.md)
  - [InstagramLiveMedia](docs/InstagramLiveMedia.md)
  - [InstagramMediaCollaborator](docs/InstagramMediaCollaborator.md)
  - [InstagramMentionedComment](docs/InstagramMentionedComment.md)
