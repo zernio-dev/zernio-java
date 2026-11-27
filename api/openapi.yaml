@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.858.0
+  version: 1.859.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -231691,6 +231691,17 @@ components:
       required:
       - events
       - profileId
+    sendEvents_200_response_warnings_inner:
+      example:
+        code: no_destination
+        message: message
+      properties:
+        code:
+          enum:
+          - no_destination
+          type: string
+        message:
+          type: string
     sendEvents_200_response_destinations_inner_skipped_inner:
       example:
         eventId: eventId
@@ -231838,6 +231849,11 @@ components:
         testCode: testCode
         eventsReceived: 0
         stored: true
+        warnings:
+        - code: no_destination
+          message: message
+        - code: no_destination
+          message: message
         destinations:
         - eventsDropped: 5
           traceId: traceId
@@ -231920,6 +231936,13 @@ components:
             \ the request carried none."
           nullable: true
           type: string
+        warnings:
+          description: "Left out when there is nothing to warn about. `no_destination`:\
+            \ no forwarding rule took the events, so they were stored but sent to\
+            \ no platform."
+          items:
+            $ref: "#/components/schemas/sendEvents_200_response_warnings_inner"
+          type: array
         destinations:
           items:
             $ref: "#/components/schemas/sendEvents_200_response_destinations_inner"

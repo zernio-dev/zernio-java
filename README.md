@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.858.0
+- API version: 1.859.0
 
-- Build date: 2026-11-27T11:13:34.455554534Z[Etc/UTC]
+- Build date: 2026-11-27T11:32:23.623441442Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.858.0</version>
+  <version>1.859.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.858.0"
+compile "dev.zernio:zernio-sdk:1.859.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.858.0.jar`
+- `target/zernio-sdk-1.859.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -6135,6 +6135,7 @@ Class | Method | HTTP request | Description
  - [SendEvents200ResponseDestinationsInner](docs/SendEvents200ResponseDestinationsInner.md)
  - [SendEvents200ResponseDestinationsInnerFailuresInner](docs/SendEvents200ResponseDestinationsInnerFailuresInner.md)
  - [SendEvents200ResponseDestinationsInnerSkippedInner](docs/SendEvents200ResponseDestinationsInnerSkippedInner.md)
+ - [SendEvents200ResponseWarningsInner](docs/SendEvents200ResponseWarningsInner.md)
  - [SendEvents202Response](docs/SendEvents202Response.md)
  - [SendEventsRequest](docs/SendEventsRequest.md)
  - [SendEventsRequestDestinationsInner](docs/SendEventsRequestDestinationsInner.md)

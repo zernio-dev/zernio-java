@@ -3280,6 +3280,7 @@ docs/SendEvents200Response.md
 docs/SendEvents200ResponseDestinationsInner.md
 docs/SendEvents200ResponseDestinationsInnerFailuresInner.md
 docs/SendEvents200ResponseDestinationsInnerSkippedInner.md
+docs/SendEvents200ResponseWarningsInner.md
 docs/SendEvents202Response.md
 docs/SendEventsRequest.md
 docs/SendEventsRequestDestinationsInner.md
@@ -7629,6 +7630,7 @@ src/main/java/dev/zernio/model/SendEvents200Response.java
 src/main/java/dev/zernio/model/SendEvents200ResponseDestinationsInner.java
 src/main/java/dev/zernio/model/SendEvents200ResponseDestinationsInnerFailuresInner.java
 src/main/java/dev/zernio/model/SendEvents200ResponseDestinationsInnerSkippedInner.java
+src/main/java/dev/zernio/model/SendEvents200ResponseWarningsInner.java
 src/main/java/dev/zernio/model/SendEvents202Response.java
 src/main/java/dev/zernio/model/SendEventsRequest.java
 src/main/java/dev/zernio/model/SendEventsRequestDestinationsInner.java
@@ -8637,3 +8639,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/SendEvents200ResponseWarningsInnerTest.java
