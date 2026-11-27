@@ -17,16 +17,7 @@ Targeting update.  - Meta + TikTok: demographics/interests. - Google: keyword an
 |**locations** | **Object** |  |  [optional] |
 |**languages** | **List&lt;String&gt;** | Google only. The FULL new language set for the campaign, as Google language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;). An unknown code returns 400. |  [optional] |
 |**interests** | [**List&lt;UpdateAdRequestTargetingInterestsInner&gt;**](UpdateAdRequestTargetingInterestsInner.md) | Interest objects from /v1/ads/interests. Each must include id and name. |  [optional] |
-|**advantageAudience** | [**AdvantageAudienceEnum**](#AdvantageAudienceEnum) | Meta only. Omit to preserve the existing setting on update. 0 &#x3D; disabled, 1 &#x3D; enabled. |  [optional] |
-
-
-
-## Enum: AdvantageAudienceEnum
-
-| Name | Value |
-|---- | -----|
-| NUMBER_0 | 0 |
-| NUMBER_1 | 1 |
+|**advantageAudience** | [**UpdateAdRequestTargetingAdvantageAudience**](UpdateAdRequestTargetingAdvantageAudience.md) |  |  [optional] |
 
 
 

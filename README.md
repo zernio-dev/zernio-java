@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.856.2
+- API version: 1.857.0
 
-- Build date: 2026-11-27T10:37:08.185411338Z[Etc/UTC]
+- Build date: 2026-11-27T10:53:58.901077986Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.856.2</version>
+  <version>1.857.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.856.2"
+compile "dev.zernio:zernio-sdk:1.857.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.856.2.jar`
+- `target/zernio-sdk-1.857.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3377,6 +3377,7 @@ Class | Method | HTTP request | Description
  - [BoostPostRequestSmartTargeting](docs/BoostPostRequestSmartTargeting.md)
  - [BoostPostRequestSparkPostsInner](docs/BoostPostRequestSparkPostsInner.md)
  - [BoostPostRequestTargeting](docs/BoostPostRequestTargeting.md)
+ - [BoostPostRequestTargetingAdvantageAudience](docs/BoostPostRequestTargetingAdvantageAudience.md)
  - [BoostPostRequestTargetingCitiesInner](docs/BoostPostRequestTargetingCitiesInner.md)
  - [BoostPostRequestTargetingCustomLocationsInner](docs/BoostPostRequestTargetingCustomLocationsInner.md)
  - [BoostPostRequestTargetingRegionsInner](docs/BoostPostRequestTargetingRegionsInner.md)
@@ -4039,6 +4040,7 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequest](docs/CreateStandaloneAdRequest.md)
  - [CreateStandaloneAdRequestAdditionalDescriptionsInner](docs/CreateStandaloneAdRequestAdditionalDescriptionsInner.md)
  - [CreateStandaloneAdRequestAdditionalHeadlinesInner](docs/CreateStandaloneAdRequestAdditionalHeadlinesInner.md)
+ - [CreateStandaloneAdRequestAdvantageAudience](docs/CreateStandaloneAdRequestAdvantageAudience.md)
  - [CreateStandaloneAdRequestBehaviorsInner](docs/CreateStandaloneAdRequestBehaviorsInner.md)
  - [CreateStandaloneAdRequestBrandIdentity](docs/CreateStandaloneAdRequestBrandIdentity.md)
  - [CreateStandaloneAdRequestCarouselCardsInner](docs/CreateStandaloneAdRequestCarouselCardsInner.md)
@@ -4166,6 +4168,7 @@ Class | Method | HTTP request | Description
  - [CrmOwner](docs/CrmOwner.md)
  - [CrosspostDiscordMessage200Response](docs/CrosspostDiscordMessage200Response.md)
  - [CtwaAdRequestBody](docs/CtwaAdRequestBody.md)
+ - [CtwaAdRequestBodyAdvantageAudience](docs/CtwaAdRequestBodyAdvantageAudience.md)
  - [CtwaAdRequestBodyCitiesInner](docs/CtwaAdRequestBodyCitiesInner.md)
  - [CtwaAdRequestBodyCreativesInner](docs/CtwaAdRequestBodyCreativesInner.md)
  - [CtwaAdRequestBodyCreativesInnerVideo](docs/CtwaAdRequestBodyCreativesInnerVideo.md)
@@ -6461,6 +6464,7 @@ Class | Method | HTTP request | Description
  - [UpdateAdRequestBudget](docs/UpdateAdRequestBudget.md)
  - [UpdateAdRequestCreative](docs/UpdateAdRequestCreative.md)
  - [UpdateAdRequestTargeting](docs/UpdateAdRequestTargeting.md)
+ - [UpdateAdRequestTargetingAdvantageAudience](docs/UpdateAdRequestTargetingAdvantageAudience.md)
  - [UpdateAdRequestTargetingDevicesInner](docs/UpdateAdRequestTargetingDevicesInner.md)
  - [UpdateAdRequestTargetingDevicesInnerOneOf](docs/UpdateAdRequestTargetingDevicesInnerOneOf.md)
  - [UpdateAdRequestTargetingInterestsInner](docs/UpdateAdRequestTargetingInterestsInner.md)

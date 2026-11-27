@@ -69,7 +69,7 @@ Besides the `required` list, the request must use EXACTLY ONE of these shapes:  
 |**rawTargeting** | **Map&lt;String, Object&gt;** | Meta targeting spec sent as the BASE layer of the ad set&#39;s &#x60;targeting&#x60;, exactly as POST /v1/ads/create does. Use it for anything the flat fields cannot express, such as a layered &#x60;flexible_spec&#x60; (entries AND together, ids inside one entry OR).  Flat fields you also send are layered on top and win per key.  With rawTargeting present the US geo and &#x60;advantage_audience: 0&#x60; defaults are not injected, so include &#x60;targeting_automation&#x60; in it (or send &#x60;advantageAudience&#x60;), as Meta requires it on create.  |  [optional] |
 |**specialAdCategories** | [**List&lt;SpecialAdCategoriesEnum&gt;**](#List&lt;SpecialAdCategoriesEnum&gt;) | Meta special ad categories on the new campaign. |  [optional] |
 |**specialAdCategoryCountry** | **List&lt;String&gt;** | Countries the special ad category applies to. Requires specialAdCategories. |  [optional] |
-|**advantageAudience** | [**AdvantageAudienceEnum**](#AdvantageAudienceEnum) | Meta&#39;s Advantage+ audience expansion. &#x60;0&#x60; (default) keeps targeting strict; &#x60;1&#x60; lets Meta expand beyond the supplied targeting when its delivery system finds better matches. Always sent on CREATE (Meta requires it).  |  [optional] |
+|**advantageAudience** | [**CtwaAdRequestBodyAdvantageAudience**](CtwaAdRequestBodyAdvantageAudience.md) |  |  [optional] |
 |**objective** | [**ObjectiveEnum**](#ObjectiveEnum) | Defaults to &#x60;OUTCOME_ENGAGEMENT&#x60; on POST /v1/ads/ctwa and POST /v1/ads/messaging, and to &#x60;OUTCOME_LEADS&#x60; on POST /v1/ads/call and on POST /v1/ads/messaging with &#x60;optimizationGoal: LEAD_GENERATION&#x60; (which accepts only &#x60;OUTCOME_LEADS&#x60;). &#x60;OUTCOME_SALES&#x60; and &#x60;OUTCOME_LEADS&#x60; require additional account configuration (Dataset linked to the WABA for sales) and may be rejected by Meta if missing.  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; pauses only the top-most object this call creates: the new campaign (ad set and ads switched on), or, with &#x60;adSetId&#x60;, the new ads themselves.  |  [optional] |
 |**campaignStatus** | [**CampaignStatusEnum**](#CampaignStatusEnum) | Campaign-level status, same semantics as &#x60;POST /v1/ads/create&#x60;. Defaults to &#x60;status&#x60;.  - &#x60;PAUSED&#x60;: holds the new campaign off while the ad set and ads switch on (one resume call brings the whole hierarchy live). - &#x60;ACTIVE&#x60; with &#x60;status: PAUSED&#x60;: switches the campaign on and pauses the new ad set instead.  Only meaningful when a new campaign is created. Rejected with a 400 alongside &#x60;adSetId&#x60; (the attach shape reuses an existing campaign).  |  [optional] |
@@ -170,15 +170,6 @@ Besides the `required` list, the request must use EXACTLY ONE of these shapes:  
 | ISSUES_ELECTIONS_POLITICS | &quot;ISSUES_ELECTIONS_POLITICS&quot; |
 | FINANCIAL_PRODUCTS_SERVICES | &quot;FINANCIAL_PRODUCTS_SERVICES&quot; |
 | ONLINE_GAMBLING_AND_GAMING | &quot;ONLINE_GAMBLING_AND_GAMING&quot; |
-
-
-
-## Enum: AdvantageAudienceEnum
-
-| Name | Value |
-|---- | -----|
-| NUMBER_0 | 0 |
-| NUMBER_1 | 1 |
 
 
 

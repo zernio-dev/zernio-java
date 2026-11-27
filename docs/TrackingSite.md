@@ -10,7 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**profileId** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
-|**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
+|**status** | [**StatusEnum**](#StatusEnum) | &#x60;paused&#x60; while the workspace is over its free website events for the month with no payment method: the site records nothing until one is added. |  [optional] |
 |**install** | [**TrackingSiteInstall**](TrackingSiteInstall.md) |  |  [optional] |
 |**storeOrders** | **Boolean** | True when the store&#39;s orders reach Zernio from the store itself, so website purchases are forwarded but not counted twice. |  [optional] |
 |**siteKey** | **String** | Public key that names the site in the snippet, such as &#x60;zs_...&#x60;. |  [optional] |

@@ -19,7 +19,7 @@ Same geo/demographic fields as the `TargetingSpec` used by /v1/ads/create. Geo k
 |**metros** | [**List&lt;BoostPostRequestTargetingRegionsInner&gt;**](BoostPostRequestTargetingRegionsInner.md) | DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;). |  [optional] |
 |**customLocations** | [**List&lt;BoostPostRequestTargetingCustomLocationsInner&gt;**](BoostPostRequestTargetingCustomLocationsInner.md) | Point-radius (lat/lng) targeting (Meta custom_locations). No geo &#x60;key&#x60; lookup needed. |  [optional] |
 |**interests** | [**List&lt;UpdateAdRequestTargetingInterestsInner&gt;**](UpdateAdRequestTargetingInterestsInner.md) | Interest objects from /v1/ads/interests. Each must include id and name. |  [optional] |
-|**advantageAudience** | [**AdvantageAudienceEnum**](#AdvantageAudienceEnum) | Meta only. 0 &#x3D; disabled (default), 1 &#x3D; enabled. |  [optional] |
+|**advantageAudience** | [**BoostPostRequestTargetingAdvantageAudience**](BoostPostRequestTargetingAdvantageAudience.md) |  |  [optional] |
 
 
 
@@ -30,15 +30,6 @@ Same geo/demographic fields as the `TargetingSpec` used by /v1/ads/create. Geo k
 | ALL | &quot;all&quot; |
 | MALE | &quot;male&quot; |
 | FEMALE | &quot;female&quot; |
-
-
-
-## Enum: AdvantageAudienceEnum
-
-| Name | Value |
-|---- | -----|
-| NUMBER_0 | 0 |
-| NUMBER_1 | 1 |
 
 
 
