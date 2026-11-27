@@ -8637,7 +8637,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/BoostPostRequestTargetingAdvantageAudienceTest.java
-src/test/java/dev/zernio/model/CreateStandaloneAdRequestAdvantageAudienceTest.java
-src/test/java/dev/zernio/model/CtwaAdRequestBodyAdvantageAudienceTest.java
-src/test/java/dev/zernio/model/UpdateAdRequestTargetingAdvantageAudienceTest.java
