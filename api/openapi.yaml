@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.862.0
+  version: 1.862.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -21116,12 +21116,21 @@ paths:
                 $ref: "#/components/schemas/listGoogleBusinessLocations_200_response"
           description: List of Google Business Profile locations available for connection
         "400":
-          description: Missing required parameters (profileId or tempToken)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Missing required parameters (profileId or tempToken), or Google\
+            \ rejected the filter or search expression. In the second case `code`\
+            \ is `invalid_field_value`, `param` is `filter` (or `search` when only\
+            \ search was sent) and `error` quotes Google's reason."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: The connect token was issued for a different profile or platform
             (INSUFFICIENT_PERMISSIONS).
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "500":
           content:
             application/json:
@@ -28860,16 +28869,33 @@ paths:
                   category: Restaurant
                   websiteUrl: https://mybusiness.com
                 selectedLocationId: "12345678901234567890"
-                cached: true
               schema:
                 $ref: "#/components/schemas/getGmbLocations_200_response"
           description: Locations list
         "400":
-          description: Invalid query parameter (e.g. limit out of range)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid query parameter (e.g. limit out of range), or Google\
+            \ rejected the filter or search expression. In the second case `code`\
+            \ is `invalid_field_value`, `param` is `filter` (or `search` when only\
+            \ search was sent) and `error` quotes Google's reason."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Google refused access to one of the Business Profile accounts
+            the connection can see (`code` is `platform_api_error`).
         "404":
           description: Account not found
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
       summary: List Google Business Profile locations
       tags:
       - Connect
@@ -66446,7 +66472,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: "Ad not found (`ad_not_found`), or `account_not_found` when\
-            \ the ad's connection is on a profile this API key can't access."
+            \ the ad's connection is on a profile this API key can't access and no\
+            \ active connection of the same user on the key's profiles reaches the\
+            \ ad account. With one, the write acts through it; with several, the answer\
+            \ is 409 `ambiguous_account`."
       security:
       - bearerAuth: []
       summary: Cancel an ad
@@ -66822,7 +66851,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: "Ad not found (`ad_not_found`), or `account_not_found` when\
-            \ the ad's connection is on a profile this API key can't access."
+            \ the ad's connection is on a profile this API key can't access and no\
+            \ active connection of the same user on the key's profiles reaches the\
+            \ ad account. With one, the write acts through it; with several, the answer\
+            \ is 409 `ambiguous_account`."
         "429":
           description: |
             Two causes, both code `rate_limited`:
@@ -66974,7 +67006,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: "Ad not found (`ad_not_found`), or `account_not_found` when\
-            \ the ad's connection is on a profile this API key can't access."
+            \ the ad's connection is on a profile this API key can't access and no\
+            \ active connection of the same user on the key's profiles reaches the\
+            \ ad account. With one, the write acts through it; with several, the answer\
+            \ is 409 `ambiguous_account`."
       security:
       - bearerAuth: []
       summary: Pause or resume a single ad
@@ -174362,7 +174397,6 @@ components:
           type: string
     getGmbLocations_200_response:
       example:
-        cached: true
         hasMore: true
         locations:
         - accountId: accountId
@@ -174393,8 +174427,6 @@ components:
           type: boolean
         selectedLocationId:
           type: string
-        cached:
-          type: boolean
     updateGmbLocation_request:
       properties:
         selectedLocationId:
