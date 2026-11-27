@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.856.1
+  version: 1.856.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -234461,6 +234461,9 @@ components:
             conversion rules).
           type: string
         status:
+          description: "On Google Ads, `inactive` also marks an action Zernio cannot\
+            \ send to: one that is not enabled, or whose source is not an import of\
+            \ conversions from clicks (`UPLOAD_CLICKS`)."
           enum:
           - active
           - inactive
