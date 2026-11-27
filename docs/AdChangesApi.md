@@ -655,11 +655,11 @@ ApiResponse<[**ListAdChanges200Response**](ListAdChanges200Response.md)>
 
 ## restageAdChange
 
-> GetAdChange200Response restageAdChange(changeId)
+> GetAdChange200Response restageAdChange(changeId, restageAdChangeRequest)
 
 Stage a failed ad change again
 
-Makes a new staged change from a change that failed at confirm. Nothing is written to the ad network.  The new change holds the same request. It is checked for the calling user, and an edit is read against the current values of its object. The failed change stays readable until it is deleted.  A failed create cannot be staged again (&#x60;409&#x60;): it may have made part of its objects on the ad network, which its &#x60;error.details&#x60; lists. Stage a new create instead. This covers every change with &#x60;creates: true&#x60;.  Also refused with &#x60;409&#x60;: a change that failed as &#x60;change_outcome_unknown&#x60;, and a change whose kept uploads were deleted or moved to an earlier restage. 
+Makes a new staged change from a change that failed at confirm. Nothing is written to the ad network.  The new change holds the same request. It is checked for the calling user, and an edit is read against the current values of its object. The failed change stays readable until it is deleted, with &#x60;restaged: true&#x60;.  ### A change that may have made objects  The new change sends the same request again at confirm. A failed create may have made part of its objects on the ad network, and they would be made a second time.  Such a change answers &#x60;409&#x60; with &#x60;param: \&quot;acknowledge\&quot;&#x60;. &#x60;details.leftBehind&#x60; lists the objects the failure left, and &#x60;details.outcomeUnknown&#x60; is true when nothing tells what was made. Send &#x60;acknowledge: true&#x60; to stage it again anyway.  A failed create that left nothing behind is staged again without it.  ### Refused  A change that did not fail, a failed change that was already staged again, and a change whose kept uploads were deleted or moved to an earlier restage answer &#x60;409&#x60;. 
 
 ### Example
 
@@ -683,8 +683,9 @@ public class Example {
 
         AdChangesApi apiInstance = new AdChangesApi(defaultClient);
         String changeId = "changeId_example"; // String | The id of the failed change.
+        RestageAdChangeRequest restageAdChangeRequest = new RestageAdChangeRequest(); // RestageAdChangeRequest | 
         try {
-            GetAdChange200Response result = apiInstance.restageAdChange(changeId);
+            GetAdChange200Response result = apiInstance.restageAdChange(changeId, restageAdChangeRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdChangesApi#restageAdChange");
@@ -703,6 +704,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **changeId** | **String**| The id of the failed change. | |
+| **restageAdChangeRequest** | [**RestageAdChangeRequest**](RestageAdChangeRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -715,7 +717,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details
@@ -726,15 +728,15 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | Code &#x60;invalid_resource_state&#x60;. The change did not fail, it creates an object, nobody knows how it ended, or its kept uploads are gone. |  -  |
+| **409** | Code &#x60;invalid_resource_state&#x60;. With &#x60;param: \&quot;acknowledge\&quot;&#x60; the change may have made objects on the ad network: &#x60;details.leftBehind&#x60; lists them and &#x60;details.outcomeUnknown&#x60; says when nothing is known; send &#x60;acknowledge: true&#x60;. Without it: the change did not fail, was already staged again, or its kept uploads are gone. |  -  |
 
 ## restageAdChangeWithHttpInfo
 
-> ApiResponse<GetAdChange200Response> restageAdChange restageAdChangeWithHttpInfo(changeId)
+> ApiResponse<GetAdChange200Response> restageAdChange restageAdChangeWithHttpInfo(changeId, restageAdChangeRequest)
 
 Stage a failed ad change again
 
-Makes a new staged change from a change that failed at confirm. Nothing is written to the ad network.  The new change holds the same request. It is checked for the calling user, and an edit is read against the current values of its object. The failed change stays readable until it is deleted.  A failed create cannot be staged again (&#x60;409&#x60;): it may have made part of its objects on the ad network, which its &#x60;error.details&#x60; lists. Stage a new create instead. This covers every change with &#x60;creates: true&#x60;.  Also refused with &#x60;409&#x60;: a change that failed as &#x60;change_outcome_unknown&#x60;, and a change whose kept uploads were deleted or moved to an earlier restage. 
+Makes a new staged change from a change that failed at confirm. Nothing is written to the ad network.  The new change holds the same request. It is checked for the calling user, and an edit is read against the current values of its object. The failed change stays readable until it is deleted, with &#x60;restaged: true&#x60;.  ### A change that may have made objects  The new change sends the same request again at confirm. A failed create may have made part of its objects on the ad network, and they would be made a second time.  Such a change answers &#x60;409&#x60; with &#x60;param: \&quot;acknowledge\&quot;&#x60;. &#x60;details.leftBehind&#x60; lists the objects the failure left, and &#x60;details.outcomeUnknown&#x60; is true when nothing tells what was made. Send &#x60;acknowledge: true&#x60; to stage it again anyway.  A failed create that left nothing behind is staged again without it.  ### Refused  A change that did not fail, a failed change that was already staged again, and a change whose kept uploads were deleted or moved to an earlier restage answer &#x60;409&#x60;. 
 
 ### Example
 
@@ -759,8 +761,9 @@ public class Example {
 
         AdChangesApi apiInstance = new AdChangesApi(defaultClient);
         String changeId = "changeId_example"; // String | The id of the failed change.
+        RestageAdChangeRequest restageAdChangeRequest = new RestageAdChangeRequest(); // RestageAdChangeRequest | 
         try {
-            ApiResponse<GetAdChange200Response> response = apiInstance.restageAdChangeWithHttpInfo(changeId);
+            ApiResponse<GetAdChange200Response> response = apiInstance.restageAdChangeWithHttpInfo(changeId, restageAdChangeRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -781,6 +784,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **changeId** | **String**| The id of the failed change. | |
+| **restageAdChangeRequest** | [**RestageAdChangeRequest**](RestageAdChangeRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -793,7 +797,7 @@ ApiResponse<[**GetAdChange200Response**](GetAdChange200Response.md)>
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details
@@ -804,7 +808,7 @@ ApiResponse<[**GetAdChange200Response**](GetAdChange200Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | Code &#x60;invalid_resource_state&#x60;. The change did not fail, it creates an object, nobody knows how it ended, or its kept uploads are gone. |  -  |
+| **409** | Code &#x60;invalid_resource_state&#x60;. With &#x60;param: \&quot;acknowledge\&quot;&#x60; the change may have made objects on the ad network: &#x60;details.leftBehind&#x60; lists them and &#x60;details.outcomeUnknown&#x60; says when nothing is known; send &#x60;acknowledge: true&#x60;. Without it: the change did not fail, was already staged again, or its kept uploads are gone. |  -  |
 
 
 ## updateAdChange
@@ -813,7 +817,7 @@ ApiResponse<[**GetAdChange200Response**](GetAdChange200Response.md)>
 
 Edit or refresh a staged ad change
 
-Replaces the request body of a staged change, or reads its object again when no body is sent. The change keeps its id. Nothing is written to the ad network.  ### Edit  Send the new body: the same kind of body as the route the change was staged on, without &#x60;stage&#x60;. It passes the checks of staging again for the calling user. The object is read again, so the diff and the changed-since check start from its current values.  A change of type &#x60;operation&#x60; stores a whole request and cannot be edited in place (&#x60;409&#x60;): discard it and stage the request again.  ### Refresh  Send no body. The object is read again with the body the change already holds. Use it on a change that reads &#x60;stale: true&#x60; after a confirm answered &#x60;409&#x60; &#x60;change_target_changed&#x60;: once refreshed it can be confirmed. 
+Replaces the request body of a staged change, or reads its object again when no body is sent. The change keeps its id. Nothing is written to the ad network.  ### Edit  Send the new body: the same kind of body as the route the change was staged on, without &#x60;stage&#x60;. It passes the checks of staging again for the calling user. The object is read again, so the diff and the changed-since check start from its current values.  A change of type &#x60;operation&#x60; stores a whole request. Its new body goes through the route of that write, which checks it as a new staged request. The path and the query stay as they were staged.  Such an edit answers what that route answers when it refuses the body, and the change stays as it was. A request without a body has nothing to edit (&#x60;409&#x60;).  ### Refresh  Send no body. The object is read again with the body the change already holds. Use it on a change that reads &#x60;stale: true&#x60; after a confirm answered &#x60;409&#x60; &#x60;change_target_changed&#x60;: once refreshed it can be confirmed. 
 
 ### Example
 
@@ -882,7 +886,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The change is no longer staged (&#x60;change_not_staged&#x60;, or &#x60;change_outcome_unknown&#x60; while a confirm is running), or it is a write staged as its request and a body was sent (&#x60;invalid_resource_state&#x60;). |  -  |
+| **409** | The change is no longer staged (&#x60;change_not_staged&#x60;, or &#x60;change_outcome_unknown&#x60; while a confirm is running). Or code &#x60;invalid_resource_state&#x60;: the change stores a request without a body, or the new body points at another connection or another object. |  -  |
 
 ## updateAdChangeWithHttpInfo
 
@@ -890,7 +894,7 @@ public class Example {
 
 Edit or refresh a staged ad change
 
-Replaces the request body of a staged change, or reads its object again when no body is sent. The change keeps its id. Nothing is written to the ad network.  ### Edit  Send the new body: the same kind of body as the route the change was staged on, without &#x60;stage&#x60;. It passes the checks of staging again for the calling user. The object is read again, so the diff and the changed-since check start from its current values.  A change of type &#x60;operation&#x60; stores a whole request and cannot be edited in place (&#x60;409&#x60;): discard it and stage the request again.  ### Refresh  Send no body. The object is read again with the body the change already holds. Use it on a change that reads &#x60;stale: true&#x60; after a confirm answered &#x60;409&#x60; &#x60;change_target_changed&#x60;: once refreshed it can be confirmed. 
+Replaces the request body of a staged change, or reads its object again when no body is sent. The change keeps its id. Nothing is written to the ad network.  ### Edit  Send the new body: the same kind of body as the route the change was staged on, without &#x60;stage&#x60;. It passes the checks of staging again for the calling user. The object is read again, so the diff and the changed-since check start from its current values.  A change of type &#x60;operation&#x60; stores a whole request. Its new body goes through the route of that write, which checks it as a new staged request. The path and the query stay as they were staged.  Such an edit answers what that route answers when it refuses the body, and the change stays as it was. A request without a body has nothing to edit (&#x60;409&#x60;).  ### Refresh  Send no body. The object is read again with the body the change already holds. Use it on a change that reads &#x60;stale: true&#x60; after a confirm answered &#x60;409&#x60; &#x60;change_target_changed&#x60;: once refreshed it can be confirmed. 
 
 ### Example
 
@@ -962,5 +966,5 @@ ApiResponse<[**GetAdChange200Response**](GetAdChange200Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The change is no longer staged (&#x60;change_not_staged&#x60;, or &#x60;change_outcome_unknown&#x60; while a confirm is running), or it is a write staged as its request and a body was sent (&#x60;invalid_resource_state&#x60;). |  -  |
+| **409** | The change is no longer staged (&#x60;change_not_staged&#x60;, or &#x60;change_outcome_unknown&#x60; while a confirm is running). Or code &#x60;invalid_resource_state&#x60;: the change stores a request without a body, or the new body points at another connection or another object. |  -  |
 

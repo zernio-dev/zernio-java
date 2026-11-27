@@ -7317,7 +7317,7 @@ ApiResponse<[**RemoveAdConversionAssociations200Response**](RemoveAdConversionAs
 
 ## removeCustomConversionGoal
 
-> RemoveCustomConversionGoal200Response removeCustomConversionGoal(goalId, accountId, adAccountId, customerId)
+> RemoveCustomConversionGoal200Response removeCustomConversionGoal(goalId, accountId, stage, adAccountId, customerId)
 
 Remove a custom conversion goal
 
@@ -7346,10 +7346,11 @@ public class Example {
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
         String goalId = "goalId_example"; // String | Google custom conversion goal id
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (Google Ads)
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String adAccountId = "adAccountId_example"; // String | Google customer id. Required when the connection has multiple customers.
         String customerId = "customerId_example"; // String | Alias of adAccountId
         try {
-            RemoveCustomConversionGoal200Response result = apiInstance.removeCustomConversionGoal(goalId, accountId, adAccountId, customerId);
+            RemoveCustomConversionGoal200Response result = apiInstance.removeCustomConversionGoal(goalId, accountId, stage, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConversionsApi#removeCustomConversionGoal");
@@ -7369,6 +7370,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **goalId** | **String**| Google custom conversion goal id | |
 | **accountId** | **String**| Zernio SocialAccount id (Google Ads) | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **adAccountId** | **String**| Google customer id. Required when the connection has multiple customers. | [optional] |
 | **customerId** | **String**| Alias of adAccountId | [optional] |
 
@@ -7399,7 +7401,7 @@ public class Example {
 
 ## removeCustomConversionGoalWithHttpInfo
 
-> ApiResponse<RemoveCustomConversionGoal200Response> removeCustomConversionGoal removeCustomConversionGoalWithHttpInfo(goalId, accountId, adAccountId, customerId)
+> ApiResponse<RemoveCustomConversionGoal200Response> removeCustomConversionGoal removeCustomConversionGoalWithHttpInfo(goalId, accountId, stage, adAccountId, customerId)
 
 Remove a custom conversion goal
 
@@ -7429,10 +7431,11 @@ public class Example {
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
         String goalId = "goalId_example"; // String | Google custom conversion goal id
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (Google Ads)
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String adAccountId = "adAccountId_example"; // String | Google customer id. Required when the connection has multiple customers.
         String customerId = "customerId_example"; // String | Alias of adAccountId
         try {
-            ApiResponse<RemoveCustomConversionGoal200Response> response = apiInstance.removeCustomConversionGoalWithHttpInfo(goalId, accountId, adAccountId, customerId);
+            ApiResponse<RemoveCustomConversionGoal200Response> response = apiInstance.removeCustomConversionGoalWithHttpInfo(goalId, accountId, stage, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -7454,6 +7457,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **goalId** | **String**| Google custom conversion goal id | |
 | **accountId** | **String**| Zernio SocialAccount id (Google Ads) | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **adAccountId** | **String**| Google customer id. Required when the connection has multiple customers. | [optional] |
 | **customerId** | **String**| Alias of adAccountId | [optional] |
 

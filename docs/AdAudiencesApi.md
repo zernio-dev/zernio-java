@@ -337,7 +337,7 @@ ApiResponse<[**CreateAdAudience201Response**](CreateAdAudience201Response.md)>
 
 ## deleteAdAudience
 
-> DeleteAccountGroup200Response deleteAdAudience(audienceId)
+> DeleteAccountGroup200Response deleteAdAudience(audienceId, stage)
 
 Delete custom audience
 
@@ -365,8 +365,9 @@ public class Example {
 
         AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
         String audienceId = "audienceId_example"; // String | 
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            DeleteAccountGroup200Response result = apiInstance.deleteAdAudience(audienceId);
+            DeleteAccountGroup200Response result = apiInstance.deleteAdAudience(audienceId, stage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAudiencesApi#deleteAdAudience");
@@ -385,6 +386,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **audienceId** | **String**|  | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -411,7 +413,7 @@ public class Example {
 
 ## deleteAdAudienceWithHttpInfo
 
-> ApiResponse<DeleteAccountGroup200Response> deleteAdAudience deleteAdAudienceWithHttpInfo(audienceId)
+> ApiResponse<DeleteAccountGroup200Response> deleteAdAudience deleteAdAudienceWithHttpInfo(audienceId, stage)
 
 Delete custom audience
 
@@ -440,8 +442,9 @@ public class Example {
 
         AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
         String audienceId = "audienceId_example"; // String | 
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            ApiResponse<DeleteAccountGroup200Response> response = apiInstance.deleteAdAudienceWithHttpInfo(audienceId);
+            ApiResponse<DeleteAccountGroup200Response> response = apiInstance.deleteAdAudienceWithHttpInfo(audienceId, stage);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -462,6 +465,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **audienceId** | **String**|  | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 

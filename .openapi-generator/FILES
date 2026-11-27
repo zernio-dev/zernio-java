@@ -3143,6 +3143,7 @@ docs/RespondToSmsRegistrationReview200Response.md
 docs/RespondToSmsRegistrationReviewRequest.md
 docs/RespondToSmsRegistrationReviewRequestAnswersInner.md
 docs/ResponseTimeBucket.md
+docs/RestageAdChangeRequest.md
 docs/RestateEvent200Response.md
 docs/RestateEventRequest.md
 docs/RestoreWorkflowVersion200Response.md
@@ -3423,6 +3424,7 @@ docs/SocialAccountProfileId.md
 docs/StagedAdChange.md
 docs/StagedAdChangeDiffInner.md
 docs/StagedAdChangeError.md
+docs/StagedAdChangeLeftBehindInner.md
 docs/StagedAdChangeRequest.md
 docs/StagedAdChangeSummary.md
 docs/StagedAdChangeSummaryError.md
@@ -7494,6 +7496,7 @@ src/main/java/dev/zernio/model/RespondToSmsRegistrationReview200Response.java
 src/main/java/dev/zernio/model/RespondToSmsRegistrationReviewRequest.java
 src/main/java/dev/zernio/model/RespondToSmsRegistrationReviewRequestAnswersInner.java
 src/main/java/dev/zernio/model/ResponseTimeBucket.java
+src/main/java/dev/zernio/model/RestageAdChangeRequest.java
 src/main/java/dev/zernio/model/RestateEvent200Response.java
 src/main/java/dev/zernio/model/RestateEventRequest.java
 src/main/java/dev/zernio/model/RestoreWorkflowVersion200Response.java
@@ -7770,6 +7773,7 @@ src/main/java/dev/zernio/model/SocialAccountProfileId.java
 src/main/java/dev/zernio/model/StagedAdChange.java
 src/main/java/dev/zernio/model/StagedAdChangeDiffInner.java
 src/main/java/dev/zernio/model/StagedAdChangeError.java
+src/main/java/dev/zernio/model/StagedAdChangeLeftBehindInner.java
 src/main/java/dev/zernio/model/StagedAdChangeRequest.java
 src/main/java/dev/zernio/model/StagedAdChangeSummary.java
 src/main/java/dev/zernio/model/StagedAdChangeSummaryError.java
@@ -8639,4 +8643,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/SendEvents200ResponseWarningsInnerTest.java
+src/test/java/dev/zernio/model/RestageAdChangeRequestTest.java
+src/test/java/dev/zernio/model/StagedAdChangeLeftBehindInnerTest.java

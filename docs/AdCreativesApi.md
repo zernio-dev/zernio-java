@@ -205,7 +205,7 @@ ApiResponse<[**CreateAdCreative201Response**](CreateAdCreative201Response.md)>
 
 ## deleteAdCreative
 
-> DeleteAdCreative200Response deleteAdCreative(creativeId, accountId)
+> DeleteAdCreative200Response deleteAdCreative(creativeId, accountId, stage)
 
 Delete a creative
 
@@ -234,8 +234,9 @@ public class Example {
         AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
         String creativeId = "creativeId_example"; // String | Platform creative id
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            DeleteAdCreative200Response result = apiInstance.deleteAdCreative(creativeId, accountId);
+            DeleteAdCreative200Response result = apiInstance.deleteAdCreative(creativeId, accountId, stage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCreativesApi#deleteAdCreative");
@@ -255,6 +256,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **creativeId** | **String**| Platform creative id | |
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -283,7 +285,7 @@ public class Example {
 
 ## deleteAdCreativeWithHttpInfo
 
-> ApiResponse<DeleteAdCreative200Response> deleteAdCreative deleteAdCreativeWithHttpInfo(creativeId, accountId)
+> ApiResponse<DeleteAdCreative200Response> deleteAdCreative deleteAdCreativeWithHttpInfo(creativeId, accountId, stage)
 
 Delete a creative
 
@@ -313,8 +315,9 @@ public class Example {
         AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
         String creativeId = "creativeId_example"; // String | Platform creative id
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            ApiResponse<DeleteAdCreative200Response> response = apiInstance.deleteAdCreativeWithHttpInfo(creativeId, accountId);
+            ApiResponse<DeleteAdCreative200Response> response = apiInstance.deleteAdCreativeWithHttpInfo(creativeId, accountId, stage);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -336,6 +339,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **creativeId** | **String**| Platform creative id | |
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -365,7 +369,7 @@ ApiResponse<[**DeleteAdCreative200Response**](DeleteAdCreative200Response.md)>
 
 ## deleteAdVideo
 
-> DeleteAdVideo200Response deleteAdVideo(videoId, accountId, adAccountId)
+> DeleteAdVideo200Response deleteAdVideo(videoId, accountId, adAccountId, stage)
 
 Delete an ad video
 
@@ -395,8 +399,9 @@ public class Example {
         String videoId = "videoId_example"; // String | Meta ad video id (numeric).
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>) that owns the video.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            DeleteAdVideo200Response result = apiInstance.deleteAdVideo(videoId, accountId, adAccountId);
+            DeleteAdVideo200Response result = apiInstance.deleteAdVideo(videoId, accountId, adAccountId, stage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCreativesApi#deleteAdVideo");
@@ -417,6 +422,7 @@ public class Example {
 | **videoId** | **String**| Meta ad video id (numeric). | |
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
 | **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;) that owns the video. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -445,7 +451,7 @@ public class Example {
 
 ## deleteAdVideoWithHttpInfo
 
-> ApiResponse<DeleteAdVideo200Response> deleteAdVideo deleteAdVideoWithHttpInfo(videoId, accountId, adAccountId)
+> ApiResponse<DeleteAdVideo200Response> deleteAdVideo deleteAdVideoWithHttpInfo(videoId, accountId, adAccountId, stage)
 
 Delete an ad video
 
@@ -476,8 +482,9 @@ public class Example {
         String videoId = "videoId_example"; // String | Meta ad video id (numeric).
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>) that owns the video.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            ApiResponse<DeleteAdVideo200Response> response = apiInstance.deleteAdVideoWithHttpInfo(videoId, accountId, adAccountId);
+            ApiResponse<DeleteAdVideo200Response> response = apiInstance.deleteAdVideoWithHttpInfo(videoId, accountId, adAccountId, stage);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -500,6 +507,7 @@ public class Example {
 | **videoId** | **String**| Meta ad video id (numeric). | |
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
 | **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;) that owns the video. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 

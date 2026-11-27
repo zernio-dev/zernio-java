@@ -31,7 +31,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## archiveLeadForm
 
-> ArchiveLeadForm200Response archiveLeadForm(formId, accountId)
+> ArchiveLeadForm200Response archiveLeadForm(formId, accountId, stage)
 
 Archive a lead form
 
@@ -60,8 +60,9 @@ public class Example {
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
         String formId = "formId_example"; // String | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
         String accountId = "accountId_example"; // String | Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform).  - A Meta ads connection resolves its Page through the Facebook account linked to the same profile. - An Instagram account uses the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            ArchiveLeadForm200Response result = apiInstance.archiveLeadForm(formId, accountId);
+            ArchiveLeadForm200Response result = apiInstance.archiveLeadForm(formId, accountId, stage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LeadGenApi#archiveLeadForm");
@@ -81,6 +82,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **formId** | **String**| Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). | |
 | **accountId** | **String**| Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform).  - A Meta ads connection resolves its Page through the Facebook account linked to the same profile. - An Instagram account uses the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -108,7 +110,7 @@ public class Example {
 
 ## archiveLeadFormWithHttpInfo
 
-> ApiResponse<ArchiveLeadForm200Response> archiveLeadForm archiveLeadFormWithHttpInfo(formId, accountId)
+> ApiResponse<ArchiveLeadForm200Response> archiveLeadForm archiveLeadFormWithHttpInfo(formId, accountId, stage)
 
 Archive a lead form
 
@@ -138,8 +140,9 @@ public class Example {
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
         String formId = "formId_example"; // String | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
         String accountId = "accountId_example"; // String | Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform).  - A Meta ads connection resolves its Page through the Facebook account linked to the same profile. - An Instagram account uses the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            ApiResponse<ArchiveLeadForm200Response> response = apiInstance.archiveLeadFormWithHttpInfo(formId, accountId);
+            ApiResponse<ArchiveLeadForm200Response> response = apiInstance.archiveLeadFormWithHttpInfo(formId, accountId, stage);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -161,6 +164,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **formId** | **String**| Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). | |
 | **accountId** | **String**| Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform).  - A Meta ads connection resolves its Page through the Facebook account linked to the same profile. - An Instagram account uses the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 

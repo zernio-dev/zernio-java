@@ -2233,7 +2233,7 @@ ApiResponse<[**ReplyToAdComment200Response**](ReplyToAdComment200Response.md)>
 
 ## deleteAdNegativeKeywordList
 
-> DeleteAdNegativeKeywordList200Response deleteAdNegativeKeywordList(listId, accountId, idempotencyKey, adAccountId, customerId, platform)
+> DeleteAdNegativeKeywordList200Response deleteAdNegativeKeywordList(listId, accountId, stage, idempotencyKey, adAccountId, customerId, platform)
 
 Delete a negative keyword list
 
@@ -2262,12 +2262,13 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String listId = "listId_example"; // String | 
         String accountId = "accountId_example"; // String | 
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         String platform = "facebook"; // String | 
         try {
-            DeleteAdNegativeKeywordList200Response result = apiInstance.deleteAdNegativeKeywordList(listId, accountId, idempotencyKey, adAccountId, customerId, platform);
+            DeleteAdNegativeKeywordList200Response result = apiInstance.deleteAdNegativeKeywordList(listId, accountId, stage, idempotencyKey, adAccountId, customerId, platform);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#deleteAdNegativeKeywordList");
@@ -2287,6 +2288,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **listId** | **String**|  | |
 | **accountId** | **String**|  | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 | **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
@@ -2321,7 +2323,7 @@ public class Example {
 
 ## deleteAdNegativeKeywordListWithHttpInfo
 
-> ApiResponse<DeleteAdNegativeKeywordList200Response> deleteAdNegativeKeywordList deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, idempotencyKey, adAccountId, customerId, platform)
+> ApiResponse<DeleteAdNegativeKeywordList200Response> deleteAdNegativeKeywordList deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, stage, idempotencyKey, adAccountId, customerId, platform)
 
 Delete a negative keyword list
 
@@ -2351,12 +2353,13 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String listId = "listId_example"; // String | 
         String accountId = "accountId_example"; // String | 
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago. 
         String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         String platform = "facebook"; // String | 
         try {
-            ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, idempotencyKey, adAccountId, customerId, platform);
+            ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, stage, idempotencyKey, adAccountId, customerId, platform);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2378,6 +2381,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **listId** | **String**|  | |
 | **accountId** | **String**|  | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional] |
 | **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
@@ -2413,7 +2417,7 @@ ApiResponse<[**DeleteAdNegativeKeywordList200Response**](DeleteAdNegativeKeyword
 
 ## deleteValueRuleSet
 
-> DeleteValueRuleSet200Response deleteValueRuleSet(valueRuleSetId, accountId)
+> DeleteValueRuleSet200Response deleteValueRuleSet(valueRuleSetId, accountId, stage)
 
 Delete a value rule set
 
@@ -2442,8 +2446,9 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String valueRuleSetId = "valueRuleSetId_example"; // String | Platform value rule set id.
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            DeleteValueRuleSet200Response result = apiInstance.deleteValueRuleSet(valueRuleSetId, accountId);
+            DeleteValueRuleSet200Response result = apiInstance.deleteValueRuleSet(valueRuleSetId, accountId, stage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#deleteValueRuleSet");
@@ -2463,6 +2468,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **valueRuleSetId** | **String**| Platform value rule set id. | |
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -2490,7 +2496,7 @@ public class Example {
 
 ## deleteValueRuleSetWithHttpInfo
 
-> ApiResponse<DeleteValueRuleSet200Response> deleteValueRuleSet deleteValueRuleSetWithHttpInfo(valueRuleSetId, accountId)
+> ApiResponse<DeleteValueRuleSet200Response> deleteValueRuleSet deleteValueRuleSetWithHttpInfo(valueRuleSetId, accountId, stage)
 
 Delete a value rule set
 
@@ -2520,8 +2526,9 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String valueRuleSetId = "valueRuleSetId_example"; // String | Platform value rule set id.
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            ApiResponse<DeleteValueRuleSet200Response> response = apiInstance.deleteValueRuleSetWithHttpInfo(valueRuleSetId, accountId);
+            ApiResponse<DeleteValueRuleSet200Response> response = apiInstance.deleteValueRuleSetWithHttpInfo(valueRuleSetId, accountId, stage);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2543,6 +2550,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **valueRuleSetId** | **String**| Platform value rule set id. | |
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -2571,7 +2579,7 @@ ApiResponse<[**DeleteValueRuleSet200Response**](DeleteValueRuleSet200Response.md
 
 ## detachAdLabel
 
-> DetachAdLabel200Response detachAdLabel(labelId, accountId, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds)
+> DetachAdLabel200Response detachAdLabel(labelId, accountId, stage, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds)
 
 Detach a Google Ads label
 
@@ -2600,6 +2608,7 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String labelId = "labelId_example"; // String | Google label id
         String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
         String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         List<String> campaignIds = Arrays.asList(); // List<String> | Google campaign ids. Repeat the parameter or pass a comma-separated list.
@@ -2607,7 +2616,7 @@ public class Example {
         List<String> adIds = Arrays.asList(); // List<String> | Google ad group ad ids, {adGroupId}~{adId}. Repeat the parameter or pass a comma-separated list.
         List<String> keywordIds = Arrays.asList(); // List<String> | Google keyword criterion ids, {adGroupId}~{criterionId}. Repeat the parameter or pass a comma-separated list.
         try {
-            DetachAdLabel200Response result = apiInstance.detachAdLabel(labelId, accountId, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds);
+            DetachAdLabel200Response result = apiInstance.detachAdLabel(labelId, accountId, stage, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#detachAdLabel");
@@ -2627,6 +2636,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **labelId** | **String**| Google label id | |
 | **accountId** | **String**| Zernio Google Ads connection id. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
 | **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **campaignIds** | [**List&lt;String&gt;**](String.md)| Google campaign ids. Repeat the parameter or pass a comma-separated list. | [optional] |
@@ -2661,7 +2671,7 @@ public class Example {
 
 ## detachAdLabelWithHttpInfo
 
-> ApiResponse<DetachAdLabel200Response> detachAdLabel detachAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds)
+> ApiResponse<DetachAdLabel200Response> detachAdLabel detachAdLabelWithHttpInfo(labelId, accountId, stage, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds)
 
 Detach a Google Ads label
 
@@ -2691,6 +2701,7 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String labelId = "labelId_example"; // String | Google label id
         String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
         String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         List<String> campaignIds = Arrays.asList(); // List<String> | Google campaign ids. Repeat the parameter or pass a comma-separated list.
@@ -2698,7 +2709,7 @@ public class Example {
         List<String> adIds = Arrays.asList(); // List<String> | Google ad group ad ids, {adGroupId}~{adId}. Repeat the parameter or pass a comma-separated list.
         List<String> keywordIds = Arrays.asList(); // List<String> | Google keyword criterion ids, {adGroupId}~{criterionId}. Repeat the parameter or pass a comma-separated list.
         try {
-            ApiResponse<DetachAdLabel200Response> response = apiInstance.detachAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds);
+            ApiResponse<DetachAdLabel200Response> response = apiInstance.detachAdLabelWithHttpInfo(labelId, accountId, stage, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2720,6 +2731,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **labelId** | **String**| Google label id | |
 | **accountId** | **String**| Zernio Google Ads connection id. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
 | **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **campaignIds** | [**List&lt;String&gt;**](String.md)| Google campaign ids. Repeat the parameter or pass a comma-separated list. | [optional] |
@@ -8885,7 +8897,7 @@ ApiResponse<[**ListValueRuleSets200Response**](ListValueRuleSets200Response.md)>
 
 ## removeAccountCallout
 
-> RemoveAccountCallout200Response removeAccountCallout(accountId, assetId, adAccountId, customerId)
+> RemoveAccountCallout200Response removeAccountCallout(accountId, assetId, stage, adAccountId, customerId)
 
 Remove account callout
 
@@ -8914,10 +8926,11 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
         String assetId = "assetId_example"; // String | Numeric Google Ads asset id.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
         String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            RemoveAccountCallout200Response result = apiInstance.removeAccountCallout(accountId, assetId, adAccountId, customerId);
+            RemoveAccountCallout200Response result = apiInstance.removeAccountCallout(accountId, assetId, stage, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#removeAccountCallout");
@@ -8937,6 +8950,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio Google Ads connection id. | |
 | **assetId** | **String**| Numeric Google Ads asset id. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
 | **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
@@ -8968,7 +8982,7 @@ public class Example {
 
 ## removeAccountCalloutWithHttpInfo
 
-> ApiResponse<RemoveAccountCallout200Response> removeAccountCallout removeAccountCalloutWithHttpInfo(accountId, assetId, adAccountId, customerId)
+> ApiResponse<RemoveAccountCallout200Response> removeAccountCallout removeAccountCalloutWithHttpInfo(accountId, assetId, stage, adAccountId, customerId)
 
 Remove account callout
 
@@ -8998,10 +9012,11 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
         String assetId = "assetId_example"; // String | Numeric Google Ads asset id.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
         String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountCalloutWithHttpInfo(accountId, assetId, adAccountId, customerId);
+            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountCalloutWithHttpInfo(accountId, assetId, stage, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -9023,6 +9038,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio Google Ads connection id. | |
 | **assetId** | **String**| Numeric Google Ads asset id. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
 | **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
@@ -9055,7 +9071,7 @@ ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Respons
 
 ## removeAccountSitelink
 
-> RemoveAccountCallout200Response removeAccountSitelink(accountId, assetId, adAccountId, customerId)
+> RemoveAccountCallout200Response removeAccountSitelink(accountId, assetId, stage, adAccountId, customerId)
 
 Remove account sitelink
 
@@ -9084,10 +9100,11 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
         String assetId = "assetId_example"; // String | Numeric Google Ads asset id.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
         String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            RemoveAccountCallout200Response result = apiInstance.removeAccountSitelink(accountId, assetId, adAccountId, customerId);
+            RemoveAccountCallout200Response result = apiInstance.removeAccountSitelink(accountId, assetId, stage, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#removeAccountSitelink");
@@ -9107,6 +9124,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio Google Ads connection id. | |
 | **assetId** | **String**| Numeric Google Ads asset id. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
 | **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
@@ -9138,7 +9156,7 @@ public class Example {
 
 ## removeAccountSitelinkWithHttpInfo
 
-> ApiResponse<RemoveAccountCallout200Response> removeAccountSitelink removeAccountSitelinkWithHttpInfo(accountId, assetId, adAccountId, customerId)
+> ApiResponse<RemoveAccountCallout200Response> removeAccountSitelink removeAccountSitelinkWithHttpInfo(accountId, assetId, stage, adAccountId, customerId)
 
 Remove account sitelink
 
@@ -9168,10 +9186,11 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
         String assetId = "assetId_example"; // String | Numeric Google Ads asset id.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
         String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountSitelinkWithHttpInfo(accountId, assetId, adAccountId, customerId);
+            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountSitelinkWithHttpInfo(accountId, assetId, stage, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -9193,6 +9212,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio Google Ads connection id. | |
 | **assetId** | **String**| Numeric Google Ads asset id. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
 | **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
@@ -9225,7 +9245,7 @@ ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Respons
 
 ## removeAccountStructuredSnippet
 
-> RemoveAccountCallout200Response removeAccountStructuredSnippet(accountId, assetId, adAccountId, customerId)
+> RemoveAccountCallout200Response removeAccountStructuredSnippet(accountId, assetId, stage, adAccountId, customerId)
 
 Remove account snippet
 
@@ -9254,10 +9274,11 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
         String assetId = "assetId_example"; // String | Numeric Google Ads asset id.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
         String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            RemoveAccountCallout200Response result = apiInstance.removeAccountStructuredSnippet(accountId, assetId, adAccountId, customerId);
+            RemoveAccountCallout200Response result = apiInstance.removeAccountStructuredSnippet(accountId, assetId, stage, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#removeAccountStructuredSnippet");
@@ -9277,6 +9298,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio Google Ads connection id. | |
 | **assetId** | **String**| Numeric Google Ads asset id. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
 | **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
@@ -9308,7 +9330,7 @@ public class Example {
 
 ## removeAccountStructuredSnippetWithHttpInfo
 
-> ApiResponse<RemoveAccountCallout200Response> removeAccountStructuredSnippet removeAccountStructuredSnippetWithHttpInfo(accountId, assetId, adAccountId, customerId)
+> ApiResponse<RemoveAccountCallout200Response> removeAccountStructuredSnippet removeAccountStructuredSnippetWithHttpInfo(accountId, assetId, stage, adAccountId, customerId)
 
 Remove account snippet
 
@@ -9338,10 +9360,11 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
         String assetId = "assetId_example"; // String | Numeric Google Ads asset id.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
         String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountStructuredSnippetWithHttpInfo(accountId, assetId, adAccountId, customerId);
+            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountStructuredSnippetWithHttpInfo(accountId, assetId, stage, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -9363,6 +9386,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio Google Ads connection id. | |
 | **assetId** | **String**| Numeric Google Ads asset id. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
 | **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
@@ -9395,7 +9419,7 @@ ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Respons
 
 ## removeAdAccountUser
 
-> RemoveAdAccountUser200Response removeAdAccountUser(accountId, adAccountId, userId)
+> RemoveAdAccountUser200Response removeAdAccountUser(accountId, adAccountId, userId, stage)
 
 Remove a user from an ad account
 
@@ -9425,8 +9449,9 @@ public class Example {
         String accountId = "accountId_example"; // String | Zernio SocialAccount id used to resolve the Meta token.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
         String userId = "userId_example"; // String | Business-scoped user id.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            RemoveAdAccountUser200Response result = apiInstance.removeAdAccountUser(accountId, adAccountId, userId);
+            RemoveAdAccountUser200Response result = apiInstance.removeAdAccountUser(accountId, adAccountId, userId, stage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#removeAdAccountUser");
@@ -9447,6 +9472,7 @@ public class Example {
 | **accountId** | **String**| Zernio SocialAccount id used to resolve the Meta token. | |
 | **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
 | **userId** | **String**| Business-scoped user id. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -9476,7 +9502,7 @@ public class Example {
 
 ## removeAdAccountUserWithHttpInfo
 
-> ApiResponse<RemoveAdAccountUser200Response> removeAdAccountUser removeAdAccountUserWithHttpInfo(accountId, adAccountId, userId)
+> ApiResponse<RemoveAdAccountUser200Response> removeAdAccountUser removeAdAccountUserWithHttpInfo(accountId, adAccountId, userId, stage)
 
 Remove a user from an ad account
 
@@ -9507,8 +9533,9 @@ public class Example {
         String accountId = "accountId_example"; // String | Zernio SocialAccount id used to resolve the Meta token.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
         String userId = "userId_example"; // String | Business-scoped user id.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            ApiResponse<RemoveAdAccountUser200Response> response = apiInstance.removeAdAccountUserWithHttpInfo(accountId, adAccountId, userId);
+            ApiResponse<RemoveAdAccountUser200Response> response = apiInstance.removeAdAccountUserWithHttpInfo(accountId, adAccountId, userId, stage);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -9531,6 +9558,7 @@ public class Example {
 | **accountId** | **String**| Zernio SocialAccount id used to resolve the Meta token. | |
 | **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
 | **userId** | **String**| Business-scoped user id. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -9561,7 +9589,7 @@ ApiResponse<[**RemoveAdAccountUser200Response**](RemoveAdAccountUser200Response.
 
 ## removeAdLabel
 
-> RemoveAdLabel200Response removeAdLabel(labelId, accountId, adAccountId, customerId)
+> RemoveAdLabel200Response removeAdLabel(labelId, accountId, stage, adAccountId, customerId)
 
 Remove a Google Ads label
 
@@ -9590,10 +9618,11 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String labelId = "labelId_example"; // String | Google label id
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (Google Ads)
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String adAccountId = "adAccountId_example"; // String | Google customer id. Required when the connection has multiple customers.
         String customerId = "customerId_example"; // String | Alias of adAccountId
         try {
-            RemoveAdLabel200Response result = apiInstance.removeAdLabel(labelId, accountId, adAccountId, customerId);
+            RemoveAdLabel200Response result = apiInstance.removeAdLabel(labelId, accountId, stage, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#removeAdLabel");
@@ -9613,6 +9642,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **labelId** | **String**| Google label id | |
 | **accountId** | **String**| Zernio SocialAccount id (Google Ads) | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **adAccountId** | **String**| Google customer id. Required when the connection has multiple customers. | [optional] |
 | **customerId** | **String**| Alias of adAccountId | [optional] |
 
@@ -9643,7 +9673,7 @@ public class Example {
 
 ## removeAdLabelWithHttpInfo
 
-> ApiResponse<RemoveAdLabel200Response> removeAdLabel removeAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId)
+> ApiResponse<RemoveAdLabel200Response> removeAdLabel removeAdLabelWithHttpInfo(labelId, accountId, stage, adAccountId, customerId)
 
 Remove a Google Ads label
 
@@ -9673,10 +9703,11 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String labelId = "labelId_example"; // String | Google label id
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (Google Ads)
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         String adAccountId = "adAccountId_example"; // String | Google customer id. Required when the connection has multiple customers.
         String customerId = "customerId_example"; // String | Alias of adAccountId
         try {
-            ApiResponse<RemoveAdLabel200Response> response = apiInstance.removeAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId);
+            ApiResponse<RemoveAdLabel200Response> response = apiInstance.removeAdLabelWithHttpInfo(labelId, accountId, stage, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -9698,6 +9729,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **labelId** | **String**| Google label id | |
 | **accountId** | **String**| Zernio SocialAccount id (Google Ads) | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 | **adAccountId** | **String**| Google customer id. Required when the connection has multiple customers. | [optional] |
 | **customerId** | **String**| Alias of adAccountId | [optional] |
 
@@ -9729,7 +9761,7 @@ ApiResponse<[**RemoveAdLabel200Response**](RemoveAdLabel200Response.md)>
 
 ## removePageUser
 
-> RemovePageUser200Response removePageUser(accountId, pageId, userId)
+> RemovePageUser200Response removePageUser(accountId, pageId, userId, stage)
 
 Remove a user from a Page
 
@@ -9759,8 +9791,9 @@ public class Example {
         String accountId = "accountId_example"; // String | Zernio SocialAccount id used to resolve the Meta token.
         String pageId = "pageId_example"; // String | Facebook Page id.
         String userId = "userId_example"; // String | Business-scoped user id.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            RemovePageUser200Response result = apiInstance.removePageUser(accountId, pageId, userId);
+            RemovePageUser200Response result = apiInstance.removePageUser(accountId, pageId, userId, stage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#removePageUser");
@@ -9781,6 +9814,7 @@ public class Example {
 | **accountId** | **String**| Zernio SocialAccount id used to resolve the Meta token. | |
 | **pageId** | **String**| Facebook Page id. | |
 | **userId** | **String**| Business-scoped user id. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -9810,7 +9844,7 @@ public class Example {
 
 ## removePageUserWithHttpInfo
 
-> ApiResponse<RemovePageUser200Response> removePageUser removePageUserWithHttpInfo(accountId, pageId, userId)
+> ApiResponse<RemovePageUser200Response> removePageUser removePageUserWithHttpInfo(accountId, pageId, userId, stage)
 
 Remove a user from a Page
 
@@ -9841,8 +9875,9 @@ public class Example {
         String accountId = "accountId_example"; // String | Zernio SocialAccount id used to resolve the Meta token.
         String pageId = "pageId_example"; // String | Facebook Page id.
         String userId = "userId_example"; // String | Business-scoped user id.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            ApiResponse<RemovePageUser200Response> response = apiInstance.removePageUserWithHttpInfo(accountId, pageId, userId);
+            ApiResponse<RemovePageUser200Response> response = apiInstance.removePageUserWithHttpInfo(accountId, pageId, userId, stage);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -9865,6 +9900,7 @@ public class Example {
 | **accountId** | **String**| Zernio SocialAccount id used to resolve the Meta token. | |
 | **pageId** | **String**| Facebook Page id. | |
 | **userId** | **String**| Business-scoped user id. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -10237,7 +10273,7 @@ ApiResponse<[**ReplyToAdComment200Response**](ReplyToAdComment200Response.md)>
 
 ## revokeAdAccountUserInvitation
 
-> RevokeAdAccountUserInvitation200Response revokeAdAccountUserInvitation(accountId, adAccountId, invitationId)
+> RevokeAdAccountUserInvitation200Response revokeAdAccountUserInvitation(accountId, adAccountId, invitationId, stage)
 
 Revoke a user access invitation
 
@@ -10267,8 +10303,9 @@ public class Example {
         String accountId = "accountId_example"; // String | Google ads SocialAccount id.
         String adAccountId = "adAccountId_example"; // String | Google Ads customer id, digits only.
         String invitationId = "invitationId_example"; // String | Numeric invitation id from GET /v1/ads/accounts/user-invitations.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            RevokeAdAccountUserInvitation200Response result = apiInstance.revokeAdAccountUserInvitation(accountId, adAccountId, invitationId);
+            RevokeAdAccountUserInvitation200Response result = apiInstance.revokeAdAccountUserInvitation(accountId, adAccountId, invitationId, stage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#revokeAdAccountUserInvitation");
@@ -10289,6 +10326,7 @@ public class Example {
 | **accountId** | **String**| Google ads SocialAccount id. | |
 | **adAccountId** | **String**| Google Ads customer id, digits only. | |
 | **invitationId** | **String**| Numeric invitation id from GET /v1/ads/accounts/user-invitations. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -10318,7 +10356,7 @@ public class Example {
 
 ## revokeAdAccountUserInvitationWithHttpInfo
 
-> ApiResponse<RevokeAdAccountUserInvitation200Response> revokeAdAccountUserInvitation revokeAdAccountUserInvitationWithHttpInfo(accountId, adAccountId, invitationId)
+> ApiResponse<RevokeAdAccountUserInvitation200Response> revokeAdAccountUserInvitation revokeAdAccountUserInvitationWithHttpInfo(accountId, adAccountId, invitationId, stage)
 
 Revoke a user access invitation
 
@@ -10349,8 +10387,9 @@ public class Example {
         String accountId = "accountId_example"; // String | Google ads SocialAccount id.
         String adAccountId = "adAccountId_example"; // String | Google Ads customer id, digits only.
         String invitationId = "invitationId_example"; // String | Numeric invitation id from GET /v1/ads/accounts/user-invitations.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            ApiResponse<RevokeAdAccountUserInvitation200Response> response = apiInstance.revokeAdAccountUserInvitationWithHttpInfo(accountId, adAccountId, invitationId);
+            ApiResponse<RevokeAdAccountUserInvitation200Response> response = apiInstance.revokeAdAccountUserInvitationWithHttpInfo(accountId, adAccountId, invitationId, stage);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -10373,6 +10412,7 @@ public class Example {
 | **accountId** | **String**| Google ads SocialAccount id. | |
 | **adAccountId** | **String**| Google Ads customer id, digits only. | |
 | **invitationId** | **String**| Numeric invitation id from GET /v1/ads/accounts/user-invitations. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -11839,7 +11879,7 @@ ApiResponse<[**UpdateValueRuleSet200Response**](UpdateValueRuleSet200Response.md
 
 ## withdrawAdAccountUserInvitationApproval
 
-> WithdrawAdAccountUserInvitationApproval200Response withdrawAdAccountUserInvitationApproval(accountId, adAccountId, multiPartyAuthReviewId)
+> WithdrawAdAccountUserInvitationApproval200Response withdrawAdAccountUserInvitationApproval(accountId, adAccountId, multiPartyAuthReviewId, stage)
 
 Withdraw an invitation awaiting multi-party approval
 
@@ -11869,8 +11909,9 @@ public class Example {
         String accountId = "accountId_example"; // String | Google ads SocialAccount id.
         String adAccountId = "adAccountId_example"; // String | Google Ads customer id, digits only.
         String multiPartyAuthReviewId = "multiPartyAuthReviewId_example"; // String | Numeric review id from POST /v1/ads/accounts/user-invitations or GET /v1/ads/accounts/user-invitations/pending-approvals.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            WithdrawAdAccountUserInvitationApproval200Response result = apiInstance.withdrawAdAccountUserInvitationApproval(accountId, adAccountId, multiPartyAuthReviewId);
+            WithdrawAdAccountUserInvitationApproval200Response result = apiInstance.withdrawAdAccountUserInvitationApproval(accountId, adAccountId, multiPartyAuthReviewId, stage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#withdrawAdAccountUserInvitationApproval");
@@ -11891,6 +11932,7 @@ public class Example {
 | **accountId** | **String**| Google ads SocialAccount id. | |
 | **adAccountId** | **String**| Google Ads customer id, digits only. | |
 | **multiPartyAuthReviewId** | **String**| Numeric review id from POST /v1/ads/accounts/user-invitations or GET /v1/ads/accounts/user-invitations/pending-approvals. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 
@@ -11920,7 +11962,7 @@ public class Example {
 
 ## withdrawAdAccountUserInvitationApprovalWithHttpInfo
 
-> ApiResponse<WithdrawAdAccountUserInvitationApproval200Response> withdrawAdAccountUserInvitationApproval withdrawAdAccountUserInvitationApprovalWithHttpInfo(accountId, adAccountId, multiPartyAuthReviewId)
+> ApiResponse<WithdrawAdAccountUserInvitationApproval200Response> withdrawAdAccountUserInvitationApproval withdrawAdAccountUserInvitationApprovalWithHttpInfo(accountId, adAccountId, multiPartyAuthReviewId, stage)
 
 Withdraw an invitation awaiting multi-party approval
 
@@ -11951,8 +11993,9 @@ public class Example {
         String accountId = "accountId_example"; // String | Google ads SocialAccount id.
         String adAccountId = "adAccountId_example"; // String | Google Ads customer id, digits only.
         String multiPartyAuthReviewId = "multiPartyAuthReviewId_example"; // String | Numeric review id from POST /v1/ads/accounts/user-invitations or GET /v1/ads/accounts/user-invitations/pending-approvals.
+        Boolean stage = true; // Boolean | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later.
         try {
-            ApiResponse<WithdrawAdAccountUserInvitationApproval200Response> response = apiInstance.withdrawAdAccountUserInvitationApprovalWithHttpInfo(accountId, adAccountId, multiPartyAuthReviewId);
+            ApiResponse<WithdrawAdAccountUserInvitationApproval200Response> response = apiInstance.withdrawAdAccountUserInvitationApprovalWithHttpInfo(accountId, adAccountId, multiPartyAuthReviewId, stage);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -11975,6 +12018,7 @@ public class Example {
 | **accountId** | **String**| Google ads SocialAccount id. | |
 | **adAccountId** | **String**| Google Ads customer id, digits only. | |
 | **multiPartyAuthReviewId** | **String**| Numeric review id from POST /v1/ads/accounts/user-invitations or GET /v1/ads/accounts/user-invitations/pending-approvals. | |
+| **stage** | **Boolean**| Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional] |
 
 ### Return type
 

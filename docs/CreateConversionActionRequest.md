@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**stage** | **Boolean** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. Cannot be combined with &#x60;validateOnly&#x60;. |  [optional] |
 |**accountId** | **String** | SocialAccount ID. Must be a &#x60;googleads&#x60; account. |  |
 |**adAccountId** | **String** | Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. |  [optional] |
 |**customerId** | **String** | Alias of adAccountId, kept for existing callers |  [optional] |
