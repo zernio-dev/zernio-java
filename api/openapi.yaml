@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.865.0
+  version: 1.866.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -14263,6 +14263,84 @@ paths:
       - posts:write
       x-platforms:
       - facebook
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/posts/{postId}/comments-enabled:
+    post:
+      description: |
+        Turns comments on or off on a published Instagram post, Reel or carousel, after publishing. Works for accounts connected through Instagram Login and through Facebook Login.
+
+        Only Instagram posts are supported; any other platform answers 400 `platform_not_supported`. To turn comments off at publish time instead, send `commentsEnabled: false` in the Instagram platform options when creating the post.
+      operationId: setPostCommentsEnabled
+      parameters:
+      - explode: false
+        in: path
+        name: postId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              platform: instagram
+              enabled: false
+            schema:
+              $ref: "#/components/schemas/SetPostCommentsEnabledRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                commentsEnabled: false
+                platformPostId: "18063237463112345"
+                accountId: 64e1f0a9e2b5af0012ab34cd
+                message: Comments turned off for the Instagram post
+              schema:
+                $ref: "#/components/schemas/SetPostCommentsEnabledResponse"
+          description: Comments setting applied on Instagram
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid request: invalid postId, accountId or enabled, the\
+            \ post or the chosen account is not on Instagram (`platform_not_supported`),\
+            \ the Instagram entry is not published or has no platform post ID, no\
+            \ access token, or Instagram rejected the change."
+          x-summary: "The request is invalid, like a post not on Instagram or not\
+            \ published, or Instagram rejected it: fix it and retry."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Forbidden
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The post was published to several Instagram accounts and no
+            accountId was sent (ambiguous_account).
+        "500":
+          description: Instagram API call failed
+      summary: Turn comments on or off
+      tags:
+      - Posts
+      x-resource-group: publishing
+      x-oauth-scopes:
+      - posts:write
+      x-platforms:
+      - instagram
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -112937,6 +113015,47 @@ components:
           type: boolean
         platformPostId:
           description: The Facebook post ID that was changed.
+          type: string
+        message:
+          type: string
+    SetPostCommentsEnabledRequest:
+      example:
+        accountId: accountId
+        platform: instagram
+        enabled: true
+      properties:
+        platform:
+          description: Must be `instagram`. Any other value answers 400 `platform_not_supported`.
+          example: instagram
+          type: string
+        accountId:
+          description: Which Instagram account's copy to change when the post was
+            published to several Instagram accounts. Required in that case.
+          type: string
+        enabled:
+          description: "true turns comments on, false turns them off."
+          type: boolean
+      required:
+      - enabled
+      - platform
+    SetPostCommentsEnabledResponse:
+      example:
+        commentsEnabled: true
+        accountId: accountId
+        success: true
+        message: message
+        platformPostId: platformPostId
+      properties:
+        success:
+          type: boolean
+        commentsEnabled:
+          description: Whether comments are now on for the post.
+          type: boolean
+        platformPostId:
+          description: The Instagram media ID that was changed.
+          type: string
+        accountId:
+          description: The Zernio account whose post was changed.
           type: string
         message:
           type: string

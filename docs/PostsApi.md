@@ -22,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**retryPostWithHttpInfo**](PostsApi.md#retryPostWithHttpInfo) | **POST** /v1/posts/{postId}/retry | Retry failed post |
 | [**reviewPost**](PostsApi.md#reviewPost) | **POST** /v1/posts/{postId}/review | Approve or reject a post |
 | [**reviewPostWithHttpInfo**](PostsApi.md#reviewPostWithHttpInfo) | **POST** /v1/posts/{postId}/review | Approve or reject a post |
+| [**setPostCommentsEnabled**](PostsApi.md#setPostCommentsEnabled) | **POST** /v1/posts/{postId}/comments-enabled | Turn comments on or off |
+| [**setPostCommentsEnabledWithHttpInfo**](PostsApi.md#setPostCommentsEnabledWithHttpInfo) | **POST** /v1/posts/{postId}/comments-enabled | Turn comments on or off |
 | [**unpinPost**](PostsApi.md#unpinPost) | **POST** /v1/posts/{postId}/unpin | Unpin post |
 | [**unpinPostWithHttpInfo**](PostsApi.md#unpinPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpin | Unpin post |
 | [**unpublishPost**](PostsApi.md#unpublishPost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post |
@@ -1549,6 +1551,166 @@ ApiResponse<[**PostGetResponse**](PostGetResponse.md)>
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post is not pending_approval (code: invalid_resource_state), for example because it was already approved or rejected. |  -  |
+
+
+## setPostCommentsEnabled
+
+> SetPostCommentsEnabledResponse setPostCommentsEnabled(postId, setPostCommentsEnabledRequest)
+
+Turn comments on or off
+
+Turns comments on or off on a published Instagram post, Reel or carousel, after publishing. Works for accounts connected through Instagram Login and through Facebook Login.  Only Instagram posts are supported; any other platform answers 400 &#x60;platform_not_supported&#x60;. To turn comments off at publish time instead, send &#x60;commentsEnabled: false&#x60; in the Instagram platform options when creating the post. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PostsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PostsApi apiInstance = new PostsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        SetPostCommentsEnabledRequest setPostCommentsEnabledRequest = new SetPostCommentsEnabledRequest(); // SetPostCommentsEnabledRequest | 
+        try {
+            SetPostCommentsEnabledResponse result = apiInstance.setPostCommentsEnabled(postId, setPostCommentsEnabledRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PostsApi#setPostCommentsEnabled");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **setPostCommentsEnabledRequest** | [**SetPostCommentsEnabledRequest**](SetPostCommentsEnabledRequest.md)|  | |
+
+### Return type
+
+[**SetPostCommentsEnabledResponse**](SetPostCommentsEnabledResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comments setting applied on Instagram |  -  |
+| **400** | Invalid request: invalid postId, accountId or enabled, the post or the chosen account is not on Instagram (&#x60;platform_not_supported&#x60;), the Instagram entry is not published or has no platform post ID, no access token, or Instagram rejected the change. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The post was published to several Instagram accounts and no accountId was sent (ambiguous_account). |  -  |
+| **500** | Instagram API call failed |  -  |
+
+## setPostCommentsEnabledWithHttpInfo
+
+> ApiResponse<SetPostCommentsEnabledResponse> setPostCommentsEnabled setPostCommentsEnabledWithHttpInfo(postId, setPostCommentsEnabledRequest)
+
+Turn comments on or off
+
+Turns comments on or off on a published Instagram post, Reel or carousel, after publishing. Works for accounts connected through Instagram Login and through Facebook Login.  Only Instagram posts are supported; any other platform answers 400 &#x60;platform_not_supported&#x60;. To turn comments off at publish time instead, send &#x60;commentsEnabled: false&#x60; in the Instagram platform options when creating the post. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PostsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PostsApi apiInstance = new PostsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        SetPostCommentsEnabledRequest setPostCommentsEnabledRequest = new SetPostCommentsEnabledRequest(); // SetPostCommentsEnabledRequest | 
+        try {
+            ApiResponse<SetPostCommentsEnabledResponse> response = apiInstance.setPostCommentsEnabledWithHttpInfo(postId, setPostCommentsEnabledRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PostsApi#setPostCommentsEnabled");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **setPostCommentsEnabledRequest** | [**SetPostCommentsEnabledRequest**](SetPostCommentsEnabledRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**SetPostCommentsEnabledResponse**](SetPostCommentsEnabledResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comments setting applied on Instagram |  -  |
+| **400** | Invalid request: invalid postId, accountId or enabled, the post or the chosen account is not on Instagram (&#x60;platform_not_supported&#x60;), the Instagram entry is not published or has no platform post ID, no access token, or Instagram rejected the change. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The post was published to several Instagram accounts and no accountId was sent (ambiguous_account). |  -  |
+| **500** | Instagram API call failed |  -  |
 
 
 ## unpinPost

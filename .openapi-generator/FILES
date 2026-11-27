@@ -3403,6 +3403,8 @@ docs/SetMessengerIceBreakersRequest.md
 docs/SetMessengerMenuRequest.md
 docs/SetPartnershipAdPermission200Response.md
 docs/SetPartnershipAdPermissionRequest.md
+docs/SetPostCommentsEnabledRequest.md
+docs/SetPostCommentsEnabledResponse.md
 docs/SetRedditPostFlairRequest.md
 docs/SetTagNewAds200Response.md
 docs/SetTagNewAdsRequest.md
@@ -7765,6 +7767,8 @@ src/main/java/dev/zernio/model/SetMessengerIceBreakersRequest.java
 src/main/java/dev/zernio/model/SetMessengerMenuRequest.java
 src/main/java/dev/zernio/model/SetPartnershipAdPermission200Response.java
 src/main/java/dev/zernio/model/SetPartnershipAdPermissionRequest.java
+src/main/java/dev/zernio/model/SetPostCommentsEnabledRequest.java
+src/main/java/dev/zernio/model/SetPostCommentsEnabledResponse.java
 src/main/java/dev/zernio/model/SetRedditPostFlairRequest.java
 src/main/java/dev/zernio/model/SetTagNewAds200Response.java
 src/main/java/dev/zernio/model/SetTagNewAdsRequest.java
@@ -8665,5 +8669,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetMessengerContact200ResponseDataTest.java
-src/test/java/dev/zernio/model/GetMessengerContact200ResponseTest.java
+src/test/java/dev/zernio/model/SetPostCommentsEnabledRequestTest.java
+src/test/java/dev/zernio/model/SetPostCommentsEnabledResponseTest.java

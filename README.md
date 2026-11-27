@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.865.0
+- API version: 1.866.0
 
-- Build date: 2026-11-27T20:17:20.311796362Z[Etc/UTC]
+- Build date: 2026-11-27T22:46:30.878206793Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.865.0</version>
+  <version>1.866.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.865.0"
+compile "dev.zernio:zernio-sdk:1.866.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.865.0.jar`
+- `target/zernio-sdk-1.866.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2291,6 +2291,8 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**retryPostWithHttpInfo**](docs/PostsApi.md#retryPostWithHttpInfo) | **POST** /v1/posts/{postId}/retry | Retry failed post
 *PostsApi* | [**reviewPost**](docs/PostsApi.md#reviewPost) | **POST** /v1/posts/{postId}/review | Approve or reject a post
 *PostsApi* | [**reviewPostWithHttpInfo**](docs/PostsApi.md#reviewPostWithHttpInfo) | **POST** /v1/posts/{postId}/review | Approve or reject a post
+*PostsApi* | [**setPostCommentsEnabled**](docs/PostsApi.md#setPostCommentsEnabled) | **POST** /v1/posts/{postId}/comments-enabled | Turn comments on or off
+*PostsApi* | [**setPostCommentsEnabledWithHttpInfo**](docs/PostsApi.md#setPostCommentsEnabledWithHttpInfo) | **POST** /v1/posts/{postId}/comments-enabled | Turn comments on or off
 *PostsApi* | [**unpinPost**](docs/PostsApi.md#unpinPost) | **POST** /v1/posts/{postId}/unpin | Unpin post
 *PostsApi* | [**unpinPostWithHttpInfo**](docs/PostsApi.md#unpinPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpin | Unpin post
 *PostsApi* | [**unpublishPost**](docs/PostsApi.md#unpublishPost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
@@ -6263,6 +6265,8 @@ Class | Method | HTTP request | Description
  - [SetMessengerMenuRequest](docs/SetMessengerMenuRequest.md)
  - [SetPartnershipAdPermission200Response](docs/SetPartnershipAdPermission200Response.md)
  - [SetPartnershipAdPermissionRequest](docs/SetPartnershipAdPermissionRequest.md)
+ - [SetPostCommentsEnabledRequest](docs/SetPostCommentsEnabledRequest.md)
+ - [SetPostCommentsEnabledResponse](docs/SetPostCommentsEnabledResponse.md)
  - [SetRedditPostFlairRequest](docs/SetRedditPostFlairRequest.md)
  - [SetTagNewAds200Response](docs/SetTagNewAds200Response.md)
  - [SetTagNewAdsRequest](docs/SetTagNewAdsRequest.md)
