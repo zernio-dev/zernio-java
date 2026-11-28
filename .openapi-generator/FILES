@@ -446,6 +446,7 @@ docs/BillingSnapshotLegacyLimits.md
 docs/BillingSnapshotPeriod.md
 docs/BillingSnapshotPlan.md
 docs/BillingSnapshotStatus.md
+docs/BlockFacebookUser200Response.md
 docs/BlockWhatsAppUsers200Response.md
 docs/BlockWhatsAppUsers200ResponseBlockedInner.md
 docs/BlockWhatsAppUsers200ResponseFailedInner.md
@@ -1469,6 +1470,8 @@ docs/ExternalPostMediaItem.md
 docs/ExternalPostSummary.md
 docs/ExternalPostSummaryAnalytics.md
 docs/ExternalPostWebhookPost.md
+docs/FacebookBlockedUser.md
+docs/FacebookBlockedUserRef.md
 docs/FacebookOrInstagramPost.md
 docs/FacebookPageInfo.md
 docs/FacebookPlatformData.md
@@ -2545,6 +2548,7 @@ docs/ListEventNames200ResponseNamesInner.md
 docs/ListEvents200Response.md
 docs/ListEvents200ResponseEventsInner.md
 docs/ListEvents200ResponseEventsInnerAllOfDeliveriesInner.md
+docs/ListFacebookBlockedUsers200Response.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
@@ -3573,6 +3577,7 @@ docs/TwitterPlatformData.md
 docs/TwitterPlatformDataPoll.md
 docs/TwitterPlatformDataSensitiveMedia.md
 docs/TwitterPlatformDataThreadItemsInner.md
+docs/UnblockFacebookUser200Response.md
 docs/UnblockWhatsAppUsers200Response.md
 docs/UnblockWhatsAppUsersRequest.md
 docs/UndoAdRuleActivity200Response.md
@@ -4866,6 +4871,7 @@ src/main/java/dev/zernio/model/BillingSnapshotLegacyLimits.java
 src/main/java/dev/zernio/model/BillingSnapshotPeriod.java
 src/main/java/dev/zernio/model/BillingSnapshotPlan.java
 src/main/java/dev/zernio/model/BillingSnapshotStatus.java
+src/main/java/dev/zernio/model/BlockFacebookUser200Response.java
 src/main/java/dev/zernio/model/BlockWhatsAppUsers200Response.java
 src/main/java/dev/zernio/model/BlockWhatsAppUsers200ResponseBlockedInner.java
 src/main/java/dev/zernio/model/BlockWhatsAppUsers200ResponseFailedInner.java
@@ -5867,6 +5873,8 @@ src/main/java/dev/zernio/model/ExternalPostMediaItem.java
 src/main/java/dev/zernio/model/ExternalPostSummary.java
 src/main/java/dev/zernio/model/ExternalPostSummaryAnalytics.java
 src/main/java/dev/zernio/model/ExternalPostWebhookPost.java
+src/main/java/dev/zernio/model/FacebookBlockedUser.java
+src/main/java/dev/zernio/model/FacebookBlockedUserRef.java
 src/main/java/dev/zernio/model/FacebookOrInstagramPost.java
 src/main/java/dev/zernio/model/FacebookPageInfo.java
 src/main/java/dev/zernio/model/FacebookPlatformData.java
@@ -6926,6 +6934,7 @@ src/main/java/dev/zernio/model/ListEventNames200ResponseNamesInner.java
 src/main/java/dev/zernio/model/ListEvents200Response.java
 src/main/java/dev/zernio/model/ListEvents200ResponseEventsInner.java
 src/main/java/dev/zernio/model/ListEvents200ResponseEventsInnerAllOfDeliveriesInner.java
+src/main/java/dev/zernio/model/ListFacebookBlockedUsers200Response.java
 src/main/java/dev/zernio/model/ListFacebookPages200Response.java
 src/main/java/dev/zernio/model/ListFacebookPages200ResponsePagesInner.java
 src/main/java/dev/zernio/model/ListFacebookTaggedPosts200Response.java
@@ -7930,6 +7939,7 @@ src/main/java/dev/zernio/model/TwitterPlatformData.java
 src/main/java/dev/zernio/model/TwitterPlatformDataPoll.java
 src/main/java/dev/zernio/model/TwitterPlatformDataSensitiveMedia.java
 src/main/java/dev/zernio/model/TwitterPlatformDataThreadItemsInner.java
+src/main/java/dev/zernio/model/UnblockFacebookUser200Response.java
 src/main/java/dev/zernio/model/UnblockWhatsAppUsers200Response.java
 src/main/java/dev/zernio/model/UnblockWhatsAppUsersRequest.java
 src/main/java/dev/zernio/model/UndoAdRuleActivity200Response.java
@@ -8669,5 +8679,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/SetPostCommentsEnabledRequestTest.java
-src/test/java/dev/zernio/model/SetPostCommentsEnabledResponseTest.java
+src/test/java/dev/zernio/model/BlockFacebookUser200ResponseTest.java
+src/test/java/dev/zernio/model/FacebookBlockedUserRefTest.java
+src/test/java/dev/zernio/model/FacebookBlockedUserTest.java
+src/test/java/dev/zernio/model/ListFacebookBlockedUsers200ResponseTest.java
+src/test/java/dev/zernio/model/UnblockFacebookUser200ResponseTest.java

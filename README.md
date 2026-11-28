@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.866.0
+- API version: 1.867.0
 
-- Build date: 2026-11-27T22:46:30.878206793Z[Etc/UTC]
+- Build date: 2026-11-28T04:39:21.491051162Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.866.0</version>
+  <version>1.867.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.866.0"
+compile "dev.zernio:zernio-sdk:1.867.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.866.0.jar`
+- `target/zernio-sdk-1.867.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -133,6 +133,8 @@ Class | Method | HTTP request | Description
 *AccountGroupsApi* | [**listAccountGroupsWithHttpInfo**](docs/AccountGroupsApi.md#listAccountGroupsWithHttpInfo) | **GET** /v1/account-groups | List groups
 *AccountGroupsApi* | [**updateAccountGroup**](docs/AccountGroupsApi.md#updateAccountGroup) | **PUT** /v1/account-groups/{groupId} | Update group
 *AccountGroupsApi* | [**updateAccountGroupWithHttpInfo**](docs/AccountGroupsApi.md#updateAccountGroupWithHttpInfo) | **PUT** /v1/account-groups/{groupId} | Update group
+*AccountSettingsApi* | [**blockFacebookUser**](docs/AccountSettingsApi.md#blockFacebookUser) | **POST** /v1/accounts/{accountId}/facebook-blocked-users | Block a person on a Facebook Page
+*AccountSettingsApi* | [**blockFacebookUserWithHttpInfo**](docs/AccountSettingsApi.md#blockFacebookUserWithHttpInfo) | **POST** /v1/accounts/{accountId}/facebook-blocked-users | Block a person on a Facebook Page
 *AccountSettingsApi* | [**deleteInstagramIceBreakers**](docs/AccountSettingsApi.md#deleteInstagramIceBreakers) | **DELETE** /v1/accounts/{accountId}/instagram-ice-breakers | Delete IG ice breakers
 *AccountSettingsApi* | [**deleteInstagramIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#deleteInstagramIceBreakersWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/instagram-ice-breakers | Delete IG ice breakers
 *AccountSettingsApi* | [**deleteMessengerGetStarted**](docs/AccountSettingsApi.md#deleteMessengerGetStarted) | **DELETE** /v1/accounts/{accountId}/messenger-get-started | Delete FB Get Started button
@@ -161,6 +163,8 @@ Class | Method | HTTP request | Description
 *AccountSettingsApi* | [**getTelegramCommandsWithHttpInfo**](docs/AccountSettingsApi.md#getTelegramCommandsWithHttpInfo) | **GET** /v1/accounts/{accountId}/telegram-commands | Get TG bot commands
 *AccountSettingsApi* | [**getWechatServerConfig**](docs/AccountSettingsApi.md#getWechatServerConfig) | **GET** /v1/accounts/{accountId}/wechat-server-config | Get WeChat server config
 *AccountSettingsApi* | [**getWechatServerConfigWithHttpInfo**](docs/AccountSettingsApi.md#getWechatServerConfigWithHttpInfo) | **GET** /v1/accounts/{accountId}/wechat-server-config | Get WeChat server config
+*AccountSettingsApi* | [**listFacebookBlockedUsers**](docs/AccountSettingsApi.md#listFacebookBlockedUsers) | **GET** /v1/accounts/{accountId}/facebook-blocked-users | List the people blocked on a Facebook Page
+*AccountSettingsApi* | [**listFacebookBlockedUsersWithHttpInfo**](docs/AccountSettingsApi.md#listFacebookBlockedUsersWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-blocked-users | List the people blocked on a Facebook Page
 *AccountSettingsApi* | [**setInstagramIceBreakers**](docs/AccountSettingsApi.md#setInstagramIceBreakers) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers
 *AccountSettingsApi* | [**setInstagramIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#setInstagramIceBreakersWithHttpInfo) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers
 *AccountSettingsApi* | [**setMessengerGetStarted**](docs/AccountSettingsApi.md#setMessengerGetStarted) | **PUT** /v1/accounts/{accountId}/messenger-get-started | Set FB Get Started button
@@ -173,6 +177,8 @@ Class | Method | HTTP request | Description
 *AccountSettingsApi* | [**setMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#setMessengerMenuWithHttpInfo) | **PUT** /v1/accounts/{accountId}/messenger-menu | Set persistent menu
 *AccountSettingsApi* | [**setTelegramCommands**](docs/AccountSettingsApi.md#setTelegramCommands) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands
 *AccountSettingsApi* | [**setTelegramCommandsWithHttpInfo**](docs/AccountSettingsApi.md#setTelegramCommandsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands
+*AccountSettingsApi* | [**unblockFacebookUser**](docs/AccountSettingsApi.md#unblockFacebookUser) | **DELETE** /v1/accounts/{accountId}/facebook-blocked-users | Unblock a person on a Facebook Page
+*AccountSettingsApi* | [**unblockFacebookUserWithHttpInfo**](docs/AccountSettingsApi.md#unblockFacebookUserWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/facebook-blocked-users | Unblock a person on a Facebook Page
 *AccountSettingsApi* | [**updateFacebookPageInfo**](docs/AccountSettingsApi.md#updateFacebookPageInfo) | **PATCH** /v1/accounts/{accountId}/facebook-page-info | Update a Facebook Page&#39;s public info
 *AccountSettingsApi* | [**updateFacebookPageInfoWithHttpInfo**](docs/AccountSettingsApi.md#updateFacebookPageInfoWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/facebook-page-info | Update a Facebook Page&#39;s public info
 *AccountsApi* | [**deleteAccount**](docs/AccountsApi.md#deleteAccount) | **DELETE** /v1/accounts/{accountId} | Disconnect account
@@ -3364,6 +3370,7 @@ Class | Method | HTTP request | Description
  - [BillingSnapshotPeriod](docs/BillingSnapshotPeriod.md)
  - [BillingSnapshotPlan](docs/BillingSnapshotPlan.md)
  - [BillingSnapshotStatus](docs/BillingSnapshotStatus.md)
+ - [BlockFacebookUser200Response](docs/BlockFacebookUser200Response.md)
  - [BlockWhatsAppUsers200Response](docs/BlockWhatsAppUsers200Response.md)
  - [BlockWhatsAppUsers200ResponseBlockedInner](docs/BlockWhatsAppUsers200ResponseBlockedInner.md)
  - [BlockWhatsAppUsers200ResponseFailedInner](docs/BlockWhatsAppUsers200ResponseFailedInner.md)
@@ -4365,6 +4372,8 @@ Class | Method | HTTP request | Description
  - [ExternalPostSummary](docs/ExternalPostSummary.md)
  - [ExternalPostSummaryAnalytics](docs/ExternalPostSummaryAnalytics.md)
  - [ExternalPostWebhookPost](docs/ExternalPostWebhookPost.md)
+ - [FacebookBlockedUser](docs/FacebookBlockedUser.md)
+ - [FacebookBlockedUserRef](docs/FacebookBlockedUserRef.md)
  - [FacebookOrInstagramPost](docs/FacebookOrInstagramPost.md)
  - [FacebookPageInfo](docs/FacebookPageInfo.md)
  - [FacebookPlatformData](docs/FacebookPlatformData.md)
@@ -5424,6 +5433,7 @@ Class | Method | HTTP request | Description
  - [ListEvents200Response](docs/ListEvents200Response.md)
  - [ListEvents200ResponseEventsInner](docs/ListEvents200ResponseEventsInner.md)
  - [ListEvents200ResponseEventsInnerAllOfDeliveriesInner](docs/ListEvents200ResponseEventsInnerAllOfDeliveriesInner.md)
+ - [ListFacebookBlockedUsers200Response](docs/ListFacebookBlockedUsers200Response.md)
  - [ListFacebookPages200Response](docs/ListFacebookPages200Response.md)
  - [ListFacebookPages200ResponsePagesInner](docs/ListFacebookPages200ResponsePagesInner.md)
  - [ListFacebookTaggedPosts200Response](docs/ListFacebookTaggedPosts200Response.md)
@@ -6428,6 +6438,7 @@ Class | Method | HTTP request | Description
  - [TwitterPlatformDataPoll](docs/TwitterPlatformDataPoll.md)
  - [TwitterPlatformDataSensitiveMedia](docs/TwitterPlatformDataSensitiveMedia.md)
  - [TwitterPlatformDataThreadItemsInner](docs/TwitterPlatformDataThreadItemsInner.md)
+ - [UnblockFacebookUser200Response](docs/UnblockFacebookUser200Response.md)
  - [UnblockWhatsAppUsers200Response](docs/UnblockWhatsAppUsers200Response.md)
  - [UnblockWhatsAppUsersRequest](docs/UnblockWhatsAppUsersRequest.md)
  - [UndoAdRuleActivity200Response](docs/UndoAdRuleActivity200Response.md)

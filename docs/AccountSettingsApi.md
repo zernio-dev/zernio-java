@@ -4,6 +4,8 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**blockFacebookUser**](AccountSettingsApi.md#blockFacebookUser) | **POST** /v1/accounts/{accountId}/facebook-blocked-users | Block a person on a Facebook Page |
+| [**blockFacebookUserWithHttpInfo**](AccountSettingsApi.md#blockFacebookUserWithHttpInfo) | **POST** /v1/accounts/{accountId}/facebook-blocked-users | Block a person on a Facebook Page |
 | [**deleteInstagramIceBreakers**](AccountSettingsApi.md#deleteInstagramIceBreakers) | **DELETE** /v1/accounts/{accountId}/instagram-ice-breakers | Delete IG ice breakers |
 | [**deleteInstagramIceBreakersWithHttpInfo**](AccountSettingsApi.md#deleteInstagramIceBreakersWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/instagram-ice-breakers | Delete IG ice breakers |
 | [**deleteMessengerGetStarted**](AccountSettingsApi.md#deleteMessengerGetStarted) | **DELETE** /v1/accounts/{accountId}/messenger-get-started | Delete FB Get Started button |
@@ -32,6 +34,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getTelegramCommandsWithHttpInfo**](AccountSettingsApi.md#getTelegramCommandsWithHttpInfo) | **GET** /v1/accounts/{accountId}/telegram-commands | Get TG bot commands |
 | [**getWechatServerConfig**](AccountSettingsApi.md#getWechatServerConfig) | **GET** /v1/accounts/{accountId}/wechat-server-config | Get WeChat server config |
 | [**getWechatServerConfigWithHttpInfo**](AccountSettingsApi.md#getWechatServerConfigWithHttpInfo) | **GET** /v1/accounts/{accountId}/wechat-server-config | Get WeChat server config |
+| [**listFacebookBlockedUsers**](AccountSettingsApi.md#listFacebookBlockedUsers) | **GET** /v1/accounts/{accountId}/facebook-blocked-users | List the people blocked on a Facebook Page |
+| [**listFacebookBlockedUsersWithHttpInfo**](AccountSettingsApi.md#listFacebookBlockedUsersWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-blocked-users | List the people blocked on a Facebook Page |
 | [**setInstagramIceBreakers**](AccountSettingsApi.md#setInstagramIceBreakers) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers |
 | [**setInstagramIceBreakersWithHttpInfo**](AccountSettingsApi.md#setInstagramIceBreakersWithHttpInfo) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers |
 | [**setMessengerGetStarted**](AccountSettingsApi.md#setMessengerGetStarted) | **PUT** /v1/accounts/{accountId}/messenger-get-started | Set FB Get Started button |
@@ -44,9 +48,171 @@ All URIs are relative to *https://zernio.com/api*
 | [**setMessengerMenuWithHttpInfo**](AccountSettingsApi.md#setMessengerMenuWithHttpInfo) | **PUT** /v1/accounts/{accountId}/messenger-menu | Set persistent menu |
 | [**setTelegramCommands**](AccountSettingsApi.md#setTelegramCommands) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands |
 | [**setTelegramCommandsWithHttpInfo**](AccountSettingsApi.md#setTelegramCommandsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands |
+| [**unblockFacebookUser**](AccountSettingsApi.md#unblockFacebookUser) | **DELETE** /v1/accounts/{accountId}/facebook-blocked-users | Unblock a person on a Facebook Page |
+| [**unblockFacebookUserWithHttpInfo**](AccountSettingsApi.md#unblockFacebookUserWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/facebook-blocked-users | Unblock a person on a Facebook Page |
 | [**updateFacebookPageInfo**](AccountSettingsApi.md#updateFacebookPageInfo) | **PATCH** /v1/accounts/{accountId}/facebook-page-info | Update a Facebook Page&#39;s public info |
 | [**updateFacebookPageInfoWithHttpInfo**](AccountSettingsApi.md#updateFacebookPageInfoWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/facebook-page-info | Update a Facebook Page&#39;s public info |
 
+
+
+## blockFacebookUser
+
+> BlockFacebookUser200Response blockFacebookUser(accountId, facebookBlockedUserRef)
+
+Block a person on a Facebook Page
+
+Blocks one person on the Page selected on a &#x60;facebook&#x60; account. Send &#x60;psid&#x60; for a Messenger contact (the participant id of a Facebook inbox conversation) or &#x60;userId&#x60; for a page-scoped user id or a Page id, never both.  &#x60;blocked&#x60; is Meta&#39;s answer for the id. Meta refuses to block someone again too soon after unblocking them, and caps how many people a Page can block: both come back as &#x60;platform_api_error&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountSettingsApi apiInstance = new AccountSettingsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Facebook account.
+        FacebookBlockedUserRef facebookBlockedUserRef = new FacebookBlockedUserRef(); // FacebookBlockedUserRef | 
+        try {
+            BlockFacebookUser200Response result = apiInstance.blockFacebookUser(accountId, facebookBlockedUserRef);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountSettingsApi#blockFacebookUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Facebook account. | |
+| **facebookBlockedUserRef** | [**FacebookBlockedUserRef**](FacebookBlockedUserRef.md)|  | |
+
+### Return type
+
+[**BlockFacebookUser200Response**](BlockFacebookUser200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Meta&#39;s answer for the person |  -  |
+| **400** | Invalid accountId, a body without exactly one numeric &#x60;psid&#x60; or &#x60;userId&#x60;, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the block (&#x60;platform_api_error&#x60;, for example a reblock too soon after unblocking or the block limit). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the block (&#x60;platform_api_error&#x60;, for example a missing Page permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+## blockFacebookUserWithHttpInfo
+
+> ApiResponse<BlockFacebookUser200Response> blockFacebookUser blockFacebookUserWithHttpInfo(accountId, facebookBlockedUserRef)
+
+Block a person on a Facebook Page
+
+Blocks one person on the Page selected on a &#x60;facebook&#x60; account. Send &#x60;psid&#x60; for a Messenger contact (the participant id of a Facebook inbox conversation) or &#x60;userId&#x60; for a page-scoped user id or a Page id, never both.  &#x60;blocked&#x60; is Meta&#39;s answer for the id. Meta refuses to block someone again too soon after unblocking them, and caps how many people a Page can block: both come back as &#x60;platform_api_error&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountSettingsApi apiInstance = new AccountSettingsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Facebook account.
+        FacebookBlockedUserRef facebookBlockedUserRef = new FacebookBlockedUserRef(); // FacebookBlockedUserRef | 
+        try {
+            ApiResponse<BlockFacebookUser200Response> response = apiInstance.blockFacebookUserWithHttpInfo(accountId, facebookBlockedUserRef);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountSettingsApi#blockFacebookUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Facebook account. | |
+| **facebookBlockedUserRef** | [**FacebookBlockedUserRef**](FacebookBlockedUserRef.md)|  | |
+
+### Return type
+
+ApiResponse<[**BlockFacebookUser200Response**](BlockFacebookUser200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Meta&#39;s answer for the person |  -  |
+| **400** | Invalid accountId, a body without exactly one numeric &#x60;psid&#x60; or &#x60;userId&#x60;, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the block (&#x60;platform_api_error&#x60;, for example a reblock too soon after unblocking or the block limit). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the block (&#x60;platform_api_error&#x60;, for example a missing Page permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
 
 
 ## deleteInstagramIceBreakers
@@ -2141,6 +2307,170 @@ ApiResponse<[**GetWechatServerConfig200Response**](GetWechatServerConfig200Respo
 | **404** | Resource not found |  -  |
 
 
+## listFacebookBlockedUsers
+
+> ListFacebookBlockedUsers200Response listFacebookBlockedUsers(accountId, limit, cursor)
+
+List the people blocked on a Facebook Page
+
+Returns the people blocked on the Page selected on a &#x60;facebook&#x60; account, as Meta returns them from the Page&#39;s &#x60;blocked&#x60; edge.  Cursor-paginated: pass &#x60;nextCursor&#x60; from the previous response as &#x60;cursor&#x60; to read the next page. &#x60;nextCursor&#x60; is null when there are no more pages. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountSettingsApi apiInstance = new AccountSettingsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Facebook account.
+        Integer limit = 25; // Integer | Page size.
+        String cursor = "cursor_example"; // String | The `nextCursor` of the previous page.
+        try {
+            ListFacebookBlockedUsers200Response result = apiInstance.listFacebookBlockedUsers(accountId, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountSettingsApi#listFacebookBlockedUsers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Facebook account. | |
+| **limit** | **Integer**| Page size. | [optional] [default to 25] |
+| **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page. | [optional] |
+
+### Return type
+
+[**ListFacebookBlockedUsers200Response**](ListFacebookBlockedUsers200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of blocked people |  -  |
+| **400** | Invalid accountId, limit or cursor, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the request (&#x60;platform_api_error&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the read (&#x60;platform_api_error&#x60;, for example a missing Page permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+## listFacebookBlockedUsersWithHttpInfo
+
+> ApiResponse<ListFacebookBlockedUsers200Response> listFacebookBlockedUsers listFacebookBlockedUsersWithHttpInfo(accountId, limit, cursor)
+
+List the people blocked on a Facebook Page
+
+Returns the people blocked on the Page selected on a &#x60;facebook&#x60; account, as Meta returns them from the Page&#39;s &#x60;blocked&#x60; edge.  Cursor-paginated: pass &#x60;nextCursor&#x60; from the previous response as &#x60;cursor&#x60; to read the next page. &#x60;nextCursor&#x60; is null when there are no more pages. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountSettingsApi apiInstance = new AccountSettingsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Facebook account.
+        Integer limit = 25; // Integer | Page size.
+        String cursor = "cursor_example"; // String | The `nextCursor` of the previous page.
+        try {
+            ApiResponse<ListFacebookBlockedUsers200Response> response = apiInstance.listFacebookBlockedUsersWithHttpInfo(accountId, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountSettingsApi#listFacebookBlockedUsers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Facebook account. | |
+| **limit** | **Integer**| Page size. | [optional] [default to 25] |
+| **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListFacebookBlockedUsers200Response**](ListFacebookBlockedUsers200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of blocked people |  -  |
+| **400** | Invalid accountId, limit or cursor, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the request (&#x60;platform_api_error&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the read (&#x60;platform_api_error&#x60;, for example a missing Page permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+
 ## setInstagramIceBreakers
 
 > void setInstagramIceBreakers(accountId, setInstagramIceBreakersRequest)
@@ -3053,6 +3383,170 @@ ApiResponse<Void>
 | **200** | Commands set successfully |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
+## unblockFacebookUser
+
+> UnblockFacebookUser200Response unblockFacebookUser(accountId, psid, userId)
+
+Unblock a person on a Facebook Page
+
+Unblocks one person on the Page selected on a &#x60;facebook&#x60; account. Pass &#x60;psid&#x60; for a Messenger contact or &#x60;userId&#x60; for a page-scoped user id or a Page id, never both. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountSettingsApi apiInstance = new AccountSettingsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Facebook account.
+        String psid = "psid_example"; // String | Page-scoped id of a Messenger contact. Set this or `userId`.
+        String userId = "userId_example"; // String | A page-scoped Facebook user id or a Page id. Set this or `psid`.
+        try {
+            UnblockFacebookUser200Response result = apiInstance.unblockFacebookUser(accountId, psid, userId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountSettingsApi#unblockFacebookUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Facebook account. | |
+| **psid** | **String**| Page-scoped id of a Messenger contact. Set this or &#x60;userId&#x60;. | [optional] |
+| **userId** | **String**| A page-scoped Facebook user id or a Page id. Set this or &#x60;psid&#x60;. | [optional] |
+
+### Return type
+
+[**UnblockFacebookUser200Response**](UnblockFacebookUser200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Meta&#39;s answer for the person |  -  |
+| **400** | Invalid accountId, not exactly one numeric &#x60;psid&#x60; or &#x60;userId&#x60;, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the unblock (&#x60;platform_api_error&#x60;, for example an unknown id). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account. |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+## unblockFacebookUserWithHttpInfo
+
+> ApiResponse<UnblockFacebookUser200Response> unblockFacebookUser unblockFacebookUserWithHttpInfo(accountId, psid, userId)
+
+Unblock a person on a Facebook Page
+
+Unblocks one person on the Page selected on a &#x60;facebook&#x60; account. Pass &#x60;psid&#x60; for a Messenger contact or &#x60;userId&#x60; for a page-scoped user id or a Page id, never both. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountSettingsApi apiInstance = new AccountSettingsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Facebook account.
+        String psid = "psid_example"; // String | Page-scoped id of a Messenger contact. Set this or `userId`.
+        String userId = "userId_example"; // String | A page-scoped Facebook user id or a Page id. Set this or `psid`.
+        try {
+            ApiResponse<UnblockFacebookUser200Response> response = apiInstance.unblockFacebookUserWithHttpInfo(accountId, psid, userId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountSettingsApi#unblockFacebookUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Facebook account. | |
+| **psid** | **String**| Page-scoped id of a Messenger contact. Set this or &#x60;userId&#x60;. | [optional] |
+| **userId** | **String**| A page-scoped Facebook user id or a Page id. Set this or &#x60;psid&#x60;. | [optional] |
+
+### Return type
+
+ApiResponse<[**UnblockFacebookUser200Response**](UnblockFacebookUser200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Meta&#39;s answer for the person |  -  |
+| **400** | Invalid accountId, not exactly one numeric &#x60;psid&#x60; or &#x60;userId&#x60;, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the unblock (&#x60;platform_api_error&#x60;, for example an unknown id). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account. |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
 
 
 ## updateFacebookPageInfo
