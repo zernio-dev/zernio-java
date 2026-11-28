@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.870.0
+  version: 1.871.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -31476,6 +31476,83 @@ paths:
         "404":
           description: Account not found
       summary: Update Stripe account settings
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-oauth-scopes:
+      - accounts:write
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/store-settings:
+    get:
+      description: Read whether a connected Shopify store's or WordPress (WooCommerce)
+        site's orders go to the ad platforms.
+      operationId: getStoreSettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getStoreSettings_200_response"
+          description: Store settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Get Shopify or WooCommerce store settings
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-oauth-scopes:
+      - accounts:read
+      - accounts:write
+      x-accepts:
+      - application/json
+    patch:
+      description: Turn sending a store's paid orders to the ad platforms on or off.
+        Orders are always stored and counted in campaign results; this only decides
+        whether they are also forwarded. Meta and TikTok get them only from a forwarding
+        rule whose sources list the store (`shopify` or `woocommerce`).
+      operationId: updateStoreSettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateStoreSettings_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateStoreSettings_200_response"
+          description: Updated settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Update Shopify or WooCommerce store settings
       tags:
       - Accounts
       x-resource-group: accounts
@@ -133010,6 +133087,28 @@ components:
       - livemode
       - platform
       - stripeAccountId
+    StoreSettings:
+      example:
+        forwardOrders: true
+        _id: _id
+        platform: shopify
+      properties:
+        _id:
+          description: Zernio account ID of the store connection.
+          type: string
+        platform:
+          enum:
+          - shopify
+          - wordpress
+          type: string
+        forwardOrders:
+          description: Whether the store's paid orders go to the profile's forwarding
+            rules.
+          type: boolean
+      required:
+      - _id
+      - forwardOrders
+      - platform
     GohighlevelSettings:
       example:
         locationName: locationName
@@ -176825,6 +176924,37 @@ components:
           type: string
         account:
           $ref: "#/components/schemas/StripeSettings"
+    getStoreSettings_200_response:
+      example:
+        account:
+          forwardOrders: true
+          _id: _id
+          platform: shopify
+      properties:
+        account:
+          $ref: "#/components/schemas/StoreSettings"
+    updateStoreSettings_request:
+      properties:
+        forwardOrders:
+          description: "Send each paid order as `Purchase` through the profile's forwarding\
+            \ rules that take the store's source. A Shopify order goes with the event\
+            \ id the Zernio Shopify pixel uses for it, so a platform counts the pair\
+            \ once."
+          type: boolean
+      required:
+      - forwardOrders
+    updateStoreSettings_200_response:
+      example:
+        message: message
+        account:
+          forwardOrders: true
+          _id: _id
+          platform: shopify
+      properties:
+        message:
+          type: string
+        account:
+          $ref: "#/components/schemas/StoreSettings"
     getSlackSettings_200_response_account:
       example:
         teamName: teamName

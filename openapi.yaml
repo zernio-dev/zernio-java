@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Zernio API
-  version: "1.870.0"
+  version: "1.871.0"
   description: |
     API reference for Zernio. Authenticate with a Bearer API key.
     Base URL: https://zernio.com/api
@@ -19294,6 +19294,22 @@ components:
         forwardSales:
           type: boolean
           description: Whether new customers' first payments go to the profile's forwarding rules.
+    StoreSettings:
+      type: object
+      required:
+        - _id
+        - platform
+        - forwardOrders
+      properties:
+        _id:
+          type: string
+          description: Zernio account ID of the store connection.
+        platform:
+          type: string
+          enum: [shopify, wordpress]
+        forwardOrders:
+          type: boolean
+          description: Whether the store's paid orders go to the profile's forwarding rules.
     GohighlevelSettings:
       type: object
       required:
@@ -65937,6 +65953,87 @@ paths:
                     type: string
                   account:
                     $ref: '#/components/schemas/StripeSettings'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Account not found
+  /v1/accounts/{accountId}/store-settings:
+    get:
+      x-resource-group: "accounts"
+      x-oauth-scopes: ["accounts:read", "accounts:write"]
+      operationId: getStoreSettings
+      tags:
+        - Accounts
+      summary: Get Shopify or WooCommerce store settings
+      description: Read whether a connected Shopify store's or WordPress (WooCommerce) site's orders go to the ad platforms.
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Store settings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  account:
+                    $ref: '#/components/schemas/StoreSettings'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Account not found
+    patch:
+      x-resource-group: "accounts"
+      x-oauth-scopes: ["accounts:write"]
+      operationId: updateStoreSettings
+      tags:
+        - Accounts
+      summary: Update Shopify or WooCommerce store settings
+      description: >-
+        Turn sending a store's paid orders to the ad platforms on or off. Orders are always stored and counted in
+        campaign results; this only decides whether they are also forwarded. Meta and TikTok get them only from a
+        forwarding rule whose sources list the store (`shopify` or `woocommerce`).
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - forwardOrders
+              properties:
+                forwardOrders:
+                  type: boolean
+                  description: >-
+                    Send each paid order as `Purchase` through the profile's forwarding rules that take the store's
+                    source. A Shopify order goes with the event id the Zernio Shopify pixel uses for it, so a platform
+                    counts the pair once.
+      responses:
+        '200':
+          description: Updated settings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  account:
+                    $ref: '#/components/schemas/StoreSettings'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':

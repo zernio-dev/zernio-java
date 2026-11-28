@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.870.0
+- API version: 1.871.0
 
-- Build date: 2026-11-28T10:50:08.698741385Z[Etc/UTC]
+- Build date: 2026-11-28T12:32:38.228812540Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.870.0</version>
+  <version>1.871.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.870.0"
+compile "dev.zernio:zernio-sdk:1.871.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.870.0.jar`
+- `target/zernio-sdk-1.871.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -207,6 +207,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getSalesforceSettingsWithHttpInfo**](docs/AccountsApi.md#getSalesforceSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/salesforce-settings | Get Salesforce account settings
 *AccountsApi* | [**getSlackSettings**](docs/AccountsApi.md#getSlackSettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
 *AccountsApi* | [**getSlackSettingsWithHttpInfo**](docs/AccountsApi.md#getSlackSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
+*AccountsApi* | [**getStoreSettings**](docs/AccountsApi.md#getStoreSettings) | **GET** /v1/accounts/{accountId}/store-settings | Get Shopify or WooCommerce store settings
+*AccountsApi* | [**getStoreSettingsWithHttpInfo**](docs/AccountsApi.md#getStoreSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/store-settings | Get Shopify or WooCommerce store settings
 *AccountsApi* | [**getStripeSettings**](docs/AccountsApi.md#getStripeSettings) | **GET** /v1/accounts/{accountId}/stripe-settings | Get Stripe account settings
 *AccountsApi* | [**getStripeSettingsWithHttpInfo**](docs/AccountsApi.md#getStripeSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/stripe-settings | Get Stripe account settings
 *AccountsApi* | [**getTikTokCreatorInfo**](docs/AccountsApi.md#getTikTokCreatorInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
@@ -247,6 +249,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**updateSalesforceSettingsWithHttpInfo**](docs/AccountsApi.md#updateSalesforceSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/salesforce-settings | Update Salesforce account settings
 *AccountsApi* | [**updateSlackSettings**](docs/AccountsApi.md#updateSlackSettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
 *AccountsApi* | [**updateSlackSettingsWithHttpInfo**](docs/AccountsApi.md#updateSlackSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
+*AccountsApi* | [**updateStoreSettings**](docs/AccountsApi.md#updateStoreSettings) | **PATCH** /v1/accounts/{accountId}/store-settings | Update Shopify or WooCommerce store settings
+*AccountsApi* | [**updateStoreSettingsWithHttpInfo**](docs/AccountsApi.md#updateStoreSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/store-settings | Update Shopify or WooCommerce store settings
 *AccountsApi* | [**updateStripeSettings**](docs/AccountsApi.md#updateStripeSettings) | **PATCH** /v1/accounts/{accountId}/stripe-settings | Update Stripe account settings
 *AccountsApi* | [**updateStripeSettingsWithHttpInfo**](docs/AccountsApi.md#updateStripeSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/stripe-settings | Update Stripe account settings
 *AccountsApi* | [**verifyGohighlevelFunnelTracking**](docs/AccountsApi.md#verifyGohighlevelFunnelTracking) | **POST** /v1/accounts/{accountId}/gohighlevel-funnel-tracking/verify | Check the Zernio tag on a HighLevel funnel page
@@ -4871,6 +4875,7 @@ Class | Method | HTTP request | Description
  - [GetSmsUsage200Response](docs/GetSmsUsage200Response.md)
  - [GetSmsUsage200ResponseGroupsInner](docs/GetSmsUsage200ResponseGroupsInner.md)
  - [GetSmsUsage200ResponseTotals](docs/GetSmsUsage200ResponseTotals.md)
+ - [GetStoreSettings200Response](docs/GetStoreSettings200Response.md)
  - [GetStripeConnectUrl200Response](docs/GetStripeConnectUrl200Response.md)
  - [GetStripeSettings200Response](docs/GetStripeSettings200Response.md)
  - [GetSubredditRules200Response](docs/GetSubredditRules200Response.md)
@@ -6345,6 +6350,7 @@ Class | Method | HTTP request | Description
  - [StartWhatsAppCallerIdVerificationRequest](docs/StartWhatsAppCallerIdVerificationRequest.md)
  - [StorePixelInstall](docs/StorePixelInstall.md)
  - [StorePixelInstallTagsInner](docs/StorePixelInstallTagsInner.md)
+ - [StoreSettings](docs/StoreSettings.md)
  - [StoredEvent](docs/StoredEvent.md)
  - [StoredEventAd](docs/StoredEventAd.md)
  - [StoredEventCampaign](docs/StoredEventCampaign.md)
@@ -6696,6 +6702,8 @@ Class | Method | HTTP request | Description
  - [UpdateSequenceRequestStepsInner](docs/UpdateSequenceRequestStepsInner.md)
  - [UpdateSequenceRequestStepsInnerTemplate](docs/UpdateSequenceRequestStepsInnerTemplate.md)
  - [UpdateSlackSettingsRequest](docs/UpdateSlackSettingsRequest.md)
+ - [UpdateStoreSettings200Response](docs/UpdateStoreSettings200Response.md)
+ - [UpdateStoreSettingsRequest](docs/UpdateStoreSettingsRequest.md)
  - [UpdateStripeSettings200Response](docs/UpdateStripeSettings200Response.md)
  - [UpdateStripeSettingsRequest](docs/UpdateStripeSettingsRequest.md)
  - [UpdateTrackingLinkRequest](docs/UpdateTrackingLinkRequest.md)

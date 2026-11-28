@@ -30,6 +30,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getSalesforceSettingsWithHttpInfo**](AccountsApi.md#getSalesforceSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/salesforce-settings | Get Salesforce account settings |
 | [**getSlackSettings**](AccountsApi.md#getSlackSettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings |
 | [**getSlackSettingsWithHttpInfo**](AccountsApi.md#getSlackSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings |
+| [**getStoreSettings**](AccountsApi.md#getStoreSettings) | **GET** /v1/accounts/{accountId}/store-settings | Get Shopify or WooCommerce store settings |
+| [**getStoreSettingsWithHttpInfo**](AccountsApi.md#getStoreSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/store-settings | Get Shopify or WooCommerce store settings |
 | [**getStripeSettings**](AccountsApi.md#getStripeSettings) | **GET** /v1/accounts/{accountId}/stripe-settings | Get Stripe account settings |
 | [**getStripeSettingsWithHttpInfo**](AccountsApi.md#getStripeSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/stripe-settings | Get Stripe account settings |
 | [**getTikTokCreatorInfo**](AccountsApi.md#getTikTokCreatorInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
@@ -70,6 +72,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateSalesforceSettingsWithHttpInfo**](AccountsApi.md#updateSalesforceSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/salesforce-settings | Update Salesforce account settings |
 | [**updateSlackSettings**](AccountsApi.md#updateSlackSettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings |
 | [**updateSlackSettingsWithHttpInfo**](AccountsApi.md#updateSlackSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings |
+| [**updateStoreSettings**](AccountsApi.md#updateStoreSettings) | **PATCH** /v1/accounts/{accountId}/store-settings | Update Shopify or WooCommerce store settings |
+| [**updateStoreSettingsWithHttpInfo**](AccountsApi.md#updateStoreSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/store-settings | Update Shopify or WooCommerce store settings |
 | [**updateStripeSettings**](AccountsApi.md#updateStripeSettings) | **PATCH** /v1/accounts/{accountId}/stripe-settings | Update Stripe account settings |
 | [**updateStripeSettingsWithHttpInfo**](AccountsApi.md#updateStripeSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/stripe-settings | Update Stripe account settings |
 | [**verifyGohighlevelFunnelTracking**](AccountsApi.md#verifyGohighlevelFunnelTracking) | **POST** /v1/accounts/{accountId}/gohighlevel-funnel-tracking/verify | Check the Zernio tag on a HighLevel funnel page |
@@ -2074,6 +2078,156 @@ ApiResponse<[**GetSlackSettings200Response**](GetSlackSettings200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Slack account settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+
+## getStoreSettings
+
+> GetStoreSettings200Response getStoreSettings(accountId)
+
+Get Shopify or WooCommerce store settings
+
+Read whether a connected Shopify store&#39;s or WordPress (WooCommerce) site&#39;s orders go to the ad platforms.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            GetStoreSettings200Response result = apiInstance.getStoreSettings(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#getStoreSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+[**GetStoreSettings200Response**](GetStoreSettings200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Store settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+## getStoreSettingsWithHttpInfo
+
+> ApiResponse<GetStoreSettings200Response> getStoreSettings getStoreSettingsWithHttpInfo(accountId)
+
+Get Shopify or WooCommerce store settings
+
+Read whether a connected Shopify store&#39;s or WordPress (WooCommerce) site&#39;s orders go to the ad platforms.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<GetStoreSettings200Response> response = apiInstance.getStoreSettingsWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#getStoreSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetStoreSettings200Response**](GetStoreSettings200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Store settings |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
@@ -5218,6 +5372,160 @@ public class Example {
 
 
 ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+
+## updateStoreSettings
+
+> UpdateStoreSettings200Response updateStoreSettings(accountId, updateStoreSettingsRequest)
+
+Update Shopify or WooCommerce store settings
+
+Turn sending a store&#39;s paid orders to the ad platforms on or off. Orders are always stored and counted in campaign results; this only decides whether they are also forwarded. Meta and TikTok get them only from a forwarding rule whose sources list the store (&#x60;shopify&#x60; or &#x60;woocommerce&#x60;).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        UpdateStoreSettingsRequest updateStoreSettingsRequest = new UpdateStoreSettingsRequest(); // UpdateStoreSettingsRequest | 
+        try {
+            UpdateStoreSettings200Response result = apiInstance.updateStoreSettings(accountId, updateStoreSettingsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#updateStoreSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **updateStoreSettingsRequest** | [**UpdateStoreSettingsRequest**](UpdateStoreSettingsRequest.md)|  | |
+
+### Return type
+
+[**UpdateStoreSettings200Response**](UpdateStoreSettings200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+## updateStoreSettingsWithHttpInfo
+
+> ApiResponse<UpdateStoreSettings200Response> updateStoreSettings updateStoreSettingsWithHttpInfo(accountId, updateStoreSettingsRequest)
+
+Update Shopify or WooCommerce store settings
+
+Turn sending a store&#39;s paid orders to the ad platforms on or off. Orders are always stored and counted in campaign results; this only decides whether they are also forwarded. Meta and TikTok get them only from a forwarding rule whose sources list the store (&#x60;shopify&#x60; or &#x60;woocommerce&#x60;).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        UpdateStoreSettingsRequest updateStoreSettingsRequest = new UpdateStoreSettingsRequest(); // UpdateStoreSettingsRequest | 
+        try {
+            ApiResponse<UpdateStoreSettings200Response> response = apiInstance.updateStoreSettingsWithHttpInfo(accountId, updateStoreSettingsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#updateStoreSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **updateStoreSettingsRequest** | [**UpdateStoreSettingsRequest**](UpdateStoreSettingsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateStoreSettings200Response**](UpdateStoreSettings200Response.md)>
+
 
 ### Authorization
 
