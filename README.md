@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.867.0
+- API version: 1.868.0
 
-- Build date: 2026-11-28T04:39:21.491051162Z[Etc/UTC]
+- Build date: 2026-11-28T06:38:05.385932994Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.867.0</version>
+  <version>1.868.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.867.0"
+compile "dev.zernio:zernio-sdk:1.868.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.867.0.jar`
+- `target/zernio-sdk-1.868.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -403,8 +403,12 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**deleteAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#deleteAdAudienceWithHttpInfo) | **DELETE** /v1/ads/audiences/{audienceId} | Delete custom audience
 *AdAudiencesApi* | [**getAdAudience**](docs/AdAudiencesApi.md#getAdAudience) | **GET** /v1/ads/audiences/{audienceId} | Get audience details
 *AdAudiencesApi* | [**getAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#getAdAudienceWithHttpInfo) | **GET** /v1/ads/audiences/{audienceId} | Get audience details
+*AdAudiencesApi* | [**getMetaSavedAudience**](docs/AdAudiencesApi.md#getMetaSavedAudience) | **GET** /v1/ads/saved-audiences/{savedAudienceId} | Read a Meta saved audience
+*AdAudiencesApi* | [**getMetaSavedAudienceWithHttpInfo**](docs/AdAudiencesApi.md#getMetaSavedAudienceWithHttpInfo) | **GET** /v1/ads/saved-audiences/{savedAudienceId} | Read a Meta saved audience
 *AdAudiencesApi* | [**listAdAudiences**](docs/AdAudiencesApi.md#listAdAudiences) | **GET** /v1/ads/audiences | List custom audiences
 *AdAudiencesApi* | [**listAdAudiencesWithHttpInfo**](docs/AdAudiencesApi.md#listAdAudiencesWithHttpInfo) | **GET** /v1/ads/audiences | List custom audiences
+*AdAudiencesApi* | [**listMetaSavedAudiences**](docs/AdAudiencesApi.md#listMetaSavedAudiences) | **GET** /v1/ads/saved-audiences | List Meta saved audiences
+*AdAudiencesApi* | [**listMetaSavedAudiencesWithHttpInfo**](docs/AdAudiencesApi.md#listMetaSavedAudiencesWithHttpInfo) | **GET** /v1/ads/saved-audiences | List Meta saved audiences
 *AdAudiencesApi* | [**removeUsersFromAdAudience**](docs/AdAudiencesApi.md#removeUsersFromAdAudience) | **DELETE** /v1/ads/audiences/{audienceId}/users | Remove users from audience
 *AdAudiencesApi* | [**removeUsersFromAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#removeUsersFromAdAudienceWithHttpInfo) | **DELETE** /v1/ads/audiences/{audienceId}/users | Remove users from audience
 *AdAudiencesApi* | [**replaceAdAudienceCompanies**](docs/AdAudiencesApi.md#replaceAdAudienceCompanies) | **POST** /v1/ads/audiences/{audienceId}/companies | Replace audience companies
@@ -4812,6 +4816,7 @@ Class | Method | HTTP request | Description
  - [GetMessengerGreeting200Response](docs/GetMessengerGreeting200Response.md)
  - [GetMessengerIceBreakers200Response](docs/GetMessengerIceBreakers200Response.md)
  - [GetMessengerMenu200Response](docs/GetMessengerMenu200Response.md)
+ - [GetMetaSavedAudience200Response](docs/GetMetaSavedAudience200Response.md)
  - [GetPageWebhookSubscription200Response](docs/GetPageWebhookSubscription200Response.md)
  - [GetPayoutBatch200Response](docs/GetPayoutBatch200Response.md)
  - [GetPendingOAuthData200Response](docs/GetPendingOAuthData200Response.md)
@@ -5527,6 +5532,8 @@ Class | Method | HTTP request | Description
  - [ListLogs200ResponsePagination](docs/ListLogs200ResponsePagination.md)
  - [ListMetaBusinessUsers200Response](docs/ListMetaBusinessUsers200Response.md)
  - [ListMetaBusinesses200Response](docs/ListMetaBusinesses200Response.md)
+ - [ListMetaSavedAudiences200Response](docs/ListMetaSavedAudiences200Response.md)
+ - [ListMetaSavedAudiences200ResponsePaging](docs/ListMetaSavedAudiences200ResponsePaging.md)
  - [ListOAuthApps200Response](docs/ListOAuthApps200Response.md)
  - [ListOAuthApps200ResponsePagination](docs/ListOAuthApps200ResponsePagination.md)
  - [ListOrgConnectionUsers200Response](docs/ListOrgConnectionUsers200Response.md)
@@ -5708,6 +5715,7 @@ Class | Method | HTTP request | Description
  - [MetaProductFeedSchedule](docs/MetaProductFeedSchedule.md)
  - [MetaProductSet](docs/MetaProductSet.md)
  - [MetaRecoveredWritesInner](docs/MetaRecoveredWritesInner.md)
+ - [MetaSavedAudience](docs/MetaSavedAudience.md)
  - [MetricDefinition](docs/MetricDefinition.md)
  - [MetricEntity](docs/MetricEntity.md)
  - [MetricEntityAttributionsInner](docs/MetricEntityAttributionsInner.md)

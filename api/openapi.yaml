@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.867.0
+  version: 1.868.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -73079,6 +73079,156 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/ads/saved-audiences:
+    get:
+      description: |-
+        Lists the saved audiences of a Meta ad account, read live from Meta (`GET /act_X/saved_audiences`).
+
+        These are Meta's own saved audiences, the ones made in Ads Manager, not the Zernio
+        `saved_targeting` audiences of `/v1/ads/audiences`. Meta's Marketing API exposes saved
+        audiences read-only: they are created, edited and deleted in Ads Manager.
+
+        To target an ad set at a saved audience, send its `targeting` as `rawTargeting` on
+        `POST /v1/ads/create`.
+      operationId: listMetaSavedAudiences
+      parameters:
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account id (act_<n>).
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Rows per page
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor from paging.after of the previous page.
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listMetaSavedAudiences_200_response"
+          description: Saved audiences
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only supported on Meta ad accounts (facebook/instagram).
+      security:
+      - bearerAuth: []
+      summary: List Meta saved audiences
+      tags:
+      - Ad Audiences
+      x-resource-group: ads
+      x-oauth-scopes:
+      - ads:write
+      - ads:read
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+  /v1/ads/saved-audiences/{savedAudienceId}:
+    get:
+      description: |-
+        Reads one saved audience of a Meta ad account, including the targeting spec it holds.
+
+        Meta's SavedAudience node does not say which ad account owns it, so the audience is
+        looked up in the named ad account's `GET /act_X/saved_audiences` (up to 1,000 saved
+        audiences). An id that is not on that ad account answers 404.
+      operationId: getMetaSavedAudience
+      parameters:
+      - description: Meta saved audience id.
+        explode: false
+        in: path
+        name: savedAudienceId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account id (act_<n>) that holds the saved audience.
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getMetaSavedAudience_200_response"
+          description: Saved audience
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
+        "404":
+          description: "The connection is unavailable, or the saved audience is not\
+            \ on this ad account (`resource_not_found`)."
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only supported on Meta ad accounts (facebook/instagram).
+      security:
+      - bearerAuth: []
+      summary: Read a Meta saved audience
+      tags:
+      - Ad Audiences
+      x-resource-group: ads
+      x-oauth-scopes:
+      - ads:write
+      - ads:read
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
   /v1/ads/value-rule-sets:
     get:
       description: |-
@@ -142988,6 +143138,66 @@ components:
       - adjustValue
       - criteria
       - name
+    MetaSavedAudience:
+      description: "A Meta saved audience (Meta's SavedAudience node), read live from\
+        \ Meta."
+      example:
+        createdAt: createdAt
+        targeting:
+          key: ""
+        approximateCountLowerBound: 0
+        approximateCountUpperBound: 6
+        name: name
+        description: description
+        id: id
+        runStatus: runStatus
+        sentenceLines:
+        - ""
+        - ""
+        updatedAt: updatedAt
+      properties:
+        id:
+          description: Meta saved audience id.
+          type: string
+        name:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        approximateCountLowerBound:
+          description: Meta's estimated lower bound on reach.
+          nullable: true
+          type: integer
+        approximateCountUpperBound:
+          description: Meta's estimated upper bound on reach.
+          nullable: true
+          type: integer
+        runStatus:
+          description: "Meta's run_status: whether the saved audience is active or\
+            \ deleted."
+          nullable: true
+          type: string
+        sentenceLines:
+          description: "Meta's human-readable targeting summary lines, passed through\
+            \ as Meta returns them."
+          items: {}
+          type: array
+        targeting:
+          additionalProperties: true
+          description: "The Meta targeting spec saved in the audience, in Meta's own\
+            \ snake_case shape. Send it as `rawTargeting` on `POST /v1/ads/create`\
+            \ to target an ad set at this audience."
+          nullable: true
+          type: object
+        createdAt:
+          description: Meta's time_created.
+          nullable: true
+          type: string
+        updatedAt:
+          description: Meta's time_updated.
+          nullable: true
+          type: string
     ValueRuleSet:
       additionalProperties: false
       description: |
@@ -221762,6 +221972,77 @@ components:
           type: string
         message:
           type: string
+    listMetaSavedAudiences_200_response_paging:
+      example:
+        after: after
+      properties:
+        after:
+          description: Cursor for the next page; null on the last page.
+          nullable: true
+          type: string
+    listMetaSavedAudiences_200_response:
+      example:
+        data:
+        - createdAt: createdAt
+          targeting:
+            key: ""
+          approximateCountLowerBound: 0
+          approximateCountUpperBound: 6
+          name: name
+          description: description
+          id: id
+          runStatus: runStatus
+          sentenceLines:
+          - ""
+          - ""
+          updatedAt: updatedAt
+        - createdAt: createdAt
+          targeting:
+            key: ""
+          approximateCountLowerBound: 0
+          approximateCountUpperBound: 6
+          name: name
+          description: description
+          id: id
+          runStatus: runStatus
+          sentenceLines:
+          - ""
+          - ""
+          updatedAt: updatedAt
+        adAccountId: adAccountId
+        paging:
+          after: after
+      properties:
+        adAccountId:
+          type: string
+        data:
+          items:
+            $ref: "#/components/schemas/MetaSavedAudience"
+          type: array
+        paging:
+          $ref: "#/components/schemas/listMetaSavedAudiences_200_response_paging"
+    getMetaSavedAudience_200_response:
+      example:
+        adAccountId: adAccountId
+        savedAudience:
+          createdAt: createdAt
+          targeting:
+            key: ""
+          approximateCountLowerBound: 0
+          approximateCountUpperBound: 6
+          name: name
+          description: description
+          id: id
+          runStatus: runStatus
+          sentenceLines:
+          - ""
+          - ""
+          updatedAt: updatedAt
+      properties:
+        adAccountId:
+          type: string
+        savedAudience:
+          $ref: "#/components/schemas/MetaSavedAudience"
     listValueRuleSets_200_response_paging:
       example:
         after: after
