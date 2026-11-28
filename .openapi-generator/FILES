@@ -8687,7 +8687,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetMetaSavedAudience200ResponseTest.java
-src/test/java/dev/zernio/model/ListMetaSavedAudiences200ResponsePagingTest.java
-src/test/java/dev/zernio/model/ListMetaSavedAudiences200ResponseTest.java
-src/test/java/dev/zernio/model/MetaSavedAudienceTest.java
